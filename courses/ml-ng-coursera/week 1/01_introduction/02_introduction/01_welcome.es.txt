@@ -1,0 +1,86 @@
+Bienvenidos a esta clase en línea acerca de
+aprendizaje automático. El aprendizaje automático es una de las nuevas tecnologías más emocionantes.
+Y en esta clase aprenderás acerca de su tecnología de punta y también obtendrás práctica
+para realizar la implementación y despliegue de estos algoritmos tú mismo. Es posible que hayas usado algoritmos
+de aprendizaje muchas veces en un día sin darte cuenta. Cada vez que usas un buscador
+web como Google o Bing para hacer una búsqueda en internet, una de las razones
+por las que funciona tan bien es porque un algoritmo de aprendizaje, implementado por Google
+o Microsoft, ya aprendió a clasificar las páginas web. Cada vez que usas Facebook o
+o que la aplicación de fotos de Apple reconoce las fotos de tus amigos, eso es
+aprendizaje automático. Cada vez que lees tu correo electrónico o que tu filtro de spam te salva
+de tener toneladas de correo basura, eso también es un algoritmo de aprendizaje.
+Una de las razones por las que estoy emocionado es el sueño de la inteligencia artificial de hacer máquinas
+tan inteligentes como tú o como yo. Todavía estamos lejos de alcanzarlo, pero muchos
+investigadores de IA creen que el mejor camino para lograrlo es mediante algoritmos
+de aprendizaje que tratan de imitar cómo aprende el cerebro humano. también voy a hablar un poco
+sobre eso en esta clase. En esta clase aprenderás acerca de algoritmos
+de aprendizaje automático con tecnología de punta. Pero resulta que sólo saber algoritmos y
+matemáticas no es tan bueno si no sabes cómo obtener realmente
+estas cosas para solucionar los problemas que te importan. Así que pasamos mucho tiempo
+desarrollando ejercicios para que pongas en práctica estos algoritmos y
+veas cómo funcionan para ti. Entonces, ¿Por qué predomina el aprendizaje automático hoy en día?
+Resulta que el aprendizaje automático es un campo que nació a partir de la
+IA o inteligencia artificial. Queríamos construir máquinas inteligentes y resulta
+que hay pocas cosas básicas que podemos programar para que haga una máquina
+como encontrar la ruta más corta de A a B. Pero en gran medida no sabíamos cómo
+hacer programas de IA para hacer cosas más interesantes como buscar en la web,
+etiquetar fotos o antispam. Se comprendió que la única forma de hacer
+estas cosas era que una máquina aprendiera a hacerlas por sí misma. Así que el aprendizaje automático
+se desarrolló como una nueva capacidad para las computadoras y hoy está en muchos
+sectores de industria y ciencia básica. Para mí que trabajo con aprendizaje automático y
+que en una semana normal, puedo terminar hablando con pilotos de helicópteros, biólogos y varias
+personas de sistemas (mis colegas de Stanford) y que en promedio
+dos o tres veces por semana recibo correos de personas de la industria de Silicon Valley
+que están interesados en aplicar algoritmos de aprendizaje en sus propios
+problemas. Esto muestra la gama de problemas que trata el aprendizaje automático.
+Existe robótica autónoma, biología informática y cientos de cosas en Silicon Valley
+donde el aprendizaje automático está teniendo un impacto. Ahora veamos otros ejemplos de
+aprendizaje automático. Existe la minería de datos. Una de las razones por las que el aprendizaje automático
+se ha difundido es el crecimiento de la web y de la automatización, es decir,
+que ahora tenemos más datos que nunca. Por ejemplo, hoy en día muchas empresas
+en Silicon Valley recolectan datos de clics, también llamados datos de tráfico,
+y tratan de usar algoritmos de aprendizaje electrónico para explorar estos datos y
+entender mejor a los usuarios y darles mejor servicio. Actualmente es un gran
+segmento de Silicon Valley. Expedientes médicos. Ahora con la llegada de la automatización,
+tenemos expedientes médicos electrónicos, entonces si convertimos los expedientes médicos en
+conocimientos médicos, empezaremos a entender mejor la enfermedad. Biología informática.
+También con la automatización los biólogos recolectan muchos datos sobre la secuencia
+genética, secuencias de ADN, etc. y los algoritmos de aprendizaje automático nos
+ayudan a entender mejor el genoma humano y qué significa ser humano.
+También en ingeniería, en todos las áreas de ingeniería, tenemos conjuntos de datos
+cada vez más y más grandes, que tratamos de entender mediante algoritmos
+de aprendizaje. Una segunda gama de aplicaciones de aprendizaje automático es una que no 
+podemos programar a mano. Por ejemplo, trabajé con helicópteros autónomos durante muchos
+años. Y no sabíamos cómo diseñar un programa para que el helicóptero
+volara por sí solo. Lo único que funcionó era que la computadora aprendiera por sí sola
+cómo volar el helicóptero [Helicóptero dando vueltas] Reconocimiento de escritura. Resulta que una de
+las razones por la que hoy en día es tan barato enviar un sobre dentro del
+país, en EE.UU. y a nivel internacional, es porque cuando escribes en un sobre como
+este, existe un algoritmo de aprendizaje que ya aprendió a leer tu
+escritura para que se pueda enviar el sobre de forma automática, así que
+cuesta muy poco enviarlo a miles de kilómetros. De hecho, si han visto
+los campos del procesamiento de lenguaje natural o de la visión por computadora,
+son campos de la IA que se relacionan con entender el idioma o las
+imágenes. Actualmente, la mayoría del procesamiento de lenguaje natural y de visión por computadora
+aplica aprendizaje automático. Los algoritmos de aprendizaje se utilizan mucho en los
+programas de autopersonalización. Cada vez que entras a Amazon, Netflix o iTunes Genius y te
+recomienda películas, productos y música, eso también es un algoritmo de aprendizaje.
+Si lo piensas, tienen millones de usuarios; no hay forma de crear un millón
+de programas distintos para esos usuarios. La única manera de que el software genere
+estas recomendaciones personalizadas es que pueda aprender por sí mismo
+tus preferencias. Por último, los algoritmos de aprendizaje se usan hoy en día
+para entender el aprendizaje humano y para entender el cerebro. Hablaremos de
+cómo lo utilizan los investigadores para avanzar hacia el sueño de la inteligencia artificial. Hace algunos
+meses, un estudiante me mostró un artículo sobre las 12 mejores habilidades de TI. Las habilidades que no rechazan
+los gerentes que contratan personal de TI. Era un
+artículo un poco viejo, pero al inicio de la lista de las 12 habilidades de TI más
+deseables estaba el aprendizaje automático. Aquí en Stanford, la cantidad de reclutadores
+que me contactan y preguntan si conozco estudiantes que se gradúen de aprendizaje automático
+es mucho mayor a la cantidad de estudiantes de aprendizaje automático que se gradúa cada año. Así que
+hay una gran demanda no satisfecha para estas habilidades y este es un buen momento
+para aprender todo sobre el aprendizaje automático, y espero enseñarte mucho sobre el tema
+en esta clase. En el siguiente video, te daré una definición más formal
+de qué es aprendizaje el electrónico. Y te hablaré de los principales tipos
+de problemas y algoritmos de de aprendizaje. Aprenderás los principales
+términos de aprendizaje automático y empezarás a entender cuáles son
+los diferentes algoritmos y cuándo se usa cada una de forma adecuada.

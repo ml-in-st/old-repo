@@ -1,0 +1,70 @@
+U ovome videu govoriću o drugom glavnom tipu problema mašinskog učenja 
+zvanog nenadgledano učenje. U poslednjem videu smo 
+govorili o nadgledanom učenju. Tada smo imali skupove podataka kao ovi gde je svaki primer bio označen kao
+ pozitivan ili negativan primer. Da li je tumor dobroćudan ili zloćudan. Za svaki primer nadgledanog učenja, eksplicitno smo rekli šta je takozvani tačan odgovor, je
+ li dobroćudan ili zloćudan. U nenadgledanom učenju, dati su
+ nam podaci koji izgledaju drugačije. Dati su nam podaci koji izgledaju ovako. Nemaju nikakvu oznaku ili svi imaju istu oznaku. Dakle, dat nam je skup podataka i nije nam rečeno šta da radimo sa time 
+niti šta predstavlja svaka tačka, umesto toga rečeno nam je, "Ovo je skup podataka, možete li naći neku strukturu u podacima?" Za dati skup podataka, algoritam 
+nenadgledanog učenja bi mogao da odluči da podaci žive u dve različite grupe. Znači, imamo jednu grupu i 
+evo još jedne drugačije grupe a algoritam nenadgledanog učenja može da 
+razdvoji te podatke u dve različite grupe. Dakle, ovo se zove algoritam grupisanja, i mogao bi da se koristi na mnogo slučajeva. Jedan primer primene je u gugl novostima, a ako niste ovo videli pre možete da odete na URL news.google.com da pogledate. Gugl novosti svaki dan 
+pregleda desetine hiljada ili stotine hiljada novih priča na vebu i grupiše ih u kohezivne nove priče. Na primer, pogledajmo ovde, URL - ovi upućuju na 
+različite priče o BP Oil Well priču. Hajde da kliknemo na jedan 
+od ovih URL - ova i kada kliknem, gde odem je veb stranica poput ove. Ovo je Vol Strit članak o BP Oil Vel Spil priče "BP ubija Makondo" 
+što je naziv za prosipanje nafte. Ako kliknete na druge URL - ove te grupe, možete da dobijete drugačiju priču. Ovo je CNN priča o BP Oil Spill ponovo, a ako kliknete na još jedan link 
+možete da dobijete drugu priču. Ovo je Gardijanova priča o BP Oil Spill. Znači, guglova dominacija je desetine hiljada priča i automatsko grupisanje tako da su priče o istim temama grupisane i prikazane zajedno. Izgleda da algoritmi grupisanja i algoritmi nenadgledanog učenja se uspešno 
+koriste u mnogim drugim problemima. Evo jednog u vezi sa razumevanjem genoma. Ovo je primer DNK mikročip podataka. Ideja je da ako imate grupu različitih individua i za svaku od njih merite koliko imaju ili nemaju određen gen. Tehnički, merite koliko je mnogo izražen neki gen. Tako, ove boje, crvena, zelena, siva, i tako dalje, one pokazuju stepen koliko individue 
+imaju ili nemaju određeni gen. Ono što možemo da uradimo je da pokrenemo algoritam grupisanja i grupišemo individue u različite 
+kategorije ili različite tipove ljudi. I ovo je nenadgledano učenje jer nismo rekli algoritmu ovo je tip jedan ljudi, ovo je tip dva ljudi, ovo su ljudi tipa tri i tako dalje, a umesto toga kažemo "Ovo je gomila podataka. Ne znam šta je u tim podacima. Ne znam ko je kog tipa. Stvarno ne znam koji su različiti tipovi ljudi, ali možeš li automatski da 
+nađeš strukturu podataka za mene? Možeš li automatski da grupišeš individue u te tipove koje unapred ne znam?" Zato što nam nije dat algoritam, pravi 
+odgovor, za primere u mome skupu podataka, ovo je nenadgledano učenje. Nenadgledano učenje ili grupisanje 
+se koristi u gomili drugih aplikacija. Koristi se za organizovanje velikih klastera računara. Imam nekog prijatelja koji prate velike centre 
+podataka a to su velike grupe računara, i pokušava da razume koje mašine mogu da rade zajedno. Ako te mašine možete da stavite zajedno, mogli biste učiniti da vaš centar za obradu podataka radi efikasnije. Evo druge aplikacije. Analiza društvene mreže. Za saznanje kojim prijateljima ste najviše slali mejlove, ili fejsbuk prijateljima ili vašim gugl plus krugovima, možemo li automatski identifikovati 
+koje su srodne grupe prijatelja, takođe, koje su grupe ljudi koje se poznaju. Segmentacija tržišta. Mnoge kompanije imaju ogromne baze informacija o svojim potrošačima. Pa, možete li da pogledate skup 
+podataka o kupcima i automatski otkriti delove tržišta i automatski grupisati vaše kupce u različite delove tržišta i tako automatski i efikasnije prodati različitim delovima tržišta zajedno. Još jednom, i ovo je nenadgledano 
+učenje jer imamo podatke o kupcima, ali ne znamo unapred koji su delovi tržišta i za kupce u našem skupu podataka, ne znamo unapred ko je u delu tržišta jedan, ko je u delu tržišta dva i tako dalje, ali moramo da pustimo da algoritam 
+otkrije sve to a samo na osnovu podataka. Konačno, izgleda da se nenadgledano učenje takođe koristi za analizu astronomskih podataka i ti algoritmi grupisanja daju iznenađujuće interesantne teorije o 
+tome koliko galaksija je formirano. Sve ovo su primeri grupisanja što je 
+samo jedan tip nenadgledanog učenja. Dozvolite da vam ispričam o još jednoj. Reći ću vam nešto o problemu koktel zabava. Dakle, bili ste ranije na koktel zabavama, možete da zamislite sobu punu ljudi koji sede okolo, i svi pričaju istovremeno, tako da se glasovi preklapaju jer svi pričaju istovremeno i teško je čuti osobu ispred vas. Možda koktel zabava sa dvoje ljudi koji pričaju istovremeno i, neka mala koktel zabava, i 
+stavićemo dva mikrofona u sobu. Dakle, tu su mikrofoni i oni su na dve različite razdaljine od govornika, tako da će svaki mikrofon da snimi različitu 
+kombinaciju glasova dvaju govornika. Možda je govornik jedan malo glasniji na mikrofonu jedan a govornik dva je malo glasniji na mikrofonu dva jer su dva mikrofona na različitim 
+udaljenostima od govornika, ali svaki mikrofon snima 
+preklopljene glasove oba govornika. Ovo je stvaran snimak dva 
+govornika koji je snimio istraživač. Evo puštam vam to. Prvo kako zvuči prvi mikrofon. [Strani jezik] Jedan, dva, tri, četiri, pet, šest, sedam, osam, devet, deset. U redu, nije baš neka zanimljiva koktel zabava. Dvoje ljudi broji do deset na dva jezika. Ono što ste upravo čuli je bio 
+snimak sa prvog mikrofona. Evo drugog snimka. [Strani jezik] 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Ono što možemo da uradimo je da 
+uzmemo ta dva snimka i prosledimo ih algoritmu nenadgledanog učenja 
+zvanom algoritam koktel zabave, i kažemo algoritmu: 
+"Pronađi strukturu u tim podacima". Algoritam će da posluša snimke i reći da zvuči kao dva audio snimka spojena zajedno ili su dodana jedan drugome i dobijeno je ono što imamo. Šta više, algoritam koktel zabave će da razdvoji ova dva audio izvora koja su dodana ili sumirana 
+zajedno da bi činila naše snimke. A evo prvog izlaza algoritma koktel zabave. 1, 2, 3, 4, 5, 6, 7, 8 , 9, 10. Dakle, izdvojen engleski glas u jednome od snimaka a evo drugoga izlaza. [brojanje na `španskom] Nije tako loše. Daću vam još jedan primer, ovo je još jedan snimak slične 
+situacije, ovo je prvi mikrofon, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. U redu, jadni momak ide kući sa koktel zabave i sada sedi sam u sobi i priča u radio. Evo drugog zapisa sa mikrofona. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 Kada prosledite ova dva snimka istom algoritmu, ono što radi je da opet kaže da zvuči kao da postoje dva audio izvora i štaviše, algoritam kaže evo prvog audio izvora koji sam našao. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 Dakle, to nije bilo savršeno. Dobio sam glas ali takođe i malo muzike. Evo i drugoga izlaza algoritma. Nije loše. U drugome izlazu, uspeo je da se potpuno oslobodi glasa i pročisti muziku i otarasi se brojanja od 1 do 10. Dakle, možete da algoritam 
+nenadgledanog učenja gledate tako i da se zapitate koliko je komplikovano 
+da se to implementira. Da biste napravili ovu aplikaciju, da biste napravili audio obradu, čini se da treba da napišete tonu koda ili da linkujete hrpu C++ ili Java biblioteka koje obrađuju audio. Čini se kao stvarno komplikovan program koji razdvaja jedan audio od drugoga i tako dalje. U stvari, algoritam koji radi ovo što ste upravo čuli, može da bude napravljen sa samo 
+jednom linijom koda prikazanom ovde. Istraživačima je trebalo mnogo 
+vremena da pronađu ovu liniju koda. Ne kažem da je to lagan problem, ali izgleda da ako koristimo pravo programsko okruženje, mnogi algoritmi učenja mogu da 
+budu veoma kratki programi. Zato ćemo u ovome kursu da 
+koristimo Oktava programsko okruženje. Oktava je besplatan i otvoren softver. Korištenjem alata kao što su Oktava ili Matlab, mnogi algoritmi učenja postaju samo par linija koda. Kasnije u ovome kursu, naučiću 
+vas kako da koristite Oktavu i implementirate neke od ovih algoritama u Oktavi ili ako imate Matlab, 
+takođe možete da ga koristite. Praksa je da u Silikonskoj dolini za 
+mnoge algoritme mašinskog učenja, prvo napravimo prototip našeg softvera u Oktavi jer softver u Oktavi čini da se algoritmi 
+učenja implementiraju veoma brzo. Evo, svaka od ovih funkcija, kao na primer, SVD funkcija, što znači razdvajanje 
+na pojedinačne vrednosti, ali to je rutina linearne algebre koja je ugrađena u Oktavu. Ako ovo pokušate da uradite u C++ ili Javi, to bi bilo mnogo linija koda koje linkuju 
+složene C++ ili Java biblioteke. Znači, možete da ovo implementirate
+ u C++ ili Javi ili Pajtonu, ali je to mnogo komplikovanije 
+u tim programskim jezicima. Ono što mogu da vidim nakon 
+korištenja mašinskog učenja tokom decenija je da učite mnogo brže ako koristite 
+Oktavu kao programsko okruženje. Ako koristite Oktavu kao alat za učenje ili pravljenje prototipa, to ćete da radite mnogo brže. U stvari, ono što mnogi rade u velikim 
+kompanijama Silikonske doline je da koriste algoritam kao što je Oktava da napravi prototip algoritma učenja i tek posle toga, možete da to migrirate u C++ ili Java ili bilo šta. Radeći stvari na taj način, možete da učinite da vaš algoritam radi mnogo br´že nego kada biste to započinjali u C++. Svestan sam da kao instruktor moram da kažem, 
+verujte mi, ovo je konačan broj puta, ali za vas koji nikada ranije niste 
+koristili programsko okruženje Oktave, tražiću od vas da mi verujete o 
+ovome i mislim da je vaše vreme, vaše developersko vreme je jedno od najvrednijih resursa i mnogo ljudi radi ovo, mislim da ćete vi kao istraživač mašinskog 
+učenja ili developer mašinskog učenja biti mnogo produktivniji ako naučite ovakve stvari i prototipove ovih stvari u Oktavi i u nekom drugom jeziku. Konačno, da zaokružimo priču, imam jedno brzo pitanje iz lekcije za vas. Govorili smo o nenadgledanom učenju, a to je takvo učenje gde dajete algoritmu mnogo podataka i samo ga pitate da vam nađe strukturu. Od četiri primera koja slede, koji od njih po vašem mišljenju su algoritmi nenadgledanog učenja a što je 
+suprotno problemu nadgledanog učenja? Za svaki od četiri ček boksa na levoj strani, obeležite one za koje mislite da bi algoritam nenadgledanog učenja bio odgovarajući i kliknite na dugme u donjem desnom uglu
+ kako biste proverili svoj odgovor. Kada se video zaustavi, molim vas odgovorite na pitanje sa slajda. Nadam se da se sećate problema spam 
+foldera ako imate označene podatke, spam i ne-spam imejl, smatrali smo ga problemom nadgledanog učenja. Primer novih priča, to je baš primer Gugl novosti 
+koji smo videli u ovome videu, videli ste kako možemo da koristimo algoritam 
+grupisanja da bismo grupisali nove priče zajedno, dakle, to je nenadgledano učenje. Primer segmentacije tržišta o kome 
+sam govorio malo ranije, možete ga rešiti nenadgledanim učenjem jer mogu da uzmem moje podatke i da tražim 
+od algoritma da otkrije segmente tržišta. Poslednji primer, dijabetes, isti je kao i naš primer raka dojke iz poslednjeg videa, umesto dobrog i lošeg tumora 
+ili dobroćudnog ili zloćudnog, imamo dijabetes ili ne. Dakle, koristićemo ga kao nadgledano, rešićemo ga kao problem nadgledanog 
+učenja kao kod tumora dojke. Dakle, to je sve za nenadgledano učenje, a u sledećem videu ćemo da zaronimo 
+malo više u određene algoritme učenja i početi da govorimo o tome kako ti algoritmi rade i kako da ih implementiramo.

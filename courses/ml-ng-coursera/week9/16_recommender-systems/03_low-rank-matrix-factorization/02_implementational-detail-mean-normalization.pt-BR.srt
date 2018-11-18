@@ -1,0 +1,975 @@
+1
+00:00:00,400 --> 00:00:01,510
+Você já viu os principais
+
+2
+00:00:01,800 --> 00:00:03,600
+pontos do algoritmo de recomendações,
+
+3
+00:00:04,030 --> 00:00:06,760
+o algoritmo de filtragem colaborativa.
+
+4
+00:00:07,770 --> 00:00:08,770
+Neste vídeo, quero falar
+
+5
+00:00:08,940 --> 00:00:10,620
+sobre um detalhe de implementação
+
+6
+00:00:12,000 --> 00:00:14,140
+chamado "normalização pela média",
+
+7
+00:00:14,350 --> 00:00:15,520
+que pode fazer o algoritmo
+
+8
+00:00:15,570 --> 00:00:17,090
+funcionar um pouco melhor.
+
+9
+00:00:18,290 --> 00:00:20,820
+Para motivar o uso da normalização pela média,
+
+10
+00:00:22,130 --> 00:00:24,390
+vamos considerar um exemplo onde
+
+11
+00:00:24,710 --> 00:00:26,530
+há um usuário que não avaliou nenhum filme.
+
+12
+00:00:28,050 --> 00:00:29,290
+Então, além dos 4 usuários
+
+13
+00:00:29,540 --> 00:00:30,790
+Alice, Bob, Carol e Dave,
+
+14
+00:00:31,060 --> 00:00:32,710
+eu adicionei uma quinta usuária, Eve,
+
+15
+00:00:32,870 --> 00:00:35,110
+que não avaliou nenhum filme.
+
+16
+00:00:36,470 --> 00:00:37,920
+Vamos ver o que o nosso algoritmo
+
+17
+00:00:38,350 --> 00:00:39,570
+fará com esse usuário.
+
+18
+00:00:41,020 --> 00:00:43,140
+Digamos que "n = 2", e então,
+
+19
+00:00:43,390 --> 00:00:44,420
+vamos aprender dois atributos,
+
+20
+00:00:45,410 --> 00:00:46,470
+e teremos que aprender
+
+21
+00:00:46,630 --> 00:00:47,890
+um vetor de parâmetros
+
+22
+00:00:48,140 --> 00:00:50,420
+"θ⁽⁵⁾", em "ℝ²", e lembre-se
+
+23
+00:00:51,130 --> 00:00:52,560
+que isso agora é um vetor
+
+24
+00:00:52,750 --> 00:00:55,920
+em "ℝⁿ", não em "ℝⁿ⁺¹".
+Vamos aprender o vetor de parâmetros
+
+25
+00:00:57,070 --> 00:00:58,210
+"θ⁽⁵⁾", para a usuária 5, Eve.
+
+26
+00:00:59,780 --> 00:01:00,800
+Então, se olharmos
+
+27
+00:01:00,960 --> 00:01:02,020
+para o primeiro
+
+28
+00:01:02,200 --> 00:01:04,020
+termo desse objetivo de otimização,
+
+29
+00:01:04,220 --> 00:01:05,490
+como a usuária Eve
+
+30
+00:01:05,730 --> 00:01:07,860
+não avaliou nenhum filme,
+
+31
+00:01:08,120 --> 00:01:10,750
+não há filmes
+
+32
+00:01:11,050 --> 00:01:12,810
+para os quais "r(i, j) = 1"
+
+33
+00:01:13,130 --> 00:01:14,590
+para a usuária Eve.
+
+34
+00:01:14,700 --> 00:01:15,840
+Então, esse termo não
+
+35
+00:01:16,060 --> 00:01:17,400
+afeta "θ⁽⁵⁾", porque Eve
+
+36
+00:01:18,610 --> 00:01:19,790
+não avaliou nenhum filme.
+
+37
+00:01:20,960 --> 00:01:22,120
+O único termo
+
+38
+00:01:22,260 --> 00:01:24,300
+que afeta "θ⁽⁵⁾" é o último termo.
+
+39
+00:01:24,880 --> 00:01:25,830
+Então, queremos
+
+40
+00:01:25,910 --> 00:01:28,840
+escolher o vetor "θ⁽⁵⁾" tal que
+
+41
+00:01:28,950 --> 00:01:33,820
+o último termo de regularização seja o menor possível. Em outras palavras,
+
+42
+00:01:34,540 --> 00:01:35,500
+queremos minimizar
+
+43
+00:01:35,920 --> 00:01:38,470
+"(λ/2)[(θ⁽⁵⁾₁)² +(θ⁽⁵⁾₂)²]".
+
+44
+00:01:39,040 --> 00:01:39,610
+"(λ/2)[(θ⁽⁵⁾₁)² +(θ⁽⁵⁾₂)²]".
+
+45
+00:01:40,880 --> 00:01:43,150
+"(λ/2)[(θ⁽⁵⁾₁)² +(θ⁽⁵⁾₂)²]".
+
+46
+00:01:43,820 --> 00:01:45,840
+"(λ/2)[(θ⁽⁵⁾₁)² +(θ⁽⁵⁾₂)²]".
+
+47
+00:01:46,040 --> 00:01:47,170
+Esse é o componente
+
+48
+00:01:47,270 --> 00:01:49,460
+do termo de regularização que corresponde
+
+49
+00:01:49,740 --> 00:01:51,610
+à usuária 5.
+
+50
+00:01:51,850 --> 00:01:53,280
+E, se o seu objetivo é
+
+51
+00:01:53,550 --> 00:01:55,540
+minimizar esse termo,
+
+52
+00:01:55,900 --> 00:01:56,790
+você vai terminar
+
+53
+00:01:56,980 --> 00:01:58,520
+com "θ⁽⁵⁾ = [0; 0]"
+
+54
+00:01:59,670 --> 00:02:01,550
+porque o termo de regularização
+
+55
+00:02:01,850 --> 00:02:03,270
+nos induz a usar
+
+56
+00:02:03,510 --> 00:02:05,120
+parâmetros perto de 0.
+
+57
+00:02:05,620 --> 00:02:07,580
+Como não há dados
+
+58
+00:02:07,730 --> 00:02:08,820
+para mover os
+
+59
+00:02:08,990 --> 00:02:10,210
+parâmetros do 0,
+
+60
+00:02:10,410 --> 00:02:11,460
+já que o primeiro termo
+
+61
+00:02:12,710 --> 00:02:13,800
+não afeta "θ⁽⁵⁾",
+
+62
+00:02:13,880 --> 00:02:15,410
+nós terminamos com "θ⁽⁵⁾"
+
+63
+00:02:15,690 --> 00:02:18,450
+igual a um vetor de zeros.
+
+64
+00:02:18,590 --> 00:02:19,610
+Então, quando vamos
+
+65
+00:02:19,730 --> 00:02:20,920
+predizer como a usuária 5
+
+66
+00:02:21,280 --> 00:02:22,570
+avaliará cada filme,
+
+67
+00:02:22,890 --> 00:02:25,850
+teremos que "(θ⁽⁵⁾)ᵀ · x⁽ⁱ⁾",
+
+68
+00:02:26,900 --> 00:02:28,380
+para qualquer "i",
+
+69
+00:02:29,950 --> 00:02:31,060
+será igual a 0.
+
+70
+00:02:31,570 --> 00:02:33,320
+Como "θ⁽⁵⁾" é 0, para qualquer "x"
+
+71
+00:02:33,750 --> 00:02:35,780
+esse produto será igual a 0.
+
+72
+00:02:35,900 --> 00:02:37,160
+Assim,
+
+73
+00:02:37,310 --> 00:02:38,780
+nós vamos predizer que Eve
+
+74
+00:02:39,480 --> 00:02:40,870
+vai avaliar todos os filmes
+
+75
+00:02:41,170 --> 00:02:42,690
+com 0 estrelas.
+
+76
+00:02:44,050 --> 00:02:45,970
+Mas isso não é muito útil, certo?
+
+77
+00:02:46,110 --> 00:02:47,310
+Quer dizer, se você
+
+78
+00:02:47,770 --> 00:02:49,710
+olhar bem os filmes, o primeiro filme
+
+79
+00:02:50,130 --> 00:02:52,300
+foi avaliado com 5 estrelas por duas pessoas,
+
+80
+00:02:54,940 --> 00:02:56,870
+assim como o último.
+
+81
+00:02:57,410 --> 00:02:58,780
+Algumas pessoas parecem
+
+82
+00:02:59,270 --> 00:03:01,030
+gostar de alguns filmes, não é útil predizer
+
+83
+00:03:01,160 --> 00:03:03,750
+que Eve avaliará tudo com 0 estrelas.
+
+84
+00:03:04,570 --> 00:03:05,850
+E, na verdade, se predizemos
+
+85
+00:03:06,410 --> 00:03:08,340
+que Eve vai avaliar tudo com 0 estrelas,
+
+86
+00:03:09,050 --> 00:03:10,100
+não teremos nenhuma forma
+
+87
+00:03:10,280 --> 00:03:11,660
+de recomendar filmes a ela,
+
+88
+00:03:11,810 --> 00:03:12,930
+já que todos esses filmes
+
+89
+00:03:13,130 --> 00:03:15,320
+terão exatamente a mesma avaliação
+
+90
+00:03:15,410 --> 00:03:16,810
+estimada para Eve,
+
+91
+00:03:17,010 --> 00:03:18,500
+então não há um filme com
+
+92
+00:03:18,660 --> 00:03:20,010
+estimativa de avaliação maior
+
+93
+00:03:20,210 --> 00:03:22,880
+para recomendarmos a ela. E isso não é bom.
+
+94
+00:03:24,520 --> 00:03:27,340
+A normalização pela média ajuda a corrigir esse problema.
+
+95
+00:03:28,160 --> 00:03:29,410
+Ela funciona assim.
+
+96
+00:03:30,760 --> 00:03:31,720
+Como anteriormente,
+
+97
+00:03:32,370 --> 00:03:33,750
+eu vou pegar todas as
+
+98
+00:03:34,280 --> 00:03:35,400
+minhas avaliações
+
+99
+00:03:35,460 --> 00:03:36,700
+e agrupá-las
+
+100
+00:03:37,240 --> 00:03:38,400
+nessa matriz "Y".
+
+101
+00:03:38,560 --> 00:03:39,740
+A coluna de pontos
+
+102
+00:03:39,910 --> 00:03:41,220
+de interrogação corresponde
+
+103
+00:03:41,670 --> 00:03:43,300
+à falta de avaliações de Eve.
+
+104
+00:03:44,830 --> 00:03:46,890
+Agora, para fazer a normalização pela média,
+
+105
+00:03:47,140 --> 00:03:48,350
+vou computar a avaliação
+
+106
+00:03:48,720 --> 00:03:50,610
+média obtida por cada filme,
+
+107
+00:03:51,120 --> 00:03:51,760
+e vou guardar isso
+
+108
+00:03:52,040 --> 00:03:54,780
+em um vetor, chamado "μ". Então, o primeiro filme
+
+109
+00:03:55,210 --> 00:03:57,250
+teve duas avaliações de 5 e duas de 0 estrelas,
+
+110
+00:03:57,760 --> 00:03:58,960
+portanto, a sua média
+
+111
+00:03:59,040 --> 00:04:01,470
+foi uma avaliação de 2.5. O segundo filme
+
+112
+00:04:01,620 --> 00:04:04,300
+teve uma média de 2.5 estrelas.
+
+113
+00:04:04,470 --> 00:04:06,300
+O último filme teve "[0, 0, 5, 0]",
+
+114
+00:04:06,330 --> 00:04:07,440
+e a média de
+
+115
+00:04:07,520 --> 00:04:09,190
+"[0, 0, 5, 0]"
+
+116
+00:04:09,620 --> 00:04:11,500
+é uma avaliação de 1.25.
+
+117
+00:04:12,240 --> 00:04:14,910
+Agora vou olhar todas
+
+118
+00:04:15,000 --> 00:04:15,900
+
+119
+00:04:16,020 --> 00:04:17,610
+as avaliações de cada filme,
+
+120
+00:04:18,010 --> 00:04:19,550
+e subtrair a avaliação média.
+
+121
+00:04:20,110 --> 00:04:22,990
+Então, subtraio 2.5 do primeiro elemento, 5, restando 2.5.
+
+122
+00:04:26,900 --> 00:04:29,380
+Subtraindo 2.5 do segundo elemento, 5,
+
+123
+00:04:29,590 --> 00:04:30,000
+tenho 2.5.
+
+124
+00:04:30,410 --> 00:04:31,760
+E subtraindo 2.5
+
+125
+00:04:32,040 --> 00:04:34,560
+de 0 e 0, eu terei -2.5 e -2.5.
+
+126
+00:04:35,450 --> 00:04:36,530
+Em outras palavras,
+
+127
+00:04:36,620 --> 00:04:38,010
+o que vou fazer é
+
+128
+00:04:38,310 --> 00:04:39,440
+pegar a minha matriz
+
+129
+00:04:39,960 --> 00:04:42,070
+de avaliações de filmes, "Y",
+
+130
+00:04:42,730 --> 00:04:45,580
+e subtrair, de cada linha, a avaliação média daquele filme.
+
+131
+00:04:46,580 --> 00:04:47,580
+Então, eu estou apenas
+
+132
+00:04:48,010 --> 00:04:49,600
+normalizando cada filme
+
+133
+00:04:49,740 --> 00:04:51,610
+para ter uma avaliação média de 0.
+
+134
+00:04:52,800 --> 00:04:53,580
+Um último exemplo:
+
+135
+00:04:54,000 --> 00:04:56,010
+Se você olhar a última linha,
+
+136
+00:04:56,270 --> 00:04:56,940
+de "[0 0 5 0]",
+
+137
+00:04:57,000 --> 00:04:58,590
+vou subtrair 1.25, e terminar
+
+138
+00:05:00,950 --> 00:05:02,300
+com esses valores aqui.
+
+139
+00:05:02,510 --> 00:05:03,730
+Os pontos de interrogação, claro,
+
+140
+00:05:03,940 --> 00:05:05,380
+continuam pontos de interrogação.
+
+141
+00:05:06,960 --> 00:05:06,960
+
+142
+00:05:07,880 --> 00:05:09,630
+Então, cada filme,
+
+143
+00:05:09,810 --> 00:05:11,040
+nessa nova matriz "Y",
+
+144
+00:05:11,210 --> 00:05:12,780
+tem uma média de avaliação de 0.
+
+145
+00:05:13,940 --> 00:05:15,180
+O que vou fazer é
+
+146
+00:05:15,440 --> 00:05:16,850
+tomar esse conjunto de avaliações
+
+147
+00:05:17,590 --> 00:05:20,170
+e usá-lo no algoritmo de filtragem colaborativa.
+
+148
+00:05:20,480 --> 00:05:22,130
+Então, vou fingir que
+
+149
+00:05:22,430 --> 00:05:24,200
+esses são os dados que eu recebi
+
+150
+00:05:24,420 --> 00:05:25,570
+dos meus usuários,
+
+151
+00:05:25,810 --> 00:05:27,400
+que essas são as avaliações reais
+
+152
+00:05:27,530 --> 00:05:28,940
+que recebi dos usuários,
+
+153
+00:05:29,250 --> 00:05:30,130
+e vou usar isso
+
+154
+00:05:30,270 --> 00:05:31,730
+como meu conjunto de dados
+
+155
+00:05:32,000 --> 00:05:33,920
+para aprender os meu parâmetros
+
+156
+00:05:34,560 --> 00:05:36,540
+"θ⁽ʲ⁾" e minhas variáveis "x⁽ⁱ⁾",
+
+157
+00:05:36,860 --> 00:05:39,320
+a partir das avaliações normalizadas pela média.
+
+158
+00:05:41,280 --> 00:05:42,040
+Quando eu quiser
+
+159
+00:05:42,660 --> 00:05:43,910
+estimar avaliações de filmes,
+
+160
+00:05:44,070 --> 00:05:44,980
+
+161
+00:05:45,250 --> 00:05:46,830
+vou fazer o seguinte:
+
+162
+00:05:47,130 --> 00:05:49,250
+para o usuário "j", no o filme "i",
+
+163
+00:05:49,600 --> 00:05:54,730
+vou estimar "(θ⁽ʲ⁾)ᵀ · x⁽ⁱ⁾", onde "θ" e "x"
+
+164
+00:05:55,070 --> 00:05:55,990
+foram aprendidos
+
+165
+00:05:56,590 --> 00:05:58,230
+dos dados normalizados pela média.
+
+166
+00:05:59,180 --> 00:06:00,680
+Mas, como eu tinha
+
+167
+00:06:00,950 --> 00:06:02,260
+subtraído as médias,
+
+168
+00:06:02,330 --> 00:06:04,000
+para fazer uma predição
+
+169
+00:06:04,040 --> 00:06:05,210
+para o filme "i",
+
+170
+00:06:05,510 --> 00:06:07,220
+preciso adicionar a média de volta.
+
+171
+00:06:08,070 --> 00:06:08,730
+Portanto,
+
+172
+00:06:08,840 --> 00:06:10,690
+vou adicionar "μᵢ" de volta.
+
+173
+00:06:10,830 --> 00:06:11,780
+
+174
+00:06:11,830 --> 00:06:13,350
+Essa vai ser minha predição.
+
+175
+00:06:13,660 --> 00:06:14,860
+Nos dados de treinamento
+
+176
+00:06:14,930 --> 00:06:16,290
+eu subtraí todas as médias,
+
+177
+00:06:16,440 --> 00:06:20,770
+então, ao fazermos predições, precisamos adicionar essas médias
+
+178
+00:06:21,770 --> 00:06:23,030
+"μᵢ" para o filme "i".
+
+179
+00:06:23,410 --> 00:06:23,880
+
+180
+00:06:24,100 --> 00:06:25,320
+Para a usuária 5, Eve,
+
+181
+00:06:25,330 --> 00:06:26,840
+o mesmo argumento
+
+182
+00:06:27,010 --> 00:06:28,250
+do slide anterior, se aplica.
+
+183
+00:06:28,440 --> 00:06:29,870
+Já que Eve não
+
+184
+00:06:30,080 --> 00:06:31,600
+avaliou nenhum filme,
+
+185
+00:06:31,760 --> 00:06:32,930
+os parâmetros
+
+186
+00:06:33,710 --> 00:06:35,030
+aprendidos para a usuária 5
+
+187
+00:06:35,970 --> 00:06:37,990
+serão iguais a "[0; 0]".
+
+188
+00:06:38,270 --> 00:06:39,910
+Então teremos
+
+189
+00:06:40,130 --> 00:06:41,320
+o seguinte:
+
+190
+00:06:41,690 --> 00:06:42,980
+para um filme específico "i",
+
+191
+00:06:43,130 --> 00:06:44,900
+vamos estimar, para Eve,
+
+192
+00:06:45,480 --> 00:06:49,930
+"(θ⁽⁵⁾)ᵀ · x⁽ⁱ⁾ + μᵢ",
+
+193
+00:06:51,260 --> 00:06:52,890
+adicionando "μᵢ".
+
+194
+00:06:53,010 --> 00:06:54,360
+Mas o primeiro componente
+
+195
+00:06:54,460 --> 00:06:57,520
+será igual a 0, já que "θ⁽⁵⁾" é igual a 0.
+
+196
+00:06:58,290 --> 00:06:59,190
+Assim, para o filme "i",
+
+197
+00:06:59,260 --> 00:07:00,660
+vamos estimar "μᵢ".
+
+198
+00:07:01,090 --> 00:07:03,190
+Na verdade, isso faz sentido.
+
+199
+00:07:03,380 --> 00:07:03,690
+
+200
+00:07:03,900 --> 00:07:05,270
+Significa que, para o filme 1,
+
+201
+00:07:05,390 --> 00:07:06,990
+vamos estimar a avaliação
+
+202
+00:07:07,270 --> 00:07:10,260
+de Eve como 2.5. Para o filme 2, estimamos 2.5,
+
+203
+00:07:10,420 --> 00:07:11,640
+para o filme 3
+
+204
+00:07:11,880 --> 00:07:13,000
+uma avaliação de 2,
+
+205
+00:07:13,200 --> 00:07:14,510
+e assim por diante.
+
+206
+00:07:14,780 --> 00:07:15,960
+Isso faz sentido,
+
+207
+00:07:16,320 --> 00:07:17,730
+porque diz que se Eve não
+
+208
+00:07:18,020 --> 00:07:18,870
+tiver avaliado
+
+209
+00:07:19,100 --> 00:07:20,180
+nenhum filme, não sabemos
+
+210
+00:07:20,410 --> 00:07:21,630
+nada sobre Eve,
+
+211
+00:07:21,810 --> 00:07:23,770
+o que vamos fazer é estimar,
+
+212
+00:07:23,940 --> 00:07:25,140
+para cada filme,
+
+213
+00:07:25,230 --> 00:07:27,520
+a avaliação média que aquele filme recebeu.
+
+214
+00:07:30,060 --> 00:07:31,480
+Finalmente, além disso,
+
+215
+00:07:31,810 --> 00:07:33,290
+nesse vídeo nós falamos sobre
+
+216
+00:07:33,540 --> 00:07:35,220
+normalização pela média, onde normalizamos
+
+217
+00:07:35,320 --> 00:07:36,450
+cada linha da matriz "Y"
+
+218
+00:07:37,510 --> 00:07:38,100
+para média 0.
+
+219
+00:07:39,020 --> 00:07:40,730
+Caso de você tenha algum filme
+
+220
+00:07:41,020 --> 00:07:42,330
+sem nenhuma avaliação,
+
+221
+00:07:42,590 --> 00:07:44,320
+o caso é análogo ao do usuário
+
+222
+00:07:44,590 --> 00:07:45,550
+sem avaliações.
+
+223
+00:07:46,250 --> 00:07:47,530
+Mas, com os filmes sem avaliações,
+
+224
+00:07:47,590 --> 00:07:48,700
+você pode brincar com versões
+
+225
+00:07:49,320 --> 00:07:50,700
+do algoritmo onde você
+
+226
+00:07:50,900 --> 00:07:52,190
+normaliza as colunas para que
+
+227
+00:07:52,790 --> 00:07:53,990
+tenham média zero, ao invés de
+
+228
+00:07:54,280 --> 00:07:55,180
+normalizar as linhas.
+
+229
+00:07:55,500 --> 00:07:56,990
+Talvez isso seja
+
+230
+00:07:57,240 --> 00:07:58,770
+menos importante, porque, se você
+
+231
+00:07:58,870 --> 00:07:59,810
+tem um filme
+
+232
+00:08:00,040 --> 00:08:01,390
+sem nenhuma avaliação,
+
+233
+00:08:01,590 --> 00:08:03,920
+talvez você não devesse recomendar esse filme a ninguém.
+
+234
+00:08:04,700 --> 00:08:08,010
+Então, resolver o caso
+
+235
+00:08:08,540 --> 00:08:09,980
+do usuário que não avaliou
+
+236
+00:08:10,490 --> 00:08:11,780
+nada é mais importante
+
+237
+00:08:12,010 --> 00:08:13,170
+do que resolver o caso
+
+238
+00:08:13,310 --> 00:08:14,550
+do filme que não recebeu
+
+239
+00:08:14,860 --> 00:08:16,090
+nenhuma avaliação.
+
+240
+00:08:18,930 --> 00:08:20,080
+Resumindo, é assim que você
+
+241
+00:08:20,360 --> 00:08:21,830
+pode fazer normalização pela média
+
+242
+00:08:22,110 --> 00:08:25,110
+como um pré-processamento, para a filtragem colaborativa.
+
+243
+00:08:25,740 --> 00:08:26,670
+Dependendo dos seus dados,
+
+244
+00:08:26,960 --> 00:08:28,140
+isso pode fazer a sua
+
+245
+00:08:28,540 --> 00:08:30,040
+implementação funcionar melhor.
+Tradução: Pablo de Morais Andrade.

@@ -1,0 +1,60 @@
+U ovom videu želim da pričam o
+ normalnoj jednačini i neinvertibilnosti Ovo je napredniji koncept, ali me o njemu dosta često pitaju. Zato želim da pričam o njemu 
+i da ga adresiram ovde. Ali to je malo napredniji koncept, i slobodno razmotrite 
+ovaj neobavezan materijal. Postoji fenomen sa kojim možete da se 
+susretnete, koji može da bude koristan za razumevanje,
+ ali i ako ne budete 
+razumeli normalne jednačine i linearnu progresiju, 
+stvarno biste trebali to da uradite. Ovo je problem. Za vas koji ste više 
+familijarni sa linearnom algebrom, ono što me neki studenti pitaju je, kad računamo ovo Teta je jednako X 
+transponovano X inverzija X transponovano Y, šta ako matrica X transponovano
+ X nije invertibilna? Dakle, za vas koji znate
+ malo više linearnu algebru znate da su samo 
+neke matrice invertibilne a neke nemaju invertnu i njih 
+zovemo neinvertibilne matrice. Singularne ili degenerativne matrice. Pitanje ili problem neinvertibilne x transponovano x
+ bi se trebao javiti veoma retko. Ako u oktavi implementirate 
+ovo da biste izračunali teta, izgleda da biste postupili ispravno. Da pojasnim jedan tehnički detalj, 
+ali neću da idem u detalje, Oktava ima dve funkcije za
+ inverziju matrica. Jedna se zove pinv, 
+a druga inv. A razlika između njih je tehničke prirode. Jedna se zove pseudo-inverzna,
+ a druga inverzna. Matematički možete dokazati da ako jako dugo koristite pinv funkciju 
+ tad će ona u stvari da računa vrednost podataka koje želite, 
+iako X transponovano X je neinvertibilna. Specifični detalji između inv funkcija. Koja je razlika između pinv? Šta je inv? To je jedan od naprednih koncepata numeričkog računa, ne bih da ulazim u detalje. Ali sam u ovome videu mislio 
+da vam malo nagovestim šta znači da je X transponovano X neinvertibilno. Za vas koji malo bolje poznajete 
+ linearnu algebru bi moglo da bude interesantno. Neću vam izvoditi matematičke dokaze ali
+ ako je X transponovano X neinvertibilno, obično je jedan od dva razloga u pitanju. Prvi uzrok je ako u svom 
+ problemu učenja imate redundantne osobine. Konkretno, ako pokušavate da predvidite 
+cene nekretnina i x1 je veličina kuće u kvadratnim fitima a x2 je 
+veličina kuće u kvadratnim metrima, znate da je 1 metar jednak 3.28 fita 
+zaokruženo na dve decimale. I tako će vaše dve osobine
+ uvek imati odnos x1 je jednako 3.28 na kvadrat puta x2. Pokazaćemo nešto napredno
+ iz linearne algebre, ako objašnjavate algebru, 
+u stvari, ako su dve osobine povezane linearnom jednačinom kao što je ova, tad će matrica X transponovano X 
+da bude neinvertibilna. Druga stvar koja može da uzrokuje da 
+X transponovano X bude neinvertibilna je ako pokušate da pokrenete
+algoritam učenja nad mnogo osobina. Konkretno, ako je m manje ili jednako n. Na primer, ako zamislite da
+ imate 10 trening primera tad imate n jednako 100 
+osobina i pokušavate da uvrstite parametar nazad u teta što je,
+ znate, n plus jedan dimenzionalno. Dakle, to je 101 dimenzionalno, pokušavate da uvrstite 101 
+parametar od samo 10 trening primera. Ispada da ovo nije uvek dobra ideja. Jer, videćemo kasnije, možda 
+nećete imati dovoljno podataka ako imate samo 10 primera kojima 
+odgovara 100 ili 101 parametar. Posle ćemo videti zašto to može 
+da bude premalo podataka da bi odgovaralo tako velikom broju parametara. Uopšteno, šta radimo kad je 
+m manje ili jednako n, je da vidimo da li možemo 
+ili da obrišemo neke osobine ili da koristimo tehniku zvanu regularizacija
+ o čemu ćemo da pričamo kasnije na kursu, koja će nekako 
+da vam dozvoli da imate mnogo parametara, da koristite mnogo osobina, 
+čak iako imate relativno mali trening skup. Ali regularizacija će da bude 
+tema nešto kasnije u ovome kursu. Da sumiramo, ako ikada naiđete na to da je x transponovano x singularna matrica ili neinvertibilna, preporučio bih vam da prvo pogledate da li imate
+ redundantne osobine kao ove x1 i x2. Tada ste linearno zavisni 
+odnosno jedna funkcija je linearna funkcija druge. Ako imate redundantne osobine 
+možete da obrišete jednu od osobina, jer vam zaista ne trebaju obe. Ako samo obrišete jednu od osobina, tad ćete rešiti problem neinvertibilnosti. Dakle, prvo bih pogledao osobine 
+da nema neka redundantna. Ako ima, brišite redundantne sve dok ih ima. Ako vaše osobine nisu redundantne, proverio bih da li imam previše osobina. Ako je to slučaj, ili bih 
+obrisao neke osobine ako je to moguće ili bih razmotrio
+ korištenje regularizacije. Ali o tome ćemo pričati kasnije. Dakle, toliko o normalnim jednačinama i šta znači kad je 
+X transponovano X neinvertibilno, ali to je problem koji ćete veoma retko da srećete, a ako se to desi u oktavi P i koristeći P n funkciju koja se 
+zove pseudo inverzna funkcija dakle, možete da koristite drugačiju od vaše
+ koja se zove pseudo inverzna a ta implementacija bi 
+trebala da radi ispravno, čak iako je X transponovano X neinvertibilna
+što bi se trebalo dešavati veoma retko, dakle, to ne bi trebalo da bude problem
+ za većinu implementacija linearne regresije.

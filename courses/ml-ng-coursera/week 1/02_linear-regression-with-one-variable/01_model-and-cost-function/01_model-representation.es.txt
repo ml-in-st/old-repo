@@ -1,0 +1,86 @@
+El primer algoritmo que aprenderemos será
+la regresión lineal. En este video, verás cómo son los modelos y lo más
+importante, cómo es el proceso general de aprendizaje supervisado. Utilicemos
+un ejemplo motivador para predecir los precios de viviendas. Utilizaremos un conjunto de
+datos de precios de viviendas de la ciudad de Portland, Oregón. Aquí, voy a
+trazar mi conjunto de datos para una cantidad de casas de diferentes tamaños y que se vendieron
+en un rango de precios diferentes. Digamos que con este conjunto de datos, tienes un
+amigo que trata de vender una casa y si la casa de tu amigo es de
+1250 pies cuadrados quieres decirle en cuánto podría vender
+la casa. Bueno, lo que podrías hacer es ajustar un modelo. Tal vez ajustar una línea recta
+con estos datos, y se ve así y con base en esto, tal vez podrías decirle a tu amigo
+que, digamos, quizás podría vender la casa en aproximadamente $220,000 USD.
+Así que este es un ejemplo de un algoritmo de aprendizaje supervisado. Y es
+un aprendizaje supervisado porque se nos da la “respuesta correcta” para cada uno de
+nuestros ejemplos. Es decir, nos dice cuál fue la casa real, cuál fue el precio
+real de cada casa que se vendió en nuestro conjunto de datos y, además,
+es un ejemplo de un problema de regresión, el término regresión se refiere al hecho
+de que predecimos el resultado del valor real, es decir, el precio. Y sólo para recordarte,
+el otro tipo más común de problema de aprendizaje supervisado se llama
+problema de clasificación, donde predecimos los resultados de valor discreto, es como si viéramos
+tumores cancerígenos y tratáramos de determinar si el tumor es maligno o benigno.
+Entonces, este el resultado del valor discreto de cero a uno. De forma más formal, en el aprendizaje supervisado, tenemos
+un conjunto de datos que se llama conjunto de entrenamiento. En el ejemplo de precios
+de viviendas, tenemos un conjunto de entrenamiento de diferentes precios de viviendas y nuestro trabajo es
+aprender, a partir de estos datos, cómo predecir los precios de las viviendas. Definamos otra anotación
+que usaremos durante este curso. Definiremos muchos
+símbolos. No pasa nada si no recuerdas todos los símbolos en este momento pero
+a medida que el curso avance, será útil tener una anotación conveniente. Así que usaré
+la letra "m" minúscula durante este curso para denotar el número de ejemplos de entrenamiento. Ahora, 
+si en este conjunto de datos digamos que tengo 47 filas en esta tabla. Entonces,
+tengo 47 ejemplos de entrenamiento y "m" es igual a 47. Usaré la letra "x" minúscula para denotar las
+variables de entrada, que con frecuencia se llaman funciones. Eso sería las x de aquí, que son las funciones de entrada. Y utilizaré la letra "y" para denotar mis variables de salida o la
+variable objetivo que voy a predecir, que es la segunda
+columna de aquí. Una anotación más, utilizaré "(x,y)" para denotar un solo ejemplo
+de entrenamiento. Así que una sola fila en esta tabla corresponde a un solo ejemplo
+de entrenamiento y para referirse a un ejemplo de entrenamiento específico, usaré
+esta anotación "(x(i), y(i))", y usaremos esto para referirnos al ejemplo
+"i" de entrenamiento. Así que este superíndice “i” de aquí, no es un exponente,
+¿correcto? En "(x(i), y(i))", el superíndice “i” entre paréntesis es sólo un índice en mi
+conjunto de entrenamiento y se refiere a la fila "i" en esta tabla, ¿ok? Así que no es "x" a la
+potencia de "i",o "y" a la potencia de "i". En lugar de eso (x(i), y(i)) se refiere a la fila "i" de esta
+tabla. Por ejemplo, "x(1)" se refiere al valor de entrada del primer ejemplo de entrenamiento
+que es 2104. Eso es "x" en la primera fila, "x(2)" será igual a
+1416, ¿cierto? Esa es la segunda x y "y(1)" será igual a 460.
+El primer valor de “y” de mi primer ejemplo de entrenamiento, eso es a lo que ese "(1)"
+se refiere. Como mencioné, de vez en cuando haré una pregunta para que sepas si
+has entendido y en algunos segundos en el video saldrá una pregunta de opción
+múltiple en el video. Cuando pase, por favor usa tu ratón para seleccionar cuál
+crees que es la respuesta correcta. Para definir qué es el conjunto de entrenamiento Así es cómo funciona
+el algoritmo de aprendizaje supervisado. Vimos que con el conjunto de entrenamiento como nuestro
+conjunto de entrenamiento de precios de viviendas, se lo damos a nuestro algoritmo de aprendizaje el trabajo
+de un algoritmo de aprendizaje es producir una función que mediante convención
+generalmente está denotada por la letra "h" minúscula y "h" se refiere a la hipótesis. Y el trabajo de
+la hipótesis es una función que tome como entrada el tamaño de la casa,
+tal vez el tamaño de la casa nueva que tu amigo trata de vender, así que toma el valor de
+“x” y trata de generar un valor estimado de “y” para la casa correspondiente.
+Entonces "h" es una función que se traza de las "x" a las "y". Con frecuencia la gente me pregunta
+por qué se llama hipótesis a esta función. Es posible que algunos de ustedes
+sepan el significado del término hipótesis del diccionario o de ciencia o de donde sea. Resulta
+que en aprendizaje automático, este es el nombre que se utilizó a principios del
+aprendizaje automático y de ahí quedó. Y puede que no sea un buen nombre para este tipo
+de función, para trazar, desde tamaños de casas y las predicciones, ya sabes...
+Creo que el término hipótesis, tal vez no es el mejor nombre para esto, pero es la
+terminología estándar que se usa en el aprendizaje automático. No prestes tanta atención
+a por qué la llaman así. Al diseñar un algoritmo de aprendizaje, lo
+siguiente a decidir es cómo representar esta hipótesis "h". Para este video y
+en los siguientes videos, escogeré nuestra elección inicial, para representar a
+la hipótesis. Que será la siguiente. Vamos a representar "h" de la siguiente manera. Lo escribiremos como
+"h teta(x) igual a teta 0</u></u> más teta 1 de x". Y en cuanto a las abreviaturas,
+a veces en lugar de escribir</u> "h subíndice teta de x", algunas veces
+habrá una abreviatura, sólo escribiré "h" de "x". Pero con mayor frecuencia, escribiré
+teta como subíndice. Y al trazar esto en las imágenes, significa que
+vamos a predecir que “y” es una función lineal de "x". Bueno, eso es el
+conjunto de datos y lo que hace su función es predecir que “y” es alguna
+función lineal recta de "x". Eso es "h de x igual a teta 0 más teta 1x", ¿ok? Y, ¿por qué una función
+lineal? Bueno, a veces también queremos ajustar funciones más complicadas
+o tal vez no lineales. Pero ya que este caso lineal es un componente simple,
+iniciaremos con el primer ejemplo para ajustar funciones lineales, y trabajaremos sobre
+esto para, finalmente, tener modelos más complejos y algoritmos de aprendizaje
+más complejos. Deja que le de un nombre a este modelo en especial. Este modelo se
+llama regresión lineal o, este por ejemplo, es una regresión lineal real
+con una variable, una variable que es "x" y predice todos los precios como funciones
+de una variable "x". Otro nombre para este modelo es regresión lineal
+univariante. Univariante es sólo una forma elegante de decir una variable. Así que, 
+esto es la regresión lineal. En el siguiente video, empezaremos a ver cómo
+implementar este modelo.

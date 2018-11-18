@@ -1,0 +1,133 @@
+Quando desenvolvemos
+algoritmos de aprendizagem, frequentemente, alguns plots
+simples podem dar uma ideia melhor frequentemente, alguns plots
+simples podem dar uma ideia melhor do que o algoritmo está fazendo e
+confirmar que tudo está correto, do que o algoritmo está fazendo e
+confirmar que tudo está correto, do que o algoritmo está fazendo e
+confirmar que tudo está correto, e que o algoritmo está fazendo o que é esperado. Por exemplo: em um vídeo anterior, eu falei sobre como o plot da função
+de custo "J(θ)" pode ajudarnos a eu falei sobre como o plot da função
+de custo "J(θ)" pode ajudarnos a eu falei sobre como o plot da função
+de custo "J(θ)" pode ajudarnos a ter certeza de que o gradiente
+descendente está convergindo. Frequentemente, plotagem dos dados, ou de da saída do algoritmo,
+pode dar uma ideia ou de da saída do algoritmo,
+pode dar uma ideia de como melhorar seu
+algoritmo de aprendizagem. Felizmente, o Octave tem ferramentas
+muito simples para gerar Felizmente, o Octave tem ferramentas
+muito simples para gerar gráficos diferentes, e quando
+eu uso algoritmos de aprendizagem, gráficos diferentes, e quando
+eu uso algoritmos de aprendizagem, eu vejo que plotar os dados,
+e plotar o algoritmo de aprendizagem eu vejo que plotar os dados,
+e plotar o algoritmo de aprendizagem são uma parte importante de
+como eu obtenho ideias são uma parte importante de
+como eu obtenho ideias para melhorar os algoritmos,
+e nesse vídeo, para melhorar os algoritmos,
+e nesse vídeo, eu gostaria de mostrá-los algumas ferramentas, para plotar
+e visualizar os dados em Octave . Aqui está minha janela do Octave. Vamos rapidamente gerar alguns dados, para nossa plotagem. Então, vou fazer "t"
+igual a esta lista de números. Então, vou fazer "t"
+igual a esta lista de números. Aqui está "t", conjunto de
+números indo de "0" até "0,98". Aqui está "t", conjunto de
+números indo de "0" até "0,98". Vamos fazer "y1" igual a "seno(2*pi*4*t)", Vamos fazer "y1" igual a "seno(2*pi*4*t)", e se eu quiser plotar a
+função seno, é muito fácil. Eu apenas digito "plot(t,y1)"
+e pressiono <Enter>. Eu apenas digito "plot(t,y1)"
+e pressiono <Enter>. E aparece esta plotagem,
+onde o eixo horizontal E aparece esta plotagem,
+onde o eixo horizontal é a variável "t" e o eixo vertical é "y1", é a variável "t" e o eixo vertical é "y1", que é o seno da função
+que acabamos de calcular. Vamos fazer "y2"  igual
+a "cosseno(2*pi*4*t)". Vamos fazer "y2"  igual
+a "cosseno(2*pi*4*t)". Vamos fazer "y2"  igual
+a "cosseno(2*pi*4*t)". E, se plotarmos "(t,y2)", Octave vai pegar o meu plot do seno, "(t,y2)", Octave vai pegar o meu plot do seno, "(t,y2)", Octave vai pegar o meu plot do seno, e irá substituir por esta função cosseno. e irá substituir por esta função cosseno. Agora, e se eu quiser ter ambos Agora, e se eu quiser ter ambos os plots das funções seno
+e cosseno? O que vou fazer é
+pensar em "θ" como um vetor, O que vou fazer é digitar "plot(t,y1)". Aqui está minha função seno, e então vou usar a função "hold on". O que a função "hold on" faz
+é forçar o Octave O que a função "hold on" faz
+é forçar o Octave a plotar uma figura sobre a antiga; a plotar uma figura sobre a antiga; Agora plotar "(t,y2)", a função seno, em uma cor diferente. . Agora plotar "(t,y2)", a função seno, em uma cor diferente. . Então, vou colocar aquele "r" entre aspas, Então, vou colocar aquele "r" entre aspas, e em vez de substituir a
+figura atual, vou plotar e em vez de substituir a
+figura atual, vou plotar a função cosseno sobre ela, e o "r" indica que ela terá uma cor vermelha. E alguns comandos adicionais: "xlabel('times')" para rotular o
+eixo "X", o eixo horizontal. E "ylabel('value')" para rotular
+o eixo vertical. E "ylabel('value')" para rotular
+o eixo vertical. E eu posso também, rotular minhas duas linhas com este comando: "legend('sin', 'cos')", e isto coloca a legenda
+no canto superior direito, e isto coloca a legenda
+no canto superior direito, mostrando o que as duas
+linhas são; e finalmente, mostrando o que as duas
+linhas são; e finalmente, "title('my plot')" é o título no topo desta figura. Por último, se você quiser salvar
+esta figura, digite "print -dpng" Por último, se você quiser salvar
+esta figura, digite "print -dpng" 'myPlot.png' 'myPlot.png' PNG é um formato para arquivos de gráfico, PNG é um formato para arquivos de gráfico, e fazendo isso, você
+salvará o plot como um arquivo. e fazendo isso, você
+salvará o plot como um arquivo. Deixe-me mudar o diretório para ... vamos ver ... algo assim ... e então vou imprimir. Isso pode demorar um pouco dependendo de como seu Octave está configurado. Isso pode levar alguns segundos. Mudar o diretório para Desktop, fez o
+Octave gastar alguns segundos a mais. Mudar o diretório para Desktop, fez o
+Octave gastar alguns segundos a mais. Se agora eu for para a minha área de trabalho,
+vamos minimizar estas janelas. aqui está "myplot.png", que o Octave salvou e esta é a figura salva como um aquivo PNG. Octave pode salvar milhares de outros formatos também. Assim, você pode digitar "help plot", se você quiser ver os outros
+formatos de arquivo, em vez de PNG, se você quiser ver os outros
+formatos de arquivo, em vez de PNG, que você pode salvar as figuras. que você pode salvar as figuras. E finalmente, se você quiser se livrar das plotagens, o comando "close" faz
+as figuras desaparecerem. Seu eu digitar "close",
+aquela figura simplesmente Seu eu digitar "close",
+aquela figura simplesmente desaparece da minha área de trabalho. Octave também deixa você
+especificar números das figuras. Se você digitar "figure(1); plot(t,y1)", isso inicia Se você digitar "figure(1); plot(t,y1)", isso inicia a primeira figura, com o plot de "(t, y1)". E se você quiser uma segunda figura,
+você especifica um número diferente. Então "figure(2); plot(t,y2);", dessa forma, agora, na minha área de trabalho, eu tenho 2 figuras. Então, figuras 1 e 2, uma plotando uma senóide, e outra uma cossenóide. uma plotando uma senóide, e outra uma cossenóide. Aqui está outro comando interessante,
+que eu uso bastante: "subplot". Aqui está outro comando interessante,
+que eu uso bastante: "subplot". Vamos usar o "subplot(1,2,1)". O que ele faz é subdividir a plotagem em uma grade de 1 por 2, os dois primeiros parâmetros
+são para isso, e ele começa a acessar o
+primeiro elemento. e ele começa a acessar o
+primeiro elemento. O parâmetro final "1" é para isso. Então, divido minha figura
+em uma grade de 1 por 2, Então, divido minha figura
+em uma grade de 1 por 2, e eu quero acessar o primeiro
+elemento imediatamente. e eu quero acessar o primeiro
+elemento imediatamente. Assim, se eu digitar aquilo,
+o resultado é esta figura na esquerda. Assim, se eu digitar aquilo,
+o resultado é esta figura na esquerda. E se eu plotar "(t,y1)", ele preencherá este primeiro elemento. ele preencherá este primeiro elemento. E se eu fizer "subplot(1,2,2)", vou começar a acessar o
+segundo elemento, e "(plot t,y2)", vou começar a acessar o
+segundo elemento, e "(plot t,y2)", jogará o "(t,y2)" na parte direita,
+ou no segundo elemento. jogará o "(t,y2)" na parte direita,
+ou no segundo elemento. E você também pode
+mudar as escalas dos eixos, E você também pode
+mudar as escalas dos eixos, mudando os eixos: "axis([0.5  1  -1  1])". mudando os eixos: "axis([0.5  1  -1  1])". Isso define os limites
+dos eixos "x" e "y", Isso define os limites
+dos eixos "x" e "y", para a figura na direita. E isso seta os valores no eixo horizontal,
+da figura à direita, de 0,5 a 1. E isso seta os valores no eixo horizontal,
+da figura à direita, de 0,5 a 1. E isso seta os valores no eixo horizontal,
+da figura à direita, de 0,5 a 1. E os valores no eixo vertical, de -1 a 1. E os valores no eixo vertical, de -1 a 1. Mas você não precisa memorizar
+todos esses comandos. Se você precisar mudar os eixos, Se você precisar mudar os eixos, tudo o que precisa saber, é que existe um
+comando de eixos, e você pode obter detalhes tudo o que precisa saber, é que existe um
+comando de eixos, e você pode obter detalhes tudo o que precisa saber, é que existe um
+comando de eixos, e você pode obter detalhes na ajuda do Octave. Finalmente, alguns últimos comandos; "clf": apaga Finalmente, alguns últimos comandos; "clf": apaga a figura. E aqui está um truque legal: Vamos fazer "A"  igual a um quadrado mágico de 5 por 5. Então "A" a um quadrado mágico de 5 por 5. Então "A" é agora esta matriz 5 por 5. é agora esta matriz 5 por 5. Há um truque que às vezes eu uso para visualizar a matriz, que é eu posso usar "imagesc(A)", e isso irá plotar uma e isso irá plotar uma matriz 5x5, uma grade de cores 5x5, onde as diferentes cores correspondem a diferentes valores na matriz "A". Eu posso também usar "colorbar". Deixe-me usar um comando
+mais sofisticado: Deixe-me usar um comando
+mais sofisticado: "imagesc(A)", "colorbar", "colormap gray". "imagesc(A)", "colorbar", "colormap gray". Isso, na verdade, são 3 comandos de uma vez. Eu estou executando "imagesc", depois "colorbar", depois "colormap gray". Isso define um mapa de cores,
+mapa de cores cinza, Isso define um mapa de cores,
+mapa de cores cinza, Isso define um mapa de cores,
+mapa de cores cinza, e à direita coloca essa barra de cores. E essa barra de cores mostra
+a correspondência dos tons de cores. E essa barra de cores mostra
+a correspondência dos tons de cores. O elemento mais acima,
+e à esquerda da matriz "A" O elemento mais acima,
+e à esquerda da matriz "A" é 17, e isso corresponde
+a um tom médio de cinza. é 17, e isso corresponde
+a um tom médio de cinza. Enquanto o elemento "A[1,2]" é 24. Enquanto o elemento "A[1,2]" é 24. Enquanto o elemento "A[1,2]" é 24. Então "A[1,2]" é 24. Isso corresponde a esse quadrado,
+que corresponde a esse tom quase branco. Isso corresponde a esse quadrado,
+que corresponde a esse tom quase branco. Isso corresponde a esse quadrado,
+que corresponde a esse tom quase branco. E um valor pequeno, digamos,
+"A[4,5]", que é 3, E um valor pequeno, digamos,
+"A[4,5]", que é 3, E um valor pequeno, digamos,
+"A[4,5]", que é 3, que corresponde, como você
+pode ver na minha barra de cores, que corresponde, como você
+pode ver na minha barra de cores, que corresponde, como você
+pode ver na minha barra de cores, a tom muito mais escuro nessa imagem. Aqui está outro exemplo,
+posso plotar uma matrix maior, Aqui está outro exemplo,
+posso plotar uma matrix maior, aqui está um "magic(15)", que dá um quadrado mágico de 15x15, que dá um quadrado mágico de 15x15, e isso me dá um plot do
+que meus valores parecem. e isso me dá um plot do
+que meus valores parecem. E, finalmente, para resumir esse vídeo,
+o que você me viu fazer aqui foi E, finalmente, para resumir esse vídeo,
+o que você me viu fazer aqui foi E, finalmente, para resumir esse vídeo,
+o que você me viu fazer aqui foi usar chamadas de funções encadeadas por vírgula. Aqui está como você faz isso: Se eu digito "a=1, b=2, c=3",
+e aperto <Enter>, Se eu digito "a=1, b=2, c=3",
+e aperto <Enter>, Se eu digito "a=1, b=2, c=3",
+e aperto <Enter>, isso, na verdade, vai executar
+três comandos ao mesmo tempo. isso, na verdade, vai executar
+três comandos ao mesmo tempo. Na realidade, executará
+três comandos, um após o outro, Na realidade, executará
+três comandos, um após o outro, e  irá imprimir os três resultados. E isso é muito parecido com
+"a=1; b=2; c=3;", exceto que, E isso é muito parecido com
+"a=1; b=2; c=3;", exceto que, E isso é muito parecido com
+"a=1; b=2; c=3;", exceto que, se eu usar ponto-e-vírgula no
+lugar de vírgula, nada será impresso. se eu usar ponto-e-vírgula no
+lugar de vírgula, nada será impresso. Nós chamamos isso de encadeamento de comandos por vírgula, Nós chamamos isso de encadeamento de comandos por vírgula, ou encadeamento de chamadas de função por vírgula. E, só mais uma forma conveniente no Octave de E, só mais uma forma conveniente no Octave de colocar múltiplos comandos como "imagesc", "colorbar", "colormap", de colocar multi-comandos na mesma linha. Então é isso. Agora você sabe como plotar diferentes figuras no Octave, e no próximo vídeo o próximo assunto que vamos tratar é como o próximo assunto que vamos tratar é como escrever instruções de controle,
+como "IF", "WHILE", "FOR", escrever instruções de controle,
+como "IF", "WHILE", "FOR", e depois, como definir e usar funções.
+Tradução: Hugo Andrey Marinho | Revisão: Pablo de Morais Andrade

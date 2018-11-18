@@ -1,0 +1,195 @@
+1
+00:00:00,000 --> 00:00:04,162
+Šioje paskaitoje aš tiesiog norėčiau greitai
+supažindinti jus šio kurso namų darbų logistika
+
+2
+00:00:04,162 --> 00:00:09,387
+bei kiap naudotis pridavimo sistema,
+kuri iš karto
+
+3
+00:00:09,387 --> 00:00:15,619
+patikrins, ar gavote teisingą atsakymą
+atlikę savo programų mokymosi algortimo pratimą.
+
+4
+00:00:15,619 --> 00:00:19,354
+Štai čia yra mano Octave langas ir
+pirmiausia eikime į mano darbalaukį.
+
+5
+00:00:19,354 --> 00:00:25,374
+Aš išsaugojau pirmojo pratimo failus, 
+tiksliau keletą failų, savo darbalaukyje:
+
+6
+00:00:25,374 --> 00:00:27,994
+šiame aplanke, „ml-class-ex1”.
+
+7
+00:00:27,994 --> 00:00:32,921
+Mes paruošėme kelis failus ir jūsų
+užduotis yra keletą jų paredaguoti.
+
+8
+00:00:32,921 --> 00:00:40,701
+Pirmiausia turime išsamiau susipažinti su
+šio programavimo pratimo instrukcijomis, pateiktomis pdf faile.
+
+9
+00:00:40,701 --> 00:00:45,352
+Tačiau vienas iš failų, kurį prašome suredaguoti yra
+šis failas pavadinimu warmUpExercise.m.
+
+10
+00:00:45,352 --> 00:00:49,890
+Užduotis yra tiesiog užtikrinti, kad suspažinote
+su pridavimo sistema.
+
+11
+00:00:49,890 --> 00:00:53,795
+Jums tereikia grąžinti
+5x5 vienetinę matricą.
+
+12
+00:00:53,795 --> 00:01:00,301
+Taigi šio pratimo sprendimas
+yra parašyti A = eye(5).
+
+13
+00:01:00,301 --> 00:01:05,766
+Ši eilutė pakeičią funkciją tiap, kad
+ji generuotų 5x5 vienetinę matricą.
+
+14
+00:01:05,766 --> 00:01:11,149
+Taigi, funkcija warmUpExercise()
+dabar grąžina 5x5 vienetinę matricą.
+
+15
+00:01:11,149 --> 00:01:13,727
+Aš tiesiog įrašysiu.
+
+16
+00:01:13,727 --> 00:01:17,465
+Taigi, atlikau pirmąją šio namų darbo dalį.
+Grįžtu į savo Octave langą,
+
+17
+00:01:17,465 --> 00:01:27,185
+atidarykime aplanką 
+„C:\Users\ang\Desktop\ml-class-ex1”.
+
+18
+00:01:27,185 --> 00:01:33,347
+Jei aš noriu įsitikinti, kad atlikau užduotį,
+turiu įvesti „warmUpExercise()”.
+
+19
+00:01:33,347 --> 00:01:39,671
+Ir būtent, funkcija grąžina 5x5 vienetinę matricą,
+kurią sukuria ką tik parašytas kodas.
+
+20
+00:01:39,671 --> 00:01:43,870
+Taigi dabar galiu priduoti kodą:
+šiame aplanke aš įvedu „submit()”
+
+21
+00:01:43,870 --> 00:01:49,300
+ir kadangi esu pasiruošęs,
+aš pasirenku „1”.
+
+22
+00:01:49,300 --> 00:01:54,387
+Turiu įvesti savo el. pašto adresą.
+Dabar atidarysiu kurso svetainę.
+
+23
+00:01:54,387 --> 00:01:59,682
+Tai yra vidinė testinė svetainė, taigi
+jūs galbūt matysite kitokią svetainės versiją.
+
+24
+00:01:59,682 --> 00:02:07,934
+Čia matyti mano el. pašto adresas ir pridavimo slaptažodis,
+taigi aš tiesiog įvesiu juos čia.
+
+25
+00:02:07,934 --> 00:02:19,205
+Taigi, mano adresas yra ang@cs.stanford.edu, o 
+mano pridavimo slaptažodis yra 9yC75USsGf.
+
+26
+00:02:19,205 --> 00:02:23,849
+Paspaudus Enter, prisijungiate prie serverio ir priduodate
+sprendimą, ir iš karto
+
+27
+00:02:23,849 --> 00:02:28,567
+jums parašo pasveikinimą sėkingai
+atlikus 1 namų darbo 1 dalį.
+
+28
+00:02:28,567 --> 00:02:33,160
+Tokiu būdu galite patikrinti, ar
+teisingai šią dalį išsprendėte teisingai.
+
+29
+00:02:33,160 --> 00:02:36,795
+Jei atsakymas neteisingas, matysite
+pranešimą, informuojantį
+
+30
+00:02:36,795 --> 00:02:39,501
+kad atsakymas neteisingas.
+
+31
+00:02:39,501 --> 00:02:47,861
+Pridavimo slaptažodį galite naudoti daug kartų,
+galite generuoti naują, tai nesvarbu.
+
+32
+00:02:47,861 --> 00:02:52,556
+Galite naudoti ir įprastą sveitainės prisijungimo
+slaptažodį, tačiau kadangi šis slaptažodis
+
+33
+00:02:52,556 --> 00:02:59,281
+būtų matomas neužslaptintas jūsų ekrane,
+suteikėme šį papildomą pridavimo slaptažodį,
+
+34
+00:02:59,281 --> 00:03:03,650
+tam atvejui, jei nenorėtumėte rašyti savo įprasto
+svetainės slaptažodžio lange,
+
+35
+00:03:03,650 --> 00:03:09,219
+kur, priklausomai nuo operacinės sistemos,
+gali matytis, kai įrašysite jį
+
+36
+00:03:09,219 --> 00:03:14,544
+į Octave pridavimo skriptą.
+
+37
+00:03:14,544 --> 00:03:18,746
+Taigi, štai taip priduodate savo
+atliktus namų darbus.
+
+38
+00:03:18,746 --> 00:03:23,696
+Sėkmės, ir tikiuosi
+jums pavyks visus juos atlikti teisingai
+
+39
+00:03:23,696 --> 00:03:28,329
+Kitoje (paskutinėje) pamokos apie Octave dalyje
+noriu papasakoti apie
+
+40
+00:03:28,329 --> 00:03:33,337
+vektorizaciją - taip galėsite savo Octave kodą 
+leisti daug efektyviau.

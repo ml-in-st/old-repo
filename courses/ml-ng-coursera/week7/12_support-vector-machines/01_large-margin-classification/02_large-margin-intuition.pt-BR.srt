@@ -1,0 +1,1231 @@
+1
+00:00:00,750 --> 00:00:02,160
+Às vezes se fala de máquinas de
+
+2
+00:00:02,520 --> 00:00:04,380
+vetores de suporte como classificadores
+
+3
+00:00:04,990 --> 00:00:06,950
+de margem larga. Neste vídeo,
+
+4
+00:00:07,080 --> 00:00:08,030
+gostaria de dizer o que isso
+
+5
+00:00:08,410 --> 00:00:09,500
+significa, o que
+
+6
+00:00:09,780 --> 00:00:10,520
+também nos dará uma boa
+
+7
+00:00:11,030 --> 00:00:12,780
+noção do que é uma hipótese
+
+8
+00:00:13,020 --> 00:00:17,460
+de máquina de vetores de suporte (SVM, em inglês).
+
+9
+00:00:18,070 --> 00:00:19,290
+Esta é minha função de custo para a máquina de vetores de
+
+10
+00:00:21,310 --> 00:00:22,290
+suporte, onde à esquerda
+
+11
+00:00:22,790 --> 00:00:24,300
+tracei minha função cost₁(z),
+
+12
+00:00:24,560 --> 00:00:28,100
+que usei para exemplos positivos, e à direita tracei a função cost₀(z),
+
+13
+00:00:30,080 --> 00:00:31,510
+onde 'z'
+
+14
+00:00:31,950 --> 00:00:33,850
+está no eixo horizontal.
+
+15
+00:00:34,380 --> 00:00:35,520
+Agora, vamos pensar sobre o que é
+
+16
+00:00:35,650 --> 00:00:38,380
+necessário para que essas funções assumam um valor pequeno.
+
+17
+00:00:39,660 --> 00:00:40,970
+Se você tiver um exemplo positivo,
+
+18
+00:00:41,950 --> 00:00:43,170
+ou seja, se y = 1,
+
+19
+00:00:43,490 --> 00:00:45,060
+então cost₁(x) é
+
+20
+00:00:45,200 --> 00:00:46,750
+zero somente quando
+
+21
+00:00:47,700 --> 00:00:50,070
+z ≥ 1.
+
+22
+00:00:50,180 --> 00:00:51,370
+Em outras palavras, se você
+
+23
+00:00:51,510 --> 00:00:52,860
+tiver um exemplo positivo,
+
+24
+00:00:53,110 --> 00:00:54,550
+queremos que θ' · x seja maior
+
+25
+00:00:54,870 --> 00:00:55,760
+ou igual a 1,
+
+26
+00:00:56,450 --> 00:00:58,030
+e, da mesma forma, se
+
+27
+00:00:58,150 --> 00:00:59,300
+y = 0, veja nesta função
+
+28
+00:00:59,510 --> 00:01:00,490
+cost₀(z),
+
+29
+00:01:01,560 --> 00:01:03,000
+é só nesta
+
+30
+00:01:03,200 --> 00:01:04,310
+região, onde z é menor
+
+31
+00:01:04,460 --> 00:01:05,810
+ou igual a -1,
+
+32
+00:01:06,150 --> 00:01:07,320
+onde a função
+
+33
+00:01:07,610 --> 00:01:10,150
+cost₀(z) é zero,
+
+34
+00:01:10,640 --> 00:01:12,270
+e esta é uma propriedade interessante da
+
+35
+00:01:12,560 --> 00:01:13,630
+máquina de vetores de suporte,
+
+36
+00:01:13,800 --> 00:01:15,060
+pois, se tivermos um exemplo
+
+37
+00:01:15,440 --> 00:01:17,650
+positivo, ou seja, y = 1,
+
+38
+00:01:18,370 --> 00:01:19,250
+então tudo o que precisamos
+
+39
+00:01:19,550 --> 00:01:21,950
+é que θ' · x ≥ 0.
+
+40
+00:01:22,970 --> 00:01:25,270
+E isso significaria que classificamos corretamente,
+
+41
+00:01:25,860 --> 00:01:26,950
+pois se θ' · x é maior que 0,
+
+42
+00:01:27,510 --> 00:01:28,980
+nossa hipótese estimará zero.
+
+43
+00:01:29,840 --> 00:01:30,710
+Da mesma forma, se você
+
+44
+00:01:31,340 --> 00:01:34,090
+tiver um exemplo negativo, tudo o que você precisa é que θ' · x
+
+45
+00:01:34,850 --> 00:01:37,290
+seja menor que 0, e já saberemos que acertamos nesse exemplo.
+
+46
+00:01:37,670 --> 00:01:40,230
+Mas a máquina de vetores de suporte quer um pouco mais que isso.
+
+47
+00:01:40,580 --> 00:01:43,360
+Ela te pede não só que você acerte o exemplo.
+
+48
+00:01:44,320 --> 00:01:45,990
+Ou seja, não faça com
+
+49
+00:01:46,240 --> 00:01:47,580
+que seja só um pouco maior que zero.
+
+50
+00:01:47,890 --> 00:01:48,870
+O que realmente queremos é que
+
+51
+00:01:49,060 --> 00:01:50,370
+isso seja um tanto maior que zero,
+
+52
+00:01:50,490 --> 00:01:51,430
+por exemplo,
+
+53
+00:01:51,680 --> 00:01:52,530
+um pouco maior ou igual 1,
+
+54
+00:01:52,870 --> 00:01:54,400
+e queremos que isto seja muito menor que 0.
+
+55
+00:01:54,800 --> 00:01:55,970
+Quero, na verdade, que
+
+56
+00:01:56,230 --> 00:01:58,140
+ou igual a -1.
+
+57
+00:01:58,830 --> 00:02:00,000
+Isso dá um novo fator
+
+58
+00:02:00,120 --> 00:02:01,660
+de segurança, ou margem de
+
+59
+00:02:02,070 --> 00:02:03,630
+segurança, para a máquina de vetores de suporte.
+
+60
+00:02:04,030 --> 00:02:05,700
+Regressão logística faz
+
+61
+00:02:06,340 --> 00:02:07,620
+algo similar também, claro,
+
+62
+00:02:07,820 --> 00:02:08,900
+mas vamos ver o que
+
+63
+00:02:09,110 --> 00:02:10,350
+acontece, quais são as
+
+64
+00:02:10,460 --> 00:02:11,290
+consequências disso, no contexto
+
+65
+00:02:11,360 --> 00:02:13,180
+da máquina de vetores de suporte.
+
+66
+00:02:14,830 --> 00:02:15,740
+Na verdade, o que quero fazer a seguir
+
+67
+00:02:16,010 --> 00:02:17,760
+é considerar um caso
+
+68
+00:02:17,900 --> 00:02:19,130
+em que colocamos um valor
+
+69
+00:02:19,460 --> 00:02:21,240
+muito alto para
+
+70
+00:02:21,400 --> 00:02:23,340
+esta constante C, digamos
+
+71
+00:02:23,530 --> 00:02:24,700
+que C tem um valor
+
+72
+00:02:24,820 --> 00:02:28,080
+muito alto, talvez cem mil, um número gigante.
+
+73
+00:02:29,370 --> 00:02:31,290
+Vamos ver o que a máquina de vetores de suporte vai fazer.
+
+74
+00:02:31,580 --> 00:02:33,510
+Se C for muito,
+
+75
+00:02:33,820 --> 00:02:35,340
+muito grande, então quando minimizarmos
+
+76
+00:02:36,350 --> 00:02:38,080
+este objetivo de otimização, seremos
+
+77
+00:02:38,300 --> 00:02:39,640
+muito motivados a escolher um
+
+78
+00:02:39,950 --> 00:02:41,240
+valor que torne
+
+79
+00:02:41,380 --> 00:02:43,180
+este primeiro termo igual a zero.
+
+80
+00:02:44,810 --> 00:02:46,250
+Então, vamos tentar
+
+81
+00:02:46,670 --> 00:02:48,320
+entender o problema de otimização
+
+82
+00:02:48,430 --> 00:02:49,820
+no contexto do que seria
+
+83
+00:02:50,050 --> 00:02:51,520
+necessário para fazer este
+
+84
+00:02:51,880 --> 00:02:53,060
+primeiro termo do objetivo
+
+85
+00:02:53,470 --> 00:02:54,890
+igual a zero, porque
+
+86
+00:02:55,000 --> 00:02:56,100
+é próximo do que aconteceria se
+
+87
+00:02:56,250 --> 00:02:59,420
+C for uma constante gigantesca, e
+
+88
+00:02:59,590 --> 00:03:00,780
+esperamos que isso nos dê
+
+89
+00:03:01,300 --> 00:03:02,920
+uma noção melhor sobre
+
+90
+00:03:03,110 --> 00:03:05,520
+que tipo de hipótese uma máquina de vetores de suporte aprende.
+
+91
+00:03:06,440 --> 00:03:07,720
+Nós já vimos que, sempre
+
+92
+00:03:08,140 --> 00:03:09,260
+que temos um exemplo de treinamento
+
+93
+00:03:09,480 --> 00:03:11,350
+indicado por
+
+94
+00:03:11,690 --> 00:03:13,850
+y = 1, se você
+
+95
+00:03:13,950 --> 00:03:15,050
+quer zerar esse primeiro termo,
+
+96
+00:03:15,240 --> 00:03:16,280
+o que você precisa é
+
+97
+00:03:16,450 --> 00:03:17,680
+encontrar um valor de θ
+
+98
+00:03:17,990 --> 00:03:20,380
+tal que
+
+99
+00:03:20,690 --> 00:03:22,800
+θ' · x ≥ 1.
+
+100
+00:03:23,220 --> 00:03:24,250
+Da mesma forma, sempre que tivermos um exemplo
+
+101
+00:03:24,960 --> 00:03:26,910
+com y = 0, para
+
+102
+00:03:27,240 --> 00:03:28,060
+fazer com que o custo,
+
+103
+00:03:29,000 --> 00:03:30,520
+cost₀(z), para
+
+104
+00:03:30,610 --> 00:03:31,530
+garantir que esse custo
+
+105
+00:03:31,790 --> 00:03:33,250
+seja 0, necessitamos que θ' · x⁽ⁱ⁾
+
+106
+00:03:33,810 --> 00:03:36,180
+seja menor
+
+107
+00:03:37,900 --> 00:03:38,740
+ou igual a -1.
+
+108
+00:03:39,510 --> 00:03:40,770
+Assim, se pensarmos
+
+109
+00:03:41,050 --> 00:03:43,030
+no nosso problema de otimização como
+
+110
+00:03:43,360 --> 00:03:45,000
+uma escolha de parâmetros,
+
+111
+00:03:45,710 --> 00:03:46,750
+e com este primeiro
+
+112
+00:03:47,020 --> 00:03:48,170
+termo igual a zero,
+
+113
+00:03:49,130 --> 00:03:50,230
+o que resta é o
+
+114
+00:03:50,330 --> 00:03:51,670
+problema de otimização a seguir.
+
+115
+00:03:52,050 --> 00:03:53,720
+Vamos minimizar o primeiro
+
+116
+00:03:53,980 --> 00:03:55,360
+termo, que será 0,
+
+117
+00:03:55,590 --> 00:03:56,710
+então, como vamos escolher
+
+118
+00:03:56,870 --> 00:03:58,040
+parâmetros que tornam esse termo
+
+119
+00:03:58,150 --> 00:03:59,710
+igual a 0, ou seja, C · 0
+
+120
+00:04:00,330 --> 00:04:01,330
+mais 1/2 vezes este
+
+121
+00:04:01,460 --> 00:04:05,440
+segundo termo fica
+
+122
+00:04:05,620 --> 00:04:06,880
+C · 0, que
+
+123
+00:04:07,160 --> 00:04:08,020
+podemos cortar
+
+124
+00:04:08,130 --> 00:04:11,210
+porque sabemos que vai ser igual a 0.
+
+125
+00:04:11,380 --> 00:04:12,570
+E isso será sujeito à restrição
+
+126
+00:04:13,400 --> 00:04:15,410
+de que θ' · x⁽ⁱ⁾
+
+127
+00:04:16,390 --> 00:04:17,560
+se "h_θ(x) ≥ 0.5"
+
+128
+00:04:18,700 --> 00:04:20,930
+um, quando y⁽ⁱ⁾
+
+129
+00:04:22,180 --> 00:04:24,150
+é igual a um, e
+
+130
+00:04:24,940 --> 00:04:26,560
+θ' · x⁽ⁱ⁾ é menor ou igual
+
+131
+00:04:26,690 --> 00:04:28,060
+a -1 quando
+
+132
+00:04:29,030 --> 00:04:31,680
+o exemplo é
+
+133
+00:04:32,110 --> 00:04:34,460
+negativo, e o que
+
+134
+00:04:34,540 --> 00:04:35,520
+acontece quando você
+
+135
+00:04:35,660 --> 00:04:37,930
+soluciona esse problema de otimização,
+
+136
+00:04:38,070 --> 00:04:39,440
+quando você minimiza essa função dos parâmetros θ
+
+137
+00:04:40,710 --> 00:04:42,090
+você encontra uma fronteira de decisão
+
+138
+00:04:42,590 --> 00:04:44,870
+muito interessante.
+
+139
+00:04:45,010 --> 00:04:46,470
+Se você olhara para um conjunto de dados
+
+140
+00:04:46,750 --> 00:04:49,660
+como este, com exemplos positivos e negativos, os dados
+
+141
+00:04:50,920 --> 00:04:52,430
+são linearmente separáveis.
+
+142
+00:04:52,710 --> 00:04:54,960
+Ou seja, existe pelo menos uma linha reta,
+
+143
+00:04:55,530 --> 00:04:56,830
+ou podem existir várias delas,
+
+144
+00:04:56,920 --> 00:04:57,810
+que conseguem separar os exemplos
+
+145
+00:04:58,720 --> 00:05:01,060
+positivos e negativos perfeitamente.
+
+146
+00:05:01,560 --> 00:05:02,710
+Por exemplo, aqui está uma fronteira de decisão
+
+147
+00:05:04,270 --> 00:05:05,430
+que separa os exemplos positivos
+
+148
+00:05:05,570 --> 00:05:06,840
+e negativos, mas ela não parece
+
+149
+00:05:07,030 --> 00:05:07,810
+ser muito
+
+150
+00:05:07,900 --> 00:05:09,680
+natural.
+
+151
+00:05:09,810 --> 00:05:11,050
+Podemos desenhar uma ainda pior,
+
+152
+00:05:11,230 --> 00:05:13,540
+por exemplo, esta é outra fronteira de decisão
+
+153
+00:05:13,710 --> 00:05:14,830
+que separa os exemplos positivos e negativos,
+
+154
+00:05:14,900 --> 00:05:15,960
+mas por pouco.
+
+155
+00:05:16,120 --> 00:05:18,530
+Mas nenhuma dessas parecem ser escolhas muito boas.
+
+156
+00:05:20,420 --> 00:05:22,880
+A máquina de vetores de suporte vai escolher
+
+157
+00:05:23,140 --> 00:05:26,450
+esta fronteira de decisão que estou desenhando em preto.
+
+158
+00:05:29,010 --> 00:05:30,030
+Essa parece ser uma fronteira de decisão muito melhor
+
+159
+00:05:30,760 --> 00:05:32,310
+que qualquer uma
+
+160
+00:05:32,420 --> 00:05:34,450
+das outras, as que desenhei em magenta e verde.
+
+161
+00:05:34,750 --> 00:05:35,790
+Esta linha preta parece ser um
+
+162
+00:05:36,050 --> 00:05:37,840
+separador mais robusto, ela
+
+163
+00:05:38,610 --> 00:05:39,710
+separa melhor os exemplos positivos e negativos.
+
+164
+00:05:39,800 --> 00:05:42,830
+E, matematicamente, o que diferencia a
+
+165
+00:05:43,530 --> 00:05:45,680
+fronteira de decisão em preto é que ela tem uma distância maior.
+
+166
+00:05:49,160 --> 00:05:50,580
+Essa distância é chamada margem,
+
+167
+00:05:50,760 --> 00:05:51,790
+quando eu desenho essas duas
+
+168
+00:05:52,380 --> 00:05:54,320
+retas azuis a mais, vemos
+
+169
+00:05:54,540 --> 00:05:56,010
+que a fronteira de decisão em preto tem
+
+170
+00:05:56,240 --> 00:05:59,990
+uma distância mínima maior até qualquer dos exemplos de treinamento,
+
+171
+00:06:00,120 --> 00:06:01,350
+enquanto as retas magenta e verde
+
+172
+00:06:01,580 --> 00:06:02,600
+ficam muito perto dos exemplos de treinamento.
+
+173
+00:06:04,640 --> 00:06:06,100
+Isso parece separar os exemplos positivos
+
+174
+00:06:06,500 --> 00:06:08,910
+e negativos de uma maneira pior que a a linha preta.
+
+175
+00:06:09,850 --> 00:06:11,500
+ Então, essa é a distância em linha reta entre duas cidades.
+
+176
+00:06:11,800 --> 00:06:13,600
+essa distância é chamada
+
+177
+00:06:13,960 --> 00:06:16,500
+a margem da
+
+178
+00:06:16,600 --> 00:06:21,300
+máquina de vetores de suporte,
+
+179
+00:06:21,500 --> 00:06:22,480
+o que dá à SVM uma certa
+
+180
+00:06:22,940 --> 00:06:24,010
+robustez, porque ela tenta
+
+181
+00:06:24,360 --> 00:06:25,530
+separar os dados com a
+
+182
+00:06:25,700 --> 00:06:27,440
+maior margem possível.
+
+183
+00:06:29,210 --> 00:06:30,250
+Assim, a máquina de vetores de suporte é
+
+184
+00:06:30,380 --> 00:06:31,650
+também chamada um classificador
+
+185
+00:06:31,830 --> 00:06:33,930
+de margem larga, o que é
+
+186
+00:06:34,170 --> 00:06:36,180
+uma consequência
+
+187
+00:06:36,430 --> 00:06:39,370
+do problema de otimização que escrevemos no slide anterior.
+
+188
+00:06:40,140 --> 00:06:40,950
+Eu sei que você deve estar
+
+189
+00:06:41,100 --> 00:06:42,250
+imaginando como é
+
+190
+00:06:42,400 --> 00:06:43,900
+que o problema de otimização que
+
+191
+00:06:44,070 --> 00:06:45,080
+escrevi no slide anterior
+
+192
+00:06:45,280 --> 00:06:47,270
+leva a esse classificador de margem larga.
+
+193
+00:06:48,350 --> 00:06:49,700
+Eu sei que ainda não expliquei isso.
+
+194
+00:06:50,520 --> 00:06:51,570
+No próximo vídeo
+
+195
+00:06:51,810 --> 00:06:53,340
+vou tentar dar
+
+196
+00:06:53,500 --> 00:06:55,180
+um pouco da intuição sobre a razão
+
+197
+00:06:55,430 --> 00:06:57,080
+por que esse problema de otimização nos
+
+198
+00:06:57,570 --> 00:06:59,630
+dá esse classificador de margem larga.
+
+199
+00:06:59,790 --> 00:07:00,860
+Mas essa é uma característica
+
+200
+00:07:00,970 --> 00:07:01,780
+útil para ter em mente se você
+
+201
+00:07:01,920 --> 00:07:03,150
+está tentando entender que tipo
+
+202
+00:07:03,290 --> 00:07:05,600
+de hipótese uma SVM escolherá.
+
+203
+00:07:06,140 --> 00:07:07,200
+Ou seja, tentar separar os exemplos
+
+204
+00:07:07,270 --> 00:07:10,310
+positivos e negativos com a maior margem possível.
+
+205
+00:07:12,890 --> 00:07:13,950
+Eu quero dizer uma última coisa
+
+206
+00:07:14,180 --> 00:07:15,930
+sobre classificadores de margem larga
+
+207
+00:07:16,070 --> 00:07:17,900
+e essa intuição, então
+
+208
+00:07:18,030 --> 00:07:19,340
+vamos ver o que esse classificador de margem larga
+
+209
+00:07:20,010 --> 00:07:21,040
+faz no caso em que C,
+
+210
+00:07:21,420 --> 00:07:23,640
+essa constante de regularização,
+
+211
+00:07:24,160 --> 00:07:25,190
+for muito grande, acho
+
+212
+00:07:25,390 --> 00:07:27,750
+que coloquei o valor de 100000 ou algo assim.
+
+213
+00:07:28,310 --> 00:07:29,760
+Dado um conjunto de dados
+
+214
+00:07:30,110 --> 00:07:31,630
+como este, talvez escolheremos
+
+215
+00:07:32,110 --> 00:07:34,000
+a fronteira de decisão que
+
+216
+00:07:34,140 --> 00:07:36,210
+separa exemplos positivos e negativos com margem larga.
+
+217
+00:07:37,370 --> 00:07:39,020
+Na verdade, a SVM é um pouco
+
+218
+00:07:39,370 --> 00:07:41,120
+mais sofisticada que essa visão de margem
+
+219
+00:07:41,440 --> 00:07:42,920
+larga pode induzir a pensar.
+
+220
+00:07:43,630 --> 00:07:45,130
+Em particular, se tudo o que você
+
+221
+00:07:45,310 --> 00:07:46,490
+está fazendo é usar um classificador
+
+222
+00:07:46,680 --> 00:07:48,850
+de margem larga, seus
+
+223
+00:07:49,020 --> 00:07:50,270
+algoritmos de aprendizagem podem ser sensíveis
+
+224
+00:07:50,920 --> 00:07:52,260
+a outliers, então vamos só
+
+225
+00:07:52,450 --> 00:07:53,990
+adicionar um exemplo positivo
+
+226
+00:07:54,520 --> 00:07:56,540
+como este mostrado na tela.
+
+227
+00:07:57,230 --> 00:07:58,830
+Se adicionamos esse exemplo,
+
+228
+00:07:58,950 --> 00:08:00,060
+parece que para podermos separar
+
+229
+00:08:00,300 --> 00:08:01,410
+os dados com uma margem larga,
+
+230
+00:08:02,680 --> 00:08:04,300
+vou acabar aprendendo uma
+
+231
+00:08:05,270 --> 00:08:07,260
+fronteira de decisão como esta, certo?
+
+232
+00:08:07,540 --> 00:08:09,130
+A fronteira é esta linha magenta, e
+
+233
+00:08:09,180 --> 00:08:10,210
+Não é nada claro que, baseados
+
+234
+00:08:10,440 --> 00:08:11,950
+em um único outlier, baseados
+
+235
+00:08:12,180 --> 00:08:13,560
+em um único exemplo,
+
+236
+00:08:13,790 --> 00:08:14,720
+não está nem um pouco claro
+
+237
+00:08:14,890 --> 00:08:16,460
+que é uma boa ideia mudar a
+
+238
+00:08:17,060 --> 00:08:17,980
+fronteira de decisão da linha preta
+
+239
+00:08:18,290 --> 00:08:19,960
+para a magenta.
+
+240
+00:08:20,980 --> 00:08:23,430
+Portanto, se C,
+
+241
+00:08:23,640 --> 00:08:25,740
+o parâmetro de regularização, for muito
+
+242
+00:08:25,970 --> 00:08:27,110
+grande, isso é
+
+243
+00:08:27,300 --> 00:08:28,130
+exatamente o que a SVM fará, ela
+
+244
+00:08:28,360 --> 00:08:29,820
+mudará a fronteira de decisão da linha
+
+245
+00:08:30,270 --> 00:08:31,530
+preta para a
+
+246
+00:08:31,650 --> 00:08:33,650
+linha magenta, mas
+
+247
+00:08:33,810 --> 00:08:35,390
+se C for razoavelmente pequeno,
+
+248
+00:08:35,550 --> 00:08:36,720
+se utilizássemos um valor de C
+
+249
+00:08:37,320 --> 00:08:39,090
+que não fosse tão grande assim,
+
+250
+00:08:39,260 --> 00:08:40,400
+você encontraria esta
+
+251
+00:08:40,610 --> 00:08:44,500
+fronteira de decisão em preto.
+
+252
+00:08:44,830 --> 00:08:46,880
+E, é claro, se os dados não forem linearmente separáveis, se você tiver alguns
+
+253
+00:08:47,250 --> 00:08:48,790
+exemplos positivos aqui, ou
+
+254
+00:08:49,170 --> 00:08:50,440
+alguns exemplos negativos
+
+255
+00:08:50,980 --> 00:08:52,300
+aqui, a SVM também
+
+256
+00:08:52,570 --> 00:08:53,830
+fará o que é certo.
+
+257
+00:08:54,260 --> 00:08:55,710
+Assim, essa ideia
+
+258
+00:08:56,060 --> 00:08:57,770
+do classificador de margem larga
+
+259
+00:08:58,090 --> 00:08:59,410
+é, na verdade,
+
+260
+00:08:59,530 --> 00:09:01,720
+a ideia que dá uma boa intuição
+
+261
+00:09:01,970 --> 00:09:03,440
+somente para os casos em que
+
+262
+00:09:03,560 --> 00:09:05,050
+o parâmetro de regularização C
+
+263
+00:09:05,190 --> 00:09:07,170
+é muito largo.
+
+264
+00:09:07,420 --> 00:09:08,810
+Só para lembrar, essa constante C
+
+265
+00:09:09,650 --> 00:09:11,300
+tem um papel semelhante ao
+
+266
+00:09:11,850 --> 00:09:13,600
+1/λ, onde λ
+
+267
+00:09:13,930 --> 00:09:15,950
+é o parâmetro de regularização
+
+268
+00:09:16,110 --> 00:09:17,970
+que tínhamos visto anteriormente.
+
+269
+00:09:18,080 --> 00:09:18,880
+Assim, somente quando 1/λ
+
+270
+00:09:19,080 --> 00:09:21,060
+é muito grande, ou, equivalentemente,
+
+271
+00:09:21,280 --> 00:09:23,110
+quando λ é muito pequeno,
+
+272
+00:09:23,560 --> 00:09:24,640
+que aprendemos coisas como
+
+273
+00:09:24,850 --> 00:09:27,600
+esta fronteira de decisão em magenta,
+
+274
+00:09:28,870 --> 00:09:29,560
+mas, na prática, quando aplicamos máquinas de vetores de suporte,
+
+275
+00:09:30,190 --> 00:09:31,620
+onde C não é tão, tão grande
+
+276
+00:09:31,910 --> 00:09:33,180
+como aquilo,
+
+277
+00:09:34,840 --> 00:09:36,390
+elas conseguem fazer um trabalho melhor em ignorar
+
+278
+00:09:36,980 --> 00:09:38,590
+os poucos outliers como esses.
+
+279
+00:09:39,150 --> 00:09:40,320
+Elas também se dão bem, são coerentes,
+
+280
+00:09:40,620 --> 00:09:44,400
+mesmo que seus dados não sejam linearmente separáveis.
+
+281
+00:09:44,690 --> 00:09:46,810
+Mas quando pensamos em viés e variância no contexto de máquinas de vetores de suporte,
+
+282
+00:09:46,980 --> 00:09:47,990
+o que faremos
+
+283
+00:09:48,170 --> 00:09:50,170
+um pouco mais tarde, espero
+
+284
+00:09:50,410 --> 00:09:51,990
+que todos esses efeitos que envolvem o parâmetro
+
+285
+00:09:52,410 --> 00:09:53,710
+de regularização se tornarão mais claros
+
+286
+00:09:53,830 --> 00:09:55,280
+quando falarmos sobre isso.
+
+287
+00:09:55,580 --> 00:09:57,290
+Espero que o vídeo tenha te dado alguma intuição sobre
+
+288
+00:09:57,600 --> 00:09:59,680
+como a máquina de vetores de suporte funciona
+
+289
+00:09:59,850 --> 00:10:01,810
+como um classificador de margem larga, que
+
+290
+00:10:01,950 --> 00:10:03,040
+tenta separar os dados com uma
+
+291
+00:10:03,610 --> 00:10:05,210
+margem larga, tecnicamente essa
+
+292
+00:10:06,140 --> 00:10:07,160
+interpretação é verdadeira
+
+293
+00:10:07,460 --> 00:10:08,710
+somente quando o parâmetro C é muito grande,
+
+294
+00:10:10,230 --> 00:10:11,720
+mas é uma forma útil de pensar sobre máquinas de vetores de suporte.
+
+295
+00:10:13,120 --> 00:10:14,450
+Ainda temos um passo que não expliquei
+
+296
+00:10:14,560 --> 00:10:15,990
+neste vídeo, que é
+
+297
+00:10:16,110 --> 00:10:17,670
+por que o problema de otimização que
+
+298
+00:10:17,770 --> 00:10:18,770
+escrevi nesses
+
+299
+00:10:19,040 --> 00:10:19,930
+slides acaba
+
+300
+00:10:20,740 --> 00:10:22,490
+levando a um classificador de margem larga.
+
+301
+00:10:22,600 --> 00:10:23,520
+Eu não fiz isso neste vídeo,
+
+302
+00:10:23,930 --> 00:10:25,830
+mas no próximo
+
+303
+00:10:25,870 --> 00:10:26,940
+vou explicar um pouco
+
+304
+00:10:27,120 --> 00:10:28,370
+mais da matemática por trás disso,
+
+305
+00:10:28,750 --> 00:10:29,750
+explicarei
+
+306
+00:10:29,850 --> 00:10:31,660
+esse raciocínio sobre como
+
+307
+00:10:31,930 --> 00:10:33,410
+o problema de otimização que vimos
+
+308
+00:10:33,840 --> 00:10:34,990
+resulta em um classificador de margem larga.

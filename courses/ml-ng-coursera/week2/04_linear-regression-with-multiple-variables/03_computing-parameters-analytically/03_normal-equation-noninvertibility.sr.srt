@@ -1,0 +1,438 @@
+1
+00:00:00,220 --> 00:00:05,060
+U ovom videu želim da pričam o
+ normalnoj jednačini i neinvertibilnosti
+
+2
+00:00:05,060 --> 00:00:07,640
+Ovo je napredniji koncept, ali
+
+3
+00:00:07,640 --> 00:00:09,890
+me o njemu dosta često pitaju.
+
+4
+00:00:09,890 --> 00:00:12,490
+Zato želim da pričam o njemu 
+i da ga adresiram ovde.
+
+5
+00:00:12,490 --> 00:00:14,400
+Ali to je malo napredniji koncept,
+
+6
+00:00:14,400 --> 00:00:17,550
+i slobodno razmotrite 
+ovaj neobavezan materijal.
+
+7
+00:00:18,600 --> 00:00:23,210
+Postoji fenomen sa kojim možete da se 
+susretnete, koji može da bude koristan
+
+8
+00:00:23,210 --> 00:00:26,890
+za razumevanje,
+ ali i ako ne budete 
+razumeli normalne jednačine i
+
+9
+00:00:26,890 --> 00:00:29,610
+linearnu progresiju, 
+stvarno biste trebali to da uradite.
+
+10
+00:00:31,340 --> 00:00:32,030
+Ovo je problem.
+
+11
+00:00:33,470 --> 00:00:37,450
+Za vas koji ste više 
+familijarni sa linearnom algebrom,
+
+12
+00:00:37,450 --> 00:00:39,520
+ono što me neki studenti pitaju je,
+
+13
+00:00:39,520 --> 00:00:45,610
+kad računamo ovo Teta je jednako X 
+transponovano X inverzija X transponovano Y,
+
+14
+00:00:45,610 --> 00:00:49,580
+šta ako matrica X transponovano
+ X nije invertibilna?
+
+15
+00:00:49,580 --> 00:00:52,400
+Dakle, za vas koji znate
+ malo više linearnu algebru
+
+16
+00:00:52,400 --> 00:00:56,060
+znate da su samo 
+neke matrice invertibilne a
+
+17
+00:00:56,060 --> 00:01:00,680
+neke nemaju invertnu i njih 
+zovemo neinvertibilne matrice.
+
+18
+00:01:00,680 --> 00:01:04,220
+Singularne ili degenerativne matrice.
+
+19
+00:01:04,220 --> 00:01:05,120
+Pitanje ili
+
+20
+00:01:05,120 --> 00:01:10,978
+problem neinvertibilne x transponovano x
+ bi se trebao javiti veoma retko.
+
+21
+00:01:10,978 --> 00:01:15,720
+Ako u oktavi implementirate 
+ovo da biste izračunali teta,
+
+22
+00:01:15,720 --> 00:01:20,260
+izgleda da biste postupili ispravno.
+
+23
+00:01:20,260 --> 00:01:23,910
+Da pojasnim jedan tehnički detalj, 
+ali neću da idem u detalje,
+
+24
+00:01:23,910 --> 00:01:27,850
+Oktava ima dve funkcije za
+ inverziju matrica.
+
+25
+00:01:27,850 --> 00:01:31,370
+Jedna se zove pinv, 
+a druga inv.
+
+26
+00:01:31,370 --> 00:01:35,090
+A razlika između njih je tehničke prirode.
+
+27
+00:01:35,090 --> 00:01:37,930
+Jedna se zove pseudo-inverzna,
+ a druga inverzna.
+
+28
+00:01:37,930 --> 00:01:40,490
+Matematički možete dokazati da
+
+29
+00:01:40,490 --> 00:01:45,430
+ako jako dugo koristite pinv funkciju 
+ tad će ona u stvari da računa
+
+30
+00:01:45,430 --> 00:01:51,000
+vrednost podataka koje želite, 
+iako X transponovano X je neinvertibilna.
+
+31
+00:01:51,000 --> 00:01:52,720
+Specifični detalji između inv funkcija.
+
+32
+00:01:52,720 --> 00:01:54,450
+Koja je razlika između pinv?
+
+33
+00:01:54,450 --> 00:01:55,690
+Šta je inv?
+
+34
+00:01:55,690 --> 00:01:59,090
+To je jedan od naprednih koncepata numeričkog računa,
+
+35
+00:01:59,090 --> 00:02:00,740
+ne bih da ulazim u detalje.
+
+36
+00:02:00,740 --> 00:02:05,220
+Ali sam u ovome videu mislio 
+da vam malo nagovestim
+
+37
+00:02:05,220 --> 00:02:08,982
+šta znači da je X transponovano X neinvertibilno.
+
+38
+00:02:08,982 --> 00:02:13,140
+Za vas koji malo bolje poznajete 
+ linearnu algebru bi moglo da bude interesantno.
+
+39
+00:02:13,140 --> 00:02:18,400
+Neću vam izvoditi matematičke dokaze ali
+ ako je X transponovano X neinvertibilno,
+
+40
+00:02:18,400 --> 00:02:22,160
+obično je jedan od dva razloga u pitanju.
+
+41
+00:02:22,160 --> 00:02:26,560
+Prvi uzrok je ako u svom 
+ problemu učenja imate redundantne
+
+42
+00:02:26,560 --> 00:02:27,710
+osobine.
+
+43
+00:02:27,710 --> 00:02:32,140
+Konkretno, ako pokušavate da predvidite 
+cene nekretnina i x1 je veličina
+
+44
+00:02:32,140 --> 00:02:37,940
+kuće u kvadratnim fitima a x2 je 
+veličina kuće u kvadratnim metrima,
+
+45
+00:02:37,940 --> 00:02:46,060
+znate da je 1 metar jednak 3.28 fita 
+zaokruženo na dve decimale.
+
+46
+00:02:46,060 --> 00:02:49,720
+I tako će vaše dve osobine
+ uvek imati odnos
+
+47
+00:02:49,720 --> 00:02:54,650
+x1 je jednako 3.28 na kvadrat puta x2.
+
+48
+00:02:54,650 --> 00:02:58,730
+Pokazaćemo nešto napredno
+ iz linearne algebre,
+
+49
+00:02:58,730 --> 00:03:02,753
+ako objašnjavate algebru, 
+u stvari, ako su dve osobine
+
+50
+00:03:02,753 --> 00:03:05,470
+povezane linearnom jednačinom kao što je ova,
+
+51
+00:03:05,470 --> 00:03:08,770
+tad će matrica X transponovano X 
+da bude neinvertibilna.
+
+52
+00:03:08,770 --> 00:03:13,430
+Druga stvar koja može da uzrokuje da 
+X transponovano X bude neinvertibilna je
+
+53
+00:03:13,430 --> 00:03:18,350
+ako pokušate da pokrenete
+algoritam učenja nad mnogo osobina.
+
+54
+00:03:18,350 --> 00:03:22,520
+Konkretno, ako je m manje ili jednako n.
+
+55
+00:03:22,520 --> 00:03:27,850
+Na primer, ako zamislite da
+ imate 10 trening primera
+
+56
+00:03:27,850 --> 00:03:32,770
+tad imate n jednako 100 
+osobina i pokušavate da
+
+57
+00:03:32,770 --> 00:03:37,280
+uvrstite parametar nazad u teta što je,
+ znate, n plus jedan dimenzionalno.
+
+58
+00:03:37,280 --> 00:03:38,350
+Dakle, to je 101 dimenzionalno,
+
+59
+00:03:38,350 --> 00:03:42,550
+pokušavate da uvrstite 101 
+parametar od samo 10 trening primera.
+
+60
+00:03:44,100 --> 00:03:48,490
+Ispada da ovo nije uvek dobra ideja.
+
+61
+00:03:48,490 --> 00:03:53,210
+Jer, videćemo kasnije, možda 
+nećete imati dovoljno podataka ako
+
+62
+00:03:53,210 --> 00:03:58,060
+imate samo 10 primera kojima 
+odgovara 100 ili 101 parametar.
+
+63
+00:03:58,060 --> 00:04:02,300
+Posle ćemo videti zašto to može 
+da bude premalo podataka da bi
+
+64
+00:04:02,300 --> 00:04:03,990
+odgovaralo tako velikom broju parametara.
+
+65
+00:04:03,990 --> 00:04:07,780
+Uopšteno, šta radimo kad je 
+m manje ili jednako n,
+
+66
+00:04:07,780 --> 00:04:11,260
+je da vidimo da li možemo 
+ili da obrišemo neke osobine ili
+
+67
+00:04:11,260 --> 00:04:15,450
+da koristimo tehniku zvanu regularizacija
+ o čemu ćemo da pričamo
+
+68
+00:04:15,450 --> 00:04:20,420
+kasnije na kursu, koja će nekako 
+da vam dozvoli da imate mnogo parametara,
+
+69
+00:04:20,420 --> 00:04:23,660
+da koristite mnogo osobina, 
+čak iako imate relativno mali trening skup.
+
+70
+00:04:23,660 --> 00:04:27,380
+Ali regularizacija će da bude 
+tema nešto kasnije u ovome kursu.
+
+71
+00:04:27,380 --> 00:04:32,625
+Da sumiramo, ako ikada naiđete na to da je x transponovano x singularna matrica ili
+
+72
+00:04:32,625 --> 00:04:37,930
+neinvertibilna, preporučio bih vam da
+
+73
+00:04:37,930 --> 00:04:43,400
+prvo pogledate da li imate
+ redundantne osobine kao ove x1 i x2.
+
+74
+00:04:43,400 --> 00:04:47,300
+Tada ste linearno zavisni 
+odnosno jedna funkcija je linearna funkcija druge.
+
+75
+00:04:47,300 --> 00:04:51,290
+Ako imate redundantne osobine 
+možete da obrišete jednu od osobina,
+
+76
+00:04:51,290 --> 00:04:53,050
+jer vam zaista ne trebaju obe.
+
+77
+00:04:53,050 --> 00:04:55,330
+Ako samo obrišete jednu od osobina,
+
+78
+00:04:55,330 --> 00:04:58,790
+tad ćete rešiti problem neinvertibilnosti.
+
+79
+00:04:58,790 --> 00:05:02,430
+Dakle, prvo bih pogledao osobine 
+da nema neka redundantna.
+
+80
+00:05:02,430 --> 00:05:05,770
+Ako ima, brišite redundantne sve dok
+
+81
+00:05:05,770 --> 00:05:07,190
+ih ima.
+
+82
+00:05:07,190 --> 00:05:09,220
+Ako vaše osobine nisu redundantne,
+
+83
+00:05:09,220 --> 00:05:11,640
+proverio bih da li imam previše osobina.
+
+84
+00:05:11,640 --> 00:05:16,050
+Ako je to slučaj, ili bih 
+obrisao neke osobine ako je
+
+85
+00:05:16,050 --> 00:05:20,390
+to moguće ili bih razmotrio
+ korištenje regularizacije.
+
+86
+00:05:20,390 --> 00:05:22,570
+Ali o tome ćemo pričati kasnije.
+
+87
+00:05:24,050 --> 00:05:26,690
+Dakle, toliko o normalnim jednačinama i
+
+88
+00:05:26,690 --> 00:05:31,640
+šta znači kad je 
+X transponovano X neinvertibilno, ali
+
+89
+00:05:31,640 --> 00:05:35,700
+to je problem koji ćete veoma retko da srećete, a
+
+90
+00:05:35,700 --> 00:05:38,490
+ako se to desi u oktavi P i
+
+91
+00:05:38,490 --> 00:05:42,410
+koristeći P n funkciju koja se 
+zove pseudo inverzna funkcija
+
+92
+00:05:42,410 --> 00:05:46,100
+dakle, možete da koristite drugačiju od vaše
+ koja se zove pseudo inverzna a
+
+93
+00:05:46,100 --> 00:05:49,180
+ta implementacija bi 
+trebala da radi ispravno,
+
+94
+00:05:49,180 --> 00:05:52,420
+čak iako je X transponovano X neinvertibilna
+što bi se trebalo dešavati veoma retko,
+
+95
+00:05:52,420 --> 00:05:58,450
+dakle, to ne bi trebalo da bude problem
+ za većinu implementacija linearne regresije.

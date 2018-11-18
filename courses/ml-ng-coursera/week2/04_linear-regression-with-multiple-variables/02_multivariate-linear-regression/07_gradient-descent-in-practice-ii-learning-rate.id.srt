@@ -1,0 +1,562 @@
+1
+00:00:00,450 --> 00:00:03,210
+Di video ini, saya ingin mengajarkan
+
+2
+00:00:03,210 --> 00:00:05,070
+tips praktis lainnya untuk membuat
+gradien descent bekerja.
+
+3
+00:00:05,070 --> 00:00:08,650
+Idenya akan
+
+4
+00:00:09,860 --> 00:00:13,180
+berpusat di sekitar kecepatan belajar
+alfa.
+
+5
+00:00:13,180 --> 00:00:16,270
+Konkritnya, ini aturan terbaru
+
+6
+00:00:16,270 --> 00:00:19,050
+gradient descent, dan apa yang
+
+7
+00:00:19,050 --> 00:00:22,390
+saya ingin lakukan di video ini
+
+8
+00:00:22,390 --> 00:00:26,480
+adalah mengajari Anda tentang apa yang
+
+9
+00:00:26,480 --> 00:00:29,250
+saya pikir "debugging", yakni
+
+10
+00:00:29,250 --> 00:00:32,770
+tips untuk memastikan
+
+11
+00:00:32,770 --> 00:00:34,150
+gradient descent bekerja dengan benar.
+
+12
+00:00:34,150 --> 00:00:38,219
+Kedua,
+
+13
+00:00:38,219 --> 00:00:42,553
+saya ingin mengajarkan
+
+14
+00:00:42,553 --> 00:00:47,483
+bagaimana memilih
+
+15
+00:00:47,483 --> 00:00:49,750
+kecepatan belajar alfa.
+
+16
+00:00:49,750 --> 00:00:53,515
+Ini yang sering saya lakukan
+
+17
+00:00:53,515 --> 00:00:58,659
+untuk memastikan gradient descent
+bekerja dengan benar.
+
+18
+00:00:59,720 --> 00:01:02,960
+Tugas gradient descent adalah
+
+19
+00:01:02,960 --> 00:01:07,795
+mencari nilai theta
+
+20
+00:01:07,795 --> 00:01:13,107
+yang
+
+21
+00:01:13,107 --> 00:01:15,767
+diharapkan dapat meminimalkan fungsi
+harga J theta.
+
+22
+00:01:15,767 --> 00:01:20,570
+Apa yang sering saya lakukan adalah
+
+23
+00:01:20,570 --> 00:01:25,240
+memplot fungsi harga J theta
+
+24
+00:01:25,240 --> 00:01:28,770
+selagi gradient descent bekerja.
+
+25
+00:01:28,770 --> 00:01:32,630
+Jadi, sumbu x ini adalah
+
+26
+00:01:32,630 --> 00:01:35,630
+jumlah iterasi gradient
+
+27
+00:01:35,630 --> 00:01:39,760
+descent, dan selagi gradient descent
+
+28
+00:01:39,760 --> 00:01:43,630
+bekerja,
+
+29
+00:01:43,630 --> 00:01:49,620
+diharapkan mendapat plot yang mungkin
+terlihat seperti ini.
+
+30
+00:01:49,620 --> 00:01:53,810
+Perhatikan, sumbu x ini adalah
+
+31
+00:01:55,230 --> 00:01:59,353
+jumlah iterasi, sebelumnya
+
+32
+00:01:59,353 --> 00:02:02,020
+kita melihat plot
+
+33
+00:02:02,020 --> 00:02:07,392
+J theta dimana
+
+34
+00:02:07,392 --> 00:02:11,671
+sumbu x-nya
+
+35
+00:02:17,058 --> 00:02:21,774
+adalah vektor parameter theta, tapi
+di sini berbeda.
+
+36
+00:02:21,774 --> 00:02:26,783
+Konkritnya, titik ini
+
+37
+00:02:26,783 --> 00:02:31,350
+adalah saya akan
+
+38
+00:02:31,350 --> 00:02:35,720
+menyusun gradient descent untuk seratus
+iterasi.
+
+39
+00:02:35,720 --> 00:02:38,540
+Dan beberapa pun nilai theta
+
+40
+00:02:38,540 --> 00:02:41,520
+yang saya peroleh
+
+41
+00:02:41,520 --> 00:02:46,090
+setelah
+
+42
+00:02:46,090 --> 00:02:50,510
+seratus iterasi
+
+43
+00:02:50,510 --> 00:02:53,800
+saya akan mengevaluasi
+
+44
+00:02:53,800 --> 00:02:55,829
+fungsi
+
+45
+00:02:57,580 --> 00:03:01,630
+harga J theta untuk
+
+46
+00:03:01,630 --> 00:03:04,850
+nilai theta yang saya peroleh
+
+47
+00:03:04,850 --> 00:03:09,220
+setelah seratus iterasi, dan tinggi
+
+48
+00:03:09,220 --> 00:03:15,110
+vertikal ini adalah
+
+49
+00:03:15,110 --> 00:03:20,110
+nilai J theta untuk
+
+50
+00:03:20,110 --> 00:03:24,048
+nilai theta yang saya peroleh
+
+51
+00:03:24,048 --> 00:03:25,476
+setelah 100 iterasi
+
+52
+00:03:25,476 --> 00:03:30,026
+gradient descent. Dan, titik
+
+53
+00:03:30,026 --> 00:03:34,430
+ini berkaitan dengan
+
+54
+00:03:34,430 --> 00:03:37,725
+nilai J theta
+
+55
+00:03:37,725 --> 00:03:42,430
+untuk theta
+
+56
+00:03:42,430 --> 00:03:47,560
+yang saya peroleh setelah saya
+
+57
+00:03:47,560 --> 00:03:52,310
+menjalankan gradient descent untuk 200
+iterasi.
+
+58
+00:03:52,310 --> 00:03:57,100
+Jadi,
+
+59
+00:03:57,100 --> 00:04:01,220
+plot ini menunjukkan nilai
+
+60
+00:04:01,220 --> 00:04:05,340
+fungsi harga Anda setelah beberapa
+iterasi gradient descent.
+
+61
+00:04:05,340 --> 00:04:10,460
+Jika,
+
+62
+00:04:10,460 --> 00:04:13,840
+gradient descent bekerja dengan baik,
+
+63
+00:04:13,840 --> 00:04:18,110
+maka J theta seharusnya berkurang
+
+64
+00:04:18,110 --> 00:04:21,740
+setiap iterasi.
+
+65
+00:04:21,740 --> 00:04:25,370
+Dan 1 hal berguna yang plot ini
+
+66
+00:04:25,370 --> 00:04:28,730
+bisa
+
+67
+00:04:28,730 --> 00:04:33,600
+katakan pada Anda adalah
+
+68
+00:04:33,600 --> 00:04:38,280
+jika Anda lihat gambar
+
+69
+00:04:38,280 --> 00:04:43,110
+yang saya buat, tampaknya saat
+
+70
+00:04:43,110 --> 00:04:47,250
+mencapai
+
+71
+00:04:48,320 --> 00:04:52,885
+300 iterasi,
+
+72
+00:04:52,885 --> 00:04:58,370
+antara 300 dan 400 iterasi,
+
+73
+00:04:59,380 --> 00:05:02,545
+di bagian ini,
+
+74
+00:05:02,545 --> 00:05:06,090
+tampaknya J theta tidak berkurang banyak
+lagi.
+
+75
+00:05:06,090 --> 00:05:07,450
+Sehingga,
+
+76
+00:05:07,450 --> 00:05:11,525
+saat Anda mencapai 400 iterasi,
+
+77
+00:05:11,525 --> 00:05:15,075
+tampaknya kurva ini telah rata di sini.
+
+78
+00:05:15,075 --> 00:05:17,975
+Jadi, pada 400 iterasi
+
+79
+00:05:17,975 --> 00:05:20,096
+tampaknya
+
+80
+00:05:20,096 --> 00:05:24,284
+gradient descent
+
+81
+00:05:24,284 --> 00:05:26,617
+kurang lebih telah konverge, karena
+
+82
+00:05:26,617 --> 00:05:30,690
+fungsi harga J Anda tidak berkurang
+banyak lagi.
+
+83
+00:05:30,690 --> 00:05:34,140
+Jadi,
+
+84
+00:05:34,140 --> 00:05:38,660
+dengan melihat gambar ini bisa membantu
+Anda
+
+85
+00:05:38,660 --> 00:05:41,820
+menilai gradient descent sudah konverge
+atau belum.
+
+86
+00:05:41,820 --> 00:05:46,700
+Jumlsh
+
+87
+00:05:49,020 --> 00:05:53,090
+iterasi yang diambil gradient descent
+
+88
+00:05:53,090 --> 00:05:56,890
+agar konverge untuk aplikasi fisik
+
+89
+00:05:56,890 --> 00:05:58,850
+bisa sangat bervariasi.
+
+90
+00:05:58,850 --> 00:06:03,130
+Mungkin di 1 aplikasi gradient descent
+
+91
+00:06:04,150 --> 00:06:05,400
+bisa
+
+92
+00:06:05,400 --> 00:06:09,560
+konverge setelah 30 iterasi, untuk
+
+93
+00:06:09,560 --> 00:06:14,180
+aplikasi lain gradient descent
+
+94
+00:06:14,180 --> 00:06:19,030
+membuat 3000 iterasi.
+
+95
+00:06:19,030 --> 00:06:21,979
+Untuk algoritma belajar lain
+
+96
+00:06:21,979 --> 00:06:23,810
+akan perlu 3 juta iterasi.
+
+97
+00:06:23,810 --> 00:06:26,430
+Akan
+
+98
+00:06:26,430 --> 00:06:30,830
+sangat sulit mengatakan
+
+99
+00:06:31,930 --> 00:06:36,760
+lebih dulu berapa banyak iterasi
+
+100
+00:06:36,760 --> 00:06:40,930
+gradient descent perlukan untuk
+konverge,
+
+101
+00:06:40,930 --> 00:06:47,100
+dan biasanya dengan memplot
+
+102
+00:06:47,100 --> 00:06:50,990
+fungsi harga sambil menambah jumlah
+iterasinya.
+
+103
+00:06:50,990 --> 00:06:52,360
+Biasanya dengan melihat plot-plot ini
+
+104
+00:06:52,360 --> 00:06:55,510
+saya
+
+105
+00:06:55,510 --> 00:06:59,845
+bisa katakan jika gradient descent telah
+konverge.
+
+106
+00:06:59,845 --> 00:07:05,640
+Mungkin juga melakukan
+
+107
+00:07:05,640 --> 00:07:11,490
+uji konvergensi otomatis, sebut saja
+
+108
+00:07:11,490 --> 00:07:15,220
+punya algoritma yang coba
+
+109
+00:07:15,220 --> 00:07:19,040
+mengatakan pada Anda jika gradient
+descent
+
+110
+00:07:19,040 --> 00:07:23,810
+telah konverge, dan ini mungkin
+
+111
+00:07:23,810 --> 00:07:27,810
+contoh yang sangat khas dari
+
+112
+00:07:27,810 --> 00:07:31,620
+uji konvergensi otomatis yang
+
+113
+00:07:31,620 --> 00:07:33,500
+menyatakan konvergen jika
+
+114
+00:07:33,500 --> 00:07:36,460
+fungsi harga J theta Anda berkurang
+hingga kurang
+
+115
+00:07:36,460 --> 00:07:38,670
+dari
+
+116
+00:07:38,670 --> 00:07:41,550
+suatu nilai epsilon yang kecil,
+
+117
+00:07:41,550 --> 00:07:45,250
+10
+
+118
+00:07:45,250 --> 00:07:47,290
+pangkat -3 dalam 1 iterasi,
+
+119
+00:07:47,290 --> 00:07:54,160
+tapi yang saya temukan, biasanya
+
+120
+00:07:54,160 --> 00:07:57,180
+memilih batas ambang seperti ini sangat
+sulit.
+
+121
+00:07:57,180 --> 00:08:00,970
+Jadi, untuk mengecek
+
+122
+00:08:00,970 --> 00:08:03,679
+gradient descent telah konverge, saya
+
+123
+00:08:06,827 --> 00:08:09,985
+cenderung
+
+124
+00:08:09,985 --> 00:08:13,613
+melihat pada plot seperti gambar
+
+125
+00:08:13,613 --> 00:08:15,232
+di kiri
+
+126
+00:08:15,232 --> 00:08:20,627
+ini daripada bergantung pada uji
+konvergensi otomatis.
+
+127
+00:08:20,627 --> 00:08:25,512
+Dengan
+
+128
+00:08:25,512 --> 00:08:30,640
+melihat pada gambar seperti ini, Anda
+bisa
+
+129
+00:08:30,640 --> 00:08:33,316
+diperingatkan
+
+130
+00:08:33,316 --> 00:08:37,078
+terlebih dahulu jika gradient descent
+tidak bekerja dengan benar.
+
+131
+00:08:37,078 --> 00:08:40,966
+Konkritnya, jika Anda plot J theta
+
+132
+00:08:40,966 --> 00:08:45,943
+sebagai
+
+133
+00:08:45,943 --> 00:08:51,780
+fungsi jumlah iterasi, maka jika
+Anda melihat gambar seperti
+
+134
+00:08:51,780 --> 00:08:55,910
+ini,
+
+135
+00:08:55,910 --> 00:08:58,010
+dimana J theta sebenarnya

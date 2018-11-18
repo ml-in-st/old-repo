@@ -1,0 +1,275 @@
+1
+00:00:00,332 --> 00:00:04,284
+En los próximos vídeos, vamos a hablar del aprendizaje automático a gran escala.
+
+2
+00:00:04,284 --> 00:00:08,316
+Es decir, algoritmos que tratan grandes conjuntos de datos.
+
+3
+00:00:08,316 --> 00:00:12,839
+Si miran hacia atrás, a la historia reciente del aprendizaje automático de hace 5 o 10 años,
+
+4
+00:00:12,839 --> 00:00:17,853
+una de las razones por las que los algoritmos de aprendizaje funcionan mejor ahora que, incluso digamos, hace 5 años,
+
+5
+00:00:17,853 --> 00:00:22,657
+es simplemente la enorme cantidad de datos que tenemos ahora y con los que podemos entrenar a nuestros algoritmos.
+
+6
+00:00:22,657 --> 00:00:29,741
+En estos próximos vídeos, vamos a hablar de los algoritmos que vamos a usar cuando tenemos este tipo de conjuntos de datos masivos.
+
+7
+00:00:32,926 --> 00:00:35,527
+Entonces, ¿por qué queremos utilizar estos grandes conjuntos de datos?
+
+8
+00:00:35,527 --> 00:00:40,564
+Ya hemos visto que una de las mejores maneras de conseguir un sistema de aprendizaje automático de alto rendimiento,
+
+9
+00:00:40,564 --> 00:00:46,168
+es que tomen un algoritmo de aprendizaje de baja oscilación y entrenen a éste sobre una gran cantidad de datos.
+
+10
+00:00:46,168 --> 00:00:53,561
+Así que, uno de los primeros ejemplos que ya hemos visto fue este ejemplo para clasificar entre las palabras confundibles.
+
+11
+00:00:53,561 --> 00:01:00,726
+Así, «Para el desayuno, comí dos (DOS) huevos.» En este ejemplo vimos este tipo de resultados,
+
+12
+00:01:00,726 --> 00:01:06,436
+en donde siempre y cuando alimenten al algoritmo con una gran cantidad de datos, parece que funciona muy bien.
+
+13
+00:01:06,436 --> 00:01:10,419
+Así que son los resultados como estos lo que ha llevado al dicho en el aprendizaje automático de que
+
+14
+00:01:10,419 --> 00:01:15,151
+a menudo, no es quién tiene el mejor algoritmo el que gana, es quien tiene la mayor cantidad de datos.
+
+15
+00:01:15,151 --> 00:01:19,568
+De modo que desean aprender de grandes conjuntos de datos, por lo menos cuando podemos conseguir estos grandes conjuntos de datos.
+
+16
+00:01:19,568 --> 00:01:27,027
+Pero el aprendizaje con grandes conjuntos de datos viene con sus propios problemas singulares, en concreto, los problemas computacionales.
+
+17
+00:01:27,027 --> 00:01:33,870
+Digamos que el tamaño de su conjunto de entrenamiento es «m» igual a 100 millones.
+
+18
+00:01:33,870 --> 00:01:37,934
+Y esto es en realidad bastante realista para muchos conjuntos de datos modernos.
+
+19
+00:01:37,934 --> 00:01:40,518
+Si se fijan en el conjunto de datos del Censo de EE.UU., hay, ya saben,
+
+20
+00:01:40,518 --> 00:01:44,663
+300 millones de personas en los EE.UU., por lo general pueden obtener cientos de millones de registros.
+
+21
+00:01:44,663 --> 00:01:47,856
+Si observan la cantidad de tráfico que tienen los sitios web populares,
+
+22
+00:01:47,856 --> 00:01:52,509
+fácilmente pueden obtener conjuntos de entrenamiento que son mucho más grandes que cientos de millones de ejemplos.
+
+23
+00:01:52,509 --> 00:01:57,407
+Y digamos que quieren entrenar un modelo de regresión lineal, o tal vez un modelo de regresión logística,
+
+24
+00:01:57,407 --> 00:02:01,692
+en cuyo caso esta es la regla del gradiente de descenso.
+
+25
+00:02:01,692 --> 00:02:05,372
+Y si se fijan en lo que tienen que hacer para calcular el gradiente,
+
+26
+00:02:05,372 --> 00:02:09,992
+que es este término por aquí, entonces cuando «m» es cien millones,
+
+27
+00:02:09,992 --> 00:02:13,976
+tienen que realizar una suma de más de cien millones de términos,
+
+28
+00:02:13,976 --> 00:02:18,977
+a fin de calcular estos términos derivados y realizar un solo paso de gradiente descendente.
+
+29
+00:02:18,977 --> 00:02:25,627
+Debido al costo computacional por sumar más de cien millones de entradas,
+
+30
+00:02:25,627 --> 00:02:28,628
+a fin de calcular sólo un paso del gradiente de descenso,
+
+31
+00:02:28,628 --> 00:02:31,530
+en los próximos vídeos hablaremos acerca de las técnicas
+
+32
+00:02:31,530 --> 00:02:38,413
+ya sea para sustituir este algoritmo por algo más, o para encontrar formas más eficientes para calcular esta derivada.
+
+33
+00:02:38,413 --> 00:02:41,709
+Al final de esta secuencia de videos sobre el aprendizaje automático a gran escala,
+
+34
+00:02:41,709 --> 00:02:47,045
+sabrán cómo ajustar modelos,  --regresión lineal, regresión logística, redes neuronales,etcétera--
+
+35
+00:02:47,045 --> 00:02:50,990
+inclusive hasta con conjuntos de datos de, digamos, cien millones de ejemplos.
+
+36
+00:02:50,990 --> 00:02:56,035
+Por supuesto, antes de esforzarnos por entrenar un modelo con cien millones de ejemplos,
+
+37
+00:02:56,035 --> 00:03:01,276
+también debemos preguntarnos, bueno, ¿por qué no utilizar solamente mil ejemplos?.
+
+38
+00:03:01,276 --> 00:03:04,923
+Tal vez podamos escoger al azar los subconjuntos de un millar de ejemplos
+
+39
+00:03:04,923 --> 00:03:10,254
+de cien millones de ejemplos y entrenar a nuestro algoritmo sólo con mil ejemplos.
+
+40
+00:03:10,254 --> 00:03:16,076
+Así que antes de invertir esfuerzo en el desarrollo real y el software necesario para entrenar a estos modelos masivos,
+
+41
+00:03:16,076 --> 00:03:22,461
+a menudo es una buena prueba de validez si el entrenamiento en sólo un millar de ejemplos pudiera resultar igual de bien.
+
+42
+00:03:22,461 --> 00:03:29,731
+La forma para comprobar la validez del uso de un conjunto de entrenamiento mucho más pequeño que podría ser igual de bueno,
+
+43
+00:03:29,731 --> 00:03:33,958
+es decir, si el uso de un conjunto de entrenamiento mucho más pequeño, «n» es igual a 1000,
+
+44
+00:03:33,958 --> 00:03:37,797
+que pudiera hacer igual de bien, entonces este es el método habitual para trazar las curvas de aprendizaje;
+
+45
+00:03:37,797 --> 00:03:46,872
+de manera que si fueran a trazar las curvas de aprendizaje, y si su objetivo de entrenamiento tuviera este aspecto,
+
+46
+00:03:46,872 --> 00:03:49,553
+eso es «J entrena «theta»».
+
+47
+00:03:49,553 --> 00:03:56,422
+Y si su objetivo de conjunto de validación cruzada «Jcv» de «theta», se viera de esta manera,
+
+48
+00:03:56,422 --> 00:04:00,310
+entonces esto se parece a un algoritmo de aprendizaje de alta varianza,
+
+49
+00:04:00,310 --> 00:04:05,913
+y estaremos más seguros de que la adición de ejemplos de entrenamiento adicionales mejoraría el desempeño,
+
+50
+00:04:05,913 --> 00:04:10,462
+mientras que por el contrario, si fueran a trazar las curvas de aprendizaje,
+
+51
+00:04:10,462 --> 00:04:20,339
+si su objetivo de entrenamiento se viera así, y si su objetivo de  validación cruzada luciera de esa manera,
+
+52
+00:04:20,339 --> 00:04:24,292
+entonces esto se parece al algoritmo de aprendizaje clásico de alta oscilación.
+
+53
+00:04:24,292 --> 00:04:28,084
+Y en este último caso si tuvieran que trazar esto hasta,
+
+54
+00:04:28,084 --> 00:04:33,437
+por ejemplo, «m» es igual a 1000, de manera que «m» es igual a 500, hasta «m» es igual a 1000,
+
+55
+00:04:33,437 --> 00:04:39,400
+entonces parece poco probable que el aumento de «m» a cien millones vaya a ser mucho mejor,
+
+56
+00:04:39,400 --> 00:04:42,736
+y entonces estaría bien que se apegaran a «m» es igual a 1000,
+
+57
+00:04:42,736 --> 00:04:47,000
+en lugar de invertir una gran cantidad de esfuerzo para encontrar la escala del algoritmo.
+
+58
+00:04:47,000 --> 00:04:51,029
+Por supuesto, si estuvieran en la situación que se muestra en la figura a la derecha,
+
+59
+00:04:51,029 --> 00:04:53,885
+entonces lo natural sería añadir variables adicionales,
+
+60
+00:04:53,885 --> 00:04:58,484
+o añadir unidades ocultas adicionales a su red neuronal y así sucesivamente,
+
+61
+00:04:58,484 --> 00:05:04,627
+de modo que terminen con una situación más cercana a la de la izquierda, en donde tal vez esto es hasta «m» es igual a 1000,
+
+62
+00:05:04,627 --> 00:05:09,553
+y esto entonces les da más confianza que tratar de añadir infraestructura para cambiar el algoritmo
+
+63
+00:05:09,553 --> 00:05:14,735
+para usar mucho más que miles de ejemplos que en realidad podría ser un buen uso de su tiempo.
+
+64
+00:05:14,735 --> 00:05:19,642
+Así que en el aprendizaje automático a gran escala, nos gusta encontrar formas de cómputo razonables,
+
+65
+00:05:19,642 --> 00:05:24,026
+o formas computacionalmente eficientes, para hacer frente a los conjuntos de datos muy grandes.
+
+66
+00:05:24,026 --> 00:05:26,826
+En los próximos vídeos, veremos dos ideas principales.
+
+67
+00:05:26,826 --> 00:05:33,464
+La primera se llama gradiente de descenso estocástico y la segunda se llama Reducción de Mapa, para tratar con conjuntos de datos muy grandes.
+
+68
+00:05:33,464 --> 00:05:39,986
+Y después de que hayan aprendido acerca de estos métodos, con suerte eso les permitirá ampliar sus algoritmos de aprendizaje para muchos datos,
+
+69
+00:05:39,986 --> 00:05:43,986
+y les permitirá obtener un mejor rendimiento en muchas aplicaciones diferentes.

@@ -1,0 +1,347 @@
+1
+00:00:02,338 --> 00:00:04,677
+Thuật toán học tập đầu tiên của chúng tôi sẽ hồi quy tuyến tính. Trong video này, bạn thấy
+
+2
+00:00:06,956 --> 00:00:09,234
+những gì trông giống như các mô hình và quan trọng hơn bạn sẽ thấy những gì tổng thể
+
+3
+00:00:09,234 --> 00:00:14,801
+quá trình [unintelligible] trông giống như. Hãy sử dụng một số ví dụ động cơ thúc đẩy dự đoán
+
+4
+00:00:14,801 --> 00:00:20,036
+giá nhà ở. Chúng tôi sẽ sử dụng một bộ dữ liệu của nhà ở giá từ thành phố
+
+5
+00:00:20,036 --> 00:00:25,205
+Portland, Oregon. Và ở đây chúng tôi đang gonna cốt truyện đặt dữ liệu của tôi của một số nhà
+
+6
+00:00:25,205 --> 00:00:30,833
+đó là kích cỡ khác nhau đã được bán cho một loạt các giá cả khác nhau. Giả sử
+
+7
+00:00:30,833 --> 00:00:35,872
+điều đó được đưa ra dữ liệu này thiết lập, bạn có một người bạn đang cố gắng bán một căn nhà và
+
+8
+00:00:35,872 --> 00:00:41,238
+Hãy xem nếu căn nhà của bạn là kích thước nếu 1250 feet vuông và bạn muốn nói với họ
+
+9
+00:00:41,238 --> 00:00:46,459
+bao nhiêu họ có thể bán nhà cho. Cũng có một điều bạn có thể làm là
+
+10
+00:00:46,648 --> 00:00:53,039
+giả một mô hình. Có thể vẽ một đường thẳng đến dữ liệu này [unintelligible]. Rằng và dựa trên
+
+11
+00:00:53,039 --> 00:00:59,168
+cho trên rằng có lẽ bạn có thể biết bạn bè của bạn rằng [unintelligible] giả sử có thể bán các
+
+12
+00:00:59,168 --> 00:01:03,575
+1000 đô la [unintelligible] xung quanh [unintelligible]. Vì vậy, đây là một ví dụ về một
+
+13
+00:01:03,575 --> 00:01:08,834
+Giám sát học thuật toán. Và nó Giám sát việc học bởi vì chúng tôi đã đưa ra
+
+14
+00:01:08,834 --> 00:01:14,287
+câu trả lời đúng [unintelligible] Đối với mỗi ví dụ của chúng tôi. Cụ thể là trong trường hợp nói với những gì đã
+
+15
+00:01:14,287 --> 00:01:19,351
+vòi thực tế, những gì đã là thực tế giá cả cho mỗi ống trong dữ liệu của chúng tôi
+
+16
+00:01:19,351 --> 00:01:24,441
+thiết lập đã được bán cho và nhiều hơn, đây là một ví dụ về một vấn đề hồi quy nơi
+
+17
+00:01:24,441 --> 00:01:29,545
+hồi qui thuật ngữ đề cập đến một thực tế rằng chúng tôi đang dự đoán một đầu ra giá trị đích thực
+
+18
+00:01:29,545 --> 00:01:34,586
+cụ thể là giá. Và chỉ để nhắc nhở bạn khác phổ biến nhất loại giám sát
+
+19
+00:01:34,586 --> 00:01:39,006
+học vấn đề được gọi là vấn đề phân loại nơi chúng tôi dự đoán
+
+20
+00:01:39,006 --> 00:01:45,202
+các giá trị rời rạc xuất ra như nếu chúng ta đang nhìn vào khối u ung thư và cố gắng
+
+21
+00:01:45,202 --> 00:01:52,032
+quyết định nếu một khối u ác tính hoặc lành tính.
+Vì vậy, đó là một giá trị số không [unintelligible] hơn
+
+22
+00:01:52,032 --> 00:01:57,087
+chính thức, trong giám sát học tập, chúng tôi có một tập dữ liệu và dữ liệu này thiết lập được gọi là một
+
+23
+00:01:57,087 --> 00:02:02,018
+huấn luyện tập. Vì vậy cho các mức giá nhà ở ví dụ, chúng tôi có một bộ đào tạo
+
+24
+00:02:02,018 --> 00:02:07,386
+giá nhà ở khác nhau và công việc của chúng tôi là để học hỏi từ dữ liệu này làm thế nào để dự đoán giá
+
+25
+00:02:07,386 --> 00:02:11,907
+các nhà. Hãy xác định một số ký hiệu mà chúng tôi sử dụng trong suốt khóa học này.
+
+26
+00:02:11,907 --> 00:02:16,100
+Chúng tôi sẽ xác định khá nhiều biểu tượng. Nó không quan trọng nếu bạn không nhớ
+
+27
+00:02:16,100 --> 00:02:20,075
+tất cả các biểu tượng ngay bây giờ, nhưng như các khóa học tiến nó sẽ hữu ích
+
+28
+00:02:20,075 --> 00:02:24,267
+ký hiệu [unintelligible]. Vì vậy I 'm gonna sử dụng trường hợp thấp hơn m trong suốt khóa học này để
+
+29
+00:02:24,267 --> 00:02:28,897
+biểu thị số lượng các ví dụ huấn luyện. Vì vậy, trong tập dữ liệu này, với một nửa, bạn đã biết,
+
+30
+00:02:28,897 --> 00:02:34,366
+giả sử 47 hàng trong bảng này. Sau đó tôi có 47 đào tạo ví dụ và m bằng 47.
+
+31
+00:02:34,366 --> 00:02:39,497
+Hãy để tôi sử dụng thấp x trường hợp để biểu thị các biến đầu vào cũng thường được gọi là các
+
+32
+00:02:39,497 --> 00:02:44,290
+tương lai. Không xs ở đây, chúng tôi [unintelligible] đầu vào tương lai và I 'm gonna
+
+33
+00:02:44,290 --> 00:02:49,556
+sử dụng y để biểu thị các biến đầu ra của tôi hoặc biến mục tiêu mà tôi sẽ
+
+34
+00:02:49,556 --> 00:02:54,552
+[unintelligible] và do đó là cột thứ hai ở đây. ký hiệu [unintelligible], I 'm
+
+35
+00:02:54,552 --> 00:03:05,749
+sẽ sử dụng x dấu phẩy y để biểu thị một ví dụ đơn đào tạo. Như vậy, một đơn hàng ở đây
+
+36
+00:03:05,749 --> 00:03:12,068
+bảng tương ứng với một ví dụ đơn đào tạo và để đề cập đến một cụ thể
+
+37
+00:03:12,068 --> 00:03:19,708
+đào tạo ví dụ, tôi sẽ mang lại để sử dụng cách ký hiệu này dấu phẩy xi cho tôi yi, và chúng tôi
+
+38
+00:03:25,322 --> 00:03:30,935
+sẽ sử dụng để đề cập đến các ví dụ huấn luyện Ith. Vì vậy này superscript tôi
+
+39
+00:03:30,935 --> 00:03:37,864
+trên đây đây không phải là lũy thừa quyền? Xiyi này, viết bên trên tôi trong
+
+40
+00:03:37,864 --> 00:03:44,873
+ngoặc đơn là chỉ là một chỉ số vào đào tạo của tôi thiết lập và đề cập đến hàng Ith trong
+
+41
+00:03:44,873 --> 00:03:51,629
+này bảng, okay? Vì vậy đây không phải là một x để sức mạnh của Italy đến sức mạnh của i. Instead
+
+42
+00:03:51,629 --> 00:03:58,216
+xiyi chỉ cần đề cập đến hàng Ith bảng này. Vì vậy, ví dụ, x 1 đề cập đến các
+
+43
+00:03:58,216 --> 00:04:04,972
+giá trị đầu vào cho một ví dụ giai đoạn đầu tiên do đó là 3104 [unintelligible] x trong lần đầu tiên
+
+44
+00:04:04,972 --> 00:04:11,685
+hàng. X 2 sẽ là tương đương với [unintelligible].
+Mười bốn, mười sáu quyền? Đó là lần thứ hai
+
+45
+00:04:11,685 --> 00:04:17,385
+x và y1 sẽ bằng với tất cả các bộ dữ liệu 60. Đầu tiên, giá trị y cho đầu tiên của tôi
+
+46
+00:04:17,385 --> 00:04:24,526
+Ví dụ đào tạo, đó là những gì mà một, lần đầu tiên. Do đó, như đã đề cập, tôi sẽ yêu cầu bạn một
+
+47
+00:04:24,526 --> 00:04:28,345
+câu hỏi cho bạn kiểm tra sự hiểu biết của bạn và một vài giây ở đây
+
+48
+00:04:28,345 --> 00:04:34,044
+video một câu hỏi pro-choice [unintelligible] sẽ bật lên trong đoạn video. Khi nó không,
+
+49
+00:04:34,044 --> 00:04:40,362
+Xin vui lòng sử dụng chuột để chọn những gì bạn nghĩ là câu trả lời đúng. Những gì định nghĩa bởi
+
+50
+00:04:40,362 --> 00:04:45,124
+tập huấn luyện là. Vì vậy, ở đây là làm thế nào tôi giám sát các thuật toán học hoạt động.
+
+51
+00:04:45,124 --> 00:04:50,513
+Chúng tôi thấy rằng với huấn luyện tập giống như của chúng tôi đào tạo bộ nhà ở giá cả và chúng tôi nguồn cấp dữ liệu
+
+52
+00:04:50,513 --> 00:04:55,715
+mà thuật toán học của chúng tôi. Là công việc của một thuật toán học để sau đó sản lượng một
+
+53
+00:04:55,715 --> 00:05:00,101
+chức năng mà theo quy ước là [unintelligible] trường hợp thấp hơn h và h
+
+54
+00:05:00,101 --> 00:05:06,574
+là viết tắt của giả thuyết và những gì công việc của các giả thuyết là, là, là một chức năng mà
+
+55
+00:05:06,574 --> 00:05:12,471
+mất trong đầu vào kích thước của một ngôi nhà như có lẽ kích thước của nhà bạn bè của bạn
+
+56
+00:05:12,471 --> 00:05:18,368
+đang cố gắng bán như vậy [unintelligible] giá trị của x và nó cố định đầu ra ước tính
+
+57
+00:05:18,368 --> 00:05:31,630
+giá trị. Tại Y. Cho vỏ tương ứng.
+Do đó, H là một chức năng mà các bản đồ từ. X
+
+58
+00:05:31,630 --> 00:05:37,729
+Hai Y Ngày. Người dân sau đó hỏi tôi, bạn đã biết, tại sao được gọi là chức năng này
+
+59
+00:05:37,729 --> 00:05:42,121
+giả thuyết. Một số bạn có thể biết ý nghĩa của thuật ngữ hypothesis, từ các
+
+60
+00:05:42,121 --> 00:05:46,744
+từ điển hoặc từ dấu hiệu hoặc bất cứ điều gì. Nó chỉ ra rằng trong máy học tập, điều này
+
+61
+00:05:46,744 --> 00:05:51,310
+một từ được sử dụng trong những ngày đầu của máy học tập và nó kinda khó khăn. Nó là
+
+62
+00:05:51,310 --> 00:05:55,239
+không phải là một tên tuyệt vời cho loại chức năng, để ánh xạ, cho kích thước của
+
+63
+00:05:55,239 --> 00:05:59,978
+[unintelligible], để dự đoán, bạn biết.
+Tôi nghĩ rằng thuật ngữ hypothesis, thực sự không phải là
+
+64
+00:05:59,978 --> 00:06:04,543
+tên có thể tốt nhất, nhưng đây là những thuật ngữ chuẩn người sử dụng trong
+
+65
+00:06:04,543 --> 00:06:09,362
+máy học. Vì vậy, đừng lo lắng quá nhiều lý do tại sao mọi người gọi nó mà. [âm thanh]. Khi
+
+66
+00:06:09,362 --> 00:06:14,332
+thiết kế một thuật toán học, kế tiếp mà chúng tôi cần phải quyết định là làm thế nào để chúng tôi
+
+67
+00:06:14,332 --> 00:06:20,540
+đại diện cho giả thuyết này H. Đối với điều này và vài video tiếp theo, tôi sẽ chọn
+
+68
+00:06:20,540 --> 00:06:26,978
+sự lựa chọn đầu tiên của chúng tôi, cho đại diện cho giả thuyết, với những điều sau [unintelligible]
+
+69
+00:06:26,978 --> 00:06:33,009
+h, như sau. Và chúng tôi sẽ h viết subscript h hoặc x bằng theta 0,
+
+70
+00:06:33,009 --> 00:06:39,254
+thêm nữa, theta một trong X. Và như là một hiển thị bàn tay, đôi khi thay vì của văn bản, bạn
+
+71
+00:06:39,254 --> 00:06:45,441
+biết, H subscript theta của X, đôi khi không có một tốc ký, mà được viết h
+
+72
+00:06:45,441 --> 00:06:51,627
+x. Nhưng nhiều hơn nữa thường xuyên bị bệnh viết nó như một theta subscript trên đó. Và âm mưu
+
+73
+00:06:51,627 --> 00:06:58,210
+một số hình ảnh, tất cả điều này có nghĩa là rằng, chúng tôi sẽ bảo vệ y là một tuyến tính
+
+74
+00:06:58,210 --> 00:07:04,634
+chức năng của X. Bên phải, do đó, đó là những gì dữ liệu nói và những gì chức năng này là làm,
+
+75
+00:07:04,634 --> 00:07:11,698
+dự đoán rằng Y. Đây là một đường thẳng hàm của X, x. Bởi vì theta
+
+76
+00:07:11,698 --> 00:07:18,450
+Zero [unintelligible], X, được rồi? Và đáng tin cậy, chức năng, sẽ đôi khi sẽ muốn
+
+77
+00:07:18,450 --> 00:07:23,405
+phù hợp với phức tạp hơn, có lẽ không chức năng tuyến tính là tốt. Nhưng kể từ khi tuyến tính này
+
+78
+00:07:23,405 --> 00:07:28,298
+trường hợp là khối xây dựng đơn giản, chúng tôi sẽ stat với ví dụ này lần đầu tiên. Phù hợp
+
+79
+00:07:28,298 --> 00:07:32,943
+chức năng tuyến tính, và chúng tôi sẽ xây dựng trên này cuối cùng đã phức tạp hơn
+
+80
+00:07:32,943 --> 00:07:37,403
+các mô hình, và các thuật toán học phức tạp hơn. Hãy để tôi hỏi mặc dù, cho điều này
+
+81
+00:07:37,403 --> 00:07:42,628
+mô hình cụ thể một tên. Nhỏ mặc dù được gọi là hồi quy tuyến tính hoặc, điều này cho
+
+82
+00:07:42,628 --> 00:07:48,271
+Ví dụ là, hồi qui tuyến tính thực sự với một biến, với các biến
+
+83
+00:07:48,271 --> 00:07:53,914
+X. mô phỏng giá cả theo chức năng của một biến X. Và tên gọi khác
+
+84
+00:07:53,914 --> 00:07:58,852
+mô hình này là duy nhất khu vực hồi quy tuyến tính. Và diện tích duy nhất là chỉ cần một
+
+85
+00:07:58,852 --> 00:08:04,400
+ưa thích cách nói một biến vì vậy, đó là hồi quy tuyến tính. Trong kế tiếp
+
+86
+00:08:04,400 --> 00:08:09,760
+video chúng tôi sẽ bắt đầu nói chuyện về chỉ cần làm thế nào chúng tôi đi về [unintelligible] mô hình này.

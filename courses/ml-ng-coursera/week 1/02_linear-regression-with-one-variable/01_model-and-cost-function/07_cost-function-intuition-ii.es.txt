@@ -1,0 +1,95 @@
+En este video vamos a profundizar y
+a entender mejor qué hace la función de costos. En este video asumimos que
+estás familiarizado con las gráficas de superficie Si no estás familiarizado con las gráficas de superficie
+o las figuras de contorno, puede ser que entiendas o no algunas ilustraciones en este video,
+pero está bien, y si terminas saltándote este video o no entiendes parte de éste
+debido a que no has visto antes las gráficas de superficie. Está bien y aun
+así entenderás el resto de este curso sin las partes de este video. Aquí está nuestro
+planteamiento del problema con los parámetros de la hipótesis, función de costos
+y nuestro objetivo de optimización. A diferencia de antes, del último video, voy a
+mantener ambos parámetros, theta cero y theta uno, mientras generamos
+nuestras visualizaciones para la función de costos. Así como la última vez, queremos entender la
+hipótesis h y la función de costos J. Aquí está mi conjunto de entrenamiento de precios de viviendas
+y hagamos algunas hipótesis. Como esta que no es una hipótesis
+particularmente buena. Pero si establezco theta cero=50 y theta uno=0.06, entonces termino
+con esta hipótesis de abajo que corresponde a la línea recta. Ahora, con
+estos valores de theta cero y theta uno, queremos trazar la función de costos
+correspondientes a la derecha. Lo que hicimos la última vez, cuando sólo teníamos
+theta uno. En otras palabras, dibujar gráficas que se vean así como una función de theta
+uno. Pero ahora tenemos dos parámetros, theta cero y theta uno, y la gráfica
+se complica un poco. Resulta que cuando sólo tenemos sólo un parámetro, 
+las partes que dibujamos tienen un tipo de función con forma de arco. Entonces, cuando tenemos dos
+parámetros, resulta que la función de costos también tiene una forma similar de arco. Y,
+de hecho, dependiendo de tu conjunto de entrenamiento puedes obtener una función de costos
+que se vea parecida a esta. Así que esto es una gráfica de superficie 3D, donde los ejes
+tienen asignado el valor de theta cero y theta uno. Entonces, mientras theta cero y theta uno varían, los dos
+parámetros, obtendrás valores diferentes de la función de costos J (theta cero, theta uno)
+y la altura de esta superficie por encima de un punto particular de theta cero, theta uno.
+Bien, ese es el eje vertical. La altura de la superficie de estos puntos
+indica el valor de J de theta cero, J de theta uno. Y podrás ver que tiene
+un tipo de forma de arco. Déjame mostrarte la misma gráfica en 3D. Esta es la misma
+figura en 3D, eje horizontal theta uno y eje vertical J (theta cero, theta uno) y si giras
+esta gráfica. Puede que tengas una idea, espero, de que esta superficie
+en forma de arco es como se ve la la función de costos J. Ahora para los fines
+de la ilustración en el resto del video, no usaré este tipo de
+superficies 3D para mostrar la función de costos J, en lugar de eso utilizaré
+gráficas de superficie. O lo que también llamo figuras de contorno. Supongo que significan lo mismo.
+Para mostrar estas superficies, aquí está un ejemplo de figura de contorno, se muestra
+a la derecha, donde los ejes son theta cero y theta uno. Y lo que muestran estos óvalos,
+lo que muestra cada elipses es un conjunto de puntos que tiene el mismo valor para
+J (theta cero, theta uno). Entonces, en concreto, para ejemplificarlo, tomarás
+ese punto, ese punto y ese punto. Estos tres punto, que acabo de
+dibujar con magenta, tienen el mismo valor para J (theta cero, theta uno). Ok.
+Cuando estos son los ejes theta cero y theta uno pero esos tres tienen
+el mismo valor para J (theta cero, theta uno) y si no has visto muchas
+gráficas de superficie antes, imagina Una función en forma de arco que sale
+de mi pantalla. Así que el mínimo, la parte inferior de este arco es el punto
+de aquí, ¿correcto? Este medio, el medio de estas elipses concéntricas. Imagina una
+forma de arco que pareciera salir de mi pantalla así, de modo que cada
+elipse tiene la misma altura por encima de mi pantalla. Y el mínimo con el
+arco está ahí abajo. De manera que, las figuras de contorno son una forma
+tal vez más conveniente para visualizar mi función J. Entonces,
+veamos algunos ejemplos. Aquí tengo un punto particular, ¿cierto? Y entonces esto es
+theta cero igual a, tal vez, aproximadamente 800, y theta uno igual a quizás
+-0.15. Y, entonces, este punto con rojo corresponde a un
+par en especial de valores de theta cero, theta uno y, de hecho, corresponden a la
+hipótesis de que theta cero es aproximadamente 800; es decir, donde
+se cruza con el eje vertical es alrededor de 800, y esto es la pendiente de aproximadamente -0.15. Ahora bien, esta línea
+en realidad no es una buena opción para los datos, ¿cierto? Esta hipótesis, h(x), con estos valores de theta cero, theta uno, no es realmente una buena opción
+para los datos. Y por ello encuentras que, su costo es un valor que está fuera por aquí,
+muy lejos del mínimo, está muy lejos, es un costo muy alto,
+simplemente porque no es una buena opción para los datos. Veamos otros
+ejemplos. Aquí está una hipótesis diferente que, como sabes, aún no es
+una gran opción para los datos pero puede ser ligeramente mejor, ese es mi punto, que
+estos son mis parámetros theta cero, theta uno y, por ello, mi valor de theta cero. ¿Cierto?
+Que es aproximadamente 360 y mi valor para theta uno. es igual a cero. Bien, vamos a
+desglosarlo. Tomemos theta cero igual a 360, theta uno igual a cero. Y este par
+de parámetros corresponden a la hipótesis, corresponden a la línea plana; es decir h(x) igual a 360 más cero por x. Así que eso es la hipótesis. Y
+una vez más, esta hipótesis tiene un costo, y ese costo se grafica como la 
+altura de la función J en ese punto. Veamos unos cuantos ejemplos.
+Aquí hay uno más con este valor de theta cero, y con el valor de theta
+uno, terminamos con esta hipótesis h(x) y, una vez más, no es una gran opción para los datos,
+de hecho está muy lejos del mínimo. El último ejemplo, en realidad no está del todo en
+el mínimo, pero está muy cerca. Así que este no es tan mala opción para los datos,
+para un valor en especial de theta cero. Donde uno de ellos tiene un valor, como en
+el valor en especial para theta uno. Obtenemos un h(x) particular. Y no está
+del todo cerca del mínimo, pero sí muy cerca. Y, entonces, la suma de los errores
+cuadrados, la suma de las distancias cuadradas entre mis ejemplos de entrenamiento y mi hipótesis.
+En realidad es la suma de las distancias cuadradas, ¿cierto? De todos estos errores. Está
+muy cerca del mínimo, aunque no es realmente el mínimo. Entonces, espero
+que con estas figuras tengas una mejor comprensión de cuáles son los valores de la
+función de costos J, cómo son y cómo corresponden a las diferentes hipótesis y
+cómo pueden corresponder a mejores hipótesis con los puntos más cercanos al mínimo de esta
+función de costos J. En realidad lo que queremos es un algoritmo eficiente, un
+software eficiente para encontrar de forma automática el valor de theta
+cero y theta uno, que minimice la función de costos J, ¿verdad? Y lo que no queremos
+hacer es saber cómo escribir un software, para graficar este punto
+y, después, tratar de leer de forma manual los número, esa no es una buena forma
+de hacerlo. Y, de hecho, lo veremos después. Cuando veamos ejemplos más complicados,
+tendremos figuras dimensionales elevadas con más parámetros, y resulta que
+las veremos pronto, las veremos después en este curso, los ejemplos con esta figura
+no pueden trazarse y se vuelve más difícil de visualizar. Y
+lo que queremos es que el software encuentre el valor de theta cero, theta uno
+que minimice esta función y en el siguiente video empezaremos a hablar
+de un algoritmo para encontrar automáticamente el valor de theta cero y theta uno
+que minimice la función de costos J.

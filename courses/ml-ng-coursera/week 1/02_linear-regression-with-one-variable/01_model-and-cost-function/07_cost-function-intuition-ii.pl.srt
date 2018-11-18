@@ -1,0 +1,389 @@
+1
+00:00:00,960 --> 00:00:05,684
+W tym materiale poznamy trochę szczegółów i nabierzemy lepszej intuicji odnośnie tego, co robi
+
+2
+00:00:05,684 --> 00:00:10,523
+funkcja kosztu. W tyn nagraniu zakładam, że wiesz, czym są wykresy konturowe. Jeśli
+
+3
+00:00:10,523 --> 00:00:15,189
+ich nie znasz - niektóre z ilustracji
+
+4
+00:00:15,189 --> 00:00:20,144
+w tym materiale mogą być niejasne, ale nic nie szkodzi; jeśli pominiesz
+
+5
+00:00:20,144 --> 00:00:24,522
+część tego materiału lub nie zrozumiesz go w całości, bo nie widziałeś/aś
+
+6
+00:00:24,522 --> 00:00:29,246
+wcześniej wykresów konturowych - będzie OK. Zrozumiesz resztę kursu
+
+7
+00:00:29,246 --> 00:00:34,935
+i bez tej części. Tutaj mamy nasz problem zdefiniowany jak zwykle:
+
+8
+00:00:34,935 --> 00:00:39,882
+parametry hipotezy, funkcja kosztu, przedmiot optymalizacji. W odróżnieniu
+
+9
+00:00:39,882 --> 00:00:45,163
+od tego, co robiliśmy w poprzednim nagraniu, uwzględnię obydwa parametry - theta0 i theta1 -
+
+10
+00:00:45,163 --> 00:00:50,573
+sporządzając wizualizacje funkcji kosztu. Tak samo jak
+
+11
+00:00:50,573 --> 00:00:57,204
+poprzednio, chcemy zrozumieć hipotezę h i funkcję kosztu J.
+
+12
+00:00:57,204 --> 00:01:04,167
+Mamy więc zbiór uczący cen domów - wybierzmy jakąś hipotezę.
+
+13
+00:01:04,167 --> 00:01:10,219
+Ta hipoteza nie jest zbyt dobra, ale jeśli przyjmę
+
+14
+00:01:10,219 --> 00:01:16,270
+theta0 = 50, a theta1 = 0,06, otrzymam taki wzór na hipotezę, jak tu na dole,
+
+15
+00:01:16,270 --> 00:01:22,190
+i odpowiada on tej prostej. Teraz, mając takie wartości theta0 i theta1,
+
+16
+00:01:22,190 --> 00:01:27,511
+chcemy narysować po prawej odpowiadającą im funkcję kosztu. Ostatnio
+
+17
+00:01:27,511 --> 00:01:33,150
+mieliśmy tylko theta1. Jednym słowem: rysowaliśmy wykresy
+
+18
+00:01:33,150 --> 00:01:37,814
+wyglądające jak funkcja theta1. Teraz mamy jednak dwa parametry - theta0
+
+19
+00:01:37,814 --> 00:01:42,340
+i theta1 - więc wykres staje się bardziej złożony. Okazuje się,
+
+20
+00:01:42,340 --> 00:01:47,699
+że jeśli mamy tylko jeden parametr, nasz wykres miał kształt
+
+21
+00:01:47,699 --> 00:01:52,925
+zbliżony do łuku. Teraz, gdy mamy dwa parametry, okazuje się, że funkcja kosztu
+
+22
+00:01:52,925 --> 00:01:58,218
+także ma taki kształt. W praktyce, w zależności od zbioru uczącego,
+
+23
+00:01:58,218 --> 00:02:03,511
+możesz otrzymać funkcję podobną do tej. Tak więc
+
+24
+00:02:03,511 --> 00:02:09,404
+jest to wykres powierzchni 3D, o osiach oznaczonych jako theta0 i theta1.
+
+25
+00:02:09,404 --> 00:02:15,326
+Zmieniając te dwa parametry: theta0 i theta1, otrzymujemy różne wartości
+
+26
+00:02:15,326 --> 00:02:20,964
+funkcji kosztu J(theta0, theta1), tj. różną wysokość powierzchni
+
+27
+00:02:20,964 --> 00:02:26,347
+- oś pionowa jest wysokością powierzchni dla danej pary (theta0, theta1).
+
+28
+00:02:26,347 --> 00:02:31,200
+Wysokość powierzchni złożonej z tych punktów reprezentuje wartości J(theta0, theta1).
+
+29
+00:02:31,200 --> 00:02:36,471
+Funkcja ta ma kształt przypominający miskę. Pozwól, że
+
+30
+00:02:36,471 --> 00:02:46,351
+pokażę Ci ten sam wykres w 3D. Tak więc tu mamy ten sam rysunek w 3D, z osiami poziomymi theta0, theta1,
+
+31
+00:02:46,351 --> 00:02:52,122
+osią pionową J(theta0, theta1). Poobracam trochę wykresem - mam nadzieję,
+
+32
+00:02:52,122 --> 00:02:57,608
+że nabierzesz trochę intuicji odnośnie tego miskowatego wykresu, gdyż tak właśnie
+
+33
+00:02:57,608 --> 00:03:03,592
+wygląda funkcja kosztu. W dalszej części tego nagrania nie będę korzystał na potrzeby ilustracji
+
+34
+00:03:03,592 --> 00:03:09,077
+z tego typu wykresów 3D do przedstawienia funkcji
+
+35
+00:03:09,077 --> 00:03:16,475
+kosztu J - zamiast tego wykorzystam wykresy konturowe (lub wykresy poziomicowe,
+
+36
+00:03:16,475 --> 00:03:24,748
+jak czasem je nazywam - jeden pies). Już pokazuję, jak to wygląda: mamy tutaj
+
+37
+00:03:24,748 --> 00:03:31,135
+po prawej przykład rysunku konturowego, z osiami theta0 i theta1.
+
+38
+00:03:31,135 --> 00:03:37,602
+Każdy z tych owali lub elips pokazuje zbiór
+
+39
+00:03:37,602 --> 00:03:43,757
+punktów przyjmujących tę samą wartość 
+J(theta0, theta1).
+
+40
+00:03:43,757 --> 00:03:50,514
+A więc w tym konkretnym przykładzie, jeśli weźmiemy sobie ten punkt, i ten punkt, i ten punkt,
+
+41
+00:03:50,514 --> 00:03:55,583
+to wszystkie trzy (oznaczone magentą) mają tę samą wartość
+
+42
+00:03:55,583 --> 00:03:59,730
+funkcji J(theta0, theta1). Mają różne wartości na osiach theta0 i theta1,
+
+43
+00:03:59,730 --> 00:04:04,774
+ale mają te same wartości funkcji
+J(theta0, theta1).
+
+44
+00:04:04,774 --> 00:04:10,218
+Jeśli nigdy wcześniej nie widziałaś/eś wykresu konturowego, wyobraź sobie
+
+45
+00:04:10,218 --> 00:04:14,992
+funkcję o kształcie miski, wychodzącą z ekranu w Twoją stronę. Jej minimum,
+
+46
+00:04:14,992 --> 00:04:19,668
+czyli dno miski, jest w tym punkcie, prawda? O tu, w środku
+
+47
+00:04:19,668 --> 00:04:24,285
+tych elips. Wyobraź sobie miskę, która tak jakby wyrasta
+
+48
+00:04:24,285 --> 00:04:28,786
+z ekranu, o w ten sposób, tak, że punkty danej elipsy są w jednakowej odległości
+
+49
+00:04:28,786 --> 00:04:33,345
+od ekranu. A minimum miski znajduje się dokładnie tutaj. A więc
+
+50
+00:04:33,345 --> 00:04:37,787
+wykres konturowy jest być może wygodniejszym sposobem
+
+51
+00:04:37,787 --> 00:04:45,185
+wizualizacji mojej funkcji J. Zobaczmy parę przykładów. Mamy tutaj
+
+52
+00:04:45,185 --> 00:04:53,275
+jakiś punkt, prawda? Powiedzmy, że w tym punkcie theta0 = 800,
+
+53
+00:04:53,275 --> 00:05:01,964
+a theta1 = -0.15. Tak więc ten punkt oznaczony na czerwono
+
+54
+00:05:01,964 --> 00:05:07,322
+odpowiada jednej parze wartości (theta0, theta1);
+
+55
+00:05:07,322 --> 00:05:12,092
+odpowiada też takiej hipotezie, bo theta0 = 800, tzn.
+
+56
+00:05:12,092 --> 00:05:17,189
+przecina oś pionową mniej więcej w punkcie 800, a tu mamy
+
+57
+00:05:17,189 --> 00:05:21,763
+nachylenie o wartości ok. -0,15. Jak widać, ta linia nie jest dobrym dopasowaniem
+
+58
+00:05:21,763 --> 00:05:26,859
+danych. Hipoteza h(x) o takich wartościach theta0 i theta1
+
+59
+00:05:26,859 --> 00:05:32,283
+nie reprezentuje dobrze naszych danych. Zauważmy, że jej koszt
+
+60
+00:05:32,283 --> 00:05:37,531
+jest tutaj - dość daleko od minimum, prawda?
+
+61
+00:05:37,531 --> 00:05:42,901
+Jest dość daleko, koszt jest dość duży, bo ta linia nie jest dobrze dopasowana
+
+62
+00:05:42,901 --> 00:05:47,247
+do danych. Zobaczmy jeszcze parę przykładów. Mamy teraz inną
+
+63
+00:05:47,247 --> 00:05:52,489
+hipotezę, która też nie jest dobrze dopasowana, ale być może jest odrobinę
+
+64
+00:05:52,489 --> 00:05:57,986
+lepsza - tutaj mamy nasz punkt, tutaj mamy parametry theta0 i theta1.
+
+65
+00:05:57,986 --> 00:06:07,387
+Theta0 jest równe mniej więcej 360, a theta0 równa się 0.
+
+66
+00:06:07,387 --> 00:06:14,047
+Rozbijmy to na części: weźmy theta0 = 360
+
+67
+00:06:14,047 --> 00:06:20,063
+i theta0 = 0. Ta para parametrów odpowiada tej
+
+68
+00:06:20,063 --> 00:06:26,161
+hipotezie, odpowiada poziomej linii, tzn. 
+h(x) = 360 + 0*x.
+
+69
+00:06:26,161 --> 00:06:32,421
+Tak więc mamy taką hipotezę; odpowiada jej oczywiście pewien koszt,
+
+70
+00:06:32,421 --> 00:06:38,600
+odpowiadający wysokości funkcji J w tym punkcie.
+
+71
+00:06:38,791 --> 00:06:44,886
+Zobaczmy kolejne przykłady. Dla takiej wartości theta0
+
+72
+00:06:44,886 --> 00:06:52,231
+i takiej wartości theta1 otrzymujemy taką
+hipotezę h(x).
+
+73
+00:06:52,231 --> 00:06:58,599
+Po raz kolejny: nie jest to dobre dopasowanie. Właściwie jest jeszcze dalej od minimum.
+Ostatni przykład:
+
+74
+00:06:58,599 --> 00:07:03,450
+może nie jest to minimum, ale jest całkiem blisko.
+
+75
+00:07:03,450 --> 00:07:08,486
+Tak więc nie jest to złe dopasowanie, jeśli dla takiej wartości theta0
+
+76
+00:07:08,486 --> 00:07:13,337
+i dla takiej wartości theta1, otrzymamy taką hipotezę h(x).
+
+77
+00:07:13,337 --> 00:07:18,004
+Nie jest to jeszcze minimum, ale jesteśmy blisko.
+
+78
+00:07:18,004 --> 00:07:23,039
+Tak więc suma kwadratów błędów jest sumą kwadratów odległości między
+
+79
+00:07:23,039 --> 00:07:28,259
+moimi przykładami treningowymi a moją hipotezą. Rzeczywiście, jest to suma kwadratów odległości
+
+80
+00:07:28,259 --> 00:07:32,548
+tych błędów, prawda? Jesteśmy całkiem blisko minimum, nawet jeśli
+
+81
+00:07:32,548 --> 00:07:37,096
+nie jest to dokładnie minimum. Mam nadzieję, że te rysunki pozwoliły Ci
+
+82
+00:07:37,096 --> 00:07:41,869
+zrozumieć lepiej wartości funkcji kosztu J - czym one są i jak przekładają się
+
+83
+00:07:41,869 --> 00:07:47,324
+na różne hipotezy, oraz w jaki sposób lepsza hipoteza odpowiada punktom położonym
+
+84
+00:07:47,324 --> 00:07:52,983
+bliżej minimum tej funkcji kosztu J. 
+Oczywiście, tak naprawdę
+
+85
+00:07:52,983 --> 00:07:57,619
+chcemy mieć wydajny algorytm, wydajne oprogramowanie,
+
+86
+00:07:57,619 --> 00:08:02,218
+które automatycznie znajdzie takie wartości theta0 i theta1, które zminimalizują
+
+87
+00:08:02,218 --> 00:08:06,566
+funkcję kosztu J, prawda? Nie chcemy pisać programu, który rysuje ten punkt,
+
+88
+00:08:06,566 --> 00:08:10,697
+a my musimy potem ręcznie odczytywać wartości.
+
+89
+00:08:10,697 --> 00:08:15,263
+Nie o to chodzi, nie to jest naszym celem. Poza tym zobaczymy później, że
+
+90
+00:08:15,426 --> 00:08:19,938
+możemy mieć bardziej złożone przykłady, gdzie będziemy mieli wielowymiarowe powierzchnie
+
+91
+00:08:19,938 --> 00:08:23,906
+o wielu parametrach. Zobaczymy w dalszej części kursu,
+
+92
+00:08:23,906 --> 00:08:28,091
+że takich powierzchni nie da się tak naprawdę narysować.
+
+93
+00:08:28,091 --> 00:08:33,664
+Dużo ciężej jest je zwizualizować. Chcemy więc mieć program,
+
+94
+00:08:33,664 --> 00:08:37,729
+który znajdzie wartości theta0 i theta1, minimalizujące tę funkcję,
+
+95
+00:08:37,916 --> 00:08:42,914
+i w następnym materiale zaczniemy omawiać algorytm znajdujący automatycznie
+
+96
+00:08:42,914 --> 00:08:47,600
+właśnie takie wartości theta0 i theta1, dla których funkcja kosztu J osiągnie minimum.

@@ -1,0 +1,803 @@
+1
+00:00:00,090 --> 00:00:01,540
+La mayoría de los algoritmos de aprendizaje supervisado que
+
+2
+00:00:01,690 --> 00:00:02,890
+hemos visto, como la regresión lineal,
+
+3
+00:00:03,130 --> 00:00:04,730
+la regresión logística,
+
+4
+00:00:04,930 --> 00:00:05,850
+etc., tienen un
+
+5
+00:00:06,300 --> 00:00:08,089
+objetivo de optimización o
+
+6
+00:00:08,670 --> 00:00:10,920
+una función de costos que el algoritmo intentaba minimizar.
+
+7
+00:00:11,920 --> 00:00:13,180
+Resulta que K-means también
+
+8
+00:00:13,770 --> 00:00:15,730
+tiene un objetivo de optimización o
+
+9
+00:00:15,870 --> 00:00:18,720
+una función de costos que intenta minimizar.
+
+10
+00:00:19,630 --> 00:00:20,180
+En este video me gustaría
+
+11
+00:00:20,230 --> 00:00:23,620
+hablarles de qué es el objetivo de optimización.
+
+12
+00:00:23,730 --> 00:00:24,420
+La razón por la que quiero hablar
+
+13
+00:00:24,750 --> 00:00:26,960
+de esto es porque será útil para dos propósitos.
+
+14
+00:00:28,020 --> 00:00:29,330
+Primero, conocer cuál
+
+15
+00:00:29,480 --> 00:00:30,890
+es el objetivo de optimización de K-means
+
+16
+00:00:31,150 --> 00:00:32,390
+nos ayuda a limpiar el
+
+17
+00:00:32,690 --> 00:00:33,970
+algoritmo de aprendizaje y
+
+18
+00:00:34,070 --> 00:00:35,080
+a asegurarnos de que K-means se
+
+19
+00:00:35,300 --> 00:00:37,100
+está ejecutando correctamente y, segundo,
+
+20
+00:00:37,610 --> 00:00:39,290
+y quizá más importante, en un
+
+21
+00:00:39,530 --> 00:00:41,290
+video posterior hablaremos
+
+22
+00:00:41,490 --> 00:00:42,580
+acerca de cómo podemos utilizar esto para ayudar
+
+23
+00:00:42,730 --> 00:00:44,000
+a K-means buscar mejores agrupamientos
+
+24
+00:00:44,070 --> 00:00:46,290
+y evitar las óptimas locales. Pero esto lo hablaremos en otro video después de este.
+
+25
+00:00:46,410 --> 00:00:47,330
+Como recordatorio, mientras K-means
+
+26
+00:00:49,680 --> 00:00:52,870
+se está ejecutando, llevaremos
+
+27
+00:00:54,450 --> 00:00:55,820
+cuenta de los dos conjuntos de variables.
+
+28
+00:00:56,430 --> 00:00:58,390
+La primera es “C(i)” que
+
+29
+00:00:58,700 --> 00:00:59,830
+da seguimiento al índice
+
+30
+00:01:00,190 --> 00:01:01,600
+o número de agrupamiento
+
+31
+00:01:02,730 --> 00:01:05,040
+al cual un ejemplo “x(i)” está asignado.
+
+32
+00:01:05,230 --> 00:01:05,960
+El otro conjunto de variables
+
+33
+00:01:06,540 --> 00:01:07,580
+es “µ” subíndice
+
+34
+00:01:08,120 --> 00:01:09,410
+“k”, que es la ubicación
+
+35
+00:01:10,140 --> 00:01:12,110
+del centroide del agrupamiento K.
+
+36
+00:01:12,380 --> 00:01:13,750
+Les recuerdo que para K-means
+
+37
+00:01:14,030 --> 00:01:17,230
+utilizamos “K” mayúscula para denotar el número total de agrupamientos y
+
+38
+00:01:17,890 --> 00:01:19,310
+“k” minúscula
+
+39
+00:01:20,010 --> 00:01:20,910
+será nuestro
+
+40
+00:01:21,040 --> 00:01:22,650
+índice en los centroides de
+
+41
+00:01:22,970 --> 00:01:23,930
+agrupamiento. “k” minúscula
+
+42
+00:01:24,030 --> 00:01:24,940
+será un
+
+43
+00:01:25,140 --> 00:01:26,390
+número entre 1 y “K”
+
+44
+00:01:26,600 --> 00:01:29,630
+mayúscula.
+
+45
+00:01:29,840 --> 00:01:31,040
+Como parte de la notación, utilizaré
+
+46
+00:01:31,270 --> 00:01:32,280
+“µ” subíndice
+
+47
+00:01:32,630 --> 00:01:34,560
+“c(i)” para denotar el centroide
+
+48
+00:01:34,970 --> 00:01:36,660
+del agrupamiento al que
+
+49
+00:01:36,780 --> 00:01:38,400
+se asignó “x(i)”.
+
+50
+00:01:38,880 --> 00:01:40,500
+Para explicar
+
+51
+00:01:40,710 --> 00:01:42,030
+esta notación un
+
+52
+00:01:42,450 --> 00:01:43,450
+poco más, digamos que
+
+53
+00:01:43,660 --> 00:01:45,600
+“x(i)” fue
+
+54
+00:01:45,740 --> 00:01:47,760
+asignado al agrupamiento número cinco.
+
+55
+00:01:48,880 --> 00:01:49,830
+Esto significa que “c(i)”, es decir, el
+
+56
+00:01:50,850 --> 00:01:52,290
+índice de “x(i)” es igual
+
+57
+00:01:53,130 --> 00:01:54,300
+a 5.
+
+58
+00:01:54,420 --> 00:01:57,640
+¿cierto? porque cuando tenemos “c(i)” igual a 5,
+
+59
+00:01:57,800 --> 00:01:59,270
+significa
+
+60
+00:02:00,500 --> 00:02:01,720
+que el ejemplo “x(i)” estará
+
+61
+00:02:01,910 --> 00:02:03,440
+asignado al agrupamiento número 5.
+
+62
+00:02:03,510 --> 00:02:05,700
+Entonces, “µ” subíndice
+
+63
+00:02:06,290 --> 00:02:07,960
+“c(i)” será
+
+64
+00:02:08,100 --> 00:02:09,630
+igual a “µ” subíndice
+
+65
+00:02:10,080 --> 00:02:12,260
+5 porque “c(i)” es
+
+66
+00:02:13,700 --> 00:02:14,100
+igual a 5.
+
+67
+00:02:15,100 --> 00:02:16,570
+Este “c(i)” que sustituye a “µ” es
+
+68
+00:02:16,660 --> 00:02:18,420
+el centroide del agrupamiento número
+
+69
+00:02:18,730 --> 00:02:19,670
+5, que es el agrupamiento
+
+70
+00:02:20,120 --> 00:02:22,480
+al cual se asignó el ejemplo “x(i)”.
+
+71
+00:02:23,470 --> 00:02:24,730
+Con esta notación, ya estamos
+
+72
+00:02:24,960 --> 00:02:26,040
+listos para escribir cuál
+
+73
+00:02:26,200 --> 00:02:28,150
+es el objetivo de optimización del
+
+74
+00:02:28,290 --> 00:02:30,360
+algoritmo de optimización “Kµ”
+
+75
+00:02:30,760 --> 00:02:30,800
+Aquí está.
+
+76
+00:02:31,330 --> 00:02:32,940
+La función de costos que K-means
+
+77
+00:02:33,040 --> 00:02:34,380
+intenta minimizar es la
+
+78
+00:02:34,570 --> 00:02:35,770
+función “j” de todos
+
+79
+00:02:35,880 --> 00:02:37,470
+los parámetros “c1” a “c(m)”,
+
+80
+00:02:37,890 --> 00:02:39,610
+“µ1” hasta “µK” que k-means intenta
+
+81
+00:02:39,790 --> 00:02:41,570
+variar a medida que ejecutamos el algoritmo.
+
+82
+00:02:42,100 --> 00:02:43,930
+El objetivo de optimización se muestra
+
+83
+00:02:44,160 --> 00:02:45,520
+a la derecha y es el promedio de
+
+84
+00:02:45,610 --> 00:02:46,430
+1 sobre “m” de la sumatoria de
+
+85
+00:02:46,620 --> 00:02:48,730
+“i” igual a 1 a la “m” de este término
+
+86
+00:02:50,400 --> 00:02:52,670
+de aquí, al que le dibujé un cuadro rojo.
+
+87
+00:02:52,870 --> 00:02:54,680
+Ya se asignó
+
+88
+00:02:55,160 --> 00:02:57,540
+la distancia cuadrada entre
+
+89
+00:02:57,690 --> 00:02:58,740
+cada ejemplo “x(i)” y
+
+90
+00:02:59,130 --> 00:03:00,210
+la ubicación del centroide
+
+91
+00:03:01,320 --> 00:03:01,920
+de agrupamiento al que se asignó “x(i)”.
+
+92
+00:03:03,240 --> 00:03:06,070
+Permítanme trazar esto para explicarlo.
+
+93
+00:03:06,240 --> 00:03:07,800
+Aquí tenemos la ubicación del
+
+94
+00:03:08,190 --> 00:03:09,780
+ejemplo de entrenamiento “x(i)” y
+
+95
+00:03:10,410 --> 00:03:11,760
+aquí está la ubicación del centroide del agrupamiento
+
+96
+00:03:11,970 --> 00:03:13,660
+al que se asignó “x(i)”.
+
+97
+00:03:14,560 --> 00:03:17,080
+Para explicar esto en gráficas, puedes ver que aquí tengo “x1” y “x2” y
+
+98
+00:03:17,420 --> 00:03:19,540
+un punto de aquí
+
+99
+00:03:19,760 --> 00:03:21,210
+es mi ejemplo “x(i)”de manera que
+
+100
+00:03:22,080 --> 00:03:23,060
+esto que señalo
+
+101
+00:03:23,110 --> 00:03:24,840
+es igual a mi ejemplo “x(i)”,
+
+102
+00:03:25,860 --> 00:03:27,000
+que ha sido asignado
+
+103
+00:03:27,240 --> 00:03:28,270
+al centroide del agrupamiento que
+
+104
+00:03:28,340 --> 00:03:30,240
+denotaré con una cruz que, a su vez,
+
+105
+00:03:30,630 --> 00:03:32,130
+marca la ubicación de
+
+106
+00:03:32,300 --> 00:03:33,830
+“µ5”. Digamos que
+
+107
+00:03:34,370 --> 00:03:35,640
+“x(i)” fue asignado
+
+108
+00:03:35,850 --> 00:03:37,960
+al centroide del agrupamiento 5 en mi ejemplo de aquí.
+
+109
+00:03:38,810 --> 00:03:40,660
+Entonces, la distancia cuadrada es
+
+110
+00:03:40,940 --> 00:03:41,840
+el cuadrado de la distancia entre el punto
+
+111
+00:03:43,810 --> 00:03:46,010
+“x(i) y
+
+112
+00:03:46,220 --> 00:03:48,400
+este centroide al que se asignó “x(i)”.
+
+113
+00:03:49,570 --> 00:03:50,720
+Una cosa que puede hacer el
+
+114
+00:03:51,070 --> 00:03:52,540
+K-means es tratar de
+
+115
+00:03:52,680 --> 00:03:54,480
+encontrar parámetros “c(i)”
+
+116
+00:03:55,270 --> 00:03:57,410
+y “µ(i)” o tratar de encontrar “C” en “µ”
+
+117
+00:03:57,570 --> 00:03:58,840
+para minimizar
+
+118
+00:03:58,960 --> 00:04:00,450
+esta función de costos “J”.
+
+119
+00:04:01,440 --> 00:04:03,180
+A esta función de costos
+
+120
+00:04:03,680 --> 00:04:06,770
+también se le llama a veces función
+
+121
+00:04:07,060 --> 00:04:10,030
+de distorsión de costos o algoritmo de la distorsión de
+
+122
+00:04:10,240 --> 00:04:12,130
+K-means.
+
+123
+00:04:12,790 --> 00:04:13,360
+Para explicarles un poco más a detalle,
+
+124
+00:04:13,630 --> 00:04:15,750
+aquí tenemos el algoritmo K-means
+
+125
+00:04:15,820 --> 00:04:16,450
+exactamente como lo teníamos en la formulación anterior de la
+
+126
+00:04:16,610 --> 00:04:17,960
+diapositiva anterior.
+
+127
+00:04:18,950 --> 00:04:20,200
+El primer paso del
+
+128
+00:04:21,030 --> 00:04:23,120
+algoritmo era
+
+129
+00:04:23,830 --> 00:04:25,910
+el paso de asignación de agrupamiento,
+
+130
+00:04:27,920 --> 00:04:29,850
+en el que asignamos cada punto
+
+131
+00:04:30,030 --> 00:04:32,910
+a un centroide de agrupamiento.
+
+132
+00:04:33,010 --> 00:04:34,830
+es posible demostrar matemáticamente que
+
+133
+00:04:35,050 --> 00:04:36,210
+lo que hace exactamente el paso de
+
+134
+00:04:36,450 --> 00:04:38,560
+asignación de agrupamiento es minimizar
+
+135
+00:04:40,770 --> 00:04:42,950
+“j” con respecto a las
+
+136
+00:04:43,420 --> 00:04:45,900
+variables “C1”, “C2”, etc.,
+
+137
+00:04:46,380 --> 00:04:48,050
+hasta
+
+138
+00:04:48,170 --> 00:04:52,030
+“C(m)” mientras que mantenemos
+
+139
+00:04:52,480 --> 00:04:54,240
+fijos los centroides “µ1” hasta
+
+140
+00:04:54,720 --> 00:04:57,000
+“µK”.
+
+141
+00:04:58,580 --> 00:04:59,640
+El primer paso de asignación
+
+142
+00:04:59,900 --> 00:05:00,990
+no cambia los
+
+143
+00:05:01,240 --> 00:05:02,850
+centroides de los agrupamientos sino que
+
+144
+00:05:02,960 --> 00:05:05,730
+elige los valores “C1”, “C2” y hasta “CM” que
+
+145
+00:05:07,790 --> 00:05:10,240
+minimizan la función de costos o la
+
+146
+00:05:10,500 --> 00:05:11,790
+función de distorsión
+
+147
+00:05:12,510 --> 00:05:14,440
+“J”. Es posible probar esto
+
+148
+00:05:14,670 --> 00:05:16,550
+matemáticamente, pero no lo mostraré aquí.
+
+149
+00:05:17,170 --> 00:05:18,210
+Esto tiene una consecuencia intuitiva.
+
+150
+00:05:18,610 --> 00:05:19,630
+Si asignamos estos puntos
+
+151
+00:05:20,090 --> 00:05:21,040
+al centroide del agrupamiento
+
+152
+00:05:21,530 --> 00:05:22,820
+más cercano a ellos, minimizaremos
+
+153
+00:05:23,120 --> 00:05:24,160
+la distancia cuadrada entre los
+
+154
+00:05:24,660 --> 00:05:26,860
+puntos y el centroide del agrupamiento correspondiente.
+
+155
+00:05:27,840 --> 00:05:29,090
+La segunda parte
+
+156
+00:05:29,790 --> 00:05:32,880
+del K-means es este segundo paso de aquí arriba.
+
+157
+00:05:33,960 --> 00:05:35,480
+Este segundo paso fue el paso de
+
+158
+00:05:35,690 --> 00:05:38,770
+movimiento del centroide y,
+
+159
+00:05:39,000 --> 00:05:40,020
+una vez más, no lo probaré,
+
+160
+00:05:40,510 --> 00:05:41,250
+pero se puede comprobar
+
+161
+00:05:41,520 --> 00:05:42,590
+matemáticamente que lo que hace
+
+162
+00:05:43,140 --> 00:05:44,910
+el paso de movimiento del centroide
+
+163
+00:05:45,150 --> 00:05:46,740
+es elegir los valores “µ” que
+
+164
+00:05:47,260 --> 00:05:49,370
+minimicen “J”.
+
+165
+00:05:50,150 --> 00:05:51,270
+Por lo tanto, minimiza la función de costos
+
+166
+00:05:51,650 --> 00:05:53,000
+“J” con respecto a
+
+167
+00:05:53,380 --> 00:05:54,710
+“wrt” es mi
+
+168
+00:05:54,920 --> 00:05:56,930
+abreviatura para “con respecto a”
+
+169
+00:05:57,030 --> 00:05:58,380
+las ubicaciones
+
+170
+00:05:58,790 --> 00:06:01,930
+de los centroides de agrupamiento “µ1” a “µK”.
+
+171
+00:06:02,040 --> 00:06:05,690
+Lo que está haciendo realmente
+
+172
+00:06:05,790 --> 00:06:06,910
+K-means es hablar de
+
+173
+00:06:07,010 --> 00:06:08,380
+dos conjuntos de variables y
+
+174
+00:06:09,070 --> 00:06:11,210
+dividirlas en dos porciones por aquí.
+
+175
+00:06:11,550 --> 00:06:14,490
+Primero el conjunto de variables “C” y luego el conjunto de variables “µ”.
+
+176
+00:06:15,450 --> 00:06:15,990
+Lo primero que hace
+
+177
+00:06:16,560 --> 00:06:17,750
+es minimizar “j” con respecto a
+
+178
+00:06:18,050 --> 00:06:19,350
+la variable “C” y luego minimiza
+
+179
+00:06:19,700 --> 00:06:20,610
+“J” con respecto a las variables
+
+180
+00:06:21,120 --> 00:06:22,590
+“µ” y continúa repitiéndose.
+
+181
+00:06:25,180 --> 00:06:26,680
+Esto es todo lo que hace K-means.
+
+182
+00:06:27,700 --> 00:06:28,570
+Ahora que comprendemos
+
+183
+00:06:29,150 --> 00:06:30,870
+K-means, intentemos
+
+184
+00:06:31,030 --> 00:06:32,190
+minimizar la función de costos “J”:
+
+185
+00:06:32,430 --> 00:06:33,640
+Podemos utilizar esto también
+
+186
+00:06:33,800 --> 00:06:34,890
+para limpiar de errores nuestro
+
+187
+00:06:35,090 --> 00:06:36,350
+algoritmo de aprendizaje y para
+
+188
+00:06:36,520 --> 00:06:37,980
+asegurarnos que nuestra implementación
+
+189
+00:06:38,900 --> 00:06:39,950
+de K-means es correcta.
+
+190
+00:06:41,220 --> 00:06:42,560
+Ahora entendemos que el
+
+191
+00:06:43,070 --> 00:06:44,260
+algoritmo K-means intenta optimizar
+
+192
+00:06:44,610 --> 00:06:45,960
+la función de costos “J”, a la que también
+
+193
+00:06:46,640 --> 00:06:48,790
+llamamos función de distorsión.
+
+194
+00:06:50,650 --> 00:06:51,600
+Podemos utilizar esto para limpiar K-means
+
+195
+00:06:52,090 --> 00:06:53,060
+de errores y para que me ayude a mostrar que
+
+196
+00:06:53,130 --> 00:06:54,050
+K-means converge y que está
+
+197
+00:06:54,510 --> 00:06:56,160
+ejecutándose correctamente. En el
+
+198
+00:06:56,240 --> 00:06:57,460
+siguiente video veremos cómo
+
+199
+00:06:57,690 --> 00:06:59,040
+podemos utilizar esto para ayudar
+
+200
+00:06:59,120 --> 00:07:00,650
+a K-means buscar mejores agrupamientos
+
+201
+00:07:01,300 --> 00:07:03,240
+y evitar óptimas locales.

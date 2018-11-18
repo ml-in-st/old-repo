@@ -1,0 +1,610 @@
+1
+00:00:00,493 --> 00:00:03,492
+Sada znate za algoritam 
+stohastičkog opadanja gradijenta.
+
+2
+00:00:03,492 --> 00:00:09,907
+Ali kada pokrećete algoritam, kako ste sigurni da 
+je potpuno bez grešaka i da konvergira kako treba?
+
+3
+00:00:09,907 --> 00:00:15,813
+Isti tako važno, kako podešavate stopu 
+učenja sa stohastičkim opadanjem gradijenta?
+
+4
+00:00:15,813 --> 00:00:25,950
+U ovome videu govorićemo o tehnikama koje rade
+ to, da konvergira i da kupi stopu učenja alfa.
+
+5
+00:00:25,950 --> 00:00:30,600
+Kada smo koristili opadajući 
+gradijent, standardan način da
+
+6
+00:00:30,600 --> 00:00:36,493
+opadajući gradijent konvergira je da iscrtamo 
+funkciju koštanja kao funkciju broja iteracija.
+
+7
+00:00:36,493 --> 00:00:44,366
+To je bila funkcija koštanja i sigurni smo 
+da ona opada u svakoj iteraciji.
+
+8
+00:00:44,366 --> 00:00:50,438
+Kada je trening skup mali, to možemo da uradimo 
+jer možemo da izračunamo sumu prilično lako.
+
+9
+00:00:50,438 --> 00:00:57,950
+Kada imate veliki trening skup, ne želite 
+da pauzirate vaš algoritam periodično.
+
+10
+00:00:57,950 --> 00:01:04,045
+Ne želite da pauzirate stohastički opadajući gradijent
+ periodično da biste dobili funkciju koštanja
+
+11
+00:01:04,045 --> 00:01:07,442
+jer zahteva sumu veličina 
+vašeg celog trening skupa.
+
+12
+00:01:07,442 --> 00:01:12,466
+Poenta stohastičkog opadajućeg 
+gradijenta je da želite napredak
+
+13
+00:01:12,466 --> 00:01:19,130
+nakon samo jednog primera bez potrebe
+ za skeniranjem celog trening skupa
+
+14
+00:01:19,130 --> 00:01:25,583
+u sredini algoritma, samo da bi se 
+izračunala funkcija koštanja celog trening skupa.
+
+15
+00:01:25,583 --> 00:01:32,472
+Kod stohastičkog opadajućeg gradijenta, da bismo 
+proverili da li algoritam konvergira, evo šta radimo.
+
+16
+00:01:32,472 --> 00:01:36,367
+Hajde da uzmemo definiciju 
+cene koju smo imali prethodno.
+
+17
+00:01:36,367 --> 00:01:42,647
+Cena parametara teta u jednom trening primeru
+ je polovina kvadrata greške na tom primeru.
+
+18
+00:01:42,647 --> 00:01:49,754
+Dok stohastički opadajući gradijent uči, tačno 
+pre nego što treniramo na određenom primeru.
+
+19
+00:01:49,754 --> 00:01:54,601
+U stohastičkom opadajućem gradijentu 
+gledamo u primerima xi, yi po redu, i
+
+20
+00:01:54,601 --> 00:01:57,329
+radimo male izmene u odnosu na taj primer.
+
+21
+00:01:57,329 --> 00:02:04,095
+A onda idemo na sledeći primer, x(i+1), y(i+1), u redu?
+
+22
+00:02:04,095 --> 00:02:05,880
+To radi stohastički opadajući gradijent.
+
+23
+00:02:05,880 --> 00:02:15,024
+Dok algoritam gleda primer xi, yi, 
+pre nego što izmeni parametre teta
+
+24
+00:02:15,024 --> 00:02:20,255
+koristeći taj primer, hajde da izračunamo cenu tog primera.
+
+25
+00:02:20,255 --> 00:02:23,577
+Reći ću ponovo istu stvar, koristeći druge reči.
+
+26
+00:02:23,577 --> 00:02:33,294
+Stohastički opadajući gradijent skenira trening skup i pre nego što izmenimo teta koristeći x(i), y(i)
+
+27
+00:02:33,294 --> 00:02:38,198
+hajde da izračunamo kako tačno naša 
+hipoteza radi na tom trening primeru.
+
+28
+00:02:38,198 --> 00:02:43,852
+To želimo da uradimo pre izmene teta 
+jer ako izmenimo teta koristeći primer,
+
+29
+00:02:43,852 --> 00:02:49,061
+to bi moglo da bude bolje na tom 
+primeru nego što bi izgledalo.
+
+30
+00:02:49,061 --> 00:02:57,438
+Konačno, da bismo proverili konvergenciju stohastičkog
+ opadajućeg gradijenta, svakih hiljadu iteracija možemo
+
+31
+00:02:57,438 --> 00:03:01,511
+da iscrtamo te cene koje smo 
+izračunali u prethodnom koraku.
+
+32
+00:03:01,511 --> 00:03:07,450
+Možemo da iscrtamo srednje cene preko poslednjih
+ hiljadu primera procesuiranih u algoritmu.
+
+33
+00:03:07,450 --> 00:03:12,714
+Radeći to dobićete neku vrstu 
+procene koliko dobro algoritam radi
+
+34
+00:03:12,714 --> 00:03:17,049
+na, recimo, poslednjih 1000 trening 
+primera koje je vaš algoritam video.
+
+35
+00:03:17,049 --> 00:03:23,974
+Suprotno računanju J <u>periodično gde 
+je potrebno skenirati čitav trening skup.</u>
+
+36
+00:03:23,974 --> 00:03:27,973
+Ovom drugom procedurom, kao deo 
+stohastičkog opadajućeg gradijenta,
+
+37
+00:03:27,973 --> 00:03:32,965
+ne košta mnogo da se izračunaju te cene tačno pre izmene parametara teta.
+
+38
+00:03:32,965 --> 00:03:40,276
+I šta radimo je svakih 1000 iteracija je da usrednjimo 
+poslednjih 1000 cena koje smo izračunali i iscrtamo ih.
+
+39
+00:03:40,276 --> 00:03:47,537
+Posmatranjem tih crta će nam omogućiti da 
+proverimo da li stohastički gradijent konvergira.
+
+40
+00:03:47,537 --> 00:03:51,708
+Evo nekoliko primera kako ta
+ iscrtavanja mogu da izgledaju.
+
+41
+00:03:51,708 --> 00:03:55,519
+Recimo da ste iscrtali srednju 
+cenu u poslednjih 1000 primera,
+
+42
+00:03:55,519 --> 00:04:01,073
+jer su te usrednjene od samo 
+1000 primera, imaće malo šuma,
+
+43
+00:04:01,073 --> 00:04:03,873
+možda neće da opada u 
+svakoj pojedinačnoj iteraciji.
+
+44
+00:04:03,873 --> 00:04:07,828
+Ako dobijete figuru koja izgleda
+ ovako, crtež ima šum
+
+45
+00:04:07,828 --> 00:04:11,721
+jer je usrednjavanje na malom podskupu, 
+recimo hiljadu trening primera.
+
+46
+00:04:11,721 --> 00:04:17,283
+Ako dobijete oblik kao ovaj, bilo bi 
+prilično pristojno pokrenuti sa algoritmom,
+
+47
+00:04:17,283 --> 00:04:24,195
+gde cena izgleda da opada i ovaj plato koji 
+izgleda zaravnjen, počinje negde blizu tačke.
+
+48
+00:04:24,195 --> 00:04:29,603
+Izgleda kao da vaš 
+algoritam učenja konvergira.
+
+49
+00:04:29,603 --> 00:04:34,252
+Ako želite da pokušate sa manjom 
+stopom učenja, mogli biste da vidite
+
+50
+00:04:34,252 --> 00:04:39,229
+da algoritam u početku uči sporije 
+tako da cena ide dole sporije.
+
+51
+00:04:39,229 --> 00:04:47,585
+Ali manja stopa učenja mogla bi da 
+dovede da algoritam ima bolje rešenje.
+
+52
+00:04:47,585 --> 00:04:53,426
+Crvena linija predstavlja stohastički opadajući 
+gradijent koji koristi sporiju i manju stopu učenja.
+
+53
+00:04:53,426 --> 00:05:00,594
+Razlog za ovo je to što stohastički opadajući 
+gradijent ne konvergira globalnom minimumu,
+
+54
+00:05:00,594 --> 00:05:05,068
+ono što radi je da parametri osciluju 
+malo oko globalnog minimuma.
+
+55
+00:05:05,068 --> 00:05:09,231
+Koristeći manju stopu učenja, 
+dobijate manje oscilacije.
+
+56
+00:05:09,231 --> 00:05:12,896
+Ponekad ta sitna razlika
+ može da bude zanemariva
+
+57
+00:05:12,896 --> 00:05:19,686
+a ponekad možete da dobijete 
+malo bolju vrednost za parametre.
+
+58
+00:05:19,686 --> 00:05:22,269
+Ovo su neke druge stvari 
+koje bi se mogle dogoditi.
+
+59
+00:05:22,269 --> 00:05:27,986
+Recimo, pokrećete stohastički opadajući gradijent
+ i usrednjavate na 1000 primera kada iscrtavate.
+
+60
+00:05:27,986 --> 00:05:32,369
+Ovde bi mogao da bude rezultat 
+drugačiji od ovog crteža.
+
+61
+00:05:32,369 --> 00:05:34,353
+I opet, izgleda da konvergira.
+
+62
+00:05:34,353 --> 00:05:42,119
+Ako uzmete ovo 1000 i povećate 
+usrednjavanje na 5000 primera,
+
+63
+00:05:42,119 --> 00:05:47,913
+moguće je da dobijete glatkiju 
+krivu koja izgleda više ovako.
+
+64
+00:05:47,913 --> 00:05:56,547
+Usrednjavanjem na 5000 primera umesto na 1000
+ mogli biste da dobijete glatkiju krivu kao ova.
+
+65
+00:05:56,547 --> 00:06:00,248
+Dakle, to je efekat povećanja broja 
+primera na kom usrednjavate.
+
+66
+00:06:00,248 --> 00:06:06,229
+Nedostatak ovoga je da vi imate samo 
+jednu tačku na svakih 5000 primera.
+
+67
+00:06:06,229 --> 00:06:12,001
+I povratna vrednost toga kako obučavate 
+algoritam učenja je odložena
+
+68
+00:06:12,001 --> 00:06:17,681
+jer dobijate jednu tačku svakih 
+5000 primera a ne svakih 1000.
+
+69
+00:06:17,681 --> 00:06:23,911
+Slično tome, ponekad možete da pokrenete 
+opadajući gradijent i da crtež izgleda ovako.
+
+70
+00:06:23,911 --> 00:06:32,079
+Sa crtežom kao što je ovaj, 
+izgleda da cena uopšte ne opada.
+
+71
+00:06:32,079 --> 00:06:34,023
+Izgleda da algoritam ne uči.
+
+72
+00:06:34,023 --> 00:06:39,261
+Izgleda da ova kriva linija 
+i cena se ne smanjuju.
+
+73
+00:06:39,261 --> 00:06:46,260
+Još jednom ako povećate broj 
+primera na kojem usrednjavate,
+
+74
+00:06:46,260 --> 00:06:49,729
+moguće je da dobijete nešto kao ova crvena linija
+
+75
+00:06:49,729 --> 00:06:55,127
+izgleda da cena opada, kao da plava linija 
+ide ka srednjoj vrednosti na 2, 3 primera,
+
+76
+00:06:55,127 --> 00:07:01,374
+plava linija ima previše šuma pa 
+ne možete da vidite da cena opada
+
+77
+00:07:01,374 --> 00:07:06,688
+pa moguće usrednjavanje na 5000 
+primera umesto na 1000 može da pomogne.
+
+78
+00:07:06,688 --> 00:07:12,358
+Naravno, usrednjavamo na većem broju 
+primera nego što smo ovde na 5000.
+
+79
+00:07:12,358 --> 00:07:16,998
+Samo koristim drugu boju, takođe je moguće 
+da vidite da kriva učenja izgleda ovako.
+
+80
+00:07:16,998 --> 00:07:21,197
+Još uvek je ravna iako 
+usrednjavate na većem broju primera.
+
+81
+00:07:21,197 --> 00:07:25,908
+Ako dobijete to, tad je to možda čvrst dokaz da
+
+82
+00:07:25,908 --> 00:07:29,287
+nažalost algoritam ne uči 
+mnogo iz bilo kog razloga.
+
+83
+00:07:29,287 --> 00:07:34,969
+Tad treba da promenite stopu učenja ili 
+osobine ili nešto drugo u algoritmu.
+
+84
+00:07:34,969 --> 00:07:39,235
+Konačno, poslednje što biste mogli 
+da vidite je ako iscrtate ove krive
+
+85
+00:07:39,235 --> 00:07:43,273
+i vidite da kriva izgleda 
+ovako, kao da se povećava.
+
+86
+00:07:43,273 --> 00:07:48,066
+Ako je to slučaj, to je znak da algoritam divergira.
+
+87
+00:07:48,066 --> 00:07:53,965
+Šta biste trebali da uradite je da koristite 
+manju vrednost stope učenja alfa.
+
+88
+00:07:53,965 --> 00:07:58,143
+Nadam se da ste stekli osećaj o opsegu 
+fenomena koje biste mogli da vidite
+
+89
+00:07:58,143 --> 00:08:02,946
+kada iscrtate ove srednje cene 
+na nekom opsegu primera kao
+
+90
+00:08:02,946 --> 00:08:07,765
+i sugestijama šta biste mogli 
+da uradite kao odgovor na to.
+
+91
+00:08:07,765 --> 00:08:15,070
+Ako crte izgledaju sa previše šuma, ili ako 
+previše idu gore dole, pokušajte da povećate broj
+
+92
+00:08:15,070 --> 00:08:18,734
+primera na kom usrednjavate 
+da biste bolje videli trend krive.
+
+93
+00:08:18,734 --> 00:08:25,836
+Ako vidite da se greške povećavaju, cene se 
+povećavaju, pokušajte sa manjom vrednošću alfa.
+
+94
+00:08:25,836 --> 00:08:31,649
+Konačno, vredi ispitati stopu učenja još malo.
+
+95
+00:08:31,649 --> 00:08:38,922
+Kada pokrenemo stohastički opadajući gradijent, algoritam 
+će da počne ovde i meandriraće prema minimumu.
+
+96
+00:08:38,922 --> 00:08:43,494
+A onda neće stvarno da konvergira, 
+on će da luta oko minimuma večno.
+
+97
+00:08:43,494 --> 00:08:50,225
+Dobijate parametre koji su blizu globalnog 
+minimuma ali nisu u globalnom minimumu.
+
+98
+00:08:50,225 --> 00:08:57,991
+U većini implementacija stohastičkog opadajućeg
+ gradijenta, stopa učenja je tipično konstantna.
+
+99
+00:08:57,991 --> 00:09:02,022
+I ono što dobijemo je upravo ovo.
+
+100
+00:09:02,022 --> 00:09:06,523
+Ako želite da stohastički opadajući gradijent konvergira ka globalnom minimumu,
+
+101
+00:09:06,523 --> 00:09:11,825
+postoji jedna stvar koju možete da uradite a to je
+ da polako smanjujete stopu učenja alfa u vremenu.
+
+102
+00:09:11,825 --> 00:09:22,240
+Tipičan način da to uradite je da alfa bude konstanta1
+ podeljeno sa brojem iteracija plus konstanta2.
+
+103
+00:09:22,240 --> 00:09:28,169
+iterationNumber je broj iteracija na kom ste
+ pokrenuli stohastički opadajući gradijent.
+
+104
+00:09:28,169 --> 00:09:29,519
+tako da je to u stvari broj 
+trening primera koje ste videli.
+
+105
+00:09:29,519 --> 00:09:34,103
+A const1 i const2 su dodatni parametri algoritma
+
+106
+00:09:34,103 --> 00:09:38,160
+koje ćete morati da pokrenete da
+ biste dobili dobre performanse.
+
+107
+00:09:38,160 --> 00:09:43,004
+Jedan od razloga zašto ljudi izbegavaju 
+ovo je što treba da potroše vreme
+
+108
+00:09:43,004 --> 00:09:48,122
+uvodeći ova dodatna dva parametra, const1 
+i const2, a to algoritam čini komplikovanijim.
+
+109
+00:09:48,122 --> 00:09:52,113
+Još više parametara u proračunu 
+da bi algoritam radio dobro.
+
+110
+00:09:52,113 --> 00:09:57,246
+Ako dobro podešavate parametre, 
+možete da dobijete da
+
+111
+00:09:57,246 --> 00:10:02,834
+algoritam meandrira prema 
+minimumu, ali primičući se
+
+112
+00:10:02,834 --> 00:10:07,024
+meandri će biti sve manji 
+jer ste smanjili stopu učenja
+
+113
+00:10:07,024 --> 00:10:12,729
+sve dok se prilično ne približi globalnom 
+minimumu. Nadam se da ovo ima smisla.
+
+114
+00:10:12,729 --> 00:10:21,608
+Razlog za to je što kad broj iteracija 
+postaje veći, alfa će da postaje manja,
+
+115
+00:10:21,608 --> 00:10:27,506
+i tako uzimate sve manje korake dok 
+algoritam ne konvergira u globalni minimum.
+
+116
+00:10:27,506 --> 00:10:33,484
+Ako sporo umanjujete alfa do nule, možete da dobijete nešto bolju hipotezu.
+
+117
+00:10:33,484 --> 00:10:40,078
+Ali, pošto je potreban dodatan rad da bi 
+se ubacile konstante i zato što smo srećni
+
+118
+00:10:40,078 --> 00:10:43,892
+bilo kojom vrednošću parametara koje su blizu globalnog minimuma.
+
+119
+00:10:43,892 --> 00:10:50,863
+Tipično, proces umanjenja alfa 
+se ne vrši i drži se konstantnim
+
+120
+00:10:50,863 --> 00:10:56,983
+i to je uobičajen stohastički opadajući gradijent
+ iako ćete videti da se obe verzije koriste.
+
+121
+00:10:56,983 --> 00:11:03,595
+Da sumiramo, u ovome videu smo 
+govorili o načinu da aproksimativno pratite
+
+122
+00:11:03,595 --> 00:11:08,256
+kako radi stohastički opadajući gradijent 
+u cilju optimizacije funkcije cena.
+
+123
+00:11:08,256 --> 00:11:17,043
+To je metod koji ne prolazi kroz čitav trening 
+skup periodično da bi izračunao funkciju cena.
+
+124
+00:11:17,043 --> 00:11:20,693
+Umesto toga gleda, recimo, 
+poslednjih 1000 primera.
+
+125
+00:11:20,693 --> 00:11:27,592
+Možete da ga koristite da budete sigurni 
+da je stohastički opadajući gradijent u redu
+
+126
+00:11:27,592 --> 00:11:31,468
+i da konvergira ili da ga koristite da poboljšate stopu učenja alfa.

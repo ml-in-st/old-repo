@@ -1,0 +1,1183 @@
+1
+00:00:00,240 --> 00:00:01,410
+En este video, me gustaría
+
+2
+00:00:01,560 --> 00:00:03,590
+hablar acerca de la distribución Gaussiana,
+
+3
+00:00:03,830 --> 00:00:05,810
+también conocida como distribución normal.
+
+4
+00:00:07,430 --> 00:00:08,940
+En caso de que ya esté muy
+
+5
+00:00:09,620 --> 00:00:11,980
+familiarizado con la distribución Gaussiana,
+
+6
+00:00:12,160 --> 00:00:13,810
+está bien si se salta este video.
+
+7
+00:00:14,640 --> 00:00:15,890
+Pero si no está seguro o
+
+8
+00:00:15,970 --> 00:00:16,890
+si ha pasado un tiempo desde que
+
+9
+00:00:17,040 --> 00:00:18,770
+trabajó con una distribución Gaussiana o distribución normal,
+
+10
+00:00:19,020 --> 00:00:20,480
+entonces por favor vea este
+
+11
+00:00:20,610 --> 00:00:22,960
+video hasta el final.
+
+12
+00:00:23,220 --> 00:00:24,260
+En el siguiente video,
+
+13
+00:00:24,480 --> 00:00:25,740
+empezaremos a aplicar la distribución Gaussiana
+
+14
+00:00:25,980 --> 00:00:28,890
+para desarrollar un algoritmo de detección de anomalías.
+
+15
+00:00:31,990 --> 00:00:33,310
+Digamos que "x" es un
+
+16
+00:00:33,540 --> 00:00:36,470
+variable aleatoria de valor real, "x" es un número real.
+
+17
+00:00:37,380 --> 00:00:39,080
+Si la distribución de probabilidad de
+
+18
+00:00:39,270 --> 00:00:41,160
+"x" es Gaussiana,
+
+19
+00:00:41,400 --> 00:00:42,710
+esto significaría «Mu» y la variante
+
+20
+00:00:43,110 --> 00:00:45,360
+«sigma» cuadrada, entonces escribiremos
+
+21
+00:00:45,540 --> 00:00:47,600
+esto como x,
+
+22
+00:00:47,690 --> 00:00:49,270
+la variable aleatoria tilde,
+
+23
+00:00:51,930 --> 00:00:53,300
+que es este pequeño tilde
+
+24
+00:00:53,540 --> 00:00:59,520
+que significa "distribuido como" y
+
+25
+00:00:59,730 --> 00:01:01,550
+para denotar la distribución Gaussiana, a veces
+
+26
+00:01:02,070 --> 00:01:03,930
+va a escribir "N", paréntesis,
+
+27
+00:01:04,830 --> 00:01:07,140
+«Mu», «sigma» al cuadrado.
+
+28
+00:01:07,470 --> 00:01:09,310
+Entonces, esta letra "N" significa que es normal
+
+29
+00:01:09,530 --> 00:01:10,920
+ya que la distribución Gaussiana y normal
+
+30
+00:01:11,300 --> 00:01:12,170
+hacen referencia a lo mismo,
+
+31
+00:01:12,390 --> 00:01:14,660
+así que son sinónimos y una
+
+32
+00:01:14,780 --> 00:01:16,190
+distribución Gaussiana se parametriza
+
+33
+00:01:17,070 --> 00:01:18,430
+mediante 2 parámetros, por un
+
+34
+00:01:19,010 --> 00:01:20,930
+parámetro que denotamos
+
+35
+00:01:21,020 --> 00:01:22,770
+«Mu» y un parámetro de variación que
+
+36
+00:01:23,090 --> 00:01:25,010
+denota por «sigma» cuadrado.
+
+37
+00:01:26,120 --> 00:01:27,270
+Si graficamos la distribución Gaussiana
+
+38
+00:01:27,990 --> 00:01:30,100
+o densidad de probabilidad Gaussiana,
+
+39
+00:01:30,220 --> 00:01:31,760
+se verá como la curva en forma de
+
+40
+00:01:32,100 --> 00:01:34,820
+campana, que quizá ya haya visto antes.
+
+41
+00:01:36,230 --> 00:01:37,860
+Esta curva en forma de campana
+
+42
+00:01:38,110 --> 00:01:40,350
+es parametrizada por esos 2 parámetros «Mu» y «sigma» y la
+
+43
+00:01:41,330 --> 00:01:42,670
+ubicación del centro
+
+44
+00:01:42,930 --> 00:01:44,230
+de esta curva en forma de campana
+
+45
+00:01:44,580 --> 00:01:46,960
+es la «Mu» media y el
+
+46
+00:01:47,050 --> 00:01:48,150
+ancho de esta curva en forma de campana,
+
+47
+00:01:49,430 --> 00:01:51,020
+que es más o menos, digamos,
+
+48
+00:01:51,290 --> 00:01:52,970
+este parámetro «sigma» también llamado
+
+49
+00:01:53,500 --> 00:01:55,390
+desviación estándar.
+
+50
+00:01:56,540 --> 00:01:58,350
+Y así, esto especifica la
+
+51
+00:01:58,530 --> 00:01:59,630
+probabilidad de "x" tomando
+
+52
+00:01:59,910 --> 00:02:00,990
+diferentes valores, entonces "x"
+
+53
+00:02:01,190 --> 00:02:02,730
+asume valores, como sabe,
+
+54
+00:02:02,810 --> 00:02:03,770
+en el centro, se trata de valores muy altos,
+
+55
+00:02:04,020 --> 00:02:05,290
+ya que la densidad Gaussiana aquí
+
+56
+00:02:05,400 --> 00:02:06,490
+es bastante alta, mientras que si
+
+57
+00:02:06,610 --> 00:02:08,540
+"x" toma valores más y más
+
+58
+00:02:08,720 --> 00:02:10,310
+alejados, va estar disminuyendo
+
+59
+00:02:10,860 --> 00:02:12,600
+en probabilidad. Por último, para
+
+60
+00:02:12,920 --> 00:02:13,770
+completar, déjeme escribir
+
+61
+00:02:14,020 --> 00:02:15,260
+la fórmula para la distribución Gaussiana,
+
+62
+00:02:16,080 --> 00:02:17,310
+entonces tenemos la propiedad
+
+63
+00:02:17,710 --> 00:02:19,780
+de"x", y a veces
+
+64
+00:02:19,940 --> 00:02:20,940
+escribiré esto en vez de
+
+65
+00:02:21,050 --> 00:02:22,070
+p(x), voy
+
+66
+00:02:22,190 --> 00:02:22,960
+a escribir esto como p(x);
+
+67
+00:02:23,350 --> 00:02:24,930
+«Mu», «sigma» al cuadrado.
+
+68
+00:02:25,500 --> 00:02:26,750
+Esto denota que la probabilidad de
+
+69
+00:02:26,910 --> 00:02:28,670
+"x" es parametrizada por los dos parámetros
+
+70
+00:02:28,810 --> 00:02:30,660
+«Mu» y «sigma» al cuadrado.
+
+71
+00:02:31,940 --> 00:02:33,330
+La fórmula para la
+
+72
+00:02:33,370 --> 00:02:34,760
+densidad Gaussiana es esta:
+
+73
+00:02:35,170 --> 00:02:37,860
+1 sobre 2 «pi», «sigma», a la "x" negativa
+
+74
+00:02:38,070 --> 00:02:41,510
+menos «Mu» al cuadrado sobre 2 «sigma» cuadrado.
+
+75
+00:02:41,870 --> 00:02:45,980
+Así que no hay necesidad de memorizar esta
+
+76
+00:02:46,470 --> 00:02:47,530
+fórmula, ya sabes, esto
+
+77
+00:02:47,690 --> 00:02:49,410
+es simplemente la fórmula para la
+
+78
+00:02:49,540 --> 00:02:51,020
+curva en forma de campana aquí a la izquierda.
+
+79
+00:02:51,700 --> 00:02:53,100
+Así que no hay necesidad de memorizarla,
+
+80
+00:02:53,270 --> 00:02:53,990
+si alguna vez necesita usarla,
+
+81
+00:02:54,190 --> 00:02:56,460
+siempre puede buscarla y.
+
+82
+00:02:56,540 --> 00:02:57,450
+la figura a la izquierda
+
+83
+00:02:57,740 --> 00:02:58,420
+es lo que obtiene
+
+84
+00:02:58,910 --> 00:03:00,100
+si toma un valor fijo
+
+85
+00:03:00,290 --> 00:03:01,200
+de «Mu» y un
+
+86
+00:03:01,250 --> 00:03:04,070
+valor fijo de «sigma» y
+
+87
+00:03:04,450 --> 00:03:06,140
+traza p(x). Así que esta
+
+88
+00:03:06,870 --> 00:03:07,830
+curva de aquí, es realmente
+
+89
+00:03:08,390 --> 00:03:10,000
+p(x) trazada como una
+
+90
+00:03:10,030 --> 00:03:11,540
+función de x, ya sabe,
+
+91
+00:03:11,640 --> 00:03:15,970
+para un valor fijo de «Mu»
+
+92
+00:03:16,190 --> 00:03:18,770
+y el cuadrado de «sigma», «sigma» al cuadrado, que llamamos varianza.
+
+93
+00:03:19,950 --> 00:03:22,270
+A veces es más fácil pensar en términos de «sigma»,
+
+94
+00:03:22,950 --> 00:03:24,730
+«sigma» es llamada la
+
+95
+00:03:25,120 --> 00:03:27,850
+desviación estándar, por lo que
+
+96
+00:03:28,000 --> 00:03:29,640
+especifica el ancho
+
+97
+00:03:29,800 --> 00:03:31,310
+de esta densidad de probabilidad Gaussiana
+
+98
+00:03:31,730 --> 00:03:33,120
+mientras que el cuadrado de «sigma»,
+
+99
+00:03:33,330 --> 00:03:34,490
+«sigma» al cuadrado, es conocida como
+
+100
+00:03:34,620 --> 00:03:36,830
+la varianza. Veamos
+
+101
+00:03:37,000 --> 00:03:39,980
+algunos ejemplos de cómo luce la distribución Gaussiana.
+
+102
+00:03:41,010 --> 00:03:43,280
+Si «Mu» es igual a cero, «sigma» es igual a 1,
+
+103
+00:03:43,650 --> 00:03:44,730
+luego tenemos una distribución Gaussiana,
+
+104
+00:03:45,480 --> 00:03:48,000
+que se centra alrededor de cero, porque eso es «Mu» y
+
+105
+00:03:48,810 --> 00:03:50,560
+el ancho de esta Gaussiana, es la
+
+106
+00:03:50,730 --> 00:03:53,610
+desviación de estándar, es «sigma» en aquel lado.
+
+107
+00:03:55,140 --> 00:03:56,330
+Veamos algunos ejemplos de
+
+108
+00:03:56,700 --> 00:03:58,770
+Gaussianas. Si «Mu»
+
+109
+00:03:58,970 --> 00:04:00,750
+es igual a cero o  igual a 1, entonces
+
+110
+00:04:00,950 --> 00:04:02,150
+corresponde a una
+
+111
+00:04:02,370 --> 00:04:04,030
+distribución de Gauss, que se centra
+
+112
+00:04:04,770 --> 00:04:06,380
+en cero, ya que «Mu» es cero y
+
+113
+00:04:07,390 --> 00:04:08,310
+el ancho de esta Gaussiana, es
+
+114
+00:04:10,810 --> 00:04:12,570
+controlada de este modo por
+
+115
+00:04:13,010 --> 00:04:15,430
+por «sigma», por ese parámetro de varianza.
+
+116
+00:04:16,850 --> 00:04:17,390
+Aquí hay otro ejemplo.
+
+117
+00:04:20,520 --> 00:04:21,270
+Digamos que «Mu» es igual a cero
+
+118
+00:04:21,550 --> 00:04:23,670
+y «sigma» es igual a la mitad,
+
+119
+00:04:24,200 --> 00:04:26,290
+y la desviación estándar es 0.5 y
+
+120
+00:04:26,530 --> 00:04:27,650
+la varianza «sigma» al cuadrado
+
+121
+00:04:28,280 --> 00:04:29,550
+por lo tanto sería el cuadrado de 0.5, sería entonces, 0.25.
+
+122
+00:04:29,710 --> 00:04:33,600
+El cuadrado de 0.5 sería 0.25 y en
+
+123
+00:04:33,680 --> 00:04:34,910
+ese caso, la distribución Gaussiana,
+
+124
+00:04:35,600 --> 00:04:37,040
+o la densidad de probabilidad Gaussiana se ve así,
+
+125
+00:04:37,180 --> 00:04:39,490
+también se centra en cero
+
+126
+00:04:40,110 --> 00:04:41,410
+pero ahora, el ancho de esto
+
+127
+00:04:41,600 --> 00:04:43,250
+es mucho menor debido a la
+
+128
+00:04:43,620 --> 00:04:45,170
+menor varianza, el ancho de esta
+
+129
+00:04:45,520 --> 00:04:46,980
+densidad Gaussiana, es
+
+130
+00:04:47,450 --> 00:04:49,350
+aproximadamente la mitad de amplio.
+
+131
+00:04:50,550 --> 00:04:51,710
+Pero como esta es una
+
+132
+00:04:51,970 --> 00:04:53,590
+distribución de probabilidad, el área
+
+133
+00:04:53,800 --> 00:04:54,850
+bajo la curva, que es el área sombreada
+
+134
+00:04:55,310 --> 00:04:56,790
+de allá, esa área
+
+135
+00:04:57,180 --> 00:04:58,810
+debe integrarse a 1.
+
+136
+00:04:58,810 --> 00:05:00,500
+Esta es una propiedad de las distribuciones de probabilidad.
+
+137
+00:05:01,650 --> 00:05:02,680
+Porque, como sabes, esto es
+
+138
+00:05:02,830 --> 00:05:04,530
+una densidad Gaussiana mucho más alta porque
+
+139
+00:05:04,820 --> 00:05:06,050
+es la mitad de ancho, con
+
+140
+00:05:06,200 --> 00:05:08,150
+la mitad de la desviación de estándar, pero es dos veces más alta.
+
+141
+00:05:09,130 --> 00:05:11,510
+Otro ejemplo, si «sigma» es
+
+142
+00:05:11,640 --> 00:05:12,540
+igual a 2, obtenemos
+
+143
+00:05:12,650 --> 00:05:14,870
+una densidad Gaussiana más robusta, o mucho más amplia.
+
+144
+00:05:15,310 --> 00:05:17,090
+Entonces, aquí el parámetro «sigma»
+
+145
+00:05:17,370 --> 00:05:19,300
+controla que esta
+
+146
+00:05:19,630 --> 00:05:21,000
+densidad Gaussiana tenga un ancho mayor.
+
+147
+00:05:21,930 --> 00:05:23,180
+Y una vez más, el área bajo
+
+148
+00:05:23,220 --> 00:05:24,390
+la curva, que es el área sombreada
+
+149
+00:05:24,700 --> 00:05:26,720
+siempre se integra a 1.
+
+150
+00:05:26,840 --> 00:05:28,170
+Esa es una propiedad de las distribuciones de
+
+151
+00:05:28,800 --> 00:05:30,280
+probabilidad y debido a que es
+
+152
+00:05:30,480 --> 00:05:31,930
+más amplia, también es la mitad de
+
+153
+00:05:32,650 --> 00:05:36,640
+alta, con el fin de simplemente integrarse a la misma cosa.
+
+154
+00:05:36,750 --> 00:05:37,520
+Finalmente, un último ejemplo sería,
+
+155
+00:05:37,880 --> 00:05:38,980
+si ahora cambiamos los parámetros «Mu»
+
+156
+00:05:39,130 --> 00:05:40,660
+también, entonces en vez de centrarse
+
+157
+00:05:41,000 --> 00:05:42,320
+en cero, ahora tenemos una
+
+158
+00:05:42,410 --> 00:05:43,840
+distribución Gaussiana
+
+159
+00:05:44,830 --> 00:05:46,810
+centrada en tres, porque
+
+160
+00:05:47,710 --> 00:05:49,740
+se desplaza sobre toda la distribución Gaussiana.
+
+161
+00:05:51,170 --> 00:05:54,040
+A continuación, hablemos sobre el problema de estimación de parámetros.
+
+162
+00:05:55,100 --> 00:05:56,570
+¿Qué es el problema de estimación parámetro?
+
+163
+00:05:57,520 --> 00:05:58,350
+Supongamos que tenemos un conjunto de datos de
+
+164
+00:05:58,850 --> 00:06:00,180
+ejemplos "m", entonces x1
+
+165
+00:06:00,350 --> 00:06:01,470
+a través de x(m) y digamos
+
+166
+00:06:01,710 --> 00:06:03,250
+que cada uno de estos ejemplos es un número real.
+
+167
+00:06:04,200 --> 00:06:05,520
+Aquí en la figura, he trazado un
+
+168
+00:06:05,620 --> 00:06:06,390
+ejemplo de un conjunto de datos,
+
+169
+00:06:06,580 --> 00:06:08,390
+donde el eje horizontal es
+
+170
+00:06:08,580 --> 00:06:09,430
+el eje "x" y, como sabe,
+
+171
+00:06:09,560 --> 00:06:12,290
+tengo un rango de ejemplos de "x" y los acabo de trazar
+
+172
+00:06:12,560 --> 00:06:15,060
+en esta figura aquí.
+
+173
+00:06:15,260 --> 00:06:17,280
+Y el problema de estimación de parámetros es, digamos
+
+174
+00:06:17,500 --> 00:06:18,750
+que tengo la sospecha de que estos ejemplos
+
+175
+00:06:19,450 --> 00:06:21,160
+de una distribución Gaussiana, entonces
+
+176
+00:06:21,300 --> 00:06:24,560
+tengo la sospecha de que cada uno de mis ejemplos x(i) fue distribuido.
+
+177
+00:06:25,300 --> 00:06:26,930
+Eso es lo que significa esta tilde.
+
+178
+00:06:27,590 --> 00:06:28,520
+Por lo tanto, tengo la sospecha de que cada uno de
+
+179
+00:06:28,580 --> 00:06:30,220
+estos ejemplos se distribuyó según
+
+180
+00:06:30,760 --> 00:06:32,190
+una distribución normal o
+
+181
+00:06:32,250 --> 00:06:34,060
+una distribución Gaussiana, con
+
+182
+00:06:34,300 --> 00:06:36,210
+cierto parámetro «Mu» y algún parámetro «sigma» cuadrado pero
+
+183
+00:06:37,570 --> 00:06:39,560
+no sé cuáles son los valores de estos parámetros.
+
+184
+00:06:40,820 --> 00:06:42,360
+El problema con la estimación de parámetros es:
+
+185
+00:06:43,160 --> 00:06:44,480
+dado mi conjunto de datos que quiero
+
+186
+00:06:44,800 --> 00:06:45,720
+encontrar, quiero estimar,
+
+187
+00:06:45,880 --> 00:06:46,840
+cuáles son los valores de «Mu»
+
+188
+00:06:46,990 --> 00:06:48,470
+y «sigma» cuadrada.
+
+189
+00:06:49,620 --> 00:06:50,570
+Así que si tiene un
+
+190
+00:06:50,640 --> 00:06:51,660
+conjunto de datos como este,
+
+191
+00:06:51,790 --> 00:06:54,050
+parece que tal vez, si estimo
+
+192
+00:06:54,190 --> 00:06:56,210
+de qué distribución Gaussiana vinieron
+
+193
+00:06:56,350 --> 00:06:59,010
+los datos, tal vez eso
+
+194
+00:07:00,660 --> 00:07:01,770
+puede ser más o menos la distribución Gaussiana de donde
+
+195
+00:07:02,280 --> 00:07:04,410
+provinieron, con «Mu» siendo
+
+196
+00:07:05,500 --> 00:07:07,350
+el centro de la distribución y «sigma»,
+
+197
+00:07:07,990 --> 00:07:11,680
+la desviación estándar que controla la anchura de esta distribución Gausiana.
+
+198
+00:07:12,140 --> 00:07:12,820
+Parece un ajuste razonable
+
+199
+00:07:13,260 --> 00:07:15,280
+de los datos, porque, ya sabe,
+
+200
+00:07:15,440 --> 00:07:16,880
+parece que los datos tienen una muy
+
+201
+00:07:17,110 --> 00:07:18,910
+alta probabilidad de estar en la
+
+202
+00:07:19,240 --> 00:07:20,590
+región central, baja probabilidad de
+
+203
+00:07:21,640 --> 00:07:24,720
+estar lejos, baja probabilidad de estar más lejos y así sucesivamente.
+
+204
+00:07:24,780 --> 00:07:25,770
+Quizá esta sea una estimación
+
+205
+00:07:25,890 --> 00:07:27,360
+razonable de «Mu»
+
+206
+00:07:28,020 --> 00:07:29,920
+y de «sigma» al cuadrado,
+
+207
+00:07:30,410 --> 00:07:31,810
+que si corresponde a
+
+208
+00:07:31,960 --> 00:07:33,970
+una distribución Gaussiana, entonces luego tendrá esta apariencia.
+
+209
+00:07:35,650 --> 00:07:36,340
+Entonces, lo que haré
+
+210
+00:07:36,430 --> 00:07:37,550
+es escribir las fórmulas,
+
+211
+00:07:37,660 --> 00:07:39,090
+la fórmulas estándar para
+
+212
+00:07:39,750 --> 00:07:40,920
+para estimar los parámetros de
+
+213
+00:07:41,130 --> 00:07:43,480
+«Mu» y «sigma» cuadrada.
+
+214
+00:07:44,110 --> 00:07:44,860
+La forma en que vamos a estimar
+
+215
+00:07:45,390 --> 00:07:47,140
+«Mu» será
+
+216
+00:07:47,380 --> 00:07:48,850
+sólo el promedio
+
+217
+00:07:49,670 --> 00:07:50,630
+de mi ejemplo.
+
+218
+00:07:51,210 --> 00:07:52,190
+Entonces «Mu» es el parámetro medio,
+
+219
+00:07:52,750 --> 00:07:53,340
+voy a tomar mi
+
+220
+00:07:53,380 --> 00:07:54,350
+conjunto de entrenamiento, tomo mis
+
+221
+00:07:54,450 --> 00:07:56,200
+ejemplos "m" y los promedio.
+
+222
+00:07:56,470 --> 00:07:58,120
+Esto sólo me da el centro de esta distribución pero
+
+223
+00:08:01,150 --> 00:08:01,670
+¿que hay de «sigma» al cuadrado?
+
+224
+00:08:01,890 --> 00:08:03,110
+Bueno, la varianza, sólo voy a
+
+225
+00:08:03,340 --> 00:08:04,890
+escribir la fórmula estándar de nuevo,
+
+226
+00:08:05,150 --> 00:08:06,780
+voy a estimarla como la suma
+
+227
+00:08:07,280 --> 00:08:08,900
+de 1 a través de m(xi), menos
+
+228
+00:08:09,150 --> 00:08:11,730
+«Mu» al cuadrado,
+
+229
+00:08:12,130 --> 00:08:13,130
+y esta letra «Mu» aquí, es en realidad
+
+230
+00:08:13,240 --> 00:08:14,030
+la letra «Mu» que puedo calcular
+
+231
+00:08:14,450 --> 00:08:15,580
+aquí usando esta fórmula, y
+
+232
+00:08:16,790 --> 00:08:17,920
+lo que es la varianza o una
+
+233
+00:08:18,040 --> 00:08:18,890
+interpretación de la varianza,
+
+234
+00:08:19,440 --> 00:08:20,230
+es que si se fija en este
+
+235
+00:08:20,250 --> 00:08:21,580
+término, es la diferencia al cuadrado
+
+236
+00:08:22,090 --> 00:08:23,580
+entre el valor
+
+237
+00:08:24,020 --> 00:08:25,190
+que obtuve en mi ejemplo, menos
+
+238
+00:08:25,740 --> 00:08:28,300
+la media, menos el centro, menos la media de distribución.
+
+239
+00:08:28,810 --> 00:08:29,690
+Como sabe, la varianza,
+
+240
+00:08:29,730 --> 00:08:30,630
+la voy a estimar
+
+241
+00:08:31,250 --> 00:08:32,530
+como sólo el promedio de
+
+242
+00:08:32,570 --> 00:08:35,520
+las diferencias al cuadrado, entre mis ejemplos, menos de la media.
+
+243
+00:08:37,270 --> 00:08:38,370
+Sólo como un comentario adicional,
+
+244
+00:08:38,850 --> 00:08:40,150
+sólo para aquellos que son expertos
+
+245
+00:08:40,490 --> 00:08:41,820
+en las estadísticas, si es
+
+246
+00:08:42,010 --> 00:08:43,690
+un experto en estadística y si
+
+247
+00:08:43,830 --> 00:08:45,570
+ha escuchado de la estimación máxima de probabilidad,
+
+248
+00:08:46,680 --> 00:08:47,950
+entonces, estas estimaciones son en realidad la
+
+249
+00:08:48,770 --> 00:08:50,530
+estimación de la probabilidad máxima de los parámetros
+
+250
+00:08:50,680 --> 00:08:52,590
+«Mu» y «sigma» cuadrada.
+
+251
+00:08:53,220 --> 00:08:55,260
+Pero si no ha oído sobre eso antes, no se preocupe,
+
+252
+00:08:55,440 --> 00:08:56,500
+todo lo que necesita saber es que
+
+253
+00:08:56,750 --> 00:08:57,880
+estas son las dos fórmulas estándar
+
+254
+00:08:58,600 --> 00:09:01,090
+para tratar de averiguar lo que
+
+255
+00:09:01,520 --> 00:09:03,820
+«Mu» y «sigma» cuadrada valen, dado el conjunto de datos.
+
+256
+00:09:05,050 --> 00:09:06,140
+Finalmente, una última observación:
+
+257
+00:09:06,650 --> 00:09:07,810
+de nuevo, sólo para aquellos
+
+258
+00:09:07,950 --> 00:09:10,520
+que tal vez han tomado una clase de estadísticas antes.
+
+259
+00:09:10,880 --> 00:09:12,040
+Si usted ha tomado una clase de estadística
+
+260
+00:09:12,200 --> 00:09:13,530
+antes, algunos de ustedes
+
+261
+00:09:13,610 --> 00:09:14,620
+puede que hayan visto la fórmula aquí,
+
+262
+00:09:14,820 --> 00:09:15,810
+donde, ya sabe, esta es "m" menos
+
+263
+00:09:16,030 --> 00:09:17,300
+1, en vez de "m". De modo que
+
+264
+00:09:17,700 --> 00:09:19,310
+este primer término se convierte en 1
+
+265
+00:09:19,520 --> 00:09:20,410
+sobre m-1, en lugar
+
+266
+00:09:20,450 --> 00:09:22,640
+de 1 sobre m. En el aprendizaje automático,
+
+267
+00:09:22,960 --> 00:09:25,170
+las personas tienden a usar esta fórmula de 1 sobre m
+
+268
+00:09:26,000 --> 00:09:27,230
+pero en la práctica, el hecho de que sea
+
+269
+00:09:27,470 --> 00:09:28,480
+1 sobre m o 1 sobre m-1, no hace
+
+270
+00:09:28,550 --> 00:09:29,710
+ninguna diferencia esencial,
+
+271
+00:09:30,170 --> 00:09:32,290
+suponiendo que, m es
+
+272
+00:09:32,540 --> 00:09:34,670
+razonablemente grande, es un conjunto de entrenamiento de gran tamaño.
+
+273
+00:09:35,310 --> 00:09:36,480
+Así que, sólo en caso de que haya visto
+
+274
+00:09:36,740 --> 00:09:38,570
+esta otra versión antes, en cualquier
+
+275
+00:09:38,810 --> 00:09:39,970
+versión funciona igualmente bien pero
+
+276
+00:09:40,300 --> 00:09:41,630
+en el aprendizaje automático,
+
+277
+00:09:41,910 --> 00:09:42,850
+la mayoría de las personas tiende a usar
+
+278
+00:09:42,970 --> 00:09:44,410
+1 sobre m en esta fórmula.
+
+279
+00:09:45,690 --> 00:09:46,740
+Las dos versiones tienen propiedades
+
+280
+00:09:47,070 --> 00:09:48,770
+teóricas ligeramente diferentes,
+
+281
+00:09:49,030 --> 00:09:50,530
+propiedades matemáticas un poco distintas pero en
+
+282
+00:09:50,590 --> 00:09:54,080
+la práctica, realmente hace muy poca diferencia, si la hay.
+
+283
+00:09:56,490 --> 00:09:57,670
+Pues bien, espero que ahora tengan
+
+284
+00:09:57,890 --> 00:09:58,900
+una buena idea de cómo luce la
+
+285
+00:09:59,020 --> 00:10:00,410
+distribución Gaussiana y
+
+286
+00:10:00,740 --> 00:10:02,210
+cómo estimar los parámetros
+
+287
+00:10:02,270 --> 00:10:03,730
+«Mu» y «sigma» al cuadrado de
+
+288
+00:10:04,010 --> 00:10:05,770
+la distribución de Gaussiana y
+
+289
+00:10:05,910 --> 00:10:07,510
+si le dan un conjunto de entrenamiento,
+
+290
+00:10:07,850 --> 00:10:08,940
+esto es, si tiene un conjunto de datos
+
+291
+00:10:09,240 --> 00:10:10,220
+que sospecha que proviene
+
+292
+00:10:11,130 --> 00:10:12,350
+de una distribución Gaussiana con
+
+293
+00:10:12,410 --> 00:10:15,190
+parámetros desconocidos utilizando «sigma» al cuadrado.
+
+294
+00:10:16,190 --> 00:10:17,510
+En el siguiente video empezaremos
+
+295
+00:10:17,810 --> 00:10:18,820
+a retomar esto y a aplicarlo para
+
+296
+00:10:18,920 --> 00:10:20,810
+desarrollar un algoritmo de detección de anomalías.

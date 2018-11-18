@@ -1,0 +1,113 @@
+For the problem of dimensionality
+reduction, by far the most popular, by far the most commonly used
+algorithm is something called principle components analysis, or PCA. In this video, I'd like to start talking
+about the problem formulation for PCA. In other words, let's try to formulate, precisely, exactly what
+we would like PCA to do. Let's say we have a data set like this. So, this is a data set of examples x and
+R2 and let's say I want to reduce the dimension of the data from
+two-dimensional to one-dimensional. In other words, I would like to find
+a line onto which to project the data. So what seems like a good line
+onto which to project the data, it's a line like this,
+might be a pretty good choice. And the reason we think this might be
+a good choice is that if you look at where the projected versions of the point
+scales, so I take this point and project it down here. Get that, this point gets projected here,
+to here, to here, to here. What we find is that the distance
+between each point and the projected version is pretty small. That is,
+these blue line segments are pretty short. So what PCA does formally is it tries
+to find a lower dimensional surface, really a line in this case,
+onto which to project the data so that the sum of squares of these little
+blue line segments is minimized. The length of those blue line segments, that's sometimes also called
+the projection error. And so what PCA does is it tries to find a
+surface onto which to project the data so as to minimize that. As an aside, before applying PCA,
+it's standard practice to first perform mean normalization at feature
+scaling so that the features x1 and x2 should have zero mean, and
+should have comparable ranges of values. I've already done this for this example,
+but I'll come back to this later and talk more about feature scaling and the
+normalization in the context of PCA later. But coming back to this example, in
+contrast to the red line that I just drew, here's a different line onto
+which I could project my data, which is this magenta line. And, as we'll see, this magenta
+line is a much worse direction onto which to project my data, right? So if I were to project my
+data onto the magenta line, we'd get a set of points like that. And the projection errors, that is
+these blue line segments, will be huge. So these points have to move
+a huge distance in order to get projected onto the magenta line. And so that's why PCA,
+principal components analysis, will choose something like the red line
+rather than the magenta line down here. Let's write out the PCA problem
+a little more formally. The goal of PCA, if we want to
+reduce data from two-dimensional to one-dimensional is, we're going to try
+find a vector that is a vector u1, which is going to be an Rn, so
+that would be an R2 in this case. I'm gonna find the direction onto
+which to project the data, so it's to minimize the projection error. So, in this example I'm hoping
+that PCA will find this vector, which l wanna call u(1), so
+that when I project the data onto the line that I define by
+extending out this vector, I end up with pretty small
+reconstruction errors. And that reference of data
+that looks like this. And by the way, I should mention
+that where the PCA gives me u(1) or -u(1), doesn't matter. So if it gives me a positive vector
+in this direction, that's fine. If it gives me the opposite vector
+facing in the opposite direction, so that would be like minus u(1). Let's draw that in blue instead, right? But it gives a positive u(1) or
+negative u(1), it doesn't matter because each of these vectors defines the same red
+line onto which I'm projecting my data. So this is a case of reducing data from
+two-dimensional to one-dimensional. In the more general case we
+have n-dimensional data and we'll want to reduce it to k-dimensions. In that case we want to find not just
+a single vector onto which to project the data but we want to find k-dimensions
+onto which to project the data. So as to minimize this projection error. So here's the example. If I have a 3D point cloud like this, then
+maybe what I want to do is find vectors. So find a pair of vectors. And I'm gonna call these vectors. Let's draw these in red. I'm going to find a pair of vectors,
+sustained from the origin. Here's u(1), and
+here's my second vector, u(2). And together, these two vectors define a
+plane, or they define a 2D surface, right? Like this with a 2D surface onto
+which I am going to project my data. For those of you that are familiar
+with linear algebra, for this year they're really experts in linear
+algebra, the formal definition of this is that we are going to find the set of
+vectors u(1), u(2), maybe up to u(k). And what we're going to
+do is project the data onto the linear subspace spanned
+by this set of k vectors. But if you're not familiar with
+linear algebra, just think of it as finding k directions instead of just one
+direction onto which to project the data. So finding a k-dimensional surface is
+really finding a 2D plane in this case, shown in this figure, where we can define the position of
+the points in a plane using k directions. And that's why for PCA we want to find k
+vectors onto which to project the data. And so more formally in PCA, what we want
+to do is find this way to project the data so as to minimize the sort
+of projection distance, which is the distance between
+the points and the projections. And so in this 3D example too. Given a point we would take the point and
+project it onto this 2D surface. We are done with that. And so the projection error would be,
+the distance between the point and where it gets projected
+down to my 2D surface. And so what PCA does is I try to find
+the line, or a plane, or whatever, onto which to project the data,
+to try to minimize that square projection, that 90 degree or
+that orthogonal projection error. Finally, one question I sometimes
+get asked is how does PCA relate to linear regression? Because when explaining PCA, I sometimes
+end up drawing diagrams like these and that looks a little bit
+like linear regression. It turns out PCA is not linear regression,
+and despite some cosmetic similarity, these
+are actually totally different algorithms. If we were doing linear regression, what
+we would do would be, on the left we would be trying to predict the value of some
+variable y given some info features x. And so linear regression, what we're
+doing is we're fitting a straight line so as to minimize the square error
+between point and this straight line. And so what we're minimizing would be
+the squared magnitude of these blue lines. And notice that I'm drawing
+these blue lines vertically. That these blue lines are the vertical
+distance between the point and the value predicted by the hypothesis. Whereas in contrast, in PCA,
+what it does is it tries to minimize the magnitude of these blue lines,
+which are drawn at an angle. These are really the shortest
+orthogonal distances. The shortest distance between
+the point x and this red line. And this gives very different
+effects depending on the dataset. And more generally,
+when you're doing linear regression, there is this distinguished variable
+y they we're trying to predict. All that linear regression as well
+as taking all the values of x and try to use that to predict y. Whereas in PCA,
+there is no distinguish, or there is no special variable y
+that we're trying to predict. And instead, we have a list of features,
+x1, x2, and so on, up to xn, and all of these features are treated equally,
+so no one of them is special. As one last example,
+if I have three-dimensional data and I want to reduce data from 3D to 2D,
+so maybe I wanna find two directions, u(1) and u(2),
+onto which to project my data. Then what I have is I have three features,
+x1, x2, x3, and all of these are treated alike. All of these are treated symmetrically and there's no special variable y
+that I'm trying to predict. And so PCA is not a linear regression, and even though at some cosmetic
+level they might look related, these are actually very
+different algorithms. So hopefully you now
+understand what PCA is doing. It's trying to find a lower dimensional
+surface onto which to project the data, so as to minimize this
+squared projection error. To minimize the square distance
+between each point and the location of where it gets projected. In the next video,
+we'll start to talk about how to actually find this lower dimensional
+surface onto which to project the data.

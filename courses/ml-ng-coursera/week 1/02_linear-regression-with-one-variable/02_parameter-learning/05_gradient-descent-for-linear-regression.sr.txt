@@ -1,0 +1,51 @@
+U prethodnim videima govorili 
+smo o algoritmu gradijenta opadanja a govorili smo i o modelu linearne 
+regresije funkciji koštanja kvadrata greške. U ovome videu ćemo da spojimo 
+gradijent opadanja i funkciju koštanja, a to će da nam da algoritam za linearnu regresiju, pridružujući pravu našim podacima. Na ovome smo radili u prošlim videima. Ovo je algoritam gradijenta opadanja, 
+to biste trebali da poznajete a ovo je model linearne 
+regresije sa linearnom hipotezom i kvadrat greške funkcije koštanja. Ono što ćemo da uradimo je 
+da primenimo gradijent opadanja da minimizujemo kvadrat greške funkcije koštanja. Da bismo primenili gradijent opadanja, da bismo napisali ovaj deo koda, 
+ključni član koji nam treba je ovaj izvod. Znači, treba da shvatite šta 
+je ovaj član parcijalnog izvoda i da ga uključite u definiciju funkcije koštanja J. To bi bilo ovo. Suma od jedan do m. Ovoga člana kvadrata greške funkcije koštanja. A ovde sam samo uključio definiciju funkcije koštanja. Malo pojednostavljeno, ovo je jednako ovome. Sigma i jednako 1 do m od 
+(teta0 + teta1 * xi - yi) na kvadrat. Uzeo sam definiciju hipoteze i uključio je tamo. Treba da shvatimo šta je parcijalni izvod za dva slučaja, j = 0 i j = 1. Znači, želimo da shvatimo šta je parcijalni izvod za teta0 slučaj i za teta1 slučaj. Samo ću da ispišem odgovore. Ovaj prvi član pojednostavljen 1/m suma od trening skupa xi - yi a za ovaj član parcijalni izvod, napišimo teta1, dobijam ovaj član. Minus yi * xi U redu, i računajući te parcijalne izvode, 
+ići ćemo od ove jednačine. Polazeći od ove jednačine do bilo koje jednačine dole. Računanje tih parcijalnih izvoda 
+zahteva multivarijabilni račun. Ako poznajete račun, 
+slobodno radite izvode na svoj način i proverite to ako uzmete izvode, 
+dobijate odgovore koje sam i ja dobio. Ali ako slabije poznajete račun, ne brinite oko toga, u redu je da samo uzmete te 
+jednačine koje smo dobili i neće vam trebati poznavanje računa niti bilo čega sličnog, 
+da biste uradili zadaću, dakle, implementirajmo gradijent opadanja i nazad na posao. Naoružani tim definicijama ili onim što smo dobili od izvoda, što je nagib funkcije koštanja J, možemo da ga vratimo nazad 
+u algoritam gradijenta opadanja. Ovo je gradijent opadanja za linearnu regresiju i ponavljaće 
+se do konvergencije, teta0 i teta1 se menjaju kako se menjaju i ovo minus alfa puta član izvoda. Dakle, ovaj član ovde. Ovo je algoritam linearne regresije. Ovaj prvi član ovde, to je naravno parcijalni izvod u odnosu na teta0, na kom smo radili u prošlom slajdu. A drugi član ovde je parcijalni izvod u odnosu na teta1, 
+na kom smo radili u prethodnoj liniji. Da se na brzinu podsetimo, 
+kada implementirate gradijent opadanja, postoji i ovaj detalj koji treba da implementirate, teta0 i teta1 treba da menjate istovremeno. Dakle, hajde da vidimo kako gradijent opadanja radi. Jedan od problema koji smo videli je da 
+gradijent opadanja može da bude osetljiv na lokalni optimum. Kada sam prvi put objasnio gradijent opadanja
+pokazao sam vam ovu sliku kako silazi niz površ i videli smo kako je
+ zavisan od odabira inicijalizacije, možete da završite na različitim optimumima. Završićete ovde ili ovde. Ali, funkcija koštanja će za linearnu regresiju da bude 
+funkcija u obliku luka kao ova. Tehnički naziv za ovo je konveksna funkcija. Neću da vam dajem formalnu 
+definiciju šta je konveksna funkcija convex, ali neformalno konveksna funkcija 
+znači funkcija u obliku luka a ta funkcija nema lokalni optimum, samo globalni. A gradijent opadanja za ovu
+ vrstu funkcije koštanja, kad god koristite linearnu regresiju, uvek će 
+da konvergira globalnom optimumu. Jer ne postoje drugi optimumi, samo lokalni. Hajde da vidimo algoritam u akciji. Kao i obično, ovo je prikaz funkcije 
+hipoteze i funkcije koštanja J. Recimo da sam inicijalizovao 
+moj parametar na ovu vrednost. Recimo, obično inicijalizujemo parametre na 0, 0. teta0 i teta1 su 0. Ali zbog demonstracije, u ovoj situaciji ću da inicijalizujem teta0 na 900 a teta1 na -0.1. A to odgovara h(x) = 900 - 0.1x to je ova prava, na funkciji koštanja. Ako napravimo jedan korak u gradijentu opadanja, ići ćemo od ove tačke ovde, preko dole i levo do ove druge tačke. Primećujete da se moja prava promenila malo ako napravim drugi korak, moja prava se menja. Shvatate? A pomerio sam se na novu tačku na funkciji koštanja. Kako pravim dalje korake, silazim sa cenom. Moji parametri prate ovu putanju. A ako pogledam levo, to odgovara hipotezi. Čini se da to sve bolje odgovara podacima dok eventualno ne završim u globalnom minimumu, a on odgovara ovoj hipotezi,
+ što odgovara podacima. Dakle, ovo je gradijent opadanja i
+ samo smo ga pokrenuli i dobili slaganje sa 
+podacima koštanja nekretnina. I možete da je sada koristite za predviđanje, znate, ako vaš prijatelj ima kuću od 1250 kvadratnih fita, možete da pročitate vrednost i 
+reći mu da bi možda mogao da dobije 250,000 dolara za kuću. I konačno, da bismo imenovali malo drugačije, 
+algoritam kroz koji smo upravo prošli se ponekad 
+zove i grupni gradijent opadanja. Izgleda da u mašinskom učenju, 
+ne znam, osećam kao da stručnjaci mašinskog učenja ne daju baš dobra imena algoritmima. Ali grupno mašinsko učenje se odnosi na činjenicu da svaki korak gradijenta opadanja 
+gleda u sve trening primere. Dakle, u gradijentu opadanja, kada računate izvode, vi računate sume. U svakom koraku gradijenta opadanja 
+računamo nešto poput ovoga, sumirate kroz m trening primera i grupni 
+gradijent opadanja se odnosi na činjenicu da gledate celu grupu trening primera. I opet, nije baš sjajno ime, ali tako ga stručnjaci mašinskog učenja zovu. Izgleda da postoje i druge verzije gradijenta opadanja koje nisu grupne verzije, umesto toga one ne gledaju celi trening skup već gledaju u manje podskupove trening skupa. A takođe ćemo da govorimo i o njima kasnije u kursu. Za sada, koristeći algoritam, 
+upravo smo naučili o korištenju grupnog gradijenta opadanja i znate kako da implementirate 
+gradijent opadanja za linearnu regresiju. Dakle, to je linearna regresija sa gradijentom opadanja. Ako ste ranije videli linearnu algebru, neki od vas su možda pohađali 
+napredni kurs linearne algebre, možda znate da postoji rešenje za numeričko rešavanje minimuma funkcije koštanja J bez potrebe da se koristi iterativni algoritam 
+kao što je gradijent opadanja. Kasnije u kursu ćemo da govorimo 
+o tom metodu za rešavanje minimuma funkcije koštanja J 
+bez potrebe za višestrukim koracima gradijenta opadanja. Taj metod se zove metod normalne jednačine. U slučaju da ste čuli za taj metod, izgleda da gradijent opadanja bolje skalira veće skupove 
+podataka od normalne jednačine. Sada kada poznajemo gradijent 
+opadanja moći ćemo da ga koristimo u mnogo različitih konteksta a takođe ćemo ga koristiti u mnogo različitih problema mašinskog učenja. Čestitke za savladavanje 
+prvog algoritma mašinskog učenja. Kasnije ćemo da imamo vežbe u kojima ćete 
+trebati da implementirate gradijent opadanja i nadam se da ćete da ih pravilno koristite. Ali pre toga želim da vam u 
+sledećem skupu videa kažem, prvo da vam kažem o generalizaciji algoritma gradijenta opadanja što će da ga učini mnogo moćnijim. A o tome ćemo u sledećem videu.

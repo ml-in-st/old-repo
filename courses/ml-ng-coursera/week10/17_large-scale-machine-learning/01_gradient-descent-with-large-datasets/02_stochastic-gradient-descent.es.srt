@@ -1,0 +1,587 @@
+1
+00:00:00,251 --> 00:00:05,622
+Para muchos algoritmos de aprendizaje, entre ellos la regresión lineal, la regresión logística y las redes neuronales,
+
+2
+00:00:05,622 --> 00:00:11,955
+la forma en que derivamos el algoritmo fue encontrando una función de costos, o encontrando un objetivo de optimización,
+
+3
+00:00:11,955 --> 00:00:16,476
+y después usando un algoritmo como el gradiente de descenso para minimizar esa función de costos.
+
+4
+00:00:16,476 --> 00:00:22,461
+Cuando tenemos un conjunto de entrenamiento muy grande, el gradiente de descenso se convierte en un procedimiento muy costoso computacionalmente.
+
+5
+00:00:22,461 --> 00:00:29,300
+En este video, hablaremos de una modificación al algoritmo básico del gradiente de descenso llamado gradiente de descenso estocástico,
+
+6
+00:00:29,300 --> 00:00:37,841
+que nos permitirá ampliar estos algoritmos para conjuntos de entrenamiento mucho mayores.
+
+7
+00:00:37,841 --> 00:00:41,928
+Supongamos que están entrenando un modelo de regresión lineal utilizando el gradiente de descenso.
+
+8
+00:00:41,928 --> 00:00:48,055
+Como un resumen rápido, la hipótesis se verá así, y la función de coste se verá así,
+
+9
+00:00:48,055 --> 00:00:54,459
+que es la mitad del promedio de error cuadrado de su hipótesis sobre sus ejemplos de entrenamiento «m»,
+
+10
+00:00:54,459 --> 00:00:59,705
+y la función de costos que ya hemos visto, se parece a este tipo de función en forma de arco.
+
+11
+00:00:59,705 --> 00:01:06,659
+Así, trazada como la función de los parámetros «theta» 0 y «theta» 1, la función de costo «J» es un tipo de función en forma de arco.
+
+12
+00:01:06,659 --> 00:01:10,999
+Y el gradiente de descenso se ve así, en donde en el bucle interno del gradiente de descenso
+
+13
+00:01:10,999 --> 00:01:15,594
+ustedes actualizan repetidamente los parámetros «theta» usando esa expresión.
+
+14
+00:01:15,594 --> 00:01:22,574
+Ahora bien, en el resto de este video, voy a seguir usando la regresión lineal como el ejemplo en ejecución.
+
+15
+00:01:22,574 --> 00:01:29,371
+Pero las ideas aquí, las ideas del gradiente de descenso estocástico son completamente generales y también aplican a otros algoritmos de aprendizaje,
+
+16
+00:01:29,371 --> 00:01:38,011
+como la regresión logística, las redes neuronales y otros algoritmos que se basan en entrenar el gradiente de descenso  sobre un conjunto de entrenamiento específico.
+
+17
+00:01:38,011 --> 00:01:43,236
+Así que aquí está una imagen de lo que hace el gradiente de descenso. Si los parámetros se inicializan hacia el al punto allí,
+
+18
+00:01:43,236 --> 00:01:50,072
+entonces, a medida que ejecuten el gradiente de descenso, las diferentes iteraciones del gradiente de descenso tomarán los parámetros hasta el mínimo global.
+
+19
+00:01:50,072 --> 00:01:55,193
+Así que tomen una trayectoria que se parezca a eso y que se dirige de manera muy directa al mínimo global.
+
+20
+00:01:55,193 --> 00:01:59,561
+Ahora, el problema con el gradiente de descenso es que si «m» es grande,
+
+21
+00:01:59,561 --> 00:02:08,382
+entonces el cálculo de este término derivado puede ser muy costoso ya que esto requiere sumar sobre todos los  ejemplos «m».
+
+22
+00:02:08,382 --> 00:02:15,644
+De modo que si «m» es 300 millones, bien, entonces en los Estados Unidos hay cerca de 300 millones de personas.
+
+23
+00:02:15,644 --> 00:02:20,783
+Así que los datos del censo de los EE.UU. o Estados Unidos pueden estar en el orden de esa cantidad de registros,
+
+24
+00:02:20,783 --> 00:02:26,715
+de modo que ustedes desean ajustar el modelo de regresión lineal a eso y luego sumar más de 300 millones de registros.
+
+25
+00:02:26,715 --> 00:02:36,385
+Y eso es muy caro. Para darle un nombre al algoritmo, esta versión particular de gradiente de descenso también se llama gradiente de descenso por lotes.
+
+26
+00:02:36,385 --> 00:02:41,352
+Y el término lote se refiere al hecho de que estamos viendo todos los ejemplos de entrenamiento a la vez.
+
+27
+00:02:41,352 --> 00:02:44,303
+Lo llamamos una especie de lote de todos los ejemplos de entrenamiento.
+
+28
+00:02:44,303 --> 00:02:51,853
+Y tal vez no es en realidad el mejor nombre, pero esto es lo que la gente del aprendizaje automático llama a esta versión particular del gradiente de descenso.
+
+29
+00:02:51,853 --> 00:02:57,157
+Y si realmente imaginan que tienen 300 millones de registros de los censos guardadas en el disco,
+
+30
+00:02:57,157 --> 00:03:05,945
+la forma en que este algoritmo funciona es  que necesitan leer en la memoria de la computadora los 300 millones de registros a fin de calcular este término derivativo.
+
+31
+00:03:05,945 --> 00:03:11,508
+Necesitan transmitir todos estos registros a través de la computadora porque no pueden almacenar todos sus archivos en la memoria de la computadora.
+
+32
+00:03:11,508 --> 00:03:16,425
+Así que tienen que leer a través de ellos y, poco a poco, ya saben, acumular la suma con el fin de calcular la derivada.
+
+33
+00:03:16,425 --> 00:03:21,452
+Y, después de haber hecho todo ese trabajo, eso les permite tomar un paso del gradiente de descenso.
+
+34
+00:03:21,452 --> 00:03:24,749
+Y ahora tienen que hacer todo de nuevo,
+
+35
+00:03:24,749 --> 00:03:28,424
+ya saben, buscar a través de los 300 millones de registros, acumular estas sumas,
+
+36
+00:03:28,424 --> 00:03:32,578
+y después de haber hecho todo ese trabajo, pueden tomar otro pequeño paso usando el gradiente de descenso.
+
+37
+00:03:32,578 --> 00:03:36,959
+Y luego, hacerlo de nuevo; y después, toman un tercer paso, y así sucesivamente.
+
+38
+00:03:36,959 --> 00:03:40,819
+De modo que les va a tomar mucho tiempo conseguir que el algoritmo converja.
+
+39
+00:03:40,819 --> 00:03:45,375
+En contraste con el gradiente de descenso por lotes, lo que vamos a hacer es encontrar un algoritmo diferente
+
+40
+00:03:45,375 --> 00:03:50,465
+que no necesite que se vean todos los ejemplos de entrenamiento en cada iteración,
+
+41
+00:03:50,465 --> 00:03:55,118
+sino que necesite observar solamente un solo ejemplo de entrenamiento en una iteración.
+
+42
+00:03:55,118 --> 00:03:59,617
+Antes de pasar al nuevo algoritmo, aquí está sólo un algoritmo del gradiente de descenso por lotes escrito de nuevo,
+
+43
+00:03:59,617 --> 00:04:05,794
+siendo esta la función de costos y siendo esto la  actualización y, por supuesto, este término aquí
+
+44
+00:04:05,794 --> 00:04:10,678
+que se usa en la regla del gradiente de descenso, esa es la derivada parcial
+
+45
+00:04:10,678 --> 00:04:17,933
+con respecto a los parámetros «theta» «J» de nuestro objetivo de optimización, «J entrenamiento» de «theta».
+
+46
+00:04:17,933 --> 00:04:23,386
+Ahora, veamos el algoritmo más eficiente que se adapta mejor a los grandes conjuntos de datos.
+
+47
+00:04:23,386 --> 00:04:26,489
+Con el fin de trabajar desde los algoritmos llamados gradientes de descenso estocásticos,
+
+48
+00:04:26,489 --> 00:04:32,657
+escribamos la función de costos de una manera ligeramente diferente. Tenemos que encontrar el costo del parámetro «theta»
+
+49
+00:04:32,657 --> 00:04:40,471
+con respecto a un ejemplo de entrenamiento «x(i), y(1)» para que sea igual a la mitad de las veces del error al cuadrado
+
+50
+00:04:40,471 --> 00:04:44,791
+en la que incurre mi hipótesis en ese ejemplo, «x(i), y(i)».
+
+51
+00:04:44,791 --> 00:04:53,386
+De modo que este término de la función de costos realmente mide qué tan bien está funcionando mi hipótesis sobre un solo ejemplo «x(i), y(i)».
+
+52
+00:04:53,386 --> 00:05:01,010
+Ahora notan de que la función de costo «j entrenar» general se puede escribir de esta forma equivalente.
+
+53
+00:05:01,010 --> 00:05:09,606
+Así que «j entrenar» es sólo el promedio sobre mis ejemplos de entrenamiento «m» del costo de mi hipótesis en ese ejemplo «x(i), y(i)».
+
+54
+00:05:09,606 --> 00:05:13,522
+Armado con esta visión de la función de costos para la regresión lineal,
+
+55
+00:05:13,522 --> 00:05:17,636
+permítanme escribir ahora lo que hace el gradiente de descenso estocástico.
+
+56
+00:05:17,636 --> 00:05:26,940
+El primer paso del gradiente de descenso estocástico es mezclar al azar el conjunto de datos.
+
+57
+00:05:26,940 --> 00:05:32,539
+Con esto sólo me refiero a  mezclar de manera aleatoria o a reordenar sus ejemplos «m» de entrenamiento.
+
+58
+00:05:32,539 --> 00:05:37,450
+Es una especie de paso de pre-procesamiento estándar; regresaré a esto en un minuto.
+
+59
+00:05:37,450 --> 00:05:42,997
+Pero el trabajo principal del gradiente de descenso estocástico se hace a continuación en lo siguiente.
+
+60
+00:05:42,997 --> 00:05:48,150
+Vamos a repetir para «i» es igual a 1 hasta «m».
+
+61
+00:05:48,150 --> 00:05:53,067
+Así que vamos a buscar repetidamente a través de mis ejemplos de entrenamiento y  realizar la siguiente actualización.
+
+62
+00:05:53,067 --> 00:06:06,523
+Voy a actualizar el parámetro «theta» «j» como «theta» «j» menos «alfa» veces «h» de «x(i)» menos «y(i)» veces «x(i)j».
+
+63
+00:06:06,523 --> 00:06:12,961
+Y vamos a hacer esta actualización como de costumbre para todos los valores de «j».
+
+64
+00:06:12,961 --> 00:06:24,708
+Ahora, observamos que este término aquí es exactamente lo que teníamos dentro de la suma del gradiente de descenso por lotes.
+
+65
+00:06:24,708 --> 00:06:31,256
+De hecho, para aquellos de ustedes que estén familiarizados con cálculo, es posible demostrar que ese término aquí, ese es este término aquí,
+
+66
+00:06:31,256 --> 00:06:43,511
+es igual a la derivada parcial con respecto a mi parámetro «theta» «j» del costo de los parámetros «theta» sobre «x(i), y(i)».
+
+67
+00:06:43,511 --> 00:06:47,383
+En donde el costo es, por supuesto, esto que se definió anteriormente.
+
+68
+00:06:47,383 --> 00:06:52,081
+Y sólo para concluir el algoritmo, voy a cerrar mis corchetes allí.
+
+69
+00:06:52,081 --> 00:06:59,365
+Así que lo que el gradiente de descenso estocástico está haciendo es en realidad escanear a través de los ejemplos de entrenamiento.
+
+70
+00:06:59,365 --> 00:07:04,349
+Y primero va a ver mi primer ejemplo de entrenamiento «x(1), y(1)».
+
+71
+00:07:04,349 --> 00:07:09,399
+Y después, viendo sólo este primer ejemplo, va a tomar básicamente como un paso pequeño del gradiente de descenso
+
+72
+00:07:09,399 --> 00:07:13,725
+con respecto al costo de sólo este primer ejemplo de entrenamiento.
+
+73
+00:07:13,725 --> 00:07:15,717
+De modo que, en otras palabras, vamos a ver el primer ejemplo
+
+74
+00:07:15,717 --> 00:07:21,214
+y modificar los parámetros un poco para ajustar sólo el primer ejemplo de entrenamiento un poco mejor.
+
+75
+00:07:21,214 --> 00:07:29,244
+Una vez hecho esto dentro de este bucle interior, se va a ir entonces al segundo ejemplo de entrenamiento.
+
+76
+00:07:29,244 --> 00:07:33,848
+Y lo que va a hacer allí es dar otro pasito más en el espacio del parámetro,
+
+77
+00:07:33,848 --> 00:07:39,682
+así que modificar los parámetros sólo un poco para ajustar solamente un segundo ejemplo de entrenamiento un poco mejor.
+
+78
+00:07:39,682 --> 00:07:44,130
+Una vez hecho esto, se va a ir a mi tercer ejemplo de entrenamiento
+
+79
+00:07:44,130 --> 00:07:51,722
+y modificar los parámetros para tratar de ajustar sólo el tercer ejemplo de entrenamiento un poco mejor, y así sucesivamente
+
+80
+00:07:51,722 --> 00:07:55,114
+hasta que, ya saben, pasen a través de todo el conjunto de entrenamiento.
+
+81
+00:07:55,114 --> 00:08:01,297
+Y después, este bucle exterior repetido puede ocasionar que pase múltiples veces sobre  el conjunto de entrenamiento completo.
+
+82
+00:08:01,297 --> 00:08:07,346
+Esta visión del gradiente de descenso estocástico también motiva la razón por la que deseamos empezar por mezclar de manera aleatoria el conjunto de datos.
+
+83
+00:08:07,346 --> 00:08:10,772
+Esto nos asegura que cuando escaneamos a través del conjunto de entrenamiento aquí,
+
+84
+00:08:10,772 --> 00:08:15,197
+terminamos visitando los ejemplos de entrenamiento en algún tipo de orden mezclado al azar.
+
+85
+00:08:15,197 --> 00:08:21,229
+Dependiendo de si sus datos ya estaban ordenados al azar, o si venían mezclados originalmente en un orden extraño,
+
+86
+00:08:21,229 --> 00:08:26,391
+en la práctica esto sólo agilizaría las conversiones al gradiente de descenso estocástico sólo un poco.
+
+87
+00:08:26,391 --> 00:08:30,985
+Así que, en aras de la seguridad, por lo general es mejor mezclar aleatoriamente el conjunto de datos si no están seguros
+
+88
+00:08:30,985 --> 00:08:34,056
+si llegó a ustedes en un orden mezclado al azar o no.
+
+89
+00:08:34,056 --> 00:08:37,240
+Pero más importante aún, otra vista del gradiente de descenso estocástico es
+
+90
+00:08:37,240 --> 00:08:45,504
+que es muy parecido al  gradiente de descenso de lote, pero en lugar de esperar a sumar estos términos del gradiente sobre todos los ejemplos «m» de entrenamiento,
+
+91
+00:08:45,504 --> 00:08:50,624
+lo que estamos haciendo es que estamos tomando este término del gradiente usando sólo un ejemplo de entrenamiento,
+
+92
+00:08:50,624 --> 00:08:54,810
+y ya estamos empezando a hacer progreso para mejorar los parámetros.
+
+93
+00:08:54,810 --> 00:09:02,248
+Así que en lugar de esperar hasta tomar una trayectoria a través de todos los 300,000 de registros de censo de Estados Unidos,
+
+94
+00:09:02,248 --> 00:09:05,632
+es decir, en lugar de tener que buscar a través de todos los ejemplos de entrenamiento,
+
+95
+00:09:05,632 --> 00:09:09,947
+antes de que podamos modificar los parámetros un poco y avanzar hacia un mínimo global,
+
+96
+00:09:09,947 --> 00:09:14,975
+en vez de eso, para el gradiente de descenso estocástico, sólo tenemos que mirar a un solo ejemplo de entrenamiento
+
+97
+00:09:14,975 --> 00:09:22,188
+y ya estamos empezando a realizar progresos en este caso de los parámetros, hacia mover los parámetros al mínimo global.
+
+98
+00:09:22,188 --> 00:09:27,558
+Por lo tanto, aquí está el algoritmo escrito de nuevo en el que el primer paso es mezclar aleatoriamente los datos,
+
+99
+00:09:27,558 --> 00:09:35,089
+y el segundo paso es en el que se hace el trabajo real, en donde está esa actualización con respecto a un único ejemplo de entrenamiento «x(i), y(i)».
+
+100
+00:09:35,089 --> 00:09:40,139
+Por lo tanto, vamos a ver lo que este algoritmo hace a los parámetros.
+
+101
+00:09:40,139 --> 00:09:43,467
+Anteriormente, vimos que cuando estamos usando gradiente de descenso por lotes,
+
+102
+00:09:43,467 --> 00:09:46,331
+ese es el algoritmo que analiza todos los ejemplos de entrenamiento a la vez.
+
+103
+00:09:46,331 --> 00:09:53,397
+El gradiente de descenso por lotes tenderá a tomar una trayectoria de línea  razonablemente recta para llegar al mínimo global de esta manera.
+
+104
+00:09:53,397 --> 00:09:59,956
+En contraste con el gradiente de descenso estocástico, cada iteración va a ser mucho más rápida
+
+105
+00:09:59,956 --> 00:10:03,108
+porque no necesitamos sumar sobre todos los ejemplos de entrenamiento,
+
+106
+00:10:03,108 --> 00:10:07,259
+pero cada iteración sólo está tratando de ajustar mejor el único ejemplo de  entrenamiento.
+
+107
+00:10:07,259 --> 00:10:13,931
+Así que, si empezáramos el gradiente de descenso estocástico, ¡oh! vamos a iniciar el gradiente de descenso estocástico en un punto de este modo.
+
+108
+00:10:13,931 --> 00:10:19,556
+La primera iteración, ya saben, puede tomar los parámetros en esa dirección y
+
+109
+00:10:19,556 --> 00:10:23,791
+tal vez la segunda iteración, que ve sólo el segundo ejemplo, tal vez sólo por casualidad,
+
+110
+00:10:23,791 --> 00:10:28,278
+no tengamos suerte y en realidad nos dirigimos en una mala dirección con los parámetros de esta manera.
+
+111
+00:10:28,278 --> 00:10:33,731
+En la tercera iteración en la que tratamos de modificar los  parámetros para ajustar mejor sólo los terceros ejemplos de entrenamiento,
+
+112
+00:10:33,731 --> 00:10:36,418
+tal vez terminemos dirigiéndonos en esa dirección.
+
+113
+00:10:36,418 --> 00:10:42,717
+Y luego vamos a ver el cuarto ejemplo de entrenamiento y haremos eso. El quinto ejemplo, sexto ejemplo, séptimo y así sucesivamente.
+
+114
+00:10:42,717 --> 00:10:46,725
+Y a medida que ejecutan el gradiente de descenso estocástico, lo que encuentran es que
+
+115
+00:10:46,725 --> 00:10:52,923
+generalmente moverá los parámetros en la dirección del mínimo global, pero no siempre.
+
+116
+00:10:52,923 --> 00:11:00,117
+Así que tomará trayectorias mas aleatorias, tortuosas hacia el mínimo global.
+
+117
+00:11:00,117 --> 00:11:07,630
+Y, de hecho, a medida que ejecutan el gradiente de descenso estocástico, éste no converge en realidad en el mismo mismo sentido en el que lo hace el gradiente de descenso por lotes
+
+118
+00:11:07,630 --> 00:11:15,196
+y lo que termina haciendo es dar vueltas continuamente en alguna región que está en alguna región cerca del mínimo global,
+
+119
+00:11:15,196 --> 00:11:18,740
+pero no sólo llega al mínimo global y se queda allí.
+
+120
+00:11:18,740 --> 00:11:21,676
+Pero en la práctica esto no es un problema porque, ya saben, siempre
+
+121
+00:11:21,676 --> 00:11:26,788
+y cuando los parámetros terminen en alguna región allí, tal vez están bastante cerca del mínimo global.
+
+122
+00:11:26,788 --> 00:11:32,164
+Así que siempre y cuando los parámetros terminen muy cerca del mínimo global, esa será una muy buena hipótesis,
+
+123
+00:11:32,164 --> 00:11:36,340
+y por lo general, al ejecutar el gradiente de descenso estocástico,
+
+124
+00:11:36,340 --> 00:11:43,658
+obtenemos un parámetro cerca del mínimo global y eso es suficientemente bueno para esencialmente la mayoría de propósitos prácticos.
+
+125
+00:11:43,658 --> 00:11:47,121
+Sólo un detalle final. En el gradiente de descenso estocástico
+
+126
+00:11:47,121 --> 00:11:51,099
+tuvimos esta repetición del bucle exterior que nos dice que hagamos este bucle interior varias veces.
+
+127
+00:11:51,099 --> 00:11:53,892
+Así que, ¿cuántas veces repetimos este bucle externo?
+
+128
+00:11:53,892 --> 00:11:59,336
+Dependiendo del tamaño del conjunto de entrenamiento, podría ser suficiente si hacemos este bucle una sola vez.
+
+129
+00:11:59,336 --> 00:12:02,064
+Y hasta, ya saben, tal vez 10 veces podría ser lo usual,
+
+130
+00:12:02,064 --> 00:12:05,852
+de modo que podríamos terminar repitiendo este bucle interno de una a diez veces.
+
+131
+00:12:05,852 --> 00:12:12,309
+Así que si tenemos un conjunto de datos verdaderamente masivo como este censo de los EE.UU. que nos dio ese ejemplo
+
+132
+00:12:12,309 --> 00:12:15,260
+del que he estado hablando, con 300 millones de ejemplos,
+
+133
+00:12:15,260 --> 00:12:19,609
+es posible que para cuando haya tomado un solo pase a través de su conjunto de entrenamiento.
+
+134
+00:12:19,609 --> 00:12:23,073
+Así que, esto es para «i» es igual a 1 hasta 300 millones.
+
+135
+00:12:23,073 --> 00:12:25,720
+Es posible que para cuando hayan tomado un solo pase a través de su conjunto de datos,
+
+136
+00:12:25,720 --> 00:12:29,872
+ya tengan un hipótesis perfectamente buena,
+
+137
+00:12:29,872 --> 00:12:36,613
+en cuyo caso puede que sólo tengan que hacer este bucle interno una sola vez si «m» es muy, muy grande.
+
+138
+00:12:36,613 --> 00:12:43,071
+Pero, en general, tomando cualquier cantidad de entre 1 a 10 pases a través de su conjunto de datos puede ser bastante común,
+
+139
+00:12:43,071 --> 00:12:45,439
+pero en realidad depende del tamaño de su conjunto de entrenamiento.
+
+140
+00:12:45,439 --> 00:12:49,413
+Y si contrastan esto con el gradiente de descenso por lotes,
+
+141
+00:12:49,413 --> 00:12:53,905
+con el gradiente de descenso por lotes, después de tomar un pase a través de todo el conjunto de entrenamiento,
+
+142
+00:12:53,905 --> 00:12:57,034
+habrían tomado un solo paso del gradiente de descenso,
+
+143
+00:12:57,034 --> 00:13:01,983
+así que uno de estos pequeños pasos de bebé del gradiente de descenso en el que toman sólo un pequeño paso del gradiente de descenso,
+
+144
+00:13:01,983 --> 00:13:05,776
+y esta es la razón por la que el gradiente de descenso estocástico puede ser mucho más rápido.
+
+145
+00:13:05,776 --> 00:13:10,880
+Por lo tanto, ese fue el algoritmo del gradiente de descenso estocástico.
+
+146
+00:13:10,880 --> 00:13:15,594
+Y si lo implementan, les permitirá ampliar muchos de sus algoritmos de aprendizaje
+
+147
+00:13:15,594 --> 99:59:59,000
+a conjuntos de datos mucho más grandes y obtener mucho más rendimiento de esa manera.

@@ -1,0 +1,872 @@
+1
+00:00:00,310 --> 00:00:04,060
+In the last few videos we talked about
+how to do forward propagation and
+
+2
+00:00:04,060 --> 00:00:08,800
+back propagation in a neural network
+in order to compute derivatives.
+
+3
+00:00:08,800 --> 00:00:12,560
+But back prop as an algorithm
+has a lot of details and
+
+4
+00:00:12,560 --> 00:00:14,840
+can be a little bit tricky to implement.
+
+5
+00:00:14,840 --> 00:00:18,900
+And one unfortunate property
+is that there are many ways to
+
+6
+00:00:18,900 --> 00:00:21,070
+have subtle bugs in back prop.
+
+7
+00:00:21,070 --> 00:00:23,600
+So that if you run it
+with gradient descent or
+
+8
+00:00:23,600 --> 00:00:27,230
+some other optimizational algorithm,
+it could actually look like it's working.
+
+9
+00:00:27,230 --> 00:00:28,500
+And your cost function,
+
+10
+00:00:28,500 --> 00:00:32,920
+J of theta may end up decreasing on
+every iteration of gradient descent.
+
+11
+00:00:32,920 --> 00:00:36,240
+But this could prove true even
+though there might be some
+
+12
+00:00:36,240 --> 00:00:38,380
+bug in your implementation of back prop.
+
+13
+00:00:38,380 --> 00:00:40,820
+So that it looks J of theta is decreasing,
+but
+
+14
+00:00:40,820 --> 00:00:45,080
+you might just wind up with a neural
+network that has a higher level of
+
+15
+00:00:45,080 --> 00:00:47,570
+error than you would with
+a bug free implementation.
+
+16
+00:00:47,570 --> 00:00:50,890
+And you might just not know that there
+was this subtle bug that was giving you
+
+17
+00:00:50,890 --> 00:00:52,330
+worse performance.
+
+18
+00:00:52,330 --> 00:00:54,170
+So, what can we do about this?
+
+19
+00:00:54,170 --> 00:00:56,810
+There's an idea called gradient checking
+
+20
+00:00:56,810 --> 00:00:59,180
+that eliminates almost
+all of these problems.
+
+21
+00:00:59,180 --> 00:01:02,160
+So, today every time I
+implement back propagation or
+
+22
+00:01:02,160 --> 00:01:04,780
+a similar gradient to a [INAUDIBLE]
+on a neural network or
+
+23
+00:01:04,780 --> 00:01:09,680
+any other reasonably complex model,
+I always implement gradient checking.
+
+24
+00:01:09,680 --> 00:01:13,570
+And if you do this, it will help you make
+sure and sort of gain high confidence that
+
+25
+00:01:13,570 --> 00:01:17,360
+your implementation of four prop and
+back prop or whatever is 100% correct.
+
+26
+00:01:17,360 --> 00:01:22,320
+And from what I've seen this pretty much
+eliminates all the problems associated
+
+27
+00:01:22,320 --> 00:01:25,860
+with a sort of a buggy
+implementation as a back prop.
+
+28
+00:01:25,860 --> 00:01:31,570
+And in the previous videos I asked you to
+take on faith that the formulas I gave for
+
+29
+00:01:31,570 --> 00:01:34,910
+computing the deltas and the vs and
+so on, I asked you to take on
+
+30
+00:01:34,910 --> 00:01:39,480
+faith that those actually do compute
+the gradients of the cost function.
+
+31
+00:01:39,480 --> 00:01:43,120
+But once you implement numerical gradient
+checking, which is the topic of this
+
+32
+00:01:43,120 --> 00:01:47,070
+video, you'll be able to absolute verify
+for yourself that the code you're writing
+
+33
+00:01:47,070 --> 00:01:51,270
+does indeed, is indeed computing
+the derivative of the cross function J.
+
+34
+00:01:52,440 --> 00:01:55,480
+So here's the idea,
+consider the following example.
+
+35
+00:01:55,480 --> 00:02:01,320
+Suppose that I have the function J
+of theta and I have some value theta
+
+36
+00:02:01,320 --> 00:02:05,450
+and for this example gonna assume
+that theta is just a real number.
+
+37
+00:02:05,450 --> 00:02:08,560
+And let's say that I want to estimate the
+derivative of this function at this point
+
+38
+00:02:08,560 --> 00:02:13,130
+and so the derivative is equal to
+the slope of that tangent one.
+
+39
+00:02:14,300 --> 00:02:17,850
+Here's how I'm going to numerically
+approximate the derivative, or
+
+40
+00:02:17,850 --> 00:02:21,770
+rather here's a procedure for
+numerically approximating the derivative.
+
+41
+00:02:21,770 --> 00:02:26,320
+I'm going to compute theta plus epsilon,
+so now we move it to the right.
+
+42
+00:02:26,320 --> 00:02:31,260
+And I'm gonna compute theta minus epsilon
+and I'm going to look at those two
+
+43
+00:02:31,260 --> 00:02:36,183
+points, And
+connect them by a straight line
+
+44
+00:02:43,426 --> 00:02:47,586
+And I'm gonna connect these two points
+by a straight line, and I'm gonna use
+
+45
+00:02:47,586 --> 00:02:51,620
+the slope of that little red line as
+my approximation to the derivative.
+
+46
+00:02:51,620 --> 00:02:54,860
+Which is, the true derivative is
+the slope of that blue line over there.
+
+47
+00:02:54,860 --> 00:02:56,719
+So, you know it seems like it would
+be a pretty good approximation.
+
+48
+00:02:58,260 --> 00:03:03,060
+Mathematically, the slope of this
+red line is this vertical height
+
+49
+00:03:03,060 --> 00:03:05,470
+divided by this horizontal width.
+
+50
+00:03:05,470 --> 00:03:10,650
+So this point on top is the J
+of (Theta plus Epsilon).
+
+51
+00:03:10,650 --> 00:03:13,990
+This point here is J
+(Theta minus Epsilon), so
+
+52
+00:03:13,990 --> 00:03:17,870
+this vertical difference is J
+(Theta plus Epsilon) minus J
+
+53
+00:03:17,870 --> 00:03:21,920
+of theta minus epsilon and this
+horizontal distance is just 2 epsilon.
+
+54
+00:03:23,620 --> 00:03:28,730
+So my approximation is going
+to be that the derivative
+
+55
+00:03:28,730 --> 00:03:34,970
+respect of theta of J of theta at this
+value of theta, that that's approximately
+
+56
+00:03:34,970 --> 00:03:41,319
+J of theta plus epsilon minus J of
+theta minus epsilon over 2 epsilon.
+
+57
+00:03:42,350 --> 00:03:44,430
+Usually, I use a pretty small value for
+
+58
+00:03:44,430 --> 00:03:48,800
+epsilon, expect epsilon to be maybe
+on the order of 10 to the minus 4.
+
+59
+00:03:48,800 --> 00:03:53,060
+There's usually a large range of different
+values for epsilon that work just fine.
+
+60
+00:03:53,060 --> 00:03:58,010
+And in fact, if you let epsilon become
+really small, then mathematically
+
+61
+00:03:58,010 --> 00:04:02,000
+this term here, actually mathematically,
+it becomes the derivative.
+
+62
+00:04:02,000 --> 00:04:05,090
+It becomes exactly the slope
+of the function at this point.
+
+63
+00:04:05,090 --> 00:04:07,020
+It's just that we don't want
+to use epsilon that's too,
+
+64
+00:04:07,020 --> 00:04:10,110
+too small, because then you might
+run into numerical problems.
+
+65
+00:04:10,110 --> 00:04:13,900
+So I usually use epsilon
+around ten to the minus four.
+
+66
+00:04:13,900 --> 00:04:17,860
+And by the way some of you may have
+seen an alternative formula for
+
+67
+00:04:17,860 --> 00:04:20,180
+s meeting the derivative
+which is this formula.
+
+68
+00:04:21,610 --> 00:04:24,000
+This one on the right is
+called a one-sided difference,
+
+69
+00:04:24,000 --> 00:04:27,630
+whereas the formula on the left,
+that's called a two-sided difference.
+
+70
+00:04:27,630 --> 00:04:30,360
+The two sided difference gives us
+a slightly more accurate estimate, so
+
+71
+00:04:30,360 --> 00:04:33,920
+I usually use that, rather than
+this one sided difference estimate.
+
+72
+00:04:35,960 --> 00:04:39,560
+So, concretely, when you implement an
+octave, is you implemented the following,
+
+73
+00:04:39,560 --> 00:04:42,040
+you implement call to compute gradApprox,
+
+74
+00:04:42,040 --> 00:04:46,840
+which is going to be our approximation
+derivative as just here this formula,
+
+75
+00:04:46,840 --> 00:04:52,080
+J of theta plus epsilon minus J of theta
+minus epsilon divided by 2 times epsilon.
+
+76
+00:04:52,080 --> 00:04:56,650
+And this will give you a numerical
+estimate of the gradient at that point.
+
+77
+00:04:56,650 --> 00:04:59,290
+And in this example it seems like
+it's a pretty good estimate.
+
+78
+00:05:01,913 --> 00:05:03,618
+Now on the previous slide,
+
+79
+00:05:03,618 --> 00:05:08,060
+we considered the case of when
+theta was a rolled number.
+
+80
+00:05:08,060 --> 00:05:12,450
+Now let's look at a more general case
+of when theta is a vector parameter, so
+
+81
+00:05:12,450 --> 00:05:14,000
+let's say theta is an R n.
+
+82
+00:05:14,000 --> 00:05:18,030
+And it might be an unrolled version of
+the parameters of our neural network.
+
+83
+00:05:18,030 --> 00:05:21,270
+So theta is a vector that has n elements,
+theta 1 up to theta n.
+
+84
+00:05:21,270 --> 00:05:25,720
+We can then
+
+85
+00:05:25,720 --> 00:05:30,260
+use a similar idea to approximate
+all the partial derivative terms.
+
+86
+00:05:30,260 --> 00:05:35,140
+Concretely the partial derivative of
+a cost function with respect to the first
+
+87
+00:05:35,140 --> 00:05:40,980
+parameter, theta one, that can be obtained
+by taking J and increasing theta one.
+
+88
+00:05:40,980 --> 00:05:43,530
+So you have J of theta one
+plus epsilon and so on.
+
+89
+00:05:43,530 --> 00:05:48,130
+Minus J of this theta one minus
+epsilon and divide it by two epsilon.
+
+90
+00:05:48,130 --> 00:05:52,320
+The partial derivative respect to the
+second parameter theta two, is again this
+
+91
+00:05:52,320 --> 00:05:56,620
+thing except that you would take J of here
+you're increasing theta two by epsilon,
+
+92
+00:05:56,620 --> 00:06:00,820
+and here you're decreasing theta two by
+epsilon and so on down to the derivative.
+
+93
+00:06:00,820 --> 00:06:04,958
+With respect of theta n would give
+you increase and decrease theta and
+
+94
+00:06:04,958 --> 00:06:06,393
+by epsilon over there.
+
+95
+00:06:09,691 --> 00:06:15,380
+So, these equations give you a way to
+numerically approximate the partial
+
+96
+00:06:15,380 --> 00:06:20,450
+derivative of J with respect to any
+one of your parameters theta i.
+
+97
+00:06:23,590 --> 00:06:26,450
+Completely, what you implement
+is therefore the following.
+
+98
+00:06:27,930 --> 00:06:32,230
+We implement the following in octave
+to numerically compute the derivatives.
+
+99
+00:06:32,230 --> 00:06:33,000
+We say, for
+
+100
+00:06:33,000 --> 00:06:37,780
+i = 1:n, where n is the dimension
+of our parameter of vector theta.
+
+101
+00:06:37,780 --> 00:06:41,260
+And I usually do this with
+the unrolled version of the parameter.
+
+102
+00:06:41,260 --> 00:06:46,250
+So theta is just a long list of all of
+my parameters in my neural network, say.
+
+103
+00:06:46,250 --> 00:06:48,050
+I'm gonna set thetaPlus = theta,
+
+104
+00:06:48,050 --> 00:06:51,700
+then increase thetaPlus of
+the (i) element by epsilon.
+
+105
+00:06:51,700 --> 00:06:55,785
+And so this is basically thetaPlus
+is equal to theta except for
+
+106
+00:06:55,785 --> 00:06:58,260
+thetaPlus(i) which is now
+incremented by epsilon.
+
+107
+00:06:58,260 --> 00:07:03,390
+Epsilon, so theta plus is equal to,
+write theta 1, theta 2 and so on.
+
+108
+00:07:03,390 --> 00:07:07,250
+Then theta I has epsilon added to it and
+then we go down to theta N.
+
+109
+00:07:07,250 --> 00:07:09,670
+So this is what theta plus is.
+
+110
+00:07:09,670 --> 00:07:15,070
+And similar these two lines set theta
+minus to something similar except
+
+111
+00:07:15,070 --> 00:07:19,329
+that this instead of theta I plus Epsilon,
+this now becomes theta I minus Epsilon.
+
+112
+00:07:20,670 --> 00:07:25,690
+And then finally you implement
+this gradApprox (i) and
+
+113
+00:07:25,690 --> 00:07:29,840
+this would give you your approximation
+to the partial derivative
+
+114
+00:07:29,840 --> 00:07:32,770
+respect of theta i of J of theta.
+
+115
+00:07:35,310 --> 00:07:38,900
+And the way we use this in our
+neural network implementation is,
+
+116
+00:07:38,900 --> 00:07:45,250
+we would implement this four loop to
+compute the top partial derivative
+
+117
+00:07:45,250 --> 00:07:49,650
+of the cost function for respect to
+every parameter in that network, and
+
+118
+00:07:49,650 --> 00:07:53,720
+we can then take the gradient
+that we got from backprop.
+
+119
+00:07:53,720 --> 00:07:58,382
+So DVec was the derivative
+we got from backprop.
+
+120
+00:07:58,382 --> 00:08:00,640
+All right, so backprop, backpropogation,
+
+121
+00:08:00,640 --> 00:08:04,810
+was a relatively efficient way to compute
+a derivative or a partial derivative.
+
+122
+00:08:04,810 --> 00:08:07,850
+Of a cost function with
+respect to all our parameters.
+
+123
+00:08:07,850 --> 00:08:12,670
+And what I usually do is then,
+take my numerically computed derivative
+
+124
+00:08:12,670 --> 00:08:15,820
+that is this gradApprox that
+we just had from up here.
+
+125
+00:08:15,820 --> 00:08:20,780
+And make sure that that is equal or
+approximately equal up to
+
+126
+00:08:20,780 --> 00:08:24,110
+small values of numerical round up,
+that it's pretty close.
+
+127
+00:08:24,110 --> 00:08:26,540
+So the DVec that I got from backprop.
+
+128
+00:08:26,540 --> 00:08:30,850
+And if these two ways of computing
+the derivative give me the same answer, or
+
+129
+00:08:30,850 --> 00:08:34,750
+give me any similar answers,
+up to a few decimal places,
+
+130
+00:08:34,750 --> 00:08:39,850
+then I'm much more confident that my
+implementation of backprop is correct.
+
+131
+00:08:39,850 --> 00:08:43,920
+And when I plug these DVec
+vectors into gradient assent or
+
+132
+00:08:43,920 --> 00:08:47,280
+some advanced optimization algorithm,
+I can then be much more
+
+133
+00:08:47,280 --> 00:08:51,640
+confident that I'm computing the
+derivatives correctly, and therefore that
+
+134
+00:08:51,640 --> 00:08:55,779
+hopefully my code will run correctly and
+do a good job optimizing J of theta.
+
+135
+00:08:57,680 --> 00:08:59,870
+Finally, I wanna put
+everything together and
+
+136
+00:08:59,870 --> 00:09:03,670
+tell you how to implement this
+numerical gradient checking.
+
+137
+00:09:03,670 --> 00:09:05,070
+Here's what I usually do.
+
+138
+00:09:05,070 --> 00:09:08,460
+First thing I do is implement
+back propagation to compute DVec.
+
+139
+00:09:08,460 --> 00:09:11,290
+So there's a procedure we talked
+about in the earlier video
+
+140
+00:09:11,290 --> 00:09:14,230
+to compute DVec which may be our
+unrolled version of these matrices.
+
+141
+00:09:14,230 --> 00:09:16,280
+So then what I do,
+
+142
+00:09:16,280 --> 00:09:20,220
+is implement a numerical gradient
+checking to compute gradApprox.
+
+143
+00:09:20,220 --> 00:09:23,830
+So this is what I described earlier in
+this video and in the previous slide.
+
+144
+00:09:24,930 --> 00:09:29,410
+Then should make sure that DVec and
+gradApprox give similar values,
+
+145
+00:09:29,410 --> 00:09:31,079
+you know let's say up to
+a few decimal places.
+
+146
+00:09:32,270 --> 00:09:36,740
+And finally and this is the important
+step, before you start to use your
+
+147
+00:09:36,740 --> 00:09:40,390
+code for learning, for seriously training
+your network, it's important to turn
+
+148
+00:09:40,390 --> 00:09:45,100
+off gradient checking and to no longer
+compute this gradApprox thing using
+
+149
+00:09:45,100 --> 00:09:49,119
+the numerical derivative formulas that
+we talked about earlier in this video.
+
+150
+00:09:50,530 --> 00:09:54,160
+And the reason for that is the numeric
+code gradient checking code,
+
+151
+00:09:54,160 --> 00:09:58,400
+the stuff we talked about in this video,
+that's a very computationally expensive,
+
+152
+00:09:58,400 --> 00:10:02,030
+that's a very slow way to try
+to approximate the derivative.
+
+153
+00:10:02,030 --> 00:10:05,730
+Whereas In contrast, the back propagation
+algorithm that we talked about earlier,
+
+154
+00:10:05,730 --> 00:10:08,190
+that is the thing we talked
+about earlier for computing.
+
+155
+00:10:08,190 --> 00:10:11,030
+You know, D1, D2, D3 for Dvec.
+
+156
+00:10:11,030 --> 00:10:14,970
+Backprop is much more computationally
+efficient way of computing for
+
+157
+00:10:14,970 --> 00:10:15,660
+derivatives.
+
+158
+00:10:17,050 --> 00:10:20,770
+So once you've verified that your
+implementation of back propagation is
+
+159
+00:10:20,770 --> 00:10:25,090
+correct, you should turn off gradient
+checking and just stop using that.
+
+160
+00:10:25,090 --> 00:10:28,690
+So just to reiterate, you should be sure
+to disable your gradient checking code
+
+161
+00:10:28,690 --> 00:10:32,910
+before running your algorithm for
+many iterations of gradient descent or for
+
+162
+00:10:32,910 --> 00:10:35,880
+many iterations of the advanced
+optimization algorithms,
+
+163
+00:10:35,880 --> 00:10:38,020
+in order to train your classifier.
+
+164
+00:10:38,020 --> 00:10:41,600
+Concretely, if you were to run
+the numerical gradient checking on
+
+165
+00:10:41,600 --> 00:10:43,800
+every single iteration
+of gradient descent.
+
+166
+00:10:43,800 --> 00:10:46,690
+Or if you were in the inner
+loop of your costFunction,
+
+167
+00:10:46,690 --> 00:10:48,370
+then your code would be very slow.
+
+168
+00:10:48,370 --> 00:10:52,000
+Because the numerical gradient
+checking code is much slower
+
+169
+00:10:52,000 --> 00:10:56,270
+than the backpropagation algorithm,
+than the backpropagation method where,
+
+170
+00:10:56,270 --> 00:11:00,440
+you remember, we were computing delta(4),
+delta(3), delta(2), and so on.
+
+171
+00:11:00,440 --> 00:11:02,460
+That was the backpropagation algorithm.
+
+172
+00:11:02,460 --> 00:11:06,610
+That is a much faster way to compute
+derivates than gradient checking.
+
+173
+00:11:06,610 --> 00:11:10,880
+So when you're ready, once you've verified
+the implementation of back propagation is
+
+174
+00:11:10,880 --> 00:11:15,130
+correct, make sure you turn off or
+you disable your gradient checking code
+
+175
+00:11:15,130 --> 00:11:18,220
+while you train your algorithm, or
+else you code could run very slowly.
+
+176
+00:11:20,430 --> 00:11:24,390
+So, that's how you take gradients
+numericaly, and that's how you can verify
+
+177
+00:11:24,390 --> 00:11:27,260
+tha implementation of back
+propagation is correct.
+
+178
+00:11:27,260 --> 00:11:31,210
+Whenever I implement back propagation or
+similar gradient discerning algorithm for
+
+179
+00:11:31,210 --> 00:11:33,970
+a complicated mode,l I always
+use gradient checking and
+
+180
+00:11:33,970 --> 00:11:36,750
+this really helps me make
+sure that my code is correct.

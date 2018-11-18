@@ -1,0 +1,751 @@
+1
+00:00:00,280 --> 00:00:02,820
+Ahora que sabes cómo cargar
+
+2
+00:00:02,820 --> 00:00:05,100
+y guardar datos en Octave, colocar
+
+3
+00:00:05,100 --> 00:00:10,028
+tus datos en matrices y todo
+
+4
+00:00:10,028 --> 00:00:14,880
+eso. En este video, me gustaría
+
+5
+00:00:14,880 --> 00:00:15,870
+mostrarte cómo hacer operaciones
+
+6
+00:00:17,130 --> 00:00:17,810
+computacionales con datos y,
+
+7
+00:00:19,650 --> 00:00:21,040
+Esta es mi ventana de Octave.
+
+8
+00:00:21,040 --> 00:00:25,900
+operaciones de computación para implementar nuestros algoritmos de aprendizaje.
+
+9
+00:00:25,900 --> 00:00:33,470
+Comencemos.
+
+10
+00:00:33,470 --> 00:00:37,855
+Esta es mi ventana de Octave.
+
+11
+00:00:39,195 --> 00:00:42,235
+Voy rápidamente a inicializar algunas
+
+12
+00:00:42,235 --> 00:00:47,195
+variables para utilizarlas
+
+13
+00:00:47,195 --> 00:00:52,215
+como ejemplos y establecer A
+
+14
+00:00:52,215 --> 00:00:57,145
+como una matriz de 3 por 2.
+
+15
+00:00:57,145 --> 00:01:02,580
+Y B como una
+
+16
+00:01:02,580 --> 00:01:06,208
+matriz de 3 por 2, y vamos a
+
+17
+00:01:06,208 --> 00:01:11,230
+establecer C como una
+
+18
+00:01:11,230 --> 00:01:17,140
+matriz de 2 por 2 de esta forma.
+
+19
+00:01:17,140 --> 00:01:20,840
+Ahora, supongamos que quiero multiplicar dos de mis matrices.
+
+20
+00:01:20,840 --> 00:01:23,200
+Entonces, digamos que quiero calcular AxC.
+
+21
+00:01:23,200 --> 00:01:27,440
+Sólo escribo AxC.
+
+22
+00:01:27,440 --> 00:01:31,494
+Entonces, es una matriz de 3 por 2 multiplicada por una matriz de 2 por 2.
+
+23
+00:01:31,494 --> 00:01:36,500
+Esto me da esta matriz de 3 por 2.
+
+24
+00:01:36,500 --> 00:01:39,440
+También puedes hacer operaciones con los
+
+25
+00:01:41,100 --> 00:01:42,560
+elementos, y hacer A.xB,
+
+26
+00:01:42,560 --> 00:01:46,230
+y lo que esto haría sería
+
+27
+00:01:46,230 --> 00:01:52,010
+tomar cada elemento de A
+
+28
+00:01:52,010 --> 00:01:56,040
+y multiplicarlo por
+
+29
+00:01:56,040 --> 00:02:00,610
+los elementos correspondientes de B.
+
+30
+00:02:02,760 --> 00:02:08,173
+Entonces, esa es A, esta es B, y esto es A.xB.
+
+31
+00:02:08,173 --> 00:02:15,080
+Entonces, por ejemplo, el primer elemento
+
+32
+00:02:15,080 --> 00:02:20,300
+da 11 multiplicado por 1, que da 11.
+
+33
+00:02:20,300 --> 00:02:25,600
+El segundo elemento da
+
+34
+00:02:25,600 --> 00:02:31,040
+2 x 12, que da 24 y así sucesivamente.
+
+35
+00:02:31,040 --> 00:02:36,660
+Entonces, es la multiplicación por elementos
+
+36
+00:02:36,660 --> 00:02:42,973
+de dos
+
+37
+00:02:42,973 --> 00:02:45,930
+matrices y, en general,
+
+38
+00:02:45,930 --> 00:02:48,720
+la P rand tiende a,
+
+39
+00:02:48,720 --> 00:02:54,024
+se utiliza generalmente para denotar
+
+40
+00:02:54,024 --> 00:02:56,050
+operaciones entre elementos en Octave.
+
+41
+00:02:56,050 --> 00:02:57,240
+Entonces, aquí hay una matriz
+
+42
+00:02:57,240 --> 00:02:58,360
+Veamos.
+
+43
+00:02:58,360 --> 00:03:01,700
+Esto me da el multi,
+
+44
+00:03:01,700 --> 00:03:06,590
+la elevación al cuadrado de los elementos de
+
+45
+00:03:06,590 --> 00:03:11,430
+A, y 1 al cuadrado
+
+46
+00:03:11,430 --> 00:03:14,590
+es 1, 2 al cuadrado es 4 y así sucesivamente.
+
+47
+00:03:14,590 --> 00:03:21,520
+Vamos a establecer V como un vector,
+
+48
+00:03:21,520 --> 00:03:27,260
+estableceremos V como 123 como un vector de columna.
+
+49
+00:03:27,260 --> 00:03:33,620
+También puedes hacer 1.
+
+50
+00:03:33,620 --> 00:03:38,950
+sobre V para hacer
+
+51
+00:03:40,000 --> 00:03:44,190
+el recíproco del elemento de V,
+
+52
+00:03:44,190 --> 00:03:45,450
+y esto me da
+
+53
+00:03:45,450 --> 00:03:50,840
+uno sobre uno, uno sobre dos y uno sobre tres.
+
+54
+00:03:52,470 --> 00:03:55,490
+Esto también funciona para las matrices, entonces,
+
+55
+00:03:55,490 --> 00:03:59,520
+un punto sobre A, me da
+
+56
+00:03:59,520 --> 00:04:03,720
+la inversa de ese elemento de A.
+
+57
+00:04:03,720 --> 00:04:08,350
+Y, nuevamente,
+
+58
+00:04:08,350 --> 00:04:11,260
+los P radianes nos dan
+
+59
+00:04:11,260 --> 00:04:18,330
+una pista de que se trata de una operación con elementos.
+
+60
+00:04:18,330 --> 00:04:19,700
+Para hacer también cosas como logaritmo de
+
+61
+00:04:19,700 --> 00:04:22,970
+V, este es también un
+
+62
+00:04:25,160 --> 00:04:27,570
+logaritmo de elementos de
+
+63
+00:04:27,570 --> 00:04:34,300
+V, E hasta
+
+64
+00:04:34,300 --> 00:04:38,880
+V, es la exponenciación
+
+65
+00:04:38,880 --> 00:04:42,970
+base E de estos elementos,
+
+66
+00:04:42,970 --> 00:04:48,430
+de esta E, esta es E
+
+67
+00:04:48,430 --> 00:04:52,940
+al cuadrado de EQ, esto es
+
+68
+00:04:52,940 --> 00:04:58,790
+v. Y también
+
+69
+00:04:58,790 --> 00:05:03,230
+puedo hacer sumatorias de V para
+
+70
+00:05:03,230 --> 00:05:07,920
+obtener el valor absoluto del elemento
+
+71
+00:05:07,920 --> 00:05:09,860
+de V. así que, aquí,
+
+72
+00:05:11,610 --> 00:05:14,760
+V sólo tenía valores positivos, digamos
+
+73
+00:05:14,760 --> 00:05:19,630
+menos 1 a menos 3,
+
+74
+00:05:19,630 --> 00:05:24,030
+el valor absoluto del elemento
+
+75
+00:05:24,030 --> 00:05:24,970
+me devuelve estos
+
+76
+00:05:24,970 --> 00:05:29,970
+valores no negativos, y la V
+
+77
+00:05:29,970 --> 00:05:36,590
+negativa me da el negativo
+
+78
+00:05:36,590 --> 00:05:42,970
+de V. Es lo mismo que
+
+79
+00:05:42,970 --> 00:05:47,440
+-1xV pero, por lo general,
+
+80
+00:05:47,440 --> 00:05:53,615
+sólo escribes V negativa y
+
+81
+00:05:53,615 --> 00:05:55,235
+así 1xV negativo, ¿qué más puedes hacer?
+
+82
+00:05:55,235 --> 00:05:59,545
+Aquí hay un buen truco.
+
+83
+00:05:59,545 --> 00:06:05,205
+Veamos.
+
+84
+00:06:05,205 --> 00:06:08,985
+Digamos que quiero tomar V e incrementar cada uno de estos elementos en 1.
+
+85
+00:06:08,985 --> 00:06:15,370
+Bien, una manera para hacerlo
+
+86
+00:06:15,370 --> 00:06:20,830
+es construir un vector de
+
+87
+00:06:20,830 --> 00:06:23,690
+3 por 1,
+
+88
+00:06:23,690 --> 00:06:28,830
+esto es, todos los unos y añadirlos a V. Y así se hace.
+
+89
+00:06:28,830 --> 00:06:34,450
+Esto incrementa V por 123 hasta 234.
+
+90
+00:06:34,450 --> 00:06:38,788
+La forma en la que lo hice
+
+91
+00:06:38,788 --> 00:06:41,751
+fue la longitud de V, es tres.
+
+92
+00:06:41,751 --> 00:06:44,300
+Entonces, se suma la longitud
+
+93
+00:06:44,300 --> 00:06:48,820
+de V por uno, esto son unos
+
+94
+00:06:48,820 --> 00:06:53,760
+de tres por uno.
+
+95
+00:06:53,760 --> 00:06:58,886
+Entonces estos son uno, tres por uno.
+
+96
+00:06:58,886 --> 00:07:04,231
+A la derecha, lo que hice fue
+
+97
+00:07:04,231 --> 00:07:07,740
+B más unos,
+
+98
+00:07:07,740 --> 00:07:11,750
+V por uno, lo que es sumar
+
+99
+00:07:11,750 --> 00:07:13,270
+este vector de solamente unos
+
+100
+00:07:13,270 --> 00:07:14,360
+Veamos...
+
+101
+00:07:14,360 --> 00:07:17,740
+V en uno.
+
+102
+00:07:17,740 --> 00:07:24,270
+Y para ti, otra forma más simple
+
+103
+00:07:24,270 --> 00:07:28,820
+de hacer esto es escribir V+ uno, ¿cierto?
+
+104
+00:07:28,820 --> 00:07:30,220
+Entonces, esto es V y
+
+105
+00:07:30,220 --> 00:07:34,180
+V+ uno, que también significa
+
+106
+00:07:34,180 --> 00:07:38,020
+sumar un elemento a cada
+
+107
+00:07:38,020 --> 00:07:40,130
+uno de mis elementos de V.
+
+108
+00:07:40,130 --> 00:07:44,270
+Ahora, hablemos sobre más operaciones.
+
+109
+00:07:44,270 --> 00:07:48,140
+Entonces, aquí está mi matriz A. Si quieres escribir una A transpuesta,
+
+110
+00:07:48,140 --> 00:07:50,940
+La forma de hacerlo es escribir A prima.
+
+111
+00:07:50,940 --> 00:07:54,225
+Esto es con el símbolo de apóstrofe.
+
+112
+00:07:54,225 --> 00:08:01,630
+Es la comilla de la izquierda.
+
+113
+00:08:01,630 --> 00:08:06,600
+Entonces, en tu teclado, probablemente
+
+114
+00:08:06,600 --> 00:08:10,900
+tienes una comilla izquierda
+
+115
+00:08:10,900 --> 00:08:13,330
+y una comilla derecha.
+
+116
+00:08:13,330 --> 00:08:16,720
+Entonces, esta está en la
+
+117
+00:08:16,720 --> 00:08:21,790
+comilla estándar, es un,
+
+118
+00:08:21,790 --> 00:08:27,000
+cómo decirlo, una transpuesta para,
+
+119
+00:08:27,000 --> 00:08:30,680
+disculpa, ya
+
+120
+00:08:30,680 --> 00:08:33,150
+sabes, una transpuesta de mi
+
+121
+00:08:34,490 --> 00:08:37,515
+mayor y, desde luego, una
+
+122
+00:08:37,515 --> 00:08:38,280
+transpuesta, si vuelvo a hacer la
+
+123
+00:08:38,280 --> 00:08:43,050
+transposición, entonces debería
+
+124
+00:08:43,050 --> 00:08:48,270
+recuperar mi matriz A. Otras funciones más útiles.
+
+125
+00:08:48,270 --> 00:08:53,580
+Digamos, locate A es
+
+126
+00:08:53,580 --> 00:08:58,260
+1 15 a 0.5.
+
+127
+00:08:58,260 --> 00:08:59,960
+Entonces, es una, ya sabes, matriz de 1 por 4.
+
+128
+00:08:59,960 --> 00:09:04,194
+Digamos que set val es igual a max
+
+129
+00:09:05,200 --> 00:09:08,780
+de A. Esto devuelve el
+
+130
+00:09:08,780 --> 00:09:12,480
+valor máximo de A que,
+
+131
+00:09:12,480 --> 00:09:17,210
+en este caso, es 15, y
+
+132
+00:09:17,210 --> 00:09:23,570
+puedo hacer val ind max
+
+133
+00:09:24,760 --> 00:09:30,050
+A.  Y esto devuelve el
+
+134
+00:09:30,050 --> 00:09:34,880
+val de int, que es
+
+135
+00:09:34,880 --> 00:09:39,660
+el valor máximo de A que,
+
+136
+00:09:39,660 --> 00:09:45,130
+es 15 cuando era el índice.
+
+137
+00:09:45,130 --> 00:09:50,160
+Entonces, los elementos número dos de A son 15.
+
+138
+00:09:52,130 --> 00:09:56,220
+Entonces, este es mi índice para esto.
+
+139
+00:09:56,220 --> 00:10:00,700
+Sólo una advertencia: si
+
+140
+00:10:00,700 --> 00:10:03,650
+haces un max A en donde A es una matriz,
+
+141
+00:10:03,650 --> 00:10:06,280
+Lo que esto hace es, de hecho,
+
+142
+00:10:06,280 --> 00:10:07,470
+hace un máximo de la columna,
+
+143
+00:10:07,470 --> 00:10:12,050
+pero, hablaré más sobre esto en un segundo.
+
+144
+00:10:12,050 --> 00:10:15,550
+Entonces, usando este ejemplo de
+
+145
+00:10:15,550 --> 00:10:20,150
+una variable "a" minúscula. Si hago A menos tres.
+
+146
+00:10:20,150 --> 00:10:21,978
+Esto hace la operación con el elemento.
+
+147
+00:10:21,978 --> 00:10:26,870
+Comparación con elementos.
+
+148
+00:10:26,870 --> 00:10:32,950
+Entonces, el primer elemento
+
+149
+00:10:32,950 --> 00:10:36,110
+de A es menor a tres igual a uno.
+
+150
+00:10:36,110 --> 00:10:39,800
+El segundo elemento de A no es
+
+151
+00:10:39,800 --> 00:10:45,558
+menor a tres, entonces
+
+152
+00:10:45,558 --> 00:10:52,330
+este valor es cero, porque también lo es.
+
+153
+00:10:52,330 --> 00:10:56,290
+El tercer y cuarto números de
+
+154
+00:10:56,290 --> 00:11:00,970
+A son los menores,
+
+155
+00:11:00,970 --> 00:11:05,820
+es decir, menores a tres, el tercer y cuarto elementos son menores a tres.
+
+156
+00:11:05,820 --> 00:11:11,130
+Entonces, este es uno, uno, entonces
+
+157
+00:11:11,130 --> 00:11:17,830
+esta sólo es la comparación de elementos
+
+158
+00:11:17,830 --> 00:11:20,260
+de las cuatro variables
+
+159
+00:11:20,260 --> 00:11:22,340
+de elementos en minúsculas
+
+160
+00:11:22,340 --> 00:11:27,410
+tres, y devuelve verdadero
+
+161
+00:11:27,410 --> 00:11:29,791
+o falso dependiendo de si es o no menor a tres.
+
+162
+00:11:29,791 --> 00:11:31,600
+Ahora, si encuentro que A
+
+163
+00:11:31,600 --> 00:11:34,790
+es menor a tres, esto
+
+164
+00:11:34,790 --> 00:11:38,390
+me diría cuáles son
+
+165
+00:11:38,390 --> 00:11:40,685
+los elementos de A que la
+
+166
+00:11:40,685 --> 00:11:45,760
+variable A menores a tres y,
+
+167
+00:11:45,760 --> 00:11:50,090
+en este caso, el primer, el tercer y
+
+168
+00:11:50,090 --> 00:11:52,020
+el cuarto elementos son menores a tres.
+
+169
+00:11:52,020 --> 00:11:54,262
+Para mi siguiente ejemplo, voy a
+
+170
+00:11:54,262 --> 00:11:59,470
+establecer el ocho como un código para
+
+171
+00:11:59,470 --> 00:12:02,890
+un tres mágico. La función magic
+
+172
+00:12:02,890 --> 00:12:06,480
+devuelve. Escribamos help magic.  Las funciones llamadas.
+
+173
+00:12:08,780 --> 00:12:12,750
+Regresa la función magic.
+
+174
+00:12:12,750 --> 00:12:16,820
+Devuelve estas matrices, llamadas cuadrados mágicos.
+
+175
+00:12:16,820 --> 00:12:20,340
+Tienen esta, ya sabes,
+
+176
+00:12:20,340 --> 00:12:23,120
+propiedad matemática de que todas
+
+177
+00:12:23,120 --> 00:12:27,830
+sus filas y columnas y
+
+178
+00:12:27,830 --> 00:12:34,130
+diagonales suman lo mismo.
+
+179
+00:12:34,130 --> 00:12:38,110
+Entonces, ya sabes, no es
+
+180
+00:12:38,110 --> 00:12:41,650
+muy útil para el aprendizaje
+
+181
+00:12:44,210 --> 00:12:45,596
+automático según
+
+182
+00:12:45,596 --> 00:12:50,630
+sé, pero estoy usando
+
+183
+00:12:50,630 --> 00:12:55,548
+esto como una manera conveniente,
+
+184
+00:12:55,548 --> 00:12:59,760
+ya sabes, para generar una matriz de 3
+
+185
+00:12:59,760 --> 00:13:04,342
+por tres, y esta pantalla de cuadrado mágico.
+
+186
+00:13:04,342 --> 00:13:06,260
+Tenemos el poder de 3
+
+187
+00:13:06,260 --> 00:13:09,255
+en cada fila, en cada columna y
+
+188
+00:13:09,255 --> 00:13:13,340
+todas las diagonales suman

@@ -1,0 +1,1017 @@
+1
+00:00:01,400 --> 00:00:05,490
+In the last video, we talked about
+the recommender systems problem where for
+
+2
+00:00:05,490 --> 00:00:09,830
+example you might have a set of movies and
+you may have a set of users,
+
+3
+00:00:09,830 --> 00:00:13,100
+each who have rated some
+subset of the movies.
+
+4
+00:00:13,100 --> 00:00:16,450
+They've rated the movies one to
+five stars or zero to five stars.
+
+5
+00:00:16,450 --> 00:00:19,210
+And what we would like to do
+is look at these users and
+
+6
+00:00:19,210 --> 00:00:23,580
+predict how they would have rated other
+movies that they have not yet rated.
+
+7
+00:00:23,580 --> 00:00:26,828
+In this video I'd like to talk about
+our first approach to building
+
+8
+00:00:26,828 --> 00:00:27,990
+a recommender system.
+
+9
+00:00:27,990 --> 00:00:31,480
+This approach is called
+content based recommendations.
+
+10
+00:00:31,480 --> 00:00:35,560
+Here's our data set from before and
+just to remind you of a bit of notation,
+
+11
+00:00:35,560 --> 00:00:40,224
+I was using nu to denote the number
+of users and so that's equal to 4,
+
+12
+00:00:40,224 --> 00:00:45,179
+and nm to denote the number of movies,
+I have 5 movies.
+
+13
+00:00:47,280 --> 00:00:51,350
+So, how do I predict what
+these missing values would be?
+
+14
+00:00:52,520 --> 00:00:57,649
+Let's suppose that for each of these
+movies I have a set of features for them.
+
+15
+00:00:57,649 --> 00:00:59,720
+In particular, let's say that for
+
+16
+00:00:59,720 --> 00:01:04,081
+each of the movies have two features
+which I'm going to denote x1 and x2.
+
+17
+00:01:04,081 --> 00:01:08,426
+Where x1 measures the degree to which
+a movie is a romantic movie and
+
+18
+00:01:08,426 --> 00:01:12,830
+x2 measures the degree to which
+a movie is an action movie.
+
+19
+00:01:12,830 --> 00:01:18,700
+So, if you take a movie, Love at last, you
+know it's 0.9 rating on the romance scale.
+
+20
+00:01:18,700 --> 00:01:21,720
+This is a highly romantic movie,
+but zero on the action scale.
+
+21
+00:01:21,720 --> 00:01:24,227
+So, almost no action in that movie.
+
+22
+00:01:24,227 --> 00:01:29,310
+Romance forever is a 1.0,
+lot of romance and 0.01 action.
+
+23
+00:01:29,310 --> 00:01:33,140
+I don't know, maybe there's a minor
+car crash in that movie or something.
+
+24
+00:01:33,140 --> 00:01:35,448
+So there's a little bit of action.
+
+25
+00:01:35,448 --> 00:01:41,439
+Skipping one, let's do Swords vs karate,
+maybe that has a 0 romance rating and
+
+26
+00:01:41,439 --> 00:01:44,888
+no romance at all in that but
+plenty of action.
+
+27
+00:01:44,888 --> 00:01:46,234
+And Nonstop car chases,
+
+28
+00:01:46,234 --> 00:01:50,740
+maybe again there's a tiny bit of
+romance in that movie but mainly action.
+
+29
+00:01:50,740 --> 00:01:54,570
+And Cute puppies of love mainly
+a romance movie with no action at all.
+
+30
+00:01:55,995 --> 00:01:58,335
+So if we have features like these,
+
+31
+00:01:58,335 --> 00:02:02,415
+then each movie can be represented
+with a feature vector.
+
+32
+00:02:02,415 --> 00:02:03,597
+Let's take movie one.
+
+33
+00:02:03,597 --> 00:02:07,499
+So let's call these movies 1,
+2, 3, 4, and 5.
+
+34
+00:02:07,499 --> 00:02:13,280
+But my first movie, Love at last,
+I have my two features, 0.9 and 0.
+
+35
+00:02:13,280 --> 00:02:16,078
+And so these are features x1 and x2.
+
+36
+00:02:16,078 --> 00:02:21,519
+And let's add an extra feature as usual,
+which is my interceptor feature x0 = 1.
+
+37
+00:02:21,519 --> 00:02:26,980
+And so putting these together I
+would then have a feature x1.
+
+38
+00:02:26,980 --> 00:02:30,600
+The superscript 1 denotes it's the feature
+vector for my first movie, and
+
+39
+00:02:30,600 --> 00:02:32,700
+this feature vector is equal to 1.
+
+40
+00:02:32,700 --> 00:02:35,740
+The first 1 there is this interceptor.
+
+41
+00:02:35,740 --> 00:02:40,410
+And then my two feature is 0.90 like so.
+
+42
+00:02:40,410 --> 00:02:44,412
+So for Love at last I would
+have a feature vector x1, for
+
+43
+00:02:44,412 --> 00:02:50,203
+the movie Romance forever I may have a
+software feature of vector x2, and so on,
+
+44
+00:02:50,203 --> 00:02:56,104
+and for Swords vs karate I would have a
+different feature vector x superscript 5.
+
+45
+00:02:56,104 --> 00:02:59,897
+Also, consistence with our earlier
+node notation that we were using,
+
+46
+00:02:59,897 --> 00:03:04,730
+we're going to set n to be the number of
+features not counting this x0 interceptor.
+
+47
+00:03:04,730 --> 00:03:08,320
+So n is equal to 2 because it's
+we have two features x1 and
+
+48
+00:03:08,320 --> 00:03:13,860
+x2 capturing the degree of romance and
+the degree of action in each movie.
+
+49
+00:03:13,860 --> 00:03:19,290
+Now in order to make predictions here's
+one thing that we do which is that
+
+50
+00:03:19,290 --> 00:03:23,180
+we could treat predicting
+the ratings of each user
+
+51
+00:03:23,180 --> 00:03:26,200
+as a separate linear regression problem.
+
+52
+00:03:26,200 --> 00:03:29,460
+So specifically, let's say that for
+each user j, we're going to
+
+53
+00:03:29,460 --> 00:03:33,550
+learn the parameter vector theta j,
+which would be an R3 in this case.
+
+54
+00:03:33,550 --> 00:03:37,940
+More generally,
+theta (j) would be an R (n+1),
+
+55
+00:03:37,940 --> 00:03:41,710
+where n is the number of features
+not counting the set term.
+
+56
+00:03:41,710 --> 00:03:46,360
+And we're going to predict user j as
+rating movie i with just the inner
+
+57
+00:03:46,360 --> 00:03:51,860
+product between parameters vectors
+theta and the features xi.
+
+58
+00:03:51,860 --> 00:03:54,346
+So let's take a specific example.
+
+59
+00:03:54,346 --> 00:04:01,130
+Let's take user 1, so that would be Alice.
+
+60
+00:04:01,130 --> 00:04:05,730
+And associated with Alice would
+be some parameter vector theta 1.
+
+61
+00:04:05,730 --> 00:04:07,440
+And our second user, Bob,
+
+62
+00:04:07,440 --> 00:04:10,780
+will be associated a different
+parameter vector theta 2.
+
+63
+00:04:10,780 --> 00:04:14,248
+Carol will be associated with
+a different parameter vector theta 3 and
+
+64
+00:04:14,248 --> 00:04:16,460
+Dave a different parameter vector theta 4.
+
+65
+00:04:17,490 --> 00:04:19,930
+So let's say you want to
+make a prediction for
+
+66
+00:04:19,930 --> 00:04:24,170
+what Alice will think of
+the movie Cute puppies of love.
+
+67
+00:04:24,170 --> 00:04:29,102
+Well that movie is going to
+have some parameter vector x3
+
+68
+00:04:29,102 --> 00:04:33,209
+where we have that x3 is
+going to be equal to 1,
+
+69
+00:04:33,209 --> 00:04:38,160
+which is my intercept term and
+then 0.99 and then 0.
+
+70
+00:04:38,160 --> 00:04:43,370
+And let's say, for this example, let's
+say that we've somehow already gotten
+
+71
+00:04:43,370 --> 00:04:45,510
+a parameter vector theta 1 for Alice.
+
+72
+00:04:45,510 --> 00:04:49,230
+We'll say it later exactly how we
+come up with this parameter vector.
+
+73
+00:04:50,370 --> 00:04:54,130
+But let's just say for now that
+some unspecified learning algorithm
+
+74
+00:04:54,130 --> 00:04:59,150
+has learned the parameter vector
+theta 1 and is equal to this 0,5,0.
+
+75
+00:04:59,150 --> 00:05:06,010
+So our prediction for
+this entry is going to be equal to
+
+76
+00:05:06,010 --> 00:05:11,470
+theta 1, that is Alice's parameter vector,
+transpose x3,
+
+77
+00:05:11,470 --> 00:05:16,250
+that is the feature vector for
+the Cute puppies of love movie, number 3.
+
+78
+00:05:16,250 --> 00:05:22,640
+And so the inner product between these
+two vectors is gonna be 5 times 0.99,
+
+79
+00:05:22,640 --> 00:05:27,390
+which is equal to 4.95.
+
+80
+00:05:27,390 --> 00:05:32,496
+And so my prediction for
+this value over here is going to be 4.95.
+
+81
+00:05:32,496 --> 00:05:36,911
+And maybe that seems like a reasonable
+value if indeed this is my
+
+82
+00:05:36,911 --> 00:05:38,930
+parameter vector theta 1.
+
+83
+00:05:38,930 --> 00:05:43,794
+So, all we're doing here is we're
+applying a different copy of this linear
+
+84
+00:05:43,794 --> 00:05:48,506
+regression for each user, and
+we're saying that what Alice does is Alice
+
+85
+00:05:48,506 --> 00:05:53,294
+has some parameter vector theta 1 that
+she uses, that we use to predict her
+
+86
+00:05:53,294 --> 00:05:58,220
+ratings as a function of how romantic and
+how action packed a movie is.
+
+87
+00:05:58,220 --> 00:06:02,469
+And Bob and Carol and Dave, each of
+them have a different linear function of
+
+88
+00:06:02,469 --> 00:06:07,326
+the romanticness and actionness, or degree
+of romance and degree of action in a movie
+
+89
+00:06:07,326 --> 00:06:11,187
+and that that's how we're gonna
+predict that their star ratings.
+
+90
+00:06:14,902 --> 00:06:19,320
+More formally,
+here's how we can write down the problem.
+
+91
+00:06:19,320 --> 00:06:23,615
+Our notation is that r(i,j) is equal
+to 1 if user j has rated movie i and
+
+92
+00:06:23,615 --> 00:06:28,399
+y(i,j) is the rating of that movie,
+if that rating exists.
+
+93
+00:06:29,580 --> 00:06:31,700
+That is, if that user has
+actually rated that movie.
+
+94
+00:06:32,850 --> 00:06:37,780
+And, on the previous slide we also defined
+these, theta j, which is a parameter for
+
+95
+00:06:37,780 --> 00:06:41,640
+the user xi, which is a feature vector for
+a specific movie.
+
+96
+00:06:41,640 --> 00:06:47,084
+And for each user and each movie,
+we predict that rating as follows.
+
+97
+00:06:47,084 --> 00:06:53,351
+So let me introduce just temporarily
+introduce one extra bit of notation mj.
+
+98
+00:06:53,351 --> 00:06:56,789
+We're gonna use mj to denote
+the number of users rated by movie j.
+
+99
+00:06:56,789 --> 00:06:59,470
+We don't need this notation only for
+this line.
+
+100
+00:06:59,470 --> 00:07:04,560
+Now in order to learn the parameter
+vector for theta j, well how do we do so.
+
+101
+00:07:04,560 --> 00:07:06,930
+This is basically a linear
+regression problem.
+
+102
+00:07:06,930 --> 00:07:11,380
+So what we can do is just choose
+a parameter vector theta j so
+
+103
+00:07:11,380 --> 00:07:16,080
+that the predicted values here are as
+close as possible to the values that we
+
+104
+00:07:16,080 --> 00:07:19,930
+observed in our training sets and
+the values we observed in our data.
+
+105
+00:07:19,930 --> 00:07:22,350
+So let's write that down.
+
+106
+00:07:22,350 --> 00:07:25,675
+In order to learn
+the parameter vector theta j,
+
+107
+00:07:25,675 --> 00:07:30,900
+let's minimize over the parameter
+vector theta j of sum,
+
+108
+00:07:31,920 --> 00:07:36,300
+and I want to sum over all
+movies that user j has rated.
+
+109
+00:07:36,300 --> 00:07:39,130
+So we write it as sum
+over all values of i.
+
+110
+00:07:39,130 --> 00:07:43,900
+That's a :r(i,j) equals 1.
+
+111
+00:07:43,900 --> 00:07:48,020
+So the way to read this summation
+syntax is this is summation
+
+112
+00:07:48,020 --> 00:07:51,090
+over all the values of i, so
+the r(i.j) is equal to 1.
+
+113
+00:07:51,090 --> 00:07:55,130
+So you'll be summing over all
+the movies that user j has rated.
+
+114
+00:07:56,210 --> 00:08:04,500
+And then I'm going to compute theta j,
+transpose x i.
+
+115
+00:08:04,500 --> 00:08:11,860
+So that's the prediction of using
+j's rating on movie i,- y (i,j).
+
+116
+00:08:11,860 --> 00:08:15,160
+So that's the actual
+observed rating squared.
+
+117
+00:08:15,160 --> 00:08:22,230
+And then, let me just divide by the number
+of movies that user j has actually rated.
+
+118
+00:08:22,230 --> 00:08:24,950
+So let's just divide by 1 over 2m j.
+
+119
+00:08:24,950 --> 00:08:28,260
+And so this is just like
+the least squares regressions.
+
+120
+00:08:28,260 --> 00:08:32,152
+It's just like linear regression, where
+we want to choose the parameter vector
+
+121
+00:08:32,152 --> 00:08:35,339
+theta j to minimize this
+type of squared error term.
+
+122
+00:08:36,370 --> 00:08:41,690
+And if you want, you can also add in
+irregularization terms so plus lambda
+
+123
+00:08:41,690 --> 00:08:48,930
+over 2m and this is really 2mj
+because we have mj examples.
+
+124
+00:08:48,930 --> 00:08:52,100
+User j has rated that many movies,
+it's not like we have that many
+
+125
+00:08:52,100 --> 00:08:55,610
+data points with which to fit
+the parameters of theta j.
+
+126
+00:08:55,610 --> 00:09:00,330
+And then let me add in my
+usual regularization term here
+
+127
+00:09:00,330 --> 00:09:02,970
+of theta j k squared.
+
+128
+00:09:02,970 --> 00:09:09,890
+As usual, this sum is from k equals 1
+through n, so here, theta j is going to be
+
+129
+00:09:09,890 --> 00:09:15,360
+an n plus 1 dimensional vector, where
+in our early example n was equal to 2.
+
+130
+00:09:15,360 --> 00:09:19,468
+But more broadly, more generally n is
+the number of features we have per movie.
+
+131
+00:09:19,468 --> 00:09:22,684
+And so
+as usual we don't regularize over theta 0.
+
+132
+00:09:22,684 --> 00:09:24,660
+We don't regularize over the bias terms.
+
+133
+00:09:24,660 --> 00:09:26,132
+The sum is from k equals 1 through n.
+
+134
+00:09:27,910 --> 00:09:32,740
+So if you minimize this as a function
+of theta j you get a good solution,
+
+135
+00:09:32,740 --> 00:09:36,510
+you get a pretty good estimate
+of a parameter vector theta j
+
+136
+00:09:36,510 --> 00:09:40,800
+with which to make predictions for
+user j's movie ratings.
+
+137
+00:09:40,800 --> 00:09:44,520
+For recommender systems, I'm gonna
+change this notation a little bit.
+
+138
+00:09:44,520 --> 00:09:49,590
+So to simplify the subsequent math,
+I with to get rid of this term mj.
+
+139
+00:09:49,590 --> 00:09:50,930
+So that's just a constant, right?
+
+140
+00:09:50,930 --> 00:09:54,600
+So I can delete it without changing
+the value of theta j that I
+
+141
+00:09:54,600 --> 00:09:56,010
+get out of this optimization.
+
+142
+00:09:56,010 --> 00:09:59,790
+So if you imagine taking this whole
+equation, taking this whole expression and
+
+143
+00:09:59,790 --> 00:10:02,460
+multiplying it by mj,
+get rid of that constant.
+
+144
+00:10:02,460 --> 00:10:06,680
+And when I minimize this, I should still
+get the same value of theta j as before.
+
+145
+00:10:06,680 --> 00:10:10,390
+So just to repeat what we
+wrote on the previous slide,
+
+146
+00:10:10,390 --> 00:10:12,180
+here's our optimization objective.
+
+147
+00:10:12,180 --> 00:10:14,900
+In order to learn theta j
+which is the parameter for
+
+148
+00:10:14,900 --> 00:10:19,850
+user j, we're going to minimize over
+theta j of this optimization objectives.
+
+149
+00:10:19,850 --> 00:10:25,980
+So this is our usual squared error term
+and then this is our regularizations term.
+
+150
+00:10:25,980 --> 00:10:28,740
+Now of course in building
+a recommender system,
+
+151
+00:10:28,740 --> 00:10:31,370
+we don't just want to learn parameters for
+a single user.
+
+152
+00:10:31,370 --> 00:10:34,450
+We want to learn parameters for
+all of our users.
+
+153
+00:10:34,450 --> 00:10:38,920
+I have n subscript u users, so
+I want to learn all of these parameters.
+
+154
+00:10:38,920 --> 00:10:43,158
+And so, what I'm going to do is take
+this optimization objective and
+
+155
+00:10:43,158 --> 00:10:45,582
+just add the mixture summation there.
+
+156
+00:10:45,582 --> 00:10:50,349
+So this expression here with the one
+half on top of this is exactly
+
+157
+00:10:50,349 --> 00:10:52,571
+the same as what we had on top.
+
+158
+00:10:52,571 --> 00:10:57,232
+Except that now instead of just doing
+this for a specific user theta j,
+
+159
+00:10:57,232 --> 00:11:00,708
+I'm going to sum my objective
+over all of my users and
+
+160
+00:11:00,708 --> 00:11:06,491
+then minimize this overall optimization
+objective, minimize this overall cost on.
+
+161
+00:11:06,491 --> 00:11:11,423
+And when I minimize this as
+a function of theta 1, theta 2,
+
+162
+00:11:11,423 --> 00:11:17,440
+up to theta nu, I will get a separate
+parameter vector for each user.
+
+163
+00:11:17,440 --> 00:11:21,380
+And I can then use that to make
+predictions for all of my users, for
+
+164
+00:11:21,380 --> 00:11:22,739
+all of my n subscript users.
+
+165
+00:11:24,540 --> 00:11:29,484
+So putting everything together, this
+was our optimization objective on top.
+
+166
+00:11:29,484 --> 00:11:36,089
+And to give this thing a name, I'll
+just call this J(theta1, ..., theta nu).
+
+167
+00:11:36,089 --> 00:11:40,425
+So j as usual is my optimization
+objective, which I'm trying to minimize.
+
+168
+00:11:41,465 --> 00:11:45,645
+Next, in order to actually do
+the minimization, if you were to derive
+
+169
+00:11:45,645 --> 00:11:49,035
+the gradient descent update, these
+are the equations that you would get.
+
+170
+00:11:49,035 --> 00:11:53,245
+So you take theta j, k, and
+subtract from an alpha,
+
+171
+00:11:53,245 --> 00:11:56,865
+which is the learning rate,
+times these terms over here on the right.
+
+172
+00:11:56,865 --> 00:12:00,830
+So there's slightly different cases when
+k equals 0 and when k does not equal 0.
+
+173
+00:12:00,830 --> 00:12:05,542
+Because our regularization term here
+regularizes only the values of theta
+
+174
+00:12:05,542 --> 00:12:09,350
+jk for k not equal to 0, so
+we don't regularize theta 0, so
+
+175
+00:12:09,350 --> 00:12:14,670
+with slightly different updates when
+k equals 0 and k is not equal to 0.
+
+176
+00:12:14,670 --> 00:12:16,690
+And this term over here, for
+
+177
+00:12:16,690 --> 00:12:21,120
+example, is just the partial derivative
+with respect to your parameter,
+
+178
+00:12:23,260 --> 00:12:28,410
+that of your optimization objective.
+
+179
+00:12:28,410 --> 00:12:32,740
+Right and so
+this is just gradient descent and
+
+180
+00:12:32,740 --> 00:12:35,670
+I've already computed the derivatives and
+plugged them into here.
+
+181
+00:12:37,930 --> 00:12:43,190
+And if this gradient descent update
+look a lot like what we have here for
+
+182
+00:12:43,190 --> 00:12:44,130
+linear regression.
+
+183
+00:12:44,130 --> 00:12:48,005
+That's because these are essentially
+the same as linear regression.
+
+184
+00:12:48,005 --> 00:12:52,753
+The only minor difference is that for
+linear regression we have
+
+185
+00:12:52,753 --> 00:12:57,421
+these 1 over m terms,
+this really would've been 1 over mj.
+
+186
+00:12:57,421 --> 00:13:00,880
+But because earlier when we are deriving
+the optimization objective,
+
+187
+00:13:00,880 --> 00:13:04,480
+we got rid of this, that's why we
+don't have this 1 over m term.
+
+188
+00:13:04,480 --> 00:13:09,678
+But otherwise, it's really some of
+my training examples of the ever
+
+189
+00:13:09,678 --> 00:13:13,390
+times xk plus that regularization term,
+
+190
+00:13:13,390 --> 00:13:18,060
+plus that term of regularization
+contributes to the derivative.
+
+191
+00:13:18,060 --> 00:13:21,640
+And so if you're using gradient
+descent here's how you can
+
+192
+00:13:21,640 --> 00:13:25,130
+minimize the cost function j
+to learn all the parameters.
+
+193
+00:13:25,130 --> 00:13:27,420
+And using these formulas for
+the derivative if you want,
+
+194
+00:13:27,420 --> 00:13:30,740
+you can also plug them into a more
+advanced optimization algorithm,
+
+195
+00:13:30,740 --> 00:13:33,650
+like conjugate gradient or
+LBFGS or what have you.
+
+196
+00:13:33,650 --> 00:13:36,120
+And use that to try to minimize
+the cost function j as well.
+
+197
+00:13:37,380 --> 00:13:41,910
+So hopefully you now know how you can
+apply essentially a deviation on linear
+
+198
+00:13:41,910 --> 00:13:46,350
+regression in order to predict different
+movie ratings by different users.
+
+199
+00:13:46,350 --> 00:13:50,000
+This particular algorithm is called
+a content based recommendations, or
+
+200
+00:13:50,000 --> 00:13:51,530
+a content based approach,
+
+201
+00:13:51,530 --> 00:13:56,038
+because we assume that we have available
+to us features for the different movies.
+
+202
+00:13:56,038 --> 00:14:00,060
+And so where features that capture
+what is the content of these movies,
+
+203
+00:14:00,060 --> 00:14:03,020
+of how romantic is this movie,
+how much action is in this movie.
+
+204
+00:14:03,020 --> 00:14:06,500
+And we're really using features
+of a content of the movies
+
+205
+00:14:06,500 --> 00:14:07,359
+to make our predictions.
+
+206
+00:14:08,380 --> 00:14:11,870
+But for many movies,
+we don't actually have such features.
+
+207
+00:14:11,870 --> 00:14:14,810
+Or maybe very difficult
+to get such features for
+
+208
+00:14:14,810 --> 00:14:18,650
+all of our movies, for all of
+whatever items we're trying to sell.
+
+209
+00:14:18,650 --> 00:14:22,610
+And so, in the next video, we'll start
+to talk about an approach to recommender
+
+210
+00:14:22,610 --> 00:14:27,360
+systems that isn't content based and
+does not assume that we have someone else
+
+211
+00:14:27,360 --> 00:14:30,720
+giving us all of these features for
+all of the movies in our data set.

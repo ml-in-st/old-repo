@@ -1,0 +1,1671 @@
+1
+00:00:00,410 --> 00:00:01,520
+En el último vídeo hablamos
+
+2
+00:00:01,820 --> 00:00:04,130
+hablamos de la precisión y la recuperación
+
+3
+00:00:04,280 --> 00:00:06,180
+como métricas de evaluación para los
+
+4
+00:00:06,840 --> 00:00:08,220
+problemas de clasificación con clases sesgadas.
+
+5
+00:00:09,530 --> 00:00:11,020
+Para algunas aplicaciones, queremos
+
+6
+00:00:11,180 --> 00:00:13,350
+controlar, de alguna manera, la compensación entre
+
+7
+00:00:13,630 --> 00:00:15,640
+la precisión y la recuperación.
+
+8
+00:00:16,500 --> 00:00:17,310
+Ahora les diré cómo
+
+9
+00:00:17,470 --> 00:00:19,020
+hacerlo y les mostraré
+
+10
+00:00:19,390 --> 00:00:20,520
+maneras aún más efectivas
+
+11
+00:00:21,050 --> 00:00:22,810
+de utilizar la precisión y la
+
+12
+00:00:22,980 --> 00:00:24,290
+recuperación como una métrica de
+
+13
+00:00:24,720 --> 00:00:27,380
+evaluación para algoritmos de aprendizaje.
+
+14
+00:00:28,620 --> 00:00:30,180
+Como recordatorio, aquí tenemos las
+
+15
+00:00:30,250 --> 00:00:32,150
+definiciones de precisión y
+
+16
+00:00:32,380 --> 00:00:34,100
+recuperación del video anterior.
+
+17
+00:00:35,920 --> 00:00:37,650
+Continuemos con nuestro ejemplo de
+
+18
+00:00:38,680 --> 00:00:39,980
+clasificación del cáncer en el que “y” es
+
+19
+00:00:40,370 --> 00:00:41,790
+igual a 1 si el paciente tiene cáncer y
+
+20
+00:00:42,270 --> 00:00:43,310
+“y” es igual a 0 si el paciente está sano,
+
+21
+00:00:44,800 --> 00:00:46,060
+y digamos que entrenamos un
+
+22
+00:00:46,360 --> 00:00:48,580
+clasificador con regresión logística que nos
+
+23
+00:00:49,070 --> 00:00:50,690
+arroja posibilidades de entre cero y uno.
+
+24
+00:00:51,740 --> 00:00:52,830
+Como de costumbre, supondremos
+
+25
+00:00:53,010 --> 00:00:54,690
+que “y” es igual a 1
+
+26
+00:00:55,080 --> 00:00:56,290
+si “H” de “X”
+
+27
+00:00:56,560 --> 00:00:57,980
+es mayor o igual a
+
+28
+00:00:58,090 --> 00:00:59,720
+0.5 y prediremos que “y” es igual a 0
+
+29
+00:01:00,140 --> 00:01:01,570
+si la hipótesis arroja un valor
+
+30
+00:01:01,820 --> 00:01:03,720
+menor a 0.5. Este
+
+31
+00:01:04,040 --> 00:01:05,400
+clasificador puede darnos
+
+32
+00:01:05,710 --> 00:01:08,430
+un valor para la precisión y un valor para la recuperación.
+
+33
+00:01:10,420 --> 00:01:11,860
+Por ahora, supongamos que queremos
+
+34
+00:01:12,140 --> 00:01:13,440
+predecir que un paciente tiene
+
+35
+00:01:13,730 --> 00:01:15,510
+cáncer sólo si estamos seguros de
+
+36
+00:01:15,750 --> 00:01:17,190
+que en realidad lo padece,
+
+37
+00:01:18,010 --> 00:01:18,900
+porque si vas con un
+
+38
+00:01:19,140 --> 00:01:20,180
+paciente y le dices que tiene cáncer,
+
+39
+00:01:20,480 --> 00:01:21,570
+tendrá un impacto enorme
+
+40
+00:01:21,710 --> 00:01:22,450
+Realmente
+
+41
+00:01:22,680 --> 00:01:23,860
+son muy
+
+42
+00:01:24,220 --> 00:01:25,610
+malas noticias para el paciente y puede acabar
+
+43
+00:01:25,700 --> 00:01:27,080
+soportando un proceso y un tratamiento
+
+44
+00:01:27,660 --> 00:01:29,570
+muy dolor.
+
+45
+00:01:29,780 --> 00:01:30,770
+Por lo tanto, sólo le queremos
+
+46
+00:01:30,980 --> 00:01:31,880
+decir a un paciente que creemos que
+
+47
+00:01:32,090 --> 00:01:34,240
+tiene cáncer cuando estamos muy seguros.
+
+48
+00:01:36,230 --> 00:01:37,210
+Una manera de hacer esto es
+
+49
+00:01:37,320 --> 00:01:38,940
+modificar el algoritmo para que,
+
+50
+00:01:39,120 --> 00:01:40,290
+en vez de fijar el
+
+51
+00:01:40,710 --> 00:01:42,270
+umbral en 0.5,
+
+52
+00:01:42,820 --> 00:01:44,360
+supondremos que
+
+53
+00:01:44,510 --> 00:01:45,370
+“y” es igual a 1
+
+54
+00:01:46,330 --> 00:01:48,630
+sólo si “H” de
+
+55
+00:01:48,700 --> 00:01:50,200
+“X” es igual o mayor que 0.7.
+
+56
+00:01:50,490 --> 00:01:51,620
+Entonces, sólo le diremos a
+
+57
+00:01:52,360 --> 00:01:53,400
+alguien que tiene cáncer si
+
+58
+00:01:53,510 --> 00:01:54,530
+hay una probabilidad
+
+59
+00:01:54,810 --> 00:01:56,280
+igual o mayor
+
+60
+00:01:56,730 --> 00:01:59,060
+al 70% de que lo padece.
+
+61
+00:02:00,830 --> 00:02:02,000
+Si haces esto, puedes
+
+62
+00:02:02,850 --> 00:02:03,740
+predecir el
+
+63
+00:02:03,840 --> 00:02:04,990
+cáncer sólo cuando estás
+
+64
+00:02:05,100 --> 00:02:07,230
+seguro y, por lo tanto,
+
+65
+00:02:07,520 --> 00:02:08,830
+obtendrás un clasificador
+
+66
+00:02:09,920 --> 00:02:13,410
+con una mayor precisión. Por esto,
+
+67
+00:02:14,140 --> 00:02:15,300
+los pacientes a quienes
+
+68
+00:02:15,450 --> 00:02:16,630
+les des
+
+69
+00:02:16,860 --> 00:02:18,220
+la noticia de que tienen cáncer estarán
+
+70
+00:02:18,440 --> 00:02:19,760
+seguros de que
+
+71
+00:02:20,350 --> 00:02:21,420
+realmente
+
+72
+00:02:21,720 --> 00:02:23,100
+lo padecen.
+
+73
+00:02:24,260 --> 00:02:26,050
+En otras palabras,
+
+74
+00:02:26,150 --> 00:02:27,460
+una fracción más alta
+
+75
+00:02:27,530 --> 00:02:28,990
+de los pacientes que predijiste
+
+76
+00:02:29,280 --> 00:02:30,720
+que tendrían cáncer tendrán cáncer realmente, porque cuando hiciste estas predicciones
+
+77
+00:02:31,000 --> 00:02:32,870
+dejaste un margen de seguridad muy cerrado.
+
+78
+00:02:34,510 --> 00:02:36,360
+Por el contrario, este clasificador
+
+79
+00:02:36,540 --> 00:02:38,530
+tendrá una recuperación baja, porque
+
+80
+00:02:39,140 --> 00:02:40,220
+ahora
+
+81
+00:02:40,340 --> 00:02:41,650
+haremos una predicción de que
+
+82
+00:02:41,740 --> 00:02:44,180
+“y” es igual a 1 en un número menor de pacientes.
+
+83
+00:02:45,090 --> 00:02:45,920
+Podemos llevar esto más lejos.
+
+84
+00:02:46,330 --> 00:02:47,520
+En vez de fijar el umbral en
+
+85
+00:02:48,080 --> 00:02:49,210
+0.7, podemos subirlo a
+
+86
+00:02:49,490 --> 00:02:51,550
+0.9 y predecir que
+
+87
+00:02:52,430 --> 00:02:53,270
+“y” es igual a 1 sólo
+
+88
+00:02:53,320 --> 00:02:54,560
+si tenemos más del 90% de seguridad
+
+89
+00:02:55,380 --> 00:02:57,020
+de que el paciente tiene cáncer.
+
+90
+00:02:57,600 --> 00:02:58,720
+Una fracción mayor de pacientes
+
+91
+00:02:58,850 --> 00:02:59,820
+tendrá cáncer;
+
+92
+00:03:00,020 --> 00:03:01,380
+por lo tanto, este será
+
+93
+00:03:01,560 --> 00:03:03,060
+un clasificador con precisión alta y con una recuperación baja
+
+94
+00:03:04,160 --> 00:03:06,090
+porque detectaremos
+
+95
+00:03:06,190 --> 00:03:08,550
+correctamente sólo a los pacientes que tengan cáncer.
+
+96
+00:03:09,310 --> 00:03:10,780
+Ahora, consideremos un ejemplo distinto.
+
+97
+00:03:12,100 --> 00:03:13,200
+Supongamos que queremos
+
+98
+00:03:13,470 --> 00:03:15,530
+evitar obviar muchos casos de cáncer.
+
+99
+00:03:15,960 --> 00:03:17,480
+Queremos evitar falsos negativos.
+
+100
+00:03:18,600 --> 00:03:19,820
+Especialmente, si un paciente
+
+101
+00:03:20,350 --> 00:03:22,280
+realmente tiene cáncer pero
+
+102
+00:03:22,520 --> 00:03:23,700
+no le dijimos que lo padece, puede
+
+103
+00:03:23,860 --> 00:03:25,710
+tener consecuencias graves.
+
+104
+00:03:25,880 --> 00:03:27,460
+Ya que, si no le dijimos
+
+105
+00:03:27,760 --> 00:03:28,870
+al paciente que no
+
+106
+00:03:29,240 --> 00:03:31,460
+tiene cáncer, no
+
+107
+00:03:31,530 --> 00:03:32,870
+obtendrán tratamiento; es decir,
+
+108
+00:03:32,980 --> 00:03:33,890
+si resulta que
+
+109
+00:03:34,050 --> 00:03:35,380
+sí tiene cáncer pero no
+
+110
+00:03:35,520 --> 00:03:36,410
+le dijimos,
+
+111
+00:03:36,660 --> 00:03:39,060
+no recibirá su tratamiento.
+
+112
+00:03:39,430 --> 00:03:40,520
+Esto puede ser un
+
+113
+00:03:40,640 --> 00:03:41,820
+resultado trágico.
+
+114
+00:03:42,080 --> 00:03:43,050
+El paciente podría morir porque
+
+115
+00:03:43,140 --> 00:03:44,560
+le dijimos que no tenía cáncer y
+
+116
+00:03:44,670 --> 00:03:46,780
+no tomó un tratamiento, pero resulta
+
+117
+00:03:48,230 --> 00:03:48,790
+que sí tenía cáncer.
+
+118
+00:03:49,260 --> 00:03:50,260
+Cuando haya dudas, lo que
+
+119
+00:03:50,360 --> 00:03:52,430
+queremos predecir es que “y” es igual a 1.
+
+120
+00:03:52,720 --> 00:03:54,260
+Así que, cuando tenemos dudas,
+
+121
+00:03:54,480 --> 00:03:55,510
+queremos predecir que tienen
+
+122
+00:03:55,770 --> 00:03:56,820
+cáncer para que,
+
+123
+00:03:57,110 --> 00:03:58,150
+por lo menos, puedan investigar
+
+124
+00:03:59,400 --> 00:04:00,720
+más y tratarse en
+
+125
+00:04:01,180 --> 00:04:02,750
+caso de que realmente lo padezcan.
+
+126
+00:04:04,870 --> 00:04:06,300
+En este caso, en vez de
+
+127
+00:04:06,750 --> 00:04:08,920
+poner un umbral de probabilidad alto,
+
+128
+00:04:09,100 --> 00:04:11,370
+tomaremos este valor
+
+129
+00:04:12,270 --> 00:04:13,310
+y lo bajaremos hasta,
+
+130
+00:04:13,540 --> 00:04:14,710
+digamos, 0.3
+
+131
+00:04:15,060 --> 00:04:17,390
+así.
+
+132
+00:04:18,760 --> 00:04:19,780
+Al hacer esto, estamos
+
+133
+00:04:20,070 --> 00:04:21,380
+decidiendo que si hay
+
+134
+00:04:21,480 --> 00:04:22,190
+más del 30% de probabilidad
+
+135
+00:04:22,220 --> 00:04:24,660
+de que el paciente tenga cáncer,
+
+136
+00:04:24,890 --> 00:04:26,270
+seremos conservadores y le
+
+137
+00:04:26,510 --> 00:04:27,330
+diremos que puede tener
+
+138
+00:04:27,850 --> 00:04:29,610
+cáncer para que busque el tratamiento necesario.
+
+139
+00:04:31,110 --> 00:04:32,630
+En este caso, lo que haremos es
+
+140
+00:04:32,790 --> 00:04:34,200
+poner un
+
+141
+00:04:35,120 --> 00:04:38,260
+clasificador con una recuperación más
+
+142
+00:04:39,550 --> 00:04:41,440
+alta para marcar
+
+143
+00:04:41,580 --> 00:04:43,330
+efectivamente una fracción
+
+144
+00:04:43,580 --> 00:04:44,760
+mayor de
+
+145
+00:04:44,800 --> 00:04:45,920
+los pacientes con
+
+146
+00:04:46,130 --> 00:04:47,570
+cáncer,
+
+147
+00:04:47,740 --> 00:04:51,040
+pero acabaremos
+
+148
+00:04:51,670 --> 00:04:53,490
+con una precisión menor.
+
+149
+00:04:53,600 --> 00:04:54,700
+Porque entre más grande sea la fracción de pacientes a los que les diagnostiquemos
+
+150
+00:04:54,820 --> 00:04:57,530
+cáncer, mayor será la fracción de ellos que, finalmente, no padecen cáncer.
+
+151
+00:05:00,470 --> 00:05:01,320
+Como paréntesis,
+
+152
+00:05:01,400 --> 00:05:02,640
+cuando hablo de
+
+153
+00:05:02,920 --> 00:05:04,900
+esto con otros
+
+154
+00:05:05,160 --> 00:05:07,760
+estudiantes les resulta muy impresionante y
+
+155
+00:05:08,390 --> 00:05:09,720
+algunos me preguntan
+
+156
+00:05:09,850 --> 00:05:11,960
+cómo puedo contar la historia desde ambos puntos de vista.
+
+157
+00:05:12,550 --> 00:05:14,220
+Ya sea si queremos tener una
+
+158
+00:05:14,450 --> 00:05:15,490
+precisión o una recuperación más alta. Pero
+
+159
+00:05:16,130 --> 00:05:18,570
+esto funciona en ambos casos.
+
+160
+00:05:19,340 --> 00:05:20,550
+Espero que los detalles de
+
+161
+00:05:20,670 --> 00:05:22,720
+mi algoritmo sean verdaderos.
+
+162
+00:05:22,990 --> 00:05:24,360
+El principio más general es que, dependiendo
+
+163
+00:05:24,780 --> 00:05:26,150
+de si quieres una precisión alta y
+
+164
+00:05:26,330 --> 00:05:28,010
+una recuperación baja o una precisión baja
+
+165
+00:05:28,540 --> 00:05:30,340
+y una recuperación alta, puedes terminar
+
+166
+00:05:30,450 --> 00:05:32,100
+prediciendo que “y” es igual
+
+167
+00:05:32,540 --> 00:05:35,040
+a 1 cuando “h(x)” es mayor que el umbral.
+
+168
+00:05:36,590 --> 00:05:39,240
+En general, para la mayoría de los clasificadores,
+
+169
+00:05:39,880 --> 00:05:41,330
+habrá
+
+170
+00:05:41,540 --> 00:05:44,200
+una compensación entre la precisión y la recuperación.
+
+171
+00:05:45,360 --> 00:05:46,540
+A medida que varía el valor
+
+172
+00:05:47,050 --> 00:05:48,700
+del este umbral, el valor del umbral
+
+173
+00:05:49,030 --> 00:05:49,850
+que
+
+174
+00:05:49,910 --> 00:05:51,470
+tracé aquí, se puede
+
+175
+00:05:51,790 --> 00:05:53,850
+trazar una curva que
+
+176
+00:05:54,030 --> 00:05:56,060
+compensa entre la precisión
+
+177
+00:05:56,200 --> 00:05:58,010
+y la recuperación en donde el valor de
+
+178
+00:05:58,410 --> 00:06:00,020
+aquí arriba correspondería a un umbral
+
+179
+00:06:01,360 --> 00:06:02,620
+con un valor muy alto,
+
+180
+00:06:02,770 --> 00:06:04,490
+quizá mayor a
+
+181
+00:06:05,420 --> 00:06:06,790
+0.99. Digamos que
+
+182
+00:06:07,090 --> 00:06:08,270
+predijimos que “y” es igual a 1 sólo
+
+183
+00:06:08,480 --> 00:06:09,640
+cuando tenemos el 99 por ciento
+
+184
+00:06:10,290 --> 00:06:11,700
+de probabilidad o por
+
+185
+00:06:11,950 --> 00:06:13,460
+lo menos el 99 por ciento de certeza de que “y” es igual a 1.
+
+186
+00:06:13,760 --> 00:06:15,390
+Esto nos daría una precisión alta
+
+187
+00:06:15,960 --> 00:06:17,550
+y una recuperación relativamente baja. Por el contrario,
+
+188
+00:06:17,820 --> 00:06:20,380
+el punto de aquí abajo corresponde
+
+189
+00:06:20,490 --> 00:06:22,240
+a un valor de umbral
+
+190
+00:06:22,450 --> 00:06:24,940
+mucho más bajo, tal vez 0.01.
+
+191
+00:06:25,520 --> 00:06:26,810
+Cuando tengas duda, supón que “y” es igual a 1.
+
+192
+00:06:27,120 --> 00:06:28,380
+Haciendo esto tenderemos
+
+193
+00:06:28,520 --> 00:06:29,570
+con una precisión
+
+194
+00:06:29,760 --> 00:06:31,730
+más baja y una recuperación más alta.
+
+195
+00:06:33,350 --> 00:06:34,970
+A medida que varíes el umbral,
+
+196
+00:06:35,430 --> 00:06:36,550
+puedes trazar
+
+197
+00:06:37,000 --> 00:06:38,280
+la curva de tu clasificador
+
+198
+00:06:38,930 --> 00:06:41,420
+para ver la gama de valores que puedes obtener para la precisión y la recuperación.
+
+199
+00:06:43,050 --> 00:06:43,810
+Por cierto, la curva de
+
+200
+00:06:44,230 --> 00:06:46,860
+precisión y recuperación puede tener muchas formas distintas.
+
+201
+00:06:47,260 --> 00:06:49,140
+A veces se verá como esta, y
+
+202
+00:06:50,550 --> 00:06:51,260
+otras como esta otra.
+
+203
+00:06:52,330 --> 00:06:53,210
+Hay muchas formas
+
+204
+00:06:53,610 --> 00:06:54,820
+posibles para la curva de precisión y
+
+205
+00:06:55,020 --> 00:06:56,850
+recuperación que dependen de los detalles del clasificador.
+
+206
+00:06:57,990 --> 00:06:59,620
+Esto nos lleva a otra
+
+207
+00:06:59,900 --> 00:07:01,680
+pregunta interesante: ¿hay
+
+208
+00:07:01,870 --> 00:07:03,130
+alguna manera de elegir
+
+209
+00:07:03,510 --> 00:07:06,100
+el umbral automáticamente?
+
+210
+00:07:06,810 --> 00:07:07,890
+o, si tenemos
+
+211
+00:07:08,500 --> 00:07:10,060
+algoritmos diferentes o
+
+212
+00:07:10,150 --> 00:07:12,290
+ideas diferentes para algoritmos
+
+213
+00:07:12,490 --> 00:07:15,340
+¿cómo comparamos los diferentes números de precisión y recuperación?
+
+214
+00:07:16,400 --> 00:07:16,400
+Supongamos
+
+215
+00:07:17,170 --> 00:07:18,250
+que tenemos tres algoritmos
+
+216
+00:07:18,590 --> 00:07:20,050
+de aprendizaje distintos o
+
+217
+00:07:20,120 --> 00:07:22,060
+tal vez son un sólo algoritmo de aprendizaje con
+
+218
+00:07:22,250 --> 00:07:25,010
+umbrales de tres valores distintos.
+
+219
+00:07:26,190 --> 00:07:28,560
+¿Cómo decidimos cuál de estos algoritmos es el mejor?
+
+220
+00:07:29,770 --> 00:07:30,460
+Antes, hablamos de la
+
+221
+00:07:30,680 --> 00:07:31,630
+importancia de tener una
+
+222
+00:07:32,520 --> 00:07:34,590
+métrica de evaluación con un número real simple.
+
+223
+00:07:35,880 --> 00:07:36,890
+La idea de esto es
+
+224
+00:07:36,970 --> 00:07:38,050
+tener un sólo número que te
+
+225
+00:07:38,370 --> 00:07:40,130
+indique cómo se está desempeñando tu clasificador.
+
+226
+00:07:41,270 --> 00:07:42,260
+Cuando, en vez de esto, utilizamos
+
+227
+00:07:42,690 --> 00:07:44,330
+la métrica de precisión y recuperación, perdemos esta ventaja.
+
+228
+00:07:44,580 --> 00:07:46,090
+Ahora tenemos dos números reales,
+
+229
+00:07:47,190 --> 00:07:48,600
+por lo que a veces nos
+
+230
+00:07:48,770 --> 00:07:50,580
+enfrentamos con situaciones en las que,
+
+231
+00:07:50,750 --> 00:07:52,770
+si intentamos comparar el algoritmo 1
+
+232
+00:07:52,970 --> 00:07:54,350
+con el algoritmo 2,
+
+233
+00:07:54,420 --> 00:07:55,420
+terminamos preguntándonos si tener
+
+234
+00:07:55,450 --> 00:07:56,550
+una precisión de 0.5 y una
+
+235
+00:07:56,700 --> 00:07:57,580
+recuperación de 0.4 es mejor o
+
+236
+00:07:57,830 --> 00:07:58,830
+peor que tener
+
+237
+00:07:58,960 --> 00:08:00,120
+una precisión de 0.7 y
+
+238
+00:08:00,300 --> 00:08:01,890
+una recuperación de 0.1.
+
+239
+00:08:02,150 --> 00:08:03,020
+Cada vez que vez que
+
+240
+00:08:03,350 --> 00:08:04,730
+evalúes un algoritmo
+
+241
+00:08:04,890 --> 00:08:06,070
+terminarás preguntándote
+
+242
+00:08:06,530 --> 00:08:07,710
+si 0.5 y
+
+243
+00:08:07,960 --> 00:08:09,170
+0.4 son mejores
+
+244
+00:08:09,330 --> 00:08:11,120
+valores que 0.7 y 0.1. No sé.
+
+245
+00:08:11,590 --> 00:08:13,740
+Sentarte a pensar sobre estas decisiones
+
+246
+00:08:14,440 --> 00:08:15,830
+puede retrasar tu
+
+247
+00:08:16,030 --> 00:08:18,710
+proceso de toma de decisiones
+
+248
+00:08:19,120 --> 00:08:21,560
+de los cambios útiles que puedes incorporar a tu algoritmo.
+
+249
+00:08:23,070 --> 00:08:24,810
+Por el contrario, si
+
+250
+00:08:24,880 --> 00:08:26,410
+tenemos una métrica de evaluación con un valor único;
+
+251
+00:08:27,220 --> 00:08:28,240
+es decir, un número
+
+252
+00:08:28,590 --> 00:08:31,140
+que nos diga si el algoritmo 1 es mejor que el 2 o al revés,
+
+253
+00:08:31,710 --> 00:08:33,110
+nos será de mucha ayuda para
+
+254
+00:08:33,370 --> 00:08:34,840
+decidir más rápidamente qué
+
+255
+00:08:34,950 --> 00:08:36,290
+algoritmo debemos utilizar. También
+
+256
+00:08:36,450 --> 00:08:37,520
+nos ayuda a evaluar más
+
+257
+00:08:38,110 --> 00:08:39,700
+rápidamente los cambios que
+
+258
+00:08:39,830 --> 00:08:41,370
+estamos contemplando para un algoritmo.
+
+259
+00:08:42,050 --> 00:08:43,080
+Entonces ¿cómo podemos obtener
+
+260
+00:08:43,480 --> 00:08:45,910
+una métrica de evaluación con un sólo número real?
+
+261
+00:08:47,480 --> 00:08:48,590
+Una cosa que puedes intentar
+
+262
+00:08:48,660 --> 00:08:49,910
+es ver el
+
+263
+00:08:50,150 --> 00:08:52,110
+promedio entre la precisión y la recuperación.
+
+264
+00:08:52,330 --> 00:08:53,310
+Utilizaremos P y R
+
+265
+00:08:53,570 --> 00:08:54,800
+para denotar precisión y recuperación, respectivamente.
+
+266
+00:08:55,010 --> 00:08:56,300
+Lo que puedes hacer es calcular el
+
+267
+00:08:56,520 --> 00:08:57,280
+promedio y ver cuál
+
+268
+00:08:57,770 --> 00:08:59,300
+clasificador tiene el valor promedio más alto.
+
+269
+00:09:00,840 --> 00:09:01,990
+Esta no es una solución
+
+270
+00:09:02,040 --> 00:09:04,990
+tan buena porque, al igual que en el ejemplo
+
+271
+00:09:05,350 --> 00:09:06,480
+anterior, resulta que
+
+272
+00:09:07,860 --> 00:09:08,970
+si tenemos un
+
+273
+00:09:09,070 --> 00:09:10,260
+clasificador que
+
+274
+00:09:11,310 --> 00:09:13,830
+predice que “y” es igual a 1 todo el tiempo,
+
+275
+00:09:13,960 --> 00:09:15,540
+encontraremos una recuperación muy alta y
+
+276
+00:09:16,290 --> 00:09:18,700
+terminaremos con un valor muy bajo para la precisión.
+
+277
+00:09:19,690 --> 00:09:21,230
+Por el contrario, si tenemos un clasificador
+
+278
+00:09:21,640 --> 00:09:24,060
+que predice que “y” es igual a 0 casi
+
+279
+00:09:25,340 --> 00:09:26,400
+todo el tiempo, es decir, si la predicción de que “y”
+
+280
+00:09:26,490 --> 00:09:28,100
+es igual a 1 aparece rara vez,
+
+281
+00:09:28,910 --> 00:09:30,820
+indica que
+
+282
+00:09:31,130 --> 00:09:34,190
+tenemos un umbral muy alto utilizando la notación de la línea anterior.
+
+283
+00:09:34,490 --> 00:09:35,610
+Por lo tanto, podemos acabar con
+
+284
+00:09:35,670 --> 00:09:37,650
+una precisión muy alta y con una recuperación baja.
+
+285
+00:09:39,280 --> 00:09:40,470
+Los dos extremos son
+
+286
+00:09:40,790 --> 00:09:42,380
+tener ya sea un umbral muy alto o
+
+287
+00:09:42,540 --> 00:09:44,050
+un umbral bajo y ninguno
+
+288
+00:09:44,170 --> 00:09:45,610
+de ellos nos dará un clasificador particularmente bueno.
+
+289
+00:09:46,280 --> 00:09:47,560
+Podemos reconocer esto
+
+290
+00:09:47,650 --> 00:09:48,650
+viendo si
+
+291
+00:09:48,710 --> 00:09:49,830
+tenemos una precisión muy baja
+
+292
+00:09:50,030 --> 00:09:52,710
+o una recuperación muy baja.
+
+293
+00:09:54,140 --> 00:09:56,120
+Si sólo tomas el promedio de “p” más “r” sobre 2,
+
+294
+00:09:57,140 --> 00:09:58,980
+en este ejemplo, el promedio
+
+295
+00:09:59,760 --> 00:10:01,410
+más alto será el del algoritmo 3.
+
+296
+00:10:01,810 --> 00:10:02,800
+Aunque puedes
+
+297
+00:10:02,910 --> 00:10:04,010
+obtener este desempeño prediciendo
+
+298
+00:10:04,510 --> 00:10:05,850
+“y” igual a 1 todo el tiempo,
+
+299
+00:10:06,220 --> 00:10:08,580
+no tendrás un clasificador de buena calidad ¿cierto?
+
+300
+00:10:08,670 --> 00:10:09,680
+Si predices que “y” es igual a
+
+301
+00:10:09,780 --> 00:10:11,010
+1 todo el tiempo, el clasificador no
+
+302
+00:10:11,210 --> 00:10:13,950
+será muy útil si tu resultado siempre es “y” es igual a 1.
+
+303
+00:10:15,000 --> 00:10:16,580
+Entonces, el algoritmo
+
+304
+00:10:17,040 --> 00:10:18,080
+uno o el algoritmo dos
+
+305
+00:10:18,280 --> 00:10:19,620
+serían más útiles que el algoritmo tres,
+
+306
+00:10:20,500 --> 00:10:22,330
+pero en este ejemplo, el algoritmo número tres
+
+307
+00:10:23,080 --> 00:10:24,840
+tiene un valor más alto de
+
+308
+00:10:24,920 --> 00:10:27,460
+precisión y recuperación que los algoritmos uno o dos.
+
+309
+00:10:28,770 --> 00:10:29,780
+Generalmente pensamos en el
+
+310
+00:10:29,900 --> 00:10:31,410
+promedio de precisión y recuperación
+
+311
+00:10:32,280 --> 00:10:35,000
+como una manera no muy efectiva de evaluar un algoritmo de aprendizaje.
+
+312
+00:10:38,200 --> 00:10:39,820
+En contraste, hay una
+
+313
+00:10:40,030 --> 00:10:41,770
+manera distinta de combinar la precisión y la recuperación.
+
+314
+00:10:42,370 --> 00:10:44,940
+Se llama Valor F y utiliza esta fórmula.
+
+315
+00:10:46,420 --> 00:10:48,740
+Aquí tenemos los valores F para este ejemplo.
+
+316
+00:10:49,530 --> 00:10:50,440
+Con base en estos
+
+317
+00:10:50,900 --> 00:10:52,140
+valores F podemos decir que el
+
+318
+00:10:52,270 --> 00:10:53,660
+algoritmo 1 tiene el valor F
+
+319
+00:10:53,820 --> 00:10:55,290
+más grande.
+
+320
+00:10:55,620 --> 00:10:56,910
+El algoritmo 2 tiene el segundo más grande y el
+
+321
+00:10:57,180 --> 00:10:58,560
+algoritmo 3 tiene el más bajo.
+
+322
+00:10:59,040 --> 00:10:59,920
+Si nos guiamos por el valor F
+
+323
+00:11:00,190 --> 00:11:02,700
+probablemente elegiremos el algoritmo 1 en vez de los otros.
+
+324
+00:11:04,950 --> 00:11:06,120
+El valor F también
+
+325
+00:11:06,310 --> 00:11:07,470
+se le llama valor F1 y que se
+
+326
+00:11:07,670 --> 00:11:09,110
+escribe como valor F1
+
+327
+00:11:09,340 --> 00:11:11,620
+como lo tengo aquí, pero muchos le llaman solamente valor F.
+
+328
+00:11:12,800 --> 00:11:14,750
+Se utiliza cualquiera de los dos nombres.
+
+329
+00:11:15,080 --> 00:11:16,130
+El valor F es como la
+
+330
+00:11:16,290 --> 00:11:17,660
+precisión y la recuperación promedio, pero
+
+331
+00:11:18,080 --> 00:11:19,220
+usa el valor más bajo de
+
+332
+00:11:19,580 --> 00:11:20,860
+precisión o de recuperación - el que
+
+333
+00:11:21,060 --> 00:11:23,460
+sea más bajo - y arroja un peso más alto.
+
+334
+00:11:23,950 --> 00:11:25,220
+En el numerador
+
+335
+00:11:25,360 --> 00:11:27,090
+puedes ver que el valor F es un
+
+336
+00:11:27,250 --> 00:11:29,910
+producto de la precisión y la recuperación.
+
+337
+00:11:30,460 --> 00:11:31,900
+Si la precisión
+
+338
+00:11:32,050 --> 00:11:33,070
+o la recuperación son iguales
+
+339
+00:11:33,180 --> 00:11:34,310
+a cero, el valor también
+
+340
+00:11:34,600 --> 00:11:35,590
+será igual a 0. En
+
+341
+00:11:35,690 --> 00:11:38,290
+ese sentido, combina la precisión y la recuperación.
+
+342
+00:11:38,850 --> 00:11:40,160
+para que el valor F
+
+343
+00:11:40,300 --> 00:11:41,600
+sea mayor, entonces, la precisión
+
+344
+00:11:42,100 --> 00:11:43,480
+y la recuperación también tendrán que ser mayores.
+
+345
+00:11:44,490 --> 00:11:45,770
+Debo decir que hay muchas
+
+346
+00:11:45,950 --> 00:11:47,950
+fórmulas posibles para
+
+347
+00:11:48,060 --> 00:11:49,450
+combinar la precisión y la recuperación.
+
+348
+00:11:50,040 --> 00:11:51,400
+La fórmula del valor F es
+
+349
+00:11:51,730 --> 00:11:53,470
+una de muchas
+
+350
+00:11:53,640 --> 00:11:54,800
+posibilidades pero,
+
+351
+00:11:54,880 --> 00:11:57,200
+históricamente o
+
+352
+00:11:57,270 --> 00:11:58,310
+tradicionalmente es la que
+
+353
+00:11:58,460 --> 00:12:00,110
+se utiliza en el aprendizaje automático.
+
+354
+00:12:01,550 --> 00:12:02,840
+El término valor F
+
+355
+00:12:02,960 --> 00:12:04,160
+realmente no significa nada, así que
+
+356
+00:12:04,390 --> 00:12:05,460
+no te preocupes por el nombre, ya
+
+357
+00:12:05,690 --> 00:12:07,680
+sea valor F o valor F1.
+
+358
+00:12:08,510 --> 00:12:10,900
+Este valor generalmente
+
+359
+00:12:11,370 --> 00:12:12,230
+nos da el efecto que queremos
+
+360
+00:12:12,600 --> 00:12:14,070
+porque si la posición o la recuperación son
+
+361
+00:12:14,370 --> 00:12:15,410
+iguales a 0, obtendremos
+
+362
+00:12:15,470 --> 00:12:17,470
+un valor F bajo.
+
+363
+00:12:17,610 --> 00:12:18,730
+Si queremos
+
+364
+00:12:18,770 --> 00:12:20,030
+un valor de F mayor,
+
+365
+00:12:20,280 --> 00:12:21,790
+necesitará que la precisión o la recuperación sean iguales a 1.
+
+366
+00:12:22,230 --> 00:12:24,630
+De manera específica, si “p”
+
+367
+00:12:25,010 --> 00:12:26,300
+es igual a 0 o “r” es igual a 0
+
+368
+00:12:26,450 --> 00:12:28,440
+entonces indica que
+
+369
+00:12:28,650 --> 00:12:31,540
+el valor F también es igual a 0.
+
+370
+00:12:33,430 --> 00:12:34,630
+Un valor perfecto de
+
+371
+00:12:34,820 --> 00:12:36,120
+F, es decir, una precisión igual a
+
+372
+00:12:36,550 --> 00:12:38,520
+1 o una recuperación
+
+373
+00:12:38,940 --> 00:12:40,380
+igual a 1 nos dará un
+
+374
+00:12:40,580 --> 00:12:43,450
+valor de F
+
+375
+00:12:43,680 --> 00:12:44,780
+igual a 1 por 1
+
+376
+00:12:45,100 --> 00:12:46,650
+entre 2 por 2.
+
+377
+00:12:46,800 --> 00:12:47,590
+El valor F
+
+378
+00:12:47,900 --> 00:12:48,610
+será igual a 1
+
+379
+00:12:48,680 --> 00:12:50,300
+si tienes una precisión y una recuperación perfecta.
+
+380
+00:12:51,280 --> 00:12:53,230
+Los valores intermedios entre 0 y
+
+381
+00:12:53,520 --> 00:12:54,980
+1 nos dan un orden
+
+382
+00:12:55,210 --> 00:12:57,240
+por rangos de los diferentes clasificadores.
+
+383
+00:13:00,000 --> 00:13:01,070
+En este video hablamos de
+
+384
+00:13:01,370 --> 00:13:03,240
+la noción de compensación
+
+385
+00:13:03,760 --> 00:13:05,290
+entre la precisión y la recuperación y
+
+386
+00:13:06,140 --> 00:13:07,410
+de cómo podemos
+
+387
+00:13:07,540 --> 00:13:09,110
+variar el umbral para
+
+388
+00:13:09,250 --> 00:13:10,340
+decidir si debemos predecir “y” es
+
+389
+00:13:10,540 --> 00:13:11,980
+igual a 1 o “y” es igual a 0.
+
+390
+00:13:12,180 --> 00:13:13,990
+Este umbral nos
+
+391
+00:13:14,070 --> 00:13:15,180
+indica que debemos tener
+
+392
+00:13:15,500 --> 00:13:16,970
+una certeza del 70% o
+
+393
+00:13:17,200 --> 00:13:19,340
+del 90% antes de
+
+394
+00:13:19,650 --> 00:13:21,150
+predecir que “y” es igual a 1. Puedes
+
+395
+00:13:21,260 --> 00:13:22,610
+controlar la compensación
+
+396
+00:13:22,950 --> 00:13:23,930
+entre la precisión y la recuperación
+
+397
+00:13:24,300 --> 00:13:25,960
+variando el umbral.
+
+398
+00:13:26,430 --> 00:13:27,150
+También hablamos acerca del valor F,
+
+399
+00:13:27,420 --> 00:13:28,850
+que toma la precisión y la recuperación y
+
+400
+00:13:29,640 --> 00:13:30,730
+arroja el resultado como
+
+401
+00:13:31,270 --> 00:13:32,480
+una métrica de evaluación con un número real simple.
+
+402
+00:13:33,320 --> 00:13:34,460
+Por supuesto, si tu meta es
+
+403
+00:13:34,740 --> 00:13:36,590
+ajustar ese umbral automáticamente
+
+404
+00:13:36,880 --> 00:13:38,390
+para decidir si “y”
+
+405
+00:13:38,590 --> 00:13:39,320
+es igual a 1 o
+
+406
+00:13:39,520 --> 00:13:41,180
+“y” es igual a 0, una manera
+
+407
+00:13:41,420 --> 00:13:42,410
+muy razonable de hacerlo
+
+408
+00:13:42,740 --> 00:13:44,140
+es intentar
+
+409
+00:13:44,640 --> 00:13:46,350
+una gama de valores para el umbral.
+
+410
+00:13:46,930 --> 00:13:47,740
+Intenta aplicar un rango de valores
+
+411
+00:13:48,190 --> 00:13:50,430
+para el umbral y evaluar cada
+
+412
+00:13:50,620 --> 00:13:51,610
+valor, digamos, en el
+
+413
+00:13:51,790 --> 00:13:53,650
+conjunto de validación cruzada. Luego
+
+414
+00:13:53,840 --> 00:13:55,760
+elige el umbral
+
+415
+00:13:56,580 --> 00:13:57,910
+que te de el valor de F más alto
+
+416
+00:13:58,060 --> 00:13:59,760
+en el conjunto de validación cruzada.
+
+417
+00:14:00,130 --> 00:14:01,220
+Esta sería una manera razonable de
+
+418
+00:14:01,720 --> 00:14:04,620
+elegir automáticamente el umbral para tu clasificador.

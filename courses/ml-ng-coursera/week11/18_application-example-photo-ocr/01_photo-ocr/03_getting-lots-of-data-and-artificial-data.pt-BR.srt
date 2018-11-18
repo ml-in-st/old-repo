@@ -1,0 +1,2039 @@
+1
+00:00:00,090 --> 00:00:01,270
+Eu ouvi muitas e muitas vezes
+
+2
+00:00:01,570 --> 00:00:03,160
+que a forma mais confiável
+
+3
+00:00:03,300 --> 00:00:04,800
+de se obter o melhor desempenho no sistema
+
+4
+00:00:05,040 --> 00:00:06,170
+de aprendizagem de máquina
+
+5
+00:00:06,550 --> 00:00:07,860
+é utilizar um algoritmo de baixa variância
+
+6
+00:00:08,750 --> 00:00:10,220
+e treiná-lo com enorme quantidade de dados
+
+7
+00:00:11,230 --> 00:00:12,830
+mas onde você consegue dados de treinamento?
+
+8
+00:00:13,510 --> 00:00:14,440
+No aprendizado de máquina
+
+9
+00:00:14,820 --> 00:00:16,520
+há uma ideia fascinante chamada síntese artificial de dados. 
+
+10
+00:00:17,220 --> 00:00:19,000
+Esta técnica não é indicada
+
+11
+00:00:19,370 --> 00:00:20,740
+a todo tipo de problema. 
+
+12
+00:00:20,980 --> 00:00:22,120
+Aplicá-la em um problema específico
+
+13
+00:00:22,360 --> 00:00:25,060
+exige normalmente inovação e conhecimento
+
+14
+00:00:25,780 --> 00:00:27,170
+mas se você puder aplicar a técnica
+
+15
+00:00:27,580 --> 00:00:29,120
+ao seu problema de aprendizagem de máquina
+
+16
+00:00:29,230 --> 00:00:30,270
+ela pode ser, às vezes,
+
+17
+00:00:30,510 --> 00:00:31,600
+o jeito mais fácil de se obter
+
+18
+00:00:31,680 --> 00:00:33,470
+uma enorme base de dados para treinamento do seu algoritmo.
+
+19
+00:00:33,900 --> 00:00:35,520
+ A técnica de síntese artificial de dados
+
+20
+00:00:36,230 --> 00:00:38,410
+é composta por duas variações principais:
+
+21
+00:00:38,590 --> 00:00:40,210
+a primeira é se nós
+
+22
+00:00:40,650 --> 00:00:41,940
+essencialmente estamos
+
+23
+00:00:42,520 --> 00:00:44,940
+criando dados do zero
+
+24
+00:00:45,380 --> 00:00:46,700
+e a segunda opção é se
+
+25
+00:00:46,930 --> 00:00:48,350
+já temos um pequeno conjunto
+
+26
+00:00:48,590 --> 00:00:49,970
+de rótulos para o treinamento
+
+27
+00:00:50,210 --> 00:00:51,490
+e de alguma forma ampliamos este
+
+28
+00:00:51,840 --> 00:00:52,680
+pequeno conjunto inicial de treinamento
+
+29
+00:00:52,980 --> 00:00:54,390
+e o transformamos
+
+30
+00:00:54,660 --> 00:00:56,290
+num conjunto maior.
+
+31
+00:00:56,450 --> 00:00:58,120
+Neste vídeo avaliaremos ambas alternativas.
+
+32
+00:01:00,350 --> 00:01:02,220
+Para explicar a ideia da síntese
+
+33
+00:01:02,440 --> 00:01:04,030
+artificial de dados
+
+34
+00:01:04,330 --> 00:01:06,930
+vamos usar uma parte dos caracteres da
+
+35
+00:01:07,090 --> 00:01:08,470
+sequência extraída de um OCR.
+
+36
+00:01:08,690 --> 00:01:09,710
+Temos uma imagem de entrada
+
+37
+00:01:10,060 --> 00:01:11,370
+e queremos reconhecer a letra.
+
+38
+00:01:13,330 --> 00:01:14,690
+Se formos coletar um
+
+39
+00:01:14,880 --> 00:01:16,270
+grande conjunto de rótulos de dados
+
+40
+00:01:16,890 --> 00:01:17,980
+é com isso que eles se parecem. 
+
+41
+00:01:18,580 --> 00:01:21,770
+Neste exemplo usei a proporção de um quadrado.
+
+42
+00:01:22,130 --> 00:01:23,250
+Então pegamos partes quadradas da imagem
+
+43
+00:01:24,180 --> 00:01:25,110
+e o objetivo 
+
+44
+00:01:25,770 --> 00:01:27,420
+é pegar uma parte da imagem e reconhecer o caracter
+
+45
+00:01:27,530 --> 00:01:29,270
+que está no meio do quadrado. 
+
+46
+00:01:31,090 --> 00:01:31,990
+Para simplificar, 
+
+47
+00:01:32,660 --> 00:01:33,740
+eu lerei estas imagens
+
+48
+00:01:34,240 --> 00:01:36,380
+como se fossem tons de cinza ao invés de coloridas
+
+49
+00:01:36,870 --> 00:01:38,550
+porque cores
+
+50
+00:01:38,930 --> 00:01:41,180
+não nos ajudaria muito neste problema.
+
+51
+00:01:42,190 --> 00:01:43,530
+Nesta parte da imagem
+
+52
+00:01:43,660 --> 00:01:44,890
+queremos reconhecer a letra T. 
+
+53
+00:01:45,010 --> 00:01:46,230
+Nesta outra parte
+
+54
+00:01:46,550 --> 00:01:47,920
+queremos reconhecer o S.
+
+55
+00:01:49,540 --> 00:01:50,740
+E nesta outra parte aqui
+
+56
+00:01:50,850 --> 00:01:52,950
+queremos reconhecer o I  e etc.
+
+57
+00:01:54,110 --> 00:01:55,310
+Usando este conjunto
+
+58
+00:01:55,450 --> 00:01:57,240
+de imagens como exemplo,
+
+59
+00:01:57,380 --> 00:01:59,460
+como podemos obter um conjunto ainda maior de treino?
+
+60
+00:02:00,000 --> 00:02:01,580
+Os computadores modernos
+
+61
+00:02:01,640 --> 00:02:03,700
+possuem uma enorme biblioteca de fontes. 
+
+62
+00:02:03,890 --> 00:02:05,330
+Se você usa um programa editor de textos,
+
+63
+00:02:05,950 --> 00:02:07,090
+dependendo do que você usa, 
+
+64
+00:02:07,240 --> 00:02:08,580
+é provável que você
+
+65
+00:02:08,800 --> 00:02:09,980
+já tenha todas estas fontes armazenadas
+
+66
+00:02:10,120 --> 00:02:12,490
+além de muitas e muitas outras.
+
+67
+00:02:12,950 --> 00:02:14,350
+Aliás, se você for a diferentes sites
+
+68
+00:02:14,680 --> 00:02:16,280
+há uma enorme quantidade de bibliotecas
+
+69
+00:02:16,690 --> 00:02:18,200
+de fontes grátis na Internet.
+
+70
+00:02:18,370 --> 00:02:19,960
+Podemos baixar centenas ou até
+
+71
+00:02:20,250 --> 00:02:22,580
+milhares de tipos diferentes de fonte.
+
+72
+00:02:23,960 --> 00:02:25,180
+Se você quer mais
+
+73
+00:02:25,570 --> 00:02:27,020
+exemplos para treino uma das opções
+
+74
+00:02:27,100 --> 00:02:28,340
+é obter caracteres
+
+75
+00:02:28,870 --> 00:02:30,220
+de fontes diferentes
+
+76
+00:02:31,240 --> 00:02:32,870
+e colar estes caracteres em
+
+77
+00:02:33,290 --> 00:02:35,890
+planos de fundo diferentes de maneira aleatória.
+
+78
+00:02:36,730 --> 00:02:39,500
+Você pode pegar este 'C' e colá-lo em um plano de fundo aleatório.
+
+79
+00:02:40,680 --> 00:02:41,640
+Se você fizer isto,  
+
+80
+00:02:42,060 --> 00:02:43,830
+você obterá um exemplo de treinamento
+
+81
+00:02:44,080 --> 00:02:45,260
+de uma imagem do caracter 'C'.
+
+82
+00:02:46,360 --> 00:02:47,500
+Depois de 
+
+83
+00:02:47,570 --> 00:02:48,920
+algum trabalho,
+
+84
+00:02:48,980 --> 00:02:49,710
+e dá um pouco de trabalho
+
+85
+00:02:49,830 --> 00:02:51,760
+para sintetizar dados que sejam realísticos. 
+
+86
+00:02:52,180 --> 00:02:53,080
+Mas depois de um pouco de trabalho
+
+87
+00:02:53,700 --> 00:02:56,130
+você terá um conjunto sintético de treino como este.
+
+88
+00:02:57,180 --> 00:02:59,910
+Cada imagem exibida à direita é sintetizada.
+
+89
+00:03:00,360 --> 00:03:02,080
+Se você pegar uma fonte
+
+90
+00:03:02,810 --> 00:03:04,240
+aleatória obtida
+
+91
+00:03:04,400 --> 00:03:05,680
+na Internet e colar a imagem 
+
+92
+00:03:06,160 --> 00:03:07,320
+de um caracter
+
+93
+00:03:07,800 --> 00:03:08,870
+ou alguns caracteres desta fonte
+
+94
+00:03:09,570 --> 00:03:11,440
+contra uma imagem de fundo qualquer
+
+95
+00:03:12,140 --> 00:03:12,840
+e se, usando um editor de textos, 
+
+96
+00:03:13,540 --> 00:03:15,160
+embaçar ou
+
+97
+00:03:15,680 --> 00:03:17,380
+criar uma distorção,
+
+98
+00:03:17,620 --> 00:03:18,650
+redimensionando
+
+99
+00:03:19,350 --> 00:03:20,740
+ou rotacionando um pouco. 
+
+100
+00:03:21,000 --> 00:03:22,260
+Estas são alterações que
+
+101
+00:03:22,370 --> 00:03:23,330
+que produzem um conjunto sintetizado de treino
+
+102
+00:03:23,580 --> 00:03:25,520
+como este que estou mostrando.
+
+103
+00:03:26,510 --> 00:03:28,050
+Este é um trabalho
+
+104
+00:03:28,530 --> 00:03:29,640
+que demanda bastante
+
+105
+00:03:29,970 --> 00:03:31,460
+planejamento para se conseguir
+
+106
+00:03:31,700 --> 00:03:33,250
+um conjunto sintetizado de dados realísticos.
+
+107
+00:03:34,020 --> 00:03:34,710
+Se você for desleixado
+
+108
+00:03:35,120 --> 00:03:36,200
+na hora de criar
+
+109
+00:03:36,250 --> 00:03:38,910
+o conjunto de dados sintetizado ele não funcionará bem. 
+
+110
+00:03:39,620 --> 00:03:40,600
+Você vai observar que 
+
+111
+00:03:40,790 --> 00:03:43,940
+o conjunto sintetizado de dados é bastante similar aos dados reais.
+
+112
+00:03:45,120 --> 00:03:46,850
+Ao usar dados  sintéticos
+
+113
+00:03:47,340 --> 00:03:48,550
+você tem um suprimento ilimitado
+
+114
+00:03:48,990 --> 00:03:50,970
+de exemplos para treinamento
+
+115
+00:03:51,310 --> 00:03:53,060
+de dados sintéticos artificiais.
+
+116
+00:03:53,150 --> 00:03:54,110
+Se você usar
+
+117
+00:03:54,330 --> 00:03:55,820
+uma fonte de dados sintéticos
+
+118
+00:03:56,150 --> 00:03:58,100
+você terá um suprimento ilimitado
+
+119
+00:03:58,560 --> 00:04:00,000
+de rótulos de dados para criar um algoritmo
+
+120
+00:04:00,140 --> 00:04:01,610
+supervisionado de aprendizagem
+
+121
+00:04:02,300 --> 00:04:03,990
+que resolve o problema de reconhecimento de caracter.
+
+122
+00:04:05,120 --> 00:04:06,540
+Este é um exemplo de
+
+123
+00:04:07,000 --> 00:04:08,500
+síntese artificial de dados em que você
+
+124
+00:04:09,040 --> 00:04:10,870
+basicamente cria novos dados do zero.
+
+125
+00:04:11,080 --> 00:04:13,780
+Você gerou imagens novíssimas do zero.
+
+126
+00:04:14,880 --> 00:04:16,450
+A outra abordagem de sintetização
+
+127
+00:04:16,710 --> 00:04:18,210
+de dados artificial é quando você
+
+128
+00:04:18,370 --> 00:04:19,610
+obtém exemplos de algo que você
+
+129
+00:04:19,740 --> 00:04:20,780
+já possui, 
+
+130
+00:04:21,020 --> 00:04:22,430
+um exemplo real a partir de
+
+131
+00:04:22,700 --> 00:04:24,130
+uma imagem real. 
+
+132
+00:04:24,770 --> 00:04:26,130
+Você cria dados adicionais
+
+133
+00:04:26,380 --> 00:04:27,900
+de forma a ampliar o conjunto de treinamento.
+
+134
+00:04:28,070 --> 00:04:28,810
+Aqui está uma
+
+135
+00:04:28,910 --> 00:04:30,490
+imagem do caracter 'A'.
+
+136
+00:04:31,410 --> 00:04:32,550
+Esta não é imagem sintetizada.
+
+137
+00:04:32,630 --> 00:04:33,790
+Eu fiz uma sobreposição
+
+138
+00:04:33,880 --> 00:04:35,750
+com esta grade apenas para demonstração.
+
+139
+00:04:36,430 --> 00:04:36,880
+Estas linhas
+
+140
+00:04:36,970 --> 00:04:39,030
+não devem existir, é claro.
+
+141
+00:04:39,100 --> 00:04:40,110
+O que podemos fazer é,
+
+142
+00:04:40,480 --> 00:04:41,500
+a partir do A eu obtenho estas imagens
+
+143
+00:04:42,240 --> 00:04:43,760
+e artificialmente introduzo deformações
+
+144
+00:04:44,290 --> 00:04:45,810
+ou distorções artificiais dentro da
+
+145
+00:04:46,040 --> 00:04:47,030
+imagem de tal forma que
+
+146
+00:04:47,220 --> 00:04:48,240
+a partir desta imagem
+
+147
+00:04:48,430 --> 00:04:50,060
+você pode criar 16 novos exemplos.
+
+148
+00:04:51,110 --> 00:04:52,000
+Desta forma,  você pode
+
+149
+00:04:52,450 --> 00:04:53,740
+iniciar com um pequeno conjunto de treino
+
+150
+00:04:54,090 --> 00:04:55,360
+e ampliá-lo. 
+
+151
+00:04:56,180 --> 00:04:57,190
+De repente você terá muito mais
+
+152
+00:04:57,300 --> 00:05:00,020
+exemplos de todos os tipos. 
+
+153
+00:05:01,210 --> 00:05:02,360
+Novamente,  para obter
+
+154
+00:05:02,560 --> 00:05:03,940
+este resultado no seu aplicativo,
+
+155
+00:05:04,120 --> 00:05:05,060
+é necessário planejamento e perspicácia
+
+156
+00:05:05,140 --> 00:05:06,270
+ para encontrar
+
+157
+00:05:06,430 --> 00:05:07,840
+o conjunto apropriado
+
+158
+00:05:08,420 --> 00:05:09,460
+de distorções, ou outra forma
+
+159
+00:05:09,720 --> 00:05:11,000
+de ampliar e multiplicar
+
+160
+00:05:11,470 --> 00:05:12,760
+seu conjunto de treinamento.
+
+161
+00:05:13,070 --> 00:05:15,130
+Para este exemplo específico de reconhecimento
+
+162
+00:05:15,260 --> 00:05:17,170
+de caracteres, a introdução 
+
+163
+00:05:17,480 --> 00:05:18,310
+destas distorções parece ser
+
+164
+00:05:18,780 --> 00:05:19,910
+uma escolha natural
+
+165
+00:05:20,090 --> 00:05:21,970
+mas em outra aplicativo de aprendizado de máquina
+
+166
+00:05:22,080 --> 00:05:24,180
+podem haver outras distorções mais adequadas.
+
+167
+00:05:24,860 --> 00:05:25,600
+Mostrarei outro exemplo
+
+168
+00:05:26,180 --> 00:05:28,750
+totalmente diferente que é sobre reconhecimento de fala. 
+
+169
+00:05:30,230 --> 00:05:31,480
+Suponhamos que você tenha
+
+170
+00:05:31,580 --> 00:05:33,450
+trechos de áudio
+
+171
+00:05:33,600 --> 00:05:35,010
+e usando este áudio você quer reconhecer
+
+172
+00:05:35,350 --> 00:05:37,240
+quais são as palavras
+
+173
+00:05:37,460 --> 00:05:38,780
+ditas no trecho.
+
+174
+00:05:39,510 --> 00:05:41,340
+Vamos avaliar este exemplo de treino.
+
+175
+00:05:42,290 --> 00:05:43,190
+Suponhamos que você tenha
+
+176
+00:05:43,400 --> 00:05:45,000
+um exemplo de treino
+
+177
+00:05:45,330 --> 00:05:46,660
+de alguém falando palavras específicas. 
+
+178
+00:05:46,860 --> 00:05:48,720
+Vamos tocar esta gravação -
+
+179
+00:05:49,150 --> 00:05:51,230
+0-1-2-3-4-5.
+
+180
+00:05:51,570 --> 00:05:53,810
+Ok.
+
+181
+00:05:54,220 --> 00:05:55,110
+Alguém contando de 0 a 5. 
+
+182
+00:05:55,450 --> 00:05:57,180
+Agora você quer tentar
+
+183
+00:05:57,290 --> 00:05:58,460
+aplicar um algoritmo de aprendizagem
+
+184
+00:05:59,380 --> 00:06:01,320
+e reconhecer as palavras ditas.
+
+185
+00:06:02,040 --> 00:06:04,030
+Como vamos ampliar o conjunto de dados?
+
+186
+00:06:04,390 --> 00:06:05,340
+Uma das coisas que faremos é
+
+187
+00:06:06,020 --> 00:06:09,180
+introduzir mais distorções de áudio neste conjunto de dados. 
+
+188
+00:06:09,970 --> 00:06:10,960
+Eu vou adicionar sons no fundo
+
+189
+00:06:11,640 --> 00:06:14,700
+para simular uma má conexão de celular. 
+
+190
+00:06:15,360 --> 00:06:16,800
+Quando você escutar sons de beep 
+
+191
+00:06:16,980 --> 00:06:17,710
+saiba que isto faz parte da gravação.
+
+192
+00:06:17,740 --> 00:06:20,350
+Não há nada de errado com sua caixa de som - vou tocar agora. 
+
+193
+00:06:20,580 --> 00:06:20,580
+zero, um, dois, três, quatro, cinco. 
+
+194
+00:06:21,380 --> 00:06:22,260
+Você ouve este tipo
+
+195
+00:06:22,640 --> 00:06:24,890
+de trecho de audio 
+
+196
+00:06:25,720 --> 00:06:28,600
+e reconhece os sons.
+
+197
+00:06:28,960 --> 00:06:30,800
+Este parece ser um outro exemplo de treino útil.
+
+198
+00:06:31,370 --> 00:06:33,230
+Aqui vai um outro exemplo com barulho no fundo:
+
+199
+00:06:34,890 --> 00:06:36,870
+zero, um, dois, três
+
+200
+00:06:37,560 --> 00:06:39,060
+quatro, cinco. 
+
+201
+00:06:39,090 --> 00:06:40,280
+ou carros dirigindo rápido, 
+
+202
+00:06:40,580 --> 00:06:42,200
+pessoas falando ao fundo, etc. 
+
+203
+00:06:42,450 --> 00:06:43,880
+Pegando o trecho de áudio original, 
+
+204
+00:06:44,430 --> 00:06:45,980
+limpo, 
+
+205
+00:06:46,090 --> 00:06:47,810
+o áudio de alguém
+
+206
+00:06:47,990 --> 00:06:48,960
+dizendo
+
+207
+00:06:49,090 --> 00:06:50,490
+zero, um, dois, três, quatro, cinco. 
+
+208
+00:06:51,790 --> 00:06:54,090
+Podemos automaticamente
+
+209
+00:06:54,470 --> 00:06:55,850
+sintetizar esses exemplos
+
+210
+00:06:56,410 --> 00:06:57,860
+adicionais de treinamento e ampliá-los. 
+
+211
+00:07:00,110 --> 00:07:00,940
+Agora tocarei o exemplo
+
+212
+00:07:01,300 --> 00:07:03,180
+final: 
+
+213
+00:07:03,340 --> 00:07:07,180
+1 2 3 4 5 então ao
+
+214
+00:07:07,530 --> 00:07:08,510
+pegar apenas um rótulo de exemplo
+
+215
+00:07:09,000 --> 00:07:10,260
+o esfoço que temos que fazer é
+
+216
+00:07:10,360 --> 00:07:11,760
+coletar um único exemplo
+
+217
+00:07:11,950 --> 00:07:13,270
+de contagem de 0 até 5
+
+218
+00:07:14,140 --> 00:07:16,520
+e ao sintetizar distorções adicionais
+
+219
+00:07:17,290 --> 00:07:18,560
+como diversos sons ao fundo
+
+220
+00:07:19,000 --> 00:07:20,240
+multiplicamos o exemplo inicial
+
+221
+00:07:20,370 --> 00:07:21,810
+em muitos outros
+
+222
+00:07:23,420 --> 00:07:24,480
+sem muito trabalho, ao simplesmente
+
+223
+00:07:25,270 --> 00:07:27,090
+adicionar estes vários sons de fundo
+
+224
+00:07:27,680 --> 00:07:30,510
+ao trecho de áudio original.
+
+225
+00:07:30,740 --> 00:07:31,980
+Um alerta sobre sintetização de
+
+226
+00:07:33,190 --> 00:07:35,220
+dados utilizando distorções:
+
+227
+00:07:35,310 --> 00:07:36,630
+se você fizer isto,
+
+228
+00:07:36,810 --> 00:07:38,580
+as distorções que você introduzir
+
+229
+00:07:39,020 --> 00:07:40,300
+devem representar a fonte de ruídos
+
+230
+00:07:40,660 --> 00:07:42,010
+ou  distorções que
+
+231
+00:07:42,110 --> 00:07:43,680
+você vê no conjunto de teste.
+
+232
+00:07:44,010 --> 00:07:45,350
+No exemplo de reconhecimento
+
+233
+00:07:45,930 --> 00:07:47,230
+de caracteres, as coisas que
+
+234
+00:07:47,440 --> 00:07:48,620
+introduzimos são razoáveis
+
+235
+00:07:48,770 --> 00:07:49,980
+porque uma imagem A
+
+236
+00:07:50,340 --> 00:07:51,510
+que aparece deste jeito
+
+237
+00:07:52,000 --> 00:07:53,020
+é uma imagem que
+
+238
+00:07:53,210 --> 00:07:55,170
+poderíamos de fato ver em um conjunto de teste.
+
+239
+00:07:55,370 --> 00:07:57,180
+E a imagem
+
+240
+00:07:57,380 --> 00:08:00,200
+no canto superior direito
+
+241
+00:08:00,350 --> 00:08:01,800
+se parece com uma imagem real.
+
+242
+00:08:03,280 --> 00:08:04,570
+E para o áudio
+
+243
+00:08:04,740 --> 00:08:06,560
+ queremos reconhecer a fala
+
+244
+00:08:06,970 --> 00:08:07,990
+mesmo quando há uma conexão de celular ruim
+
+245
+00:08:08,480 --> 00:08:09,440
+ou diferentes ruídos no fundo.
+
+246
+00:08:09,590 --> 00:08:10,920
+Para o áudio, 
+
+247
+00:08:11,230 --> 00:08:12,800
+sintetizamos exemplos que na realidade
+
+248
+00:08:13,530 --> 00:08:14,770
+são significativos para o tipo
+
+249
+00:08:14,850 --> 00:08:15,830
+de exemplos que queremos classificar
+
+250
+00:08:15,990 --> 00:08:17,360
+ou  reconhecer corretamente.
+
+251
+00:08:18,770 --> 00:08:20,660
+Em contraste, 
+
+252
+00:08:20,770 --> 00:08:21,940
+geralmente não é útil
+
+253
+00:08:22,170 --> 00:08:23,760
+adicionar ruídos sem significado, aleatórios, aos seus dados.
+
+254
+00:08:24,420 --> 00:08:25,170
+Não sei se você notou
+
+255
+00:08:25,440 --> 00:08:26,400
+mas pegamos aqui
+
+256
+00:08:26,620 --> 00:08:28,050
+uma imagem e
+
+257
+00:08:28,210 --> 00:08:29,540
+para cada pixel
+
+258
+00:08:29,720 --> 00:08:30,710
+em cada uma destas quatro imagens
+
+259
+00:08:30,990 --> 00:08:32,970
+adicionei, por pixel, ruídos aleatórios gerados com função Gaussiana. 
+
+260
+00:08:33,240 --> 00:08:34,690
+Para cada pixel
+
+261
+00:08:35,060 --> 00:08:36,370
+no brilho do pixel, 
+
+262
+00:08:36,500 --> 00:08:38,880
+adicionamos ruídos de Gaussianos para cada pixel.
+
+263
+00:08:39,360 --> 00:08:40,940
+Ruídos totalmente sem sentido, certo?
+
+264
+00:08:41,650 --> 00:08:43,280
+A menos que você esteja esperando
+
+265
+00:08:43,800 --> 00:08:45,510
+por estes ruídos
+
+266
+00:08:45,910 --> 00:08:46,830
+nos pixeis no seu conjunto de teste
+
+267
+00:08:46,910 --> 00:08:48,190
+esta forma de ruído 
+
+268
+00:08:48,660 --> 00:08:51,540
+puramente aleatória e sem sentido, é menos útil.
+
+269
+00:08:52,880 --> 00:08:53,750
+Mas no processo
+
+270
+00:08:54,250 --> 00:08:55,570
+de sintetização artificial de dados requer
+
+271
+00:08:55,640 --> 00:08:56,660
+também um pouco de arte
+
+272
+00:08:56,710 --> 00:08:57,850
+e às vezes
+
+273
+00:08:58,140 --> 00:09:00,250
+você simplesmente tenta  e vê se você acerta. 
+
+274
+00:09:01,280 --> 00:09:02,060
+Se você está tentando
+
+275
+00:09:02,140 --> 00:09:03,170
+decidir que tipos de
+
+276
+00:09:03,870 --> 00:09:04,720
+distorções para adicionar
+
+277
+00:09:04,820 --> 00:09:06,260
+pense em quais outras
+
+278
+00:09:06,670 --> 00:09:08,180
+distorções são significativas
+
+279
+00:09:08,660 --> 00:09:09,720
+para gerar conjunto de treinamento
+
+280
+00:09:10,110 --> 00:09:11,370
+que seja pelo menos
+
+281
+00:09:11,880 --> 00:09:13,410
+representativo do tipo de imagem
+
+282
+00:09:13,480 --> 00:09:15,830
+que você espera ver no seu conjunto de teste.
+
+283
+00:09:18,100 --> 00:09:19,000
+Para encerrar este vídeo
+
+284
+00:09:19,150 --> 00:09:19,920
+eu gostaria de mencionar
+
+285
+00:09:20,140 --> 00:09:21,420
+algo mais
+
+286
+00:09:21,790 --> 00:09:23,360
+sobre esta ideia
+
+287
+00:09:23,600 --> 00:09:25,610
+de se obter montes de dados via síntese artificial de dados.
+
+288
+00:09:26,920 --> 00:09:28,780
+Como sempre, 
+
+289
+00:09:29,170 --> 00:09:30,280
+antes de gastar muito tempo
+
+290
+00:09:30,450 --> 00:09:32,020
+descobrindo como criar exemplos artificiais de treinamento,
+
+291
+00:09:33,060 --> 00:09:34,140
+uma boa prática, com frequência,
+
+292
+00:09:34,220 --> 00:09:35,310
+é garantir que você tenha
+
+293
+00:09:35,650 --> 00:09:36,540
+um algoritmo de baixa
+
+294
+00:09:36,920 --> 00:09:38,350
+variância e ter um monte
+
+295
+00:09:38,460 --> 00:09:40,320
+de dados de treinamento.
+
+296
+00:09:41,010 --> 00:09:41,840
+Uma forma padrão 
+
+297
+00:09:41,970 --> 00:09:42,810
+de se fazer isto é visualizar as curvas
+
+298
+00:09:43,030 --> 00:09:43,970
+de aprendizado e assegurar-se de que
+
+299
+00:09:44,130 --> 00:09:44,920
+você tenha um bom classificador
+
+300
+00:09:45,000 --> 00:09:47,470
+de baixa variância
+
+301
+00:09:47,760 --> 00:09:48,650
+ou se você não tem
+
+302
+00:09:48,720 --> 00:09:50,090
+classificador de baixa variância
+
+303
+00:09:50,160 --> 00:09:51,040
+uma outra alternativa
+
+304
+00:09:51,450 --> 00:09:53,270
+é continuar aumentando
+
+305
+00:09:53,540 --> 00:09:54,440
+o número de atributos
+
+306
+00:09:54,600 --> 00:09:55,650
+do seu classificador,
+
+307
+00:09:55,740 --> 00:09:56,710
+aumentando o número de unidades secretas na sua rede
+
+308
+00:09:57,180 --> 00:09:58,470
+até que você obtenha
+
+309
+00:09:58,540 --> 00:10:00,000
+um classificador de baixa variância. 
+
+310
+00:10:00,310 --> 00:10:01,820
+Apenas depois disto
+
+311
+00:10:02,040 --> 00:10:04,020
+você deveria dedicar esforços
+
+312
+00:10:04,260 --> 00:10:05,760
+para criar um grande conjunto artificial de treino.
+
+313
+00:10:05,860 --> 00:10:06,660
+O que você deve evitar
+
+314
+00:10:06,870 --> 00:10:07,930
+é gastar
+
+315
+00:10:08,110 --> 00:10:08,890
+uma semana inteira
+
+316
+00:10:09,090 --> 00:10:10,370
+ou alguns meses tentando
+
+317
+00:10:10,540 --> 00:10:11,720
+descobrir como fazer
+
+318
+00:10:12,450 --> 00:10:13,260
+um ótimo conjunto artificial de dados sintetizado
+
+319
+00:10:13,820 --> 00:10:15,520
+apenas para concluir que o desempenho
+
+320
+00:10:15,760 --> 00:10:17,410
+de seu algoritmo de aprendizado
+
+321
+00:10:18,030 --> 00:10:20,730
+não melhorou muito mesmo após rodar um enorme conjunto de treinamento.
+
+322
+00:10:22,190 --> 00:10:23,060
+Este é normalmente meu conselho
+
+323
+00:10:23,420 --> 00:10:24,690
+sobre como utilizar um grande
+
+324
+00:10:25,030 --> 00:10:26,290
+conjunto de treinamento
+
+325
+00:10:26,530 --> 00:10:27,760
+antes gastar muito tempo
+
+326
+00:10:28,080 --> 00:10:30,530
+para obter um conjunto de treinamento. 
+
+327
+00:10:31,960 --> 00:10:33,280
+O segundo é: quando estou trabalhando
+
+328
+00:10:33,590 --> 00:10:35,250
+em um problema de aprendizado de máquina,
+
+329
+00:10:35,690 --> 00:10:37,520
+uma pergunta que quase sempre faço à equipe 
+
+330
+00:10:37,880 --> 00:10:39,210
+com a qual estou trabalhando e também para meus alunos é:
+
+331
+00:10:39,430 --> 00:10:40,550
+quanto trabalho seria necessário
+
+332
+00:10:40,620 --> 00:10:42,810
+para obter dez vezes mais os dados que temos?
+
+333
+00:10:46,720 --> 00:10:47,850
+Quando eu vejo um novo aplicativo
+
+334
+00:10:48,200 --> 00:10:49,760
+para problemas de aprendizado de máquina
+
+335
+00:10:49,980 --> 00:10:50,940
+Eu reuno a equipe
+
+336
+00:10:51,210 --> 00:10:52,440
+e faço esta mesma pergunta.
+
+337
+00:10:52,920 --> 00:10:53,870
+Fiz  essa pergunta várias e várias vezes.
+
+338
+00:10:53,970 --> 00:10:55,870
+E várias e várias e várias vezes
+
+339
+00:10:56,000 --> 00:10:57,540
+me surpreendo com a frequência 
+
+340
+00:10:58,390 --> 00:10:59,660
+em que a resposta tem sido:
+
+341
+00:11:00,010 --> 00:11:01,070
+não é tão difícil,
+
+342
+00:11:01,680 --> 00:11:02,670
+talvez dez dias de trabalho
+
+343
+00:11:02,930 --> 00:11:03,930
+no máximo para ter dez vezes
+
+344
+00:11:04,250 --> 00:11:05,300
+mais dados que temos atualmente
+
+345
+00:11:05,450 --> 00:11:06,650
+para rodar o aplicativo.
+
+346
+00:11:06,810 --> 00:11:08,820
+Com frequência, 
+
+347
+00:11:09,080 --> 00:11:09,830
+se você puder obter
+
+348
+00:11:09,950 --> 00:11:11,030
+dez vezes mais dados
+
+349
+00:11:11,270 --> 00:11:13,680
+você conseguirá aprimorar seu algoritmo.
+
+350
+00:11:14,060 --> 00:11:15,040
+Então se algum dia
+
+351
+00:11:15,260 --> 00:11:16,510
+você fizer parte de uma equipe que
+
+352
+00:11:17,820 --> 00:11:18,880
+esteja trabalhando num aplicativo
+
+353
+00:11:19,110 --> 00:11:20,430
+de aprendizado de máquina
+
+354
+00:11:20,550 --> 00:11:21,710
+esta é uma boa questão para você
+
+355
+00:11:22,290 --> 00:11:23,500
+e para sua equipe.
+
+356
+00:11:23,650 --> 00:11:25,120
+Não fique muito surpreso
+
+357
+00:11:25,240 --> 00:11:26,530
+se depois de alguns minutos de brainstorming
+
+358
+00:11:26,650 --> 00:11:27,520
+sua equipe achar uma forma de
+
+359
+00:11:27,660 --> 00:11:28,950
+conseguir literalmente
+
+360
+00:11:29,200 --> 00:11:30,250
+dez vezes mais dados.
+
+361
+00:11:30,380 --> 00:11:31,320
+Neste caso,
+
+362
+00:11:31,430 --> 00:11:32,330
+você seria o herói
+
+363
+00:11:32,940 --> 00:11:34,000
+porque com dez vezes mais dados
+
+364
+00:11:34,240 --> 00:11:35,360
+eu acho que você obterá
+
+365
+00:11:35,450 --> 00:11:38,460
+um melhor desempenho ao aprender a partir de muito mais dados. 
+
+366
+00:11:39,650 --> 00:11:44,500
+Há muitas formas de se obter muitos mais dados. 
+
+367
+00:11:47,450 --> 00:11:48,510
+Este vídeo apresenta
+
+368
+00:11:48,970 --> 00:11:50,440
+duas ideias: 
+
+369
+00:11:50,640 --> 00:11:53,050
+gerar dados do zero usando fontes aleatórias
+
+370
+00:11:53,570 --> 00:11:54,430
+e a segunda ideia
+
+371
+00:11:54,840 --> 00:11:56,600
+que é utilizar o exemplo existente
+
+372
+00:11:56,670 --> 00:11:58,100
+e introduzir distorções para ampliar
+
+373
+00:11:58,280 --> 00:12:00,910
+o conjunto de treinamento.
+
+374
+00:12:01,090 --> 00:12:02,150
+Outros exemplos de
+
+375
+00:12:02,280 --> 00:12:03,130
+como se obter mais dados
+
+376
+00:12:03,270 --> 00:12:04,610
+é coletar os dados
+
+377
+00:12:04,670 --> 00:12:06,600
+ou rotulá-los por você mesmo. 
+
+378
+00:12:07,600 --> 00:12:09,090
+Um raciocínio útil 
+
+379
+00:12:09,210 --> 00:12:11,580
+ é se perguntar
+
+380
+00:12:11,780 --> 00:12:13,320
+quantos minutos, quantas
+
+381
+00:12:13,520 --> 00:12:15,140
+horas levam para obter
+
+382
+00:12:15,350 --> 00:12:16,420
+um certo número de exemplos.
+
+383
+00:12:16,610 --> 00:12:17,780
+Eu reflito e
+
+384
+00:12:17,900 --> 00:12:19,410
+tento descobrir. 
+
+385
+00:12:19,550 --> 00:12:21,830
+Digamos que em dez segundos
+
+386
+00:12:22,060 --> 00:12:23,990
+eu consiga rotular um exemplo.
+
+387
+00:12:24,120 --> 00:12:25,820
+Suponhamos que
+
+388
+00:12:26,190 --> 00:12:29,050
+para nosso aplicativo temos
+
+389
+00:12:29,190 --> 00:12:31,500
+mil exemplos rotulados.
+
+390
+00:12:31,620 --> 00:12:32,730
+Portanto, dez multiplicado por 
+
+391
+00:12:32,860 --> 00:12:34,090
+mil exemplos seria
+
+392
+00:12:34,200 --> 00:12:35,940
+n igual a 10 mil. 
+
+393
+00:12:37,440 --> 00:12:40,260
+Uma outra forma de
+
+394
+00:12:40,400 --> 00:12:41,530
+se obter um monte de dados
+
+395
+00:12:41,800 --> 00:12:43,540
+é coletá-los você mesmo. 
+
+396
+00:12:44,510 --> 00:12:45,380
+O que quero dizer com isto?
+
+397
+00:12:45,690 --> 00:12:46,970
+Frequentemente paro 
+
+398
+00:12:47,240 --> 00:12:48,570
+para calcular e descobrir
+
+399
+00:12:48,950 --> 00:12:50,190
+quanto tempo,
+
+400
+00:12:50,350 --> 00:12:51,140
+quantas horas
+
+401
+00:12:52,640 --> 00:12:54,000
+são necessárias
+
+402
+00:12:54,200 --> 00:12:55,130
+quantas horas ou quantos dias
+
+403
+00:12:55,230 --> 00:12:56,890
+são necessários para
+
+404
+00:12:57,020 --> 00:12:58,400
+que eu ou outra pessoa
+
+405
+00:12:58,640 --> 00:12:59,870
+colete dez vezes
+
+406
+00:13:00,190 --> 00:13:01,490
+mais dados que temos,
+
+407
+00:13:01,800 --> 00:13:03,560
+coletando-as manualmente e adicionando os rótulos por nós mesmos. 
+
+408
+00:13:05,260 --> 00:13:06,550
+Por exemplo,  digamos que
+
+409
+00:13:06,630 --> 00:13:08,200
+para um aplicativo de aprendizado de máquina
+
+410
+00:13:08,690 --> 00:13:10,180
+temos mil exemplos, M é igual a 1.000.
+
+411
+00:13:12,010 --> 00:13:12,750
+O que faremos
+
+412
+00:13:12,870 --> 00:13:14,500
+é nos perguntar: bem quanto tempo
+
+413
+00:13:14,720 --> 00:13:16,930
+demoro para coletar
+
+414
+00:13:17,340 --> 00:13:18,480
+um exemplo?  
+
+415
+00:13:18,600 --> 00:13:19,510
+Talvez demore dez segundos
+
+416
+00:13:19,790 --> 00:13:22,100
+para rotular
+
+417
+00:13:23,310 --> 00:13:25,120
+um novo exemplo. 
+
+418
+00:13:25,520 --> 00:13:27,720
+Portanto, se quero dez vezes mais exemplos
+
+419
+00:13:28,360 --> 00:13:30,400
+vou demorar dez segundos para ter um exemplo de treino.
+
+420
+00:13:31,370 --> 00:13:32,340
+Se eu quero ter dez vezes mais dados
+
+421
+00:13:32,580 --> 00:13:35,320
+então preciso de 10 mil exemplos.
+
+422
+00:13:35,830 --> 00:13:38,470
+Portanto  faço os cálculos para saber quanto tempo
+
+423
+00:13:38,770 --> 00:13:40,380
+vou demorar para rotular
+
+424
+00:13:40,840 --> 00:13:42,640
+manualmente 10 mil exemplos.
+
+425
+00:13:43,340 --> 00:13:45,280
+Se demoro dez segundos para rotular um exemplo
+
+426
+00:13:47,070 --> 00:13:47,940
+Quando você faz este cálculo
+
+427
+00:13:48,840 --> 00:13:49,920
+com frequencia
+
+428
+00:13:50,390 --> 00:13:51,780
+nos surpreendemos
+
+429
+00:13:51,870 --> 00:13:53,140
+com o pouco de trabalho que leva. 
+
+430
+00:13:53,240 --> 00:13:54,730
+As vezes alguns dias de trabalho, 
+
+431
+00:13:54,880 --> 00:13:55,560
+e as vezes umas poucas horas.
+
+432
+00:13:55,780 --> 00:13:57,180
+Já vi muitas equipes ficarem surpresas
+
+433
+00:13:57,500 --> 00:13:59,160
+pela pouca quantidade
+
+434
+00:13:59,340 --> 00:14:00,280
+para se obter
+
+435
+00:14:00,410 --> 00:14:01,200
+uma grande
+
+436
+00:14:01,370 --> 00:14:02,510
+quantidade extra de dados
+
+437
+00:14:02,580 --> 00:14:03,470
+e usar estes dados para
+
+438
+00:14:03,580 --> 00:14:04,310
+obter um enorme 
+
+439
+00:14:04,640 --> 00:14:06,350
+e necessário ganho no desempenho. 
+
+440
+00:14:06,450 --> 00:14:07,550
+Às vezes, 
+
+441
+00:14:07,790 --> 00:14:08,900
+quando você consegue fazer isto
+
+442
+00:14:09,190 --> 00:14:10,780
+você será o herói em qualquer equipe
+
+443
+00:14:11,360 --> 00:14:12,520
+que você trabalhe
+
+444
+00:14:12,910 --> 00:14:14,150
+porque esta pode ser uma ótima solução
+
+445
+00:14:14,320 --> 00:14:15,760
+para se  obter um melhor desempenho.
+
+446
+00:14:17,650 --> 00:14:19,490
+Para finalizar, a terceira boa solução
+
+447
+00:14:20,020 --> 00:14:21,230
+para se obter uma grande
+
+448
+00:14:21,450 --> 00:14:22,650
+quantidade de dados
+
+449
+00:14:23,080 --> 00:14:24,350
+é usar um coletivo de dados (crowdsourcing). 
+
+450
+00:14:25,280 --> 00:14:26,350
+Hoje em dia existem
+
+451
+00:14:26,520 --> 00:14:27,270
+alguns sites que
+
+452
+00:14:27,460 --> 00:14:29,520
+oferecem serviços que permitem
+
+453
+00:14:29,920 --> 00:14:32,210
+que você contrate pessoas na
+
+454
+00:14:32,350 --> 00:14:33,410
+Internet para criar grandes
+
+455
+00:14:33,730 --> 00:14:36,140
+conjuntos de dados de treinamento por um preço razoável.
+
+456
+00:14:36,810 --> 00:14:37,870
+Esta ideia de coletivo
+
+457
+00:14:38,190 --> 00:14:39,460
+"crowd sourcing" ou "crowd source"
+
+458
+00:14:39,950 --> 00:14:41,390
+para rotular dados é algo que
+
+459
+00:14:41,810 --> 00:14:43,180
+possui, obviamente
+
+460
+00:14:43,340 --> 00:14:45,200
+como toda literatura acadêmica,
+
+461
+00:14:45,660 --> 00:14:47,040
+suas próprias dificuldades e etc
+
+462
+00:14:47,210 --> 00:14:49,390
+referentes a confiaça no rotulador por exemplo. 
+
+463
+00:14:50,440 --> 00:14:51,470
+Pode ser que hajam  milhares de rotuladores
+
+464
+00:14:51,860 --> 00:14:53,420
+ao redor do mundo
+
+465
+00:14:53,580 --> 00:14:55,530
+trabalhando por um preço razoável para
+
+466
+00:14:55,630 --> 00:14:56,810
+te ajudar a rotular dados.
+
+467
+00:14:57,030 --> 00:14:58,580
+E também algo que já mencionei,
+
+468
+00:14:58,930 --> 00:15:00,120
+há está alternativa também.
+
+469
+00:15:00,390 --> 00:15:02,170
+E provavelmente o sistema
+
+470
+00:15:02,510 --> 00:15:03,750
+Amazon Mechanical Turk é o mais
+
+471
+00:15:03,900 --> 00:15:05,860
+popular entre os coletivos atualmente.
+
+472
+00:15:06,860 --> 00:15:08,070
+Geralmente, 
+
+473
+00:15:08,220 --> 00:15:10,040
+dá bastante trabalho
+
+474
+00:15:10,190 --> 00:15:10,940
+se você quiser obter
+
+475
+00:15:11,150 --> 00:15:12,520
+rótulos de alta qualidade
+
+476
+00:15:12,780 --> 00:15:14,160
+mas às vezes uma opção
+
+477
+00:15:14,240 --> 00:15:15,760
+que vale a pena considerar. 
+
+478
+00:15:17,330 --> 00:15:18,870
+Se você quiser contratar
+
+479
+00:15:19,320 --> 00:15:21,000
+muitas pessoas, por um preço  razoavelmente barato
+
+480
+00:15:21,810 --> 00:15:24,220
+na Internet, os rotuladores podem produzir muitos dados para você.
+
+481
+00:15:26,320 --> 00:15:27,570
+Neste vídeo, 
+
+482
+00:15:27,660 --> 00:15:28,840
+falamos sobre a ideia de síntese
+
+483
+00:15:29,100 --> 00:15:30,870
+artificial de dados
+
+484
+00:15:31,120 --> 00:15:32,440
+seja para criar novos dados
+
+485
+00:15:32,750 --> 00:15:34,400
+do zero utilizado no exemplo
+
+486
+00:15:34,640 --> 00:15:35,400
+de fonte aleatória
+
+487
+00:15:35,830 --> 00:15:37,710
+ou através da ampliação de um conjunto
+
+488
+00:15:37,790 --> 00:15:38,980
+de dados de treinamento ao
+
+489
+00:15:39,420 --> 00:15:41,340
+utilizar os exemplos existentes 
+
+490
+00:15:41,560 --> 00:15:42,980
+e introduzir distorções a eles,
+
+491
+00:15:43,240 --> 00:15:44,880
+de tal forma que criamos mais exemplos.
+
+492
+00:15:46,010 --> 00:15:47,450
+E finalmente uma coisa que eu
+
+493
+00:15:47,630 --> 00:15:48,810
+espero que você se lembre
+
+494
+00:15:49,120 --> 00:15:49,970
+deste vídeo é a ideia de que
+
+495
+00:15:50,540 --> 00:15:51,540
+se você tem um problema de aprendizado de máquina, 
+
+496
+00:15:51,830 --> 00:15:54,350
+vale à pena fazer duas coisas:
+
+497
+00:15:54,660 --> 00:15:55,830
+A primeira é uma avaliação de sanidade, 
+
+498
+00:15:56,160 --> 00:15:58,600
+com curvas de aprendizado, para ver se será útil ter mais dados
+
+499
+00:15:59,520 --> 00:16:00,340
+e, assumindo que este seja o caso, 
+
+500
+00:16:00,730 --> 00:16:01,780
+eu geralmente
+
+501
+00:16:01,850 --> 00:16:03,670
+me pergunto seriamente: quanto tempo
+
+502
+00:16:04,050 --> 00:16:05,150
+levaria para obter dez vezes
+
+503
+00:16:05,260 --> 00:16:06,510
+mais dados de treinamento que
+
+504
+00:16:06,630 --> 00:16:08,450
+tenho agora.
+
+505
+00:16:08,960 --> 00:16:10,440
+Não é sempre mas às vezes você se surpreenderá
+
+506
+00:16:10,640 --> 00:16:12,310
+com a facilidade
+
+507
+00:16:12,580 --> 00:16:13,990
+para se obter dados. 
+
+508
+00:16:14,060 --> 00:16:15,020
+Às vezes dias ou semanas 
+
+509
+00:16:15,150 --> 00:16:16,160
+de trabalho  que podem ser
+
+510
+00:16:16,260 --> 00:16:18,700
+um jeito excelente de se obter um enorme  ganho de desempenho no seu algoritmo.

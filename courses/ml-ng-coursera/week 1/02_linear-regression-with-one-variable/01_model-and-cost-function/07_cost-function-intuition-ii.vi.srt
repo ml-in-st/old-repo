@@ -1,0 +1,389 @@
+1
+00:00:00,960 --> 00:00:05,684
+Trong video này, cho phép nghiên cứu kỹ sâu hơn và có được trực giác tốt hơn về những gì các chi phí
+
+2
+00:00:05,684 --> 00:00:10,523
+chức năng là làm. Video này giả định rằng bạn không quen thuộc với đường viền lô. Nếu bạn
+
+3
+00:00:10,523 --> 00:00:15,189
+không phải là quen thuộc với đường viền lô hoặc đường viền con số một số minh họa
+
+4
+00:00:15,189 --> 00:00:20,144
+trong này video có thể hoặc có thể không làm cho tinh thần cho bạn nhưng không quan trọng và nếu bạn kết thúc lên bỏ qua
+
+5
+00:00:20,144 --> 00:00:24,522
+video này hoặc một số của nó không có khá ý nghĩa bởi vì bạn không nhìn thấy
+
+6
+00:00:24,522 --> 00:00:29,246
+đường viền lô trước. That's okay và bạn vẫn hiểu phần còn lại của khóa học này
+
+7
+00:00:29,246 --> 00:00:34,935
+Nếu không có những bộ phận này. Dưới đây là của chúng tôi xây dựng vấn đề như bình thường, với các
+
+8
+00:00:34,935 --> 00:00:39,882
+tham số giả thuyết, chi phí chức năng, và mục tiêu tối ưu hóa của chúng tôi. Không giống như
+
+9
+00:00:39,882 --> 00:00:45,163
+[unintelligible], không giống như cuối video, tôi sẽ giữ cho cả hai của tôi tham số, A đến
+
+10
+00:00:45,163 --> 00:00:50,573
+số không, và theta một, khi chúng tôi tạo ra kiểu trực quan của chúng tôi cho chi phí chức năng. Vì vậy, cùng một
+
+11
+00:00:50,573 --> 00:00:57,204
+như thời gian qua, chúng tôi muốn hiểu các giả thuyết h và chức năng lớp J. Vì vậy,
+
+12
+00:00:57,204 --> 00:01:04,167
+Đây là của tôi huấn luyện tập của nhà ở giá cả và chúng ta hãy làm một số giả thuyết. Bạn biết
+
+13
+00:01:04,167 --> 00:01:10,219
+như là một trong, đây không phải là một giả thuyết cụ thể tốt. Nhưng, nếu tôi đặt a
+
+14
+00:01:10,219 --> 00:01:16,270
+0 = 50 và theta một = 0,06, sau đó tôi đã kết thúc với giả thuyết này xuống ở đây và đó
+
+15
+00:01:16,270 --> 00:01:22,190
+đáp ứng các đường thẳng đó. Bây giờ cho giá trị của theta zero và theta một,
+
+16
+00:01:22,190 --> 00:01:27,511
+chúng tôi muốn lô tương ứng, bạn đã biết, chức năng chi phí bên phải. Những gì chúng tôi
+
+17
+00:01:27,511 --> 00:01:33,150
+đã làm thời gian qua đã, đúng, khi chúng tôi đã chỉ có theta một trong. Nói cách khác, vẽ lô
+
+18
+00:01:33,150 --> 00:01:37,814
+đó như thế này như là một chức năng của theta một trong. Nhưng bây giờ chúng tôi có hai tham số, theta
+
+19
+00:01:37,814 --> 00:01:42,340
+số không, và theta một, và do đó, những âm mưu được nhiều hơn một chút phức tạp. Nó chỉ ra
+
+20
+00:01:42,340 --> 00:01:47,699
+rằng khi chúng tôi đã chỉ có một tham số, các bộ phận chúng tôi đã thu hút có loại cung
+
+21
+00:01:47,699 --> 00:01:52,925
+hình chức năng. Bây giờ, khi chúng tôi có hai tham số, nó chỉ ra các chức năng chi phí
+
+22
+00:01:52,925 --> 00:01:58,218
+cũng có một loại tương tự như cung. Và, trong thực tế, tùy thuộc vào đào tạo của bạn thiết lập,
+
+23
+00:01:58,218 --> 00:02:03,511
+bạn có thể nhận được một hàm chi phí có thể giống như thế này. Vì vậy, đây là một
+
+24
+00:02:03,511 --> 00:02:09,404
+ba mảnh âm mưu trên bề mặt, nơi các trục được dán nhãn theta zero. Và theta một trong. Vì vậy
+
+25
+00:02:09,404 --> 00:02:15,326
+khi bạn thay đổi theta zero và theta một trong để các thông số bạn nhận được giá trị khác nhau của các
+
+26
+00:02:15,326 --> 00:02:20,964
+chéo chức năng j theta zero, theta một trong và chiều cao của bề mặt này trên một
+
+27
+00:02:20,964 --> 00:02:26,347
+điểm cụ thể của theta 0, theta một trong.
+Quyền, đó là, đó là [unintelligible] là. Các
+
+28
+00:02:26,347 --> 00:02:31,200
+Chiều cao của bề mặt của các điểm cho thấy giá trị của j theta 0, J
+
+29
+00:02:31,200 --> 00:02:36,471
+của theta một trong. Và bạn có thể xem nó loại này cung như hình dạng. Hãy để tôi chỉ cho bạn
+
+30
+00:02:36,471 --> 00:02:46,351
+những âm mưu cùng trong 3D. Vì vậy, đây là cùng một con số trong 3D, [unintelligible] theta một trong và
+
+31
+00:02:46,351 --> 00:02:52,122
+trục đứng [unintelligible] và nếu tôi xoay đây [unintelligible] xung quanh. Bạn kinda của một
+
+32
+00:02:52,122 --> 00:02:57,608
+có được một trung tâm [unintelligible] của này bowl hình bề mặt vì đó là những gì các chi phí
+
+33
+00:02:57,608 --> 00:03:03,592
+chức năng j trông giống như. Bây giờ cho mục đích của minh hoạ trong phần còn lại của video này
+
+34
+00:03:03,592 --> 00:03:09,077
+Tôi sẽ không thực sự sử dụng loại bề mặt 3D để hiển thị cho bạn chi phí
+
+35
+00:03:09,077 --> 00:03:16,475
+chức năng j, thay vào đó tôi sẽ sử dụng đường viền lô. Hoặc những gì tôi cũng gọi là chấp chính quan.
+
+36
+00:03:16,475 --> 00:03:24,748
+con số. Tôi đoán họ có ý nghĩa tương tự.
+Để hiển thị cho bạn những bề mặt. Vì vậy, đây là một
+
+37
+00:03:24,748 --> 00:03:31,135
+Ví dụ về một con số đường viền, được hiển thị bên phải, nơi các trục là phô mai feta zero và
+
+38
+00:03:31,135 --> 00:03:37,602
+phô mai feta một trong. Và những gì mỗi của những hình bầu dục, những gì mỗi trong số này ellipsis cho thấy là một tập
+
+39
+00:03:37,602 --> 00:03:43,757
+điểm đó sẽ đưa vào cùng một giá trị cho [unintelligible] feta 0, phô mai feta một trong. Vì vậy
+
+40
+00:03:43,757 --> 00:03:50,514
+[unintelligible] Ví dụ này, bạn sẽ mất điểm đó và thời điểm và điểm đó.
+
+41
+00:03:50,514 --> 00:03:55,583
+Tất cả ba trong số này. Điểm mà tôi chỉ đã vẽ trong đỏ tươi, họ có cùng một giá trị
+
+42
+00:03:55,583 --> 00:03:59,730
+Đối với j theta 0, theta một trong. Ok.
+Ở đâu, phải, này, đây là theta
+
+43
+00:03:59,730 --> 00:04:04,774
+Zero, theta một trục, nhưng những ba có cùng giá trị j theta 0, theta
+
+44
+00:04:04,774 --> 00:04:10,218
+một và nếu bạn không nhìn thấy [unintelligible] lô nhiều trước khi nghĩ về, hãy tưởng tượng nếu bạn
+
+45
+00:04:10,218 --> 00:04:14,992
+sẽ. Một cánh cung hình chức năng đó sắp ra khỏi màn hình của tôi. Để tối thiểu, do đó
+
+46
+00:04:14,992 --> 00:04:19,668
+phía dưới mũi tàu là điểm này ngay tại đó, phải không? Này giữa, giữa
+
+47
+00:04:19,668 --> 00:04:24,285
+các đồng tâm elip. Và hãy tưởng tượng một hình dạng mũi tàu mà sắp xếp của phát triển ra khỏi của tôi
+
+48
+00:04:24,285 --> 00:04:28,786
+màn hình như thế này, do đó mỗi của các elip, bạn đã biết, có cùng một chiều cao
+
+49
+00:04:28,786 --> 00:04:33,345
+trên màn hình của tôi. Và tối thiểu với mũi, bên phải, ngay xuống đó. Và như vậy
+
+50
+00:04:33,345 --> 00:04:37,787
+những con số [unintelligible] là một, cách cho, có lẽ là một cách thuận tiện hơn để
+
+51
+00:04:37,787 --> 00:04:45,185
+hình dung của tôi chức năng J. [âm thanh] Vì vậy, hãy xem xét một số ví dụ. Trên đây, tôi có một
+
+52
+00:04:45,185 --> 00:04:53,275
+điểm cụ thể, đúng không? Và vì vậy, đây là, với, bạn đã biết, theta zero bằng có lẽ
+
+53
+00:04:53,275 --> 00:05:01,964
+khoảng 800. Và theta một trong. Bằng có thể là một minus.15. Và do đó, thời điểm này, phải, điều này
+
+54
+00:05:01,964 --> 00:05:07,322
+điểm trong [unintelligible] tương ứng với một tập các cặp giá trị của dữ liệu số không, theta một trong
+
+55
+00:05:07,322 --> 00:05:12,092
+và tương ứng [unintelligible] để giả thuyết rằng, bên phải, theta zero là
+
+56
+00:05:12,092 --> 00:05:17,189
+[unintelligible] 800 [unintelligible] cắt nhau [unintelligible] trục khoảng 800 và điều này là
+
+57
+00:05:17,189 --> 00:05:21,763
+độ dốc của khoảng –. 15. Bây giờ dòng này thực sự không phải như vậy thích hợp để các
+
+58
+00:05:21,763 --> 00:05:26,859
+[unintelligible] bên phải. Giả thuyết này, nó ảnh hưởng đến những giá trị của số không [unintelligible],
+
+59
+00:05:26,859 --> 00:05:32,283
+Theta một trong. [unintelligible] không tốt như vậy để [unintelligible] phù hợp. Và để bạn tìm thấy, nó là
+
+60
+00:05:32,283 --> 00:05:37,531
+chi phí. Là một giá trị nhỏ ra ở đây là bạn biết khá xa tối thiểu ngay
+
+61
+00:05:37,531 --> 00:05:42,901
+nó là khá đến nay đây là một chi phí khá cao, bởi vì điều này chỉ cần không phải là tốt phù hợp với một
+
+62
+00:05:42,901 --> 00:05:47,247
+các dữ liệu. Hãy xem xét một số ví dụ khác. Bây giờ đây là một khác nhau
+
+63
+00:05:47,247 --> 00:05:52,489
+giả thuyết rằng là bạn biết vẫn không rất phù hợp cho các dữ liệu nhưng có thể là một chút
+
+64
+00:05:52,489 --> 00:05:57,986
+tốt hơn vì vậy ở đây ngay đó là điểm của tôi rằng những người đang có của tôi tham số theta zero theta
+
+65
+00:05:57,986 --> 00:06:07,387
+một và rất giá trị theta zero của tôi. Quyền?
+Đó là bout 360 và giá trị của tôi cho theta
+
+66
+00:06:07,387 --> 00:06:14,047
+một trong những. Là bằng 0. Vì vậy, bạn đã biết, chúng ta hãy thoát nó ra khỏi. Chúng ta hãy bằng số không
+
+67
+00:06:14,047 --> 00:06:20,063
+360 theta một bằng 0. Và điều này đôi các tham số tương ứng với mà
+
+68
+00:06:20,063 --> 00:06:26,161
+giả thuyết, tương ứng với đường thẳng [unintelligible] h của x bằng 360 plus zero
+
+69
+00:06:26,161 --> 00:06:32,421
+lần x. Vì vậy, đó là giả thuyết. Và giả thuyết này lại có một số chi phí, và
+
+70
+00:06:32,421 --> 00:06:38,600
+chi phí là, bạn đã biết, âm mưu như chiều cao của các chức năng j vào thời điểm đó.
+
+71
+00:06:38,791 --> 00:06:44,886
+Hãy xem xét chỉ là một vài ví dụ.
+Đây là một trong nhiều, bạn đã biết, lúc giá trị này
+
+72
+00:06:44,886 --> 00:06:52,231
+theta zero, và lúc đó giá trị của theta một trong, chúng tôi sẽ chỉ với giả thuyết này, H của
+
+73
+00:06:52,231 --> 00:06:58,599
+X và một lần nữa, không phải là một tuyệt vời phù hợp với dữ liệu, và [unintelligible]. Ví dụ cuối, điều này là
+
+74
+00:06:58,599 --> 00:07:03,450
+thực tế không khá tại tối thiểu, nhưng nó là khá gần với tối thiểu. Vì thế this
+
+75
+00:07:03,450 --> 00:07:08,486
+không phải là như vậy một sự phù hợp xấu đến các, dữ liệu, ở đâu, cho một giá trị cụ thể là, theta
+
+76
+00:07:08,486 --> 00:07:13,337
+Zero. Trong đó, một trong số họ có giá trị, như trong cho một giá trị cụ thể cho theta một trong. Chúng tôi
+
+77
+00:07:13,337 --> 00:07:18,004
+có được một h vật lý X. Và đây là, đây không phải là khá tại tối thiểu, nhưng nó là
+
+78
+00:07:18,004 --> 00:07:23,039
+khá gần. Và do đó, tổng của hình vuông lỗi là tổng của hình vuông khoảng cách giữa
+
+79
+00:07:23,039 --> 00:07:28,259
+của tôi, đào tạo của táo và giả thuyết của tôi.
+Thực sự, mà là một khoản vuông khoảng cách,
+
+80
+00:07:28,259 --> 00:07:32,548
+quyền? Của tất cả các lỗi này. Điều này là khá gần với tối thiểu mặc dù
+
+81
+00:07:32,548 --> 00:07:37,096
+nó không phải là khá tối thiểu. Vì vậy, những con số này tôi hy vọng rằng bạn thấy một tốt hơn
+
+82
+00:07:37,096 --> 00:07:41,869
+sự hiểu biết về những gì các giá trị của cos hoạt j. Làm thế nào các r và làm thế nào đó
+
+83
+00:07:41,869 --> 00:07:47,324
+đáp ứng cho giả thuyết khác nhau như vậy, càng làm thế một giả thuyết thực hiện phản ứng nhanh
+
+84
+00:07:47,324 --> 00:07:52,983
+hoạt động gần gũi hơn tối thiểu này cos chức năng j. Bây giờ tất nhiên những gì chúng tôi thực sự
+
+85
+00:07:52,983 --> 00:07:57,619
+muốn là một thuật toán chính thức như một phần chính thức của phần mềm cho
+
+86
+00:07:57,619 --> 00:08:02,218
+tự động tìm giá trị theta zero và theta một trong, mà giảm thiểu các
+
+87
+00:08:02,218 --> 00:08:06,566
+gây ra chức năng J, đúng không? Và những gì chúng tôi, chúng tôi không muốn làm gì, bạn đã biết, làm thế nào để
+
+88
+00:08:06,566 --> 00:08:10,697
+viết phần mềm, lô trong thời điểm này, và sau đó cố gắng tự đọc ra các
+
+89
+00:08:10,697 --> 00:08:15,263
+số điện thoại, rằng đây không phải là một cách tốt để làm điều đó. Và, trong thực tế, chúng tôi sẽ xem nó sau này, mà
+
+90
+00:08:15,426 --> 00:08:19,938
+khi chúng ta nhìn vào ví dụ phức tạp hơn, chúng tôi sẽ có thu chiều cao với
+
+91
+00:08:19,938 --> 00:08:23,906
+bộ [unintelligible], rằng, nó biến ra, chúng ta sẽ thấy trong một số ít, chúng ta sẽ thấy sau này trong
+
+92
+00:08:23,906 --> 00:08:28,091
+khóa học này, các ví dụ về nơi con số này, bạn đã biết, không thể thực sự được vẽ, và
+
+93
+00:08:28,091 --> 00:08:33,664
+Điều này sẽ trở thành nhiều khó khăn hơn để hình dung. Và vì vậy, những gì chúng tôi muốn là có phần mềm
+
+94
+00:08:33,664 --> 00:08:37,729
+xác định. Giá trị của theta 0, theta một [unintelligible]. Tối thiểu hoá chức năng này và
+
+95
+00:08:37,916 --> 00:08:42,914
+trong video tiếp theo chúng tôi bắt đầu nói về một thuật toán để tự động tìm kiếm
+
+96
+00:08:42,914 --> 00:08:47,600
+giá trị đó theta zero và theta một trong đó giảm thiểu các chức năng chéo J.

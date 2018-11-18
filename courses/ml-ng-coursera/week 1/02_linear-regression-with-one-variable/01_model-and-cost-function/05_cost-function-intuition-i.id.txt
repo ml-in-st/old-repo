@@ -1,0 +1,106 @@
+Dalam video sebelumnya, kita memberikan
+definisi secara matematika untuk fungsi biaya. Dalam video ini, mari kita lihat
+beberapa contoh, untuk kembali ke intuisi mengenai apa yang dilakukan fungsi biaya, dan
+mengapa kita ingin menggunakannya. Sebagai rangkuman, ini yang kita lakukan terakhir. Kita ingin mencocokkan suatu
+garis lurus ke data kita, jadi kita punya bentuk ini sebagai hipotesis dengan parameter
+theta nol dan theta satu ini, dan dengan pilihan parameter yang berbeda
+kita menghasilkan garis lurus yang berbeda. Jadi datanya dicocokkan seperti
+itu, dan itu fungsi biaya, dan itu tujuan kita membuat fungsi biaya seoptimal mungkin.
+Jadi video ini, untuk menggambarkan lebih baik fungsi biaya J, saya akan
+bekerja dengan fungsi hipotesis yang disederhanakan, seperti yang ditunjukkan di kanan. Jadi
+saya akan menggunakan hipotesis saya yang disederhanakan, yaitu hanya theta satu kali x. Kita bisa,
+jika Anda mau, berpikir ini seperti mengatur parameter theta nol sama dengan 0. Jadi saya
+hanya punya satu parameter theta satu dan fungsi biaya saya mirip seperti sebelumnya
+kecuali sekarang h(x) sama dengan theta satu kali x. Dan saya hanya punya
+satu parameter theta satu dan sasaran optimasi saya adalah mau memperkecil
+J dari theta satu. Sebagai gambaran apa yang dimaksud yaitu jika theta nol sama dengan 0, itu
+dapat disamakan dengan hanya memilih fungsi hipotesis yang melalui titik asal,
+yang melalui titik (0, 0). Dengan menggunakan definisi hipotesis fungsi biaya yang disederhanakan
+ini, mari kita coba pahami konsep fungsi biaya dengan lebih baik. Jelas bahwa
+dua fungsi kunci yang kita ingin pahami. Yang pertama fungsi hipotesis, dan
+yang kedua fungsi biaya. Jadi, perhatikan hipotesis, h(x). Untuk
+theta satu bernilai tetap, ini fungsi dari x. Jadi hipotesis adalah
+fungsi dari, ukuran rumah x. Sebaliknya, fungsi biaya, J,
+itu fungsi dari parameter, theta satu, yang mengontrol kemiringan
+garis lurus. Mari kita plot fungsi ini dan mencoba memahami keduanya dengan lebih baik.
+Mari kita mulai dengan hipotesis. Di kiri, katakanlah ini set latihan saya dengan
+tiga titik pada (1, 1), (2, 2), dan (3, 3). Pilih nilai theta satu, agar saat theta satu
+sama dengan satu, dan jika itu pilihan saya untuk theta satu, maka hipotesis saya akan
+tampak seperti garis lurus di sebelah sini. Dan saya akan jelaskan, saat saya memplot
+fungsi hipotesis saya. Sumbu-X, sumbu mendatar saya diberi nama X, dinamai,
+ukuran rumah di sebelah sini. Sekarang, untuk sementara, set
+theta satu sama dengan satu, apa yang saya ingin lakukan adalah mencari tahu apa nilai J dari theta satu, saat
+theta satu sama dengan satu. Jadi mari kita lanjutkan dan menghitung berapa fungsi biayanya
+untuk theta satu sama dengan satu. Seperti biasa, fungsi biaya saya didefinisikan sebagai berikut,
+benar? Beberapa dari, beberapa dari mereka adalah set latihan dari yang dinamakan kesalahan kwadrat (= squared error).
+Dan, ini karenanya sama dengan, ini, theta satu x(i) kurang y(i) dan jika Anda
+sederhanakan ini menjadi, itu, nol kwadrat tambah nol kwadrat tambah nol kwadrat yang
+tentu saja, sama dengan nol. Sekarang, dalam fungsi biaya. Jelas setiap
+fungsi di sini ini sama dengan nol. karena untuk set latihan tertentu, saya punya atau 3
+contoh latihan saya adalah (1, 1), (2, 2), (3, 3). Jika theta satu sama dengan satu, maka h(x), h(x(i))
+sama dengan persis y(i), biar saya perbaiki tulisannya. Oke? Dan jadi, h(x) kurang
+y, setiap istilah ini sama dengan nol, itulah mengapa saya mendapati bahwa J dari satu sama
+dengan nol. Jadi, kita tahu sekarang bahwa J dari satu sama dengan nol. Mari kita plot itu. Apa yang
+akan saya lakukan di sebelah kanan adalah memplot fungsi biaya J saya. Dan perhatikan, karena fungsi
+biaya saya adalah fungsi dari parameter theta satu saya, saat saya memplot fungsi biaya saya,
+sumbu mendatar sekarang diberi nama theta satu. Jadi saya punya J dari satu adalah nol,
+jadi mari lanjutkan dan plot itu. Berakhir dengan, X sebelah sini. Sekarang mari kita lihat
+beberapa contoh lain. Theta-1 bisa mengambil rentangan nilai yang berbeda. Setuju? Jadi
+theta-1 bisa berupa nilai negatif, nol, nilai positif. Jadi bagaimana jika theta-1
+sama dengan 0.5. Apa yang akan terjadi? Mari lanjutkan dan memplot itu. Saya sekarang akan
+set theta-1 sama dengan 0.5, dan dalam kasus itu hipotesis saya sekarang tampak seperti ini. Sebagai
+suatu garis dengan kemiringan sama dengan 0.5, dan mari kita hitung J dari 0.5. Jadi itu akan menjadi
+satu per 2M dari, fungsi biaya saya seperti biasa. Jelas bahwa fungsi biayanya
+akan menjadi penjumlahan nilai kwadrat dari tinggi garis ini. Ditambah penjumlahan
+kwadrat dari tinggi garis itu, tambah penjumlahan kwadrat dari tinggi
+garis itu, benar? Karena jarak vertikal ini, itu selisih antara,
+Anda tahu, y(i) dan nilai prediksinya, h(x(i)), benar? Jadi, contoh pertama
+akan jadi 0.5 kurang satu kwadrat, karena hipotesis saya memprediksi 0.5,
+sedangkan nilai aktualnya adalah satu. Untuk contoh kedua, saya mendapatkan, satu kurang dua
+kwadrat, karena hipotesis saya memprediksi satu, namun harga rumah aktualnya adalah dua.
+Dan terakhir, ditambah 1.5 kurang tiga kwadrat. Dan jadi itu sama dengan satu per
+dua kali tiga, karena m ukuran set latihan saya, benar, punya tiga contoh
+latihan. Dan kemudian, itu dikalikan menyederhanakan nilai dalam tanda kurung menjadi 3.5.
+Jadi itu 3.5 per enam yaitu sekitar 0.68. Jadi sekarang kita tahu bahwa J dari 0.5
+sekitar 0.68. Mari lanjutkan dan plot nilai itu. Oh maafkan saya, perhitungannya salah, itu sebenarnya 0.58.
+Jadi kita memplotnya mungkin di sekitar sana. Oke? Sekarang, mari kita kerjakan satu lagi.
+Bagaimana jika theta satu sama dengan nol, berapa J dari nol? Jelas bahwa
+jika theta satu sama dengan nol, maka h(x) sama dengan, Anda tahu, garis
+mendatar ini, benar, secara horisontal seperti ini. Dan, mengukur kesalahannya.
+Kita tahu bahwa J dari nol sama dengan satu per dua m, kali satu kwadrat tambah dua
+kwadrat tambah tiga kwadrat, yaitu, satu per enam kali empat belas yaitu sekitar 2.3. Jadi
+mari kita lanjutkan dan memplotnya juga. Jadi itu berakhir dengan nilai sekitar 2.3
+dan tentu saja kita bisa terus melakukan ini untuk nilai theta satu lainnya. Jelas
+bahwa Anda juga bisa memiliki, Anda tahu, theta satu bernilai negatif, sehingga jika theta
+satu negatif maka h(x) akan sama dengan katakan -0.5 kali x maka theta
+satu -0.5, dan itu dapat disamakan dengan hipotesis dengan
+kemiringan negatif 0.5. Dan Anda dapat terus menghitung kesalahan ini.
+Ini jelas menjadi, Anda tahu, untuk 0.5, tampaknya itu punya kesalahan yang benar-benar tinggi.
+Itu berhasil menjadi sesuatu, seperti 5.25, dan seterusnya. Dan untuk nilai theta satu yang
+berbeda, Anda dapat menghitungnya, kan? Dan tampaknya bahwa Anda, rentangan nilai hasil
+hitungan Anda, Anda mendapat sesuatu yang seperti itu. Dan dengan menghitung rentangan nilai
+itu, secara perlahan Anda sebenarnya dapat menemukan apa yang fungsi J dari theta katakan dan
+itulah J dari theta. Sebagai pengulangan, untuk setiap nilai theta satu, benar? Setiap nilai
+theta satu dapat disamakan dengan hipotesis yang berbeda, atau dengan garis lurus
+berbeda di sebelah kiri. Dan untuk setiap nilai theta satu, kita bisa mendapatkan
+nilai J dari theta satu yang berbeda. Dan sebagai contoh, Anda tahu, theta satu = 1,
+disamakan dengan garis lurus ini lurus melalui data. Sebaliknya theta satu = 0.5, 
+pada titik berwarna magenta ini, disamakan dengan mungkin garis itu, dan theta
+satu = 0, yang ditunjukkan dengan warna biru, disamakan dengan garis horisontal ini. Baik, jadi untuk setiap
+nilai theta satu kita mendapatkan nilai yang berbeda-beda untuk J dari theta satu dan kita
+dapat menggunakan ini untuk menemukan plot di sebelah kanan ini. Sekarang Anda ingat,
+tujuan pengoptimalan algoritma belajar kita adalah kita ingin memilih nilai
+theta satu yang memperkecil nilai J dari theta satu. Benar? Ini fungsi tujuan kita untuk
+regresi linier. Nah, melihat pada kurva ini, nilai yang memperkecil J dari
+theta satu adalah, Anda tahu, theta satu sama dengan satu. Dan lihatlah, itu memang
+garis lurus terbaik yang pas melalui data kita, dengan mengatur theta satu
+sama dengan satu. Dan hanya untuk set latihan khusus ini, kita berhasil mencocokkannya
+dengan sempurna. Dan itulah mengapa memperkecil J dari theta satu dapat disamakan dengan menemukan
+garis lurus yang pas dengan baik di data. Jadi, untuk merangkum, dalam video ini, kita melihat
+beberapa plot, untuk memahami fungsi biaya. Untuk memahaminya, kita menyederhanakan
+algoritmanya sehingga itu hanya punya parameter theta satu. Dan kita set
+parameter theta nol sama dengan nol. Dalam video berikut, kita akan kembali ke persoalan awal
+perumusan dan melihat pada beberapa visualisasi meliputi kedua theta nol
+dan theta satu. Yaitu tanpa mengatur theta nol sama dengan nol. Dan semoga itu akan memberikan
+pada Anda, pemahaman yang lebih baik akan apa yang fungsi biaya J kerjakan pada perumusan
+regresi linier awal.

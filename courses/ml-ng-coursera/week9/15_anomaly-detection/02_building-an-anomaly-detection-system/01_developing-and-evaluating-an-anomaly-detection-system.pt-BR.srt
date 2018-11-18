@@ -1,0 +1,1559 @@
+1
+00:00:00,120 --> 00:00:01,220
+No último vídeo nós desenvolvemos
+
+2
+00:00:01,850 --> 00:00:03,200
+um algoritmo de detecção de anomalias.
+
+3
+00:00:04,150 --> 00:00:05,240
+Neste vídeo, eu gostaria de
+
+4
+00:00:05,300 --> 00:00:06,870
+falar sobre como
+
+5
+00:00:07,090 --> 00:00:08,750
+desenvolver um especifico
+
+6
+00:00:09,060 --> 00:00:10,790
+algoritmo de detecção de anomalias
+
+7
+00:00:11,410 --> 00:00:12,810
+para um problema em particular.
+
+8
+00:00:13,470 --> 00:00:14,500
+Vamos focar no problema
+
+9
+00:00:15,090 --> 00:00:18,700
+de como avaliar este algoritmo de detecção.
+
+10
+00:00:18,880 --> 00:00:20,490
+Nos vídeos anteriores, nós já falamos
+
+11
+00:00:20,800 --> 00:00:22,380
+sobre a importância da avaliação
+
+12
+00:00:22,570 --> 00:00:24,770
+com números reais e isso captura a ideia de que
+
+13
+00:00:25,170 --> 00:00:26,810
+quando você está desenvolvendo um
+
+14
+00:00:27,270 --> 00:00:28,460
+algoritmo de aprendizado
+
+15
+00:00:28,690 --> 00:00:30,300
+você geralmente precisa
+
+16
+00:00:30,560 --> 00:00:31,540
+fazer várias escolhas como,
+
+17
+00:00:31,710 --> 00:00:34,410
+escolher quais características para usar, etc.
+
+18
+00:00:35,010 --> 00:00:36,800
+E criar essas decisões de
+
+19
+00:00:36,880 --> 00:00:38,540
+qual escolher geralmente se torna mais fácil
+
+20
+00:00:38,780 --> 00:00:39,890
+se você tem um
+
+21
+00:00:40,040 --> 00:00:41,330
+jeito de avaliar seu algoritmo com uma
+
+22
+00:00:41,410 --> 00:00:43,190
+função que retorna apenas um número.
+
+23
+00:00:44,200 --> 00:00:44,950
+Se você estiver tentando decidir
+
+24
+00:00:45,980 --> 00:00:47,130
+por exemplo, eu tenho uma ideia
+
+25
+00:00:47,220 --> 00:00:49,730
+de uma característica extra, eu incluo ela ou não?
+
+26
+00:00:50,560 --> 00:00:51,560
+Se você puder rodar o algoritmo
+
+27
+00:00:51,760 --> 00:00:52,830
+com aquela nova característica, e
+
+28
+00:00:52,960 --> 00:00:54,420
+rodar o mesmo sem ela
+
+29
+00:00:54,570 --> 00:00:55,960
+e pegar apenas um número de volta que diz
+
+30
+00:00:56,100 --> 00:00:57,350
+minha performance melhorou ou piorou
+
+31
+00:00:57,460 --> 00:01:00,070
+quando eu adicionei esta característica?
+
+32
+00:01:00,670 --> 00:01:01,480
+Isto nos dá uma maneira melhor
+
+33
+00:01:01,670 --> 00:01:04,370
+e muito simples com a qual
+
+34
+00:01:04,590 --> 00:01:06,110
+podemos decidir se incluímos ou não essa nova característica.
+
+35
+00:01:07,570 --> 00:01:09,010
+Então, para desenvolvermos
+
+36
+00:01:09,200 --> 00:01:10,850
+um sistema de detecção de
+
+37
+00:01:11,410 --> 00:01:13,880
+anomalia rapidamente, seria de grande
+
+38
+00:01:14,080 --> 00:01:14,960
+ajuda ter um jeito de
+
+39
+00:01:15,150 --> 00:01:17,820
+avaliar este sistema de detecção.
+
+40
+00:01:19,260 --> 00:01:20,420
+Para fazermos isso,
+
+41
+00:01:20,790 --> 00:01:22,380
+avaliar este algoritmo,
+
+42
+00:01:22,730 --> 00:01:24,080
+nós vamos assumir
+
+43
+00:01:24,310 --> 00:01:26,380
+que temos alguns dados já rotulados.
+
+44
+00:01:27,270 --> 00:01:28,270
+Nós vamos tratar a
+
+45
+00:01:28,420 --> 00:01:29,870
+detecção de anomalias como um
+
+46
+00:01:30,310 --> 00:01:31,770
+algoritmo de aprendizado não supervisionado com
+
+47
+00:01:32,210 --> 00:01:33,560
+dados não rotulados.
+
+48
+00:01:34,010 --> 00:01:35,190
+Mas nós teremos alguns dados rotulados
+
+49
+00:01:35,560 --> 00:01:37,390
+que especifiquem quais
+
+50
+00:01:37,700 --> 00:01:39,570
+são anômalos e quais exemplos não são.
+
+51
+00:01:39,670 --> 00:01:42,030
+Isto é como nós vamos
+
+52
+00:01:42,470 --> 00:01:43,350
+realmente usar estes rótulos
+
+53
+00:01:43,630 --> 00:01:45,670
+para avaliar o algoritmo de detecção.
+
+54
+00:01:45,820 --> 00:01:49,020
+Por exemplo, vamos pegar
+
+55
+00:01:49,300 --> 00:01:50,580
+o exemplo do motor de avião.
+
+56
+00:01:51,010 --> 00:01:52,680
+Vamos dizer que temos
+
+57
+00:01:53,070 --> 00:01:55,840
+alguns dados rotulados que são considerados anomalias
+
+58
+00:01:56,330 --> 00:01:57,890
+de motores de aviões que foram
+
+59
+00:01:58,400 --> 00:02:00,780
+fabricados no passado e agora são considerados problemáticos.
+
+60
+00:02:01,520 --> 00:02:02,360
+Se tornaram em falhas ou estranhos em alguma forma.
+
+61
+00:02:02,400 --> 00:02:04,130
+Vamos dizer também
+
+62
+00:02:04,360 --> 00:02:05,750
+que temos alguns exemplos normais,
+
+63
+00:02:06,100 --> 00:02:07,810
+alguns exemplos
+
+64
+00:02:08,050 --> 00:02:10,200
+em perfeita condição.
+
+65
+00:02:10,940 --> 00:02:12,050
+Eu vou usar ( y = 0 )
+
+66
+00:02:12,110 --> 00:02:13,600
+para denotar os exemplos normais
+
+67
+00:02:13,790 --> 00:02:15,470
+ou sem anomalia e
+
+68
+00:02:15,530 --> 00:02:21,450
+( y = 1 ) para denotar os anômalos exemplos.
+
+69
+00:02:22,450 --> 00:02:24,670
+O processo de desenvolver e avaliar o algoritmo
+
+70
+00:02:25,130 --> 00:02:26,450
+de detecção de anomalia é o seguinte.
+
+71
+00:02:27,500 --> 00:02:28,300
+Nós vamos pensar sobre o conjunto
+
+72
+00:02:28,560 --> 00:02:29,830
+como um conjunto de treino,
+
+73
+00:02:30,000 --> 00:02:31,310
+nós vamos falar sobre validação cruzada no
+
+74
+00:02:31,440 --> 00:02:32,580
+conjunto de testes depois, mas o conjunto de treino nós ainda
+
+75
+00:02:33,280 --> 00:02:34,000
+consideramos ele como um conjunto
+
+76
+00:02:35,040 --> 00:02:36,180
+de treino não rotulado.
+
+77
+00:02:36,510 --> 00:02:37,250
+Então, este é nosso grande
+
+78
+00:02:37,560 --> 00:02:39,580
+conjunto de normais, não anômalos
+
+79
+00:02:40,190 --> 00:02:41,130
+exemplos.
+
+80
+00:02:42,400 --> 00:02:43,530
+E geralmente pensamos
+
+81
+00:02:43,690 --> 00:02:44,750
+como isto sendo não anômalos
+
+82
+00:02:45,010 --> 00:02:46,490
+mas não tem problemas
+
+83
+00:02:46,740 --> 00:02:48,660
+se algumas anomalias acabem dentro
+
+84
+00:02:48,660 --> 00:02:51,240
+de seu conjunto de treinos não rotulados.
+
+85
+00:02:51,420 --> 00:02:52,100
+O próximo para nós vamos
+
+86
+00:02:52,310 --> 00:02:53,830
+definir um conjunto de validação cruzada,
+
+87
+00:02:54,100 --> 00:02:55,510
+e um conjunto de teste com o qual
+
+88
+00:02:55,750 --> 00:02:58,360
+vamos poder avaliar em particular nosso algoritmo de detecção.
+
+89
+00:02:59,230 --> 00:03:00,850
+Então especificamente, para ambos
+
+90
+00:03:01,000 --> 00:03:01,960
+os conjuntos de validação cruzada nós
+
+91
+00:03:02,080 --> 00:03:03,590
+vamos assumir que, bem você sabe, nós
+
+92
+00:03:03,800 --> 00:03:05,030
+podemos incluir alguns exemplos
+
+93
+00:03:05,670 --> 00:03:06,720
+no nosso conjunto de validação cruzada
+
+94
+00:03:06,900 --> 00:03:08,150
+e também no conjunto de teste
+
+95
+00:03:08,910 --> 00:03:09,660
+alguns exemplos que são considerados anômalos.
+
+96
+00:03:10,200 --> 00:03:11,410
+Então o conjunto de testes vai ter
+
+97
+00:03:11,950 --> 00:03:13,270
+alguns poucos exemplos com
+
+98
+00:03:13,340 --> 00:03:14,770
+( y = 1 ) que corresponde a alguns
+
+99
+00:03:15,040 --> 00:03:17,470
+motores de aviões com problemas.
+
+100
+00:03:18,640 --> 00:03:19,800
+Aqui temos um exemplo especifico
+
+101
+00:03:20,930 --> 00:03:23,120
+Vamos dizer que tudo junto, este
+
+102
+00:03:23,280 --> 00:03:24,990
+são os dados que temos.
+
+103
+00:03:25,260 --> 00:03:27,410
+Nós fabricamos 10.000 exemplos de
+
+104
+00:03:28,130 --> 00:03:29,140
+de motores que até onde
+
+105
+00:03:29,450 --> 00:03:30,740
+sabemos são motores perfeitos,
+
+106
+00:03:31,220 --> 00:03:33,110
+motores de avião em perfeito funcionamento.
+
+107
+00:03:34,060 --> 00:03:35,240
+E novamente, é perfeitamente normal
+
+108
+00:03:35,560 --> 00:03:37,310
+se alguns destes sejam motores falhos
+
+109
+00:03:37,740 --> 00:03:39,400
+acabem caindo dentro do conjunto
+
+110
+00:03:39,550 --> 00:03:40,860
+dos 10.000, mas nós assumimos
+
+111
+00:03:40,970 --> 00:03:41,970
+que a grande maioria destes
+
+112
+00:03:42,410 --> 00:03:44,300
+10.000 exemplos são,
+
+113
+00:03:44,500 --> 00:03:47,660
+bons e normais, não anômalos exemplos.
+
+114
+00:03:48,480 --> 00:03:50,940
+E vamos dizer que historicamente, você sabe,
+
+115
+00:03:51,200 --> 00:03:52,120
+por um bom tempo esta fabrica esta produzindo,
+
+116
+00:03:52,650 --> 00:03:54,130
+e geralmente acabamos
+
+117
+00:03:54,480 --> 00:03:55,930
+tendo exemplos,
+
+118
+00:03:56,440 --> 00:03:57,970
+de 24 até 28 exemplos de
+
+119
+00:03:58,240 --> 00:04:00,180
+motores falhos também.
+
+120
+00:04:01,120 --> 00:04:03,030
+E para uma típica aplicação de
+
+121
+00:04:03,310 --> 00:04:05,490
+de detecção de anomalias, o número de não anômalos
+
+122
+00:04:06,740 --> 00:04:08,090
+exemplos, em que ( y = 1 )
+
+123
+00:04:08,760 --> 00:04:10,650
+pode ser qualquer num range de 20 a 50 por exemplo.
+
+124
+00:04:10,820 --> 00:04:12,920
+É bem normal ter
+
+125
+00:04:13,360 --> 00:04:14,570
+este intervalo de exemplos em
+
+126
+00:04:14,830 --> 00:04:16,710
+temos ( y = 1).
+
+127
+00:04:16,910 --> 00:04:17,730
+Até porque geralmente temos um número
+
+128
+00:04:17,860 --> 00:04:20,000
+muito maior de exemplos bons.
+
+129
+00:04:21,810 --> 00:04:23,150
+Então, dado este conjunto de dados
+
+130
+00:04:24,180 --> 00:04:25,410
+uma maneira justa e típica de separar os dados
+
+131
+00:04:25,850 --> 00:04:27,150
+em conjunto de treinos, validação cruzada
+
+132
+00:04:27,430 --> 00:04:29,210
+e conjunto de testes seria a seguinte:
+
+133
+00:04:30,390 --> 00:04:31,880
+Vamos pegar nossos 10.000 motores bons
+
+134
+00:04:32,360 --> 00:04:34,060
+e colocar 6.000 deles
+
+135
+00:04:34,260 --> 00:04:37,100
+no conjunto de treino não rotulados.
+
+136
+00:04:37,620 --> 00:04:38,800
+Eu estou chamando este exemplo de não rotulado
+
+137
+00:04:39,130 --> 00:04:40,050
+mas sabemos que todos estes exemplos
+
+138
+00:04:40,640 --> 00:04:42,510
+são realmente aqueles que correspondem
+
+139
+00:04:42,810 --> 00:04:44,380
+a ( y = 0 ), até onde sabemos.
+
+140
+00:04:45,300 --> 00:04:46,350
+E então vamos usar este conjunto
+
+141
+00:04:46,520 --> 00:04:48,840
+para ajustar p(x).
+
+142
+00:04:49,150 --> 00:04:49,850
+Vamos usar estes 6000 motores
+
+143
+00:04:50,350 --> 00:04:51,180
+para ajustar p ( x ),
+
+144
+00:04:51,360 --> 00:04:52,190
+este p(x) é:
+
+145
+00:04:52,420 --> 00:04:53,930
+parametrizado por mu1
+
+146
+00:04:54,330 --> 00:04:56,380
+p(x₁; μ₁ , σ₁²), ....,
+
+147
+00:04:56,540 --> 00:04:57,700
+até
+
+148
+00:04:58,370 --> 00:04:59,570
+p(xn; μn , σn²).
+
+149
+00:05:00,790 --> 00:05:02,300
+E então serão estes
+
+150
+00:05:02,500 --> 00:05:03,930
+6000 exemplos que nós vamos
+
+151
+00:05:04,110 --> 00:05:05,370
+usar para estimar os parâmetros
+
+152
+00:05:05,590 --> 00:05:06,760
+Mu 1, sigma squared 1,
+
+153
+00:05:07,140 --> 00:05:08,960
+up to Mu N, sigma
+
+154
+00:05:09,200 --> 00:05:10,280
+squared N. And so that's our training
+
+155
+00:05:10,500 --> 00:05:11,960
+set of all, you know,
+
+156
+00:05:12,150 --> 00:05:13,980
+good, or the vast majority of good examples.
+
+157
+00:05:15,430 --> 00:05:16,950
+Próximo passo vamos pegar todos os
+
+158
+00:05:17,140 --> 00:05:18,380
+motores de avião bons e colocar alguns deles
+
+159
+00:05:18,660 --> 00:05:19,470
+no conjunto de validação cruzada
+
+160
+00:05:19,580 --> 00:05:21,320
+e outros vamos adicionar
+
+161
+00:05:21,570 --> 00:05:22,970
+no conjunto de testes.
+
+162
+00:05:23,280 --> 00:05:24,300
+Temos então: 6000 + 2000 + 2000,
+
+163
+00:05:24,480 --> 00:05:25,470
+é assim que separamos
+
+164
+00:05:25,740 --> 00:05:28,820
+nossos 10.000 motores de avião que são considerados bons.
+
+165
+00:05:29,260 --> 00:05:31,460
+Se nós tivermos 20
+
+166
+00:05:31,930 --> 00:05:33,380
+motores de aeronave com problemas,
+
+167
+00:05:33,490 --> 00:05:34,890
+nós vamos pegar e
+
+168
+00:05:35,160 --> 00:05:36,100
+separar elas, colocar 10 delas
+
+169
+00:05:36,200 --> 00:05:37,230
+no conjunto de validação cruzada e
+
+170
+00:05:37,370 --> 00:05:39,560
+10 delas no conjunto de testes.
+
+171
+00:05:39,850 --> 00:05:41,320
+No próximo slide nós
+
+172
+00:05:41,660 --> 00:05:42,460
+vamos falar sobre como
+
+173
+00:05:42,750 --> 00:05:43,800
+realmente usar isto para avaliar
+
+174
+00:05:44,520 --> 00:05:46,330
+o algoritmo de detecção de falhas.
+
+175
+00:05:48,130 --> 00:05:49,140
+O que eu acabei
+
+176
+00:05:49,220 --> 00:05:50,610
+de descrever aqui para você
+
+177
+00:05:50,790 --> 00:05:52,300
+é a maneira recomendada
+
+178
+00:05:52,440 --> 00:05:55,290
+de separar os dados rotulados e não rotulados.
+
+179
+00:05:55,820 --> 00:05:57,970
+Os motores de aeronave bons e ruins.
+
+180
+00:05:58,480 --> 00:06:00,380
+Nós usamos algo como
+
+181
+00:06:00,730 --> 00:06:01,650
+60, 20 e 20% para os
+
+182
+00:06:01,800 --> 00:06:03,350
+exemplos de motores bons, e
+
+183
+00:06:03,570 --> 00:06:04,780
+os motores com falhas nós
+
+184
+00:06:04,910 --> 00:06:05,750
+apenas colocamos no conjunto de validação
+
+185
+00:06:05,870 --> 00:06:06,940
+cruzada e apenas no conjunto de testes.
+
+186
+00:06:07,030 --> 00:06:09,200
+em seguida veremos o porque dessa separação.
+
+187
+00:06:10,370 --> 00:06:12,080
+Apenas como um complemento,
+
+188
+00:06:12,360 --> 00:06:13,360
+se você olhar como as pessoas normalmente
+
+189
+00:06:13,750 --> 00:06:15,400
+aplicam esses algoritmos de detecção, você vai
+
+190
+00:06:15,510 --> 00:06:16,980
+diferentes formas de separar os dados.
+
+191
+00:06:17,460 --> 00:06:19,400
+Uma outra alternativa, não uma alternativa
+
+192
+00:06:19,660 --> 00:06:21,290
+muito recomendada, mas algumas pessoas
+
+193
+00:06:21,470 --> 00:06:23,650
+pegam seus 10 exemplos
+
+194
+00:06:23,790 --> 00:06:24,770
+separam 6000 exemplos para
+
+195
+00:06:24,820 --> 00:06:26,020
+o conjunto de testes.
+
+196
+00:06:26,320 --> 00:06:27,130
+e colocam os restantes
+
+197
+00:06:27,650 --> 00:06:28,800
+4000 exemplos no conjunto de validação cruzada
+
+198
+00:06:30,380 --> 00:06:31,020
+e os mesmos no conjunto de testes.
+
+199
+00:06:31,170 --> 00:06:32,030
+Mas como você deve saber, gostamos de pensar
+
+200
+00:06:32,360 --> 00:06:33,340
+como conjunto de validação
+
+201
+00:06:33,400 --> 00:06:34,620
+e conjunto de testes como sendo separados
+
+202
+00:06:35,280 --> 00:06:36,370
+um do outro.
+
+203
+00:06:37,690 --> 00:06:39,030
+Mas em detecção de anomalias,
+
+204
+00:06:39,230 --> 00:06:40,360
+algumas vezes a gente vê
+
+205
+00:06:40,600 --> 00:06:41,760
+pessoas usando o mesmo
+
+206
+00:06:42,070 --> 00:06:42,970
+conjunto de bons motores
+
+207
+00:06:43,370 --> 00:06:44,640
+no conjunto de validação e
+
+208
+00:06:44,710 --> 00:06:46,150
+conjunto de teste, e algumas vezes
+
+209
+00:06:46,250 --> 00:06:48,070
+você vê pessoas usando o mesmo conjunto
+
+210
+00:06:48,180 --> 00:06:49,800
+de motores anômalos  no conjunto de validação cruzada
+
+211
+00:06:50,880 --> 00:06:54,190
+e no conjunto de teste.
+
+212
+00:06:54,590 --> 00:06:55,970
+Porém todos estes casos não
+
+213
+00:06:56,850 --> 00:06:59,030
+são considerados boas práticas, e são desencorajados.
+
+214
+00:07:00,250 --> 00:07:01,360
+Certamente usando o mesmo conjunto
+
+215
+00:07:01,650 --> 00:07:02,530
+de dados na validação e no conjunto de
+
+216
+00:07:03,200 --> 00:07:04,220
+testes não é considerado uma
+
+217
+00:07:04,510 --> 00:07:06,400
+boa prática de aprendizado de máquina.
+
+218
+00:07:07,180 --> 00:07:08,780
+Mas algumas vezes você as pessoas fazendo mesmo assim.
+
+219
+00:07:09,790 --> 00:07:11,330
+Enfim, dado o conjunto treinamento, validação
+
+220
+00:07:11,550 --> 00:07:12,780
+cruzada e teste,
+
+221
+00:07:13,260 --> 00:07:15,220
+é assim que vamos avaliar
+
+222
+00:07:15,370 --> 00:07:16,920
+ou como vamos desenvolver e avaliar nosso algoritmo.
+
+223
+00:07:18,490 --> 00:07:19,510
+Primeiro nós pegamos o conjunto de treinamento
+
+224
+00:07:19,910 --> 00:07:20,750
+e ajustamos o modelo p(x)
+
+225
+00:07:20,840 --> 00:07:21,860
+Nós ajustamos todos esses
+
+226
+00:07:22,210 --> 00:07:24,600
+Gaussianos para os meus m's exemplos
+
+227
+00:07:25,060 --> 00:07:26,690
+não rotulados de motores de aeronave,
+
+228
+00:07:27,090 --> 00:07:28,140
+estes eu estou chamando
+
+229
+00:07:28,270 --> 00:07:29,560
+de não rotulados,  mas na realidade
+
+230
+00:07:29,660 --> 00:07:31,370
+estes são os exemplos que estamos assumindo
+
+231
+00:07:31,790 --> 00:07:33,390
+serem nossos exemplos de aeronave sem defeito.
+
+232
+00:07:34,580 --> 00:07:36,510
+Então imagine que seu algoritmo
+
+233
+00:07:36,650 --> 00:07:38,590
+está realmente fazendo uma predição.
+
+234
+00:07:39,030 --> 00:07:40,070
+Então, na validação cruzada
+
+235
+00:07:40,630 --> 00:07:42,280
+com o conjunto de teste,
+
+236
+00:07:42,610 --> 00:07:44,660
+dado o exemplo X, pense no
+
+237
+00:07:44,840 --> 00:07:46,490
+algoritmo como predizendo que
+
+238
+00:07:46,730 --> 00:07:48,090
+"y=1", se
+
+239
+00:07:48,230 --> 00:07:49,320
+p(x)<ε
+
+240
+00:07:50,040 --> 00:07:51,740
+e predizendo
+
+241
+00:07:52,280 --> 00:07:54,760
+"y=0", se p(x)≥ε.
+
+242
+00:07:54,950 --> 00:07:57,340
+Dado "x", tenta predizer o rótulo.
+
+243
+00:07:58,390 --> 00:07:59,280
+É y=1,
+
+244
+00:07:59,340 --> 00:08:00,270
+correspondendo
+
+245
+00:08:00,500 --> 00:08:01,470
+a uma anomalia,
+
+246
+00:08:01,630 --> 00:08:06,380
+ou y=0, correspondendo a um exemplo normal?
+
+247
+00:08:07,290 --> 00:08:09,480
+Dados os conjuntos de treinamento, validação, e teste,
+
+248
+00:08:09,940 --> 00:08:11,080
+como desenvolver um algoritmo?
+
+249
+00:08:11,480 --> 00:08:12,920
+Ou, como você avalia
+
+250
+00:08:13,010 --> 00:08:15,450
+um algoritmo de Detecção de Anomalias?
+
+251
+00:08:15,790 --> 00:08:17,470
+O primeiro passo é pegar o conjunto
+
+252
+00:08:17,820 --> 00:08:19,410
+de treinamento não-rotulado,
+
+253
+00:08:19,670 --> 00:08:21,130
+e ajustar o modelo de p(x)
+
+254
+00:08:21,290 --> 00:08:23,520
+a esses dados de treinamento.
+
+255
+00:08:23,990 --> 00:08:25,060
+Então, pegamos esse
+
+256
+00:08:25,130 --> 00:08:26,620
+conjunto de treinamento não-rotulado,
+
+257
+00:08:26,910 --> 00:08:28,390
+que são esses exemplos,
+
+258
+00:08:28,870 --> 00:08:30,290
+e estamos assumindo que a maioria
+
+259
+00:08:30,750 --> 00:08:32,400
+dos motores das aeronaves são normais,
+
+260
+00:08:32,900 --> 00:08:34,020
+que não são anomalias.
+
+261
+00:08:34,150 --> 00:08:35,380
+E vamos ajustar
+
+262
+00:08:35,490 --> 00:08:36,470
+o modelo "p(x)",
+
+263
+00:08:36,640 --> 00:08:38,110
+ajustar todos os parâmetros
+
+264
+00:08:38,240 --> 00:08:40,330
+de todas as Gaussianas, a esses dados.
+
+265
+00:08:41,560 --> 00:08:43,190
+Depois, na validação cruzada do conjunto
+
+266
+00:08:43,300 --> 00:08:44,480
+de testes, vamos pensar que
+
+267
+00:08:44,600 --> 00:08:45,460
+o algoritmo de
+
+268
+00:08:46,100 --> 00:08:47,530
+Detecção de Anomalia quer predizer
+
+269
+00:08:47,640 --> 00:08:48,580
+o valor de "y".
+
+270
+00:08:49,540 --> 00:08:51,670
+Então, para cada exemplo de teste,
+
+271
+00:08:52,430 --> 00:08:53,470
+temos x⁽ᴵ⁾ de teste,
+
+272
+00:08:54,140 --> 00:08:56,110
+e y⁽ᴵ⁾ de teste,
+
+273
+00:08:57,200 --> 00:08:58,720
+onde "y" é igual a 0 ou 1,
+
+274
+00:08:58,870 --> 00:09:00,100
+dependendo se
+
+275
+00:09:00,320 --> 00:09:03,230
+o exemplo é uma anomalia, ou não.
+
+276
+00:09:04,370 --> 00:09:05,510
+Então, dada a entrada "x"
+
+277
+00:09:05,600 --> 00:09:07,340
+no conjunto de teste, meu algoritmo de
+
+278
+00:09:07,730 --> 00:09:08,850
+Detecção de Anomalia
+
+279
+00:09:09,100 --> 00:09:11,880
+quer predizer "y=1", se "p(x)<ε",
+
+280
+00:09:12,240 --> 00:09:15,120
+predizer isso como uma anomalia.
+
+281
+00:09:15,960 --> 00:09:17,810
+E queremos que o algoritmo preveja "y=0",
+
+282
+00:09:17,970 --> 00:09:20,830
+se "p(x)" for maior ou igual a "ε".
+
+283
+00:09:21,290 --> 00:09:23,600
+Assim, predizendo como um exemplo normal,
+
+284
+00:09:24,200 --> 00:09:26,340
+se "p(x)" for razoavelmente grande.
+
+285
+00:09:27,350 --> 00:09:28,510
+Então, podemos pensar
+
+286
+00:09:28,720 --> 00:09:29,930
+no algoritmo de Detecção
+
+287
+00:09:30,580 --> 00:09:32,040
+de Anomalia como fazendo predições
+
+288
+00:09:32,240 --> 00:09:33,490
+sobre os valores de "y" no
+
+289
+00:09:33,830 --> 00:09:35,080
+conjunto de teste,
+
+290
+00:09:36,050 --> 00:09:37,000
+ou de validação cruzada.
+
+291
+00:09:37,720 --> 00:09:39,140
+Isso nos coloca numa situação semelhante
+
+292
+00:09:39,670 --> 00:09:41,250
+ao Aprendizado Supervisionado, certo?
+
+293
+00:09:41,620 --> 00:09:42,870
+Onde temos um conjunto
+
+294
+00:09:43,170 --> 00:09:44,550
+de teste rotulado, e o algoritmo
+
+295
+00:09:44,800 --> 00:09:46,060
+está fazendo predições sobre
+
+296
+00:09:46,190 --> 00:09:48,050
+esses rótulos, e podemos avaliar,
+
+297
+00:09:48,480 --> 00:09:50,930
+vendo quantas vezes o algoritmo acerta o rótulo.
+
+298
+00:09:52,180 --> 00:09:53,820
+Claro que esses rótulo serão
+
+299
+00:09:54,540 --> 00:09:56,420
+bem enviesados, porque "y=0",
+
+300
+00:09:56,710 --> 00:09:57,930
+exemplos normais,
+
+301
+00:09:58,300 --> 00:10:00,490
+são muito mais comuns
+
+302
+00:10:00,780 --> 00:10:01,930
+do que "y=1",
+
+303
+00:10:02,310 --> 00:10:03,520
+exemplos anomalias.
+
+304
+00:10:04,660 --> 00:10:05,610
+Mas, isso está mais
+
+305
+00:10:06,040 --> 00:10:06,990
+perto da avaliação
+
+306
+00:10:07,690 --> 00:10:09,770
+que usamos em Aprendizado Supervisionado
+
+307
+00:10:12,390 --> 00:10:14,500
+Então, o que é uma boa medida de avaliação?
+
+308
+00:10:14,790 --> 00:10:18,530
+Bom, como os dados são muito enviesados,  já que "y=0"
+
+309
+00:10:18,840 --> 00:10:20,450
+é muito mais comum,
+
+310
+00:10:20,880 --> 00:10:22,980
+a precisão da classificação não será
+
+311
+00:10:23,520 --> 00:10:24,950
+uma boa medida de avaliação.
+
+312
+00:10:25,360 --> 00:10:26,760
+Já falamos sobre isso em outro vídeo.
+
+313
+00:10:28,360 --> 00:10:29,130
+Se você tiver
+
+314
+00:10:29,410 --> 00:10:31,360
+dados muito enviesados, predizer sempre "y=0"
+
+315
+00:10:31,740 --> 00:10:32,750
+terá uma elevada precisão
+
+316
+00:10:33,430 --> 00:10:34,300
+de classificação.
+
+317
+00:10:35,690 --> 00:10:36,820
+Ao invés disso, deveríamos
+
+318
+00:10:37,330 --> 00:10:38,920
+usar métricas de avaliação como:
+
+319
+00:10:39,530 --> 00:10:41,030
+fração de verdadeiro-positivos,
+
+320
+00:10:41,670 --> 00:10:42,940
+falso-positivos, falsos-negativos,
+
+321
+00:10:43,580 --> 00:10:44,830
+e verdadeiros-negativos.
+
+322
+00:10:44,890 --> 00:10:46,370
+Ou calcular a precisão,
+
+323
+00:10:46,790 --> 00:10:48,370
+e recall do algoritmo.
+
+324
+00:10:48,520 --> 00:10:50,510
+Ou o "f1 score", que é um número,
+
+325
+00:10:50,630 --> 00:10:51,680
+que sumariza: a precisão
+
+326
+00:10:52,600 --> 00:10:53,450
+e número de recalls.
+
+327
+00:10:54,340 --> 00:10:55,090
+Essas são formas
+
+328
+00:10:55,750 --> 00:10:56,940
+de avaliar o algoritmo
+
+329
+00:10:57,320 --> 00:10:59,090
+com dados de validação cruzada, ou de teste.
+
+330
+00:11:01,550 --> 00:11:02,960
+Finalmente, mais cedo,
+
+331
+00:11:03,100 --> 00:11:05,050
+no algoritmo de Detecção de Anomalias,
+
+332
+00:11:05,200 --> 00:11:06,720
+também tínhamos esse parâmetro "ε".
+
+333
+00:11:07,400 --> 00:11:09,100
+Então, "ε" era esse limiar
+
+334
+00:11:09,920 --> 00:11:11,320
+que usaríamos para decidir
+
+335
+00:11:11,790 --> 00:11:13,630
+quando rotular algo como uma anomalia.
+
+336
+00:11:14,840 --> 00:11:16,740
+Então, se você tiver
+
+337
+00:11:16,840 --> 00:11:18,380
+um conjunto de validação cruzada,
+
+338
+00:11:19,000 --> 00:11:20,320
+uma forma de escolher esse "ε",
+
+339
+00:11:20,710 --> 00:11:22,020
+seria testar vários
+
+340
+00:11:22,240 --> 00:11:24,090
+valores diferentes "ε",
+
+341
+00:11:24,340 --> 00:11:26,220
+e então escolher o valor de "ε" que,
+
+342
+00:11:26,380 --> 00:11:27,520
+por exemplo,
+
+343
+00:11:27,990 --> 00:11:30,670
+maximiza o "f1 score".
+
+344
+00:11:31,620 --> 00:11:33,940
+Ou que se sai bem com seu conjunto de validação cruzada.
+
+345
+00:11:35,340 --> 00:11:36,770
+Em termos mais gerais, a forma
+
+346
+00:11:37,000 --> 00:11:38,230
+de se usar os conjuntos de
+
+347
+00:11:38,630 --> 00:11:40,230
+treinamento, validação e teste, é:
+
+348
+00:11:41,760 --> 00:11:43,020
+quando tentamos tomar decisões,
+
+349
+00:11:43,640 --> 00:11:45,430
+como, que variáveis incluir,
+
+350
+00:11:45,570 --> 00:11:46,580
+ou melhorar a predição
+
+351
+00:11:47,100 --> 00:11:48,160
+do parâmetro "ε",
+
+352
+00:11:48,410 --> 00:11:51,010
+avaliaremos continuamente o algoritmo
+
+353
+00:11:51,500 --> 00:11:52,870
+no conjunto de validação cruzada.
+
+354
+00:11:53,000 --> 00:11:54,120
+Tomar todas as decisões,
+
+355
+00:11:54,320 --> 00:11:55,700
+que variáveis usar,
+
+356
+00:11:55,790 --> 00:11:57,650
+como fixar "ε", avaliar o algoritmo
+
+357
+00:11:58,240 --> 00:11:59,410
+no conjunto de validação
+
+358
+00:11:59,880 --> 00:12:00,870
+cruzada, e então,
+
+359
+00:12:01,320 --> 00:12:02,770
+após termos escolhido o conjunto
+
+360
+00:12:02,910 --> 00:12:03,860
+de variáveis,
+
+361
+00:12:04,070 --> 00:12:05,150
+e estarmos satisfeitos
+
+362
+00:12:05,250 --> 00:12:07,030
+com o valor de "ε", podemos
+
+363
+00:12:07,270 --> 00:12:08,680
+tomar o modelo final
+
+364
+00:12:08,770 --> 00:12:11,360
+e avaliar ele, usando o conjunto de teste.
+
+365
+00:12:12,680 --> 00:12:13,900
+Então, nesse vídeo, falamos
+
+366
+00:12:14,180 --> 00:12:15,240
+sobre o processo de como
+
+367
+00:12:15,520 --> 00:12:17,060
+avaliar um algoritmo
+
+368
+00:12:17,520 --> 00:12:18,970
+de Detecção de Anomalias.
+
+369
+00:12:19,960 --> 00:12:21,220
+E, ser capaz de avaliar
+
+370
+00:12:21,410 --> 00:12:22,540
+um algoritmo usando
+
+371
+00:12:22,640 --> 00:12:23,830
+um único número,
+
+372
+00:12:24,730 --> 00:12:25,630
+como o "f1 score",
+
+373
+00:12:26,530 --> 00:12:27,660
+permite que você faça
+
+374
+00:12:28,080 --> 00:12:29,710
+uso muito mais eficiente
+
+375
+00:12:29,960 --> 00:12:31,160
+seu tempo quando você está
+
+376
+00:12:31,280 --> 00:12:33,250
+desenvolvendo um sistema de Detecção de Anomalia.
+
+377
+00:12:33,800 --> 00:12:34,970
+E tem que tomar decisões, como:
+
+378
+00:12:35,650 --> 00:12:38,020
+escolher "ε", que variáveis incluir, e assim por diante.
+
+379
+00:12:38,970 --> 00:12:39,920
+Nesse vídeo, começamos
+
+380
+00:12:40,330 --> 00:12:40,830
+a usar dados
+
+381
+00:12:41,590 --> 00:12:42,750
+rotulados para avaliar
+
+382
+00:12:43,020 --> 00:12:43,550
+o algoritmo
+
+383
+00:12:43,570 --> 00:12:45,710
+de Detecção de Anomalias, e isso nos deixa
+
+384
+00:12:45,890 --> 00:12:48,340
+mais próximos da configuração de Aprendizado Supervisionado.
+
+385
+00:12:49,610 --> 00:12:50,810
+No próximo vídeo,
+
+386
+00:12:51,000 --> 00:12:52,780
+vou falar um pouco sobre isso.
+
+387
+00:12:52,940 --> 00:12:54,240
+Em especial, vamos falar sobre
+
+388
+00:12:54,440 --> 00:12:55,860
+quando deveríamos usar um algoritmo
+
+389
+00:12:56,310 --> 00:12:57,130
+de Detecção de Anomalias,
+
+390
+00:12:57,560 --> 00:13:00,770
+e quando deveríamos usar Aprendizado Supervisionado, e quais as diferenças.

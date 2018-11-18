@@ -1,0 +1,356 @@
+1
+00:00:00,110 --> 00:00:04,950
+In this video, I'd like to show you
+a fun and historically important example
+
+2
+00:00:04,950 --> 00:00:09,820
+of neural networks learning of using
+a neural network for autonomous driving.
+
+3
+00:00:09,820 --> 00:00:12,740
+That is getting a car to
+learn to drive itself.
+
+4
+00:00:14,440 --> 00:00:17,850
+The video that I'll showed a minute
+was something that I'd gotten from
+
+5
+00:00:17,850 --> 00:00:22,030
+Dean Pomerleau, who was a colleague who
+works out in Carnegie Mellon University
+
+6
+00:00:22,030 --> 00:00:24,460
+out on the east coast
+of the United States.
+
+7
+00:00:24,460 --> 00:00:27,910
+And in part of the video you
+see visualizations like this.
+
+8
+00:00:27,910 --> 00:00:31,609
+And I want to tell what a visualization
+looks like before starting the video.
+
+9
+00:00:32,630 --> 00:00:37,840
+Down here on the lower left is the view
+seen by the car of what's in front of it.
+
+10
+00:00:37,840 --> 00:00:41,980
+And so here you kinda see a road that's
+maybe going a bit to the left, and
+
+11
+00:00:41,980 --> 00:00:43,190
+then going a little bit to the right.
+
+12
+00:00:44,800 --> 00:00:47,240
+And up here on top,
+
+13
+00:00:47,240 --> 00:00:52,780
+this first horizontal bar shows the
+direction selected by the human driver.
+
+14
+00:00:52,780 --> 00:00:57,525
+And this location of this bright white
+band that shows the steering direction
+
+15
+00:00:57,525 --> 00:01:02,270
+selected by the human driver where you
+know here far to the left corresponds to
+
+16
+00:01:02,270 --> 00:01:06,577
+steering hard left, here corresponds
+to steering hard to the right.
+
+17
+00:01:06,577 --> 00:01:11,285
+And so this location which is a little bit
+to the left, a little bit left of center
+
+18
+00:01:11,285 --> 00:01:15,808
+means that the human driver at this
+point was steering slightly to the left.
+
+19
+00:01:15,808 --> 00:01:19,789
+And this second bot here corresponds
+to the steering direction selected by
+
+20
+00:01:19,789 --> 00:01:21,242
+the learning algorithm and
+
+21
+00:01:21,242 --> 00:01:25,349
+again the location of this sort of white
+band means that the neural network was
+
+22
+00:01:25,349 --> 00:01:29,240
+here selecting a steering direction
+that's slightly to the left.
+
+23
+00:01:29,240 --> 00:01:32,920
+And in fact before the neural
+network starts leaning initially,
+
+24
+00:01:32,920 --> 00:01:36,451
+you see that the network outputs
+a grey band, like a grey,
+
+25
+00:01:36,451 --> 00:01:41,480
+like a uniform grey band throughout this
+region and sort of a uniform gray fuzz
+
+26
+00:01:41,480 --> 00:01:45,520
+corresponds to the neural network
+having been randomly initialized.
+
+27
+00:01:45,520 --> 00:01:48,650
+And initially having no
+idea how to drive the car.
+
+28
+00:01:48,650 --> 00:01:52,510
+Or initially having no idea of
+what direction to steer in.
+
+29
+00:01:52,510 --> 00:01:54,050
+And is only after it has learned for
+
+30
+00:01:54,050 --> 00:01:58,850
+a while, that will then start to output
+like a solid white band in just a small
+
+31
+00:01:58,850 --> 00:02:02,990
+part of the region corresponding to
+choosing a particular steering direction.
+
+32
+00:02:02,990 --> 00:02:06,840
+And that corresponds to when the neural
+network becomes more confident
+
+33
+00:02:06,840 --> 00:02:10,230
+in selecting a band in
+one particular location,
+
+34
+00:02:10,230 --> 00:02:15,160
+rather than outputting a sort of light
+gray fuzz, but instead outputting
+
+35
+00:02:15,160 --> 00:02:20,822
+a white band that's more constantly
+selecting one's steering direction.
+
+36
+00:02:20,822 --> 00:02:24,170
+>> ALVINN is a system of
+artificial neural networks
+
+37
+00:02:24,170 --> 00:02:27,044
+that learns to steer by
+watching a person drive.
+
+38
+00:02:27,044 --> 00:02:30,337
+ALVINN is designed to
+control the NAVLAB 2,
+
+39
+00:02:30,337 --> 00:02:34,497
+a modified Army Humvee who
+had put sensors, computers,
+
+40
+00:02:34,497 --> 00:02:38,670
+and actuators for
+autonomous navigation experiments.
+
+41
+00:02:40,580 --> 00:02:45,030
+The initial step in configuring ALVINN
+is creating a network just here.
+
+42
+00:02:46,610 --> 00:02:50,785
+During training, a person drives
+the vehicle while ALVINN watches.
+
+43
+00:02:55,900 --> 00:03:00,872
+Once every two seconds, ALVINN digitizes
+a video image of the road ahead, and
+
+44
+00:03:00,872 --> 00:03:03,750
+records the person's steering direction.
+
+45
+00:03:11,215 --> 00:03:16,955
+This training image is reduced in
+resolution to 30 by 32 pixels and
+
+46
+00:03:16,955 --> 00:03:21,542
+provided as input to ALVINN's
+three layered network.
+
+47
+00:03:21,542 --> 00:03:26,431
+Using the back propagation learning
+algorithm,ALVINN is training to output
+
+48
+00:03:26,431 --> 00:03:30,440
+the same steering direction as
+the human driver for that image.
+
+49
+00:03:33,460 --> 00:03:36,349
+Initially the network
+steering response is random.
+
+50
+00:03:43,665 --> 00:03:48,366
+After about two minutes of training
+the network learns to accurately imitate
+
+51
+00:03:48,366 --> 00:03:51,124
+the steering reactions
+of the human driver.
+
+52
+00:04:02,969 --> 00:04:06,940
+This same training procedure is
+repeated for other road types.
+
+53
+00:04:09,590 --> 00:04:14,018
+After the networks have been trained
+the operator pushes the run switch and
+
+54
+00:04:14,018 --> 00:04:15,500
+ALVINN begins driving.
+
+55
+00:04:20,104 --> 00:04:23,657
+Twelve times per second,
+ALVINN digitizes the image and
+
+56
+00:04:23,657 --> 00:04:25,740
+feeds it to its neural networks.
+
+57
+00:04:33,119 --> 00:04:39,899
+Each network, running in parallel,
+produces a steering direction,
+
+58
+00:04:39,899 --> 00:04:44,988
+and a measure of its'
+confidence in its' response.
+
+59
+00:04:48,751 --> 00:04:52,372
+The steering direction,
+from the most confident network,
+
+60
+00:04:52,372 --> 00:04:57,140
+in this network training for the one lane
+road, is used to control the vehicle.
+
+61
+00:05:07,449 --> 00:05:10,549
+Suddenly an intersection
+appears ahead of the vehicle.
+
+62
+00:05:22,726 --> 00:05:27,422
+As the vehicle approaches the intersection
+the confidence of the lone lane network
+
+63
+00:05:27,422 --> 00:05:28,169
+decreases.
+
+64
+00:05:37,861 --> 00:05:42,539
+As it crosses the intersection and
+the two lane road ahead comes into view,
+
+65
+00:05:42,539 --> 00:05:45,448
+the confidence of the two
+lane network rises.
+
+66
+00:05:51,009 --> 00:05:55,860
+When its' confidence rises the two
+lane network is selected to steer.
+
+67
+00:05:55,860 --> 00:05:59,240
+Safely guiding the vehicle into
+its lane onto the two lane road.
+
+68
+00:06:05,500 --> 00:06:09,100
+>> So that was autonomous driving
+using the neural network.
+
+69
+00:06:09,100 --> 00:06:13,270
+Of course there are more recently more
+modern attempts to do autonomous driving.
+
+70
+00:06:13,270 --> 00:06:15,680
+There are few projects in the US and
+Europe and so
+
+71
+00:06:15,680 --> 00:06:20,050
+on, that are giving more robust
+driving controllers than this, but
+
+72
+00:06:20,050 --> 00:06:24,790
+I think it's still pretty remarkable and
+pretty amazing how instant neural network
+
+73
+00:06:24,790 --> 00:06:29,230
+trained with backpropagation can actually
+learn to drive a car somewhat well.

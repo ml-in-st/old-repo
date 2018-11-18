@@ -1,0 +1,797 @@
+1
+00:00:00,370 --> 00:00:02,420
+Prethodno smo definisali funkciju koštanja J.
+
+2
+00:00:02,420 --> 00:00:06,960
+U ovome videu bih želeo da vam govorim
+ o algoritmu zvanom gradijent opadanja
+
+3
+00:00:06,960 --> 00:00:09,360
+za minimizaciju funkcije koštanja J.
+
+4
+00:00:09,360 --> 00:00:12,860
+Gradijent opadanja je opšti algoritam,
+
+5
+00:00:12,860 --> 00:00:15,000
+ne koristi se samo u linearnoj regresiji.
+
+6
+00:00:15,000 --> 00:00:17,910
+Koristi se svuda u mašinskom učenju.
+
+7
+00:00:17,910 --> 00:00:21,010
+Kasnije na kursu ćemo da koristimo 
+gradijent opadanja da bismo
+
+8
+00:00:21,010 --> 00:00:25,110
+minimizovali funkcije a ne samo funkciju 
+koštanja J za linearnu regresiju.
+
+9
+00:00:26,150 --> 00:00:30,163
+Dakle, u ovome videu ćemo da govorimo 
+o gradijentu opadanja za minimizaciju
+
+10
+00:00:30,163 --> 00:00:34,434
+proizvoljne funkcije J a kasnije u videima ćemo da ga
+
+11
+00:00:34,434 --> 00:00:38,122
+primenimo posebno na funkciju koštanja J definisanu
+
+12
+00:00:38,122 --> 00:00:39,306
+za linearnu regresiju.
+
+13
+00:00:41,848 --> 00:00:43,849
+Dakle ovo je postavka problema.
+
+14
+00:00:43,849 --> 00:00:46,748
+Pretpostavićemo da imamo 
+neku funkciju J(teta0, teta1)
+
+15
+00:00:46,748 --> 00:00:50,202
+možda je to funkcija linearne regresije a
+
+16
+00:00:50,202 --> 00:00:53,340
+možda neka druga funkcija 
+koju želimo da minimizujemo.
+
+17
+00:00:53,340 --> 00:00:55,919
+I želimo da dobijemo algoritam koji
+
+18
+00:00:55,919 --> 00:00:59,617
+minimizuje tu funkciju J(teta0, teta1).
+
+19
+00:00:59,617 --> 00:01:04,324
+Još jednom, gradijent opadanja je primenjiv na
+
+20
+00:01:04,324 --> 00:01:05,800
+uopštenije funkcije.
+
+21
+00:01:05,800 --> 00:01:09,530
+Znači zamislite da imate funkciju kao J od teta0, teta1,
+
+22
+00:01:09,530 --> 00:01:16,360
+teta2 do tetan i želite da minimizujete teta0,
+
+23
+00:01:16,360 --> 00:01:23,880
+minimizujete preko teta0 do tetan J(teta0, ... tetan).
+
+24
+00:01:23,880 --> 00:01:25,690
+Naš gradijent opadanja je algoritam za
+
+25
+00:01:25,690 --> 00:01:27,740
+rešavanje opštijeg problema.
+
+26
+00:01:27,740 --> 00:01:30,520
+Ali zbog kratkoće, zbog
+
+27
+00:01:30,520 --> 00:01:34,840
+složenosti označavanja 
+pretvaraću se da imam samo
+
+28
+00:01:34,840 --> 00:01:37,470
+dva parametra do kraja ovoga videa.
+
+29
+00:01:37,470 --> 00:01:40,420
+Evo ideje gradijenta opadanja.
+
+30
+00:01:40,420 --> 00:01:45,240
+Ono što ćemo da uradimo 
+je da pretpostavimo početne
+
+31
+00:01:45,240 --> 00:01:47,180
+vrednosti za teta0 i teta1.
+
+32
+00:01:47,180 --> 00:01:51,916
+Stvarno nije važno koje su to 
+vrednosti ali uopšteno postavljamo
+
+33
+00:01:51,916 --> 00:01:55,600
+teta0 na 0 i teta1 na 0, samo ih inicijalizujemo na 0.
+
+34
+00:01:55,600 --> 00:02:00,372
+Ono šta ćemo da uradimo u gradijentu 
+opadanja je da menjamo
+
+35
+00:02:00,372 --> 00:02:05,359
+teta0 i teta1 po malo da bismo smanjili 
+J(teta0, teta1) dok god, nadajmo se,
+
+36
+00:02:05,359 --> 00:02:08,420
+ne dobijemo minimum, ili 
+možda lokalni minimum.
+
+37
+00:02:09,880 --> 00:02:13,588
+Da vidimo na slikama šta gradijent opadanja radi.
+
+38
+00:02:13,588 --> 00:02:16,269
+Recimo da želite da minimizujete ovu funkciju.
+
+39
+00:02:16,269 --> 00:02:18,812
+Vidite ose, ovo su teta0,
+
+40
+00:02:18,812 --> 00:02:22,784
+teta1 na horizontalnim 
+osama a J je na vertikalnoj.
+
+41
+00:02:22,784 --> 00:02:27,730
+Dakle, visina površi pokazuje J a mi 
+želimo da minimizujemo tu funkciju.
+
+42
+00:02:27,730 --> 00:02:31,840
+Želimo da počnemo sa 
+teta0 i teta1 u nekoj tački.
+
+43
+00:02:31,840 --> 00:02:35,450
+Zamislite da uzmete neku 
+vrednost za teta0, teta1 a
+
+44
+00:02:35,450 --> 00:02:40,160
+to odgovara nekoj početnoj 
+tački na površi ove funkcije.
+
+45
+00:02:40,160 --> 00:02:43,130
+Neka vrednost teta0, teta1 
+daje vam tačku ovde.
+
+46
+00:02:43,130 --> 00:02:44,917
+Inicijalizovao sam je na 0, 0 ali
+
+47
+00:02:44,917 --> 00:02:47,700
+možete isto tako da je inicijalizujete
+ i na neku drugu vrednost.
+
+48
+00:02:49,280 --> 00:02:54,290
+Sada zamislite da ovaj oblik prikazuje otvor.
+
+49
+00:02:54,290 --> 00:02:57,930
+Zamislite ovo kao predeo 
+sa travnatim parkom
+
+50
+00:02:57,930 --> 00:03:02,710
+sa dva brda kao ova, i 
+želim da zamislite da fizički
+
+51
+00:03:02,710 --> 00:03:08,030
+stojite na toj tački na brdu, na 
+tom malom brdu u vašem parku.
+
+52
+00:03:08,030 --> 00:03:12,270
+U gradijentu opadanja ćemo 
+da se okrećemo za 360 stepeni,
+
+53
+00:03:12,270 --> 00:03:17,260
+samo da pogledamo oko nas i da se 
+zapitamo ako napravimo mali korak u
+
+54
+00:03:17,260 --> 00:03:22,290
+nekom smeru i ako želimo da 
+se spustimo što je brže moguće
+
+55
+00:03:22,290 --> 00:03:25,060
+u kom smeru ćemo da 
+napravimo taj mali korak.
+
+56
+00:03:25,060 --> 00:03:26,790
+Ako želim da idem dole, dakle
+
+57
+00:03:26,790 --> 00:03:30,300
+želim fizički da idem nizbrdo 
+što je brže moguće.
+
+58
+00:03:31,370 --> 00:03:35,060
+Ako stojite na toj tački na brdu, gledate okolo i
+
+59
+00:03:35,060 --> 00:03:38,820
+nalazite da je najbolji smer 
+da napravite mali korak nadole
+
+60
+00:03:38,820 --> 00:03:40,930
+otprilike taj smer.
+
+61
+00:03:40,930 --> 00:03:44,530
+U redu, sada ste na ovoj novoj tački na brdu.
+
+62
+00:03:44,530 --> 00:03:46,750
+Opet ćete da gledate okolo i
+
+63
+00:03:46,750 --> 00:03:52,230
+da kažete, kojim smerom da 
+napravim mali korak nadole?
+
+64
+00:03:52,230 --> 00:03:56,050
+Ako to uradite i napravite drugi 
+korak, zakoračite u tom smeru.
+
+65
+00:03:57,220 --> 00:03:58,446
+I tako nastavljate,
+
+66
+00:03:58,446 --> 00:04:00,293
+sa te nove tačke gledate okolo,
+
+67
+00:04:00,293 --> 00:04:04,020
+odlučite kojim smerom ćete najpre nizbrdo.
+
+68
+00:04:04,020 --> 00:04:06,190
+Ponovo zakoračite i tako dalje,
+
+69
+00:04:06,190 --> 00:04:10,660
+dok ne dođete do lokalnog minimuma.
+
+70
+00:04:11,920 --> 00:04:13,690
+Gradijent opadanja ima zanimljivu osobinu.
+
+71
+00:04:14,810 --> 00:04:18,500
+Kada smo prvi put pokrenuli gradijent 
+opadanja počeli smo sa ove tačke
+
+72
+00:04:18,500 --> 00:04:20,130
+ovde, u redu?
+
+73
+00:04:20,130 --> 00:04:22,290
+Počeli smo sa te tačke.
+
+74
+00:04:22,290 --> 00:04:26,940
+Zamislite da smo inicijalizovali gradijent 
+opadanja samo par koraka desno.
+
+75
+00:04:26,940 --> 00:04:31,000
+Zamislite da smo inicijalizovali gradijent 
+opadanja sa te tačke gore desno.
+
+76
+00:04:31,000 --> 00:04:35,064
+Ako želite da ponovite proces, 
+startujete iz te tačke, gledate okolo,
+
+77
+00:04:35,064 --> 00:04:38,961
+zakoračite u smeru najbržeg 
+spuštanja, uradićete ovo.
+
+78
+00:04:38,961 --> 00:04:42,120
+Gledate okolo, zakoračite, i tako dalje.
+
+79
+00:04:43,960 --> 00:04:47,910
+I ako počnete samo nekoliko 
+koraka desno, gradijent opadanja će
+
+80
+00:04:47,910 --> 00:04:52,860
+da vas odvede do drugog optimuma desno.
+
+81
+00:04:54,250 --> 00:04:58,005
+Ako počnete od prve tačke doći ćete na ovaj lokalni
+
+82
+00:04:58,005 --> 00:05:02,090
+optimum, ali ako počnete sa
+ neke lokacije koja je blizu
+
+83
+00:05:02,090 --> 00:05:06,050
+završićete na veoma udaljenom optimumu.
+
+84
+00:05:06,050 --> 00:05:08,810
+Ovo je osobina gradijenta 
+ opadanja o čemu ćemo da
+
+85
+00:05:08,810 --> 00:05:10,780
+govorimo malo kasnije.
+
+86
+00:05:10,780 --> 00:05:14,970
+Dakle, to je intuicija sa slika.
+
+87
+00:05:14,970 --> 00:05:18,070
+Pogledajmo matematiku.
+
+88
+00:05:18,070 --> 00:05:21,130
+Ovo je definicija algoritma 
+gradijenta opadanja .
+
+89
+00:05:21,130 --> 00:05:26,540
+Ovo ćemo da ponavljamo
+ dok god ne konvergiramo,
+
+90
+00:05:26,540 --> 00:05:31,950
+menjaćemo parametar tetaj, uzećemo tetaj i
+
+91
+00:05:31,950 --> 00:05:36,560
+oduzimaćemo od njega 
+alfa puta ovaj član ovde.
+
+92
+00:05:36,560 --> 00:05:40,920
+Da vidimo, ima mnogo detalja u ovoj 
+jednačini pa ću da raspakujem neke.
+
+93
+00:05:40,920 --> 00:05:45,715
+Prvo, ova oznaka ovde :=, koristićemo := da
+
+94
+00:05:45,715 --> 00:05:50,847
+bismo obeležili operator dodeljivanja.
+
+95
+00:05:50,847 --> 00:05:56,965
+Konkretno, ako napišem a := b 
+znači u računarskom jeziku
+
+96
+00:05:56,965 --> 00:06:02,650
+uzmi vrednost iz b i prepiši preko vrednosti a.
+
+97
+00:06:02,650 --> 00:06:07,025
+Dakle, to znači postavi a na 
+vrednost b, što je dodeljivanje.
+
+98
+00:06:07,025 --> 00:06:10,515
+Takođe mogu da uradim a := a + 1.
+
+99
+00:06:10,515 --> 00:06:13,020
+To znači uzmi a i povećaj ga za 1.
+
+100
+00:06:13,020 --> 00:06:17,489
+Za razliku od toga, ako 
+koristim znak jednakosti
+
+101
+00:06:17,489 --> 00:06:22,308
+pišem a = b tada je to istinitosna tvrdnja.
+
+102
+00:06:24,854 --> 00:06:26,542
+U redu? Dakle, ako napišem a = b,
+
+103
+00:06:26,542 --> 00:06:31,160
+tada tvrdim da je vrednost od 
+a jednaka vrednosti b, u redu?
+
+104
+00:06:31,160 --> 00:06:34,136
+Na levoj strani je računarska operacija
+
+105
+00:06:34,136 --> 00:06:36,450
+gde smo postavili a na novu vrednost.
+
+106
+00:06:36,450 --> 00:06:40,480
+Na desnoj strani je tvrdnja, 
+tvrdim da su vrednosti od
+
+107
+00:06:40,480 --> 00:06:45,620
+a i b iste, dok kad napišete 
+a := a + 1, to znači povećanje
+
+108
+00:06:45,620 --> 00:06:50,810
+a za 1,. Nadam se da neću nikada 
+da pišem a = a + 1 jer je to pogrešno.
+
+109
+00:06:50,810 --> 00:06:54,100
+a i a + 1 nikada ne mogu da budu iste vrednosti.
+
+110
+00:06:54,100 --> 00:06:55,020
+U redu?
+
+111
+00:06:55,020 --> 00:06:59,404
+Dakle, ovo je prvi deo definicije.
+
+112
+00:06:59,404 --> 00:07:06,640
+Ovo alfa ovde je broj koji se zove stopa učenja.
+
+113
+00:07:08,760 --> 00:07:12,310
+Ono što alfa radi je da u osnovi kontroliše
+
+114
+00:07:12,310 --> 00:07:15,280
+koliko veliki korak pravimo niz 
+brdo dok pravimo spuštanje.
+
+115
+00:07:15,280 --> 00:07:19,750
+Ako je alfa veoma veliko, to 
+odgovara veoma agresivnoj proceduri
+
+116
+00:07:19,750 --> 00:07:22,880
+gradijenta opadanja gde pokušavamo 
+da napravimo velike korake na dole a
+
+117
+00:07:22,880 --> 00:07:26,730
+ako je alf veom malo, tada pravimo 
+male, bebi korake niz brdo.
+
+118
+00:07:26,730 --> 00:07:30,980
+Kasnije ću da se vratim na ovo, 
+kako da postavimo alfa i tako to.
+
+119
+00:07:32,090 --> 00:07:37,320
+I konačno, ovaj član ovde je izvedeni član.
+
+120
+00:07:37,320 --> 00:07:42,400
+Neću o njemu da pričam baš 
+sad ali ću da izvedem taj član i
+
+121
+00:07:42,400 --> 00:07:45,360
+kasnije ću vam reći šta je on.
+
+122
+00:07:45,360 --> 00:07:49,100
+Neki od vas su malo više 
+upućeni u račun od ostalih ali
+
+123
+00:07:49,100 --> 00:07:51,550
+iako niste upućeni, ne brinite za to.
+
+124
+00:07:51,550 --> 00:07:54,010
+Reći ću vam šta treba da znate o njemu.
+
+125
+00:07:55,450 --> 00:08:00,260
+Postoji još jedna stvar o gradijentu opadanja,
+
+126
+00:08:00,260 --> 00:08:04,230
+mi ćemo da menjamo teta0 i teta1, u redu?
+
+127
+00:08:04,230 --> 00:08:07,809
+Te promene se rade za j = 0 i j = 1 pa
+
+128
+00:08:07,809 --> 00:08:12,260
+ćemo da menjamo teta0 i teta1.
+
+129
+00:08:12,260 --> 00:08:19,593
+Veština implementacije 
+gradijenta opadanja je,
+
+130
+00:08:19,593 --> 00:08:25,201
+za ovaj izraz, za ovu jednačinu,
+
+131
+00:08:25,201 --> 00:08:32,127
+da menjate istovremeno teta0 i teta1.
+
+132
+00:08:32,127 --> 00:08:36,304
+Ono na šta mislim je da ćemo 
+u jednačini da menjamo
+
+133
+00:08:36,304 --> 00:08:40,569
+teta0 := teta0 minus nešto 
+i teta1 := teta1 minus nešto.
+
+134
+00:08:40,569 --> 00:08:46,552
+Način na koji to implementiramo 
+je da računamo desnu stranu.
+
+135
+00:08:46,552 --> 00:08:51,661
+Računamo tu stvar za teta0 
+i teta1 i onda istovremeno,
+
+136
+00:08:51,661 --> 00:08:55,654
+u isto vreme, menjamo teta0 i teta1, u redu?
+
+137
+00:08:55,654 --> 00:08:58,175
+Evo šta sam mislio time.
+
+138
+00:08:58,175 --> 00:09:02,387
+Ovo je ispravna implementacija 
+gradijenta opadanja, istovremeno
+
+139
+00:09:02,387 --> 00:09:02,960
+ažuriranje.
+
+140
+00:09:02,960 --> 00:09:05,928
+Postaviću temp0 da je jednako 
+tome, temp1 je jednako tome i tako
+
+141
+00:09:05,928 --> 00:09:09,736
+računamo desnu stranu, i kada je izračunamo
+
+142
+00:09:09,736 --> 00:09:13,824
+čuvamo njihove vrednosti u promenjivima 
+temp0 i temp1. Promeniću teta0 i
+
+143
+00:09:13,824 --> 00:09:17,240
+teta1 istovremeno jer je to 
+ispravna implementacija.
+
+144
+00:09:18,550 --> 00:09:19,460
+Sa druge strane,
+
+145
+00:09:19,460 --> 00:09:24,140
+ovo nije ispravna implementacija 
+koja ne radi istovremeno izmene.
+
+146
+00:09:24,140 --> 00:09:28,274
+Dakle u ovoj pogrešnoj implementaciji 
+računamo temp0 a
+
+147
+00:09:28,274 --> 00:09:33,580
+onda menjamo teta0 pa računamo 
+temp1 i onda menjamo teta1.
+
+148
+00:09:34,780 --> 00:09:37,010
+Razlika između implementacije na desnoj strani i
+
+149
+00:09:37,010 --> 00:09:40,510
+na levoj strani je, ako pogledate dole,
+
+150
+00:09:40,510 --> 00:09:45,260
+vidite ovaj korak, ako tada menjate teta0,
+
+151
+00:09:45,260 --> 00:09:52,130
+tada ćete da koristite novu vrednost 
+teta0 za računanje ovoga izvedenog člana.
+
+152
+00:09:52,130 --> 00:09:58,366
+Tako dobijate različitu vrednost 
+za temp1 u odnosu na levu stranu.
+
+153
+00:09:58,366 --> 00:10:02,700
+Jer ste uključili novu vrednost teta0 u ovu jednačinu.
+
+154
+00:10:02,700 --> 00:10:05,750
+Dakle, ovo na desnoj strani 
+nije ispravna implementacija
+
+155
+00:10:05,750 --> 00:10:07,720
+gradijenta opadanja, u redu?
+
+156
+00:10:07,720 --> 00:10:10,710
+Neću vam govoriti zašto 
+trebate istovremene izmene.
+
+157
+00:10:10,710 --> 00:10:15,670
+Ispada da je način na koji se 
+gradijent opadanja obično implementira,
+
+158
+00:10:15,670 --> 00:10:17,680
+o čemu ćemo da govorimo kasnije,
+
+159
+00:10:17,680 --> 00:10:21,990
+je više prirodan način implementacije korištenjem istovremenih izmena.
+
+160
+00:10:21,990 --> 00:10:23,765
+Kada se govori o gradijentu opadanja,
+
+161
+00:10:23,765 --> 00:10:26,020
+uvek se misli na istovremene izmene.
+
+162
+00:10:26,020 --> 00:10:28,470
+Ako implementirate sa 
+neistovremenim izmenama,
+
+163
+00:10:28,470 --> 00:10:31,210
+verovatno će da radi.
+
+164
+00:10:31,210 --> 00:10:32,690
+Ali taj algoritam nije ispravan.
+
+165
+00:10:32,690 --> 00:10:35,010
+To se ne odnosi na gradijent opadanja,
+
+166
+00:10:35,010 --> 00:10:37,423
+to je neki drugi algoritam 
+sa drugačijim osobinama.
+
+167
+00:10:37,423 --> 00:10:42,234
+I zbog raznih razloga može da 
+se ponaša veoma čudno, i ono
+
+168
+00:10:42,234 --> 00:10:48,010
+što treba da uradite je da 
+implementirate istovremene izmene.
+
+169
+00:10:48,010 --> 00:10:51,420
+Tako izgleda algoritam gradijenta opadanja.
+
+170
+00:10:51,420 --> 00:10:56,080
+U sledećem videu ćemo da 
+idemo dublje u izvedeni član,
+
+171
+00:10:56,080 --> 00:10:58,660
+koji sam napisao gore ali ga nisam definisao.
+
+172
+00:10:58,660 --> 00:11:02,620
+Ako ste pohađali računski 
+kurs i ako poznajete parcijalne
+
+173
+00:11:02,620 --> 00:11:06,970
+izvode i izvode, to je baš ono što je taj izvedeni član
+
+174
+00:11:06,970 --> 00:11:11,870
+a u slučaju da ne poznajete račun, ne brinite.
+
+175
+00:11:11,870 --> 00:11:14,010
+Sledeći video će da vam da spoznaju i
+
+176
+00:11:14,010 --> 00:11:18,260
+reći vam sve što vam treba da 
+znate da izračunate taj izvedeni član
+
+177
+00:11:18,260 --> 00:11:23,050
+iako niste videli račun, iako 
+ranije niste videli parcijalne izvode.
+
+178
+00:11:23,050 --> 00:11:25,860
+Nadam se da ćemo u sledećem videu
+
+179
+00:11:25,860 --> 00:11:29,280
+moći da vam damo spoznaju koja vam 
+treba da primenite gradijent opadanja.

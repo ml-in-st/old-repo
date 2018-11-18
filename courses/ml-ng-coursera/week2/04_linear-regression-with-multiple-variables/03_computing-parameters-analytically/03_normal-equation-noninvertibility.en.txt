@@ -1,0 +1,79 @@
+In this video I want to talk about
+the Normal equation and non-invertibility. This is a somewhat more advanced concept,
+but it's something that I've
+often been asked about. And so I want to talk it here and
+address it here. But this is a somewhat
+more advanced concept, so feel free to consider
+this optional material. And there's a phenomenon that you may
+run into that may be somewhat useful to understand, but even if you don't
+understand the normal equation and linear progression,
+you should really get that to work okay. Here's the issue. For those of you there are, maybe some
+are more familiar with linear algebra, what some students have asked me is, when computing this Theta equals X
+transpose X inverse X transpose Y. What if the matrix X transpose
+X is non-invertible? So for those of you that know
+a bit more linear algebra you may know that only some
+matrices are invertible and some matrices do not have an inverse
+we call those non-invertible matrices. Singular or degenerate matrices. The issue or the problem of x transpose x being non
+invertible should happen pretty rarely. And in Octave if you implement
+this to compute theta, it turns out that this will
+actually do the right thing. I'm getting a little technical now, and
+I don't want to go into the details, but Octave hast two functions for
+inverting matrices. One is called pinv, and
+the other is called inv. And the differences between these
+two are somewhat technical. One's called the pseudo-inverse,
+one's called the inverse. But you can show mathematically that so long as you use the pinv function
+then this will actually compute the value of data that you want even
+if X transpose X is non-invertible. The specific details between inv. What is the difference between pinv? What is inv? That's somewhat advanced
+numerical computing concepts, I don't really want to get into. But I thought in this optional video, I'll
+try to give you little bit of intuition about what it means for
+X transpose X to be non-invertible. For those of you that know a bit more
+linear Algebra might be interested. I'm not gonna prove this mathematically
+but if X transpose X is non-invertible, there usually two most common causes for
+this. The first cause is if somehow in your
+learning problem you have redundant features. Concretely, if you're trying to predict
+housing prices and if x1 is the size of the house in feet, in square feet and x2
+is the size of the house in square meters, then you know 1 meter is equal to
+3.28 feet Rounded to two decimals. And so your two features will
+always satisfy the constraint x1 equals 3.28 squared times x2. And you can show for those of you that are
+somewhat advanced in linear Algebra, but if you're explaining the algebra you can
+actually show that if your two features are related,
+are a linear equation like this. Then matrix X transpose X
+would be non-invertable. The second thing that can cause X
+transpose X to be non-invertable is if you are training, if you are trying to run the
+learning algorithm with a lot of features. Concretely, if m is less than or
+equal to n. For example, if you imagine that
+you have m = 10 training examples that you have n equals 100
+features then you're trying to fit a parameter back to theta which is,
+you know, n plus one dimensional. So this is 101 dimensional, you're trying to fit 101 parameters
+from just 10 training examples. This turns out to sometimes work but
+not always be a good idea. Because as we'll see later,
+you might not have enough data if you only have 10 examples to fit you know,
+100 or 101 parameters. We'll see later in this course why
+this might be too little data to fit this many parameters. But commonly what we do
+then if m is less than n, is to see if we can either
+delete some features or to use a technique called regularization
+which is something that we'll talk about later in this class as well, that will
+kind of let you fit a lot of parameters, use a lot features, even if you have
+a relatively small training set. But this regularization will be
+a later topic in this course. But to summarize if ever you find
+that x transpose x is singular or alternatively you find it non-invertable,
+what I would recommend you do is first look at your features and see if you
+have redundant features like this x1, x2. You're being linearly dependent or being
+a linear function of each other like so. And if you do have redundant features and
+if you just delete one of these features, you really don't need
+both of these features. If you just delete one of these features, that would solve your
+non-invertibility problem. And so I would first think through my
+features and check if any are redundant. And if so then keep deleting
+redundant features until they're no longer redundant. And if your features are not redundant, I would check if I may
+have too many features. And if that's the case, I would either
+delete some features if I can bear to use fewer features or else I would
+consider using regularization. Which is this topic that
+we'll talk about later. So that's it for the normal equation and what it means for if the matrix X
+transpose X is non-invertable but this is a problem that you should run that
+hopefully you run into pretty rarely and if you just implement it
+in octave using P and using the P n function which is
+called a pseudo inverse function so you could use a different linear out your
+alive in Is called a pseudo-inverse but that implementation should
+just do the right thing, even if X transpose X is non-invertable,
+which should happen pretty rarely anyways, so this should not be a problem for
+most implementations of linear regression.

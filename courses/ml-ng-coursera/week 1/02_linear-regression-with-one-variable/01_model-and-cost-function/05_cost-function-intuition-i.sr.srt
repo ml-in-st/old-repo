@@ -1,0 +1,494 @@
+1
+00:00:00,000 --> 00:00:04,100
+U prethodnom videu smo dali matematičku definiciju funkcije
+
+2
+00:00:04,100 --> 00:00:08,616
+koštanja. U ovome videu 
+pogledajmo neke primere da osetimo
+
+3
+00:00:08,616 --> 00:00:14,466
+šta radi funkcija koštanja i zašto 
+nam treba. Da se podsetimo,
+
+4
+00:00:14,466 --> 00:00:19,396
+evo šta smo imali prošli put. Želimo da našim 
+podacima pridružimo pravu liniju da bismo imali
+
+5
+00:00:19,396 --> 00:00:23,958
+formiranu hipotezu sa ovim parametrima teta0 i teta1,
+
+6
+00:00:23,958 --> 00:00:28,888
+a različitim izborima parametara 
+dobijamo različite prave linije.
+
+7
+00:00:31,323 --> 00:00:33,758
+Dakle podaci koji padaju ovako,
+ a ovo je funkcija koštanja
+
+8
+00:00:33,758 --> 00:00:38,554
+a to je cilj optimizacije. U 
+ovome videu, da bismo bolje
+
+9
+00:00:38,554 --> 00:00:43,293
+sagledali funkciju koštanja J, radiću 
+sa pojednostavljenom hipotezom
+
+10
+00:00:43,293 --> 00:00:48,220
+kao što je prikazano desno. Dakle, 
+koristiću moju pojednostavljenu hipotezu
+
+11
+00:00:48,220 --> 00:00:53,275
+a to je samo teta1 * x. Ako želite 
+možemo o ovome da mislimo kao
+
+12
+00:00:53,275 --> 00:00:58,721
+da je teta0 = 0. Dakle, imam 
+samo jedan parametar teta1 a
+
+13
+00:00:58,721 --> 00:01:04,372
+moja funkcija koštanja je slična kao
+ i pre osim što je h(x) = teta1*x.
+
+14
+00:01:04,372 --> 00:01:10,309
+I sada imam samo jedan 
+parametar teta1 i tako
+
+15
+00:01:10,309 --> 00:01:16,246
+cilj moje optimizacije je da minimizujem 
+J(teta1). Sa slike to znači da
+
+16
+00:01:16,246 --> 00:01:21,611
+ako je teta0 = 0 to odgovara samo izboru hipoteze
+
+17
+00:01:21,611 --> 00:01:27,176
+koja prolazi kroz koordinatni početak, kroz tačku (0, 0).
+
+18
+00:01:27,176 --> 00:01:33,415
+Koristeći ovu pojednostavljenu definiciju 
+funkcije koštanja, pokušajmo da razumemo
+
+19
+00:01:33,415 --> 00:01:40,178
+malo bolje koncept funkcije koštanja. Ispada 
+da želimo da razumemo dve funkcije.
+
+20
+00:01:40,178 --> 00:01:46,432
+Prva je hipoteza a druga funkcija koštanja. Dakle
+
+21
+00:01:46,432 --> 00:01:52,068
+hipoteza h(x). Za fiksnu vrednost teta1 ovo je
+
+22
+00:01:52,068 --> 00:01:58,168
+funkcija od x. Dakle, hipoteza je funkcija 
+od, onoga što je veličina kuće, x.
+
+23
+00:01:58,168 --> 00:02:03,959
+Suprotno tome, funkcija koštanja
+ J je funkcija parametra teta1
+
+24
+00:02:03,959 --> 00:02:09,993
+što kontroliše nagib prave linije. Iscrtajmo ove funkcije
+
+25
+00:02:09,993 --> 00:02:15,481
+i pokušajmo da razumemo malo bolje. 
+Počnimo sa hipotezom. Na levoj strani
+
+26
+00:02:15,481 --> 00:02:20,283
+recimo da je ovo moj trening skup 
+sa tri tačke (1, 1), (2, 2) i (3, 3).
+
+27
+00:02:20,283 --> 00:02:25,338
+Hajde da pokupimo teta1, pa kada 
+je teta1 = 1 i ako je to moj izbor za
+
+28
+00:02:25,338 --> 00:02:30,392
+teta1, tada moja prava linija 
+izgleda kao ova linija ovde.
+
+29
+00:02:30,392 --> 00:02:35,234
+Pokazaću vam, kada iscrtavam hipotezu, x osa,
+
+30
+00:02:35,234 --> 00:02:40,525
+moja horizontalna osa je označena 
+kao x, to su veličine kuća.
+
+31
+00:02:40,525 --> 00:02:46,551
+Teta1 je postavljeno na 1, 
+ono što želim da uradim je
+
+32
+00:02:46,551 --> 00:02:52,430
+da shvatim šta je sa J(teta1) 
+kada je teta1 = 1. Dakle krenimo sa
+
+33
+00:02:52,430 --> 00:02:58,781
+računanjem šta je funkcija 
+koštanja za teta1 = 1. Kao i obično,
+
+34
+00:02:58,781 --> 00:03:05,761
+moja funkcija koštanja je definisana kao 
+što sledi, u redu? Nešto iz mog trening
+
+35
+00:03:05,761 --> 00:03:13,840
+skupa, ovo je kao i obično 
+kvadrat greške. A ovo je jednako ovome.
+
+36
+00:03:14,740 --> 00:03:25,066
+Od teta1 x(i) minus y(i) i ako 
+uprostimo ovo dobijamo to.
+
+37
+00:03:25,066 --> 00:03:31,995
+Nula na kvadrat nula na kvadrat nula 
+na kvadrat što je naravno jednako 0.
+
+38
+00:03:31,995 --> 00:03:39,098
+Unutar funkcije koštanja svi ovi članovi su jednaki 0.
+
+39
+00:03:39,098 --> 00:03:46,288
+Jer za ovaj trening skup od 3 primera, (1, 1), (2, 2), (3, 3).
+
+40
+00:03:46,288 --> 00:03:54,667
+Ako je teta1 = 1 tada je h(x) = y, napisaću ovo bolje.
+
+41
+00:03:54,667 --> 00:04:04,164
+U redu? I tako, h(x) - y, svaki od ovih članova je 0
+
+42
+00:04:04,164 --> 00:04:14,821
+i zato je J(1) = 0. Dakle, znamo da je J(1) = 0.
+
+43
+00:04:14,821 --> 00:04:20,504
+Iscrtajmo to. Ono što ću da uradim 
+je da na desnoj strani iscrtam
+
+44
+00:04:20,504 --> 00:04:26,187
+funkciju koštanja J. Primetite da je 
+funkcija koštanja funkcija parametra
+
+45
+00:04:26,187 --> 00:04:32,017
+teta1, kada iscrtam funkciju koštanja, 
+horizontalna osa je označena kao
+
+46
+00:04:32,017 --> 00:04:38,069
+teta1. Tako imam J(1) = 0 pa iscrtajmo ovo.
+
+47
+00:04:38,069 --> 00:04:46,464
+Ovo je x. Pogledajmo neke druge 
+primere. Teta1 može da uzme
+
+48
+00:04:46,464 --> 00:04:52,470
+vrednost iz celog opsega. U redu? Tako 
+teta1 može da bude negativna vrednost,
+
+49
+00:04:52,470 --> 00:04:58,876
+nula ili pozitivna vrednost. Šta ako 
+je teta1 = 0.5? Šta se tada dešava?
+
+50
+00:04:58,876 --> 00:05:05,442
+Hajde da to iscrtamo. Sada ću da 
+stavim teta1 = 0.5, u tom slučaju
+
+51
+00:05:05,442 --> 00:05:11,688
+moja hipoteza izgleda ovako. 
+Kao linija sa nagibom od 0.5
+
+52
+00:05:11,688 --> 00:05:17,855
+hajde da izračunamo J(0.5). To će da 
+bude 1/2m, uobičajena funkcija koštanja.
+
+53
+00:05:17,855 --> 00:05:23,769
+Funkcija koštanja će da 
+bude zbir kvadrata vrednosti
+
+54
+00:05:23,769 --> 00:05:29,609
+visine ove linije plus suma kvadrata ove linije plus
+
+55
+00:05:29,609 --> 00:05:34,783
+suma kvadrata ove linije, u redu? Jer ovo vertikalno
+
+56
+00:05:34,783 --> 00:05:42,854
+rastojanje je rastojanje između, znate, 
+y(i) i predviđene vrednosti, h(x(i))
+
+57
+00:05:42,854 --> 00:05:48,772
+u redu? Dakle, prvi primer 
+će da bude 0.5 - 1 na kvadrat.
+
+58
+00:05:49,033 --> 00:05:55,647
+Jer moja hipoteza predviđa 
+0.5 dok je stvarna vrednost 1.
+
+59
+00:05:55,647 --> 00:06:02,436
+U mom drugom primeru imamo 1 - 2 
+na kvadrat jer moja hipoteza predviđa
+
+60
+00:06:02,436 --> 00:06:09,663
+1 a stvarna vrednost je 2. 
+I konačno 1.5 - 3 na kvadrat
+
+61
+00:06:09,663 --> 00:06:17,263
+i to je jednako 1/(2*3), jer 
+je m veličina trening skupa,
+
+62
+00:06:17,263 --> 00:06:24,274
+imamo 3 trening primera.
+
+63
+00:06:24,274 --> 00:06:33,011
+To množimo sa, u zagradi 3.5. Tako 3.5/6 je otprilike
+
+64
+00:06:33,011 --> 00:06:41,085
+0.68. Sada znamo da za 0.5 
+dobijamo 0.68. Hajde da to iscrtamo.
+
+65
+00:06:41,085 --> 00:06:50,308
+Oh, izvinite, matematička greška, u stvari 
+je 0.58. Dakle, ovo crtamo a to je možda ovde.
+
+66
+00:06:50,308 --> 00:07:00,293
+U redu? Hajde da uradimo 
+još jedno. Šta ako je teta1 = 0?
+
+67
+00:07:00,293 --> 00:07:08,975
+Čemu je J(0) jednako? Ispada 
+da ako je teta1 = 0, tada h(x)
+
+68
+00:07:08,975 --> 00:07:16,916
+je jednako ovoj pravoj liniji koja ide horizontalno,
+
+69
+00:07:16,916 --> 00:07:26,882
+ovako. Merenjem greške imamo da je J(0) jednako
+
+70
+00:07:26,882 --> 00:07:34,659
+1/2m puta 1 na kvadrat plus 2 na
+ kvadrat plus 3 na kvadrat što je,
+
+71
+00:07:34,659 --> 00:07:41,555
+jedna šestina puta 14 što je oko 2.3. 
+Hajde isto i ovo da nacrtamo.
+
+72
+00:07:41,555 --> 00:07:47,622
+Tako dobijamo vrednost oko 2.3 i 
+naravno, možemo da nastavimo ovako
+
+73
+00:07:47,622 --> 00:07:53,335
+i za ostale vrednosti teta1. Možete da imate i negativne
+
+74
+00:07:53,335 --> 00:07:59,327
+vrednosti teta1 i ako je teta1 
+negativno tada bi h(x) bilo jednako
+
+75
+00:07:59,327 --> 00:08:05,179
+-0.5 puta x tada je teta1 jednako -0.5 i to odgovara
+
+76
+00:08:05,179 --> 00:08:10,188
+hipotezi sa nagibom -0.5. I možete
+
+77
+00:08:10,188 --> 00:08:15,694
+da nastavite računanje grešaka. 
+Ovo bi bilo, znate, za 0.5,
+
+78
+00:08:15,694 --> 00:08:21,520
+izgleda veoma velika greška. Dobijamo nešto kao 5.25.
+
+79
+00:08:21,520 --> 00:08:28,087
+I tako dalje. Za različite vrednosti teta1 
+možete da izračunate ove stvari, u redu?
+
+80
+00:08:28,087 --> 00:08:34,413
+Ispada da ako računate u opsegu 
+vrednosti, dobijate nešto ovako.
+
+81
+00:08:34,413 --> 00:08:40,499
+Računajući opseg vrednosti 
+možete da dobijete ovo.
+
+82
+00:08:40,499 --> 00:08:50,999
+Šta radi J(teta), ovo je J(teta). Da sumiramo,
+
+83
+00:08:50,999 --> 00:08:57,851
+za svaku vrednost teta1, svaku 
+vrednost teta1 koja odgovara različitim
+
+84
+00:08:57,851 --> 00:09:04,448
+hipotezama ili različitim pravim linijama 
+prikazanim na levoj strani, za svaku vrednost
+
+85
+00:09:04,448 --> 00:09:11,723
+teta1 možemo da identifikujemo
+različitu vrednost za J(teta1).
+
+86
+00:09:11,723 --> 00:09:19,354
+Na primer, znate, teta1 = 1 
+odgovara ovoj pravoj liniji
+
+87
+00:09:19,354 --> 00:09:27,846
+kroz podatke, dok za teta1 = 0.5 a 
+ta tačka prikazana u magenta boji
+
+88
+00:09:27,846 --> 00:09:35,340
+odgovara možda ovoj liniji a teta1 = 0 
+što je prikazano plavom, odgovara
+
+89
+00:09:35,340 --> 00:09:41,527
+ovoj horizontalnoj liniji. U redu, za svaku vrednost teta1 bismo
+
+90
+00:09:41,527 --> 00:09:48,516
+dobili različitu vrednost J(teta1) i tada 
+bismo mogli da iscrtamo funkciju desno.
+
+91
+00:09:48,516 --> 00:09:54,461
+Sećate se, cilj optimizacije 
+našeg algoritma učenja je
+
+92
+00:09:54,461 --> 00:10:01,963
+da nađemo vrednost teta1 koja minimizuje J(teta1).
+
+93
+00:10:01,963 --> 00:10:08,076
+U redu? To je bila ciljna funkcija 
+linearne regresije. Ako pogledamo
+
+94
+00:10:08,076 --> 00:10:13,710
+ovu krivu, vrednost koja 
+minimizuje J(teta1) je teta1 = 1.
+
+95
+00:10:13,710 --> 00:10:19,132
+To je stvarno najbolja moguća prava koja odgovara
+
+96
+00:10:19,132 --> 00:10:24,624
+našima podacima, postavljanjem
+ teta1 = 1. Za ovaj određeni
+
+97
+00:10:24,624 --> 00:10:30,328
+trening skup dobili smo savršeno 
+rešenje. Zato minimizacija J(teta1)
+
+98
+00:10:30,328 --> 00:10:36,447
+odgovara nalaženju prave koja odgovara podacima.
+
+99
+00:10:36,447 --> 00:10:40,884
+Da zaokružimo priču. U ovome videu smo videli 
+neke grafičke podatke da bismo razumeli
+
+100
+00:10:40,884 --> 00:10:45,259
+funkciju koštanja. Da bismo to uradili , 
+pojednostavili smo algoritam tako da je imao jedan
+
+101
+00:10:45,259 --> 00:10:50,258
+parametar teta1 a parametar teta0 smo 
+postavili da bude 0. U sledećem videu
+
+102
+00:10:50,258 --> 00:10:54,445
+vratićemo se formulaciji 
+originalnog problema i pogledati
+
+103
+00:10:54,445 --> 00:10:59,570
+neke predstave koje uključuju i teta0 i 
+teta1, bez postavljanja teta0 na 0.
+
+104
+00:10:59,570 --> 00:11:04,757
+Nadam se da sam vam dao malo 
+lepši osećaj šta radi funkcija
+
+105
+00:11:04,757 --> 00:11:09,257
+koštanja J u originalnoj formulaciji linearne regresije.

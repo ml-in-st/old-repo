@@ -1,0 +1,503 @@
+1
+00:00:00,493 --> 00:00:03,492
+Agora você conhece o algoritmo do gradiente decrescente estocástico.
+
+2
+00:00:03,492 --> 00:00:09,907
+Mas quando estamos usando este algoritmo, como saber se ele está funcionando perfeitamente e convergindo?
+
+3
+00:00:09,907 --> 00:00:15,813
+E também, como você ajusta o taxa de aprendizado alfa para este algoritmo? 
+
+4
+00:00:15,813 --> 00:00:25,950
+Neste vídeo falaremos sobre algumas técnicas para nos dar a certeza de que o algoritmo está convergindo e de que utilizamos o alfa correto.
+
+5
+00:00:25,950 --> 00:00:30,600
+Quando nós usávamos o gradiente decrescente de lote completo, a maneira que usávamos para ter certeza 
+
+6
+00:00:30,600 --> 00:00:36,493
+de que o algoritmo estava convergindo era visualizar no gráfico a função custo em relação ao número de iterações.
+
+7
+00:00:36,493 --> 00:00:44,366
+E com a função custo nós queríamos verificar que ela decresceria a cada iteração.
+
+8
+00:00:44,366 --> 00:00:50,438
+Quando o conjunto de treinamento era pequeno, nós podíamos fazer isso, pois nós conseguíamos calcular a soma de maneira eficiente.
+
+9
+00:00:50,438 --> 00:00:57,950
+Mas quando se tem um conjunto de treinamento enorme, então você não irá querer ficar parando o seu algoritmo frequentemente. 
+
+10
+00:00:57,950 --> 00:01:04,045
+Você não quer parar o gradiente decrescente estocástico periodicamente para calcular a função custo,
+
+11
+00:01:04,045 --> 00:01:07,442
+uma vez que esse cálculo exige uma soma envolvendo o seu conjunto de treinamento inteiro.
+
+12
+00:01:07,442 --> 00:01:12,466
+E o ponto principal do gradiente decrescente estocástico era que poder progredir com apenas um único exemplo,
+
+13
+00:01:12,466 --> 00:01:19,130
+sem necessidade de passar por todo o seu conjunto de treinamento durante o algoritmo.
+
+14
+00:01:19,130 --> 00:01:25,583
+Sendo que isso é feito para calcular a função custo do seu conjunto inteiro de treinamento.
+
+15
+00:01:25,583 --> 00:01:32,472
+Então para o gradiente decrescente estocástico, para que possamos verificar se o algoritmo está convergindo, o que podemos fazer é o seguinte.
+
+16
+00:01:32,472 --> 00:01:36,367
+Usemos a definição de custo que tínhamos antes.
+
+17
+00:01:36,367 --> 00:01:42,647
+Então o custo do parâmetro teta em relação à um único exemplo de treinamento é apenas metade do erro ao quadrado desse exemplo.
+
+18
+00:01:42,647 --> 00:01:49,754
+Enquanto o gradiente decrescente estocástico está sendo treinado, antes de treiná-lo com um exemplo em específico.
+
+19
+00:01:49,754 --> 00:01:54,601
+Então, no gradiente decrescente estocástico nós iremos pegar os exemplos xi, yi,
+
+20
+00:01:54,601 --> 00:01:57,329
+e os usaremos para fazer uma pequena atualização nos parâmetros em relação a esse exemplo.
+
+21
+00:01:57,329 --> 00:02:04,095
+E partimos para o próximo exemplo, xi mais 1, yi mais 1 e assim por diante, certo?
+
+22
+00:02:04,095 --> 00:02:05,880
+ É isso que o gradiente decrescente faz.
+
+23
+00:02:05,880 --> 00:02:15,024
+Então, enquanto o algoritmo está pegando o exemplo xy, yi, mas antes que ele atualize os parâmetros teta,
+
+24
+00:02:15,024 --> 00:02:20,255
+e usando esse mesmo exemplo de treinamento, vamos calcular o custo desse único exemplo.
+
+25
+00:02:20,255 --> 00:02:23,577
+Apenas para reforçar, mas usando palavras um pouco diferentes.
+
+26
+00:02:23,577 --> 00:02:33,294
+O gradiente decrescente estocástico está processando ao longo do nosso conjunto de treinamento, antes de utilizarmos esse exemplo de treinamento específico x(i) y(i),
+
+27
+00:02:33,294 --> 00:02:38,198
+vamos utilizá-lo para calcular o quão bem a nossa hipótese se ajusta a esse único exemplo de treinamento.
+
+28
+00:02:38,198 --> 00:02:43,852
+E nós queremos fazer isso antes de atualizar o teta, pois se ajustamos teta usando esse exemplo,
+
+29
+00:02:43,852 --> 00:02:49,061
+será esperado que ele irá ajustar-se melhor a esse exemplo e o custo fica menos representativo.
+
+30
+00:02:49,061 --> 00:02:57,438
+Finalmente, para que possamos verificar a convergência do algoritmo, o que podemos fazer é fazer esse passo a mais uma vez a cada, digamos, mil iterações.
+
+31
+00:02:57,438 --> 00:03:01,511
+Nós podemos desenhar esses custos que nós calculamos no passo anterior.
+
+32
+00:03:01,511 --> 00:03:07,450
+Nós podemos calcular a média desses custos, digamos, entre os últimos mil exemplos processados pelo algoritmo.
+
+33
+00:03:07,450 --> 00:03:12,714
+E se você fizer isso, você terá uma boa estimativa em tempo real de quão bem seu algoritmo está indo,
+
+34
+00:03:12,714 --> 00:03:17,049
+em relação os últimos 1000 exemplos de treinamento que o algoritmo passou por.
+
+35
+00:03:17,049 --> 00:03:23,974
+Portanto, ao contrário de calcular J treino periodicamente, que necessita de um processamento ao longo de todo o conjunto de treinamento,
+
+36
+00:03:23,974 --> 00:03:27,973
+com esse outro procedimento, como parte do gradiente decrescente estocástico,
+
+37
+00:03:27,973 --> 00:03:32,965
+não será tão pesado calcular esses custos antes de fazer a atualização do parâmetro teta.
+
+38
+00:03:32,965 --> 00:03:40,276
+E tudo que estamos fazendo é apenas pegar a cada mil iterações e fazer uma média desses 1,000 últimos custos que calculamos e colocar isso no gráfico.
+
+39
+00:03:40,276 --> 00:03:47,537
+E ao olhar para esse gráfico poderemos verificar se o gradiente decrescente estocástico está convergindo.
+
+40
+00:03:47,537 --> 00:03:51,708
+E aqui temos algum exemplos da cara que esses gráficos terão.
+
+41
+00:03:51,708 --> 00:03:55,519
+Suponha que você tenha montado o gráfico para o custo média dos últimos mil exemplos.
+
+42
+00:03:55,519 --> 00:04:01,073
+Como temos a média de apenas mil exemplos, teremos essa aparência um pouco ruidosa,
+
+43
+00:04:01,073 --> 00:04:03,873
+e pode até não apresentar decréscimo em cada iteração.
+
+44
+00:04:03,873 --> 00:04:07,828
+Se você chegar em uma figura como essa, 
+
+45
+00:04:07,828 --> 00:04:11,721
+e o gráfico pode estar com ruído, pois é a média usando apenas um pequeno subconjunto de, por exemplo, mil exemplos de treinamento.
+
+46
+00:04:11,721 --> 00:04:17,283
+Se você chegar em uma figura que pareça com essa, você sabe que o algoritmo realizou um bom trabalho.
+
+47
+00:04:17,283 --> 00:04:24,195
+Podemos ver que o custo foi decrescendo até chegar nessa região aqui que mais parece um planalto, onde ela parece ter estabilizado, começando mais ou menos desse ponto.
+
+48
+00:04:24,195 --> 00:04:29,603
+Se é assim que o gráfico do seu custo se parece, então o seu algoritmo de aprendizado provavelmente convergiu.
+
+49
+00:04:29,603 --> 00:04:34,252
+Se você quiser tentar usar uma taxa de aprendizado menor, 
+
+50
+00:04:34,252 --> 00:04:39,229
+o que você verificará é que o algoritmo aprenderá inicialmente mais devagar, então o custo irá cair de maneira mais lenta.
+
+51
+00:04:39,229 --> 00:04:47,585
+Mas, eventualmente, ter uma taxa de aprendizado menor pode levar o algoritmo para uma solução levemente melhor.
+
+52
+00:04:47,585 --> 00:04:53,426
+A linha vermelha representa o comportamento do gradiente decrescente estocástico usando uma taxa de aprendizado menor.
+
+53
+00:04:53,426 --> 00:05:00,594
+E a razão para que isso aconteça é que, como você deve recordar, o gradiente decrescente estocástico não converge simplesmente para o mínimo global.
+
+54
+00:05:00,594 --> 00:05:05,068
+O que ocorre é que os parâmetros irão oscilar em torno do mínimo global.
+
+55
+00:05:05,068 --> 00:05:09,231
+Portanto, ao usar uma taxa de aprendizado menor, você irá conseguir oscilações menores nesse entorno. 
+
+56
+00:05:09,231 --> 00:05:12,896
+E às vezes essa pequena diferença será negligenciável,
+
+57
+00:05:12,896 --> 00:05:19,686
+enquanto em outras você conseguirá um resultado um pouco melhor para os parâmetros.
+
+58
+00:05:19,686 --> 00:05:22,269
+Aqui são os outros casos possíveis.
+
+59
+00:05:22,269 --> 00:05:27,986
+Digamos que você rode o gradiente decrescente estocástico e você tome a média ao longo de mil exemplos quando for fazer o gráfico do custo.
+
+60
+00:05:27,986 --> 00:05:32,369
+E este aqui pode ser um outro resultado possível desse gráfico.
+
+61
+00:05:32,369 --> 00:05:34,353
+Novamente, parece-nos que o algoritmo convergiu.
+
+62
+00:05:34,353 --> 00:05:42,119
+Se você pegar esse número da média, os mil exemplos, e aumentá-lo para uma média com 5 mil exemplos.
+
+63
+00:05:42,119 --> 00:05:47,913
+Então é possível que você chegue em uma curva mais suave, parecida com esta.
+
+64
+00:05:47,913 --> 00:05:56,547
+E ao fazer a média com, digamos, 5000 exemplos ao invés de 1000, você pode conseguir uma curva mais suave, como esta.
+
+65
+00:05:56,547 --> 00:06:00,248
+E este é o efeito que o uso de mais exemplos na média trará.
+
+66
+00:06:00,248 --> 00:06:06,229
+A desvantagem disso é que para gerar um único ponto desse gráfico teremos agora que olhar para 5000 exemplos.
+
+67
+00:06:06,229 --> 00:06:12,001
+E, portanto, o retorno que você tem de quão bem o seu algoritmo está operando acaba por tornar-se um pouco mais defasado,
+
+68
+00:06:12,001 --> 00:06:17,681
+pois você gera apenas um ponto do seu gráfico a cada 5000 exemplos ao invés de a cada 1000 exemplos.
+
+69
+00:06:17,681 --> 00:06:23,911
+Seguindo o mesmo raciocínio, às vezes você pode rodar o gradiente decrescente e obter um gráfico assim.
+
+70
+00:06:23,911 --> 00:06:32,079
+E com um gráfico assim, como vemos, o custo parece não estar decrescendo. 
+
+71
+00:06:32,079 --> 00:06:34,023
+Parece que o algoritmo não está aprendendo.
+
+72
+00:06:34,023 --> 00:06:39,261
+Parece apenas com uma curva plana e que o custo não decresce.
+
+73
+00:06:39,261 --> 00:06:46,260
+Mas, novamente, se você pegar e fizer a média com um número grande de exemplos,
+
+74
+00:06:46,260 --> 00:06:49,729
+é possível que você chegue em algo parecido com essa linha vermelha,
+
+75
+00:06:49,729 --> 00:06:55,127
+parece-nos que o custo está, na verdade, decrescendo, é que a linha azul fazia a média com poucos exemplos,
+
+76
+00:06:55,127 --> 00:07:01,374
+a linha azul continha tanto ruído que não podíamos ver qual era a verdadeira tendência do custo,
+
+77
+00:07:01,374 --> 00:07:06,688
+então, fazer a média com 5000 exemplos ao invés de 1000 pode, possivelmente, ajudar.
+
+78
+00:07:06,688 --> 00:07:12,358
+É claro que fizemos aqui a média usando muitos exemplos, nós usamos aqui 5000 exemplos,
+
+79
+00:07:12,358 --> 00:07:16,998
+Usando uma cor diferente, é possível que a sua curva de treinamento acabe por parecer-se com algo assim.
+
+80
+00:07:16,998 --> 00:07:21,197
+Ela continua plana mesmo se você usar um número maior de exemplos.
+
+81
+00:07:21,197 --> 00:07:25,908
+E como você pode perceber, aqui apenas verificamos com maior rigor que,
+
+82
+00:07:25,908 --> 00:07:29,287
+infelizmente, o algoritmo não está aprendendo por alguma razão.
+
+83
+00:07:29,287 --> 00:07:34,969
+Então você terá que modificar alguma coisa, seja a taxa de aprendizado, as suas variáveis, ou mudar algo do algoritmo em si.
+
+84
+00:07:34,969 --> 00:07:39,235
+Para terminar, um último caso que você poderia encontrar ao produzir essas curvas
+
+85
+00:07:39,235 --> 00:07:43,273
+seria quando você encontra algo assim, onde ela parece estar aumentando.
+
+86
+00:07:43,273 --> 00:07:48,066
+E se esse é o caso, então o algoritmo está divergindo.
+
+87
+00:07:48,066 --> 00:07:53,965
+E o que você deveria tentar é usar um valor menor para a taxa de aprendizado alfa.
+
+88
+00:07:53,965 --> 00:07:58,143
+Espero que você agora tenha uma idéia das possibilidades que poderão aparecer
+
+89
+00:07:58,143 --> 00:08:02,946
+quando você produz esses gráficos de média de custo sobre um certo intervalo de exemplos, 
+
+90
+00:08:02,946 --> 00:08:07,765
+assim como sugestões do que você poderia tentar caso encontrasse algum desses diferentes gráficos.
+
+91
+00:08:07,765 --> 00:08:15,070
+Portanto, se o gráfico ficar com muito ruido, ou se serpenteia demais pra cima e pra baixo, então aumentar o número de exemplos
+
+92
+00:08:15,070 --> 00:08:18,734
+usados na média irá ajudar a verificar a tendência da curva melhor.
+
+93
+00:08:18,734 --> 00:08:25,836
+E se você perceber que o erro está aumentando, os custos estão aumentando, tente usar um valor menor para alfa.
+
+94
+00:08:25,836 --> 00:08:31,649
+Finalmente, vamos discutir um pouco mais sobre a taxa de aprendizado.
+
+95
+00:08:31,649 --> 00:08:38,922
+Vimos que quando rodamos o gradiente decrescente estocástico, o algoritmo irá começar aqui e irá passar a buscar o mínimo.
+
+96
+00:08:38,922 --> 00:08:43,494
+E ele não irá de fato convergir, mas apenas rondar o ponto mínimo para sempre.
+
+97
+00:08:43,494 --> 00:08:50,225
+E, portanto, terminaremos com parâmetros que esperamos serem próximos suficiente do mínimo global, mas que não o são de fato.
+
+98
+00:08:50,225 --> 00:08:57,991
+Na implementação mais comum do gradiente decrescente estocástico, a taxa de aprendizado alfa é geralmente mantida constante.
+
+99
+00:08:57,991 --> 00:09:02,022
+E o que conseguiremos será exatamente uma figura como essa.
+
+100
+00:09:02,022 --> 00:09:06,523
+Se você quer que o gradiente decrescente estocástico realmente convirja para o mínimo global,
+
+101
+00:09:06,523 --> 00:09:11,825
+há algo que possa ser feito: você pode reduzir a taxa alfa lentamente ao longo do tempo.
+
+102
+00:09:11,825 --> 00:09:22,240
+E uma maneira comum de fazer isso é definir alfa como constante 1 dividida pelo número de iterações mais a constante 2.
+
+103
+00:09:22,240 --> 00:09:28,169
+O número de iterações é o número de vezes que você rodou o gradiente decrescente estocástico,
+
+104
+00:09:28,169 --> 00:09:29,519
+então é também o número de exemplos de treinamento pelos quais você passou.
+
+105
+00:09:29,519 --> 00:09:34,103
+E a constante 1 e a constante 2 são parâmetros adicionais do algoritmo,
+
+106
+00:09:34,103 --> 00:09:38,160
+que você terá que analisar brevemente para pode chegar em uma boa performance.
+
+107
+00:09:38,160 --> 00:09:43,004
+Uma das razões pelas quais as pessoas não usam muito esse procedimento é porque você acaba precisando investir tempo na definição dos parâmetros extra,
+
+108
+00:09:43,004 --> 00:09:48,122
+constante 1 e constante 2, e isso fará o algoritmo mais sensível às suas escolhas.
+
+109
+00:09:48,122 --> 00:09:52,113
+Pois serão mais parâmetros que precisarão ser bem definidos para que o algoritmo faça bem o seu trabalho.
+
+110
+00:09:52,113 --> 00:09:57,246
+Mas se você conseguir definir bem os parâmetros, então você conseguirá que 
+
+111
+00:09:57,246 --> 00:10:02,834
+o algoritmo fique rondando o mínimo, mas quando ele chegar bem perto,
+
+112
+00:10:02,834 --> 00:10:07,024
+devido ao fato de vocês estar decrescendo a taxa de aprendizado alfa, as variações da média se tornarão cada vez menores.
+
+113
+00:10:07,024 --> 00:10:12,729
+E isso durará até que ele chegue praticamente no mínimo global. Espero que tenha ficado claro.
+
+114
+00:10:12,729 --> 00:10:21,608
+E o motivo pelo qual essa fórmula faz sentido é porque enquanto o algoritmo roda, o número de iterações torna-se maior. Então o alfa irá, lentamente, tornar-se menor.
+
+115
+00:10:21,608 --> 00:10:27,506
+E ao tomar um alfa menor, o algoritmo dará passos menores em direção, espera-se, ao mínimo global.
+
+116
+00:10:27,506 --> 00:10:33,484
+Portanto, se você aplica decréscimos ao alfa até zero, você poderá conseguir uma hipótese um pouco melhor.
+
+117
+00:10:33,484 --> 00:10:40,078
+Mas devido ao trabalho extra que é a definição das constantes e porque, geralmente, já estamos bem suficiente com a versão anterior,
+
+118
+00:10:40,078 --> 00:10:43,892
+que já chega perto suficiente do mínimo global,
+
+119
+00:10:43,892 --> 00:10:50,863
+então esse processo de decréscimo do alfa não é feito geralmente e mantém-se a taxa alfa constante,
+
+120
+00:10:50,863 --> 00:10:56,983
+que é a aplicação mais comum do algoritmo de gradiente decrescente estocástico, embora você verá as pessoas usando ambas as versões.
+
+121
+00:10:56,983 --> 00:11:03,595
+Para resumir o que aprendemos: 
+
+122
+00:11:03,595 --> 00:11:08,256
+aprendemos sobre como monitorar o quão bem o nosso algoritmo está indo em termos de optimização da função custo.
+
+123
+00:11:08,256 --> 00:11:17,043
+E esse é um método que não necessita que passemos por todo o conjunto de treinamento periodicamente para calcular a função custo para o conjunto de treinamento inteiro.
+
+124
+00:11:17,043 --> 00:11:20,693
+Ao invés disso, olhamos para, digamos, mil exemplos ou algo assim.
+
+125
+00:11:20,693 --> 00:11:27,592
+E você pode usar esse método tanto para ter certeza que o algoritmo está convergindo,
+
+126
+00:11:27,592 --> 00:11:31,468
+quanto para ajudá-lo a ajustar a taxa de aprendizado alfa.

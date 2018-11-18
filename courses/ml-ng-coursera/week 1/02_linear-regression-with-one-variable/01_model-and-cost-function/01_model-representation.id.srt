@@ -1,0 +1,429 @@
+1
+00:00:02,338 --> 00:00:04,677
+Algoritma belajar pertama kita adalah
+regresi linier. Dalam video ini, Anda akan melihat
+
+2
+00:00:06,956 --> 00:00:09,234
+modelnya seperti apa dan lebih
+penting Anda akan melihat bagaimana
+
+3
+00:00:09,234 --> 00:00:14,801
+proses supervised learning secara menyeluruh. Mari kita
+gunakan beberapa contoh yang memotivasi prediksi
+
+4
+00:00:14,801 --> 00:00:20,036
+harga perumahan. Kita akan menggunakan kumpulan
+data harga perumahan dari kota
+
+5
+00:00:20,036 --> 00:00:25,205
+Portland, Oregon. Dan di sini saya akan
+memplot kumpulan data saya dari sejumlah rumah
+
+6
+00:00:25,205 --> 00:00:30,833
+yang berbeda ukuran yang telah terjual
+dengan harga yang berbeda-beda. Katakanlah
+
+7
+00:00:30,833 --> 00:00:35,872
+dengan data yang diberikan ini, Anda punya
+teman yang sedang coba menjual rumah dan
+
+8
+00:00:35,872 --> 00:00:41,238
+mari kita lihat jika rumahnya berukuran
+1250 kaki persegi dan Anda ingin beritahu mereka
+
+9
+00:00:41,238 --> 00:00:46,459
+berapa harga rumah tersebut yang mungkin dapat
+mereka jual. Satu hal yang dapat Anda lakukan adalah
+
+10
+00:00:46,648 --> 00:00:53,039
+mencocokkan suatu model. Mungkin mencocokkan garis lurus
+ke data ini. Terlihat seperti itu dan berdasarkan
+
+11
+00:00:53,039 --> 00:00:59,168
+itu, mungkin Anda dapat katakan pada teman Anda
+bahwa katakanlah mungkin ia dapat menjual
+
+12
+00:00:59,168 --> 00:01:03,575
+rumahnya sekitar $220,000.
+Jadi ini satu contoh dari
+
+13
+00:01:03,575 --> 00:01:08,834
+algoritma supervised learning. Dan ini
+supervised learning karena kita memberikan
+
+14
+00:01:08,834 --> 00:01:14,287
+"jawaban benar" untuk setiap
+contoh kita. Sebut saja kita memberitahu
+
+15
+00:01:14,287 --> 00:01:19,351
+berapa harga aktual
+dari setiap rumah di data kita
+
+16
+00:01:19,351 --> 00:01:24,441
+saat terjual dan selain itu, ini
+contoh persoalan regresi dimana
+
+17
+00:01:24,441 --> 00:01:29,545
+istilah regresi merujuk pada fakta
+bahwa kita sedang memprediksi hasil bernilai riil
+
+18
+00:01:29,545 --> 00:01:34,586
+sebut saja harga. Dan hanya mengingatkan Anda
+jenis paling umum lainnya dari persoalan
+
+19
+00:01:34,586 --> 00:01:39,006
+supervised learning dinamakan
+persoalan klasifikasi dimana kita memprediksi
+
+20
+00:01:39,006 --> 00:01:45,202
+hasil bernilai diskrit seperti jika kita
+sedang melihat tumor kanker dan mencoba
+
+21
+00:01:45,202 --> 00:01:52,032
+memutuskan jika suatu tumor ganas atau jinak.
+Jadi itu hasil bernilai diskrit nol-satu. Lebih
+
+22
+00:01:52,032 --> 00:01:57,087
+formilnya, dalam supervised learning, kita punya
+sekumpulan data dan data ini disebut
+
+23
+00:01:57,087 --> 00:02:02,018
+set pelatihan. Jadi dalam contoh harga
+perumahan, kita punya set pelatihan
+
+24
+00:02:02,018 --> 00:02:07,386
+harga perumahan yang berbeda-beda dan tugas kita
+belajar dari data ini bagaimana memprediksi harga
+
+25
+00:02:07,386 --> 00:02:11,907
+rumah. Mari kita definisikan beberapa notasi
+yang akan kita gunakan disepanjang matapelajaran ini.
+
+26
+00:02:11,907 --> 00:02:16,100
+Kita akan menetapkan banyak sekali
+simbol. Tidak mengapa jika Anda tidak mengingat
+
+27
+00:02:16,100 --> 00:02:20,075
+semua simbolnya sekarang tapi seiring dengan
+majunya matapelajaran ini akan berguna
+
+28
+00:02:20,075 --> 00:02:24,267
+jika Anda perlu notasi yang nyaman. Jadi saya akan gunakan
+m kecil disepanjang matapelajaran ini untuk
+
+29
+00:02:24,267 --> 00:02:28,897
+menunjukkan jumlah contoh latihan. Jadi
+dalam kumpulan data ini, jika saya punya, Anda tahu,
+
+30
+00:02:28,897 --> 00:02:34,366
+katakanlah 47 baris di tabel ini. Lalu saya
+punya 47 contoh latihan dan m sama dengan 47.
+
+31
+00:02:34,366 --> 00:02:39,497
+Biar saya gunakan x kecil untuk menunjukkan
+variabel input juga sering disebut
+
+32
+00:02:39,497 --> 00:02:44,290
+ciri-ciri. Jadi x di sini, itu merupakan ciri-ciri input.
+Dan saya akan
+
+33
+00:02:44,290 --> 00:02:49,556
+menggunakan y untuk menunjukkan variabel output atau
+variabel target yang akan saya
+
+34
+00:02:49,556 --> 00:02:54,552
+prediksi dan itu adalah kolom
+kedua di sini. Melihat pada notasi, saya
+
+35
+00:02:54,552 --> 00:03:05,749
+akan gunakan (x, y) untuk menunjukkan contoh
+latihan tunggal. Jadi satu baris di
+
+36
+00:03:05,749 --> 00:03:12,068
+tabel ini dapat disamakan dengan satu contoh
+latihan dan menunjuk pada contoh
+
+37
+00:03:12,068 --> 00:03:19,708
+latihan tertentu, saya akan gunakan
+notasi x(i) koma y(i) Dan, kita
+
+38
+00:03:25,322 --> 00:03:30,935
+akan gunakan ini untuk menunjuk pada contoh
+latihan ke-i. Jadi huruf i
+
+39
+00:03:30,935 --> 00:03:37,864
+di atas ini, bukan eksponen
+ya? (x(i), y(i)) ini, huruf i dalam
+
+40
+00:03:37,864 --> 00:03:44,873
+tanda kurung hanya indeks pada
+set latihan saya dan menunjukkan baris ke-i dalam
+
+41
+00:03:44,873 --> 00:03:51,629
+tabel ini, oke? Jadi ini bukan x
+pangkat i, y pangkat i. Sebaliknya
+
+42
+00:03:51,629 --> 00:03:58,216
+(x(i), y(i)) hanya menunjukkan baris ke-i pada
+tabel ini. Jadi sebagai contoh, x(1) menunjukkan
+
+43
+00:03:58,216 --> 00:04:04,972
+nilai input untuk contoh latihan pertama jadi
+itu 2104. Yaitu x di baris pertama ini.
+
+44
+00:04:04,972 --> 00:04:11,685
+x(2) sama dengan
+1416 kan? Itu x kedua
+
+45
+00:04:11,685 --> 00:04:17,385
+dan y(1) akan sama dengan 460.
+Yang pertama, nilai y untuk contoh latihan
+
+46
+00:04:17,385 --> 00:04:24,526
+pertama saya, itu yang dimaksud (1) itu. Jadi
+seperti yang disebutkan, terkadang saya akan menanyai Anda
+
+47
+00:04:24,526 --> 00:04:28,345
+pertanyaan agar Anda memeriksa
+pengertian Anda dan beberapa detik dalam
+
+48
+00:04:28,345 --> 00:04:34,044
+video ini pertanyaan pilihan ganda
+akan muncul di video. Saat itu terjadi,
+
+49
+00:04:34,044 --> 00:04:40,362
+silahkan gunakan mouse untuk memilih apa yang Anda
+pikir jawaban yang benar. Apa yang dinyatakan oleh
+
+50
+00:04:40,362 --> 00:04:45,124
+set latihan. Jadi begini caranya algoritma
+supervised learning bekerja.
+
+51
+00:04:45,124 --> 00:04:50,513
+Kita lihat dengan set latihan seperti set
+latihan harga rumah kita dan kita masukkan
+
+52
+00:04:50,513 --> 00:04:55,715
+itu ke algoritma belajar kita. Adalah tugas
+algoritma belajar menghasilkan
+
+53
+00:04:55,715 --> 00:05:00,101
+fungsi yang dengan ketentuan
+biasanya ditunjukkan huruf h kecil dan h
+
+54
+00:05:00,101 --> 00:05:06,574
+kependekan dari hipotesis dan tugas
+hipotesis adalah, suatu fungsi yang
+
+55
+00:05:06,574 --> 00:05:12,471
+mengambil sebagai input ukuran rumah seperti
+mungkin ukuran rumah baru yang teman Anda
+
+56
+00:05:12,471 --> 00:05:18,368
+coba jual jadi algoritma mengambil nilai
+x dan mencoba mengeluarkan nilai y
+
+57
+00:05:18,368 --> 00:05:31,630
+yang diperkirakan untuk rumah yang dimaksud.
+Jadi h adalah fungsi yang memetakan dari x
+
+58
+00:05:31,630 --> 00:05:37,729
+ke y. Orang sering bertanya pada saya, Anda
+tahu mengapa fungsi ini disebut
+
+59
+00:05:37,729 --> 00:05:42,121
+hipotesis. Beberapa dari Anda mungkin tahu
+arti dari istilah hipotesis, dari
+
+60
+00:05:42,121 --> 00:05:46,744
+kamus atau dari ilmu pengetahuan atau apapun.
+Jelas bahwa di machine learning, ini
+
+61
+00:05:46,744 --> 00:05:51,310
+nama yang digunakan diawal-awal munculnya
+machine learning dan itu seperti melekat. Karena
+
+62
+00:05:51,310 --> 00:05:55,239
+mungkin bukan nama yang bagus untuk jenis
+fungsi ini, untuk memetakan dari ukuran
+
+63
+00:05:55,239 --> 00:05:59,978
+rumah ke prediksinya, yang Anda tahu...
+Saya pikir istilah hipotesis, mungkin bukan
+
+64
+00:05:59,978 --> 00:06:04,543
+nama terbaik untuk ini, namun ini adalah
+istilah standar yang orang gunakan dalam
+
+65
+00:06:04,543 --> 00:06:09,362
+machine learning. Jadi jangan terlalu khawatir
+tentang mengapa orang memanggilnya seperti itu. Saat
+
+66
+00:06:09,362 --> 00:06:14,332
+mendesain algoritma belajar, hal
+berikut yang kita perlu putuskan adalah bagaimana kita
+
+67
+00:06:14,332 --> 00:06:20,540
+menampilkan hipotesis h ini. Untuk video ini dan
+beberapa video berikutnya, saya akan memilih
+
+68
+00:06:20,540 --> 00:06:26,978
+pilihan pertama kita, untuk menampilkan
+hipotesis, akan seperti berikut. Kita akan
+
+69
+00:06:26,978 --> 00:06:33,009
+menampilkan h seperti berikut. Dan kita akan menulis ini
+seperti h theta(x) sama dengan theta 0
+
+70
+00:06:33,009 --> 00:06:39,254
+tambah theta 1 x. Dan singkatnya,
+kadang sebagai pengganti menulis, Anda
+
+71
+00:06:39,254 --> 00:06:45,441
+tahu, h subscript theta x, kadang
+ada tulisan singkat, saya hanya akan menulis h dari x.
+
+72
+00:06:45,441 --> 00:06:51,627
+Tapi lebih sering saya akan menulisnya seperti
+subscript theta di atas sana. Dan memplot
+
+73
+00:06:51,627 --> 00:06:58,210
+ini dalam gambar, semua ini maksudnya adalah,
+kita akan memprediksi bahwa y adalah fungsi
+
+74
+00:06:58,210 --> 00:07:04,634
+linier dari x. Jadi itu
+datanya dan apa yang fungsi ini lakukan,
+
+75
+00:07:04,634 --> 00:07:11,698
+adalah memprediksi bahwa y adalah fungsi
+garis lurus dari x. Yaitu h dari x sama dengan theta 0
+
+76
+00:07:11,698 --> 00:07:18,450
+tambah theta 1 x, oke? Dan mengapa fungsi
+linier? Nah, kadang-kadang kita akan mau
+
+77
+00:07:18,450 --> 00:07:23,405
+mencocokkan lebih rumit, mungkin fungsi
+non linier juga. Tapi karena kasus linier
+
+78
+00:07:23,405 --> 00:07:28,298
+ini adalah blok bangunan sederhana, pertama kita
+akan mulai dengan contoh ini mencocokkan
+
+79
+00:07:28,298 --> 00:07:32,943
+fungsi linier, dan kita akan mengembangkan
+ini hingga akhirnya punya model yang lebih
+
+80
+00:07:32,943 --> 00:07:37,403
+kompleks, dan algoritma belajar yang
+lebih kompleks. Biarkan juga saya memberikan
+
+81
+00:07:37,403 --> 00:07:42,628
+model khusus ini sebuah nama. Model ini
+disebut regresi linier atau ini, sebagai
+
+82
+00:07:42,628 --> 00:07:48,271
+contoh, sebenarnya adalah regresi linier
+dengan satu variabel, dengan variabelnya
+
+83
+00:07:48,271 --> 00:07:53,914
+x. Memprediksi semua harga sebagai fungsi
+dari satu variabel x. Dan nama lain untuk
+
+84
+00:07:53,914 --> 00:07:58,852
+model ini adalah regresi linier
+univariate. Dan univariate hanya suatu
+
+85
+00:07:58,852 --> 00:08:04,400
+cara yang indah untuk mengatakan satu variabel. Jadi
+itulah regresi linier. Dalam video berikut
+
+86
+00:08:04,400 --> 00:08:09,760
+kita akan mulai bicara tentang bagaimana
+kita bekerja mengimplementasikan model ini.

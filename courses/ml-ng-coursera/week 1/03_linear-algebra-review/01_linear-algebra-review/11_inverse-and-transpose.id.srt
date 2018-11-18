@@ -1,0 +1,1300 @@
+1
+00:00:00,310 --> 00:00:01,540
+Di video ini, saya mau
+
+2
+00:00:01,590 --> 00:00:02,885
+membahas tentang beberapa operasi
+
+3
+00:00:02,885 --> 00:00:04,848
+khusus matriks yang disebut
+
+4
+00:00:04,848 --> 00:00:07,430
+operasi matriks invers dan matriks
+transpos.
+
+5
+00:00:08,740 --> 00:00:10,312
+Mari mulai dengan matriks
+
+6
+00:00:10,312 --> 00:00:12,928
+invers. Dan seperti
+
+7
+00:00:12,940 --> 00:00:14,516
+biasanya, kita mulai dengan berpikir
+
+8
+00:00:14,516 --> 00:00:17,248
+bagaimana kaitannya dengan angka.
+
+9
+00:00:17,280 --> 00:00:18,803
+Pada video terakhir saya katakan
+
+10
+00:00:18,803 --> 00:00:20,625
+bahwa angka 1 memainkan
+
+11
+00:00:20,625 --> 00:00:24,570
+peranan identitas bagi
+
+12
+00:00:24,590 --> 00:00:26,059
+angka karena
+
+13
+00:00:26,070 --> 00:00:28,851
+1 x apa saja = bilangan itu sendiri.
+
+14
+00:00:28,860 --> 00:00:30,270
+Angka
+
+15
+00:00:30,270 --> 00:00:31,642
+memiliki sifat ini,
+
+16
+00:00:31,642 --> 00:00:33,093
+bahwa
+
+17
+00:00:33,120 --> 00:00:34,635
+setiap angka punya invers,
+
+18
+00:00:34,635 --> 00:00:36,637
+sebagai contoh, angka
+
+19
+00:00:36,660 --> 00:00:38,552
+3, disana ada beberapa
+
+20
+00:00:38,552 --> 00:00:40,132
+angka, yang kebetulan
+
+21
+00:00:40,132 --> 00:00:41,544
+3 inverse agar
+
+22
+00:00:41,544 --> 00:00:43,798
+angka itu x 3 menghasilkan
+
+23
+00:00:43,798 --> 00:00:46,458
+elemen identitas 1.
+
+24
+00:00:46,480 --> 00:00:50,727
+Dan invers 3 tentu saja adalah 1/3.
+
+25
+00:00:50,727 --> 00:00:53,236
+Angka lainnya,
+
+26
+00:00:53,236 --> 00:00:55,360
+mungkin 12, ada
+
+27
+00:00:55,360 --> 00:00:57,312
+beberapa angka, yaitu
+
+28
+00:00:57,340 --> 00:00:59,464
+12 invers, ditulis
+
+29
+00:00:59,464 --> 00:01:01,600
+12 -1, atau
+
+30
+00:01:01,600 --> 00:01:03,582
+1/12 saja,
+
+31
+00:01:03,582 --> 00:01:07,092
+sehingga saat Anda mengalikan keduanya
+bersama,
+
+32
+00:01:07,092 --> 00:01:09,292
+hasilnya sama dengan
+
+33
+00:01:09,292 --> 00:01:12,367
+elemen identitas 1 lagi.
+
+34
+00:01:12,370 --> 00:01:13,838
+Sekarang,
+
+35
+00:01:13,860 --> 00:01:17,154
+tidak semua angka punya invers.
+
+36
+00:01:17,154 --> 00:01:19,148
+Contohnya angka 0
+
+37
+00:01:19,160 --> 00:01:20,981
+tidak punya invers,
+
+38
+00:01:20,981 --> 00:01:25,410
+karena invers 0, 1/0 tidak dapat
+didefinisikan.
+
+39
+00:01:25,460 --> 00:01:29,862
+Seperti 1/0 ini yang tidak terdefinisi.
+
+40
+00:01:30,100 --> 00:01:31,419
+Apa yang mau kita
+
+41
+00:01:31,450 --> 00:01:32,453
+kerjakan di sisa slide
+
+42
+00:01:32,453 --> 00:01:33,835
+ini adalah mencari tahu apa
+
+43
+00:01:33,835 --> 00:01:38,341
+maksudnya menghitung invers matriks.
+
+44
+00:01:39,253 --> 00:01:41,718
+Ini idenya: Jika
+
+45
+00:01:41,750 --> 00:01:43,198
+A matriks m x m,
+
+46
+00:01:43,200 --> 00:01:45,078
+dan
+
+47
+00:01:45,078 --> 00:01:46,320
+mempunyai invers, saya akan bahas
+
+48
+00:01:46,350 --> 00:01:48,487
+sedikit nanti, lalu
+
+49
+00:01:48,487 --> 00:01:49,927
+inversnya akan
+
+50
+00:01:49,927 --> 00:01:51,668
+ditulis
+
+51
+00:01:51,668 --> 00:01:54,186
+A -1, dan A
+
+52
+00:01:54,186 --> 00:01:55,798
+dikali invers ini,
+
+53
+00:01:55,798 --> 00:01:57,045
+A -1,
+
+54
+00:01:57,050 --> 00:01:59,395
+sama dengan A invers x A,
+
+55
+00:01:59,395 --> 00:02:00,741
+hasilnya
+
+56
+00:02:00,741 --> 00:02:04,088
+matriks identitas.
+
+57
+00:02:04,088 --> 00:02:04,958
+Oke?
+
+58
+00:02:04,960 --> 00:02:07,037
+Hanya matriks
+
+59
+00:02:07,060 --> 00:02:09,848
+m x m untuk beberapa nilai M punya
+invers.
+
+60
+00:02:09,870 --> 00:02:11,692
+Jadi, matriks
+
+61
+00:02:11,692 --> 00:02:13,010
+m x m, ini disebut
+
+62
+00:02:13,040 --> 00:02:16,055
+juga matriks persegi dan
+
+63
+00:02:16,055 --> 00:02:18,222
+dikatakan persegi karena
+
+64
+00:02:18,222 --> 00:02:24,852
+jumlah baris = jumlah kolom.
+
+65
+00:02:24,852 --> 00:02:26,516
+Dan
+
+66
+00:02:26,530 --> 00:02:29,518
+hanya matriks persegi punya invers.
+
+67
+00:02:29,520 --> 00:02:31,148
+Jadi, A adalah matriks
+
+68
+00:02:31,148 --> 00:02:32,973
+persegi m x m,
+
+69
+00:02:33,020 --> 00:02:37,198
+dan jika A punya invers, itu sesuai
+dengan persamaan ini.
+
+70
+00:02:37,340 --> 00:02:39,568
+Mari lihat contoh konkritnya,
+
+71
+00:02:39,568 --> 00:02:41,530
+katakanlah saya
+
+72
+00:02:41,580 --> 00:02:45,090
+punya matriks
+
+73
+00:02:45,120 --> 00:02:48,080
+3,4,2,16.
+
+74
+00:02:48,080 --> 00:02:49,535
+Ini matriks
+
+75
+00:02:49,535 --> 00:02:51,788
+2 x 2,
+
+76
+00:02:51,810 --> 00:02:53,159
+matriks persegi, sehingga
+
+77
+00:02:53,160 --> 00:02:55,442
+punya invers.
+
+78
+00:02:55,480 --> 00:02:57,733
+Dan kebetulan
+
+79
+00:02:57,750 --> 00:02:59,308
+saya tahu invers
+
+80
+00:02:59,310 --> 00:03:00,810
+matriks ini adalah
+
+81
+00:03:00,840 --> 00:03:02,675
+0.4, -0.1,
+
+82
+00:03:02,675 --> 00:03:04,485
+-0.05,
+
+83
+00:03:04,520 --> 00:03:08,687
+0.075.
+
+84
+00:03:08,750 --> 00:03:10,267
+Dan jika saya ambil matriks ini
+
+85
+00:03:10,267 --> 00:03:12,273
+dan mengalikan keduanya bersama,
+
+86
+00:03:12,273 --> 00:03:13,598
+apa yang saya peroleh
+
+87
+00:03:13,620 --> 00:03:15,595
+adalah matriks
+
+88
+00:03:15,595 --> 00:03:18,324
+identitas, I, 2 x 2,
+
+89
+00:03:18,350 --> 00:03:20,542
+ini I 2 x 2.
+
+90
+00:03:20,558 --> 00:03:21,365
+Oke?
+
+91
+00:03:21,365 --> 00:03:22,308
+Dan pada slide ini,
+
+92
+00:03:22,308 --> 00:03:24,416
+matriks ini,
+
+93
+00:03:24,416 --> 00:03:27,199
+matriks A, dan matriks ini, matriks A
+invers.
+
+94
+00:03:27,199 --> 00:03:28,622
+Dan
+
+95
+00:03:28,622 --> 00:03:29,835
+jika Anda menghitung
+
+96
+00:03:29,835 --> 00:03:31,385
+A x A invers,
+
+97
+00:03:31,410 --> 00:03:32,742
+jika Anda menghitung A invers x A,
+
+98
+00:03:32,750 --> 00:03:36,821
+hasilnya juga matriks identitas.
+
+99
+00:03:36,852 --> 00:03:38,640
+Bagaimana saya
+
+100
+00:03:38,640 --> 00:03:39,760
+mengetahui invers ini atau bagaimana
+
+101
+00:03:39,920 --> 00:03:42,698
+saya mendapatkan hasil invers ini?
+
+102
+00:03:42,730 --> 00:03:45,048
+Terkadang
+
+103
+00:03:45,060 --> 00:03:46,731
+Anda bisa menghitung invers dengan
+tangan,
+
+104
+00:03:46,760 --> 00:03:48,745
+tapi hampir tidak seorang pun yang
+melakukannya sekarang.
+
+105
+00:03:48,780 --> 00:03:49,888
+Dan ada
+
+106
+00:03:49,888 --> 00:03:52,198
+software numerik yang sangat bagus
+
+107
+00:03:52,240 --> 00:03:55,447
+untuk menghitung invers suatu matriks.
+
+108
+00:03:55,447 --> 00:03:56,369
+Ini salah satunya,
+
+109
+00:03:56,369 --> 00:03:57,310
+yang mana ada banyak
+
+110
+00:03:57,310 --> 00:03:59,450
+pustaka open source yang
+
+111
+00:03:59,450 --> 00:04:00,748
+dapat Anda hubungkan dari bahasa
+
+112
+00:04:00,748 --> 00:04:04,973
+pemrograman populer manapun untuk
+menghitung invers matriks.
+
+113
+00:04:04,990 --> 00:04:06,892
+Biar saya perlihatkan contoh singkat,
+
+114
+00:04:06,900 --> 00:04:08,935
+bagaimana saya menghitung invers ini.
+
+115
+00:04:08,940 --> 00:04:13,132
+Saya menghitungnya menggunakan
+software yang bernama Octave.
+
+116
+00:04:13,170 --> 00:04:14,437
+Ini dia.
+
+117
+00:04:14,437 --> 00:04:17,186
+Kita akan banyak menggunakan Octave nanti.
+
+118
+00:04:17,186 --> 00:04:18,903
+Biar saya perlihatkan 1 contoh.
+
+119
+00:04:18,910 --> 00:04:21,078
+Set matriks A
+
+120
+00:04:21,078 --> 00:04:22,274
+sama dengan matriks di
+
+121
+00:04:22,274 --> 00:04:24,456
+kiri itu, ketik 3 4 2 16.
+
+122
+00:04:24,456 --> 00:04:28,080
+Jadi, itu matriks A.
+
+123
+00:04:28,080 --> 00:04:29,882
+Ini matriks 3 4 2 16
+
+124
+00:04:29,882 --> 00:04:31,141
+yang saya punya
+
+125
+00:04:31,160 --> 00:04:32,773
+di kiri.
+
+126
+00:04:32,773 --> 00:04:34,543
+Dan, Octave menghitung
+
+127
+00:04:34,543 --> 00:04:36,243
+invers matriks A dengan mudah.
+
+128
+00:04:36,250 --> 00:04:39,110
+pinv(A) sama dengan ini.
+
+129
+00:04:39,170 --> 00:04:40,765
+Dan,
+
+130
+00:04:40,765 --> 00:04:41,935
+matriks ini
+
+131
+00:04:41,935 --> 00:04:43,715
+0.4, -0.1, dan seterusnya,
+
+132
+00:04:43,715 --> 00:04:45,308
+memberikan solusi numerik
+
+133
+00:04:45,350 --> 00:04:46,794
+dari
+
+134
+00:04:46,794 --> 00:04:48,350
+invers A.
+
+135
+00:04:48,350 --> 00:04:50,538
+Biar saya tulis,
+
+136
+00:04:50,540 --> 00:04:52,558
+inversOfA = pinv(A)
+
+137
+00:04:52,580 --> 00:04:55,232
+itu hasilnya. Saya sekarang
+
+138
+00:04:55,232 --> 00:04:57,200
+bisa verifikasi bahwa
+
+139
+00:04:57,200 --> 00:04:58,597
+A kali invers A
+
+140
+00:04:58,597 --> 00:05:00,644
+sama dengan matriks Identitas.
+
+141
+00:05:00,644 --> 00:05:03,390
+Ketik A * inversOfA
+
+142
+00:05:03,420 --> 00:05:04,740
+hasilnya adalah
+
+143
+00:05:04,750 --> 00:05:06,513
+matriks ini. Dan, ini
+
+144
+00:05:06,513 --> 00:05:08,708
+1.0 1.0 pada diagonal,
+
+145
+00:05:08,740 --> 00:05:10,453
+dan pada dasarnya 10
+
+146
+00:05:10,453 --> 00:05:11,582
+pangkat -17, 10 pangkat
+
+147
+00:05:11,582 --> 00:05:13,324
+-16, hingga
+
+148
+00:05:13,324 --> 00:05:14,961
+presisi numeriknya, hingga
+
+149
+00:05:14,961 --> 00:05:16,012
+sedikit kesalahan
+
+150
+00:05:16,012 --> 00:05:17,562
+pembulatan yang dilakukan
+
+151
+00:05:17,562 --> 00:05:21,123
+komputer dalam menemukan matriks optimal
+
+152
+00:05:21,123 --> 00:05:22,623
+dan angka-angka
+
+153
+00:05:22,623 --> 00:05:24,948
+di diagonal ini pada dasarnya 0.
+
+154
+00:05:24,970 --> 00:05:29,078
+Jadi, A x inversnya pada dasarnya
+matriks identitas.
+
+155
+00:05:29,100 --> 00:05:30,907
+Bisa juga verifikasi
+
+156
+00:05:30,907 --> 00:05:33,215
+inversOfA * A =
+
+157
+00:05:33,215 --> 00:05:35,795
+matriks identitas,
+
+158
+00:05:35,795 --> 00:05:38,183
+nilai 1 pada diagonalnya dan nilai
+
+159
+00:05:38,183 --> 00:05:39,938
+yang pada dasarnya 0 seandainya
+
+160
+00:05:39,938 --> 00:05:40,856
+tidak ada sedikit
+
+161
+00:05:40,856 --> 00:05:44,752
+ketidaktelitian pada diagonal lainnya.
+
+162
+00:05:45,780 --> 00:05:47,428
+Definisi saya bahwa invers
+
+163
+00:05:47,428 --> 00:05:48,636
+dari matriks A,
+
+164
+00:05:48,636 --> 00:05:50,333
+pertama, itu harus
+
+165
+00:05:50,333 --> 00:05:52,367
+selalu suatu matriks persegi,
+
+166
+00:05:52,410 --> 00:05:54,219
+bahwa jika
+
+167
+00:05:54,219 --> 00:05:57,237
+A punya invers, tepatnya matriks
+
+168
+00:05:57,237 --> 00:05:58,855
+yang bagaimana punya invers,
+
+169
+00:05:58,855 --> 00:06:00,176
+melampaui cakupan
+
+170
+00:06:00,200 --> 00:06:02,056
+tinjauan aljabar linier ini, tapi 1
+
+171
+00:06:02,056 --> 00:06:03,942
+intuisi yang bisa Anda pakai
+
+172
+00:06:03,942 --> 00:06:05,245
+bahwa sama seperti
+
+173
+00:06:05,260 --> 00:06:06,588
+angka 0 tidak punya suatu
+
+174
+00:06:06,588 --> 00:06:08,429
+invers, tampaknya
+
+175
+00:06:08,440 --> 00:06:10,188
+jika A, katakanlah,
+
+176
+00:06:10,188 --> 00:06:13,457
+matriks yang semua nilainya 0, maka
+
+177
+00:06:13,457 --> 00:06:14,791
+matriks A ini juga
+
+178
+00:06:14,791 --> 00:06:16,432
+tidak punya invers. Karena
+
+179
+00:06:16,432 --> 00:06:18,033
+tidak ada invers dari matriks A,
+
+180
+00:06:18,040 --> 00:06:19,821
+sehingga matriks
+
+181
+00:06:19,821 --> 00:06:21,174
+ini kali beberapa matriks
+
+182
+00:06:21,174 --> 00:06:22,225
+lainnya tidak akan menghasilkan
+
+183
+00:06:22,225 --> 00:06:23,778
+matriks identitas, jadi matriks ini
+
+184
+00:06:23,778 --> 00:06:25,322
+semuanya 0. Ada beberapa
+
+185
+00:06:25,322 --> 00:06:27,660
+matriks lain dengan properti yang
+sama dengan ini
+
+186
+00:06:27,660 --> 00:06:30,843
+yang juga tidak punya invers.
+
+187
+00:06:30,843 --> 00:06:32,492
+Tapi
+
+188
+00:06:32,492 --> 00:06:33,600
+dalam tinjauan ini, saya tidak
+
+189
+00:06:33,600 --> 00:06:35,436
+ingin terlalu mendalami, apa
+
+190
+00:06:35,436 --> 00:06:37,108
+maksudnya matriks punya
+
+191
+00:06:37,108 --> 00:06:38,765
+invers. Tapi
+
+192
+00:06:38,765 --> 00:06:40,006
+unutk aplikasi machine
+
+193
+00:06:40,006 --> 00:06:41,807
+learning, ini seharusnya tidak jadi
+
+194
+00:06:41,830 --> 00:06:44,260
+suatu masalah. Atau lebih tepatnya,
+
+195
+00:06:44,280 --> 00:06:46,389
+bagi algoritma belajar dimana
+
+196
+00:06:46,389 --> 00:06:47,943
+ini mungkin masalah yaitu
+
+197
+00:06:47,970 --> 00:06:49,252
+apakah matriks invers ada
+
+198
+00:06:49,252 --> 00:06:50,968
+atau tidak, saya akan katakan saat
+
+199
+00:06:50,968 --> 00:06:51,952
+kita sampai ke algoritma belajar itu,
+
+200
+00:06:51,952 --> 00:06:53,690
+hanya apa artinya bagi sebuah
+
+201
+00:06:53,760 --> 00:06:54,850
+algoritma punya atau tidak
+
+202
+00:06:55,150 --> 00:06:56,572
+invers dan bagaimana memperbaikinya
+
+203
+00:06:56,572 --> 00:06:59,200
+seandainya bekerja dengan matriks
+
+204
+00:06:59,200 --> 00:07:00,458
+yang tidak punya invers.
+
+205
+00:07:00,458 --> 00:07:02,680
+Tapi intuisinya, jika Anda
+
+206
+00:07:02,711 --> 00:07:04,275
+mau, Anda dapat
+
+207
+00:07:04,275 --> 00:07:05,808
+berpikir matriks yang tidak
+
+208
+00:07:05,808 --> 00:07:07,242
+punya invers yaitu yang nilainya
+
+209
+00:07:07,242 --> 00:07:10,331
+mendekati 0.
+
+210
+00:07:10,353 --> 00:07:12,602
+Untuk merangkum,
+
+211
+00:07:12,670 --> 00:07:14,900
+matriks yang
+
+212
+00:07:14,900 --> 00:07:16,938
+tidak punya invers terkadang disebut
+
+213
+00:07:16,940 --> 00:07:18,835
+matriks tunggal atau matriks
+
+214
+00:07:18,835 --> 00:07:20,960
+degenerasi. Jadi, matriks
+
+215
+00:07:20,970 --> 00:07:22,560
+di sini ini
+
+216
+00:07:22,630 --> 00:07:24,701
+matriks 0 0 0 0 adalah
+
+217
+00:07:24,701 --> 00:07:29,491
+contoh matriks tunggal atau degenerasi.
+
+218
+00:07:29,537 --> 00:07:31,348
+Akhirnya, operasi matriks
+
+219
+00:07:31,370 --> 00:07:32,652
+khusus terakhir yang ingin saya
+
+220
+00:07:32,652 --> 00:07:34,520
+bahas adalah matriks transpos.
+
+221
+00:07:34,530 --> 00:07:36,369
+Anggaplah saya punya
+
+222
+00:07:36,400 --> 00:07:38,160
+matriks A. Jika saya hitung
+
+223
+00:07:38,210 --> 00:07:41,220
+transpos matriks A, ini yang saya dapat
+di kanan.
+
+224
+00:07:41,232 --> 00:07:43,156
+Ini transpos yang
+
+225
+00:07:43,156 --> 00:07:46,275
+ditulis A superskrip T,
+
+226
+00:07:46,278 --> 00:07:47,363
+dan cara Anda menghitung
+
+227
+00:07:47,410 --> 00:07:49,531
+transpos suatu matriks sebagai berikut.
+
+228
+00:07:49,531 --> 00:07:50,628
+Untuk mendapat transposnya, pertama
+
+229
+00:07:50,628 --> 00:07:52,276
+saya akan ambil baris
+
+230
+00:07:52,300 --> 00:07:55,079
+pertama A 1 2 0.
+
+231
+00:07:55,080 --> 00:07:58,791
+Itu menjadi kolom pertama di transpos
+ini.
+
+232
+00:07:58,840 --> 00:07:59,762
+Lalu saya akan ambil
+
+233
+00:07:59,762 --> 00:08:01,050
+baris ke-2 A,
+
+234
+00:08:01,050 --> 00:08:04,610
+3 5 9, dan itu menjadi kolom ke-2
+
+235
+00:08:04,610 --> 00:08:06,838
+dari transpos matriks A.
+
+236
+00:08:06,850 --> 00:08:08,131
+Dan cara lain
+
+237
+00:08:08,131 --> 00:08:10,296
+berpikir bagaimana komputer mengubah
+urutan
+
+238
+00:08:10,296 --> 00:08:11,569
+adalah seperti Anda mengambil
+
+239
+00:08:11,570 --> 00:08:14,671
+sumbu 45 derajat ini
+
+240
+00:08:14,671 --> 00:08:16,349
+dan Anda mencerminkan atau Anda
+
+241
+00:08:16,349 --> 00:08:21,698
+membalik matriks itu sepanjang sumbu
+45 derajat itu.
+
+242
+00:08:21,698 --> 00:08:23,488
+Ini definisi yang lebih formal
+
+243
+00:08:23,500 --> 00:08:26,522
+dari transpos matriks.
+
+244
+00:08:26,522 --> 00:08:30,688
+Katakanlah A matriks m x n,
+
+245
+00:08:31,300 --> 00:08:32,727
+dan B = A transpos,
+
+246
+00:08:32,727 --> 00:08:36,371
+jadi B = A transpos seperti itu.
+
+247
+00:08:36,386 --> 00:08:37,563
+Maka B akan jadi
+
+248
+00:08:37,563 --> 00:08:39,637
+matriks n x m
+
+249
+00:08:39,637 --> 00:08:42,752
+dengan dimensinya terbalik.
+
+250
+00:08:42,830 --> 00:08:46,308
+Jadi di sini kita punya matriks 2 x 3.
+
+251
+00:08:46,370 --> 00:08:48,050
+Dan transposnya menjadi
+
+252
+00:08:48,190 --> 00:08:51,196
+matriks 3 x 2, dan tambahan lagi,
+
+253
+00:08:51,210 --> 00:08:54,585
+Bij = Aji.
+
+254
+00:08:54,610 --> 00:08:56,030
+Jadi elemen ij matriks B
+
+255
+00:08:56,220 --> 00:08:57,390
+ini akan menjadi
+
+256
+00:08:57,530 --> 00:08:59,913
+elemen ji dari
+
+257
+00:08:59,913 --> 00:09:02,310
+matriks A itu. Sebagai
+
+258
+00:09:02,310 --> 00:09:04,212
+contoh, B12
+
+259
+00:09:04,212 --> 00:09:06,997
+akan sama dengan,
+
+260
+00:09:06,997 --> 00:09:08,756
+lihat matriks ini,
+
+261
+00:09:08,756 --> 00:09:10,537
+B12 akan sama dengan
+
+262
+00:09:10,537 --> 00:09:13,775
+elemen 3 pada baris pertama, kolom ke-2.
+
+263
+00:09:13,800 --> 00:09:16,008
+Dan itu sama dengan ini, yaitu
+
+264
+00:09:16,010 --> 00:09:18,199
+A21, baris ke-2
+
+265
+00:09:18,220 --> 00:09:21,412
+kolom pertama, yakni
+
+266
+00:09:21,420 --> 00:09:23,421
+sama dengan 2. Dan beberapa
+
+267
+00:09:23,440 --> 00:09:25,860
+contoh B32,
+
+268
+00:09:25,860 --> 00:09:28,561
+B32
+
+269
+00:09:28,561 --> 00:09:30,922
+adalah elemen 9 ini,
+
+270
+00:09:30,930 --> 00:09:33,282
+dan itu sama dengan
+
+271
+00:09:33,282 --> 00:09:35,525
+A23 yakni
+
+272
+00:09:35,525 --> 00:09:38,963
+elemen disini ini, 9.
+
+273
+00:09:38,963 --> 00:09:40,433
+Jadi itu menuntaskan
+
+274
+00:09:40,433 --> 00:09:41,893
+definisi dari apa
+
+275
+00:09:41,893 --> 00:09:43,468
+artinya mengambil transpos
+
+276
+00:09:43,510 --> 00:09:44,991
+dari suatu matriks, dan itu
+
+277
+00:09:44,991 --> 00:09:49,323
+bahkan mengakhiri tinjauan aljabar
+linier kita.
+
+278
+00:09:49,323 --> 00:09:50,754
+Jadi sekarang, semoga Anda tahu
+
+279
+00:09:50,754 --> 00:09:52,205
+bagaimana menambah dan mengurangi
+
+280
+00:09:52,205 --> 00:09:53,701
+matriks dan juga
+
+281
+00:09:53,701 --> 00:09:55,325
+mengalikannya, dan Anda
+
+282
+00:09:55,325 --> 00:09:57,185
+juga tahu apa
+
+283
+00:09:57,185 --> 00:09:58,942
+definisi invers
+
+284
+00:09:58,942 --> 00:10:01,457
+dan transpos suatu matriks.
+
+285
+00:10:01,457 --> 00:10:02,934
+Dan ini adalah operasi utama
+
+286
+00:10:02,934 --> 00:10:05,152
+yang digunakan dalam aljabar linier
+
+287
+00:10:05,152 --> 00:10:06,172
+untuk pelajaran ini.
+
+288
+00:10:06,172 --> 00:10:09,043
+Seandainya ini pertama kalinya Anda
+melihat materi ini,
+
+289
+00:10:09,043 --> 00:10:10,798
+saya tahu materi aljabar
+
+290
+00:10:10,798 --> 00:10:13,032
+linier ini banyak, yang semuanya
+
+291
+00:10:13,032 --> 00:10:14,512
+disajikan sangat cepat dan sangat
+
+292
+00:10:14,520 --> 00:10:16,581
+banyak untuk diserap, tapi
+
+293
+00:10:16,581 --> 00:10:18,102
+Anda tidak perlu
+
+294
+00:10:18,102 --> 00:10:20,045
+mengingat semua definisi
+
+295
+00:10:20,045 --> 00:10:21,718
+yang kita baru pelajari dan jika
+
+296
+00:10:21,718 --> 00:10:23,451
+Anda mengunduh salinan
+
+297
+00:10:23,451 --> 00:10:24,520
+slide ini atau
+
+298
+00:10:24,540 --> 00:10:28,353
+catatan kuliahnya dari website pelajaran
+ini,
+
+299
+00:10:28,370 --> 00:10:29,645
+dan menggunakan slide atau
+
+300
+00:10:29,645 --> 00:10:31,478
+catatan kuliahnya sebagai referensi,
+
+301
+00:10:31,490 --> 00:10:32,886
+maka Anda dapat selalu melihat kembali
+
+302
+00:10:32,900 --> 00:10:34,178
+definisinya dan mencari tahu
+
+303
+00:10:34,178 --> 00:10:35,615
+apa definisi perkalian,
+
+304
+00:10:35,615 --> 00:10:39,111
+transpos, dan definisi lain matriks ini.
+
+305
+00:10:39,140 --> 00:10:40,697
+Dan, catatan kuliah pada website pelajaran
+ini juga
+
+306
+00:10:40,697 --> 00:10:42,421
+punya petunjuk sumber
+
+307
+00:10:42,450 --> 00:10:44,675
+aljabar linier tambahan yang
+
+308
+00:10:44,675 --> 00:10:47,445
+dapat Anda gunakan untuk belajar sendiri
+lebih lagi tentang aljabar linier.
+
+309
+00:10:48,861 --> 00:10:53,445
+Dan dengan alat baru ini,
+
+310
+00:10:53,540 --> 00:10:55,153
+pada beberapa video berikut
+
+311
+00:10:55,153 --> 00:10:57,035
+kita akan bisa membangun bentuk
+
+312
+00:10:57,035 --> 00:10:58,758
+regresi linier yang lebih manjur,
+
+313
+00:10:58,758 --> 00:10:59,854
+yang dapat menampilkan lebih banyak
+
+314
+00:10:59,854 --> 00:11:00,809
+data, lebih banyak
+
+315
+00:11:00,809 --> 00:11:02,226
+sifat, lebih banyak
+
+316
+00:11:02,226 --> 00:11:04,367
+contoh latihan. Dan selanjutnya
+
+317
+00:11:04,400 --> 00:11:06,114
+sesudah regresi linier, kita akan
+
+318
+00:11:06,114 --> 00:11:07,832
+terus menggunakan aljabar linier
+
+319
+00:11:07,832 --> 00:11:10,016
+ini untuk mendapatkan algoritma
+
+320
+00:11:10,016 --> 00:11:13,242
+belajar yang lebih kuat juga.

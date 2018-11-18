@@ -1,0 +1,935 @@
+1
+00:00:00,180 --> 00:00:01,210
+En el último vídeo hablamos
+
+2
+00:00:01,580 --> 00:00:02,950
+sobre el proceso de cómo
+
+3
+00:00:03,790 --> 00:00:05,780
+evaluar un algoritmo de detección de anomalías y
+
+4
+00:00:05,910 --> 00:00:06,980
+allí empezamos a utilizar algunos
+
+5
+00:00:07,210 --> 00:00:08,810
+datos con valores asignados, con ejemplos
+
+6
+00:00:08,880 --> 00:00:10,150
+que sabíamos que eran anómalos
+
+7
+00:00:11,010 --> 00:00:13,170
+o no anómalos, con y=1 o y=0.
+
+8
+00:00:14,690 --> 00:00:15,380
+Entonces surge la pregunta, si
+
+9
+00:00:15,690 --> 00:00:17,700
+tenemos estos datos valores asignados,
+
+10
+00:00:18,130 --> 00:00:19,620
+tenemos algunos ejemplos que son
+
+11
+00:00:19,750 --> 00:00:20,840
+conocidos por ser anomalías y algunos
+
+12
+00:00:21,020 --> 00:00:21,850
+que no se conocen como anomalías,
+
+13
+00:00:22,090 --> 00:00:23,540
+¿por qué no simplemente usamos un
+
+14
+00:00:23,640 --> 00:00:25,580
+algoritmo de aprendizaje supervisado?
+
+15
+00:00:25,720 --> 00:00:26,790
+Así que ¿por qué no lo usamos
+
+16
+00:00:27,110 --> 00:00:28,360
+la regresión logística o una nueva red
+
+17
+00:00:28,680 --> 00:00:29,770
+para tratar de
+
+18
+00:00:30,020 --> 00:00:31,260
+aprender directamente de nuestros datos con valores asignados
+
+19
+00:00:31,550 --> 00:00:34,120
+a predecir si y=uno o y=cero.
+
+20
+00:00:34,900 --> 00:00:35,900
+En este video, voy a tratar
+
+21
+00:00:36,160 --> 00:00:37,170
+de compartir con usted algunas
+
+22
+00:00:37,350 --> 00:00:38,820
+ideas y algunas pautas para saber
+
+23
+00:00:39,130 --> 00:00:40,610
+cuándo probablemente debe usar un
+
+24
+00:00:40,720 --> 00:00:42,160
+algoritmo de detección de anomalías y
+
+25
+00:00:42,440 --> 00:00:43,500
+cuándo tal vez sea más fácil considerar
+
+26
+00:00:43,920 --> 00:00:45,380
+el uso del algoritmo de aprendizaje supervisado.
+
+27
+00:00:47,160 --> 00:00:48,950
+Esta diapositiva muestra cuáles son
+
+28
+00:00:49,010 --> 00:00:50,130
+los casos bajo los cuales debe
+
+29
+00:00:50,900 --> 00:00:52,370
+usar la detección de anomalías y cuándo
+
+30
+00:00:52,930 --> 00:00:54,590
+podría ser más provechoso usar el aprendizaje supervisado.
+
+31
+00:00:56,030 --> 00:00:57,440
+Si usted tiene un problema con un
+
+32
+00:00:57,560 --> 00:00:58,820
+número muy reducido de ejemplos
+
+33
+00:00:59,720 --> 00:01:01,780
+positivos y recuerda que los ejemplos de
+
+34
+00:01:01,890 --> 00:01:03,000
+y=1, son los ejemplos
+
+35
+00:01:03,650 --> 00:01:05,520
+anómalos, entonces
+
+36
+00:01:06,170 --> 00:01:08,160
+usted podría considerar usar un recuadro de algoritmo de detección de anomalía.
+
+37
+00:01:09,260 --> 00:01:10,430
+Así que teniendo 0 a 20,
+
+38
+00:01:10,600 --> 00:01:12,740
+tal vez hasta 50 ejemplos positivos,
+
+39
+00:01:13,450 --> 00:01:15,190
+sería muy típico y por lo general,
+
+40
+00:01:15,680 --> 00:01:16,810
+tenemos un pequeño conjunto
+
+41
+00:01:17,130 --> 00:01:18,340
+de ejemplos positivos,
+
+42
+00:01:19,270 --> 00:01:20,170
+vamos a reservar los ejemplos positivos
+
+43
+00:01:20,510 --> 00:01:21,530
+sólo para los conjuntos de validación
+
+44
+00:01:21,840 --> 00:01:24,440
+cruzada y de prueba.
+
+45
+00:01:24,850 --> 00:01:26,130
+En contraste, en un típico
+
+46
+00:01:26,510 --> 00:01:28,560
+caso normal de detección de anomalía,
+
+47
+00:01:29,340 --> 00:01:30,630
+a menudo tenemos un número relativamente
+
+48
+00:01:31,010 --> 00:01:32,340
+grande de ejemplos negativos,
+
+49
+00:01:33,110 --> 00:01:34,300
+de estos ejemplos normales de
+
+50
+00:01:34,910 --> 00:01:36,710
+motores de avión normales.
+
+51
+00:01:37,720 --> 00:01:38,900
+Entonces podemos usar este número
+
+52
+00:01:39,200 --> 00:01:40,240
+grande de ejemplos negativos,
+
+53
+00:01:41,470 --> 00:01:42,510
+para ingresarlos al modelo
+
+54
+00:01:43,000 --> 00:01:44,090
+p(x).  Y así, hay
+
+55
+00:01:44,190 --> 00:01:45,930
+esta idea en muchas aplicaciones de detección de anomalías,
+
+56
+00:01:46,320 --> 00:01:48,510
+usted tiene
+
+57
+00:01:48,760 --> 00:01:50,220
+muy pocos ejemplos positivos y
+
+58
+00:01:50,320 --> 00:01:52,540
+muchos ejemplos negativos y cuando
+
+59
+00:01:52,810 --> 00:01:54,960
+realizamos el proceso de
+
+60
+00:01:55,220 --> 00:01:57,520
+estimación de p(x), de ajustar todos los parámetros Gaussianos,
+
+61
+00:01:58,650 --> 00:02:00,690
+necesitamos sólo ejemplos negativos para hacer eso.
+
+62
+00:02:00,850 --> 00:02:01,680
+Así que si usted tiene un montón de datos negativos,
+
+63
+00:02:02,140 --> 00:02:04,310
+aún podemos ajustarlos muy bien a p(x).
+
+64
+00:02:05,340 --> 00:02:07,090
+En cambio, para el aprendizaje supervisado,
+
+65
+00:02:07,760 --> 00:02:08,790
+más típicamente tendríamos
+
+66
+00:02:09,180 --> 00:02:10,810
+un número bastante grande de
+
+67
+00:02:11,050 --> 00:02:12,370
+ejemplos tanto negativos, como positivos.
+
+68
+00:02:13,920 --> 00:02:14,970
+Esta es sólo
+
+69
+00:02:15,070 --> 00:02:16,240
+una manera de mirar el problema
+
+70
+00:02:16,770 --> 00:02:17,860
+y decidir si debe usar un algoritmo
+
+71
+00:02:18,240 --> 00:02:20,180
+de detección de anomalía o un algoritmo de aprendizaje supervisado.
+
+72
+00:02:21,750 --> 00:02:24,750
+Aquí hay otra forma en la que a menudo la gente piensa sobre los algoritmos de detección de anomalías.
+
+73
+00:02:25,530 --> 00:02:26,890
+Para aplicaciones de detección de anomalías,
+
+74
+00:02:27,900 --> 00:02:28,890
+con frecuencia hay muchos
+
+75
+00:02:29,040 --> 00:02:30,600
+tipos diferentes de anormalidades,
+
+76
+00:02:31,280 --> 00:02:31,770
+entonces piense en los motores de avión.
+
+77
+00:02:32,040 --> 00:02:34,680
+Como sabe, hay muchas maneras diferentes en que los motores de avión pueden fallar
+
+78
+00:02:34,880 --> 00:02:36,980
+¿correcto? Hay tantas cosas que pueden salir mal, que podrían romper el motor de un avión.
+
+79
+00:02:38,830 --> 00:02:40,080
+Por lo que, si ese es el caso y usted tiene
+
+80
+00:02:40,120 --> 00:02:40,940
+un conjunto muy pequeño de
+
+81
+00:02:41,140 --> 00:02:43,560
+ejemplos positivos, entonces
+
+82
+00:02:44,430 --> 00:02:46,760
+puede ser difícil que
+
+83
+00:02:47,580 --> 00:02:48,380
+un algoritmo aprenda a partir de su
+
+84
+00:02:48,740 --> 00:02:50,130
+pequeño conjunto de ejemplos positivos, cómo lucen las anomalías.
+
+85
+00:02:50,180 --> 00:02:51,880
+En particular,
+
+86
+00:02:52,800 --> 00:02:54,050
+futuras anomalías pueden verse
+
+87
+00:02:54,220 --> 00:02:55,750
+muy distintas a las que ha visto hasta ahora.
+
+88
+00:02:56,050 --> 00:02:57,540
+Así que quizás en su conjunto
+
+89
+00:02:57,790 --> 00:02:59,030
+de ejemplos positivos, haya visto
+
+90
+00:02:59,190 --> 00:02:59,740
+5, 10 o 20
+
+91
+00:02:59,950 --> 00:03:02,960
+diferentes formas en que puede fallar el motor de un avión.
+
+92
+00:03:03,780 --> 00:03:05,600
+Pero tal vez mañana,
+
+93
+00:03:05,780 --> 00:03:07,110
+necesite detectar un conjunto completamente nuevo,
+
+94
+00:03:07,440 --> 00:03:08,870
+una forma de anomalía totalmente
+
+95
+00:03:09,250 --> 00:03:10,620
+nueva, una nueva forma en que el
+
+96
+00:03:10,820 --> 00:03:12,170
+motor de un avión
+
+97
+00:03:12,570 --> 00:03:13,870
+puede dañarse y que
+
+98
+00:03:14,090 --> 00:03:15,660
+nunca ha visto antes,
+
+99
+00:03:15,950 --> 00:03:17,010
+si este es el caso,
+
+100
+00:03:17,550 --> 00:03:18,460
+entonces, sería más
+
+101
+00:03:18,650 --> 00:03:20,020
+prometedor sólo modelar
+
+102
+00:03:20,480 --> 00:03:21,770
+los ejemplos negativos, con un tipo
+
+103
+00:03:21,970 --> 00:03:23,620
+de modelo Gaussiano p(x),
+
+104
+00:03:23,970 --> 00:03:24,950
+en vez de probar intensivamente
+
+105
+00:03:25,290 --> 00:03:26,250
+de modelar los ejemplos positivos
+
+106
+00:03:26,640 --> 00:03:27,850
+porque, como sabe,
+
+107
+00:03:28,040 --> 00:03:29,310
+la anomalía de mañana puede ser
+
+108
+00:03:29,420 --> 00:03:32,680
+muy distintas a las que ha visto hasta ahora.
+
+109
+00:03:33,140 --> 00:03:34,640
+En contraste, en algunos otros
+
+110
+00:03:34,790 --> 00:03:36,170
+problemas, tiene suficientes ejemplos
+
+111
+00:03:36,600 --> 00:03:37,790
+positivos para que un algoritmo
+
+112
+00:03:38,730 --> 00:03:40,850
+tenga una idea de cómo son los ejemplos positivos.
+
+113
+00:03:40,980 --> 00:03:42,860
+Y, en particular, si
+
+114
+00:03:42,960 --> 00:03:44,270
+piensa que probablemente los ejemplos positivos futuros
+
+115
+00:03:44,870 --> 00:03:45,690
+serán similares a los del
+
+116
+00:03:46,130 --> 00:03:46,980
+del conjunto de entrenamiento, entonces
+
+117
+00:03:47,670 --> 00:03:49,090
+en ese caso, podría ser más
+
+118
+00:03:49,230 --> 00:03:51,720
+razonable tener un algoritmo de aprendizaje supervisado,
+
+119
+00:03:52,550 --> 00:03:53,390
+que se está rodeado de muchos
+
+120
+00:03:53,520 --> 00:03:54,760
+ejemplos positivos, que puede mirar
+
+121
+00:03:54,930 --> 00:03:56,530
+muchos ejemplos negativos, y usar
+
+122
+00:03:56,650 --> 00:03:58,980
+esto para intentar distinguir entre ejemplos positivos y negativos.
+
+123
+00:04:01,620 --> 00:04:02,780
+Espero que esto le haya dado
+
+124
+00:04:02,870 --> 00:04:04,180
+una idea de, si tiene un problema
+
+125
+00:04:04,520 --> 00:04:05,690
+específico y tiene que pensar sobre
+
+126
+00:04:05,950 --> 00:04:07,800
+el uso del algoritmo de detección de anomalías
+
+127
+00:04:08,110 --> 00:04:09,450
+o un algoritmo de aprendizaje supervisado.
+
+128
+00:04:11,110 --> 00:04:12,340
+La diferencia clave en realidad es que
+
+129
+00:04:12,520 --> 00:04:13,870
+en la detección de anomalías,
+
+130
+00:04:14,020 --> 00:04:15,040
+después de tener un pequeño conjunto
+
+131
+00:04:15,330 --> 00:04:17,200
+de ejemplos positivos con los que
+
+132
+00:04:17,240 --> 00:04:18,640
+es imposible que un algoritmo de aprendizaje
+
+133
+00:04:19,330 --> 00:04:21,810
+comprenda mucho a partir de ellos.
+
+134
+00:04:22,430 --> 00:04:23,440
+Así que lo que podemos hacer en vez de esto
+
+135
+00:04:23,890 --> 00:04:25,050
+es tomar un gran conjunto de
+
+136
+00:04:25,230 --> 00:04:26,420
+ejemplos negativos y poder aprender
+
+137
+00:04:27,050 --> 00:04:28,070
+mucho, comprender p(x)
+
+138
+00:04:28,230 --> 00:04:29,300
+a partir de los ejemplos negativos de
+
+139
+00:04:29,500 --> 00:04:31,730
+los motores de avión normales, digamos.
+
+140
+00:04:32,190 --> 00:04:33,480
+Y reservamos el pequeño
+
+141
+00:04:33,640 --> 00:04:36,740
+número de ejemplos positivos para evaluar nuestro algoritmo,
+
+142
+00:04:37,350 --> 00:04:39,680
+para utilizarlo en los conjuntos de validación cruzada o de prueba.
+
+143
+00:04:41,210 --> 00:04:42,380
+Sólo como un comentario sobre
+
+144
+00:04:42,620 --> 00:04:43,970
+estos tipos diferentes de
+
+145
+00:04:44,090 --> 00:04:45,490
+anomalías, ya sabe, en
+
+146
+00:04:45,790 --> 00:04:46,910
+videos anteriores hablamos sobre
+
+147
+00:04:47,050 --> 00:04:49,060
+los ejemplos de SPAM de correo electrónico.
+
+148
+00:04:50,020 --> 00:04:51,510
+En esos ejemplos, hay
+
+149
+00:04:51,910 --> 00:04:53,450
+en realidad muchos tipos diferentes de correo no deseado.
+
+150
+00:04:53,930 --> 00:04:54,750
+El SPAM de correo electrónico está intentando
+
+151
+00:04:55,030 --> 00:04:57,650
+venderle cosas por correo, tratando de robar sus contraseñas,
+
+152
+00:04:58,470 --> 00:05:01,060
+esto se denomina pesca de correos y hay muchos tipos diferentes de correos electrónicos SPAM.
+
+153
+00:05:01,820 --> 00:05:03,490
+Pero para el problema del SPAM, por lo general
+
+154
+00:05:03,930 --> 00:05:05,660
+tenemos bastantes ejemplos que ver,
+
+155
+00:05:06,000 --> 00:05:07,400
+ya sabe, la mayoría
+
+156
+00:05:07,490 --> 00:05:08,650
+de estos diferentes tipos de correos
+
+157
+00:05:08,890 --> 00:05:10,200
+SPAM, porque tenemos un
+
+158
+00:05:10,410 --> 00:05:11,650
+gran conjunto de ejemplos
+
+159
+00:05:11,860 --> 00:05:13,050
+de SPAM, y por eso con frecuencia
+
+160
+00:05:13,330 --> 00:05:14,800
+pensamos en el SPAM
+
+161
+00:05:14,980 --> 00:05:16,510
+como un entorno de aprendizaje supervisado, aún cuando
+
+162
+00:05:16,710 --> 00:05:17,390
+puede haber muchos
+
+163
+00:05:17,530 --> 00:05:19,230
+tipos diferentes de SPAM.
+
+164
+00:05:21,890 --> 00:05:23,170
+Si miramos algunas aplicaciones
+
+165
+00:05:23,310 --> 00:05:24,940
+de detección de anomalías
+
+166
+00:05:25,600 --> 00:05:27,290
+versus aprendizaje supervisado, encontraremos
+
+167
+00:05:27,480 --> 00:05:29,280
+que, en la detección de fraudes, si
+
+168
+00:05:29,410 --> 00:05:31,040
+tiene muchos tipos diferentes de
+
+169
+00:05:31,450 --> 00:05:32,510
+de formas en que la gente
+
+170
+00:05:32,680 --> 00:05:34,120
+trata de cometer un fraude y un
+
+171
+00:05:34,170 --> 00:05:35,730
+conjunto de entrenamiento muy pequeño, un número reducido
+
+172
+00:05:35,880 --> 00:05:37,500
+de usuarios fraudulentos
+
+173
+00:05:37,920 --> 00:05:40,300
+en su sitio web, entonces usaría un algoritmo de detección de anomalías.
+
+174
+00:05:41,310 --> 00:05:42,520
+Debo decir que si usted tiene,
+
+175
+00:05:42,650 --> 00:05:44,560
+si es un mayorista en línea
+
+176
+00:05:44,700 --> 00:05:46,810
+y en realidad
+
+177
+00:05:46,930 --> 00:05:48,170
+ha tenido un gran número de
+
+178
+00:05:48,330 --> 00:05:49,230
+personas que intenta cometer
+
+179
+00:05:49,390 --> 00:05:50,420
+fraude en su sitio web, en realidad
+
+180
+00:05:50,480 --> 00:05:51,340
+ya tiene un gran número de
+
+181
+00:05:51,410 --> 00:05:53,760
+ejemplos donde y=1, entonces,
+
+182
+00:05:53,970 --> 00:05:55,410
+a veces la detección de fraude
+
+183
+00:05:55,700 --> 00:05:58,030
+en realidad podría cambiar a la columna de aprendizaje supervisado.
+
+184
+00:05:58,850 --> 00:06:01,000
+Pero si no ha visto
+
+185
+00:06:01,210 --> 00:06:02,440
+muchos ejemplos
+
+186
+00:06:02,940 --> 00:06:04,480
+de usuarios que hacen
+
+187
+00:06:04,690 --> 00:06:05,720
+cosas extrañas en su sitio de Internet
+
+188
+00:06:05,920 --> 00:06:07,970
+entonces, con más frecuencia, la detección de fraudes
+
+189
+00:06:08,510 --> 00:06:09,730
+en realidad se trata como un
+
+190
+00:06:09,990 --> 00:06:12,060
+un algoritmo de detección de anomalías, en vez de un algoritmo de aprendizaje supervisado.
+
+191
+00:06:14,140 --> 00:06:15,160
+Para mencionar otros ejemplos, hemos hablado
+
+192
+00:06:15,310 --> 00:06:16,810
+ya de la fabricación, espero que vea más
+
+193
+00:06:16,950 --> 00:06:18,230
+ejemplos normales y
+
+194
+00:06:19,110 --> 00:06:19,840
+no tantas anomalías.
+
+195
+00:06:20,520 --> 00:06:21,560
+D nuevo, para algunos procesos de fabricación,
+
+196
+00:06:22,180 --> 00:06:23,900
+si está fabricando volúmenes
+
+197
+00:06:23,990 --> 00:06:25,690
+muy grandes y
+
+198
+00:06:25,860 --> 00:06:26,780
+ha visto muchos
+
+199
+00:06:27,230 --> 00:06:29,220
+malos ejemplos, tal vez la fabricación
+
+200
+00:06:29,790 --> 00:06:31,690
+también podría cambiar a la columna de aprendizaje supervisado.
+
+201
+00:06:32,630 --> 00:06:33,680
+Pero si no ha visto muchos
+
+202
+00:06:33,950 --> 00:06:35,640
+malos ejemplos de
+
+203
+00:06:35,830 --> 00:06:38,140
+los productos viejos, entonces haré esta detección de anomalías.
+
+204
+00:06:39,180 --> 00:06:40,290
+En el monitoreo de máquinas en el
+
+205
+00:06:40,400 --> 00:06:42,450
+centro de datos, de nuevo podemos aplicar
+
+206
+00:06:42,880 --> 00:06:44,050
+tipos de argumentos similares.
+
+207
+00:06:45,280 --> 00:06:46,650
+Mientras que, la clasificación de correo SPAM , la
+
+208
+00:06:47,070 --> 00:06:48,950
+predicción meteorológica y la clasificación
+
+209
+00:06:49,510 --> 00:06:50,580
+de canceres, si tiene
+
+210
+00:06:51,200 --> 00:06:52,850
+números iguales de ejemplos positivos
+
+211
+00:06:52,870 --> 00:06:53,920
+y negativos, muchos de ustedes
+
+212
+00:06:54,010 --> 00:06:55,550
+tienen muchos ejemplos de sus casos
+
+213
+00:06:55,670 --> 00:06:56,780
+positivos y negativos,
+
+214
+00:06:57,030 --> 00:06:57,870
+ejemplos, entonces, tendemos a
+
+215
+00:06:58,080 --> 00:07:00,630
+tratar todos estos problemas como aprendizaje supervisado.
+
+216
+00:07:03,400 --> 00:07:04,500
+Ojalá esto le de una
+
+217
+00:07:04,580 --> 00:07:05,600
+idea de cuáles son las propiedades de
+
+218
+00:07:05,770 --> 00:07:07,050
+un problema de aprendizaje
+
+219
+00:07:07,350 --> 00:07:08,980
+que podría causar que
+
+220
+00:07:09,420 --> 00:07:10,410
+usted marcara esto como un problema
+
+221
+00:07:10,810 --> 00:07:12,660
+de detección de anomalías versus un problema
+
+222
+00:07:14,250 --> 00:07:14,250
+de aprendizaje supervisado.
+
+223
+00:07:14,690 --> 00:07:16,020
+Para muchos de los problemas enfrentados
+
+224
+00:07:16,260 --> 00:07:17,820
+enfrentado por varias empresas de tecnología
+
+225
+00:07:18,200 --> 00:07:19,780
+y de ese tipo, en realidad estamos
+
+226
+00:07:19,860 --> 00:07:20,900
+en estos contextos, donde tenemos
+
+227
+00:07:21,510 --> 00:07:23,320
+muy pocos o a veces ningún
+
+228
+00:07:24,060 --> 00:07:25,090
+ejemplo de entrenamiento positivo,
+
+229
+00:07:25,400 --> 00:07:26,830
+tal vez hay algunos otros
+
+230
+00:07:26,980 --> 00:07:28,410
+tipos diferentes de anormalidades que nunca
+
+231
+00:07:28,530 --> 00:07:29,810
+hayamos visto antes y para esos
+
+232
+00:07:29,960 --> 00:07:31,900
+tipos de problemas, muy a menudo,
+
+233
+00:07:32,440 --> 00:07:33,580
+que el algoritmo que usamos es
+
+234
+00:07:33,790 --> 00:07:35,170
+un algoritmo de detección de anomalías.

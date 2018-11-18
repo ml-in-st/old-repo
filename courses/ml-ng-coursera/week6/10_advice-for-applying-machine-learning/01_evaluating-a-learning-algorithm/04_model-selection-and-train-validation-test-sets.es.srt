@@ -1,0 +1,728 @@
+1
+00:00:00,160 --> 00:00:04,570
+Imaginemos que te gustaría decidir
+
+2
+00:00:04,570 --> 00:00:08,750
+qué grado de polinomio ajustar
+
+3
+00:00:08,750 --> 00:00:13,160
+a un conjunto de datos,
+
+4
+00:00:13,160 --> 00:00:14,550
+o qué funciones incluir para utilizar tu algoritmo de aprendizaje.
+
+5
+00:00:14,550 --> 00:00:15,830
+O supongamos que quieres elegir
+
+6
+00:00:15,830 --> 00:00:17,510
+el parámetro de regularización «lambda» para el algoritmo de aprendizaje.
+
+7
+00:00:17,510 --> 00:00:22,411
+¿Cómo lo harías?
+
+8
+00:00:22,411 --> 00:00:27,031
+Estos se llaman problemas de selección de modelo.
+
+9
+00:00:27,031 --> 00:00:31,020
+En nuestra discusión de
+
+10
+00:00:31,020 --> 00:00:33,860
+cómo resolverlos, hablaremos
+
+11
+00:00:33,860 --> 00:00:36,890
+no sólo sobre cómo
+
+12
+00:00:36,890 --> 00:00:40,350
+dividir los datos en los conjuntos de
+
+13
+00:00:40,350 --> 00:00:44,380
+prueba y aprendizaje, sino también sobre cómo
+
+14
+00:00:44,380 --> 00:00:47,490
+dividir los datos en lo
+
+15
+00:00:47,490 --> 00:00:52,290
+que llamaremos
+
+16
+00:00:52,290 --> 00:00:56,000
+conjuntos de validación y de prueba.
+
+17
+00:00:56,000 --> 00:00:59,150
+En este video veremos qué son
+
+18
+00:00:59,150 --> 00:01:02,810
+estos conjuntos y cómo
+
+19
+00:01:02,810 --> 00:01:07,210
+podemos utilizarlos para seleccionar un modelo.
+
+20
+00:01:07,210 --> 00:01:11,630
+Ya hemos visto en muchas
+
+21
+00:01:11,630 --> 00:01:15,970
+ocasiones el problema del sobreajuste,
+
+22
+00:01:15,970 --> 00:01:18,730
+que nos dice que no sólo porque el
+
+23
+00:01:18,730 --> 00:01:21,290
+algoritmo de aprendizaje se ajusta bien un
+
+24
+00:01:21,290 --> 00:01:23,720
+conjunto de entrenamiento, la hipótesis será buena.
+
+25
+00:01:23,720 --> 00:01:27,900
+De manera más general, esta es
+
+26
+00:01:27,900 --> 00:01:29,600
+la razón por la cual el error del conjunto de entrenamiento no
+
+27
+00:01:29,600 --> 00:01:33,380
+es una buena variable predictiva para saber
+
+28
+00:01:33,380 --> 00:01:38,330
+qué tan efectiva será la hipótesis con nuevos ejemplos.
+
+29
+00:01:38,330 --> 00:01:41,170
+Específicamente, si aplicas un
+
+30
+00:01:41,170 --> 00:01:45,100
+conjunto de parámetros, «theta» 0,
+
+31
+00:01:45,100 --> 00:01:48,800
+«theta» 1, «theta» 2,
+
+32
+00:01:48,800 --> 00:01:50,740
+y sucesivamente, a tu
+
+33
+00:01:51,940 --> 00:01:55,810
+conjunto de entrenamiento, el hecho de
+
+34
+00:01:55,810 --> 00:02:01,210
+que la hipótesis sea efectiva
+
+35
+00:02:01,210 --> 00:02:02,310
+en el conjunto de entrenamiento no
+
+36
+00:02:02,310 --> 00:02:06,610
+significa mucho en cuanto a la
+
+37
+00:02:06,610 --> 00:02:10,680
+predicción de qué tan bien
+
+38
+00:02:10,680 --> 00:02:14,940
+se generalizará la hipótesis
+
+39
+00:02:14,940 --> 00:02:19,760
+con ejemplos que no se han visto antes
+
+40
+00:02:19,760 --> 00:02:24,830
+en el conjunto de entrenamiento.
+
+41
+00:02:24,830 --> 00:02:28,880
+El principio más general es que,
+
+42
+00:02:28,880 --> 00:02:33,110
+una vez que los parámetros fueron ajustados
+
+43
+00:02:33,110 --> 00:02:37,920
+a un conjunto de datos, ya sea el
+
+44
+00:02:37,920 --> 00:02:42,570
+conjunto de entrenamiento o cualquier otro,
+
+45
+00:02:42,570 --> 00:02:44,130
+el error de la hipótesis,
+
+46
+00:02:44,130 --> 00:02:49,790
+como se midió en el mismo
+
+47
+00:02:49,790 --> 00:02:53,260
+conjunto de datos, tal como el
+
+48
+00:02:53,260 --> 00:02:58,600
+error de entrenamiento, tal vez no resulta
+
+49
+00:02:58,600 --> 00:03:01,290
+en un estimado adecuado
+
+50
+00:03:01,290 --> 00:03:03,040
+del error de generalización real; es decir,
+
+51
+00:03:03,040 --> 00:03:06,790
+qué tan bien se generalizará la
+
+52
+00:03:06,790 --> 00:03:11,550
+hipótesis con los nuevos ejemplos.
+
+53
+00:03:11,550 --> 00:03:16,170
+Ahora consideremos el problema de selección de modelo.
+
+54
+00:03:16,170 --> 00:03:19,130
+Digamos que intentas elegir qué
+
+55
+00:03:19,130 --> 00:03:23,940
+grado de polinomio ajustar a los datos.
+
+56
+00:03:23,940 --> 00:03:30,500
+¿Debes elegir una función lineal, una
+
+57
+00:03:30,500 --> 00:03:36,200
+función cuadrática o una cúbica?
+
+58
+00:03:36,200 --> 00:03:38,800
+¿Qué función, hasta un polinomio del 10 orden, debes elegir?
+
+59
+00:03:38,800 --> 00:03:46,330
+Entonces, hay un parámetro adicional en
+
+60
+00:03:47,410 --> 00:03:51,930
+este algoritmo, que denotaré con
+
+61
+00:03:53,050 --> 00:03:57,546
+una “d”, que indica
+
+62
+00:03:57,546 --> 00:04:00,270
+qué grado de polinomio quieres utilizar.
+
+63
+00:04:00,270 --> 00:04:05,010
+De manera que
+
+64
+00:04:05,010 --> 00:04:09,160
+además de los
+
+65
+00:04:09,160 --> 00:04:09,930
+parámetros theta,
+
+66
+00:04:09,930 --> 00:04:14,480
+hay un parámetro más (d)
+
+67
+00:04:14,480 --> 00:04:16,940
+que intentamos determinar utilizando el conjunto de datos.
+
+68
+00:04:16,940 --> 00:04:21,060
+La primera opción es “d”
+
+69
+00:04:21,060 --> 00:04:26,080
+igual a 1, que corresponde a la función
+
+70
+00:04:27,190 --> 00:04:30,560
+lineal. Podemos elegir
+
+71
+00:04:30,560 --> 00:04:34,710
+“d” igual a 2, “d” igual a 3,
+
+72
+00:04:34,710 --> 00:04:39,450
+y, hasta “d”
+
+73
+00:04:39,450 --> 00:04:42,360
+igual a 10. Queremos, entonces,
+
+74
+00:04:42,360 --> 00:04:48,140
+ajustar este parámetro adicional,
+
+75
+00:04:48,140 --> 00:04:50,870
+que denotaremos como parámetro “d”.
+
+76
+00:04:50,870 --> 00:04:54,720
+Y digamos que quieres
+
+77
+00:04:54,720 --> 00:05:00,310
+elegir un
+
+78
+00:05:00,310 --> 00:05:06,340
+modelo, es decir, elegir
+
+79
+00:05:06,340 --> 00:05:11,160
+un grado de polinomio o uno de estos
+
+80
+00:05:11,160 --> 00:05:15,640
+diez modelos, y ajustarlo
+
+81
+00:05:15,640 --> 00:05:21,410
+para obtener un estimado de
+
+82
+00:05:21,410 --> 00:05:25,900
+qué tan bien se generalizará la
+
+83
+00:05:25,900 --> 00:05:29,430
+hipótesis ajustada a
+
+84
+00:05:29,430 --> 00:05:33,650
+nuevos ejemplos.
+Aquí hay algo que podrías
+
+85
+00:05:33,650 --> 00:05:36,140
+hacer: podrías
+
+86
+00:05:36,140 --> 00:05:41,050
+tomar tu primer modelo y
+
+87
+00:05:41,050 --> 00:05:45,210
+minimizar el error de entrenamiento
+
+88
+00:05:45,210 --> 00:05:50,300
+para que arroje el
+
+89
+00:05:50,300 --> 00:05:53,500
+parámetro vector «theta».
+
+90
+00:05:53,500 --> 00:05:56,770
+Después puedes tomar tu segundo modelo,
+
+91
+00:05:56,770 --> 00:05:59,110
+la función cuadrática, y
+
+92
+00:05:59,110 --> 00:06:03,200
+ajustarla al conjunto de entrenamiento.
+
+93
+00:06:03,200 --> 00:06:07,460
+Esto te dará otros parámetros vector «theta».
+
+94
+00:06:07,460 --> 00:06:13,060
+Para distinguir entre los
+
+95
+00:06:13,060 --> 00:06:16,770
+diferentes parámetros de vector, utilizaré
+
+96
+00:06:16,770 --> 00:06:22,010
+el superíndice 1 y el superíndice 2
+
+97
+00:06:22,010 --> 00:06:26,670
+donde «theta» superíndice
+
+98
+00:06:26,670 --> 00:06:30,630
+1 se refiere al parámetro que
+
+99
+00:06:30,630 --> 00:06:35,550
+obtendré ajustando
+
+100
+00:06:35,550 --> 00:06:40,200
+este modelo a mis datos de entrenamiento y
+
+101
+00:06:40,200 --> 00:06:43,930
+«theta» superíndice 2 se refiere
+
+102
+00:06:43,930 --> 00:06:49,130
+al parámetro que obtendré al ajustar la
+
+103
+00:06:50,130 --> 00:06:53,300
+función cuadrática a mis datos de entrenamiento.
+
+104
+00:06:54,780 --> 00:07:00,056
+Cuando ajuste el modelo cúbico obtendré el parámetro «theta» 3, y así
+
+105
+00:07:00,056 --> 00:07:04,711
+sucesivamente hasta «theta» 10.
+
+106
+00:07:04,711 --> 00:07:08,860
+Otra cosa que podemos
+
+107
+00:07:08,860 --> 00:07:13,520
+hacer es tomar estos
+
+108
+00:07:13,520 --> 00:07:18,060
+parámetros y buscar el error del conjunto de prueba.
+
+109
+00:07:18,060 --> 00:07:21,930
+Puedo calcular en mi
+
+110
+00:07:21,930 --> 00:07:24,990
+conjunto de prueba “j prueba” de
+
+111
+00:07:24,990 --> 00:07:29,290
+«theta» 1, “j prueba” de
+
+112
+00:07:29,290 --> 00:07:33,600
+«theta» 2,
+
+113
+00:07:33,600 --> 00:07:38,922
+“j prueba” de «theta» 3,
+
+114
+00:07:38,922 --> 00:07:44,860
+y así sucesivamente.
+
+115
+00:07:44,860 --> 00:07:47,290
+Luego tomaré
+
+116
+00:07:47,290 --> 00:07:50,860
+cada una de mis hipótesis
+
+117
+00:07:52,040 --> 00:07:59,110
+con sus parámetros correspondientes y mediré
+
+118
+00:07:59,110 --> 00:08:02,720
+su desempeño en el conjunto de prueba.
+
+119
+00:08:02,720 --> 00:08:07,290
+Para seleccionar uno de estos modelos,
+
+120
+00:08:07,290 --> 00:08:11,420
+una de las cosas que
+
+121
+00:08:11,420 --> 00:08:14,570
+puedo hacer es
+
+122
+00:08:14,570 --> 00:08:16,740
+ver que modelo
+
+123
+00:08:16,740 --> 00:08:21,420
+tiene el error del conjunto de prueba más
+
+124
+00:08:21,420 --> 00:08:23,790
+bajo. Digamos,
+
+125
+00:08:23,790 --> 00:08:26,820
+que para este ejemplo
+
+126
+00:08:26,820 --> 00:08:29,030
+elegimos el polinomio de quinto orden.
+
+127
+00:08:29,030 --> 00:08:32,260
+Esto parece ser razonable hasta el momento,
+
+128
+00:08:32,260 --> 00:08:37,110
+pero qué pasa si quiero
+
+129
+00:08:37,110 --> 00:08:41,470
+tomar mi hipótesis ajustada; es decir, el
+
+130
+00:08:41,470 --> 00:08:45,970
+modelo del quinto orden,
+
+131
+00:08:45,970 --> 00:08:48,450
+y preguntarme qué tan bien se generaliza este modelo.
+
+132
+00:08:49,530 --> 00:08:53,410
+Para responder esto
+
+133
+00:08:53,410 --> 00:08:58,709
+puedo analizar qué tan bien
+
+134
+00:08:58,709 --> 00:09:04,580
+se desempeñó la hipótesis del polinomio de quinto orden en mi conjunto de prueba.
+
+135
+00:09:04,580 --> 00:09:10,570
+El problema de esto es que
+
+136
+00:09:10,570 --> 00:09:13,580
+no será un estimado
+
+137
+00:09:13,580 --> 00:09:17,520
+justo de qué tan
+
+138
+00:09:17,520 --> 00:09:20,300
+bien se generaliza mi hipótesis.
+
+139
+00:09:20,300 --> 00:09:23,560
+La razón es que, lo que hemos hecho
+
+140
+00:09:23,560 --> 00:09:25,660
+es ajustar
+
+141
+00:09:25,660 --> 00:09:27,927
+este parámetro adicional “d”, que
+
+142
+00:09:27,927 --> 00:09:31,601
+es el grado del polinomio,
+
+143
+00:09:31,601 --> 00:09:35,470
+utilizando el
+
+144
+00:09:35,470 --> 00:09:40,440
+conjunto de prueba “d”.
+
+145
+00:09:40,440 --> 00:09:43,130
+En otras palabras, elegimos el valor
+
+146
+00:09:43,130 --> 00:09:46,600
+de d que nos dio
+
+147
+00:09:46,600 --> 00:09:52,180
+el mejor desempeño posible
+
+148
+00:09:53,250 --> 00:09:57,180
+en el conjunto de prueba.
+
+149
+00:09:57,180 --> 00:10:00,180
+El desempeño de mi
+
+150
+00:10:00,180 --> 00:10:06,550
+parámetro vector «theta» cinco
+
+151
+00:10:06,550 --> 00:10:11,070
+del conjunto de prueba probablemente dará
+
+152
+00:10:11,070 --> 00:10:15,250
+un estimado muy optimista
+
+153
+00:10:15,250 --> 00:10:17,200
+del error de generalización.
+
+154
+00:10:17,200 --> 00:10:20,270
+¿Sí? Debido a que he ajustado
+
+155
+00:10:20,270 --> 00:10:25,040
+este parámetro “d” a mi
+
+156
+00:10:25,040 --> 00:10:27,290
+conjunto de prueba,
+
+157
+00:10:27,290 --> 00:10:32,320
+ya no es justo
+
+158
+00:10:32,320 --> 00:10:39,260
+evaluar mi hipótesis en este conjunto de prueba.
+
+159
+00:10:39,260 --> 00:10:44,325
+Esto es porque he ajustado mis parámetros al conjunto de prueba y
+
+160
+00:10:44,325 --> 00:10:47,680
+he elegido el grado “d” del polinomio
+
+161
+00:10:47,680 --> 00:10:51,140
+utilizando el conjunto de prueba. De modo
+
+162
+00:10:51,140 --> 00:10:54,310
+nuestra hipótesis, probablemente,
+
+163
+00:10:54,310 --> 00:10:57,310
+será más efectiva
+
+164
+00:10:57,310 --> 00:10:58,570
+en este conjunto de prueba que
+
+165
+00:10:59,630 --> 00:11:02,860
+en nuevos ejemplos
+
+166
+00:11:02,860 --> 00:11:06,210
+que no se han visto antes. Es por esto que estamos aquí.
+
+167
+00:11:06,210 --> 00:11:10,470
+Solo por recapitular,
+
+168
+00:11:10,470 --> 00:11:15,360
+en la diapositiva anterior
+
+169
+00:11:15,360 --> 00:11:19,590
+vimos que si ajustamos
+
+170
+00:11:19,590 --> 00:11:24,120
+un grupo de parámetros, digamos «theta»
+
+171
+00:11:24,120 --> 00:11:27,840
+0, «theta» 1, etc., a
+
+172
+00:11:27,840 --> 00:11:31,160
+un conjunto de entrenamiento, entonces
+
+173
+00:11:31,160 --> 00:11:35,550
+el desempeño del modelo ajustado en
+
+174
+00:11:35,550 --> 00:11:38,090
+el conjunto de entrenamiento no
+
+175
+00:11:38,090 --> 00:11:42,360
+predirá qué tan bien
+
+176
+00:11:42,360 --> 00:11:45,760
+se generaliza la hipótesis en
+
+177
+00:11:45,760 --> 00:11:46,728
+nuevos ejemplos, porque estos
+
+178
+00:11:46,728 --> 00:11:50,620
+parámetros se ajustarían al conjunto de entrenamiento.
+
+179
+00:11:50,620 --> 00:11:54,320
+Y probablemente se desempeñarán bien en
+
+180
+00:11:54,320 --> 00:11:57,430
+este conjunto de entrenamiento, aún si
+
+181
+00:11:57,430 --> 00:12:00,020
+los parámetros no se desempeñan bien en otros ejemplos.
+
+182
+00:12:00,020 --> 00:12:03,090
+Y en el procedimiento que acabo de describir

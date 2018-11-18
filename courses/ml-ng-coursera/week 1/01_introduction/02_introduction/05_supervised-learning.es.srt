@@ -1,0 +1,724 @@
+1
+00:00:00,000 --> 00:00:04,620
+En este video definiré cuál
+es posible que sea el problema más común
+
+2
+00:00:04,620 --> 00:00:08,910
+del aprendizaje automático, que es el 
+aprendizaje supervisado. Después definiré de manera más formal
+
+3
+00:00:08,910 --> 00:00:13,255
+el aprendizaje supervisado; quizá
+es mejor explicar o iniciar con un ejemplo
+
+4
+00:00:13,255 --> 00:00:17,820
+de qué es y después veremos la definición
+formal. Supongamos que quieres
+
+5
+00:00:17,820 --> 00:00:23,072
+predecir precios de casas. Hace tiempo, un
+estudiante recolectó conjuntos de datos
+
+6
+00:00:23,072 --> 00:00:28,745
+del Instituto de Portland, Oregón. Y digamos
+que trazas un conjunto de datos y se ve
+
+7
+00:00:28,745 --> 00:00:34,347
+así. Tenemos en el eje horizontal,
+el tamaño de distintas casas en pies cuadrados,
+
+8
+00:00:34,347 --> 00:00:39,879
+y en el eje vertical, el precio de
+distintas casas en miles de dólares.
+
+9
+00:00:39,879 --> 00:00:45,168
+Entonces, con estos datos, digamos que tienes un
+amigo que tiene una casa de 750
+
+10
+00:00:45,168 --> 00:00:50,708
+pies cuadrados y desea venderla
+y quiere saber cuánto dinero puede
+
+11
+00:00:50,708 --> 00:00:56,116
+obtener por ella. Entonces, ¿cómo puede ayudarte
+un algoritmo de aprendizaje? Algo que podría hacer
+
+12
+00:00:56,116 --> 00:01:01,524
+el algoritmo de aprendizaje es trazar
+una línea recta a través de los datos o insertar
+
+13
+00:01:01,524 --> 00:01:07,111
+una línea recta en los datos y, con base
+en eso, resulta que tal vez la casa pueda venderse
+
+14
+00:01:07,111 --> 00:01:13,239
+en aproximadamente $150,000. Pero tal vez este
+no es el único algoritmo de aprendizaje que puedes
+
+15
+00:01:13,239 --> 00:01:18,536
+usar. Puede haber uno mejor. Por
+ejemplo, en lugar de trazar una línea
+
+16
+00:01:18,536 --> 00:01:23,620
+recta en los datos, podríamos decidir que
+es mejor insertar una función
+
+17
+00:01:23,620 --> 00:01:29,110
+cuadrática o un polinomio de segundo grado
+a estos datos. Y si haces eso y haces una
+
+18
+00:01:29,110 --> 00:01:34,667
+predicción aquí, entonces resulta que
+tal vez puede vender la casa en casi
+
+19
+00:01:34,667 --> 00:01:39,184
+$200,000. Algo de lo que hablaré
+más adelante es de cómo elegir y
+
+20
+00:01:39,184 --> 00:01:43,792
+decidir si quieres insertar una línea recta
+a los datos o si quieres insertar la
+
+21
+00:01:43,792 --> 00:01:48,631
+función cuadrática a los datos y no hay
+una selección justa de cualquier opción que le de
+
+22
+00:01:48,631 --> 00:01:53,182
+a tu amigo una mejor casa para vender. Pero cualquiera
+de estos sería un buen ejemplo de
+
+23
+00:01:53,182 --> 00:01:57,834
+un algoritmo de aprendizaje. Así que este es un ejemplo
+de algoritmo de aprendizaje supervisado. Y
+
+24
+00:01:57,834 --> 00:02:03,736
+el término aprendizaje supervisado se refiere al
+hecho de que le dimos al algoritmo un conjunto de datos
+
+25
+00:02:03,736 --> 00:02:09,089
+donde se daban las “respuestas
+correctas”. Es decir, le dimos un conjunto de datos
+
+26
+00:02:09,089 --> 00:02:14,580
+de casas en los que para cada ejemplo del
+conjunto de datos, se dijo cuál era el
+
+27
+00:02:14,580 --> 00:02:20,002
+precio correcto, el precio real al que
+se vendió esa casa y la tarea del
+
+28
+00:02:20,002 --> 00:02:25,423
+algoritmo sólo fue generar más
+«respuestas correctas» como para esta
+
+29
+00:02:25,423 --> 00:02:30,579
+casa nueva que tu amigo está
+queriendo vender. Para definir un poco más
+
+30
+00:02:30,579 --> 00:02:35,257
+la terminología, esto también se denomina
+un problema de regresión y con esto
+
+31
+00:02:35,257 --> 00:02:40,467
+quiero decir que queremos predecir un
+resultado de valor continuo. Es decir, el precio.
+
+32
+00:02:40,467 --> 00:02:44,720
+Así que, técnicamente, creo que puede
+redondearse el precio al centavo más cercano. Tal vez
+
+33
+00:02:44,720 --> 00:02:49,246
+los precios en realidad son valores discretos, pero
+en general pensamos en el precio de una casa
+
+34
+00:02:49,246 --> 00:02:53,608
+como un número real, un valor escalar,
+un número de valor continuo, y el término
+
+35
+00:02:53,608 --> 00:02:58,080
+regresión se refiere al hecho de que
+tratamos de predecir el tipo de atributo valuado
+
+36
+00:02:58,080 --> 00:03:02,060
+de forma continua. Este es otro
+ejemplo de aprendizaje supervisado. Algunos amigos
+
+37
+00:03:02,060 --> 00:03:06,427
+y yo estábamos trabajando en esto
+antes. Digamos que quieres revisar
+
+38
+00:03:06,427 --> 00:03:11,675
+expediente médicos y tratar de predecir
+cáncer de mama como maligno o benigno. Si
+
+39
+00:03:11,675 --> 00:03:16,856
+alguien descubre un tumor mamario, un bulto
+en su seno... Un tumor maligno es un
+
+40
+00:03:16,856 --> 00:03:22,300
+tumor dañino y peligroso y un
+tumor benigno es un tumor inofensivo.
+
+41
+00:03:22,300 --> 00:03:27,876
+Obviamente, la gente se preocupa mucho por esto.
+Veamos un conjunto de datos recolectados y supongamos
+
+42
+00:03:27,876 --> 00:03:33,164
+que en estos datos, en el eje
+horizontal tienes el tamaño del tumor y
+
+43
+00:03:33,164 --> 00:03:39,317
+en el vertical trazaré uno
+o cero, sí o no, si son o no
+
+44
+00:03:39,317 --> 00:03:45,184
+ejemplos de tumores que ya vimos que son
+malignos, que es el uno, o el cero si no es maligno
+
+45
+00:03:45,184 --> 00:03:50,392
+o es benigno. Supongamos que nuestro conjunto de datos
+se ve así donde vemos un tumor de este
+
+46
+00:03:50,392 --> 00:03:56,283
+tamaño que resultó ser benigno. Uno de
+este tamaño, uno de este tamaño. Y así sucesivamente.
+
+47
+00:03:56,283 --> 00:04:02,227
+Por desgracia, también vemos unos
+tumores malignos, uno de este tamaño y
+
+48
+00:04:02,227 --> 00:04:08,572
+uno de este, uno de este tamaño... Y así sucesivamente. Así que en este
+ejemplo... Tengo cinco ejemplos de tumores
+
+49
+00:04:08,572 --> 00:04:15,159
+benignos que se muestran abajo y cinco
+de tumores malignos que se muestran con un
+
+50
+00:04:15,159 --> 00:04:21,504
+valor del eje vertical de uno. Y digamos que tenemos
+una amiga que lamentablemente tiene un
+
+51
+00:04:21,504 --> 00:04:28,097
+tumor mamario y supongamos que su tamaño
+es de aproximadamente este valor. La
+
+52
+00:04:28,097 --> 00:04:32,930
+pregunta de aprendizaje automático es:
+¿puedes calcular cuál es la probabilidad,
+
+53
+00:04:32,930 --> 00:04:37,819
+de que un tumor sea maligno
+versus benigno? Para mostrar un poco
+
+54
+00:04:37,819 --> 00:04:42,719
+de terminología, este es un ejemplo de un
+problema de clasificación. El término
+
+55
+00:04:42,719 --> 00:04:47,342
+«clasificación» se refiere al hecho de que
+intentamos predecir un resultado
+
+56
+00:04:47,342 --> 00:04:52,321
+de valor discreto: cero o uno, maligno o
+benigno. Y resulta que algunas veces
+
+57
+00:04:52,321 --> 00:04:58,331
+en problemas de clasificación, puedes
+tener más de dos valores para dos
+
+58
+00:04:58,331 --> 00:05:03,852
+posibles valores para el resultado. Como
+ejemplo concreto tal vez haya tres
+
+59
+00:05:03,852 --> 00:05:09,947
+tipos de cáncer de mama, por lo que puedes
+intentar predecir el valor discreto de cero,
+
+60
+00:05:09,947 --> 00:05:15,138
+uno, dos o tres, en el que cero es benigno.
+Tumor benigno, es decir sin cáncer. Y uno puede
+
+61
+00:05:15,138 --> 00:05:19,836
+significar un tipo de cáncer, si tienes
+tres tipos de cáncer, lo que sea que signifique
+
+62
+00:05:19,836 --> 00:05:24,654
+el tipo uno. Y dos puede significar un segundo tipo de
+cáncer y tres pude ser un tercer tipo de
+
+63
+00:05:24,654 --> 00:05:29,111
+cáncer. Pero esto también sería un
+problema de clasificación, debido al otro
+
+64
+00:05:29,111 --> 00:05:33,929
+conjunto de resultados del valor discreto que
+corresponde a: sin cáncer o cáncer tipo
+
+65
+00:05:33,929 --> 00:05:39,094
+uno, tipo dos, o cáncer tipo
+tres. Existe otra forma de trazar estos datos
+
+66
+00:05:39,094 --> 00:05:44,413
+en los problemas de clasificación. Déjame mostrarte
+lo qué quiero decir. Utilizaré un conjunto de símbolos
+
+67
+00:05:44,413 --> 00:05:49,206
+ligeramente diferente para trazar estos
+datos. Así que si el tamaño del tumor será
+
+68
+00:05:49,206 --> 00:05:54,303
+el atributo que usaré para predecir
+si es maligno o benigno, también puedo dibujar
+
+69
+00:05:54,303 --> 00:05:58,975
+mis datos así. Usaré distintos
+símbolos para denotar mis ejemplos
+
+70
+00:05:58,975 --> 00:06:03,707
+de maligno y benigno, o negativo y
+positivo. En lugar de dibujar cruces,
+
+71
+00:06:03,707 --> 00:06:11,595
+dibujaré círculos para los tumores
+benignos. De esta manera. Y seguiré
+
+72
+00:06:11,595 --> 00:06:18,655
+usando X para denotar los tumores malignos.
+¿Ok? Espero que esto empiece a tener
+
+73
+00:06:18,655 --> 00:06:23,624
+sentido. Todo lo que hice fue tomar, ya saben,
+esto, mi conjunto de datos de arriba y
+
+74
+00:06:23,624 --> 00:06:30,894
+los trace abajo hacia esta línea real.
+Y empecé a usar distintos símbolos,
+
+75
+00:06:30,894 --> 00:06:35,828
+círculos y cruces para denotar los ejemplos
+de malignos contra benignos. Ahora, en este
+
+76
+00:06:35,828 --> 00:06:41,091
+ejemplo sólo usamos una característica o un
+atributo, principalmente, el tamaño del tumor para
+
+77
+00:06:41,091 --> 00:06:46,289
+predecir si el tumor es maligno
+o es benigno. En otros problemas de aprendizaje
+
+78
+00:06:46,289 --> 00:06:51,355
+electrónico, cuando tenemos más de una
+característica, más de un atributo. Aquí va
+
+79
+00:06:51,355 --> 00:06:56,749
+un ejemplo. Digamos que en lugar de sólo
+saber el tamaño del tumor, también conocemos la
+
+80
+00:06:56,749 --> 00:07:02,387
+edad y el tamaño de tumor de los pacientes. En
+ese caso, tal vez tu conjunto de datos se verá
+
+81
+00:07:02,387 --> 00:07:08,562
+así y tenemos un conjunto de pacientes
+con edades y tamaños de tumor
+
+82
+00:07:08,562 --> 00:07:14,980
+y se ven así. Y un conjunto de pacientes
+distinto, que se ve un poco diferente,
+
+83
+00:07:15,600 --> 00:07:23,968
+cuyos tumores resultaron malignos,
+como lo indican las cruces. Así que digamos que
+
+84
+00:07:23,968 --> 00:07:32,027
+tienes un amigo que por desgracia tiene un
+tumor. Y tal vez, el tamaño del tumor y la edad
+
+85
+00:07:32,027 --> 00:07:37,657
+están más o menos aquí. Con un conjunto de datos
+como este, lo que puede hacer el
+
+86
+00:07:37,657 --> 00:07:42,462
+algoritmo de aprendizaje es trazar la línea recta
+en los datos para tratar de separar los
+
+87
+00:07:42,462 --> 00:07:47,710
+tumores malignos de los benignos
+y entonces el algoritmo de aprendizaje puede decidir
+
+88
+00:07:47,710 --> 00:07:53,004
+trazar la línea recta así para
+separar las dos clases de tumores.
+
+89
+00:07:53,004 --> 00:07:57,644
+Y con esto, es posible que puedas
+decidir que es más probable que si el tumor
+
+90
+00:07:57,644 --> 00:08:02,322
+de tu amigo está en esta parte,
+el algoritmo de aprendizaje
+
+91
+00:08:02,322 --> 00:08:07,305
+nos dirá si el tumor está del lado
+benigno y que, por lo tanto, es más
+
+92
+00:08:07,305 --> 00:08:12,044
+probable que sea benigno y no maligno. En
+este ejemplo, tuvimos dos características,
+
+93
+00:08:12,044 --> 00:08:17,147
+la edad del paciente y el tamaño del
+tumor. En otros problemas de aprendizaje automático
+
+94
+00:08:17,147 --> 00:08:21,454
+con frecuencia tendremos más características y
+mis amigos que trabajan con este problema
+
+95
+00:08:21,454 --> 00:08:25,849
+realmente usan otras características como
+el grosor de acúmulo del
+
+96
+00:08:25,849 --> 00:08:30,299
+tumor mamario, uniformidad del tamaño celular
+del tumor, uniformidad de la forma celular del
+
+97
+00:08:30,299 --> 00:08:34,911
+tumor, etc., así como
+otras características. Y resulta que uno de los algoritmos
+
+98
+00:08:34,911 --> 00:08:39,907
+de aprendizaje más interesantes que
+veremos en esta clase es un algoritmo
+
+99
+00:08:39,907 --> 00:08:45,153
+de aprendizaje que puede tratar, no sólo con dos
+o tres o cinco características, sino con un número
+
+100
+00:08:45,153 --> 00:08:50,150
+infinito de características. En esta diapositiva
+presento un total de 5 características distintas.
+
+101
+00:08:50,150 --> 00:08:54,482
+Dos en los ejes y tres más aquí arriba.
+Pero resulta que para algunos problemas
+
+102
+00:08:54,482 --> 00:08:58,497
+de aprendizaje, lo que realmente no quieres es
+usar tres o cinco características, sino
+
+103
+00:08:58,497 --> 00:09:02,566
+usar un número infinito
+de características, un número infinito de
+
+104
+00:09:02,566 --> 00:09:06,211
+atributos, de manera que tu algoritmo
+de aprendizaje tenga muchos atributos o
+
+105
+00:09:06,211 --> 00:09:10,333
+características o señales para hacer las
+predicciones. Entonces, ¿cómo manejas un
+
+106
+00:09:10,333 --> 00:09:14,439
+número infinito de características? ¿Cómo
+almacenas un número infinito de
+
+107
+00:09:14,439 --> 00:09:18,290
+cosas en la computadora cuando
+sabes que se va a llenar la memoria? Resulta
+
+108
+00:09:18,290 --> 00:09:22,188
+que cuando nos referimos a un
+algoritmo llamado Máquina de
+
+109
+00:09:22,188 --> 00:09:26,675
+Soporte Vectorial, habrá un truco matemático
+genial que permitirá que la computadora maneje
+
+110
+00:09:26,675 --> 00:09:31,214
+un número infinito de características. Imagina
+que acabo de escribir dos características
+
+111
+00:09:31,214 --> 00:09:35,487
+aquí y tres características a la derecha. Pero imagina que
+escribí una lista infinitamente larga,
+
+112
+00:09:35,487 --> 00:09:39,866
+y sigo escribiendo más y más y más
+características. Una lista infinitamente larga de
+
+113
+00:09:39,866 --> 00:09:44,192
+características. Resulta que podremos crear
+un algoritmo que pueda manejar
+
+114
+00:09:44,192 --> 00:09:49,701
+todo eso. Entonces, sólo para recapitular. En esta
+clase, hablaremos del
+
+115
+00:09:49,701 --> 00:09:54,167
+aprendizaje supervisado. Y la idea es que, en
+el aprendizaje supervisado, cada ejemplo de
+
+116
+00:09:54,167 --> 00:09:58,880
+nuestro conjunto de datos, nos dice que la
+“respuesta correcta” que nos habría gustado,
+
+117
+00:09:58,880 --> 00:10:03,960
+la predijeron los algoritmos
+en ese ejemplo. Como el precio de la
+
+118
+00:10:03,960 --> 00:10:08,428
+casa o si el tumor es maligno o
+benigno. También hablamos sobre el
+
+119
+00:10:08,428 --> 00:10:13,202
+problema de regresión. Y regresión
+significa que nuestro objetivo es predecir
+
+120
+00:10:13,202 --> 00:10:17,977
+un resultado de valor continuo. Y hablamos
+sobre el problema de clasificación, donde
+
+121
+00:10:17,977 --> 00:10:22,690
+el objetivo es predecir el resultado de
+valor discreto. Solo una pregunta para recapitular:
+
+122
+00:10:22,690 --> 00:10:27,541
+Supongamos que diriges una empresa y
+quieres desarrollar algoritmos de aprendizaje
+
+123
+00:10:27,541 --> 00:10:32,618
+para enfrentar los dos problemas. En el primer
+problema, tienes un gran inventario de
+
+124
+00:10:32,618 --> 00:10:38,113
+artículos idénticos. Entonces, imagina que tienes
+miles de copias de algunos artículos
+
+125
+00:10:38,113 --> 00:10:43,607
+idénticos para vender y quieres saber cuántos
+de estos artículos venderás en los
+
+126
+00:10:43,607 --> 00:10:49,172
+próximos tres meses. En el segundo problema,
+el problema dos, tendrás muchos
+
+127
+00:10:49,172 --> 00:10:54,145
+usuarios y querrás diseñar un software 
+para analizar cada una de las
+
+128
+00:10:54,145 --> 00:10:59,193
+cuentas individuales de tus clientes, cada una
+de las cuentas de tus clientes; y para cada cuenta
+
+129
+00:10:59,193 --> 00:11:04,178
+decidirás sin la cuenta fue o no 
+hackeada o estuvo en peligro. Entonces, ¿cada uno
+
+130
+00:11:04,178 --> 00:11:08,914
+de estos problemas debe tratarse como 
+un problema de clasificación o
+
+131
+00:11:08,914 --> 00:11:14,087
+como un problema de regresión? Cuando se ponga en pausa el video,
+por favor usa tu mouse para seleccionar cuál
+
+132
+00:11:14,087 --> 00:11:20,884
+de estas cuatro opciones a la izquierda
+consideras que es la respuesta correcta. Espero que
+
+133
+00:11:20,884 --> 00:11:25,871
+tu resultado haya sido esta respuesta. Por
+problema uno lo trataría como un
+
+134
+00:11:25,871 --> 00:11:31,058
+problema de regresión, ya que si tuviera
+miles de artículos, bueno,
+
+135
+00:11:31,058 --> 00:11:36,071
+probablemente lo trataría como un valor real,
+como un valor continuo. Y
+
+136
+00:11:36,290 --> 00:11:41,837
+por lo tanto, trataría el número de artículos que vendo
+como un valor continuo. Y para el
+
+137
+00:11:41,837 --> 00:11:47,748
+segundo problema, lo trataría como un
+problema de clasificación, ya que podría
+
+138
+00:11:47,748 --> 00:11:53,659
+establecer el valor que quiero predecir
+con cero para denotar que no se hackeo
+
+139
+00:11:53,659 --> 00:11:58,850
+la cuenta. Y establecer el valor en uno para denotar una
+cuenta que sí fue hackeada. Así
+
+140
+00:11:58,850 --> 00:12:03,287
+como para el cáncer de mama
+cero es benigno y uno es maligno. Por ello
+
+141
+00:12:03,287 --> 00:12:08,150
+podría establecerlo en cero o uno dependiendo de
+si se hackeó y hacer que un
+
+142
+00:12:08,150 --> 00:12:13,134
+algoritmo trate de predecir cada uno de estos
+dos valores discretos. Y debido a que existe
+
+143
+00:12:13,134 --> 00:12:17,693
+un número reducido de valores discretos,
+entonces lo manejaría como un problema de
+
+144
+00:12:17,693 --> 00:12:23,075
+clasificación. Esto es todo sobre aprendizaje
+supervisado y en el siguiente video hablaré
+
+145
+00:12:23,075 --> 00:12:28,325
+sobre el aprendizaje no supervisado, que es la
+otra categoría principal de algoritmos principales.

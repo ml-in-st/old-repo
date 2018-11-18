@@ -1,0 +1,47 @@
+In some of the earlier videos, I was talking about PCA as a compression
+algorithm where you may have say, 1,000-dimensional data and compress
+it to 100-dimensional feature vector. Or have three-dimensional data and compress it to a two-dimensional
+representation. So, if this is a compression algorithm, there should be a way to go back
+from this compressed representation back to an approximation of your
+original high-dimensional data. So given zi, which may be 100-dimensional,
+how do you go back to your original representation,
+xi which was maybe a 1000-dimensional. In this video,
+I'd like to describe how to do that. In the PCA algorithm,
+we may have an example like this, so maybe that's my example x1, and
+maybe that's my example x2. And what we do is we take these examples, and we project them onto this
+one dimensional surface. And then now we need to use a real number,
+say z1, to specify the location of these points after they've been projected
+onto this one dimensional surface. So, given the point z1, how can we go back
+to this original two dimensional space? In particular,
+given the point z, which is R, can we map this back to some
+approximate representation x and R2 of whatever the original
+value of the data was? So whereas z equals U reduce transpose x, if you want to go in the opposite
+direction, the equation for that is, we're going to write x
+approx equals U reduce, times z. And again, just to check the dimensions,
+here U reduce is going to be an n by k dimensional vector, z is going
+to be k by one dimensional vector. So you multiply these out
+that's going to be n by one, so x approx is going to be
+an n dimensional vector. And so the intent of PCA, that is if the
+square projection error is not too big, is that this x approx
+will be close to whatever was the original value of x that you have
+used to derive z in the first place. To show a picture of what this looks like,
+this is what it looks like. What you get back of this procedure are
+points that lie on the projection of that, onto the green line. So to take our early example, if we
+started off with this value of x1, and we got this value of z1, if you plug z1
+through this formula to get x1 approx, then this point here,
+that would be x1 approx, which is going to be in R2. And similarly, if you do the same
+procedure, this would be x2 approx. And that's a pretty decent
+approximation to the original data. So that's how you go back from your
+low dimensional representation z, back to an uncompressed
+representation of the data. We get back an approximation
+to your original data x. And we also call this process
+reconstruction of the original data where we think of trying to
+reconstruct the original value of x from the compressed representation. So, given an unlabeled data set, you now
+know how to apply PCA and take your high dimensional features x and map that to
+this lower-dimensional representation z. And from this video hopefully you now also
+know how to take these low-representation z and map it back up to an approximation
+of your original high-dimensional data. Now that you know how to implement and
+apply PCA, what I'd like to do next is talk about some of the mechanics
+of how to actually use PCA well. And in particular in the next video,
+I'd like to talk about how to choose k, which is how to choose the dimension
+of the reduced representation vector z.

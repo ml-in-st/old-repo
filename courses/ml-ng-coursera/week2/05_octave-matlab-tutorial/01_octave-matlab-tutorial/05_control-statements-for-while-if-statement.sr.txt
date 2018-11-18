@@ -1,0 +1,50 @@
+U ovome videu voleo bih da vam kažem kako da pišete kontrolne iskaze za vaše Oktav programe, dakle stvari kao što su "for", "while" i "if" iskazi a takođe i kako da
+definišemo i koristimo funkcije. Ovo je moj Oktav prozor. Prvo ću da vam pokažem kako 
+da koristite "for" petlju. Počeću tako što ću da inicijalizujem v kao 10 sa 1 vektor 0. Evo kako se piše "for" petlja za i jednako 1 do 10. To je for jednako 1 dvotačka 10. Hajde da vidimo, postaviću v od i je jednako dva na i, i konačno kraj. Razmak ne utiče ni na šta, pa ću da stavim razmake samo da bih kod učinio čitljivijim, ali razmaci ne smetaju. Ako uradim ovo, tada će rezultat da bude da v dobija vrednost dva na prvu, dva na drugu, i tako dalje. Dakle ovo je sintaksa za i jednako jedan dvotačka deset koja pravi petlju kroz vrednosti od jedan do deset. Usput, ovo ste mogli da uradite i postavljanjem vaših indeksa da su jednaki od 1 do 10, dakle, indeksi u nizu od jedan do deset. Takođe možete da pišete 
+for i jednako indeksi. Ovo je u stvari isto kao 
+for i jednako jedan do deset. Možete tada da prikažete i, i to će da bude ista stvar. Dakle, to je "for" petlja, Ako ste upoznati sa "break" i "continue", postoje "break" i "continue" iskazi, možete takođe da i njih koristite u petljama u oktavi, ali prvo ću da vam pokažem "while" petlju. Dakle, ovo je moj vektor v. Hajde da napišemo "while" petlju. i jednako 1, while i je manje ili jednako 5, postavićemo v od i je jednako stotinu i povećaćemo i za jedan, kraj. Šta dakle ovo kaže? Počeo sam sa i jednako jedan i tada sam postavio v od i na stotinu i povećao i za jedan dok i ne postane veće od pet. A rezultat toga je to, dok je prethodno v bilo
+ vektor eksponenata od dva. Uzeo sam prvih pet elemenata vektora i prepisao sam ih vrednošću sto. Dakle, to je sintaksa "while" petlje. Hajde da uradimo još jedan primer. i jednako 1, dok je istinito i ovde ću da vam pokažem kako da
+koristite "break" iskaz. Recimo da je v od i jednako 999 i i jednako i plus 1. Ako je i jednako 6 prekini i kraj. Ovo je naša prva upotreba "if" iskaza, tako da se nadam da ova logika ima smisla. i jednako jedan i, petlja povećavanja. While iterativno postavlja 
+v od i jednako jedan. i povećava i za jedan, a kada i postane šest, uradi "break" što dovede do prekida "while" petlje a efekat bi trebao da bude da uzme prvih pet elemenata ovoga vektora v i postavi ih na 999. I da, u stvari smo uzeli v i prepisali prvih pet elemenata sa 999. Dakle, ovo je sintaksa za "if" iskaze, i za "while" iskaze i vidite "end". Ovde imamo dva "end". Ovaj "end" ovde zatvara "if" iskaz a drugi "end" ovde zatvara "while" iskaz. Sad ću da vam pokažem 
+uopšteniju sintaksu kako da koristite "if-else"iskaze. Dakle, da vidimo, v od 1 jednako 999, hajde da ukucamo v od jedan jednako dva
+ za ovaj primer. Dalje, kucaću ako je v od jedan jednako jedan
+prikaži "vrednost je jedan" Evo kako pišete "else" iskaze, evo ga jedan else if v od jedan jednako 2. Ako je ovo tačno u 
+našem primeru, prikaži "vrednost je 2", inače prikaži "vrednost nije niti 1 niti 2". U redu, ovde "if-else" iskaz završava. Naravno, ovde smo postavili v od 1 jednako 2, tako da prikazujemo da je vrednost 2. I konačno, mislim da nismo o ovome pričali ranije, ali ako ikada budete 
+trebali da izađete iz oktave, možete da ukucate 
+komandu za izlaz i pritisnete enter pa će oktava da se zatvori ili "q" -- quit komanda takođe radi. Na kraju, hajde da pričamo o funkcijama i kako se definišu i kako se koriste. Ovo je moj desktop, ja imam već definisan ili već sačuvan fajl koji se zove "squarethisnumber.m". Evo kako definišete funkcije u oktavi. Kreirate fajl koji nazovete imenom vaše funkcije i
+završite sa ".m", a kada oktava nađe taj fajl, zna da tu treba da traži definiciju
+funkcije "squarethisnumber.m". Hajde da otvorimo ovaj fajl. Vidite da ja koristim Majkrosoftov program Wordpad
+da bih otvorio ovaj fajl. Samo želim da vas ohrabrim, ako koristite Microsoft Windows, da koristite Wordpad pre nego Notepad da otvarate ove fajlove, ako imate različite editore teksta,
+ i to je u redu ali Notepad ponekad zabrlja razmake. Ako imate samo Notepad,
+to bi trebalo da radi, to bi moglo da radi ali ako takođe imate i Wordpad, ja bih radije koristio taj ili neki drugi editor teksta, ako imate
+različite editore teksta za vaše funkcije. Dakle, evo kako definišete
+funkcije u oktavi. Samo da još malo zumiram. Ovaj fajl ima samo tri linije. Prva linija kaže da je
+funkcija y jednaka kvadratu broja x, ovo kaže oktavi da ću da vratim vrednost y, vratiću jednu vrednost a ta vrednost će da bude sačuvana u promenjivoj y i to još kaže oktavi da ta funkcija
+ ima jedan argument, a to je argument x, i način na koji je telo funkcije definisano, 
+y jednako x na kvadrat. Dakle, hajde da
+ probamo da pozovemo ovu funkciju "kvadrat", ovaj broj pet, ovo u stvari neće da radi, a oktava kaže "squareThisNumber" je nedefinisan. To je zato što oktava
+ne zna gde da nađe taj fajl. Kao i obično, hajde
+da koristimo PWD, ili nije u mom direktorijumu, tako da ćemo da vidimo ovo
+c:\ang\desktop. Tu je moj desktop. Ups, mala greška. Korisnici ang desktop i ako ukucam squareThisNumber broj pet, vratiće mi rezultat 25. Neka vrsta napredne osobine, ovo je samo za vas koji znate šta pojam
+adresa za pretragu znači. Ali ako želite da promenite oktavinu adresu pretrage, razmislite o tome sledeći put kao o naprednom neobaveznom materijalu. Samo za vas koji ste upoznati sa konceptima adresama pretrage i 
+dozvolama jezika, ali možete da koristite pojam addpath, c dvotačka \users\ang\desktop da biste dodali direktorijum u oktavinu adresu pretrage tako da, iako odete u neki drugi direktorijum, oktava opet zna da pogleda u \users\ang desktop direktorijum ima li funkcija tako da, iako sam u drugom direktorijumu, još uvek zna gde da nađe "squareThisNumber" funkciju. U redu? Ali i ako niste upoznati sa konceptom adrese za 
+pretragu, ne brinite o tome. Samo se pobrinite da koristite CD komandu da biste otišli na direktorijum gde 
+je vaša funkcija pre nego što je pokrenete 
+i to radi veoma dobro. Jedan koncept koji oktava ima a koji mnogi drugi programski jezici nemaju je da vam dozvoljava da definišete funkcije koje vraćaju višestruke
+ vrednosti ili višestruke argumente. Evo takvog primera. Definišite funkciju koja se zove "squareAndCubeThisNumber" x i šta ona radi je da funkcija vraća dve vrednosti, y1 i y2. Kada ih postavim, ovo sledi, y1 je kvadrat, y2 je kub. A ono šta radi je
+ da stvarno vrati dva broja. Dakle, neki od vas, u zavisnosti koji programski jezik koristite, ako ste upoznati sa C, C++, često mislite da funkcije 
+vraćaju samo jednu vrednost. Ali takva je sintaksa u oktavi koja bi trebalo da vrati
+višestruku vrednost. Nazad u oktava prozor. Ako kucam a, b jednako "squareAndCubeThisNumber" od pet, tad će a da bude jednako 25 a b je jednako pet na kub, 125. Dakle, ovo je često zgodno ako treba da definišete funkciju koja vraća višestruku vrednost. I na kraju, pokazaću vam još jedan, malo sofisticiraniji, 
+primer funkcije. Recimo da imam skup podataka koji izgleda kao ovo, sa tačkama (1, 1), (2, 2) i (3, 3). I hteo bih da definišem jednu oktava funkciju koja računa funkciju cena J od teta za
+različite vrednosti teta. Prvo, hajde da 
+stavimo podatke u oktavu. Postaviću moju matricu da bude 1,1 1,2 1,3. To je moj dizajn matrica x sa x0, prva kolona je podatak o skupu a drugi termin su moje x vrednosti u tri trening primera. I sada ću da postavim y da bude 1 - 2 - 3 kako sledi, koji su vrednosti sa y ose. Recimo da je teta jednako 0;1. Na mom desktopu već sam definisao funkciju cena J i definicija te funkcije izgleda ovako. Dakle, funkcija J jednako je "costFunctionJ" ulazi x, y teta, neki komentari, koji pojašnjavaju ulaze a poslije samo nekoliko koraka, postavljanje m na broj trening primera to je broj redova u x. Računanje predviđanja, predviđanja jednako x puta teta i tako ovo je komentar okružen kodom, to je verovatno 
+prethodna linija komentara. Računanje "sqrErrors" računanjem razlike između predviđanja i y vrednosti i dizanjem dobijene vrednosti na kvadrat i konačno računanje funkcije cena J. A oktava zna da je J vrednost koju treba da vrati jer J se 
+pojavljuje ovde u definiciji funkcije. Usput rečeno, slobodno pauzirajte video ako želite da pogledate definiciju funkcije malo duže i i da se uverite da 
+razumete sve korake. Ali kad pokrenem u oktavi, kucam j jednako costFunctionJ x, y, teta. Računa. Ups, napravio 
+sam grešku u kucanju ovde. Trebalo je da bude veliko X. Računa J jednako 0 jer ako je moj skup podataka, znate, 123, 123 tad teta0 jednako 0, teta1 jednako 1, ovo mi daje tačno liniju pod 45 stepeni koja savršeno 
+odgovara mome skupu podataka. Dok u suprotnom, ako postavim teta jednako, recimo, 0, 0, tada hipoteza predviđa nule za sve teta 0 jednako 0, teta 1 jednako 0 i tad računam funkciju cena tad je ona 2.333 i to je jednako 1 na kvadrat, što je moja greška na kvadrat u prvom primeru, plus 2 na kvadrat, plus 3 na kvadrat podeljeno sa 2m, što je 2 puta broj trening primera, što je stvarno 2.33 i tako, provera ispravnosti koju ova funkcija, znate, računa korektnu funkciju cene i to je par primera koje smo isprobali u našem jednostavnom trening primeru. I tako, provera ispravnosti koja je funkcija cena J, kao što je definisano ovde, to stvarno, znate, računa korektnu funkciju cena, barem u našem jednostavnom trening primeru koji smo ovde imali sa x i y koji su jednostavan trening 
+primer koji smo rešili. Dakle, sada znate da napišete controlne iskaze, kao for petlje while petlje i if iskaze u oktavi kao i da definišete
+ i koristite funkcije. U sledećem videu, brzo ćemo da pređemo preko logistike posla i slanja skupa problema za tu klasu i kako da 
+koristimo naš sistem slanja. I konačno, posle toga, u poslednjem oktava videu, voleo bih da vam 
+kažem o vektorizaciji, to je ideja o tome kako da učinite da program 
+u oktavi radi brže.

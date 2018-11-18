@@ -1,0 +1,86 @@
+Selamat datang di kelas online gratis ini di
+machine learning. Machine learning adalah salah satu teknologi terkini yang paling menarik.
+Dan di kelas ini, Anda akan belajar tentang kebesaran seni dan juga mendapatkan praktik
+menerapkan dan menggunakan algoritma-algoritma ini sendiri. Anda mungkin pernah menggunakan algoritma
+belajar lusinan kali sehari tanpa mengetahuinya. Setiap kali Anda menggunakan situs
+mesin pencari seperti Google atau Bing untuk mencari di internet, salah satu alasan
+itu bekerja dengan sangat baik adalah karena algoritma belajar, yang diterapkan oleh Google atau
+Microsoft, telah belajar bagaimana menyusun peringkat halaman situs. Setiap kali Anda menggunakan aplikasi 
+foto milik Facebook atau Apple dan aplikasi itu mengenali foto teman-teman Anda, itu
+juga machine learning. Setiap kali Anda membaca email dan saringan spam Anda menyelamatkan Anda
+dari keharusan membaca berton-ton spam email, itu juga algoritma belajar.
+Bagi saya salah satu alasan saya bergairah adalah impian AI suatu hari nanti membangun mesin-mesin 
+secerdas Anda atau saya. Kita masih jauh dari tujuan itu, tapi banyak peneliti
+AI percaya bahwa cara terbaik untuk mencapai tujuan tersebut adalah melalui algoritma
+belajar yang mencoba meniru bagaimana otak manusia belajar. Saya akan memberitahu Anda sedikit
+tentang itu juga di kelas ini. Di kelas ini Anda belajar tentang kebesaran-seni
+algoritma machine learning. Tapi hanya tahu algoritma dan
+perhitungannya saja tidak begitu baik jika Anda tidak tahu bagaimana membuat
+algoritma ini bekerja pada masalah yang Anda teliti. Jadi, kami telah menghabiskan banyak
+waktu mengembangkan latihan-latihan bagi Anda untuk menerapkan setiap algoritma-algoritma ini dan
+Anda bisa mengamati bagaimana mereka bekerja. Jadi mengapa machine learning begitu umum saat ini?
+Itu karena machine learning adalah suatu bidang yang telah muncul dari bidang
+AI, atau kecerdasan buatan. Kami ingin membangun mesin-mesin cerdas dan ternyata
+ada beberapa hal mendasar dimana kita bisa memprogram mesin mengerjakan hal seperti
+bagaimana mencari jalur terpendek dari A ke B. Tapi sebagian besar kita tidak tahu
+bagaimana menulis program AI untuk melakukan hal-hal yang lebih menarik seperti pencarian situs atau
+pelabelan foto atau anti-spam email. Sebelumnya ada kesadaran bahwa satu-satunya cara untuk melakukan
+hal-hal tersebut adalah dengan memiliki mesin yang belajar melakukan hal tersebut sendiri. Jadi, machine learning
+dikembangkan sebagai kemampuan baru komputer dan saat ini itu menyentuh banyak
+segmen industri dan ilmu dasar. Bagi saya, saya mengembangkan machine learning dan
+pada minggu tertentu saya mungkin berakhir dengan berbicara ke pilot helikopter, ahli biologi, sekelompok 
+sistem komputer orang (begitu juga kolega- kolega saya di sini di Stanford) dan rata-rata
+dua atau tiga kali seminggu saya mendapat email dari orang di industri dari Silicon Valley
+mengontak saya mereka yang memiliki minat dalam penerapan algoritma belajar pada persoalan
+mereka. Ini adalah petunjuk dari jangkauan masalah yang disentuh machine learning.
+Ada robot otonom, komputasi biologi, banyak hal di Silicon Valley
+dimana machine learning memiliki dampak. Ini beberapa contoh lain dari
+machine learning. Ada penambangan basis data. Salah satu alasan machine learning telah begitu
+merasuk adalah perkembangan situs dan perkembangan otomatisasi. Semua ini maksudnya
+kita memiliki set data jauh lebih banyak dari yang pernah ada sebelumnya. Jadi, sebagai contoh banyak perusahaan
+dari Silicon Valley saat ini mengumpulkan data klik situs, juga disebut data deretan-klik,
+dan mencoba menggunakan algoritma machine learning untuk menambang data ini untuk mengerti
+dan melayani penggunanya dengan lebih baik, itu adalah segmen terbesar
+Silicon Valley saat ini. Catatan medis. Dengan munculnya otomatisasi, kita
+sekarang punya catatan medis elektronik, jadi jika kita bisa mengubah catatan medis menjadi pengetahuan
+medis, kita bisa mulai mengerti penyakit dengan lebih baik. Biologi komputasi.
+Dengan otomatisasi lagi, para ahli biologi mengumpulkan banyak data mengenai urutan
+gen, urutan DNA, dan sebagainya, dan semua algoritma yang dijalankan mesin memberikan kita
+pengertian yang jauh lebih baik tentang genom manusia, dan apa artinya menjadi manusia.
+Dan di bidang teknik juga, di semua bidang teknik, kita memiliki set data yang lebih besar dan
+lebih besar, dan lebih besar dan lebih besar, yang sedang coba kita pahami dengan menggunakan algoritma
+belajar. Tingkat kedua aplikasi-aplikasi mesin adalah sesuatu yang tidak bisa kita
+program dengan tangan. Jadi sebagai contoh, saya telah mengerjakan helikopter otonom selama beberapa
+tahun. Kami tidak tahu bagaimana menulis suatu program komputer untuk membuat helikopter ini
+terbang sendiri. Satu-satunya hal yang berhasil adalah memiliki komputer yang belajar sendiri bagaimana
+menerbangkan helikopter ini. [Helikopter berputar-putar] Pengenalan tulisan tangan. Salah satu
+alasan begitu murahnya saat ini untuk merutekan selembar surat menyeberangi
+negara-negara, di Amerika dan secara internasional, adalah karena ketika Anda menulis amplop seperti
+ini, ternyata ada algoritma belajar yang telah belajar bagaimana membaca tulisan
+tangan Anda sehingga bisa secara otomatis merute amplop ini diperjalanan, dengan demikian
+biayanya beberapa sen untuk mengirimkan amplop ini ribuan mil. Dan bahkan jika Anda telah
+melihat bidang pengolahan bahasa alami atau penglihatan komputer,
+ini adalah bidang-bidang AI yang berkaitan dengan pemahaman bahasa atau pemahaman
+gambar. Sebagian besar dari pengolahan bahasa alami dan sebagian besar dari penglihatan komputer saat ini
+menggunakan machine learning. Algoritma belajar juga digunakan secara luas untuk program
+yang melakukan penyesuaian sendiri. Setiap kali Anda ke Amazon, Netflix, atau iTunes Genius, dan program tersebut
+merekomendasikan film atau produk dan musik kepada Anda, itu adalah algoritma belajar.
+Jika Anda berpikir tentang hal itu mereka memiliki jutaan pengguna; tidak ada cara untuk menulis satu juta
+program berbeda untuk jutaan pengguna Anda. Satu-satunya cara membuat perangkat lunak memberikan
+rekomendasi yang disesuaikan adalah dengan belajar sendiri untuk menyesuaikan dirinya dengan
+preferensi Anda. Akhirnya algoritma belajar yang digunakan saat ini untuk
+memahami manusia belajar dan untuk memahami otaknya. Kita akan bicara tentang
+bagaimana penelitian menggunakan ini untuk membuat kemajuan menuju impian besar AI. Beberapa
+bulan lalu, seorang siswa menunjukkan pada saya artikel dua belas keahlian IT teratas. Keterampilan yang
+tidak dapat ditolak oleh manajer perekrutan karyawan teknologi informasi. Itu adalah
+artikel lama, tapi pada peringkat teratas daftar ini dari kedua belas keterampilan IT yang
+paling diinginkan adalah machine learning. Di sini di Stanford, jumlah perekrut
+yang mengontak saya bertanya, jika saya tahu mahasiswa lulusan machine learning
+jauh lebih banyak dari pada mahasiswa machine learning yang kami luluskan setiap tahun. Jadi saya
+berpikir ada permintaan sangat besar yang tidak terpenuhi untuk ketrampilan ini, dan ini saat yang tepat untuk
+belajar machine learning, dan saya berharap mengajari Anda banyak tentang machine
+learning di kelas ini. Pada video berikutnya, kita akan mulai memberikan definisi yang lebih
+formal tentang apa itu machine learning. Dan kita akan mulai belajar tentang jenis
+utama dari permasalahan machine learning dan algoritma. Anda akan mengenal beberapa
+istilah utama machine learning, dan mulai mendapat pengertian akan apa saja algoritma-
+algoritma yang berbeda itu, dan kapan mereka mungkin cocok digunakan.

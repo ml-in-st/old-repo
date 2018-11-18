@@ -1,0 +1,399 @@
+1
+00:00:00,090 --> 00:00:02,320
+Dans cette vidéo, je voudrais commencer à parler de regroupement.
+
+2
+00:00:03,420 --> 00:00:04,850
+Cela sera intéressant parce que c'est
+
+3
+00:00:04,930 --> 00:00:06,910
+notre premier algorithme d'apprentissage supervisé
+
+4
+00:00:07,350 --> 00:00:09,080
+provenant de données non labellisées
+
+5
+00:00:09,840 --> 00:00:10,730
+au lieu de données de étiquetées
+
+6
+00:00:11,900 --> 00:00:13,300
+D'abord, qu'est-ce que l'apprentissage non supervisé  ?
+
+7
+00:00:14,390 --> 00:00:15,630
+J'ai brièvement parlé de l'apprentissage
+
+8
+00:00:16,350 --> 00:00:17,470
+non-supervisé au début de
+
+9
+00:00:17,550 --> 00:00:18,560
+la classe mais c'est utile de
+
+10
+00:00:19,030 --> 00:00:20,320
+le contraster avec l'apprentissage supervisé. Voici donc,
+
+11
+00:00:21,760 --> 00:00:23,750
+un problème d'apprentissage supervisé typique où
+
+12
+00:00:24,030 --> 00:00:25,470
+on nous donnes un jeu de données avec labels,
+
+13
+00:00:25,770 --> 00:00:27,470
+et le but est de trouver
+
+14
+00:00:27,980 --> 00:00:29,420
+la frontiere de décision qui sépare la
+
+15
+00:00:29,530 --> 00:00:31,310
+des exemples positifs des exemples négatifs.
+
+16
+00:00:33,100 --> 00:00:34,400
+Le problème d'apprentissage supervisé
+
+17
+00:00:34,460 --> 00:00:35,710
+cette affaire est donné un
+
+18
+00:00:35,850 --> 00:00:38,270
+ensemble d'étiquettes pour s'adapter à une hypothèse d'elle.
+
+19
+00:00:39,160 --> 00:00:40,560
+En revanche, dans le non supervisée
+
+20
+00:00:41,080 --> 00:00:42,420
+problème de l'apprentissage, nous allons donné
+
+21
+00:00:42,710 --> 00:00:43,740
+données qui n'est pas
+
+22
+00:00:43,890 --> 00:00:45,270
+les étiquettes qui lui sont associés.
+
+23
+00:00:46,730 --> 00:00:47,940
+Si nous faisons compte tenus de données qui ressemble à
+
+24
+00:00:48,100 --> 00:00:49,090
+comme ceci, Voici un ensemble
+
+25
+00:00:49,180 --> 00:00:50,470
+des points et puis pas d'étiquettes.
+
+26
+00:00:51,800 --> 00:00:52,860
+Et si l'ensemble de notre formation est écrit
+
+27
+00:00:53,220 --> 00:00:54,720
+juste x 1, x 2 et
+
+28
+00:00:55,210 --> 00:00:56,890
+ainsi de suite jusqu'à x(m)
+
+29
+00:00:57,450 --> 00:00:58,720
+et nous n'obtenons pas les étiquettes y.
+
+30
+00:00:59,540 --> 00:01:00,800
+Et c'est pourquoi les points tracés
+
+31
+00:01:01,160 --> 00:01:02,300
+n'est pas en place sur la figure
+
+32
+00:01:02,430 --> 00:01:04,330
+les étiquettes sur eux.
+
+33
+00:01:04,490 --> 00:01:05,510
+Ainsi, dans sans supervision d'apprentissage, ce qui
+
+34
+00:01:05,710 --> 00:01:06,860
+Nous faisons est, nous donner cette sorte de
+
+35
+00:01:07,280 --> 00:01:09,150
+formation non défini
+
+36
+00:01:09,250 --> 00:01:10,510
+un algorithme et nous avons juste
+
+37
+00:01:10,600 --> 00:01:12,220
+Demandez l'algorithme : trouver
+
+38
+00:01:12,430 --> 00:01:14,130
+structure de données pour nous.
+
+39
+00:01:15,420 --> 00:01:16,490
+Compte tenu de cet ensemble de données, un
+
+40
+00:01:16,650 --> 00:01:17,810
+type de structure qu'on pourrait
+
+41
+00:01:18,010 --> 00:01:19,540
+avoir un algorithme trouver, qui est
+
+42
+00:01:19,810 --> 00:01:21,440
+Il semble que cet ensemble de données a
+
+43
+00:01:21,620 --> 00:01:23,740
+points de regroupées en deux
+
+44
+00:01:24,030 --> 00:01:25,500
+séparer les grappes et donc
+
+45
+00:01:25,800 --> 00:01:28,230
+un algorithme qui conclut que
+
+46
+00:01:28,360 --> 00:01:29,230
+grappes telles que celles que j'ai juste
+
+47
+00:01:29,450 --> 00:01:30,610
+encerclé, est appelé un regroupement
+
+48
+00:01:32,440 --> 00:01:32,440
+algorithme.
+
+49
+00:01:33,160 --> 00:01:34,620
+Et ce sera notre premier type de
+
+50
+00:01:34,720 --> 00:01:36,590
+sans supervision d'apprentissage, bien qu'il n'y
+
+51
+00:01:36,790 --> 00:01:38,320
+seront les autres types de non supervisée
+
+52
+00:01:39,020 --> 00:01:40,200
+algorithmes d'apprentissage que nous nous entretiendrons
+
+53
+00:01:40,320 --> 00:01:41,710
+environ plus tard qui trouve des autres
+
+54
+00:01:42,130 --> 00:01:43,710
+types de structure ou autre
+
+55
+00:01:43,920 --> 00:01:46,000
+types de tendances dans les données autres que les grappes.
+
+56
+00:01:46,900 --> 00:01:48,360
+Nous parlerons à ce sujet par la suite, nous allons parler de regroupement.
+
+57
+00:01:50,020 --> 00:01:51,210
+Donc, ce qui est regroupement bon pour ?
+
+58
+00:01:51,380 --> 00:01:54,350
+Au début de cette classe, j'avais déjà évoqué quelques applications.
+
+59
+00:01:54,950 --> 00:01:56,540
+L'une est la segmentation du marché, où
+
+60
+00:01:56,670 --> 00:01:57,690
+vous pouvez avoir une base de données
+
+61
+00:01:57,770 --> 00:01:58,840
+clients et souhaitez groupe
+
+62
+00:01:59,070 --> 00:02:00,380
+eux dans différents segments du marché.
+
+63
+00:02:00,950 --> 00:02:02,590
+Ainsi, vous pouvez vendre à
+
+64
+00:02:02,720 --> 00:02:05,570
+les séparément ou mieux servir vos différents segments du marché.
+
+65
+00:02:06,730 --> 00:02:08,370
+Analyse de réseau social, il y a
+
+66
+00:02:08,580 --> 00:02:10,090
+en fait, vous savez, les groupes ont fait
+
+67
+00:02:10,320 --> 00:02:12,590
+ce, choses comme regarder un
+
+68
+00:02:12,730 --> 00:02:14,540
+Groupe de personnes, les réseaux sociaux
+
+69
+00:02:15,070 --> 00:02:16,390
+Si des choses comme Facebook, Google plu
+
+70
+00:02:16,710 --> 00:02:18,260
+ou peut-être que les informations sur qui
+
+71
+00:02:18,430 --> 00:02:19,710
+sont les personnes que vous
+
+72
+00:02:20,030 --> 00:02:21,110
+Courriel le plus fréquemment et qui
+
+73
+00:02:21,230 --> 00:02:22,170
+sont les personnes qu'ils Courriel
+
+74
+00:02:22,310 --> 00:02:23,600
+le plus souvent, et
+
+75
+00:02:23,750 --> 00:02:25,400
+pour trouver des groupes cohérents de personnes.
+
+76
+00:02:26,500 --> 00:02:27,600
+Ainsi, ce serait un autre peut-être
+
+77
+00:02:28,180 --> 00:02:28,850
+regroupement algorithme où, vous le savez, vous pouvez
+
+78
+00:02:29,080 --> 00:02:32,200
+pour qui trouver des autres groupes cohérents d'amis dans un réseau social.
+
+79
+00:02:33,140 --> 00:02:33,990
+Voici quelque chose que l'un de mes
+
+80
+00:02:34,140 --> 00:02:35,170
+amis a réellement travaillaient sur, qui est,
+
+81
+00:02:35,920 --> 00:02:37,200
+utilisation de clusters pour organiser les calculs
+
+82
+00:02:37,670 --> 00:02:39,220
+grappes ou organiser les données
+
+83
+00:02:39,440 --> 00:02:40,600
+centres mieux parce que, si vous
+
+84
+00:02:40,800 --> 00:02:42,450
+savoir quels ordinateurs dans la
+
+85
+00:02:42,520 --> 00:02:44,990
+Centre de données sont dans le cluster il ont tendance à travailler ensemble.
+
+86
+00:02:45,400 --> 00:02:46,270
+Vous pouvez l'utiliser que pour se réorganiser
+
+87
+00:02:46,950 --> 00:02:48,390
+vos ressources et comment vous
+
+88
+00:02:48,570 --> 00:02:50,120
+mettre au point son réseau et
+
+89
+00:02:50,260 --> 00:02:52,040
+Comment le design de votre centre de données et des communications.
+
+90
+00:02:53,140 --> 00:02:54,540
+Et enfin quelque chose qui, en réalité
+
+91
+00:02:54,850 --> 00:02:55,910
+une autre chose, de que j'ai travaillé, à l'aide
+
+92
+00:02:56,130 --> 00:02:57,810
+pour comprendre les algorithmes de regroupement
+
+93
+00:02:58,400 --> 00:03:00,030
+formation des galaxies et l'aide
+
+94
+00:03:00,280 --> 00:03:02,260
+que, pour comprendre comment, à
+
+95
+00:03:02,600 --> 00:03:03,860
+comprendre en détail astronomique.
+
+96
+00:03:06,550 --> 00:03:08,580
+Alors, qui est regroupement qui
+
+97
+00:03:08,890 --> 00:03:10,450
+est notre premier exemple de
+
+98
+00:03:10,530 --> 00:03:12,650
+un algorithme d'apprentissage supervisé.
+
+99
+00:03:13,090 --> 00:03:14,200
+Dans la vidéo suivante, nous allons commencer à
+
+100
+00:03:14,370 --> 00:03:16,250
+parler d'un algorithme de regroupement spécifique.

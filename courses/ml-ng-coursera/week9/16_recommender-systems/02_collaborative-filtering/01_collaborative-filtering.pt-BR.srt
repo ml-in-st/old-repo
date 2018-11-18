@@ -1,0 +1,1171 @@
+1
+00:00:01,060 --> 00:00:02,420
+Neste vídeo, falaremos sobre
+
+2
+00:00:02,620 --> 00:00:03,900
+a uma abordagem para construir um
+
+3
+00:00:03,970 --> 00:00:06,390
+sistema de recomendação que é chamado de filtragem colaborativa
+
+4
+00:00:07,540 --> 00:00:08,880
+O algoritmo sobre o qual falaremos
+
+5
+00:00:09,180 --> 00:00:10,400
+tem uma propriedade muito interessante,
+
+6
+00:00:10,680 --> 00:00:11,830
+ele faz o que se chama
+
+7
+00:00:12,120 --> 00:00:13,290
+aprendizagem de características.
+
+8
+00:00:13,790 --> 00:00:14,800
+Quero dizer com isso que este
+
+9
+00:00:14,960 --> 00:00:16,270
+algoritmo pode começar
+
+10
+00:00:16,450 --> 00:00:19,010
+a aprender sozinho quais características usar.
+
+11
+00:00:21,130 --> 00:00:22,100
+Aqui está o conjunto
+
+12
+00:00:22,220 --> 00:00:23,440
+de dados que tinhamos, onde
+
+13
+00:00:23,720 --> 00:00:25,030
+assumimos que, para cada filme,
+
+14
+00:00:25,690 --> 00:00:27,000
+alguém nos contou
+
+15
+00:00:27,320 --> 00:00:28,640
+quão romantico ele
+
+16
+00:00:28,840 --> 00:00:30,550
+foi e quanta ação havia nele.
+
+17
+00:00:31,680 --> 00:00:32,880
+Como você pode imaginar,
+
+18
+00:00:33,020 --> 00:00:34,320
+pode ser muito difícil, demorado
+
+19
+00:00:34,500 --> 00:00:36,390
+e custoso conseguir alguém
+
+20
+00:00:36,490 --> 00:00:37,860
+para assistir cada filme
+
+21
+00:00:38,050 --> 00:00:39,440
+e te contar o quão
+
+22
+00:00:39,700 --> 00:00:40,880
+romântico e quanta
+
+23
+00:00:41,410 --> 00:00:42,570
+ação existe em cada
+
+24
+00:00:42,660 --> 00:00:44,270
+filme, além de que é comum querer
+
+25
+00:00:44,390 --> 00:00:46,760
+muito mais características do que apenas estas duas.
+
+26
+00:00:46,980 --> 00:00:48,130
+Então de onde você obtém essas características?
+
+27
+00:00:49,890 --> 00:00:50,920
+Vamos mudar o problema
+
+28
+00:00:51,500 --> 00:00:53,220
+um pouco e supor que
+
+29
+00:00:53,980 --> 00:00:55,160
+nós temos um conjunto de dados onde
+
+30
+00:00:55,410 --> 00:00:57,980
+nós não sabemos os valores dessas características.
+
+31
+00:00:58,380 --> 00:00:59,280
+Então, temos um conjunto de dados
+
+32
+00:00:59,640 --> 00:01:01,140
+de filmes e das
+
+33
+00:01:01,270 --> 00:01:03,550
+avaliações dos usuários, mas nós
+
+34
+00:01:03,760 --> 00:01:05,190
+não temos idéia do quão romântico cada
+
+35
+00:01:05,370 --> 00:01:06,140
+filme é, e
+
+36
+00:01:06,310 --> 00:01:07,660
+nem de quanta ação eles têm.
+
+37
+00:01:07,820 --> 00:01:09,940
+Por isso, substituí todas estas coisas com interrogações.
+
+38
+00:01:11,310 --> 00:01:12,330
+Agora, supomos outra coisa.
+
+39
+00:01:13,870 --> 00:01:15,570
+Digamos que você perguntou para cada usuário, e cada um disse
+
+40
+00:01:15,980 --> 00:01:18,510
+O quanto eles gostam de
+
+41
+00:01:18,820 --> 00:01:20,040
+filmes românticos e o quanto
+
+42
+00:01:20,220 --> 00:01:22,320
+eles gostam de filmes de ação.
+
+43
+00:01:22,830 --> 00:01:26,090
+Alice está associada ao "θ⁽¹⁾",
+
+44
+00:01:26,820 --> 00:01:27,470
+Bob a "θ⁽²⁾",
+
+45
+00:01:27,910 --> 00:01:28,440
+Carol a "θ⁽³⁾",
+
+46
+00:01:28,970 --> 00:01:30,330
+Dave a "θ⁽⁴⁾".
+
+47
+00:01:30,500 --> 00:01:31,530
+Digamos, também,
+
+48
+00:01:31,780 --> 00:01:33,040
+e que Alice nos diz
+
+49
+00:01:33,380 --> 00:01:35,340
+que ela realmente
+
+50
+00:01:35,610 --> 00:01:36,960
+gosta de filmes românticos,
+
+51
+00:01:37,140 --> 00:01:38,780
+por isso temos um cinco aqui,
+
+52
+00:01:39,280 --> 00:01:41,210
+que é o multiplicador associado a "x₁",
+
+53
+00:01:41,570 --> 00:01:42,680
+e também nos diz que
+
+54
+00:01:42,840 --> 00:01:45,030
+realmente não gosta de filmes de ação, por isso um 0 aqui.
+
+55
+00:01:46,060 --> 00:01:47,190
+Bob nos diz algo similar,
+
+56
+00:01:48,660 --> 00:01:49,770
+aqui está "θ⁽²⁾",
+
+57
+00:01:50,630 --> 00:01:52,460
+enquanto Carol nos diz que
+
+58
+00:01:53,570 --> 00:01:54,720
+ela realmente gosta de filmes de ação,
+
+59
+00:01:55,240 --> 00:01:56,450
+por isso um 5 aqui,
+
+60
+00:01:56,900 --> 00:01:58,600
+que é o multiplicador associado a "x₂".
+
+61
+00:01:58,980 --> 00:02:00,160
+Não esqueçam que também
+
+62
+00:02:01,210 --> 00:02:03,490
+há "x₀ = 1", e digamos que
+
+63
+00:02:03,770 --> 00:02:05,390
+Carol nos diz que não gosta
+
+64
+00:02:05,610 --> 00:02:07,000
+de filmes românticos,
+
+65
+00:02:07,390 --> 00:02:09,640
+assim como Dave.
+
+66
+00:02:09,840 --> 00:02:11,030
+Vamos assumir que podemos
+
+67
+00:02:11,440 --> 00:02:12,830
+passar pelos usuários e
+
+68
+00:02:13,290 --> 00:02:14,600
+cada usuário "j" nos diz
+
+69
+00:02:15,020 --> 00:02:16,160
+qual o valor
+
+70
+00:02:17,090 --> 00:02:18,870
+de "θ⁽ʲ⁾" correspondente.
+
+71
+00:02:19,450 --> 00:02:22,190
+Nos especificam o quanto eles gostam de diferentes tipos de filmes.
+
+72
+00:02:24,060 --> 00:02:25,280
+Se pudermos obter estes
+
+73
+00:02:25,990 --> 00:02:27,890
+parâmetros "θ" dos nossos usuários,
+
+74
+00:02:28,050 --> 00:02:29,820
+torna-se possível tentar
+
+75
+00:02:29,960 --> 00:02:31,210
+inferir quais são
+
+76
+00:02:31,310 --> 00:02:33,710
+os valores de "x₁" e "x₂" para cada filme.
+
+77
+00:02:34,800 --> 00:02:35,140
+Vamos olhar para um exemplo.
+
+78
+00:02:35,730 --> 00:02:36,560
+Vamos ver
+
+79
+00:02:38,690 --> 00:02:39,790
+o filme 1, que está associado
+
+80
+00:02:40,580 --> 00:02:42,050
+a um vetor de características "x₁".
+
+81
+00:02:42,890 --> 00:02:45,420
+Este filme é chamado "Love at last", mas vamos ignorar isso.
+
+82
+00:02:45,770 --> 00:02:46,750
+Vamos supor que não sabemos
+
+83
+00:02:46,870 --> 00:02:49,060
+qual é, e ignoramos o título.
+
+84
+00:02:50,180 --> 00:02:52,270
+Tudo o que sabemos é que Alice amou este filme, assim
+
+85
+00:02:52,450 --> 00:02:53,110
+como Bob,
+
+86
+00:02:53,750 --> 00:02:55,370
+e Carol and Dave odiaram este filme.
+
+87
+00:02:56,450 --> 00:02:57,450
+O que podemos inferir?
+
+88
+00:02:57,830 --> 00:02:58,900
+Bem, nós sabemos do
+
+89
+00:02:58,990 --> 00:03:00,510
+vetor de características que Alice
+
+90
+00:03:00,780 --> 00:03:03,190
+e Bob amam filmes românticos, porque
+
+91
+00:03:03,700 --> 00:03:05,660
+eles nos disseram e por isso o 5 aqui.
+
+92
+00:03:06,290 --> 00:03:07,480
+Já Carol e Dave,
+
+93
+00:03:08,380 --> 00:03:10,150
+nós sabemos que eles odeiam
+
+94
+00:03:10,510 --> 00:03:11,920
+filmes românticos e que
+
+95
+00:03:12,300 --> 00:03:13,990
+eles amam os de ação.
+
+96
+00:03:14,730 --> 00:03:16,050
+Estes são os vetores de parâmetros
+
+97
+00:03:16,340 --> 00:03:18,830
+que os usuários 3 e 4, Carol e Dave, nos deram.
+
+98
+00:03:20,110 --> 00:03:20,950
+Baseados no fato
+
+99
+00:03:21,390 --> 00:03:22,340
+que o filme 1 é
+
+100
+00:03:22,880 --> 00:03:24,120
+amado por Alice e Bob e
+
+101
+00:03:24,340 --> 00:03:26,460
+odiado por Carol e Dave, nós podemos
+
+102
+00:03:26,910 --> 00:03:30,810
+concluir, com motivo, que este é provavelmente um filme romântico.
+
+103
+00:03:31,180 --> 00:03:34,240
+Além disso, também não tem muita ação.
+
+104
+00:03:35,290 --> 00:03:36,360
+Este example está um pouco
+
+105
+00:03:36,520 --> 00:03:38,090
+simplificado matematicamente, mas
+
+106
+00:03:38,260 --> 00:03:40,330
+nós estamos perguntanto:
+
+107
+00:03:40,590 --> 00:03:42,010
+"Qual vetor de características deveria
+
+108
+00:03:42,840 --> 00:03:45,370
+ser "x₁", de modo que
+
+109
+00:03:46,030 --> 00:03:48,940
+"(θ⁽¹⁾)ᵀ · x₁" é aproximadamente 5,
+
+110
+00:03:49,660 --> 00:03:51,700
+que é a classificação de Alice,
+
+111
+00:03:51,920 --> 00:03:55,360
+"(θ⁽²⁾)ᵀ · x₁" também é
+
+112
+00:03:55,510 --> 00:03:56,660
+aproximadamente igual a 5,
+
+113
+00:03:57,670 --> 00:03:59,100
+"(θ⁽³⁾)ᵀ · x₁"
+
+114
+00:03:59,310 --> 00:04:02,180
+é aproximadamente 0,
+
+115
+00:04:03,020 --> 00:04:05,250
+a classificação da Carol, e
+
+116
+00:04:06,970 --> 00:04:09,780
+"(θ⁽⁴⁾)ᵀ · x₁"
+
+117
+00:04:10,740 --> 00:04:11,630
+é aproximadamente 0.
+
+118
+00:04:12,590 --> 00:04:13,520
+Assim, parece
+
+119
+00:04:13,770 --> 00:04:16,000
+que "x₁"
+
+120
+00:04:16,870 --> 00:04:18,770
+é igual a "[1; 1.0; 0]",
+
+121
+00:04:19,080 --> 00:04:20,960
+o que faz sentido
+
+122
+00:04:21,310 --> 00:04:22,390
+dado o que sabemos das preferências de
+
+123
+00:04:22,790 --> 00:04:24,110
+Alice, Bob, Carol e Dave
+
+124
+00:04:24,770 --> 00:04:25,940
+e da maneira que eles avaliaram este filme.
+
+125
+00:04:27,700 --> 00:04:29,080
+De uma forma mais geral, podemos
+
+126
+00:04:29,220 --> 00:04:30,210
+percorrer esta lista e
+
+127
+00:04:30,430 --> 00:04:31,520
+tentar adivinhar quais
+
+128
+00:04:31,700 --> 00:04:35,260
+seriam características razoáveis para estes outros filmes também.
+
+129
+00:04:39,160 --> 00:04:41,890
+Vamos formalizar o problema de aprender as características "xᵢ".
+
+130
+00:04:42,410 --> 00:04:44,220
+Digamos que nossos usuários
+
+131
+00:04:44,340 --> 00:04:45,860
+nos disseram as suas preferências.
+
+132
+00:04:46,580 --> 00:04:47,950
+Assim, eles já
+
+133
+00:04:48,130 --> 00:04:49,100
+nos disseram
+
+134
+00:04:49,330 --> 00:04:50,800
+todos os valores,
+
+135
+00:04:50,890 --> 00:04:52,990
+desde "θ⁽¹⁾" a "θ⁽ⁿᵘ⁾"
+
+136
+00:04:53,280 --> 00:04:54,430
+e nós queremos aprender o
+
+137
+00:04:54,790 --> 00:04:56,130
+vetor de características "x⁽ⁱ⁾"
+
+138
+00:04:56,540 --> 00:04:58,020
+para o filme número "i".
+
+139
+00:04:58,200 --> 00:05:00,830
+Podemos propor o seguinte problema de otimização.
+
+140
+00:05:01,220 --> 00:05:02,210
+Nós queremos somar sobre
+
+141
+00:05:02,840 --> 00:05:04,600
+todos os índices "j" para os quais
+
+142
+00:05:04,930 --> 00:05:06,280
+nós temos uma nota
+
+143
+00:05:06,950 --> 00:05:08,340
+para o filme "i", porque
+
+144
+00:05:08,750 --> 00:05:10,040
+nós estamos tentando aprender as características
+
+145
+00:05:10,950 --> 00:05:13,560
+do filme "i", que é este vetor "xᵢ".
+
+146
+00:05:14,650 --> 00:05:15,660
+O que nós
+
+147
+00:05:15,780 --> 00:05:18,450
+queremos fazer é minimizar este
+
+148
+00:05:19,020 --> 00:05:20,160
+erro ao quadrado, queremos escolher
+
+149
+00:05:20,420 --> 00:05:22,430
+características "x⁽ⁱ⁾"
+
+150
+00:05:22,900 --> 00:05:25,000
+de forma que valor estimado
+
+151
+00:05:25,200 --> 00:05:26,820
+para a nota do usuário "j"
+
+152
+00:05:27,110 --> 00:05:28,170
+para o filme "i" será
+
+153
+00:05:28,900 --> 00:05:30,130
+próxima, não estará longe
+
+154
+00:05:30,440 --> 00:05:31,910
+em erro quadrático do atual
+
+155
+00:05:32,530 --> 00:05:35,330
+valor "y⁽ⁱʲ⁾" que nós realmente observamos na
+
+156
+00:05:35,530 --> 00:05:37,130
+avaliação do usuário "j"
+
+157
+00:05:38,310 --> 00:05:40,790
+ao filme "i".
+
+158
+00:05:41,040 --> 00:05:42,320
+Resumindo, este termo
+
+159
+00:05:42,840 --> 00:05:44,060
+tenta escolher características
+
+160
+00:05:45,040 --> 00:05:46,590
+"xᵢ" de forma que,
+
+161
+00:05:46,960 --> 00:05:48,210
+para todos os usuários "j"
+
+162
+00:05:48,360 --> 00:05:50,190
+deram notas para o filme,
+
+163
+00:05:50,860 --> 00:05:52,830
+o algoritmo prevê um valor
+
+164
+00:05:52,900 --> 00:05:55,490
+valor para a avaliação daquele filme
+
+165
+00:05:56,170 --> 00:05:57,720
+que não está muito distante,
+
+166
+00:05:57,810 --> 00:05:59,730
+no sentido do erro quadrático, do
+
+167
+00:06:00,000 --> 00:06:02,310
+valor real dado pelo usuário.
+
+168
+00:06:03,380 --> 00:06:04,560
+Este é o erro quadrático.
+
+169
+00:06:05,420 --> 00:06:07,200
+Como de costume, podemos
+
+170
+00:06:07,310 --> 00:06:08,430
+adicionar este
+
+171
+00:06:08,520 --> 00:06:09,850
+termo de regularização para evitar
+
+172
+00:06:10,300 --> 00:06:11,870
+que as características fiquem muito grandes.
+
+173
+00:06:13,720 --> 00:06:15,610
+É assim que aprenderíamos
+
+174
+00:06:15,760 --> 00:06:16,910
+as características
+
+175
+00:06:17,420 --> 00:06:19,140
+para um filme específico, mas
+
+176
+00:06:19,690 --> 00:06:20,480
+queremos aprender
+
+177
+00:06:20,740 --> 00:06:22,060
+todas as características para todos
+
+178
+00:06:22,230 --> 00:06:23,820
+os filmes, então vou
+
+179
+00:06:24,080 --> 00:06:25,050
+adicionar esta
+
+180
+00:06:25,240 --> 00:06:26,620
+soma extra aqui.
+
+181
+00:06:26,780 --> 00:06:28,840
+Somarei por todos
+
+182
+00:06:29,260 --> 00:06:33,140
+os "nₘ" filmes, minimizando
+
+183
+00:06:33,830 --> 00:06:34,670
+este objetivo aqui em cima,
+
+184
+00:06:35,010 --> 00:06:37,080
+somado sobre todos filmes.
+
+185
+00:06:37,410 --> 00:06:39,930
+Com isso, você obtém o um problema de otimização.
+
+186
+00:06:40,950 --> 00:06:42,320
+Se você minimizar
+
+187
+00:06:42,890 --> 00:06:44,520
+isto, você terá um
+
+188
+00:06:44,680 --> 00:06:47,440
+conjunto de características razoável para todos os seus filmes.
+
+189
+00:06:48,650 --> 00:06:50,080
+Agora vamos relacionar
+
+190
+00:06:50,210 --> 00:06:51,050
+o algoritmo
+
+191
+00:06:51,330 --> 00:06:52,730
+sobre o qual falamos no
+
+192
+00:06:53,180 --> 00:06:54,810
+vídeo anterior e que o que vimos agora.
+
+193
+00:06:55,730 --> 00:06:57,070
+No vídeo anterior, mostramos
+
+194
+00:06:57,180 --> 00:06:58,710
+que, se você tem um
+
+195
+00:06:58,820 --> 00:06:59,700
+conjunto de
+
+196
+00:06:59,790 --> 00:07:00,640
+notas de filmes,
+
+197
+00:07:00,640 --> 00:07:03,960
+tem os dados "r⁽ⁱʲ⁾" e os "y⁽ⁱʲ⁾",
+
+198
+00:07:04,090 --> 00:07:06,100
+você tem as notas dos filmes.
+
+199
+00:07:08,500 --> 00:07:09,650
+Então, dadas as características para
+
+200
+00:07:09,800 --> 00:07:11,800
+os filmes, podemos aprender estes parâmetros "θ".
+
+201
+00:07:12,340 --> 00:07:13,110
+Se você sabe as
+
+202
+00:07:13,830 --> 00:07:15,000
+características,  pode aprender os
+
+203
+00:07:15,650 --> 00:07:16,850
+parâmetros "θ" para seus usuários.
+
+204
+00:07:18,250 --> 00:07:19,770
+Mostramos, antes neste
+
+205
+00:07:19,930 --> 00:07:21,400
+vídeo é que, se seus
+
+206
+00:07:21,790 --> 00:07:22,860
+usuários estão dispostos
+
+207
+00:07:23,000 --> 00:07:25,450
+a informar parâmetros, então você
+
+208
+00:07:25,560 --> 00:07:28,060
+pode estimar características para filmes diferentes.
+
+209
+00:07:29,270 --> 00:07:31,490
+Este é um problema como o da galinha e o ovo.
+
+210
+00:07:31,770 --> 00:07:32,290
+Qual vem primeiro?
+
+211
+00:07:32,900 --> 00:07:35,570
+Se pudermos ter os "θ", podemos descobrir os "x",
+
+212
+00:07:36,060 --> 00:07:38,160
+e se tivermos os "x", podemos aprender os "θ".
+
+213
+00:07:39,500 --> 00:07:40,500
+O que você pode fazer é,
+
+214
+00:07:40,680 --> 00:07:41,790
+e isso realmente funciona,
+
+215
+00:07:41,910 --> 00:07:43,000
+é escolher
+
+216
+00:07:43,110 --> 00:07:44,530
+aleatoriamente
+
+217
+00:07:45,170 --> 00:07:47,160
+valores para os "θ".
+
+218
+00:07:48,210 --> 00:07:49,200
+Baseado em seu chute inicial
+
+219
+00:07:49,530 --> 00:07:50,630
+para os "θ", você pode
+
+220
+00:07:50,940 --> 00:07:52,530
+usar o procedimento que
+
+221
+00:07:53,160 --> 00:07:54,210
+acabamos de discutir,
+
+222
+00:07:54,460 --> 00:07:55,810
+para aprender
+
+223
+00:07:56,060 --> 00:07:57,740
+as características para diferentes filmes.
+
+224
+00:07:58,800 --> 00:07:59,990
+Dado um conjunto inicial de características
+
+225
+00:08:00,130 --> 00:08:01,160
+para os filmes, você
+
+226
+00:08:01,240 --> 00:08:02,730
+pode usar o primeiro método,
+
+227
+00:08:03,050 --> 00:08:04,060
+que discutimos no
+
+228
+00:08:04,130 --> 00:08:06,180
+vídeo anterior, para tentar encontrar
+
+229
+00:08:06,360 --> 00:08:08,590
+estimativas melhores para os parâmetros "θ".
+
+230
+00:08:09,560 --> 00:08:12,420
+Agora que você tem uma configuração melhor para os parâmetros "θ" dos usuários,
+
+231
+00:08:12,860 --> 00:08:13,850
+podemos usar isso para
+
+232
+00:08:14,070 --> 00:08:15,140
+conseguir um conjunto melhor
+
+233
+00:08:15,240 --> 00:08:17,110
+de características, e assim por diante,
+
+234
+00:08:17,380 --> 00:08:18,400
+você pode iterar, indo
+
+235
+00:08:18,600 --> 00:08:19,440
+para cá e para lá
+
+236
+00:08:19,790 --> 00:08:21,270
+otimizando "θ", "x", "θ", "x",
+
+237
+00:08:21,560 --> 00:08:24,000
+e isso realmente
+
+238
+00:08:24,270 --> 00:08:25,290
+funciona.
+
+239
+00:08:25,410 --> 00:08:26,340
+No fim,
+
+240
+00:08:26,800 --> 00:08:28,360
+isso fará seu algoritmo convergir
+
+241
+00:08:28,930 --> 00:08:30,430
+para um conjunto razoável
+
+242
+00:08:31,340 --> 00:08:32,650
+de características para os filmes
+
+243
+00:08:32,790 --> 00:08:34,880
+e um conjunto razoável de parâmetros para os diferentes usuários.
+
+244
+00:08:36,080 --> 00:08:38,870
+Isso é um algoritmo de filtragem colaborativa básico.
+
+245
+00:08:39,770 --> 00:08:40,850
+Na verdade, este não é o
+
+246
+00:08:41,020 --> 00:08:42,890
+algoritmo final que vamos usar.
+
+247
+00:08:43,120 --> 00:08:44,100
+No próximo vídeo, vamos melhorá-lo
+
+248
+00:08:44,790 --> 00:08:45,610
+e torná-lo
+
+249
+00:08:45,920 --> 00:08:47,430
+mais eficiente computacionalmente.
+
+250
+00:08:48,390 --> 00:08:49,510
+Mas espero que isso tenha
+
+251
+00:08:49,640 --> 00:08:50,600
+dado uma noção
+
+252
+00:08:50,680 --> 00:08:51,980
+de como formular um problema
+
+253
+00:08:52,040 --> 00:08:52,990
+no qual você pode
+
+254
+00:08:53,930 --> 00:08:57,200
+simultaneamente aprender os parâmetros e as características de diferentes filmes.
+
+255
+00:08:58,440 --> 00:08:59,660
+Para esse problema,
+
+256
+00:08:59,740 --> 00:09:01,100
+do sistema de recomendação,
+
+257
+00:09:01,390 --> 00:09:02,950
+Isso é possível pois cada usuário
+
+258
+00:09:03,490 --> 00:09:04,840
+classifica múltiplos filmes e,
+
+259
+00:09:05,100 --> 00:09:06,410
+com sorte, cada filme foi classificado
+
+260
+00:09:06,790 --> 00:09:08,710
+por vários usuários. Assim, você pode
+
+261
+00:09:09,280 --> 00:09:10,150
+fazer esse processo de
+
+262
+00:09:10,270 --> 00:09:11,150
+ir e voltar para estimar "θ" e "x".
+
+263
+00:09:11,200 --> 00:09:14,400
+Resumindo,
+
+264
+00:09:14,830 --> 00:09:15,910
+neste vídeo vimos
+
+265
+00:09:16,140 --> 00:09:18,710
+um algoritmo de filtragem colaborativa inicial.
+
+266
+00:09:19,680 --> 00:09:21,550
+O termo "filtragem colaborativa" se refere
+
+267
+00:09:22,020 --> 00:09:23,620
+à observação de que,
+
+268
+00:09:23,760 --> 00:09:25,020
+quando você roda o algoritmo com
+
+269
+00:09:25,210 --> 00:09:26,790
+um grande conjunto de usuários,
+
+270
+00:09:26,960 --> 00:09:28,410
+os usuários colaboram, de certa forma.
+
+271
+00:09:29,070 --> 00:09:31,300
+Colaboram para conseguir
+
+272
+00:09:31,490 --> 00:09:32,770
+melhores classificações de filmes
+
+273
+00:09:33,010 --> 00:09:34,610
+para todos, pois com cada usuário
+
+274
+00:09:34,840 --> 00:09:36,540
+classificando um subconjunto de filmes,
+
+275
+00:09:37,350 --> 00:09:39,040
+cada usuário está ajudando
+
+276
+00:09:39,300 --> 00:09:41,490
+o algoritmo um pouco a aprender as características melhor.
+
+277
+00:09:42,900 --> 00:09:44,390
+Ao ajudar,
+
+278
+00:09:44,490 --> 00:09:46,690
+quando classifico alguns filmes,
+
+279
+00:09:47,810 --> 00:09:49,550
+ajudo o sistema a aprender as características
+
+280
+00:09:49,680 --> 00:09:50,750
+que podem ser usadas
+
+281
+00:09:50,930 --> 00:09:52,610
+pelo sistema para fazer previsões melhores
+
+282
+00:09:52,890 --> 00:09:54,380
+de filmes para todos os outros.
+
+283
+00:09:54,640 --> 00:09:55,450
+Assim, existe uma
+
+284
+00:09:55,530 --> 00:09:56,980
+colaboração, na qual cada usuário está
+
+285
+00:09:57,370 --> 00:09:58,980
+ajudando o sistema a aprender as características
+
+286
+00:09:59,360 --> 00:10:00,740
+para um benefício comum.
+
+287
+00:10:00,810 --> 00:10:03,450
+Isso é filtragem colaborativa.
+
+288
+00:10:04,070 --> 00:10:04,990
+No próximo vídeo,
+
+289
+00:10:05,140 --> 00:10:07,490
+usaremos essas ideias que trabalhamos
+
+290
+00:10:07,740 --> 00:10:08,850
+aqui para tentar desenvolver um
+
+291
+00:10:09,090 --> 00:10:09,910
+algoritmo ainda melhor,
+
+292
+00:10:10,170 --> 00:10:11,920
+uma técnica um pouco melhor
+
+293
+00:10:12,180 --> 00:10:13,640
+para a filtragem coletiva.

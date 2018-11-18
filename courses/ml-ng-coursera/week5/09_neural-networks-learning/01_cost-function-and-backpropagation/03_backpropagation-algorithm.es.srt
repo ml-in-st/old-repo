@@ -1,0 +1,1352 @@
+1
+00:00:00,090 --> 00:00:01,798
+En el video anterior hablamos sobre
+
+2
+00:00:01,857 --> 00:00:03,868
+una función de costo para la red neuronal.
+
+3
+00:00:04,139 --> 00:00:07,079
+En este video, vamos a empezar a hablar de un algoritmo,
+
+4
+00:00:07,200 --> 00:00:09,062
+para minimizar la función de costo.
+
+5
+00:00:09,240 --> 00:00:12,735
+En particular, vamos a hablar sobre el algoritmo retropropagación.
+
+6
+00:00:13,834 --> 00:00:15,380
+Aquí se encuentra la función de costo que
+
+7
+00:00:15,520 --> 00:00:17,905
+anotamos en el video anterior.
+
+8
+00:00:17,972 --> 00:00:19,438
+Lo que nos gustaría hacer es
+
+9
+00:00:19,484 --> 00:00:21,161
+tratar de encontrar los parámetros de «theta»
+
+10
+00:00:21,246 --> 00:00:23,440
+para tratar de minimizar J de «theta».
+
+11
+00:00:23,530 --> 00:00:25,782
+Con el fin de utilizar ya sea el descenso de gradiente
+
+12
+00:00:25,832 --> 00:00:28,625
+o uno de los algoritmos de optimización avanzados.
+
+13
+00:00:28,675 --> 00:00:30,206
+Lo que tenemos que hacer, por lo tanto, es
+
+14
+00:00:30,249 --> 00:00:31,598
+escribir el código que lleva
+
+15
+00:00:31,645 --> 00:00:33,487
+esta entrada a los parámetros de «theta»
+
+16
+00:00:33,540 --> 00:00:34,965
+y calcula j de «theta»
+
+17
+00:00:35,014 --> 00:00:37,364
+y estos términos de la derivada parcial.
+
+18
+00:00:37,425 --> 00:00:38,763
+Recuerda que los parámetros
+
+19
+00:00:38,790 --> 00:00:40,710
+en la red neuronal de estos elementos,
+
+20
+00:00:40,760 --> 00:00:43,435
+en «theta» superíndice l subíndice ij,
+
+21
+00:00:43,492 --> 00:00:44,868
+ese es el número real
+
+22
+00:00:44,930 --> 00:00:47,185
+y por eso, estos son los términos de la derivada parcial
+
+23
+00:00:47,249 --> 00:00:48,869
+que necesitamos calcular.
+
+24
+00:00:48,900 --> 00:00:50,077
+Con el fin de calcular la
+
+25
+00:00:50,115 --> 00:00:51,840
+función de costo j de «theta»
+
+26
+00:00:51,883 --> 00:00:53,986
+sólo tienes que utilizar esta fórmula de aquí arriba
+
+27
+00:00:54,042 --> 00:00:55,617
+y por eso, lo que quiero hacer
+
+28
+00:00:55,655 --> 00:00:56,850
+en la mayor parte de este video es
+
+29
+00:00:56,897 --> 00:00:58,595
+enfocarme en hablar acerca de
+
+30
+00:00:58,636 --> 00:00:59,952
+cómo podemos calcular estos
+
+31
+00:00:59,989 --> 00:01:01,994
+términos de la derivada parcial.
+
+32
+00:01:02,031 --> 00:01:03,812
+Vamos a empezar por hablar de un
+
+33
+00:01:03,858 --> 00:01:05,512
+caso cuando sólo tenemos
+
+34
+00:01:05,556 --> 00:01:06,839
+un ejemplo de entrenamiento,
+
+35
+00:01:06,872 --> 00:01:09,385
+así que imagínate, si quieres que todo nuestro
+
+36
+00:01:09,432 --> 00:01:11,301
+conjunto de entrenamiento conste de un solo
+
+37
+00:01:11,351 --> 00:01:14,006
+ejemplo de entrenamiento que sea un par xy.
+
+38
+00:01:14,049 --> 00:01:15,591
+no voy a escribir x1y1,
+
+39
+00:01:15,629 --> 00:01:16,375
+sólo escribe esto.
+
+40
+00:01:16,410 --> 00:01:17,665
+Escribe un ejemplo de entrenamiento
+
+41
+00:01:17,718 --> 00:01:19,980
+como xy y pasemos a
+
+42
+00:01:20,031 --> 00:01:21,423
+la secuencia de cálculos
+
+43
+00:01:21,462 --> 00:01:24,332
+que íbamos a hacer con este ejemplo de entrenamiento.
+
+44
+00:01:25,754 --> 00:01:27,129
+Lo primero que hacemos es
+
+45
+00:01:27,167 --> 00:01:29,175
+aplicar la propagación hacia adelante
+
+46
+00:01:29,212 --> 00:01:31,773
+para calcular si una hipótesis
+
+47
+00:01:31,813 --> 00:01:34,238
+en realidad resulta dada esta entrada.
+
+48
+00:01:34,272 --> 00:01:36,734
+En concreto, recordemos que, la llamamos
+
+49
+00:01:36,769 --> 00:01:39,025
+a(1), que son los valores de activación
+
+50
+00:01:39,071 --> 00:01:41,541
+de esta primera capa que era la entrada acá.
+
+51
+00:01:41,600 --> 00:01:43,452
+Bien, voy a establecer eso para x
+
+52
+00:01:43,505 --> 00:01:45,389
+y luego vamos a calcular
+
+53
+00:01:45,435 --> 00:01:47,506
+z(2) igual a «theta»(1) a(1)
+
+54
+00:01:47,552 --> 00:01:49,919
+y a(2) es igual a g, la función
+
+55
+00:01:49,980 --> 00:01:52,250
+de activación sigmoidea aplicada a z(2)
+
+56
+00:01:52,310 --> 00:01:53,753
+y esto nos daría nuestras
+
+57
+00:01:53,800 --> 00:01:56,115
+activaciones para la primera capa interna.
+
+58
+00:01:56,162 --> 00:01:58,208
+Eso es para la capa dos de la red
+
+59
+00:01:58,241 --> 00:02:00,649
+y añadimos también estos términos de oscilación.
+
+60
+00:02:01,315 --> 00:02:03,132
+A continuación aplicamos 2 pasos más
+
+61
+00:02:03,176 --> 00:02:04,966
+de estos cuatro y la propagación
+
+62
+00:02:05,013 --> 00:02:08,328
+para calcular a(3) y a(4)
+
+63
+00:02:08,360 --> 00:02:11,458
+que es también la salida
+
+64
+00:02:11,505 --> 00:02:14,089
+de una hipótesis h de x.
+
+65
+00:02:14,711 --> 00:02:18,103
+Así que ésta es nuestra implementación vectorizada de
+
+66
+00:02:18,145 --> 00:02:19,228
+la propagación hacia adelante
+
+67
+00:02:19,276 --> 00:02:20,888
+y que nos permite calcular
+
+68
+00:02:20,938 --> 00:02:22,280
+los valores de activación
+
+69
+00:02:22,345 --> 00:02:24,056
+para todas las neuronas
+
+70
+00:02:24,110 --> 00:02:25,948
+en nuestra red neuronal.
+
+71
+00:02:27,934 --> 00:02:29,608
+A continuación, con el fin de calcular
+
+72
+00:02:29,650 --> 00:02:30,967
+las derivadas, vamos a utilizar
+
+73
+00:02:31,026 --> 00:02:33,589
+un algoritmo denominado Retropropagación.
+
+74
+00:02:34,904 --> 00:02:37,765
+La intuición del algoritmo de retropropagación
+
+75
+00:02:37,807 --> 00:02:38,430
+es que por cada notación
+
+76
+00:02:38,430 --> 00:02:41,065
+vamos a calcular el término
+
+77
+00:02:41,126 --> 00:02:43,642
+«delta» superíndice l subíndice j
+
+78
+00:02:43,676 --> 00:02:45,130
+y eso de algún modo va a
+
+79
+00:02:45,171 --> 00:02:46,310
+representar el error
+
+80
+00:02:46,361 --> 00:02:48,511
+de la notación j en la capa l.
+
+81
+00:02:48,552 --> 00:02:49,682
+Bien, recuerda que
+
+82
+00:02:49,716 --> 00:02:52,313
+superíndice l subíndice j
+
+83
+00:02:52,355 --> 00:02:54,138
+ésa es la activación de
+
+84
+00:02:54,185 --> 00:02:56,182
+j de la unidad en la capa l
+
+85
+00:02:56,224 --> 00:02:58,001
+así que, este término «delta»
+
+86
+00:02:58,045 --> 00:02:59,037
+en cierto sentido
+
+87
+00:02:59,082 --> 00:03:00,978
+va a capturar nuestro error
+
+88
+00:03:01,012 --> 00:03:03,618
+en la activación de ese dúo neuronal.
+
+89
+00:03:03,650 --> 00:03:05,798
+Entonces, ¿cómo podríamos desear que la activación
+
+90
+00:03:05,823 --> 00:03:07,975
+de esa notación fuera un poco diferente?
+
+91
+00:03:08,047 --> 00:03:09,670
+Pues simple, tomando el ejemplo
+
+92
+00:03:10,270 --> 00:03:11,100
+de la red neuronal que tenemos
+
+93
+00:03:11,360 --> 00:03:12,700
+a la derecha que tiene cuatro capas.
+
+94
+00:03:13,440 --> 00:03:15,710
+y así L mayúscula es igual a 4.
+
+95
+00:03:16,060 --> 00:03:17,120
+Por cada unidad de salida, vamos a calcular este término «delta».
+
+96
+00:03:17,400 --> 00:03:19,130
+Así, «delta» para j de la unidad en la cuarta capa es igual a
+
+97
+00:03:23,380 --> 00:03:24,490
+justo la activación de esa
+
+98
+00:03:24,720 --> 00:03:26,350
+unidad menos el que era
+
+99
+00:03:26,490 --> 00:03:28,650
+el valor real de 0 en nuestro ejemplo de entrenamiento.
+
+100
+00:03:29,900 --> 00:03:32,420
+Bien, este término de aquí
+
+101
+00:03:32,580 --> 00:03:34,510
+también se puede escribir como h
+
+102
+00:03:34,710 --> 00:03:38,040
+x subíndice j, ¿correcto?
+
+103
+00:03:38,330 --> 00:03:39,640
+Y así este término «delta» es justo
+
+104
+00:03:39,930 --> 00:03:40,900
+la diferencia entre
+
+105
+00:03:41,290 --> 00:03:43,200
+lo que la hipótesis da por resultado y el que
+
+106
+00:03:43,370 --> 00:03:44,870
+era valor de "y"
+
+107
+00:03:45,570 --> 00:03:46,900
+en nuestro conjunto de entrenamiento, donde esta
+
+108
+00:03:47,060 --> 00:03:48,610
+"y" subíndice j es
+
+109
+00:03:48,750 --> 00:03:49,910
+j del elemento del
+
+110
+00:03:50,090 --> 00:03:53,340
+valor del vector "y" en nuestro conjunto de entrenamiento con valor asignado.
+
+111
+00:03:56,200 --> 00:03:57,790
+Y, por cierto, si tú
+
+112
+00:03:57,970 --> 00:04:00,460
+piensas en «delta» "a" y en
+
+113
+00:04:01,000 --> 00:04:02,350
+"y" como vectores, entonces puedes
+
+114
+00:04:02,520 --> 00:04:03,760
+también tomarlos y proponer
+
+115
+00:04:04,030 --> 00:04:05,890
+desarrollar una implementación vectorizada de
+
+116
+00:04:06,010 --> 00:04:07,310
+que es justo
+
+117
+00:04:07,690 --> 00:04:09,840
+«delta» 4 que se establece como
+
+118
+00:04:10,700 --> 00:04:14,330
+a4 menos y. Y
+
+119
+00:04:14,560 --> 00:04:15,820
+aquí, cada uno de estos «delta»
+
+120
+00:04:16,540 --> 00:04:18,080
+4 a4 y "y", cada uno de
+
+121
+00:04:18,180 --> 00:04:19,860
+estos es un vector cuya
+
+122
+00:04:20,640 --> 00:04:22,040
+dimensión es igual al
+
+123
+00:04:22,250 --> 00:04:24,150
+número de unidades de salida de nuestra red.
+
+124
+00:04:25,210 --> 00:04:26,880
+Así que ahora hemos calculado los
+
+125
+00:04:27,320 --> 00:04:28,670
+términos del error de «delta»
+
+126
+00:04:29,020 --> 00:04:30,170
+4 para nuestra red.
+
+127
+00:04:31,440 --> 00:04:32,950
+Lo que debemos hacer después es calcular
+
+128
+00:04:33,620 --> 00:04:36,280
+los términos «delta» para las capas anteriores de nuestra red.
+
+129
+00:04:37,210 --> 00:04:38,690
+He aquí una fórmula para calcular «delta»
+
+130
+00:04:39,010 --> 00:04:39,830
+3, y es «delta» 3 es igual
+
+131
+00:04:40,310 --> 00:04:42,050
+a «theta» 3 transposición punto veces «delta» 4.
+
+132
+00:04:42,560 --> 00:04:44,190
+Y en estos punto veces, ésta
+
+133
+00:04:44,390 --> 00:04:46,390
+es la operación de multiplicación de las "y" del elemento
+
+134
+00:04:47,580 --> 00:04:48,380
+que conocemos de MATLAB.
+
+135
+00:04:49,160 --> 00:04:50,760
+Así que «delta» 3 transpone a «delta»
+
+136
+00:04:51,020 --> 00:04:52,860
+4, ése es un vector; g prima
+
+137
+00:04:53,480 --> 00:04:55,080
+z3 ése también es un vector
+
+138
+00:04:55,800 --> 00:04:57,370
+así que punto veces es
+
+139
+00:04:57,530 --> 00:04:59,670
+una multiplicación de las "y" del elemento entre estos dos vectores.
+
+140
+00:05:01,460 --> 00:05:02,650
+Este término g prima de
+
+141
+00:05:02,740 --> 00:05:04,560
+z3, que formalmente es en realidad
+
+142
+00:05:04,950 --> 00:05:06,420
+la derivada de la función
+
+143
+00:05:06,720 --> 00:05:08,740
+de activación de g evaluada en
+
+144
+00:05:08,890 --> 00:05:10,620
+los valores de entrada dados por z3.
+
+145
+00:05:10,760 --> 00:05:12,620
+Si sabes cálculo, puedes
+
+146
+00:05:12,710 --> 00:05:13,470
+tratar de resolverlo tú mismo
+
+147
+00:05:13,850 --> 00:05:16,100
+y ver si puedes simplificarlo hasta el mismo resultado al que llegué.
+
+148
+00:05:16,860 --> 00:05:19,690
+Pero yo sólo te voy a decir pragmáticamente lo que eso significa.
+
+149
+00:05:20,000 --> 00:05:21,260
+Lo que tú haces para calcular esta g
+
+150
+00:05:21,460 --> 00:05:23,310
+prima, en estos términos derivados es
+
+151
+00:05:23,510 --> 00:05:25,660
+justo a3 punto veces 1
+
+152
+00:05:26,010 --> 00:05:27,900
+menos a3 en donde a3
+
+153
+00:05:28,160 --> 00:05:29,420
+es el vector de las activaciones.
+
+154
+00:05:30,150 --> 00:05:31,440
+1 es el vector de
+
+155
+00:05:31,600 --> 00:05:33,240
+los unos y a3 es
+
+156
+00:05:34,020 --> 00:05:35,970
+de nuevo la activación
+
+157
+00:05:36,290 --> 00:05:38,850
+del vector de los valores de la activación para esa capa.
+
+158
+00:05:39,170 --> 00:05:40,210
+A continuación, aplicas una fórmula similar
+
+159
+00:05:40,540 --> 00:05:42,850
+para calcular «delta» 2
+
+160
+00:05:43,220 --> 00:05:45,230
+en donde de nuevo ésta puede
+
+161
+00:05:45,670 --> 00:05:47,410
+calcularse utilizando una fórmula similar.
+
+162
+00:05:48,450 --> 00:05:49,950
+Sólo que ahora es a2
+
+163
+00:05:50,120 --> 00:05:53,850
+como tal y yo
+
+164
+00:05:53,960 --> 00:05:55,020
+luego lo demuestro aquí, pero tú
+
+165
+00:05:55,110 --> 00:05:56,400
+puedes en realidad, y es posible
+
+166
+00:05:56,490 --> 00:05:57,520
+demostrarlo si sabes cálculo
+
+167
+00:05:58,240 --> 00:05:59,520
+que esta expresión es igual
+
+168
+00:05:59,860 --> 00:06:02,010
+a matemáticamente, la derivada de
+
+169
+00:06:02,190 --> 00:06:03,570
+la función g, de la función
+
+170
+00:06:04,040 --> 00:06:05,460
+de activación, que estoy señalando
+
+171
+00:06:05,910 --> 00:06:08,540
+mediante g prima. y, finalmente,
+
+172
+00:06:09,270 --> 00:06:10,690
+eso es todo y no hay
+
+173
+00:06:10,860 --> 00:06:13,650
+ningún término «delta»1, porque la
+
+174
+00:06:13,720 --> 00:06:15,590
+primera capa corresponde a la
+
+175
+00:06:15,630 --> 00:06:16,940
+capa de entrada y esa es justo la
+
+176
+00:06:17,000 --> 00:06:18,200
+variable que observamos en nuestros
+
+177
+00:06:18,300 --> 00:06:20,380
+conjuntos de entrenamiento, que no tengan ningún error asociado.
+
+178
+00:06:20,600 --> 00:06:22,080
+Esto no es, ya lo sabes,
+
+179
+00:06:22,120 --> 00:06:23,680
+en realidad no queremos tratar de cambiar esos valores.
+
+180
+00:06:24,320 --> 00:06:25,240
+Y así tenemos los términos de «delta»
+
+181
+00:06:25,510 --> 00:06:28,090
+sólo para las capas 2, 3 y para este ejemplo.
+
+182
+00:06:30,170 --> 00:06:32,120
+El nombre retropropagación proviene del
+
+183
+00:06:32,170 --> 00:06:33,260
+hecho de que empezamos por
+
+184
+00:06:33,350 --> 00:06:34,720
+calcular el término «delta» para
+
+185
+00:06:34,740 --> 00:06:36,190
+la capa de salida y luego
+
+186
+00:06:36,370 --> 00:06:37,480
+regresamos una capa y
+
+187
+00:06:37,880 --> 00:06:39,670
+calculamos los términos «delta» para la
+
+188
+00:06:39,850 --> 00:06:41,050
+tercera capa oculta y luego
+
+189
+00:06:41,180 --> 00:06:42,540
+regresamos otro paso para calcular
+
+190
+00:06:42,770 --> 00:06:44,070
+«delta» 2 y así sucesivamente, digamos que estamos
+
+191
+00:06:44,660 --> 00:06:46,060
+retropropagando los errores de
+
+192
+00:06:46,280 --> 00:06:47,270
+la capa de salida hacia la capa 3
+
+193
+00:06:47,650 --> 00:06:50,180
+y hacia la capa 2, de ahí el nombre de Retropropagación.
+
+194
+00:06:51,270 --> 00:06:53,120
+Finalmente, la derivación es
+
+195
+00:06:53,340 --> 00:06:56,510
+muy complicada y está sorprendentemente implicada pero
+
+196
+00:06:56,820 --> 00:06:58,100
+si realizas estos pocos
+
+197
+00:06:58,280 --> 00:07:00,130
+pasos de cálculo es posible
+
+198
+00:07:00,680 --> 00:07:02,540
+que demuestres, y es francamente algo viral,
+
+199
+00:07:02,810 --> 00:07:04,440
+una complicada demostración matemática.
+
+200
+00:07:05,200 --> 00:07:07,410
+Es posible demostrar que si
+
+201
+00:07:07,560 --> 00:07:09,690
+tú ignoras la regularización entonces los
+
+202
+00:07:09,800 --> 00:07:11,080
+términos de la derivada parcial que quieres
+
+203
+00:07:12,220 --> 00:07:14,650
+están exactamente dados por las
+
+204
+00:07:14,780 --> 00:07:17,690
+activaciones y estos términos «delta».
+
+205
+00:07:17,870 --> 00:07:20,630
+Esto es ignorar lambda o
+
+206
+00:07:20,780 --> 00:07:22,730
+si lo quieres ver de otro modo, como si el término
+
+207
+00:07:23,770 --> 00:07:24,630
+de regularización lambda fuese
+
+208
+00:07:25,000 --> 00:07:25,170
+igual a 0.
+
+209
+00:07:25,680 --> 00:07:27,130
+Arreglaremos este detalle más adelante
+
+210
+00:07:27,470 --> 00:07:29,430
+con respecto al término de regularización, aunque
+
+211
+00:07:29,620 --> 00:07:30,740
+bueno, al realizar la retropropagación
+
+212
+00:07:31,610 --> 00:07:32,820
+y al calcular estos términos de «delta»,
+
+213
+00:07:33,180 --> 00:07:34,240
+puedes, y ya lo sabes, calcular
+
+214
+00:07:34,530 --> 00:07:36,320
+bastante rápido estos términos de la
+
+215
+00:07:36,380 --> 00:07:38,150
+derivada parcial para todos tus parámetros.
+
+216
+00:07:38,920 --> 00:07:40,020
+Así que estos son un montón de detalles.
+
+217
+00:07:40,570 --> 00:07:41,900
+Vamos a reunir todo y a poner
+
+218
+00:07:42,320 --> 00:07:43,660
+todo en perspectiva para hablar acerca de
+
+219
+00:07:44,120 --> 00:07:45,490
+cómo implementar la retropropagación
+
+220
+00:07:46,560 --> 00:07:48,590
+para calcular las derivadas con respecto a tus parámetros.
+
+221
+00:07:49,790 --> 00:07:50,770
+Y en caso de que
+
+222
+00:07:51,000 --> 00:07:52,460
+tengamos un gran conjunto de entrenamiento
+
+223
+00:07:52,830 --> 00:07:53,850
+no sólo un conjunto de entrenamiento
+
+224
+00:07:54,100 --> 00:07:56,320
+de un ejemplo, esto es lo que hacemos.
+
+225
+00:07:57,290 --> 00:07:58,140
+Vamos a suponer que tenemos un conjunto
+
+226
+00:07:58,270 --> 00:07:59,750
+de entrenamiento de "m" ejemplos como
+
+227
+00:07:59,900 --> 00:08:01,610
+el que se muestra aquí.
+
+228
+00:08:01,850 --> 00:08:02,600
+Lo primero que vamos a hacer es
+
+229
+00:08:03,220 --> 00:08:04,560
+que vamos a establecer estos «delta»
+
+230
+00:08:05,100 --> 00:08:07,270
+l subíndice i j. ¿Y qué es este símbolo triangular?
+
+231
+00:08:08,090 --> 00:08:09,990
+Esto de hecho es «delta» mayúscula
+
+232
+00:08:10,310 --> 00:08:11,980
+en el alfabeto griego.
+
+233
+00:08:12,050 --> 00:08:14,080
+El símbolo que teníamos en la diapositiva anterior era «delta» minúscula.
+
+234
+00:08:14,390 --> 00:08:16,810
+De modo que el triángulo es la mayúscula de «delta».
+
+235
+00:08:17,430 --> 00:08:18,490
+Vamos a igualar esto a cero
+
+236
+00:08:18,680 --> 00:08:21,930
+para todos los valores de l i j.
+
+237
+00:08:22,110 --> 00:08:23,850
+En algún momento, esta «delta» mayúscula
+
+238
+00:08:24,530 --> 00:08:25,830
+l i j se utilizará
+
+239
+00:08:26,860 --> 00:08:29,920
+para calcular el término de la
+
+240
+00:08:30,290 --> 00:08:31,570
+derivada parcial, la derivada parcial
+
+241
+00:08:32,380 --> 00:08:35,240
+con respecto a «theta» l i j de
+
+242
+00:08:35,430 --> 00:08:37,190
+J de teta.
+
+243
+00:08:39,040 --> 00:08:40,210
+Bien, como veremos en
+
+244
+00:08:40,480 --> 00:08:41,550
+un momento, estos «delta»s se van
+
+245
+00:08:41,670 --> 00:08:43,700
+a utilizar como acumuladores que
+
+246
+00:08:43,950 --> 00:08:45,360
+lentamente agregarán elementos
+
+247
+00:08:45,700 --> 00:08:47,130
+para calcular estas derivadas parciales.
+
+248
+00:08:49,570 --> 00:08:51,920
+A continuación, vamos a recorrer nuestro conjunto de entrenamiento.
+
+249
+00:08:52,150 --> 00:08:53,270
+Así que, vamos a decir que i es igual a
+
+250
+00:08:53,610 --> 00:08:55,400
+1 a través de m y entonces
+
+251
+00:08:55,620 --> 00:08:57,270
+para la iteración de i, vamos
+
+252
+00:08:57,410 --> 00:08:59,180
+a trabajar con el ejemplo de entrenamiento xi, yi.
+
+253
+00:09:00,480 --> 00:09:03,220
+Entonces,
+
+254
+00:09:03,720 --> 00:09:04,590
+lo primero que vamos a hacer
+
+255
+00:09:04,690 --> 00:09:06,120
+es establecer a1, que son las
+
+256
+00:09:06,570 --> 00:09:07,830
+activaciones de la capa de entrada,
+
+257
+00:09:08,190 --> 00:09:09,030
+establecer que sea igual a
+
+258
+00:09:09,950 --> 00:09:11,800
+xi, que son las entradas para nuestro
+
+259
+00:09:12,670 --> 00:09:15,070
+ejemplo i de entrenamiento, y luego
+
+260
+00:09:15,340 --> 00:09:17,590
+vamos a realizar la propagación hacia adelante para
+
+261
+00:09:17,730 --> 00:09:19,400
+calcular las activaciones para
+
+262
+00:09:19,790 --> 00:09:20,900
+la capa dos, la capa tres y así
+
+263
+00:09:21,170 --> 00:09:22,050
+sucesivamente hasta la capa final,
+
+264
+00:09:22,500 --> 00:09:25,190
+la capa L mayúscula. A continuación,
+
+265
+00:09:25,570 --> 00:09:26,970
+vamos a utilizar el valor asignado
+
+266
+00:09:27,280 --> 00:09:28,530
+de la salida "yi" de éste
+
+267
+00:09:28,680 --> 00:09:29,870
+ejemplo específico que estamos viendo
+
+268
+00:09:30,340 --> 00:09:31,650
+para calcular el término de error
+
+269
+00:09:31,950 --> 00:09:34,140
+«delta» L para la salida de allí.
+
+270
+00:09:34,480 --> 00:09:35,730
+Entonces, «delta» L es lo
+
+271
+00:09:35,880 --> 00:09:38,190
+que resulta de la hipótesis menos lo
+
+272
+00:09:38,660 --> 00:09:39,870
+que era el valor asignado meta
+
+273
+00:09:41,840 --> 00:09:42,560
+Y luego vamos a usar
+
+274
+00:09:42,850 --> 00:09:44,550
+el algoritmo de retropropagación para
+
+275
+00:09:44,740 --> 00:09:46,020
+calcular «delta» l menos 1,
+
+276
+00:09:46,220 --> 00:09:47,250
+«delta» l menos 2, y
+
+277
+00:09:47,350 --> 00:09:49,880
+así hasta llegar a «delta» 2 y una vez más
+
+278
+00:09:50,270 --> 00:09:51,380
+ahí está ahora «delta» 1 porque
+
+279
+00:09:51,460 --> 00:09:54,380
+no asociamos un término de error con la capa de entrada.
+
+280
+00:09:57,000 --> 00:09:58,160
+Y, por último, vamos a
+
+281
+00:09:58,340 --> 00:10:00,650
+utilizar estos términos de «delta» mayúscula
+
+282
+00:10:01,190 --> 00:10:02,800
+para acumular estos términos de la derivada
+
+283
+00:10:03,400 --> 00:10:05,670
+parcial que anotamos en el rubro anterior.
+
+284
+00:10:06,870 --> 00:10:07,870
+Y, por cierto, si tú
+
+285
+00:10:07,960 --> 00:10:11,340
+miras esta expresión, es posible vectorizar esto también.
+
+286
+00:10:12,020 --> 00:10:13,040
+Concretamente, si piensas
+
+287
+00:10:13,310 --> 00:10:14,860
+en «delta» ij como
+
+288
+00:10:15,000 --> 00:10:18,090
+una matriz, indexada mediante subíndice ij.
+
+289
+00:10:19,220 --> 00:10:20,590
+Entonces, si «delta» l es
+
+290
+00:10:20,780 --> 00:10:22,040
+una matriz, se puede reescribir
+
+291
+00:10:22,130 --> 00:10:24,100
+esto como «delta» l, se
+
+292
+00:10:24,350 --> 00:10:26,710
+actualiza como «delta» l +
+
+293
+00:10:27,830 --> 00:10:29,370
+el caso de abajo de «delta» l +
+
+294
+00:10:29,640 --> 00:10:32,780
+1 vez a(l) transposición.
+
+295
+00:10:33,570 --> 00:10:35,380
+Así que esa es una implementación vectorizada de
+
+296
+00:10:35,520 --> 00:10:37,150
+esto que automáticamente realiza
+
+297
+00:10:37,590 --> 00:10:38,850
+esta actualización de todos los valores de
+
+298
+00:10:39,010 --> 00:10:41,250
+"i" y "j".
+Finalmente, después de
+
+299
+00:10:41,500 --> 00:10:43,480
+ejecutar el conjunto de
+
+300
+00:10:43,580 --> 00:10:45,350
+los cuatro ciclo fors salimos entonces del cuarto ciclo for
+
+301
+00:10:46,330 --> 00:10:47,000
+y calculamos el siguiente.
+
+302
+00:10:47,440 --> 00:10:49,690
+Calculamos D mayúscula como
+
+303
+00:10:50,020 --> 00:10:51,400
+a continuación y tenemos
+
+304
+00:10:51,510 --> 00:10:52,750
+dos casos separados para j
+
+305
+00:10:52,980 --> 00:10:54,890
+igual a cero y j no igual a cero.
+
+306
+00:10:56,080 --> 00:10:57,250
+El caso en el que j es igual a cero
+
+307
+00:10:57,680 --> 00:10:58,730
+corresponde al término de
+
+308
+00:10:59,150 --> 00:11:00,030
+sesgo, así que cuando j es igual a
+
+309
+00:11:00,390 --> 00:11:01,320
+cero esa es la razón por la que nos falta
+
+310
+00:11:01,800 --> 00:11:03,320
+este término de regularización extra.
+
+311
+00:11:05,470 --> 00:11:06,850
+Por último, a pesar de que la demostración formal
+
+312
+00:11:07,180 --> 00:11:08,970
+es bastante complicada, lo que
+
+313
+00:11:09,030 --> 00:11:10,410
+puedes mostrar es que una vez
+
+314
+00:11:10,640 --> 00:11:12,530
+has calculado estos términos de D,
+
+315
+00:11:13,510 --> 00:11:15,230
+esa es exactamente la derivada
+
+316
+00:11:15,640 --> 00:11:17,610
+parcial de la función
+
+317
+00:11:17,920 --> 00:11:19,230
+costo con respecto a cada uno
+
+318
+00:11:19,470 --> 00:11:20,890
+de tus perímetros, así que
+
+319
+00:11:21,040 --> 00:11:22,470
+puedes usarlos en cualquier descenso de
+
+320
+00:11:22,610 --> 00:11:23,530
+gradiente o en uno de los algoritmos
+
+321
+00:11:25,450 --> 00:11:25,450
+de optimización avanzada
+
+322
+00:11:28,310 --> 00:11:29,360
+Así que ese es el algoritmo de
+
+323
+00:11:29,990 --> 00:11:31,110
+la retropropagación y de cómo calculas
+
+324
+00:11:31,470 --> 00:11:33,080
+las derivadas de tu función de
+
+325
+00:11:33,340 --> 00:11:34,710
+costo para una red neuronal.
+
+326
+00:11:35,470 --> 00:11:36,330
+Sé que esto parece como si
+
+327
+00:11:36,470 --> 00:11:38,810
+estos fueran un montón de detalles y se tratara de un montón de pasos concatenados.
+
+328
+00:11:39,460 --> 00:11:40,770
+Sin embargo, tanto en las tareas de
+
+329
+00:11:41,100 --> 00:11:43,010
+programación escritas y, más tarde
+
+330
+00:11:43,110 --> 00:11:44,580
+en este video, te daremos
+
+331
+00:11:44,720 --> 00:11:45,900
+un resumen de todo ello de tal forma
+
+332
+00:11:46,050 --> 00:11:46,830
+que podamos tener juntas todas las piezas
+
+333
+00:11:47,260 --> 00:11:48,780
+del algoritmo para que
+
+334
+00:11:48,920 --> 00:11:50,550
+sepas exactamente qué es lo que necesitas
+
+335
+00:11:50,610 --> 00:11:51,760
+para poner en práctica, si así lo quieres,
+
+336
+00:11:51,940 --> 00:11:53,460
+para implementar la retropropagación para calcular
+
+337
+00:11:53,890 --> 00:11:56,432
+las derivadas de la función de costos de tu red
+
+338
+00:11:56,574 --> 00:11:59,348
+neuronal con respecto a ésos parámetros

@@ -1,0 +1,478 @@
+1
+00:00:00,960 --> 00:00:05,684
+Dalam video ini, mari kita pelajari lebih dalam
+dan mendapat intuisi yang lebih baik tentang apa yang
+
+2
+00:00:05,684 --> 00:00:10,523
+dikerjakan fungsi harga. Video ini mengasumsi bahwa
+Anda tahu tentang plot kontur. Jika Anda
+
+3
+00:00:10,523 --> 00:00:15,189
+tidak tahu tentang plot kontur atau
+gambar kontur beberapa ilustrasi
+
+4
+00:00:15,189 --> 00:00:20,144
+dalam video ini bisa atau bisa tidak masuk akal bagi
+Anda, tapi tidak mengapa dan jika Anda akhirnya melewati
+
+5
+00:00:20,144 --> 00:00:24,522
+video ini atau beberapa bagian video yang benar-benar
+tidak masuk akal karena Anda belum pernah melihat
+
+6
+00:00:24,522 --> 00:00:29,246
+plot kontur sebelumnya, itu tidak mengapa, Anda masih
+akan mengerti sisa dari mata pelajaran ini
+
+7
+00:00:29,246 --> 00:00:34,935
+tanpa bagian-bagian itu. Ini perumusan
+persoalan kita seperti biasa, dengan
+
+8
+00:00:34,935 --> 00:00:39,882
+parameter hipotesis, fungsi harga, dan
+tujuan pengoptimalan kita. Tidak seperti
+
+9
+00:00:39,882 --> 00:00:45,163
+sebelumnya, tidak seperti video terakhir, saya
+akan mempertahankan kedua parameter saya,
+
+10
+00:00:45,163 --> 00:00:50,573
+theta nol dan theta satu, sambil kita membuat
+visualisasi untuk fungsi harga. Jadi, sama
+
+11
+00:00:50,573 --> 00:00:57,204
+seperti waktu lalu, kita ingin memahami
+hipotesis h dan fungsi harga J. Jadi,
+
+12
+00:00:57,204 --> 00:01:04,167
+ini set latihan harga perumahan saya
+dan mari buat beberapa hipotesis. Anda tahu,
+
+13
+00:01:04,167 --> 00:01:10,219
+seperti satu itu, itu bukan hipotesis
+yang bagus. Namun, jika saya set theta
+
+14
+00:01:10,219 --> 00:01:16,270
+nol = 50 dan theta satu = 0.06, maka saya
+mendapatkan hipotesis dibawah ini dan itu
+
+15
+00:01:16,270 --> 00:01:22,190
+dapat disamakan dengan garis lurus itu. Sekarang,
+dengan nilai theta nol dan theta satu ini,
+
+16
+00:01:22,190 --> 00:01:27,511
+kita ingin memplot fungsi harga yang
+sesuai di sebelah kanan. Ini yang kita
+
+17
+00:01:27,511 --> 00:01:33,150
+lakukan terakhir kali, saat kita hanya punya
+theta satu. Dengan kata lain, menggambar plot
+
+18
+00:01:33,150 --> 00:01:37,814
+seperti ini sebagai fungsi theta satu.
+Tapi sekarang kita punya dua parameter,
+
+19
+00:01:37,814 --> 00:01:42,340
+theta nol dan theta satu, jadi plotnya
+jadi lebih sedikit rumit. Jelas
+
+20
+00:01:42,340 --> 00:01:47,699
+bahwa saat kita hanya punya satu parameter,
+bagian yang kita gambar punya fungsi berbentuk
+
+21
+00:01:47,699 --> 00:01:52,925
+bungkuk sejenis ini. Sekarang, saat kita
+punya dua parameter, jelas fungsi harga
+
+22
+00:01:52,925 --> 00:01:58,218
+juga punya bentuk bungkuk sejenis yang sama.
+Dan bahkan, tergantung pada set latihan Anda,
+
+23
+00:01:58,218 --> 00:02:03,511
+Anda mungkin mendapat fungsi harga yang
+mungkin tampak seperti ini. Jadi, ini adalah
+
+24
+00:02:03,511 --> 00:02:09,404
+plot permukaan 3-D, dimana sumbunya
+dinamai theta nol dan theta satu. Jadi,
+
+25
+00:02:09,404 --> 00:02:15,326
+sambil Anda mengubah-ubah theta nol dan theta satu,
+kedua parameter itu, Anda memperoleh nilai berbeda
+
+26
+00:02:15,326 --> 00:02:20,964
+untuk fungsi harga J (theta nol, theta satu)
+dan ketinggian permukaan ini di atas
+
+27
+00:02:20,964 --> 00:02:26,347
+titik tertentu dari theta nol, theta satu.
+Itu sumbu vertikal.
+
+28
+00:02:26,347 --> 00:02:31,200
+Ketinggian permukaan titik itu
+menunjukkan nilai J dari theta nol,
+
+29
+00:02:31,200 --> 00:02:36,471
+J dari theta satu. Dan bisa Anda lihat bentuknya
+membungkuk seperti ini. Biar saya tunjukkan pada
+
+30
+00:02:36,471 --> 00:02:46,351
+Anda plot yang sama dalam 3D. Jadi ini gambar
+yang sama dalam 3D, sumbu horisontal theta satu
+
+31
+00:02:46,351 --> 00:02:52,122
+dan sumbu vertikal J(theta nol, theta satu),
+dan jika saya merotasi plot ini keliling, saya
+
+32
+00:02:52,122 --> 00:02:57,608
+harap Anda mendapat pemahaman dari permukaan
+berbentuk mangkok ini sebagai bentuk dari
+
+33
+00:02:57,608 --> 00:03:03,592
+fungsi harga J. Sekarang demi
+ilustrasi di sisa video ini
+
+34
+00:03:03,592 --> 00:03:09,077
+saya tidak akan menggunakan permukaan 3D
+sejenis ini untuk menunjukkan pada Anda
+
+35
+00:03:09,077 --> 00:03:16,475
+fungsi harga J, gantinya saya akan menggunakan
+plot kontur, atau apa yang saya sebut juga
+
+36
+00:03:16,475 --> 00:03:24,748
+gambar kontur. Saya pikir keduanya sama,
+untuk menunjukkan pada Anda permukaan ini. Jadi,
+
+37
+00:03:24,748 --> 00:03:31,135
+ini contoh gambar kontur, ditunjukkan di kanan,
+dimana sumbunya theta nol dan theta satu.
+
+38
+00:03:31,135 --> 00:03:37,602
+Dan apa yang diperlihatkan oleh setiap bentuk
+oval, elips ini adalah satu set
+
+39
+00:03:37,602 --> 00:03:43,757
+titik yang mengambil nilai yang sama untuk
+J(theta nol, theta satu). Jadi secara
+
+40
+00:03:43,757 --> 00:03:50,514
+konkrit, contohnya ini, Anda akan mengambil
+titik itu dan titik itu dan titik itu.
+
+41
+00:03:50,514 --> 00:03:55,583
+Semua ketiga titik ini yang saya gambar dengan
+warna magenta, mereka punya nilai yang sama
+
+42
+00:03:55,583 --> 00:03:59,730
+untuk J(theta nol, theta satu). Okey.
+Dimana ini, ini adalah sumbu
+
+43
+00:03:59,730 --> 00:04:04,774
+theta nol, theta satu, tapi ketiganya punya
+nilai J(theta nol, theta satu) yang sama
+
+44
+00:04:04,774 --> 00:04:10,218
+dan jika Anda belum banyak melihat plot
+kontur sebelumnya, bayangkanlah jika Anda
+
+45
+00:04:10,218 --> 00:04:14,992
+akan melihatnya, fungsi berbentuk melengkung
+akan tampil di layar saya. Jadi itu minimumnya,
+
+46
+00:04:14,992 --> 00:04:19,668
+bagian bawah dari lengkungannya titik ini tepat
+disana, oke? Bagian tengah ini, bagian tengah dari
+
+47
+00:04:19,668 --> 00:04:24,285
+elips konsentris ini. Dan bayangkan
+bentuk melengkung sejenis itu keluar dari
+
+48
+00:04:24,285 --> 00:04:28,786
+layar saya seperti ini, sehingga setiap elips
+ini, Anda tahu, punya ketinggian yang sama
+
+49
+00:04:28,786 --> 00:04:33,345
+pada layar saya. Dan titik minimum
+lengkungan, tepat di bawah sana. Jadi
+
+50
+00:04:33,345 --> 00:04:37,787
+gambar kontur adalah suatu cara untuk,
+mungkin cara yang lebih nyaman untuk,
+
+51
+00:04:37,787 --> 00:04:45,185
+menggambarkan fungsi J saya. Jadi, mari
+lihat beberapa contoh. Di sini, saya punya
+
+52
+00:04:45,185 --> 00:04:53,275
+titik khusus, oke? Dan jadi ini, dengan,
+Anda tahu, theta nol sama dengan mungkin
+
+53
+00:04:53,275 --> 00:05:01,964
+sekitar 800, dan theta satu sama dengan
+mungkin -0.15. Jadi titik ini, titik
+
+54
+00:05:01,964 --> 00:05:07,322
+merah ini dapat disamakan dengan satu set
+dari sepasang nilai theta nol, theta satu
+
+55
+00:05:07,322 --> 00:05:12,092
+dan mereka cocok dengan hipotesis
+itu, theta nol adalah
+
+56
+00:05:12,092 --> 00:05:17,189
+sekitar 800, yakni, dimana itu memotong
+sumbu vertikal di sekitar 800, dan
+
+57
+00:05:17,189 --> 00:05:21,763
+kemiringan ini sekitar -0.15. Sekarang garis ini
+tidak benar-benar pas pada data, kan?
+
+58
+00:05:21,763 --> 00:05:26,859
+Hipotesis h(x) ini, dengan nilai theta nol,
+
+59
+00:05:26,859 --> 00:05:32,283
+theta satu ini, benar-benar tidak pas
+di data. Jadi Anda dapati bahwa, harganya
+
+60
+00:05:32,283 --> 00:05:37,531
+adalah nilai di luar sini, bidang
+ini sangat jauh dari minimumnya
+
+61
+00:05:37,531 --> 00:05:42,901
+itu sangat jauh, ini harganya sangat tinggi
+karena ini tidak begitu bagus dan cocok
+
+62
+00:05:42,901 --> 00:05:47,247
+ke data. Mari lihat beberapa contoh
+lagi. Sekarang ini hipotesis lainnya
+
+63
+00:05:47,247 --> 00:05:52,489
+itu masih tidak begitu pas ke data
+tapi mungkin sedikit lebih baik.
+
+64
+00:05:52,489 --> 00:05:57,986
+Jadi ini titik saya, itu parameter
+theta nol theta satu saya,
+
+65
+00:05:57,986 --> 00:06:07,387
+jadi nilai theta nol saya, sekitar
+360 dan nilai theta satu saya
+
+66
+00:06:07,387 --> 00:06:14,047
+sama dengan nol. Jadi, mari kita pecahkan
+itu. Mari ambil theta nol sama dengan
+
+67
+00:06:14,047 --> 00:06:20,063
+360 theta satu sama dengan nol. Dan sepasang
+parameter ini dapat disamakan dengan
+
+68
+00:06:20,063 --> 00:06:26,161
+hipotesis itu, disamakan dengan garis mendatar,
+yaitu, h(x) sama dengan 360 ditambah nol
+
+69
+00:06:26,161 --> 00:06:32,421
+dikali x. Jadi itu hipotesisnya. Dan
+hipotesis ini punya beberapa harga, dan
+
+70
+00:06:32,421 --> 00:06:38,600
+harganya, Anda tahu, diplot sebagai
+ketinggian dari fungsi J pada titik itu.
+
+71
+00:06:38,791 --> 00:06:44,886
+Mari kita lihat dua contoh.
+Ini satu lagi, Anda tahu, pada nilai
+
+72
+00:06:44,886 --> 00:06:52,231
+theta nol ini dan pada nilai theta satu
+itu, kita mendapatkan hipotesis ini, h(x)
+
+73
+00:06:52,231 --> 00:06:58,599
+dan lagi, tidak pas betul ke data,
+dan lebih jauh dari minimumnya. Contoh terakhir,
+
+74
+00:06:58,599 --> 00:07:03,450
+ini tidak benar-benar pada minimumnya, tapi
+ini sangat dekat dengan minimumnya. Jadi ini
+
+75
+00:07:03,450 --> 00:07:08,486
+lumayan pas ke data, dimana,
+untuk suatu nilai tertentu theta nol,
+
+76
+00:07:08,486 --> 00:07:13,337
+yang mana, salah satunya punya nilai, seperti
+suatu nilai tertentu theta satu, kita
+
+77
+00:07:13,337 --> 00:07:18,004
+dapatkan h(x) tertentu. Dan ini tidak
+benar-benar pada minimumnya, tapi ini
+
+78
+00:07:18,004 --> 00:07:23,039
+sangat dekat. Jadi penjumlahan ketidak-telitian
+kwadrat adalah penjumlahan jarak kwadrat antara
+
+79
+00:07:23,039 --> 00:07:28,259
+sampel latihan dan hipotesis saya.
+Sungguh, itu penjumlahan jarak kwadrat,
+
+80
+00:07:28,259 --> 00:07:32,548
+dari semua ketidak-telitian ini. Ini
+sangat dekat ke minimumnya meskipun
+
+81
+00:07:32,548 --> 00:07:37,096
+benar-benar bukan minimumnya. Jadi dengan gambar
+ini, saya harap, itu memberi Anda pengertian
+
+82
+00:07:37,096 --> 00:07:41,869
+yang lebih baik tentang berapa nilai fungsi
+harga J, bagaimana mereka dan bagaimana itu
+
+83
+00:07:41,869 --> 00:07:47,324
+dikaitkan dengan hipotesis berbeda dan juga
+sebagaimana baik hipotesis dikaitkan ke titik
+
+84
+00:07:47,324 --> 00:07:52,983
+yang lebih dekat dengan minimum dari fungsi
+harga J ini. Sekarang, apa yang kita benar-benar
+
+85
+00:07:52,983 --> 00:07:57,619
+inginkan adalah algoritma yang efisien,
+suatu software yang efisien untuk
+
+86
+00:07:57,619 --> 00:08:02,218
+secara otomatis menemukan nilai theta
+nol dan theta satu yang memperkecil
+
+87
+00:08:02,218 --> 00:08:06,566
+fungsi harga J. Dan apa yang kita
+tidak ingin lakukan adalah bagaimana
+
+88
+00:08:06,566 --> 00:08:10,697
+menulis software, untuk memplot titik ini,
+dan kemudian mencoba membaca secara manual
+
+89
+00:08:10,697 --> 00:08:15,263
+angka-angkanya. Ini bukan cara yang baik untuk
+melakukannya. Kita akan lihat nanti, bahwa
+
+90
+00:08:15,426 --> 00:08:19,938
+saat kita melihat contoh yang lebih rumit,
+kita akan mendapat gambar berdimensi tinggi dengan
+
+91
+00:08:19,938 --> 00:08:23,906
+banyak parameter, itu jelasnya,
+akan kita lihat nanti di
+
+92
+00:08:23,906 --> 00:08:28,091
+pelajaran ini, contoh-contoh dimana gambar ini,
+benar-benar tidak dapat diplot, dan
+
+93
+00:08:28,091 --> 00:08:33,664
+ini menjadi jauh lebih sulit untuk digambarkan.
+Jadi, apa yang kita inginkan adalah punya software
+
+94
+00:08:33,664 --> 00:08:37,729
+untuk menemukan nilai theta nol, theta satu
+yang memperkecil fungsi ini dan
+
+95
+00:08:37,916 --> 00:08:42,914
+pada video berikut, kita mulai bicara tentang
+algoritma untuk menemukan secara otomatis
+
+96
+00:08:42,914 --> 00:08:47,600
+nilai theta nol dan theta satu yang
+memperkecil fungsi harga J.

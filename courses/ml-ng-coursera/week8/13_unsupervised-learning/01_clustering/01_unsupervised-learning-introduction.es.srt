@@ -1,0 +1,399 @@
+1
+00:00:00,090 --> 00:00:02,320
+En este video me gustaría comenzar a hablar de los algoritmos de agrupamiento o clustering.
+
+2
+00:00:03,420 --> 00:00:04,850
+Será emocionante porque es
+
+3
+00:00:04,930 --> 00:00:06,910
+nuestro primer algoritmo de aprendizaje no supervisado.
+
+4
+00:00:07,350 --> 00:00:09,080
+en el que aprenderemos de datos
+
+5
+00:00:09,840 --> 00:00:10,730
+sin valores asignados.
+
+6
+00:00:11,900 --> 00:00:13,300
+¿Qué es el aprendizaje no supervisado?
+
+7
+00:00:14,390 --> 00:00:15,630
+Hable brevemente del
+
+8
+00:00:16,350 --> 00:00:17,470
+aprendizaje no supervisado al
+
+9
+00:00:17,550 --> 00:00:18,560
+principio del curso, pero es útil
+
+10
+00:00:19,030 --> 00:00:20,320
+compararlo con el aprendizaje supervisado. Aquí tenemos nuestro típico
+
+11
+00:00:21,760 --> 00:00:23,750
+problema supervisado en el que
+
+12
+00:00:24,030 --> 00:00:25,470
+tenemos un conjunto de entrenamiento con valores asignados y la
+
+13
+00:00:25,770 --> 00:00:27,470
+meta es encontrar una
+
+14
+00:00:27,980 --> 00:00:29,420
+barrera de decisión que separe
+
+15
+00:00:29,530 --> 00:00:31,310
+los ejemplos con un valor asignado positivo y los ejemplos con un valor asignado negativo.
+
+16
+00:00:33,100 --> 00:00:34,400
+El problema de aprendizaje supervisado
+
+17
+00:00:34,460 --> 00:00:35,710
+tiene un
+
+18
+00:00:35,850 --> 00:00:38,270
+conjunto de valores asignados para ajustarles una hipótesis.
+
+19
+00:00:39,160 --> 00:00:40,560
+Por el contrario, en el problema de
+
+20
+00:00:41,080 --> 00:00:42,420
+aprendizaje no supervisado, tenemos
+
+21
+00:00:42,710 --> 00:00:43,740
+datos que no tienen valores
+
+22
+00:00:43,890 --> 00:00:45,270
+asignados asociados a ellos.
+
+23
+00:00:46,730 --> 00:00:47,940
+Así que tenemos datos que
+
+24
+00:00:48,100 --> 00:00:49,090
+se ven así. Aquí tengo un conjunto
+
+25
+00:00:49,180 --> 00:00:50,470
+de puntos sin valores asignados.
+
+26
+00:00:51,800 --> 00:00:52,860
+Entonces, nuestro conjunto de entrenamiento se
+
+27
+00:00:53,220 --> 00:00:54,720
+escribe como “x1”, “x2”,
+
+28
+00:00:55,210 --> 00:00:56,890
+etc., hasta “x(m)”, pero no
+
+29
+00:00:57,450 --> 00:00:58,720
+tenemos ningún valor asignado a “y”.
+
+30
+00:00:59,540 --> 00:01:00,800
+Por eso, los puntos trazados
+
+31
+00:01:01,160 --> 00:01:02,300
+en esta figura no tienen
+
+32
+00:01:02,430 --> 00:01:04,330
+ningún valor asignado.
+
+33
+00:01:04,490 --> 00:01:05,510
+En el aprendizaje no supervisado,
+
+34
+00:01:05,710 --> 00:01:06,860
+lo que hacemos es darle este conjunto
+
+35
+00:01:07,280 --> 00:01:09,150
+de entrenamiento sin valores asignados
+
+36
+00:01:09,250 --> 00:01:10,510
+a un algoritmo y
+
+37
+00:01:10,600 --> 00:01:12,220
+pedirle al algoritmo que
+
+38
+00:01:12,430 --> 00:01:14,130
+encuentre una estructura en los datos para nosotros.
+
+39
+00:01:15,420 --> 00:01:16,490
+Con un conjunto de datos dado,
+
+40
+00:01:16,650 --> 00:01:17,810
+un tipo de estructura que podemos obtener
+
+41
+00:01:18,010 --> 00:01:19,540
+de un algoritmo
+
+42
+00:01:19,810 --> 00:01:21,440
+luce como este conjunto de datos
+
+43
+00:01:21,620 --> 00:01:23,740
+que tiene puntos agrupados
+
+44
+00:01:24,030 --> 00:01:25,500
+en dos clústeres distintos.
+
+45
+00:01:25,800 --> 00:01:28,230
+Un algoritmo que encuentra clústeres o agrupamientos
+
+46
+00:01:28,360 --> 00:01:29,230
+como los que
+
+47
+00:01:29,450 --> 00:01:30,610
+acabo de circular se llama algoritmo de
+
+48
+00:01:32,440 --> 00:01:32,440
+agrupamiento.
+
+49
+00:01:33,160 --> 00:01:34,620
+Este será nuestro primer tipo de aprendizaje
+
+50
+00:01:34,720 --> 00:01:36,590
+no supervisado, aunque
+
+51
+00:01:36,790 --> 00:01:38,320
+habrá otros tipos
+
+52
+00:01:39,020 --> 00:01:40,200
+de algoritmos de aprendizaje no supervisado o de clústering.
+
+53
+00:01:40,320 --> 00:01:41,710
+de los que hablaremos luego,
+
+54
+00:01:42,130 --> 00:01:43,710
+que encuentran otros tipos de estructuras
+
+55
+00:01:43,920 --> 00:01:46,000
+u otros patrones en los datos además de clústeres.
+
+56
+00:01:46,900 --> 00:01:48,360
+Hablaremos de estos después de que hablemos del clústering.
+
+57
+00:01:50,020 --> 00:01:51,210
+¿Para qué nos sirve el clústering?
+
+58
+00:01:51,380 --> 00:01:54,350
+Antes, en el curso, mencioné algunas de sus aplicaciones.
+
+59
+00:01:54,950 --> 00:01:56,540
+Una de ellas es la segmentación de mercados
+
+60
+00:01:56,670 --> 00:01:57,690
+en la que puedes tener una base de
+
+61
+00:01:57,770 --> 00:01:58,840
+datos de clientes y quieres
+
+62
+00:01:59,070 --> 00:02:00,380
+agruparlos en diferentes segmentos de mercado
+
+63
+00:02:00,950 --> 00:02:02,590
+para que puedas vender u
+
+64
+00:02:02,720 --> 00:02:05,570
+ofrecer un servicio mejor a los diferentes segmentos.
+
+65
+00:02:06,730 --> 00:02:08,370
+En el análisis de las redes sociales hay
+
+66
+00:02:08,580 --> 00:02:10,090
+grupos que han utilizado esto y que han
+
+67
+00:02:10,320 --> 00:02:12,590
+observado los grupos de personas en
+
+68
+00:02:12,730 --> 00:02:14,540
+redes sociales como
+
+69
+00:02:15,070 --> 00:02:16,390
+Facebook y Google plus o
+
+70
+00:02:16,710 --> 00:02:18,260
+información de
+
+71
+00:02:18,430 --> 00:02:19,710
+quiénes son las personas a quienes les
+
+72
+00:02:20,030 --> 00:02:21,110
+envías correos más frecuentemente y
+
+73
+00:02:21,230 --> 00:02:22,170
+quienes son las personas a quienes ellos
+
+74
+00:02:22,310 --> 00:02:23,600
+envían correos más frecuentemente para
+
+75
+00:02:23,750 --> 00:02:25,400
+encontrar grupos coherentes de personas.
+
+76
+00:02:26,500 --> 00:02:27,600
+Este sería otro algoritmo de
+
+77
+00:02:28,180 --> 00:02:28,850
+agrupamiento en el que quisiéramos
+
+78
+00:02:29,080 --> 00:02:32,200
+encontrar otros grupos coherentes de amigos en una red social.
+
+79
+00:02:33,140 --> 00:02:33,990
+Aquí hay algo en lo que trabajó
+
+80
+00:02:34,140 --> 00:02:35,170
+un amigo mío. Se trata
+
+81
+00:02:35,920 --> 00:02:37,200
+de un clúster para calcular mejor
+
+82
+00:02:37,670 --> 00:02:39,220
+clústeres o centros de datos
+
+83
+00:02:39,440 --> 00:02:40,600
+porque si sabes cuáles computadoras
+
+84
+00:02:40,800 --> 00:02:42,450
+o centros de datos
+
+85
+00:02:42,520 --> 00:02:44,990
+están en el clúster y tienden a trabajar juntas,
+
+86
+00:02:45,400 --> 00:02:46,270
+puedes reorganizar
+
+87
+00:02:46,950 --> 00:02:48,390
+los recursos y la manera
+
+88
+00:02:48,570 --> 00:02:50,120
+en la que dispones las redes y
+
+89
+00:02:50,260 --> 00:02:52,040
+diseñas los datos del centro de datos y comunicaciones.
+
+90
+00:02:53,140 --> 00:02:54,540
+Finalmente, otro amigo mío
+
+91
+00:02:54,850 --> 00:02:55,910
+trabajó en un proyecto utilizando los
+
+92
+00:02:56,130 --> 00:02:57,810
+algoritmos de agrupamiento para entender
+
+93
+00:02:58,400 --> 00:03:00,030
+la formación de galaxias y aplicándolos
+
+94
+00:03:00,280 --> 00:03:02,260
+para entender
+
+95
+00:03:02,600 --> 00:03:03,860
+datos astronómicos.
+
+96
+00:03:06,550 --> 00:03:08,580
+Esto fue el clústering; nuestro primer
+
+97
+00:03:08,890 --> 00:03:10,450
+ejemplo de
+
+98
+00:03:10,530 --> 00:03:12,650
+un algoritmo de aprendizaje no supervisado.
+
+99
+00:03:13,090 --> 00:03:14,200
+En el siguiente video comenzaré a
+
+100
+00:03:14,370 --> 00:03:16,250
+hablar de un algoritmo de agrupamiento específico.

@@ -1,0 +1,1183 @@
+1
+00:00:00,260 --> 00:00:01,490
+Para la regresión lineal, hemos
+
+2
+00:00:01,680 --> 00:00:03,130
+desarrollado anteriormente dos
+
+3
+00:00:03,490 --> 00:00:05,010
+algoritmos de aprendizaje, uno basado en
+
+4
+00:00:05,180 --> 00:00:07,650
+el gradiente de descenso y el otro basado en la ecuación normal.
+
+5
+00:00:08,750 --> 00:00:09,740
+En este video tomaremos
+
+6
+00:00:09,890 --> 00:00:11,640
+esos dos algoritmos y los generalizaremos
+
+7
+00:00:12,290 --> 00:00:13,380
+para el caso de la
+
+8
+00:00:14,330 --> 00:00:17,640
+regresión lineal regularizada. Este es el
+
+9
+00:00:18,100 --> 00:00:19,540
+objetivo de optimización, que
+
+10
+00:00:20,200 --> 00:00:22,380
+desarrollamos la última vez para la regresión lineal regularizada.
+
+11
+00:00:23,360 --> 00:00:24,580
+Esta primera parte es nuestro
+
+12
+00:00:24,980 --> 00:00:27,240
+habitual objetivo para la regresión lineal
+
+13
+00:00:28,170 --> 00:00:29,300
+y ahora tenemos este término adicional,
+
+14
+00:00:30,200 --> 00:00:31,750
+regulación, donde «lambda»
+
+15
+00:00:32,450 --> 00:00:34,960
+es nuestro parámetro de regularización, y
+
+16
+00:00:35,220 --> 00:00:36,690
+queremos encontrar los parámetros «theta»,
+
+17
+00:00:37,160 --> 00:00:38,550
+que minimicen esta función de costos,
+
+18
+00:00:39,030 --> 00:00:41,280
+esta función de costos regularizada, "J" de «theta».
+
+19
+00:00:41,840 --> 00:00:43,030
+Anteriormente, estábamos usando
+
+20
+00:00:43,440 --> 00:00:45,180
+el gradiente de descenso para la original
+
+21
+00:00:46,620 --> 00:00:48,060
+función de costos, sin el término regularización,
+
+22
+00:00:48,770 --> 00:00:49,820
+y tuvimos
+
+23
+00:00:50,060 --> 00:00:51,990
+el siguiente algoritmo para la
+
+24
+00:00:52,370 --> 00:00:53,620
+regresión lineal normal, sin regularización.
+
+25
+00:00:54,660 --> 00:00:56,260
+En varias ocasiones actualizaremos los
+
+26
+00:00:56,330 --> 00:00:57,670
+parámetros «theta» de "j" como sigue
+
+27
+00:00:58,270 --> 00:01:00,030
+para J = 0, 1, 2
+
+28
+00:01:00,400 --> 00:01:02,110
+hasta "n". Déjame
+
+29
+00:01:02,530 --> 00:01:03,960
+tomar esto y escribir
+
+30
+00:01:04,240 --> 00:01:06,580
+el caso de «theta»0 por separado.
+
+31
+00:01:07,210 --> 00:01:08,400
+Así es que, como sabes, voy a
+
+32
+00:01:08,720 --> 00:01:09,900
+escribir la actualización para «theta»0
+
+33
+00:01:10,160 --> 00:01:12,500
+por separado, entonces para
+
+34
+00:01:12,680 --> 00:01:14,380
+la actualización de los parámetros
+
+35
+00:01:14,780 --> 00:01:17,090
+1, 2, 3 y así sucesivamente
+
+36
+00:01:17,370 --> 00:01:19,760
+hasta "n". Entonces, no he cambiado nada todavía, ¿correcto?
+
+37
+00:01:19,970 --> 00:01:21,070
+Esto es solo la escritura de la actualización
+
+38
+00:01:21,300 --> 00:01:23,300
+para «theta»0 por separado de las
+
+39
+00:01:23,550 --> 00:01:25,240
+actualizaciones para «theta»1, «theta»2,
+
+40
+00:01:25,510 --> 00:01:26,980
+«theta»3, hasta «theta» "n". Y
+
+41
+00:01:27,040 --> 00:01:27,900
+la razón por la que quiero hacer esto
+
+42
+00:01:28,230 --> 00:01:29,320
+es que quizá recuerdes
+
+43
+00:01:29,880 --> 00:01:31,260
+que para nuestra regresión lineal regularizada,
+
+44
+00:01:32,620 --> 00:01:33,970
+penalizamos los parámetros «theta»1,
+
+45
+00:01:34,440 --> 00:01:35,540
+theta2 y así sucesivamente
+
+46
+00:01:35,860 --> 00:01:38,360
+sucesivamente hasta «theta» "n", pero no penalizamos «theta»0.
+
+47
+00:01:38,820 --> 00:01:40,250
+Así que cuando modificamos este
+
+48
+00:01:40,410 --> 00:01:42,400
+algoritmo para la
+
+49
+00:01:42,750 --> 00:01:44,050
+regresión lineal regularizada, vamos a
+
+50
+00:01:44,710 --> 00:01:46,870
+terminar tratando a «theta»0 ligeramente diferente.
+
+51
+00:01:48,560 --> 00:01:50,360
+Específicamente, se
+
+52
+00:01:50,500 --> 00:01:52,170
+queremos tomar este algoritmo y
+
+53
+00:01:52,300 --> 00:01:53,780
+modificarlo para usar el
+
+54
+00:01:53,870 --> 00:01:55,630
+objetivo regularizado, todo lo que
+
+55
+00:01:55,740 --> 00:01:57,170
+necesitamos hacer es tomar
+
+56
+00:01:57,350 --> 00:02:00,010
+este término en la parte inferior y modificarlo de la siguiente manera.
+
+57
+00:02:00,460 --> 00:02:01,860
+Vamos a tomar este término y añadir
+
+58
+00:02:02,670 --> 00:02:05,310
+menos «lambda» sobre "m",
+
+59
+00:02:06,330 --> 00:02:08,920
+multiplicado por «theta» j. Y
+
+60
+00:02:09,100 --> 00:02:10,850
+así implementas esto, entonces
+
+61
+00:02:11,000 --> 00:02:13,230
+tienes al gradiente de descenso para tratar
+
+62
+00:02:13,960 --> 00:02:15,920
+de minimizar la función de costos regularizada
+
+63
+00:02:16,160 --> 00:02:18,200
+"J" de «theta», y específicamente,
+
+64
+00:02:19,520 --> 00:02:20,570
+no voy a hacer el
+
+65
+00:02:20,680 --> 00:02:22,260
+cálculo para probarlo, pero
+
+66
+00:02:22,390 --> 00:02:23,480
+específicamente si observas
+
+67
+00:02:23,690 --> 00:02:26,580
+este término, este término que está escrito entre corchetes cuadrados,
+
+68
+00:02:27,730 --> 00:02:28,930
+y si sabes cálculo, es posible
+
+69
+00:02:29,380 --> 00:02:31,150
+probar que ese término es
+
+70
+00:02:31,370 --> 00:02:33,150
+una derivada parcial, con respecto de
+
+71
+00:02:33,980 --> 00:02:35,400
+"J" de «theta», usando la nueva
+
+72
+00:02:35,660 --> 00:02:37,520
+definición de "J" de «theta»
+
+73
+00:02:38,140 --> 00:02:39,330
+con el término de regularización.
+
+74
+00:02:39,510 --> 00:02:42,490
+Y de repente este
+
+75
+00:02:42,760 --> 00:02:43,960
+término en la parte superior,
+
+76
+00:02:44,750 --> 00:02:45,570
+que creo que
+
+77
+00:02:45,680 --> 00:02:47,240
+estoy dibujando en la caja saliente,
+
+78
+00:02:48,000 --> 00:02:49,270
+aún es la derivada parcial
+
+79
+00:02:49,940 --> 00:02:52,700
+con respecto a «theta»0 de "J" de «theta».
+
+80
+00:02:53,680 --> 00:02:54,900
+Si miras la actualización para
+
+81
+00:02:55,600 --> 00:02:56,710
+«theta» j, es posible
+
+82
+00:02:56,910 --> 00:02:59,190
+que muestre algo muy interesante, específicamente
+
+83
+00:02:59,860 --> 00:03:01,100
+«theta» j se actualiza como
+
+84
+00:03:01,280 --> 00:03:03,400
+«theta» j - «alfa» multiplicado por,
+
+85
+00:03:04,090 --> 00:03:05,010
+y entonces tienes este otro término
+
+86
+00:03:05,380 --> 00:03:06,730
+aquí que depende de «theta» j
+
+87
+00:03:06,910 --> 00:03:08,310
+. Así que si
+
+88
+00:03:08,420 --> 00:03:09,410
+agrupas todos los términos
+
+89
+00:03:10,030 --> 00:03:11,690
+que dependen de «theta» j,
+
+90
+00:03:11,780 --> 00:03:13,190
+podremos demostrar que esta actualización
+
+91
+00:03:13,670 --> 00:03:15,100
+puede escribirse equivalente como
+
+92
+00:03:15,200 --> 00:03:16,160
+sigue a continuación y todo lo que
+
+93
+00:03:16,470 --> 00:03:17,620
+hice, como sabes, «theta» j
+
+94
+00:03:18,310 --> 00:03:20,100
+aquí es «theta» j multiplicada por
+
+95
+00:03:20,450 --> 00:03:21,950
+1 y este término es
+
+96
+00:03:22,910 --> 00:03:24,830
+«lambda» sobre m. También hay un «alfa»
+
+97
+00:03:25,140 --> 00:03:25,990
+aquí, así que terminas
+
+98
+00:03:26,180 --> 00:03:27,650
+con «alfa» «lambda» sobre
+
+99
+00:03:27,970 --> 00:03:31,450
+m, multiplícalas por
+
+100
+00:03:31,820 --> 00:03:33,660
+«theta» j y este término de aquí, uno menos
+
+101
+00:03:34,230 --> 00:03:36,300
+«alfa» multiplicado por «lambda» m, es
+
+102
+00:03:36,600 --> 00:03:39,470
+un término muy interesante, tiene un efecto muy interesante.
+
+103
+00:03:42,310 --> 00:03:43,710
+Específicamente, este término 1
+
+104
+00:03:43,890 --> 00:03:45,320
+menos «alfa» multiplicado por «lambda» sobre
+
+105
+00:03:45,730 --> 00:03:46,780
+m, va a ser
+
+106
+00:03:46,870 --> 00:03:48,740
+un número que, como sabes, generalmente un número
+
+107
+00:03:48,800 --> 00:03:50,390
+que hace un bucle y es menor que 1,
+
+108
+00:03:50,610 --> 00:03:51,670
+¿Correcto? Porque
+
+109
+00:03:51,920 --> 00:03:53,580
+«alfa» multiplicada por «lambda» sobre m va
+
+110
+00:03:54,070 --> 00:03:55,920
+a ser positivo y generalmente, si tu índice de aprendizaje es pequeño y m es grande,
+
+111
+00:03:58,650 --> 00:03:58,860
+será bastante pequeño.
+
+112
+00:03:59,650 --> 00:04:00,680
+Así es que este término de aquí, va a
+
+113
+00:04:00,740 --> 00:04:03,060
+ser un número, generalmente, como sabes, un poco menor que uno.
+
+114
+00:04:03,340 --> 00:04:04,150
+Piensa en este
+
+115
+00:04:04,330 --> 00:04:05,860
+número como 0.99, digamos,
+
+116
+00:04:07,380 --> 00:04:08,800
+y así, el efecto de nuestras
+
+117
+00:04:09,120 --> 00:04:10,550
+actualizaciones de «theta» j si
+
+118
+00:04:10,690 --> 00:04:11,950
+vamos a decir que «theta» j
+
+119
+00:04:12,410 --> 00:04:15,420
+se remplaza por «theta» j multiplicada por 0.99.
+
+120
+00:04:15,770 --> 00:04:17,500
+Bien, entonces «theta» j
+
+121
+00:04:18,490 --> 00:04:20,940
+multiplicada por 0.99 tiene el efecto de
+
+122
+00:04:21,280 --> 00:04:23,560
+reducir «theta» de j un poco hacia 0.
+
+123
+00:04:23,670 --> 00:04:25,690
+Así que esto hace un poco más pequeña a «theta» j.
+
+124
+00:04:26,220 --> 00:04:28,080
+Más formalmente, esto como sabes,
+
+125
+00:04:28,420 --> 00:04:29,750
+es la norma cuadrada de «theta» j
+
+126
+00:04:29,870 --> 00:04:31,580
+que es menor y entonces
+
+127
+00:04:31,720 --> 00:04:33,430
+después del segundo
+
+128
+00:04:33,910 --> 00:04:35,400
+término de aquí, es en realidad
+
+129
+00:04:35,980 --> 00:04:37,930
+exactamente lo mismo que la
+
+130
+00:04:38,050 --> 00:04:40,270
+actualización original del gradiente de descenso que teníamos
+
+131
+00:04:40,750 --> 00:04:42,840
+antes de agregar todas estas cosas de la regularización.
+
+132
+00:04:44,270 --> 00:04:46,920
+Así es que, espero que este gradiente de descenso,
+
+133
+00:04:47,380 --> 00:04:48,630
+que esta actualización tenga
+
+134
+00:04:48,880 --> 00:04:51,350
+sentido, cuando estamos usando la regresión lineal regularizada
+
+135
+00:04:51,550 --> 00:04:52,920
+lo que estamos haciendo en
+
+136
+00:04:53,320 --> 00:04:55,210
+cada regularización es multiplicar los datos de
+
+137
+00:04:55,420 --> 00:04:56,310
+J por un número
+
+138
+00:04:56,400 --> 00:04:57,300
+un poco menor a uno, para
+
+139
+00:04:57,400 --> 00:04:58,900
+reducir el parámetro
+
+140
+00:04:59,230 --> 00:05:00,340
+un poco, y para que
+
+141
+00:05:00,500 --> 00:05:03,000
+realicemos una, como sabes, actualización similar como antes.
+
+142
+00:05:04,170 --> 00:05:05,460
+Por supuesto que es sólo la
+
+143
+00:05:05,610 --> 00:05:08,310
+intuición detrás de lo que esta actualización en particular está haciendo.
+
+144
+00:05:08,910 --> 00:05:10,130
+Matemáticamente, lo que está haciendo
+
+145
+00:05:10,580 --> 00:05:12,950
+exactamente es el gradiente de descenso en
+
+146
+00:05:13,130 --> 00:05:14,330
+la función de costos J de «theta»
+
+147
+00:05:15,150 --> 00:05:16,020
+que hemos definido en la anterior
+
+148
+00:05:16,480 --> 00:05:18,820
+diapositiva y que utiliza el término regularización.
+
+149
+00:05:19,780 --> 00:05:21,210
+El gradiente de descenso fue simplemente
+
+150
+00:05:21,470 --> 00:05:23,050
+uno de nuestros dos algoritmos para
+
+151
+00:05:24,470 --> 00:05:25,530
+ajustar un modelo de regresión lineal.
+
+152
+00:05:26,630 --> 00:05:28,090
+El segundo algoritmo fue el
+
+153
+00:05:28,160 --> 00:05:29,130
+que se basa en la ecuación normal,
+
+154
+00:05:29,680 --> 00:05:31,650
+en donde, lo que
+
+155
+00:05:31,740 --> 00:05:32,980
+hicimos fue crear la
+
+156
+00:05:33,060 --> 00:05:34,770
+matriz de diseño "X" donde cada
+
+157
+00:05:35,080 --> 00:05:37,830
+fila corresponde para separar el ejemplo de entrenamiento.
+
+158
+00:05:38,520 --> 00:05:39,790
+Y creamos un vector
+
+159
+00:05:40,170 --> 00:05:41,780
+"Y", así es que esto es
+
+160
+00:05:41,940 --> 00:05:43,320
+un vector, que es un
+
+161
+00:05:43,590 --> 00:05:45,520
+vector de "m" dimensiones y eso
+
+162
+00:05:46,010 --> 00:05:47,750
+contiene el valor asignado para el conjunto de entrenamiento.
+
+163
+00:05:48,470 --> 00:05:49,600
+Así que mientras que "X" es una
+
+164
+00:05:49,830 --> 00:05:52,660
+matriz dimensional "m" multiplicada por n + 1,
+
+165
+00:05:53,590 --> 00:05:55,220
+y es un vector de "m" dimensiones
+
+166
+00:05:55,780 --> 00:05:57,550
+en orden de
+
+167
+00:05:58,030 --> 00:05:59,200
+minimizar la función de costos,
+
+168
+00:05:59,470 --> 00:06:00,940
+encontramos que
+
+169
+00:06:01,470 --> 00:06:03,000
+una manera de
+
+170
+00:06:03,230 --> 00:06:04,440
+hacerlo, es establecer
+
+171
+00:06:04,670 --> 00:06:06,790
+que «theta» es igual a esto.
+
+172
+00:06:07,540 --> 00:06:09,040
+Tenemos que x'x,
+
+173
+00:06:10,860 --> 00:06:12,770
+inversa x'y.
+
+174
+00:06:13,020 --> 00:06:13,920
+Voy a dejar espacio aquí, para poner
+
+175
+00:06:14,120 --> 00:06:17,160
+otras cosas, desde luego. Y lo que este
+
+176
+00:06:17,650 --> 00:06:18,820
+valor para «theta» hace, es
+
+177
+00:06:19,180 --> 00:06:20,980
+minimizar la función de costos
+
+178
+00:06:21,250 --> 00:06:22,710
+J de «theta» cuando
+
+179
+00:06:22,840 --> 00:06:26,280
+no estamos usado la regularización. Ahora
+
+180
+00:06:26,460 --> 00:06:28,580
+que estamos usando la regularización, si
+
+181
+00:06:28,780 --> 00:06:30,290
+vas a derivar lo que
+
+182
+00:06:30,520 --> 00:06:31,820
+el mínimo es, y solo para
+
+183
+00:06:31,910 --> 00:06:32,760
+darte un sentido de cómo
+
+184
+00:06:32,980 --> 00:06:34,110
+derivar el mínimo, la forma
+
+185
+00:06:34,220 --> 00:06:35,220
+en que lo derivaste es, como sabes,
+
+186
+00:06:35,930 --> 00:06:37,910
+tomando las derivadas parciales con respecto
+
+187
+00:06:38,340 --> 00:06:40,600
+a cada parámetro, y establecerlas
+
+188
+00:06:40,830 --> 00:06:41,910
+a cero, entonces haciendo
+
+189
+00:06:42,060 --> 00:06:42,920
+un poco de matemáticas, puedes
+
+190
+00:06:43,100 --> 00:06:45,060
+entonces demostrar que es una fórmula
+
+191
+00:06:45,550 --> 00:06:47,640
+como esta que minimiza la función de costos.
+
+192
+00:06:48,590 --> 00:06:52,130
+En específico, si estás
+
+193
+00:06:52,240 --> 00:06:54,080
+usando la regularización entonces esta
+
+194
+00:06:54,250 --> 00:06:56,320
+fórmula cambia de la siguiente manera. Dentro de estos
+
+195
+00:06:56,480 --> 00:06:59,120
+paréntesis, terminas con una matriz como esta.
+
+196
+00:06:59,460 --> 00:07:00,940
+Cero, uno, uno, uno,
+
+197
+00:07:01,800 --> 00:07:03,520
+y así sucesivamente, hasta el final.
+
+198
+00:07:04,510 --> 00:07:05,510
+Así es que esto de aquí es
+
+199
+00:07:05,630 --> 00:07:07,810
+una matriz, cuya entrada superior izquierda es cero.
+
+200
+00:07:08,560 --> 00:07:10,080
+Hay unos en los diagonales y
+
+201
+00:07:10,190 --> 00:07:11,960
+ceros en cualquier otra parte de esta matriz.
+
+202
+00:07:13,050 --> 00:07:14,020
+Porque estoy dibujándola un poco descuidado.
+
+203
+00:07:15,180 --> 00:07:16,790
+Pero como ejemplo específico
+
+204
+00:07:17,060 --> 00:07:18,210
+si "n" es igual a 2,
+
+205
+00:07:19,090 --> 00:07:21,110
+entonces esta matriz
+
+206
+00:07:21,840 --> 00:07:23,500
+va a ser una matriz de 3x3.
+
+207
+00:07:24,300 --> 00:07:26,210
+De forma más general, esta matriz es
+
+208
+00:07:26,360 --> 00:07:27,660
+una matriz de dimensiones n+1
+
+209
+00:07:28,270 --> 00:07:30,290
+multiplicado por n+1.
+
+210
+00:07:31,620 --> 00:07:33,150
+Entonces "n" es igual a dos, luego
+
+211
+00:07:33,370 --> 00:07:35,410
+esa matriz se convierte en algo parecido a esto.
+
+212
+00:07:35,980 --> 00:07:37,360
+Cero y unos
+
+213
+00:07:37,640 --> 00:07:39,020
+en diagonal, y luego
+
+214
+00:07:39,160 --> 00:07:41,100
+ceros en el resto de las diagonales.
+
+215
+00:07:42,390 --> 00:07:43,990
+Y una vez más, como sabes, no voy a quienes conocen esta derivación.
+
+216
+00:07:44,620 --> 00:07:46,280
+Que es francamente un poco largo e involucrado.
+
+217
+00:07:46,620 --> 00:07:47,530
+Pero es posible demostrar
+
+218
+00:07:47,970 --> 00:07:49,550
+que si estás
+
+219
+00:07:49,940 --> 00:07:50,770
+usando la nueva definición de
+
+220
+00:07:51,250 --> 00:07:53,730
+J de «theta», con el objetivo de regularización,
+
+221
+00:07:54,780 --> 00:07:56,070
+entonces esta nueva fórmula para
+
+222
+00:07:56,220 --> 00:07:57,180
+«theta» es uno
+
+223
+00:07:57,390 --> 00:08:00,080
+que dará el mínimo global de J de «theta».
+
+224
+00:08:01,420 --> 00:08:02,460
+Finalmente, quiero
+
+225
+00:08:02,610 --> 00:08:05,460
+describir rápidamente el problema de la no invertibilidad.
+
+226
+00:08:06,800 --> 00:08:08,110
+Esto es material relativamente avanzado,
+
+227
+00:08:08,600 --> 00:08:09,530
+así es que debes considerar esto
+
+228
+00:08:09,770 --> 00:08:11,600
+como material opcional y siéntete libre
+
+229
+00:08:11,750 --> 00:08:12,520
+de saltártelo o si lo
+
+230
+00:08:12,660 --> 00:08:14,180
+escuchas y como sabes, posiblemente
+
+231
+00:08:14,320 --> 00:08:15,680
+no te hace sentido, no te preocupes tampoco.
+
+232
+00:08:16,400 --> 00:08:18,950
+Pero anteriormente cuando hablamos del método de ecuación normal,
+
+233
+00:08:19,700 --> 00:08:20,920
+también tuvimos un video opcional
+
+234
+00:08:21,800 --> 00:08:22,960
+con respecto a la no invertibilidad.
+
+235
+00:08:23,700 --> 00:08:25,740
+Esta es otra parte opcional,
+
+236
+00:08:26,170 --> 00:08:27,070
+es una especie de añadidura al
+
+237
+00:08:27,700 --> 00:08:30,100
+video opcional anterior sobre la no invertibilidad.
+
+238
+00:08:31,610 --> 00:08:33,350
+Ahora consideramos establecer dónde "m",
+
+239
+00:08:33,850 --> 00:08:35,340
+el número de ejemplos es menor
+
+240
+00:08:35,690 --> 00:08:37,530
+o igual que "n", el número de variables.
+
+241
+00:08:38,650 --> 00:08:40,080
+Si tienes menos ejemplos que
+
+242
+00:08:40,200 --> 00:08:41,480
+variables en esta matriz
+
+243
+00:08:42,170 --> 00:08:43,870
+x'x será
+
+244
+00:08:44,070 --> 00:08:47,770
+no invertible o singular, o
+
+245
+00:08:48,060 --> 00:08:50,120
+el otro término
+
+246
+00:08:50,360 --> 00:08:51,470
+para esto es que la matriz
+
+247
+00:08:51,530 --> 00:08:53,390
+será degenerada y si
+
+248
+00:08:53,860 --> 00:08:54,780
+implementas esto en Octave,
+
+249
+00:08:55,300 --> 00:08:56,380
+de todos modos, y utilizas
+
+250
+00:08:56,620 --> 00:08:58,570
+la función pinv para tomar la seudoinversa,
+
+251
+00:08:58,850 --> 00:08:59,800
+hará más o menos
+
+252
+00:09:00,080 --> 00:09:01,900
+lo correcto pero no
+
+253
+00:09:02,240 --> 00:09:03,450
+está claro si te
+
+254
+00:09:03,560 --> 00:09:04,570
+dará una muy buena hipótesis
+
+255
+00:09:05,410 --> 00:09:07,720
+aunque numéricamente la función
+
+256
+00:09:08,370 --> 00:09:09,670
+pinv en Octave
+
+257
+00:09:10,020 --> 00:09:11,050
+te dará un resultado que
+
+258
+00:09:11,340 --> 00:09:13,210
+más o menos tendrá sentido.
+
+259
+00:09:13,440 --> 00:09:15,460
+Pero, si estás haciendo esto en un lenguaje diferente,
+
+260
+00:09:16,270 --> 00:09:17,590
+y si estás tomando
+
+261
+00:09:17,710 --> 00:09:19,030
+solo la inversa regular
+
+262
+00:09:20,470 --> 00:09:22,070
+que en Octave se denota con la función Inv,
+
+263
+00:09:23,240 --> 00:09:24,010
+estamos tratando de tomar la inversa regular
+
+264
+00:09:24,330 --> 00:09:25,620
+de x'x,
+
+265
+00:09:26,300 --> 00:09:28,030
+luego en esta configuración
+
+266
+00:09:28,150 --> 00:09:30,340
+encontrarás que x'x
+
+267
+00:09:30,450 --> 00:09:32,750
+es singular, es no invertible y
+
+268
+00:09:32,790 --> 00:09:33,740
+si estás haciendo esto en un
+
+269
+00:09:33,990 --> 00:09:35,830
+lenguaje de programación diferente y usando alguna
+
+270
+00:09:36,230 --> 00:09:39,160
+biblioteca de álgebra lineal trata de tomar la inversa de esta matriz.
+
+271
+00:09:39,840 --> 00:09:41,080
+Tal vez no funcione porque esa
+
+272
+00:09:41,220 --> 00:09:43,060
+matriz es no invertible o singular.
+
+273
+00:09:44,650 --> 00:09:47,110
+Afortunadamente, la regularización también
+
+274
+00:09:47,110 --> 00:09:49,850
+se encarga de esto para nosotros, y en específico,
+
+275
+00:09:50,010 --> 00:09:53,370
+mientras el parámetro de regularización «lambda» es estrictamente mayor que cero,
+
+276
+00:09:53,870 --> 00:09:55,220
+en realidad es posible
+
+277
+00:09:55,300 --> 00:09:56,840
+demostrar que esta matriz x'x
+
+278
+00:09:57,080 --> 00:09:58,690
++ «lambda» multiplicado por, como sabes,
+
+279
+00:09:59,080 --> 00:10:00,400
+esta graciosa matriz de aquí,
+
+280
+00:10:00,970 --> 00:10:02,250
+posiblemente demostrará que esta
+
+281
+00:10:02,470 --> 00:10:03,650
+matriz no será
+
+282
+00:10:03,760 --> 00:10:05,710
+singular y que esta matriz en invertible.
+
+283
+00:10:07,450 --> 00:10:09,430
+Así que usar la regularización también toma
+
+284
+00:10:09,700 --> 00:10:11,910
+en cuenta cualquier problema de no invertibilidad
+
+285
+00:10:12,580 --> 00:10:14,470
+de la matriz x'x.
+
+286
+00:10:15,260 --> 00:10:18,000
+Así que, ya sabes cómo implementar la regularización de la regresión lineal.
+
+287
+00:10:18,870 --> 00:10:19,910
+Con esto, podrás
+
+288
+00:10:20,300 --> 00:10:21,970
+evitar el sobreajuste, incluso
+
+289
+00:10:22,210 --> 00:10:24,720
+si tienes muchas variables en un conjunto de entrenamiento relativamente pequeño.
+
+290
+00:10:25,360 --> 00:10:26,630
+Y esto debería permitirte lograr
+
+291
+00:10:26,980 --> 00:10:29,000
+que la regresión lineal funcione mucho mejor para una variedad de problemas.
+
+292
+00:10:30,060 --> 00:10:31,190
+En el siguiente video, tomaremos
+
+293
+00:10:31,390 --> 00:10:34,310
+esta idea de regularización y la aplicaremos a la regresión logística.
+
+294
+00:10:35,140 --> 00:10:36,170
+Con esto serás capaz de lograr
+
+295
+00:10:36,280 --> 00:10:37,630
+que la regresión logística evite
+
+296
+00:10:37,920 --> 00:10:39,830
+el sobreajuste y se desempeñe mucho mejor.

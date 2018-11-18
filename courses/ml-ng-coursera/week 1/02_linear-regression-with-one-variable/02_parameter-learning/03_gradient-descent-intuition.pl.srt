@@ -1,0 +1,806 @@
+1
+00:00:00,190 --> 00:00:01,190
+W poprzednim nagraniu
+
+2
+00:00:01,190 --> 00:00:04,960
+podałem matematyczną definicję
+gradientu prostego.
+
+3
+00:00:04,960 --> 00:00:08,830
+Zanurzmy się w tym temacie głębiej i nabierzmy
+lepszej intuicji odnośnie tego,
+
+4
+00:00:08,830 --> 00:00:12,580
+co robi ten algorytm oraz czemu poszczególne
+etapy algorytmu gradientu prostego mają sens.
+
+5
+00:00:15,430 --> 00:00:19,580
+Oto algorytm gradientu prostego, który
+widzieliśmy w poprzednim nagraniu.
+
+6
+00:00:19,580 --> 00:00:25,800
+Dla przypomnienia: ten parametr alfa nazywamy 
+współczynnikiem uczenia.
+
+7
+00:00:25,800 --> 00:00:30,620
+Określa on, jak duży krok wykonujemy,
+aktualizując parametr thetaJ.
+
+8
+00:00:31,660 --> 00:00:36,406
+Z kolei to wyrażenie jest związane z pochodną.
+
+9
+00:00:39,147 --> 00:00:43,904
+W tym nagraniu chcę wyrobić Ci intuicję,
+co znaczą
+
+10
+00:00:43,904 --> 00:00:49,281
+te dwa wyrażenia oraz dlaczego,
+gdy zastosujemy je jednocześnie,
+aktualizacja parametrów ma sens.
+
+11
+00:00:49,281 --> 00:00:55,054
+Celem wyrobienia intuicji użyję nieco
+prostszego przykładu,
+
+12
+00:00:55,054 --> 00:01:00,403
+w którym chcemy minimalizować funkcję
+jednego parametru.
+
+13
+00:01:00,403 --> 00:01:03,930
+Powiedzmy zatem, że mamy funkcję kosztu J 
+jednego parametru - theta1,
+
+14
+00:01:03,930 --> 00:01:09,410
+tak samo, jak kilka nagrań temu - gdzie theta1
+jest liczbą rzeczywistą.
+
+15
+00:01:09,410 --> 00:01:14,410
+Dzięki temu będziemy rozpatrywać wykresy 1D,
+które trochę łatwiej zrozumieć.
+
+16
+00:01:14,410 --> 00:01:17,360
+Spróbujmy zrozumieć, co gradient prosty zrobi
+z taką funkcją.
+
+17
+00:01:20,850 --> 00:01:26,980
+Powiedzmy, że mam tutaj funkcję J(theta1).
+
+18
+00:01:26,980 --> 00:01:28,550
+Właśnie tak.
+
+19
+00:01:28,550 --> 00:01:31,505
+I theta1 jest liczbą rzeczywistą.
+
+20
+00:01:32,635 --> 00:01:33,755
+Jasne?
+
+21
+00:01:33,755 --> 00:01:39,605
+Teraz powiedzmy, że zainicjowałem gradient 
+prosty w tym miejscu, wybierając theta1.
+
+22
+00:01:39,605 --> 00:01:43,085
+Wyobraź sobie, że zaczynamy z tego punktu
+mojej funkcji.
+
+23
+00:01:44,495 --> 00:01:48,105
+Gradient prosty zaktualizuje
+
+24
+00:01:49,570 --> 00:01:54,719
+theta1, odejmując od niego alfa razy
+
+25
+00:01:54,719 --> 00:02:01,940
+(d/d(theta1)) J(theta1) - ok?
+
+26
+00:02:01,940 --> 00:02:09,140
+Na marginesie: jeśli zastanawiasz się, czemu
+
+27
+00:02:09,140 --> 00:02:13,170
+zmieniłem symbole pochodnej cząstkowej
+w wyrażeniu na pochodną,
+
+28
+00:02:13,170 --> 00:02:16,280
+jeśli nie wiesz, jaka jest różnica między tymi
+symbolami pochodnej cząstkowej,
+
+29
+00:02:16,280 --> 00:02:18,490
+a symbolem d/d(theta) - nie przejmuj się tym.
+
+30
+00:02:18,490 --> 00:02:22,000
+Technicznie rzecz biorąc, w matematyce
+nazywamy to pochodną cząstkową,
+
+31
+00:02:22,000 --> 00:02:27,170
+a to pochodną, w zależności od liczby
+parametrów funkcji J.
+
+32
+00:02:27,170 --> 00:02:28,690
+Ale to tylko szczegóły techniczne.
+
+33
+00:02:28,690 --> 00:02:32,000
+Tak więc, na potrzeby tego wykładu,
+
+34
+00:02:32,000 --> 00:02:36,430
+traktuj myślowo symbole pochodnej cząstkowej
+oraz d/d(theta1) jako dokładnie tę samą rzecz.
+
+35
+00:02:36,430 --> 00:02:38,650
+I nie przejmuje się tym, jaka jest rzeczywista
+różnica.
+
+36
+00:02:38,650 --> 00:02:42,340
+Będę używał notacji, która jest matematycznie
+poprawna, ale na nasze
+
+37
+00:02:42,340 --> 00:02:46,550
+potrzeby te dwie notacje oznaczają 
+dokładnie to samo.
+
+38
+00:02:46,550 --> 00:02:48,890
+Zobaczmy więc, co zrobi to równanie.
+
+39
+00:02:48,890 --> 00:02:53,470
+Obliczymy teraz pochodną. Nie wiem, czy znasz
+pochodne
+
+40
+00:02:53,470 --> 00:02:57,460
+i rachunek różniczkowy, ale pochodna w tym
+kontekście oznacza mniej więcej tyle:
+
+41
+00:02:57,460 --> 00:03:02,380
+wykreślmy styczną w tym punkcie 
+(czerwona linia)
+
+42
+00:03:02,380 --> 00:03:06,480
+i spójrzmy na nachylenie czerwonej linii.
+
+43
+00:03:06,480 --> 00:03:07,870
+To właśnie jest pochodna.
+
+44
+00:03:07,870 --> 00:03:11,890
+Mówi ona o nachyleniu prostej - stycznej do
+ funkcji w jakimś punkcie.
+
+45
+00:03:11,890 --> 00:03:17,278
+Nachylenie jest po prostu równe wysokości 
+dzielonej przez ten poziomy odcinek.
+
+46
+00:03:17,278 --> 00:03:22,780
+Prosta ta ma nachylenie dodatnie,
+
+47
+00:03:22,780 --> 00:03:26,690
+więc i pochodna jest dodatnia.
+
+48
+00:03:26,690 --> 00:03:30,370
+Tak więc moja aktualizacja theta1 będzie taka: 
+`theta1
+
+49
+00:03:30,370 --> 00:03:35,813
+aktualizuje się do
+theta1 - alfa*jakaś_dodatnia_liczba
+
+50
+00:03:39,296 --> 00:03:40,271
+Okay.
+
+51
+00:03:40,271 --> 00:03:43,300
+Afla, czyli współczynnik uczenia, jest zawsze 
+dodatnie.
+
+52
+00:03:43,300 --> 00:03:47,220
+Tak więc theta1 staje się theta1 - cośtam.
+
+53
+00:03:47,220 --> 00:03:49,910
+W związku z tym, przesunę teraz theta1 w lewo.
+
+54
+00:03:49,910 --> 00:03:53,350
+Zmniejszę wartość theta1, i widzimy,
+że to słuszny krok
+
+55
+00:03:53,350 --> 00:03:55,810
+bo chcemy przesunąć się w tym kierunku.
+
+56
+00:03:55,810 --> 00:03:59,490
+Dzięki temu będziemy bliżej minimum, które 
+mamy tutaj
+
+57
+00:04:00,810 --> 00:04:04,060
+Tak więc gradient prosty jak na razie mówi nam,
+że idziemy w dobrym kierunku.
+
+58
+00:04:04,060 --> 00:04:06,120
+Zobaczmy kolejny przykład.
+
+59
+00:04:06,120 --> 00:04:10,330
+Weźmy tę samą funkcję J i narysujmy ją:
+
+60
+00:04:10,330 --> 00:04:11,530
+J(theta1)
+
+61
+00:04:11,530 --> 00:04:16,140
+Teraz powiedzmy, że zainicjowałem mój parametr
+tutaj, z lewej strony.
+
+62
+00:04:16,140 --> 00:04:17,740
+Tak więc theta1 jest tutaj.
+
+63
+00:04:17,740 --> 00:04:19,240
+Zaznaczę jeszcze punkt na wykresie...
+
+64
+00:04:20,650 --> 00:04:25,680
+Teraz moja pochodna (d/d(theta1) J 
+w tym punkcie,
+
+65
+00:04:25,680 --> 00:04:31,420
+a więc nachylenie prostej, będzie takie.
+
+66
+00:04:31,420 --> 00:04:34,580
+Pochodna określa nachylenie tej prostej.
+
+67
+00:04:34,580 --> 00:04:37,644
+Jednak ta linia idzie w dół, więc nachylenie jest
+ujemne
+
+68
+00:04:41,021 --> 00:04:41,990
+Prawda?
+
+69
+00:04:41,990 --> 00:04:45,880
+Innymi słowy: funkcja ta ma w tym punkcie
+ujemną pochodną,
+
+70
+00:04:45,880 --> 00:04:48,220
+co oznacza ujemne nachylenie w tym punkcie.
+
+71
+00:04:48,220 --> 00:04:54,690
+Jest to mniejsze/równe 0, więc po aktualizacji
+theta1
+
+72
+00:04:54,690 --> 00:04:59,100
+mamy theta1 - alfa*ujemna_liczba.
+
+73
+00:05:02,380 --> 00:05:07,460
+Odejmuję więc od theta1 liczbę ujemną, co
+w praktyce oznacza,
+
+74
+00:05:07,460 --> 00:05:11,210
+że wartość theta1 się zwiększy, bo odejmujemy
+ujemną wartość,
+
+75
+00:05:11,210 --> 00:05:12,840
+co jest równoznaczne dodawaniu.
+
+76
+00:05:12,840 --> 00:05:16,640
+W związku z tym wartość theta1 będzie rosnąć.
+
+77
+00:05:16,640 --> 00:05:21,110
+Tak więc zaczynamy tutaj, zwiększamy theta1,
+i wygląda na to, że właśnie to chcieliśmy zrobić,
+
+78
+00:05:21,110 --> 00:05:24,270
+bo zbliżyliśmy się do minimum funkcji.
+
+79
+00:05:26,430 --> 00:05:31,600
+Mam nadzieję, że dało Ci to pewną intuicję,
+co robi pochodna.
+
+80
+00:05:31,600 --> 00:05:36,250
+Teraz przyjrzymy się, co robi
+współczynnik uczenia alfa.
+
+81
+00:05:38,090 --> 00:05:42,330
+Tutaj mamy zasadę aktualizację gradientu 
+prostego - to równanie tutaj.
+
+82
+00:05:43,890 --> 00:05:48,440
+Zobaczmy, co się stanie, jeśli alfa będzie
+zbyt małe
+
+83
+00:05:48,440 --> 00:05:50,740
+lub zbyt duże.
+
+84
+00:05:50,740 --> 00:05:54,200
+Pierwszy przypadek: co, jeśli alfa jest zbyt małe?
+
+85
+00:05:54,200 --> 00:05:59,228
+Mamy funkcję J(theta1).
+
+86
+00:05:59,228 --> 00:06:02,460
+Zaczynamy tutaj.
+
+87
+00:06:02,460 --> 00:06:06,920
+Jeśli alfa jest zbyt małe, to przy aktualizacji
+
+88
+00:06:06,920 --> 00:06:11,220
+będę mnożył przez bardzo małą liczbę, co
+skutkować będzie malutkim krokiem,
+takim jak ten.
+
+89
+00:06:11,220 --> 00:06:13,350
+Ok, mamy jeden krok.
+
+90
+00:06:13,350 --> 00:06:16,520
+Teraz z tego nowego punktu muszę wykonać
+kolejny krok.
+
+91
+00:06:16,520 --> 00:06:19,690
+Jeśli alfa jest zbyt małe, wykonam kolejny
+maleńki krok.
+
+92
+00:06:19,690 --> 00:06:26,530
+Tak więc, jeśli alfa jest zbyt małe, będę
+
+93
+00:06:26,530 --> 00:06:31,770
+robił takie malutkie kroczki, próbując dostać
+się do minimum.
+
+94
+00:06:31,770 --> 00:06:35,380
+I będę potrzebował wielu takich małych kroków,
+żeby osiągnąć minimum.
+
+95
+00:06:35,380 --> 00:06:38,980
+Jeśli alfa jest zbyt małe, gradient prosty będzie
+działać wolno, ponieważ
+
+96
+00:06:38,980 --> 00:06:40,880
+będzie wykonywać małe kroczki
+
+97
+00:06:40,880 --> 00:06:44,830
+i będzie potrzebować ich wiele, zanim znajdzie
+się w pobliżu globalnego minimum.
+
+98
+00:06:46,750 --> 00:06:49,460
+A co, jeśli alfa jest zbyt duże?
+
+99
+00:06:49,460 --> 00:06:54,880
+Mamy tutaj funkcję J(theta). Jeśli alfa jest
+zbyt duże,
+
+100
+00:06:54,880 --> 00:06:59,180
+gradient prosty może "nie trafić" w minimum,
+może się nie zbiec,
+
+101
+00:06:59,180 --> 00:07:00,910
+lub nawet "rozjechać". Już tłumaczę:
+
+102
+00:07:00,910 --> 00:07:04,170
+Powiedzmy, że jesteśmy tutaj, całkiem blisko
+minimum.
+
+103
+00:07:04,170 --> 00:07:07,430
+Tak więc pochodna przesuwa nas w prawo,
+jednak jeśli alfa jest zbyt duże,
+
+104
+00:07:07,430 --> 00:07:09,060
+wykonam wielki krok.
+
+105
+00:07:09,060 --> 00:07:10,820
+Wykonam wielki krok, taki jak ten.
+
+106
+00:07:10,820 --> 00:07:14,980
+W rezultacie moja funkcja kosztu się pogorszyła,
+
+107
+00:07:14,980 --> 00:07:19,390
+bo zaczęła od tej wartości, a teraz przyjęła
+gorszą wartość.
+
+108
+00:07:19,390 --> 00:07:22,872
+Teraz moja pochodna przesuwa mnie w lewo -
+mówi, że powinienem zmniejszyć wartość theta.
+
+109
+00:07:22,872 --> 00:07:25,070
+Jednak jeśli wsp. uczenia jest zbyt duży,
+
+110
+00:07:25,070 --> 00:07:27,930
+znowu wykonam wielki krok i wyląduję tutaj.
+
+111
+00:07:27,930 --> 00:07:31,560
+Wylądowaliśmy więc tutaj, prawda?
+
+112
+00:07:31,560 --> 00:07:35,020
+I jeśli współczynnik uczenia jest zbyt duży, 
+możemy zrobić kolejny wielki krok w następnej 
+iteracji,
+
+113
+00:07:35,020 --> 00:07:39,950
+przestrzelić minimum, przestrzelić raz jeszcze,
+i tak dalej, aż zorientujemy się,
+
+114
+00:07:39,950 --> 00:07:44,170
+że z każdym krokiem oddalamy się od minimum.
+
+115
+00:07:44,170 --> 00:07:49,530
+Tak więc, jeśli alfa jest zbyt duże, możemy nie
+uzyskać zbieżności - funkcja może się nawet
+"rozjechać".
+
+116
+00:07:49,530 --> 00:07:52,170
+Mam teraz do Ciebie kolejne pytanie;
+
+117
+00:07:52,170 --> 00:07:55,870
+jest podchwytliwe i gdy uczyłem się tego
+materiału po raz pierwszy, zajęło mi
+
+118
+00:07:55,870 --> 00:07:57,020
+dużo czasu, żeby to zrozumieć.
+
+119
+00:07:57,020 --> 00:08:00,740
+Co jeśli nasz parametr theta1 jest już 
+w minimum lokalnym?
+
+120
+00:08:00,740 --> 00:08:03,420
+Jak myślisz, co zrobi pojedyncza iteracja
+gradientu prostego?
+
+121
+00:08:06,520 --> 00:08:10,260
+Załóżmy, że zainicjowaliśmy theta1
+w minimum lokalnym.
+
+122
+00:08:10,260 --> 00:08:15,580
+Załóżmy, że mamy tutaj naszą wstępną wartość
+theta1
+
+123
+00:08:15,580 --> 00:08:18,630
+i jest ona w optimum lokalnym czy
+minimum lokalnym.
+
+124
+00:08:19,960 --> 00:08:23,280
+Okazuje się, że w optimum lokalnym nasza
+pochodna będzie równa 0.
+
+125
+00:08:23,280 --> 00:08:29,070
+Tak więc nachylenie stycznej - tej linii -
+
+126
+00:08:29,070 --> 00:08:36,370
+będzie równe 0, w związku z czym pochodna
+też będzie równa 0.
+
+127
+00:08:36,370 --> 00:08:38,430
+W takim razie przy aktualizacji gradientu prostego
+
+128
+00:08:38,430 --> 00:08:43,970
+mamy: theta1 - alfa*0.
+
+129
+00:08:43,970 --> 00:08:48,780
+Oznacza to, że jeśli jesteśmy już
+w optimum lokalnym,
+
+130
+00:08:48,780 --> 00:08:54,680
+theta1 się nie zmieni, bo otrzymujemy:
+theta1 := theta1.
+
+131
+00:08:54,680 --> 00:08:57,830
+Tak więc jeśli nasze parametry są już
+w minimum lokalnym,
+
+132
+00:08:57,830 --> 00:09:00,980
+pojedynczy krok gradientu prostego nie zrobi
+absolutnie nic z parametrem.
+
+133
+00:09:00,980 --> 00:09:04,830
+Właśnie tego chcemy, bo dzięki temu
+pozostajemy w optimum lokalnym.
+
+134
+00:09:05,970 --> 00:09:09,860
+To także wyjaśnia, jak gradient prosty może
+osiągnąć minimum lokalne nawet,
+
+135
+00:09:09,860 --> 00:09:13,110
+gdy współczynnik uczenia - alfa - jest stały.
+
+136
+00:09:13,110 --> 00:09:15,570
+Oto, co mam na myśli: spójrzmy na ten przykład.
+
+137
+00:09:15,570 --> 00:09:20,570
+Mamy tu funkcję kosztu J(theta),
+
+138
+00:09:20,570 --> 00:09:24,750
+którą chcemy minimalizować. Powiedzmy,
+że inicjujemy nasz algorytm,
+
+139
+00:09:24,750 --> 00:09:29,040
+algorytm gradientu prostego, w tym punkcie
+oznaczonym magentą.
+
+140
+00:09:29,040 --> 00:09:33,060
+Jeśli wykonam jeden krok gradientu prostego,
+mogę wylądować tutaj,
+
+141
+00:09:33,060 --> 00:09:34,770
+bo moja pochodna jest w tym punkcie
+dość stroma.
+
+142
+00:09:34,770 --> 00:09:36,020
+Zgadza się?
+
+143
+00:09:36,020 --> 00:09:41,130
+Jestem teraz w tym zielonym punkcie, i jeśli
+zrobię kolejny krok gradientu prostego,
+
+144
+00:09:41,130 --> 00:09:45,740
+to zauważ, że moja pochodna, tzn. nachylenie,
+jest łagodniejsze
+
+145
+00:09:45,740 --> 00:09:49,470
+w zielonym punkcie w porównaniu do punktu
+oznaczonego magentą w tym miejscu.
+
+146
+00:09:49,470 --> 00:09:54,060
+Ponieważ wraz ze zbliżaniem się do minimum
+moja pochodna będzie coraz bliższa zeru,
+
+147
+00:09:54,060 --> 00:09:57,570
+gdy będę zbliżał się do minimum.
+
+148
+00:09:57,570 --> 00:10:02,350
+A więc po wykonaniu jednego kroku, moja
+pochodna będzie trochę mniejsza.
+
+149
+00:10:02,350 --> 00:10:04,890
+Chcę teraz wykonać kolejny krok
+gradientu prostego.
+
+150
+00:10:04,890 --> 00:10:08,910
+Teraz wykonam krok z tego zielonego punktu
+- będzie nieco mniejszy, niż
+
+151
+00:10:08,910 --> 00:10:11,290
+z tego punktu oznaczonego magentą.
+
+152
+00:10:11,290 --> 00:10:15,030
+Teraz, będąc w czerwonym punkcie, jestem
+jeszcze bliżej globalnego minimum, więc
+
+153
+00:10:15,030 --> 00:10:19,390
+pochodna będzie jeszcze mniejsza, niż
+w zielonym punkcie.
+
+154
+00:10:19,390 --> 00:10:21,050
+Robię więc kolejny krok gradientu prostego.
+
+155
+00:10:22,280 --> 00:10:26,560
+Teraz moja pochodna jest jeszcze mniejsza,
+więc wartość
+
+156
+00:10:26,560 --> 00:10:31,700
+aktualizująca theta1 jest jeszcze mniejsza,
+więc robię mały krok, taki jak ten.
+
+157
+00:10:31,700 --> 00:10:36,630
+Dlatego wraz z postępem algorytmu
+
+158
+00:10:36,630 --> 00:10:40,870
+nasze kroki będą stawać się coraz mniejsze,
+
+159
+00:10:41,880 --> 00:10:45,230
+aż w końcu staną się bardzo małe,
+
+160
+00:10:45,230 --> 00:10:48,990
+i ostatecznie osiągniemy minimum lokalne.
+
+161
+00:10:50,270 --> 00:10:55,580
+Podsumujmy więc: w przypadku
+gradientu prostego, gdy zbliżamy się do
+lokalnego minimum,
+
+162
+00:10:55,580 --> 00:10:58,290
+gradient prosty będzie automatycznie robił
+coraz mniejsze kroki,
+
+163
+00:10:58,290 --> 00:11:01,060
+a to dlatego, że
+
+164
+00:11:01,060 --> 00:11:06,110
+z definicji w minimum lokalnym pochodna jest równa 0.
+
+165
+00:11:06,110 --> 00:11:10,450
+Wraz ze zbliżaniem się do minimum lokalnego, 
+ten człon pochodnej automatycznie
+
+166
+00:11:10,450 --> 00:11:16,720
+będzie malał, a więc gradient prosty będzie
+wykonywać mniejsze kroki.
+
+167
+00:11:16,720 --> 00:11:21,140
+Tak więc tak wygląda gradient prosty, i dlatego
+nie trzeba z czasem zmniejszać parametru alfa.
+
+168
+00:11:22,810 --> 00:11:27,840
+To tyle, jeśli chodzi o algorytm gradientu
+prostego; możesz go stosować, aby minimalizować
+
+169
+00:11:27,840 --> 00:11:32,940
+dowolną funkcję kosztu J, nie tylko funkcję kosztu
+J, którą zdefiniowaliśmy dla regresji liniowej.
+
+170
+00:11:32,940 --> 00:11:35,720
+W następnym nagraniu weźmiemy funkcję J
+
+171
+00:11:35,720 --> 00:11:39,350
+i podstawimy za nią dokładnie funkcję kosztu 
+regresji liniowej,
+
+172
+00:11:39,350 --> 00:11:42,140
+czyli kwadratową funkcję kosztu, którą
+sformułowaliśmy wcześniej.
+
+173
+00:11:42,140 --> 00:11:46,210
+Złożenie ze sobą gradientu prostego oraz tej
+kwadratowej funkcji kosztu
+
+174
+00:11:46,210 --> 00:11:48,830
+da nam nasz pierwszy uczący się algorytm.
+
+175
+00:11:48,830 --> 00:11:50,750
+Da nam to algorytm regresji liniowej.

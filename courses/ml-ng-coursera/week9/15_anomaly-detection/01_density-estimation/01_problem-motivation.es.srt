@@ -1,0 +1,931 @@
+1
+00:00:00,170 --> 00:00:01,190
+En la siguiente serie de vídeos,
+
+2
+00:00:01,720 --> 00:00:02,680
+me gustaría contarles acerca de
+
+3
+00:00:03,050 --> 00:00:04,560
+un problema que se llama detección de anomalías.
+
+4
+00:00:05,710 --> 00:00:07,220
+Este es un tipo comúnmente usado
+
+5
+00:00:07,870 --> 00:00:08,740
+de aprendizaje automático.
+
+6
+00:00:09,580 --> 00:00:10,990
+Uno de los aspectos interesantes
+
+7
+00:00:11,580 --> 00:00:13,250
+es que es principalmente para
+
+8
+00:00:14,020 --> 00:00:15,860
+problemas no supervisados pero también hay algunos
+
+9
+00:00:16,320 --> 00:00:17,240
+aspectos de este problema que
+
+10
+00:00:17,510 --> 00:00:20,000
+son muy similares a una especie de problema de aprendizaje supervisado.
+
+11
+00:00:21,160 --> 00:00:22,440
+Así que, ¿qué es la detección de anomalías?
+
+12
+00:00:23,380 --> 00:00:25,000
+Para explicarlo, déjeme usar este ejemplo
+
+13
+00:00:25,240 --> 00:00:27,780
+de motivación. Imagine
+
+14
+00:00:28,440 --> 00:00:30,040
+que usted es un fabricante de
+
+15
+00:00:30,330 --> 00:00:32,370
+motores de aviones, y vamos a
+
+16
+00:00:32,600 --> 00:00:33,850
+decir que a medida que sus motores
+
+17
+00:00:34,280 --> 00:00:35,330
+de avión salen de la línea de ensamble
+
+18
+00:00:35,620 --> 00:00:37,580
+usted está haciendo, ya sabe, un control de calidad o
+
+19
+00:00:37,820 --> 00:00:39,850
+pruebas de control de calidad, y como
+
+20
+00:00:40,030 --> 00:00:41,340
+parte de las pruebas, mide
+
+21
+00:00:41,410 --> 00:00:43,140
+las variables de su
+
+22
+00:00:43,510 --> 00:00:44,900
+motor de aeronave, como quizá,
+
+23
+00:00:45,180 --> 00:00:46,820
+el calor generado, aspectos como
+
+24
+00:00:46,860 --> 00:00:48,340
+las vibraciones y así sucesivamente.
+
+25
+00:00:48,630 --> 00:00:49,570
+Comparto algunos amigos que trabajaban
+
+26
+00:00:49,860 --> 00:00:50,940
+en este problema hace mucho tiempo
+
+27
+00:00:51,010 --> 00:00:52,610
+y estos fueron en realidad los tipos
+
+28
+00:00:52,710 --> 00:00:53,960
+de variables que fueron
+
+29
+00:00:54,470 --> 00:00:55,910
+colectando sobre motores de avión
+
+30
+00:00:56,280 --> 00:00:58,540
+reales, de modo que ahora tiene
+
+31
+00:00:58,630 --> 00:00:59,570
+un conjunto de datos, de
+
+32
+00:00:59,700 --> 00:01:01,000
+x1 a xm, si usted tiene
+
+33
+00:01:01,760 --> 00:01:04,490
+"m"motores de aviones fabricados y
+
+34
+00:01:05,030 --> 00:01:06,740
+y si traza sus datos, tal vez se parezca a esto,
+
+35
+00:01:07,130 --> 00:01:08,640
+entonces, cada punto de aquí, cada cruz
+
+36
+00:01:08,770 --> 00:01:10,580
+mostrada es como uno de sus ejemplos valores no asignados.
+
+37
+00:01:11,990 --> 00:01:15,220
+Así, el problema de detección de anomalías es el siguiente:
+
+38
+00:01:16,450 --> 00:01:17,770
+Digamos que,
+
+39
+00:01:17,880 --> 00:01:18,970
+al día siguiente, usted
+
+40
+00:01:19,140 --> 00:01:20,390
+tendrá un nuevo motor de avión
+
+41
+00:01:20,810 --> 00:01:21,860
+que sale de la línea de ensamble
+
+42
+00:01:22,320 --> 00:01:23,890
+y su nuevo motor de avión tiene
+
+43
+00:01:24,160 --> 00:01:25,440
+un conjunto de variables de "x prueba".
+
+44
+00:01:26,290 --> 00:01:27,680
+El problema de detección de anomalías es que
+
+45
+00:01:27,930 --> 00:01:29,070
+queremos saber si este
+
+46
+00:01:29,420 --> 00:01:31,310
+motor de avión es anómalo de alguna
+
+47
+00:01:31,520 --> 00:01:32,480
+manera, en otras palabras, queremos
+
+48
+00:01:32,740 --> 00:01:34,110
+saber si, tal vez, este motor
+
+49
+00:01:34,570 --> 00:01:36,290
+debe someterse a más pruebas
+
+50
+00:01:37,330 --> 00:01:38,370
+o si se ve
+
+51
+00:01:38,710 --> 00:01:40,560
+como un motor bien terminado y
+
+52
+00:01:40,740 --> 00:01:41,700
+está listo para simplemente enviarlo
+
+53
+00:01:41,880 --> 00:01:43,260
+a un cliente sin ninguna otra prueba.
+
+54
+00:01:44,560 --> 00:01:45,670
+Por lo tanto, si su nuevo
+
+55
+00:01:45,840 --> 00:01:47,330
+motor de avión luce como
+
+56
+00:01:47,540 --> 00:01:49,150
+un punto por allá, bueno,
+
+57
+00:01:49,260 --> 00:01:50,200
+usted sabe, que se parece mucho
+
+58
+00:01:50,360 --> 00:01:51,440
+a los motores de aviones que hemos visto
+
+59
+00:01:51,650 --> 00:01:53,860
+antes, por lo que tal vez vamos a decir que se ve bien.
+
+60
+00:01:54,750 --> 00:01:55,740
+Considerando que, si su nuevo motor de
+
+61
+00:01:56,200 --> 00:01:59,390
+avión, si "x prueba", ya sabe, fuera
+
+62
+00:01:59,620 --> 00:02:00,430
+un punto que estaba por allá,
+
+63
+00:02:00,910 --> 00:02:02,270
+entonces si x1 y
+
+64
+00:02:02,410 --> 00:02:04,800
+x2 son las variables de este nuevo ejemplo,
+
+65
+00:02:05,360 --> 00:02:06,530
+si las "x prueba" estuvieran todas
+
+66
+00:02:06,590 --> 00:02:08,930
+lejos, entonces podríamos llamar a eso una anomalía
+
+67
+00:02:10,420 --> 00:02:11,640
+y tal vez enviaría ese motor de avión
+
+68
+00:02:12,070 --> 00:02:13,720
+para realizar más pruebas antes de
+
+69
+00:02:13,870 --> 00:02:15,130
+enviarlo a un cliente, ya que
+
+70
+00:02:16,010 --> 00:02:18,340
+se ve muy diferente al
+
+71
+00:02:18,600 --> 00:02:20,350
+resto de los motores de aviones que hemos visto antes.
+
+72
+00:02:21,000 --> 00:02:22,560
+Más formalmente, en el problema de
+
+73
+00:02:22,960 --> 00:02:24,230
+detección de anomalías, vamos a dar
+
+74
+00:02:24,900 --> 00:02:26,160
+algunos conjuntos de datos, ejemplos de x1
+
+75
+00:02:26,280 --> 00:02:28,340
+a xm y con frecuencia
+
+76
+00:02:28,460 --> 00:02:29,720
+asumimos que estos ejemplos m
+
+77
+00:02:29,880 --> 00:02:32,250
+son normales o
+
+78
+00:02:33,120 --> 00:02:34,910
+ejemplos no anómalos, y nosotros
+
+79
+00:02:34,980 --> 00:02:36,100
+queremos un algoritmo que nos indique
+
+80
+00:02:36,290 --> 00:02:38,300
+si algún nuevo ejemplo"x prueba" es anómalo.
+
+81
+00:02:38,850 --> 00:02:40,080
+El enfoque que vamos
+
+82
+00:02:40,130 --> 00:02:41,670
+a tomar es que, dado este grupo de entrenamiento,
+
+83
+00:02:42,060 --> 00:02:43,300
+dado el grupo de entrenamiento  valores no asignados,
+
+84
+00:02:43,690 --> 00:02:45,280
+vamos a construir
+
+85
+00:02:45,420 --> 00:02:46,920
+un modelo para
+
+86
+00:02:47,020 --> 00:02:48,060
+"p(x)". En otras palabras, vamos
+
+87
+00:02:48,140 --> 00:02:49,320
+a construir un modelo para la
+
+88
+00:02:49,520 --> 00:02:51,230
+probabilidad de "x", donde
+
+89
+00:02:51,390 --> 00:02:53,330
+x son estas variables de, por ejemplo, los motores de los aviones.
+
+90
+00:02:54,620 --> 00:02:56,290
+Y así, después de haber construido un
+
+91
+00:02:56,530 --> 00:02:57,350
+modelo de la probabilidad de "x",
+
+92
+00:02:58,070 --> 00:02:59,230
+entonces vamos a decir que
+
+93
+00:02:59,820 --> 00:03:01,280
+para el un nuevo motor de avión,
+
+94
+00:03:01,520 --> 00:03:04,670
+si "p" de x prueba es menor
+
+95
+00:03:04,920 --> 00:03:07,180
+que cierto épsilon, entonces
+
+96
+00:03:07,930 --> 00:03:09,170
+marcamos esto como una anomalía.
+
+97
+00:03:11,410 --> 00:03:12,260
+Vemos, pues, un nuevo motor
+
+98
+00:03:12,660 --> 00:03:13,960
+que tiene muy baja probabilidad
+
+99
+00:03:14,850 --> 00:03:15,900
+bajo un modelo de p(x),
+
+100
+00:03:16,020 --> 00:03:17,130
+que se estima a partir de los datos,
+
+101
+00:03:17,790 --> 00:03:19,370
+entonces nosotros señalamos esta anomalía, mientras que si
+
+102
+00:03:19,730 --> 00:03:21,880
+p(x prueba) es
+
+103
+00:03:22,320 --> 00:03:24,110
+mayor que o igual a un pequeño umbral,
+
+104
+00:03:25,120 --> 00:03:26,620
+entonces decimos que está bien, se ve bien.
+
+105
+00:03:27,780 --> 00:03:28,740
+Dado el conjunto de entrenamiento,
+
+106
+00:03:28,980 --> 00:03:30,890
+como se traza aquí, si
+
+107
+00:03:31,060 --> 00:03:31,940
+se genera un modelo, espero
+
+108
+00:03:32,560 --> 00:03:34,020
+que encuentre esos motores de los aviones,
+
+109
+00:03:34,470 --> 00:03:35,500
+o espero que el modelo de p(x)
+
+110
+00:03:35,560 --> 00:03:37,070
+indique los puntos que están
+
+111
+00:03:37,260 --> 00:03:38,540
+ya sabe, en algún lugar en medio,
+
+112
+00:03:38,580 --> 00:03:39,550
+esa es una probabilidad bastante alta,
+
+113
+00:03:40,720 --> 00:03:42,830
+mientras que los puntos un poco más lejos tienen una menor probabilidad.
+
+114
+00:03:43,850 --> 00:03:45,050
+Los puntos que están aún más lejos
+
+115
+00:03:45,530 --> 00:03:47,220
+tiene una menor probabilidad y el
+
+116
+00:03:47,480 --> 00:03:48,420
+punto que está allá,
+
+117
+00:03:49,080 --> 00:03:50,400
+el punto cuyo camino está
+
+118
+00:03:50,520 --> 00:03:52,100
+hacía afuera, sería una anomalía.
+
+119
+00:03:54,150 --> 00:03:55,280
+mientras que ese punto está dentro,
+
+120
+00:03:55,470 --> 00:03:56,460
+justo en el centro,
+
+121
+00:03:56,520 --> 00:03:57,720
+esto estaría bien
+
+122
+00:03:57,830 --> 00:03:59,080
+porque p(x)
+
+123
+00:03:59,370 --> 00:04:00,300
+justo en medio de esto
+
+124
+00:04:00,460 --> 00:04:01,320
+sería muy alto porque hemos
+
+125
+00:04:01,520 --> 00:04:03,320
+visto un montón de puntos en esa región.
+
+126
+00:04:04,620 --> 00:04:07,580
+Estos son algunos ejemplos de aplicaciones de detección de anomalías.
+
+127
+00:04:08,450 --> 00:04:09,990
+Tal vez la aplicación más común de
+
+128
+00:04:10,080 --> 00:04:11,420
+la detección de anomalías es en realidad
+
+129
+00:04:11,560 --> 00:04:13,260
+para la detección, si tiene
+
+130
+00:04:13,360 --> 00:04:14,820
+muchos usuarios, y si
+
+131
+00:04:15,070 --> 00:04:16,360
+cada uno de sus usuarios toma diferentes
+
+132
+00:04:16,670 --> 00:04:17,740
+actividades, usted sabe, quizá
+
+133
+00:04:17,920 --> 00:04:18,560
+en su sitio web o en la
+
+134
+00:04:18,630 --> 00:04:20,180
+planta física o algo,
+
+135
+00:04:20,300 --> 00:04:23,670
+puede calcular las variables xi de las diferentes actividades de los usuarios y
+
+136
+00:04:24,830 --> 00:04:25,730
+lo que puede hacer es construir
+
+137
+00:04:25,940 --> 00:04:27,240
+un modelo, por ejemplo, de
+
+138
+00:04:27,310 --> 00:04:28,960
+cuál es la probabilidad de que diferentes
+
+139
+00:04:29,170 --> 00:04:30,730
+usuarios se comporten de diferentes maneras,
+
+140
+00:04:30,890 --> 00:04:32,280
+cuál es la probabilidad de un vector particular
+
+141
+00:04:32,460 --> 00:04:34,590
+de variables del
+
+142
+00:04:34,840 --> 00:04:36,750
+comportamiento de los usuarios.
+
+143
+00:04:36,900 --> 00:04:38,360
+Así que, usted sabe, ejemplos de variables de
+
+144
+00:04:38,450 --> 00:04:40,480
+la actividad de los usuarios, puede ser que en
+
+145
+00:04:40,650 --> 00:04:41,650
+el sitio web habrá cosas como, por ejemplo,
+
+146
+00:04:42,710 --> 00:04:44,350
+x1 que es la frecuencia en que el
+
+147
+00:04:44,840 --> 00:04:46,460
+usuario se conecta, x2, por ejemplo, tal vez sea
+
+148
+00:04:46,850 --> 00:04:47,920
+el número de las
+
+149
+00:04:48,130 --> 00:04:49,330
+páginas visitadas, o el
+
+150
+00:04:49,730 --> 00:04:51,420
+número de transacciones, tal vez x3
+
+151
+00:04:51,440 --> 00:04:52,820
+sea, usted sabe, el número de
+
+152
+00:04:53,120 --> 00:04:53,990
+mensajes de los usuarios en el
+
+153
+00:04:54,130 --> 00:04:55,850
+foro, la variable x4 podría
+
+154
+00:04:56,000 --> 00:04:56,910
+calcular cuál es la
+
+155
+00:04:57,440 --> 00:04:58,660
+velocidad de escritura del usuario y algunos
+
+156
+00:04:58,920 --> 00:04:59,980
+sitios web en realidad pueden hacer un seguimiento de esto,
+
+157
+00:05:00,280 --> 00:05:01,410
+saber cual es la velocidad de escritura de este
+
+158
+00:05:01,600 --> 00:05:03,010
+usuario en caracteres por segundo.
+
+159
+00:05:03,730 --> 00:05:06,610
+Entonces puede modelar p(x) en base a este tipo de datos.
+
+160
+00:05:08,150 --> 00:05:09,140
+Por último, al tener su modelo
+
+161
+00:05:09,270 --> 00:05:10,530
+p(x), puede
+
+162
+00:05:10,790 --> 00:05:12,570
+tratar de identificar a los usuarios que
+
+163
+00:05:12,760 --> 00:05:14,210
+se comportan de manera extraña en su
+
+164
+00:05:14,350 --> 00:05:15,590
+sitio web mediante la revisión de cuáles tienen
+
+165
+00:05:16,320 --> 00:05:18,100
+probabilidad de x menor a épsilon y
+
+166
+00:05:18,240 --> 00:05:21,140
+tal vez enviar los perfiles de esos usuarios para su revisión posterior o
+
+167
+00:05:22,330 --> 00:05:24,560
+pedir identificación adicional de
+
+168
+00:05:24,740 --> 00:05:26,190
+esos usuarios, o algo así
+
+169
+00:05:26,650 --> 00:05:28,370
+para protegerse de, usted sabe,
+
+170
+00:05:29,200 --> 00:05:31,650
+un comportamiento extraño o conducta fraudulenta en su sitio web.
+
+171
+00:05:33,030 --> 00:05:34,960
+Este tipo de técnica tenderá
+
+172
+00:05:35,160 --> 00:05:36,470
+a marcar a los usuarios que se
+
+173
+00:05:36,720 --> 00:05:38,250
+se están comportando de forma inusual, no sólo
+
+174
+00:05:39,480 --> 00:05:41,420
+usuarios que tal vez se comporten de manera fraudulenta.
+
+175
+00:05:42,190 --> 00:05:44,030
+Así que no sólo constantemente
+
+176
+00:05:44,370 --> 00:05:45,670
+cuentas robadas o usuarios que están
+
+177
+00:05:45,780 --> 00:05:47,780
+tratando de causar problemas o simplemente encontrar a los usuarios no habituales
+
+178
+00:05:48,560 --> 00:05:49,770
+pero esta es realmente la técnica
+
+179
+00:05:50,040 --> 00:05:51,430
+utilizada por muchos en
+
+180
+00:05:52,500 --> 00:05:53,570
+sitios web que venden cosas para
+
+181
+00:05:53,750 --> 00:05:55,860
+tratar de identificar a los usuarios que se comportan
+
+182
+00:05:56,240 --> 00:05:57,900
+de forma extraña, que podría ser
+
+183
+00:05:58,040 --> 00:05:59,160
+indicativo de, ya sea un comportamiento fraudulento
+
+184
+00:05:59,760 --> 00:06:02,420
+o de cuentas de equipo que hayan sido robadas.
+
+185
+00:06:03,580 --> 00:06:06,410
+Otro ejemplo de la detección de anomalías es la fabricación.
+
+186
+00:06:07,180 --> 00:06:08,470
+Así que ya hablamos sobre los motores
+
+187
+00:06:08,530 --> 00:06:09,770
+de avión en donde puede encontrar
+
+188
+00:06:10,030 --> 00:06:11,460
+por ejemplo, motores de avión inusuales
+
+189
+00:06:11,900 --> 00:06:13,600
+y enviarlos para una revisión adicional.
+
+190
+00:06:15,430 --> 00:06:16,740
+Una tercera aplicación sería
+
+191
+00:06:17,070 --> 00:06:19,210
+la supervisión de equipos en un centro de datos.
+
+192
+00:06:19,390 --> 00:06:20,410
+De hecho, tengo algunos amigos que trabajan en esto también.
+
+193
+00:06:21,260 --> 00:06:22,280
+Por lo que si tiene muchas
+
+194
+00:06:22,580 --> 00:06:23,550
+máquinas en un clúster de ordenadores
+
+195
+00:06:23,730 --> 00:06:24,690
+o en un
+
+196
+00:06:24,780 --> 00:06:25,710
+centro de datos, podemos hacer
+
+197
+00:06:25,920 --> 00:06:28,560
+cosas como calcular las variables en cada máquina.
+
+198
+00:06:29,020 --> 00:06:30,650
+Así que tal vez algunas variables capturando
+
+199
+00:06:31,170 --> 00:06:32,730
+usted sabe, la cantidad de memoria utilizada, el número de
+
+200
+00:06:32,870 --> 00:06:34,280
+accesos al disco, la carga del CPU,
+
+201
+00:06:35,060 --> 00:06:36,050
+así como variables más complejas
+
+202
+00:06:36,440 --> 00:06:37,450
+como cúal es la carga de CPU
+
+203
+00:06:37,830 --> 00:06:39,650
+en esta máquina dividida entre
+
+204
+00:06:39,960 --> 00:06:41,340
+la cantidad de tráfico de red
+
+205
+00:06:41,950 --> 00:06:43,050
+en esta máquina.
+
+206
+00:06:43,340 --> 00:06:44,580
+Entonces, dado el conjunto de datos de la forma en
+
+207
+00:06:44,820 --> 00:06:45,780
+que se comportan comúnmente los equipos
+
+208
+00:06:46,070 --> 00:06:47,230
+en su centro de datos, puede
+
+209
+00:06:47,390 --> 00:06:48,460
+modelar la probabilidad de "x",
+
+210
+00:06:48,590 --> 00:06:49,730
+puede modelar la probabilidad
+
+211
+00:06:50,350 --> 00:06:51,840
+de que estas máquinas tengan
+
+212
+00:06:52,840 --> 00:06:53,790
+diferentes cantidades de uso de la memoria
+
+213
+00:06:54,060 --> 00:06:55,200
+o la probabilidad de estas máquinas teniendo
+
+214
+00:06:55,920 --> 00:06:57,160
+diferentes números de accesos a disco
+
+215
+00:06:57,780 --> 00:06:59,880
+o diferentes cargas de CPU y así sucesivamente.
+
+216
+00:07:00,030 --> 00:07:01,100
+Si alguna vez tiene una máquina
+
+217
+00:07:02,030 --> 00:07:03,530
+cuya probabilidad de "x",
+
+218
+00:07:03,800 --> 00:07:05,330
+p(x), es muy pequeña, entonces sabrá
+
+219
+00:07:05,440 --> 00:07:06,880
+que la máquina se está comportando inusualmente
+
+220
+00:07:07,970 --> 00:07:08,950
+y tal vez esa máquina está
+
+221
+00:07:09,050 --> 00:07:11,630
+a punto de descomponerse y usted
+
+222
+00:07:11,700 --> 00:07:13,620
+puede marcarla para que el administrador del sistema la revise.
+
+223
+00:07:14,690 --> 00:07:15,890
+Esto en realidad se usa hoy en día
+
+224
+00:07:16,060 --> 00:07:17,800
+en diversos centros de datos
+
+225
+00:07:18,020 --> 00:07:19,550
+para rastrear las irregularidades
+
+226
+00:07:20,040 --> 00:07:21,430
+que suceden en sus máquinas.
+
+227
+00:07:22,920 --> 00:07:24,420
+Así que eso es la detección de anomalías.
+
+228
+00:07:25,540 --> 00:07:26,880
+En el siguiente video, voy a
+
+229
+00:07:27,120 --> 00:07:29,400
+hablar un poco acerca de la distribución de Gauss y
+
+230
+00:07:29,580 --> 00:07:31,030
+de las propiedades de revisión de la distribución
+
+231
+00:07:31,580 --> 00:07:33,540
+de probabilidad gaussiana y en
+
+232
+00:07:33,690 --> 00:07:34,650
+videos posteriores, aplicaré esto
+
+233
+00:07:34,790 --> 00:07:37,390
+para desarrollar un algoritmo de detección de anomalías.

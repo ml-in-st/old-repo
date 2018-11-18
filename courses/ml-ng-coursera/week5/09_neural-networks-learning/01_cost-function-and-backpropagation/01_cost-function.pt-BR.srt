@@ -1,0 +1,384 @@
+1
+00:00:00,260 --> 00:00:03,190
+Redes neurais são um dos mais poderosos algoritmos de aprendizagem que
+
+2
+00:00:03,190 --> 00:00:04,360
+temos atualmente.
+
+3
+00:00:04,360 --> 00:00:08,390
+Neste e em alguns dos próximos vídeos, gostaria de começar falando sobre um algoritmo de
+
+4
+00:00:08,390 --> 00:00:13,360
+aprendizagem para ajustar os parâmetros de uma rede neural dado um conjunto de treinamento.
+
+5
+00:00:13,360 --> 00:00:16,570
+Tal como na discussão da maioria dos algoritmos de aprendizagem, vamos
+
+6
+00:00:16,570 --> 00:00:20,729
+iniciar falando sobre a função de custo para ajustar os parâmetros da rede.
+
+7
+00:00:22,290 --> 00:00:25,840
+Vou focar na aplicação de redes neurais nos
+
+8
+00:00:25,840 --> 00:00:27,700
+problemas de classificação.
+
+9
+00:00:27,700 --> 00:00:31,340
+Então, suponha que temos uma rede como a exibida à esquerda.
+
+10
+00:00:31,340 --> 00:00:34,820
+E suponha que temos um  conjunto de treinamento como este, sendo os pares
+
+11
+00:00:34,820 --> 00:00:36,869
+x(i), y(i) do exemplo de treinamento M.
+
+12
+00:00:38,030 --> 00:00:41,790
+Vou usar L maiúscula para denotar o número total de
+
+13
+00:00:41,790 --> 00:00:43,340
+camadas nesta rede.
+
+14
+00:00:43,340 --> 00:00:47,420
+Então, para a rede mostrada à esquerda, teríamos L maiúscula igual a 4.
+
+15
+00:00:47,420 --> 00:00:52,390
+Vou usar o S subscrito de L para denotar o número de unidades,
+
+16
+00:00:52,390 --> 00:00:54,390
+que é o número de neurônios.
+
+17
+00:00:54,390 --> 00:00:57,830
+Sem contar a unidade de viés em sua camada L da rede.
+
+18
+00:00:57,830 --> 00:01:02,360
+Então, por exemplo, temos o S um, que é igual ali,
+
+19
+00:01:02,360 --> 00:01:06,900
+igual a três unidades, S dois em meu exemplo tem cinco unidades.
+
+20
+00:01:06,900 --> 00:01:09,590
+E a camada resultante S quatro,
+
+21
+00:01:09,590 --> 00:01:13,280
+que também é igual a sL, L maiúscula é igual a quatro.
+
+22
+00:01:13,280 --> 00:01:16,470
+A camada resultante em meu exemplo, tem quatro unidades.
+
+23
+00:01:17,650 --> 00:01:20,470
+Vamos considerar dois tipos de problemas de classificação.
+
+24
+00:01:20,470 --> 00:01:25,370
+O primeiro é a classificação Binária, onde os rótulos y podem ser ou 0 ou 1.
+
+25
+00:01:25,370 --> 00:01:30,340
+Neste caso, teremos 1 unidade resultante, então esta unidade da Rede Neural
+
+26
+00:01:30,340 --> 00:01:35,210
+no topo tem 4 unidades resultantes, mas se tivéssemos classificação binária, teríamos apenas
+
+27
+00:01:35,210 --> 00:01:40,310
+uma unidade resultante que computa h(x).
+
+28
+00:01:40,310 --> 00:01:46,670
+E o resultado da rede neural seria h(x) tendo um número real.
+
+29
+00:01:46,670 --> 00:01:49,460
+E neste caso, o número de unidades resultantes,
+
+30
+00:01:49,460 --> 00:01:54,050
+s L, onde L é, de novo, o índice da camada final.
+
+31
+00:01:54,050 --> 00:01:56,810
+Portanto este é o número de camadas que temos na rede então
+
+32
+00:01:56,810 --> 00:02:00,770
+o número de unidades que temos na camada resultante será igual a 1.
+
+33
+00:02:00,770 --> 00:02:05,410
+Neste caso, para simplificar a notação mais adiante, eu também vou definir K = 1 então
+
+34
+00:02:05,410 --> 00:02:11,430
+você pode pensar em K também denotando o número de unidades da camada resultante.
+
+35
+00:02:11,430 --> 00:02:14,080
+No segundo tipo de problema de classificação consideraremos que vamos ter
+
+36
+00:02:14,080 --> 00:02:19,180
+problemas de classificação de classe múltipla onde poderemos ter K classes distintas.
+
+37
+00:02:19,180 --> 00:02:24,910
+Então nosso exemplo inicial tem sua representação para y se tivermos 4 classes,
+
+38
+00:02:24,910 --> 00:02:28,940
+e neste caso teremos um K maiúsculo de unidades resultantes e
+
+39
+00:02:28,940 --> 00:02:34,980
+nossa hipótese ou vetores resultantes que possuem K dimensões.
+
+40
+00:02:34,980 --> 00:02:38,990
+E o número unidades resultantes será igual a K.
+
+41
+00:02:38,990 --> 00:02:44,020
+E geralmente teremos K maior ou igual a 3 neste caso, porque
+
+42
+00:02:44,020 --> 00:02:48,660
+se tivermos duas classes, então não precisamos usar o método um versus todos.
+
+43
+00:02:48,660 --> 00:02:53,170
+Usamos o método um versus todos apenas se tivermos um K maior ou igual a
+
+44
+00:02:53,170 --> 00:02:58,640
+V classes, então, tendo apenas duas classes nós precisaremos usar apenas uma unidade resultante.
+
+45
+00:02:58,640 --> 00:03:01,030
+Agora, vamos definir a função custo da nossa rede neural.
+
+46
+00:03:03,910 --> 00:03:08,140
+A função custo que usamos para rede neural será uma generalização
+
+47
+00:03:08,140 --> 00:03:10,960
+da que usamos para regressão logística.
+
+48
+00:03:10,960 --> 00:03:15,450
+Para regressão logística costumamos minimizar a função custo J(teta) que
+
+49
+00:03:15,450 --> 00:03:20,480
+tem menos 1/m desta função custo e então somar este extra
+
+50
+00:03:20,480 --> 00:03:25,790
+termo de regularização aqui, onde ele era uma somatória de J = 1 até n, 
+
+51
+00:03:25,790 --> 00:03:29,580
+porque não regularizamos o termo de viés θ₀.
+
+52
+00:03:31,060 --> 00:03:35,670
+Para uma rede neural, nossa função custo será uma generalização desta.
+
+53
+00:03:35,670 --> 00:03:40,360
+Onde ao invés de termos basicamente apenas um, que é a unidade resultante de compressão, 
+
+54
+00:03:40,360 --> 00:03:42,600
+podemos ter K delas, ao invés.
+
+55
+00:03:42,600 --> 00:03:44,790
+Aqui está nossa função de custo.
+
+56
+00:03:44,790 --> 00:03:49,296
+Nossa nova rede agora retorna vetores em R K
+onde R pode ser igual a 1 se tivermos
+
+57
+00:03:49,296 --> 00:03:51,430
+um problema de classificação binária.
+
+58
+00:03:51,430 --> 00:03:56,894
+Usarei a notação h(x) indexada de i subscritor para denotar o i-ésimo resultado.
+
+59
+00:03:56,894 --> 00:04:02,990
+Isto é, h(x) é um vetor de dimensão k, logo o subscritor i apenas
+
+60
+00:04:02,990 --> 00:04:07,750
+seleciona o resultado do i-ésimo elemento do vetor que é retornado pela minha rede neural.
+
+61
+00:04:08,930 --> 00:04:12,690
+Minha função J(θ) será agora como segue:
+
+62
+00:04:12,690 --> 00:04:17,480
+-1 sobre M da somatória de um termo semelhante ao que temos para 
+
+63
+00:04:17,480 --> 00:04:22,510
+regressão logística, exceto que temos que somar de K igual a 1 até K.
+
+64
+00:04:22,510 --> 00:04:25,655
+Esta somatória é basicamente uma soma sobre o meu resultante K.
+
+65
+00:04:25,655 --> 00:04:28,945
+Uma unidade. Então, se tivermos quatro unidades,
+
+66
+00:04:28,945 --> 00:04:33,635
+isto é, se a camada final da minha rede neural tem quatro unidades resultantes,
+
+67
+00:04:33,635 --> 00:04:39,125
+então esta é a soma de k igual a um até quatro para
+
+68
+00:04:39,125 --> 00:04:43,355
+basicamente a função de custo do algoritmo de regressão logística, mas,
+
+69
+00:04:43,355 --> 00:04:48,545
+somando esta função de custo em cada uma das minhas quatro unidades resultantes.
+
+70
+00:04:48,545 --> 00:04:52,880
+E assim, note que particularmente isso se aplica para Yk Hk,
+
+71
+00:04:52,880 --> 00:04:58,700
+porque estamos basicamente falando de "K sobrescrito " unidades, e comparando com o valor 
+
+72
+00:04:58,700 --> 00:05:06,210
+de Yk o qual é um dos vetores dizendo qual seria o custo. 
+
+73
+00:05:06,210 --> 00:05:10,810
+E finalmente, o segundo termo aqui é o termo de regularização,
+
+74
+00:05:10,810 --> 00:05:14,120
+semelhante ao que temos para regressão logística.
+
+75
+00:05:14,120 --> 00:05:18,040
+Este termo da somatória parece realmente complicado, mas, tudo que ele faz é
+
+76
+00:05:18,040 --> 00:05:24,370
+somar várias vezes os termos teta J i l para todos os valores de i, de j e de l.
+
+77
+00:05:24,370 --> 00:05:28,930
+Exceto que não somamos os termos correspondentes destes valores de viés
+
+78
+00:05:28,930 --> 00:05:30,950
+como se tivéssemos regressão logística.
+
+79
+00:05:30,950 --> 00:05:36,730
+Completamente, não somamos os termos correspondentes onde i é igual a 0.
+
+80
+00:05:36,730 --> 00:05:41,670
+Isso porque quando computamos a ativação de um neurônio,
+
+81
+00:05:41,670 --> 00:05:43,411
+temos termos como esses.
+
+82
+00:05:43,411 --> 00:05:44,356
+Teta i 0.
+
+83
+00:05:44,356 --> 00:05:51,410
+Mais teta i 1, x 1 mais ... assim por diante. 
+
+84
+00:05:51,410 --> 00:05:55,240
+Onde eu acho que pondo um dois aqui, este é o primeiro acesso ali.
+
+85
+00:05:55,240 --> 00:05:57,750
+E então os valores com zero ali,
+
+86
+00:05:57,750 --> 00:06:01,590
+que corresponde a algo que multiplicado com um x0 ou um a0.
+
+87
+00:06:01,590 --> 00:06:06,450
+Então isso é um tipo bem parecido com a unidade de viés e por analogia com o que fizemos em
+
+88
+00:06:06,450 --> 00:06:10,539
+regressão logística, não queremos somar sobre aqueles termos nosso termo de regularização
+
+89
+00:06:10,539 --> 00:06:15,030
+porque não queremos regularizá-los então atribua o valor zero para eles.
+
+90
+00:06:15,030 --> 00:06:20,820
+Mas isso é só uma convenção possível, e mesmo se você for somar sobre i
+
+91
+00:06:20,820 --> 00:06:25,560
+igual a 0 até sL, vai funcionar quase a mesma coisa e não fará uma grande diferença.
+
+92
+00:06:25,560 --> 00:06:29,410
+Mas talvez esta convenção de não regularizar o termo de viés
+
+93
+00:06:29,410 --> 00:06:30,470
+seja um pouco mais comumente usada.
+
+94
+00:06:33,090 --> 00:06:36,890
+Então, esta é a função de custo que usaremos para nossa rede neural.
+
+95
+00:06:36,890 --> 00:06:41,290
+No próximo vídeo, começaremos a falar sobre um algoritmo para
+
+96
+00:06:41,290 --> 00:06:42,900
+tentar otimizar a função custo.

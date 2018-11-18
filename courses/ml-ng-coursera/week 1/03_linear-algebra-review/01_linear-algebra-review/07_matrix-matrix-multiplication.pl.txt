@@ -1,0 +1,66 @@
+W tyn nagraniu porozmawiamy o mnożeniu macierzy, tj. jak pomnożyć przez siebie 2 macierze. Gdy będziemy rozmawiać o metodzie
+regresji liniowej, pozwalającej obliczyć parametry theta0 i theta1 za jednym zamachem, bez potrzeby stosowania algorytmu iteracyjnego,
+takiego jak gradient prosty, okaże się, że mnożenie macierzy przez macierz jest jednym z kluczowych
+zagadnień, które musimy znać. Jak zwykle, zacznijmy od przykładu: Powiedzmy, że mamy 2 macierze, które chcemy
+pomnożyć przez siebie. Pozwól, że szybko zrobię ten przykład, a potem wytłumaczę, co się tu stało. Wezmę teraz pierwszą kolumnę tej macierzy po prawej stronie. Wezmę teraz tę macierz z lewej i pomnożę ją przez wektor, który jest tą
+pierwszą kolumną. Jeśli to zrobię, otrzymam wektor 11, 9, a więc mamy tutaj takie same mnożenie
+macierz-wektor, które widzieliśmy w poprzednim materiale. Rozwiązałem to już wcześniej, więc wiem,
+że to jest 11 i 9. Druga rzecz, którą zrobię: wezmę drugą kolumnę tej macierzy z prawej, potem wezmę tę macierz z lewej, tę macierz, i pomnożę ją przez drugą kolumnę
+z prawej. Po raz kolejny: jest to mnożenie
+macierzy przez wektor, które widziałaś/eś w poprzednim nagraniu. Okazuje się, że otrzymamy wektor 10, 14. Na marginesie: jeśli chcesz poćwiczyć mnożenie
+macierzy przez wektor, możesz zatrzymać nagranie i sam(a)
+sprawdzić wynik. Teraz wezmę te dwa wyniki i złożę je razem, i to będzie moja odpowiedź. Okazuje się więc, że iloczyn będzie macierzą
+o wymiarach 2 x 2. Wypełnię tę macierz, biorąc elementy 11, 9, i wstawiając je tutaj. Wezmę też 10, 14, i wstawię je tutaj, ok? Tak więc wygląda mnożenie przez siebie
+dwóch macierzy. Po prostu mnożysz macierz z lewej przez
+kolejne kolumny, a potem składasz wyniki w jedną macierz. Za chwilę zrobimy to jeszcze raz powoli, ale chciałbym zwrócić uwagę, że ta
+pierwsza macierz jest macierzą 2 x 3. Mnożymy ją przez macierz 3 x 2, a wynikiem okazuje się być macierz 2 x 2. Za chwilę zobaczymy, skąd się to wzięło. Dobrze, więc tak wygląda kolejność obliczeń. Przyjrzyjmy się teraz szczegółom i zobaczmy,
+czemu wygląda to w ten sposób. Oto szczegóły: mam macierz A, którą chcę pomnożyć przez
+macierz B, a wynikiem będzie jakaś macierz C. Okazuje się, że można mnożyć przez siebie
+jedynie macierze, których wymiary
+pasują do siebie. Macierz A ma więc wymiary m x n, tj.
+m wierszy, n kolumn. Mnożymy ją przez macierz n x o. Okazuje się, że n w tym miejscu musi
+pasować do n w tym miejscu. Innymi słowy: liczba kolumn pierwszej macierzy musi się równać liczbie wierszy drugiej macierzy. Wynikiem mnożenia będzie macierz m x o,
+tak jak macierz C. W poprzednim nagraniu mieliśmy
+szczególny przypadek, gdy o było równe 1. Był to przypadek, gdy B była wektorem. Teraz jednak uwzględniamy przypadki wartości
+większych niż 1. Oto, jak mnożymy więc przez siebie
+dwie macierze. Wezmę teraz pierwszą kolumnę z B i potraktuję ją jak wektor, i pomnożę macierz A
+przez pierwszą kolumnę B. Wynikiem będzie wektor m x 1 - wstawię go tutaj. Teraz wezmę drugą kolumnę B, jasne? Mamy więc kolejny wektor n x 1. Ta kolumna ma wymiar n x 1. Jest to n-wymiarowy wektor. Pomnożę teraz tę macierz przez ten wektor n x 1. Wynikiem będzie m-wymiarowy wektor,
+który wstawię tutaj, i tak dalej. Potem wezmę trzecią kolumnę, pomnożę
+przez tę macierz. Otrzymam m-wymiarowy wektor. Powtarzamy to, dopóki nie dotrzemy do
+ostatniej kolumny. Macierz A razy ostatnia kolumna daje nam
+ostatnią kolumnę macierzy C. Powtórzę: i-ta kolumna macierzy C powstaje z mnożenia macierzy A przez i-tą kolumnę macierzy B, gdzie i = 1, 2 aż do o włącznie. Podsumowaliśmy więc, co zrobiliśmy, aby
+obliczyć macierz C. Spójrzmy na jeszcze jeden przykład. Powiedzmy, że chcę pomnożyć przez siebie te
+dwie macierze. Najpierw wezmę więc pierwszą kolumnę
+drugiej macierzy. Na poprzednim slajdzie była to macierz B - w ten sposób mam tę macierz razy ten wektor. Wykonajmy szybko te obliczenia. To będzie równe [1, 3] x [0, 3], co daje 1 x 0 + 3 x 3. Drugi element to [2 5] x [0 3], co daje 2 x 0 + 5 x 3. To będzie [9 15]. Właściwie pozwól, że napiszę to na zielono. Więc to jest [9 15]. Następnie, wezmę drugą kolumnę stąd, i wykonam odpowiednie obliczenia. Mamy więc macierz razy ten wektor [1 2]. Policzmy to szybko. Mamy w tym wierszu 1 x 1 + 3 x 2. Policzmy kolejny. Zobaczmy... to daje mi 2 x 1 + 5 x 2, a to będzie równe 1 x 1 + 3 x 1, czyli 7, a 2 x 1 + 5 x 2 to 12. Mam więc te dwie liczby, a mój wynik - iloczyn tych dwóch macierzy - otrzymam, wstawiając to tutaj, a to tutaj. Mam więc [9 15] oraz [7 12]
+(na slajdzie jest błędnie wpisana czwórka
+w 1-szym wierszu, 2-ej kolumnie wyniku
+- przyp. tłum) Być może zauważyłaś/eś, że wynikiem mnożenia
+macierzy 2 x 2 przez inną macierz 2 x 2, jest macierz 2 x 2 - ta pierwsza dwójka
+razy ta druga dwójka. Tak więc wynik jest również macierzą 2 x 2. Wreszcie, pozwól, że pokażę jeden cwany trik,
+który można stosować przy mnożeniu dwóch macierzy. Powiedzmy, że, tak jak wcześniej, mamy 4 domy,
+których cenę chcemy przewidzieć. Tylko że teraz mamy 3 rywalizujące ze sobą
+hipotezy po prawej. Tak więc, jeśli chcesz zastosować wszystkie 3 rywalizujące ze sobą hipotezy do naszych 4 domów,
+okazuje się, że możesz to zrobić wydajnie, korzystając z
+mnożenia macierzy przez macierz. Po lewej mam tu moją zwykłą macierz,
+taką samą, jak w poprzednim nagraniu, której wartości są cenami domów - dodam tylko
+kolumnę jedynek z lewej. Teraz stworzę drugą macierz, w której pierwszą kolumną będzie [-40 0,25], drugą - [200 0,1], i tak dalej. Okazuje się, że jeśli przemnożymy te dwie macierze, pierwsza kolumna (niebieska)... hmm... czym ona będzie? Procedura mnożenia dwóch macierzy jest taka, że pierwszą kolumnę otrzymamy, mnożąc tę macierz przez tę pierwszą kolumnę. Widzieliśmy w poprzednim nagraniu, że są to
+dokładnie przewidywane ceny domów zgodnie z pierwszą hipotezą, o, tą tutaj. A co z drugą kolumną? Cóż, druga kolumna... Otrzymujemy ją, biorąc tę macierz i mnożąc ją przez tę drugą kolumnę. Tak więc druga kolumna okazuje się być predykcjami wg drugiej hipotezy, o, tej tutaj. Podobnie z trzecią kolumną. Nie omówiłem szczegółów obliczeń, ale mam nadzieję, że w razie czego nie będziesz się
+krępować, zatrzymasz nagranie i po prostu
+sprawdzisz obliczenia samodzielnie, i przekonasz się, że to, co powiedziałem,
+jest prawdą. Okazuje się też, że tworząc te dwie macierze,
+możesz szybko zastosować 3 hipotezy do wszystkich 4
+cen domów, aby uzyskać wszystkie 12 cen przewidywanych
+przez te 3 hipotezy dla 4 domów. A więc jedno mnożenie macierzowe załatwiło
+nam 12 prognoz. Jest jeszcze lepiej: okazuje się, że
+do mnożenia macierzowego dostępnych jest wiele dobrych bibliotek
+algebry liniowej, które wykonają mnożenie za Ciebie. I to w praktycznie każdym, sensownym języku
+programowania, którego możesz używać. Na pewno pierwsze 10 najpopularniejszych
+języków programowania będzie posiadać świetne biblioteki
+do algebry liniowej. Będą to dobre biblioteki, 
+wysoce zoptymalizowane tak, aby wykonywać mnożenie macierzowe
+bardzo wydajnie, w tym wykorzystując wszelkie
+obliczenia równoległe do których zdolny jest Twój komputer, jeśli
+ma kilka rdzeni lub procesorów. Wewnątrz samego procesora także mamy 
+czasem urównoleglenie obliczeń, tzw. SIMD, z którego może korzystać komputer. Mamy do tego dobre, darmowe biblioteki, które potrafią wykonywać mnożenie macierzowe
+bardzo wydajnie tak, że możesz w wydajny sposób generować wiele
+prognoz na podstawie wielu hipotez.

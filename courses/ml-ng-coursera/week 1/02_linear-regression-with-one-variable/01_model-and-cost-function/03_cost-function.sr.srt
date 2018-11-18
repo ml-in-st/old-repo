@@ -1,0 +1,494 @@
+1
+00:00:00,620 --> 00:00:03,800
+U ovome videu ćemo da definišemo 
+nešto što se zove funkcija koštanja.
+
+2
+00:00:03,800 --> 00:00:07,480
+Ona će da nam pomogne da shvatimo kako da 
+našim podacima pridružimo najbolju pravu liniju.
+
+3
+00:00:10,310 --> 00:00:13,820
+Kod linearne regresije imamo trening 
+skup koji sam ovde prikazao, sećate se,
+
+4
+00:00:13,820 --> 00:00:18,870
+oznaka m je bila broj trening 
+primera, neka je m jednako 47.
+
+5
+00:00:18,870 --> 00:00:20,989
+A oblik naše hipoteze,
+
+6
+00:00:22,210 --> 00:00:25,360
+koju koristimo da bismo napravili 
+predviđanje je ova linearna funkcija.
+
+7
+00:00:26,430 --> 00:00:31,240
+Uvedimo još malo pojmova, teta0 i
+
+8
+00:00:31,240 --> 00:00:37,260
+teta1, oni čine ono što ja zovem parametrima modela.
+
+9
+00:00:37,260 --> 00:00:42,560
+A ono šta ćemo da radimo u ovome videu 
+je da ćemo da govorimo o tome kako da
+
+10
+00:00:42,560 --> 00:00:47,550
+odaberemo vrednosti ta dva 
+parametra, teta0 i teta1.
+
+11
+00:00:47,550 --> 00:00:51,100
+Različitim odabirom parametara teta0 i teta1,
+
+12
+00:00:51,100 --> 00:00:55,250
+dobijamo različite hipoteze, drugačije funkcije.
+
+13
+00:00:55,250 --> 00:00:58,170
+Znam da su neki od vas već upoznati o
+
+14
+00:00:58,170 --> 00:01:02,110
+ovome što radim na slajdu ali 
+da ponovimo, evo par primera.
+
+15
+00:01:02,110 --> 00:01:05,990
+Ako je teta0 1.5 a teta1 0,
+
+16
+00:01:05,990 --> 00:01:08,870
+tada će funkcija hipoteze da izgleda ovako.
+
+17
+00:01:10,070 --> 00:01:17,610
+Jer je vaša funkcija hipoteze h(x) + 1.5 + 0 * x
+
+18
+00:01:17,610 --> 00:01:22,533
+što je konstantna funkcija vrednosti 1.5.
+
+19
+00:01:22,533 --> 00:01:26,600
+Iko je teta0 = 0, teta1 = 0.5,
+ tada će hipoteza da izgleda ovako, i
+
+20
+00:01:26,600 --> 00:01:31,420
+treba da prolazi kroz tačku (2, 1) tako
+
+21
+00:01:31,420 --> 00:01:34,850
+da sada imate h(x).
+
+22
+00:01:34,850 --> 00:01:40,150
+h teta od x, ponekad ću da 
+izostavim teta zbog kratkoće.
+
+23
+00:01:40,150 --> 00:01:45,570
+Tako, h(x) = 0.5 * x, što izgleda ovako.
+
+24
+00:01:45,570 --> 00:01:49,830
+I konačno, ako je teta0 = 1, a teta1 = 0.5,
+
+25
+00:01:49,830 --> 00:01:53,280
+tada ćemo da dobijemo hipotezu poput ove.
+
+26
+00:01:53,280 --> 00:01:59,670
+Da vidimo, treba da prođe kroz tačku (2, 2).
+
+27
+00:01:59,670 --> 00:02:04,640
+Ovako, ovo je moj novi vektor x, ili 
+moj novi h sabskript teta od x.
+
+28
+00:02:04,640 --> 00:02:08,618
+Bilo koji način da zapamtite, 
+h sabskript teta od x, ali
+
+29
+00:02:08,618 --> 00:02:12,095
+zbog kratkoće ponekad 
+ću samo da pišem h od x.
+
+30
+00:02:13,917 --> 00:02:19,330
+Kod linearne regresije imamo 
+trening skup, kao ovaj iscrtan ovde.
+
+31
+00:02:19,330 --> 00:02:24,880
+Ono šta želim da uradim je da 
+dobijem vrednosti parametara teta0 i
+
+32
+00:02:24,880 --> 00:02:29,960
+teta1 tako da prava linija koju 
+dobijemo ovime odgovara
+
+33
+00:02:29,960 --> 00:02:33,500
+pravoj liniji koja dobro odgovara 
+podacima, kao ova linija ovde.
+
+34
+00:02:34,590 --> 00:02:37,190
+Pa, kako da dobijemo vrednosti,
+
+35
+00:02:37,190 --> 00:02:40,650
+teta0, teta1 da bi odgovaralo podacima?
+
+36
+00:02:42,540 --> 00:02:46,460
+Ideja je da odaberemo naše 
+parametre teta0 i teta1 tako
+
+37
+00:02:46,460 --> 00:02:51,190
+da h od x bude vrednost koju predviđamo za x,
+
+38
+00:02:51,190 --> 00:02:55,730
+bude blizu vrednosti y za
+
+39
+00:02:55,730 --> 00:02:59,908
+primere u našem trening primeru.
+
+40
+00:02:59,908 --> 00:03:04,000
+Tako, u našem trening skupu dobili 
+smo primere gde je poznato x,
+
+41
+00:03:04,000 --> 00:03:07,350
+veličina kuća, i znamo po kojoj su ceni prodane.
+
+42
+00:03:07,350 --> 00:03:11,100
+Hajde da probamo da odaberemo 
+vrednosti parametara tako da,
+
+43
+00:03:11,100 --> 00:03:13,830
+u ovome trening skupu, za dato x
+
+44
+00:03:13,830 --> 00:03:19,040
+u trening skupu da predvidimo y vrednosti.
+
+45
+00:03:19,040 --> 00:03:20,980
+Uprostimo ovo.
+
+46
+00:03:20,980 --> 00:03:23,700
+U linearnoj regresiji ću da
+
+47
+00:03:23,700 --> 00:03:27,430
+rešim problem minimizacije.
+
+48
+00:03:27,430 --> 00:03:34,319
+Napisaću: minimizovati preko teta0 teta1.
+
+49
+00:03:34,319 --> 00:03:39,620
+Želim da to bude malo, u redu?
+
+50
+00:03:39,620 --> 00:03:42,960
+Želim da razlika između h(x) i y bude mala.
+
+51
+00:03:42,960 --> 00:03:47,770
+Ono što mogu da uradim je da 
+minimizujem kvadrat razlike
+
+52
+00:03:47,770 --> 00:03:51,226
+između izlaza hipoteze i stvarne cene kuće.
+
+53
+00:03:51,226 --> 00:03:54,600
+U redu, da vidimo neke detalje.
+
+54
+00:03:54,600 --> 00:03:59,328
+Sećate se da sam koristio obeležje (x(i),y(i))
+
+55
+00:03:59,328 --> 00:04:02,380
+da bih predstavio i - ti trening primer.
+
+56
+00:04:02,380 --> 00:04:07,480
+Ono što stvarno želim je da 
+sumiram kroz moj trening skup,
+
+57
+00:04:07,480 --> 00:04:10,666
+nešto kao i = 1 do m,
+
+58
+00:04:10,666 --> 00:04:16,040
+kvadrat razlike između predviđanja
+
+59
+00:04:16,040 --> 00:04:21,261
+moje hipoteze za ulaznu 
+veličinu kuće u i - tom primeru.
+
+60
+00:04:22,560 --> 00:04:25,530
+U redu, minus stvarna cena po kojoj je
+
+61
+00:04:25,530 --> 00:04:29,630
+kuća prodana, i želim da minimizujem
+ sumu u trening skupu,
+
+62
+00:04:29,630 --> 00:04:34,240
+sumu od i = 1 do m, razlike kvadrata greške,
+
+63
+00:04:34,240 --> 00:04:37,160
+kvadrata razlike između predviđene cene kuće i
+
+64
+00:04:37,160 --> 00:04:40,550
+cene po kojoj je prodana.
+
+65
+00:04:40,550 --> 00:04:46,950
+Samo da vas podsetim na oznake, 
+ovo m je veličina moga trening skupa.
+
+66
+00:04:46,950 --> 00:04:50,570
+Dakle, ovo m ovde je broj trening primera.
+
+67
+00:04:50,570 --> 00:04:57,750
+Ovaj heš znak je skraćenica za 
+broj trening primera, u redu?
+
+68
+00:04:57,750 --> 00:05:01,270
+Da bismo matematiku učinili malo lakšom,
+
+69
+00:05:01,270 --> 00:05:05,950
+u stvari ću pogledati od 1 do m puta
+
+70
+00:05:05,950 --> 00:05:09,380
+hajde da minimizujemo srednju vrednost 
+
+71
+00:05:09,380 --> 00:05:14,450
+Stavljanjem konstante 1/2 na početak čini da
+
+72
+00:05:14,450 --> 00:05:18,730
+matematika izgleda lakšom ako se 
+minimizuje jedna polovina nečega
+
+73
+00:05:18,730 --> 00:05:23,130
+daće vam iste vrednosti procesa, 
+teta0 teta1, u procesu minimizacije.
+
+74
+00:05:24,300 --> 00:05:27,640
+Da budemo sigurni da je jednačina jasna,
+
+75
+00:05:27,640 --> 00:05:31,452
+ovaj izraz ovde, h sabskript
+
+76
+00:05:31,452 --> 00:05:36,560
+teta od x je poznat, u redu?
+
+77
+00:05:37,890 --> 00:05:42,668
+To je jednako ovo plus teta1 x i.
+
+78
+00:05:42,668 --> 00:05:48,050
+A ova oznaka, minimizacija preko teta0 teta1, to znači
+
+79
+00:05:48,050 --> 00:05:53,140
+nađi mi vrednosti teta0 i teta1 da bi ovaj izraz
+
+80
+00:05:53,140 --> 00:05:57,620
+bio minimalan a on zavisi od teta0 i teta1, u redu?
+
+81
+00:05:57,620 --> 00:05:58,710
+Da sumiramo.
+
+82
+00:05:58,710 --> 00:06:03,380
+Ovaj problem postavljamo tako 
+da nađemo teta0 i teta1 da
+
+83
+00:06:03,380 --> 00:06:07,210
+bi srednja vrednost, od 1 do m puta,
+
+84
+00:06:07,210 --> 00:06:11,240
+kvadrata greške između 
+predviđanja u trening skupu
+
+85
+00:06:11,240 --> 00:06:15,250
+minus stvarna vrednost kuća u 
+trening skupu bila minimalna.
+
+86
+00:06:15,250 --> 00:06:20,709
+To bi bilo sve o mojoj ciljnoj 
+funkciji linearne regresije.
+
+87
+00:06:22,080 --> 00:06:27,250
+Da još jednom napišemo, 
+ono što ću da uradim je,
+
+88
+00:06:27,250 --> 00:06:29,790
+po pravilu obično definišemo funkciju koštanja,
+
+89
+00:06:31,240 --> 00:06:35,930
+što je upravo ovo, formula ovde gore.
+
+90
+00:06:37,040 --> 00:06:45,289
+Ono što želim da uradim je da 
+minimizujem po teta0 i teta1.
+
+91
+00:06:45,289 --> 00:06:51,770
+Moja funkcija J(teta0, teta1).
+
+92
+00:06:51,770 --> 00:06:52,430
+Samo ovo ispišite.
+
+93
+00:06:53,730 --> 00:06:56,540
+Ovo je moja funkcija koštanja.
+
+94
+00:06:59,380 --> 00:07:04,960
+Ova funkcija koštanja se takođe 
+zove i funkcija kvadrata greške.
+
+95
+00:07:06,850 --> 00:07:11,190
+Ponekad se zove i funkcija 
+koštanja kvadrata greške i
+
+96
+00:07:11,190 --> 00:07:15,730
+ispada da, zašto uzimamo kvadrat greške,
+
+97
+00:07:15,730 --> 00:07:19,660
+ispada da je taj kvadrat greške razložan izbor i
+
+98
+00:07:19,660 --> 00:07:22,990
+radi dobro za mnoge probleme, 
+za mnoge programe regresije.
+
+99
+00:07:22,990 --> 00:07:25,740
+Postoje i druge funkcije koštanja 
+koje rade prilično dobro.
+
+100
+00:07:25,740 --> 00:07:29,860
+Ali je funkcija kvadrata greške najčešće korištena za
+
+101
+00:07:29,860 --> 00:07:30,935
+probleme regresije.
+
+102
+00:07:30,935 --> 00:07:34,980
+Kasnije na kursu ćemo takođe da govorimo 
+i o alternativama funkcije koštanja
+
+103
+00:07:34,980 --> 00:07:39,085
+ali ovaj izbor koji smo upravo 
+napravili je sasvim razložan izbor
+
+104
+00:07:39,085 --> 00:07:41,030
+za mnoge probleme linearne regresije.
+
+105
+00:07:42,340 --> 00:07:43,030
+U rеdu.
+
+106
+00:07:43,030 --> 00:07:44,280
+Dakle, to je funkcija koštanja.
+
+107
+00:07:45,340 --> 00:07:50,840
+Do sada smo videli mamematičku 
+definiciju funkcije koštanja,
+
+108
+00:07:50,840 --> 00:07:54,310
+u slučaju J od teta0 teta1,
+
+109
+00:07:54,310 --> 00:07:56,260
+u slučaju da ta funkcija izgleda apstraktno,
+
+110
+00:07:56,260 --> 00:07:58,885
+i da još uvek nemate osećaj šta ona radi,
+
+111
+00:07:58,885 --> 00:08:03,210
+u sledećem videu, u sledećih par videa ću da
+
+112
+00:08:03,210 --> 00:08:07,930
+idem malo dublje u to šta 
+funkcija koštanja J radi i da vam
+
+113
+00:08:07,930 --> 00:08:11,730
+dam bolju intuiciju o tome šta 
+ona računa i zašto se koristi.

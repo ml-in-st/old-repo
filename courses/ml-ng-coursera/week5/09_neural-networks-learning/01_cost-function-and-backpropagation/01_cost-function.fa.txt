@@ -1,0 +1,89 @@
+توی این ویدیو چیزی رو مطرح میکنیم
+که به نام تابع هزینه نامیده شده ، این بهمون اجازه میده که بهترین شکل ممکن 
+برای انطباق خط مستقیم روی داده مون رو بدست بیاریم . در رگرسیون خطی ، مجموعه آموزشی رو داریم 
+که اینجا نشون دادم ، یادتون بیاد که علامت ام ، تعداد نمومه های آموزشی بودن ،
+پس ممکنه ام برابر با 47 باشه . و شکل فرضیه مون ، که برای پیش بینی ها استفاده میکنیم ،
+تابع خطی هست . برای معرفی کمی تخصصی تر ،
+این تتا صفر و تتا یک ، ثبت کننده چیزی 
+هستند که اونارو پارامترهای مالدو می نامم . و چیزیکه میخوایم توی این ویدیو
+دربارش حرف زنیم چگونگی انتخاب کردن مقادیر این دو پارامتر هست ،
+تتا 0 و تتا 1 . با انتخاب متفاوت پارامترهای 
+تتا 0 و تتا 1 ، فرضیه متفاوتی رو بدست میاریم ،
+توابع فرضیه متفاوتی رو . میدونم بعضی از شماها 
+احتمالا تا حالا آشنایید دارین با کاری که توی این اسلاید میخوام بکنم ،
+ولی فقط برای یادآوری ، اینجا چندتا نمونه داریم . اگر تتا 9 برابر 1.5 و تتا 1 برابر با 0 باشه ، پس تابع فرضیه چیزی 
+شبیه این میشه . چون تابع فرضیه تون خواهد بود 
+اچ از ایکس برابر با 1.5 بعلاوه 0 ضربدر ایکس که این مقدار تابع 
+ثابته که منطبق بر روی 1.5 هست . اگر تتا 0 برابر با 0 ، تتا 1 برابر با 0.5 ، پس 
+فرضیه چیزی شبیه این خواهد بود ، و باید از این نقطه 2 و 1 بگذره، خب همونطور که میدونین حالا دارین اچ ایکس . یا درواقع اچ تتا ایکس ، ولی بعضی وقتا 
+بخاطر مختصر کردن تتا رو حذف میکنم . پس اچ ایکس برابر با فقط 0.5 در 
+ایکس خواهد بود ، که مثل اینه و درآخر ، اگر تتا صفر برابر با یک باشه ،
+و تتا یک برابر با 0.5 ، پس فرضیه ایی بدست میاریم که 
+شبیه این خواهد بود . بزارین ببینیم ،
+از نقطه دو - دو خواهد گذشت . بدین ترتیب ، و این بردار ایکس جدیدمه ،
+یا اچ تتا ایکس جدیدمه . هر راهی که یادتون میاد ، گفتم این اچ 
+تتا ایکس هست ، ولی اون اختصاریش هست ،
+بعضی وقتا این رو فقط مینویسم اچ ایکس . در رگرسیون خطی ، مجموعه آموزشی ایی رو 
+داریم ، احتمالا مثل اونی که چاپ کردم اینجا . کاری که میخوایم انجام بدیم ، 
+بدست آوردن مقادیر حالت های صفر و تتا یک هست ، بنابراین خط مستقیمی که 
+ازش بدست میاریم ، وابسته به خط مستقیمی هست که بعضی وقتا به خوبی
+روی داده منطبق میشه ، احتمالا شبیه این خط اینجا . پس ، چطور مقادیر رو بدست میاریم ، تتا صفر ، تتا یک ، که وابسته به 
+خطی منطبق بر روی داده باشه ؟ ایده انتخاب پارامترهای تتا 0 ، 
+تتا 1 هست ، پس اچ ایکس ، به معنی مقداری که پیش بینی
+میکنیم بر روی ایکس هست . اون حداقل نزدیک به مقادیر ایگرگ برای نمونه های مجموعه آموزش مون 
+توی نمونه های آموزشی مون هست . پس توی مجموعه آموزشی مون ، تعدادی 
+نمونه دادیم که میدونیم ایکس تصمیم گیرنده کلی هست و 
+میدونیم قیمت واقعی فروش چی بوده . پس ، بزارین مقادیری رو برای پارامترها
+انتخاب کنیم که خب ، حداقل توی مجموعه آموزشی ، ایکس داده شده . توی مجموعه آموزشی دلیلی علتی برای 
+پیش بینی های فعال  برای مقادیر ایگرگ میسازیم . بزارین فرمول بندیش کنیم . بنابراین ، پس رگرسیون ،
+کاری که میخوایم انجام بدیم اینه ، میخوام مساله رو با کمینه سازی
+حل کنم . پس خواهم نوشت کمینه روی
+تتا 0 ، تتا 1 . و میخوام که کوچیک باشه ، درست ؟ میخوام اختلاف بین اچ ایکس و ایگرگ
+کوچیک باشه . و چیزی که میخوام انجام بدم 
+سعی بر کمینه کردن اختلاف مربع بین خروجی فرضیه و قیمت واقعی 
+خانه است . بسیارخب .
+بزارین کمی جزییات پیداکنیم . یادتونه که از علامت های ایکس آی،
+ایگرگ آی استفاده کردم به نمایندگی آی امین نمونه مجموعه آموزشی . خب چیزی که درواقع میخوام 
+خلاصه سازی روی مجموعه آموزشیمه ، چیزی مثل آی مساوی 1 به ام ، از اختلاف مربع مابین شان ،
+پیش بینی فرضیه ام است ، وقتیکه 
+ورودی اندازه خانه شماره آی هست . درست ؟ منهای قیمت واقعی شماره 
+خانه ایی که فروختم به اون قیمت ، و میخوام که
+خلاصه مجموعه داده ام رو کمینه کنم . خلاصه آی برابره با یک از طریق ام 
+اختلاف خطای مربع این . اختلاف مربع بین قیمت پیش بینی شده خانه و و قیمتی که درواقع فروخته شده . و فقط برای یادآوری تون از علامت ها ،
+ام در اینجا اندازه مجموعه داده آموزشیم بود . درسته ؟ So my m there is my number
+of training examples. Right that hash sign is the abbreviation
+for number of training examples, okay? And to make some of our,
+make the math a little bit easier, I'm going to actually look at
+we are 1 over m times that so let's try to minimize my
+average minimize one over 2m. Putting the 2 at the constant one
+half in front, it may just sound the math probably easier so minimizing
+one-half of something, right, should give you the same values of the process, theta
+0 theta 1, as minimizing that function. And just to be sure,
+this equation is clear, right? This expression in here, h subscript theta(x), this is our usual, right? That is equal to this plus theta one xi. And this notation,
+minimize over theta 0 theta 1, this means you'll find me the values of theta 0 and
+theta 1 that causes this expression to be minimized and this expression
+depends on theta 0 and theta 1, okay? So just a recap. We're closing this problem as, find me
+the values of theta zero and theta one so that the average, the 1 over the 2m, times the sum of square errors between
+my predictions on the training set minus the actual values of the houses
+on the training set is minimized. So this is going to be my overall
+objective function for linear regression. And just to rewrite this out a little bit
+more cleanly, what I'm going to do is, by convention we usually
+define a cost function, which is going to be exactly this,
+that formula I have up here. And what I want to do is
+minimize over theta0 and theta1. My function j(theta0, theta1). Just write this out. This is my cost function. So, this cost function is also
+called the squared error function. When sometimes called the squared
+error cause function and it turns out that why do we
+take the squares of the areas. It turns out that these squared error
+cause function is a reasonable choice and works well for problems for
+most regression programs. There are other cost functions
+that will work pretty well. But the square cost function is
+probably the most commonly used one for regression problems. Later in this class we'll talk about
+alternative cost functions as well, but this choice that we just had should
+be a pretty reasonable thing to try for most linear regression problems. Okay. So that's the cost function. So far we've just seen a mathematical
+definition of this cost function. In case this function j of theta zero,
+theta one. In case this function seems
+a little bit abstract, and you still don't have a good
+sense of what it's doing, in the next video, in the next
+couple videos, I'm actually going to go a little bit deeper into what
+the cause function "J" is doing and try to give you better intuition about what
+is computing and why we want to use it.

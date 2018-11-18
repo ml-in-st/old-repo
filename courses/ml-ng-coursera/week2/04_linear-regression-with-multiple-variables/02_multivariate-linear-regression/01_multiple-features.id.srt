@@ -1,0 +1,902 @@
+1
+00:00:00,150 --> 00:00:01,160
+Di video ini kita akan mulai
+
+2
+00:00:01,520 --> 00:00:02,600
+bicara tentang versi baru
+
+3
+00:00:03,250 --> 00:00:04,880
+regresi linier yang lebih tangguh.
+
+4
+00:00:05,800 --> 00:00:07,230
+Versi yang bekerja dengan banyak
+variabel
+
+5
+00:00:08,230 --> 00:00:09,070
+atau dengan banyak ciri-ciri.
+
+6
+00:00:10,320 --> 00:00:10,860
+kode untuk mengalikan matriks, jika
+Anda ijinkan
+
+7
+00:00:12,200 --> 00:00:13,670
+Pada versi asli
+
+8
+00:00:13,900 --> 00:00:14,920
+regresi linier yang kita buat,
+
+9
+00:00:15,780 --> 00:00:17,590
+kita punya ciri-ciri tunggal x,
+
+10
+00:00:18,030 --> 00:00:19,450
+ukuran rumah, dan
+
+11
+00:00:19,600 --> 00:00:20,650
+kita ingin menggunakan itu untuk
+
+12
+00:00:20,760 --> 00:00:22,510
+memprediksi berapa harga
+
+13
+00:00:22,660 --> 00:00:24,210
+rumah, dan ini
+
+14
+00:00:25,310 --> 00:00:26,590
+model hipotesis kita.
+
+15
+00:00:28,540 --> 00:00:29,210
+Sekarang bayangkan, bagaimana jika
+
+16
+00:00:29,410 --> 00:00:30,580
+kita tidak hanya punya ukuran
+
+17
+00:00:31,020 --> 00:00:32,440
+rumah sebagai ciri-ciri
+
+18
+00:00:33,140 --> 00:00:34,450
+atau variabel
+
+19
+00:00:34,600 --> 00:00:35,490
+untuk coba memprediksi harga,
+
+20
+00:00:36,450 --> 00:00:38,270
+tapi kita juga tahu
+
+21
+00:00:38,410 --> 00:00:39,710
+jumlah kamar tidurnya, jumlah
+
+22
+00:00:39,990 --> 00:00:42,490
+lantainya, dan umur rumah dalam tahun.
+
+23
+00:00:43,180 --> 00:00:44,050
+Sepertinya ini akan memberi
+
+24
+00:00:44,230 --> 00:00:46,630
+kita lebih banyak informasi untuk
+memprediksi harga rumah.
+
+25
+00:00:47,810 --> 00:00:49,130
+Untuk memperkenalkan sedikit
+
+26
+00:00:49,290 --> 00:00:50,760
+notasi, kita
+
+27
+00:00:50,940 --> 00:00:51,910
+bicara tentang ini sebelumnya,
+
+28
+00:00:52,900 --> 00:00:53,800
+saya akan menggunakan variabel
+
+29
+00:00:54,560 --> 00:00:56,300
+x subskrip 1, x subskrip 2,
+
+30
+00:00:56,880 --> 00:00:59,320
+dst untuk
+
+31
+00:00:59,480 --> 00:01:00,780
+menunjukkan, dalam kasus
+
+32
+00:01:00,960 --> 00:01:03,000
+ini, 4 ciri-ciri dan saya
+
+33
+00:01:03,310 --> 00:01:04,500
+akan terus menggunakan
+
+34
+00:01:04,850 --> 00:01:06,780
+y untuk menunjukkan
+
+35
+00:01:07,370 --> 00:01:09,720
+variabel output harga yang sedang coba
+kita prediksi.
+
+36
+00:01:11,010 --> 00:01:12,600
+Biar saya kenalkan notasi lain lagi.
+
+37
+00:01:13,850 --> 00:01:15,210
+Sekarang kita punya 4 ciri-ciri,
+
+38
+00:01:16,560 --> 00:01:18,490
+saya akan menggunakan huruf kecil "n"
+
+39
+00:01:19,540 --> 00:01:20,670
+untuk menunjukkan jumlah ciri-ciri.
+
+40
+00:01:21,180 --> 00:01:22,460
+Jadi, dalam contoh ini, kita punya
+
+41
+00:01:23,030 --> 00:01:24,420
+n=4 karena kita punya,
+
+42
+00:01:24,820 --> 00:01:27,610
+1, 2, 3, 4 ciri-ciri.
+
+43
+00:01:28,850 --> 00:01:30,880
+Dan "n" berbeda dari
+
+44
+00:01:31,700 --> 00:01:33,280
+notasi kita sebelumnya dimana kita
+
+45
+00:01:33,570 --> 00:01:36,670
+menggunakan "m" untuk menunjukkan
+jumlah contoh.
+
+46
+00:01:37,330 --> 00:01:38,640
+Jadi, jika Anda punya
+
+47
+00:01:39,050 --> 00:01:41,070
+47 baris, "m" adalah
+
+48
+00:01:41,300 --> 00:01:43,580
+jumlah baris pada tabel ini atau
+jumlah contoh latihan.
+
+49
+00:01:45,480 --> 00:01:47,290
+Jadi, saya juga
+
+50
+00:01:47,500 --> 00:01:48,910
+akan menggunakan x superskrip
+
+51
+00:01:49,540 --> 00:01:51,050
+'i' untuk menunjukkan
+
+52
+00:01:51,260 --> 00:01:53,460
+input (ciri-ciri) contoh latihan ke-i.
+
+53
+00:01:55,190 --> 00:01:58,100
+Sebagai contoh konkrit, katakanlah
+
+54
+00:01:58,720 --> 00:02:00,580
+x2 adalah
+
+55
+00:02:00,710 --> 00:02:02,300
+vektor dari
+
+56
+00:02:02,550 --> 00:02:05,690
+ciri-ciri untuk contoh latihan kedua
+saya.
+
+57
+00:02:06,430 --> 00:02:08,020
+Jadi, x2 adalah
+
+58
+00:02:08,160 --> 00:02:09,260
+vektor 1416,
+
+59
+00:02:09,520 --> 00:02:10,560
+3, 2, 40 karena itu
+
+60
+00:02:11,060 --> 00:02:14,110
+adalah 4 ciri-ciri
+
+61
+00:02:14,410 --> 00:02:16,100
+yang saya punya
+
+62
+00:02:17,500 --> 00:02:19,410
+untuk coba memprediksi harga rumah ke-2.
+
+63
+00:02:20,990 --> 00:02:22,470
+Jadi, dalam notasi ini,
+
+64
+00:02:24,200 --> 00:02:25,250
+superskrip 2 di sini,
+
+65
+00:02:26,720 --> 00:02:28,620
+itu adalah indeks set latihan saya.
+
+66
+00:02:28,990 --> 00:02:31,630
+Ini bukan x pangkat 2.
+
+67
+00:02:32,010 --> 00:02:33,150
+Ini
+
+68
+00:02:33,370 --> 00:02:36,430
+indeks yang mengatakan, lihat baris
+ke-2 tabel ini.
+
+69
+00:02:36,960 --> 00:02:38,260
+Ini menunjukkan contoh latihan ke-2
+saya.
+
+70
+00:02:39,280 --> 00:02:41,780
+Dengan notasi ini, x(2) adalah
+
+71
+00:02:42,140 --> 00:02:43,890
+vektor 4-dimensi.
+
+72
+00:02:44,400 --> 00:02:45,760
+Bahkan, umumnya, ini
+
+73
+00:02:45,930 --> 00:02:48,630
+vektor ciri-ciri n-dimensi.
+
+74
+00:02:51,030 --> 00:02:52,730
+Dengan notasi ini, x(2) adalah
+
+75
+00:02:53,290 --> 00:02:55,320
+vektor, jadi
+
+76
+00:02:55,770 --> 00:02:58,300
+saya akan menggunakan x(i)
+
+77
+00:02:58,790 --> 00:03:00,030
+subskrip j untuk menunjukkan
+
+78
+00:03:00,550 --> 00:03:01,740
+nilai
+
+79
+00:03:02,850 --> 00:03:04,420
+ciri-ciri ke-j
+
+80
+00:03:05,170 --> 00:03:06,360
+dalam contoh latihan ke-i.
+
+81
+00:03:07,950 --> 00:03:11,490
+Jadi konkritnya, x(2) subskrip 3
+
+82
+00:03:11,920 --> 00:03:14,130
+akan menunjukkan ciri-ciri
+
+83
+00:03:14,420 --> 00:03:15,800
+ke-3 dalam
+
+84
+00:03:15,930 --> 00:03:17,670
+vektor ini yang nilainya 2, benar?
+
+85
+00:03:18,300 --> 00:03:20,360
+Itu 3, memperbaiki tulisan tangan saya.
+
+86
+00:03:20,860 --> 00:03:23,810
+Jadi, x(2) subskrip 3 sama dengan 2.
+
+87
+00:03:26,810 --> 00:03:28,010
+Sekarang, kita punya beberapa ciri-ciri,
+
+88
+00:03:29,110 --> 00:03:30,390
+mari bicara tentang bagaimana
+
+89
+00:03:30,470 --> 00:03:32,360
+seharusnya model hipotesis kita.
+
+90
+00:03:33,220 --> 00:03:34,790
+Sebelumnya, ini
+
+91
+00:03:34,860 --> 00:03:36,650
+model hipotesis kita, dimana x
+
+92
+00:03:37,250 --> 00:03:39,280
+adalah ciri-ciri tunggal kita, tapi
+
+93
+00:03:39,440 --> 00:03:40,450
+sekarang, kita beberapa ciri-ciri,
+
+94
+00:03:41,010 --> 00:03:43,350
+kita tidak akan menggunakan penyajian
+yang sederhana lagi.
+
+95
+00:03:44,460 --> 00:03:46,040
+Sebagai gantinya, model
+
+96
+00:03:46,630 --> 00:03:48,140
+hipotesis dalam regresi linier
+
+97
+00:03:49,380 --> 00:03:50,630
+akan seperti ini,
+
+98
+00:03:50,820 --> 00:03:52,190
+theta0 + theta1 x1 +
+
+99
+00:03:52,440 --> 00:03:55,690
+theta2 x2 +
+
+100
+00:03:55,840 --> 00:03:57,320
+theta3 x3 +
+
+101
+00:03:58,610 --> 00:04:00,140
+theta4 x4.
+
+102
+00:04:00,910 --> 00:04:02,610
+Dan, jika kita punya n ciri-ciri,
+
+103
+00:04:02,860 --> 00:04:04,110
+maka
+
+104
+00:04:04,340 --> 00:04:05,380
+kita akan punya
+
+105
+00:04:05,570 --> 00:04:07,050
+penjumlahan atas n ciri-ciri kita.
+
+106
+00:04:08,570 --> 00:04:10,270
+Konkritnya, untuk set
+
+107
+00:04:11,480 --> 00:04:12,880
+tertentu dari parameter kita,
+
+108
+00:04:13,010 --> 00:04:15,500
+kita bisa punya
+
+109
+00:04:17,370 --> 00:04:18,990
+h(x) = 80 + 0.1x1 + 0.01x2 + 3x3 - 2x4.
+
+110
+00:04:19,160 --> 00:04:23,070
+Ini satu
+
+111
+00:04:25,710 --> 00:04:27,060
+contoh hipotesis
+
+112
+00:04:27,700 --> 00:04:29,170
+dan ingat,
+
+113
+00:04:29,760 --> 00:04:30,710
+hipotesis mencoba untuk memprediksi
+
+114
+00:04:31,100 --> 00:04:32,020
+harga rumah dalam
+
+115
+00:04:32,360 --> 00:04:33,910
+ribuan dollar, ini
+
+116
+00:04:34,250 --> 00:04:35,020
+artinya, harga
+
+117
+00:04:35,360 --> 00:04:37,270
+terbaik sebuah rumah
+
+118
+00:04:37,470 --> 00:04:39,960
+adalah, mungkin 80,000 +
+
+119
+00:04:40,690 --> 00:04:41,960
+0.1, itu tambahan
+
+120
+00:04:42,460 --> 00:04:43,680
+ratusan dolar per kaki persegi,
+
+121
+00:04:44,430 --> 00:04:45,710
++ harganya naik
+
+122
+00:04:45,860 --> 00:04:47,340
+sedikit untuk setiap
+
+123
+00:04:47,920 --> 00:04:50,120
+lantai tambahan yang dipunyai rumah itu.
+
+124
+00:04:50,690 --> 00:04:51,480
+x2 adalah jumlah
+
+125
+00:04:51,740 --> 00:04:53,020
+lantai, dan harganya
+
+126
+00:04:53,170 --> 00:04:54,300
+bertambah untuk setiap kamar
+
+127
+00:04:54,790 --> 00:04:55,870
+tambahan yang dimiliki rumah itu, karena
+
+128
+00:04:56,190 --> 00:04:57,390
+x3 adalah jumlah
+
+129
+00:04:57,570 --> 00:04:58,890
+kamar, dan harganya
+
+130
+00:04:59,220 --> 00:05:01,090
+berkurang sedikit
+
+131
+00:05:01,540 --> 00:05:03,930
+seiring dengan
+
+132
+00:05:04,230 --> 00:05:07,150
+bertambahnya umur rumah itu.
+
+133
+00:05:08,930 --> 00:05:11,630
+Ini model hipotesis yang ditulis ulang
+di slide.
+
+134
+00:05:11,990 --> 00:05:13,390
+Dan yang saya ingin lakukan adalah
+
+135
+00:05:13,590 --> 00:05:14,560
+mengenalkan sedikit
+
+136
+00:05:14,650 --> 00:05:16,300
+notasi untuk menyederhanakan persamaan
+ini.
+
+137
+00:05:17,840 --> 00:05:19,660
+Untuk mudahnya, biar
+
+138
+00:05:19,770 --> 00:05:22,800
+saya definisikan x subskrip 0 = 1.
+
+139
+00:05:23,870 --> 00:05:25,080
+Konkritnya, ini berarti, untuk
+
+140
+00:05:25,270 --> 00:05:27,770
+setiap contoh i, saya
+
+141
+00:05:27,850 --> 00:05:29,300
+punya 1 ciri vektor x superskrip
+
+142
+00:05:29,850 --> 00:05:31,500
+i, dan x superskrip
+
+143
+00:05:32,000 --> 00:05:34,370
+i subskrip 0 akan sama dengan 1.
+
+144
+00:05:34,970 --> 00:05:35,990
+Anda bisa berpikir ini seperti
+
+145
+00:05:36,810 --> 00:05:38,590
+menyatakan penambahan ciri ke-0.
+
+146
+00:05:39,290 --> 00:05:40,320
+Jadi sebelumnya, saya punya
+
+147
+00:05:40,670 --> 00:05:41,790
+n ciri-ciri, x1, x2,
+
+148
+00:05:41,930 --> 00:05:43,920
+hingga xn, sekarang saya menyatakan
+
+149
+00:05:44,830 --> 00:05:46,150
+tambahan vektor
+
+150
+00:05:47,210 --> 00:05:48,910
+ciri ke-0 yang selalu
+
+151
+00:05:49,310 --> 00:05:50,590
+bernilai 1.
+
+152
+00:05:52,130 --> 00:05:53,860
+Jadi sekarang, vektor ciri-ciri
+
+153
+00:05:54,200 --> 00:05:56,390
+x saya adalah vektor berdimensi n+1
+
+154
+00:05:58,410 --> 00:06:01,020
+ini, yaitu indeks 0.
+
+155
+00:06:02,430 --> 00:06:04,080
+Jadi, sekarang ini adalah vektor
+
+156
+00:06:04,190 --> 00:06:05,650
+ciri-ciri berdimensi n+1, tapi
+
+157
+00:06:05,940 --> 00:06:07,200
+saya akan mengindeksnya dari
+
+158
+00:06:07,420 --> 00:06:09,400
+0, dan saya juga akan
+
+159
+00:06:09,700 --> 00:06:10,950
+berpikir parameter
+
+160
+00:06:11,090 --> 00:06:13,240
+saya sebagai sebuah vektor.
+
+161
+00:06:13,610 --> 00:06:15,620
+Jadi, parameter kita ini,
+
+162
+00:06:15,790 --> 00:06:16,800
+itu theta0,
+
+163
+00:06:17,150 --> 00:06:18,130
+theta1, theta2, dst
+
+164
+00:06:18,380 --> 00:06:18,780
+hingga theta n,
+
+165
+00:06:18,790 --> 00:06:19,950
+kita akan mengumpulkannya
+
+166
+00:06:20,340 --> 00:06:21,580
+ke dalam vektor parameter,
+
+167
+00:06:22,380 --> 00:06:24,030
+dalam theta0,
+
+168
+00:06:24,190 --> 00:06:25,990
+theta1, theta2, dst
+
+169
+00:06:26,280 --> 00:06:27,390
+hingga theta-n.
+
+170
+00:06:28,330 --> 00:06:30,160
+Ini vektor indeks 0 lain.
+
+171
+00:06:30,560 --> 00:06:31,590
+Indeks yang dimulai dari 0,
+
+172
+00:06:32,820 --> 00:06:35,380
+yaitu vektor berdimensi n+1 lainnya.
+
+173
+00:06:37,180 --> 00:06:39,840
+Jadi, sekarang hipotesis saya bisa
+
+174
+00:06:40,000 --> 00:06:42,720
+ditulis theta0 x0 +
+
+175
+00:06:42,910 --> 00:06:45,560
+theta1 x1 + ... hingga
+
+176
+00:06:46,400 --> 00:06:47,330
+theta-n xn.
+
+177
+00:06:48,820 --> 00:06:50,310
+Dan persamaan ini
+
+178
+00:06:50,460 --> 00:06:51,600
+sama seperti persamaan
+
+179
+00:06:51,910 --> 00:06:53,670
+di atas ini, karena
+
+180
+00:06:54,080 --> 00:06:55,710
+x0 = 1.
+
+181
+00:06:58,270 --> 00:06:59,300
+Dan bagusnya adalah, sekarang saya bisa
+
+182
+00:06:59,390 --> 00:07:00,700
+menggunakan model
+
+183
+00:07:00,740 --> 00:07:02,130
+hipotesis ini dan menulisnya
+
+184
+00:07:02,500 --> 00:07:04,990
+sebagai theta tanspos x.
+
+185
+00:07:05,370 --> 00:07:06,910
+Tergantung bagaimana kenalnya
+
+186
+00:07:07,320 --> 00:07:08,960
+Anda dengan perkalian
+
+187
+00:07:09,720 --> 00:07:12,050
+vektor, jika Anda
+
+188
+00:07:12,180 --> 00:07:13,880
+tulis nilai-nilai
+
+189
+00:07:14,110 --> 00:07:15,260
+theta transpos x,
+
+190
+00:07:15,360 --> 00:07:17,370
+ini adalah theta0,
+
+191
+00:07:17,840 --> 00:07:19,730
+theta1, hingga theta-n.
+
+192
+00:07:20,070 --> 00:07:22,880
+Jadi, ini
+
+193
+00:07:23,140 --> 00:07:24,910
+adalah theta transpos
+
+194
+00:07:25,810 --> 00:07:27,820
+dan ini sebenarnya
+
+195
+00:07:27,960 --> 00:07:30,930
+matriks (n+1) x 1.
+
+196
+00:07:31,850 --> 00:07:32,600
+Itu juga disebut vektor baris.
+
+197
+00:07:34,090 --> 00:07:35,160
+Dan Anda ambil itu, lalu
+
+198
+00:07:35,420 --> 00:07:37,420
+kalikan dengan
+
+199
+00:07:37,510 --> 00:07:38,440
+vektor x, yaitu
+
+200
+00:07:38,640 --> 00:07:40,560
+x0, x1, dst
+
+201
+00:07:40,820 --> 00:07:41,790
+hingga xn.
+
+202
+00:07:43,030 --> 00:07:44,400
+Jadi, perkaliannya
+
+203
+00:07:44,940 --> 00:07:47,050
+yaitu theta transpos x
+
+204
+00:07:47,910 --> 00:07:48,810
+sama saja dengan ini.
+
+205
+00:07:49,520 --> 00:07:50,610
+Cara ini memudahkan kita
+
+206
+00:07:50,770 --> 00:07:51,830
+dalam penulisan model
+
+207
+00:07:52,110 --> 00:07:53,310
+hipotesis sebagai
+
+208
+00:07:53,510 --> 00:07:55,240
+perkalian antara vektor
+
+209
+00:07:55,760 --> 00:07:57,200
+parameter theta dan vektor
+
+210
+00:07:57,550 --> 00:07:59,220
+ciri-ciri x. Dan
+
+211
+00:07:59,350 --> 00:08:00,360
+notasi ini,
+
+212
+00:08:01,000 --> 00:08:02,270
+kesepakatan notasi
+
+213
+00:08:02,320 --> 00:08:03,690
+x tambahan ini, memungkinkan
+
+214
+00:08:03,740 --> 00:08:05,530
+kita menulis hipotesis dalam bentuk
+yang singkat.
+
+215
+00:08:06,360 --> 00:08:09,230
+Begitulah model hipotesis saat kita
+punya banyak ciri-ciri.
+
+216
+00:08:09,980 --> 00:08:10,940
+Dan, nama lainnya,
+
+217
+00:08:11,230 --> 00:08:12,330
+ini juga
+
+218
+00:08:12,570 --> 00:08:13,860
+disebut regresi linier multivariat.
+
+219
+00:08:15,200 --> 00:08:16,640
+Multivariat hanyalah
+
+220
+00:08:17,120 --> 00:08:18,300
+istilah yang indah untuk mengatakan
+
+221
+00:08:18,730 --> 00:08:20,370
+kita punya banyak ciri-ciri, atau
+
+222
+00:08:20,830 --> 00:08:22,900
+banyak variabel untuk memprediksi
+nilai y.

@@ -1,0 +1,433 @@
+1
+00:00:00,000 --> 00:00:05,399
+En este video definiremos las
+llamadas funciones de costo. Esto nos permitirá
+
+2
+00:00:05,399 --> 00:00:10,688
+descubrir cómo ajustar la mejor línea
+recta posible para nuestros datos. En la regresión
+
+3
+00:00:10,688 --> 00:00:16,758
+lineal tenemos un conjunto de entrenamiento
+como este. Recuerda que la anotación "m"
+
+4
+00:00:16,758 --> 00:00:21,972
+era el número de ejemplos de entrenamiento. Entonces,
+tal vez m=47. Y la forma de la
+
+5
+00:00:21,972 --> 00:00:27,731
+hipótesis, que usamos para hacer
+predicciones, es la función lineal. Para
+
+6
+00:00:27,731 --> 00:00:33,723
+introducir un poco más de terminología,
+estas theta cero y theta uno;
+
+7
+00:00:33,723 --> 00:00:39,759
+estas theta i son lo que llamo
+parámetros del modelo. Lo que
+
+8
+00:00:39,759 --> 00:00:44,578
+haremos en este video será hablar sobre
+cómo escoger estos dos valores
+
+9
+00:00:44,578 --> 00:00:49,654
+de parámetros, theta cero y theta
+uno. Con diferentes elecciones de los parámetros
+
+10
+00:00:49,654 --> 00:00:54,408
+de theta cero y theta uno, obtenemos diferentes
+hipótesis, diferentes funciones de
+
+11
+00:00:54,408 --> 00:00:59,355
+hipótesis. Sé que algunos de ustedes
+probablemente ya están familiarizados con lo
+
+12
+00:00:59,355 --> 00:01:04,367
+que haré en esta diapositiva, pero sólo
+para revisar tenemos algunos ejemplos. Si theta
+
+13
+00:01:04,367 --> 00:01:09,378
+cero es 1.5 y theta uno es 0, entonces
+la función de la hipótesis se verá
+
+14
+00:01:09,378 --> 00:01:15,701
+así. Bien, debido a que tu función de
+hipótesis será "h(x) igual a 1.5 más
+
+15
+00:01:15,701 --> 00:01:22,645
+0 por x" que es esta función de valor
+constante, es plana a 1.5. Si
+
+16
+00:01:22,645 --> 00:01:29,332
+"theta cero es igual a 0 y theta uno
+es igual 0.5", entonces la hipótesis se verá
+
+17
+00:01:29,332 --> 00:01:35,536
+así. Y debe pasar por este
+punto (2,1), ya que ahora tienes "h(x)" o
+
+18
+00:01:35,536 --> 00:01:40,666
+realmente "h<u>theta (x)" pero
+algunas veces omitiré theta por</u>
+
+19
+00:01:40,666 --> 00:01:46,518
+brevedad. Entonces, "h(x)" será igual a sólo
+0.5 veces "x" que se ve así. Y,
+
+20
+00:01:46,518 --> 00:01:52,443
+finalmente, si "theta cero es igual a 1 y theta
+uno es igual a 0.5", entonces terminaremos con
+
+21
+00:01:52,443 --> 00:01:58,598
+una hipótesis que se ve así. Veamos,
+debe pasar por el punto (2,2)
+
+22
+00:01:58,598 --> 00:02:04,468
+de esta manera. Esta es mi nueva "h(x)"
+o mi nueva "h<u>theta(x)". ¿De acuerdo? Bien,</u>
+
+23
+00:02:04,468 --> 00:02:09,980
+recuerda que es
+"h<u>theta(x)" pero para abreviar</u>
+
+24
+00:02:09,980 --> 00:02:16,584
+algunas veces sólo escribo "h(x)". En
+la regresión lineal tenemos un conjunto de entrenamiento,
+
+25
+00:02:16,584 --> 00:02:22,439
+tal vez como el que trazamos aquí. Lo
+que queremos hacer es obtener los valores para
+
+26
+00:02:22,439 --> 00:02:28,295
+los parámetros de theta cero y theta uno.
+De manera que la línea recta que obtenemos
+
+27
+00:02:28,295 --> 00:02:33,799
+de esto, corresponda con una línea recta
+que, de alguna forma, se ajuste bien a los datos. Tal vez
+
+28
+00:02:33,799 --> 00:02:39,756
+como esa línea. Entonces, ¿cómo
+obtenemos los valores theta cero, theta uno
+
+29
+00:02:39,756 --> 00:02:45,350
+que corresponden al buen ajuste de los
+datos? La idea es que vamos a elegir
+
+30
+00:02:45,350 --> 00:02:51,162
+nuestros parámetros de theta cero y theta uno
+de modo que "h(x)", que significa el valor que predijimos
+
+31
+00:02:51,162 --> 00:02:56,330
+en la entrada "x", que esté cerca
+de los valores “y” para los ejemplo en nuestro
+
+32
+00:02:56,330 --> 00:03:01,133
+conjunto de entrenamiento, para nuestros ejemplos de entrenamiento.
+En nuestro conjunto de entrenamiento, se nos da un
+
+33
+00:03:01,133 --> 00:03:06,505
+número de ejemplos donde sabemos que "x" decide
+la casa y conocemos el precio real
+
+34
+00:03:06,505 --> 00:03:11,796
+al que se vendió. Así que tratemos de
+escoger valores para las parámetros de modo que,
+
+35
+00:03:11,796 --> 00:03:17,302
+por lo menos en el conjunto de entrenamiento, con
+las "x" en el conjunto de entretenimiento, hagamos
+
+36
+00:03:17,302 --> 00:03:23,507
+predicciones razonablemente precisas para los
+valores “y”. Formalicemos esto. En la regresión
+
+37
+00:03:23,507 --> 00:03:29,401
+lineal, lo que haré es que 
+quiero resolver un problema de
+
+38
+00:03:29,401 --> 00:03:38,787
+minimización. Entonces, escribiré minimizar sobre theta
+cero, theta uno. Y, quiero que esto sea
+
+39
+00:03:38,787 --> 00:03:44,379
+pequeño, quiero que la diferencia
+entre "h(x)" y “y” sea pequeña. Y algo
+
+40
+00:03:44,379 --> 00:03:50,493
+que haré es tratar de minimizar la diferencia
+cuadrática entre el resultado de
+
+41
+00:03:50,493 --> 00:03:56,159
+la hipótesis y el precio real de la
+casa ¿Ok? Vamos a completar algunos
+
+42
+00:03:56,159 --> 00:04:01,379
+detalles. Recuerda que utilicé la
+anotación (x(i), y(i)) para representar el
+
+43
+00:04:01,379 --> 00:04:07,418
+ejemplo de entrenamiento de "i". Bien, lo que
+realmente quiero es la suma de mi conjunto
+
+44
+00:04:07,418 --> 00:04:13,202
+de entrenamiento. La suma de “i” es igual a 1 para M de
+la diferencia cuadrática entre esto
+
+45
+00:04:13,202 --> 00:04:18,896
+es la predicción de mi hipótesis
+cuando se introduce el número de “i” del tamaño de
+
+46
+00:04:18,896 --> 00:04:24,380
+la casa menos el precio real al que
+se venderá el número “i” de la casa y quiero
+
+47
+00:04:24,380 --> 00:04:29,588
+minimizar mi suma de conjunto de entrenamiento
+de “i” igual a 1 a través de M de la
+
+48
+00:04:29,588 --> 00:04:35,281
+diferencia de este error cuadrático,
+la diferencia cuadrática entre la predicción
+
+49
+00:04:35,281 --> 00:04:41,091
+del precio de la casa y el precio
+al que realmente se venderá. Y sólo
+
+50
+00:04:41,091 --> 00:04:47,723
+te recuerdo que la anotación “m” aquí era
+el tamaño de mi conjunto de entrenamiento,
+
+51
+00:04:47,723 --> 00:04:53,347
+entonces, “m” es mi número de ejemplos
+de entrenamiento. ¿Cierto? El signo de numeral es la
+
+52
+00:04:53,347 --> 00:04:59,045
+abreviatura de “número” para los ejemplos
+de entrenamiento. ¿Ok? Y para hacer
+
+53
+00:04:59,045 --> 00:05:04,888
+las matemáticas un poco más fáciles,
+realmente veré, 1
+
+54
+00:05:04,888 --> 00:05:09,578
+sobre m veces eso. Así que trataremos
+de minimizar mi error promedio, y
+
+55
+00:05:09,578 --> 00:05:13,926
+minimizaremos uno por 2m.
+Al poner 2, la constante de un medio, en
+
+56
+00:05:13,926 --> 00:05:18,386
+frente hace que las matemáticas sean
+un poco más fáciles. Entonces, al minimizar la mitad de
+
+57
+00:05:18,386 --> 00:05:23,073
+algo, debe darte los mismos
+valores de los parámetros theta cero, theta
+
+58
+00:05:23,073 --> 00:05:27,647
+uno al minimizar esa función. Y sólo
+asegúrate de que esta ecuación esté
+
+59
+00:05:27,647 --> 00:05:35,569
+clara, ¿entendido? Esta expresión de aquí,
+h<u>theta(x), esta es</u>
+
+60
+00:05:35,569 --> 00:05:44,880
+nuestra usual, ¿cierto? Es igual a esto
+más theta uno x(i). Y, esta anotación,
+
+61
+00:05:44,880 --> 00:05:49,814
+minimiza sobre theta cero y theta uno,
+esto quiere decir encuentra los valores de theta
+
+62
+00:05:49,814 --> 00:05:54,369
+cero y theta uno que causan que se
+minimice la expresión. Y esta
+
+63
+00:05:54,369 --> 00:05:59,557
+expresión depende de theta cero y theta
+uno. ¿Ok? Entonces, sólo para recapitular, planteamos
+
+64
+00:05:59,557 --> 00:06:04,382
+este problema para encontrar los valores de
+theta cero y theta uno, de manera que
+
+65
+00:06:04,575 --> 00:06:09,292
+se reduzca el promedio de uno sobre dos M veces la
+suma de los errores cuadráticos entre mis
+
+66
+00:06:09,292 --> 00:06:14,590
+predicciones del conjunto de entrenamiento menos los
+valores reales de las casas en el
+
+67
+00:06:14,590 --> 00:06:19,694
+conjunto de entrenamiento. Así que esto
+será mi función objetivo general
+
+68
+00:06:19,694 --> 00:06:25,127
+para la regresión lineal. Y sólo para
+rescribir esto un poco
+
+69
+00:06:25,127 --> 00:06:30,580
+más claro lo que haré mediante la convención
+es que generalmente definimos una función de costos.
+
+70
+00:06:30,860 --> 00:06:38,965
+Que será exactamente esto. La
+fórmula que tengo aquí. Y lo que
+
+71
+00:06:38,965 --> 00:06:48,388
+quiero hacer es minimizar, sobre theta cero y
+theta uno, mi función J de theta cero
+
+72
+00:06:48,388 --> 00:06:57,428
+coma theta uno. Sólo escribe
+esto, esta en mi función de costos. Esta
+
+73
+00:06:57,428 --> 00:07:06,943
+función de costos también se llama error
+cuadrático o algunas veces se llama
+
+74
+00:07:06,943 --> 00:07:14,461
+función de costos de error cuadrático y resulta
+que, ¿por qué tomamos
+
+75
+00:07:14,461 --> 00:07:19,006
+los cuadrados de los errores? Resulta
+que la función de costos del error cuadrático es una
+
+76
+00:07:19,006 --> 00:07:23,214
+elección razonable y funcionará bien en
+la mayoría de los problemas, para la mayoría de
+
+77
+00:07:23,214 --> 00:07:27,815
+los problemas de regresión. Hay otras funciones de costos
+que funcionarán muy bien, pero la función de costos
+
+78
+00:07:27,815 --> 00:07:32,473
+de error cuadrático es probablemente
+la más usada para los problemas de regresión.
+
+79
+00:07:32,473 --> 00:07:36,793
+Más adelante en esta clase, también hablaremos sobre
+las funciones de costos alternativas pero
+
+80
+00:07:36,793 --> 00:07:41,282
+esta elección que hicimos debe ser algo
+razonable para intentar con
+
+81
+00:07:41,282 --> 00:07:45,706
+la mayoría de los problemas de regresión. Ok. Entonces,
+esa es la función de costos. Hasta ahora hemos
+
+82
+00:07:45,706 --> 00:07:50,899
+visto la definición matemática de esta
+función de costos y en caso de que esta
+
+83
+00:07:50,899 --> 00:07:55,973
+función J de theta cero, theta uno en caso de
+que esta función parezca un poco más abstracta
+
+84
+00:07:55,973 --> 00:08:00,808
+y que aún no entiendas bien
+qué hace, en el siguiente video, en los
+
+85
+00:08:00,808 --> 00:08:05,882
+siguientes videos veremos
+de forma más profunda qué hace
+
+86
+00:08:05,882 --> 00:08:10,776
+la función de costos J y trataré de darte
+una mejor intuición de qué es el cálculo
+
+87
+00:08:10,776 --> 00:08:12,329
+y por qué queremos usarlo.

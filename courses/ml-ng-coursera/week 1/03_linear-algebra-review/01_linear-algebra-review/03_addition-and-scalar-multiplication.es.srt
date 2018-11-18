@@ -1,0 +1,802 @@
+1
+00:00:00,250 --> 00:00:01,612
+En este video hablaremos
+
+2
+00:00:01,612 --> 00:00:03,503
+de la suma y resta de matrices,
+
+3
+00:00:03,503 --> 00:00:04,950
+al igual que
+
+4
+00:00:04,950 --> 00:00:06,582
+a multiplicar una matriz  por un
+
+5
+00:00:06,582 --> 00:00:09,292
+predecir precios de casas. Hace tiempo, un
+estudiante recolectó conjuntos de datos
+
+6
+00:00:09,292 --> 00:00:11,825
+del Instituto de Portland, Oregón. Y digamos
+que trazas un conjunto de datos y se ve
+
+7
+00:00:11,825 --> 00:00:14,725
+así. Tenemos en el eje horizontal,
+el tamaño de distintas casas en pies cuadrados,
+
+8
+00:00:14,725 --> 00:00:16,735
+y en el eje vertical, el precio de
+distintas casas en miles de dólares.
+
+9
+00:00:16,735 --> 00:00:18,038
+Entonces, con estos datos, digamos que tienes un
+amigo que tiene una casa de 750
+
+10
+00:00:18,038 --> 00:00:20,538
+pies cuadrados y desea venderla
+y quiere saber cuánto dinero puede
+
+11
+00:00:20,538 --> 00:00:21,632
+obtener por ella. Entonces, ¿cómo puede ayudarte
+un algoritmo de aprendizaje? Algo que podría hacer
+
+12
+00:00:21,632 --> 00:00:24,312
+el algoritmo de aprendizaje es trazar
+una línea recta a través de los datos o insertar
+
+13
+00:00:24,312 --> 00:00:25,762
+una línea recta en los datos y, con base
+en eso, resulta que tal vez la casa pueda venderse
+
+14
+00:00:25,762 --> 00:00:28,076
+en aproximadamente $150,000. Pero tal vez este
+no es el único algoritmo de aprendizaje que puedes
+
+15
+00:00:28,076 --> 00:00:30,363
+usar. Puede haber uno mejor. Por
+ejemplo, en lugar de trazar una línea
+
+16
+00:00:30,363 --> 00:00:31,480
+recta en los datos, podríamos decidir que
+es mejor insertar una función
+
+17
+00:00:31,480 --> 00:00:33,415
+cuadrática o un polinomio de segundo grado
+a estos datos. Y si haces eso y haces una
+
+18
+00:00:33,415 --> 00:00:34,972
+predicción aquí, entonces resulta que
+tal vez puede vender la casa en casi
+
+19
+00:00:34,972 --> 00:00:36,732
+$200,000. Algo de lo que hablaré
+más adelante es de cómo elegir y
+
+20
+00:00:36,732 --> 00:00:39,470
+decidir si quieres insertar una línea recta
+a los datos o si quieres insertar la
+
+21
+00:00:39,470 --> 00:00:41,578
+función cuadrática a los datos y no hay
+una selección justa de cualquier opción que le de
+
+22
+00:00:41,578 --> 00:00:43,092
+a tu amigo una mejor casa para vender. Pero cualquiera
+de estos sería un buen ejemplo de
+
+23
+00:00:43,092 --> 00:00:44,169
+un algoritmo de aprendizaje. Así que este es un ejemplo
+de algoritmo de aprendizaje supervisado. Y
+
+24
+00:00:44,169 --> 00:00:47,240
+el término aprendizaje supervisado se refiere al
+hecho de que le dimos al algoritmo un conjunto de datos
+
+25
+00:00:47,255 --> 00:00:49,568
+donde se daban las “respuestas
+correctas”. Es decir, le dimos un conjunto de datos
+
+26
+00:00:49,570 --> 00:00:51,442
+de casas en los que para cada ejemplo del
+conjunto de datos, se dijo cuál era el
+
+27
+00:00:51,442 --> 00:00:52,768
+precio correcto, el precio real al que
+se vendió esa casa y la tarea del
+
+28
+00:00:52,768 --> 00:00:54,820
+algoritmo sólo fue generar más
+«respuestas correctas» como para esta
+
+29
+00:00:56,140 --> 00:00:57,182
+casa nueva que tu amigo está
+queriendo vender. Para definir un poco más
+
+30
+00:00:57,182 --> 00:01:00,408
+la terminología, esto también se denomina
+un problema de regresión y con esto
+
+31
+00:01:00,408 --> 00:01:02,789
+quiero decir que queremos predecir un
+resultado de valor continuo. Es decir, el precio.
+
+32
+00:01:02,789 --> 00:01:05,595
+Así que, técnicamente, creo que puede
+redondearse el precio al centavo más cercano. Tal vez
+
+33
+00:01:07,120 --> 00:01:09,029
+los precios en realidad son valores discretos, pero
+en general pensamos en el precio de una casa
+
+34
+00:01:09,029 --> 00:01:11,917
+como un número real, un valor escalar,
+un número de valor continuo, y el término
+
+35
+00:01:11,917 --> 00:01:13,451
+regresión se refiere al hecho de que
+tratamos de predecir el tipo de atributo valuado
+
+36
+00:01:13,451 --> 00:01:15,113
+de forma continua. Este es otro
+ejemplo de aprendizaje supervisado. Algunos amigos
+
+37
+00:01:15,113 --> 00:01:16,202
+y yo estábamos trabajando en esto
+antes. Digamos que quieres revisar
+
+38
+00:01:16,202 --> 00:01:19,415
+expediente médicos y tratar de predecir
+cáncer de mama como maligno o benigno. Si
+
+39
+00:01:19,415 --> 00:01:20,468
+alguien descubre un tumor mamario, un bulto
+en su seno... Un tumor maligno es un
+
+40
+00:01:20,470 --> 00:01:21,837
+tumor dañino y peligroso y un
+tumor benigno es un tumor inofensivo.
+
+41
+00:01:21,837 --> 00:01:23,533
+Obviamente, la gente se preocupa mucho por esto.
+Veamos un conjunto de datos recolectados y supongamos
+
+42
+00:01:23,550 --> 00:01:24,959
+que en estos datos, en el eje
+horizontal tienes el tamaño del tumor y
+
+43
+00:01:24,959 --> 00:01:28,057
+en el vertical trazaré uno
+o cero, sí o no, si son o no
+
+44
+00:01:29,180 --> 00:01:30,785
+ejemplos de tumores que ya vimos que son
+malignos, que es el uno, o el cero si no es maligno
+
+45
+00:01:30,785 --> 00:01:31,803
+o es benigno. Supongamos que nuestro conjunto de datos
+se ve así donde vemos un tumor de este
+
+46
+00:01:31,803 --> 00:01:32,894
+tamaño que resultó ser benigno. Uno de
+este tamaño, uno de este tamaño. Y así sucesivamente.
+
+47
+00:01:32,894 --> 00:01:36,208
+Por desgracia, también vemos unos
+tumores malignos, uno de este tamaño y
+
+48
+00:01:36,230 --> 00:01:38,659
+uno de este, uno de este tamaño... Y así sucesivamente. Así que en este
+ejemplo... Tengo cinco ejemplos de tumores
+
+49
+00:01:39,190 --> 00:01:41,190
+benignos que se muestran abajo y cinco
+de tumores malignos que se muestran con un
+
+50
+00:01:41,200 --> 00:01:42,837
+valor del eje vertical de uno. Y digamos que tenemos
+una amiga que lamentablemente tiene un
+
+51
+00:01:43,160 --> 00:01:44,635
+tumor mamario y supongamos que su tamaño
+es de aproximadamente este valor. La
+
+52
+00:01:44,635 --> 00:01:46,400
+pregunta de aprendizaje automático es:
+¿puedes calcular cuál es la probabilidad,
+
+53
+00:01:46,430 --> 00:01:48,508
+de que un tumor sea maligno
+versus benigno? Para mostrar un poco
+
+54
+00:01:48,508 --> 00:01:52,184
+de terminología, este es un ejemplo de un
+problema de clasificación. El término
+
+55
+00:01:52,642 --> 00:01:54,561
+«clasificación» se refiere al hecho de que
+intentamos predecir un resultado
+
+56
+00:01:54,561 --> 00:01:58,382
+de valor discreto: cero o uno, maligno o
+benigno. Y resulta que algunas veces
+
+57
+00:01:58,382 --> 00:02:00,069
+en problemas de clasificación, puedes
+tener más de dos valores para dos
+
+58
+00:02:00,069 --> 00:02:02,028
+posibles valores para el resultado. Como
+ejemplo concreto tal vez haya tres
+
+59
+00:02:02,028 --> 00:02:04,342
+tipos de cáncer de mama, por lo que puedes
+intentar predecir el valor discreto de cero,
+
+60
+00:02:04,760 --> 00:02:07,075
+uno, dos o tres, en el que cero es benigno.
+Tumor benigno, es decir sin cáncer. Y uno puede
+
+61
+00:02:07,076 --> 00:02:10,280
+significar un tipo de cáncer, si tienes
+tres tipos de cáncer, lo que sea que signifique
+
+62
+00:02:10,280 --> 00:02:13,182
+el tipo uno. Y dos puede significar un segundo tipo de
+cáncer y tres pude ser un tercer tipo de
+
+63
+00:02:13,182 --> 00:02:14,926
+cáncer. Pero esto también sería un
+problema de clasificación, debido al otro
+
+64
+00:02:14,926 --> 00:02:16,184
+conjunto de resultados del valor discreto que
+corresponde a: sin cáncer o cáncer tipo
+
+65
+00:02:16,184 --> 00:02:18,114
+uno, tipo dos, o cáncer tipo
+tres. Existe otra forma de trazar estos datos
+
+66
+00:02:18,114 --> 00:02:19,428
+en los problemas de clasificación. Déjame mostrarte
+lo qué quiero decir. Utilizaré un conjunto de símbolos
+
+67
+00:02:19,428 --> 00:02:21,708
+ligeramente diferente para trazar estos
+datos. Así que si el tamaño del tumor será
+
+68
+00:02:21,708 --> 00:02:24,011
+el atributo que usaré para predecir
+si es maligno o benigno, también puedo dibujar
+
+69
+00:02:24,011 --> 00:02:25,988
+mis datos así. Usaré distintos
+símbolos para denotar mis ejemplos
+
+70
+00:02:25,988 --> 00:02:28,181
+de maligno y benigno, o negativo y
+positivo. En lugar de dibujar cruces,
+
+71
+00:02:28,181 --> 00:02:30,152
+dibujaré círculos para los tumores
+benignos. De esta manera. Y seguiré
+
+72
+00:02:30,157 --> 00:02:31,654
+usando X para denotar los tumores malignos.
+¿Ok? Espero que esto empiece a tener
+
+73
+00:02:31,654 --> 00:02:35,992
+sentido. Todo lo que hice fue tomar, ya saben,
+esto, mi conjunto de datos de arriba y
+
+74
+00:02:35,992 --> 00:02:37,849
+los trace abajo hacia esta línea real.
+Y empecé a usar distintos símbolos,
+
+75
+00:02:37,849 --> 00:02:40,702
+círculos y cruces para denotar los ejemplos
+de malignos contra benignos. Ahora, en este
+
+76
+00:02:40,702 --> 00:02:42,173
+ejemplo sólo usamos una característica o un
+atributo, principalmente, el tamaño del tumor para
+
+77
+00:02:42,173 --> 00:02:43,443
+predecir si el tumor es maligno
+o es benigno. En otros problemas de aprendizaje
+
+78
+00:02:43,443 --> 00:02:44,903
+electrónico, cuando tenemos más de una
+característica, más de un atributo. Aquí va
+
+79
+00:02:44,903 --> 00:02:47,505
+un ejemplo. Digamos que en lugar de sólo
+saber el tamaño del tumor, también conocemos la
+
+80
+00:02:47,505 --> 00:02:48,634
+edad y el tamaño de tumor de los pacientes. En
+ese caso, tal vez tu conjunto de datos se verá
+
+81
+00:02:48,634 --> 00:02:49,920
+así y tenemos un conjunto de pacientes
+con edades y tamaños de tumor
+
+82
+00:02:49,920 --> 00:02:52,607
+y se ven así. Y un conjunto de pacientes
+distinto, que se ve un poco diferente,
+
+83
+00:02:52,634 --> 00:02:54,334
+cuyos tumores resultaron malignos,
+como lo indican las cruces. Así que digamos que
+
+84
+00:02:54,334 --> 00:02:57,050
+tienes un amigo que por desgracia tiene un
+tumor. Y tal vez, el tamaño del tumor y la edad
+
+85
+00:02:57,050 --> 00:02:59,491
+están más o menos aquí. Con un conjunto de datos
+como este, lo que puede hacer el
+
+86
+00:02:59,491 --> 00:03:01,468
+algoritmo de aprendizaje es trazar la línea recta
+en los datos para tratar de separar los
+
+87
+00:03:01,470 --> 00:03:05,256
+tumores malignos de los benignos
+y entonces el algoritmo de aprendizaje puede decidir
+
+88
+00:03:05,256 --> 00:03:07,672
+trazar la línea recta así para
+separar las dos clases de tumores.
+
+89
+00:03:07,672 --> 00:03:11,228
+Y con esto, es posible que puedas
+decidir que es más probable que si el tumor
+
+90
+00:03:11,228 --> 00:03:12,040
+de tu amigo está en esta parte,
+el algoritmo de aprendizaje
+
+91
+00:03:12,060 --> 00:03:13,388
+nos dirá si el tumor está del lado
+benigno y que, por lo tanto, es más
+
+92
+00:03:13,388 --> 00:03:14,983
+probable que sea benigno y no maligno. En
+este ejemplo, tuvimos dos características,
+
+93
+00:03:14,983 --> 00:03:18,771
+la edad del paciente y el tamaño del
+tumor. En otros problemas de aprendizaje automático
+
+94
+00:03:19,380 --> 00:03:22,869
+con frecuencia tendremos más características y
+mis amigos que trabajan con este problema
+
+95
+00:03:22,869 --> 00:03:24,275
+realmente usan otras características como
+el grosor de acúmulo del
+
+96
+00:03:24,275 --> 00:03:25,716
+tumor mamario, uniformidad del tamaño celular
+del tumor, uniformidad de la forma celular del
+
+97
+00:03:25,716 --> 00:03:27,140
+tumor, etc., así como
+otras características. Y resulta que uno de los algoritmos
+
+98
+00:03:27,172 --> 00:03:29,055
+de aprendizaje más interesantes que
+veremos en esta clase es un algoritmo
+
+99
+00:03:29,055 --> 00:03:32,819
+de aprendizaje que puede tratar, no sólo con dos
+o tres o cinco características, sino con un número
+
+100
+00:03:32,819 --> 00:03:35,318
+4, 0, 6, 3 y
+
+101
+00:03:35,318 --> 00:03:36,803
+por lo tanto, puede figurar
+
+102
+00:03:36,820 --> 00:03:38,593
+la respuesta, el resultado de
+
+103
+00:03:38,593 --> 00:03:40,365
+Este producto es, una cuarta parte
+
+104
+00:03:40,365 --> 00:03:43,274
+veces cuatro es uno, uno cuarto veces cero es cero.
+
+105
+00:03:43,282 --> 00:03:46,570
+Un cuarto seis son,
+
+106
+00:03:46,590 --> 00:03:49,353
+Qué, tres mitades, sobre más de seis
+
+107
+00:03:49,353 --> 00:03:50,369
+cuatro es tres mitades, y
+
+108
+00:03:50,369 --> 00:03:53,862
+un cuarto momento tres es tres cuartas partes.
+
+109
+00:03:54,410 --> 00:03:55,880
+Y por lo que los resultados
+
+110
+00:03:55,920 --> 00:03:59,207
+de la informática esta matriz dividida por cuatro.
+
+111
+00:03:59,207 --> 00:04:01,677
+Vectores darán el resultado.
+
+112
+00:04:01,697 --> 00:04:03,805
+Por último, para un poco
+
+113
+00:04:03,805 --> 00:04:05,714
+ejemplo más complicado, se puede
+
+114
+00:04:05,714 --> 00:04:09,460
+también estas operaciones y las combina juntos.
+
+115
+00:04:09,513 --> 00:04:11,448
+En este cálculo,
+
+116
+00:04:11,448 --> 00:04:12,801
+tiene un vector de tres veces
+
+117
+00:04:12,801 --> 00:04:16,370
+más un vector menos vector otro dividido por tres.
+
+118
+00:04:16,370 --> 00:04:18,344
+Así hacen que sabemos donde estas, derecha.
+
+119
+00:04:18,344 --> 00:04:20,031
+Esta multiplicación.
+
+120
+00:04:20,031 --> 00:04:23,648
+Este es un ejemplo de
+
+121
+00:04:23,680 --> 00:04:27,986
+multiplicación escalar porque estoy tomando tres y multiplicarlo.
+
+122
+00:04:27,986 --> 00:04:30,240
+Y esto es, usted sabe, otro
+
+123
+00:04:30,240 --> 00:04:32,067
+multiplicación escalar.
+
+124
+00:04:32,067 --> 00:04:34,182
+O más como división escalar, supongo.
+
+125
+00:04:34,182 --> 00:04:36,503
+Realmente sólo uno significa cero veces esto.
+
+126
+00:04:36,503 --> 00:04:39,445
+Así que si evaluamos
+
+127
+00:04:39,509 --> 00:04:43,044
+estas dos operaciones primero, luego
+
+128
+00:04:43,044 --> 00:04:44,612
+lo que conseguimos es esta cosa
+
+129
+00:04:44,612 --> 00:04:47,127
+es igual a, vamos a ver,
+
+130
+00:04:47,127 --> 00:04:49,902
+hasta tres veces ese vector es tres,
+
+131
+00:04:49,912 --> 00:04:53,200
+doce, seis, además de
+
+132
+00:04:53,200 --> 00:04:55,088
+mi vector en el medio que
+
+133
+00:04:55,088 --> 00:04:58,552
+es un 005 menos
+
+134
+00:04:59,850 --> 00:05:03,733
+¿uno, cero, dos tercios, correcto?
+
+135
+00:05:03,740 --> 00:05:05,318
+Y otra vez, sólo para hacer
+
+136
+00:05:05,318 --> 00:05:07,064
+que entendemos lo que está sucediendo aquí,
+
+137
+00:05:07,064 --> 00:05:11,504
+Este símbolo más, que es
+
+138
+00:05:11,520 --> 00:05:15,690
+¿Además de la matriz, correcto?
+
+139
+00:05:15,690 --> 00:05:16,973
+Yo realmente, ya que estos son
+
+140
+00:05:16,973 --> 00:05:20,204
+¿vectores, recuerda, vectores son casos especiales de matrices, correctos?
+
+141
+00:05:20,204 --> 00:05:21,538
+Esto, también puede llamar a
+
+142
+00:05:21,538 --> 00:05:25,106
+esta adición de vector esta
+
+143
+00:05:25,110 --> 00:05:27,148
+signo de menos aquí, se trata de
+
+144
+00:05:27,160 --> 00:05:30,162
+otra vez una sustracción de la matriz,
+
+145
+00:05:30,162 --> 00:05:32,249
+sino porque se trata de un
+
+146
+00:05:32,249 --> 00:05:33,432
+n por 1, realmente un tres
+
+147
+00:05:33,432 --> 00:05:35,547
+por una matriz, que
+
+148
+00:05:35,547 --> 00:05:36,494
+es realmente un vector, por lo que se trata de
+
+149
+00:05:36,494 --> 00:05:39,822
+también vectores, esta columna.
+
+150
+00:05:39,850 --> 00:05:43,677
+Llamamos a esta matriz una resta de vectores, así.
+
+151
+00:05:43,677 --> 00:05:44,392
+¿Vale?
+
+152
+00:05:44,392 --> 00:05:46,073
+Y por último para concluir esto.
+
+153
+00:05:46,110 --> 00:05:48,103
+Esto por lo tanto me da una
+
+154
+00:05:48,118 --> 00:05:49,952
+Vector, cuyo primer elemento es
+
+155
+00:05:49,952 --> 00:05:53,632
+va a ser 3 + 0-1,
+
+156
+00:05:53,632 --> 00:05:56,150
+así es 3-1, 2.
+
+157
+00:05:56,150 --> 00:06:01,204
+El segundo elemento es 12+0-0, que es 12.
+
+158
+00:06:01,214 --> 00:06:03,970
+Y el tercer elemento
+
+159
+00:06:03,970 --> 00:06:07,222
+de esto es 6+5-2/3,
+
+160
+00:06:07,222 --> 00:06:10,678
+que es 11-(2/3), así
+
+161
+00:06:10,678 --> 00:06:14,021
+que es 10 y un tercio,
+
+162
+00:06:14,021 --> 00:06:16,029
+y cierras este corchete.
+
+163
+00:06:16,029 --> 00:06:17,983
+Así que esto me da una
+
+164
+00:06:17,983 --> 00:06:21,671
+matriz 3 por 1, que
+
+165
+00:06:21,671 --> 00:06:23,901
+también se llama vector de
+
+166
+00:06:23,901 --> 00:06:29,005
+3 dimensiones, que es
+
+167
+00:06:29,030 --> 00:06:32,847
+el resultado de este cálculo de aquí.
+
+168
+00:06:32,847 --> 00:06:34,984
+Así es cómo sumas
+
+169
+00:06:34,984 --> 00:06:36,698
+y restas las matrices y los
+
+170
+00:06:36,698 --> 00:06:41,488
+vectores, y los multiplicas por los números reales o escalares.
+
+171
+00:06:41,488 --> 00:06:42,767
+Hasta ahora sólo he hablado
+
+172
+00:06:42,767 --> 00:06:44,718
+sobre cómo multiplicar matrices y
+
+173
+00:06:44,718 --> 00:06:46,994
+vectores por escalares, por números reales.
+
+174
+00:06:46,994 --> 00:06:48,128
+En el siguiente video hablaremos
+
+175
+00:06:48,128 --> 00:06:49,418
+sobre un paso mucho más
+
+176
+00:06:49,418 --> 00:06:51,035
+interesante, de tomar
+
+177
+00:06:51,035 --> 00:06:54,112
+2 matrices y multiplicar 2 matrices juntas.

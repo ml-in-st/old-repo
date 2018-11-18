@@ -1,0 +1,641 @@
+1
+00:00:00,520 --> 00:00:04,480
+U prethodnim videima govorili 
+smo o algoritmu gradijenta opadanja
+
+2
+00:00:04,480 --> 00:00:09,540
+a govorili smo i o modelu linearne 
+regresije funkciji koštanja kvadrata greške.
+
+3
+00:00:09,540 --> 00:00:14,280
+U ovome videu ćemo da spojimo 
+gradijent opadanja i funkciju koštanja,
+
+4
+00:00:14,280 --> 00:00:17,400
+a to će da nam da algoritam za linearnu regresiju,
+
+5
+00:00:17,400 --> 00:00:18,730
+pridružujući pravu našim podacima.
+
+6
+00:00:20,800 --> 00:00:24,950
+Na ovome smo radili u prošlim videima.
+
+7
+00:00:24,950 --> 00:00:28,920
+Ovo je algoritam gradijenta opadanja, 
+to biste trebali da poznajete
+
+8
+00:00:28,920 --> 00:00:34,210
+a ovo je model linearne 
+regresije sa linearnom hipotezom
+
+9
+00:00:34,210 --> 00:00:36,540
+i kvadrat greške funkcije koštanja.
+
+10
+00:00:36,540 --> 00:00:42,312
+Ono što ćemo da uradimo je 
+da primenimo gradijent opadanja
+
+11
+00:00:42,312 --> 00:00:47,820
+da minimizujemo kvadrat greške funkcije koštanja.
+
+12
+00:00:47,820 --> 00:00:51,275
+Da bismo primenili gradijent opadanja, da bismo
+
+13
+00:00:51,275 --> 00:00:59,810
+napisali ovaj deo koda, 
+ključni član koji nam treba je ovaj izvod.
+
+14
+00:00:59,810 --> 00:01:04,060
+Znači, treba da shvatite šta 
+je ovaj član parcijalnog izvoda
+
+15
+00:01:04,060 --> 00:01:07,710
+i da ga uključite u definiciju funkcije koštanja J.
+
+16
+00:01:07,710 --> 00:01:11,670
+To bi bilo ovo.
+
+17
+00:01:13,020 --> 00:01:15,550
+Suma od jedan do m.
+
+18
+00:01:15,550 --> 00:01:21,400
+Ovoga člana kvadrata greške funkcije koštanja.
+
+19
+00:01:21,400 --> 00:01:23,520
+A ovde sam samo
+
+20
+00:01:23,520 --> 00:01:26,190
+uključio definiciju funkcije koštanja.
+
+21
+00:01:27,290 --> 00:01:34,820
+Malo pojednostavljeno, ovo je jednako ovome.
+
+22
+00:01:34,820 --> 00:01:43,280
+Sigma i jednako 1 do m od 
+(teta0 + teta1 * xi - yi) na kvadrat.
+
+23
+00:01:43,280 --> 00:01:47,830
+Uzeo sam definiciju hipoteze i
+
+24
+00:01:47,830 --> 00:01:50,782
+uključio je tamo.
+
+25
+00:01:50,782 --> 00:01:53,190
+Treba da shvatimo šta je parcijalni izvod za
+
+26
+00:01:53,190 --> 00:01:56,570
+dva slučaja, j = 0 i j = 1.
+
+27
+00:01:56,570 --> 00:02:00,310
+Znači, želimo da shvatimo šta je parcijalni izvod za
+
+28
+00:02:00,310 --> 00:02:04,170
+teta0 slučaj i za teta1 slučaj.
+
+29
+00:02:04,170 --> 00:02:06,940
+Samo ću da ispišem odgovore.
+
+30
+00:02:06,940 --> 00:02:12,064
+Ovaj prvi član pojednostavljen 1/m
+
+31
+00:02:12,064 --> 00:02:18,354
+suma od trening skupa xi - yi a
+
+32
+00:02:18,354 --> 00:02:24,294
+za ovaj član parcijalni izvod, napišimo teta1,
+
+33
+00:02:24,294 --> 00:02:27,114
+dobijam ovaj član.
+
+34
+00:02:27,114 --> 00:02:34,008
+Minus yi * xi
+
+35
+00:02:34,008 --> 00:02:37,440
+U redu, i
+
+36
+00:02:37,440 --> 00:02:41,720
+računajući te parcijalne izvode, 
+ići ćemo od ove jednačine.
+
+37
+00:02:41,720 --> 00:02:46,000
+Polazeći od ove jednačine do bilo koje jednačine dole.
+
+38
+00:02:46,000 --> 00:02:51,020
+Računanje tih parcijalnih izvoda 
+zahteva multivarijabilni račun.
+
+39
+00:02:51,020 --> 00:02:54,930
+Ako poznajete račun, 
+slobodno radite izvode na svoj način
+
+40
+00:02:54,930 --> 00:02:59,510
+i proverite to ako uzmete izvode, 
+dobijate odgovore koje sam i ja dobio.
+
+41
+00:02:59,510 --> 00:03:04,050
+Ali ako slabije poznajete račun, ne brinite oko toga,
+
+42
+00:03:04,050 --> 00:03:08,100
+u redu je da samo uzmete te 
+jednačine koje smo dobili i neće vam
+
+43
+00:03:08,100 --> 00:03:11,350
+trebati poznavanje računa niti bilo čega sličnog, 
+da biste uradili zadaću, dakle,
+
+44
+00:03:11,350 --> 00:03:13,390
+implementirajmo gradijent opadanja i nazad na posao.
+
+45
+00:03:14,750 --> 00:03:18,490
+Naoružani tim definicijama ili onim što smo dobili od
+
+46
+00:03:18,490 --> 00:03:22,310
+izvoda, što je nagib funkcije koštanja J,
+
+47
+00:03:23,310 --> 00:03:27,160
+možemo da ga vratimo nazad 
+u algoritam gradijenta opadanja.
+
+48
+00:03:27,160 --> 00:03:28,640
+Ovo je gradijent opadanja za
+
+49
+00:03:28,640 --> 00:03:32,728
+linearnu regresiju i ponavljaće 
+se do konvergencije, teta0 i
+
+50
+00:03:32,728 --> 00:03:38,380
+teta1 se menjaju kako se menjaju i ovo minus alfa puta član izvoda.
+
+51
+00:03:39,390 --> 00:03:41,070
+Dakle, ovaj član ovde.
+
+52
+00:03:43,080 --> 00:03:46,050
+Ovo je algoritam linearne regresije.
+
+53
+00:03:47,160 --> 00:03:48,628
+Ovaj prvi član ovde,
+
+54
+00:03:52,529 --> 00:03:56,804
+to je naravno parcijalni izvod u odnosu na teta0,
+
+55
+00:03:56,804 --> 00:03:59,790
+na kom smo radili u prošlom slajdu.
+
+56
+00:03:59,790 --> 00:04:05,730
+A drugi član ovde je parcijalni izvod
+
+57
+00:04:05,730 --> 00:04:11,420
+u odnosu na teta1, 
+na kom smo radili u prethodnoj liniji.
+
+58
+00:04:11,420 --> 00:04:15,230
+Da se na brzinu podsetimo, 
+kada implementirate gradijent opadanja,
+
+59
+00:04:15,230 --> 00:04:19,265
+postoji i ovaj detalj koji treba da implementirate,
+
+60
+00:04:19,265 --> 00:04:22,250
+teta0 i teta1 treba da menjate istovremeno.
+
+61
+00:04:24,290 --> 00:04:25,570
+Dakle,
+
+62
+00:04:25,570 --> 00:04:28,120
+hajde da vidimo kako gradijent opadanja radi.
+
+63
+00:04:28,120 --> 00:04:31,862
+Jedan od problema koji smo videli je da 
+gradijent opadanja može da bude osetljiv
+
+64
+00:04:31,862 --> 00:04:32,700
+na lokalni optimum.
+
+65
+00:04:32,700 --> 00:04:36,780
+Kada sam prvi put objasnio gradijent opadanja
+pokazao sam vam ovu sliku kako
+
+66
+00:04:36,780 --> 00:04:40,900
+silazi niz površ i videli smo kako je
+ zavisan od odabira inicijalizacije,
+
+67
+00:04:40,900 --> 00:04:43,014
+možete da završite na različitim optimumima.
+
+68
+00:04:43,014 --> 00:04:45,480
+Završićete ovde ili ovde.
+
+69
+00:04:45,480 --> 00:04:50,390
+Ali, funkcija koštanja će za
+
+70
+00:04:50,390 --> 00:04:55,220
+linearnu regresiju da bude 
+funkcija u obliku luka kao ova.
+
+71
+00:04:55,220 --> 00:05:00,190
+Tehnički naziv za ovo je konveksna funkcija.
+
+72
+00:05:03,230 --> 00:05:07,800
+Neću da vam dajem formalnu 
+definiciju šta je konveksna funkcija
+
+73
+00:05:07,800 --> 00:05:09,490
+convex,
+
+74
+00:05:09,490 --> 00:05:16,620
+ali neformalno konveksna funkcija 
+znači funkcija u obliku luka
+
+75
+00:05:16,620 --> 00:05:22,295
+a ta funkcija nema lokalni optimum, samo globalni.
+
+76
+00:05:22,295 --> 00:05:26,465
+A gradijent opadanja za ovu
+ vrstu funkcije koštanja, kad god
+
+77
+00:05:26,465 --> 00:05:30,445
+koristite linearnu regresiju, uvek će 
+da konvergira globalnom optimumu.
+
+78
+00:05:30,445 --> 00:05:33,155
+Jer ne postoje drugi optimumi, samo lokalni.
+
+79
+00:05:33,155 --> 00:05:36,615
+Hajde da vidimo algoritam u akciji.
+
+80
+00:05:38,250 --> 00:05:45,910
+Kao i obično, ovo je prikaz funkcije 
+hipoteze i funkcije koštanja J.
+
+81
+00:05:45,910 --> 00:05:50,020
+Recimo da sam inicijalizovao 
+moj parametar na ovu vrednost.
+
+82
+00:05:50,020 --> 00:05:54,220
+Recimo, obično inicijalizujemo parametre na 0, 0.
+
+83
+00:05:54,220 --> 00:05:56,370
+teta0 i teta1 su 0.
+
+84
+00:05:56,370 --> 00:06:01,354
+Ali zbog demonstracije, u ovoj situaciji
+
+85
+00:06:01,354 --> 00:06:07,619
+ću da inicijalizujem teta0 na 900 a teta1 na -0.1.
+
+86
+00:06:07,619 --> 00:06:12,644
+A to odgovara h(x) = 900 - 0.1x
+
+87
+00:06:12,644 --> 00:06:16,547
+to je ova prava, na funkciji koštanja.
+
+88
+00:06:16,547 --> 00:06:21,060
+Ako napravimo jedan korak u gradijentu opadanja,
+
+89
+00:06:21,060 --> 00:06:26,845
+ići ćemo od ove tačke ovde, preko dole i levo
+
+90
+00:06:26,845 --> 00:06:31,510
+do ove druge tačke.
+
+91
+00:06:31,510 --> 00:06:35,450
+Primećujete da se moja prava promenila malo
+
+92
+00:06:35,450 --> 00:06:39,780
+ako napravim drugi korak, moja prava se menja.
+
+93
+00:06:41,230 --> 00:06:42,380
+Shvatate?
+
+94
+00:06:42,380 --> 00:06:46,370
+A pomerio sam se na novu tačku na funkciji koštanja.
+
+95
+00:06:47,670 --> 00:06:52,760
+Kako pravim dalje korake, silazim sa cenom.
+
+96
+00:06:52,760 --> 00:06:56,190
+Moji parametri prate ovu putanju.
+
+97
+00:06:57,340 --> 00:07:02,430
+A ako pogledam levo, to odgovara hipotezi.
+
+98
+00:07:02,430 --> 00:07:06,520
+Čini se da to sve bolje odgovara podacima
+
+99
+00:07:08,200 --> 00:07:14,660
+dok eventualno ne završim u globalnom minimumu, a on
+
+100
+00:07:14,660 --> 00:07:20,090
+odgovara ovoj hipotezi,
+ što odgovara podacima.
+
+101
+00:07:21,400 --> 00:07:25,800
+Dakle, ovo je gradijent opadanja i
+ samo smo ga pokrenuli
+
+102
+00:07:25,800 --> 00:07:31,230
+i dobili slaganje sa 
+podacima koštanja nekretnina.
+
+103
+00:07:31,230 --> 00:07:34,490
+I možete da je sada koristite za predviđanje, znate,
+
+104
+00:07:34,490 --> 00:07:38,900
+ako vaš prijatelj ima kuću od 1250 kvadratnih fita,
+
+105
+00:07:38,900 --> 00:07:43,350
+možete da pročitate vrednost i 
+reći mu da bi možda mogao
+
+106
+00:07:43,350 --> 00:07:48,720
+da dobije 250,000 dolara za kuću.
+
+107
+00:07:48,720 --> 00:07:52,620
+I konačno, da bismo imenovali malo drugačije, 
+algoritam
+
+108
+00:07:52,620 --> 00:07:57,510
+kroz koji smo upravo prošli se ponekad 
+zove i grupni gradijent opadanja.
+
+109
+00:07:57,510 --> 00:08:00,730
+Izgleda da u mašinskom učenju, 
+ne znam, osećam kao da stručnjaci mašinskog
+
+110
+00:08:00,730 --> 00:08:04,310
+učenja ne daju baš dobra imena algoritmima.
+
+111
+00:08:04,310 --> 00:08:08,880
+Ali grupno mašinsko učenje se odnosi na činjenicu da
+
+112
+00:08:08,880 --> 00:08:13,850
+svaki korak gradijenta opadanja 
+gleda u sve trening primere.
+
+113
+00:08:13,850 --> 00:08:17,760
+Dakle, u gradijentu opadanja, kada računate izvode,
+
+114
+00:08:17,760 --> 00:08:21,400
+vi računate sume.
+
+115
+00:08:21,400 --> 00:08:25,660
+U svakom koraku gradijenta opadanja 
+računamo nešto poput ovoga, sumirate
+
+116
+00:08:25,660 --> 00:08:30,620
+kroz m trening primera i grupni 
+gradijent opadanja se odnosi na
+
+117
+00:08:30,620 --> 00:08:34,175
+činjenicu da gledate celu grupu trening primera.
+
+118
+00:08:34,175 --> 00:08:36,365
+I opet, nije baš sjajno ime, ali
+
+119
+00:08:36,365 --> 00:08:39,585
+tako ga stručnjaci mašinskog učenja zovu.
+
+120
+00:08:39,585 --> 00:08:43,715
+Izgleda da postoje i druge verzije gradijenta opadanja
+
+121
+00:08:43,715 --> 00:08:46,247
+koje nisu grupne verzije, umesto toga one
+
+122
+00:08:46,247 --> 00:08:48,837
+ne gledaju celi trening skup već
+
+123
+00:08:48,837 --> 00:08:51,247
+gledaju u manje podskupove trening skupa.
+
+124
+00:08:51,247 --> 00:08:55,207
+A takođe ćemo da govorimo i o njima kasnije u kursu.
+
+125
+00:08:55,207 --> 00:08:58,357
+Za sada, koristeći algoritam, 
+upravo smo naučili o korištenju grupnog gradijenta
+
+126
+00:08:58,357 --> 00:09:03,497
+opadanja i znate kako da implementirate 
+gradijent opadanja za linearnu regresiju.
+
+127
+00:09:05,980 --> 00:09:09,550
+Dakle, to je linearna regresija sa gradijentom opadanja.
+
+128
+00:09:09,550 --> 00:09:12,260
+Ako ste ranije videli linearnu algebru,
+
+129
+00:09:12,260 --> 00:09:15,510
+neki od vas su možda pohađali 
+napredni kurs linearne algebre,
+
+130
+00:09:15,510 --> 00:09:19,410
+možda znate da postoji rešenje za numeričko rešavanje
+
+131
+00:09:19,410 --> 00:09:22,270
+minimuma funkcije koštanja J bez potrebe da se
+
+132
+00:09:22,270 --> 00:09:25,870
+koristi iterativni algoritam 
+kao što je gradijent opadanja.
+
+133
+00:09:25,870 --> 00:09:29,730
+Kasnije u kursu ćemo da govorimo 
+o tom metodu za rešavanje
+
+134
+00:09:29,730 --> 00:09:33,020
+minimuma funkcije koštanja J 
+bez potrebe za višestrukim koracima
+
+135
+00:09:33,020 --> 00:09:34,520
+gradijenta opadanja.
+
+136
+00:09:34,520 --> 00:09:37,020
+Taj metod se zove metod normalne jednačine.
+
+137
+00:09:37,020 --> 00:09:41,000
+U slučaju da ste čuli za taj metod, izgleda da gradijent
+
+138
+00:09:41,000 --> 00:09:46,420
+opadanja bolje skalira veće skupove 
+podataka od normalne jednačine.
+
+139
+00:09:46,420 --> 00:09:50,140
+Sada kada poznajemo gradijent 
+opadanja moći ćemo da ga koristimo
+
+140
+00:09:50,140 --> 00:09:51,400
+u mnogo različitih konteksta a takođe
+
+141
+00:09:51,400 --> 00:09:53,910
+ćemo ga koristiti u mnogo različitih problema mašinskog učenja.
+
+142
+00:09:55,340 --> 00:10:00,430
+Čestitke za savladavanje 
+prvog algoritma mašinskog učenja.
+
+143
+00:10:00,430 --> 00:10:04,990
+Kasnije ćemo da imamo vežbe u kojima ćete 
+trebati da implementirate gradijent opadanja
+
+144
+00:10:04,990 --> 00:10:07,480
+i nadam se da ćete da ih pravilno koristite.
+
+145
+00:10:07,480 --> 00:10:11,460
+Ali pre toga želim da vam u 
+sledećem skupu videa kažem,
+
+146
+00:10:11,460 --> 00:10:14,510
+prvo da vam kažem o generalizaciji
+
+147
+00:10:14,510 --> 00:10:17,900
+algoritma gradijenta opadanja što će da ga učini mnogo moćnijim.
+
+148
+00:10:17,900 --> 00:10:20,420
+A o tome ćemo u sledećem videu.

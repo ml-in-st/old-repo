@@ -1,0 +1,960 @@
+1
+00:00:00,200 --> 00:00:03,878
+Sekarang Anda tahu tentang regresi
+linear dengan banyak variabel.
+
+2
+00:00:03,910 --> 00:00:05,185
+Di video ini saya ingin mengajari
+
+3
+00:00:05,185 --> 00:00:06,369
+Anda mengenai pilihan
+
+4
+00:00:06,380 --> 00:00:07,830
+fitur yang Anda miliki dan
+
+5
+00:00:07,830 --> 00:00:09,742
+bagaimana Anda bisa mendapat algoritma
+belajar yang berbeda,
+
+6
+00:00:09,750 --> 00:00:11,477
+terkadang yang bekerja sangat baik
+
+7
+00:00:11,477 --> 00:00:13,803
+dengan pemilihan fitur yang tepat.
+
+8
+00:00:13,810 --> 00:00:15,229
+Saya juga ingin mengajari
+
+9
+00:00:15,229 --> 00:00:17,826
+Anda tentang regresi polinomial, yang
+membolehkan
+
+10
+00:00:17,826 --> 00:00:19,535
+Anda menggunakan perangkat
+
+11
+00:00:19,535 --> 00:00:21,247
+regresi linier untuk mengerjakan
+
+12
+00:00:21,247 --> 00:00:25,060
+fungsi yang sangat rumit, bahkan sangat
+tidak linier.
+
+13
+00:00:25,690 --> 00:00:28,827
+Mari gunakan contoh memprediksi harga
+rumah.
+
+14
+00:00:29,300 --> 00:00:31,147
+Anggap Anda punya 2 fitur,
+
+15
+00:00:31,147 --> 00:00:33,805
+panjang dan lebar halaman rumah.
+
+16
+00:00:33,805 --> 00:00:35,428
+Ini gambar rumah yang akan kita jual.
+
+17
+00:00:35,428 --> 00:00:37,264
+Jadi,
+
+18
+00:00:37,264 --> 00:00:40,103
+ini jarak
+
+19
+00:00:40,103 --> 00:00:43,009
+halaman rumah
+
+20
+00:00:43,009 --> 00:00:44,949
+atau panjang dari
+
+21
+00:00:44,960 --> 00:00:46,652
+bidang tanah
+
+22
+00:00:46,652 --> 00:00:47,994
+Anda,
+
+23
+00:00:48,020 --> 00:00:49,468
+dan
+
+24
+00:00:49,500 --> 00:00:53,120
+lebarnya adalah seberapa lebar
+properti Anda.
+
+25
+00:00:53,130 --> 00:00:54,758
+Jadi,
+
+26
+00:00:54,770 --> 00:00:57,992
+ada panjang,
+
+27
+00:00:57,992 --> 00:00:59,858
+dan ada lebar.
+
+28
+00:00:59,858 --> 00:01:01,355
+Anda bisa membuat model
+
+29
+00:01:01,360 --> 00:01:04,163
+regresi linier seperti ini yang mana
+panjangnya
+
+30
+00:01:04,180 --> 00:01:06,062
+adalah fitur pertama x1 dan
+
+31
+00:01:06,062 --> 00:01:07,535
+lebarnya
+
+32
+00:01:07,535 --> 00:01:10,169
+fitur ke-2 Anda x2, tapi ketika Anda
+menggunakan regresi linier,
+
+33
+00:01:10,169 --> 00:01:11,772
+Anda tidak
+
+34
+00:01:11,772 --> 00:01:13,342
+harus menggunakan
+
+35
+00:01:13,342 --> 00:01:16,607
+fitur x1 dan x2.
+
+36
+00:01:16,610 --> 00:01:20,531
+Anda bisa membuat fitur baru.
+
+37
+00:01:20,531 --> 00:01:21,709
+Jadi, jika
+
+38
+00:01:21,710 --> 00:01:22,895
+saya ingin
+
+39
+00:01:22,895 --> 00:01:24,840
+memprediksi harga rumah,
+
+40
+00:01:24,850 --> 00:01:27,468
+yang sesungguhnya menunjukkan
+
+41
+00:01:27,490 --> 00:01:29,133
+ukuran rumah adalah
+
+42
+00:01:29,133 --> 00:01:32,164
+area atau luas tanah yang saya miliki.
+
+43
+00:01:32,190 --> 00:01:33,365
+Jadi, saya
+
+44
+00:01:33,380 --> 00:01:34,609
+bisa buat
+
+45
+00:01:34,609 --> 00:01:40,409
+fitur baru, x, yaitu panjang kali
+lebar.
+
+46
+00:01:40,440 --> 00:01:42,404
+Ini simbol perkalian.
+
+47
+00:01:42,404 --> 00:01:44,334
+Ini panjang kali lebar karena
+
+48
+00:01:44,334 --> 00:01:46,040
+ini luas tanah
+
+49
+00:01:46,090 --> 00:01:48,035
+yang saya miliki, lalu
+
+50
+00:01:48,035 --> 00:01:50,651
+ini hipotesis saya
+
+51
+00:01:50,710 --> 00:01:53,327
+karena hanya menggunakan 1 fitur,
+
+52
+00:01:53,350 --> 00:01:54,785
+yakni
+
+53
+00:01:54,785 --> 00:01:57,430
+luas tanah.
+
+54
+00:01:57,580 --> 00:01:58,939
+Karena luas
+
+55
+00:01:58,940 --> 00:02:00,345
+persegi adalah,
+
+56
+00:02:00,345 --> 00:02:01,432
+hasil
+
+57
+00:02:01,460 --> 00:02:03,822
+perkalian sisinya. Jadi, bergantung
+
+58
+00:02:03,822 --> 00:02:05,253
+pada pengertian Anda dalam
+
+59
+00:02:05,280 --> 00:02:07,481
+suatu soal, daripada
+
+60
+00:02:07,490 --> 00:02:09,604
+hanya menggunakan fitur panjang dan
+lebar
+
+61
+00:02:09,620 --> 00:02:11,103
+yang kita punya sebelumnya,
+
+62
+00:02:11,130 --> 00:02:13,489
+terkadang dengan membuat
+
+63
+00:02:13,489 --> 00:02:16,771
+fitur baru, Anda bisa mendapat model
+yang lebih baik.
+
+64
+00:02:16,790 --> 00:02:18,163
+Regresi polinomial sedikit
+
+65
+00:02:18,163 --> 00:02:19,745
+berkaitan dengan ide
+
+66
+00:02:19,745 --> 00:02:22,973
+pemilihan fitur barusan.
+
+67
+00:02:23,010 --> 00:02:26,868
+Katakanlah Anda punya data harga-harga
+rumah seperti ini.
+
+68
+00:02:26,880 --> 00:02:29,646
+Maka ada beberapa model yang bisa
+Anda gunakan.
+
+69
+00:02:29,660 --> 00:02:32,587
+Salah satunya model kuadrat seperti ini.
+
+70
+00:02:32,600 --> 00:02:35,598
+Model garis lurus tidak cocok untuk
+data ini.
+
+71
+00:02:35,598 --> 00:02:36,788
+Jadi, Anda perlu
+
+72
+00:02:36,788 --> 00:02:38,408
+model kuadrat seperti ini,
+
+73
+00:02:38,420 --> 00:02:40,248
+dimana Anda pikir
+
+74
+00:02:40,248 --> 00:02:42,017
+harga rumahnya merupakan suatu
+
+75
+00:02:42,020 --> 00:02:43,956
+fungsi kuadrat
+
+76
+00:02:43,970 --> 00:02:45,018
+dan mungkin itu akan cocok
+
+77
+00:02:45,020 --> 00:02:47,070
+untuk data seperti itu.
+
+78
+00:02:47,280 --> 00:02:48,560
+Tapi kemudian,
+
+79
+00:02:48,570 --> 00:02:50,013
+Anda putuskan model kuadrat tidak pas
+
+80
+00:02:50,013 --> 00:02:52,582
+karena fungsi kuadrat, pada akhirnya
+
+81
+00:02:52,582 --> 00:02:53,858
+kembali menurun,
+
+82
+00:02:53,858 --> 00:02:55,591
+dan kita tidak berpikir harga
+
+83
+00:02:55,600 --> 00:02:58,899
+rumah harus turun saat ukurannya
+bertambah besar.
+
+84
+00:02:58,970 --> 00:03:00,649
+Jadi, kita mungkin bisa
+
+85
+00:03:00,650 --> 00:03:02,700
+memilih model polinomial yang berbeda
+
+86
+00:03:02,700 --> 00:03:04,274
+dan memilih menggunakan
+
+87
+00:03:04,290 --> 00:03:07,480
+fungsi kubik sebagai gantinya, dan
+
+88
+00:03:07,480 --> 00:03:09,225
+sekarang kita punya orde ketiga
+
+89
+00:03:09,225 --> 00:03:10,764
+dan kita cocokkan,
+
+90
+00:03:10,800 --> 00:03:12,367
+mungkin kita mendapat model seperti
+ini,
+
+91
+00:03:12,390 --> 00:03:13,907
+dan mungkin
+
+92
+00:03:13,910 --> 00:03:15,278
+garis hijau itu lebih pas
+
+93
+00:03:15,278 --> 00:03:18,052
+ke data karena tidak kembali turun.
+
+94
+00:03:18,052 --> 00:03:21,992
+Jadi, bagaimana mencocokkan model
+seperti ini ke data kita?
+
+95
+00:03:22,020 --> 00:03:23,868
+Dengan menggunakan
+
+96
+00:03:23,868 --> 00:03:27,059
+regresi linier multivarian, kita bisa
+
+97
+00:03:27,059 --> 00:03:30,692
+melakukannya dengan modifikasi yang
+sangat sederhana pada algoritma kita.
+
+98
+00:03:30,692 --> 00:03:32,632
+Bentuk hipotesisnya
+
+99
+00:03:32,632 --> 00:03:34,217
+seperti ini,
+
+100
+00:03:34,217 --> 00:03:35,782
+dimana
+
+101
+00:03:35,782 --> 00:03:37,612
+h(x) adalah theta0 +
+
+102
+00:03:37,612 --> 00:03:41,608
+theta1 x1 + theta2 x2 + theta3 x3.
+
+103
+00:03:41,608 --> 00:03:42,775
+Jika
+
+104
+00:03:42,775 --> 00:03:45,220
+kita ingin mencocokkan model kubik
+yang
+
+105
+00:03:45,250 --> 00:03:47,239
+saya lingkari dengan warna hijau itu,
+
+106
+00:03:47,239 --> 00:03:48,940
+untuk
+
+107
+00:03:48,940 --> 00:03:49,825
+memprediksi
+
+108
+00:03:49,825 --> 00:03:51,364
+harga rumah, ini, theta0 +
+
+109
+00:03:51,364 --> 00:03:53,056
+theta1 kali ukuran rumah +
+
+110
+00:03:53,056 --> 00:03:55,905
+theta2 kali ukuran rumah kwadrat,
+
+111
+00:03:55,910 --> 00:03:58,974
+ini sama dengan itu,
+
+112
+00:03:58,974 --> 00:04:00,885
+lalu + theta3
+
+113
+00:04:00,890 --> 00:04:02,343
+kali ukuran rumah
+
+114
+00:04:02,350 --> 00:04:05,302
+pangkat tiga.
+
+115
+00:04:05,470 --> 00:04:06,967
+Untuk
+
+116
+00:04:06,990 --> 00:04:08,668
+memetakan 2 definisi ini,
+
+117
+00:04:08,668 --> 00:04:10,339
+caranya dengan
+
+118
+00:04:10,339 --> 00:04:12,128
+menset
+
+119
+00:04:12,150 --> 00:04:13,568
+x1
+
+120
+00:04:13,568 --> 00:04:15,320
+sama dengan ukuran rumah, dan
+
+121
+00:04:15,320 --> 00:04:16,721
+x2
+
+122
+00:04:16,721 --> 00:04:17,766
+sama dengan
+
+123
+00:04:17,766 --> 00:04:20,400
+kwadrat ukuran rumah, dan x3 sama dengan
+
+124
+00:04:20,400 --> 00:04:22,780
+ukuran rumah pangkat tiga.
+
+125
+00:04:22,800 --> 00:04:24,292
+Dengan memilih ketiga
+
+126
+00:04:24,292 --> 00:04:26,311
+fitur saya seperti ini dan
+
+127
+00:04:26,311 --> 00:04:27,720
+menggunakan
+
+128
+00:04:27,720 --> 00:04:30,540
+metode dari regresi linier, saya bisa
+
+129
+00:04:30,540 --> 00:04:31,901
+mencocokkan
+
+130
+00:04:31,901 --> 00:04:34,374
+model ini ke data saya.
+
+131
+00:04:34,374 --> 00:04:35,523
+Saya ingin
+
+132
+00:04:35,523 --> 00:04:36,799
+menjelaskan
+
+133
+00:04:36,800 --> 00:04:38,610
+1 hal lagi,
+jika Anda memilih fitur
+
+134
+00:04:38,610 --> 00:04:40,925
+seperti ini, maka penting
+
+135
+00:04:40,925 --> 00:04:43,688
+untuk menskalanya.
+
+136
+00:04:44,130 --> 00:04:45,254
+Jadi, jika
+
+137
+00:04:45,254 --> 00:04:46,794
+ukuran rumah
+
+138
+00:04:46,800 --> 00:04:47,992
+dari
+
+139
+00:04:47,992 --> 00:04:49,300
+1 - 1000 kaki kwadrat,
+
+140
+00:04:49,310 --> 00:04:50,918
+maka
+
+141
+00:04:50,930 --> 00:04:52,175
+ukuran rumah yang dikwadratkan akan
+
+142
+00:04:52,175 --> 00:04:54,519
+bergeser menjadi 1 - 1 juta,
+
+143
+00:04:54,520 --> 00:04:55,953
+kwadrat
+
+144
+00:04:55,953 --> 00:04:58,468
+dari 1000, dan
+
+145
+00:04:58,490 --> 00:05:01,335
+fitur ke-3 Anda
+
+146
+00:05:01,360 --> 00:05:03,106
+x3, yakni ukuran rumah
+
+147
+00:05:03,120 --> 00:05:04,732
+pangkat tiga,
+
+148
+00:05:04,732 --> 00:05:05,941
+akan
+
+149
+00:05:05,950 --> 00:05:07,478
+bergeser dari 1 - 10^9,
+
+150
+00:05:07,478 --> 00:05:09,311
+sehingga tiga fitur ini
+
+151
+00:05:09,330 --> 00:05:10,955
+memiliki
+
+152
+00:05:10,955 --> 00:05:13,459
+jarak nilai yang sangat berbeda, dan
+
+153
+00:05:13,490 --> 00:05:15,105
+penting untuk menskala fiturnya,
+
+154
+00:05:15,110 --> 00:05:16,509
+jika
+
+155
+00:05:16,509 --> 00:05:18,554
+Anda menggunakan gradient descent,
+
+156
+00:05:18,554 --> 00:05:21,139
+agar nilai-nilainya sebanding.
+
+157
+00:05:21,140 --> 00:05:23,243
+Akhirnya, ini contoh terakhir
+
+158
+00:05:23,250 --> 00:05:25,138
+bagaimana Anda benar-benar punya
+
+159
+00:05:25,150 --> 00:05:29,056
+pilihan yang sangat banyak akan fitur
+yang Anda gunakan.
+
+160
+00:05:29,090 --> 00:05:30,446
+Awalnya kita
+
+161
+00:05:30,446 --> 00:05:31,559
+bicara bagaimana
+
+162
+00:05:31,559 --> 00:05:33,122
+model kwadrat seperti ini mungkin
+tidak ideal karena,
+
+163
+00:05:33,122 --> 00:05:34,408
+mungkin itu bisa
+
+164
+00:05:34,408 --> 00:05:35,952
+pas ke data,
+
+165
+00:05:35,952 --> 00:05:37,514
+tapi fungsi kwadrat akhirnya kembali
+bergerak turun
+
+166
+00:05:37,514 --> 00:05:39,065
+dan kita tidak ingin harga rumah
+
+167
+00:05:39,070 --> 00:05:40,352
+kembali turun,
+
+168
+00:05:40,352 --> 00:05:43,567
+sementara ukuran rumah bertambah besar.
+
+169
+00:05:43,567 --> 00:05:45,388
+Tapi, daripada menggunakan model kubik,
+
+170
+00:05:45,388 --> 00:05:46,938
+mungkin,
+
+171
+00:05:46,938 --> 00:05:48,389
+Anda punya pilihan fitur lain
+
+172
+00:05:48,389 --> 00:05:50,798
+dan ada banyak pilihan yang mungkin.
+
+173
+00:05:50,800 --> 00:05:52,313
+Untuk memberikan Anda contoh
+
+174
+00:05:52,313 --> 00:05:53,691
+pilihan
+
+175
+00:05:53,691 --> 00:05:55,620
+lain yang masuk akal,
+
+176
+00:05:55,620 --> 00:05:57,263
+harga rumah adalah
+
+177
+00:05:57,263 --> 00:05:58,832
+theta0 +
+
+178
+00:05:58,850 --> 00:05:59,992
+theta1 kali
+
+179
+00:05:59,992 --> 00:06:01,264
+(ukuran rumah) + theta2
+
+180
+00:06:01,320 --> 00:06:03,625
+kali akar kwadrat (ukuran rumah).
+
+181
+00:06:03,630 --> 00:06:05,364
+Jadi, fungsi akar kwadrat
+
+182
+00:06:05,364 --> 00:06:08,110
+seperti ini, dan mungkin akan ada
+
+183
+00:06:08,110 --> 00:06:09,318
+beberapa nilai
+
+184
+00:06:09,318 --> 00:06:11,355
+theta1, theta2, theta3, yang
+
+185
+00:06:11,355 --> 00:06:14,049
+akan membuat Anda menggunakan model ini,
+
+186
+00:06:14,080 --> 00:06:15,445
+dan
+
+187
+00:06:15,445 --> 00:06:16,952
+kurva
+
+188
+00:06:16,952 --> 00:06:19,500
+seperti itu, bergerak naik lalu
+
+189
+00:06:19,520 --> 00:06:21,529
+menjadi rata dan tidak pernah
+
+190
+00:06:21,540 --> 00:06:23,877
+kembali turun.
+
+191
+00:06:24,154 --> 00:06:26,584
+Jadi, dengan memiliki pengertian
+
+192
+00:06:26,584 --> 00:06:27,630
+akan bentuk
+
+193
+00:06:27,630 --> 00:06:30,952
+fungsi akar kwadrat, dan
+
+194
+00:06:30,990 --> 00:06:32,555
+bentuk data, dengan memilih
+
+195
+00:06:32,555 --> 00:06:36,469
+fitur berbeda, terkadang Anda
+mendapatkan model yang lebih baik.
+
+196
+00:06:36,469 --> 00:06:39,026
+Di video ini, kita bicara tentang
+regresi polinomial,
+
+197
+00:06:39,026 --> 00:06:40,672
+yakni
+
+198
+00:06:40,672 --> 00:06:42,298
+bagaimana mencocokkan polinomial,
+seperti fungsi kwadrat,
+
+199
+00:06:42,298 --> 00:06:43,868
+atau fungsi kubik,
+
+200
+00:06:43,868 --> 00:06:45,112
+ke data Anda.
+
+201
+00:06:45,112 --> 00:06:46,640
+Selain itu,
+
+202
+00:06:46,640 --> 00:06:47,732
+ide tentang pemilihan
+
+203
+00:06:47,748 --> 00:06:48,804
+fitur yang digunakan,
+
+204
+00:06:48,804 --> 00:06:50,078
+misalnya, daripada menggunakan
+panjang dan lebar halaman rumah,
+
+205
+00:06:50,078 --> 00:06:51,092
+Anda bisa
+
+206
+00:06:51,092 --> 00:06:53,133
+mengalikannya untuk mendapat
+
+207
+00:06:53,133 --> 00:06:55,317
+fitur baru yakni luas tanah rumah.
+
+208
+00:06:55,317 --> 00:06:57,551
+Bila ini sedikit membingungkan,
+
+209
+00:06:57,551 --> 00:06:58,895
+dengan
+
+210
+00:06:58,896 --> 00:07:03,265
+semua pilihan fitur yang berbeda ini,
+bagaimana saya memutuskan fitur mana
+yang akan digunakan.
+
+211
+00:07:03,265 --> 00:07:04,594
+Nanti di kelas ini, kita akan bicara
+
+212
+00:07:04,594 --> 00:07:06,622
+tentang beberapa algoritma yang secara
+otomatis
+
+213
+00:07:06,622 --> 00:07:08,083
+memilih fitur mana yang digunakan,
+
+214
+00:07:08,083 --> 00:07:09,466
+jadi Anda punya
+
+215
+00:07:09,466 --> 00:07:10,611
+algoritma yang membaca data
+
+216
+00:07:10,611 --> 00:07:12,040
+dan dengan otomatis memilihkannya untuk
+Anda
+
+217
+00:07:12,040 --> 00:07:13,357
+apakah Anda ingin mencocokkan
+
+218
+00:07:13,357 --> 00:07:15,528
+fungsi kwadrat, atau fungsi kubik, atau
+yang lainnya.
+
+219
+00:07:15,528 --> 00:07:17,164
+Tapi, sebelum kita membahas
+
+220
+00:07:17,164 --> 00:07:18,764
+algoritma itu, sekarang saya hanya
+
+221
+00:07:18,764 --> 00:07:20,295
+ingin Anda sadar bahwa
+
+222
+00:07:20,295 --> 00:07:21,582
+Anda punya pilihan
+
+223
+00:07:21,582 --> 00:07:23,094
+akan fitur yang digunakan, dan
+
+224
+00:07:23,094 --> 00:07:25,256
+dengan mendesain fitur yang berbeda
+
+225
+00:07:25,256 --> 00:07:26,888
+Anda bisa mencocokkan fungsi yang
+lebih kompleks
+
+226
+00:07:26,888 --> 00:07:28,156
+ke data Anda, daripada hanya mencocokkan
+
+227
+00:07:28,156 --> 00:07:30,471
+garis lurus ke data, dan
+
+228
+00:07:30,471 --> 00:07:32,092
+istimewanya Anda bisa mencocokkan fungsi
+
+229
+00:07:32,092 --> 00:07:35,065
+polinomial juga dan terkadang
+
+230
+00:07:35,065 --> 00:07:36,072
+dengan pengertian yang benar akan
+
+231
+00:07:36,072 --> 00:07:37,564
+fitur, dengan mudah mendapat model
+
+232
+00:07:37,564 --> 00:07:40,020
+yang jauh lebih baik untuk data Anda.

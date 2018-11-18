@@ -1,0 +1,74 @@
+Náš první učicí algoritmus bude lineární regrese.
+V tomto videu uvidíte, jak vypadá daný model a, co je ještě důležitější, uvidíte, jak vypadá celý proces učení s učitelem.
+Podívejme se na motivační příklad predikce cen bydlení. Použijeme datovou sadu
+cen bydlení z Portlandu v Oregonu. Do grafu zakreslím několik domů, které měly různou velikost a prodaly se za různou cenu. Řekněme, že máte tuto datovou sadu a že vaši kamarádi
+zkouší prodat dům, který má třeba 1250 stop [tj. 116 metrů] čtverečných, a vy jim chcete říct, za kolik by mohli svůj dům prodat.
+Jedna věc, co byste mohli udělat, je fitovat model, třeba proložit tato data přímkou, což vypadá nějak takto, a na základě toho byste kamarádovi mohli říct,
+že může dům prodat, řekněme, okolo 220 tisíc dolarů. Takže, toto je příklad algoritmu strojového učení s učitelem.
+A učení "s učitelem" je to proto, že - v uvozovkách - "správná odpověď" pro každý příklad byla dána.
+Konkrétně, bylo nám řečeno, za kolik se každý dům z naší datové sady prodal, a také je to příklad regresní úlohy, kde pojem regrese souvisí s faktem, že odhadujeme reálný výstup, konkrétně cenu. Jen pro připomenutí, druhou nejběžnější úlohou učení s učitelem je klasifikační úloha, kde odhadujeme výstup, který nabývá diskrétních hodnot, například, díváme-li se na rakovinový nádor a pokoušíme se rozhodnout, je-li to nádor maligní nebo benigní.
+To je tedy diskrétní výstup s hodnotou nula nebo jedna. Formálně řečeno, při učení s učitelem máme
+nějakou datovou sadu a tu nazýváme trénovací sada. Tedy v příkladu s cenami bydlení
+máme trénovací sadu různých cen bydlení a naším úkolem je
+naučit se z těchto dat odhadovat ceny domů. Definujme si nějaký zápis,
+který budeme používat během celého kurzu. Definujeme docela dost symbolů.
+Nic se nestane, pokud si nezapamatujete všechny hned teď, ale jak bude kurz pokračovat,
+bude užitečné mít vhodný zápis. Takže, v průběhu tohoto kurzu budu používat malé písmeno m pro označení počtu trénovacích příkladů.
+Tak tedy, pokud mám v této datové sadě, řekněme, 47 řádků v této tabulce, pak
+mám 47 trénovacích příkladů a m se rovná 47. Dovolte mi, abych malý písmenem x značil
+vstupní proměnné, které se také často nazývají příznaky. To by byla tato x zde,
+tedy vstupní příznaky. A y budu používat pro označení svých výstupních
+proměnných, nebo cílové proměnné, kterou budu predikovat, a to je tedy
+můj druhý sloupec zde. [nezřetelné] Budu používat (x, y) k označení jednoho
+trénovacího příkladu. Tedy, jeden řádek v této tabulce odpovídá jednomu trénovacímu
+příkladu a k určitému trénovacímu příkladu budu odkazovat zápisem
+x(i) čárka y(i) a tímto budeme odkazovat k i. trénovacímu příkladu.
+Takže to i v horním indexu, to není umocňování, ano? Toto (x(i), y(i)),
+to i v závorce v horním indexu, to je jenom ukazatel do mé trénovací sady
+a odkazuje k i. řádku v této tabulce, ano? Takže toto není
+i. mocnina x, i. mocnina y. (x(i), y(i)) místo toho prostě odkazuje na i. řádek
+této tabulky. Takže například x(1) odkazuje na vstupní proměnnou prvního trénovacího
+příkladu, což je 2104. To je toto x v prvním řádku. x(2) bude rovno 1416, že ano?
+To je druhé x a y(1) bude rovno 460.
+Hodnota y pro můj první trénovací příklad, k tomu odkazuje ta (1).
+Jak bylo řečeno, občas vám položím otázku, abyste si ověřili, jestli tomu rozumíte,
+a za několik vteřin se v tomto videu objeví otázka s více možnými odpověďmi.
+Až se objeví, vyberte, prosím, myší ty odpovědi,
+které si myslíte, že jsou správně. Definovali jsme, co je trénovací množina.
+Takto tedy funguje náš algoritmus učení s učitelem. Viděli jsme, že s trénovací sadou, jako byla naše
+trénovací sada s cenami bydlení, že jí nakrmíme náš učicí algoritmus. Úkolem učicího
+algoritmu je pak vrátit funkci, kterou na základě zvyklosti obvykle značíme h
+a h znamená hypotéza. A jaký je cíl této hypotézy?
+To je nějaká funkce, která má jako vstup velikost domu,
+možná velikost toho nového domu, který se snaží prodat váš kamarád, vezme
+tedy hodnotu x a snaží se odhadnout hodnotu y pro daný dům.
+Takže h je nějaká funkce, která zobrazuje x na y. Lidé se mě často ptají,
+proč se tato funkce nazývá hypotéza. Někteří z vás možná znají význam
+pojmu hypotéza, ze slovníku nebo z vědy nebo odjinud.
+Ukazuje se, že ve strojovém učení je to jméno, které se kdysi ve strojovém
+učení používalo a tak to už zůstalo. Protože možná to není skvělé jméno
+pro takovou funkci, pro zobrazení z velikosti domu na ty odhady, víte ...
+Myslím, že pojem hypotéza možná není to nejlepší jméno pro toto, ale toto je
+uznávané názvosloví, které lidé ve strojovém učení používají. Takže si nedělejte
+moc starosti s tím, proč to lidé tak nazvali. Když navrhujeme učicí algoritmus, další věc,
+kterou musíme rozhodnout, je, jak budeme naši hypotézu h reprezentovat. Pro toto
+a několik dalších videí, zvolím naši počáteční možnost, jak hypotézu reprezentovat,
+následovně. Budeme h reprezentovat takto. A budeme to zapisovat
+jako h, théta v dolním indexu, x, což se rovná théta nula plus théta 1 krát x.
+A jako zkratku někdy místo, však víte, h, théta v dolním indexu, x, někdy použiju
+zkratku a jen napíšu jako h x. Ale častěji budu to psát jako s thétou
+v dolním indexu. A zakreslíme-li to do grafu, to všechno znamená, že budeme
+odhadovat, že y je lineární funkcí x. Dobrá, takže to je datová sada a co dělá
+tato funkce, je odhad, že y leží na rovné přímce jako funkce x.
+To je h(x) rovná se théta nula plus théta jedna krát x, ano? A proč lineární
+funkce? Dobrá, někdy budeme chtít fitovat nějaké komplikovanější, možná také
+nelineární funkce. Ale protože tento lineární případ je jednoduchý stavební kámen,
+nejprve začneme tímto příkladem fitování lineárních funkcí a na tomto budeme stavět,
+abychom nakonec dostali komplexnější modely a komplexnější učicí algoritmy.
+Dovolte mi, abych tento konkrétní model pojmenoval. Tento model se nazývá
+lineární regrese, nebo toto je, například, ve skutečnosti lineární regrese s jednou
+proměnnou, kterou je x. Všechny ty ceny odhadujeme jako funkce
+jedné proměnné X. A další jméno pro tento model je jednorozměrná lineární
+regrese. A "jednorozměrná" je pouze fajnové označení pro jednu proměnnou.
+To je tedy lineární regrese. V dalším videu začneme mluvit o tom,
+jak tento model vlastně implementovat.

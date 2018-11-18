@@ -1,0 +1,77 @@
+U ovome videu ću da definišem šta je to, verovatno najopštiji tip 
+problema mašinskog učenja, a to je nadgledano učenje. Kasnije ću da definišem malo 
+formalnije mašinsko učenje, ali je verovatno najbolje da
+ počnemo sa primerom šta je to, a kasnije ćemo da napravimo formalnu definiciju. Recimo da želite da predvidite cene nekretnina. Nešto ranije studenti su prikupili 
+skupove podataka grada Portlanda, Oregon, i recimo da ste 
+iscrtali skup koji izgleda ovako. Na horizontalnoj osi, veličina različitih kuća u kvadratnim fitima, a na vertikalnoj osi, cene različitih kuća u hiljadama dolara. Dakle, za dobijeni skup, recimo da imate prijatelje koji poseduju 
+kuću koja ima recimo 750 kvadratnih fita, i žele da prodaju kuću, a žele da znaju koliko novca 
+mogu da dobiju za kuću. Dakle, kako algoritam učenja 
+može da vam pomogne? Jedna stvar koju bi algoritam 
+učenja mogao da uradi je da stavi pravu liniju kroz podatke, da pridruži pravu liniju podacima. Na osnovu toga, izgleda da bi njihova kuća 
+mogla da bude prodana za možda 150,000 dolara. Ali, možda ovo nije jedini algoritam 
+učenja koji možete da koristite, i možda ima jedan bolji. Na primer, umesto da 
+podacima pridružite pravu liniju, mogli bismo da pokušamo da 
+pridružimo kvadratnu funkciju, ili polinom drugog reda, ovim podacima. Ako to uradite i uradite predviđanje, to bi izgledalo, pa, možda bi mogli da prodaju 
+kuću za blizu 200,000 dolara. Ono o čemu ćemo da pričamo kasnije je kako da odaberemo, i kako da odlučimo, da li da 
+podacima pridružimo pravu liniju, ili da li želite da podacima 
+pridružite kvadratnu funkciju. Nema pravičnog izbora za bolju cijenu 
+kuće koju vaš prijatelj hoće da proda. Ali oba ova rešenja su dobri primeri algoritma učenja. Dakle, ovo je primer algoritma nadgledanog učenja. Pojam nadgledano učenje se odnosi na činjenicu da algoritmu 
+dajemo skup podataka u kom su dati, takozvani, tačni odgovori. A to je da smo dali skup kuća 
+u kom smo za svaki primer rekli koja je tačna cena. Pa, koja je prava cena po kojoj je ta kuća prodana, a posao algoritma je da napravi više tih ispravnih odgovora za novu kuću 
+koju vaš prijatelj pokušava da proda. Definišimo još malo pojmova, ovo se takođe zove problem regresije. Pod pojmom problema regresije, mislim na to da 
+pokušavamo da predvidimo izlaz neprekidnih vrednosti. U ovome slučaju cena. Tehnički, pretpostavljam da bi cena mogla da 
+bude zaokružena najbliže na cent. Tako, cene su u stvari diskretne vrednosti. Ali, obično mislimo o ceni kao o 
+realnom broju, kao o skalarnoj veličini, kao neprekidna vrednost, a pojam regresija se odnosi na 
+činjenicu da pokušavamo da predvidimo neku vrstu neprekidne vrednosti. Evo još jednog primera nadgledanog učenja. Neki prijatelji i ja smo radili na ovome ranije. Recimo da želite da pogledate 
+medicinske podatke i da pokušate da predvidite da li je rak dojke zloćudan ili dobroćudan. Ako neko otkriva rak dojke, izraslinu u njenoj dojci, zloćudan tumor je onaj koji je štetan i opasan, a dobroćudan tumor je bezopasan. Očigledno, ljudi mnogo brinu o ovome. Da vidimo prikupljen skup podataka. Pretpostavimo da u vašem skupu podataka imate na horizontalnoj osi veličinu tumora, a na vertikalnoj osi, ću da iscrtam 1 ili 0, da ili ne, da li su ili ne ovo primeri tumora 
+koje smo videli ranije kao zloćudne, što je 1, ili 0 za dobroćudne. Recimo da vaš skup podataka izgleda ovako, gde je tumor ove veličine dobroćudan, jedan ove veličine, jedan ove veličine, i tako dalje. Nažalost, takođe smo videli par zloćudnih, jedan ove veličine, jedan ove veličine, jedan ove veličine, i tako dalje. Dakle, u ovome primeru imam 5 primera 
+dobroćudnih tumora prikazanih ovde dole, i 5 primera zloćudnih primera 
+prikazanih na vertikalnoj osi kao 1. Recimo da prijateljica ima tumor dojke, i recimo da je njen tumor dojke negde oko ove vrednosti, pitanje za mašinsko učenje je, možeš li proceniti koja je verovatnoća, koja je šansa da je tumor 
+zloćudan odnosno dobroćudan. Da bismo uveli još malo terminologije, ovo je primer problema klasifikacije. Pojam klasifikacija se odnosi na činjenicu da pokušavamo da predvidimo diskretnu 
+vrednost 0 ili 1, zloćudan ili dobroćudan. Ispada da u problemima klasifikacije, ponekad možete da imate više
+ od 2 moguće vrednosti izlaza. Kao konkretan primer, možda postoje 3 vrste tumora dojke. I tako, možete da probate da predvidite diskretne vrednosti izlaza 0, 1, 2 ili 3 gde 0 može da znači dobroćudan, dobroćudan tumor, znači nije rak, a 1 može da znači jedan rak, možda 3 vrste raka, šta god da tip 1 da znači, 2 znači drugi tip raka, a 3 možda da znači treći tip raka. Ovo bi takođe bio problem klasifikacije jer su to diskretne vrednosti za izlaz nije rak, ili tip raka 1, ili tip raka 2, ili tip raka 3. U problemu klasifikacije postoji 
+drugi način iscrtavanja podataka. Pokazaću vam na šta mislim. Koristiću nešto drugačiji skup simbola 
+da iscrtam ove podatke. Ako je veličina tumora atribut, tada ću da ga koristim da bih predvideo 
+zloćudnost ili dobroćudnost. Takođe moje podatke mogu da crtam i ovako. Koristiću drugačije simbole da bih 
+označio dobroćudnost ili zloćudnost, ili moje negativne i pozitivne primere. Tako, umesto da crtam krstiće, crtaću o za dobroćudne tumore, ovako, a nastaviću da koristim x da 
+bih obeležio zloćudne tumore. Nadam se da ovaj oblik ima smisla. Ono što 
+sam uradio je da sam uzeo podatke sa vrha i samo sam ih mapirao dole
+ na ovu pravu liniju, ovako, i koristio drugačije simbole, kružiće i krstiće, da bih označio 
+zloćudnost odnosno dobroćudnost. U ovome primeru koristimo samo jednu osobinu ili jedan atribut, veličinu tumora, da bismo predvideli
+ da li je tumor zloćudan ili dobroćudan. U drugim problemima mašinskog učenja, možemo da imamo više od jedne osobine 
+ili više od jednoga atributa. Evo jednoga primera, recimo da 
+imamo samo veličinu tumora, znamo i starost pacijenta i veličinu tumora. U tome slučaju, vaš skup podataka 
+bi mogao da izgleda ovako, mogao bih da imam skup 
+pacijenata ovih godina starosti, i tih veličina tumora, koji izgledaju ovako, i drugačiji skup pacijenata
+ koji izgledaju drugačije, čiji su tumori zloćudni, 
+što je označeno krstićima. Recimo da imate prijatelja koji ima tumor, i recimo da veličina tumora i starost padaju ovde. Dakle, za ovako zadat skup podataka, algoritam učenja bi mogao da 
+pridruži pravu liniju podacima da bi pokušao da odvoji zloćudne 
+od onih dobroćudnih i tako bi algoritam učenja mogao 
+da odluči da stavi pravu liniju ovako da odvoji dva tipa tumora. Prema ovome, možemo da odlučimo 
+da je tumor vašeg prijatelja verovatnije, ako je ovde, nadajmo se, vaš algoritam učenja će da 
+kaže da je tumor vašeg prijatelja pao na dobroćudnu stranu i tako je 
+verovatnije da je dobroćudan nego zloćudan. U ovome primeru smo imali dve osobine, starost pacijenta i veličinu tumora. U drugim problemima mašinskog učenja, često ćemo imati više osobina. Moj prijatelj koji je radio na ovome 
+problemu je koristio osobine kao ove, a to su, debljina tela, debljina tumora dojke, jedinstvenost veličine ćelije tumora, jedinstvenost oblika ćelije tumora, i tako dalje, kao i još neke osobine. Jedan od najinteresantnijih algoritama učenja koje smo videli na ovome kursu, je algoritam učenja koji radi sa ne samo dva ili tri ili pet osobina, već sa neograničenim brojem osobina. Na ovome slajdu izlistao sam ukupno pet osobina. Dva na osama i tri ovde gore. Ali za neke probleme učenja koje vi stvarno želite ne koristite tri ili pet osobina, umesto toga želite da 
+koristite neograničen broj osobina, neograničen broj atributa, tako da vaš algoritam učenja ima mnogo atributa, ili osobina, ili znakova kojima
+ će da napravi predviđanja. Pa, kako radite sa neograničenim brojem osobina? Kako uopšte smeštate neograničen broj svtari u računar kada bi vaš 
+računar ostao bez memorije. Govorimo o algoritmu koji se 
+zove Mašina vektora podrške, to je zgodan matematički trik koji će da dozvoli računaru da radi sa 
+neograničenim brojem osobina. Zamislite da nisam samo ispisao 
+dve osobine ovde i tri ovde desno, zamislite da sam ispisao dole beskonačno dugu listu. Da sam nastavio pisati još i još osobina, kao beskonačno dugu listu osobina. Izgleda da imamo algoritam 
+koji može da radi sa ovim. Samo da napravimo 
+rekapitulaciju, u ovome kursu govorićemo o nadgledanom učenju, a ideja je da u nadgledanom učenju u svakom primeru skupa podataka, rečeno nam je šta je tačan odgovor koji bi sasvim verovatno algoritam 
+predvideo u ovome primeru. Kao što je cena kuće, ili da li je tumor zloćudan ili dobroćudan. Takođe smo pričali o problemu regresije, a regresija znači da je naš cilj da 
+predvidimo neprekidnu vrednost kao izlaz. I govorili smo o problemu klasifikacije gde je cilj da se predvidi diskretna vrednost izlaza. Evo jednog brzog pitanja. Pretpostavimo da pokrećete 
+kompaniju i želite da razvijete algoritme učenja biste rešili oba problema. U prvom problemu, imate veliki inventar istih artikala. Zamislite da imate hiljade kopija 
+nekog istog artikla da prodate, i želite da predvidite koliko artikala 
+ćete da prodate u naredna tri meseca. U drugom problemu, problem dva, imate mnogo korisnika, i želite da napišete program koji bi 
+ispitao pojedinačni korisnički nalog, dakle svaki nalog vaših korisnika. Za svaki nalog odlučite da li je ili 
+ne hakovan ili kompromitovan. Dakle, da li svaki od ovih problema treba da bude smatran problemom klasifikacije ili regresije. Kada video pauzira, molim vas da koristite miš 
+da biste odabrali bilo koji od ova četiri odgovora na levoj 
+strani za koji smatrate da je tačan. Nadam se da ste uspeli. Ovo je odgovor. Za prvi problem, smatrao bih ga kao problem regresije jer ako imam hiljade artikala, verovatno bih to smatrao realnom vrednošću, kao neprekidnom vrednošću. Stoga, broj artikala koje sam prodao su neprekidne vrednosti. Za drugi problem, smatrao bih ga problemom klasifikacije, jer mogu da kažem postavi 
+vrednost koju želim da predvidim na 0 da bih označio da nalog nije hakovan, a postavi vrednost na 1 da 
+označim da je nalog hakovan. Isto kao rak dojke gde je 0 
+dobroćudan, a 1 je zloćudan. Dakle, ovo mogu da postavim da bude 
+0 ili 1 u zavisnosti od toga je li hakovan, i da imam algoritam koji pokušava da predvidi 
+bilo koju od ove dve diskretne vrednosti. Zbog malog broja diskretnih vrednosti, smatrao bih ga problemom klasifikacije. To je to što se tiče nadgledanog učenja. U sledećem videu, 
+diskutovaću o pitanjima nenadgledanog učenja, što je druga glavna kategorija algoritama učenja.

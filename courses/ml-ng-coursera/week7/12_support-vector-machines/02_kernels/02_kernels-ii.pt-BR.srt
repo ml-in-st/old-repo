@@ -1,0 +1,1759 @@
+1
+00:00:00,530 --> 00:00:01,550
+No vídeo passado, começamos a
+
+2
+00:00:01,950 --> 00:00:03,230
+falar sobre a ideia de kernels
+
+3
+00:00:03,710 --> 00:00:04,590
+e como ela pode ser usada para
+
+4
+00:00:04,860 --> 00:00:07,900
+definir novos recursos para a máquina de vetores de suporte.
+
+5
+00:00:08,100 --> 00:00:08,910
+Neste vídeo, eu quero preencher
+
+6
+00:00:09,230 --> 00:00:10,670
+alguns detalhes que faltaram, e,
+
+7
+00:00:11,020 --> 00:00:12,070
+também, falar um pouco sobre
+
+8
+00:00:12,270 --> 00:00:14,100
+como utilizar essas ideias na prática.
+
+9
+00:00:14,650 --> 00:00:15,850
+Por exemplo, como elas
+
+10
+00:00:16,340 --> 00:00:20,120
+se relacionam com a inclinação e a variância em máquinas de vetores de suporte.
+
+11
+00:00:22,690 --> 00:00:23,680
+No último vídeo, falei
+
+12
+00:00:24,000 --> 00:00:25,970
+sobre o processo de escolher referências, ou marcações.
+
+13
+00:00:26,660 --> 00:00:28,890
+Aqueles l⁽¹⁾, l⁽²⁾, l⁽³⁾, l⁽⁴⁾
+
+14
+00:00:29,150 --> 00:00:30,220
+nos permitiram definir a
+
+15
+00:00:30,300 --> 00:00:31,900
+função de similaridade, também chamada
+
+16
+00:00:32,200 --> 00:00:33,500
+kernel, ou, como
+
+17
+00:00:33,690 --> 00:00:34,830
+neste exemplo, se você tem esta
+
+18
+00:00:35,070 --> 00:00:37,410
+função de similaridade, isto é um kernel gaussiano.
+
+19
+00:00:38,610 --> 00:00:40,370
+E isso nos permitiu construir
+
+20
+00:00:40,660 --> 00:00:42,070
+esse formato de função hipótese.
+
+21
+00:00:43,180 --> 00:00:44,880
+Mas de onde conseguimos essas referências?
+
+22
+00:00:45,150 --> 00:00:45,670
+De onde conseguimos l⁽¹⁾, l⁽²⁾, l⁽³⁾, l⁽⁴⁾?
+
+23
+00:00:45,690 --> 00:00:49,080
+E parace, também, que para problemas de aprendizagem
+
+24
+00:00:49,610 --> 00:00:50,830
+complexos, talvez vamos querer
+
+25
+00:00:50,920 --> 00:00:53,060
+muito mais referências do que as três que escolhemos à mão.
+
+26
+00:00:55,160 --> 00:00:56,450
+Na prática, esta é a forma
+
+27
+00:00:56,580 --> 00:00:57,730
+com que as referências são escolhidas.
+
+28
+00:00:57,830 --> 00:00:59,910
+Dado o problema
+
+29
+00:01:00,150 --> 00:01:01,110
+de aprendizado de máquina, temos algum
+
+30
+00:01:01,370 --> 00:01:02,230
+conjunto de dados constituído por exemplos
+
+31
+00:01:02,710 --> 00:01:04,460
+positivos e negativos. Bom, a ideia aqui é
+
+32
+00:01:05,310 --> 00:01:06,270
+pegar os exemplos, e,
+
+33
+00:01:06,630 --> 00:01:08,200
+para cada exemplo
+
+34
+00:01:08,470 --> 00:01:09,780
+de treinamento que temos,
+
+35
+00:01:10,490 --> 00:01:11,430
+vamos apenas chamá-las.
+
+36
+00:01:11,980 --> 00:01:13,270
+Vamos simplesmente
+
+37
+00:01:13,440 --> 00:01:14,850
+colocar referências exatamente
+
+38
+00:01:15,490 --> 00:01:17,600
+no mesmo lugar que os exemplos de treinamento.
+
+39
+00:01:18,930 --> 00:01:20,360
+Assim, se eu tenho um exemplo
+
+40
+00:01:20,680 --> 00:01:21,880
+de treinamento x⁽¹⁾,
+
+41
+00:01:22,120 --> 00:01:23,460
+vou escolher
+
+42
+00:01:23,670 --> 00:01:24,550
+minha primeira referência
+
+43
+00:01:25,100 --> 00:01:26,470
+coincidindo exatamente com o mesmo
+
+44
+00:01:27,250 --> 00:01:28,170
+lugar do meu primeiro exemplo de treinamento.
+
+45
+00:01:29,260 --> 00:01:30,180
+E, se tenho um exemplo de treinamento diferente
+
+46
+00:01:30,470 --> 00:01:32,340
+x⁽²⁾, vou colocar
+
+47
+00:01:32,500 --> 00:01:33,980
+a segunda referência
+
+48
+00:01:35,060 --> 00:01:37,300
+no lugar do segundo exemplo de treinamento.
+
+49
+00:01:38,480 --> 00:01:39,320
+Na figura à direita,
+
+50
+00:01:39,480 --> 00:01:40,480
+usei pontos vermelhos e azuis
+
+51
+00:01:40,820 --> 00:01:41,930
+somente como ilustração, as cores
+
+52
+00:01:42,420 --> 00:01:44,320
+nesta figura, as cores
+
+53
+00:01:44,370 --> 00:01:46,030
+dos pontos na figura à direita não é importante.
+
+54
+00:01:47,120 --> 00:01:47,930
+Mas o que vou acabar
+
+55
+00:01:48,110 --> 00:01:49,660
+fazendo com este método é
+
+56
+00:01:49,790 --> 00:01:51,450
+criar m referências
+
+57
+00:01:52,160 --> 00:01:53,690
+l⁽¹⁾, l⁽²⁾,
+
+58
+00:01:54,950 --> 00:01:56,320
+até l⁽ᵐ⁾ se eu
+
+59
+00:01:56,380 --> 00:01:58,180
+tiver m exemplos de treinamento com
+
+60
+00:01:58,420 --> 00:02:00,500
+uma referência por localização
+
+61
+00:02:00,810 --> 00:02:02,680
+de cada um
+
+62
+00:02:02,860 --> 00:02:04,810
+dos meus exemplos de treinamento.
+
+63
+00:02:04,950 --> 00:02:05,920
+Isso é bom, porque isto diz que
+
+64
+00:02:06,120 --> 00:02:07,630
+meus recursos vão medir,
+
+65
+00:02:07,700 --> 00:02:09,300
+basicamente, o quão próximo
+
+66
+00:02:09,380 --> 00:02:10,800
+de um exemplo é
+
+67
+00:02:10,970 --> 00:02:13,150
+aquilo que encontrei no conjunto de treinamento.
+
+68
+00:02:13,440 --> 00:02:14,180
+Ou seja, explicando novamente,
+
+69
+00:02:14,350 --> 00:02:16,270
+dados m exemplos
+
+70
+00:02:16,470 --> 00:02:17,870
+de treinamento, escolherei
+
+71
+00:02:18,050 --> 00:02:19,100
+a localização das
+
+72
+00:02:19,310 --> 00:02:20,430
+minhas referências para coincidir
+
+73
+00:02:21,190 --> 00:02:23,920
+exatamente nas localizações dos m exemplos de treinamento.
+
+74
+00:02:25,430 --> 00:02:26,600
+Quando você recebe um exemplo x,
+
+75
+00:02:26,920 --> 00:02:28,090
+e nesse exemplo x pode ser
+
+76
+00:02:28,230 --> 00:02:29,260
+algo dentro do conjunto de treinamento,
+
+77
+00:02:29,570 --> 00:02:30,800
+no conjunto de validação cruzada
+
+78
+00:02:31,490 --> 00:02:32,470
+ou no conjunto de teste.
+
+79
+00:02:33,320 --> 00:02:34,090
+Dado o exemplo x, vamos
+
+80
+00:02:34,320 --> 00:02:35,470
+computar esses recursos
+
+81
+00:02:35,750 --> 00:02:37,220
+encontrando f₁,
+
+82
+00:02:37,560 --> 00:02:39,180
+f₂, e por aí vai.
+
+83
+00:02:39,580 --> 00:02:41,120
+Aqui, l⁽¹⁾ é igual a
+
+84
+00:02:41,490 --> 00:02:42,850
+x⁽¹⁾, e assim também com os demais.
+
+85
+00:02:43,570 --> 00:02:46,080
+E estes, então, nos dão um vetor de recursos.
+
+86
+00:02:46,840 --> 00:02:49,540
+Deixe-me escrever f como um vetor de recursos.
+
+87
+00:02:50,270 --> 00:02:52,090
+Tomarei esses f₁, f₂,
+
+88
+00:02:52,290 --> 00:02:53,370
+e assim por diante, e os agruparei
+
+89
+00:02:53,580 --> 00:02:55,330
+em um vetor de recursos.
+
+90
+00:02:56,330 --> 00:02:58,000
+Todos eles, até f⁽ᵐ⁾
+
+91
+00:02:59,320 --> 00:03:01,080
+Além disso, somente por convenção,
+
+92
+00:03:01,610 --> 00:03:02,870
+se quisermos, podemos adicionar
+
+93
+00:03:02,990 --> 00:03:06,250
+um recurso extra f₀, que é sempre igual a 1.
+
+94
+00:03:06,450 --> 00:03:08,530
+Ele tem um papel parecido com o que vimos antes
+
+95
+00:03:09,480 --> 00:03:11,200
+para x₀, que era o intercepto.
+
+96
+00:03:13,200 --> 00:03:14,450
+Por exemplo, se  nós
+
+97
+00:03:14,580 --> 00:03:16,550
+temos um exemplo de treinamento (x⁽ⁱ⁾, y⁽ⁱ⁾),
+
+98
+00:03:18,270 --> 00:03:19,300
+os recursos que calcularíamos para
+
+99
+00:03:20,080 --> 00:03:21,330
+esse exemplo de treinamento seriam
+
+100
+00:03:21,440 --> 00:03:23,440
+como os seguintes: dado x⁽ⁱ⁾,
+
+101
+00:03:23,640 --> 00:03:26,560
+vamos então, mapeá-lo para f1(i),
+
+102
+00:03:27,980 --> 00:03:29,670
+que é a similaridade. Vou abreviar
+
+103
+00:03:29,960 --> 00:03:31,980
+como 'SIM' em vez de escrever
+
+104
+00:03:32,090 --> 00:03:33,380
+a palavra
+
+105
+00:03:35,540 --> 00:03:35,540
+similaridade, OK?
+
+106
+00:03:37,050 --> 00:03:39,180
+e f₂⁽ⁱ⁾ é igual à similaridade
+
+107
+00:03:40,090 --> 00:03:42,780
+entre x⁽ⁱ⁾ e l⁽²⁾,
+
+108
+00:03:43,140 --> 00:03:45,050
+e similarmente com os próximos,
+
+109
+00:03:45,230 --> 00:03:48,370
+até fm(i) sendo
+
+110
+00:03:49,600 --> 00:03:54,480
+a similaridade entre x⁽ⁱ⁾ e l⁽ᵐ⁾.
+
+111
+00:03:55,700 --> 00:03:58,700
+E, em algum lugar por aí no meio,
+
+112
+00:03:59,160 --> 00:04:01,320
+em algum lugar nessa lista, no
+
+113
+00:04:01,480 --> 00:04:03,930
+i-ésimo componente,
+
+114
+00:04:04,230 --> 00:04:05,740
+teremos realmente um recurso
+
+115
+00:04:06,150 --> 00:04:07,590
+que é fᵢ⁽ⁱ⁾
+
+116
+00:04:08,170 --> 00:04:09,930
+que será
+
+117
+00:04:10,050 --> 00:04:11,180
+a similaridade
+
+118
+00:04:13,080 --> 00:04:14,550
+entre x⁽ⁱ⁾ e l⁽ⁱ⁾,
+
+119
+00:04:15,680 --> 00:04:16,990
+onde l⁽ⁱ⁾ é igual a
+
+120
+00:04:17,190 --> 00:04:18,560
+x⁽ⁱ⁾, e assim
+
+121
+00:04:19,140 --> 00:04:20,320
+fᵢ⁽ⁱ⁾ será simplesmente
+
+122
+00:04:20,410 --> 00:04:22,250
+a similaridade entre x⁽ⁱ⁾ e ele mesmo.
+
+123
+00:04:23,960 --> 00:04:25,380
+E, se você estiver usando o kernel gaussiano, isso
+
+124
+00:04:25,620 --> 00:04:26,720
+é e elevado a 0
+
+125
+00:04:27,170 --> 00:04:29,440
+sobre 2 sigma ao quadrado, que resulta em 1.
+
+126
+00:04:29,790 --> 00:04:31,060
+Assim, um dos meus recursos para
+
+127
+00:04:31,370 --> 00:04:32,940
+esse exemplo de treinamento será igual a 1.
+
+128
+00:04:34,290 --> 00:04:35,570
+E, da mesma forma que fiz acima,
+
+129
+00:04:35,990 --> 00:04:36,940
+posso tomar todos esses
+
+130
+00:04:37,870 --> 00:04:39,910
+m recursos e agrupá-los em um vetor de recursos.
+
+131
+00:04:40,340 --> 00:04:41,730
+Assim, em vez de representar meu exemplo
+
+132
+00:04:42,710 --> 00:04:44,200
+usando x⁽ⁱ⁾, que é um
+
+133
+00:04:44,430 --> 00:04:46,970
+vetor em ℝⁿ ou ℝⁿ⁺¹.
+
+134
+00:04:48,290 --> 00:04:49,590
+Dependendo de como você
+
+135
+00:04:49,990 --> 00:04:51,120
+considera, ele estará em ℝⁿ
+
+136
+00:04:52,070 --> 00:04:52,750
+ou ℝⁿ⁺¹.
+
+137
+00:04:53,440 --> 00:04:55,140
+Podemos, agora, representar meu
+
+138
+00:04:55,300 --> 00:04:56,700
+exemplo de treinamento usando esse vetor
+
+139
+00:04:56,980 --> 00:04:58,810
+de recursos f.
+
+140
+00:04:58,920 --> 00:05:01,240
+Vou escrever isso como f⁽ⁱ⁾.
+
+141
+00:05:01,400 --> 00:05:03,060
+Ele é o resultado de agrupar
+
+142
+00:05:03,300 --> 00:05:06,010
+tudo isso e juntar em um vetor.
+
+143
+00:05:06,540 --> 00:05:09,180
+Assim, f₁⁽ⁱ⁾ até
+
+144
+00:05:09,430 --> 00:05:12,740
+fₘ⁽ⁱ⁾, e, se você
+
+145
+00:05:13,030 --> 00:05:15,160
+quiser também, adicionamos esse
+
+146
+00:05:15,420 --> 00:05:16,990
+f₀⁽ⁱ⁾, onde
+
+147
+00:05:17,130 --> 00:05:19,370
+f₀⁽ⁱ⁾ é igual a 1.
+
+148
+00:05:19,370 --> 00:05:20,970
+Assim, esse vetor
+
+149
+00:05:21,300 --> 00:05:23,260
+é meu novo
+
+150
+00:05:23,430 --> 00:05:25,180
+vetor de recursos com o qual
+
+151
+00:05:25,480 --> 00:05:28,310
+represento meu exemplo de treinamento.
+
+152
+00:05:29,040 --> 00:05:30,980
+Assim, dados esses kernels
+
+153
+00:05:31,530 --> 00:05:33,160
+e funções de similaridade, aqui está
+
+154
+00:05:33,400 --> 00:05:35,030
+como podemos usar uma máquina de vetores de suporte simples.
+
+155
+00:05:35,720 --> 00:05:37,100
+Se você já tem parâmetros θ
+
+156
+00:05:37,300 --> 00:05:39,040
+aprendidos, e recebe um valor de x com o qual quer fazer uma previsão,
+
+157
+00:05:41,680 --> 00:05:42,850
+o que fazemos é computar os
+
+158
+00:05:43,060 --> 00:05:44,170
+recursos f, que é
+
+159
+00:05:44,450 --> 00:05:46,920
+um vetor em ℝᵐ⁺¹.
+
+160
+00:05:49,040 --> 00:05:50,640
+E a dimensão depende de m porque
+
+161
+00:05:51,610 --> 00:05:53,190
+temos m exemplos de treinamento
+
+162
+00:05:53,570 --> 00:05:56,370
+e portanto m referências, e
+
+163
+00:05:57,330 --> 00:05:58,310
+estimamos y = 1 se
+
+164
+00:05:58,600 --> 00:06:00,180
+θ' · f
+
+165
+00:06:00,780 --> 00:06:01,860
+-3 + x₁ + x₂  ≥ 0,
+
+166
+00:06:02,230 --> 00:06:02,430
+Correto.
+
+167
+00:06:02,640 --> 00:06:03,770
+Aqui, θ' · f é
+
+168
+00:06:04,090 --> 00:06:07,200
+igual a θ₀ · f₀
+
+169
+00:06:07,900 --> 00:06:08,990
+mais θ₁ · f₁, somando
+
+170
+00:06:09,120 --> 00:06:11,200
+até θₘ · fₘ.
+
+171
+00:06:12,170 --> 00:06:13,900
+Assim, meu vetor
+
+172
+00:06:14,050 --> 00:06:15,720
+de parâmetros θ
+
+173
+00:06:16,170 --> 00:06:17,730
+também será um
+
+174
+00:06:17,990 --> 00:06:21,260
+vetor de dimensão m + 1.
+
+175
+00:06:21,780 --> 00:06:23,100
+Novamente, isso depende de m porque
+
+176
+00:06:23,260 --> 00:06:25,030
+o número de referências é igual
+
+177
+00:06:25,450 --> 00:06:26,600
+ao tamanho do conjunto de treinamento.
+
+178
+00:06:26,910 --> 00:06:28,190
+Então, m é o tamanho do conjunto de treinamento
+
+179
+00:06:29,100 --> 00:06:31,950
+e o vetor de parâmetros θ será de dimensão m + 1.
+
+180
+00:06:32,990 --> 00:06:33,990
+É assim que você faz uma estimativa
+
+181
+00:06:34,360 --> 00:06:36,870
+se você já conhece os parâmetros θ.
+
+182
+00:06:37,840 --> 00:06:39,160
+E como você obtém os parâmetros θ?
+
+183
+00:06:39,680 --> 00:06:40,650
+Você os calcula usando o
+
+184
+00:06:40,920 --> 00:06:43,040
+algoritmo de aprendizagem da SVM, ou,
+
+185
+00:06:43,850 --> 00:06:46,460
+especificamente, resolve este problema de minimização.
+
+186
+00:06:46,690 --> 00:06:48,170
+Você obteve os parâmetros que minimizam
+
+187
+00:06:48,540 --> 00:06:51,630
+C vezes aquela função de custo que tínhamos anteriormente.
+
+188
+00:06:52,430 --> 00:06:54,770
+Mas agora, em vez de fazer
+
+189
+00:06:55,040 --> 00:06:56,650
+estimativas
+
+190
+00:06:56,970 --> 00:06:59,300
+usando θ' · x⁽ⁱ⁾
+
+191
+00:07:00,020 --> 00:07:01,410
+usando os recursos originais,
+
+192
+00:07:01,720 --> 00:07:03,320
+x⁽ⁱ⁾, tomamos
+
+193
+00:07:03,520 --> 00:07:04,840
+os recursos x⁽ⁱ⁾
+
+194
+00:07:05,090 --> 00:07:06,260
+e os substituímos com novos recursos
+
+195
+00:07:07,270 --> 00:07:09,080
+de modo que usamos θ' · f⁽ⁱ⁾
+
+196
+00:07:09,380 --> 00:07:10,840
+para fazer uma
+
+197
+00:07:11,130 --> 00:07:12,480
+estimativa do i-ésimo exemplo
+
+198
+00:07:12,860 --> 00:07:13,860
+de treinamento, nesses
+
+199
+00:07:14,230 --> 00:07:16,580
+dois lugares aqui,
+
+200
+00:07:16,700 --> 00:07:18,270
+e é resolvendo esse problema de minimização
+
+201
+00:07:18,760 --> 00:07:22,130
+que você obtém os parâmetros para a máquina de vetores de suporte.
+
+202
+00:07:23,240 --> 00:07:24,640
+Só mais um detalhe,
+
+203
+00:07:24,870 --> 00:07:26,880
+por causa desse problema de
+
+204
+00:07:27,510 --> 00:07:29,580
+otimização nós temos
+
+205
+00:07:30,570 --> 00:07:32,300
+n = m recursos.
+
+206
+00:07:32,860 --> 00:07:33,650
+Ou seja, aqui,
+
+207
+00:07:34,520 --> 00:07:36,010
+o número de recursos que temos
+
+208
+00:07:37,100 --> 00:07:38,240
+é, na verdade, a
+
+209
+00:07:38,410 --> 00:07:39,390
+dimensão de f.
+
+210
+00:07:39,670 --> 00:07:41,020
+Assim, n será
+
+211
+00:07:41,730 --> 00:07:42,690
+igual a m.
+
+212
+00:07:42,900 --> 00:07:44,470
+Se você preferir, pode pensar
+
+213
+00:07:44,610 --> 00:07:45,530
+nisso como uma soma,
+
+214
+00:07:46,340 --> 00:07:47,280
+essa é uma soma de
+
+215
+00:07:47,590 --> 00:07:48,680
+j = 1 até m.
+
+216
+00:07:49,490 --> 00:07:50,390
+E uma maneira de pensar
+
+217
+00:07:50,470 --> 00:07:51,500
+sobre isso, você pode
+
+218
+00:07:51,620 --> 00:07:53,250
+pensar que n é
+
+219
+00:07:53,550 --> 00:07:55,060
+igual a m, porque se
+
+220
+00:07:55,570 --> 00:07:57,320
+f é o vetor de recursos,
+
+221
+00:07:57,970 --> 00:07:59,650
+temos m + 1 
+
+222
+00:08:00,120 --> 00:08:02,920
+recursos, sendo o + 1 proveniente do intercepto.
+
+223
+00:08:05,090 --> 00:08:06,760
+Aqui, ainda fazemos a soma
+
+224
+00:08:06,990 --> 00:08:08,110
+de j = 1 até n,
+
+225
+00:08:08,440 --> 00:08:10,070
+porque, assim como
+
+226
+00:08:10,380 --> 00:08:11,700
+nossos vídeos anteriores sobre regularização,
+
+227
+00:08:12,580 --> 00:08:14,110
+nós não regularizamos
+
+228
+00:08:14,180 --> 00:08:15,650
+o parâmetro θ₀, que é
+
+229
+00:08:15,780 --> 00:08:16,560
+a razão porque a soma vai
+
+230
+00:08:16,740 --> 00:08:17,930
+de j = 1 até m
+
+231
+00:08:18,880 --> 00:08:19,840
+em vez de j = 0 até m.
+
+232
+00:08:20,000 --> 00:08:22,200
+Esse é
+
+233
+00:08:22,580 --> 00:08:23,760
+o algoritmo de aprendizagem da máquina de vetores de suporte.
+
+234
+00:08:24,660 --> 00:08:26,260
+Faltou ainda um detalhe
+
+235
+00:08:27,160 --> 00:08:28,310
+matemático que eu
+
+236
+00:08:28,440 --> 00:08:29,840
+deveria mencionar, que é
+
+237
+00:08:29,930 --> 00:08:30,780
+que, da forma que a máquina de
+
+238
+00:08:31,310 --> 00:08:33,020
+vetores de suporte é implementada, 
+
+239
+00:08:33,320 --> 00:08:34,750
+esse último termo é calculado um pouco diferentemente.
+
+240
+00:08:35,680 --> 00:08:36,730
+Mas você não precisa saber
+
+241
+00:08:36,770 --> 00:08:38,080
+esse detalhe para poder
+
+242
+00:08:38,190 --> 00:08:39,190
+usar máquinas de vetores de suporte,
+
+243
+00:08:39,700 --> 00:08:41,330
+e, na verdade, as equações
+
+244
+00:08:41,450 --> 00:08:42,500
+que foram escritas aqui devem
+
+245
+00:08:42,620 --> 00:08:45,160
+fornecer toda a intuição de que você precisará.
+
+246
+00:08:45,310 --> 00:08:46,190
+Aliás, na implementação da máquina de vetores
+
+247
+00:08:46,450 --> 00:08:48,450
+de suporte, lembra daquele termo,
+
+248
+00:08:48,570 --> 00:08:50,960
+a somatória em j de θⱼ²?
+
+249
+00:08:53,110 --> 00:08:54,780
+Outra forma de escrever esse termo
+
+250
+00:08:55,580 --> 00:08:57,660
+é θ' · θ,
+
+251
+00:08:58,500 --> 00:08:59,530
+se ignorarmos
+
+252
+00:09:00,120 --> 00:09:02,730
+o parâmetro θ₀.
+
+253
+00:09:03,570 --> 00:09:05,640
+Ou seja, de θ₁ a
+
+254
+00:09:05,800 --> 00:09:10,090
+θₘ, ignorando θ₀.
+
+255
+00:09:11,130 --> 00:09:13,790
+Assim, essa soma
+
+256
+00:09:14,510 --> 00:09:15,900
+em j de θⱼ²
+
+257
+00:09:16,040 --> 00:09:18,870
+pode também ser escrita como θ' · θ.
+
+258
+00:09:19,930 --> 00:09:21,520
+Na verdade, a maioria das implementações
+
+259
+00:09:21,730 --> 00:09:23,380
+de máquinas de vetores de suporte
+
+260
+00:09:23,720 --> 00:09:25,520
+substituem esse θ' · θ,
+
+261
+00:09:26,280 --> 00:09:28,270
+e calculam na verdade θ' vezes
+
+262
+00:09:28,590 --> 00:09:30,140
+alguma matriz no meio, que
+
+263
+00:09:30,820 --> 00:09:33,930
+depende do kernel sendo usado, vezes θ.
+
+264
+00:09:34,160 --> 00:09:35,500
+Isso nos fornece uma métrica de distância um pouco diferente.
+
+265
+00:09:36,140 --> 00:09:37,770
+Usaremos uma medida um pouco
+
+266
+00:09:38,070 --> 00:09:40,050
+diferente em vez de minimizar exatamente
+
+267
+00:09:41,320 --> 00:09:43,250
+a norma de θ ao quadrado,
+
+268
+00:09:43,790 --> 00:09:45,990
+minimizamos algo parecido com ela.
+
+269
+00:09:46,140 --> 00:09:47,610
+Essa é uma versão modificada do
+
+270
+00:09:47,770 --> 00:09:50,150
+vetor de parâmetros θ que depende do kernel.
+
+271
+00:09:50,950 --> 00:09:52,440
+Mas isso é um detalhe matemático.
+
+272
+00:09:53,210 --> 00:09:54,360
+Ele possibilita à máquina de
+
+273
+00:09:54,650 --> 00:09:56,350
+vetores de suporte executar muito mais eficientemente.
+
+274
+00:09:58,300 --> 00:09:59,410
+A razão porque a máquina de vetores de suporte
+
+275
+00:09:59,700 --> 00:10:01,500
+faz isso com essa modificação
+
+276
+00:10:02,020 --> 00:10:03,250
+é que ela possibilita
+
+277
+00:10:03,300 --> 00:10:05,740
+escalar a conjuntos de treinamento muito maiores.
+
+278
+00:10:06,370 --> 00:10:07,800
+Por exemplo, se você tiver
+
+279
+00:10:07,970 --> 00:10:11,530
+um conjunto de treinamento com 10.000 exemplos,
+
+280
+00:10:12,590 --> 00:10:13,560
+da forma que definimos as
+
+281
+00:10:13,950 --> 00:10:15,750
+referências, acabamos com 10.000 referências.
+
+282
+00:10:16,780 --> 00:10:18,060
+Assim, θ será de dimensão 10.000.
+
+283
+00:10:18,490 --> 00:10:20,450
+Talvez isso ainda funcione, mas quando
+
+284
+00:10:20,450 --> 00:10:21,710
+m se torna muito, muito grande,
+
+285
+00:10:22,470 --> 00:10:24,020
+achar uma solução para todos
+
+286
+00:10:24,150 --> 00:10:25,480
+esses parâmetros, se m for
+
+287
+00:10:25,590 --> 00:10:26,590
+50.000 ou 100.000
+
+288
+00:10:26,880 --> 00:10:28,170
+uma solução para
+
+289
+00:10:28,340 --> 00:10:29,660
+todos esses parâmetros pode se tornar
+
+290
+00:10:29,890 --> 00:10:31,240
+custosa para o software
+
+291
+00:10:31,420 --> 00:10:33,690
+de máquina de vetores de suporte,
+
+292
+00:10:33,870 --> 00:10:35,750
+minimizando esse problema de otimização que desenhei aqui.
+
+293
+00:10:36,490 --> 00:10:37,570
+Isso é meio que um detalhe
+
+294
+00:10:37,860 --> 00:10:39,580
+matemático, que, novamente, você não precisa saber muito sobre.
+
+295
+00:10:41,000 --> 00:10:43,070
+Ele modifica aquele último
+
+296
+00:10:43,350 --> 00:10:44,380
+termo um pouquinho para
+
+297
+00:10:44,500 --> 00:10:45,940
+otimizar algo um pouco diferente que
+
+298
+00:10:46,080 --> 00:10:48,560
+simplesmente minimizar a norma de θ ao quadrado.
+
+299
+00:10:49,370 --> 00:10:50,600
+Mas, se você preferir,
+
+300
+00:10:51,080 --> 00:10:52,450
+sinta-se à vontade para pensar
+
+301
+00:10:52,710 --> 00:10:54,880
+nisso como um detalhe de implementação
+
+302
+00:10:55,340 --> 00:10:56,750
+que muda o objetivo um
+
+303
+00:10:56,880 --> 00:10:58,260
+pouquinho, mas é feito
+
+304
+00:10:58,930 --> 00:11:01,590
+principalmente por questões de eficiência computacional.
+
+305
+00:11:02,260 --> 00:11:04,390
+Portanto, você não deve ter que se preocupar muito com isso.
+
+306
+00:11:07,640 --> 00:11:09,460
+Aliás, se você estiver pensando
+
+307
+00:11:09,560 --> 00:11:10,730
+por que não aplicamos a
+
+308
+00:11:11,100 --> 00:11:12,210
+ideia de kernel a outros
+
+309
+00:11:12,570 --> 00:11:13,690
+algoritmos também, como
+
+310
+00:11:14,040 --> 00:11:15,450
+regressão logística,
+
+311
+00:11:15,670 --> 00:11:16,770
+se você quiser, pode
+
+312
+00:11:16,900 --> 00:11:18,120
+aplicar a ideia de
+
+313
+00:11:18,550 --> 00:11:19,850
+kernel e definir a fonte
+
+314
+00:11:19,990 --> 00:11:22,920
+dos recursos utilizando referências e todo o resto na regressão logística.
+
+315
+00:11:23,880 --> 00:11:25,860
+Mas os truques computacionais que valem
+
+316
+00:11:26,440 --> 00:11:28,110
+para máquinas de vetores de suporte não
+
+317
+00:11:28,430 --> 00:11:30,700
+generalizam bem a outros algoritmos, como regressão logística.
+
+318
+00:11:31,310 --> 00:11:33,110
+Assim, utilizar kernel s com
+
+319
+00:11:33,260 --> 00:11:34,390
+regressão logística resultará em um
+
+320
+00:11:34,580 --> 00:11:36,330
+algoritmo lento, enquanto, por causa
+
+321
+00:11:36,440 --> 00:11:37,940
+desses truques computacionais,
+
+322
+00:11:38,150 --> 00:11:39,490
+como esse mostrado, e como eles
+
+323
+00:11:39,900 --> 00:11:41,130
+modificam isso, juntamente com
+
+324
+00:11:41,320 --> 00:11:43,140
+os detalhes de como máquinas de vetores de suporte
+
+325
+00:11:43,240 --> 00:11:44,990
+são implementadas, máquinas de vetores de suporte
+
+326
+00:11:45,300 --> 00:11:47,090
+e kernels tendem a se dar bem juntos,
+
+327
+00:11:47,930 --> 00:11:49,450
+enquanto regressão logística com kernels,
+
+328
+00:11:50,250 --> 00:11:51,990
+por mais que você consiga fazer, vai executar muito lentamente.
+
+329
+00:11:52,890 --> 00:11:53,670
+E não conseguirá tirar
+
+330
+00:11:53,750 --> 00:11:55,420
+proveito das técnicas avançadas de otimização
+
+331
+00:11:56,040 --> 00:11:57,360
+que pessoas já descobriram
+
+332
+00:11:57,530 --> 00:11:58,530
+para o caso particular de
+
+333
+00:11:59,140 --> 00:12:00,950
+executar uma máquina de suporte de vetores com kernels.
+
+334
+00:12:01,540 --> 00:12:03,340
+Mas tudo isso diz respeito somente
+
+335
+00:12:03,710 --> 00:12:04,850
+a como você efetivamente implementa
+
+336
+00:12:05,230 --> 00:12:06,900
+software para minimizar a função de custo.
+
+337
+00:12:07,870 --> 00:12:08,940
+Falarei mais sobre isso no
+
+338
+00:12:09,040 --> 00:12:09,950
+próximo vídeo, mas você não precisa
+
+339
+00:12:10,150 --> 00:12:11,530
+saber como escrever
+
+340
+00:12:12,200 --> 00:12:13,520
+software para
+
+341
+00:12:13,670 --> 00:12:14,890
+minimizar essa função de custo porque
+
+342
+00:12:15,170 --> 00:12:17,560
+você consegue achar software pronto muito bom para fazer isso.
+
+343
+00:12:18,670 --> 00:12:19,890
+Da mesma forma que eu não
+
+344
+00:12:20,140 --> 00:12:21,340
+recomendaria fazer um programa para inverter
+
+345
+00:12:21,850 --> 00:12:22,960
+uma matriz ou calcular uma
+
+346
+00:12:23,150 --> 00:12:24,490
+raiz quadrada, eu não
+
+347
+00:12:24,660 --> 00:12:26,420
+recomendo escrever software para
+
+348
+00:12:26,560 --> 00:12:27,750
+minimizar essa função de custo por conta própria
+
+349
+00:12:28,240 --> 00:12:29,610
+mas sim utilizar
+
+350
+00:12:29,780 --> 00:12:31,490
+pacotes de software prontos que já
+
+351
+00:12:31,740 --> 00:12:33,240
+foram desenvolvidos, e
+
+352
+00:12:33,540 --> 00:12:35,140
+esses pacotes de software já incorporam
+
+353
+00:12:35,790 --> 00:12:37,720
+esses truques de otimização numérica,
+
+354
+00:12:39,540 --> 00:12:41,770
+então você não precisa se preocupar com eles.
+
+355
+00:12:41,950 --> 00:12:42,920
+Mas outra coisa que é bom
+
+356
+00:12:43,180 --> 00:12:45,200
+saber é: quando você
+
+357
+00:12:45,350 --> 00:12:46,400
+usa uma máquina de vetores de
+
+358
+00:12:46,640 --> 00:12:47,730
+suporte, como você
+
+359
+00:12:47,820 --> 00:12:50,220
+escolhe os seus parâmetros?
+
+360
+00:12:51,520 --> 00:12:52,300
+A última coisa que quero fazer
+
+361
+00:12:52,400 --> 00:12:53,290
+neste vídeo é falar um
+
+362
+00:12:53,450 --> 00:12:54,680
+pouquinho sobre viés e
+
+363
+00:12:54,840 --> 00:12:57,070
+variância no contexto de uma máquina de vetores de suporte.
+
+364
+00:12:57,900 --> 00:12:59,230
+Quando usar uma SVM, uma
+
+365
+00:12:59,390 --> 00:13:00,670
+das coisas que você precisa escolher
+
+366
+00:13:00,960 --> 00:13:03,850
+é o parâmetro C, que
+
+367
+00:13:04,090 --> 00:13:05,880
+estava no objetivo de otimização.
+
+368
+00:13:05,980 --> 00:13:07,690
+Lembre-se que C tinha um
+
+369
+00:13:07,770 --> 00:13:09,800
+papel similar a
+
+370
+00:13:10,050 --> 00:13:11,750
+1/λ, onde λ é o parâmetro de
+
+371
+00:13:12,520 --> 00:13:13,970
+regularização que tínhamos na regressão logística.
+
+372
+00:13:15,360 --> 00:13:16,760
+Assim, se você tiver um
+
+373
+00:13:16,930 --> 00:13:18,760
+valor alto para C, isso corresponde
+
+374
+00:13:19,520 --> 00:13:20,560
+ao que temos na regressão logística,
+
+375
+00:13:21,270 --> 00:13:22,260
+em que um valor pequeno
+
+376
+00:13:22,670 --> 00:13:25,080
+de λ significa não usar muita regularização.
+
+377
+00:13:25,980 --> 00:13:26,960
+Se você o fizer, irá
+
+378
+00:13:27,050 --> 00:13:29,330
+tenderá a encontrar uma hipótese com viés baixo e variância alta.
+
+379
+00:13:30,570 --> 00:13:31,420
+Agora, se você usar um
+
+380
+00:13:31,630 --> 00:13:33,050
+valor menor de C,
+
+381
+00:13:33,240 --> 00:13:34,510
+isso corresponde a
+
+382
+00:13:34,660 --> 00:13:36,450
+usar regressão logística com um
+
+383
+00:13:36,620 --> 00:13:38,090
+valor mais alto de λ, e isso corresponde
+
+384
+00:13:38,690 --> 00:13:40,180
+a uma hipótese com viés
+
+385
+00:13:40,470 --> 00:13:41,760
+alto e variância baixa.
+
+386
+00:13:42,580 --> 00:13:44,520
+Assim, hipóteses com C
+
+387
+00:13:45,000 --> 00:13:46,870
+grande tem maior
+
+388
+00:13:47,450 --> 00:13:48,380
+variância, e é mais suscetível
+
+389
+00:13:48,580 --> 00:13:50,290
+a sobreajuste, enquanto hipóteses com
+
+390
+00:13:50,450 --> 00:13:52,820
+C pequeno têm viés maior
+
+391
+00:13:52,910 --> 00:13:54,900
+e são, portanto, mais suscetíveis a subajuste.
+
+392
+00:13:56,710 --> 00:13:59,870
+Assim, esse parâmetro C é um dos que precisamos escolher.
+
+393
+00:14:00,210 --> 00:14:01,280
+O outro é o parâmetro σ²,
+
+394
+00:14:02,280 --> 00:14:04,580
+que apareceu no kernel gaussiano.
+
+395
+00:14:05,760 --> 00:14:07,080
+Se o σ² no kernel
+
+396
+00:14:07,750 --> 00:14:09,370
+gaussiano é grande,
+
+397
+00:14:09,640 --> 00:14:11,350
+a função de similaridade mudará,
+
+398
+00:14:11,530 --> 00:14:12,710
+aquela igual a e elevado a
+
+399
+00:14:13,390 --> 00:14:14,710
+-||x - l⁽ⁱ⁾||²
+
+400
+00:14:16,280 --> 00:14:17,950
+sobre 2σ².
+
+401
+00:14:20,130 --> 00:14:21,290
+Neste exemplo, se eu
+
+402
+00:14:21,480 --> 00:14:23,330
+tiver somente um recurso, x₁,
+
+403
+00:14:23,570 --> 00:14:25,390
+terei uma referência exatamente
+
+404
+00:14:25,490 --> 00:14:27,710
+naquele local, se σ²
+
+405
+00:14:27,960 --> 00:14:29,230
+é grande, o kernel
+
+406
+00:14:29,480 --> 00:14:30,600
+gaussiano diminuirá
+
+407
+00:14:30,690 --> 00:14:32,940
+de valor relativamente devagar,
+
+408
+00:14:33,960 --> 00:14:34,740
+então este seria meu recurso
+
+409
+00:14:35,210 --> 00:14:36,690
+fᵢ, e essa
+
+410
+00:14:36,880 --> 00:14:38,970
+função seria mais plana,
+
+411
+00:14:39,060 --> 00:14:40,640
+variando mais lentamente, o que
+
+412
+00:14:40,760 --> 00:14:42,750
+te dará uma hipótese com viés
+
+413
+00:14:43,030 --> 00:14:44,170
+alto e variância baixa, porque
+
+414
+00:14:44,550 --> 00:14:46,000
+o kernel gaussiano cai lentamente.
+
+415
+00:14:46,840 --> 00:14:48,240
+Você tenderá a conseguir uma hipótese que
+
+416
+00:14:48,520 --> 00:14:50,060
+varia lentamente
+
+417
+00:14:50,130 --> 00:14:51,860
+à medida que mudamos
+
+418
+00:14:52,050 --> 00:14:53,680
+a entrada x. Em contraste,
+
+419
+00:14:54,030 --> 00:14:55,330
+se σ² for
+
+420
+00:14:55,660 --> 00:14:57,430
+pequeno e esta é minha
+
+421
+00:14:57,540 --> 00:14:58,830
+referência, dada pelo único recurso
+
+422
+00:14:58,960 --> 00:15:01,440
+x₁, o kernel
+
+423
+00:15:01,820 --> 00:15:04,630
+gaussiano, minha função de similaridade, variará mais abruptamente.
+
+424
+00:15:05,310 --> 00:15:07,520
+Nos dois casos o pico
+
+425
+00:15:07,580 --> 00:15:08,550
+tem valor 1, e se σ²
+
+426
+00:15:08,870 --> 00:15:11,730
+é pequeno, meus recursos irão variar mais lentamente.
+
+427
+00:15:12,190 --> 00:15:13,740
+Aqui as inclinações são maiores,
+
+428
+00:15:14,250 --> 00:15:15,300
+as derivadas são maiores.
+
+429
+00:15:16,020 --> 00:15:17,170
+Usando isso, você
+
+430
+00:15:17,330 --> 00:15:19,620
+ajustará hipóteses de viés
+
+431
+00:15:19,840 --> 00:15:21,870
+baixo, mas pode ter variância alta.
+
+432
+00:15:23,030 --> 00:15:24,460
+E se olhando essa curva,
+
+433
+00:15:24,680 --> 00:15:26,240
+no exercício de programação desta semana, você
+
+434
+00:15:26,450 --> 00:15:27,230
+vai poder brincar com algumas
+
+435
+00:15:27,330 --> 00:15:29,480
+dessas ideias por conta própria, e ver esses efeitos por conta própria.
+
+436
+00:15:31,590 --> 00:15:34,430
+Bom, esse foi o algoritmo SVM com kernels.
+
+437
+00:15:35,320 --> 00:15:36,450
+Espero que esta discussão
+
+438
+00:15:37,090 --> 00:15:39,170
+sobre viés e variância te dará
+
+439
+00:15:39,310 --> 00:15:40,380
+uma noção de como você pode
+
+440
+00:15:40,460 --> 00:15:42,600
+esperar que esse algoritmo se comporte também.

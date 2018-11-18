@@ -1,0 +1,192 @@
+1
+00:00:00,000 --> 00:00:04,162
+Nesse vídeo, eu vou apenas mostra como fazer as tarefas de casa,
+
+2
+00:00:04,162 --> 00:00:09,387
+e como usar o sistema de envio, que lhe permite verificar
+
+3
+00:00:09,387 --> 00:00:15,619
+instantaneamente se você acertou as respostas
+nos seus exercícios de Aprendizado de Máquina.
+
+4
+00:00:15,619 --> 00:00:19,354
+Aqui está minha janela do Octave e,
+primeiro vamos para o meu desktop.
+
+5
+00:00:19,354 --> 00:00:25,374
+Eu salvei os arquivos para o meu primeiro exercício,
+alguns deles no meu desktop:
+
+6
+00:00:25,374 --> 00:00:27,994
+nesse diretório, 'ml-class-ex1'.
+
+7
+00:00:27,994 --> 00:00:32,921
+E nós fornecemos um número de arquivos
+e pedimos pra você editar alguns deles.
+
+8
+00:00:32,921 --> 00:00:40,701
+Assim, para o primeiro arquivo, voce vai encontrar detalhes
+no arquivo pdf para esse exercício de programação.
+
+9
+00:00:40,701 --> 00:00:45,352
+Mas, um dos arquivos que pedimos para você editar
+é esse, chamado "warmUpExercise.m",
+
+10
+00:00:45,352 --> 00:00:49,890
+onde o exercício é apenas para ver se você está
+familiarizado com o sistema de envio.
+
+11
+00:00:49,890 --> 00:00:53,795
+E tudo o que você precisa fazer é
+retornar a matriz identidade "5x5".
+
+12
+00:00:53,795 --> 00:01:00,301
+Portanto, a solução desse exercício, eu vou
+mostrar, é so escrever "A = eye(5)".
+
+13
+00:01:00,301 --> 00:01:05,766
+Assim, isso modifica a função para
+gerar a matriz identidade "5x5".
+
+14
+00:01:05,766 --> 00:01:11,149
+E essa função "warmUpExercise()"
+agora retorna a matriz identidade "5x5"
+
+15
+00:01:11,149 --> 00:01:13,727
+E eu vou salvar.
+
+16
+00:01:13,727 --> 00:01:17,465
+Então, eu fiz a primeira parte da tarefa.
+Voltando para a janela do Octave,
+
+17
+00:01:17,465 --> 00:01:27,185
+vamos para o diretório,
+'C:\Users\ang\Desktop\ml-class-ex1'.
+
+18
+00:01:27,185 --> 00:01:33,347
+E, se eu quiser ter certeza que isso foi implementado,
+eu digito 'warmUpExercise()',
+
+19
+00:01:33,347 --> 00:01:39,671
+e isso retorna a matriz identidade "5x5"
+que acabamos de criar.
+
+20
+00:01:39,671 --> 00:01:43,870
+E agora eu posso enviar o código, da seguinte maneira:
+Eu digito 'submit()'
+
+21
+00:01:43,870 --> 00:01:49,300
+nesse diretório, e estou pronto para enviar a parte 1,
+então entro '1'.
+
+22
+00:01:49,300 --> 00:01:54,387
+Então, o sistema pede meu endereço de email.
+Eu vou ao site do curso.
+
+23
+00:01:54,387 --> 00:01:59,682
+Esse é um site interno de testes.
+Sua versão do website pode ser um pouco diferente.
+
+24
+00:01:59,682 --> 00:02:07,934
+Mas, esse é meu endereço de email e essa é mina
+senha de envio, e eu vou digita-los aqui.
+
+25
+00:02:07,934 --> 00:02:19,205
+Então eu tenho 'ang@cs.stanford.edu' e
+minha senha de envio é '9yC75USsGf'.
+
+26
+00:02:19,205 --> 00:02:23,849
+Eu aperto <enter>, e ele se conecta ao servidor e faz o envio,
+
+27
+00:02:23,849 --> 00:02:28,567
+e o sistema diz "Parabéns! Você completou
+com sucesso a Tarefa de casa 1 Parte 1".
+
+28
+00:02:28,567 --> 00:02:33,160
+E verifica se você fez essa parte corretamente.
+
+29
+00:02:33,160 --> 00:02:36,795
+E se você não enviar a resposta correta,
+o sistema mostrará uma mensagem,
+
+30
+00:02:36,795 --> 00:02:39,501
+indicando que sua resposta está incorreta.
+
+31
+00:02:39,501 --> 00:02:47,861
+E, você pode usar essa senha de envio,
+ou você pode gerar uma nova senha.
+
+32
+00:02:47,861 --> 00:02:52,556
+Você pode usar a senha de login do site,
+mas como essa senha será digitada,
+
+33
+00:02:52,556 --> 00:02:59,281
+em texto visível no seu monitor,
+nós damos a você uma senha de envio extra,
+
+34
+00:02:59,281 --> 00:03:03,650
+caso você não queira digitar sua
+senha normal do site em uma janela que,
+
+35
+00:03:03,650 --> 00:03:09,219
+dependendo do sistema operacional,
+pode ou não aparecer como um texto,
+
+36
+00:03:09,219 --> 00:03:14,544
+quando você digita no script de envio do Octave.
+
+37
+00:03:14,544 --> 00:03:18,746
+Portanto, é assim que você envia a
+tarefa de casa, depois que tiver terminado.
+
+38
+00:03:18,746 --> 00:03:23,696
+Boa sorte e, quando você estiver fazendo as tarefas,
+espero que você consiga fazê-las corretamente.
+
+39
+00:03:23,696 --> 00:03:28,329
+E, finalmente, no próximo e último vídeo
+de tutorial do Octave, eu vou falar
+
+40
+00:03:28,329 --> 00:03:33,337
+sobre vetorização, que é uma maneira de
+fazer seu código Octave rodar de maneira mais eficiente.
+Tradução: Carlos Lacerda | Revisão: Pablo de Morais Andrade

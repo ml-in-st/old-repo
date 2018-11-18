@@ -1,0 +1,1279 @@
+1
+00:00:00,310 --> 00:00:01,540
+En este video quiero
+
+2
+00:00:01,590 --> 00:00:02,885
+hablarte sobre algunas operaciones
+
+3
+00:00:02,885 --> 00:00:04,848
+de matriz especial, llamadas
+
+4
+00:00:04,848 --> 00:00:07,430
+operaciones de matriz inversa y traspuesta.
+
+5
+00:00:08,740 --> 00:00:10,312
+Vamos a empezar por hablar de la
+
+6
+00:00:10,312 --> 00:00:12,928
+matriz inversa, y como
+
+7
+00:00:12,940 --> 00:00:14,516
+de costumbre, empezaremos por pensar
+
+8
+00:00:14,516 --> 00:00:17,248
+cómo se relaciona con número reales.
+
+9
+00:00:17,280 --> 00:00:18,803
+En el video anterior dije
+
+10
+00:00:18,803 --> 00:00:20,625
+que el número uno tiene el
+
+11
+00:00:20,625 --> 00:00:24,570
+papel de identidad en
+
+12
+00:00:24,590 --> 00:00:26,059
+el espacio de números reales, ya que
+
+13
+00:00:26,070 --> 00:00:28,851
+uno por nada es igual a sí mismo.
+
+14
+00:00:28,860 --> 00:00:30,270
+Resulta que los números reales
+
+15
+00:00:30,270 --> 00:00:31,642
+tienen esta propiedad de que
+
+16
+00:00:31,642 --> 00:00:33,093
+cada número
+
+17
+00:00:33,120 --> 00:00:34,635
+tiene una inversa.
+
+18
+00:00:34,635 --> 00:00:36,637
+Por ejemplo, con el
+
+19
+00:00:36,660 --> 00:00:38,552
+número tres, existe algún
+
+20
+00:00:38,552 --> 00:00:40,132
+número que resulta ser la
+
+21
+00:00:40,132 --> 00:00:41,544
+inversa de tres, de modo
+
+22
+00:00:41,544 --> 00:00:43,798
+que ese número por tres, te da
+
+23
+00:00:43,798 --> 00:00:46,458
+otra vez el elemento de identidad uno.
+
+24
+00:00:46,480 --> 00:00:50,727
+Entonces, ya sabes, la inversa de tres, por supuesto esto sólo es un tercio.
+
+25
+00:00:50,727 --> 00:00:53,236
+Y con algún otro número,
+
+26
+00:00:53,236 --> 00:00:55,360
+tal vez doce, existe
+
+27
+00:00:55,360 --> 00:00:57,312
+algún número que es la
+
+28
+00:00:57,340 --> 00:00:59,464
+inversa de doce escrita como
+
+29
+00:00:59,464 --> 00:01:01,600
+doce para menos uno,o
+
+30
+00:01:01,600 --> 00:01:03,582
+en realidad sólo es un doceavo.
+
+31
+00:01:03,582 --> 00:01:07,092
+De modo que cuando multiplicas estas dos cosa juntas,
+
+32
+00:01:07,092 --> 00:01:09,292
+el producto otra vez es
+
+33
+00:01:09,292 --> 00:01:12,367
+igual al elemento de identidad uno.
+
+34
+00:01:12,370 --> 00:01:13,838
+Ahora, resulta que en el
+
+35
+00:01:13,860 --> 00:01:17,154
+espacio de números reales, no todo tiene una inversa.
+
+36
+00:01:17,154 --> 00:01:19,148
+Por ejemplo, el número cero
+
+37
+00:01:19,160 --> 00:01:20,981
+no tiene una inversa, ¿correcto?
+
+38
+00:01:20,981 --> 00:01:25,410
+Porque cero es una inversa de cero, uno sobre cero es indefinido.
+
+39
+00:01:25,460 --> 00:01:29,862
+Como este uno sobre cero no está bien definido.
+
+40
+00:01:30,100 --> 00:01:31,419
+Y lo que queremos
+
+41
+00:01:31,450 --> 00:01:32,453
+hacer en el resto de esta
+
+42
+00:01:32,453 --> 00:01:33,835
+diapositiva es averiguar qué
+
+43
+00:01:33,835 --> 00:01:38,341
+significa calcular la inversa de una matriz.
+
+44
+00:01:39,253 --> 00:01:41,718
+Esta es la idea. Si
+
+45
+00:01:41,750 --> 00:01:43,198
+A es una matriz
+
+46
+00:01:43,200 --> 00:01:45,078
+m por m y
+
+47
+00:01:45,078 --> 00:01:46,320
+tiene una inversa, diré
+
+48
+00:01:46,350 --> 00:01:48,487
+más de eso después, entonces
+
+49
+00:01:48,487 --> 00:01:49,927
+se escribirá la inversa
+
+50
+00:01:49,927 --> 00:01:51,668
+A a la
+
+51
+00:01:51,668 --> 00:01:54,186
+menos uno y A
+
+52
+00:01:54,186 --> 00:01:55,798
+por esta inversa, A a
+
+53
+00:01:55,798 --> 00:01:57,045
+la menos uno será
+
+54
+00:01:57,050 --> 00:01:59,395
+igual a A, inversa por
+
+55
+00:01:59,395 --> 00:02:00,741
+A nos regresará
+
+56
+00:02:00,741 --> 00:02:04,088
+a la matriz de identidad,
+
+57
+00:02:04,088 --> 00:02:04,958
+¿Bien?
+
+58
+00:02:04,960 --> 00:02:07,037
+Sólo las matrices que son
+
+59
+00:02:07,060 --> 00:02:09,848
+m por m para algún valor de m tienen una inversa.
+
+60
+00:02:09,870 --> 00:02:11,692
+Entonces, una matriz
+
+61
+00:02:11,692 --> 00:02:13,010
+es m por m, esto también
+
+62
+00:02:13,040 --> 00:02:16,055
+se llama matriz cuadrada, y
+
+63
+00:02:16,055 --> 00:02:18,222
+se llama cuadrada porque
+
+64
+00:02:18,222 --> 00:02:24,852
+el número de filas es igual al número de columnas.
+
+65
+00:02:24,852 --> 00:02:26,516
+Bien, y resulta
+
+66
+00:02:26,530 --> 00:02:29,518
+que sólo las matrices cuadradas tienen inversas,
+
+67
+00:02:29,520 --> 00:02:31,148
+así que A es una
+
+68
+00:02:31,148 --> 00:02:32,973
+matriz cuadrada, m por m,
+
+69
+00:02:33,020 --> 00:02:37,198
+y si es una inversa, entonces cumple con la ecuación de aquí.
+
+70
+00:02:37,340 --> 00:02:39,568
+Veamos un ejemplo concreto,
+
+71
+00:02:39,568 --> 00:02:41,530
+digamos que
+
+72
+00:02:41,580 --> 00:02:45,090
+tengo una matriz, tres, cuatro,
+
+73
+00:02:45,120 --> 00:02:48,080
+dos, dieciséis.
+
+74
+00:02:48,080 --> 00:02:49,535
+Entonces, esta es una
+
+75
+00:02:49,535 --> 00:02:51,788
+matriz dos por dos, así que
+
+76
+00:02:51,810 --> 00:02:53,159
+es una matriz cuadrada, y esta
+
+77
+00:02:53,160 --> 00:02:55,442
+podría tener sólo una inversa y
+
+78
+00:02:55,480 --> 00:02:57,733
+resulta que, por
+
+79
+00:02:57,750 --> 00:02:59,308
+casualidad, sé que la inversa
+
+80
+00:02:59,310 --> 00:03:00,810
+de esta matriz es cero punto
+
+81
+00:03:00,840 --> 00:03:02,675
+cuatro menos cero punto
+
+82
+00:03:02,675 --> 00:03:04,485
+uno, menos cero punto
+
+83
+00:03:04,520 --> 00:03:08,687
+cero cinco, cero punto cero siete cinco.
+
+84
+00:03:08,750 --> 00:03:10,267
+Y si tomo esta matriz
+
+85
+00:03:10,267 --> 00:03:12,273
+y multiplico esto, resulta
+
+86
+00:03:12,273 --> 00:03:13,598
+que lo que obtengo
+
+87
+00:03:13,620 --> 00:03:15,595
+es la matriz de identidad
+
+88
+00:03:15,595 --> 00:03:18,324
+dos por dos, “i,
+
+89
+00:03:18,350 --> 00:03:20,542
+puedo escribir esto como “i” dos por dos.
+
+90
+00:03:20,558 --> 00:03:21,365
+¿Bien?
+
+91
+00:03:21,365 --> 00:03:22,308
+Y en esta diapositiva,
+
+92
+00:03:22,308 --> 00:03:24,416
+ya sabes, esta matriz es
+
+93
+00:03:24,416 --> 00:03:27,199
+la matriz A, y esta matriz es la inversa de la matriz A.
+
+94
+00:03:27,199 --> 00:03:28,622
+Y resulta que
+
+95
+00:03:28,622 --> 00:03:29,835
+si estas calculando A por
+
+96
+00:03:29,835 --> 00:03:31,385
+inversa de A, resulta que si
+
+97
+00:03:31,410 --> 00:03:32,742
+calculas la inversa de A por A,
+
+98
+00:03:32,750 --> 00:03:36,821
+también obtienes de nuevo la matriz de identidad.
+
+99
+00:03:36,852 --> 00:03:38,640
+Entonces, ¿cómo
+
+100
+00:03:38,640 --> 00:03:39,760
+encontré esta inversa o cómo
+
+101
+00:03:39,920 --> 00:03:42,698
+obtuve esta inversa de aquí?
+
+102
+00:03:42,730 --> 00:03:45,048
+Resulta que a veces
+
+103
+00:03:45,060 --> 00:03:46,731
+puedes calcular las inversas manualmente,
+
+104
+00:03:46,760 --> 00:03:48,745
+pero ya casi nadie hace eso.
+
+105
+00:03:48,780 --> 00:03:49,888
+Y resulta que existe
+
+106
+00:03:49,888 --> 00:03:52,198
+software numérico muy bueno para
+
+107
+00:03:52,240 --> 00:03:55,447
+tomar una matriz y calcular su inversa.
+
+108
+00:03:55,447 --> 00:03:56,369
+De nuevo, esto es una de las
+
+109
+00:03:56,369 --> 00:03:57,310
+cosas donde hay muchas
+
+110
+00:03:57,310 --> 00:03:59,450
+bibliotecas de código abierto que
+
+111
+00:03:59,450 --> 00:04:00,748
+puedes vincular con cualquier
+
+112
+00:04:00,748 --> 00:04:04,973
+lenguaje de programación popular para calcular las inversas de matrices.
+
+113
+00:04:04,990 --> 00:04:06,892
+Déjame mostrarte un ejemplo rápido de
+
+114
+00:04:06,900 --> 00:04:08,935
+cómo calculé realmente esta inversa,
+
+115
+00:04:08,940 --> 00:04:13,132
+y lo que hice fue usar un software llamado Octave.
+
+116
+00:04:13,170 --> 00:04:14,437
+Permíteme presentártelo.
+
+117
+00:04:14,437 --> 00:04:17,186
+Más adelante veremos mucho sobre Octave.
+
+118
+00:04:17,186 --> 00:04:18,903
+Deja que te muestre de forma rápida un ejemplo.
+
+119
+00:04:18,910 --> 00:04:21,078
+Establezco mi matriz A para
+
+120
+00:04:21,078 --> 00:04:22,274
+que sea igual a esa matriz de
+
+121
+00:04:22,274 --> 00:04:24,456
+la izquierda, tipo tres, cuatro,
+
+122
+00:04:24,456 --> 00:04:28,080
+dos, dieciséis, esa es mi matriz A.
+
+123
+00:04:28,080 --> 00:04:29,882
+Esta es mi matriz 3, 4,
+
+124
+00:04:29,882 --> 00:04:31,141
+2, 16 que tengo aquí
+
+125
+00:04:31,160 --> 00:04:32,773
+a la izquierda.
+
+126
+00:04:32,773 --> 00:04:34,543
+Y el software me permite calcular
+
+127
+00:04:34,543 --> 00:04:36,243
+la inversa de A de forma muy fácil.
+
+128
+00:04:36,250 --> 00:04:39,110
+Es como P inverso de A igual a esto.
+
+129
+00:04:39,170 --> 00:04:40,765
+Así es que esto es correcto,
+
+130
+00:04:40,765 --> 00:04:41,935
+esta matriz de aquí de mi
+
+131
+00:04:41,935 --> 00:04:43,715
+cuatro menos 0.1, y así sucesivamente.
+
+132
+00:04:43,715 --> 00:04:45,308
+Esto me dio la solución
+
+133
+00:04:45,350 --> 00:04:46,794
+numérica de lo que es
+
+134
+00:04:46,794 --> 00:04:48,350
+la inversa de A. Así que
+
+135
+00:04:48,350 --> 00:04:50,538
+déjame escribir, inversa de A
+
+136
+00:04:50,540 --> 00:04:52,558
+igual a P inversa de
+
+137
+00:04:52,580 --> 00:04:55,232
+A, entonces pongo inversa sobre eso.
+
+138
+00:04:55,232 --> 00:04:57,200
+Ahora puedo verificar que A
+
+139
+00:04:57,200 --> 00:04:58,597
+por A inversa la identidad
+
+140
+00:04:58,597 --> 00:05:00,644
+es tipo A por la
+
+141
+00:05:00,644 --> 00:05:03,390
+inversa de A, y
+
+142
+00:05:03,420 --> 00:05:04,740
+el resultado de eso es
+
+143
+00:05:04,750 --> 00:05:06,513
+esta matriz y esto es
+
+144
+00:05:06,513 --> 00:05:08,708
+1,1 en la diagonal.
+
+145
+00:05:08,740 --> 00:05:10,453
+En esencia diez a la
+
+146
+00:05:10,453 --> 00:05:11,582
+menos diecisiete, diez a la
+
+147
+00:05:11,582 --> 00:05:13,324
+menos dieciséis, hasta
+
+148
+00:05:13,324 --> 00:05:14,961
+la precisión numérica, hasta
+
+149
+00:05:14,961 --> 00:05:16,012
+un poco del error de
+
+150
+00:05:16,012 --> 00:05:17,562
+redondeo que tuvo mi
+
+151
+00:05:17,562 --> 00:05:21,123
+computadora al encontrar las matrices
+
+152
+00:05:21,123 --> 00:05:22,623
+óptimas, hasta el pequeño redondeo numérico, estos números
+
+153
+00:05:22,623 --> 00:05:24,948
+de las diagonales en esencia son cero.
+
+154
+00:05:24,970 --> 00:05:29,078
+Entonces, A por la inversa en esencia es la matriz de identidad.
+
+155
+00:05:29,100 --> 00:05:30,907
+También podemos verificar que la inversa
+
+156
+00:05:30,907 --> 00:05:33,215
+de A por A es
+
+157
+00:05:33,215 --> 00:05:35,795
+igual a la identidad,
+
+158
+00:05:35,795 --> 00:05:38,183
+con números uno en las diagonales y
+
+159
+00:05:38,183 --> 00:05:39,938
+valores que en esencia son cero,
+
+160
+00:05:39,938 --> 00:05:40,856
+excepto por un pequeño error de
+
+161
+00:05:40,856 --> 00:05:44,752
+redondeo en las diagonales.
+
+162
+00:05:45,780 --> 00:05:47,428
+En mi definición de la inversa
+
+163
+00:05:47,428 --> 00:05:48,636
+de una matriz, tengo
+
+164
+00:05:48,636 --> 00:05:50,333
+esta salvedad de que primero siempre
+
+165
+00:05:50,333 --> 00:05:52,367
+debe ser una matriz cuadrada,
+
+166
+00:05:52,410 --> 00:05:54,219
+tiene esta salvedad que si
+
+167
+00:05:54,219 --> 00:05:57,237
+A tiene una inversa,
+
+168
+00:05:57,237 --> 00:05:58,855
+exactamente que las matrices tienen
+
+169
+00:05:58,855 --> 00:06:00,176
+una inversa, está por encima del
+
+170
+00:06:00,200 --> 00:06:02,056
+alcance de esta revisión de álgebra lineal
+
+171
+00:06:02,056 --> 00:06:03,942
+pero con la intuición puedes eliminarla
+
+172
+00:06:03,942 --> 00:06:05,245
+ya que el
+
+173
+00:06:05,260 --> 00:06:06,588
+número cero no tiene una
+
+174
+00:06:06,588 --> 00:06:08,429
+inversa. Resulta que
+
+175
+00:06:08,440 --> 00:06:10,188
+si A es, digamos, la
+
+176
+00:06:10,188 --> 00:06:13,457
+matriz de todos los ceros,
+
+177
+00:06:13,457 --> 00:06:14,791
+entonces esta matriz A tampoco
+
+178
+00:06:14,791 --> 00:06:16,432
+tiene una inversa porque no
+
+179
+00:06:16,432 --> 00:06:18,033
+hay matriz, no hay matriz
+
+180
+00:06:18,040 --> 00:06:19,821
+inversa de A, de modo que
+
+181
+00:06:19,821 --> 00:06:21,174
+esta matriz por algún otra
+
+182
+00:06:21,174 --> 00:06:22,225
+matriz, te dará la
+
+183
+00:06:22,225 --> 00:06:23,778
+matriz de identidad, esta matriz
+
+184
+00:06:23,778 --> 00:06:25,322
+de todos los ceros, y hay
+
+185
+00:06:25,322 --> 00:06:27,660
+algunas otras matrices con propiedades similares a esta
+
+186
+00:06:27,660 --> 00:06:30,843
+que tampoco tienen una inversa.
+
+187
+00:06:30,843 --> 00:06:32,492
+Pero sucede que,
+
+188
+00:06:32,492 --> 00:06:33,600
+en esta revisión no quiero
+
+189
+00:06:33,600 --> 00:06:35,436
+profundizar en qué
+
+190
+00:06:35,436 --> 00:06:37,108
+significa que una matriz tenga
+
+191
+00:06:37,108 --> 00:06:38,765
+una inversa. Pero resulta
+
+192
+00:06:38,765 --> 00:06:40,006
+que para nuestra aplicación de
+
+193
+00:06:40,006 --> 00:06:41,807
+aprendizaje automático, esto no debe
+
+194
+00:06:41,830 --> 00:06:44,260
+ser un problema o, de forma más precisa,
+
+195
+00:06:44,280 --> 00:06:46,389
+para los algoritmos de aprendizaje
+
+196
+00:06:46,389 --> 00:06:47,943
+donde puede ser un problema;
+
+197
+00:06:47,970 --> 00:06:49,252
+es decir, si aparece o no una
+
+198
+00:06:49,252 --> 00:06:50,968
+inversa. Y hablaré de, cuando
+
+199
+00:06:50,968 --> 00:06:51,952
+obtenemos esos algoritmos de
+
+200
+00:06:51,952 --> 00:06:53,690
+aprendizaje, qué significa que
+
+201
+00:06:53,760 --> 00:06:54,850
+un algoritmo tenga o no
+
+202
+00:06:55,150 --> 00:06:56,572
+una inversa y cómo solucionarlo en caso
+
+203
+00:06:56,572 --> 00:06:59,200
+de que terminemos trabajando con matrices
+
+204
+00:06:59,200 --> 00:07:00,458
+que no tienen inversas.
+
+205
+00:07:00,458 --> 00:07:02,680
+Pero la idea, si
+
+206
+00:07:02,711 --> 00:07:04,275
+quieres, es que puedes
+
+207
+00:07:04,275 --> 00:07:05,808
+considerar que las matrices no
+
+208
+00:07:05,808 --> 00:07:07,242
+tienen una inversa, que de alguna
+
+209
+00:07:07,242 --> 00:07:10,331
+manera están muy cerca de cero.
+
+210
+00:07:10,353 --> 00:07:12,602
+Así que, para concluir la
+
+211
+00:07:12,670 --> 00:07:14,900
+terminología, la matriz que no
+
+212
+00:07:14,900 --> 00:07:16,938
+tiene una inversa a veces se llama
+
+213
+00:07:16,940 --> 00:07:18,835
+matriz singular o matriz
+
+214
+00:07:18,835 --> 00:07:20,960
+degenerada, y esta
+
+215
+00:07:20,970 --> 00:07:22,560
+matriz de aquí es un
+
+216
+00:07:22,630 --> 00:07:24,701
+ejemplo de matriz cero, cero, cero.
+
+217
+00:07:24,701 --> 00:07:29,491
+Es un ejemplo de una matriz que es singular o que es degenerada.
+
+218
+00:07:29,537 --> 00:07:31,348
+Finalmente, la última operación
+
+219
+00:07:31,370 --> 00:07:32,652
+de matriz especial de la que
+
+220
+00:07:32,652 --> 00:07:34,520
+quiero hablar es la matriz traspuesta.
+
+221
+00:07:34,530 --> 00:07:36,369
+Supongamos que tengo
+
+222
+00:07:36,400 --> 00:07:38,160
+la matriz A, si calculo
+
+223
+00:07:38,210 --> 00:07:41,220
+la traspuesta de A, eso es lo que obtengo aquí a la derecha.
+
+224
+00:07:41,232 --> 00:07:43,156
+Esta es una traspuesta, que
+
+225
+00:07:43,156 --> 00:07:46,275
+se escribe A superíndice T,
+
+226
+00:07:46,278 --> 00:07:47,363
+y la forma en que calculas
+
+227
+00:07:47,410 --> 00:07:49,531
+la traspuesta de una matriz es de la siguiente manera.
+
+228
+00:07:49,531 --> 00:07:50,628
+Para obtener una traspuesta,
+
+229
+00:07:50,628 --> 00:07:52,276
+primero tomaré la primera
+
+230
+00:07:52,300 --> 00:07:55,079
+fila de A uno, dos, cero.
+
+231
+00:07:55,080 --> 00:07:58,791
+Eso se vuelve la primera columna de la traspuesta.
+
+232
+00:07:58,840 --> 00:07:59,762
+Y después tomaré
+
+233
+00:07:59,762 --> 00:08:01,050
+la segunda fila de A,
+
+234
+00:08:01,050 --> 00:08:04,610
+3, 5, 9, y eso se vuelve la segunda columna
+
+235
+00:08:04,610 --> 00:08:06,838
+de la traspuesta de la matriz A.
+
+236
+00:08:06,850 --> 00:08:08,131
+Otra manera de
+
+237
+00:08:08,131 --> 00:08:10,296
+pensar en cómo calcular la traspuesta
+
+238
+00:08:10,296 --> 00:08:11,569
+es como si tomaras este
+
+239
+00:08:11,570 --> 00:08:14,671
+eje de 45 grados
+
+240
+00:08:14,671 --> 00:08:16,349
+y reflejaras o y movieras
+
+241
+00:08:16,349 --> 00:08:21,698
+la matriz a lo largo de ese eje de 45 grados.
+
+242
+00:08:21,698 --> 00:08:23,488
+Aquí esta la definición formal
+
+243
+00:08:23,500 --> 00:08:26,522
+de traspuesta de matriz.
+
+244
+00:08:26,522 --> 00:08:30,688
+Digamos que A es una matriz m por n.
+
+245
+00:08:31,300 --> 00:08:32,727
+Y digamos que B es igual a A
+
+246
+00:08:32,727 --> 00:08:36,371
+traspuesta, y B es igual a A traspuesta como tal.
+
+247
+00:08:36,386 --> 00:08:37,563
+Entonces, B será
+
+248
+00:08:37,563 --> 00:08:39,637
+una matriz n por m
+
+249
+00:08:39,637 --> 00:08:42,752
+con dimensiones invertidas, así
+
+250
+00:08:42,830 --> 00:08:46,308
+que aquí tenemos una matriz 2 por 3.
+
+251
+00:08:46,370 --> 00:08:48,050
+Y entonces, la traspuesta se vuelve
+
+252
+00:08:48,190 --> 00:08:51,196
+una matriz 3 por 2, y además
+
+253
+00:08:51,210 --> 00:08:54,585
+Bij es igual a Aji.
+
+254
+00:08:54,610 --> 00:08:56,030
+Entonces, el elemento "ij" de esta
+
+255
+00:08:56,220 --> 00:08:57,390
+matriz B será
+
+256
+00:08:57,530 --> 00:08:59,913
+el elemento "ji" de la matriz
+
+257
+00:08:59,913 --> 00:09:02,310
+A anterior. Así que por
+
+258
+00:09:02,310 --> 00:09:04,212
+ejemplo, B 1,2
+
+259
+00:09:04,212 --> 00:09:06,997
+será igual,
+
+260
+00:09:06,997 --> 00:09:08,756
+ve esta
+
+261
+00:09:08,756 --> 00:09:10,537
+matriz B 1, 2 será igual a este
+
+262
+00:09:10,537 --> 00:09:13,775
+elemento 3, primera fila, segunda columna.
+
+263
+00:09:13,800 --> 00:09:16,008
+Y eso igual a esto, que es
+
+264
+00:09:16,010 --> 00:09:18,199
+A 2,1, segunda
+
+265
+00:09:18,220 --> 00:09:21,412
+fila, primera columna, que
+
+266
+00:09:21,420 --> 00:09:23,421
+es igual a dos. Y otro
+
+267
+00:09:23,440 --> 00:09:25,860
+ejemplo B 3,
+
+268
+00:09:25,860 --> 00:09:28,561
+2; es decir B
+
+269
+00:09:28,561 --> 00:09:30,922
+3,2 es este elemento 9,
+
+270
+00:09:30,930 --> 00:09:33,282
+y eso es igual a
+
+271
+00:09:33,282 --> 00:09:35,525
+A 2,3 que es
+
+272
+00:09:35,525 --> 00:09:38,963
+este elemento de aquí, 9.
+
+273
+00:09:38,963 --> 00:09:40,433
+Y eso resume
+
+274
+00:09:40,433 --> 00:09:41,893
+la definición de qué
+
+275
+00:09:41,893 --> 00:09:43,468
+significa tomar la traspuesta
+
+276
+00:09:43,510 --> 00:09:44,991
+de una matriz y, de hecho,
+
+277
+00:09:44,991 --> 00:09:49,323
+eso concluye nuestra revisión de álgebra lineal.
+
+278
+00:09:49,323 --> 00:09:50,754
+Así que espero que ahora
+
+279
+00:09:50,754 --> 00:09:52,205
+sepas cómo sumar y restar
+
+280
+00:09:52,205 --> 00:09:53,701
+las matrices, así como
+
+281
+00:09:53,701 --> 00:09:55,325
+multiplicarlas. También
+
+282
+00:09:55,325 --> 00:09:57,185
+sabes cuáles son las
+
+283
+00:09:57,185 --> 00:09:58,942
+definiciones de inversa y
+
+284
+00:09:58,942 --> 00:10:01,457
+traspuesta de una matriz,
+
+285
+00:10:01,457 --> 00:10:02,934
+y estas son las principales operaciones
+
+286
+00:10:02,934 --> 00:10:05,152
+que necesitas en álgebra lineal
+
+287
+00:10:05,152 --> 00:10:06,172
+para este curso.
+
+288
+00:10:06,172 --> 00:10:09,043
+En caso de que sea la primera vez que ves este material.
+
+289
+00:10:09,043 --> 00:10:10,798
+Sé que fue mucho material
+
+290
+00:10:10,798 --> 00:10:13,032
+de álgebra lineal que se presentó
+
+291
+00:10:13,032 --> 00:10:14,512
+de forma muy rápida, y
+
+292
+00:10:14,520 --> 00:10:16,581
+es mucho por entender
+
+293
+00:10:16,581 --> 00:10:18,102
+pero no necesitas
+
+294
+00:10:18,102 --> 00:10:20,045
+memorizar todas las definiciones
+
+295
+00:10:20,045 --> 00:10:21,718
+que acabamos de ver, y si
+
+296
+00:10:21,718 --> 00:10:23,451
+descargas la copia de cualquiera
+
+297
+00:10:23,451 --> 00:10:24,520
+de estas diapositivas o de las notas
+
+298
+00:10:24,540 --> 00:10:28,353
+de las lecciones del sitio web del curso,
+
+299
+00:10:28,370 --> 00:10:29,645
+y usas las diapositivas o las
+
+300
+00:10:29,645 --> 00:10:31,478
+notas de las lecciones como referencia,
+
+301
+00:10:31,490 --> 00:10:32,886
+entonces siempre podrás consultar las
+
+302
+00:10:32,900 --> 00:10:34,178
+definiciones y averiguar
+
+303
+00:10:34,178 --> 00:10:35,615
+qué son estas multiplicaciones
+
+304
+00:10:35,615 --> 00:10:39,111
+de matriz, traspuestas y más definiciones.
+
+305
+00:10:39,140 --> 00:10:40,697
+Las notas de lecciones del sitio web del curso
+
+306
+00:10:40,697 --> 00:10:42,421
+también tienen indicadores de
+
+307
+00:10:42,450 --> 00:10:44,675
+recursos adicionales sobre álgebra
+
+308
+00:10:44,675 --> 00:10:47,445
+lineal que puedes usar para aprender más por ti mismo.
+
+309
+00:10:48,861 --> 00:10:53,445
+Y junto con estas nuevas herramientas,
+
+310
+00:10:53,540 --> 00:10:55,153
+en los siguientes videos
+
+311
+00:10:55,153 --> 00:10:57,035
+podremos desarrollar formas de mayor
+
+312
+00:10:57,035 --> 00:10:58,758
+alcance de la regresión lineal, que
+
+313
+00:10:58,758 --> 00:10:59,854
+pueden manejar muchos
+
+314
+00:10:59,854 --> 00:11:00,809
+más datos, muchas más
+
+315
+00:11:00,809 --> 00:11:02,226
+variables, muchos más
+
+316
+00:11:02,226 --> 00:11:04,367
+ejemplos de entrenamiento y,
+
+317
+00:11:04,400 --> 00:11:06,114
+de hecho, después de la regresión lineal,
+
+318
+00:11:06,114 --> 00:11:07,832
+continuaremos usando estas herramientas
+
+319
+00:11:07,832 --> 00:11:10,016
+de álgebra lineal para derivar algoritmos
+
+320
+00:11:10,016 --> 00:11:13,242
+de aprendizaje más efectivos.

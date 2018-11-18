@@ -1,0 +1,1723 @@
+1
+00:00:00,080 --> 00:00:01,140
+En este video me gustaría
+
+2
+00:00:01,370 --> 00:00:03,120
+empezar a adaptar las máquinas
+
+3
+00:00:03,390 --> 00:00:06,280
+de soporte vectorial para desarrollar clasificadores no lineales complejos.
+
+4
+00:00:07,630 --> 00:00:10,410
+La técnica principal para hacer esto es una técnica llamada kernels o núcleos.
+
+5
+00:00:11,730 --> 00:00:13,690
+Veamos qué son estos kernels y cómo podemos utilizarlos.
+
+6
+00:00:15,860 --> 00:00:16,930
+Si tienes un conjunto de entrenamiento que
+
+7
+00:00:17,030 --> 00:00:18,270
+luce así y quieres
+
+8
+00:00:18,400 --> 00:00:20,000
+encontrar una
+
+9
+00:00:20,150 --> 00:00:21,670
+frontera de decisión no lineal para
+
+10
+00:00:22,270 --> 00:00:23,950
+distinguir entre los ejemplos negativos y los positivos,
+
+11
+00:00:24,350 --> 00:00:25,900
+quizá una frontera parecida a esta,
+
+12
+00:00:27,040 --> 00:00:27,950
+una manera de lograrlo es
+
+13
+00:00:28,230 --> 00:00:29,760
+obtener un conjunto de
+
+14
+00:00:29,970 --> 00:00:32,180
+variables polinómicas complejas. ¿Sí? Es decir, un
+
+15
+00:00:32,340 --> 00:00:33,420
+conjunto de variables como este.
+
+16
+00:00:34,140 --> 00:00:34,990
+Entonces tendremos una
+
+17
+00:00:35,140 --> 00:00:37,120
+hipótesis de “X” que
+
+18
+00:00:38,050 --> 00:00:40,380
+predice 1 si
+
+19
+00:00:40,570 --> 00:00:41,790
+«theta» 0 más «theta» 1”x”1 más el
+
+20
+00:00:41,860 --> 00:00:45,000
+resto de las variables polinómicas
+
+21
+00:00:45,180 --> 00:00:47,410
+es mayor que 0 y, de lo contrario,
+
+22
+00:00:47,540 --> 00:00:49,170
+predice 0.
+
+23
+00:00:51,070 --> 00:00:52,760
+Otra manera de escribir
+
+24
+00:00:52,980 --> 00:00:54,330
+esto, con la que introduciré una
+
+25
+00:00:54,840 --> 00:00:56,240
+nueva notación que utilizaré
+
+26
+00:00:56,500 --> 00:00:57,860
+después, es que podemos
+
+27
+00:00:58,200 --> 00:00:59,370
+pensar en una hipótesis
+
+28
+00:00:59,730 --> 00:01:01,610
+que calcula una frontera de decisión
+
+29
+00:01:02,120 --> 00:01:03,380
+utilizando lo siguiente: «theta» 0
+
+30
+00:01:03,820 --> 00:01:04,870
+más «theta» 1, “f”1 más
+
+31
+00:01:05,070 --> 00:01:06,130
+«theta» 2, “f”2 más
+
+32
+00:01:06,610 --> 00:01:08,730
+«theta»3, “f”3 etc.
+
+33
+00:01:09,590 --> 00:01:12,790
+donde esta nueva
+
+34
+00:01:13,050 --> 00:01:14,070
+notación
+
+35
+00:01:14,730 --> 00:01:15,930
+“f”1, “f”2, “f”3, etc.,
+
+36
+00:01:16,270 --> 00:01:17,610
+denota las nuevas variables
+
+37
+00:01:19,350 --> 00:01:20,630
+que estoy calculando. Ahora, “f”1
+
+38
+00:01:21,370 --> 00:01:24,250
+es igual a “X”1, “f”2 es
+
+39
+00:01:24,600 --> 00:01:27,060
+igual a “X”2 y “f”3
+
+40
+00:01:27,140 --> 00:01:28,560
+es igual al
+
+41
+00:01:28,770 --> 00:01:29,790
+tercer término “X”1 ”X”2,
+
+42
+00:01:29,900 --> 00:01:32,200
+“f”4 es igual a
+
+43
+00:01:33,840 --> 00:01:35,590
+“X”1 cuadrada y f5 es
+
+44
+00:01:35,680 --> 00:01:37,740
+igual a “X”2 cuadrada, etc.
+
+45
+00:01:38,520 --> 00:01:39,780
+Ya vimos antes que
+
+46
+00:01:40,350 --> 00:01:41,190
+obtener estos polinomios de
+
+47
+00:01:41,370 --> 00:01:42,870
+alto orden es
+
+48
+00:01:43,110 --> 00:01:44,390
+una manera de obtener muchas variables.
+
+49
+00:01:45,470 --> 00:01:47,070
+La cuestión es si existe una
+
+50
+00:01:47,250 --> 00:01:48,600
+elección distinta de
+
+51
+00:01:48,670 --> 00:01:51,350
+variables o una elección de variables mejor
+
+52
+00:01:51,690 --> 00:01:53,510
+que estos polinomios de alto orden,
+
+53
+00:01:53,830 --> 00:01:54,820
+porque no tenemos claro si
+
+54
+00:01:55,120 --> 00:01:56,350
+estos polinomios de alto orden son lo que queremos.
+
+55
+00:01:56,860 --> 00:01:57,920
+Cuando hablamos acerca
+
+56
+00:01:58,170 --> 00:01:59,560
+de la visión computacional hablamos
+
+57
+00:01:59,780 --> 00:02:01,940
+de cuando la imagen de entrada tiene muchos pixeles,
+
+58
+00:02:02,540 --> 00:02:04,670
+también vimos cómo utilizar polinomios de alto orden
+
+59
+00:02:05,140 --> 00:02:06,360
+se vuelve computacionalmente caro
+
+60
+00:02:07,320 --> 00:02:08,270
+por todos
+
+61
+00:02:08,280 --> 00:02:09,830
+estos términos de polinomios de alto orden.
+
+62
+00:02:11,240 --> 00:02:12,280
+Entonces ¿existe una elección
+
+63
+00:02:12,430 --> 00:02:13,160
+de variables diferente o
+
+64
+00:02:14,110 --> 00:02:15,100
+mejor que podamos utilizar
+
+65
+00:02:15,410 --> 00:02:16,770
+en este
+
+66
+00:02:17,500 --> 00:02:19,200
+tipo de formulación de hipótesis?
+
+67
+00:02:19,420 --> 00:02:20,470
+Aquí hay una idea de
+
+68
+00:02:20,580 --> 00:02:23,580
+cómo podemos definir las nuevas variables “f”1, “f”2, “f”3, etc.
+
+69
+00:02:24,970 --> 00:02:25,930
+En esta línea definiré
+
+70
+00:02:26,100 --> 00:02:27,600
+sólo tres nuevas variables, pero
+
+71
+00:02:27,890 --> 00:02:28,770
+en problemas reales podemos
+
+72
+00:02:29,500 --> 00:02:30,650
+definir muchas más.
+
+73
+00:02:31,060 --> 00:02:32,060
+Lo que haré en
+
+74
+00:02:32,260 --> 00:02:33,400
+esta fase de
+
+75
+00:02:33,640 --> 00:02:34,980
+variables tendremos “X”1, y “X”2 y
+
+76
+00:02:35,400 --> 00:02:36,520
+dejaremos “X”0 fuera de la
+
+77
+00:02:36,720 --> 00:02:37,800
+ecuación,
+
+78
+00:02:38,060 --> 00:02:39,230
+y elegiré
+
+79
+00:02:39,330 --> 00:02:40,320
+algunos puntos
+
+80
+00:02:42,550 --> 00:02:43,560
+manualmente.
+
+81
+00:02:43,750 --> 00:02:45,210
+A este puntos les llamaré “L”1 y
+
+82
+00:02:45,450 --> 00:02:46,720
+luego elegiré otro
+
+83
+00:02:46,820 --> 00:02:49,560
+punto y lo
+
+84
+00:02:50,080 --> 00:02:51,390
+llamaré “L”2 y luego
+
+85
+00:02:51,710 --> 00:02:52,880
+un tercer punto
+
+86
+00:02:53,170 --> 00:02:55,800
+y lo llamaré “L”3. Por ahora
+
+87
+00:02:55,900 --> 00:02:56,830
+digamos que sólo
+
+88
+00:02:56,930 --> 00:02:59,220
+elegiré estos tres punto manualmente.
+
+89
+00:02:59,870 --> 00:03:02,860
+Llamaré estos tres puntos “puntos de referencia”. Tengo el punto de referencia uno, dos y tres.
+
+90
+00:03:03,720 --> 00:03:04,630
+Lo que haré es
+
+91
+00:03:04,790 --> 00:03:07,190
+definir mis variables como sigue: con
+
+92
+00:03:07,510 --> 00:03:10,070
+un ejemplo “X” definiré mi
+
+93
+00:03:10,170 --> 00:03:13,130
+primera variable, “f”1,
+
+94
+00:03:13,330 --> 00:03:16,010
+como la
+
+95
+00:03:16,260 --> 00:03:18,960
+medida de la similaridad entre
+
+96
+00:03:19,330 --> 00:03:21,460
+el ejemplo de entrenamiento “X” y
+
+97
+00:03:21,680 --> 00:03:26,270
+el primer punto de referencia.
+
+98
+00:03:26,520 --> 00:03:27,840
+La
+
+99
+00:03:27,950 --> 00:03:29,600
+fórmula específica que utilizaré para
+
+100
+00:03:30,160 --> 00:03:31,830
+medir la similaridad es “E” elevada
+
+101
+00:03:31,940 --> 00:03:34,220
+a menos la longitud de
+
+102
+00:03:34,470 --> 00:03:37,880
+“X” menos “L”1 cuadrada, dividida
+
+103
+00:03:38,320 --> 00:03:39,610
+entre 2 sigma al cuadrado.
+
+104
+00:03:40,730 --> 00:03:41,640
+Dependiendo de
+
+105
+00:03:41,780 --> 00:03:43,420
+si viste el video opcional anterior, entenderás, o no, que
+
+106
+00:03:44,390 --> 00:03:48,140
+esta notación es
+
+107
+00:03:48,460 --> 00:03:49,340
+la longitud del
+
+108
+00:03:49,680 --> 00:03:51,260
+vector “W”. Esta “X” menos “L”1
+
+109
+00:03:51,460 --> 00:03:53,760
+es,
+
+110
+00:03:54,020 --> 00:03:55,990
+de hecho,
+
+111
+00:03:56,100 --> 00:03:57,440
+la distancia euclidiana cuadrada;
+
+112
+00:03:58,610 --> 00:03:59,950
+es decir, la distancia euclidiana
+
+113
+00:04:00,410 --> 00:04:03,240
+entre el punto “X” y el punto de referencia “L”1.
+
+114
+00:04:03,530 --> 00:04:04,610
+Hablaremos de esto más adelante.
+
+115
+00:04:06,440 --> 00:04:07,990
+Esta fue mi primera variable.
+
+116
+00:04:08,120 --> 00:04:09,610
+Mi segunda variable, “f”2
+
+117
+00:04:09,750 --> 00:04:11,750
+será una variable
+
+118
+00:04:12,370 --> 00:04:14,040
+de similaridad que mide qué
+
+119
+00:04:14,400 --> 00:04:17,310
+tan similares son “X” y “L”2. Definiremos esto
+
+120
+00:04:17,370 --> 00:04:19,360
+con la siguiente variable:
+
+121
+00:04:25,970 --> 00:04:27,320
+“E” elevado a menos la raíz cuadrada de la distancia euclidiana
+
+122
+00:04:28,150 --> 00:04:29,050
+entre “X” y el segundo punto de
+
+123
+00:04:29,820 --> 00:04:31,310
+referencia que se expresa en este numerador,
+
+124
+00:04:31,510 --> 00:04:32,660
+dividido entre 2 sigma cuadrada.
+
+125
+00:04:33,520 --> 00:04:35,280
+De igual manera, “f”3 es la similaridad entre
+
+126
+00:04:35,850 --> 00:04:39,480
+“X” y “L”3 que
+
+127
+00:04:39,840 --> 00:04:41,860
+es igual a
+
+128
+00:04:41,980 --> 00:04:44,510
+una fórmula similar.
+
+129
+00:04:46,550 --> 00:04:48,070
+El término matemático
+
+130
+00:04:48,830 --> 00:04:50,440
+para esta variable de
+
+131
+00:04:50,730 --> 00:04:52,030
+similaridad será
+
+132
+00:04:52,160 --> 00:04:54,390
+función de kernel.
+
+133
+00:04:55,340 --> 00:04:56,810
+El kernel específico que
+
+134
+00:04:57,140 --> 00:04:59,570
+utilizaré aquí se llama kernel Gaussiano.
+
+135
+00:05:00,630 --> 00:05:01,920
+Esta fórmula o esta elección
+
+136
+00:05:02,500 --> 00:05:04,990
+particular de la variable de similaridad se llama kernel Gaussiano.
+
+137
+00:05:05,770 --> 00:05:07,220
+A nivel abstracto, estas
+
+138
+00:05:07,360 --> 00:05:09,110
+variables de similaridad
+
+139
+00:05:09,600 --> 00:05:11,270
+se llaman kernels y podemos
+
+140
+00:05:11,600 --> 00:05:12,670
+tener diferentes variables de similaridad. El kernel específico
+
+141
+00:05:13,750 --> 00:05:16,410
+que estoy explicando ahora es el kernel Gaussiano.
+
+142
+00:05:17,110 --> 00:05:18,400
+Veremos otros ejemplos de otros kernels pero, por ahora,
+
+143
+00:05:18,840 --> 00:05:21,100
+pensaremos en estos como variables de similaridad.
+
+144
+00:05:22,470 --> 00:05:24,100
+Entonces, en vez de escribir la similaridad entre
+
+145
+00:05:24,500 --> 00:05:26,270
+“X” y “L”, a veces
+
+146
+00:05:26,480 --> 00:05:28,380
+también escribiremos esto como kernel,
+
+147
+00:05:29,070 --> 00:05:32,360
+que denotaremos con una “k” minúscula, sobre “x” y uno de mis puntos de referencia “L”.
+
+148
+00:05:34,120 --> 00:05:36,120
+Veamos qué hacen los
+
+149
+00:05:36,650 --> 00:05:38,480
+kernels en realidad y por
+
+150
+00:05:38,810 --> 00:05:40,640
+qué este tipo de variables de
+
+151
+00:05:41,280 --> 00:05:44,540
+similaridad o este tipo de expresiones tienen sentido.
+
+152
+00:05:46,690 --> 00:05:48,020
+Tomaré mi primer punto de referencia;  el punto de referencia
+
+153
+00:05:48,330 --> 00:05:49,230
+“L”1 que es uno de
+
+154
+00:05:49,350 --> 00:05:51,370
+los puntos que elegí en de mi figura hace un momento.
+
+155
+00:05:53,000 --> 00:05:54,160
+La similaridad del kernel entre “X” y “L”1 se obtiene con esta expresión.
+
+156
+00:05:57,530 --> 00:05:58,600
+Para asegurarme de que estamos
+
+157
+00:05:58,690 --> 00:05:59,600
+en el mismo canal acerca
+
+158
+00:05:59,780 --> 00:06:01,860
+de cuál es término del numerador,
+
+159
+00:06:01,960 --> 00:06:03,140
+les recuerdo que también
+
+160
+00:06:03,330 --> 00:06:04,620
+se puede escribir como la
+
+161
+00:06:04,880 --> 00:06:06,470
+sumatoria de “J” igual a 1 a la “n”. Esta es la distancia
+
+162
+00:06:07,000 --> 00:06:08,700
+de los componentes
+
+163
+00:06:09,270 --> 00:06:10,900
+entre el vector “X” y
+
+164
+00:06:11,070 --> 00:06:12,050
+el vector “L”. En esta diapositiva,
+
+165
+00:06:12,380 --> 00:06:14,460
+les reitero que
+
+166
+00:06:14,720 --> 00:06:16,180
+ignoraré “X”0.
+
+167
+00:06:16,680 --> 00:06:17,910
+Estoy ignorando el
+
+168
+00:06:18,220 --> 00:06:19,960
+término “X”0 porque siempre es igual a 1.
+
+169
+00:06:21,430 --> 00:06:22,470
+Porque, como sabes, esto es
+
+170
+00:06:22,630 --> 00:06:25,780
+se calcula el kernel con la similaridad entre “X” y el punto de referencia.
+
+171
+00:06:27,270 --> 00:06:28,200
+Ahora veamos qué hace esta variable.
+
+172
+00:06:29,110 --> 00:06:31,870
+Supongamos que “X” es casi igual a uno de los puntos de referencia.
+
+173
+00:06:33,320 --> 00:06:34,910
+La fórmula euclidiana
+
+174
+00:06:35,360 --> 00:06:36,690
+para la distancia del numerador
+
+175
+00:06:36,990 --> 00:06:38,770
+será casi igual a 0;
+
+176
+00:06:38,890 --> 00:06:40,070
+es decir, la
+
+177
+00:06:40,580 --> 00:06:41,880
+distancia entre
+
+178
+00:06:42,170 --> 00:06:43,130
+“X” y “L” será
+
+179
+00:06:43,240 --> 00:06:45,130
+casi igual a 0 y
+
+180
+00:06:46,390 --> 00:06:47,440
+“f”1 será
+
+181
+00:06:47,710 --> 00:06:50,100
+aproximadamente “e”
+
+182
+00:06:50,290 --> 00:06:52,760
+a la menos 0 cuadrada en el
+
+183
+00:06:52,800 --> 00:06:54,650
+numerador sobre 2 sigma cuadrada.
+
+184
+00:06:55,650 --> 00:06:56,670
+Ahora, “e” a la menos
+
+185
+00:06:56,770 --> 00:06:58,070
+0 será
+
+186
+00:06:58,370 --> 00:06:59,810
+casi igual a 1.
+
+187
+00:07:01,640 --> 00:07:03,480
+Pondré el signo de aproximación aquí
+
+188
+00:07:03,700 --> 00:07:05,430
+porque la distancia puede variar del
+
+189
+00:07:05,530 --> 00:07:06,930
+cero, pero
+
+190
+00:07:07,120 --> 00:07:08,040
+si “X” es casi igual al punto
+
+191
+00:07:08,340 --> 00:07:09,190
+de referencia, entonces este término
+
+192
+00:07:09,440 --> 00:07:12,070
+será casi igual a 0 y, por lo tanto, “f”1 será casi igual a 1.
+
+193
+00:07:13,400 --> 00:07:15,220
+Por el contrario, si “X”
+
+194
+00:07:15,520 --> 00:07:17,350
+está lejos de “L1”, esta primera
+
+195
+00:07:17,550 --> 00:07:18,940
+variable “f1” será “e”
+
+196
+00:07:19,820 --> 00:07:21,190
+a la menos un
+
+197
+00:07:21,540 --> 00:07:24,040
+valor alto al cuadrado
+
+198
+00:07:24,960 --> 00:07:25,980
+dividido entre dos
+
+199
+00:07:26,260 --> 00:07:27,690
+«sigma» cuadrada y
+
+200
+00:07:27,810 --> 00:07:28,800
+“e” a la menos un número alto
+
+201
+00:07:29,630 --> 00:07:31,450
+será casi igual a 0.
+
+202
+00:07:33,320 --> 00:07:34,610
+Lo que hacen estas
+
+203
+00:07:34,750 --> 00:07:36,080
+variables es medir qué
+
+204
+00:07:36,290 --> 00:07:37,500
+tan similar es “X” a
+
+205
+00:07:37,670 --> 00:07:39,160
+uno de los puntos de referencia y la
+
+206
+00:07:39,530 --> 00:07:40,290
+variable “f” será
+
+207
+00:07:40,540 --> 00:07:42,360
+casi igual a 1 cuando “X”
+
+208
+00:07:42,540 --> 00:07:43,810
+sea casi igual al punto de referencia y
+
+209
+00:07:44,020 --> 00:07:45,310
+0 o casi igual a 0
+
+210
+00:07:45,380 --> 00:07:46,520
+cuando “X” esté lejos del
+
+211
+00:07:46,790 --> 00:07:48,850
+punto de referencia.
+
+212
+00:07:49,320 --> 00:07:49,980
+Cada uno de estos puntos de
+
+213
+00:07:50,590 --> 00:07:51,620
+referencia que escribí en la diapositiva
+
+214
+00:07:52,250 --> 00:07:54,260
+anterior, “L1”, “L2” y “L3”
+
+215
+00:07:56,190 --> 00:08:00,030
+cada una, define una nueva variable
+
+216
+00:08:00,660 --> 00:08:02,270
+“f1”, “f2” y “f3”.
+
+217
+00:08:02,680 --> 00:08:03,660
+Con el ejemplo de
+
+218
+00:08:03,710 --> 00:08:05,160
+entrenamiento “X”, podemos
+
+219
+00:08:05,380 --> 00:08:06,750
+calcular tres nuevas
+
+220
+00:08:06,930 --> 00:08:08,720
+variable: “f1”, “f2” y
+
+221
+00:08:09,520 --> 00:08:11,010
+“f3” con los tres
+
+222
+00:08:11,340 --> 00:08:13,530
+puntos de referencia que acabo de escribir.
+
+223
+00:08:13,760 --> 00:08:15,030
+Primero, veamos esta
+
+224
+00:08:15,240 --> 00:08:16,450
+función exponencial o esta
+
+225
+00:08:16,710 --> 00:08:18,190
+variable de similaridad y tracemos
+
+226
+00:08:18,570 --> 00:08:20,790
+algunas figuras para entender
+
+227
+00:08:21,230 --> 00:08:22,460
+mejor cómo se representan.
+
+228
+00:08:23,510 --> 00:08:26,320
+Para este ejemplo, digamos que tengo dos variables “x1 y “x2” y
+
+229
+00:08:26,570 --> 00:08:27,430
+digamos que mi
+
+230
+00:08:27,820 --> 00:08:29,290
+primer punto de referencia, “L1” está
+
+231
+00:08:29,520 --> 00:08:32,550
+en la ubicación 3,5. Ahora, supongamos
+
+232
+00:08:33,650 --> 00:08:35,750
+que fijo sigma cuadrada igual a 1, por el momento.
+
+233
+00:08:36,500 --> 00:08:37,550
+Si trazo esto, lo
+
+234
+00:08:37,890 --> 00:08:40,420
+que obtendré será esta figura.
+
+235
+00:08:41,210 --> 00:08:42,510
+En el eje vertical, la
+
+236
+00:08:42,760 --> 00:08:44,030
+altura de la superficie es el
+
+237
+00:08:45,240 --> 00:08:46,280
+valor “f1” y abajo,
+
+238
+00:08:46,630 --> 00:08:48,490
+en el eje horizontal están
+
+239
+00:08:48,710 --> 00:08:50,580
+los ejemplos de entrenamiento como
+
+240
+00:08:51,660 --> 00:08:53,050
+“x1” y “x2”.
+
+241
+00:08:53,320 --> 00:08:54,940
+Con un ejemplo de entrenamiento dado, como
+
+242
+00:08:55,120 --> 00:08:56,890
+este ejemplo de entrenamiento que
+
+243
+00:08:56,980 --> 00:08:58,140
+muestra los valores de “x1 y “x2”,
+
+244
+00:08:58,140 --> 00:08:59,390
+la altura sobre la superficie muestra
+
+245
+00:08:59,950 --> 00:09:02,220
+el valor correspondiente de “f1”.
+
+246
+00:09:02,410 --> 00:09:03,830
+Abajo tenemos
+
+247
+00:09:03,960 --> 00:09:04,890
+la figura que había mostrado antes llamada
+
+248
+00:09:05,040 --> 00:09:06,600
+gráfica de superficie donde
+
+249
+00:09:06,810 --> 00:09:08,320
+“x1” está en el eje vertical y
+
+250
+00:09:09,090 --> 00:09:10,340
+“x2” está en el eje horizontal.
+
+251
+00:09:10,820 --> 00:09:12,500
+Esta figura de abajo es
+
+252
+00:09:12,820 --> 00:09:13,700
+sólo la
+
+253
+00:09:13,940 --> 00:09:15,440
+gráfica de superficie de la superficie 3D.
+
+254
+00:09:16,540 --> 00:09:17,800
+Puedes ver que cuando
+
+255
+00:09:18,030 --> 00:09:19,540
+“x” es igual a 3,5
+
+256
+00:09:19,820 --> 00:09:24,140
+exactamente,
+
+257
+00:09:24,380 --> 00:09:25,680
+“f1” toma el valor de 1, porque
+
+258
+00:09:25,760 --> 00:09:26,990
+es su máximo y
+
+259
+00:09:27,170 --> 00:09:29,400
+a medida
+
+260
+00:09:29,860 --> 00:09:31,150
+que se aleja
+
+261
+00:09:31,680 --> 00:09:33,650
+“x” esta
+
+262
+00:09:33,860 --> 00:09:35,270
+variables asume valores
+
+263
+00:09:36,460 --> 00:09:37,160
+cercanos al 0.
+
+264
+00:09:38,750 --> 00:09:40,120
+Concluimos que esta
+
+265
+00:09:40,400 --> 00:09:42,100
+variable “f1” mide
+
+266
+00:09:42,400 --> 00:09:43,680
+qué tan cercana es “x” al
+
+267
+00:09:44,040 --> 00:09:46,050
+primer punto de referencia
+
+268
+00:09:46,520 --> 00:09:47,610
+y varía entre 0 y 1
+
+269
+00:09:47,790 --> 00:09:48,940
+dependiendo de qué tan cerca esté “x”
+
+270
+00:09:49,160 --> 00:09:50,650
+al punto de referencia “L1”.
+
+271
+00:09:52,360 --> 00:09:53,710
+Lo siguiente que me gustaría
+
+272
+00:09:53,920 --> 00:09:55,530
+hacer en esta diapositiva es
+
+273
+00:09:56,090 --> 00:09:59,740
+mostrar los efectos que se provocan al variar el parámetro sigma cuadrada.
+
+274
+00:10:00,040 --> 00:10:01,770
+Sigma cuadrada es el parámetro
+
+275
+00:10:02,530 --> 00:10:04,120
+del kernel Gaussiano y, a medida que varía, arroja resultados ligeramente distintos.
+
+276
+00:10:05,150 --> 00:10:06,380
+Voy a fijar sigma cuadrada
+
+277
+00:10:06,650 --> 00:10:07,570
+como 0.5 y ver
+
+278
+00:10:07,710 --> 00:10:09,850
+qué obtengo. Cuando fijamos sigma cuadrada
+
+279
+00:10:10,090 --> 00:10:11,170
+en 0.5 lo que encontraremos
+
+280
+00:10:11,430 --> 00:10:12,670
+es que el kernel se ve similar, excepto
+
+281
+00:10:12,730 --> 00:10:14,200
+por que el ancho del cono se hace más delgado.
+
+282
+00:10:14,790 --> 00:10:16,400
+Los contornos también se hacen más pequeños.
+
+283
+00:10:17,120 --> 00:10:18,360
+Iniciamos con sigma
+
+284
+00:10:18,740 --> 00:10:19,820
+cuadrada igual a 0.5 y si inicias con “x”
+
+285
+00:10:20,250 --> 00:10:21,650
+igual a 3, 5 pero, a medida que
+
+286
+00:10:21,910 --> 00:10:23,140
+nos alejamos, la
+
+287
+00:10:24,750 --> 00:10:26,370
+variable “f1”
+
+288
+00:10:27,050 --> 00:10:28,520
+cae a 0 mucho más
+
+289
+00:10:28,730 --> 00:10:30,830
+rápido. Por el contrario,
+
+290
+00:10:32,090 --> 00:10:33,930
+si aumentamos sigma cuadrada y la
+
+291
+00:10:34,670 --> 00:10:36,280
+fijamos como sigma cuadrada
+
+292
+00:10:36,510 --> 00:10:37,700
+igual a 3, conforme me alejo de
+
+293
+00:10:37,800 --> 00:10:39,090
+“L”, este punto de aquí o  Ahora,
+
+294
+00:10:39,630 --> 00:10:40,770
+este punto es realmente
+
+295
+00:10:41,110 --> 00:10:42,410
+“i”, que es “L1” está en
+
+296
+00:10:42,610 --> 00:10:45,210
+en la ubicación 3,5. Así que se muestra aquí.
+
+297
+00:10:48,190 --> 00:10:49,480
+Y si sigma cuadrada es
+
+298
+00:10:49,660 --> 00:10:50,460
+grande, entonces te
+
+299
+00:10:50,690 --> 00:10:54,040
+alejas de "L"1
+
+300
+00:10:54,320 --> 00:10:56,170
+el valor de la variable sigma al cuadrado caerá mucho
+
+301
+00:10:56,740 --> 00:10:57,670
+más lentamente.
+
+302
+00:11:03,590 --> 00:11:05,200
+Ahora, dada esta definición de
+
+303
+00:11:05,290 --> 00:11:06,730
+variables, veamos
+
+304
+00:11:06,960 --> 00:11:08,420
+qué fuentes de hipótesis podemos aprender.
+
+305
+00:11:09,550 --> 00:11:11,360
+Con el ejemplo de entrenamiento “X”,
+
+306
+00:11:11,480 --> 00:11:12,930
+calcularemos estas variables
+
+307
+00:11:14,670 --> 00:11:16,360
+“f1”, “f2” y “f3” y nuestra
+
+308
+00:11:17,550 --> 00:11:18,980
+hipótesis predecirá
+
+309
+00:11:19,040 --> 00:11:20,510
+1 cuando «theta» 0
+
+310
+00:11:20,760 --> 00:11:22,050
+más «theta»1, “f1” más «theta» 2, “f2”
+
+311
+00:11:22,330 --> 00:11:26,210
+etc. es mayor que o igual a 0.
+
+312
+00:11:26,250 --> 00:11:27,100
+Para este ejemplo en particular, digamos
+
+313
+00:11:27,290 --> 00:11:28,460
+que ya apliqué el
+
+314
+00:11:28,620 --> 00:11:29,520
+algoritmo de aprendizaje y
+
+315
+00:11:30,190 --> 00:11:31,220
+terminé con estos
+
+316
+00:11:31,900 --> 00:11:32,880
+valores para los parámetros:
+
+317
+00:11:33,510 --> 00:11:34,600
+«theta» 0 es igual
+
+318
+00:11:34,830 --> 00:11:36,010
+a menos 0.5, «theta» 1 es igual
+
+319
+00:11:36,390 --> 00:11:37,780
+a 1, «theta» 2 s igual a 1
+
+320
+00:11:38,180 --> 00:11:39,570
+y «theta» 3 es igual a 0.
+
+321
+00:11:40,370 --> 00:11:42,480
+Me gustaría
+
+322
+00:11:42,720 --> 00:11:44,530
+considerar qué
+
+323
+00:11:44,670 --> 00:11:46,100
+sucede cuando
+
+324
+00:11:46,200 --> 00:11:48,060
+tengo un ejemplo de entrenamiento que
+
+325
+00:11:49,260 --> 00:11:51,710
+tiene su ubicación en
+
+326
+00:11:52,510 --> 00:11:55,050
+este punto magenta, justo aquí arriba.
+
+327
+00:11:55,380 --> 00:11:56,180
+Supongamos que tenemos
+
+328
+00:11:56,290 --> 00:11:58,690
+el ejemplo de entrenamiento “x”, ¿qué predecirá mi hipótesis?
+
+329
+00:11:59,000 --> 00:12:01,430
+Analicemos esta fórmula:
+
+330
+00:12:04,580 --> 00:12:05,890
+Si mi ejemplo de entrenamiento “x”
+
+331
+00:12:06,050 --> 00:12:07,820
+es casi igual a “L1”,
+
+332
+00:12:08,230 --> 00:12:10,190
+“f1” también será
+
+333
+00:12:10,250 --> 00:12:11,830
+casi igual a 1 y si
+
+334
+00:12:12,250 --> 00:12:13,200
+mi ejemplo de entrenamiento “x”
+
+335
+00:12:13,360 --> 00:12:15,050
+está lejos de “L2” y “L3”
+
+336
+00:12:15,360 --> 00:12:16,880
+“f2” será casi igual a 0 y
+
+337
+00:12:17,590 --> 00:12:20,500
+“f3” también será igual a 0.
+
+338
+00:12:21,550 --> 00:12:22,700
+Así que, si miro
+
+339
+00:12:22,880 --> 00:12:23,970
+esa fórmula, tengo «theta»
+
+340
+00:12:24,230 --> 00:12:25,670
+0 más «theta» 1
+
+341
+00:12:26,600 --> 00:12:29,970
+por 1 más «theta» 2 por algún valor
+
+342
+00:12:30,510 --> 00:12:32,390
+que quizá no sea exactamente 0, pero que está cerca,
+
+343
+00:12:33,140 --> 00:12:36,400
+más «theta» 3 por algún valor cercano a 0.
+
+344
+00:12:37,480 --> 00:12:39,810
+Esto será igual a estos valores
+
+345
+00:12:41,050 --> 00:12:43,470
+y esto nos da menos 0.5
+
+346
+00:12:44,160 --> 00:12:46,820
+más 1 por 1 que es 1, etc.,
+
+347
+00:12:46,960 --> 00:12:47,740
+que es igual a 0.5, que es mayor o igual a 0.
+
+348
+00:12:48,000 --> 00:12:50,820
+En este punto
+
+349
+00:12:51,160 --> 00:12:54,280
+predeciré que “y” es igual a
+
+350
+00:12:54,740 --> 00:12:57,320
+1, porque esto es mayor que o igual a 0.
+
+351
+00:12:58,910 --> 00:12:59,950
+Ahora, tomemos un punto diferente.
+
+352
+00:13:00,800 --> 00:13:02,100
+Digamos que tomo
+
+353
+00:13:02,140 --> 00:13:03,060
+este punto
+
+354
+00:13:03,260 --> 00:13:04,370
+y lo dibujo en un color
+
+355
+00:13:04,770 --> 00:13:07,080
+diferente. De color cian.
+
+356
+00:13:07,250 --> 00:13:08,470
+Si este
+
+357
+00:13:08,710 --> 00:13:10,580
+fuera mi ejemplo de entrenamiento “x”,
+
+358
+00:13:11,270 --> 00:13:12,190
+e hiciera un cálculo similar,
+
+359
+00:13:12,950 --> 00:13:14,390
+encontraré que “f1”, “f2 y “f3” estarán
+
+360
+00:13:15,420 --> 00:13:16,850
+cerca de 0.
+
+361
+00:13:18,160 --> 00:13:19,910
+Tenemos «theta»
+
+362
+00:13:20,240 --> 00:13:23,940
+0 más «theta» 1, “f1”
+
+363
+00:13:24,230 --> 00:13:26,010
+más todo lo de más,
+
+364
+00:13:26,200 --> 00:13:27,830
+que será igual
+
+365
+00:13:28,020 --> 00:13:30,810
+a menos 0.5, porque
+
+366
+00:13:31,170 --> 00:13:32,110
+«theta» 0 es menos 0.5 y
+
+367
+00:13:32,190 --> 00:13:33,920
+“f1, “f2” y f3” serán cero.
+
+368
+00:13:34,910 --> 00:13:37,510
+Esto será menos 0.5 y esto menor que 0.
+
+369
+00:13:37,860 --> 00:13:38,910
+En este punto,
+
+370
+00:13:39,090 --> 00:13:40,220
+predeciremos que “y” es
+
+371
+00:13:40,470 --> 00:13:42,010
+igual a cero.
+
+372
+00:13:44,190 --> 00:13:45,100
+Y si hace esto,
+
+373
+00:13:45,270 --> 00:13:46,230
+esto tú mismo para un rango
+
+374
+00:13:46,380 --> 00:13:47,460
+de puntos, asegúrate
+
+375
+00:13:47,670 --> 00:13:48,660
+de entender que
+
+376
+00:13:48,730 --> 00:13:50,340
+si tienes un ejemplo de entrenamiento
+
+377
+00:13:50,890 --> 00:13:52,390
+casi igual a “L2”.
+
+378
+00:13:52,970 --> 00:13:55,730
+A este punto también prediremos que “y” es igual a 1.
+
+379
+00:13:56,800 --> 00:13:58,110
+De hecho, lo que
+
+380
+00:13:58,240 --> 00:13:59,300
+terminarás haciendo es, al
+
+381
+00:13:59,350 --> 00:14:00,920
+ver esta frontera, este espacio,
+
+382
+00:14:01,140 --> 00:14:02,300
+encontraremos que
+
+383
+00:14:02,820 --> 00:14:03,900
+para los puntos cercanos a “L1”
+
+384
+00:14:04,090 --> 00:14:05,560
+y “L2” tendremos una predicción positiva y
+
+385
+00:14:06,550 --> 00:14:07,780
+para los puntos que están
+
+386
+00:14:08,050 --> 00:14:09,260
+lejos de los puntos
+
+387
+00:14:09,470 --> 00:14:12,220
+de referencia “L1” y “L2”,
+
+388
+00:14:12,480 --> 00:14:13,780
+terminaremos prediciendo
+
+389
+00:14:14,390 --> 00:14:15,560
+que la clase es igual a 0.
+
+390
+00:14:16,510 --> 00:14:17,380
+Al final
+
+391
+00:14:17,890 --> 00:14:20,270
+la frontera de decisión de esta
+
+392
+00:14:20,400 --> 00:14:22,110
+hipótesis terminará siendo
+
+393
+00:14:22,280 --> 00:14:24,210
+algo así, en donde
+
+394
+00:14:24,370 --> 00:14:25,630
+dentro de la frontera de decisión
+
+395
+00:14:26,580 --> 00:14:28,240
+predeciremos que “y” es igual a
+
+396
+00:14:28,630 --> 00:14:30,250
+1 y fuera de
+
+397
+00:14:32,570 --> 00:14:32,570
+ella predeciremos que “y” es igual a 0.
+
+398
+00:14:33,020 --> 00:14:34,770
+Y entonces esto es
+
+399
+00:14:34,850 --> 00:14:36,010
+de los puntos de referencia
+
+400
+00:14:36,870 --> 00:14:38,560
+y de la variable de kernel
+
+401
+00:14:39,370 --> 00:14:40,940
+podemos aprender fronteras
+
+402
+00:14:41,420 --> 00:14:42,800
+de decisiones no lineares muy complejas,
+
+403
+00:14:42,930 --> 00:14:44,150
+como las que acabo de trazar aquí,
+
+404
+00:14:44,560 --> 00:14:46,990
+con las que predecimos un resultado positivo cuando estamos cerca de alguno de los puntos de referencia y
+
+405
+00:14:47,570 --> 00:14:48,880
+predecimos un resultado negativo
+
+406
+00:14:49,260 --> 00:14:50,680
+cuando estamos lejos
+
+407
+00:14:50,950 --> 00:14:52,990
+de los puntos de referencia.
+
+408
+00:14:53,440 --> 00:14:55,000
+Esto es parte
+
+409
+00:14:55,050 --> 00:14:57,300
+del concepto de kernels y de
+
+410
+00:14:57,600 --> 00:14:58,620
+cómo podemos utilizarlos con la
+
+411
+00:14:58,770 --> 00:14:59,810
+máquina de soporte vectorial para
+
+412
+00:14:59,990 --> 00:15:01,720
+definir las variables adicionales
+
+413
+00:15:02,040 --> 00:15:03,900
+utilizando puntos de referencia
+
+414
+00:15:04,770 --> 00:15:06,730
+y variables de similaridad para aprender clasificadores no lineales más complejos.
+
+415
+00:15:08,210 --> 00:15:09,290
+Espero que esto
+
+416
+00:15:09,390 --> 00:15:10,410
+te dé un sentido o una idea de los
+
+417
+00:15:10,590 --> 00:15:11,680
+kernels y de cómo los podemos utilizar
+
+418
+00:15:11,890 --> 00:15:14,110
+para definir nuevas variables para la máquina de soporte vectorial.
+
+419
+00:15:15,510 --> 00:15:17,670
+Pero todavía hay algunas preguntas que no hemos respondido.
+
+420
+00:15:18,010 --> 00:15:19,550
+Una es ¿cómo obtenemos estos puntos de referencia?
+
+421
+00:15:20,120 --> 00:15:20,930
+¿cómo los elegimos?
+
+422
+00:15:21,050 --> 00:15:22,910
+Otra es, ¿qué otras variables
+
+423
+00:15:23,090 --> 00:15:24,500
+de similaridad, si las hay,
+
+424
+00:15:24,750 --> 00:15:25,680
+pueden utilizarse además del
+
+425
+00:15:25,780 --> 00:15:29,000
+kernel Gaussiano, que es de la que hablamos?
+
+426
+00:15:29,190 --> 00:15:29,970
+En el video siguiente
+
+427
+00:15:29,990 --> 00:15:31,290
+responderemos estas preguntas y
+
+428
+00:15:31,490 --> 00:15:33,150
+pondremos todo junto para
+
+429
+00:15:33,740 --> 00:15:35,060
+mostrar cómo pueden ser eficientes
+
+430
+00:15:35,720 --> 00:15:36,960
+las máquinas de soporte vectorial con los
+
+431
+00:15:37,200 --> 00:15:38,610
+kernels para aprender variables complejas no lineales.

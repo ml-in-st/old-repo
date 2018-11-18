@@ -1,0 +1,728 @@
+1
+00:00:00,000 --> 00:00:04,620
+In diesem Video werde ich definieren, 
+was wohl die am weitesten verbreitete Art 
+von Maschinellem Lernen ist,
+
+2
+00:00:04,620 --> 00:00:08,910
+nämlich überwachtes Lernen. Ich werde überwachtes Lernen
+
+3
+00:00:08,910 --> 00:00:13,255
+später formal definieren, aber es ist
+ wahrscheinlich am besten es anhand eines Beispiels
+ zu erklären und damit zu beginnen,
+
+4
+00:00:13,255 --> 00:00:17,820
+was es ist. Wir geben dann die formale Definition später. 
+Stellen wir uns vor, Sie wollen
+
+5
+00:00:17,820 --> 00:00:23,072
+Hauspreise vorhersagen.
+ Vor einiger Zeit hat ein Student Datensätze
+
+6
+00:00:23,072 --> 00:00:28,745
+der Stadt Portland in Oregon gesammelt. 
+Nehmen wir an, Sie plotten einen Datensatz 
+und er sieht so wie hier aus.
+
+7
+00:00:28,745 --> 00:00:34,347
+Hier auf der horizontalen Achse ist 
+die Größe verschiedener Häuser in Quadratfuß
+
+8
+00:00:34,347 --> 00:00:39,879
+und auf der vertikalen Achse ist der Preis der 
+verschiedenen Häuser in Tausend Dollar aufgetragen.
+
+9
+00:00:39,879 --> 00:00:45,168
+Mit diesen Daten - stellen wir uns einmal vor,
+ Sie haben einen Freund, der ein Haus besitzt, 
+das, sagen wir mal, 750 Quadratfuß hat,
+
+10
+00:00:45,168 --> 00:00:50,708
+und der hofft das Haus verkaufen zu können. 
+Er möchte dann wissen mit wie viel er rechnen
+
+11
+00:00:50,708 --> 00:00:56,116
+kann für das Haus. Wie kann der Lernalgorithmus 
+Ihnen dabei helfen? Eine Sache, die der Lernalgorithmus
+
+12
+00:00:56,116 --> 00:01:01,524
+möglicherweise tun kann, ist eine gerade Linie
+ durch die Datenpunkte zu ziehen 
+oder eine Gerade an die Datenpunkte anzupassen.
+
+13
+00:01:01,524 --> 00:01:07,111
+Dann sieht es wohl so aus als ob das Haus
+
+14
+00:01:07,111 --> 00:01:13,239
+für ungefähr 150.000$ verkauft werden kann. 
+Aber das ist sicherlich nicht der einzige Lernalgorithmus, 
+den man benutzen kann.
+
+15
+00:01:13,239 --> 00:01:18,536
+Möglicherweise gibt es einen besseren. Zum Beispiel anstatt
+
+16
+00:01:18,536 --> 00:01:23,620
+eine Gerade an die Datenpunkte anzupassen, könnten wir 
+meinen, dass es besser ist, eine quadratische Funktion oder
+
+17
+00:01:23,620 --> 00:01:29,110
+ein Polynom zweiter Ordnung an die Daten anzupassen. 
+Und wenn man das macht und dann hier eine Vorhersage trifft,
+
+18
+00:01:29,110 --> 00:01:34,667
+dann sieht es so aus, als ob wir das Haus eher 
+für 200.000$ verkaufen können.
+
+19
+00:01:34,667 --> 00:01:39,184
+Eines der Dinge über die wir nachher sprechen werden ist,
+ wie man auswählt und wie man entscheidet:
+
+20
+00:01:39,184 --> 00:01:43,792
+Möchte ich eine Gerade an die Daten anpassen oder möchte ich
+
+21
+00:01:43,792 --> 00:01:48,631
+eine quadratische Funktion an die Daten anpassen? 
+Es gibt da keine korrekte Wahl, je nachdem was Ihrem Freund
+
+22
+00:01:48,631 --> 00:01:53,182
+das bessere Haus zum Verkaufen gibt. Jedes dieser Beispiele
+ wäre ein gutes Beispiel für einen Lernalgorithmus.
+
+23
+00:01:53,182 --> 00:01:57,834
+Dies ist ein Beispiel für 
+einen Algorithmus des überwachten Lernens.
+
+24
+00:01:57,834 --> 00:02:03,736
+Der Ausdruck überwachtes Lernen bezieht sich auf die Tatsache, 
+dass wir dem Algorithmus einen Datensatz gegeben haben,
+
+25
+00:02:03,736 --> 00:02:09,089
+in denen die "richtigen Antworten" gegeben waren. 
+Das bedeutet, wir haben ihm
+ einen Datensatz zu Häusern gegeben
+
+26
+00:02:09,089 --> 00:02:14,580
+und zu jedem Exemplar in diesem Datensatz 
+ haben wir ihm gesagt, was der richtige Preis ist,
+
+27
+00:02:14,580 --> 00:02:20,002
+was der tatsächliche Preis ist, zu dem dieses Haus verkauft 
+wurde. Und der Mehrwert, den der Algorithmus geliefert hat,
+
+28
+00:02:20,002 --> 00:02:25,423
+war lediglich mehr dieser richtigen Antworten zu produzieren, 
+wie eben für dieses neue Haus,
+
+29
+00:02:25,423 --> 00:02:30,579
+das Ihr Freund vielleicht versucht zu verkaufen. 
+Um es mit einer genaueren Terminologie abzugrenzen,
+
+30
+00:02:30,579 --> 00:02:35,257
+wird dies auch Regressionsproblem genannt.
+ Mit Regressionsproblem
+
+31
+00:02:35,257 --> 00:02:40,467
+meine ich, dass wir versuchen einen kontinuierlichen Wert
+ als Ergebnis vorherzusagen, nämlich den Preis.
+
+32
+00:02:40,467 --> 00:02:44,720
+Technisch gesehen, denke ich,
+ können Preise zum nächsten Cent auf oder abgerundet werden.
+
+33
+00:02:44,720 --> 00:02:49,246
+So kann man vielleicht sagen, dass Preise eigentlich 
+diskrete Werte sind, aber normalerweise 
+denken wir bei dem Preis für ein Haus
+
+34
+00:02:49,246 --> 00:02:53,608
+an eine reelle Zahl, an einen Skalar, 
+an einen kontinuierlichen Zahlenwert.
+
+35
+00:02:53,608 --> 00:02:58,080
+Der Ausdruck Regression bezieht sich auf die Eigenschaft,
+ dass wir versuchen einen kontinuierlichen Wert vorherzusagen.
+
+36
+00:02:58,080 --> 00:03:02,060
+Hier ist ein weiteres Beispiel für überwachtes Lernen.
+
+37
+00:03:02,060 --> 00:03:06,427
+Einige Freunde und ich haben daran tatsächlich 
+früher einmal gearbeitet.
+
+38
+00:03:06,427 --> 00:03:11,675
+Stellen Sie sich vor, Sie möchten sich 
+medizinische Aufzeichnungen anschauen und versuchen 
+vorherzusagen, ob ein Brustkrebs bösartig oder gutartig ist.
+
+39
+00:03:11,675 --> 00:03:16,856
+Wenn jemand einen Brusttumor entdeckt, einen Knoten 
+in seiner Brust, dann ist ein bösartiger Tumor einer,
+
+40
+00:03:16,856 --> 00:03:22,300
+der gesundheitsschädlich und gefährlich ist 
+und ein gutartiger Tumor ist einer, der harmlos ist.
+
+41
+00:03:22,300 --> 00:03:27,876
+Wie man sich denken kann, wird das für sehr wichtig gehalten.
+ Schauen wir uns das mal an einem gesammelten Datensatz an.
+
+42
+00:03:27,876 --> 00:03:33,164
+Nehmen wir an, wir haben auf der horizontalen Achse 
+die Größe des Tumors
+
+43
+00:03:33,164 --> 00:03:39,317
+und auf der vertikalen Achse, werde ich Eins oder Null
+ einzeichnen, Ja oder Nein, je nachdem ob oder ob nicht,
+
+44
+00:03:39,317 --> 00:03:45,184
+diese Exemplare von Tumoren, die wie wir vorher 
+gesehen haben, bösartig sind - was als Eins dargestellt wird -
+ oder als Null, falls nicht bösartig also gutartig.
+
+45
+00:03:45,184 --> 00:03:50,392
+Stellen wir uns also vor, dass unser Datensatz wie folgt aussieht:
+ Wir haben einen Tumor mit dieser Größe hier gesehen,
+
+46
+00:03:50,392 --> 00:03:56,283
+der sich als gutartig herausgestellt hat. 
+Einen mit dieser Größe, einen mit dieser Größe, und so weiter.
+
+47
+00:03:56,283 --> 00:04:02,227
+Außerdem haben wir leider auch einige bösartige Tumore 
+gesehen, einen mit dieser Größe, einen mit jener Größe,
+
+48
+00:04:02,227 --> 00:04:08,572
+und so weiter. Dann habe ich hier fünf Beispiele für
+
+49
+00:04:08,572 --> 00:04:15,159
+gutartige Tumore hier unten und fünf Beispiele für bösartige
+ Tumore, die einen vertikalen Achsenwert von Eins haben.
+
+50
+00:04:15,159 --> 00:04:21,504
+Nehmen wir an, dass wir eine Freundin haben,
+ die tragischerweise einen Brusttumor hat
+
+51
+00:04:21,504 --> 00:04:28,097
+und nehmen wir außerdem an, dass die Größe ihres 
+Brusttumors etwa um diesen Wert hier herum liegt.
+
+52
+00:04:28,097 --> 00:04:32,930
+Die Maschinelle Lernfragestellung ist dann: 
+Können Sie die Wahrscheinlichkeit abschätzen, dass
+
+53
+00:04:32,930 --> 00:04:37,819
+dieser Tumor bösartig oder gutartig ist?
+ Um etwas mehr Terminologie einzuführen:
+
+54
+00:04:37,819 --> 00:04:42,719
+Dies ist ein Beispiel für ein Klassifikationsproblem.
+
+55
+00:04:42,719 --> 00:04:47,342
+Der Ausdruck Klassifikation bezieht sich auf die Tatsache, 
+dass wir hier versuchen einen diskreten
+
+56
+00:04:47,342 --> 00:04:52,321
+Wert als Ergebnis vorherzusagen: 
+Null oder Eins, bösartig oder gutartig.
+
+57
+00:04:52,321 --> 00:04:58,331
+Wie sich herausstellt, kann man bei einem Klassifikationsproblem
+ auch mehr als zwei mögliche Werte als Ergebnis haben.
+
+58
+00:04:58,331 --> 00:05:03,852
+Nehmen wir als ein konkretes Beispiel mal an, es gibt drei Arten
+
+59
+00:05:03,852 --> 00:05:09,947
+von Brustkrebs, sodass man dann versuchen würde,
+ die diskreten Werte Null, Eins, Zwei oder Drei vorherzusagen,
+
+60
+00:05:09,947 --> 00:05:15,138
+wobei Null gutartig bedeutet - gutartiger Tumor also kein Krebs -
+ und Eins bedeutet dann vielleicht
+
+61
+00:05:15,138 --> 00:05:19,836
+Typ 1 Krebs, wenn man halt drei Arten von Krebs hat,
+ was auch immer Typ 1 bedeuten mag.
+
+62
+00:05:19,836 --> 00:05:24,654
+Zwei bedeutet dann Typ 2 Krebs und Drei bedeutet Typ 3 Krebs.
+
+63
+00:05:24,654 --> 00:05:29,111
+Aber das wäre dann ebenfalls ein Klassifikationsproblem, weil
+
+64
+00:05:29,111 --> 00:05:33,929
+die Menge der Ergebnisse diskrete Werte sind: 
+kein Krebs, Typ 1 Krebs, Typ 2 Krebs,
+
+65
+00:05:33,929 --> 00:05:39,094
+oder Typ 3 Krebs. In Klassifikationsproblemen gibt es
+
+66
+00:05:39,094 --> 00:05:44,413
+eine weitere Methode, die Datenpunkte zu plotten.
+ Lassen Sie mich Ihnen zeigen, was ich meine. 
+Ich verwende dafür eine
+
+67
+00:05:44,413 --> 00:05:49,206
+etwas andere Menge an Symbolen, um diese Daten zu plotten.
+ Falls Tumorgröße diejenige Eigenschaft ist,
+
+68
+00:05:49,206 --> 00:05:54,303
+die ich verwende, um Bösartigkeit oder Gutartigkeit 
+vorherzusagen, dann kann ich meine Daten 
+auch wie folgt einzeichnen.
+
+69
+00:05:54,303 --> 00:05:58,975
+Ich werde verschiedene Symbole benutzen,
+ um meine gutartigen und bösartigen -
+
+70
+00:05:58,975 --> 00:06:03,707
+meine negativen und positiven - Beispiele 
+zu kennzeichnen. Anstelle also X'e zu zeichnen,
+
+71
+00:06:03,707 --> 00:06:11,595
+werde ich nun O's für gutartige Tumore einzeichnen. 
+So etwa. Ich werde weiterhin
+
+72
+00:06:11,595 --> 00:06:18,655
+X'e verwenden, um meine bösartigen Tumore zu kennzeichnen.
+ Ist das klar? Ich hoffe dies fängt an Sinn zu ergeben.
+
+73
+00:06:18,655 --> 00:06:23,624
+Was ich hier lediglich getan habe, ist diese
+ meine Datenpunkte von oben zu nehmen und sie
+
+74
+00:06:23,624 --> 00:06:30,894
+einfach nach unten auf die reelle Zahlengerade - so hier - 
+abzubilden, mit verschiedenen Symbolen,
+
+75
+00:06:30,894 --> 00:06:35,828
+Kreisen und Kreuzen, um bösartige und 
+gutartige Beispiele zu kennzeichnen.
+
+76
+00:06:35,828 --> 00:06:41,091
+In diesem Beispiel verwenden wir nur eine Eigenschaft,
+ ein "Feature": die Tumorgröße,
+
+77
+00:06:41,091 --> 00:06:46,289
+um vorherzusagen, ob der Tumor bös- oder gutartig ist.
+ In anderen Maschinellen Lernproblemstellungen
+
+78
+00:06:46,289 --> 00:06:51,355
+können wir mehr als eine Eigenschaft,
+ mehr als ein Feature haben.
+
+79
+00:06:51,355 --> 00:06:56,749
+Hier ist ein Beispiel. Sagen wir, anstatt dass wir lediglich 
+die Tumorgröße kennen, kennen wir sowohl
+
+80
+00:06:56,749 --> 00:07:02,387
+das Alter des Patienten als auch die Tumorgröße.
+ In diesem Fall könnte Ihr Datensatz so aussehen,
+
+81
+00:07:02,387 --> 00:07:08,562
+wo ich eine Menge an Patienten habe, 
+die soundso alt sind und deren Tumorgröße soundso ist.
+
+82
+00:07:08,562 --> 00:07:14,980
+So etwa. Und dann habe ich noch eine weiter Menge 
+an Patienten, die etwas anders aussehen,
+
+83
+00:07:15,600 --> 00:07:23,968
+deren Tumore sich als bösartig herausstellen, 
+was wir mit Kreuzen kennzeichnen.
+
+84
+00:07:23,968 --> 00:07:32,027
+Sagen wir, Sie haben einen Freund, der tragischerweise
+ einen Tumor hat und dessen Tumorgröße und Alter
+
+85
+00:07:32,027 --> 00:07:37,657
+befindet sich ungefähr da. Mit einem Datensatz 
+wie diesem würde der Lernalgorithmus dann folgendes tun.
+
+86
+00:07:37,657 --> 00:07:42,462
+Er würde eine Gerade durch die Datenpunkte finden 
+und versuchen
+
+87
+00:07:42,462 --> 00:07:47,710
+die bösartigen Tumore von den gutartigen zu trennen. 
+Der Lernalgorithmus könnte dann entscheiden
+
+88
+00:07:47,710 --> 00:07:53,004
+die Gerade so hier einzupassen, 
+um die zwei Klassen von Tumoren zu trennen.
+
+89
+00:07:53,004 --> 00:07:57,644
+Damit können wir dann hoffentlich entscheiden,
+ dass der Tumor Ihres Freundes
+
+90
+00:07:57,644 --> 00:08:02,322
+eher dort drüben ist. Also dass Ihr Lernalgorithmus eher
+
+91
+00:08:02,322 --> 00:08:07,305
+sagen wird, dass der Tumor Ihres Freundes 
+eher auf der gutartigen Seite ist und daher
+
+92
+00:08:07,305 --> 00:08:12,044
+mit höherer Wahrscheinlichkeit gutartig und nicht bösartig ist. 
+In diesem Beispiel haben wir zwei Features,
+
+93
+00:08:12,044 --> 00:08:17,147
+nämlich das Alter des Patienten und die Größe des Tumors.
+ In anderen Problemen von Maschinellem Lernen
+
+94
+00:08:17,147 --> 00:08:21,454
+werden wir öfters mehr Features haben. 
+Meine Freunde, die an diesem Problem arbeiten,
+
+95
+00:08:21,454 --> 00:08:25,849
+verwenden in der Tat andere Features wie diese,
+ wie Klumpendicke des Brusttumors,
+
+96
+00:08:25,849 --> 00:08:30,299
+Gleichmäßigkeit der Zellgröße des Tumors, 
+Gleichförmigkeit der Zellstruktur des Tumors,
+
+97
+00:08:30,299 --> 00:08:34,911
+und so weiter, und noch weiter Features. 
+Wie sich herausstellen wird, ist einer der wohl
+
+98
+00:08:34,911 --> 00:08:39,907
+interessantesten Lernalgorithmen, den wir in diesem Kurs
+ kennenlernen werden, ein Lernalgorithmus,
+
+99
+00:08:39,907 --> 00:08:45,153
+der nicht nur mit zwei oder drei oder vier Features 
+umgehen kann, sondern mit 
+einer unendlichen Anzahl an Features.
+
+100
+00:08:45,153 --> 00:08:50,150
+Auf dieser Folie habe ich insgesamt
+ fünf verschiedene Features aufgelistet,
+
+101
+00:08:50,150 --> 00:08:54,482
+zwei stehen an den Achsen und drei weitere hier oben.
+ Aber wie sich herausstellt,
+
+102
+00:08:54,482 --> 00:08:58,497
+will man nicht etwa drei oder fünf Features verwenden, sondern
+
+103
+00:08:58,497 --> 00:09:02,566
+man möchte eine unendliche Anzahl an Features, 
+eine unendliche Anzahl an Eigenschaften verwenden,
+
+104
+00:09:02,566 --> 00:09:06,211
+sodass der Lernalgorithmus viele Eigenschaften 
+oder Features oder Hinweise verwendet,
+
+105
+00:09:06,211 --> 00:09:10,333
+um seine Vorhersagen zu machen. 
+Wie kann man aber eine unendliche Anzahl
+
+106
+00:09:10,333 --> 00:09:14,439
+von Features verarbeiten? 
+Wie soll man überhaupt eine unendliche Anzahl an
+
+107
+00:09:14,439 --> 00:09:18,290
+Dingen im Computer speichern, 
+wenn der Speicher im Computer doch irgendwann alle ist.
+
+108
+00:09:18,290 --> 00:09:22,188
+Wie sich herausstellt, gibt es 
+- wenn man an den Algorithmus denkt, 
+der Support Vector Machine genannt wird -
+
+109
+00:09:22,188 --> 00:09:26,675
+einen netten mathematischen Trick, der dem Computer erlaubt
+
+110
+00:09:26,675 --> 00:09:31,214
+eine unendliche Anzahl an Features zu verarbeiten.
+ Stellen Sie sich vor, dass ich nicht nur zwei Features hier
+
+111
+00:09:31,214 --> 00:09:35,487
+und drei Features auf der rechten Seite aufgeschrieben habe, 
+sondern stellen Sie sich vor,
+ dass ich eine unendlich lange Liste aufgeschrieben habe.
+
+112
+00:09:35,487 --> 00:09:39,866
+Ich habe einfach immer mehr Features dazugeschrieben 
+- wie eine unendlich lange Liste von Features.
+
+113
+00:09:39,866 --> 00:09:44,192
+Es wird sich zeigen, dass wir einen Algorithmus finden werden,
+ der damit umgehen kann.
+
+114
+00:09:44,192 --> 00:09:49,701
+Also, nur um mal zusammenzufassen:
+ in diesem Kurs werden wir über überwachtes Lernen sprechen.
+
+115
+00:09:49,701 --> 00:09:54,167
+Die Idee dabei ist,
+ dass uns in überwachtem Lernen zu jedem Beispiel
+
+116
+00:09:54,167 --> 00:09:58,880
+in unserem Datensatz gegeben ist, 
+was die "richtige Antwort" ist,
+ von der wir doch wollen würden,
+
+117
+00:09:58,880 --> 00:10:03,960
+dass der Algorithmus diese zu diesem Beispiel 
+vorhergesagt hätte. Wie etwa den Preis des Hauses
+
+118
+00:10:03,960 --> 00:10:08,428
+oder ob ein Tumor bös- oder gutartig ist. 
+Wir haben außerdem über das
+
+119
+00:10:08,428 --> 00:10:13,202
+Regressionsproblem gesprochen. 
+Und mit Regression meinen wir, dass es unser Ziel ist,
+
+120
+00:10:13,202 --> 00:10:17,977
+einen kontinuierlichen Wert als Ergebnis vorherzusagen. 
+Und wir haben auch über das Klassifikationsproblem gesprochen,
+
+121
+00:10:17,977 --> 00:10:22,690
+wo es das Ziel ist, einen diskreten Wert als Ergebnis
+ vorherzusagen. Hier ist mal eine kleine Verständnisfrage:
+
+122
+00:10:22,690 --> 00:10:27,541
+Nehmen wir mal an, dass Sie ein Unternehmen führen 
+und Sie wollen einen Lernalgorithmus entwickeln,
+
+123
+00:10:27,541 --> 00:10:32,618
+um jedes der zwei folgenden Probleme zu adressieren. 
+Beim ersten Problem haben Sie ein großes Inventar an
+
+124
+00:10:32,618 --> 00:10:38,113
+identischen Artikeln. Stellen Sie sich also vor, 
+Sie haben Tausende identische Kopien
+ eines Artikels zu verkaufen
+
+125
+00:10:38,113 --> 00:10:43,607
+und Sie wollen vorhersagen, wie viele dieser Artikel 
+Sie in den nächsten drei Monaten verkaufen werden.
+
+126
+00:10:43,607 --> 00:10:49,172
+Beim zweiten Problem - Problem Nummer 2 - 
+haben Sie viele Nutzer
+
+127
+00:10:49,172 --> 00:10:54,145
+und Sie möchten eine Software schreiben, 
+um jedes einzelne Konto ihrer Nutzer zu untersuchen,
+
+128
+00:10:54,145 --> 00:10:59,193
+also jedes einzelne Nutzerkonto, um zu entscheiden,
+
+129
+00:10:59,193 --> 00:11:04,178
+ob ein jeweiliges Konto 
+gehackt oder kompromittiert wurde oder eben nicht.
+
+130
+00:11:04,178 --> 00:11:08,914
+Entscheiden Sie für jedes Problem, ob es als 
+ein Klassifikationsproblem oder ein Regressionsproblem 
+betrachtet werden sollte.
+
+131
+00:11:08,914 --> 00:11:14,087
+Wenn das Video anhält, 
+verwenden Sie bitte Ihre Maus, um auszuwählen
+
+132
+00:11:14,087 --> 00:11:20,884
+von welcher dieser vier Optionen auf der linken Seite
+ Sie glauben, dass es die richtige Antwort ist.
+
+133
+00:11:20,884 --> 00:11:25,871
+Ich hoffe, Sie haben verstanden, dass das hier die Antwort ist.
+ Problem eins würde ich als ein
+
+134
+00:11:25,871 --> 00:11:31,058
+Regressionsproblem behandeln, 
+weil wenn ich Tausende Artikel habe, dann
+
+135
+00:11:31,058 --> 00:11:36,071
+würde ich dies einfach als einen reellen Wert,
+ als einen kontinuierlichen Wert ansehen
+
+136
+00:11:36,290 --> 00:11:41,837
+und deswegen die Anzahl der Artikel, die ich verkaufe, 
+als einen kontinuierlichen Wert ansehen.
+
+137
+00:11:41,837 --> 00:11:47,748
+Das zweite Problem würde ich
+ als ein Klassifikationsproblem betrachten,
+
+138
+00:11:47,748 --> 00:11:53,659
+weil ich sagen könnte, ich möchte beim Vorhersagen
+ ein Konto mit der Null markieren, wenn es nicht gehackt wurde
+
+139
+00:11:53,659 --> 00:11:58,850
+und mit dem Wert Eins markiere ich ein Konto, 
+dass gehackt wurde.
+
+140
+00:11:58,850 --> 00:12:03,287
+Eben genau so wie bei Brustkrebs 
+Null gutartig bedeutet hatte und Eins bösartig,
+
+141
+00:12:03,287 --> 00:12:08,150
+so könnte ich die Werte Null und Eins vergeben,
+ je nachdem ob es gehackt wurde oder nicht.
+
+142
+00:12:08,150 --> 00:12:13,134
+Der Algorithmus soll dann einen
+ dieser beiden diskreten Werte vorhersagen.
+
+143
+00:12:13,134 --> 00:12:17,693
+Und weil es sich um eine kleine Anzahl 
+an diskreten Werten handelt, 
+würde ich es als ein Klassifikationsproblem behandeln.
+
+144
+00:12:17,693 --> 00:12:23,075
+Das war es zu überwachten Lernen 
+und im nächsten Video werde ich
+
+145
+00:12:23,075 --> 00:12:28,325
+über unüberwachtes Lernen sprechen, 
+was die andere wichtige Untergruppe von Lernalgorithmen ist.

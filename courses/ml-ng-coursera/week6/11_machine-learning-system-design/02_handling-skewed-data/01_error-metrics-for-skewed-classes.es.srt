@@ -1,0 +1,1291 @@
+1
+00:00:00,290 --> 00:00:01,690
+En el video anterior hablé
+
+2
+00:00:02,060 --> 00:00:03,900
+del análisis de errores
+
+3
+00:00:04,350 --> 00:00:06,070
+y de la importancia de tener una
+
+4
+00:00:06,330 --> 00:00:07,480
+métrica de errores; es decir, tener una
+
+5
+00:00:08,210 --> 00:00:10,200
+métrica de evaluación con un número
+
+6
+00:00:11,020 --> 00:00:13,290
+real simple para saber cómo se desempeña un algoritmo de aprendizaje.
+
+7
+00:00:14,310 --> 00:00:15,670
+En el contexto de la evaluación y de la
+
+8
+00:00:16,700 --> 00:00:18,320
+métrica de errores, hay
+
+9
+00:00:18,430 --> 00:00:20,290
+un caso importante en el que es
+
+10
+00:00:20,480 --> 00:00:22,180
+especialmente difícil obtener
+
+11
+00:00:22,510 --> 00:00:24,430
+una métrica de errores o
+
+12
+00:00:24,930 --> 00:00:26,990
+de evaluación apropiada para el algoritmo de aprendizaje.
+
+13
+00:00:28,040 --> 00:00:29,140
+A este caso se le llama
+
+14
+00:00:29,610 --> 00:00:31,310
+clases sesgadas.
+
+15
+00:00:32,610 --> 00:00:33,480
+A continuación les diré que significa.
+
+16
+00:00:36,170 --> 00:00:37,550
+Consideremos el problema de clasificación
+
+17
+00:00:38,180 --> 00:00:40,040
+de cáncer, donde tenemos
+
+18
+00:00:40,300 --> 00:00:41,960
+variables de pacientes médicos y
+
+19
+00:00:42,070 --> 00:00:44,050
+queremos decidir si tienen cáncer o no.
+
+20
+00:00:44,630 --> 00:00:45,790
+Este es como el ejemplo de
+
+21
+00:00:46,350 --> 00:00:48,290
+clasificación de tumores malignos
+
+22
+00:00:48,930 --> 00:00:50,070
+y benignos que vimos antes.
+
+23
+00:00:51,140 --> 00:00:52,360
+Digamos que “y” es igual a 1 si el
+
+24
+00:00:52,550 --> 00:00:53,780
+paciente tiene cáncer y “y” es igual a 0
+
+25
+00:00:54,280 --> 00:00:56,530
+si no tiene cáncer.
+
+26
+00:00:56,810 --> 00:00:57,460
+Entrenaremos el clasificador
+
+27
+00:00:57,940 --> 00:00:59,780
+de regresión logística y
+
+28
+00:01:00,000 --> 00:01:01,520
+lo probaremos en
+
+29
+00:01:01,660 --> 00:01:04,470
+el conjunto de pruebas y encontraremos un error del 1 por ciento.
+
+30
+00:01:04,790 --> 00:01:05,720
+Por lo tanto, tenemos un 99% de diagnósticos correctos.
+
+31
+00:01:06,530 --> 00:01:09,610
+Parece ser un resultado impresionante, ¿cierto?
+
+32
+00:01:09,910 --> 00:01:10,920
+Estamos en lo correcto el 99% de las veces.
+
+33
+00:01:12,560 --> 00:01:13,630
+Ahora, supongamos que sólo
+
+34
+00:01:13,940 --> 00:01:15,660
+el 0.5%
+
+35
+00:01:16,510 --> 00:01:17,950
+de los pacientes en
+
+36
+00:01:18,160 --> 00:01:19,590
+nuestro conjunto de entrenamiento y de prueba tienen cáncer realmente;
+
+37
+00:01:20,400 --> 00:01:21,900
+es decir, sólo
+
+38
+00:01:21,950 --> 00:01:23,460
+medio punto porcentual de los
+
+39
+00:01:23,580 --> 00:01:25,500
+pacientes en el proceso de selección tiene cáncer.
+
+40
+00:01:26,560 --> 00:01:27,970
+En este caso, el 1%
+
+41
+00:01:28,270 --> 00:01:30,010
+de error ya no parece tan impresionante.
+
+42
+00:01:31,130 --> 00:01:32,510
+Aquí hay unas
+
+43
+00:01:32,670 --> 00:01:33,730
+líneas de código, un código
+
+44
+00:01:33,850 --> 00:01:35,730
+que no es de aprendizaje que toma
+
+45
+00:01:36,080 --> 00:01:38,260
+las variables de entrada “x” y las ignora.
+
+46
+00:01:38,480 --> 00:01:39,820
+Sólo ajusta “y” igual a 0 y
+
+47
+00:01:39,950 --> 00:01:41,640
+siempre predice que
+
+48
+00:01:41,720 --> 00:01:43,920
+nadie tiene cáncer.
+
+49
+00:01:44,170 --> 00:01:45,720
+Este algoritmo arrojó
+
+50
+00:01:46,000 --> 00:01:47,840
+un error del 0.5%
+
+51
+00:01:48,830 --> 00:01:50,280
+que es mucho mejor que el 1% de error
+
+52
+00:01:50,400 --> 00:01:51,140
+que estábamos obteniendo y
+
+53
+00:01:51,240 --> 00:01:52,960
+este es un algoritmo
+
+54
+00:01:53,160 --> 00:01:54,600
+que no es de aprendizaje y que
+
+55
+00:01:54,800 --> 00:01:56,950
+predice que “y” es igual a 0 todo el tiempo.
+
+56
+00:01:57,990 --> 00:01:59,430
+Este parámetro en el
+
+57
+00:02:00,060 --> 00:02:01,980
+que la proporción de ejemplos positivos y
+
+58
+00:02:02,180 --> 00:02:04,130
+negativos está muy cerca
+
+59
+00:02:04,810 --> 00:02:06,480
+a alguno de los extremos, como
+
+60
+00:02:07,040 --> 00:02:08,620
+en este caso, que el
+
+61
+00:02:08,710 --> 00:02:10,050
+número de ejemplos positivos es
+
+62
+00:02:10,350 --> 00:02:11,310
+mucho más pequeño que el
+
+63
+00:02:11,620 --> 00:02:13,180
+número de ejemplos negativos porque
+
+64
+00:02:13,480 --> 00:02:15,500
+“y” es igual a 1, esto es a lo que
+
+65
+00:02:15,730 --> 00:02:16,850
+llamamos caso de
+
+66
+00:02:17,000 --> 00:02:18,600
+clases sesgadas.
+
+67
+00:02:20,790 --> 00:02:21,710
+Tenemos muchos
+
+68
+00:02:22,000 --> 00:02:23,140
+más ejemplos para
+
+69
+00:02:23,570 --> 00:02:25,040
+una clase que para la otra.
+
+70
+00:02:25,220 --> 00:02:26,560
+Al predecir que “y” es igual
+
+71
+00:02:26,920 --> 00:02:28,270
+a 0 todo el tiempo, o que
+
+72
+00:02:28,650 --> 00:02:29,650
+“y” es igual a 1
+
+73
+00:02:29,790 --> 00:02:32,080
+todo el tiempo, el algoritmo puede desempeñarse muy bien.
+
+74
+00:02:32,980 --> 00:02:34,050
+El problema cuando utilizamos
+
+75
+00:02:34,670 --> 00:02:36,210
+el error de clasificación o la
+
+76
+00:02:36,590 --> 00:02:39,240
+precisión de clasificación como nuestra métrica de evaluación es el siguiente:
+
+77
+00:02:40,430 --> 00:02:41,360
+Digamos que tenemos
+
+78
+00:02:41,700 --> 00:02:43,570
+un algoritmo que arroja una precisión del 99.2%.
+
+79
+00:02:46,530 --> 00:02:47,200
+En otras palabras, un error de 0.8%.
+
+80
+00:02:47,330 --> 00:02:50,850
+Digamos que
+
+81
+00:02:51,000 --> 00:02:52,000
+haces algún cambio a tu algoritmo
+
+82
+00:02:52,810 --> 00:02:53,890
+y ahora obtienes una
+
+83
+00:02:54,280 --> 00:02:56,080
+precisión del 99.5%.
+
+84
+00:02:59,280 --> 00:03:02,110
+Es decir, un error de 0.5%.
+
+85
+00:03:04,230 --> 00:03:06,460
+¿Esto sería una mejora para el algoritmo?
+
+86
+00:03:06,770 --> 00:03:07,930
+Una de las ventajas de
+
+87
+00:03:08,300 --> 00:03:09,990
+tener una métrica de evaluación con
+
+88
+00:03:10,120 --> 00:03:11,480
+un número real simple es
+
+89
+00:03:11,650 --> 00:03:13,080
+que nos ayuda a decidir rápidamente
+
+90
+00:03:13,240 --> 00:03:15,530
+si necesitamos realizar cambios en el algoritmo o no.
+
+91
+00:03:16,370 --> 00:03:20,160
+Al aumentar la precisión del algoritmo de 99.2% a 99.5%
+
+92
+00:03:21,430 --> 00:03:22,490
+¿hicimos algo útil, o simplemente
+
+93
+00:03:22,780 --> 00:03:23,640
+remplazamos
+
+94
+00:03:23,770 --> 00:03:25,150
+nuestro código con
+
+95
+00:03:25,320 --> 00:03:26,690
+algo que predice que
+
+96
+00:03:27,000 --> 00:03:28,830
+“y” es igual a 0 más seguido?
+
+97
+00:03:29,300 --> 00:03:30,430
+Si tienes clases muy sesgadas
+
+98
+00:03:31,340 --> 00:03:33,280
+se vuelve mucho más difícil utilizar la
+
+99
+00:03:33,640 --> 00:03:36,000
+precisión de la clasificación, porque
+
+100
+00:03:36,120 --> 00:03:37,730
+puedes obtener una precisión de clasificación alta
+
+101
+00:03:38,420 --> 00:03:40,950
+y un error bajo pero no siempre
+
+102
+00:03:41,110 --> 00:03:42,880
+queda claro si
+
+103
+00:03:43,070 --> 00:03:44,190
+hacer esto mejora
+
+104
+00:03:44,770 --> 00:03:45,780
+la calidad de tu clasificador, porque
+
+105
+00:03:46,400 --> 00:03:48,320
+predecir que “y” es igual a 0 todo el
+
+106
+00:03:48,380 --> 00:03:50,710
+tiempo no es un
+
+107
+00:03:51,570 --> 00:03:52,570
+buen clasificador.
+
+108
+00:03:53,900 --> 00:03:55,500
+Cuando predecimos que “y” es igual a 0
+
+109
+00:03:55,720 --> 00:03:57,300
+más seguido, podemos reducir
+
+110
+00:03:57,830 --> 00:03:59,460
+el error tanto
+
+111
+00:03:59,650 --> 00:04:01,120
+como hasta un 0.5%.
+
+112
+00:04:01,490 --> 00:04:02,590
+Cuando nos encontramos con estas
+
+113
+00:04:02,770 --> 00:04:04,990
+clases sesgadas
+
+114
+00:04:05,250 --> 00:04:06,350
+queremos encontrar una métrica
+
+115
+00:04:06,470 --> 00:04:07,920
+de errores o una métrica de evaluación
+
+116
+00:04:08,320 --> 00:04:09,500
+diferente.
+
+117
+00:04:10,290 --> 00:04:12,360
+Una de esas métricas de evaluación
+
+118
+00:04:12,870 --> 00:04:14,240
+es lo que llamamos precisión/recuperación.
+
+119
+00:04:15,440 --> 00:04:16,410
+A continuación explicaré qué es.
+
+120
+00:04:17,520 --> 00:04:19,890
+Imaginemos que estamos evaluando un clasificador en el conjunto de prueba.
+
+121
+00:04:20,750 --> 00:04:21,800
+Para este ejemplo,
+
+122
+00:04:21,890 --> 00:04:23,890
+la clase real
+
+123
+00:04:25,450 --> 00:04:26,880
+para el conjunto de prueba
+
+124
+00:04:27,320 --> 00:04:28,440
+será ya sea
+
+125
+00:04:28,550 --> 00:04:29,810
+cero o uno si
+
+126
+00:04:30,440 --> 00:04:32,520
+es un problema de clasificación binaria.
+
+127
+00:04:33,870 --> 00:04:34,960
+Lo que hará nuestro algoritmo
+
+128
+00:04:35,360 --> 00:04:37,070
+de aprendizaje es predecir
+
+129
+00:04:37,930 --> 00:04:39,270
+un valor para la
+
+130
+00:04:39,450 --> 00:04:41,160
+clase. Nuestro algoritmo
+
+131
+00:04:41,560 --> 00:04:43,300
+de aprendizaje predirá el valor
+
+132
+00:04:43,760 --> 00:04:44,830
+de cada ejemplo en mi
+
+133
+00:04:44,910 --> 00:04:46,520
+conjunto de prueba y el valor
+
+134
+00:04:46,920 --> 00:04:48,560
+predicho también será ya sea uno o cero.
+
+135
+00:04:50,050 --> 00:04:52,060
+Permítanme dibujar una
+
+136
+00:04:52,270 --> 00:04:53,340
+tabla de dos por dos, como esta,
+
+137
+00:04:53,910 --> 00:04:55,870
+dependiendo de estas entradas,
+
+138
+00:04:56,320 --> 00:04:57,800
+o de la clase real y
+
+139
+00:04:57,960 --> 00:04:59,350
+la clase predicha.
+
+140
+00:05:00,220 --> 00:05:01,270
+Si tenemos
+
+141
+00:05:01,570 --> 00:05:02,890
+un ejemplo en el que la clase real
+
+142
+00:05:02,970 --> 00:05:03,950
+es uno y la clase predicha es
+
+143
+00:05:04,240 --> 00:05:06,140
+uno, entonces le llamaremos
+
+144
+00:05:07,620 --> 00:05:08,640
+un ejemplo positivo verdadero. Esto quiere decir
+
+145
+00:05:08,940 --> 00:05:10,300
+que nuestro algoritmo
+
+146
+00:05:10,730 --> 00:05:11,700
+predijo que es positivo y
+
+147
+00:05:12,400 --> 00:05:15,780
+de hecho el ejemplo es positivo.
+
+148
+00:05:16,240 --> 00:05:17,300
+Si nuestro algoritmo predijo que algo es negativo,
+
+149
+00:05:17,490 --> 00:05:19,010
+clase cero,
+
+150
+00:05:19,570 --> 00:05:20,620
+y la clase real es
+
+151
+00:05:20,970 --> 00:05:23,650
+cero, entonces a esto le llamamos negativo verdadero.
+
+152
+00:05:24,070 --> 00:05:26,370
+Predijimos que sería cero y es realmente cero.
+
+153
+00:05:27,880 --> 00:05:28,740
+En las otras dos celdas,
+
+154
+00:05:29,470 --> 00:05:31,120
+si nuestro algoritmo predice que
+
+155
+00:05:31,360 --> 00:05:33,210
+la clase es uno, pero la
+
+156
+00:05:34,340 --> 00:05:36,370
+clase real es cero, entonces lo llamamos
+
+157
+00:05:36,670 --> 00:05:37,910
+un falso positivo.
+
+158
+00:05:39,350 --> 00:05:40,630
+Esto quiere decir que el algoritmo pensó que
+
+159
+00:05:40,830 --> 00:05:41,970
+el paciente tiene cáncer
+
+160
+00:05:42,190 --> 00:05:43,520
+cuando en realidad no lo padece.
+
+161
+00:05:44,730 --> 00:05:47,340
+Y finalmente, la última casilla es cero-uno.
+
+162
+00:05:48,200 --> 00:05:50,330
+A esto se le llama falso negativo
+
+163
+00:05:51,180 --> 00:05:52,690
+porque nuestro algoritmo predijo
+
+164
+00:05:53,450 --> 00:05:56,170
+un cero, pero la clase real fue de uno.
+
+165
+00:05:57,230 --> 00:05:59,020
+Entonces, tenemos
+
+166
+00:05:59,150 --> 00:06:00,830
+esta tabla de
+
+167
+00:06:00,990 --> 00:06:02,720
+dos por dos basada en
+
+168
+00:06:03,250 --> 00:06:05,500
+la clase real y la clase predicha.
+
+169
+00:06:07,080 --> 00:06:08,380
+Esta es una manera distinta de evaluar el
+
+170
+00:06:08,690 --> 00:06:10,310
+desempeño de
+
+171
+00:06:10,420 --> 00:06:11,940
+nuestro algoritmo. Calcularemos
+
+172
+00:06:12,550 --> 00:06:12,870
+dos números.
+
+173
+00:06:13,310 --> 00:06:14,780
+Al primero se le llama precisión.
+
+174
+00:06:14,940 --> 00:06:16,100
+Lo que nos indica es, de
+
+175
+00:06:17,170 --> 00:06:18,330
+todos los pacientes a los que
+
+176
+00:06:18,580 --> 00:06:19,580
+les diagnosticamos cáncer
+
+177
+00:06:20,640 --> 00:06:23,140
+¿qué fracción tienen cáncer realmente?
+
+178
+00:06:24,560 --> 00:06:25,310
+Voy a escribir esto:
+
+179
+00:06:26,020 --> 00:06:27,300
+la precisión de un clasificador
+
+180
+00:06:27,680 --> 00:06:29,070
+es el número de positivos
+
+181
+00:06:29,310 --> 00:06:31,880
+verdaderos dividido entre
+
+182
+00:06:32,940 --> 00:06:35,190
+el número que predijimos como
+
+183
+00:06:37,140 --> 00:06:37,370
+positivo. ¿sí?
+
+184
+00:06:39,150 --> 00:06:40,660
+De todos los pacientes
+
+185
+00:06:41,090 --> 00:06:43,590
+a los que les dijimos “Creemos que usted puede tener cáncer”,
+
+186
+00:06:43,890 --> 00:06:45,730
+¿qué fracción
+
+187
+00:06:45,890 --> 00:06:47,410
+realmente tiene cáncer?
+
+188
+00:06:47,500 --> 00:06:48,920
+A esto se le llama precisión.
+
+189
+00:06:49,800 --> 00:06:50,680
+Otra manera de escribir esto
+
+190
+00:06:50,950 --> 00:06:54,920
+sería positivos verdaderos en el cociente
+
+191
+00:06:55,010 --> 00:06:56,430
+el número de positivos
+
+192
+00:06:56,670 --> 00:06:59,050
+predichos en el denominador. Esta
+
+193
+00:06:59,210 --> 00:07:00,160
+sería la
+
+194
+00:07:00,240 --> 00:07:01,730
+suma de las
+
+195
+00:07:02,410 --> 00:07:04,510
+entradas en esta primera fila de la tabla.
+
+196
+00:07:04,720 --> 00:07:07,760
+Entonces, tenemos los positivos verdaderos divididos entre los positivos,
+
+197
+00:07:08,670 --> 00:07:10,470
+abreviaré positivo
+
+198
+00:07:11,220 --> 00:07:12,980
+como "pos" más los
+
+199
+00:07:13,130 --> 00:07:15,470
+falsos positivos, abreviando
+
+200
+00:07:15,890 --> 00:07:18,550
+de nuevo positivo como "pos".
+
+201
+00:07:20,030 --> 00:07:21,850
+A esto se le llama precisión. Como puedes ver,
+
+202
+00:07:21,920 --> 00:07:23,490
+una precisión alta es deseable.
+
+203
+00:07:23,660 --> 00:07:24,680
+Una alta precisión
+
+204
+00:07:25,070 --> 00:07:27,100
+quiere decir que, de los pacientes a quienes les dijimos “creemos que
+
+205
+00:07:27,510 --> 00:07:28,960
+tiene cáncer, lo sentimos mucho”
+
+206
+00:07:29,440 --> 00:07:31,750
+la mayoría realmente
+
+207
+00:07:31,980 --> 00:07:33,160
+tienen cáncer;
+
+208
+00:07:33,390 --> 00:07:34,460
+por lo tanto, que hicimos las
+
+209
+00:07:34,820 --> 00:07:36,630
+predicciones precisas acerca de ellos.
+
+210
+00:07:38,840 --> 00:07:39,880
+El segundo número que calcularemos se llama
+
+211
+00:07:40,440 --> 00:07:41,730
+recuperación. La
+
+212
+00:07:42,060 --> 00:07:44,230
+recuperación nos dice,
+
+213
+00:07:44,480 --> 00:07:46,100
+de todos los pacientes
+
+214
+00:07:46,190 --> 00:07:47,510
+del conjunto de prueba o
+
+215
+00:07:47,620 --> 00:07:48,830
+de validación cruzada, es decir, de todos los pacientes en el
+
+216
+00:07:48,960 --> 00:07:49,980
+conjunto de datos que realmente
+
+217
+00:07:50,150 --> 00:07:51,550
+tienen cáncer
+
+218
+00:07:52,670 --> 00:07:54,240
+¿en qué fracción de ellos
+
+219
+00:07:54,400 --> 00:07:56,250
+detectamos el cáncer correctamente?
+
+220
+00:07:56,950 --> 00:07:57,870
+Si todos los pacientes tienen
+
+221
+00:07:58,090 --> 00:07:59,170
+cáncer, ¿a cuántos de
+
+222
+00:07:59,400 --> 00:08:01,130
+ellos les dijimos
+
+223
+00:08:01,320 --> 00:08:03,850
+correctamente que necesitan tratamiento?
+
+224
+00:08:05,860 --> 00:08:07,010
+Ahora, escribamos esto:
+
+225
+00:08:07,360 --> 00:08:08,970
+la recuperación se define como
+
+226
+00:08:09,040 --> 00:08:12,020
+el número de positivos o el número
+
+227
+00:08:12,470 --> 00:08:14,760
+de positivos verdaderos; es decir,
+
+228
+00:08:15,260 --> 00:08:16,320
+el número de personas que
+
+229
+00:08:16,520 --> 00:08:17,890
+tienen cáncer y que predijimos
+
+230
+00:08:18,030 --> 00:08:19,280
+correctamente que tienen cáncer.
+
+231
+00:08:20,310 --> 00:08:21,440
+Tomaremos esto y
+
+232
+00:08:21,790 --> 00:08:23,510
+lo dividiremos entre
+
+233
+00:08:23,740 --> 00:08:29,300
+el número de positivos verdaderos.
+
+234
+00:08:31,200 --> 00:08:32,070
+Este será el número
+
+235
+00:08:32,510 --> 00:08:35,190
+correcto de positivos verdaderos de todos los que sí sufren cáncer; en otras palabras,
+
+236
+00:08:35,850 --> 00:08:37,000
+la fracción que marcamos y
+
+237
+00:08:37,430 --> 00:08:38,950
+mandamos a tratamiento.
+
+238
+00:08:40,560 --> 00:08:41,780
+Para escribir esto de manera
+
+239
+00:08:41,930 --> 00:08:44,060
+diferente, el número real
+
+240
+00:08:44,210 --> 00:08:45,160
+de positivos verdaderos estaría en el
+
+241
+00:08:45,430 --> 00:08:46,990
+denominador y es la
+
+242
+00:08:47,220 --> 00:08:49,480
+suma de las entradas de esta columna.
+
+243
+00:08:50,600 --> 00:08:51,660
+Por lo tanto, este será
+
+244
+00:08:52,160 --> 00:08:53,470
+el número de positivos
+
+245
+00:08:53,650 --> 00:08:57,120
+verdaderos dividido entre
+
+246
+00:08:59,010 --> 00:09:01,340
+el número de positivos verdaderos
+
+247
+00:09:02,790 --> 00:09:05,430
+más el número de
+
+248
+00:09:06,750 --> 00:09:07,690
+falsos negativos.
+
+249
+00:09:09,570 --> 00:09:12,180
+Una vez más, tener una recuperación alta será bueno.
+
+250
+00:09:14,180 --> 00:09:15,810
+Calcular la precisión y la
+
+251
+00:09:15,930 --> 00:09:17,100
+recuperación nos dará
+
+252
+00:09:17,340 --> 00:09:18,740
+un mejor entendimiento del desempeño de
+
+253
+00:09:19,140 --> 00:09:20,560
+nuestro clasificador.
+
+254
+00:09:21,620 --> 00:09:22,960
+De manera particular, si tenemos
+
+255
+00:09:23,330 --> 00:09:24,740
+un algoritmo que predice que
+
+256
+00:09:25,520 --> 00:09:27,020
+“y” es igual a 0 en
+
+257
+00:09:27,190 --> 00:09:28,290
+todo momento; es decir, si predice
+
+258
+00:09:28,460 --> 00:09:30,080
+que nadie tiene cáncer, este clasificador
+
+259
+00:09:30,250 --> 00:09:31,880
+tendrá una recuperación
+
+260
+00:09:32,070 --> 00:09:33,820
+igual a cero, porque
+
+261
+00:09:34,370 --> 00:09:35,300
+no habrá ningún
+
+262
+00:09:35,570 --> 00:09:36,940
+positivo verdadero.
+
+263
+00:09:37,190 --> 00:09:37,930
+Esta es una manera rápida
+
+264
+00:09:38,010 --> 00:09:40,290
+para reconocer que un
+
+265
+00:09:40,360 --> 00:09:41,570
+clasificador que predice que “y” es igual a 0 todo el tiempo,
+
+266
+00:09:42,050 --> 00:09:43,350
+no es un buen clasificador.
+
+267
+00:09:44,000 --> 00:09:46,660
+De manera más general,
+
+268
+00:09:47,450 --> 00:09:48,830
+aún para las situaciones en las
+
+269
+00:09:48,950 --> 00:09:50,800
+que tenemos clases muy sesgadas, no es posible
+
+270
+00:09:51,050 --> 00:09:53,350
+posible que un
+
+271
+00:09:53,440 --> 00:09:54,900
+algoritmo “haga trampa”
+
+272
+00:09:55,450 --> 00:09:56,400
+y obtenga una
+
+273
+00:09:56,750 --> 00:09:57,930
+precisión o una recuperación
+
+274
+00:09:58,010 --> 00:09:59,360
+muy alta haciendo algo tan
+
+275
+00:09:59,620 --> 00:10:00,800
+simple como
+
+276
+00:10:01,050 --> 00:10:02,680
+predecir que “y” es igual a 0
+
+277
+00:10:02,720 --> 00:10:04,720
+o que “y” es igual a 1 todo el tiempo.
+
+278
+00:10:04,960 --> 00:10:06,540
+Estamos mucho más seguros de
+
+279
+00:10:06,680 --> 00:10:08,230
+que un clasificador con una
+
+280
+00:10:08,840 --> 00:10:09,780
+precisión alta o una
+
+281
+00:10:10,610 --> 00:10:11,550
+recuperación alta es un buen clasificador.
+
+282
+00:10:12,470 --> 00:10:13,940
+Esto nos provee una métrica de
+
+283
+00:10:14,040 --> 00:10:15,660
+evaluación mucho más útil y
+
+284
+00:10:15,910 --> 00:10:16,960
+directa para entender
+
+285
+00:10:17,230 --> 00:10:20,360
+si nuestro algoritmo se está desempeñando bien.
+
+286
+00:10:21,680 --> 00:10:23,000
+Un último comentario:
+
+287
+00:10:23,200 --> 00:10:24,960
+En la definición de precisión y
+
+288
+00:10:25,150 --> 00:10:26,190
+recuperación, utilizaríamos
+
+289
+00:10:26,720 --> 00:10:28,720
+la convención, es decir, “y” igual a 1, en
+
+290
+00:10:29,100 --> 00:10:31,970
+presencia de
+
+291
+00:10:32,090 --> 00:10:33,700
+la clase más rara.
+
+292
+00:10:34,160 --> 00:10:35,410
+De manera que si intentamos detectar
+
+293
+00:10:35,880 --> 00:10:37,300
+condiciones raras, como el cáncer,
+
+294
+00:10:37,720 --> 00:10:38,610
+la precisión
+
+295
+00:10:39,340 --> 00:10:40,950
+y la recuperación
+
+296
+00:10:41,000 --> 00:10:42,440
+se definen con “y” igual a
+
+297
+00:10:42,790 --> 00:10:43,930
+1 en vez de
+
+298
+00:10:44,190 --> 00:10:45,690
+igual a 0 para representar
+
+299
+00:10:45,820 --> 00:10:47,100
+la presencia de esta
+
+300
+00:10:47,250 --> 00:10:50,220
+clase rara que intentamos detectar.
+
+301
+00:10:50,450 --> 00:10:51,960
+Utilizando la precisión y la recuperación
+
+302
+00:10:52,890 --> 00:10:54,250
+nos encontramos con que lo que
+
+303
+00:10:54,390 --> 00:10:55,400
+pasa, aún si tenemos clases
+
+304
+00:10:55,610 --> 00:10:57,400
+muy sesgadas, es que no
+
+305
+00:10:57,590 --> 00:10:59,080
+es posible que un algoritmo “haga trampa”
+
+306
+00:10:59,600 --> 00:11:01,060
+y prediga que “y”
+
+307
+00:11:01,380 --> 00:11:02,400
+es igual a 1 todo el tiempo o
+
+308
+00:11:02,760 --> 00:11:03,870
+prediga que “y” es igual a 0 todo el tiempo, y
+
+309
+00:11:03,980 --> 00:11:05,750
+que obtengamos una precisión y una recuperación altas.
+
+310
+00:11:06,640 --> 00:11:07,830
+Particularmente, si un clasificador
+
+311
+00:11:08,480 --> 00:11:09,700
+arroja una precisión y una recuperación
+
+312
+00:11:09,880 --> 00:11:11,160
+alta, entonces tendremos
+
+313
+00:11:11,270 --> 00:11:13,040
+la certeza de que nuestro algoritmo
+
+314
+00:11:13,590 --> 00:11:15,120
+se está desempeñando bien, aún
+
+315
+00:11:15,400 --> 00:11:16,620
+si tenemos clases muy sesgadas.
+
+316
+00:11:18,030 --> 00:11:20,360
+Para el problema de clases sesgadas, la precisión y la recuperación
+
+317
+00:11:20,950 --> 00:11:22,560
+nos dan un entendimiento
+
+318
+00:11:22,780 --> 00:11:24,670
+más directo sobre cómo se
+
+319
+00:11:24,910 --> 00:11:26,010
+desempeña el algoritmo de
+
+320
+00:11:26,660 --> 00:11:27,980
+aprendizaje y, a veces, es una manera
+
+321
+00:11:28,070 --> 00:11:29,360
+mucho más efectiva de evaluar nuestros algoritmos de aprendizaje que
+
+322
+00:11:30,270 --> 00:11:32,200
+el análisis del error de clasificación o la
+
+323
+00:11:32,510 --> 00:11:35,200
+precisión de clasificación, cuando las clases están muy sesgadas.

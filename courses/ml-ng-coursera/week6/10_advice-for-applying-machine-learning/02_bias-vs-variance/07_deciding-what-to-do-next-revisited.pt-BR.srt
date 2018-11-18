@@ -1,0 +1,797 @@
+1
+00:00:00,260 --> 00:00:01,340
+Nós falamos sobre como avaliar
+
+2
+00:00:01,960 --> 00:00:03,360
+algoritmos de aprendizado, sobre seleção de modelos
+
+3
+00:00:04,150 --> 00:00:06,490
+e falamos muito sobre bias e variância.
+
+4
+00:00:06,970 --> 00:00:08,110
+Então, como isso nos ajuda a descobrir
+
+5
+00:00:08,330 --> 00:00:09,730
+quais técnicas são potencialmente aproveitáveis
+
+6
+00:00:10,340 --> 00:00:11,710
+ou não para
+
+7
+00:00:11,950 --> 00:00:13,980
+melhorar o desempenho de um algoritmo de aprendizagem.
+
+8
+00:00:15,480 --> 00:00:16,660
+Vamos voltar ao nosso exemplo
+
+9
+00:00:16,940 --> 00:00:18,890
+motivador original e vamos ao resultado.
+
+10
+00:00:21,030 --> 00:00:22,570
+Aqui está o nosso exemplo anterior
+
+11
+00:00:23,000 --> 00:00:24,120
+de como ajustar uma regressão
+
+12
+00:00:24,720 --> 00:00:27,640
+linear regularizada e verificamos que ele não funciona tão bem como nós esperávamos. 
+
+13
+00:00:28,300 --> 00:00:30,080
+Dissemos que tínhamos esta lista de opções.
+
+14
+00:00:30,910 --> 00:00:32,430
+Então, há algum jeito de 
+
+15
+00:00:32,590 --> 00:00:34,530
+sabermos qual dessas opções pode ser aproveitadas?
+
+16
+00:00:35,480 --> 00:00:36,490
+A primeira coisa disso tudo
+
+17
+00:00:36,660 --> 00:00:38,770
+era pegar mais exemplos de treinamento.
+
+18
+00:00:39,550 --> 00:00:40,700
+Isto é bom
+
+19
+00:00:40,880 --> 00:00:42,890
+para ajudar a fixar alta variância.
+
+20
+00:00:45,320 --> 00:00:46,610
+De fato, se ao invés disso
+
+21
+00:00:47,150 --> 00:00:48,550
+você tem um problema de bias alto
+
+22
+00:00:48,680 --> 00:00:50,530
+ e não tem qualquer problema de variância,
+
+23
+00:00:50,830 --> 00:00:52,000
+então, como vimos no vídeo anterior,
+
+24
+00:00:52,500 --> 00:00:53,560
+obter mais exemplos de treinamento,
+
+25
+00:00:54,640 --> 00:00:56,380
+mesmo que isso talvez não ajude muito no total.
+
+26
+00:00:57,360 --> 00:00:58,320
+Assim, a primeira opção é útil
+
+27
+00:00:58,780 --> 00:01:00,230
+somente se você, por exemplo, traçar
+
+28
+00:01:00,580 --> 00:01:01,620
+as curvas de aprendizagem
+
+29
+00:01:01,720 --> 00:01:02,820
+e descobrir que você tem, pelo menos
+
+30
+00:01:02,860 --> 00:01:03,970
+um pouco de variância, mostrando que
+
+31
+00:01:04,170 --> 00:01:06,530
+que o erro de validação cruzada é
+
+32
+00:01:06,680 --> 00:01:08,800
+um pouco maior que o seu erro de treinamento.
+
+33
+00:01:08,910 --> 00:01:10,400
+Que tal experimentar um conjunto menor de variáveis? 
+
+34
+00:01:10,940 --> 00:01:11,920
+Bem, tentar um conjunto
+
+35
+00:01:12,350 --> 00:01:13,570
+menor de variáveis, é algo que
+
+36
+00:01:13,970 --> 00:01:16,060
+ corrige a alta variância.
+
+37
+00:01:17,100 --> 00:01:18,080
+Em outras palavras, se você descobrir
+
+38
+00:01:18,420 --> 00:01:19,440
+olhando para as curvas de aprendizagem ou
+
+39
+00:01:19,820 --> 00:01:20,830
+qualquer outra coisa que você usou, 
+
+40
+00:01:21,190 --> 00:01:22,110
+ que tem um problema de bias alto
+
+41
+00:01:22,370 --> 00:01:23,460
+então, pelo amor de Deus,
+
+42
+00:01:23,670 --> 00:01:25,000
+não perca o seu tempo 
+
+43
+00:01:25,540 --> 00:01:27,250
+tentando selecionar cuidadosamente
+
+44
+00:01:27,450 --> 00:01:29,130
+um conjunto menor de variáveis usar.
+
+45
+00:01:29,330 --> 00:01:31,190
+Porque, se você tem um problema de bias alto, 
+
+46
+00:01:32,060 --> 00:01:33,220
+utilizar menos variáveis não vai ajudar. 
+
+47
+00:01:33,890 --> 00:01:35,270
+Por outro lado, se você olhar
+
+48
+00:01:35,490 --> 00:01:36,730
+para as curvas de aprendizagem
+
+49
+00:01:36,900 --> 00:01:38,020
+ou outra coisa e descobrir que você tem
+
+50
+00:01:38,360 --> 00:01:39,780
+um problema de alta variância, então, 
+
+51
+00:01:40,320 --> 00:01:41,730
+de fato tente selecionar 
+
+52
+00:01:42,160 --> 00:01:43,180
+um conjunto menor de variáveis
+
+53
+00:01:43,440 --> 00:01:45,380
+que assim pode ser um bom uso do seu tempo.
+
+54
+00:01:45,790 --> 00:01:47,120
+Que tal tentar obter variáveis adicionais,
+
+55
+00:01:47,710 --> 00:01:49,640
+acrescentando atributos? Normalmente,
+
+56
+00:01:50,170 --> 00:01:51,380
+não sempre, mas normalmente nós pensamos
+
+57
+00:01:51,490 --> 00:01:53,020
+nisso como uma solução
+
+58
+00:01:54,070 --> 00:01:56,920
+para corrigir problemas de alto bias.
+
+59
+00:01:57,600 --> 00:01:58,700
+Se você está adicionando variáveis
+
+60
+00:01:58,980 --> 00:02:00,640
+extras, normalmente é porque
+
+61
+00:02:01,750 --> 00:02:03,150
+a sua hipótese atual é muito simples
+
+62
+00:02:03,280 --> 00:02:04,280
+e por isso tentamos obter
+
+63
+00:02:04,540 --> 00:02:06,520
+atributos adicionais para
+
+64
+00:02:06,730 --> 00:02:08,540
+tornar a nossa hipótese mais propensa
+
+65
+00:02:09,060 --> 00:02:10,800
+a se ajustar ao conjunto de treinamento.
+
+66
+00:02:11,420 --> 00:02:13,460
+Da mesma forma, podemos adicionar recursos polinomiais.
+
+67
+00:02:13,770 --> 00:02:14,930
+Esta é uma outra maneira de adicionar
+
+68
+00:02:15,140 --> 00:02:16,420
+variáveis e assim 
+
+69
+00:02:16,570 --> 00:02:18,220
+é uma outra maneira de tentar 
+
+70
+00:02:18,430 --> 00:02:19,950
+corrigir o problema de alto bias.
+
+71
+00:02:21,020 --> 00:02:22,820
+De fato, 
+
+72
+00:02:23,210 --> 00:02:24,350
+se suas curvas de aprendizado lhe mostram
+
+73
+00:02:24,570 --> 00:02:25,410
+que você ainda tem um problema
+
+74
+00:02:25,520 --> 00:02:27,190
+de alta variância, então, mais uma vez,
+
+75
+00:02:27,320 --> 00:02:29,360
+este não seja um bom uso do seu tempo.
+
+76
+00:02:30,640 --> 00:02:32,690
+Finalmente, diminuir e aumentar "lambda". 
+
+77
+00:02:33,200 --> 00:02:34,090
+Estes são rápidos e fáceis de tentar,
+
+78
+00:02:34,470 --> 00:02:36,000
+eu acho que eles são menos propensos
+
+79
+00:02:36,140 --> 00:02:38,190
+a serem um desperdício de muitos meses de sua vida.
+
+80
+00:02:39,070 --> 00:02:41,530
+Mas diminuindo "lambda"
+
+81
+00:02:41,650 --> 00:02:43,400
+você sabe que ajusta o bias alto. 
+
+82
+00:02:45,360 --> 00:02:46,340
+Se isso não está claro para você, 
+
+83
+00:02:46,500 --> 00:02:47,340
+eu acho melhor
+
+84
+00:02:47,810 --> 00:02:50,350
+que você pause o vídeo, pense
+
+85
+00:02:50,990 --> 00:02:52,790
+e se convença que diminuir o valor de "lambda"
+
+86
+00:02:53,620 --> 00:02:55,030
+ ajuda a corrigir o alto bias, enquanto que aumentá-lo
+
+87
+00:02:55,590 --> 00:02:57,480
+corrige a alta variância.
+
+88
+00:02:59,870 --> 00:03:00,930
+E se você não tem certeza
+
+89
+00:03:01,270 --> 00:03:02,470
+por que este é o caso,
+
+90
+00:03:02,650 --> 00:03:04,130
+pause o vídeo e certifique-se
+
+91
+00:03:04,150 --> 00:03:05,820
+de que você se convenceu de que este é o caso
+
+92
+00:03:06,580 --> 00:03:07,320
+ou dê uma olhada nas curvas
+
+93
+00:03:07,800 --> 00:03:09,040
+que nós estávamos plotando
+
+94
+00:03:09,190 --> 00:03:10,590
+no final do vídeo anterior
+
+95
+00:03:10,720 --> 00:03:11,650
+e certifique-se que você entendeu 
+
+96
+00:03:12,170 --> 00:03:13,670
+o por quê desses casos.
+
+97
+00:03:15,080 --> 00:03:16,120
+Finalmente, vamos juntar tudo
+
+98
+00:03:16,440 --> 00:03:17,840
+do que aprendemos e relacioná-las de volta 
+
+99
+00:03:18,400 --> 00:03:19,980
+às redes neurais.
+
+100
+00:03:20,130 --> 00:03:21,190
+Aqui estão alguns conselhos
+
+101
+00:03:21,720 --> 00:03:22,720
+práticos de como eu costumo
+
+102
+00:03:23,520 --> 00:03:25,060
+escolher a arquitetura
+
+103
+00:03:25,530 --> 00:03:28,660
+ou o padrão de conectividade das redes neurais que eu uso.
+
+104
+00:03:30,070 --> 00:03:31,190
+Então, se você está ajustando
+
+105
+00:03:31,410 --> 00:03:33,160
+uma rede neural, uma opção seria
+
+106
+00:03:33,400 --> 00:03:34,680
+ajustar, por exemplo,
+
+107
+00:03:34,840 --> 00:03:36,540
+uma rede neural bem pequena com poucas
+
+108
+00:03:37,530 --> 00:03:38,670
+unidades ocultas, talvez apenas
+
+109
+00:03:38,930 --> 00:03:40,430
+uma unidade oculta. Se você estiver ajustando
+
+110
+00:03:40,890 --> 00:03:42,670
+uma rede neural, uma opção seria
+
+111
+00:03:42,800 --> 00:03:44,440
+ajustar uma rede neural
+
+112
+00:03:44,920 --> 00:03:46,500
+relativamente pequena
+
+113
+00:03:48,030 --> 00:03:49,630
+com poucas, talvez apenas uma
+
+114
+00:03:49,980 --> 00:03:51,760
+camada escondida e talvez
+
+115
+00:03:52,070 --> 00:03:53,370
+um número relativamente pequeno 
+
+116
+00:03:53,750 --> 00:03:55,160
+de unidades ocultas.
+
+117
+00:03:55,570 --> 00:03:56,580
+Assim, uma rede como esta pode ter relativamente
+
+118
+00:03:57,050 --> 00:03:59,170
+poucos parâmetros e ser mais propensas a subajuste. 
+
+119
+00:04:00,450 --> 00:04:01,850
+A principal vantagem destas pequenas
+
+120
+00:04:02,260 --> 00:04:04,760
+redes neurais é que o cálculo será mais rápido.
+
+121
+00:04:05,820 --> 00:04:06,910
+Uma alternativa seria
+
+122
+00:04:07,010 --> 00:04:08,470
+ajustar uma rede neural
+
+123
+00:04:08,900 --> 00:04:10,790
+ relativamente grande com uma ou mais
+
+124
+00:04:10,970 --> 00:04:12,370
+unidades escondidas, com várias unidades
+
+125
+00:04:12,560 --> 00:04:14,940
+ocultas em uma camada ou uma com mais camadas ocultas.
+
+126
+00:04:16,200 --> 00:04:17,800
+E assim, estas redes neurais tendem
+
+127
+00:04:18,010 --> 00:04:20,870
+a ter mais parâmetros e, portanto, ser mais propensas ao overfitting. 
+
+128
+00:04:22,410 --> 00:04:24,010
+Uma desvantagem, normalmente
+
+129
+00:04:24,050 --> 00:04:25,160
+não das mais importantes mas algo para
+
+130
+00:04:25,250 --> 00:04:26,440
+se pensar é que, se você tem
+
+131
+00:04:27,000 --> 00:04:28,450
+um grande número de neurônios 
+
+132
+00:04:28,960 --> 00:04:30,040
+em sua rede, então ele 
+
+133
+00:04:30,230 --> 00:04:31,920
+pode ser mais caro computacionalmente.
+
+134
+00:04:33,070 --> 00:04:35,790
+Embora dentro da razão, muitas vezes espero que isto não seja um problema enorme. 
+
+135
+00:04:36,840 --> 00:04:38,420
+O principal problema em potencial dessas 
+
+136
+00:04:38,540 --> 00:04:39,710
+redes neurais muito maiores
+
+137
+00:04:39,980 --> 00:04:44,120
+é que elas poderiam ser mais propensas a overfitting
+
+138
+00:04:44,700 --> 00:04:46,900
+e observe que, se você está usando redes neurais, muitas vezes usando 
+
+139
+00:04:47,240 --> 00:04:48,900
+uma grande rede neural, normalmente quanto mais, melhor
+
+140
+00:04:50,610 --> 00:04:51,700
+mas se ela sofre de overfitting, você pode então
+
+141
+00:04:51,890 --> 00:04:53,800
+usar a regularização para resolver
+
+142
+00:04:54,230 --> 00:04:56,510
+o overfitting.
+Geralmente usando 
+
+143
+00:04:56,910 --> 00:04:58,480
+uma rede neural maior com
+
+144
+00:04:58,720 --> 00:04:59,980
+regularização para resolver o 
+
+145
+00:05:00,310 --> 00:05:01,910
+overfitting, isto muitas vezes é mais 
+
+146
+00:05:02,130 --> 00:05:04,160
+eficaz do que a utilização de uma rede neural menor.
+
+147
+00:05:05,100 --> 00:05:06,940
+A principal desvantagem possível
+
+148
+00:05:07,130 --> 00:05:09,420
+é que ela pode ser mais dispendiosa.
+
+149
+00:05:10,470 --> 00:05:11,940
+Finalmente, uma das outras decisões é
+
+150
+00:05:12,280 --> 00:05:14,340
+o número de camadas ocultas que você quer ter, certo?
+
+151
+00:05:14,480 --> 00:05:16,400
+Então, você quer 
+
+152
+00:05:17,030 --> 00:05:18,130
+uma ou três
+
+153
+00:05:18,380 --> 00:05:19,700
+camadas ocultas,
+
+154
+00:05:20,040 --> 00:05:21,790
+como temos mostrado aqui, ou você quer duas camadas ocultas?
+
+155
+00:05:23,250 --> 00:05:24,850
+Normalmente, como
+
+156
+00:05:24,980 --> 00:05:25,720
+eu disse no vídeo
+
+157
+00:05:26,190 --> 00:05:27,420
+anterior, utilizar uma única
+
+158
+00:05:27,640 --> 00:05:29,570
+única camada oculta é um padrão razoável
+
+159
+00:05:29,780 --> 00:05:30,800
+mas, se você quiser escolher
+
+160
+00:05:30,890 --> 00:05:32,400
+o número de camadas ocultas, 
+
+161
+00:05:32,580 --> 00:05:33,610
+uma outra coisa que você pode tentar é 
+
+162
+00:05:34,270 --> 00:05:35,800
+fazer uma divisão de conjuntos de treinamento, validação cruzada
+
+163
+00:05:36,660 --> 00:05:38,320
+e teste e tentar
+
+164
+00:05:38,730 --> 00:05:40,070
+treinar redes neurais com uma,
+
+165
+00:05:40,260 --> 00:05:41,210
+duas ou
+
+166
+00:05:41,490 --> 00:05:42,810
+três camadas ocultas
+
+167
+00:05:43,230 --> 00:05:44,300
+e ver qual dessas redes
+
+168
+00:05:44,460 --> 00:05:47,460
+neurais tem o melhor desempenho nos conjuntos de validação cruzada.
+
+169
+00:05:48,180 --> 00:05:49,190
+Você pega suas três redes neurais
+
+170
+00:05:49,660 --> 00:05:50,510
+com uma, duas e três camadas
+
+171
+00:05:50,780 --> 00:05:52,410
+ocultas e calcula
+
+172
+00:05:52,570 --> 00:05:53,870
+o erro de validação cruzada em Jcv(θ)
+
+173
+00:05:54,140 --> 00:05:55,120
+e todos eles 
+
+174
+00:05:55,240 --> 00:05:56,630
+e utiliza isto para 
+
+175
+00:05:56,960 --> 00:05:58,350
+selecionar qual deles 
+
+176
+00:05:58,690 --> 00:06:00,290
+é a que você acha a melhor rede neural. 
+
+177
+00:06:02,580 --> 00:06:04,020
+Então, isto é tudo para
+
+178
+00:06:04,230 --> 00:06:05,490
+bias e variância e as técnicas
+
+179
+00:06:05,780 --> 00:06:08,170
+como as curvas de aprendizado, que tentam diagnosticar esses problemas.
+
+180
+00:06:08,560 --> 00:06:09,860
+Tanto quanto
+
+181
+00:06:09,930 --> 00:06:11,020
+você achar que está implícito, para alguém
+
+182
+00:06:11,250 --> 00:06:12,480
+pode valer a pena ou não
+
+183
+00:06:12,630 --> 00:06:13,500
+tentar melhorar 
+
+184
+00:06:13,910 --> 00:06:15,720
+o desempenho de um algoritmo de aprendizagem. 
+
+185
+00:06:16,960 --> 00:06:18,000
+Se você entendeu o conteúdo
+
+186
+00:06:18,990 --> 00:06:20,700
+dos últimos vídeos e se você
+
+187
+00:06:20,790 --> 00:06:22,020
+aplicá-los, você realmente 
+
+188
+00:06:22,630 --> 00:06:24,300
+já estará muito mais eficiente
+
+189
+00:06:24,430 --> 00:06:25,890
+para trabalhar com algoritmos em vários problemas.
+
+190
+00:06:26,610 --> 00:06:27,970
+Até mesmo uma grande fração, 
+
+191
+00:06:28,560 --> 00:06:29,810
+talvez a maioria dos praticantes
+
+192
+00:06:30,540 --> 00:06:31,860
+de aprendizado de máquina aqui 
+
+193
+00:06:32,060 --> 00:06:34,760
+no Vale do Silício, hoje, fazem estas coisas como seus empregos de tempo integral.
+
+194
+00:06:35,820 --> 00:06:37,560
+Portanto, espero que estes 
+
+195
+00:06:37,990 --> 00:06:39,110
+conselhos
+
+196
+00:06:39,560 --> 00:06:41,420
+de experiência sobre diagnósticos 
+
+197
+00:06:42,730 --> 00:06:44,110
+irão ajudá-lo muito
+
+198
+00:06:44,790 --> 00:06:47,270
+a usar os algoritmos de aprendizagem
+
+199
+00:06:48,000 --> 00:06:49,300
+e fazê-los funcionarem muito bem.
+Tradução: Clóvis Teodoro Alves | Revisão: Caio H. K. Miyashiro

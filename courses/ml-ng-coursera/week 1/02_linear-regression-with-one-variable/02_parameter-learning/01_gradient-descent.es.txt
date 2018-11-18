@@ -1,0 +1,138 @@
+Anteriormente definimos la función de costos
+J. En este video quiero hablarte sobre un algoritmo llamado gradiente de descenso para
+minimizar la función de costos J. Resulta que el gradiente de descenso es un algoritmo
+más general y se utiliza no sólo en la regresión lineal. De hecho, se utiliza en todo
+el aprendizaje automático. Y más adelante en esta clase, también usaremos el gradiente
+de descenso para minimizar otras funciones, no sólo la función de costos J, para la regresión lineal.
+En este video, hablaré sobre el gradiente de descenso para minimizar
+alguna función arbitraria J. Y, después, en otros videos, usaré este algoritmo
+y lo aplicaré específicamente para la función de costos J que teníamos que encontrar para la
+regresión lineal. Este es el planteamiento del problema. Veremos que tenemos
+alguna función J de (theta 0, theta 1). Tal vez es una función de costos de la
+regresión lineal. Tal vez es otra función que queremos minimizar. Y queremos
+obtener un algoritmo para minimizarla como una función de J de
+(theta 0, theta 1). Como nota, resulta que esa gradiente de descenso
+en realidad aplica para funciones más generales. Imagina que tienes una
+función que es una función de J de (theta 0, theta 1, theta 2, hasta
+theta n), y quieres minimizar (theta 0 hasta theta n)
+de esta J de (theta 0 hasta theta n). Resulta que la gradiente de descenso
+es un algoritmo para resolver este problema más general, pero
+para ser breve, por el bien de la concisión de la notación, sólo
+presentaré dos parámetros durante el resto de este video. Esta es
+la idea para el gradiente de descenso. Lo que haremos es que iniciaremos con algunas
+aproximaciones iniciales para theta 0 y theta 1. Realmente no importa lo que son,
+pero una opción común sería si establecemos theta 0 a theta 0, y
+establecemos theta 1 a 0. Sólo inicia a 0. Lo que haremos en el
+gradiente de descenso es mantener theta 0 y theta 1 con pequeños cambios para
+tratar de reducir J de (theta 0, theta 1) hasta que, con suerte, obtengamos un mínimo o
+tal vez un mínimo local. Veamos imágenes de lo que hace el gradiente
+de descenso. Digamos que trato de minimizar esta función. Observa los ejes. Este es
+(theta 0, theta 1) en el eje horizontal y J es un eje vertical. Y, entonces, la
+altura de la superficie muestra J, y queremos minimizar esta función. Así que
+iniciaremos con (theta 0, theta 1) en algún punto. Imagina que escoges algún
+valor para (theta 0 y theta 1), y ese corresponde a iniciar en algún punto en
+la superficie de esta función. ¿Ok? Entonces, cualquier valor de (theta 0, theta 1)
+te dará algún punto de aquí. Sí las inicié en 0,0 pero,
+algunas veces, también las inicias con otros valores. Ahora, quiero que imagines
+que esta imagen muestra una colina. Imagina que esto es un paisaje de algún parque
+con zonas verdes y dos colinas como estas. Y quiero que imagines que estás
+físicamente parado en ese punto de la colina, en esta pequeña colina roja del parque.
+En el gradiente de descenso, lo que haremos es girar 360 grados y
+ver todo nuestro alrededor y preguntarnos: “Si fuera a dar un pequeño paso en alguna
+dirección y quisiera bajar la colina lo más rápido posible, ¿qué dirección
+tomaría ese pequeño paso si quiero ir abajo, si quiero bajar físicamente 
+de esta colina tan rápido como sea posible?” Resulta que si estuvieras parado
+en es punto de la colina, verías todo el alrededor, descubrirías que la mejor
+dirección para un pequeño paso hacia abajo es más o menos esa dirección. ¿Ok? Ahora
+estás en un nuevo punto sobre tu colina. Una vez más, verás a tu alrededor y dirás:
+“¿Qué dirección debo tomar para dar un pequeño paso cuesta abajo?” Y
+si haces eso y das otro paso, darás un paso en esa dirección, y
+después continuarás. Desde este nuevo punto, verás a tu alrededor, decidirás
+qué dirección te llevará cuesta abajo más rápido, darás otro paso, otro paso,
+y así sucesivamente, hasta converger al mínimo local de aquí. El mayor descenso
+tiene una propiedad interesante. Esta primera vez que usamos el gradiente de descenso,
+iniciamos en este punto, ¿cierto? Iniciamos en este punto de aquí. Ahora,
+imagina que iniciamos el gradiente de descenso unos cuantos pasos a la derecha.
+Imagina que iniciamos el gradiente de descenso con es punto en la parte superior derecha. Si fuera a
+repetir este proceso, y te pararas en este punto, y vieras tu alrededor, darías un paso
+pequeño en la dirección del mayor descenso. Harías eso. Después verías a tu alrededor,
+darías otro paso, y así sucesivamente. Y si iniciaras unos cuantos pasos a la derecha, el
+gradiente de descenso te habría llevado al segundo óptimo local a la
+derecha. Si hubieras iniciado en este primer punto, hubieras obtenido este
+óptimo local. Pero si iniciaras tan sólo un poco, en una ubicación ligeramente diferente,
+hubieras obtenido un óptimo local muy diferente. Y esta es una
+propiedad del gradiente de descenso de la que hablaremos más adelante. Así que,
+esa es la intuición en imágenes. Veamos el mapa. Esta es la definición del
+algoritmo de gradiente de descenso. Haremos esto en varias ocasiones hasta la
+convergencia. Vamos a actualizar mi parámetro theta J al tomar
+theta J y restarlo de alfa por este término de aquí. Entonces,
+veamos. Hay muchos detalles en esta ecuación, voy a desentrañar algunos.
+Primero, la notación de aquí, dos puntos, igual a. Usaremos ":=" para denotar
+asignación, así que es el operador de asignación. En concreto, si
+escribo "a:=b", lo que significa en una computadora es tomar el
+valor en b y usarlo para sobrescribir cualquiera que sea el valor a. Significa
+que estableceremos “a” para que sea igual al valor de b. Bien, eso es asignación. También
+puedo usar "a:=a+1". Esto significa tomar “a” y aumentar su valor en uno.
+Mientras que por el contrario, si uso el signo de igual y escribo "a=b", será una
+afirmación verdadera. Entonces si escribo a=b, estoy afirmando que el valor de a
+es igual al valor de b. Así que en el lado izquierdo, esa es una operación de computadora,
+donde estableces cuál será el valor "a". El lado derecho es una afirmación, sólo
+afirmo que los valores de a y b son los mismos. Y puedo escribir
+"a:=a+1" que significa aumentar a en 1. Espero nunca escribir "a=a+1",
+porque eso está mal. a y a+1 nunca pueden ser iguales a
+los mismos valores. Bueno, esa es la primera parte de la definición. Alfa
+es un número que se llama índice de aprendizaje. Y lo que hace alfa es,
+básicamente, controlar qué tan grande es un paso que damos cuesta abajo con el gradiente de descenso. Si
+alfa es muy grande, entonces corresponde a un procedimiento de gradiente de
+descenso muy agresivo, donde tratamos de dar pasos grandes cuesta abajo. Y si alfa es
+pequeño, entonces damos pasos muy, muy pequeños cuesta abajo. Después
+hablaré más de esto. Sobre cómo establecer alfa entre otras cosas.
+Y, finalmente, este término de aquí. Ese es el término de derivada. Por ahora no
+quiero hablar de él, pero derivaré este término y te diré en qué se basa
+exactamente. Algunos de ustedes estarán más familiarizados que otros
+con cálculo, pero incluso si no estás familiarizado, no te preocupes, te diré
+lo que necesitas saber sobre este término. Hay una sutileza más
+sobre el gradiente de descenso que es, en gradiente de descenso, vamos a
+actualizar theta 0 y theta 1. Entonces, esta actualización ocurre cuando j=0, y
+j=1. Así que vamos a actualizar j, theta 0, y a actualizar theta 1. Y la sutileza de
+cómo aplicas gradiente de descenso, para esta expresión, para esta
+ecuación de actualización, es que quieres actualizar de forma simultánea theta 0 y
+theta 1. Con esto me refiero a que en esta ecuación,
+vamos a actualizar theta 0:=theta 0 menos algo, y a actualizar
+theta 1:= theta 1 menos algo. Y la forma de aplicarlo es
+que debes calcular el lado derecho. Calcular eso para theta 0
+y theta 1, y después al mismo tiempo actualizar theta 0 y
+theta 1. Voy a explicar a lo que me refiero. Es una aplicación correcta
+del gradiente de descenso que se refiere a las actualizaciones simultáneas. Voy a establecer temp0 igual a esto,
+y temp1 igual a esto. Así que, básicamente, calcular los lados derechos. Y después de haber
+calculado los lados derechos y almacenarlos juntos en temp0 y temp1,
+actualizaré theta0 y theta 1 de forma simultánea, porque esa
+es la aplicación correcta. Por el contrario, esta es una aplicación incorrecta que
+no se actualiza de forma simultánea. Así que en esta aplicación incorrecta, calculamos
+temp0, y después actualizamos theta0 y luego calculamos temp1. Posteriormente,
+actualizamos temp 1. Y la diferencia entre las aplicaciones del lado derecho
+y el izquierdo es que si vemos aquí, verás este paso, si para este
+momento ya actualizaste theta 0, entonces estarías utilizando el nuevo
+valor de theta 0 para calcular este término de derivada y esto te da un
+valor diferente de temp 1 al del lado izquierdo, ya que ahora
+ya introdujiste el nuevo valor de theta 0 en esta ecuación. Y esto del lado
+derecho no es una aplicación correcta del gradiente de descenso. Así que no
+quiero decir por qué necesitas hacer las actualizaciones simultáneas, resulta
+que la forma usual en la que se aplica la gradiente de descenso, más adelante
+diré más, realmente es más natural implementar la actualización
+simultánea. Y cuando la gente habla sobre gradiente de descenso, siempre se refieren a la
+actualización simultánea. Si aplicas la actualización no simultánea, resulta que
+es probable que de todos modos funcione, pero el algoritmo de la derecha no es a lo
+que se refieren las personas como gradiente de descenso y es otro algoritmo con
+diferentes propiedades. Y por varias razones, esto puede comportarse
+de forma un poco extraña. Y lo que debes hacer es realmente
+implementar las actualizaciones simultáneas del gradiente de descenso. Eso es el esquema del
+algoritmo de gradiente de descenso. En el siguiente video, vamos a detallar el término de
+derivada, que escribí pero realmente no lo definí. Si ya has tomado
+una clase de cálculo y estás familiarizado con las derivadas parciales y las
+derivadas, resulta que eso es exactamente el término de derivada. Pero en caso
+de que no estés familiarizado, no te preocupes. El siguiente video te dará
+todas los conceptos y te dirá todo lo que debes saber para calcular
+el término de derivada, incluso si no has visto cálculo, o si no has visto
+derivadas parciales anteriormente. Y con eso, con el siguiente video, con suerte
+podremos darte todos los conceptos necesarios para aplicar el gradiente de descenso.

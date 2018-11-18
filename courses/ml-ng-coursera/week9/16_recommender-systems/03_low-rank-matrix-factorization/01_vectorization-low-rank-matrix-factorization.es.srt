@@ -1,0 +1,951 @@
+1
+00:00:00,530 --> 00:00:01,650
+En los últimos vídeos, hemos
+
+2
+00:00:01,730 --> 00:00:03,890
+hablado de un algoritmo de filtrado colaborativo.
+
+3
+00:00:04,830 --> 00:00:05,890
+En este vídeo voy a
+
+4
+00:00:05,970 --> 00:00:07,120
+platicar un poco acerca de la
+
+5
+00:00:07,490 --> 00:00:09,090
+implementación de vectorización de este algoritmo.
+
+6
+00:00:09,980 --> 00:00:12,670
+Y también hablaré un poco acerca de otras cosas que pueden hacer con este algoritmo.
+
+7
+00:00:13,340 --> 00:00:14,520
+Por ejemplo, uno de las
+
+8
+00:00:14,600 --> 00:00:15,830
+cosas que puedes hacer es, dado
+
+9
+00:00:16,180 --> 00:00:17,390
+un producto, ¿se pueden encontrar
+
+10
+00:00:17,770 --> 00:00:19,160
+otros productos relacionados
+
+11
+00:00:19,270 --> 00:00:20,210
+a éste? de modo que, por
+
+12
+00:00:20,490 --> 00:00:23,140
+ejemplo, si un usuario ha estado observando recientemente un producto,
+
+13
+00:00:23,650 --> 00:00:24,990
+¿hay otros productos relacionados
+
+14
+00:00:25,520 --> 00:00:27,170
+que le pudieran recomendar a este usuario?
+
+15
+00:00:27,620 --> 00:00:28,980
+Así que veamos lo que podemos hacer al respecto.
+
+16
+00:00:30,170 --> 00:00:31,190
+Lo que me gustaría hacer es elaborar
+
+17
+00:00:31,550 --> 00:00:33,520
+una manera alternativa
+
+18
+00:00:33,740 --> 00:00:35,710
+de escribir las predicciones del algoritmo de filtrado colaborativo.
+
+19
+00:00:37,370 --> 00:00:38,590
+Para empezar, aquí está nuestro
+
+20
+00:00:38,960 --> 00:00:40,440
+conjunto de datos con nuestras
+
+21
+00:00:40,750 --> 00:00:41,880
+cinco películas y lo que voy a
+
+22
+00:00:42,160 --> 00:00:43,150
+hacer es tomar
+
+23
+00:00:43,390 --> 00:00:44,520
+todas las calificaciones por parte de todos los
+
+24
+00:00:44,850 --> 00:00:46,500
+usuarios y agruparlos en
+
+25
+00:00:47,080 --> 00:00:48,800
+una matriz. Así pues, aquí tenemos
+
+26
+00:00:49,200 --> 00:00:51,390
+cinco películas y cuatro
+
+27
+00:00:51,670 --> 00:00:53,390
+usuarios, así que esta
+
+28
+00:00:53,670 --> 00:00:54,550
+matriz y será
+
+29
+00:00:54,910 --> 00:00:57,110
+una matriz de 5 por 4. Sólo se toman todos
+
+30
+00:00:57,340 --> 00:00:58,770
+los elementos, todos estos datos,
+
+31
+00:00:59,820 --> 00:01:02,390
+incluyendo los signos de interrogación, y se agrupan en esta matriz.
+
+32
+00:01:03,290 --> 00:01:04,470
+Y por supuesto, los elementos de esta
+
+33
+00:01:04,650 --> 00:01:06,400
+matriz, el elemento (i, j) de
+
+34
+00:01:06,500 --> 00:01:07,860
+esta matriz es lo que  realmente
+
+35
+00:01:08,060 --> 00:01:09,710
+estuvimos escribiendo  anteriormente como y
+
+36
+00:01:10,520 --> 00:01:12,090
+superíndice i, j. Es
+
+37
+00:01:12,220 --> 00:01:13,480
+la calificación que se dio a la película i
+
+38
+00:01:14,140 --> 00:01:15,640
+por el usuario j. Dada esta
+
+39
+00:01:16,070 --> 00:01:17,290
+matriz Y de todas las
+
+40
+00:01:17,430 --> 00:01:18,520
+calificaciones que tenemos, hay
+
+41
+00:01:18,700 --> 00:01:20,500
+alternativa de escribir esta
+
+42
+00:01:20,880 --> 00:01:23,340
+todas las calificaciones predictivas del algoritmo.
+
+43
+00:01:24,320 --> 00:01:26,210
+Y, en particular, si
+
+44
+00:01:26,430 --> 00:01:27,540
+observan lo que cierto
+
+45
+00:01:27,920 --> 00:01:29,480
+usuario predice sobre alguna
+
+46
+00:01:29,690 --> 00:01:31,250
+película, lo que el usuario j
+
+47
+00:01:31,950 --> 00:01:35,540
+predice sobre la película i se da mediante esta fórmula.
+
+48
+00:01:37,010 --> 00:01:38,570
+Así que si tiene
+
+49
+00:01:39,440 --> 00:01:40,330
+una matriz de las calificaciones predichas,
+
+50
+00:01:40,910 --> 00:01:42,000
+lo que tendrían
+
+51
+00:01:42,180 --> 00:01:43,600
+es la siguiente
+
+52
+00:01:45,030 --> 00:01:48,140
+matriz, en la entrada i, j.
+
+53
+00:01:49,650 --> 00:01:51,440
+Así que esto corresponde a la calificación
+
+54
+00:01:52,000 --> 00:01:54,020
+que predijimos que el usuario j,
+
+55
+00:01:54,460 --> 00:01:55,690
+le dará a la película i
+
+56
+00:01:57,130 --> 00:01:58,440
+es exactamente igual a esa
+
+57
+00:01:58,790 --> 00:02:00,680
+«theta» que transpone j,
+
+58
+00:02:00,900 --> 00:02:01,940
+x(1), y por eso, esta es una matriz
+
+59
+00:02:02,520 --> 00:02:04,310
+en donde este primer elemento,
+
+60
+00:02:04,750 --> 00:02:05,930
+el elemento uno-uno, es una
+
+61
+00:02:06,220 --> 00:02:07,450
+calificación predictiva del usuario uno
+
+62
+00:02:07,760 --> 00:02:09,360
+o la película uno, y este
+
+63
+00:02:09,560 --> 00:02:11,070
+elemento, este elemento uno-dos
+
+64
+00:02:11,430 --> 00:02:12,680
+es la calificación predicha
+
+65
+00:02:13,470 --> 00:02:14,640
+del usuario dos para la película
+
+66
+00:02:14,930 --> 00:02:16,070
+uno, y así sucesivamente,
+
+67
+00:02:16,630 --> 00:02:18,670
+y esta es la
+
+68
+00:02:19,000 --> 00:02:20,130
+calificación predicha del usuario uno
+
+69
+00:02:20,930 --> 00:02:23,380
+sobre la última película, y
+
+70
+00:02:23,640 --> 00:02:25,100
+si lo desean, ya saben,
+
+71
+00:02:25,400 --> 00:02:26,870
+esta calificación es lo que
+
+72
+00:02:27,020 --> 00:02:28,050
+habríamos predicho para este valor,
+
+73
+00:02:29,050 --> 00:02:32,470
+y esta calificación es
+
+74
+00:02:32,650 --> 00:02:33,570
+la que habríamos predicho para ese
+
+75
+00:02:33,910 --> 00:02:35,080
+valor, y así sucesivamente,
+
+76
+00:02:36,180 --> 00:02:37,480
+Ahora, dada esta matriz de
+
+77
+00:02:37,560 --> 00:02:39,290
+calificaciones predictivas,  existe entonces
+
+78
+00:02:39,610 --> 00:02:42,670
+una manera más sencilla o vectorizada de escribir éstas.
+
+79
+00:02:43,640 --> 00:02:44,640
+En particular, si defino
+
+80
+00:02:45,120 --> 00:02:46,850
+la matriz x, y ésta
+
+81
+00:02:46,970 --> 00:02:48,090
+va a ser justo
+
+82
+00:02:48,370 --> 00:02:50,980
+como la matriz que teníamos anteriormente para la regresión lineal
+
+83
+00:02:52,070 --> 00:02:53,820
+de modo que x1 transpone x2
+
+84
+00:02:55,050 --> 00:02:57,060
+transponer hacia abajo hasta
+
+85
+00:02:58,530 --> 00:03:01,740
+x de (nm) transpone.
+
+86
+00:03:02,420 --> 00:03:03,320
+Así que voy a tomar las variables
+
+87
+00:03:04,210 --> 00:03:05,670
+para mis películas y las voy a apilar
+
+88
+00:03:06,140 --> 00:03:07,260
+en filas.
+
+89
+00:03:07,950 --> 00:03:08,860
+Así es que si piensa en
+
+90
+00:03:08,980 --> 00:03:09,810
+cada película como un ejemplo
+
+91
+00:03:10,350 --> 00:03:11,200
+y apilan todas las variables
+
+92
+00:03:11,670 --> 00:03:13,460
+de las diferentes películas y filas,
+
+93
+00:03:14,290 --> 00:03:16,160
+y si también
+
+94
+00:03:16,280 --> 00:03:18,550
+definimos una matriz, «theta» mayúscula,
+
+95
+00:03:19,870 --> 00:03:20,840
+Lo que voy a hacer
+
+96
+00:03:21,180 --> 00:03:22,490
+hacer es tomar cada uno de
+
+97
+00:03:22,750 --> 00:03:25,780
+los vectores de parámetros por usuario
+
+98
+00:03:26,280 --> 00:03:28,520
+y apilarlos en filas, de esta manera.
+
+99
+00:03:28,790 --> 00:03:29,690
+Así que eso es «theta» 1, que
+
+100
+00:03:30,220 --> 00:03:31,880
+es el vector de parámetros para el primer usuario.
+
+101
+00:03:33,430 --> 00:03:36,100
+Y, ya saben, «theta» 2,
+
+102
+00:03:37,040 --> 00:03:38,100
+así que deben apilarlos
+
+103
+00:03:38,360 --> 00:03:39,470
+en filas de esta forma, para
+
+104
+00:03:39,650 --> 00:03:41,530
+definir una matriz «theta» mayúscula
+
+105
+00:03:42,070 --> 00:03:43,830
+así que tengo los
+
+106
+00:03:45,870 --> 00:03:48,410
+vectores de parámetros nu todos apilados en filas así.
+
+107
+00:03:50,000 --> 00:03:51,390
+Ahora, dada esta definición
+
+108
+00:03:52,080 --> 00:03:53,400
+para la matriz x, y esta
+
+109
+00:03:53,590 --> 00:03:54,870
+definición para la matriz  «theta»,
+
+110
+00:03:55,820 --> 00:03:56,970
+a fin de tener una
+
+111
+00:03:57,290 --> 00:03:59,330
+forma vectorizada para calcular la
+
+112
+00:03:59,420 --> 00:04:00,330
+matriz de todas las predicciones,
+
+113
+00:04:01,060 --> 00:04:03,570
+simplemente pueden calcular x veces
+
+114
+00:04:04,710 --> 00:04:07,050
+la transpuesta de la matriz «theta», y
+
+115
+00:04:07,160 --> 00:04:08,380
+eso les da una manera vectorizada
+
+116
+00:04:08,570 --> 00:04:10,530
+para calcular esta matriz por aquí.
+
+117
+00:04:11,680 --> 00:04:12,460
+Para darle al algoritmo de filtrado colaborativo
+
+118
+00:04:12,480 --> 00:04:15,220
+que han estado usando, otro nombre,
+
+119
+00:04:16,070 --> 00:04:17,190
+el algoritmo que estamos usando
+
+120
+00:04:17,660 --> 00:04:19,840
+también se llama factorización de matriz
+
+121
+00:04:21,240 --> 00:04:22,540
+de bajo rango.
+
+122
+00:04:24,280 --> 00:04:25,410
+Así que si escuchan
+
+123
+00:04:25,620 --> 00:04:26,760
+hablar a las personas acerca de la factorización de matriz de bajo rango,
+
+124
+00:04:27,210 --> 00:04:29,490
+ese es en esencia exactamente
+
+125
+00:04:30,390 --> 00:04:32,100
+el algoritmo del que hemos estado hablando.
+
+126
+00:04:32,590 --> 00:04:33,900
+Y este término proviene de la
+
+127
+00:04:33,990 --> 00:04:36,100
+propiedad que esta matriz
+
+128
+00:04:36,770 --> 00:04:38,880
+«theta» transpone x veces tiene una
+
+129
+00:04:39,110 --> 00:04:40,780
+propiedad matemática en la álgebra lineal
+
+130
+00:04:41,030 --> 00:04:42,410
+que se llama
+
+131
+00:04:42,670 --> 00:04:43,820
+matriz de bajo rango y
+
+132
+00:04:44,720 --> 00:04:45,800
+así que eso es lo que hizo
+
+133
+00:04:46,060 --> 00:04:47,190
+surgir el nombre,
+
+134
+00:04:47,340 --> 00:04:48,570
+factorización de matriz de bajo rango para estos
+
+135
+00:04:48,930 --> 00:04:50,240
+algoritmos, debido a esta
+
+136
+00:04:50,410 --> 00:04:53,580
+propiedad de bajo rango de esta matriz «theta» transpone a x.
+
+137
+00:04:54,830 --> 00:04:55,640
+En caso de que no sepan
+
+138
+00:04:55,910 --> 00:04:57,310
+qué significa bajo rango, o en caso de que no sepan
+
+139
+00:04:57,620 --> 00:04:59,770
+qué es una matriz de bajo rango, no se preocupen por eso.
+
+140
+00:04:59,970 --> 00:05:02,820
+Realmente no necesitan saber eso para poder utilizar este algoritmo.
+
+141
+00:05:03,740 --> 00:05:04,790
+Pero si son expertos en
+
+142
+00:05:04,890 --> 00:05:06,110
+álgebra lineal, eso es lo que produce
+
+143
+00:05:06,320 --> 00:05:07,580
+este algoritmo, este otro nombre
+
+144
+00:05:07,850 --> 00:05:12,370
+de factorización de matriz de bajo rango.
+
+145
+00:05:12,620 --> 00:05:14,090
+Por último, después de ejecutar el
+
+146
+00:05:14,300 --> 00:05:16,350
+algoritmo de filtrado colaborativo, aquí está
+
+147
+00:05:17,310 --> 00:05:18,160
+otra cosa que pueden hacer,
+
+148
+00:05:18,530 --> 00:05:20,060
+que es usar las variables aprendidas
+
+149
+00:05:20,320 --> 00:05:23,510
+a fin de encontrar películas relacionadas.
+
+150
+00:05:25,060 --> 00:05:26,810
+Específicamente, para cada producto i,
+
+151
+00:05:27,050 --> 00:05:27,810
+realmente para cada película i, hemos
+
+152
+00:05:28,810 --> 00:05:30,970
+aprendido un vector de dirección x(i)
+
+153
+00:05:31,740 --> 00:05:32,880
+Así que, cuando conocen
+
+154
+00:05:32,930 --> 00:05:34,220
+ciertas variables realmente no saben
+
+155
+00:05:34,590 --> 00:05:35,420
+por adelantado cuáles
+
+156
+00:05:35,610 --> 00:05:37,850
+van a ser las diferentes variables, pero si
+
+157
+00:05:37,940 --> 00:05:39,550
+ejecutan el algoritmo y, de manera empírica, las variables
+
+158
+00:05:39,990 --> 00:05:41,690
+tenderán a captar cuáles son
+
+159
+00:05:41,930 --> 00:05:43,490
+los aspectos importantes de estas
+
+160
+00:05:43,730 --> 00:05:45,340
+diferentes películas o diferentes productos o lo que sea.
+
+161
+00:05:45,480 --> 00:05:47,120
+Cuáles son los aspectos importantes que provocan
+
+162
+00:05:47,610 --> 00:05:48,600
+que a algunos usuarios les gusten ciertas
+
+163
+00:05:48,930 --> 00:05:49,830
+películas y que hacen que a algunos usuarios
+
+164
+00:05:50,210 --> 00:05:51,670
+les gusten diferentes grupos de películas.
+
+165
+00:05:52,470 --> 00:05:53,380
+Así que tal vez terminen
+
+166
+00:05:53,540 --> 00:05:55,050
+conociendo una variable, ya saben, en donde x1
+
+167
+00:05:55,260 --> 00:05:56,550
+es igual a romance, x2 es igual a
+
+168
+00:05:57,060 --> 00:05:59,180
+acción -similar a
+
+169
+00:05:59,460 --> 00:06:00,590
+un video anterior- y tal vez
+
+170
+00:06:00,710 --> 00:06:02,100
+conocieron una variable diferente x3
+
+171
+00:06:02,210 --> 00:06:04,520
+que se trata de una comedia,
+
+172
+00:06:05,330 --> 00:06:07,000
+después alguna variable x4 que es alguna otra cosa.
+
+173
+00:06:07,270 --> 00:06:09,750
+Y tienen N
+
+174
+00:06:09,940 --> 00:06:11,600
+variables en conjunto, y después
+
+175
+00:06:12,610 --> 00:06:14,420
+de que hayan aprendido variables es en realidad
+
+176
+00:06:14,750 --> 00:06:16,030
+bastante difícil entender
+
+177
+00:06:16,420 --> 00:06:18,120
+las variables aprendidas y llegar
+
+178
+00:06:18,390 --> 00:06:19,980
+a una interpretación humana comprensible
+
+179
+00:06:20,810 --> 00:06:22,850
+de lo que estas variables son en realidad.
+
+180
+00:06:22,950 --> 00:06:24,540
+Pero en la práctica, las
+
+181
+00:06:24,620 --> 00:06:27,480
+variables, aunque esas variables sean difíciles de visualizar,
+
+182
+00:06:28,100 --> 00:06:29,570
+--puede ser difícil de averiguar exactamente que son estas variables--
+
+183
+00:06:31,070 --> 00:06:32,160
+por lo general, aprenderemos
+
+184
+00:06:32,410 --> 00:06:33,400
+variables que son muy significativas
+
+185
+00:06:33,960 --> 00:06:35,250
+para capturar las que son las propiedades
+
+186
+00:06:35,870 --> 00:06:37,120
+más importantes o más sobresalientes
+
+187
+00:06:37,880 --> 00:06:39,300
+de una película
+
+188
+00:06:39,710 --> 00:06:41,800
+que hace que te guste o te disguste.
+
+189
+00:06:41,860 --> 00:06:44,950
+Así que ahora digamos que deseamos abordar el siguiente problema.
+
+190
+00:06:45,970 --> 00:06:47,410
+Digamos que tienen alguna película específica
+
+191
+00:06:47,790 --> 00:06:48,980
+i y desean
+
+192
+00:06:49,120 --> 00:06:50,750
+encontrar otras películas j
+
+193
+00:06:51,620 --> 00:06:52,680
+que están relacionados con esa película.
+
+194
+00:06:53,150 --> 00:06:54,770
+así es que, ¿por qué querrían hacer esto?
+
+195
+00:06:54,920 --> 00:06:56,120
+Bien, tal vez tienen un
+
+196
+00:06:56,320 --> 00:06:57,840
+usuario que está navegando por las películas, y que
+
+197
+00:06:58,360 --> 00:07:00,210
+actualmente están viendo la película j, entonces
+
+198
+00:07:00,550 --> 00:07:01,820
+¿cuál es una película razonable para recomendarle
+
+199
+00:07:02,350 --> 00:07:04,110
+que vea después de que haya terminado con la película j?
+
+200
+00:07:04,530 --> 00:07:06,040
+O si alguien ha adquirido recientemente la película
+
+201
+00:07:06,330 --> 00:07:07,470
+j, bueno, ¿cuál sería una película diferente
+
+202
+00:07:07,730 --> 00:07:11,000
+que sería razonable recomendarles para que consideren la compra?.
+
+203
+00:07:12,190 --> 00:07:13,000
+Así que ahora que han aprendido
+
+204
+00:07:13,080 --> 00:07:14,540
+estos vectores de dirección, esto nos da
+
+205
+00:07:14,640 --> 00:07:16,080
+una forma muy conveniente para
+
+206
+00:07:16,250 --> 00:07:17,930
+medir qué tan parecidas son dos películas.
+
+207
+00:07:18,670 --> 00:07:20,530
+En particular, la película i
+
+208
+00:07:21,460 --> 00:07:22,340
+tiene un vector de dirección x(i)
+
+209
+00:07:23,290 --> 00:07:24,200
+así que si pueden encontrar
+
+210
+00:07:24,640 --> 00:07:27,500
+una película diferente, j, de modo
+
+211
+00:07:27,710 --> 00:07:29,300
+que la distancia entre
+
+212
+00:07:29,780 --> 00:07:30,800
+x(i) y x(j) es pequeña,
+
+213
+00:07:33,080 --> 00:07:34,010
+entonces esta es una indicación
+
+214
+00:07:34,430 --> 00:07:36,980
+bastante fuerte de que las películas
+
+215
+00:07:37,830 --> 00:07:41,360
+j e i son de alguna manera similares.
+
+216
+00:07:42,320 --> 00:07:44,080
+Al menos en el sentido de que a algunos de ellos
+
+217
+00:07:44,200 --> 00:07:46,950
+les gusta la película i, tal vez sea más probable que  les guste la película j también.
+
+218
+00:07:47,760 --> 00:07:49,940
+Solo por recapitular, si
+
+219
+00:07:50,590 --> 00:07:52,130
+su usuario está viendo
+
+220
+00:07:52,510 --> 00:07:53,710
+alguna película i, y si
+
+221
+00:07:54,150 --> 00:07:55,060
+quieren encontrar las 5
+
+222
+00:07:55,310 --> 00:07:56,640
+películas más parecidas a esa
+
+223
+00:07:56,900 --> 00:07:57,860
+película a fin de recomendarles
+
+224
+00:07:58,230 --> 00:07:59,590
+5 películas nuevas, lo que
+
+225
+00:07:59,690 --> 00:08:00,650
+hacen es encontrar las cinco
+
+226
+00:08:00,970 --> 00:08:02,260
+películas j, con la
+
+227
+00:08:02,340 --> 00:08:03,880
+distancia más pequeña entre las
+
+228
+00:08:04,190 --> 00:08:05,680
+variables entre estas películas diferentes.
+
+229
+00:08:06,550 --> 00:08:09,220
+Y esto les podría dar algunas películas diferentes para recomendar a su usuario.
+
+230
+00:08:10,010 --> 00:08:11,500
+Así que con eso, con suerte,
+
+231
+00:08:11,680 --> 00:08:13,350
+ahora saben cómo utilizar
+
+232
+00:08:13,700 --> 00:08:15,930
+una aplicación vectorizada para calcular
+
+233
+00:08:16,560 --> 00:08:18,130
+todas las calificaciones predichas de
+
+234
+00:08:18,210 --> 00:08:20,280
+todos los usuarios y todas las
+
+235
+00:08:20,390 --> 00:08:21,720
+películas, y también cómo hacer
+
+236
+00:08:21,920 --> 00:08:23,300
+cosas, como usar las variables aprendidas
+
+237
+00:08:23,930 --> 00:08:25,360
+para encontrar lo que pudieran ser ya sea películas
+
+238
+00:08:25,480 --> 00:08:27,490
+ó productos que están relacionados entre sí.

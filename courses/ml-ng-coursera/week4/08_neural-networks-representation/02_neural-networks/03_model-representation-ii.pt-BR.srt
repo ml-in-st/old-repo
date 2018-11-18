@@ -1,0 +1,1365 @@
+1
+00:00:00,280 --> 00:00:01,330
+No último vídeo, nós vimos
+
+2
+00:00:01,570 --> 00:00:03,540
+uma definição matemática de como
+
+3
+00:00:03,700 --> 00:00:04,990
+representar, ou de como
+
+4
+00:00:05,090 --> 00:00:07,160
+computar a hipótese usada
+pela Rede Neural.
+
+5
+00:00:08,420 --> 00:00:09,620
+Neste vídeo, gostaria de
+
+6
+00:00:09,730 --> 00:00:11,280
+mostrar exatamente como
+
+7
+00:00:11,450 --> 00:00:14,040
+computar de maneira eficiente, usando
+
+8
+00:00:14,710 --> 00:00:16,050
+uma implementação vetorizada.
+
+9
+00:00:17,660 --> 00:00:18,930
+Mas, ainda mais importante,
+
+10
+00:00:19,100 --> 00:00:21,110
+eu gostaria de te dar uma
+intuição sobre porque
+
+11
+00:00:21,390 --> 00:00:22,590
+representações de Redes Neurais
+
+12
+00:00:23,360 --> 00:00:24,640
+podem ser uma boa ideia, e como
+
+13
+00:00:25,010 --> 00:00:27,290
+elas podem nos ajudar a aprender
+hipóteses não-lineares.
+
+14
+00:00:28,970 --> 00:00:29,880
+Considere esta Rede Neural.
+
+15
+00:00:30,520 --> 00:00:31,720
+Anteriormente foi dito que
+
+16
+00:00:32,010 --> 00:00:33,070
+a sequência de passos
+
+17
+00:00:33,170 --> 00:00:34,090
+necessários para computar
+
+18
+00:00:34,650 --> 00:00:35,850
+a saída de uma hipótese
+
+19
+00:00:36,320 --> 00:00:37,780
+são estas equações mostradas
+
+20
+00:00:37,950 --> 00:00:38,770
+à esquerda, onde computamos
+
+21
+00:00:39,540 --> 00:00:41,330
+os valores de ativação dos
+
+22
+00:00:41,450 --> 00:00:43,220
+três neurônios da camada oculta, e então
+
+23
+00:00:43,420 --> 00:00:44,580
+usamos estes para computar a
+
+24
+00:00:44,650 --> 00:00:45,710
+saída para nossa hipótese
+
+25
+00:00:46,680 --> 00:00:48,410
+h(x). Agora, eu vou
+
+26
+00:00:48,480 --> 00:00:50,200
+definir alguns outros termos.
+
+27
+00:00:50,570 --> 00:00:52,210
+O termo que estou
+
+28
+00:00:52,410 --> 00:00:54,090
+sublinhando aqui, eu irei
+
+29
+00:00:54,180 --> 00:00:55,560
+definir como
+
+30
+00:00:56,230 --> 00:00:58,410
+z⁽²⁾₁.
+
+31
+00:00:58,790 --> 00:00:59,830
+Então nós temos que?
+
+32
+00:01:00,650 --> 00:01:02,310
+a⁽²⁾₁, que é este
+
+33
+00:01:02,470 --> 00:01:03,930
+termo, é igual a
+
+34
+00:01:04,170 --> 00:01:06,020
+g(z⁽²⁾₁).
+
+35
+00:01:06,130 --> 00:01:08,100
+E aliás,
+
+36
+00:01:08,180 --> 00:01:09,750
+o que estes sobrescritos (⁽²⁾),
+
+37
+00:01:10,570 --> 00:01:11,580
+os sobrescritos em
+
+38
+00:01:11,870 --> 00:01:12,960
+z⁽²⁾ e em a⁽²⁾,
+
+39
+00:01:13,080 --> 00:01:14,140
+2 entre parênteses
+
+40
+00:01:14,840 --> 00:01:16,450
+sobrescrito significam que estes
+
+41
+00:01:16,740 --> 00:01:18,330
+são valores associados à camada 2,
+
+42
+00:01:18,570 --> 00:01:19,810
+ou seja, à camada
+
+43
+00:01:20,100 --> 00:01:21,390
+oculta da Rede Neural.
+
+44
+00:01:22,820 --> 00:01:25,200
+Já este termo aqui,
+
+45
+00:01:25,990 --> 00:01:27,640
+eu irei definir como
+
+46
+00:01:29,530 --> 00:01:30,140
+z⁽²⁾₂ .
+
+47
+00:01:30,490 --> 00:01:31,860
+Por fim, este últmo termo,
+
+48
+00:01:32,170 --> 00:01:33,100
+que estou sublinhando,
+
+49
+00:01:34,160 --> 00:01:37,040
+será definido como z⁽²⁾₃ .
+
+50
+00:01:37,090 --> 00:01:38,710
+Similarmente, temos
+
+51
+00:01:38,850 --> 00:01:43,200
+" a⁽²⁾₃ =  g(z⁽²⁾₃ ) ".
+
+52
+00:01:44,990 --> 00:01:45,360
+ z(2)3.
+
+53
+00:01:45,480 --> 00:01:46,760
+Assim, estes valores "z" são
+
+54
+00:01:47,290 --> 00:01:48,940
+apenas uma combinação linear
+
+55
+00:01:49,360 --> 00:01:51,200
+combinação linear ponderada,
+
+56
+00:01:51,490 --> 00:01:52,800
+dos valores de entrada x₀ , x₁ ,
+
+57
+00:01:53,060 --> 00:01:55,350
+x₂, x₃ , que vão
+em um neurônio, em particular.
+
+58
+00:01:57,090 --> 00:01:58,260
+Agora se você olhar para
+
+59
+00:01:58,900 --> 00:02:00,470
+este bloco de números,
+
+60
+00:02:01,990 --> 00:02:03,310
+verá que este bloco
+
+61
+00:02:03,490 --> 00:02:05,880
+é estranhamente similar
+
+62
+00:02:06,950 --> 00:02:08,330
+à operação matriz vetor,
+
+63
+00:02:08,800 --> 00:02:10,260
+à multiplicação matriz vetor
+
+64
+00:02:11,070 --> 00:02:12,710
+de " x₁ " vezes
+
+65
+00:02:12,790 --> 00:02:14,840
+o vetor "x". Usando esta observação
+
+66
+00:02:15,580 --> 00:02:18,730
+seremos capazes de vetorizar o cálulo
+
+67
+00:02:19,700 --> 00:02:20,280
+da Rede Neural.
+
+68
+00:02:21,470 --> 00:02:23,510
+Na verdade, vamos definir
+
+69
+00:02:23,680 --> 00:02:24,810
+o vetor de atributos "x"
+
+70
+00:02:25,290 --> 00:02:27,020
+como sendo o vetor de x₀, x₁,
+
+71
+00:02:27,260 --> 00:02:28,550
+x₂, x₃ , onde
+
+72
+00:02:29,010 --> 00:02:30,280
+x₀  é igual a 1,
+
+73
+00:02:30,610 --> 00:02:31,860
+e vamos definir
+
+74
+00:02:32,390 --> 00:02:33,420
+z₂ como sendo o vetor
+
+75
+00:02:34,360 --> 00:02:37,250
+de valores de "z", ou seja,
+z⁽²⁾₁ , z⁽²⁾₂ , z⁽²⁾₃ .
+
+76
+00:02:38,560 --> 00:02:40,210
+Note que z⁽²⁾  é
+
+77
+00:02:40,440 --> 00:02:42,500
+um vetor tridimensional.
+
+78
+00:02:43,910 --> 00:02:47,200
+Agora podemos vetorizar a
+computação de a⁽²⁾₁ , a⁽²⁾₂ , a⁽²⁾₃
+
+79
+00:02:48,270 --> 00:02:48,860
+da seguinte forma:
+
+80
+00:02:49,490 --> 00:02:50,690
+Escrevendo isso em 2 passos:
+
+81
+00:02:51,500 --> 00:02:53,400
+Podemos computar z⁽²⁾ como
+
+82
+00:02:53,950 --> 00:02:55,490
+"θ⁽¹⁾ · x", e isso
+
+83
+00:02:55,790 --> 00:02:57,020
+nos dará o vetor z⁽²⁾;
+
+84
+00:02:57,400 --> 00:02:59,360
+e então a⁽²⁾  é
+
+85
+00:02:59,860 --> 00:03:02,180
+"g(z⁽²⁾)",  e para ficar mais claro,
+
+86
+00:03:02,440 --> 00:03:03,860
+este z⁽²⁾
+
+87
+00:03:04,200 --> 00:03:05,880
+é um vetor tridimensional,
+
+88
+00:03:06,060 --> 00:03:08,150
+assim como a⁽²⁾.
+
+89
+00:03:08,810 --> 00:03:10,410
+E então, temos
+
+90
+00:03:10,690 --> 00:03:12,680
+este "g" que aplica
+
+91
+00:03:12,950 --> 00:03:15,290
+a função sigmoide para cada
+
+92
+00:03:15,550 --> 00:03:18,290
+um dos elementos de z⁽²⁾.
+
+93
+00:03:18,380 --> 00:03:19,270
+Aliás, para deixar a
+
+94
+00:03:19,950 --> 00:03:21,260
+notação mais consistente
+
+95
+00:03:21,440 --> 00:03:23,330
+com o que faremos mais tarde,
+
+96
+00:03:23,590 --> 00:03:24,600
+na camada de entrada
+
+97
+00:03:24,670 --> 00:03:25,840
+temos as entradas "x".
+
+98
+00:03:25,960 --> 00:03:26,950
+Mas também podemos
+
+99
+00:03:27,300 --> 00:03:29,270
+pensar nisto como as
+ativações da primeira camada.
+
+100
+00:03:29,680 --> 00:03:30,430
+Assim,
+
+101
+00:03:30,470 --> 00:03:32,510
+se definirmos "a⁽¹⁾ = x",
+
+102
+00:03:32,660 --> 00:03:34,270
+onde a⁽¹⁾ é um vetor,
+
+103
+00:03:34,500 --> 00:03:35,520
+posso tomar este "x"
+
+104
+00:03:36,230 --> 00:03:38,850
+e substituí-lo com "z⁽²⁾ = θ⁽¹⁾ · a⁽¹⁾ ",
+
+105
+00:03:39,570 --> 00:03:40,680
+apenas definindo
+
+106
+00:03:41,410 --> 00:03:43,350
+a⁽¹⁾ como ativações na camada de entrada.
+
+107
+00:03:44,990 --> 00:03:46,000
+Assim, com o que escrevi
+
+108
+00:03:46,280 --> 00:03:47,500
+até agora, eu tenho
+
+109
+00:03:47,900 --> 00:03:49,940
+os valores de a⁽²⁾₁ ,
+
+110
+00:03:50,820 --> 00:03:52,690
+a⁽²⁾₂ , a⁽²⁾₃ . E, na verdade,
+
+111
+00:03:52,780 --> 00:03:53,980
+eu deveria colocar os
+
+112
+00:03:54,290 --> 00:03:55,600
+sobrescritos neles também.
+
+113
+00:03:56,430 --> 00:03:57,530
+Mas preciso de mais
+
+114
+00:03:57,940 --> 00:03:59,810
+um valor, que é este valor a⁽⁰⁾₂
+
+115
+00:04:00,050 --> 00:04:02,050
+que corresponde à
+
+116
+00:04:02,250 --> 00:04:04,350
+unidade de bias na
+
+117
+00:04:04,550 --> 00:04:06,420
+camada oculta que vai para a saída.
+
+118
+00:04:06,990 --> 00:04:07,780
+É claro, existe uma
+
+119
+00:04:07,810 --> 00:04:08,850
+unidade de bias aqui,
+
+120
+00:04:09,000 --> 00:04:10,060
+ela só não foi desenhada.
+
+121
+00:04:10,270 --> 00:04:11,820
+Mas para lidar com
+
+122
+00:04:11,970 --> 00:04:13,100
+esta unidade de bias extra,
+
+123
+00:04:13,870 --> 00:04:15,650
+o que faremos é adicionar
+
+124
+00:04:16,320 --> 00:04:18,720
+um  a⁽²⁾₀  extra,
+
+125
+00:04:18,890 --> 00:04:20,870
+que é igual a "1", e após
+
+126
+00:04:21,010 --> 00:04:21,990
+este passo,
+
+127
+00:04:22,290 --> 00:04:23,860
+temos que a⁽²⁾ será um vetor de
+
+128
+00:04:24,010 --> 00:04:25,390
+atributos de quatro dimensões,
+
+129
+00:04:25,690 --> 00:04:26,820
+porque nós adicionamos
+
+130
+00:04:27,300 --> 00:04:28,490
+este a₀ extra
+
+131
+00:04:28,620 --> 00:04:30,260
+que é igual a "1",
+
+132
+00:04:30,500 --> 00:04:31,700
+e corresponde à
+
+133
+00:04:32,080 --> 00:04:33,550
+unidade de bias na camada oculta.
+
+134
+00:04:35,080 --> 00:04:37,620
+Finalmente, para se computar o valor
+
+135
+00:04:38,070 --> 00:04:40,100
+real da saída de nossa hipótese,
+
+136
+00:04:40,250 --> 00:04:41,190
+devemos simplesmente
+
+137
+00:04:42,470 --> 00:04:44,980
+computar z⁽³⁾. Onde z⁽³⁾ é
+
+138
+00:04:45,350 --> 00:04:47,940
+igual a este termo que estou sublinhando.
+
+139
+00:04:48,800 --> 00:04:51,450
+Este termo interno é z⁽³⁾.
+
+140
+00:04:53,980 --> 00:04:55,160
+E z⁽³⁾ é definido como
+
+141
+00:04:55,500 --> 00:04:57,120
+"θ⁽²⁾ · a⁽²⁾", e finalmente
+
+142
+00:04:57,810 --> 00:04:59,560
+a saída da minha hipótese h(x)
+
+143
+00:04:59,750 --> 00:05:01,210
+é a⁽³⁾ , que é
+
+144
+00:05:01,360 --> 00:05:03,910
+a ativação da minha
+
+145
+00:05:04,750 --> 00:05:06,040
+única unidade na
+
+146
+00:05:06,290 --> 00:05:09,500
+camada de saída.
+Isso é apenas número real, você pode escrevê-lo como
+
+147
+00:05:10,050 --> 00:05:12,390
+a⁽³⁾ ou a⁽³⁾₁ , que é g(z⁽³⁾).
+
+148
+00:05:13,240 --> 00:05:15,020
+Este processo de computar h(x)
+
+149
+00:05:15,940 --> 00:05:18,110
+é chamado de "propagação adiante"
+(forward propagation),
+
+150
+00:05:19,130 --> 00:05:20,440
+e é chamado assim porque
+
+151
+00:05:20,550 --> 00:05:21,310
+começamos com
+
+152
+00:05:22,010 --> 00:05:24,400
+as ativações das unidades de entrada,
+
+153
+00:05:24,940 --> 00:05:26,770
+e então propagamos para a
+
+154
+00:05:26,860 --> 00:05:29,390
+camada oculta.
+Computamos as ativações da
+
+155
+00:05:29,580 --> 00:05:30,400
+camada oculta, e então
+
+156
+00:05:30,540 --> 00:05:32,040
+propagamos iss,
+
+157
+00:05:32,760 --> 00:05:36,270
+e computamos as ativações da camada
+de saída. Esse processo de
+
+158
+00:05:37,480 --> 00:05:39,170
+computar as ativações da entrada,
+
+159
+00:05:39,290 --> 00:05:40,400
+e da oculta, e então da saída,
+
+160
+00:05:40,940 --> 00:05:42,030
+é chamado de propagação adiante,
+
+161
+00:05:43,320 --> 00:05:44,150
+e o que fizemos foi
+
+162
+00:05:44,310 --> 00:05:45,370
+apresentar a implementação
+
+163
+00:05:45,740 --> 00:05:47,140
+vetorizada deste
+
+164
+00:05:47,280 --> 00:05:48,890
+procedimento. Logo, se você implementar
+
+165
+00:05:48,970 --> 00:05:50,260
+isso usando estas equações
+
+166
+00:05:50,800 --> 00:05:51,740
+mostradas aqui à direita,
+
+167
+00:05:51,850 --> 00:05:53,280
+isso te dará uma maneira
+
+168
+00:05:53,460 --> 00:05:54,980
+eficiente de
+
+169
+00:05:55,120 --> 00:05:56,130
+computar h(x).
+
+170
+00:05:58,250 --> 00:05:59,860
+Essa visão de propagação adiante também
+
+171
+00:06:00,860 --> 00:06:02,270
+nos ajudar a entender o que
+
+172
+00:06:02,550 --> 00:06:03,640
+Redes Neurais podem fazer,
+
+173
+00:06:04,110 --> 00:06:05,290
+e como podem nos ajudar a
+
+174
+00:06:05,510 --> 00:06:07,170
+aprender hipóteses
+não-lineares interessantes.
+
+175
+00:06:08,670 --> 00:06:09,760
+Considere esta Rede Neural,
+
+176
+00:06:10,500 --> 00:06:11,820
+e digamos que eu cubra
+
+177
+00:06:12,040 --> 00:06:13,810
+a parte esquerda da figura, por enquanto.
+
+178
+00:06:14,650 --> 00:06:16,170
+Se você olhar para o que restou da figura.
+
+179
+00:06:17,030 --> 00:06:18,020
+Isso se parece com
+
+180
+00:06:18,260 --> 00:06:19,520
+a Regressão Logística. Onde,
+
+181
+00:06:19,660 --> 00:06:20,570
+o que estamos fazendo é
+
+182
+00:06:20,990 --> 00:06:22,000
+usar este nó,
+
+183
+00:06:22,130 --> 00:06:23,770
+que é apenas a unidade de Regressão
+
+184
+00:06:24,120 --> 00:06:26,060
+Logística, e estamos usando ela para
+
+185
+00:06:26,380 --> 00:06:28,290
+fazer uma predição de h(x).
+
+186
+00:06:28,440 --> 00:06:30,340
+E, o que a hipótese está
+
+187
+00:06:30,710 --> 00:06:31,830
+retornando é h(x),
+
+188
+00:06:31,890 --> 00:06:33,760
+que será igual a "g",
+
+189
+00:06:33,980 --> 00:06:38,110
+que é a minha função de
+ativação sigmoide, vezes Θ₀ ,
+
+190
+00:06:38,560 --> 00:06:40,450
+vezes a₀, que é igual a "1",
+
+191
+00:06:41,270 --> 00:06:43,380
+mais Θ₁ ,
+
+192
+00:06:45,220 --> 00:06:49,080
+mais Θ₂
+
+193
+00:06:49,260 --> 00:06:52,090
+vezes a₂ , mais Θ₃
+
+194
+00:06:52,830 --> 00:06:55,180
+vezes a₃ , onde
+
+195
+00:06:55,370 --> 00:06:56,910
+os valores a₁, a₃ e a₃
+
+196
+00:06:57,050 --> 00:06:59,860
+são aqueles dados por estas três
+unidades ocultas.
+
+197
+00:07:01,060 --> 00:07:02,790
+Agora, para ser consistente
+
+198
+00:07:03,490 --> 00:07:05,000
+com a notação anterior, na verdade,
+
+199
+00:07:05,170 --> 00:07:06,360
+precisamos preencher
+
+200
+00:07:06,470 --> 00:07:10,700
+com os sobrescritos 2 (⁽²⁾) aqui,
+na verdade em todo lugar.
+
+201
+00:07:12,260 --> 00:07:13,920
+E também tem esses
+
+202
+00:07:14,160 --> 00:07:16,800
+indices 1 (₁) aqui, porque eu
+
+203
+00:07:16,930 --> 00:07:20,610
+tenho apenas uma unidade de saída,
+mas se você focar na parte azul na notação,
+
+204
+00:07:20,930 --> 00:07:21,900
+isso é muito
+
+205
+00:07:22,150 --> 00:07:23,680
+parecido com o modelo padrão de
+
+206
+00:07:23,870 --> 00:07:25,530
+Regressão Logística, exceto que
+
+207
+00:07:25,600 --> 00:07:28,060
+agora eu tenho Teta maiúsculo (Θ),
+e não Teta minúsculo (θ).
+
+208
+00:07:29,170 --> 00:07:30,690
+Mas o que isto está
+
+209
+00:07:30,850 --> 00:07:32,520
+fazendo é apenas Regressão Logística.
+
+210
+00:07:33,660 --> 00:07:35,240
+No entanto, os atributos que alimentão
+
+211
+00:07:35,590 --> 00:07:37,250
+a Regressão Logística são estes
+
+212
+00:07:38,200 --> 00:07:40,170
+valores computados pela camada oculta.
+
+213
+00:07:41,340 --> 00:07:42,690
+E só para reforçar, o que
+
+214
+00:07:42,910 --> 00:07:44,420
+esta Rede Neural está fazendo é
+
+215
+00:07:45,130 --> 00:07:47,050
+muito parecido com
+Regressão Logística, exceto
+
+216
+00:07:47,440 --> 00:07:48,900
+que ao invés de usar os
+
+217
+00:07:49,110 --> 00:07:50,770
+atributos originais x₁ , x₂ , x₃ ,
+
+218
+00:07:52,400 --> 00:07:54,260
+ela usa estes novos atributos a⁽²⁾₁ , a⁽²⁾₂  e a⁽²⁾₃.
+
+219
+00:07:54,440 --> 00:07:56,810
+Novamente, vamos colocar os sobrescritos,
+
+220
+00:07:58,130 --> 00:08:00,380
+para ser consistente com a notação.
+
+221
+00:08:02,820 --> 00:08:04,610
+E a parte legal disso é que
+
+222
+00:08:05,040 --> 00:08:06,220
+os atributos a⁽²⁾₁ , a⁽²⁾₂
+
+223
+00:08:06,720 --> 00:08:08,310
+a⁽²⁾₃  são, eles mesmos, aprendidos
+
+224
+00:08:08,760 --> 00:08:09,930
+como funções da entrada.
+
+225
+00:08:10,960 --> 00:08:12,640
+Na verdade, a função que mapeia a
+
+226
+00:08:13,320 --> 00:08:14,540
+camada 1 para a camada 2,
+
+227
+00:08:14,810 --> 00:08:16,390
+é determinada por um
+
+228
+00:08:16,750 --> 00:08:18,550
+outro conjunto de parâmetros, Θ⁽¹⁾.
+
+229
+00:08:19,380 --> 00:08:20,210
+Então, é como se
+
+230
+00:08:20,270 --> 00:08:22,030
+a Rede Neural, ao invés de ser
+
+231
+00:08:22,240 --> 00:08:24,050
+forçada a alimentar a Regressão Logística
+
+232
+00:08:24,120 --> 00:08:25,760
+com os atributos x₁ , x₂ , x₃ ,
+
+233
+00:08:26,210 --> 00:08:27,440
+ela pode
+
+234
+00:08:27,720 --> 00:08:29,320
+aprender seus próprios atributos,
+
+235
+00:08:29,810 --> 00:08:32,010
+a⁽²⁾₁ , a⁽²⁾₂  e a⁽²⁾₃ , para alimentar a
+
+236
+00:08:32,130 --> 00:08:33,950
+Regressão Logística. E, como
+
+237
+00:08:34,650 --> 00:08:36,270
+você pode imaginar, dependendo de quais
+
+238
+00:08:36,360 --> 00:08:37,690
+parâmetros ela escolhe para Θ₁ ,
+
+239
+00:08:37,900 --> 00:08:39,880
+você pode aprender alguns atributos
+
+240
+00:08:40,390 --> 00:08:42,460
+bem interessantes e complexos, e assim
+
+241
+00:08:43,780 --> 00:08:44,830
+você pode terminar com uma
+
+242
+00:08:45,050 --> 00:08:46,650
+hipótese melhor do que se
+
+243
+00:08:46,840 --> 00:08:47,870
+você estivesse restrito
+
+244
+00:08:48,020 --> 00:08:50,520
+aos atributos brutos x₁ , x₂ , x₃ .
+
+245
+00:08:50,640 --> 00:08:52,530
+Mesmo se você usasse os
+
+246
+00:08:52,620 --> 00:08:53,730
+termos polinomiais
+
+247
+00:08:53,920 --> 00:08:55,550
+x₁x₂, x₂x₃ , e assim por diante.
+
+248
+00:08:55,790 --> 00:08:57,250
+Ao invés disso, este algoritmo tem
+
+249
+00:08:57,530 --> 00:08:59,130
+a flexibilidade para tentar
+
+250
+00:08:59,420 --> 00:09:01,990
+aprender quaisquer atributos,
+
+251
+00:09:02,680 --> 00:09:03,990
+usando a⁽²⁾₁ , a⁽²⁾₂  e a⁽²⁾₃
+
+252
+00:09:04,110 --> 00:09:05,190
+para alimentar esta
+
+253
+00:09:05,510 --> 00:09:07,830
+última unidade, que é essencialmente
+
+254
+00:09:09,240 --> 00:09:11,920
+uma Regressão Logística. Eu sei
+
+255
+00:09:12,550 --> 00:09:13,970
+que este exemplo
+
+256
+00:09:14,060 --> 00:09:15,500
+foi descrito em alto nível,
+
+257
+00:09:15,750 --> 00:09:16,520
+então, não sei
+
+258
+00:09:17,440 --> 00:09:18,870
+se esta intuição de Redes Neurais,
+
+259
+00:09:19,720 --> 00:09:21,420
+tendo atributos mais complexos
+
+260
+00:09:21,630 --> 00:09:23,120
+faz muito sentido agora,
+
+261
+00:09:23,210 --> 00:09:24,440
+mas caso não faça,
+
+262
+00:09:24,810 --> 00:09:25,860
+nos próximos 2 vídeos
+
+263
+00:09:25,970 --> 00:09:27,300
+eu darei um exemplo específico
+
+264
+00:09:28,250 --> 00:09:29,590
+de como uma Rede Neural pode
+
+265
+00:09:29,830 --> 00:09:30,860
+usar a camada oculta
+
+266
+00:09:31,250 --> 00:09:32,880
+para computar atributos mais complexos,
+
+267
+00:09:33,130 --> 00:09:34,520
+para alimentar a camada de saída.
+
+268
+00:09:35,060 --> 00:09:37,100
+E, como isso pode aprender
+hipóteses mais complexas.
+
+269
+00:09:37,920 --> 00:09:39,120
+Então, caso o que eu disse
+
+270
+00:09:39,180 --> 00:09:40,090
+não faça muito
+
+271
+00:09:40,230 --> 00:09:41,650
+sentido, continue assistindo
+
+272
+00:09:41,810 --> 00:09:42,960
+os próximos dois vídeos,
+
+273
+00:09:43,190 --> 00:09:44,370
+e espero que então
+
+274
+00:09:44,580 --> 00:09:46,690
+com estes exemplos, esta explicação
+
+275
+00:09:47,030 --> 00:09:48,640
+fará mais sentido.
+
+276
+00:09:49,020 --> 00:09:49,740
+E, só para mencionar.
+
+277
+00:09:49,820 --> 00:09:51,120
+Podem existir Redes Neurais
+
+278
+00:09:51,470 --> 00:09:52,990
+com outros tipos de diagrama,
+
+279
+00:09:53,080 --> 00:09:54,270
+e a forma que
+
+280
+00:09:54,450 --> 00:09:58,000
+as Redes Neurais são conectadas.
+Isso é chamado de "arquitetura".
+
+281
+00:09:58,390 --> 00:10:00,150
+Assim, o termo arquitetura se refere a como
+
+282
+00:10:00,490 --> 00:10:02,380
+diferentes neurônios são
+conectados entre si.
+
+283
+00:10:03,220 --> 00:10:04,180
+É um exemplo de estudo criativo.
+
+284
+00:10:04,840 --> 00:10:06,300
+de uma arquitetura diferente.
+
+285
+00:10:07,480 --> 00:10:08,750
+E, mais uma vez, você pode
+
+286
+00:10:09,260 --> 00:10:10,770
+usar a intuição de
+
+287
+00:10:10,940 --> 00:10:12,180
+como a segunda camada,
+
+288
+00:10:12,900 --> 00:10:14,120
+aqui nós temos três unidades
+
+289
+00:10:14,910 --> 00:10:16,200
+que computam algumas funções,
+
+290
+00:10:16,660 --> 00:10:17,900
+possivelmente complexas,
+
+291
+00:10:17,990 --> 00:10:19,530
+da camada de entrada, e então a
+
+292
+00:10:19,730 --> 00:10:20,750
+camada 3 pode tomar
+
+293
+00:10:20,840 --> 00:10:22,260
+os atributos da 2, e computar
+
+294
+00:10:22,550 --> 00:10:24,070
+atributos ainda mais complexos,
+
+295
+00:10:24,980 --> 00:10:25,880
+tal que, quando se chega
+
+296
+00:10:25,960 --> 00:10:27,160
+à camada de saída, camada 4,
+
+297
+00:10:27,900 --> 00:10:29,130
+você pode ter atributos
+
+298
+00:10:29,370 --> 00:10:30,690
+ainda mais complexos do que
+
+299
+00:10:30,860 --> 00:10:32,040
+você é capaz de computar na
+
+300
+00:10:32,280 --> 00:10:34,710
+camada 3. E assim, ter hipóteses
+não-lineares bem interessantes.
+
+301
+00:10:36,730 --> 00:10:37,580
+Aliás, em uma rede
+
+302
+00:10:37,810 --> 00:10:38,980
+como esta, a camada 1,
+
+303
+00:10:39,130 --> 00:10:40,670
+é chamada camada de entrada.
+A camada 4
+
+304
+00:10:41,360 --> 00:10:43,170
+ainda é a de camada de saída,
+
+305
+00:10:43,340 --> 00:10:45,040
+e esta rede tem duas camadas ocultas.
+
+306
+00:10:46,000 --> 00:10:47,440
+Então, qualquer coisa que não é uma
+
+307
+00:10:48,000 --> 00:10:49,020
+camada de entrada ou saída,
+
+308
+00:10:49,340 --> 00:10:50,590
+é chamada de camada oculta.
+
+309
+00:10:53,390 --> 00:10:54,470
+Espero que desse vídeo
+
+310
+00:10:54,760 --> 00:10:55,840
+você tenha adquirido
+
+311
+00:10:56,140 --> 00:10:58,360
+uma noção de como a etapa
+de "feed forward propagation"
+
+312
+00:10:58,830 --> 00:11:00,230
+de uma Rede Neural funciona.
+
+313
+00:11:00,390 --> 00:11:01,670
+E de como ela começa com a
+
+314
+00:11:01,720 --> 00:11:03,150
+ativação da camada de entrada,
+
+315
+00:11:03,450 --> 00:11:04,480
+e propaga para a primeira
+
+316
+00:11:04,570 --> 00:11:05,560
+camada oculta, para a segunda
+
+317
+00:11:06,070 --> 00:11:08,200
+camada oculta,
+e finalmente para a camada de saída.
+
+318
+00:11:08,990 --> 00:11:10,250
+E você também viu como
+
+319
+00:11:10,560 --> 00:11:12,010
+podemos vetorizar essa computação.
+
+320
+00:11:13,660 --> 00:11:14,830
+Eu sei que
+
+321
+00:11:15,240 --> 00:11:16,680
+parte da intuição deste
+
+322
+00:11:16,850 --> 00:11:19,220
+vídeo, de como uma determinada
+
+323
+00:11:19,550 --> 00:11:22,570
+camada computa atributos complexos
+da camada anterior.
+
+324
+00:11:22,910 --> 00:11:23,540
+Eu sei que parte dessa
+
+325
+00:11:24,190 --> 00:11:26,660
+intuição ainda pode estar
+um pouco abstrata e em alto nível.
+
+326
+00:11:27,450 --> 00:11:28,240
+E, o que vou
+
+327
+00:11:28,350 --> 00:11:29,460
+fazer nos próximos 2 vídeos,
+
+328
+00:11:30,210 --> 00:11:31,540
+é dar um exemplo detalhado
+
+329
+00:11:32,510 --> 00:11:33,810
+de como uma Rede Neural pode
+
+330
+00:11:33,960 --> 00:11:35,740
+ser usada para computar
+funções não-lineares
+
+331
+00:11:36,710 --> 00:11:38,030
+a partir das entradas,
+
+332
+00:11:38,330 --> 00:11:39,450
+e espero te dar uma
+
+333
+00:11:39,540 --> 00:11:40,860
+boa noção do tipo de
+
+334
+00:11:41,010 --> 00:11:44,630
+hipótese não-linear complexa que
+podemos obter das Redes Neurais.
+Tradução: Henrique de Assis L Ribeiro | Revisão: Pablo de Morais Andrade

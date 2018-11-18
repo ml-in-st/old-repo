@@ -1,0 +1,594 @@
+1
+00:00:00,520 --> 00:00:04,480
+Pada video sebelumnya, kita bicara
+
+2
+00:00:04,480 --> 00:00:09,540
+tentang algoritma gradient descent
+
+3
+00:00:09,540 --> 00:00:14,280
+dan bicara tentang model regresi linier
+
+4
+00:00:14,280 --> 00:00:17,400
+dan ketidak-telitian kwadrat fungsi harga.
+
+5
+00:00:17,400 --> 00:00:18,730
+Dalam video ini, kita akan
+
+6
+00:00:20,800 --> 00:00:24,950
+menggunakan gradient descent bersamaan dengan
+
+7
+00:00:24,950 --> 00:00:28,920
+fungsi harga kita, dan itu
+
+8
+00:00:28,920 --> 00:00:34,210
+akan memberikan kita algoritma untuk
+
+9
+00:00:34,210 --> 00:00:36,540
+regresi linier untuk mencocokkan garis lurus ke data kita.
+
+10
+00:00:36,540 --> 00:00:42,312
+Jadi ini
+
+11
+00:00:42,312 --> 00:00:47,820
+apa yang kita kerjakan di video sebelumnya.
+
+12
+00:00:47,820 --> 00:00:51,275
+Itu algoritma gradient descent kita, yang
+
+13
+00:00:51,275 --> 00:00:59,810
+seharusnya akrab, dan Anda
+
+14
+00:00:59,810 --> 00:01:04,060
+melihat model regresi linier
+
+15
+00:01:04,060 --> 00:01:07,710
+dengan hipotesis linier dan ketidak-telitian
+kwadrat fungsi harga kita.
+
+16
+00:01:07,710 --> 00:01:11,670
+Apa yang akan kita lakukan adalah menerapkan
+
+17
+00:01:13,020 --> 00:01:15,550
+gradient descent untuk memperkecil
+
+18
+00:01:15,550 --> 00:01:21,400
+ketidak-telitian kwadrat fungsi harga kita.
+
+19
+00:01:21,400 --> 00:01:23,520
+Sekarang, untuk menerapkan
+
+20
+00:01:23,520 --> 00:01:26,190
+gradient descent, untuk
+
+21
+00:01:27,290 --> 00:01:34,820
+menulis potongan kode ini,
+
+22
+00:01:34,820 --> 00:01:43,280
+syarat utamanya
+
+23
+00:01:43,280 --> 00:01:47,830
+kita perlu bagian derivatif di sebelah ini.
+
+24
+00:01:47,830 --> 00:01:50,782
+Jadi, kita perlu tahu
+
+25
+00:01:50,782 --> 00:01:53,190
+apa derivatif parsial ini,
+
+26
+00:01:53,190 --> 00:01:56,570
+dan menyambungkan
+
+27
+00:01:56,570 --> 00:02:00,310
+definisi fungsi harga J,
+
+28
+00:02:00,310 --> 00:02:04,170
+jelas ini
+
+29
+00:02:04,170 --> 00:02:06,940
+menjadi ini
+
+30
+00:02:06,940 --> 00:02:12,064
+sama dengan penjumlahan 1 sampai m dari
+
+31
+00:02:12,064 --> 00:02:18,354
+ketidak-telitian kwadrat
+
+32
+00:02:18,354 --> 00:02:24,294
+fungsi harga J ini, dan semua yang
+
+33
+00:02:24,294 --> 00:02:27,114
+saya lakukan di sini hanya
+
+34
+00:02:27,114 --> 00:02:34,008
+menyambungkan definisi
+
+35
+00:02:34,008 --> 00:02:37,440
+fungsi harga di sana, dan sedikit lebih
+
+36
+00:02:37,440 --> 00:02:41,720
+menyederhanakannya, ini
+
+37
+00:02:41,720 --> 00:02:46,000
+jelas menjadi sama dengan, ini
+
+38
+00:02:46,000 --> 00:02:51,020
+sama dengan penjumlahan 1 sampai m
+
+39
+00:02:51,020 --> 00:02:54,930
+theta nol tambah theta satu,
+
+40
+00:02:54,930 --> 00:02:59,510
+x(i) kurang y(i) kwadrat.
+
+41
+00:02:59,510 --> 00:03:04,050
+Dan semua yang saya lakukan di sana,
+
+42
+00:03:04,050 --> 00:03:08,100
+mengambil definisi untuk hipotesis saya
+
+43
+00:03:08,100 --> 00:03:11,350
+dan menyambungkan itu di sana.
+
+44
+00:03:11,350 --> 00:03:13,390
+Dan jelas kita perlu
+
+45
+00:03:14,750 --> 00:03:18,490
+tahu apa
+
+46
+00:03:18,490 --> 00:03:22,310
+derivatif parsial dari dua
+
+47
+00:03:23,310 --> 00:03:27,160
+kasus, untuk J = 0
+
+48
+00:03:27,160 --> 00:03:28,640
+dan untuk J = 1, ingin
+
+49
+00:03:28,640 --> 00:03:32,728
+tahu apa
+
+50
+00:03:32,728 --> 00:03:38,380
+derivatif parsial untuk kedua
+
+51
+00:03:39,390 --> 00:03:41,070
+kasus theta(0) dan theta(1).
+
+52
+00:03:43,080 --> 00:03:46,050
+Dan saya akan tulis jawabannya.
+
+53
+00:03:47,160 --> 00:03:48,628
+Jelas bagian pertama ini disederhanakan
+
+54
+00:03:52,529 --> 00:03:56,804
+menjadi 1/m, penjumlahan pada
+
+55
+00:03:56,804 --> 00:03:59,790
+set latihan saya dari
+
+56
+00:03:59,790 --> 00:04:05,730
+x(i) - y(i).
+
+57
+00:04:05,730 --> 00:04:11,420
+Dan untuk bagian ini, derivatif parsial
+
+58
+00:04:11,420 --> 00:04:15,230
+berkenaan dengan theta(1), jelas
+
+59
+00:04:15,230 --> 00:04:19,265
+saya mendapat bagian ini: -y(i) * x(i).
+
+60
+00:04:19,265 --> 00:04:22,250
+Oke
+
+61
+00:04:24,290 --> 00:04:25,570
+Dan menghitung derivatif parsial
+
+62
+00:04:25,570 --> 00:04:28,120
+ini, jadi berangkat dari
+
+63
+00:04:28,120 --> 00:04:31,862
+persamaan ini ke salah satu
+
+64
+00:04:31,862 --> 00:04:32,700
+persamaan di bawah sana, menghitung
+
+65
+00:04:32,700 --> 00:04:36,780
+derivatif parsial itu perlu kalkulus multivariat.
+
+66
+00:04:36,780 --> 00:04:40,900
+Jika Anda tahu kalkulus, silahkan
+
+67
+00:04:40,900 --> 00:04:43,014
+kerjakan derivatif itu sendiri
+
+68
+00:04:43,014 --> 00:04:45,480
+dan cek derivatif itu
+
+69
+00:04:45,480 --> 00:04:50,390
+Anda mendapatkan jawaban yang saya dapatkan.
+
+70
+00:04:50,390 --> 00:04:55,220
+Tapi jika Anda kurang
+
+71
+00:04:55,220 --> 00:05:00,190
+akrab dengan kalkulus, Anda jangan
+
+72
+00:05:03,230 --> 00:05:07,800
+khawatirkan itu, dan
+
+73
+00:05:07,800 --> 00:05:09,490
+tidak mengapa hanya mengambil dan menggunakan
+
+74
+00:05:09,490 --> 00:05:16,620
+persamaan ini, dan Anda
+
+75
+00:05:16,620 --> 00:05:22,295
+tidak perlu tahu kalkulus atau
+
+76
+00:05:22,295 --> 00:05:26,465
+apapun yang seperti itu untuk
+
+77
+00:05:26,465 --> 00:05:30,445
+mengerjakan PR. Jadi untuk mengimplementasikan
+gradient descent, Anda akan dapatkan itu bekerja.
+
+78
+00:05:30,445 --> 00:05:33,155
+Namun demikian, sesudah definisi ini,
+
+79
+00:05:33,155 --> 00:05:36,615
+atau sesudah apa yang telah kita pecahkan
+
+80
+00:05:38,250 --> 00:05:45,910
+menjadi derivatif itu,
+
+81
+00:05:45,910 --> 00:05:50,020
+benar-benar hanya kemiringan dari
+
+82
+00:05:50,020 --> 00:05:54,220
+fungsi harga J. Sekarang
+
+83
+00:05:54,220 --> 00:05:56,370
+kita dapat menyambungkan mereka kembali ke
+
+84
+00:05:56,370 --> 00:06:01,354
+algoritma gradient descent kita.
+
+85
+00:06:01,354 --> 00:06:07,619
+Jadi ini gradient descent atau
+
+86
+00:06:07,619 --> 00:06:12,644
+regresi, yang akan
+
+87
+00:06:12,644 --> 00:06:16,547
+mengulang hingga konvergen, theta 0
+
+88
+00:06:16,547 --> 00:06:21,060
+dan theta satu diperbarui sebagai
+
+89
+00:06:21,060 --> 00:06:26,845
+minus alpha yang sama
+
+90
+00:06:26,845 --> 00:06:31,510
+kali bagian derivatifnya.
+
+91
+00:06:31,510 --> 00:06:35,450
+Jadi, bagian ini di sini.
+
+92
+00:06:35,450 --> 00:06:39,780
+Jadi, ini algoritma regresi linier kita.
+
+93
+00:06:41,230 --> 00:06:42,380
+Betul?
+
+94
+00:06:42,380 --> 00:06:46,370
+adalah, tentu saja, hanya
+
+95
+00:06:47,670 --> 00:06:52,760
+derivatif parsial dari
+
+96
+00:06:52,760 --> 00:06:56,190
+theta nol, yang kita kerjakan di slide sebelumya.
+
+97
+00:06:57,340 --> 00:07:02,430
+Dan bagian kedua di sini,
+
+98
+00:07:02,430 --> 00:07:06,520
+bagian itu hanya
+
+99
+00:07:08,200 --> 00:07:14,660
+derivatif parsial dari
+
+100
+00:07:14,660 --> 00:07:20,090
+theta satu yang kita kerjakan pada baris sebelumnya.
+
+101
+00:07:21,400 --> 00:07:25,800
+Dan hanya mengingatkan,
+
+102
+00:07:25,800 --> 00:07:31,230
+Anda harus, saat mengimplementasikan gradient descent,
+
+103
+00:07:31,230 --> 00:07:34,490
+ada rincian yang
+
+104
+00:07:34,490 --> 00:07:38,900
+Anda harus implementasikan
+
+105
+00:07:38,900 --> 00:07:43,350
+sehingga theta nol dan theta satu diperbarui serentak.
+
+106
+00:07:43,350 --> 00:07:48,720
+Mari kita lihat bagaimana gradient descent bekerja.
+
+107
+00:07:48,720 --> 00:07:52,620
+Satu persoalan yang kita pecahkan
+
+108
+00:07:52,620 --> 00:07:57,510
+gradient descent bahwa itu bisa mudah mencapai local optima.
+
+109
+00:07:57,510 --> 00:08:00,730
+Jadi, ketika saya menjelaskan gradient descent
+
+110
+00:08:00,730 --> 00:08:04,310
+pertama kali, saya menunjukkan Anda gambar ini,
+
+111
+00:08:04,310 --> 00:08:08,880
+menuruni bukit
+
+112
+00:08:08,880 --> 00:08:13,850
+permukaan ini dan kita
+
+113
+00:08:13,850 --> 00:08:17,760
+lihat bagaimana, tergantung dimana
+
+114
+00:08:17,760 --> 00:08:21,400
+Anda memulai, Anda bisa mendapatkan local optima berbeda.
+
+115
+00:08:21,400 --> 00:08:25,660
+Anda tahu, Anda bisa berakhir di sini atau sini.
+
+116
+00:08:25,660 --> 00:08:30,620
+Tapi, jelas bahwa
+
+117
+00:08:30,620 --> 00:08:34,175
+fungsi harga untuk gradient
+
+118
+00:08:34,175 --> 00:08:36,365
+fungsi harga untuk regresi linier
+
+119
+00:08:36,365 --> 00:08:39,585
+selalu akan menjadi
+
+120
+00:08:39,585 --> 00:08:43,715
+fungsi lengkungan seperti ini.
+
+121
+00:08:43,715 --> 00:08:46,247
+Istilah teknis untuk ini
+
+122
+00:08:46,247 --> 00:08:48,837
+adalah fungsi cembung.
+
+123
+00:08:48,837 --> 00:08:51,247
+Dan saya tidak akan
+
+124
+00:08:51,247 --> 00:08:55,207
+memberi definisi formil akan apa
+
+125
+00:08:55,207 --> 00:08:58,357
+itu fungsi cembung, tapi
+
+126
+00:08:58,357 --> 00:09:03,497
+secara tidak resmi fungsi cembung
+
+127
+00:09:05,980 --> 00:09:09,550
+artinya fungsi lengkungan, seperti melengkung.
+
+128
+00:09:09,550 --> 00:09:12,260
+Jadi, fungsi ini tidak
+
+129
+00:09:12,260 --> 00:09:15,510
+punya local optima, kecuali
+
+130
+00:09:15,510 --> 00:09:19,410
+global optimum.
+
+131
+00:09:19,410 --> 00:09:22,270
+Dan gradient descent
+
+132
+00:09:22,270 --> 00:09:25,870
+fungsi harga jenis ini yang
+
+133
+00:09:25,870 --> 00:09:29,730
+Anda dapatkan kapanpun Anda menggunakan
+
+134
+00:09:29,730 --> 00:09:33,020
+regresi linier, itu akan selalu mengkonversi
+
+135
+00:09:33,020 --> 00:09:34,520
+ke global optimum, karena tidak ada local optima lain
+selain global optimum.
+
+136
+00:09:34,520 --> 00:09:37,020
+Jadi sekarang, mari kita lihat kerja algoritma ini.
+
+137
+00:09:37,020 --> 00:09:41,000
+Seperti biasa, ini plot
+
+138
+00:09:41,000 --> 00:09:46,420
+fungsi hipotesis dan
+
+139
+00:09:46,420 --> 00:09:50,140
+fungsi harga J saya.
+
+140
+00:09:50,140 --> 00:09:51,400
+Jadi, mari lihat bagaimana
+
+141
+00:09:51,400 --> 00:09:53,910
+menginisialisasi parameter saya pada nilai ini.
+
+142
+00:09:55,340 --> 00:10:00,430
+Katakanlah, biasanya Anda
+
+143
+00:10:00,430 --> 00:10:04,990
+menginisialisasi parameter Anda pada nol
+
+144
+00:10:04,990 --> 00:10:07,480
+untuk nol, theta nol dan nol.
+
+145
+00:10:07,480 --> 00:10:11,460
+Untuk ilustrasi pada presentasi
+
+146
+00:10:11,460 --> 00:10:14,510
+khusus ini, saya telah
+
+147
+00:10:14,510 --> 00:10:17,900
+menginisialisasi theta nol di
+
+148
+00:10:17,900 --> 00:10:20,420
+sekitar 900, dan theta satu di sekitar -0.1, okey?

@@ -1,0 +1,48 @@
+Witaj na darmowym kursie uczenia maszynowego. Uczenie maszynowe jest obecnie jedną z najbardziej ekscytujących technik komputerowych. Podczas tego kursu poznasz aktualny stan wiedzy oraz zdobędziesz umiejętności implementacji i wykorzystania
+tych algorytmów. Prawdopodobnie korzystasz z niego wielokrotnie każdego dnia, nie zdając sobie z tego sprawy. Za każdym razem, gdy korzystasz z
+wyszukiwarki takiej jak Google czy Bing, działają one tak dobrze m.in. dlatego, że algorytm uczenia maszynowego, zaimplementowany przez Google lub Microsoft, nauczył się oceniać istotność stron internetowych. Za każdym razem, gdy używasz aplikacji Facebooka lub Apple do oznaczania zdjęć, i rozpoznaje ona Twoich przyjaciół - jest to również uczenie maszynowe. Za każdym razem, gdy otwierasz swoją pocztę, nie musisz przekopywać się przez tony spamu dzięki filtrowi antyspamowemu. Także on działa w oparciu o uczenie maszynowe.
+Jednym z powodów dla których osobiście jestem podekscytowany, tym tematem, jest marzenie, by któregoś dnia zbudować maszyny tak inteligentne jak ty i ja. Wciąż daleko nam do osiągnięcia tego celu, ale wielu badaczy
+sztucznej inteligencji wierzy, że sposób na zbliżenie nas do tego celu wiąże się z algorytmami uczącymi, które starają się naśladować sposób uczenia się ludzkiego mózgu. Opowiem o tym trochę
+w dalszej części kursu. Podczas tych zajęć poznamy najnowocześniejsze algorytmy uczenia maszynowego. Okazuje się jednak, że sama wiedza o algorytmach
+i matematyce stojącej za nimi nie na wiele się zda, jeżeli nie dowiemy się, jak wykorzystać te narzędzia do rozwiązywania problemów,
+na których nam zależy. Z tego powodu wiele czasu poświęciliśmy na opracowanie ćwiczeń, umożliwiających wam samodzielną implementację omawianych algorytmów oraz sprawdzenie, jak działają.
+A zatem, dlaczego uczenie maszynowe jest dzisiaj tak powszechne? Okazuje się, że wyrosło ono na gruncie dziedziny nazywanej AI, czyli
+sztucznej inteligencji (ang. artificial intelligence). Chcieliśmy zbudować inteligentne maszyny i okazało się,
+że jest kilka podstawowych rzeczy, które możemy zaprogramować maszynie do wykonania - na przykład, jak znaleźć najkrótszą ścieżkę z punktu A do B. Bardzo długo nie wiedzieliśmy jednak,
+jak pisać programy AI zdolne wykonywać bardziej interesujące rzeczy, jak przeszukiwanie internetu lub oznaczanie zdjęć, czy też filtrowanie spamu. Uświadomiliśmy sobie, że jedynym sposobem
+by to osiągnąć, jest pozwolenie maszynie by nauczyła się tych rzeczy sama. Tak wyłoniło się uczenie maszynowe jako nowa możliwość wykorzystania komputerów, która dziś jest obecna w wielu dziedzinach przemysłu i nauk. Osobiście, pracując nad uczeniem maszynowym, podczas typowego tygodnia pracy zdarza mi się rozmawiać z pilotami helikopterów, biologami i całą masą
+ludzi od systemów komputerowych (czyli z moimi kolegami ze Stanforda), natomiast średnio dwa
+lub trzy razy w tygodniu dostaję email od osób z branży z Doliny Krzemowej, zainteresowanych zastosowaniem algorytmów uczących do rozwiązywania ich
+problemów. To pokazuje, jak szerokie zastosowanie ma uczenie maszynowe.
+Autonomiczna robotyka, biologia obliczeniowa oraz masa innych rzeczy z Doliny Krzemowej 
+- na to właśnie ogromny wpływ ma uczenie maszynowe. Jest wiele innych przykładów uczenia maszynowego. Chociażby 
+eksploracja baz danych. Jedną z przyczyn takiej popularności uczenia maszynowego, jest rozwój sieci internetowej oraz wzrost automatyzacji. Wszystko to oznacza przetwarzanie o wiele większych zbiorów danych niż kiedykolwiek przedtem. Cała masa firm z Doliny Krzemowej
+zbiera dziś dane o kliknięciach na stronach internetowych, nazywanych również danymi clickstream, oraz próbuje wykorzystać uczenie maszynowe do eksploracji tych danych, by lepiej zrozumieć
+użytkowników i sprostać ich oczekiwaniom, Obecnie to spory segment Doliny Krzemowej.
+Dane medyczne. W dobie automatyzacji mamy dziś do dyspozycji
+dane medyczne w formie elektronicznej, zatem jeżeli będziemy w stanie zmienić dane medyczne w medyczną wiedzę, pozwoli nam to lepiej zrozumieć schorzenia. Biologia obliczeniowa.
+Ponownie, dzięki automatyzacji, biolodzy zbierają duże ilości danych o sekwencjach genowych,
+sekwencjach DNA i tym podobnych, a maszyny, wykorzystując algorytmy, pozwalają nam lepiej zrozumieć tajniki ludzkiego genomu oraz co to znaczy być człowiekiem.
+W inżynierii również, we wszystkich dziedzinach, mamy coraz to większe i większe zbiory danych, które które staramy się zrozumieć z pomocą algorytmów uczących. Kolejny zakres zastosowań dotyczy maszyn, których nie jesteśmy w stanie zaprogramować
+ręcznie. Dla przykładu: pracowałem nad autonomicznymi helikopterami przez wiele
+lat. Po prostu nie wiedzieliśmy jak napisać program komputerowy, dzięki któremu helikopter mógłby latać samodzielnie. Jedynym działającym podejściem było pozwolenie komputerowi, aby sam nauczył się latać helikopterem.
+[Odgłos helikoptera] Rozpoznawanie pisma odręcznego. Okazuje się, że jednym z powodów dla których tak niedrogie dziś jest przesłanie listu na duże odległości, zarówno w
+Stanach Zjednoczonych, jak i globalnie, jest fakt, że gdy adresujesz ręcznie kopertę, istnieje algorytm uczący, który nauczył się czytać pismo odręczne,
+dzięki czemu można  zautomatyzować rozsyłanie przesyłek, a co za tym idzie,
+wysyłka na odległość tysięcy mil kosztuje parę centów. Jeżeli znane Ci są
+takie dziedziny badań jak przetwarzanie języka naturalnego czy widzenie maszynowe - wiedz, że, są to szczególne przypadki sztucznej inteligencji związane odpowiednio ze zrozumieniem języka i obrazów.
+Większość przetwarzania języka naturalnego oraz widzenia maszynowego to dziś nic innego
+jak rozmaite aplikacje uczenia maszynowego. Algorytmy uczące są również często wykorzystywane w automatycznie konfigurowanych aplikacjach. Za każdym razem, gdy odwiedzasz Amazon, Netflix czy iTunes Genius, a aplikacje te
+rekomendują Ci filmy, produkty czy muzykę, dzieje się to za sprawą algorytmów uczących.
+Te serwisy odwiedzane są przez miliony użytkowników; niemożliwym byłoby napisanie miliona różnych serwisów dla miliona użtkowników. Jedynym sposobem, aby oprogramowanie mogło
+dostarczać spersonalizowane rekomendacje, jest umożliwienie mu nauczenia się Twoich
+preferencji. Wreszcie, algorytmy uczące są dziś wykorzystywane do
+zrozumienia sposobu uczenia się człowieka oraz pracy ludzkiego mózgu. Opowiemy o tym,
+jak naukowcy wykorzystują te badania,
+by spełniły się wielkie sny o sztucznej inteligencji. Kilka
+miesięcy wcześniej, jeden ze studentów pokazał mi artykuł na temat dwunastu najistotniejszych umiejętności w IT. Umiejętności, wobec których rekruterzy w branży IT nie mogę przejść obojętnie. Minęło już trochę czasu od ukazania się artykułu, jednak na szczycie tej listy dwunastu najbardziej pożądanych umiejętności
+w IT było właśnie uczenie maszynowe. Tutaj, w Stanford, liczba rekruterów, którzy
+kontaktują się ze mną pytając, czy znam absolwentów znających się na uczeniu maszynowym, jest znacznie większa, niż liczba naszych absolwentów w tej tematyce każdego roku. Jestem więc przekonany, że istnieje ogromne, niezaspokojone zapotrzebowanie na ten zestaw umiejętności i jest to idealny moment, by poznać uczenie maszynowe, i mam nadzieję, że przekażę Wam sporo wiedzy o uczeniu maszynowym podczas tych zajęć. Następny film rozpoczniemy od sformułowania formalnej
+definicji uczenia maszynowego. Zaczniemy także omawiać główne
+typy problemów w uczeniu maszynowym oraz algorytmy. Zapoznasz się z
+podstawową terminologią uczenia maszynowego i nabierzesz intuicji, jak działają różne algorytmy, oraz w jakich przypadkach można je zastosować.

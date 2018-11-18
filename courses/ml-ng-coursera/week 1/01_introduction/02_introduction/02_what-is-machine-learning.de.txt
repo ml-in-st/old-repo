@@ -1,0 +1,133 @@
+Was ist maschinelles Lernen? 
+In diesem Video werden wir versuchen,
+ zu definieren, was das ist und außerdem werden wir versuchen, Ihnen einen Einblick zu geben,
+ wann Sie maschinelles Lernen verwenden können. Sogar unter Fachleuten, 
+die maschinelles Lernen anwenden, 
+gibt es keine allgemein anerkannte Definition, was maschinelles Lernen ist und was nicht. 
+Aber lassen Sie mich Ihnen 
+einige Beispiele zeigen, wie Leute versucht haben es zu definieren.
+ Hier ist die Definition für maschinelles Lernen nach Arthur Samuel: Er definiert maschinelles Lernen 
+als ein Fachgebiet, das Computern die Fähigkeit gibt zu lernen
+ ohne explizit programmiert worden zu sein.
+ Samuels Bekanntheit kam dadurch, dass er 1950
+ ein Dame spielendes Programm geschrieben hatte. Das verblüffende an diesem 
+Dame spielenden Programm war, 
+dass Arthur Samuel selber gar kein guter Damespieler war. 
+Was er jedoch tat, war folgendes:
+ er schrieb das Programm so, 
+dass es zehntausende Partien gegen sich selbst spielen würde.
+ Indem das Dame spielende Programm beobachtete, welche Spielsituationen eher zum Sieg führten und 
+welche Spielsituationen eher zur Niederlage führten, lernte es mit der Zeit, was gute Spielsituationen sind und was schlechte Spielsituationen sind.
+Es lernte dann schließlich besser Dame zu spielen 
+als Arthur Samuel es selbst konnte. 
+Das war ein beeindruckendes Ergebnis. Es stellte sich heraus, dass Arthur Samuel selbst
+ kein sehr guter Damespieler war. Der Computer jedoch hat das Durchhaltevermögen
+ zehntausende Partien gegen sich selber zu spielen - kein Mensch hat das Durchhaltevermögen,
+ so viele Partien zu spielen - 
+indem der Computer dies tat, war er in der Lage, soviel Dame-Spielerfahrung
+ anzusammeln, dass er schließlich ein besserer Damespieler wurde, 
+als Arthur Samuel selbst. Das ist die etwas informellere und ältere Definition. 
+Hier ist eine etwas neuere Definition von Tom Mitchell, der ein Freund von der Carnegie Mellon Universität 
+ist. Tom definiert maschinelles Lernen indem er sagt, dass ein wohlgestelltes Lernproblem 
+wie folgt definiert ist: 
+Man sagt, dass ein Computerprogramm von einer Erfahrung (experience) E, 
+bezogen auf irgendeine Aufgabe (task) T und
+ irgendein Maß für die Erfüllung (performance) P,
+ lernt, wenn die Erfüllung von T,
+ wie von P gemessen, besser wird mit der Erfahrung E. 
+Ich glaube ja, dass er diese Definition
+ nur gewählt hat, damit sie sich reimt. Im Beispiel des Dame spielenden Programms 
+wäre die Erfahrung E diejenige Erfahrung, die sich daraus ergibt, dass das Programm 
+zehntausende Spiele mit sich selbst spielt. Die Aufgabe T wäre 
+die Aufgabe des Damespielens und 
+das Erfüllungsmaß P wäre die Wahrscheinlichkeit, dass es die nächste Partie Dame gegen irgendeinen neuen Gegner gewinnt. 
+In den folgenden Videos, abgesehen davon, 
+dass ich versuchen werde, Ihnen Dinge beizubringen, werde ich Ihnen gelegentlich eine Frage stellen,
+ um sicher zu stellen, dass Sie den Stoff verstehen. Hier ist eine. Ganz oben steht die Definition
+ des maschinellen Lernens von Tom Mitchell. Stellen Sie sich vor, 
+Ihr Email-Programm beobachtet, welche Emails Sie 
+als Spam markieren und welche nicht. In einem Email-Programm wie diesem hier, 
+würden Sie dann diesen Spamknopf drücken, um irgendeine Email als Spam zu markieren, 
+aber eben nicht die anderen. Darauf basierend, 
+welche Emails Sie als Spam markieren lernt Ihr Email-Programm besser, 
+Spam-Emails herauszufiltern. 
+Was ist dann die Aufgabe T in dieser Situation? 
+In ein paar Sekunden wird das Video anhalten
+ und wenn es das tut, können Sie Ihre Maus benutzen, um einen
+ dieser vier runden Knöpfe auszuwählen
+ und mich wissen zu lassen, von welcher dieser vier Sie glauben, 
+dass es die richtige Antwort zu dieser Frage ist. 
+- Nun, ich hoffe, dass Sie diese Antwort hier
+ gewählt haben: Emails als Spam oder keinen Spam
+ klassifizieren. Tatsächlich definiert diese Definition
+ die Aufgabe T, das Erfüllungsmaß P und 
+die Erfahrung E. Ihnen dabei zuzusehen, 
+wie Sie Emails als Spam oder keinen Spam 
+etikettieren, das wäre dann die Erfahrung E. 
+Der Anteil an korrekt klassifizierten Emails wäre dann das Erfüllungsmaß P.
+ Unsere Aufgabenerfüllung (task performance), 
+unsere Systemleistung (system's performance), unser Erfüllungsmaß P
+ wird sich mit der Erfahrung E verbessern. In diesem Kurs, hoffe ich, Ihnen mehrere
+ verschiedene Arten von Lernalgorithmen beizubringen. Es gibt etliche 
+verschiedene Arten von Lernalgorithmen. Die wichtigsten zwei Arten sind 
+überwachtes(supervised) und 
+unüberwachtes (unsupervised) Lernen. Ich werde das, was diese beiden Ausdrücke bedeuten,
+ in den nächsten paar Videos genauer definieren. Es sei nur kurz gesagt: 
+es stellt sich heraus, dass man beim
+ überwachten Lernen dem Computer beibringt, wie er etwas tun soll, 
+wohingegen beim unüberwachten Lernen
+ man ihn selber lernen lässt. Machen Sie sich keine Sorgen, wenn diese zwei 
+Ausdrücke Ihnen jetzt noch nichts sagen. In den nächsten paar Videos, werde ich genau sagen,
+ was diese beiden Arten des Lernens sind. Sie werden noch weitere Fachwörter wie 
+'Verstärkendes Lernen' (reinforcement learning) und
+ 'Empfehlungsdienste' (recommender systems) hören. Das sind zwei weitere Arten von
+ maschinellen Lernalgorithmen, 
+über die wir später sprechen werden. Aber die wohl am häufigsten gebrauchten Arten
+ von Lernalgorithmen sind überwachtes Lernen und unüberwachtes Lernen. 
+Ich werde dies in den nächsten zwei Videos definieren und wir werden die meiste Zeit
+ in diesem Kurs über diese zwei Arten
+ von Lernalgorithmen sprechen. Wir werden aber auch viel Zeit
+ in diesem Kurs darauf verwenden, praktische Hinweise zu geben,
+ um Lernalgorithmen anzuwenden. Das ist etwas, das mir sehr wichtig ist 
+und etwas, von dem ich nicht glaube, dass irgendeine andere Universität das so
+ unterrichtet. Das Unterrichten von Lernalgorithmen ist so, als ob ich Ihnen eine Kiste voll Werkzeuge
+ gebe. Genauso wichtig oder vielleicht noch wichtiger als Ihnen diese Werkzeuge zu geben, 
+ist es Ihnen beizubringen, wie 
+Sie diese Werkzeuge anwenden können. Ich würde gerne eine Analogie zum Erlernen des
+ Schreinerhandwerks machen. Stellen Sie sich vor, jemand bringt Ihnen das Schreinerhandwerk bei 
+und sagt: 'Hier ist ein Hammer, 
+hier ist ein Schraubenzieher, hier ist eine Säge. Viel Glück!' 
+Das ist doch nicht gut, oder? Sie haben dann zwar alle diese Werkzeuge, 
+aber das wichtigere ist doch zu lernen, 
+wie man diese Werkzeuge richtig benutzt. Es gibt einen enormen Unterschied 
+zwischen Menschen, die wissen wie man diese maschinellen Lernalgorithmen anwendet
+ und denen, die nicht wissen, wie man diese Werkzeuge richtig benutzt. 
+Hier im Silicon Valley, wo ich lebe, erlebe ich es oft, wenn ich verschiedene Firmen besuche, selbst bei 
+den etablierten Silicon Valley Unternehmen, dass Leute versuchen maschinelle Lernalgorithmen
+ auf irgendein Problem anzuwenden - manchmal haben sie das schon
+ seit sechs Monaten versucht - 
+aber wenn ich manchmal sehe, was sie tun, 
+dann hätte ich Ihnen früher sagen können - sechs Monate früher - dass sie einen 
+Lernalgorithmus hätten nehmen sollen und ihn in einer etwas veränderten Art anwenden sollen. 
+Dann wäre ihr Ausblick auf Erfolg viel größer gewesen. Wir werden also in diesem Kurs
+ viel Zeit darauf verwenden, darüber zu sprechen, wie, wenn man wirklich versucht ein 
+maschinelles Lernsystem zu entwickeln, wie man optimale Entscheidungen
+ über Vorgehensweisen trifft, 
+mit denen man dann sein System aufbaut, sodass man, 
+wenn man einen Lernalgorithmus anwendet, seltener als jemand endet, 
+der etwas sechs Monate lang versucht hat, wovon jemand anderes sofort gesehen hätte,
+ dass das so überhaupt nicht gehen kann und dass es eine reine Zeitverschwendung 
+von sechs Monaten war.
+ Ich werde also viel Zeit darauf verwenden, Ihnen diese optimalen Vorgehensweisen
+ für Maschinelles Lernen 
+und künstliche Intelligenz beizubringen und auch wie man diese Sachen dann 
+zum Laufen bekommt, wie wir es tun, 
+wie es die besten Leute in Silicon Valley und überall auf der Erde tun. Ich hoffe, ich kann 
+Sie zu einem - oder einer - der Besten machen, die wissen, wie man ernsthafte maschinelle 
+Lernsysteme und Systeme mit künstlicher Intelligenz
+ entwirft und aufbaut. Das ist also maschinelles Lernen und 
+das sind die Hauptpunkte, von denen ich hoffe, 
+dass ich sie vermitteln werde. In den nächsten Videos werde ich definieren, 
+was überwachtes Lernen ist und danach was unüberwachtes Lernen ist und außerdem 
+werde ich damit beginnen, darüber zu sprechen,
+ wann man welches verwendet.

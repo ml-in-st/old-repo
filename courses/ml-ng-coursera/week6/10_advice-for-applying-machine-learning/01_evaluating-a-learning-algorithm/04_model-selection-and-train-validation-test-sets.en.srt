@@ -1,0 +1,876 @@
+1
+00:00:00,160 --> 00:00:04,570
+Suppose you're left to decide what degree
+of polynomial to fit to a data set.
+
+2
+00:00:04,570 --> 00:00:08,750
+So that what features to include
+that gives you a learning algorithm.
+
+3
+00:00:08,750 --> 00:00:13,160
+Or suppose you'd like to choose
+the regularization parameter longer for
+
+4
+00:00:13,160 --> 00:00:14,550
+learning algorithm.
+
+5
+00:00:14,550 --> 00:00:15,830
+How do you do that?
+
+6
+00:00:15,830 --> 00:00:17,510
+This account model selection process.
+
+7
+00:00:17,510 --> 00:00:22,411
+Browsers, and in our discussion of how to
+do this, we'll talk about not just how to
+
+8
+00:00:22,411 --> 00:00:27,031
+split your data into the train and test
+sets, but how to switch data into what we
+
+9
+00:00:27,031 --> 00:00:31,020
+discover is called the train,
+validation, and test sets.
+
+10
+00:00:31,020 --> 00:00:33,860
+We'll see in this video just
+what these things are, and
+
+11
+00:00:33,860 --> 00:00:36,890
+how to use them to do model selection.
+
+12
+00:00:36,890 --> 00:00:40,350
+We've already seen a lot of times
+the problem of overfitting,
+
+13
+00:00:40,350 --> 00:00:44,380
+in which just because a learning
+algorithm fits a training set well,
+
+14
+00:00:44,380 --> 00:00:47,490
+that doesn't mean it's a good hypothesis.
+
+15
+00:00:47,490 --> 00:00:52,290
+More generally, this is why the training
+set's error is not a good predictor for
+
+16
+00:00:52,290 --> 00:00:56,000
+how well the hypothesis
+will do on new example.
+
+17
+00:00:56,000 --> 00:00:59,150
+Concretely, if you fit
+some set of parameters.
+
+18
+00:00:59,150 --> 00:01:02,810
+Theta0, theta1, theta2, and
+so on, to your training set.
+
+19
+00:01:02,810 --> 00:01:07,210
+Then the fact that your hypothesis
+does well on the training set.
+
+20
+00:01:07,210 --> 00:01:11,630
+Well, this doesn't mean much in terms of
+predicting how well your hypothesis will
+
+21
+00:01:11,630 --> 00:01:15,970
+generalize to new examples
+not seen in the training set.
+
+22
+00:01:15,970 --> 00:01:18,730
+And a more general
+principle is that once your
+
+23
+00:01:18,730 --> 00:01:21,290
+parameter is what fit to some set of data.
+
+24
+00:01:21,290 --> 00:01:23,720
+Maybe the training set,
+maybe something else.
+
+25
+00:01:23,720 --> 00:01:27,900
+Then the error of your hypothesis
+as measured on that same data set,
+
+26
+00:01:27,900 --> 00:01:29,600
+such as the training error,
+
+27
+00:01:29,600 --> 00:01:33,380
+that's unlikely to be a good estimate
+of your actual generalization error.
+
+28
+00:01:33,380 --> 00:01:38,330
+That is how well the hypothesis
+will generalize to new examples.
+
+29
+00:01:38,330 --> 00:01:41,170
+Now let's consider the model
+selection problem.
+
+30
+00:01:41,170 --> 00:01:45,100
+Let's say you're trying to choose what
+degree polynomial to fit to data.
+
+31
+00:01:45,100 --> 00:01:48,800
+So, should you choose a linear function,
+a quadratic function, a cubic function?
+
+32
+00:01:48,800 --> 00:01:50,740
+All the way up to a 10th-order polynomial.
+
+33
+00:01:51,940 --> 00:01:55,810
+So it's as if there's one extra
+parameter in this algorithm,
+
+34
+00:01:55,810 --> 00:02:01,210
+which I'm going to denote d,
+which is, what degree of polynomial.
+
+35
+00:02:01,210 --> 00:02:02,310
+Do you want to pick.
+
+36
+00:02:02,310 --> 00:02:06,610
+So it's as if, in addition to
+the theta parameters, it's as if
+
+37
+00:02:06,610 --> 00:02:10,680
+there's one more parameter, d, that you're
+trying to determine using your data set.
+
+38
+00:02:10,680 --> 00:02:14,940
+So, the first option is d equals one,
+if you fit a linear function.
+
+39
+00:02:14,940 --> 00:02:19,760
+We can choose d equals two, d equals
+three, all the way up to d equals 10.
+
+40
+00:02:19,760 --> 00:02:24,830
+So, we'd like to fit this extra sort
+of parameter which I'm denoting by d.
+
+41
+00:02:24,830 --> 00:02:28,880
+And concretely let's say that
+you want to choose a model,
+
+42
+00:02:28,880 --> 00:02:33,110
+that is choose a degree of polynomial,
+choose one of these 10 models.
+
+43
+00:02:33,110 --> 00:02:37,920
+And fit that model and
+also get some estimate of how well your
+
+44
+00:02:37,920 --> 00:02:42,570
+fitted hypothesis was
+generalize to new examples.
+
+45
+00:02:42,570 --> 00:02:44,130
+Here's one thing you could do.
+
+46
+00:02:44,130 --> 00:02:49,790
+What you could, first take your first
+model and minimize the training error.
+
+47
+00:02:49,790 --> 00:02:53,260
+And this would give you some
+parameter vector theta.
+
+48
+00:02:53,260 --> 00:02:58,600
+And you could then take your second model,
+the quadratic function, and
+
+49
+00:02:58,600 --> 00:03:01,290
+fit that to your training set and
+this will give you some other.
+
+50
+00:03:01,290 --> 00:03:03,040
+Parameter vector theta.
+
+51
+00:03:03,040 --> 00:03:06,790
+In order to distinguish between these
+different parameter vectors, I'm going
+
+52
+00:03:06,790 --> 00:03:11,550
+to use a superscript one superscript
+two there where theta superscript one
+
+53
+00:03:11,550 --> 00:03:16,170
+just means the parameters I get by
+fitting this model to my training data.
+
+54
+00:03:16,170 --> 00:03:19,130
+And theta superscript two
+just means the parameters I
+
+55
+00:03:19,130 --> 00:03:23,940
+get by fitting this quadratic function
+to my training data and so on.
+
+56
+00:03:23,940 --> 00:03:30,500
+By fitting a cubic model I get parenthesis
+three up to, well, say theta 10.
+
+57
+00:03:30,500 --> 00:03:36,200
+And one thing we ccould do is that take
+these parameters and look at test error.
+
+58
+00:03:36,200 --> 00:03:38,800
+So I can compute on my
+test set J test of one,
+
+59
+00:03:38,800 --> 00:03:46,330
+J test of theta two, and so on.
+
+60
+00:03:47,410 --> 00:03:51,930
+J test of theta three, and so on.
+
+61
+00:03:53,050 --> 00:03:57,546
+So I'm going to take each of my hypotheses
+with the corresponding parameters and
+
+62
+00:03:57,546 --> 00:04:00,270
+just measure the performance
+of on the test set.
+
+63
+00:04:00,270 --> 00:04:05,010
+Now, one thing I could do then is,
+in order to select one of these models,
+
+64
+00:04:05,010 --> 00:04:09,160
+I could then see which model
+has the lowest test set error.
+
+65
+00:04:09,160 --> 00:04:09,930
+And let's just say for
+
+66
+00:04:09,930 --> 00:04:14,480
+this example that I ended up
+choosing the fifth order polynomial.
+
+67
+00:04:14,480 --> 00:04:16,940
+So, this seems reasonable so far.
+
+68
+00:04:16,940 --> 00:04:21,060
+But now let's say I want to take
+my fifth hypothesis, this, this,
+
+69
+00:04:21,060 --> 00:04:26,080
+fifth order model, and let's say I want to
+ask, how well does this model generalize?
+
+70
+00:04:27,190 --> 00:04:30,560
+One thing I could do is look
+at how well my fifth order
+
+71
+00:04:30,560 --> 00:04:34,710
+polynomial hypothesis
+had done on my test set.
+
+72
+00:04:34,710 --> 00:04:39,450
+But the problem is this will not
+be a fair estimate of how well my
+
+73
+00:04:39,450 --> 00:04:42,360
+hypothesis generalizes.
+
+74
+00:04:42,360 --> 00:04:48,140
+And the reason is what we've done is
+we've fit this extra parameter d,
+
+75
+00:04:48,140 --> 00:04:50,870
+that is this degree of polynomial.
+
+76
+00:04:50,870 --> 00:04:54,720
+And what fits that parameter d,
+using the test set, namely,
+
+77
+00:04:54,720 --> 00:05:00,310
+we chose the value of d that gave us the
+best possible performance on the test set.
+
+78
+00:05:00,310 --> 00:05:06,340
+And so, the performance of my parameter
+vector theta5, on the test set,
+
+79
+00:05:06,340 --> 00:05:11,160
+that's likely to be an overly optimistic
+estimate of generalization error.
+
+80
+00:05:11,160 --> 00:05:15,640
+Right, so, that because I had fit this
+parameter d to my test set is no longer
+
+81
+00:05:15,640 --> 00:05:21,410
+fair to evaluate my hypothesis on this
+test set, because I fit my parameters
+
+82
+00:05:21,410 --> 00:05:25,900
+to this test set, I've chose the degree
+d of polynomial using the test set.
+
+83
+00:05:25,900 --> 00:05:29,430
+And so
+my hypothesis is likely to do better on
+
+84
+00:05:29,430 --> 00:05:33,650
+this test set than it would on new
+examples that it hasn't seen before, and
+
+85
+00:05:33,650 --> 00:05:36,140
+that's which is,
+which is what I really care about.
+
+86
+00:05:36,140 --> 00:05:41,050
+So just to reiterate, on the previous
+slide, we saw that if we fit some set of
+
+87
+00:05:41,050 --> 00:05:45,210
+parameters, you know, say theta0,
+theta1, and so on, to some training set,
+
+88
+00:05:45,210 --> 00:05:50,300
+then the performance of the fitted model
+on the training set is not predictive of
+
+89
+00:05:50,300 --> 00:05:53,500
+how well the hypothesis will
+generalize to new examples.
+
+90
+00:05:53,500 --> 00:05:56,770
+Is because these parameters
+were fit to the training set,
+
+91
+00:05:56,770 --> 00:05:59,110
+so they're likely to do
+well on the training set,
+
+92
+00:05:59,110 --> 00:06:03,200
+even if the parameters don't
+do well on other examples.
+
+93
+00:06:03,200 --> 00:06:07,460
+And, in the procedure I just described on
+this line, we just did the same thing.
+
+94
+00:06:07,460 --> 00:06:13,060
+And specifically, what we did was,
+we fit this parameter d to the test set.
+
+95
+00:06:13,060 --> 00:06:16,770
+And by having fit the parameter
+to the test set, this means that
+
+96
+00:06:16,770 --> 00:06:22,010
+the performance of the hypothesis on that
+test set may not be a fair estimate of how
+
+97
+00:06:22,010 --> 00:06:26,670
+well the hypothesis is, is likely to
+do on examples we haven't seen before.
+
+98
+00:06:26,670 --> 00:06:30,630
+To address this problem,
+in a model selection setting,
+
+99
+00:06:30,630 --> 00:06:35,550
+if we want to evaluate a hypothesis,
+this is what we usually do instead.
+
+100
+00:06:35,550 --> 00:06:40,200
+Given the data set, instead of just
+splitting into a training test set,
+
+101
+00:06:40,200 --> 00:06:43,930
+what we're going to do is then
+split it into three pieces.
+
+102
+00:06:43,930 --> 00:06:49,130
+And the first piece is going to be
+called the training set as usual.
+
+103
+00:06:50,130 --> 00:06:53,300
+So let me call this first
+part the training set.
+
+104
+00:06:54,780 --> 00:07:00,056
+And the second piece of this data, I'm
+going to call the cross validation set.
+
+105
+00:07:00,056 --> 00:07:04,711
+[SOUND] Cross validation.
+
+106
+00:07:04,711 --> 00:07:08,860
+And the cross validation, as V-D.
+
+107
+00:07:08,860 --> 00:07:13,520
+Sometimes it's also called the validation
+set instead of cross validation set.
+
+108
+00:07:13,520 --> 00:07:18,060
+And then the loss can be
+to call the usual test set.
+
+109
+00:07:18,060 --> 00:07:21,930
+And the pretty, pretty typical ratio
+at which to split these things will be
+
+110
+00:07:21,930 --> 00:07:24,990
+to send 60% of your data's,
+your training set,
+
+111
+00:07:24,990 --> 00:07:29,290
+maybe 20% to your cross validation set,
+and 20% to your test set.
+
+112
+00:07:29,290 --> 00:07:33,600
+And these numbers can vary a little bit
+but this integration be pretty typical.
+
+113
+00:07:33,600 --> 00:07:38,922
+And so our training sets will now be
+only maybe 60% of the data, and our
+
+114
+00:07:38,922 --> 00:07:44,860
+cross-validation set, or our validation
+set, will have some number of examples.
+
+115
+00:07:44,860 --> 00:07:47,290
+I'm going to denote that m subscript cv.
+
+116
+00:07:47,290 --> 00:07:50,860
+So that's the number of
+cross-validation examples.
+
+117
+00:07:52,040 --> 00:07:59,110
+Following our early notational convention
+I'm going to use xi cv comma y i cv,
+
+118
+00:07:59,110 --> 00:08:02,720
+to denote the i cross validation example.
+
+119
+00:08:02,720 --> 00:08:07,290
+And finally we also have
+a test set over here with our
+
+120
+00:08:07,290 --> 00:08:11,420
+m subscript test being
+the number of test examples.
+
+121
+00:08:11,420 --> 00:08:14,570
+So, now that we've defined
+the training validation or
+
+122
+00:08:14,570 --> 00:08:16,740
+cross validation and test sets.
+
+123
+00:08:16,740 --> 00:08:21,420
+We can also define the training error,
+cross validation error, and test error.
+
+124
+00:08:21,420 --> 00:08:23,790
+So here's my training error, and
+
+125
+00:08:23,790 --> 00:08:26,820
+I'm just writing this as J
+subscript train of theta.
+
+126
+00:08:26,820 --> 00:08:29,030
+This is pretty much the same things.
+
+127
+00:08:29,030 --> 00:08:32,260
+These are the same thing as the J
+of theta that I've been writing so
+
+128
+00:08:32,260 --> 00:08:37,110
+far, this is just a training set error you
+know, as measuring a training set and then
+
+129
+00:08:37,110 --> 00:08:41,470
+J subscript cv my cross validation error,
+this is pretty much what you'd expect,
+
+130
+00:08:41,470 --> 00:08:45,970
+just like the training error you've set
+measure it on a cross validation data set,
+
+131
+00:08:45,970 --> 00:08:48,450
+and here's my test set
+error same as before.
+
+132
+00:08:49,530 --> 00:08:53,410
+So when faced with a model selection
+problem like this, what we're going to
+
+133
+00:08:53,410 --> 00:08:58,709
+do is, instead of using the test set
+to select the model, we're instead
+
+134
+00:08:58,709 --> 00:09:04,580
+going to use the validation set, or the
+cross validation set, to select the model.
+
+135
+00:09:04,580 --> 00:09:10,570
+Concretely, we're going to first take our
+first hypothesis, take this first model,
+
+136
+00:09:10,570 --> 00:09:13,580
+and say, minimize the cross function, and
+
+137
+00:09:13,580 --> 00:09:17,520
+this would give me some parameter
+vector theta for the new model.
+
+138
+00:09:17,520 --> 00:09:20,300
+And, as before,
+I'm going to put a superscript 1,
+
+139
+00:09:20,300 --> 00:09:23,560
+just to denote that this is
+the parameter for the new model.
+
+140
+00:09:23,560 --> 00:09:25,660
+We do the same thing for
+the quadratic model.
+
+141
+00:09:25,660 --> 00:09:27,927
+Get some parameter vector theta two.
+
+142
+00:09:27,927 --> 00:09:31,601
+Get some para,
+parameter vector theta three, and so
+
+143
+00:09:31,601 --> 00:09:35,470
+on, down to theta ten for the polynomial.
+
+144
+00:09:35,470 --> 00:09:40,440
+And what I'm going to do is, instead of
+testing these hypotheses on the test set,
+
+145
+00:09:40,440 --> 00:09:43,130
+I'm instead going to test them
+on the cross validation set.
+
+146
+00:09:43,130 --> 00:09:46,600
+And measure J subscript cv,
+
+147
+00:09:46,600 --> 00:09:52,180
+to see how well each of these hypotheses
+do on my cross validation set.
+
+148
+00:09:53,250 --> 00:09:57,180
+And then I'm going to pick the hypothesis
+with the lowest cross validation error.
+
+149
+00:09:57,180 --> 00:10:00,180
+So for this example, let's say for
+the sake of argument,
+
+150
+00:10:00,180 --> 00:10:06,550
+that it was my 4th order polynomial, that
+had the lowest cross validation error.
+
+151
+00:10:06,550 --> 00:10:11,070
+So in that case I'm going to pick
+this fourth order polynomial model.
+
+152
+00:10:11,070 --> 00:10:15,250
+And finally,
+what this means is that that parameter d,
+
+153
+00:10:15,250 --> 00:10:17,200
+remember d was the degree of polynomial,
+right?
+
+154
+00:10:17,200 --> 00:10:20,270
+So d equals two, d equals three,
+all the way up to d equals 10.
+
+155
+00:10:20,270 --> 00:10:25,040
+What we've done is we'll fit that
+parameter d and we'll say d equals four.
+
+156
+00:10:25,040 --> 00:10:27,290
+And we did so
+using the cross-validation set.
+
+157
+00:10:27,290 --> 00:10:32,320
+And so this degree of polynomial, so the
+parameter, is no longer fit to the test
+
+158
+00:10:32,320 --> 00:10:39,260
+set, and so we've not saved away the test
+set, and we can use the test set to
+
+159
+00:10:39,260 --> 00:10:44,325
+measure, or to estimate the generalization
+error of the model that was selected.
+
+160
+00:10:44,325 --> 00:10:47,680
+By the of them.
+
+161
+00:10:47,680 --> 00:10:51,140
+So, that was model selection and
+how you can take your data,
+
+162
+00:10:51,140 --> 00:10:54,310
+split it into a training,
+validation, and test set.
+
+163
+00:10:54,310 --> 00:10:57,310
+And use your cross validation
+data to select the model and
+
+164
+00:10:57,310 --> 00:10:58,570
+evaluate it on the test set.
+
+165
+00:10:59,630 --> 00:11:02,860
+One final note, I should say that in.
+
+166
+00:11:02,860 --> 00:11:06,210
+The machine learning, as of this
+practice today, there aren't many
+
+167
+00:11:06,210 --> 00:11:10,470
+people that will do that early thing that
+I talked about, and said that, you know,
+
+168
+00:11:10,470 --> 00:11:15,360
+it isn't such a good idea, of selecting
+your model using this test set.
+
+169
+00:11:15,360 --> 00:11:19,590
+And then using the same test set
+to report the error as though
+
+170
+00:11:19,590 --> 00:11:24,120
+selecting your degree of polynomial on the
+test set, and then reporting the error on
+
+171
+00:11:24,120 --> 00:11:27,840
+the test set as though that were a good
+estimate of generalization error.
+
+172
+00:11:27,840 --> 00:11:31,160
+That sort of practice is unfortunately
+many, many people do do it.
+
+173
+00:11:31,160 --> 00:11:35,550
+If you have a massive, massive test that
+is maybe not a terrible thing to do,
+
+174
+00:11:35,550 --> 00:11:38,090
+but many practitioners,
+
+175
+00:11:38,090 --> 00:11:42,360
+most practitioners that machine
+learnimg tend to advise against that.
+
+176
+00:11:42,360 --> 00:11:45,760
+And it's considered better practice
+to have separate train validation and
+
+177
+00:11:45,760 --> 00:11:46,728
+test sets.
+
+178
+00:11:46,728 --> 00:11:50,620
+I just warned you to sometimes people
+to do, you know, use the same data for
+
+179
+00:11:50,620 --> 00:11:54,320
+the purpose of the validation set,
+and for the purpose of the test set.
+
+180
+00:11:54,320 --> 00:11:57,430
+You need a training set and
+a test set, and that's good,
+
+181
+00:11:57,430 --> 00:12:00,020
+that's practice,
+though you will see some people do it.
+
+182
+00:12:00,020 --> 00:12:03,090
+But, if possible, I would recommend
+against doing that yourself.

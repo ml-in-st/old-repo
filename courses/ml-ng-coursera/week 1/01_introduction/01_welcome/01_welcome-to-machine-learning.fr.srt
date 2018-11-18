@@ -1,0 +1,127 @@
+1
+00:00:00,370 --> 00:00:01,740
+What is machine learning?
+
+2
+00:00:01,740 --> 00:00:05,090
+Vous l'utilisez certainement des dizaines de fois
+par jour sans même le savoir.
+
+3
+00:00:05,090 --> 00:00:08,790
+Chaque fois que vous effectuez une recherche sur Google ou
+ Bing, si cela marche si bien
+
+4
+00:00:08,790 --> 00:00:12,340
+C'est parce que leur logiciel de Machine Learning
+ a su déterminer comment classer les pages web.
+
+5
+00:00:12,340 --> 00:00:17,230
+Lorsque les applications photos comme celles de Facebook
+ ou Apple reconnaissent vos amis sur les photos
+
+6
+00:00:17,230 --> 00:00:18,850
+Il s'agit là aussi de Machine Learning.
+
+7
+00:00:18,850 --> 00:00:20,370
+Chaque fois que vous lisez un email et
+
+8
+00:00:20,370 --> 00:00:24,490
+que le filtre anti spam vous évite d'avoir à parcourir des tonnes de spam, encore une fois
+
+9
+00:00:24,490 --> 00:00:29,390
+c'est parce que votre ordinateur a appris
+à distinguer les emails spam des non-spam.
+
+10
+00:00:29,390 --> 00:00:31,240
+Tout cela, c'est le Machine Learning.
+
+11
+00:00:31,240 --> 00:00:35,260
+C'est une science qui permet aux ordinateurs d'apprendre
+sans avoir été explicitement programmé.
+
+12
+00:00:35,260 --> 00:00:38,660
+L'un des projet de recherche sur lequel
+je travaille est de faire en sorte que des robots
+
+13
+00:00:38,660 --> 00:00:39,780
+nettoient la maison.
+
+14
+00:00:39,780 --> 00:00:41,010
+Comment allez-vous faire cela ?
+
+15
+00:00:41,010 --> 00:00:44,860
+Ce que vous pouvez faire c'est montrer au robot
+comment faire la tâche et
+
+16
+00:00:44,860 --> 00:00:46,000
+apprendre de ça.
+
+17
+00:00:46,000 --> 00:00:49,690
+Le robot peut ainsi voir les objets que
+vous prenez et où vous les mettez et
+
+18
+00:00:49,690 --> 00:00:52,000
+ainsi essayer de faire la même chose
+même en votre absence.
+
+19
+00:00:52,000 --> 00:00:55,460
+Pour moi, ce qui est le plus intéressant
+c'est l'IA, c'est-à-dire
+
+20
+00:00:55,460 --> 00:00:57,530
+Le problème de l'Intelligence Artificielle.
+
+21
+00:00:57,530 --> 00:00:59,209
+Parvenir à construire des machines réellement intelligentes.
+
+22
+00:00:59,209 --> 00:01:01,680
+Qui puissent faire exactement les mêmes 
+choses que nous.
+
+23
+00:01:01,680 --> 00:01:04,920
+Beaucoup de scientifiques pensent que la meilleur façon de
+progresser à ce sujet est d'apprendre
+
+24
+00:01:04,920 --> 00:01:09,630
+des algorithmes dit "Réseaux de neurones artificiels"
+qui imitent le fonctionnement du cerveau humain.
+
+25
+00:01:09,630 --> 00:01:11,030
+et cela est aussi au programme de ce cours.
+
+26
+00:01:11,030 --> 00:01:13,170
+Dans ce cours, vous apprendrez
+des choses sur le machine learning et
+
+27
+00:01:13,170 --> 00:01:14,390
+vous les mettrez en oeuvre.
+
+28
+00:01:14,390 --> 00:01:16,920
+J'espère que vous vous inscrirez sur notre site
+et que vous nous rejoindrez.

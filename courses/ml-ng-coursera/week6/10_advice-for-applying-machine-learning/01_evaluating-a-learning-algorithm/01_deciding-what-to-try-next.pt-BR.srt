@@ -1,0 +1,712 @@
+1
+00:00:00,300 --> 00:00:02,290
+Até agora você viu vários algoritmos de aprendizado diferentes.
+
+2
+00:00:03,330 --> 00:00:04,450
+E se você tem conseguido acompanhar
+
+3
+00:00:04,770 --> 00:00:06,030
+estes vídeos, você deve se considerar
+
+4
+00:00:06,770 --> 00:00:09,530
+um especialista em muitas técnicas avançadas de aprendizado de máquina.
+
+5
+00:00:09,730 --> 00:00:12,310
+Mas mesmo entre
+
+6
+00:00:12,560 --> 00:00:14,460
+pessoas que conhecem um determinado algoritmo de aprendizado,
+
+7
+00:00:15,250 --> 00:00:16,830
+freqüentemente existe uma grande diferença entre
+
+8
+00:00:17,090 --> 00:00:18,240
+alguém que realmente sabe aplicar
+
+9
+00:00:18,410 --> 00:00:20,130
+de forma poderosa e eficaz
+
+10
+00:00:20,450 --> 00:00:22,270
+aquele algoritmo e alguém que está
+
+11
+00:00:22,950 --> 00:00:24,090
+menos familiarizado com alguns dos
+
+12
+00:00:24,160 --> 00:00:25,080
+materiais que estou para
+
+13
+00:00:25,420 --> 00:00:26,900
+ensinar e que não entende
+
+14
+00:00:27,080 --> 00:00:28,090
+de verdade como aplicar estes
+
+15
+00:00:28,250 --> 00:00:29,180
+algoritmos e pode acabar
+
+16
+00:00:29,570 --> 00:00:30,760
+perdendo muito de
+
+17
+00:00:30,870 --> 00:00:33,320
+seu tempo tentando coisas que na verdade não fazem sentido.
+
+18
+00:00:34,380 --> 00:00:35,180
+O que eu gostaria de fazer é
+
+19
+00:00:35,340 --> 00:00:36,350
+ter certeza que se você
+
+20
+00:00:36,560 --> 00:00:37,830
+está desenvolvendo sistemas de aprendizado de máquina,
+
+21
+00:00:38,600 --> 00:00:39,780
+que você sabe como escolher
+
+22
+00:00:40,400 --> 00:00:42,900
+o caminho mais promissor para gastar seu tempo indo atrás.
+
+23
+00:00:43,890 --> 00:00:45,050
+Neste e nos próximos
+
+24
+00:00:45,190 --> 00:00:46,530
+poucos vídeos eu darei
+
+25
+00:00:46,750 --> 00:00:47,890
+algumas sugestões práticas,
+
+26
+00:00:48,380 --> 00:00:51,150
+conselhos, orientações para como fazer isto.
+
+27
+00:00:51,520 --> 00:00:53,410
+Na prática, nós vamos nos focar no
+
+28
+00:00:53,600 --> 00:00:54,460
+seguinte problema:
+
+29
+00:00:54,940 --> 00:00:56,380
+suponha que você esteja
+
+30
+00:00:56,580 --> 00:00:57,760
+desenvolvendo um sistema de aprendizado de máquina
+
+31
+00:00:58,390 --> 00:00:59,390
+ou tentando melhorar o desempenho
+
+32
+00:00:59,950 --> 00:01:01,810
+de um sistema de aprendizado de máquina, como
+
+33
+00:01:02,000 --> 00:01:03,630
+você decidiria qual dos caminhos
+
+34
+00:01:03,700 --> 00:01:05,260
+promissores tentar em seguida?
+
+35
+00:01:07,620 --> 00:01:07,620
+promissores tentar em seguida?
+
+36
+00:01:09,300 --> 00:01:11,200
+Para explicar isto, vamos continuar utilizando
+
+37
+00:01:11,670 --> 00:01:13,210
+nosso exemplo de aprendizado para
+
+38
+00:01:13,350 --> 00:01:15,280
+previsão do preço de moradias.
+
+39
+00:01:15,570 --> 00:01:17,760
+E vamos dizer que você implementou regressão linear com regularização,
+
+40
+00:01:18,700 --> 00:01:20,090
+minimizando a função de custo "J".
+
+41
+00:01:20,520 --> 00:01:22,870
+Agora suponha que se você tomar seus
+
+42
+00:01:23,130 --> 00:01:24,310
+parâmetros aprendidos
+
+43
+00:01:24,820 --> 00:01:26,570
+e você testar sua hipótese no
+
+44
+00:01:26,720 --> 00:01:28,360
+novo conjunto de casas, você
+
+45
+00:01:28,540 --> 00:01:29,470
+descubra que isto está causando grandes
+
+46
+00:01:29,860 --> 00:01:31,770
+erros na previsão dos preços das moradias.
+
+47
+00:01:33,220 --> 00:01:34,490
+A questão é o que você vai tentar
+
+48
+00:01:34,670 --> 00:01:37,600
+em seguida, com intuito de melhorar o algoritmo de aprendizagem.
+
+49
+00:01:39,000 --> 00:01:40,000
+Existem muitas coisas que se
+
+50
+00:01:40,210 --> 00:01:41,460
+pode pensar que poderiam melhorar
+
+51
+00:01:41,950 --> 00:01:43,660
+o desempenho do algoritmo de aprendizagem.
+
+52
+00:01:44,800 --> 00:01:47,510
+Uma coisa que se poderia tentar é conseguir mais exemplos de treinamento.
+
+53
+00:01:48,060 --> 00:01:49,240
+Na prática, talvez você
+
+54
+00:01:49,600 --> 00:01:51,150
+faça pesquisas por telefone,
+
+55
+00:01:51,570 --> 00:01:52,820
+bata de porta em porta,
+
+56
+00:01:52,930 --> 00:01:54,050
+para conseguir mais dados
+
+57
+00:01:54,310 --> 00:01:56,660
+sobre por quanto se vendem diferentes casas.
+
+58
+00:01:57,730 --> 00:01:58,770
+O triste é que eu vi
+
+59
+00:01:59,010 --> 00:02:00,060
+muitas pessoas gastarem
+
+60
+00:02:00,200 --> 00:02:01,400
+muito tempo coletando mais dados
+
+61
+00:02:01,760 --> 00:02:03,270
+pensando: se tivéssemos
+
+62
+00:02:03,760 --> 00:02:04,780
+duas vezes mais ou dez vezes
+
+63
+00:02:05,050 --> 00:02:07,250
+mais dados de treinamento, isso certamente ajudaria, certo?
+
+64
+00:02:07,990 --> 00:02:09,020
+Mas às vezes conseguir mais dados
+
+65
+00:02:09,380 --> 00:02:10,680
+de treinamento na verdade não ajuda.
+
+66
+00:02:11,240 --> 00:02:11,920
+Nos próximos vídeos
+
+67
+00:02:12,430 --> 00:02:13,670
+veremos porque, e nós
+
+68
+00:02:13,720 --> 00:02:15,270
+veremos como você
+
+69
+00:02:15,500 --> 00:02:16,780
+pode evitar gastar muito
+
+70
+00:02:16,950 --> 00:02:18,160
+tempo coletando mais dados de treinamento
+
+71
+00:02:18,910 --> 00:02:20,660
+em situações onde isto não vai ajudar.
+
+72
+00:02:22,370 --> 00:02:23,510
+Outra coisa que você poderia tentar
+
+73
+00:02:23,730 --> 00:02:25,830
+é usar um conjunto menor de atributos.
+
+74
+00:02:26,470 --> 00:02:27,270
+Assim, se você tem algum conjunto
+
+75
+00:02:27,450 --> 00:02:29,030
+de atributos "x₁",
+
+76
+00:02:29,270 --> 00:02:30,330
+"x₂", "x₃" e assim por diante,
+
+77
+00:02:30,680 --> 00:02:31,840
+um grande número de atributos,
+
+78
+00:02:32,570 --> 00:02:33,460
+talvez você queira
+
+79
+00:02:33,860 --> 00:02:35,240
+selecionar cuidadosamente um pequeno
+
+80
+00:02:35,590 --> 00:02:37,410
+subconjunto deles para evitar sobreajuste.
+
+81
+00:02:38,670 --> 00:02:40,730
+Ou talvez você precise conseguir mais atributos.
+
+82
+00:02:41,330 --> 00:02:42,390
+Talvez o conjunto de atributos atual
+
+83
+00:02:42,570 --> 00:02:44,740
+não é informativo o suficiente e você
+
+84
+00:02:44,840 --> 00:02:47,460
+quer obter mais dados, no sentido de conseguir mais atributos.
+
+85
+00:02:48,510 --> 00:02:49,590
+Mais uma vez este é o tipo
+
+86
+00:02:49,730 --> 00:02:50,900
+de projeto de escala enorme.
+
+87
+00:02:51,180 --> 00:02:52,260
+Talvez com realização
+
+88
+00:02:52,580 --> 00:02:54,110
+de pesquisas telefônicas
+
+89
+00:02:54,350 --> 00:02:55,280
+para descobrir
+
+90
+00:02:55,490 --> 00:02:57,230
+mais sobre as casas, ou pesquisas
+
+91
+00:02:57,640 --> 00:02:58,620
+para descobrir
+
+92
+00:02:58,800 --> 00:03:01,130
+sobre os terrenos, e assim por diante, um projeto muito grande.
+
+93
+00:03:01,690 --> 00:03:02,820
+Seria bom
+
+94
+00:03:02,930 --> 00:03:04,140
+saber de antemão se
+
+95
+00:03:04,330 --> 00:03:05,210
+isto ajudará antes de
+
+96
+00:03:05,760 --> 00:03:07,690
+gastarmos muito tempo fazendo algo assim.
+
+97
+00:03:07,920 --> 00:03:09,390
+Também podemos tentar
+
+98
+00:03:10,360 --> 00:03:12,100
+adicionar atributos polinomiais, coisas como
+
+99
+00:03:12,180 --> 00:03:13,100
+"x₁²", "x₂²", e
+
+100
+00:03:13,860 --> 00:03:14,700
+produtos
+
+101
+00:03:14,930 --> 00:03:16,040
+como "x₁ · x₂".
+
+102
+00:03:16,180 --> 00:03:17,830
+Podemos gastar um bom tempo pensando sobre isso,
+
+103
+00:03:18,270 --> 00:03:19,340
+e também tentar outras coisas, como
+
+104
+00:03:19,540 --> 00:03:21,390
+diminuir "λ" (o parâmetro de regularização) ou aumentar "λ".
+
+105
+00:03:23,840 --> 00:03:25,160
+Dado um cardápio de opções
+
+106
+00:03:25,520 --> 00:03:26,680
+como estas, com algumas
+
+107
+00:03:26,970 --> 00:03:28,240
+podendo se aplicar a projetos de
+
+108
+00:03:28,950 --> 00:03:30,000
+mais de seis meses, ou até mais.
+
+109
+00:03:31,310 --> 00:03:32,660
+Infelizmente, o método mais comum
+
+110
+00:03:32,760 --> 00:03:34,010
+que as pessoas usam para
+
+111
+00:03:34,170 --> 00:03:36,040
+selecionar um desses é ir por pressentimento.
+
+112
+00:03:36,520 --> 00:03:37,670
+Neste caso o que muitos
+
+113
+00:03:38,170 --> 00:03:39,520
+farão é aleatoriamente
+
+114
+00:03:39,940 --> 00:03:41,100
+selecionar uma destas opções e
+
+115
+00:03:41,250 --> 00:03:43,050
+talvez dizer, "Vamos conseguir mais dados de treinamento",
+
+116
+00:03:43,980 --> 00:03:45,480
+e gastar facilmente seis meses coletando
+
+117
+00:03:45,880 --> 00:03:47,540
+mais dados de treinamento.
+
+118
+00:03:47,780 --> 00:03:48,860
+Talvez outra pessoa diria
+
+119
+00:03:49,430 --> 00:03:51,810
+"Vamos coletar outros atributos das casas no nosso conjunto de dados."
+
+120
+00:03:52,780 --> 00:03:54,010
+E eu vi muitas
+
+121
+00:03:54,220 --> 00:03:55,870
+vezes, infelizmente, pessoas gastarem
+
+122
+00:03:56,630 --> 00:03:58,360
+literalmente 6 meses fazendo uma
+
+123
+00:03:58,530 --> 00:03:59,680
+dessas opções que eles
+
+124
+00:04:00,240 --> 00:04:01,810
+meio que escolheram ao acaso
+
+125
+00:04:01,920 --> 00:04:03,220
+para descobrir seis meses depois que
+
+126
+00:04:03,460 --> 00:04:05,610
+aquele não era um caminho promissor a seguir.
+
+127
+00:04:07,090 --> 00:04:08,170
+Felizmente, há uma
+
+128
+00:04:08,310 --> 00:04:10,650
+técnica bem simples que pode
+
+129
+00:04:10,930 --> 00:04:12,640
+te ajudar a descartar
+
+130
+00:04:12,900 --> 00:04:14,190
+rapidamente metade das coisas
+
+131
+00:04:14,500 --> 00:04:16,440
+nesta lista que pareciam
+
+132
+00:04:16,970 --> 00:04:17,990
+promissoras.
+
+133
+00:04:18,390 --> 00:04:19,310
+É uma técnica muito simples,
+
+134
+00:04:19,830 --> 00:04:21,080
+que se você usar, pode facilmente
+
+135
+00:04:21,710 --> 00:04:22,820
+descartar muitas destas opções,
+
+136
+00:04:24,120 --> 00:04:25,470
+e potencialmente lhe poupar
+
+137
+00:04:25,580 --> 00:04:28,600
+muito tempo perseguindo algo que simplesmente não vai funcionar.
+
+138
+00:04:29,610 --> 00:04:30,950
+Nos próximos dois vídeos
+
+139
+00:04:31,320 --> 00:04:32,450
+depois deste, eu vou
+
+140
+00:04:32,560 --> 00:04:35,420
+primeiro falar sobre como avaliar algoritmos de aprendizagem.
+
+141
+00:04:36,540 --> 00:04:37,810
+E nos próximos
+
+142
+00:04:38,080 --> 00:04:39,770
+vídeos depois dele, vou falar sobre
+
+143
+00:04:40,070 --> 00:04:41,130
+essas técnicas, chamadas
+
+144
+00:04:42,470 --> 00:04:44,270
+de diagnóstico de aprendizado de máquina.
+
+145
+00:04:46,690 --> 00:04:47,980
+O diagnóstico é um teste
+
+146
+00:04:48,120 --> 00:04:49,080
+que você pode
+
+147
+00:04:49,900 --> 00:04:52,240
+usar para ter uma compreensão do que
+
+148
+00:04:52,430 --> 00:04:53,740
+funciona ou não com
+
+149
+00:04:54,130 --> 00:04:55,810
+um algoritmo, e que irá muitas vezes
+
+150
+00:04:56,070 --> 00:04:57,720
+proporcionar uma ideia de quais são as
+
+151
+00:04:57,940 --> 00:04:59,360
+coisas promissoras a se tentar para melhorar o
+
+152
+00:04:59,920 --> 00:05:01,100
+desempenho do algoritmo de aprendizagem.
+
+153
+00:05:03,910 --> 00:05:03,910
+desempenho do algoritmo de aprendizagem.
+
+154
+00:05:04,730 --> 00:05:07,140
+Falaremos sobre diagnósticos específicos na sequência deste vídeo,
+
+155
+00:05:08,050 --> 00:05:09,230
+mas devo mencionar antes
+
+156
+00:05:09,440 --> 00:05:10,780
+que o diagnóstico pode tomar
+
+157
+00:05:11,100 --> 00:05:12,280
+tempo para ser implementado, que
+
+158
+00:05:12,820 --> 00:05:14,300
+pode levar um
+
+159
+00:05:14,340 --> 00:05:15,610
+bom tempo para implementar
+
+160
+00:05:15,740 --> 00:05:17,120
+e entender, mas fazer isso pode ser
+
+161
+00:05:17,410 --> 00:05:18,330
+um bom uso do
+
+162
+00:05:18,610 --> 00:05:19,380
+seu tempo quando você está
+
+163
+00:05:19,660 --> 00:05:21,460
+desenvolvendo algoritmos de aprendizagem,
+
+164
+00:05:21,560 --> 00:05:22,660
+porque pode frequentemente salvar-lhe de
+
+165
+00:05:22,880 --> 00:05:24,670
+perder muitos meses perseguindo um
+
+166
+00:05:24,840 --> 00:05:26,580
+caminho que você poderia
+
+167
+00:05:26,870 --> 00:05:29,460
+ter descoberto, muito mais cedo, que não seria frutífero.
+
+168
+00:05:32,220 --> 00:05:33,070
+Nos próximos vídeos
+
+169
+00:05:33,250 --> 00:05:34,250
+eu irei primeiramente,
+
+170
+00:05:34,570 --> 00:05:36,220
+falar sobre como avaliar seu
+
+171
+00:05:36,450 --> 00:05:38,210
+algoritmo de aprendizagem, e em seguida
+
+172
+00:05:38,410 --> 00:05:39,210
+irei falar
+
+173
+00:05:39,300 --> 00:05:41,490
+sobre alguns desses diagnósticos que irão, esperamos,
+
+174
+00:05:41,810 --> 00:05:42,950
+deixá-lo muito mais
+
+175
+00:05:43,110 --> 00:05:44,470
+efetivo em selecionar uma das
+
+176
+00:05:44,770 --> 00:05:45,880
+próximas coisas para tentar
+
+177
+00:05:46,560 --> 00:05:48,200
+se você pretende aprimorar
+
+178
+00:05:48,760 --> 00:05:50,430
+o sistema de aprendizado da máquina.
+Tradução: Rafael Felix Correa | Revisão: Marcel de Sena Dall'Agnol

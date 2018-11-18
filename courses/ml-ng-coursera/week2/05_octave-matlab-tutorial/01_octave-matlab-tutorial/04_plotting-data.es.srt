@@ -1,0 +1,1047 @@
+1
+00:00:00,180 --> 00:00:02,402
+En el desarrollo de algoritmos de aprendizaje, muy
+
+2
+00:00:02,402 --> 00:00:04,066
+a menudo unos pocos trazos simples
+
+3
+00:00:04,066 --> 00:00:05,279
+pueden darte un mejor
+
+4
+00:00:05,279 --> 00:00:06,593
+sentido de lo que el algoritmo
+
+5
+00:00:06,593 --> 00:00:08,423
+está haciendo y realizar una revisión de saneamiento
+
+6
+00:00:08,423 --> 00:00:09,503
+para verificar que todo va bien
+
+7
+00:00:09,510 --> 00:00:12,405
+y que el algoritmo está haciendo lo que se supone que debe hacer.
+
+8
+00:00:12,410 --> 00:00:13,924
+Por ejemplo, en un video anterior
+
+9
+00:00:13,924 --> 00:00:15,244
+hemos hablado de cómo
+
+10
+00:00:15,244 --> 00:00:16,826
+trazar la función de costos
+
+11
+00:00:16,826 --> 00:00:18,433
+de «theta» puede ayudar
+
+12
+00:00:18,433 --> 00:00:21,383
+a asegurar que el gradiente de descenso está convergiendo.
+
+13
+00:00:21,383 --> 00:00:23,084
+A menudo, los trazos de los datos
+
+14
+00:00:23,084 --> 00:00:24,795
+o de todos los resultados del algoritmo de aprendizaje
+
+15
+00:00:24,810 --> 00:00:26,422
+también te darán ideas
+
+16
+00:00:26,422 --> 00:00:29,391
+de cómo mejorar tu algoritmo de aprendizaje.
+
+17
+00:00:29,391 --> 00:00:31,312
+Afortunadamente, Octave tiene
+
+18
+00:00:31,330 --> 00:00:33,045
+herramientas muy sencillas para generar muchos
+
+19
+00:00:33,070 --> 00:00:34,534
+trazos diferentes y cuando
+
+20
+00:00:34,534 --> 00:00:36,518
+uso algoritmos de aprendizaje, encuentro
+
+21
+00:00:36,518 --> 00:00:38,082
+que el trazado de los datos, el trazado
+
+22
+00:00:38,082 --> 00:00:40,175
+del algoritmo de aprendizaje y así
+
+23
+00:00:40,175 --> 00:00:42,057
+sucesivamente son a menudo una importante
+
+24
+00:00:42,060 --> 00:00:43,165
+parte de cómo obtengo
+
+25
+00:00:43,165 --> 00:00:45,937
+ideas para mejorar los
+
+26
+00:00:45,980 --> 00:00:47,199
+algoritmos y en este video,
+
+27
+00:00:47,199 --> 00:00:48,482
+me gustaría mostrarte algunas
+
+28
+00:00:48,482 --> 00:00:52,773
+de estas herramientas de Octave para el trazado y la visualización de los datos.
+
+29
+00:00:53,700 --> 00:00:55,301
+Esta es mi ventana de Octave.
+
+30
+00:00:55,301 --> 00:00:57,471
+Vamos a generar rápidamente algunos datos
+
+31
+00:00:57,471 --> 00:00:58,646
+para trazar.
+
+32
+00:00:58,646 --> 00:00:59,724
+Así que voy a establecer que "t"
+
+33
+00:00:59,740 --> 00:01:02,181
+es igual a, como sabes, este conjunto de números.
+
+34
+00:01:02,210 --> 00:01:03,828
+Aquí está "t", el conjunto de
+
+35
+00:01:03,828 --> 00:01:06,685
+números va de 0 hasta .98.
+
+36
+00:01:06,700 --> 00:01:09,048
+Vamos a establecer que y1 es igual a seno
+
+37
+00:01:09,060 --> 00:01:11,340
+de (2*pi*4*t) y
+
+38
+00:01:12,540 --> 00:01:16,102
+si quiero trazar la función seno, es muy fácil.
+
+39
+00:01:16,102 --> 00:01:17,918
+Solamente escribo plot(t,y1);
+
+40
+00:01:17,918 --> 00:01:20,304
+y oprimo Enter.
+
+41
+00:01:20,320 --> 00:01:22,233
+Y obtengo este trazo
+
+42
+00:01:22,233 --> 00:01:24,270
+donde el eje horizontal es
+
+43
+00:01:24,270 --> 00:01:25,515
+la variable "t" y el eje vertical
+
+44
+00:01:25,515 --> 00:01:26,946
+es y1, que
+
+45
+00:01:26,960 --> 00:01:30,577
+es el seno que viste en la función que acabamos de calcular.
+
+46
+00:01:30,990 --> 00:01:32,281
+Vamos a establecer que y2 es
+
+47
+00:01:32,281 --> 00:01:34,401
+igual al coseno de
+
+48
+00:01:34,410 --> 00:01:38,735
+(2*pi*4*t), así.
+
+49
+00:01:38,750 --> 00:01:41,403
+Y si trazo
+
+50
+00:01:41,403 --> 00:01:43,835
+(t,y2), lo que Octave
+
+51
+00:01:43,835 --> 00:01:45,045
+hará es tomar mi
+
+52
+00:01:45,060 --> 00:01:46,988
+trazo de seno y
+
+53
+00:01:46,988 --> 00:01:48,681
+lo remplazará con esta función coseno
+
+54
+00:01:48,690 --> 00:01:51,322
+y ahora, como sabes, coseno de x comienza en 1.
+
+55
+00:01:51,330 --> 00:01:53,006
+Ahora, ¿qué pasa si
+
+56
+00:01:53,010 --> 00:01:54,581
+quiero tener los dos
+
+57
+00:01:54,610 --> 00:01:56,981
+trazos de seno y coseno uno encima del otro?
+
+58
+00:01:56,990 --> 00:01:59,702
+Lo que voy a hacer es
+
+59
+00:01:59,702 --> 00:02:01,164
+escribir plot(t,y1).
+
+60
+00:02:01,164 --> 00:02:03,332
+Así que aquí está mi función seno, y luego
+
+61
+00:02:03,332 --> 00:02:06,958
+voy a utilizar la función hold on.
+
+62
+00:02:06,958 --> 00:02:08,908
+Y lo que hold on hace es cerrar
+
+63
+00:02:08,920 --> 00:02:10,247
+Octave para ahora
+
+64
+00:02:10,270 --> 00:02:11,490
+trazar nuevas figuras en la parte superior de
+
+65
+00:02:11,490 --> 00:02:13,772
+la anterior y me permite
+
+66
+00:02:13,772 --> 00:02:15,249
+ahora trazar (t,y2).
+
+67
+00:02:15,249 --> 00:02:19,812
+Voy a trazar la función coseno en un color diferente.
+
+68
+00:02:19,850 --> 00:02:22,166
+Por lo tanto, permíteme escribir aquí
+
+69
+00:02:22,180 --> 00:02:24,093
+'r' entre comillas
+
+70
+00:02:24,093 --> 00:02:25,339
+y en lugar de sustituir
+
+71
+00:02:25,339 --> 00:02:26,615
+la figura actual, voy a trazar la
+
+72
+00:02:26,620 --> 00:02:28,499
+función coseno en la parte superior y
+
+73
+00:02:28,499 --> 00:02:32,915
+la 'r' indica que quiero que esté en color rojo.
+
+74
+00:02:32,915 --> 00:02:35,166
+Y aquí hay comandos adicionales,
+
+75
+00:02:35,166 --> 00:02:39,157
+xlabel('time'), para etiquetar el eje x, o el eje horizontal.
+
+76
+00:02:39,160 --> 00:02:41,451
+Y ylabel('value'), digamos,
+
+77
+00:02:41,451 --> 00:02:44,688
+para asignar el valor del eje vertical,
+
+78
+00:02:44,688 --> 00:02:47,032
+y también puedo
+
+79
+00:02:54,532 --> 00:02:57,616
+asignar valores a mis dos líneas
+
+80
+00:02:57,620 --> 00:03:01,514
+con este comando: legend('sin', 'cos')
+
+81
+00:03:01,514 --> 00:03:02,860
+y esto pone esta
+
+82
+00:03:02,890 --> 00:03:04,125
+leyenda arriba en la parte superior
+
+83
+00:03:04,125 --> 00:03:05,122
+derecha mostrando lo que son las dos
+
+84
+00:03:05,122 --> 00:03:08,285
+líneas, y finalmente title('my plot')
+
+85
+00:03:08,290 --> 00:03:12,753
+es el título en la parte superior de esta figura.
+
+86
+00:03:12,753 --> 00:03:13,835
+Por último, si deseas guardar
+
+87
+00:03:13,835 --> 00:03:18,197
+esta figura, escribes print -dpng
+
+88
+00:03:18,197 --> 00:03:20,128
+'myplot
+
+89
+00:03:20,128 --> 00:03:21,505
+.png'.
+
+90
+00:03:21,505 --> 00:03:23,292
+En donde PNG es un formato
+
+91
+00:03:23,292 --> 00:03:25,170
+de archivo de gráficos, y si haces
+
+92
+00:03:25,170 --> 00:03:27,612
+esto te permitirá guardar la figura en un archivo.
+
+93
+00:03:27,612 --> 00:03:28,902
+Si hago eso,
+
+94
+00:03:28,920 --> 00:03:31,287
+permíteme cambiar el directorio a,
+
+95
+00:03:31,320 --> 00:03:35,114
+vamos a ver,
+
+96
+00:03:35,130 --> 00:03:39,180
+así, y luego voy a imprimir esto.
+
+97
+00:03:39,230 --> 00:03:41,692
+Así que esto va a tomar un
+
+98
+00:03:41,700 --> 00:03:43,869
+rato dependiendo de cómo
+
+99
+00:03:43,890 --> 00:03:46,193
+esté establecida tu configuración de Octave,
+
+100
+00:03:46,230 --> 00:03:48,891
+puede tardar unos segundos, pero cambié
+
+101
+00:03:48,900 --> 00:03:50,730
+de directorio a mi escritorio y Octave
+
+102
+00:03:50,730 --> 00:03:53,943
+está ahora tomando algunos segundos para guardar esto.
+
+103
+00:03:54,750 --> 00:03:57,635
+Si ahora me voy a mi escritorio, vamos a ocultar estas ventanas.
+
+104
+00:03:57,670 --> 00:03:59,358
+Aquí está myplot.png
+
+105
+00:03:59,370 --> 00:04:00,720
+que Octave ha guardado, y como
+
+106
+00:04:00,740 --> 00:04:03,481
+sabes, ahí está la figura guardada como un archivo PNG.
+
+107
+00:04:03,481 --> 00:04:05,530
+Octave puede guardad miles de otros formatos también.
+
+108
+00:04:05,530 --> 00:04:07,468
+Puedes escribir help plot,
+
+109
+00:04:07,468 --> 00:04:09,497
+si quieres ver los
+
+110
+00:04:09,510 --> 00:04:11,512
+otros formatos de archivo, en lugar de
+
+111
+00:04:11,530 --> 00:04:13,377
+PNG, en los que puedes guardar
+
+112
+00:04:13,377 --> 00:04:15,149
+figuras.
+
+113
+00:04:15,149 --> 00:04:16,471
+Y por último, si quieres
+
+114
+00:04:16,471 --> 00:04:18,507
+deshacerte del trazo, el
+
+115
+00:04:18,540 --> 00:04:23,867
+comando close hace que la figura se cierre.
+
+116
+00:04:23,867 --> 00:04:24,963
+Así que esa es una figura, si escribo
+
+117
+00:04:24,963 --> 00:04:26,628
+close, esa figura solamente
+
+118
+00:04:26,628 --> 00:04:30,153
+desaparece de mi escritorio.
+
+119
+00:04:30,640 --> 00:04:33,372
+Octave también te permite especificar los números de una figura.
+
+120
+00:04:33,372 --> 00:04:36,935
+Puedes escribir figure(1) plot(t,y1).
+
+121
+00:04:36,935 --> 00:04:39,582
+Eso pone en marcha
+
+122
+00:04:39,670 --> 00:04:41,959
+la primera figura, y eso traza (t,y1).
+
+123
+00:04:41,970 --> 00:04:45,075
+Después, si quieres una segunda figura, especificas un número de figura diferente.
+
+124
+00:04:45,075 --> 00:04:47,765
+Así que figure(2) plot(t,y2)
+
+125
+00:04:47,780 --> 00:04:49,924
+de esta manera, y
+
+126
+00:04:49,924 --> 00:04:53,084
+ahora en mi escritorio, tengo en realidad 2 figuras.
+
+127
+00:04:53,084 --> 00:04:54,625
+Así, la figura 1 y la figura 2
+
+128
+00:04:54,625 --> 00:04:55,874
+de modo que está trazando la función seno,
+
+129
+00:04:55,874 --> 00:04:59,169
+y una traza la función coseno.
+
+130
+00:04:59,170 --> 00:05:00,498
+Aquí hay otro comando genial que
+
+131
+00:05:00,498 --> 00:05:02,825
+uso a menudo, que es el comando subplot.
+
+132
+00:05:02,825 --> 00:05:05,401
+Así es que, vamos a utilizar subplot(1,2,1).
+
+133
+00:05:05,401 --> 00:05:07,958
+Lo que hace es subdividir
+
+134
+00:05:07,958 --> 00:05:11,200
+el trazo en una
+
+135
+00:05:11,780 --> 00:05:13,760
+cuadrícula de 1x2, eso son los
+
+136
+00:05:13,820 --> 00:05:16,010
+primeros dos parámetros, y
+
+137
+00:05:16,010 --> 00:05:17,607
+comienza accediendo al
+
+138
+00:05:17,620 --> 00:05:19,335
+primer elemento. Eso es
+
+139
+00:05:19,340 --> 00:05:21,714
+lo que significa el parámetro final 1, ¿correcto?
+
+140
+00:05:21,714 --> 00:05:23,568
+Por lo tanto, divide mi figura en una
+
+141
+00:05:23,568 --> 00:05:24,913
+cuadrícula de 1x2, y
+
+142
+00:05:24,913 --> 00:05:26,585
+quiero acceder al primer
+
+143
+00:05:26,585 --> 00:05:27,948
+elemento ahora mismo.
+
+144
+00:05:27,970 --> 00:05:30,435
+Así que, si escribo eso
+
+145
+00:05:30,435 --> 00:05:32,722
+aquí, este producto, esta figura, está a la izquierda.
+
+146
+00:05:32,760 --> 00:05:35,291
+Y si escribo plot(t,
+
+147
+00:05:35,350 --> 00:05:37,682
+y1), ahora rellena
+
+148
+00:05:37,682 --> 00:05:40,462
+este primer elemento.
+
+149
+00:05:40,462 --> 00:05:42,565
+Y si ahora escribo subplot(1,2,2)
+
+150
+00:05:42,565 --> 00:05:44,456
+voy a comenzar a
+
+151
+00:05:44,456 --> 00:05:48,724
+acceder al segundo elemento y escribo plot(t,y2),
+
+152
+00:05:49,270 --> 00:05:51,323
+bueno, tira a y2 en
+
+153
+00:05:51,323 --> 00:05:54,875
+en el lado derecho, o en el segundo elemento.
+
+154
+00:05:54,910 --> 00:05:56,114
+Y el último comando, puedes
+
+155
+00:05:56,114 --> 00:05:58,165
+también cambiar las escalas de los ejes
+
+156
+00:05:58,165 --> 00:06:00,308
+escribiendo axis([0.5 1
+
+157
+00:06:00,330 --> 00:06:02,892
+- 1 1]) y esto
+
+158
+00:06:02,892 --> 00:06:05,071
+establece el rango de "x"
+
+159
+00:06:05,071 --> 00:06:07,448
+y el rango de "y" para la
+
+160
+00:06:07,448 --> 00:06:09,874
+figura en la derecha,
+
+161
+00:06:09,890 --> 00:06:12,381
+y en concreto, evalúa los
+
+162
+00:06:12,381 --> 00:06:13,668
+valores principales horizontales en la figura
+
+163
+00:06:13,670 --> 00:06:14,856
+de la derecha del rango de 0.5
+
+164
+00:06:14,856 --> 00:06:16,334
+a 1, y los valores del
+
+165
+00:06:16,340 --> 00:06:19,572
+eje vertical utilizan el rango de -1 a 1.
+
+166
+00:06:19,572 --> 00:06:21,736
+Y, como sabes, no tienes que memorizar todos estos comandos.
+
+167
+00:06:21,736 --> 00:06:23,178
+Si alguna vez necesitas
+
+168
+00:06:23,178 --> 00:06:24,773
+cambiar el acceso o
+
+169
+00:06:24,780 --> 00:06:25,703
+necesitas saber qué es algo, existe un
+
+170
+00:06:25,703 --> 00:06:26,628
+comando de acceso y puedes
+
+171
+00:06:26,628 --> 00:06:28,364
+obtener los detalles
+
+172
+00:06:28,364 --> 00:06:31,590
+desde el comando usual de ayuda de Octave.
+
+173
+00:06:31,600 --> 00:06:32,861
+Para terminar, un par de últimos
+
+174
+00:06:32,861 --> 00:06:35,449
+comandos, clf borra la
+
+175
+00:06:35,450 --> 00:06:38,362
+figura y aquí hay un rasgo único.
+
+176
+00:06:38,362 --> 00:06:39,772
+Vamos a establecer que "A" es igual
+
+177
+00:06:39,772 --> 00:06:42,076
+a un cuadro
+
+178
+00:06:42,076 --> 00:06:43,375
+mágico de 5x5. Así que, "A"
+
+179
+00:06:43,380 --> 00:06:45,290
+es ahora esta matriz de 5x5.
+
+180
+00:06:45,310 --> 00:06:47,581
+Hay un genial
+
+181
+00:06:47,581 --> 00:06:49,341
+truco que a veces uso para
+
+182
+00:06:49,350 --> 00:06:51,582
+visualizar la matriz,
+
+183
+00:06:51,582 --> 00:06:54,792
+puedo utilizar imagesc
+
+184
+00:06:54,800 --> 00:06:56,362
+de "A" y lo que esto
+
+185
+00:06:56,370 --> 00:06:58,056
+hará es trazar una matriz de 5x5,
+
+186
+00:06:58,056 --> 00:07:03,925
+una cuadrícula de color de 5x5,
+
+187
+00:07:03,925 --> 00:07:05,739
+en donde los diferentes colores corresponden a
+
+188
+00:07:05,739 --> 00:07:09,011
+los diferentes valores en la matriz "A".
+
+189
+00:07:09,060 --> 00:07:13,262
+Así es que específicamente, también puedo utilizar colorbar.
+
+190
+00:07:13,630 --> 00:07:14,903
+Permítanme utilizar un
+
+191
+00:07:14,903 --> 00:07:16,715
+comando más sofisticado, imagesc(A),
+
+192
+00:07:16,715 --> 00:07:19,608
+colorbar,
+
+193
+00:07:19,608 --> 00:07:22,454
+colormap gray.
+
+194
+00:07:22,454 --> 00:07:24,757
+Esto realmente está ejecutando tres comandos a la vez.
+
+195
+00:07:24,760 --> 00:07:26,286
+Estoy ejecutando imagesc, luego ejecuto
+
+196
+00:07:26,286 --> 00:07:28,943
+colorbar, y después ejecuto colormap gray.
+
+197
+00:07:28,943 --> 00:07:30,142
+Y lo que esto hace, es establecer
+
+198
+00:07:30,160 --> 00:07:31,355
+un mapa de color, un
+
+199
+00:07:31,355 --> 00:07:32,749
+mapa de color en grises, y en la
+
+200
+00:07:32,749 --> 00:07:35,333
+derecha también pone esta barra de color.
+
+201
+00:07:35,360 --> 00:07:37,525
+Y así esta barra de color,
+
+202
+00:07:37,550 --> 00:07:40,701
+muestra a lo que los diferentes tonos de color corresponden.
+
+203
+00:07:40,720 --> 00:07:42,704
+Específicamente, el elemento en la parte superior izquierda
+
+204
+00:07:42,704 --> 00:07:44,494
+de la matriz "A"
+
+205
+00:07:44,494 --> 00:07:46,358
+es 17, y eso corresponde
+
+206
+00:07:46,358 --> 00:07:49,297
+a un tono de gris medio.
+
+207
+00:07:49,297 --> 00:07:52,012
+Mientras que en contraste el segundo
+
+208
+00:07:52,012 --> 00:07:53,210
+elemento de "A", una clase de
+
+209
+00:07:53,280 --> 00:07:55,640
+uno, dos elementos de "A", es 24.
+
+210
+00:07:55,640 --> 00:07:57,716
+¿Correcto?, Así es que A(1,2) ans=24.
+
+211
+00:07:57,716 --> 00:07:59,683
+Así que corresponde a
+
+212
+00:07:59,690 --> 00:08:01,343
+este cuadro de aquí, lo cual es
+
+213
+00:08:01,360 --> 00:08:03,677
+casi un tono de blanco.
+
+214
+00:08:03,677 --> 00:08:05,640
+Y el valor pequeño, digamos,
+
+215
+00:08:05,690 --> 00:08:08,657
+"A" ¿Qué es eso?, A(4,5),
+
+216
+00:08:08,657 --> 00:08:12,260
+valor de ans=3
+
+217
+00:08:12,300 --> 00:08:14,346
+aquí, que corresponde,
+
+218
+00:08:14,360 --> 00:08:15,548
+como puedes ver en mi barra de color
+
+219
+00:08:15,548 --> 00:08:16,618
+que corresponde a
+
+220
+00:08:16,618 --> 00:08:19,499
+un tono mucho más oscuro en esta imagen.
+
+221
+00:08:19,499 --> 00:08:21,141
+Así que aquí está otro ejemplo,
+
+222
+00:08:21,141 --> 00:08:23,228
+puedo trazar una más grande,
+
+223
+00:08:23,230 --> 00:08:24,768
+aquí hay un magic(15) que
+
+224
+00:08:24,770 --> 00:08:26,029
+te da un cuadro mágico de 15x15
+
+225
+00:08:26,029 --> 00:08:27,675
+y esto
+
+226
+00:08:27,680 --> 00:08:29,504
+me da un trazo de
+
+227
+00:08:29,504 --> 00:08:33,675
+cómo se ven los valores de mi cuadro mágico de 15x15.
+
+228
+00:08:33,700 --> 00:08:35,225
+Y finalmente para terminar
+
+229
+00:08:35,225 --> 00:08:37,075
+este video, lo que me has
+
+230
+00:08:37,075 --> 00:08:38,318
+visto hacer aquí es
+
+231
+00:08:38,318 --> 00:08:41,917
+utilizar llamadas a las funciones con encadenamiento de comas.
+
+232
+00:08:41,940 --> 00:08:43,195
+Así es como en realidad se hace esto.
+
+233
+00:08:43,210 --> 00:08:44,638
+Si escribo a=1,
+
+234
+00:08:44,690 --> 00:08:46,613
+b=2, c=3,
+
+235
+00:08:46,613 --> 00:08:48,620
+y presiono Enter, entonces
+
+236
+00:08:48,620 --> 00:08:50,628
+esto en realidad está ejecutando
+
+237
+00:08:50,628 --> 00:08:52,039
+tres comandos al mismo tiempo.
+
+238
+00:08:52,040 --> 00:08:53,490
+O realmente lleva a cabo tres
+
+239
+00:08:53,490 --> 00:08:55,849
+comandos, uno tras otro,
+
+240
+00:08:55,849 --> 00:08:57,521
+e imprime los tres resultados.
+
+241
+00:08:57,521 --> 00:08:58,417
+Y esto es muy similar a
+
+242
+00:08:58,417 --> 00:09:00,489
+a=1;b=2;
+
+243
+00:09:00,489 --> 00:09:01,755
+c=3, excepto
+
+244
+00:09:01,755 --> 00:09:03,532
+que si utilizo punto y coma en lugar
+
+245
+00:09:03,540 --> 00:09:05,854
+de una coma, no imprime nada.
+
+246
+00:09:05,854 --> 00:09:07,195
+Así que, esto, como sabes,
+
+247
+00:09:07,210 --> 00:09:08,865
+llamamos a esto
+
+248
+00:09:08,870 --> 00:09:12,185
+comandos encadenados por comas, o llamada a la función por encadenamiento de comas.
+
+249
+00:09:12,240 --> 00:09:13,755
+Y, no es más que otra
+
+250
+00:09:13,755 --> 00:09:15,520
+manera conveniente en Octave para
+
+251
+00:09:15,520 --> 00:09:17,778
+que varios comandos como imagesc,
+
+252
+00:09:17,778 --> 00:09:19,358
+colorbar, colormap
+
+253
+00:09:19,360 --> 00:09:22,919
+tengan comandos múltiples en la misma línea.
+
+254
+00:09:22,930 --> 00:09:24,104
+Así que eso es todo.
+
+255
+00:09:24,104 --> 00:09:25,281
+Ahora ya sabes cómo trazar
+
+256
+00:09:25,281 --> 00:09:27,504
+diferentes figuras en Octave, y
+
+257
+00:09:27,504 --> 00:09:29,270
+en el siguiente video la
+
+258
+00:09:29,280 --> 00:09:30,430
+siguiente pieza principal de la que quiero
+
+259
+00:09:30,460 --> 00:09:31,985
+hablarte es cómo
+
+260
+00:09:31,985 --> 00:09:33,622
+escribir sentencias de control como if,
+
+261
+00:09:33,630 --> 00:09:35,294
+while, for, sentencias en
+
+262
+00:09:35,294 --> 00:09:39,426
+Octave, así como funciones difíciles de definir y utilizar.

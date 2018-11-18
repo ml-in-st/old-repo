@@ -1,0 +1,1654 @@
+1
+00:00:00,380 --> 00:00:01,550
+Di video ini, kita akan bicara tentang
+
+2
+00:00:01,670 --> 00:00:02,690
+jenis utama kedua dari persoalan
+
+3
+00:00:03,010 --> 00:00:05,030
+machine learning, disebut Unsupervised Learning.
+
+4
+00:00:06,300 --> 00:00:08,500
+Di video yang lalu, kita bicara tentang Supervised Learning.
+
+5
+00:00:09,250 --> 00:00:10,700
+Kembali ke saat itu, ingat kumpulan data
+
+6
+00:00:11,020 --> 00:00:12,670
+yang tampak seperti ini, dimana setiap
+
+7
+00:00:12,890 --> 00:00:15,150
+contoh dinamai
+
+8
+00:00:15,610 --> 00:00:16,900
+sebagai contoh positif atau negatif,
+
+9
+00:00:17,530 --> 00:00:19,800
+apakah tumor jinak atau ganas.
+
+10
+00:00:20,850 --> 00:00:21,920
+Jadi untuk setiap contoh dalam Supervised
+
+11
+00:00:22,410 --> 00:00:24,270
+Learning, kita diberitahu secara eksplisit apa
+
+12
+00:00:24,440 --> 00:00:25,760
+yang dinamakan jawaban benar,
+
+13
+00:00:26,490 --> 00:00:27,580
+apakah itu jinak atau ganas.
+
+14
+00:00:28,550 --> 00:00:30,210
+Dalam Unsupervised Learning, kita diberikan
+
+15
+00:00:30,540 --> 00:00:31,720
+data yang terlihat berbeda
+
+16
+00:00:31,950 --> 00:00:32,910
+dari data yang tampak
+
+17
+00:00:33,190 --> 00:00:34,600
+seperti ini yang tidak punya
+
+18
+00:00:34,720 --> 00:00:35,920
+nama atau semua
+
+19
+00:00:36,130 --> 00:00:37,460
+punya nama yang sama atau benar-benar tidak bernama.
+
+20
+00:00:39,680 --> 00:00:40,740
+Jadi kita diberikan kumpulan data dan
+
+21
+00:00:40,980 --> 00:00:42,460
+kita tidak diberitahu bagaimana
+
+22
+00:00:42,560 --> 00:00:43,290
+memperlakukan data itu dan kita tidak
+
+23
+00:00:43,640 --> 00:00:44,800
+diberitahu setiap data menunjukkan apa.
+
+24
+00:00:45,290 --> 00:00:47,190
+Sebagai gantinya kita hanya diberitahu, ini sekumpulan data.
+
+25
+00:00:47,870 --> 00:00:49,650
+Dapatkah Anda temukan beberapa struktur pada data?
+
+26
+00:00:50,480 --> 00:00:51,670
+Diberikan kumpulan data ini,
+
+27
+00:00:52,350 --> 00:00:53,940
+algoritma Unsupervised Learning bisa memutuskan bahwa
+
+28
+00:00:54,060 --> 00:00:56,090
+data berada di dua kelompok yang berbeda.
+
+29
+00:00:56,800 --> 00:00:57,960
+Dan jadi di sana satu kelompok
+
+30
+00:00:59,120 --> 00:00:59,910
+dan di sana kelompok lainnya.
+
+31
+00:01:01,110 --> 00:01:02,710
+Dan ya, algoritma Unsupervised Learning bisa
+
+32
+00:01:03,040 --> 00:01:05,070
+memecah data ini ke dalam dua kelompok terpisah ini.
+
+33
+00:01:06,410 --> 00:01:08,000
+Jadi ini disebut algoritma pengelompokkan.
+
+34
+00:01:08,860 --> 00:01:10,310
+Dan tampaknya ini digunakan dibanyak tempat.
+
+35
+00:01:11,930 --> 00:01:13,310
+Satu contoh dimana pengelompokkan
+
+36
+00:01:13,530 --> 00:01:14,860
+digunakan adalah di Google
+
+37
+00:01:15,060 --> 00:01:16,160
+News dan jika Anda belum
+
+38
+00:01:16,360 --> 00:01:17,320
+melihat ini sebelumnya, Anda bisa
+
+39
+00:01:18,210 --> 00:01:19,040
+pergi ke URL news.google.com ini
+
+40
+00:01:19,830 --> 00:01:20,460
+untuk melihat.
+
+41
+00:01:21,280 --> 00:01:22,970
+Apa Google News lakukan adalah setiap hari
+
+42
+00:01:23,480 --> 00:01:24,220
+ia pergi dan melihat puluhan
+
+43
+00:01:24,470 --> 00:01:25,430
+ribu atau ratusan
+
+44
+00:01:25,720 --> 00:01:26,740
+ribu cerita-cerita baru di
+
+45
+00:01:26,800 --> 00:01:29,410
+situs dan ia mengelompokkannya ke rentetan berita yang menyatu.
+
+46
+00:01:30,730 --> 00:01:31,690
+Contohnya, mari kita lihat di sini.
+
+47
+00:01:33,380 --> 00:01:35,370
+URL di sini bertautan
+
+48
+00:01:35,910 --> 00:01:37,260
+ke rentetan berita yang berbeda
+
+49
+00:01:38,010 --> 00:01:40,110
+tentang cerita BP Oil Well.
+
+50
+00:01:41,300 --> 00:01:42,160
+Jadi, mari kita klik pada
+
+51
+00:01:42,260 --> 00:01:43,090
+salah satu dari URL ini dan kita akan
+
+52
+00:01:43,550 --> 00:01:44,780
+klik pada salah satu dari URL ini.
+
+53
+00:01:45,100 --> 00:01:46,970
+Apa yang akan saya dapatkan adalah halaman situs seperti ini.
+
+54
+00:01:47,210 --> 00:01:48,390
+Ini adalah Wall Street
+
+55
+00:01:48,590 --> 00:01:50,180
+Journal artikel tentang, Anda tahu, Tumpahan
+
+56
+00:01:51,110 --> 00:01:52,530
+Sumur Minyak BP cerita dari
+
+57
+00:01:52,920 --> 00:01:54,350
+"BP Menghentikan Macondo"
+
+58
+00:01:54,590 --> 00:01:55,700
+yaitu nama dari
+
+59
+00:01:55,980 --> 00:01:57,960
+tumpahan dan jika Anda
+
+60
+00:01:58,020 --> 00:01:59,360
+klik pada URL yang berbeda
+
+61
+00:02:00,690 --> 00:02:02,500
+dari kelompok itu maka Anda bisa mendapat cerita berbeda.
+
+62
+00:02:02,950 --> 00:02:04,760
+Ini cerita CNN tentang sekali
+
+63
+00:02:04,820 --> 00:02:06,090
+lagi, Tumpahan Minyak BP,
+
+64
+00:02:07,090 --> 00:02:08,180
+dan jika Anda klik pada
+
+65
+00:02:08,740 --> 00:02:10,990
+tautan ketiga, maka Anda bisa mendapat cerita berbeda.
+
+66
+00:02:11,440 --> 00:02:13,380
+Ini cerita Guardian UK
+
+67
+00:02:13,940 --> 00:02:15,510
+tentang Tumpahan Minyak BP.
+
+68
+00:02:16,530 --> 00:02:17,790
+Jadi apa yang Google News lakukan
+
+69
+00:02:17,990 --> 00:02:19,440
+adalah mencari puluhan ribu
+
+70
+00:02:19,490 --> 00:02:22,170
+rangkaian berita dan mengelompokkan mereka jadi satu secara
+otomatis.
+
+71
+00:02:23,030 --> 00:02:24,660
+Jadi, rangkaian berita yang semuanya
+
+72
+00:02:25,080 --> 00:02:27,010
+tentang topik yang sama ditampilkan bersama-sama.
+
+73
+00:02:27,210 --> 00:02:29,170
+Tampaknya bahwa
+
+74
+00:02:29,380 --> 00:02:31,020
+algoritma pengelompokkan dan algoritma Unsupervised
+
+75
+00:02:31,530 --> 00:02:33,550
+Learning digunakan juga pada banyak persoalan lain.
+
+76
+00:02:35,320 --> 00:02:36,690
+Satunya ini pada pemahaman genomik.
+
+77
+00:02:38,270 --> 00:02:40,510
+Ini contoh data susunan mikro DNA.
+
+78
+00:02:40,990 --> 00:02:42,230
+Gagasannya adalah menempatkan
+
+79
+00:02:42,430 --> 00:02:44,360
+sekelompok individu berbeda dan
+
+80
+00:02:44,510 --> 00:02:45,590
+masing-masing mereka, Anda ukur
+
+81
+00:02:46,100 --> 00:02:48,580
+berapa banyak mereka yang punya atau tidak punya gen tertentu.
+
+82
+00:02:49,050 --> 00:02:51,640
+Secara teknis Anda mengukur berapa banyak gen tertentu
+diekspresikan.
+
+83
+00:02:52,000 --> 00:02:54,190
+Jadi warna-warna ini, merah, hijau,
+
+84
+00:02:54,930 --> 00:02:56,210
+abu-abu dan seterusnya, mereka
+
+85
+00:02:56,340 --> 00:02:57,500
+menunjukkan sejauh mana
+
+86
+00:02:57,780 --> 00:02:59,440
+individu berbeda punya atau
+
+87
+00:02:59,510 --> 00:03:01,270
+tidak punya gen tertentu.
+
+88
+00:03:02,500 --> 00:03:03,400
+Dan apa yang dapat Anda lakukan adalah
+
+89
+00:03:03,610 --> 00:03:05,070
+jalankan algoritma pengelompokkan untuk menggolongkan
+
+90
+00:03:05,380 --> 00:03:07,140
+individu-individu ke dalam kategori yang berbeda
+
+91
+00:03:07,780 --> 00:03:08,810
+atau ke dalam jenis-jenis orang yang berbeda.
+
+92
+00:03:10,230 --> 00:03:11,660
+Jadi ini Unsupervised Learning karena
+
+93
+00:03:11,930 --> 00:03:14,010
+kita tidak memberitahu algoritma tersebut sebelumnya
+
+94
+00:03:14,590 --> 00:03:15,690
+bahwa ini orang jenis 1,
+
+95
+00:03:16,130 --> 00:03:17,420
+itu orang jenis 2, itu
+
+96
+00:03:17,560 --> 00:03:18,650
+orang jenis 3 dan begitu
+
+97
+00:03:19,610 --> 00:03:22,390
+seterusnya dan sebaliknya apa yang dikatakan adalah yah ini sekumpulan data.
+
+98
+00:03:23,110 --> 00:03:24,030
+Saya tidak tahu apa yang ada di data ini.
+
+99
+00:03:24,750 --> 00:03:25,870
+Saya tidak tahu siapa dan jenis apa.
+
+100
+00:03:26,150 --> 00:03:26,940
+Saya bahkan tidak tahu apa jenis
+
+101
+00:03:27,260 --> 00:03:28,480
+orang, tapi dapatkah
+
+102
+00:03:28,610 --> 00:03:30,210
+Anda secara otomatis menemukan struktur dalam
+
+103
+00:03:30,360 --> 00:03:31,260
+data dapatkah Anda secara otomatis
+
+104
+00:03:32,180 --> 00:03:33,620
+mengelompokkan individu ke dalam jenis-jenis ini
+
+105
+00:03:33,870 --> 00:03:35,490
+yang sebelumnya saya tidak tahu?
+
+106
+00:03:35,890 --> 00:03:37,610
+Karena kita tidak memberi algoritma ini
+
+107
+00:03:38,160 --> 00:03:40,140
+jawaban yang benar untuk
+
+108
+00:03:40,370 --> 00:03:41,270
+contoh-contoh dalam kumpulan data
+
+109
+00:03:41,590 --> 00:03:43,090
+saya, ini adalah Unsupervised Learning.
+
+110
+00:03:44,290 --> 00:03:47,040
+Unsupervised Learning atau pengelompokkan
+digunakan untuk sekumpulan aplikasi lainnya.
+
+111
+00:03:48,340 --> 00:03:50,340
+Itu digunakan untuk mengatur sekumpulan besar komputer.
+
+112
+00:03:51,390 --> 00:03:52,530
+Saya punya beberapa teman yang sedang memperhatikan
+
+113
+00:03:52,680 --> 00:03:53,970
+pusat-pusat data besar, yaitu
+
+114
+00:03:54,180 --> 00:03:55,970
+sekumpulan besar komputer dan sedang coba
+
+115
+00:03:56,230 --> 00:03:57,470
+mencari tahu mesin mana yang cenderung
+
+116
+00:03:57,590 --> 00:03:59,130
+bekerja sama dan jika
+
+117
+00:03:59,200 --> 00:04:00,270
+Anda dapat menempatkan mesin-mesin itu bersama-sama,
+
+118
+00:04:01,100 --> 00:04:03,220
+Anda dapat membuat pusat data Anda bekerja lebih efisien.
+
+119
+00:04:04,810 --> 00:04:06,820
+Aplikasi kedua ini pada analisa jaringan sosial.
+
+120
+00:04:07,890 --> 00:04:09,230
+Jadi diberinya data tentang teman-teman mana
+
+121
+00:04:09,630 --> 00:04:10,840
+yang paling sering Anda kirimi email atau
+
+122
+00:04:10,880 --> 00:04:12,150
+data teman-teman Facebook Anda atau
+
+123
+00:04:12,180 --> 00:04:14,150
+lingkaran Google+ Anda, dapatkah
+
+124
+00:04:14,290 --> 00:04:16,380
+kita mengidentifikasi secara otomatis yang mana
+
+125
+00:04:16,450 --> 00:04:17,950
+kelompok teman-teman dekat,
+
+126
+00:04:18,460 --> 00:04:19,420
+juga yang mana kelompok orang
+
+127
+00:04:20,230 --> 00:04:21,010
+yang semuanya saling kenal satu sama lainnya?
+
+128
+00:04:22,540 --> 00:04:22,880
+Segmentasi pasar.
+
+129
+00:04:24,680 --> 00:04:26,780
+Banyak perusahaan punya database yang sangat banyak
+berisi informasi pelanggan.
+
+130
+00:04:27,700 --> 00:04:28,410
+Jadi, dapatkah Anda melihat pada kumpulan
+
+131
+00:04:28,510 --> 00:04:30,000
+data pelanggan ini dan secara otomatis
+
+132
+00:04:30,740 --> 00:04:32,340
+mengetahui segmen-segmen pasar dan secara otomatis
+
+133
+00:04:33,340 --> 00:04:35,290
+mengelompokkan pelanggan Anda kedalam segmen
+
+134
+00:04:35,820 --> 00:04:37,400
+pasar yang berbeda agar
+
+135
+00:04:37,710 --> 00:04:39,490
+Anda dapat secara otomatis dan lebih
+
+136
+00:04:39,650 --> 00:04:41,580
+efisien lagi menjual atau memasarkan
+
+137
+00:04:41,890 --> 00:04:43,250
+segmen-segmen pasar berbeda Anda bersama-sama?
+
+138
+00:04:44,260 --> 00:04:45,580
+Lagi, ini adalah Unsupervised Learning
+
+139
+00:04:45,820 --> 00:04:46,720
+karena kita punya semua data
+
+140
+00:04:46,900 --> 00:04:48,340
+pelanggan ini, tapi kita tidak
+
+141
+00:04:48,590 --> 00:04:49,710
+tahu sebelumnya apa
+
+142
+00:04:49,790 --> 00:04:51,270
+segmen-segmen pasarnya dan bagi
+
+143
+00:04:51,440 --> 00:04:52,570
+pelanggan dalam kumpulan data
+
+144
+00:04:52,660 --> 00:04:53,590
+kita, Anda tahu, kita tidak tahu
+
+145
+00:04:53,690 --> 00:04:54,700
+sebelumnya siapa dalam
+
+146
+00:04:54,800 --> 00:04:55,840
+segmen pasar satu, siapa
+
+147
+00:04:55,940 --> 00:04:57,800
+dalam segmen pasar dua, dan seterusnya.
+
+148
+00:04:57,930 --> 00:05:00,630
+Tapi kita harus biarkan algoritma ini mengetahui semua ini
+hanya dari data.
+
+149
+00:05:01,970 --> 00:05:03,140
+Terakhir, tampaknya Unsupervised
+
+150
+00:05:03,690 --> 00:05:05,620
+Learning juga digunakan secara
+
+151
+00:05:06,090 --> 00:05:08,060
+tidak terduga untuk analisis data astronomi
+
+152
+00:05:08,890 --> 00:05:10,390
+dan algoritma pengelompokkan ini secara
+
+153
+00:05:10,580 --> 00:05:12,440
+mengejutkan memberikan teori-teori berguna yang menarik
+
+154
+00:05:12,900 --> 00:05:15,610
+tentang bagaimana galaksi lahir.
+
+155
+00:05:15,880 --> 00:05:17,620
+Semua ini contoh-contoh pengelompokkan,
+
+156
+00:05:18,400 --> 00:05:20,550
+yang masih satu jenis dengan Unsupervised Learning.
+
+157
+00:05:21,530 --> 00:05:22,470
+Biar saya beritahu Anda contoh lain lagi.
+
+158
+00:05:23,200 --> 00:05:25,020
+saya akan cerita pada Anda tentang soal pesta koktail.
+
+159
+00:05:26,310 --> 00:05:28,270
+Jadi, Anda pernah ke pesta koktail sebelumnya, kan?
+
+160
+00:05:28,440 --> 00:05:30,080
+Nah, Anda bisa bayangkan ada suatu
+
+161
+00:05:30,300 --> 00:05:31,690
+pesta, ruangan penuh orang, semua
+
+162
+00:05:31,870 --> 00:05:32,930
+sedang duduk di sekeliling, semuanya bicara pada
+
+163
+00:05:32,970 --> 00:05:34,390
+waktu bersamaan dan ada
+
+164
+00:05:34,480 --> 00:05:36,230
+semua suara yang saling tumpang tindih karena setiap orang
+
+165
+00:05:36,590 --> 00:05:37,920
+bicara pada waktu yang bersamaan, dan
+
+166
+00:05:38,070 --> 00:05:39,730
+hampir sulit mendengar orang di depan Anda.
+
+167
+00:05:40,690 --> 00:05:41,970
+Jadi mungkin pada suatu
+
+168
+00:05:42,020 --> 00:05:43,990
+pesta koktail dihadiri dua orang,
+
+169
+00:05:45,690 --> 00:05:46,670
+dua orang bicara pada waktu
+
+170
+00:05:46,770 --> 00:05:48,090
+bersamaan, dan itu
+
+171
+00:05:48,740 --> 00:05:49,710
+pesta koktail kecil.
+
+172
+00:05:50,690 --> 00:05:51,630
+Dan kita akan meletakkan dua
+
+173
+00:05:51,890 --> 00:05:53,080
+mikropon dalam ruangan jadi ada
+
+174
+00:05:54,060 --> 00:05:55,640
+dua mikropon, dan karena
+
+175
+00:05:56,050 --> 00:05:57,430
+mikropon tersebut berada pada dua
+
+176
+00:05:57,560 --> 00:05:58,900
+jarak yang berbeda dari
+
+177
+00:05:58,990 --> 00:06:01,250
+pembicara, setiap mikropon merekam
+
+178
+00:06:01,830 --> 00:06:04,720
+gabungan berbeda dari suara dua pembicara ini.
+
+179
+00:06:05,810 --> 00:06:06,970
+Mungkin pembicara satu
+
+180
+00:06:07,120 --> 00:06:08,320
+sedikit lebih keras di mikropon satu
+
+181
+00:06:09,120 --> 00:06:10,680
+dan mungkin pembicara dua
+
+182
+00:06:10,800 --> 00:06:12,350
+sedikit lebih keras lagi pada mikropon 2
+
+183
+00:06:12,560 --> 00:06:14,040
+karena kedua mikropon
+
+184
+00:06:14,230 --> 00:06:15,950
+pada posisi berbeda terkait dengan
+
+185
+00:06:16,400 --> 00:06:19,020
+dua pembicara itu, namun setiap
+
+186
+00:06:19,250 --> 00:06:20,390
+mikropon akan menyebabkan kombinasi
+
+187
+00:06:20,970 --> 00:06:22,590
+suara yang saling tumpang tindih dari kedua pembicara.
+
+188
+00:06:23,960 --> 00:06:25,500
+Jadi ini rekaman aktual
+
+189
+00:06:26,520 --> 00:06:29,280
+dari dua pembicara yang direkam oleh peneliti.
+
+190
+00:06:29,740 --> 00:06:30,950
+Biar saya putar untuk Anda yang
+
+191
+00:06:31,060 --> 00:06:32,760
+pertama, bagaimana bunyi mikropon pertama.
+
+192
+00:06:33,560 --> 00:06:34,800
+One (uno), two (dos),
+
+193
+00:06:35,070 --> 00:06:36,590
+three (tres), four (cuatro), five
+
+194
+00:06:37,060 --> 00:06:38,550
+(cinco), six (seis), seven (siete),
+
+195
+00:06:38,990 --> 00:06:40,610
+eight (ocho), nine (nueve), ten (y diez).
+
+196
+00:06:41,610 --> 00:06:42,650
+Oke, mungkin bukan pesta koktail yang paling
+
+197
+00:06:43,000 --> 00:06:44,270
+menarik, ada dua orang
+
+198
+00:06:44,620 --> 00:06:45,670
+berhitung dari satu sampai sepuluh
+
+199
+00:06:46,010 --> 00:06:47,880
+dalam dua bahasa namun Anda tahu.
+
+200
+00:06:48,870 --> 00:06:49,760
+Apa yang baru saja Anda dengar
+
+201
+00:06:49,820 --> 00:06:52,500
+rekaman mikropon pertama, ini rekaman yang kedua.
+
+202
+00:06:57,440 --> 00:06:58,040
+Uno (one), dos (two), tres (three), cuatro
+
+203
+00:06:58,060 --> 00:06:58,730
+(four), cinco (five), seis (six), siete (seven),
+
+204
+00:06:59,160 --> 00:07:00,900
+ocho (eight), nueve (nine) y diez (ten).
+
+205
+00:07:01,860 --> 00:07:02,850
+Jadi yang dapat kita lakukan, mengambil
+
+206
+00:07:03,380 --> 00:07:04,660
+perekam dua mikropon ini dan memberi
+
+207
+00:07:04,980 --> 00:07:06,480
+mereka ke algoritma Unsupervised Learning
+
+208
+00:07:07,010 --> 00:07:08,560
+yang disebut algoritma pesta koktail,
+
+209
+00:07:08,780 --> 00:07:09,910
+dan memberitahu algoritma ini
+
+210
+00:07:10,450 --> 00:07:12,140
+- temukan struktur data ini untuk Anda.
+
+211
+00:07:12,250 --> 00:07:14,010
+Dan apa yang akan dilakukan algoritma ini
+
+212
+00:07:14,410 --> 00:07:15,730
+adalah mendengar rekaman
+
+213
+00:07:15,980 --> 00:07:17,990
+suara ini dan mengatakan, Anda
+
+214
+00:07:18,140 --> 00:07:19,020
+tahu bunyinya seperti
+
+215
+00:07:19,360 --> 00:07:20,950
+dua rekaman suara yang saling
+
+216
+00:07:21,240 --> 00:07:22,450
+ditambahkan atau yang telah saling
+
+217
+00:07:22,670 --> 00:07:25,220
+dijumlahkan untuk menghasilkan rekaman yang kita
+punya ini.
+
+218
+00:07:25,990 --> 00:07:27,330
+Selain itu, apa yang algoritma pesta
+
+219
+00:07:27,710 --> 00:07:29,210
+koktail akan lakukan adalah memisahkan
+
+220
+00:07:29,570 --> 00:07:30,810
+dua sumber suara
+
+221
+00:07:31,480 --> 00:07:32,700
+yang saling ditambahkan atau saling
+
+222
+00:07:33,000 --> 00:07:34,240
+dijumlahkan ini untuk membentuk rekaman
+
+223
+00:07:34,410 --> 00:07:35,600
+lain dan, sebenarnya,
+
+224
+00:07:36,200 --> 00:07:38,630
+ini hasil pertama dari algoritma pesta koktail.
+
+225
+00:07:39,790 --> 00:07:41,910
+One, two, three, four,
+
+226
+00:07:42,590 --> 00:07:46,270
+five, six, seven, eight, nine, ten.
+
+227
+00:07:47,630 --> 00:07:48,780
+Jadi, Saya memisahkan suara
+
+228
+00:07:49,240 --> 00:07:51,220
+berbahasa Inggris dalam satu rekaman.
+
+229
+00:07:52,460 --> 00:07:53,300
+Dan in hasil algoritma pesta koktail yang kedua.
+
+230
+00:07:53,380 --> 00:07:55,280
+Uno, dos, tres, quatro, cinco,
+
+231
+00:07:55,980 --> 00:07:59,830
+seis, siete, ocho, nueve y diez.
+
+232
+00:08:00,270 --> 00:08:01,180
+Tidak begitu buruk, untuk memberi Anda
+
+233
+00:08:03,810 --> 00:08:05,270
+satu contoh lagi, ini rekaman
+
+234
+00:08:05,600 --> 00:08:07,370
+lain dari situasi lain yang mirip,
+
+235
+00:08:08,060 --> 00:08:09,790
+ini mikropon pertama : One,
+
+236
+00:08:10,470 --> 00:08:12,430
+two, three, four, five, six,
+
+237
+00:08:13,370 --> 00:08:15,710
+seven, eight, nine, ten.
+
+238
+00:08:16,980 --> 00:08:17,920
+OK jadi orang yang malang itu pulang ke
+
+239
+00:08:18,180 --> 00:08:19,350
+rumah dari pesta koktail tersebut dan
+
+240
+00:08:19,420 --> 00:08:21,880
+sekarang dia menunggu dalam suatu ruangan sendirian bicara
+pada radio miliknya.
+
+241
+00:08:23,090 --> 00:08:24,130
+Ini rekaman mikropon kedua.
+
+242
+00:08:28,810 --> 00:08:31,800
+One, two, three, four, five, six, seven, eight, nine, ten.
+
+243
+00:08:33,310 --> 00:08:34,160
+Saat Anda memberikan rekaman dua
+
+244
+00:08:34,610 --> 00:08:35,530
+mikropon ini ke algoritma yang sama,
+
+245
+00:08:36,360 --> 00:08:37,790
+apa yang algoritma itu lakukan, sekali lagi mengatakan,
+
+246
+00:08:38,380 --> 00:08:39,470
+Anda tahu, rekamannya terdengar seperti ada
+
+247
+00:08:39,690 --> 00:08:41,370
+dua sumber suara, dan selain itu,
+
+248
+00:08:42,410 --> 00:08:43,820
+algoritma itu mengatakan, ini
+
+249
+00:08:44,070 --> 00:08:46,010
+sumber suara pertama yang saya temukan.
+
+250
+00:08:47,480 --> 00:08:49,300
+One, two, three, four,
+
+251
+00:08:49,730 --> 00:08:53,430
+five, six, seven, eight, nine, ten.
+
+252
+00:08:54,650 --> 00:08:56,110
+Jadi hasilnya tidak sempurna,
+
+253
+00:08:56,340 --> 00:08:57,360
+suaranya dapat, tapi algoritmanya
+
+254
+00:08:57,570 --> 00:08:59,070
+juga menangkap sedikit suara musik di sana.
+
+255
+00:08:59,890 --> 00:09:01,360
+Lalu ini hasil kedua dari algoritma itu.
+
+256
+00:09:10,020 --> 00:09:11,310
+Tidak begitu buruk, di hasil kedua
+
+257
+00:09:11,540 --> 00:09:13,300
+algoritma itu berhasil menghilangkan suara pria itu seluruhnya.
+
+258
+00:09:13,760 --> 00:09:14,850
+Dan, Anda tahu,
+
+259
+00:09:15,020 --> 00:09:17,380
+membersihkan suara musik, menghilangkan suara hitungan dari
+satu sampai sepuluh.
+
+260
+00:09:18,840 --> 00:09:20,090
+Jadi, Anda bisa melihat
+
+261
+00:09:20,180 --> 00:09:21,750
+algoritma Unsupervised Learning seperti
+
+262
+00:09:21,950 --> 00:09:23,050
+ini dan bertanya seberapa
+
+263
+00:09:23,250 --> 00:09:25,110
+sulit mengimplementasikan ini, benar?
+
+264
+00:09:25,330 --> 00:09:26,560
+Sepertinya untuk,
+
+265
+00:09:26,970 --> 00:09:28,870
+Anda tahu, membangun aplikasi ini, tampaknya
+
+266
+00:09:28,930 --> 00:09:30,550
+untuk melakukan pemrosesan suara ini Anda
+
+267
+00:09:30,670 --> 00:09:31,430
+perlu menulis banyak sekali kode
+
+268
+00:09:32,240 --> 00:09:33,580
+atau mungkin mentautkannya ke
+
+269
+00:09:33,690 --> 00:09:35,380
+sekumpulan pustaka-pustaka synthesizer Java yang
+
+270
+00:09:35,470 --> 00:09:37,150
+memproses suara, tampaknya
+
+271
+00:09:37,240 --> 00:09:38,880
+program yang benar-benar rumit, untuk memproses
+
+272
+00:09:39,060 --> 00:09:41,040
+suara ini, memisahkan suara dan seterusnya.
+
+273
+00:09:42,460 --> 00:09:43,860
+Untuk membuat algoritma ini,
+
+274
+00:09:44,070 --> 00:09:45,640
+mengerjakan apa yang baru saja Anda dengar, itu
+
+275
+00:09:45,900 --> 00:09:47,280
+dapat dilakukan dengan satu baris
+
+276
+00:09:47,530 --> 00:09:49,270
+kode - yang ditunjukkan ini.
+
+277
+00:09:50,640 --> 00:09:52,350
+Butuh waktu lama bagi para peneliti
+
+278
+00:09:52,610 --> 00:09:54,060
+untuk menghasilkan baris kode ini.
+
+279
+00:09:54,490 --> 00:09:56,090
+Saya tidak sedang mengatakan ini persoalan mudah,
+
+280
+00:09:57,080 --> 00:09:57,980
+tapi jelas bahwa kalau Anda
+
+281
+00:09:58,180 --> 00:10:00,330
+menggunakan lingkungan pemrograman yang benar, banyak
+
+282
+00:10:00,670 --> 00:10:02,060
+algoritma belajar dapat menjadi benar-benar program yang pendek.
+
+283
+00:10:03,510 --> 00:10:04,700
+Jadi ini juga mengapa di
+
+284
+00:10:04,840 --> 00:10:05,890
+kelas ini kita akan
+
+285
+00:10:06,010 --> 00:10:07,430
+menggunakan lingkungan pemrograman Octave.
+
+286
+00:10:08,550 --> 00:10:09,910
+Octave, adalah software open source
+
+287
+00:10:10,120 --> 00:10:11,620
+gratis, dan menggunakan
+
+288
+00:10:11,670 --> 00:10:13,130
+software seperti Octave atau Matlab,
+
+289
+00:10:14,000 --> 00:10:15,400
+banyak algoritma belajar menjadi hanya
+
+290
+00:10:15,690 --> 00:10:17,910
+beberapa baris kode untuk mengimplementasinya.
+
+291
+00:10:18,380 --> 00:10:19,400
+Nanti di kelas ini, saya hanya akan mengajari
+
+292
+00:10:19,620 --> 00:10:20,570
+Anda sedikit tentang bagaimana
+
+293
+00:10:20,720 --> 00:10:21,920
+menggunakan Octave dan Anda akan
+
+294
+00:10:22,050 --> 00:10:24,590
+mengimplementasikan beberapa dari algoritma ini di Octave.
+
+295
+00:10:24,980 --> 00:10:26,050
+Atau jika Anda punya Matlab Anda bisa menggunakan itu juga.
+
+296
+00:10:27,120 --> 00:10:28,500
+Ternyata di Silicon Valley, untuk
+
+297
+00:10:28,620 --> 00:10:29,470
+banyak algoritma machine learning,
+
+298
+00:10:30,290 --> 00:10:31,310
+apa yang kita lakukan pertama membuat purwa-rupa
+
+299
+00:10:32,040 --> 00:10:33,900
+software kita dengan Octave karena software
+
+300
+00:10:34,330 --> 00:10:35,250
+di Octave membuatnya sangat cepat
+
+301
+00:10:35,540 --> 00:10:36,920
+mengimplementasikan algoritma belajar ini.
+
+302
+00:10:38,230 --> 00:10:39,110
+Ini setiap fungsi ini
+
+303
+00:10:39,720 --> 00:10:41,460
+seperti contohnya fungsi SVD
+
+304
+00:10:41,680 --> 00:10:42,920
+kependekan dari Singular
+
+305
+00:10:43,240 --> 00:10:44,520
+Value Decomposition; tapi itu
+
+306
+00:10:44,640 --> 00:10:45,690
+jelas suatu
+
+307
+00:10:45,820 --> 00:10:48,420
+rutin aljabar linier, yang baru saja dibuat dalam Octave.
+
+308
+00:10:49,500 --> 00:10:50,390
+Jika Anda sempat mencoba melakukan ini
+
+309
+00:10:50,460 --> 00:10:51,490
+di C++ atau Java,
+
+310
+00:10:51,780 --> 00:10:53,040
+ini akan menjadi banyak banyak baris
+
+311
+00:10:53,180 --> 00:10:55,680
+kode terhubung ke pustaka-pustaka Java atau C++ yang kompleks.
+
+312
+00:10:56,440 --> 00:10:57,490
+Jadi, Anda bisa mengimplementasikan algoritma ini di
+
+313
+00:10:57,680 --> 00:10:58,690
+C++ atau Java
+
+314
+00:10:59,050 --> 00:11:00,090
+atau Python, hanya saja jauh
+
+315
+00:11:00,290 --> 00:11:02,090
+lebih rumit melakukannya di bahasa-bahasa itu.
+
+316
+00:11:03,750 --> 00:11:05,060
+Apa yang saya amati setelah mengajar
+
+317
+00:11:05,300 --> 00:11:06,980
+machine learning selama hampir satu
+
+318
+00:11:07,210 --> 00:11:08,680
+dekade sekarang, adalah bahwa, Anda
+
+319
+00:11:08,890 --> 00:11:10,340
+belajar jauh lebih cepat jika Anda
+
+320
+00:11:10,480 --> 00:11:11,700
+menggunakan Octave sebagai
+
+321
+00:11:11,790 --> 00:11:14,070
+lingkungan pemrograman Anda, dan jika
+
+322
+00:11:14,250 --> 00:11:15,570
+Anda menggunakan Octave sebagai alat
+
+323
+00:11:16,260 --> 00:11:17,110
+belajar Anda dan sebagai
+
+324
+00:11:17,240 --> 00:11:18,640
+pembuat purwa-rupa Anda, itu akan membuat
+
+325
+00:11:19,000 --> 00:11:21,280
+Anda belajar dan membuat purwa-rupa algoritma belajar jauh
+lebih cepat.
+
+326
+00:11:22,640 --> 00:11:23,850
+Dan bahkan apa yang banyak orang akan
+
+327
+00:11:23,990 --> 00:11:25,390
+lakukan untuk masuk perusahaan-perusahaan besar
+
+328
+00:11:25,730 --> 00:11:27,360
+di Silicon Valley adalah sebenarnya, menggunakan
+
+329
+00:11:27,560 --> 00:11:29,020
+algoritma seperti Octave untuk pertama-tama
+
+330
+00:11:29,370 --> 00:11:31,110
+membuat purwa-rupa algoritma belajar, dan
+
+331
+00:11:31,510 --> 00:11:32,780
+hanya setelah Anda tahu itu
+
+332
+00:11:32,860 --> 00:11:33,820
+bekerja, baru Anda menerapkannya
+
+333
+00:11:34,390 --> 00:11:35,910
+menggunakan C++ atau Java atau apapun.
+
+334
+00:11:36,890 --> 00:11:37,960
+Jelas bahwa dengan melakukan
+
+335
+00:11:38,220 --> 00:11:39,070
+hal-hal dengan cara ini, Anda bisa sering
+
+336
+00:11:39,400 --> 00:11:40,440
+mendapatkan algoritma Anda bekerja jauh
+
+337
+00:11:41,300 --> 00:11:43,050
+lebih cepat daripada jika Anda membuatnya duluan di C++.
+
+338
+00:11:44,440 --> 00:11:46,010
+Jadi, Saya tahu bahwa sebagai seorang
+
+339
+00:11:46,100 --> 00:11:47,490
+pengajar, Saya harus
+
+340
+00:11:47,570 --> 00:11:48,580
+mengatakan "percaya saya
+
+341
+00:11:48,730 --> 00:11:49,790
+pada hal ini" hanya sementara
+
+342
+00:11:50,030 --> 00:11:51,420
+waktu, kecuali untuk
+
+343
+00:11:51,560 --> 00:11:52,720
+Anda yang tidak pernah menggunakan
+
+344
+00:11:53,330 --> 00:11:54,880
+lingkungan pemrograman jenis Octave ini sebelumnya,
+
+345
+00:11:55,240 --> 00:11:56,070
+Saya akan meminta Anda
+
+346
+00:11:56,130 --> 00:11:56,970
+percaya saya untuk hal ini,
+
+347
+00:11:57,570 --> 00:11:58,950
+dan mengatakan bahwa Anda, Anda akan,
+
+348
+00:11:59,700 --> 00:12:01,180
+saya pikir waktu Anda, waktu pengembangan
+
+349
+00:12:01,700 --> 00:12:03,100
+Anda adalah salah satu sumber daya yang paling bernilai.
+
+350
+00:12:04,210 --> 00:12:05,570
+Dan setelah melihat banyak
+
+351
+00:12:05,800 --> 00:12:06,850
+orang melakukan ini, Saya pikir
+
+352
+00:12:07,190 --> 00:12:08,460
+Anda sebagai seorang peneliti
+
+353
+00:12:08,850 --> 00:12:09,990
+machine learning, atau pengembang machine learning
+
+354
+00:12:10,830 --> 00:12:12,080
+akan jauh lebih produktif jika
+
+355
+00:12:12,220 --> 00:12:13,010
+Anda belajar dengan mulai membuat purwa-rupa,
+
+356
+00:12:13,580 --> 00:12:15,250
+mulai di Octave, di beberapa bahasa lainnya.
+
+357
+00:12:17,570 --> 00:12:19,790
+Akhirnya, untuk merangkum
+
+358
+00:12:20,090 --> 00:12:22,890
+video ini, Saya punya satu pertanyaan tinjauan singkat untuk Anda.
+
+359
+00:12:24,400 --> 00:12:26,400
+Kita bicara tentang Unsupervised Learning, yaitu
+
+360
+00:12:26,700 --> 00:12:27,670
+suatu pengaturan belajar dimana Anda
+
+361
+00:12:27,760 --> 00:12:28,730
+memberi algoritma banyak sekali
+
+362
+00:12:28,840 --> 00:12:30,120
+data dan hanya memintanya
+
+363
+00:12:30,240 --> 00:12:32,900
+untuk menemukan struktur dalam data itu bagi kita.
+
+364
+00:12:33,160 --> 00:12:35,170
+Dari empat contoh berikut, yang
+
+365
+00:12:35,490 --> 00:12:36,410
+mana, mana dari keempat ini
+
+366
+00:12:36,870 --> 00:12:37,630
+menurut Anda merupakan
+
+367
+00:12:37,720 --> 00:12:39,520
+algoritma Unsupervised Learning karena
+
+368
+00:12:40,220 --> 00:12:41,950
+berlawanan dengan persoalan Supervised Learning.
+
+369
+00:12:42,730 --> 00:12:43,590
+Untuk masing-masing dari keempat
+
+370
+00:12:43,860 --> 00:12:44,850
+kotak cek di sebelah kiri,
+
+371
+00:12:45,640 --> 00:12:46,900
+cek kotak yang
+
+372
+00:12:47,210 --> 00:12:49,400
+Anda pikir algoritma Unsupervised Learning
+
+373
+00:12:49,700 --> 00:12:51,300
+akan tepat dan
+
+374
+00:12:51,440 --> 00:12:53,930
+kemudian klik tombol pada kanan bawah untuk memeriksa
+jawaban Anda.
+
+375
+00:12:54,690 --> 00:12:57,030
+Jadi saat video berhenti sementara, silahkan
+
+376
+00:12:57,370 --> 00:12:58,750
+jawab pertanyaan di slide.
+
+377
+00:13:01,860 --> 00:13:03,950
+Jadi, semoga, Anda ingat persoalan folder spam.
+
+378
+00:13:04,710 --> 00:13:06,310
+Jika Anda telah menamai data, Anda
+
+379
+00:13:06,450 --> 00:13:07,680
+tahu, dengan spam dan
+
+380
+00:13:07,800 --> 00:13:10,470
+bukan spam email, kita memperlakukan ini sebagai persoalan
+Supervised Learning.
+
+381
+00:13:11,620 --> 00:13:13,870
+Contoh rangkaian berita, yaitu
+
+382
+00:13:14,100 --> 00:13:15,370
+tepatnya contoh Google News
+
+383
+00:13:15,910 --> 00:13:16,600
+yang waktu lalu kita lihat di video ini,
+
+384
+00:13:17,090 --> 00:13:17,950
+kita lihat bagaimana anda dapat menggunakan
+
+385
+00:13:18,080 --> 00:13:19,460
+algoritma pengelompokkan untuk mengelompokkan
+
+386
+00:13:19,880 --> 00:13:21,980
+artikel ini bersama jadi itu Unsupervised Learning.
+
+387
+00:13:23,250 --> 00:13:25,440
+Contoh segmentasi pasar yang Saya
+
+388
+00:13:25,510 --> 00:13:27,120
+bicarakan sedikit diawal, Anda
+
+389
+00:13:27,220 --> 00:13:29,110
+dapat memperlakukan itu sebagai persoalan Unsupervised Learning
+
+390
+00:13:29,970 --> 00:13:30,860
+karena saya hanya akan
+
+391
+00:13:30,930 --> 00:13:32,340
+mengambil data algoritma saya dan memintanya
+
+392
+00:13:32,500 --> 00:13:34,340
+menemukan segment-segmen pasar secara otomatis.
+
+393
+00:13:35,610 --> 00:13:37,930
+Dan contoh terakhir, diabetes, nah,
+
+394
+00:13:38,070 --> 00:13:39,080
+itu sebenarnya hanya seperti contoh
+
+395
+00:13:39,350 --> 00:13:41,480
+kanker payudara kita di video yang lalu.
+
+396
+00:13:42,190 --> 00:13:43,320
+Hanya sebagai pengganti, Anda tahu,
+
+397
+00:13:43,600 --> 00:13:45,280
+tumor kanker baik dan jahat atau
+
+398
+00:13:45,550 --> 00:13:47,390
+tumor jinak atau ganas kita
+
+399
+00:13:47,550 --> 00:13:49,270
+menggantinya dengan punya diabetes atau
+
+400
+00:13:49,330 --> 00:13:50,440
+tidak dan jadi kita akan
+
+401
+00:13:50,700 --> 00:13:51,830
+menggunakannya sebagai supervised,
+
+402
+00:13:52,370 --> 00:13:53,740
+kita akan memecahkan itu sebagai
+
+403
+00:13:53,870 --> 00:13:54,670
+persoalan Supervised Learning sama seperti
+
+404
+00:13:54,730 --> 00:13:56,450
+kita melakukannya untuk data tumor payudara.
+
+405
+00:13:58,270 --> 00:13:59,400
+Jadi, sekian untuk Unsupervised
+
+406
+00:14:00,100 --> 00:14:01,580
+Learning dan pada
+
+407
+00:14:01,650 --> 00:14:02,940
+video berikutnya, kita akan mempelajari lebih
+
+408
+00:14:03,270 --> 00:14:04,600
+ke algoritma belajar tertentu
+
+409
+00:14:05,550 --> 00:14:06,590
+dan mulai membahas tentang
+
+410
+00:14:07,220 --> 00:14:08,750
+bagaimana algoritma-algoritma ini bekerja dan
+
+411
+00:14:08,920 --> 00:14:11,270
+bagaimana kita dapat, bagaimana Anda dapat mengimplementasikannya.

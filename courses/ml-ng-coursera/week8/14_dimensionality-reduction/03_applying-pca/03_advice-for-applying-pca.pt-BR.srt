@@ -1,0 +1,1528 @@
+1
+00:00:00,090 --> 00:00:01,450
+Em um vídeo anterior,
+
+2
+00:00:01,610 --> 00:00:02,710
+eu disse que PCA pode ser usado
+
+3
+00:00:02,840 --> 00:00:05,410
+para acelerar o Algoritmo de Aprendizagem.
+
+4
+00:00:07,070 --> 00:00:08,140
+Neste vídeo, eu gostaria de
+
+5
+00:00:08,370 --> 00:00:09,520
+explicar como fazer isso,
+
+6
+00:00:09,820 --> 00:00:11,270
+e também,
+
+7
+00:00:11,460 --> 00:00:12,900
+dar alguns conselhos
+
+8
+00:00:12,990 --> 00:00:14,550
+sobre como usar PCA.
+
+9
+00:00:17,110 --> 00:00:19,630
+É assim que você pode utilizar PCA para agilizar um algoritmo de aprendizagem. 
+
+10
+00:00:20,270 --> 00:00:21,940
+Esse ganho de desempenho
+
+11
+00:00:22,270 --> 00:00:23,630
+em Aprendizado Supervisionado,
+
+12
+00:00:23,870 --> 00:00:25,870
+é o uso mais comum
+
+13
+00:00:26,530 --> 00:00:27,720
+que faço do PCA.
+
+14
+00:00:28,710 --> 00:00:29,640
+Digamos que você tenha um
+
+15
+00:00:30,300 --> 00:00:31,660
+problema de Aprendizado Supervisionado
+
+16
+00:00:31,810 --> 00:00:33,380
+-- observe que esse é um problema
+
+17
+00:00:33,690 --> 00:00:35,510
+com entradas X e rótulos Y --
+
+18
+00:00:35,810 --> 00:00:37,330
+Digamos que seus exemplos x⁽ᴵ⁾
+
+19
+00:00:37,830 --> 00:00:39,140
+têm grandes dimensões.
+
+20
+00:00:39,840 --> 00:00:41,670
+Digamos que seus exemplos x⁽ᴵ⁾
+
+21
+00:00:41,800 --> 00:00:44,000
+são vetores de dimensão 10.000.
+
+22
+00:00:45,510 --> 00:00:46,550
+Um exemplo disso é:
+
+23
+00:00:46,700 --> 00:00:48,130
+se você está trabalhando
+
+24
+00:00:48,540 --> 00:00:50,390
+em um problema de visão computacional,
+
+25
+00:00:50,650 --> 00:00:52,410
+onde você tem imagens 100x100.
+
+26
+00:00:52,780 --> 00:00:55,550
+Assim, se você tem 100x100, são 10.000 pixels,
+
+27
+00:00:55,850 --> 00:00:57,520
+e então, se x⁽ᴵ⁾ são
+
+28
+00:00:57,780 --> 00:00:59,240
+vetores de atributos,
+
+29
+00:00:59,760 --> 00:01:01,670
+que contém seus 10.000 valores de
+
+30
+00:01:02,470 --> 00:01:03,580
+intensidade de pixels, 
+
+31
+00:01:04,410 --> 00:01:05,580
+você tem vetores de dimensão 10.000.
+
+32
+00:01:06,880 --> 00:01:08,530
+Com vetores de atributos
+
+33
+00:01:09,300 --> 00:01:10,890
+com dimensões tão grandes como essas
+
+34
+00:01:11,320 --> 00:01:12,860
+seu algoritmo pode ficar lento, certo?
+
+35
+00:01:13,030 --> 00:01:14,300
+Se você usar um vetor
+
+36
+00:01:14,790 --> 00:01:16,980
+de dimensão 10.000 como entrada
+
+37
+00:01:17,570 --> 00:01:19,780
+para um algoritmo de regressão logística, rede neural,
+
+38
+00:01:20,450 --> 00:01:22,000
+ou máquina de vetor suporte,
+
+39
+00:01:22,200 --> 00:01:23,060
+como são muitos dados,
+
+40
+00:01:24,130 --> 00:01:25,970
+seu algoritmo pode ficar muito mais lento.
+
+41
+00:01:27,170 --> 00:01:28,530
+Felizmente, com PCA
+
+42
+00:01:28,680 --> 00:01:29,810
+podemos reduzir
+
+43
+00:01:30,060 --> 00:01:31,050
+a dimensão desses dados,
+
+44
+00:01:31,180 --> 00:01:32,410
+e assim tornar nosso algoritmo
+
+45
+00:01:32,920 --> 00:01:34,440
+mais eficiente. 
+
+46
+00:01:34,590 --> 00:01:35,780
+É assim que fazemos isso: 
+
+47
+00:01:35,980 --> 00:01:37,030
+vamos primeiramente checar nosso
+
+48
+00:01:37,400 --> 00:01:39,520
+conjunto de treinamento rotulado, e extrair apenas as  entradas. 
+
+49
+00:01:39,800 --> 00:01:41,830
+Vamos apenas extrair os X's e,
+
+50
+00:01:42,730 --> 00:01:45,130
+temporariamente, deixar os Y's de lado.
+
+51
+00:01:45,860 --> 00:01:46,750
+Isso nos dará
+
+52
+00:01:47,090 --> 00:01:49,150
+um conjunto de treinamento não-rotulado
+
+53
+00:01:49,400 --> 00:01:51,000
+x⁽¹⁾ até x⁽ᵐ⁾,  que talvez seja
+
+54
+00:01:51,240 --> 00:01:53,600
+um vetor de dados de 10 mil dimensões,
+
+55
+00:01:53,940 --> 00:01:55,800
+dos 10 mil  exemplos dimensionais que temos.
+
+56
+00:01:55,870 --> 00:01:57,230
+Portanto, apenas extrair as entradas
+
+57
+00:01:58,370 --> 00:01:58,930
+x⁽¹⁾ até x⁽ᵐ⁾.
+
+58
+00:02:00,650 --> 00:02:01,810
+Vamos aplicar PCA,
+
+59
+00:02:02,700 --> 00:02:03,740
+e isso me dará
+
+60
+00:02:03,980 --> 00:02:06,100
+uma representação dos dados com dimensão reduzida.
+
+61
+00:02:06,410 --> 00:02:08,010
+Ao invés de vetores com dimensão
+
+62
+00:02:08,260 --> 00:02:09,540
+10.000, agora talvez eu tenha
+
+63
+00:02:09,780 --> 00:02:11,880
+vetores de atributos de dimensão 1.000.
+
+64
+00:02:12,330 --> 00:02:13,500
+Isso é uma economia de 10 vezes.
+
+65
+00:02:15,110 --> 00:02:17,260
+Isso me dará um novo conjunto de treinamento.
+
+66
+00:02:17,910 --> 00:02:19,430
+Enquanto anteriormente
+
+67
+00:02:19,620 --> 00:02:21,180
+eu tinha um exemplo (x⁽¹⁾ ,y⁽¹⁾),
+
+68
+00:02:21,490 --> 00:02:24,340
+agora minha primeira entrada de treinamento é z⁽¹⁾.
+
+69
+00:02:24,580 --> 00:02:25,800
+Agora eu tenho esse novo tipo de
+
+70
+00:02:26,050 --> 00:02:27,010
+exemplo de treinamento,
+
+71
+00:02:28,210 --> 00:02:29,240
+z⁽¹⁾ emparelhado com y⁽¹⁾,
+
+72
+00:02:30,700 --> 00:02:33,170
+similarmente, z⁽²⁾ com y⁽²⁾, ..., até z⁽ᵐ⁾ com y⁽ᵐ⁾
+
+73
+00:02:33,770 --> 00:02:35,300
+porque meus exemplos de treinamento
+
+74
+00:02:35,460 --> 00:02:36,980
+são agora representados
+
+75
+00:02:37,480 --> 00:02:41,040
+com essa dimensão muito menor z⁽¹⁾, z⁽²⁾, até z⁽ᵐ⁾.
+
+76
+00:02:41,310 --> 00:02:42,340
+Finalmente, eu posso tomar
+
+77
+00:02:43,650 --> 00:02:45,060
+esse conjunto de treinamento
+
+78
+00:02:45,240 --> 00:02:46,540
+de dimensão reduzida e alimentar
+
+79
+00:02:46,640 --> 00:02:47,900
+um algoritmo de aprendizagem,
+
+80
+00:02:48,280 --> 00:02:49,450
+de Regressão ou Rede Neural,
+
+81
+00:02:49,750 --> 00:02:51,990
+e posso aprender a hipótese H, que tem como entrada
+
+82
+00:02:52,230 --> 00:02:53,830
+essas representações de dimensão
+
+83
+00:02:54,330 --> 00:02:56,230
+reduzida "z",  e tentar fazer previsões.
+
+84
+00:02:57,890 --> 00:02:59,030
+Assim, se eu estivesse
+
+85
+00:02:59,460 --> 00:03:00,880
+usando Regressão Logística,
+
+86
+00:03:01,060 --> 00:03:02,760
+por exemplo, eu treinaria uma hipótese
+
+87
+00:03:03,080 --> 00:03:04,020
+que tem como saída
+
+88
+00:03:04,180 --> 00:03:06,020
+1/(1+e^(-θᵀz))
+
+89
+00:03:07,620 --> 00:03:10,150
+que tem como entrada um desses
+
+90
+00:03:10,610 --> 00:03:11,530
+vetores "z",
+
+91
+00:03:11,960 --> 00:03:13,660
+e tenta fazer uma predição.
+
+92
+00:03:15,260 --> 00:03:16,310
+E finalmente,
+
+93
+00:03:16,630 --> 00:03:17,800
+se você tiver
+
+94
+00:03:17,920 --> 00:03:20,060
+um novo exemplo de teste "x",
+
+95
+00:03:20,220 --> 00:03:21,340
+o que você faria é
+
+96
+00:03:22,130 --> 00:03:23,730
+pegar seu exemplo de teste "x",
+
+97
+00:03:24,960 --> 00:03:26,590
+mapear-lo usando o mesmo mapeamento
+
+98
+00:03:26,990 --> 00:03:27,860
+encontrado pelo PCA
+
+99
+00:03:28,220 --> 00:03:29,610
+para obter o correspondente "z".
+
+100
+00:03:30,390 --> 00:03:31,280
+E esse "z"
+
+101
+00:03:31,950 --> 00:03:33,740
+é usado para alimentar essa hipótese,
+
+102
+00:03:33,910 --> 00:03:35,450
+e essa hipótese fará uma predição,
+
+103
+00:03:35,750 --> 00:03:36,740
+para a sua entrada "x".
+
+104
+00:03:38,110 --> 00:03:40,090
+Um último ponto: o que PCA faz é
+
+105
+00:03:40,510 --> 00:03:42,350
+definir um mapeamento
+
+106
+00:03:42,710 --> 00:03:45,090
+de "x" para "z",
+
+107
+00:03:45,960 --> 00:03:46,970
+e esse mapeamento
+
+108
+00:03:47,050 --> 00:03:48,280
+de "x" para "z" deve ser
+
+109
+00:03:48,580 --> 00:03:50,840
+definido rodando PCA apenas no conjunto de treinamento.
+
+110
+00:03:51,650 --> 00:03:53,310
+E esse mapeamento aprendido pelo PCA,
+
+111
+00:03:53,530 --> 00:03:54,770
+em especial,
+
+112
+00:03:54,950 --> 00:03:57,650
+o que ele faz é computar um conjunto de parâmetros - 
+
+113
+00:03:58,210 --> 00:04:00,500
+o redimensionamento dos parâmetros e a normalização pela média
+
+114
+00:04:01,240 --> 00:04:04,040
+e também a computação dessa matriz "U-reduce".
+
+115
+00:04:04,680 --> 00:04:05,510
+Mas todas essas coisas,
+
+116
+00:04:05,670 --> 00:04:06,980
+como a matriz "U-reduce",
+
+117
+00:04:07,120 --> 00:04:08,420
+são parâmetros que são aprendidos
+
+118
+00:04:08,670 --> 00:04:09,950
+pelo PCA, e nós devemos
+
+119
+00:04:10,150 --> 00:04:12,270
+ajustar nossos parâmetros apenas
+
+120
+00:04:12,480 --> 00:04:13,990
+ao nosso conjunto de treinamento,
+
+121
+00:04:14,040 --> 00:04:16,250
+e não aos nossos conjuntos de validação cruzada e teste.
+
+122
+00:04:16,370 --> 00:04:17,560
+Então, tudo isso
+
+123
+00:04:18,180 --> 00:04:19,460
+deve ser obtido
+
+124
+00:04:19,820 --> 00:04:22,430
+rodando PCA apenas no conjunto de treinamento.
+
+125
+00:04:23,300 --> 00:04:26,930
+E tendo encontrado "U-reduce", ou os parâmetros para redimensionamento das variáveis:
+
+126
+00:04:27,350 --> 00:04:28,620
+a média para normalização,
+
+127
+00:04:29,320 --> 00:04:31,790
+e a valor pelo qual você divide as variáveis,
+
+128
+00:04:32,180 --> 00:04:34,500
+para colocá-las em escalas compatíveis.
+
+129
+00:04:34,760 --> 00:04:36,010
+Tendo encontrado todos esses
+
+130
+00:04:36,570 --> 00:04:38,010
+parâmetros para o conjunto de treinamento,
+
+131
+00:04:38,220 --> 00:04:41,560
+você pode aplicar o mesmo mapeamento para outros exemplos
+
+132
+00:04:41,820 --> 00:04:45,020
+no seu conjunto de validação cruzada,
+
+133
+00:04:45,180 --> 00:04:46,680
+ou no conjunto de teste, okay?
+
+134
+00:04:47,150 --> 00:04:48,340
+Resumindo: quando você
+
+135
+00:04:48,450 --> 00:04:49,790
+roda PCA, rode o PCA apenas
+
+136
+00:04:49,900 --> 00:04:51,070
+para os dados do conjunto
+
+137
+00:04:51,220 --> 00:04:52,450
+de treinamento,
+
+138
+00:04:52,490 --> 00:04:55,880
+não para dados do conjunto de validação cruzada, ou do conjunto de teste.
+
+139
+00:04:56,410 --> 00:04:57,620
+E isso define o mapeamento
+
+140
+00:04:57,870 --> 00:04:58,770
+de "x" para "z",
+
+141
+00:04:58,950 --> 00:05:00,320
+e você pode, então, aplicar
+
+142
+00:05:00,560 --> 00:05:02,240
+esse mapeamento para os seus
+
+143
+00:05:02,290 --> 00:05:03,370
+dados de validação e teste.
+
+144
+00:05:03,450 --> 00:05:04,660
+Aliás, nesse exemplo, eu falei
+
+145
+00:05:05,000 --> 00:05:06,660
+sobre reduzir os dados de dimensão
+
+146
+00:05:06,950 --> 00:05:08,510
+10.000 para dimensão 1.000;
+
+147
+00:05:08,740 --> 00:05:10,350
+isso, na verdade,
+
+148
+00:05:10,660 --> 00:05:11,950
+não é tão irreal.
+
+149
+00:05:12,280 --> 00:05:14,720
+Para muitos problemas, podemos reduzir a dimensão dos dados
+
+150
+00:05:17,600 --> 00:05:18,700
+de 5 a 10 vezes,
+
+151
+00:05:18,780 --> 00:05:20,910
+e ainda manter a maior parte da variância.
+
+152
+00:05:21,270 --> 00:05:22,680
+Nós podemos fazer isso
+
+153
+00:05:23,900 --> 00:05:25,840
+sem afetar muito o desempenho,
+
+154
+00:05:26,240 --> 00:05:27,970
+em termos da precisão na classificação
+
+155
+00:05:28,770 --> 00:05:30,320
+do algoritmo de aprendizagem.
+
+156
+00:05:31,090 --> 00:05:32,140
+E trabalhando com dados
+
+157
+00:05:32,590 --> 00:05:33,730
+com dimensão reduzida,
+
+158
+00:05:34,060 --> 00:05:36,500
+nosso algoritmo de aprendizagem pode rodar muito mais rápido.
+
+159
+00:05:36,910 --> 00:05:38,120
+Resumindo, até agora
+
+160
+00:05:38,410 --> 00:05:40,920
+nós falamos sobre as seguintes aplicações de PCA:
+
+161
+00:05:41,970 --> 00:05:43,780
+Primeiro falamos sobre compressão,
+
+162
+00:05:44,020 --> 00:05:45,140
+onde podemos reduzir
+
+163
+00:05:45,500 --> 00:05:46,440
+o espaço de memória
+
+164
+00:05:46,590 --> 00:05:47,960
+necessário para guardar os dados,
+
+165
+00:05:48,240 --> 00:05:49,390
+e agora falamos sobre usar
+
+166
+00:05:49,460 --> 00:05:51,630
+para agilizar um algoritmo de aprendizagem.
+
+167
+00:05:52,100 --> 00:05:53,870
+Nessas aplicações,
+
+168
+00:05:54,130 --> 00:05:56,240
+para escolher "K", normalmente,
+
+169
+00:05:56,420 --> 00:05:58,770
+nós o faremos de acordo com a porcentagem
+
+170
+00:05:59,160 --> 00:06:00,590
+de variância a ser mantida.
+
+171
+00:06:00,810 --> 00:06:03,880
+Para esse algoritmo de aprendizagem,
+
+172
+00:06:04,780 --> 00:06:06,320
+aplicações para agilizá-lo,
+
+173
+00:06:06,570 --> 00:06:10,050
+frequentemente, manterão 99% da variância.
+
+174
+00:06:10,530 --> 00:06:11,690
+Essa seria uma forma típica
+
+175
+00:06:12,100 --> 00:06:14,270
+de como escolher k; é assim que escolhemos k
+
+176
+00:06:14,730 --> 00:06:16,640
+para essas aplicações de compressão.
+
+177
+00:06:17,850 --> 00:06:19,590
+Já para aplicações de visualização,
+
+178
+00:06:20,760 --> 00:06:22,100
+normalmente sabemos
+
+179
+00:06:22,230 --> 00:06:23,550
+como plotar dados apenas
+
+180
+00:06:24,020 --> 00:06:25,520
+com duas ou três dimensões,
+
+181
+00:06:26,540 --> 00:06:28,650
+então para aplicações de visualização,
+
+182
+00:06:28,830 --> 00:06:29,660
+normalmente escolhemos
+
+183
+00:06:29,710 --> 00:06:31,930
+k igual a dois ou k igual a três, porque podemos plotar dados apenas
+
+184
+00:06:32,740 --> 00:06:33,500
+em 2D ou 3D.
+
+185
+00:06:34,510 --> 00:06:35,720
+Então, isso resume as
+
+186
+00:06:36,020 --> 00:06:37,230
+principais aplicações de PCA,
+
+187
+00:06:37,870 --> 00:06:39,580
+assim como a escolha do valor de "k"
+
+188
+00:06:39,670 --> 00:06:41,540
+para essas diferentes aplicações.
+
+189
+00:06:42,890 --> 00:06:45,710
+Eu devo mencionar também que há um mau uso
+
+190
+00:06:46,400 --> 00:06:48,100
+de PCA que é frequente.
+
+191
+00:06:48,800 --> 00:06:50,300
+Às vezes, ouvimos falar sobre
+
+192
+00:06:50,580 --> 00:06:51,820
+algumas pessoas fazendo isso,
+
+193
+00:06:52,230 --> 00:06:54,780
+portanto vou mencionar, para você não repetir esse erro.
+
+194
+00:06:55,480 --> 00:06:56,460
+Há um mau uso
+
+195
+00:06:56,540 --> 00:06:59,170
+de PCA, que é: tentar prevenir o sobreajuste (over-fitting)
+
+196
+00:07:00,380 --> 00:07:00,660
+   Este é o raciocínio -
+
+197
+00:07:01,910 --> 00:07:03,080
+Isso não é um boa forma
+
+198
+00:07:03,730 --> 00:07:04,610
+de usar PCA,
+
+199
+00:07:04,670 --> 00:07:05,630
+mas aqui está
+
+200
+00:07:05,690 --> 00:07:07,080
+o raciocínio por trás desse método:
+
+201
+00:07:07,350 --> 00:07:09,090
+se nós temos x⁽ᴵ⁾,
+
+202
+00:07:09,300 --> 00:07:10,660
+com n variáveis,
+
+203
+00:07:10,830 --> 00:07:12,640
+podemos comprimi-las, e utilizar z⁽ᴵ⁾,
+
+204
+00:07:12,750 --> 00:07:13,700
+ao invés de x⁽ᴵ⁾,
+
+205
+00:07:14,270 --> 00:07:15,410
+isso reduziria o número
+
+206
+00:07:15,560 --> 00:07:17,050
+de variáveis para k,
+
+207
+00:07:17,290 --> 00:07:19,300
+que seria uma dimensão muito reduzida.
+
+208
+00:07:19,410 --> 00:07:21,130
+Então, se tivermos um número
+
+209
+00:07:21,490 --> 00:07:22,520
+de variáveis muito menor,
+
+210
+00:07:22,770 --> 00:07:25,800
+se k igual a 1.000" e n igual a 10.000,
+
+211
+00:07:26,090 --> 00:07:27,010
+se k igual a 1.000 e n igual a 10.000,
+
+212
+00:07:27,780 --> 00:07:29,390
+dados de dimensão 1.000,
+
+213
+00:07:29,670 --> 00:07:30,580
+é muito menos provável
+
+214
+00:07:31,260 --> 00:07:32,230
+termos sobreajuste,
+
+215
+00:07:33,280 --> 00:07:34,980
+do que se tivermos 10,000 dimensões.
+
+216
+00:07:35,950 --> 00:07:37,160
+Então, algumas pessoas pensa
+
+217
+00:07:37,360 --> 00:07:39,360
+em PCA como uma forma de prevenir sobreajuste.
+
+218
+00:07:39,950 --> 00:07:41,940
+Mas, eu gostaria de enfatizar
+
+219
+00:07:42,110 --> 00:07:44,000
+que isso é uma má aplicação de PCA,
+
+220
+00:07:44,260 --> 00:07:46,080
+e eu não recomendo essa utilização.
+
+221
+00:07:46,520 --> 00:07:48,430
+E não é que não funcione,
+
+222
+00:07:49,000 --> 00:07:49,920
+se você quiser usar esse método
+
+223
+00:07:50,330 --> 00:07:51,560
+para reduzir a dimensão, 
+
+224
+00:07:51,890 --> 00:07:52,830
+para prevenir sobreajuste,
+
+225
+00:07:53,690 --> 00:07:54,830
+isso pode até funcionar.
+
+226
+00:07:55,560 --> 00:07:56,720
+Mas, esta não é uma boa forma
+
+227
+00:07:57,040 --> 00:07:58,340
+de lidar com sobreajuste,
+
+228
+00:07:58,680 --> 00:08:00,390
+ao invés disso, se você está preocupado
+
+229
+00:08:00,510 --> 00:08:01,810
+com sobreajuste, há uma maneira
+
+230
+00:08:02,030 --> 00:08:03,420
+muito melhor de lidar com isso:
+
+231
+00:08:03,800 --> 00:08:05,680
+usar regularização, ao invés de PCA,
+
+232
+00:08:05,900 --> 00:08:07,910
+para reduzir a dimensão dos dados.
+
+233
+00:08:08,670 --> 00:08:10,000
+E a razão é que, se você pensar
+
+234
+00:08:11,010 --> 00:08:12,150
+em como PCA funciona,
+
+235
+00:08:12,900 --> 00:08:13,950
+ele joga fora os rótulos "y".
+
+236
+00:08:14,530 --> 00:08:15,680
+Você olha apenas
+
+237
+00:08:16,050 --> 00:08:17,220
+as entradas x⁽ᴵ⁾, e usa isso
+
+238
+00:08:17,340 --> 00:08:19,070
+para encontrar uma aproximação
+
+239
+00:08:19,130 --> 00:08:21,150
+de menor dimensão, para os seus dados.
+
+240
+00:08:21,390 --> 00:08:22,840
+Então, o que PCA faz,
+
+241
+00:08:23,190 --> 00:08:25,410
+é jogar fora parte da informação.
+
+242
+00:08:26,460 --> 00:08:28,040
+Ele joga fora, ou reduz
+
+243
+00:08:28,180 --> 00:08:29,680
+a dimensão dos seus dados, sem saber
+
+244
+00:08:30,110 --> 00:08:31,390
+quais são os valores de "y".
+
+245
+00:08:32,380 --> 00:08:33,700
+Então, usar PCA dessa forma
+
+246
+00:08:34,250 --> 00:08:35,770
+é okay, provavelmente,
+
+247
+00:08:35,920 --> 00:08:37,750
+apenas se, digamos,
+
+248
+00:08:37,990 --> 00:08:39,190
+99% da variância é mantida,
+
+249
+00:08:39,410 --> 00:08:40,400
+se você mantiver
+
+250
+00:08:40,830 --> 00:08:41,970
+a maior parte da variância.
+
+251
+00:08:42,100 --> 00:08:44,230
+Mas, ele pode jogar fora informações valiosas.
+
+252
+00:08:45,010 --> 00:08:45,980
+E acontece que,
+
+253
+00:08:46,310 --> 00:08:47,580
+se você mantiver 99%
+
+254
+00:08:47,820 --> 00:08:49,260
+da variância, ou 95%
+
+255
+00:08:49,360 --> 00:08:50,940
+da variância, ou algo assim,
+
+256
+00:08:51,020 --> 00:08:52,310
+usando regularização,
+
+257
+00:08:52,720 --> 00:08:54,650
+você terá um método,
+
+258
+00:08:54,790 --> 00:08:56,010
+pelo menos tão bom quanto,
+
+259
+00:08:56,220 --> 00:08:57,880
+para prevenir sobreajuste.
+
+260
+00:08:58,900 --> 00:09:00,340
+E regularização frequentemente
+
+261
+00:09:00,590 --> 00:09:02,220
+funcionará melhor, porque quando você
+
+262
+00:09:02,350 --> 00:09:03,890
+aplica Regressão Linear,
+
+263
+00:09:04,250 --> 00:09:05,240
+ou Regressão Logística,
+
+264
+00:09:05,600 --> 00:09:07,390
+ou algum outro método com regularização,
+
+265
+00:09:08,010 --> 00:09:09,420
+esse problema de minimização sabe
+
+266
+00:09:09,480 --> 00:09:10,740
+quais são os valores de "y",
+
+267
+00:09:10,960 --> 00:09:12,680
+portanto, é menos provável que ele
+
+268
+00:09:12,880 --> 00:09:14,330
+jogue fora alguma informação valiosa.
+
+269
+00:09:14,730 --> 00:09:15,790
+Já PCA não faz uso
+
+270
+00:09:16,060 --> 00:09:17,810
+dos rótulos, portanto é mais
+
+271
+00:09:17,850 --> 00:09:19,940
+provável que jogue fora informações valiosas.
+
+272
+00:09:20,230 --> 00:09:21,370
+Então, resumindo,
+
+273
+00:09:21,620 --> 00:09:22,900
+é um bom uso de PCA
+
+274
+00:09:23,010 --> 00:09:24,380
+se sua motivação for acelerar
+
+275
+00:09:24,530 --> 00:09:26,490
+seu algoritmo de aprendizagem,
+
+276
+00:09:26,790 --> 00:09:28,360
+mas não é bom usar PCA 
+
+277
+00:09:28,650 --> 00:09:29,630
+para prevenir sobreajuste.
+
+278
+00:09:30,030 --> 00:09:32,270
+Regularização
+
+279
+00:09:32,900 --> 00:09:36,190
+é a opção recomendada
+
+280
+00:09:36,440 --> 00:09:40,490
+para esta finalidade.
+
+281
+00:09:41,310 --> 00:09:43,350
+Finalmente, um último mau uso de PCA.
+
+282
+00:09:43,750 --> 00:09:45,760
+Eu devo dizer que PCA é um algoritmo muito útil,
+
+283
+00:09:46,270 --> 00:09:49,170
+eu uso constantemente para compressão, com intuito de visualização.
+
+284
+00:09:50,230 --> 00:09:51,400
+Mas, às vezes,
+
+285
+00:09:51,570 --> 00:09:53,310
+eu vejo que as pessoas
+
+286
+00:09:53,710 --> 00:09:56,080
+usam PCA onde não deveriam.
+
+287
+00:09:56,220 --> 00:09:57,940
+Este é um exemplo comum: 
+
+288
+00:09:58,030 --> 00:09:59,140
+alguém está modelando
+
+289
+00:09:59,330 --> 00:10:00,330
+um sistema
+
+290
+00:10:01,010 --> 00:10:02,130
+de Máquina de Aprendizado,
+
+291
+00:10:02,200 --> 00:10:04,150
+esse é um modelo de um sistema de aprendizado -
+
+292
+00:10:05,060 --> 00:10:06,080
+pegar o conjunto de
+
+293
+00:10:06,570 --> 00:10:07,350
+treinamento,
+
+294
+00:10:07,400 --> 00:10:08,700
+rodar o PCA, 
+
+295
+00:10:08,860 --> 00:10:11,200
+treinar Regressão Logística, e testar com os dados de teste.
+
+296
+00:10:11,680 --> 00:10:12,770
+Então, normalmente,
+
+297
+00:10:13,090 --> 00:10:14,360
+no começo de um projeto,
+
+298
+00:10:14,600 --> 00:10:15,600
+alguém escreve
+
+299
+00:10:15,720 --> 00:10:16,980
+um plano de projeto que diz:
+
+300
+00:10:17,310 --> 00:10:18,610
+"vamos dar 4 passos com PCA".
+
+301
+00:10:20,210 --> 00:10:21,220
+Antes de escrever
+
+302
+00:10:21,530 --> 00:10:23,350
+um plano de projeto que incorpora PCA
+
+303
+00:10:23,560 --> 00:10:24,860
+como esse,
+
+304
+00:10:25,030 --> 00:10:27,110
+uma boa pergunta a se fazer é:
+
+305
+00:10:27,630 --> 00:10:28,560
+"e se fizermos
+
+306
+00:10:29,540 --> 00:10:31,470
+o projeto todo, sem usar PCA?"
+
+307
+00:10:32,170 --> 00:10:33,450
+Normalmente as pessoas
+
+308
+00:10:33,800 --> 00:10:34,940
+não consideram esse passo,
+
+309
+00:10:35,440 --> 00:10:37,080
+antes de propor um plano de projeto
+
+310
+00:10:37,920 --> 00:10:40,620
+tão complicado, implementando PCA.
+
+311
+00:10:40,810 --> 00:10:42,360
+O conselho que, frequentemente,
+
+312
+00:10:43,050 --> 00:10:44,300
+eu dou às pessoas é:
+
+313
+00:10:44,670 --> 00:10:45,980
+antes de implementar PCA,
+
+314
+00:10:46,450 --> 00:10:47,970
+eu sugiro que, primeiramente,
+
+315
+00:10:48,220 --> 00:10:49,410
+você faça tudo
+
+316
+00:10:49,600 --> 00:10:50,770
+o que precisa fazer,
+
+317
+00:10:50,850 --> 00:10:52,030
+considerando como entrada,
+
+318
+00:10:52,450 --> 00:10:53,650
+o seu dado original,
+
+319
+00:10:53,980 --> 00:10:56,420
+os seus dados brutos, x⁽ᴵ⁾.
+
+320
+00:10:56,600 --> 00:10:57,860
+E, se isso não funcionar,
+
+321
+00:10:57,960 --> 00:10:59,650
+então considere usar PCA e z⁽ᴵ⁾.
+
+322
+00:11:01,010 --> 00:11:02,420
+Então, antes de usar PCA,
+
+323
+00:11:03,030 --> 00:11:03,930
+ao invés de
+
+324
+00:11:04,360 --> 00:11:05,710
+reduzir a dimensão dos dados,
+
+325
+00:11:06,640 --> 00:11:08,020
+eu descartaria o passo com PCA,
+
+326
+00:11:08,420 --> 00:11:09,690
+e consideraria treinar
+
+327
+00:11:10,040 --> 00:11:11,460
+o meu algoritmo de aprendizagem
+
+328
+00:11:12,440 --> 00:11:13,560
+com meus dados originais.
+
+329
+00:11:14,410 --> 00:11:15,990
+Vamos utilizar o meu dado
+
+330
+00:11:16,300 --> 00:11:17,770
+original, x⁽ᴵ⁾,
+
+331
+00:11:18,180 --> 00:11:19,550
+e eu recomendaria que ao invés
+
+332
+00:11:19,720 --> 00:11:20,910
+de colocar PCA no algoritmo,
+
+333
+00:11:21,030 --> 00:11:23,250
+tentar fazer, o que você estiver fazendo com x⁽ᴵ⁾ primeiro
+
+334
+00:11:24,090 --> 00:11:25,000
+ e apenas se você
+
+335
+00:11:25,150 --> 00:11:26,180
+tentar fazer, o que você estiver fazendo com x⁽ᴵ⁾ primeiro
+
+336
+00:11:26,480 --> 00:11:27,590
+para acreditar que
+
+337
+00:11:27,790 --> 00:11:29,470
+ele não funciona, se o seu algoritmo
+
+338
+00:11:29,510 --> 00:11:31,100
+estiver muito lento,
+
+339
+00:11:31,280 --> 00:11:32,680
+ou se precisar de muita memória,
+
+340
+00:11:32,910 --> 00:11:34,140
+ou de muito espaço em disco;
+
+341
+00:11:34,430 --> 00:11:35,850
+e você quiser comprimir
+
+342
+00:11:36,190 --> 00:11:37,810
+a sua representação, mas apenas se
+
+343
+00:11:38,000 --> 00:11:39,020
+não funcionar com x⁽ᴵ⁾.
+
+344
+00:11:39,360 --> 00:11:40,640
+Apenas se você tiver evidências,
+
+345
+00:11:40,950 --> 00:11:41,890
+ou fortes razões para
+
+346
+00:11:42,380 --> 00:11:43,890
+acreditar que x⁽ᴵ⁾ não funcionará,
+
+347
+00:11:44,380 --> 00:11:46,730
+implemente PCA, e use a representação comprimida.
+
+348
+00:11:47,990 --> 00:11:48,830
+Porque, muitas vezes,
+
+349
+00:11:49,100 --> 00:11:50,380
+eu vejo que as pessoas começam
+
+350
+00:11:50,530 --> 00:11:51,520
+a trabalhar com
+
+351
+00:11:52,100 --> 00:11:54,580
+um plano de projeto que incorpora PCA,
+
+352
+00:11:54,650 --> 00:11:55,620
+e o que estão fazendo
+
+353
+00:11:55,820 --> 00:11:57,380
+funcionaria bem
+
+354
+00:11:57,660 --> 00:11:59,520
+sem usar PCA.
+
+355
+00:11:59,840 --> 00:12:01,650
+Então, considere essa
+
+356
+00:12:01,860 --> 00:12:03,130
+alternativa também,
+
+357
+00:12:03,320 --> 00:12:04,170
+antes de perder
+
+358
+00:12:04,300 --> 00:12:05,570
+tempo implementando PCA,
+
+359
+00:12:05,770 --> 00:12:08,100
+e buscando o valor de "k", e assim por diante.
+
+360
+00:12:08,250 --> 00:12:09,330
+Então, é isso aí para PCA.
+
+361
+00:12:09,800 --> 00:12:11,000
+Apesar dos últimos comentários,
+
+362
+00:12:11,080 --> 00:12:12,380
+PCA é um algoritmo muito útil,
+
+363
+00:12:12,690 --> 00:12:14,060
+quando usado para
+
+364
+00:12:14,150 --> 00:12:15,330
+aplicações apropriadas,
+
+365
+00:12:16,070 --> 00:12:17,480
+e eu, na verdade,
+
+366
+00:12:17,770 --> 00:12:19,330
+uso PCA frequentemente,
+
+367
+00:12:19,580 --> 00:12:20,650
+para acelerar
+
+368
+00:12:20,850 --> 00:12:22,150
+meus algoritmos de aprendizado.
+
+369
+00:12:22,880 --> 00:12:24,310
+Mas, eu acho que
+
+370
+00:12:24,400 --> 00:12:25,690
+aplicações de PCA,
+
+371
+00:12:26,020 --> 00:12:27,300
+também incluem 
+
+372
+00:12:27,410 --> 00:12:29,030
+compressão de  dados, 
+
+373
+00:12:29,620 --> 00:12:30,650
+redução da necessidade de memória
+
+374
+00:12:30,990 --> 00:12:33,130
+ou de disco; ou para visualizar dados.
+
+375
+00:12:34,270 --> 00:12:35,710
+PCA é um dos algoritmos de
+
+376
+00:12:35,750 --> 00:12:36,960
+Aprendizado Não-Supervisionado
+
+377
+00:12:36,990 --> 00:12:39,420
+mais utilizados, e mais poderosos.
+
+378
+00:12:40,060 --> 00:12:41,210
+E com o que você aprendeu
+
+379
+00:12:41,420 --> 00:12:43,120
+nesses vídeo, eu espero que você
+
+380
+00:12:43,500 --> 00:12:44,710
+consiga implementar PCA,
+
+381
+00:12:45,150 --> 00:12:46,280
+e utilizá-lo para todos
+
+382
+00:12:46,500 --> 00:12:47,930
+os seus objetivos.
+Tradução: Pablo de Morais Andrade | Revisão:

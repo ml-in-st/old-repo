@@ -1,0 +1,105 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Gradient Descent in Practice I - Feature Scaling
+ </h1>
+ <p>
+  <strong>
+   Note:
+  </strong>
+  [6:20 - The average size of a house is 1000 but 100 is accidentally written instead]
+ </p>
+ <p>
+  We can speed up gradient descent by having each of our input values in roughly the same range. This is because θ will descend quickly on small ranges and slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.
+ </p>
+ <p>
+  The way to prevent this is to modify the ranges of our input variables so that they are all roughly the same. Ideally:
+ </p>
+ <p hasmath="true">
+  −1 ≤ $$x_{(i)}$$ ≤ 1
+ </p>
+ <p>
+  or
+ </p>
+ <p hasmath="true">
+  −0.5 ≤ $$x_{(i)}$$ ≤ 0.5
+ </p>
+ <p>
+  These aren't exact requirements; we are only trying to speed things up. The goal is to get all input variables into roughly one of these ranges, give or take a few.
+ </p>
+ <p>
+  Two techniques to help with this are
+  <strong>
+   feature scaling
+  </strong>
+  and
+  <strong>
+   mean normalization
+  </strong>
+  . Feature scaling involves dividing the input values by the range (i.e. the maximum value minus the minimum value) of the input variable, resulting in a new range of just 1. Mean normalization involves subtracting the average value for an input variable from the values for that input variable resulting in a new average value for the input variable of just zero. To implement both of these techniques, adjust your input values as shown in this formula:
+ </p>
+ <p hasmath="true">
+  $$x_i := \dfrac{x_i - \mu_i}{s_i}$$
+ </p>
+ <p hasmath="true">
+  Where $$μ_i$$ is the
+  <strong>
+   average
+  </strong>
+  of all the values for feature (i) and $$s_i$$ is the range of values (max - min), or $$s_i$$ is the standard deviation.
+ </p>
+ <p>
+  Note that dividing by the range, or dividing by the standard deviation, give different results. The quizzes in this course use range - the programming exercises use standard deviation.
+ </p>
+ <p hasmath="true">
+  For example, if $$x_i$$ represents housing prices with a range of 100 to 2000  and a mean value of 1000, then, $$x_i := \dfrac{price-1000}{1900}$$.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

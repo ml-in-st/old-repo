@@ -1,0 +1,61 @@
+En el video anterior, hablamos sobre
+la formulación de la hipótesis para la regresión lineal con múltiples características
+o con múltiples variables. En este video, vamos a hablar de cómo
+ajustar los parámetros de esa hipótesis. En particular vamos a hablar de cómo
+utilizar el gradiente de descenso para la regresión lineal con múltiples características. Para resumir rápidamente nuestra notación,
+esta es nuestra hipótesis formal en la regresión lineal multivariable donde
+hemos adoptado la convención de que x0 = 1. Los parámetros de este modelo van de theta0
+hasta theta n, pero en lugar de pensar en ellos como parámetros separados de "n", lo
+que es válido, en su lugar voy a pensar en los parámetros como theta, en donde theta
+de aquí es un vector dimensional n+1. Entonces sólo voy a pensar en los
+parámetros de este modelo como si fueran un vector. Nuestra función de costo es "J" de theta0 a través
+de theta n que está dada por esta habitual suma de cuadrados del término de error. Pero, de nuevo
+en lugar de pensar en "J" como una función de estos números n+1, voy a escribir
+más frecuentemente "J" como una simple función del vector de parámetros theta
+de manera que theta sea un vector. Así es como se ve el gradiente de descenso.
+Vamos a actualizar varias veces cada parámetro theta j de acuerdo con theta j
+menos alfa multiplicado por este término derivado. Y de nuevo escribimos esto simplemente como
+"J" de theta, por lo que theta j se actualiza como theta j menos la tasa de aprendizaje
+alfa multiplicado por la derivada, una derivada parcial de la función de costos con
+respecto al parámetro theta j. Vamos a ver cómo se ve esto cuando
+implementamos el gradiente de descenso y, en particular, vamos a ver cómo
+se ve el término derivado parcial. Esto es lo que tenemos para el gradiente de descenso
+para cuando teníamos la característica n=1. Teníamos dos reglas de actualización independientes para
+los parámetros theta0 y theta1 y espero que esto te resulte familiar.
+Y este término de aquí era por supuesto la derivada parcial de la función de costos
+con respecto al parámetro de theta0, y del mismo modo teníamos una regla de
+actualización diferente para el parámetro theta1. Hay una pequeña diferencia y es
+que cuando antes teníamos solo una característica, la llamábamos x(i)
+pero ahora en nuestra nueva notación por supuesto la llamaremos 
+x superíndice i subíndice 1 para denotar nuestra única función.</u> Entonces eso era para cuando
+teníamos sólo una característica. Ahora veamos el nuevo algoritmo para
+el cual tenemos más de una característica, donde el número de características "n"
+puede ser mucho mayor a 1. Obtenemos esta regla de actualización para el
+gradiente de descenso y, tal vez para quienes saben cálculo, si se toma la
+definición de la función de costos y la derivada parcial de la función de costos
+"J" con respecto al parámetro theta j, encontrarás que la derivada
+parcial es exactamente ese término al que le puse un recuadro azul alrededor. Y si lo implementas obtendrás
+una implementación funcional del gradiente de descenso para 
+la regresión lineal multivariable. Lo último que quiero hacer en
+esta diapositiva es explicarte por qué estos nuevos y viejos algoritmos son
+más o menos lo mismo o por qué ambos son algoritmos similares o por qué
+ambos son algoritmos de gradiente de descenso. Vamos a considerar un caso
+en donde tenemos dos características o tal vez más de dos características,
+así que tenemos tres reglas de actualización para los parámetros theta0, theta1, theta2
+y tal vez para otros valores de theta también. Si te fijas en la regla de actualización para
+theta0, puedes encontrar que esta regla de actualización de aquí es la misma que
+la regla de actualización que teníamos antes para el caso de n = 1. Y la razón por la que son
+equivalentes es, por supuesto, porque en nuestra convención de notación
+tuvimos esta convención x(i) 0 = 1, por lo que</u> estos dos términos a los que les puse 
+recuadros color magenta son equivalentes. Del mismo modo, si ves la regla de actualización
+para theta1, encontrarás que este término de aquí es equivalente al
+término que teníamos antes, o a la ecuación o a la regla de actualización
+que teníamos antes para theta1, en donde, por supuesto, sólo estamos utilizando
+esta nueva notación x(i) subíndice 1 para denotar</u> nuestra nueva notación denotando nuestra primera característica y ahora que tenemos
+más de una característica podemos tener reglas de actualización similares para los otros
+parámetros como theta2 y así sucesivamente. Suceden muchas cosas en esta diapositiva
+así que definitivamente te animo a que pongas pausa al video si lo necesitas
+y revises a detalle todas las matemáticas que contiene para asegurarte de que entiendes
+todo lo que está pasando aquí. Pero si implementas el algoritmo
+escrito aquí, entonces tienes una implementación funcional de una
+regresión lineal con múltiples características.

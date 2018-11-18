@@ -1,0 +1,1707 @@
+1
+00:00:00,340 --> 00:00:01,410
+Nesse vídeo gostaria de
+
+2
+00:00:01,550 --> 00:00:03,020
+contar-lhes sobre o algoritmo
+
+3
+00:00:03,340 --> 00:00:04,570
+de Análise dos Componentes Principais
+
+4
+00:00:05,600 --> 00:00:06,560
+E ao final desse vídeo
+
+5
+00:00:06,710 --> 00:00:09,200
+você saberá como implementar o ACP por conta própria
+
+6
+00:00:10,170 --> 00:00:12,540
+e utilizá-lo para reduzir a dimensão de seus dados.
+
+7
+00:00:13,100 --> 00:00:14,690
+Antes de aplicar o PCA, existe
+
+8
+00:00:14,800 --> 00:00:17,760
+um passo de pré-processamento dos dados que sempre deveria ser seguido.
+
+9
+00:00:18,510 --> 00:00:20,220
+Dados os conjuntos de troca dos exemplos,
+
+10
+00:00:20,520 --> 00:00:22,290
+é importante que sempre
+
+11
+00:00:22,600 --> 00:00:24,070
+se realize a normalização média
+
+12
+00:00:25,330 --> 00:00:26,140
+e então, dependendo dos seus dados,
+
+13
+00:00:26,840 --> 00:00:28,540
+talvez utilizar também o redimensionamento.
+
+14
+00:00:29,620 --> 00:00:30,950
+Isso é bastante semelhante aos
+
+15
+00:00:31,650 --> 00:00:33,250
+processos de normalização média e de redimencionamento
+
+16
+00:00:34,080 --> 00:00:36,580
+que temos para o Aprendizado Supervisionado.
+
+17
+00:00:36,910 --> 00:00:38,240
+Na realidade, é exatamente o
+
+18
+00:00:38,390 --> 00:00:40,160
+mesmo procedimento, exceto pelo fato de estarmos
+
+19
+00:00:40,310 --> 00:00:41,790
+executando-os agora para nossos dados não rotulados,
+
+20
+00:00:42,930 --> 00:00:43,670
+do X1 até o Xm.
+
+21
+00:00:44,180 --> 00:00:45,530
+Assim, para a normalização média
+
+22
+00:00:45,720 --> 00:00:47,080
+primeiro calculamos a média
+
+23
+00:00:47,390 --> 00:00:49,070
+das variáveis para então
+
+24
+00:00:49,340 --> 00:00:50,900
+substituir cada variável X
+
+25
+00:00:51,150 --> 00:00:52,680
+por X menos sua média
+
+26
+00:00:52,810 --> 00:00:54,120
+fazendo com que cada variável
+
+27
+00:00:54,520 --> 00:00:57,450
+agora tenha exatamente a média zero.
+
+28
+00:00:58,690 --> 00:01:00,690
+As variáveis diferentes tem escalas muito diferentes.
+
+29
+00:01:01,540 --> 00:01:03,050
+Assim, por exemplo, se x1
+
+30
+00:01:03,080 --> 00:01:04,060
+for do tamanho de uma casa e
+
+31
+00:01:04,100 --> 00:01:05,390
+x2 for o número de quartos,
+
+32
+00:01:05,580 --> 00:01:07,370
+utilizando nosso exemplo anterior,
+
+33
+00:01:07,480 --> 00:01:08,680
+também escalamos cada variável
+
+34
+00:01:09,130 --> 00:01:10,540
+para estarem em uma faixa de valores comparáveis.
+
+35
+00:01:10,980 --> 00:01:12,490
+E, semelhante ao que
+
+36
+00:01:12,680 --> 00:01:13,860
+tivemos com Aprendizado Supervisionado,
+
+37
+00:01:14,060 --> 00:01:16,200
+tomamos x, i substitui j, 
+
+38
+00:01:16,680 --> 00:01:17,620
+a variável j
+
+39
+00:01:23,250 --> 00:01:25,530
+para então
+
+40
+00:01:25,890 --> 00:01:27,610
+subtrairmos a média,
+
+41
+00:01:28,370 --> 00:01:29,520
+e dividirmos por sj, que é aqui uma medida dos valores beta da variável j.
+
+42
+00:01:29,610 --> 00:01:30,020
+Portanto, pode ser o valor máximo menos o valor mínimo
+
+43
+00:01:30,080 --> 00:01:31,310
+ou de forma mais comum, 
+
+44
+00:01:31,890 --> 00:01:33,540
+é o desvio padrão da variável j. 
+
+45
+00:01:33,640 --> 00:01:35,520
+Após fazer este
+
+46
+00:01:36,230 --> 00:01:39,480
+pré-processamento de dados, este é o resultado do algoritmo PCA.
+
+47
+00:01:40,620 --> 00:01:41,630
+Vimos no vídeo anterior que
+
+48
+00:01:41,960 --> 00:01:43,050
+que o que o PCA faz
+
+49
+00:01:43,170 --> 00:01:44,520
+é tentar encontrar o menor
+
+50
+00:01:44,790 --> 00:01:46,080
+espaço multi-dimensional no qual
+
+51
+00:01:46,170 --> 00:01:47,500
+os dados serão projetados
+
+52
+00:01:47,650 --> 00:01:49,780
+para minimizar os erros
+
+53
+00:01:50,540 --> 00:01:51,660
+de projeção quadrática, 
+
+54
+00:01:51,740 --> 00:01:53,080
+minimizar a soma de erros na projeção quadrática e
+
+55
+00:01:53,420 --> 00:01:54,800
+também o tamanho do quadrado
+
+56
+00:01:54,870 --> 00:01:56,790
+destas linhas azuis.
+
+57
+00:01:57,110 --> 00:01:58,510
+O que queremos fazer especificamente é
+
+58
+00:01:59,210 --> 00:02:02,730
+encontrar o vetor, u1,
+
+59
+00:02:03,280 --> 00:02:04,750
+que define esta direção ou
+
+60
+00:02:05,040 --> 00:02:06,630
+no caso de 2D queremos
+
+61
+00:02:06,880 --> 00:02:08,760
+encontrar dois vetores, u1 e u2
+
+62
+00:02:10,640 --> 00:02:12,980
+que definem esta superfície
+
+63
+00:02:13,590 --> 00:02:14,610
+nas quais projetamos os dados.
+
+64
+00:02:16,620 --> 00:02:17,920
+Então, um lembrete rápido
+
+65
+00:02:18,040 --> 00:02:19,160
+sobre o que significa
+
+66
+00:02:19,730 --> 00:02:20,820
+reduzir as dimensões dos dados
+
+67
+00:02:21,490 --> 00:02:22,430
+para este exemplo à esquerda,
+
+68
+00:02:22,470 --> 00:02:23,560
+recebemos os
+
+69
+00:02:23,680 --> 00:02:26,010
+exemplos x1 que estão em r2,
+
+70
+00:02:26,300 --> 00:02:28,390
+e o que queremos
+
+71
+00:02:28,660 --> 00:02:29,500
+é encontrar
+
+72
+00:02:29,970 --> 00:02:32,400
+um conjunto de números, z1 em r
+
+73
+00:02:33,000 --> 00:02:34,950
+que usaremos para representar nossos dados.
+
+74
+00:02:36,000 --> 00:02:37,820
+Isto é o que a redução de 2D para 1D significa.
+
+75
+00:02:39,020 --> 00:02:41,450
+Especificamente, ao projetar
+
+76
+00:02:42,710 --> 00:02:44,080
+dados nesta linha vermelha aqui
+
+77
+00:02:44,800 --> 00:02:46,320
+precisaremos de apenas um número
+
+78
+00:02:46,450 --> 00:02:48,340
+para definir a posição dos pontos na linha.
+
+79
+00:02:48,590 --> 00:02:49,380
+Chamarei este número de
+
+80
+00:02:50,700 --> 00:02:51,830
+z ou z1.
+
+81
+00:02:52,020 --> 00:02:54,850
+Este Z aqui pertence aos números reais então  este é um vetor unidimensional.
+
+82
+00:02:55,380 --> 00:02:56,650
+Logo, z1 refere-se ao
+
+83
+00:02:56,690 --> 00:02:58,080
+primeiro componente desta
+
+84
+00:02:58,280 --> 00:03:00,430
+matriz um-a-um, ou vetor de uma dimensão.
+
+85
+00:03:01,670 --> 00:03:03,170
+Precisamos apenas de um número
+
+86
+00:03:03,490 --> 00:03:05,590
+para especificar a posição do ponto,
+
+87
+00:03:06,330 --> 00:03:07,940
+Portanto, se este exemplo aqui
+
+88
+00:03:08,460 --> 00:03:09,510
+fosse meu exemplo X1
+
+89
+00:03:10,610 --> 00:03:13,160
+talvez seja mapeado aqui
+
+90
+00:03:13,900 --> 00:03:15,450
+e se este exemplo fosse X2
+
+91
+00:03:15,680 --> 00:03:17,250
+talvez ele esteja mapeado aqui.
+
+92
+00:03:17,530 --> 00:03:18,790
+Então este ponto
+
+93
+00:03:19,060 --> 00:03:20,400
+aqui será Z1
+
+94
+00:03:20,840 --> 00:03:21,920
+e este ponto aqui será Z2.
+
+95
+00:03:22,080 --> 00:03:24,240
+De maneira similar, 
+
+96
+00:03:24,620 --> 00:03:26,410
+teríamos estes outros pontos
+
+97
+00:03:26,840 --> 00:03:30,230
+por aqui,
+
+98
+00:03:30,510 --> 00:03:32,550
+talvez X3, X4, X5 sejam mapeados para Z1,Z2, Z3.
+
+99
+00:03:34,360 --> 00:03:35,940
+O que o PCA tem
+
+100
+00:03:36,050 --> 00:03:36,830
+a fazer é que precisamos
+
+101
+00:03:36,930 --> 00:03:38,920
+encontrar uma forma de processar duas coisas.
+
+102
+00:03:39,310 --> 00:03:40,710
+Uma coisa é processar estes vetores
+
+103
+00:03:41,830 --> 00:03:44,970
+u1, neste caso, u1 e u2,
+
+104
+00:03:45,230 --> 00:03:46,880
+e a outra coisa é
+
+105
+00:03:47,130 --> 00:03:48,140
+como processar estes números Z.
+
+106
+00:03:49,360 --> 00:03:51,200
+Então, no exemplo à esquerda
+
+107
+00:03:51,430 --> 00:03:53,910
+estamos reduzindo os dados de 2D para 1D.
+
+108
+00:03:55,290 --> 00:03:56,100
+E no exemplo à direita
+
+109
+00:03:56,510 --> 00:03:58,100
+estamos reduzindo dados de 3D,
+
+110
+00:03:58,450 --> 00:04:00,600
+portanto,  X de i pertence a R3
+
+111
+00:04:00,710 --> 00:04:04,840
+para Z de i pertence a R2, que é agora bidimensional.
+
+112
+00:04:05,390 --> 00:04:07,790
+Então o vetor z é agora 2D
+
+113
+00:04:08,450 --> 00:04:09,590
+Este seria o z1
+
+114
+00:04:10,150 --> 00:04:11,410
+logo este é z2 e assim por diante.
+
+115
+00:04:11,640 --> 00:04:12,940
+Precisamos ter uma forma de
+
+116
+00:04:13,670 --> 00:04:15,410
+processar essa nova representação, z1
+
+117
+00:04:15,570 --> 00:04:17,350
+e z2 também
+
+118
+00:04:18,280 --> 00:04:20,350
+Então, como processamos todas estas quantidades?
+
+119
+00:04:20,520 --> 00:04:21,520
+Há uma derivação matemática
+
+120
+00:04:22,490 --> 00:04:23,660
+e também uma prova matemática
+
+121
+00:04:24,300 --> 00:04:26,020
+para o valor correto
+
+122
+00:04:26,090 --> 00:04:27,970
+de U1, U2, U3, Z2
+
+123
+00:04:28,290 --> 00:04:29,480
+e assim por diante.
+
+124
+00:04:29,690 --> 00:04:31,230
+Esta prova matemática é muito
+
+125
+00:04:31,480 --> 00:04:32,890
+complicada e fora do escopo
+
+126
+00:04:32,950 --> 00:04:34,620
+deste curso mas
+
+127
+00:04:35,280 --> 00:04:37,290
+uma vez que você aplique essa derivação matemática
+
+128
+00:04:37,590 --> 00:04:38,590
+o procedimento
+
+129
+00:04:39,350 --> 00:04:40,570
+para encontrar o valor de u1,
+
+130
+00:04:41,200 --> 00:04:42,210
+que é o que você quer, 
+
+131
+00:04:42,950 --> 00:04:43,950
+não é tão difícil, ainda que
+
+132
+00:04:44,180 --> 00:04:45,640
+a prova matemática de que
+
+133
+00:04:45,840 --> 00:04:46,940
+este é o valor correto
+
+134
+00:04:47,260 --> 00:04:48,450
+esteja além do que 
+
+135
+00:04:48,700 --> 00:04:49,960
+vamos mostrar aqui. 
+
+136
+00:04:50,880 --> 00:04:52,070
+Mas, deixe-me apenas descrever o
+
+137
+00:04:52,480 --> 00:04:53,830
+procedimento específico que você
+
+138
+00:04:53,960 --> 00:04:55,250
+teria de implementar para
+
+139
+00:04:55,440 --> 00:04:56,450
+processar todas estas coisas, 
+
+140
+00:04:56,570 --> 00:04:57,840
+os vetores u1, u2 e o vetor z. 
+
+141
+00:04:58,910 --> 00:05:00,980
+Aqui está o procedimento.
+
+142
+00:05:02,070 --> 00:05:02,970
+Digamos que queremos reduzir
+
+143
+00:05:03,170 --> 00:05:04,220
+dados de n dimensões
+
+144
+00:05:04,840 --> 00:05:05,760
+para k dimensões.
+
+145
+00:05:06,760 --> 00:05:07,640
+O que faremos primeiro é
+
+146
+00:05:07,900 --> 00:05:09,400
+calcular algo que chamamos
+
+147
+00:05:09,830 --> 00:05:11,140
+matriz de covariância.
+
+148
+00:05:11,700 --> 00:05:13,620
+A conotação para matriz de covariância é
+
+149
+00:05:13,820 --> 00:05:15,050
+esta letra do alfabeto grego,
+
+150
+00:05:15,190 --> 00:05:16,880
+a letra Sigma em maiúsculo.
+
+151
+00:05:18,000 --> 00:05:19,210
+Infelizmente, 
+
+152
+00:05:19,310 --> 00:05:21,080
+símbolo grego Sigma é exatamente igual
+
+153
+00:05:21,760 --> 00:05:22,710
+ao símbolo de somatório.
+
+154
+00:05:23,210 --> 00:05:24,620
+Então a letra Sigma
+
+155
+00:05:24,700 --> 00:05:26,220
+do alfabeto grego é usada para
+
+156
+00:05:26,420 --> 00:05:29,540
+denotar a matriz e aqui está o símbolo de somatório.
+
+157
+00:05:30,510 --> 00:05:32,330
+Espero que nestes slides
+
+158
+00:05:32,680 --> 00:05:34,190
+não haja ambiguidade sobre
+
+159
+00:05:34,410 --> 00:05:36,340
+o que é Sigma para calcular matriz de covariância
+
+160
+00:05:36,520 --> 00:05:37,850
+e o símbolo para somatório
+
+161
+00:05:38,090 --> 00:05:39,620
+e espero que
+
+162
+00:05:39,940 --> 00:05:41,460
+o contexto torne mais claro quando
+
+163
+00:05:41,820 --> 00:05:43,510
+estou usando um ou outro. 
+
+164
+00:05:43,740 --> 00:05:44,790
+Como você processa esta matriz?
+
+165
+00:05:45,530 --> 00:05:46,550
+Digamos que queremos
+
+166
+00:05:47,135 --> 00:05:47,640
+guardá-la nesta variável
+
+167
+00:05:48,120 --> 00:05:49,970
+chamada Sigma.
+
+168
+00:05:50,840 --> 00:05:51,890
+O que nós precisamos fazer é
+
+169
+00:05:52,030 --> 00:05:53,660
+calcular algo que chamamos
+
+170
+00:05:54,130 --> 00:05:56,190
+de vetor de transformação linear da matriz sigma.
+
+171
+00:05:57,560 --> 00:05:58,450
+E, 
+
+172
+00:05:58,590 --> 00:05:59,820
+para se fazer isto, você usa
+
+173
+00:05:59,970 --> 00:06:01,020
+este comando u s v igual a
+
+174
+00:06:01,350 --> 00:06:02,600
+SVD de sigma.
+
+175
+00:06:03,650 --> 00:06:06,090
+SVD significa Decomposição de Valor Singular.
+
+176
+00:06:08,520 --> 00:06:10,590
+Isto é um valor singular de decomposição
+
+177
+00:06:10,790 --> 00:06:12,660
+ muito mais avançado.
+
+178
+00:06:14,450 --> 00:06:15,560
+Esta é algebra linear muito mais avançada
+
+179
+00:06:15,800 --> 00:06:16,950
+que você realmente
+
+180
+00:06:16,950 --> 00:06:18,770
+precisa saber. 
+
+181
+00:06:18,950 --> 00:06:20,250
+Quando sigma é igual à
+
+182
+00:06:20,480 --> 00:06:21,800
+matriz de covariância há algumas
+
+183
+00:06:21,880 --> 00:06:23,420
+formas de calcular estes
+
+184
+00:06:23,610 --> 00:06:25,810
+vetores e se você for
+
+185
+00:06:25,960 --> 00:06:27,350
+um especialista em álgebra linear
+
+186
+00:06:27,700 --> 00:06:28,610
+e se você já ouviu falar de pico em
+
+187
+00:06:28,860 --> 00:06:30,170
+vetores, talvez você saiba
+
+188
+00:06:30,350 --> 00:06:31,660
+que há outra função octal
+
+189
+00:06:31,990 --> 00:06:33,420
+chamada I que pode
+
+190
+00:06:33,520 --> 00:06:35,030
+também ser usada para calcular a mesma coisa
+
+191
+00:06:35,950 --> 00:06:36,980
+e acontece que
+
+192
+00:06:37,370 --> 00:06:39,180
+a função SVD e a função I
+
+193
+00:06:39,290 --> 00:06:40,310
+retornarão os mesmos
+
+194
+00:06:40,370 --> 00:06:42,170
+vetores, apenas que
+
+195
+00:06:42,840 --> 00:06:44,210
+SVD é um pouco mais estável numericamente
+
+196
+00:06:44,540 --> 00:06:45,890
+Eu costumo usar SVD
+
+197
+00:06:46,140 --> 00:06:47,040
+enquanto meus amigos
+
+198
+00:06:47,280 --> 00:06:48,720
+usam a função I
+
+199
+00:06:48,920 --> 00:06:50,050
+para fazer isto.
+
+200
+00:06:50,130 --> 00:06:51,270
+Mas, quando você aplica isto para encontrar a matriz de
+
+201
+00:06:51,750 --> 00:06:52,960
+covariância sigma dá no mesmo.
+
+202
+00:06:53,870 --> 00:06:55,070
+Isto porque a matriz de covariância
+
+203
+00:06:55,500 --> 00:06:57,250
+sempre satisfaz uma propriedade
+
+204
+00:06:57,940 --> 00:07:00,560
+matemática chamada positivo finito simétrico.
+
+205
+00:07:01,360 --> 00:07:02,140
+Você  só precisar saber
+
+206
+00:07:02,280 --> 00:07:03,890
+que as funções
+
+207
+00:07:05,340 --> 00:07:07,090
+SVD e I são diferentes e que
+
+208
+00:07:07,400 --> 00:07:08,670
+quando aplicadas numa matriz de
+
+209
+00:07:08,780 --> 00:07:10,410
+covariância - que sempre satisfaz
+
+210
+00:07:10,550 --> 00:07:12,080
+esta propriedade matemática --
+
+211
+00:07:13,190 --> 00:07:15,220
+estas funções sempre dão o mesmo resultado.
+
+212
+00:07:16,580 --> 00:07:19,180
+Isto é provavelmente muito mais álgebra
+
+213
+00:07:19,260 --> 00:07:22,380
+que você precisa saber portanto não se preocupe se nada disso faça sentido.
+
+214
+00:07:22,560 --> 00:07:23,490
+Tudo o que você precisa saber é
+
+215
+00:07:24,130 --> 00:07:27,840
+estes são os comandos que você 
+
+216
+00:07:28,140 --> 00:07:29,690
+precisa implementar no Octave. 
+
+217
+00:07:30,080 --> 00:07:30,550
+Se você estiver implementando  em uma linguage diferente
+
+218
+00:07:30,710 --> 00:07:32,120
+que Octave ou MATLAB
+
+219
+00:07:32,710 --> 00:07:33,790
+você precisa encontrar
+
+220
+00:07:34,190 --> 00:07:35,860
+a biblioteca numérica de álgebra linear
+
+221
+00:07:36,730 --> 00:07:37,960
+capaz de processar o SVD
+
+222
+00:07:38,230 --> 00:07:40,460
+ou decomposição de valor singular.
+
+223
+00:07:40,970 --> 00:07:42,680
+Há muitas bibliotecas como esta em
+
+224
+00:07:43,570 --> 00:07:45,060
+provavelmente todas liguagens de programação.
+
+225
+00:07:45,300 --> 00:07:46,920
+Pessoas podem usar estas (bibliotecas)
+
+226
+00:07:47,050 --> 00:07:48,920
+para encontrar a rotina que calcula matrizes u, s, e d
+
+227
+00:07:49,200 --> 00:07:52,770
+para matriz de covariância sigma.
+
+228
+00:07:53,340 --> 00:07:54,490
+Então, em mais
+
+229
+00:07:54,620 --> 00:07:56,090
+esta matriz
+
+230
+00:07:56,660 --> 00:07:58,080
+de covariância sigma
+
+231
+00:07:58,250 --> 00:08:01,480
+será uma matriz n por n.
+
+232
+00:08:02,250 --> 00:08:03,240
+Uma forma de ver isto é
+
+233
+00:08:03,510 --> 00:08:04,220
+se você olhar a definição.
+
+234
+00:08:05,250 --> 00:08:06,280
+Este é um vetor
+
+235
+00:08:06,660 --> 00:08:08,680
+N por 1
+
+236
+00:08:08,920 --> 00:08:10,830
+e aqui I é o vetor transposto
+
+237
+00:08:11,010 --> 00:08:13,260
+1 por N.
+
+238
+00:08:13,380 --> 00:08:14,480
+O produto destes dois
+
+239
+00:08:15,150 --> 00:08:15,800
+será uma matriz
+
+240
+00:08:16,570 --> 00:08:17,530
+N por N.
+
+241
+00:08:19,100 --> 00:08:22,130
+1 por N transposto, 1 X N
+
+242
+00:08:22,280 --> 00:08:22,840
+portanto haverá uma matriz
+
+243
+00:08:22,910 --> 00:08:23,710
+N por N e quando 
+
+244
+00:08:23,840 --> 00:08:26,140
+adicionamos tudo isto, ainda teremos uma matriz NxN.
+
+245
+00:08:27,600 --> 00:08:29,920
+A saída do SVD são três matrizes,
+
+246
+00:08:30,500 --> 00:08:32,580
+u, s e v.
+
+247
+00:08:32,830 --> 00:08:35,070
+O que você realmente quer do SVD é a matriz u.
+
+248
+00:08:36,230 --> 00:08:40,160
+A matriz u também é uma matriz NxN.
+
+249
+00:08:41,510 --> 00:08:42,280
+Se você olhar para
+
+250
+00:08:42,350 --> 00:08:43,260
+as colunas da matriz U
+
+251
+00:08:43,480 --> 00:08:45,330
+você verá que
+
+252
+00:08:45,630 --> 00:08:47,210
+as colunas
+
+253
+00:08:48,570 --> 00:08:50,180
+da matriz U serão exatamente
+
+254
+00:08:50,350 --> 00:08:53,860
+os vetores u1,
+
+255
+00:08:54,260 --> 00:08:56,290
+u2 e assim por diante.
+
+256
+00:08:57,640 --> 00:08:59,330
+Logo, u é uma matriz NxN.
+
+257
+00:09:00,910 --> 00:09:01,830
+Se quisermos reduzir
+
+258
+00:09:02,230 --> 00:09:03,200
+os dados de n dimensões
+
+259
+00:09:03,800 --> 00:09:05,380
+para k dimensões temos
+
+260
+00:09:05,490 --> 00:09:07,950
+apenas que pegar os primeiros vetores k.
+
+261
+00:09:09,800 --> 00:09:12,670
+Assim temos de u1 até uk,
+
+262
+00:09:12,860 --> 00:09:14,700
+que nos dá
+
+263
+00:09:14,780 --> 00:09:16,930
+a direção K para onde
+
+264
+00:09:17,200 --> 00:09:19,770
+queremos projetar os dados.
+
+265
+00:09:20,090 --> 00:09:21,640
+O resto do procedimento da
+
+266
+00:09:22,410 --> 00:09:24,170
+rotina de álgebra linear
+
+267
+00:09:24,490 --> 00:09:25,580
+SVD nos dá esta matriz u.
+
+268
+00:09:25,840 --> 00:09:27,140
+Vamos chamar essas colunas de
+
+269
+00:09:27,530 --> 00:09:29,080
+u1-uN.
+
+270
+00:09:30,580 --> 00:09:31,620
+Para encerrar
+
+271
+00:09:31,830 --> 00:09:32,520
+a descrição do restante
+
+272
+00:09:32,540 --> 00:09:34,550
+do procedimento a partir da rotina
+
+273
+00:09:35,320 --> 00:09:36,940
+de álgebra linear SVD,
+
+274
+00:09:37,240 --> 00:09:38,650
+temos essas matrizes, u,s, e d. 
+
+275
+00:09:38,830 --> 00:09:41,320
+Usaremos 
+
+276
+00:09:41,900 --> 00:09:44,460
+as primeiras colunas K
+
+277
+00:09:45,050 --> 00:09:46,310
+desta matriz para termos u1-uK.
+
+278
+00:09:48,710 --> 00:09:49,460
+A outra coisa a fazer
+
+279
+00:09:49,700 --> 00:09:53,730
+é pegar
+
+280
+00:09:54,110 --> 00:09:55,430
+o conjunto original de dados X, que é
+
+281
+00:09:55,630 --> 00:09:57,080
+um RN e encontrar
+
+282
+00:09:57,250 --> 00:09:59,210
+uma dimensão menor de representação Z,
+
+283
+00:09:59,420 --> 00:10:01,280
+que é R K para estes dados.
+
+284
+00:10:01,570 --> 00:10:02,800
+Então, a forma com que
+
+285
+00:10:02,900 --> 00:10:03,930
+faremos isto é
+
+286
+00:10:04,180 --> 00:10:06,690
+pegar primeiras colunas K da matriz U, 
+
+287
+00:10:08,330 --> 00:10:09,790
+construir esta matriz,
+
+288
+00:10:11,060 --> 00:10:13,040
+empilhar U1, U2 e etc
+
+289
+00:10:14,170 --> 00:10:16,690
+até U K nas colunas.
+
+290
+00:10:17,350 --> 00:10:19,120
+Isto é basicamente pegar
+
+291
+00:10:19,280 --> 00:10:20,350
+esta parte da matriz,
+
+292
+00:10:20,530 --> 00:10:22,260
+as primeiras colunas K desta matriz.
+
+293
+00:10:23,420 --> 00:10:25,370
+Então é assim
+
+294
+00:10:25,600 --> 00:10:26,920
+uma matriz
+
+295
+00:10:27,200 --> 00:10:28,580
+N por K.
+
+296
+00:10:29,500 --> 00:10:30,690
+Eu darei um nome para esta matriz.
+
+297
+00:10:30,880 --> 00:10:32,200
+Chamarei esta matriz de
+
+298
+00:10:32,930 --> 00:10:35,760
+U subscrito 'reduzido',
+
+299
+00:10:36,090 --> 00:10:38,620
+ou uma versão reduzida da matriz U.
+
+300
+00:10:39,140 --> 00:10:41,250
+Usarei isto para reduzir a dimensão dos meus dados. 
+
+301
+00:10:43,040 --> 00:10:43,950
+Calcularei Z tal que
+
+302
+00:10:44,250 --> 00:10:45,960
+Z será igual à
+
+303
+00:10:46,220 --> 00:10:49,570
+matriz tranposta reduzida U multiplicada por x.
+
+304
+00:10:50,010 --> 00:10:52,030
+Alternativamente,
+
+305
+00:10:52,510 --> 00:10:53,860
+escrevemos o que esta transposta significa.
+
+306
+00:10:54,630 --> 00:10:55,910
+Quando eu pego a transposta da
+
+307
+00:10:56,010 --> 00:10:57,920
+matriz U, o que terei no final
+
+308
+00:10:58,010 --> 00:11:00,680
+são estes vetores, agora em linhas.
+
+309
+00:11:00,950 --> 00:11:04,540
+Eu tenho U1 transposta para UK transposta.
+
+310
+00:11:07,060 --> 00:11:08,860
+Então multiplicamos por X
+
+311
+00:11:09,700 --> 00:11:10,740
+e é assim que obtenho
+
+312
+00:11:10,920 --> 00:11:12,670
+meu vetor Z.
+
+313
+00:11:12,740 --> 00:11:14,280
+Para ter certeza que essas dimensões são realistas,
+
+314
+00:11:15,370 --> 00:11:16,380
+esta matriz aqui deve ser
+
+315
+00:11:16,560 --> 00:11:17,450
+K por N
+
+316
+00:11:18,270 --> 00:11:19,350
+e o x aqui será
+
+317
+00:11:19,420 --> 00:11:20,530
+N por 1
+
+318
+00:11:20,750 --> 00:11:21,810
+e então este produto z
+
+319
+00:11:22,320 --> 00:11:24,330
+aqui em cima será k por 1.
+
+320
+00:11:24,820 --> 00:11:27,920
+Logo, 
+
+321
+00:11:28,790 --> 00:11:29,810
+z é k-dimensional, 
+
+322
+00:11:30,010 --> 00:11:31,230
+que é
+
+323
+00:11:32,000 --> 00:11:33,180
+exatamente o que queremos.
+
+324
+00:11:33,550 --> 00:11:34,640
+É claro que estes x aqui
+
+325
+00:11:34,890 --> 00:11:36,010
+podem ser exemplos do nosso
+
+326
+00:11:36,100 --> 00:11:36,970
+conjunto de treinamento.
+
+327
+00:11:37,540 --> 00:11:38,750
+Podem ser exemplos no conjunto de validação cruzada
+
+328
+00:11:38,980 --> 00:11:40,330
+do conjunto de testes.
+
+329
+00:11:40,500 --> 00:11:41,590
+Por exemplo, 
+
+330
+00:11:41,930 --> 00:11:43,830
+se eu quisesse pegar um exemplo de treinamento i,
+
+331
+00:11:44,260 --> 00:11:45,910
+posso escrever isto como xi, 
+
+332
+00:11:47,270 --> 00:11:48,430
+e isto me dará
+
+333
+00:11:48,510 --> 00:11:50,080
+ZI lá.
+
+334
+00:11:50,940 --> 00:11:53,140
+Resumindo, aqui está o algoritmo
+
+335
+00:11:53,460 --> 00:11:54,820
+PCA num lado do slide.
+
+336
+00:11:56,250 --> 00:11:58,200
+Após normalização da média para garantir que
+
+337
+00:11:58,420 --> 00:11:59,230
+cada característica possui média zero
+
+338
+00:11:59,610 --> 00:12:01,420
+e funcionalidade escalável opcional, 
+
+339
+00:12:02,280 --> 00:12:03,780
+Você deve fazer fucionalidade escalável se
+
+340
+00:12:03,890 --> 00:12:05,820
+suas características usam faixas de valores diferentes. 
+
+341
+00:12:06,620 --> 00:12:08,610
+Após este pré-processamento nós computamos
+
+342
+00:12:09,130 --> 00:12:12,010
+a matriz portadora Sigma,
+
+343
+00:12:12,240 --> 00:12:14,070
+e a propósito,
+
+344
+00:12:14,210 --> 00:12:16,340
+se seus dados
+
+345
+00:12:16,610 --> 00:12:17,780
+são representados com matriz
+
+346
+00:12:18,030 --> 00:12:18,960
+como esta, se você tem dados
+
+347
+00:12:19,230 --> 00:12:22,580
+apresentados em linhas como estas.
+
+348
+00:12:22,780 --> 00:12:24,370
+Se você tem uma matriz X
+
+349
+00:12:24,960 --> 00:12:26,190
+que é seu conjunto de treinamento
+
+350
+00:12:27,030 --> 00:12:28,830
+escritos em linhas onde x1
+
+351
+00:12:29,210 --> 00:12:30,400
+é transposto para x1 transposto
+
+352
+00:12:31,530 --> 00:12:32,700
+esta matriz de covariância sigma tem
+
+353
+00:12:33,020 --> 00:12:36,040
+uma implementação vetorizada boa.
+
+354
+00:12:37,390 --> 00:12:38,980
+Você pode implementar em Octave
+
+355
+00:12:39,440 --> 00:12:41,130
+você pode até rodar sigma igual a um sobre m
+
+356
+00:12:41,670 --> 00:12:45,250
+multiplicado por x, 
+
+357
+00:12:45,550 --> 00:12:46,440
+que é a matriz aqui em cima, 
+
+358
+00:12:47,250 --> 00:12:50,770
+transposta por x vezes e
+
+359
+00:12:50,980 --> 00:12:53,320
+esta expressão simples
+
+360
+00:12:53,570 --> 00:12:55,070
+que é a implementação vetorizada
+
+361
+00:12:55,220 --> 00:12:56,910
+para calcular a matriz sigma.
+
+362
+00:12:58,020 --> 00:12:59,020
+Eu não provarei isto hoje.
+
+363
+00:12:59,160 --> 00:13:00,600
+Está é a vetorização correta. 
+
+364
+00:13:00,740 --> 00:13:02,460
+Se você quiser,  você pode testar numericamente
+
+365
+00:13:02,870 --> 00:13:03,900
+usando Octave
+
+366
+00:13:03,980 --> 00:13:05,100
+para ter certeza que
+
+367
+00:13:05,840 --> 00:13:06,890
+estas duas implementações dão o mesmo resultado. 
+
+368
+00:13:06,920 --> 00:13:10,050
+Você pode provar matematicamente. 
+
+369
+00:13:11,250 --> 00:13:12,330
+De qualquer forma, 
+
+370
+00:13:12,430 --> 00:13:14,580
+esta é a implementação de vetorização correta.
+
+371
+00:13:16,480 --> 00:13:17,570
+Podemos aplicar a rotina SVD
+
+372
+00:13:17,920 --> 00:13:19,050
+para obter u, s e d.
+
+373
+00:13:19,250 --> 00:13:20,840
+E então pegamos
+
+374
+00:13:21,100 --> 00:13:22,720
+as primeiras colunas
+
+375
+00:13:23,050 --> 00:13:24,450
+k da matriz u.
+
+376
+00:13:24,660 --> 00:13:26,550
+Você reduz e, finalmente,
+
+377
+00:13:26,650 --> 00:13:28,540
+isto define como
+
+378
+00:13:28,740 --> 00:13:29,980
+iniciamos com uma característica
+
+379
+00:13:30,290 --> 00:13:31,600
+de vetor x para terminar com
+
+380
+00:13:31,850 --> 00:13:34,340
+essa representação com dimensões reduzidas z.
+
+381
+00:13:34,540 --> 00:13:35,760
+E de forma similar ao k-médias,
+
+382
+00:13:36,090 --> 00:13:37,860
+se você aplicar PCA,
+
+383
+00:13:38,030 --> 00:13:40,300
+você aplicaria isto nos vetores X e RN.
+
+384
+00:13:41,100 --> 00:13:43,990
+Então isto não é feito com x-0 1.
+
+385
+00:13:44,200 --> 00:13:46,080
+Então isso é 
+
+386
+00:13:46,990 --> 00:13:48,680
+o algoritmo PCA.
+
+387
+00:13:50,120 --> 00:13:51,380
+Uma coisa que não fiz foi
+
+388
+00:13:51,590 --> 00:13:53,190
+fornecer uma prova matemática que
+
+389
+00:13:53,520 --> 00:13:54,600
+este procedimento de fato
+
+390
+00:13:54,970 --> 00:13:56,560
+é a projeção dos dados no
+
+391
+00:13:57,230 --> 00:13:58,730
+subespaço k-dimensional 
+
+392
+00:13:58,870 --> 00:14:00,620
+na superfície K-dimensional  que realmente
+
+393
+00:14:02,170 --> 00:14:04,800
+minimiza a projeção quadrática de erros.
+
+394
+00:14:05,110 --> 00:14:07,170
+está fora do conteúdo coberto neste curso.
+
+395
+00:14:07,700 --> 00:14:09,110
+Felizmente o algortimo PCA pode
+
+396
+00:14:09,470 --> 00:14:10,940
+ser implementado com
+
+397
+00:14:11,320 --> 00:14:12,510
+poucas linhas de código.
+
+398
+00:14:13,190 --> 00:14:14,510
+Se você implementar isto 
+
+399
+00:14:14,640 --> 00:14:16,120
+no Octave ou no MATLAB
+
+400
+00:14:16,520 --> 00:14:17,590
+você terá de fato um algoritmo
+
+401
+00:14:18,110 --> 00:14:19,710
+de redução de dimensionalidade bastante efetivo. 
+
+402
+00:14:22,430 --> 00:14:23,850
+Então, este é o algoritmo PCA.
+
+403
+00:14:25,010 --> 00:14:26,290
+Um coisa que não fiz foi
+
+404
+00:14:26,840 --> 00:14:28,420
+fornecer uma prova matemática que
+
+405
+00:14:29,170 --> 00:14:30,360
+u1,u2 e etc
+
+406
+00:14:30,720 --> 00:14:31,630
+e o z e assim por diante
+
+407
+00:14:31,770 --> 00:14:32,830
+que você terá como resultado
+
+408
+00:14:32,980 --> 00:14:34,330
+deste procedimento é de fato
+
+409
+00:14:34,680 --> 00:14:35,870
+as escolhas que minimizariam
+
+410
+00:14:36,500 --> 00:14:37,800
+os erros de  projeção quadrática.
+
+411
+00:14:38,140 --> 00:14:39,350
+Lembre-se  que dissemos que
+
+412
+00:14:39,610 --> 00:14:40,660
+o que PCA tenta fazer é
+
+413
+00:14:40,960 --> 00:14:42,170
+encontrar uma superfície, ou linha,
+
+414
+00:14:42,570 --> 00:14:43,690
+no qual projetar os dados,
+
+415
+00:14:44,280 --> 00:14:46,340
+de maneira a minimizar os erros de projeção quadrática.
+
+416
+00:14:46,700 --> 00:14:48,610
+Eu não provei isto.
+
+417
+00:14:49,140 --> 00:14:50,680
+A prova matemática
+
+418
+00:14:50,970 --> 00:14:52,520
+está fora do conteúdo coberto neste curso.
+
+419
+00:14:53,170 --> 00:14:55,550
+Felizmente o algoritmo PCA pode
+
+420
+00:14:55,730 --> 00:14:58,890
+ser implementado com  poucas linhas de código no Octave.
+
+421
+00:14:59,350 --> 00:15:00,740
+Se você implementá-lo
+
+422
+00:15:01,430 --> 00:15:02,560
+ele funcionará e
+
+423
+00:15:02,770 --> 00:15:03,730
+funcionará bem
+
+424
+00:15:04,710 --> 00:15:05,940
+e se você implementar este algoritmo
+
+425
+00:15:06,500 --> 00:15:09,220
+você terá um algoritmo efetivo de redução dimensional
+
+426
+00:15:09,780 --> 00:15:10,650
+que corretamente
+
+427
+00:15:11,050 --> 00:15:13,460
+minimiza os erros  projeção do erro quadrática.

@@ -1,0 +1,71 @@
+Nesse vídeo, vamos mergulhar mais fundo, e ter uma
+intuição melhor do que a função de custo faz. Esse vídeo assume que você tem familiaridade com Curvas de Contorno. Caso você não conheça Curvas de Nível,
+algumas das ilustrações nesse vídeo podem não fazer sentido para você,
+mas não tem problema caso você acabe pulando parte desse vídeo, pelo fato de você ainda não ter visto Curvas de Nível. Não tem problema, e você
+ainda entenderá o resto desse curso. Aqui está a formulação do nosso problema, como de costume: com os parâmetros de hipótese, função de custo, e
+objetivo de otimização. Ao contrário do vídeo anterior, eu vou
+manter os meus dois parâmetros, θ₀ e θ₁, quando formos visualizar a função de custo. Então, como da outra vez, nós desejamos entender a
+hipótese "h" e a função de custo "J". Este é o meu conjunto de teste, de preços de casas,
+e vamos fazer algumas hipóteses. Como essa: "h(x)=50+0.06x".
+Essa, em particular, não é uma boa hipótese. Mas, se eu definir "θ₀=50" e "θ₁=0.06",
+então eu terei essa hipótese, que corresponde a essa linha reta.
+Agora, dados esses valores de θ₀ e θ₁, queremos traçar à direita, 
+a função de custo correspondente. O que fizemos da última vez,
+quando tínhamos apenas θ₁, foi traçar figuras como essa, função de θ₁.
+Mas agora temos dois parâmetros, θ₀ e θ₁, então o desenho fica um pouco mais complicado. Acontece que, quando temos apenas um parâmetro,
+os plots têm esse formato de parábola. Agora, quando temos dois
+parâmetros, a função de custo também tem um formato semelhante a um arco.
+ E, dependendo do seu conjunto de testes, você irá obter uma função de custo que talvez
+se pareça com isso. Esse é um traçado de superfície em 3-D,
+onde os eixos representam θ₀ e θ₁. Então, conforme variamos θ₀ e θ₁,
+obtemos valores diferentes para a função de custo "J(θ₀, θ₁)".
+E a altura da superfície em um ponto específico de θ₀ e θ₁
+(que é o eixo vertical), a altura da superfície, naquele ponto,
+indica o valor de "J(θ₀,θ₁)". E você consegue ver essa espécie de formato de arco. Deixe-me mostrar o mesmo traçado em 3D.
+Essa é a mesma figura em 3D, eixo horizontal sendo θ₁, e eixo vertical sendo J(θ₀, θ₁).
+E se eu rotacionar essa figura, você consegue ter uma noção da
+superfície em forma de parábola. E essa é a forma com que a função de custo "J"
+se assemelha. Agora, para fins de ilustração, eu não vou mais usar esse tipo de figuras em 3D,
+para mostrar a função de custo "J". Ao invés disso, vou usar Curvas de Nível,
+ou o que eu chamo também de Figuras de Nível. Acredito que sejam a mesma coisa.
+Para demonstrar essas superfícies: à direita está um exemplo de Curvas de Nível,
+onde os eixos são θ₀ e θ₁, e cada uma dessas elipses mostram um conjunto de pontos, que assumem o mesmo valor para "J(θ₀, θ₁)". Então, por exemplo, se você pegar esses três pontos. Todos esses três pontos,
+que acabei de desenhar em magenta, têm o mesmo valor para "J(θ₀, θ₁)", okay? São diferentes valores de θ₀ e θ₁,
+mas eles têm o mesmo valor para "J(θ₀, θ₁)". E, caso você não tenha visto Curvas de Nível anteriormente, imagine uma parábola 3D saindo da minha tela. Então o mínimo, o fundo da parábola, é esse ponto do meio, o meio dessas elipses concêntricas.
+E imagine uma parábola, que cresce para fora da minha tela. De forma que, cada uma dessas elipses,
+tem a mesma altura acima da minha tela. E o valor mínimo da parábola é aquele no meio. Assim, as Curvas de Nível são uma forma
+mais conveniente de visualizar minha função "J".
+Vamos dar uma olhadas em alguns exemplos. Aqui, em vermelho, tenho um ponto que corresponde a "θ₀=800", e "θ₁=-0.15". E esse ponto em vermelho, corresponde a um par de valores (θ₀, θ₁), que, na verdade, correspondem àquela hipótese, certo? "θ₀ =800", ou seja, a reta intercepta
+o eixo vertical em torno de 800, e tem uma inclinação de -0.15.
+Porém, essa linha, não se ajusta bem aos dados, certo?
+Essa hipótese, "h(x)", com esses valores de θ₀ e θ₁, não é exatamente um bom ajuste para os dados.
+E, como você pode ver, o seu custo corresponde a um valor que é bem longe do mínimo. É um custo bem alto, por que isso simplesmente
+não é um bom ajuste para os dados. Vamos dar uma olhada em mais alguns exemplos.
+ Esta é uma hipótese diferente, que ainda não é perfeita para os dados,
+ mas pode ser um pouco melhor. Então, aqui está o ponto.
+Aqui estão meus parâmetros θ₀, θ₁. Então, meu valor de "θ₀" é em torno de "360",
+e  meu valor para "θ₁" é "0". Vamos escrever isso: "θ₀=360", e "θ₁=0". E esse par de parâmetros corresponde àquela hipótese. Corresponde a uma linha reta horizontal.
+Isso é "h(x)=360+0·x". Essa é minha hipótese.
+E essa hipótese tem um custo, que é mostrado como a 
+altura da função J naquele ponto. Vamos dar uma olhada em mais alguns exemplos.
+Aqui está mais um. Para esse valor de "θ₀", e esse de "θ₁",
+nós obtemos essa hipótese "h(x)". Novamente, não é ótima para os dados,
+está na verdade mais longe do mínimo. Último exemplo: Este ponto não está exatamente no mínimo,
+mas está bem próximo. Então não é um ajuste ruim aos dados.
+Para algum "θ₀", e para um certo valor de "θ₁", temos um certo valor de "h(x)".
+E isso não é exatamente o mínimo, mas está bem perto. Então a soma do quadrado das distâncias entre
+os meus exemplos de treinamento, e a minha hipótese (soma do quadrado dos erros), fica bem perto do mínimo,
+apesar de não ser exatamente o mínimo. Então, eu espero que essas figuras
+tenham lhe dado uma melhor percepção do que são os valores da função de custo "J", de como eles correspondem à diferentes hipóteses.
+E de como melhores hipóteses correpondem a pontos mais próximos do
+mínimo dessa função de custo "J". Mas o que realmente queremos é uma algoritmo eficiente,
+um programa eficiente, para encontrar automaticamente
+os valores de "θ₁" e "θ₀" que minimizam a função de custo "J", certo?
+Não queremos ter que plotar essas figuras, e então ler manualmente os números. E, de fato, veremos mais
+tarde que quando observarmos exemplos mais complexos,
+teremos figuras de alta dimensionalidade, com mais parâmetros.
+Veremos mais ao longo do curso, exemplos onde essa figura não pode ser traçada. Tornando a visualização bem mais difícil.
+Assim, o que queremos é ter um programa, que descubra os valores de "θ₀" e "θ₁"
+que minimizem essa função. E no próximo vídeo nós começaremos a falar
+sobre um algoritmo que encontre automaticamente o valores de "θ₀" e "θ₁" que minimizam  a função de custo "J".
+Tradução: Eduardo Bonet | Revisão: Pablo de Morais Andrade

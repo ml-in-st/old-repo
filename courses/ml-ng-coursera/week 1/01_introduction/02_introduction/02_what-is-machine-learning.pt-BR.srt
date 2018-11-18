@@ -1,0 +1,351 @@
+1
+00:00:00,000 --> 00:00:04,904
+O que é aprendizagem de máquina? Neste vídeo nós tentaremos definir o que é e também tentar
+
+2
+00:00:04,904 --> 00:00:09,520
+dar a vocês um senso que quando usar aprendizagem de máquina. Mesmo entre praticantes de
+
+3
+00:00:09,520 --> 00:00:14,252
+aprendizagem de máquina não há uma definição bem aceita do que é e o que
+
+4
+00:00:14,252 --> 00:00:18,926
+não é aprendizagem de máquina. Mas deixem-me mostrar a vocês alguns exemplos de formas que
+
+5
+00:00:18,926 --> 00:00:23,600
+pessoas tentaram definí-la. Aqui está a definição do que é aprendizagem de máquina
+
+6
+00:00:23,600 --> 00:00:28,520
+para Arthur Samuel. Ele definiu aprendizagem de máquina como o campo de estudo que dá
+
+7
+00:00:31,037 --> 00:00:33,554
+aos computadores a habilidade de aprender sem ser programado explicitamente. O aparecimento de Samuel
+
+8
+00:00:33,554 --> 00:00:38,452
+para a fama foi que nos anos 50, ele escreveu um programa jogador de damas. E a
+
+9
+00:00:38,452 --> 00:00:43,603
+coisa incrível sobre este programa é que o próprio Arthur Samuel
+
+10
+00:00:43,603 --> 00:00:48,268
+não era um bom jogador de damas. Mas o que ele fez foi, ele teve que programar para que o programa jogasse
+
+11
+00:00:48,268 --> 00:00:52,245
+10 de 1000 games contra ele mesmo. E assistindo quais tipos de posições
+
+12
+00:00:52,245 --> 00:00:56,698
+de tabuleiro tendiam a levar a vitórias, e quais tipos de posições de tabuleiro tendiam a levar a
+
+13
+00:00:56,698 --> 00:01:00,725
+derrotas. O programa jogador de damas aprendeu com o tempo quais são as posições de
+
+14
+00:01:00,725 --> 00:01:04,713
+tabuleiro boas e quais são as posições de tabuleiro ruins. E eventualmente aprendeu a jogar
+
+15
+00:01:04,713 --> 00:01:09,514
+damas melhor que o próprio Arthur Samuel era capaz. Isto foi um resultado notável.
+
+16
+00:01:09,514 --> 00:01:14,535
+Mesmo Samuel não sendo um bom jogador de damas. Mas porque o
+
+17
+00:01:14,535 --> 00:01:19,254
+computador teve a paciência de jogar milhares de jogos sozinho. Nenhum
+
+18
+00:01:19,254 --> 00:01:24,275
+humano tem a paciência de jogar tantos jogos. Mas fazendo isto o computador foi capaz
+
+19
+00:01:24,275 --> 00:01:29,235
+de conseguir tanta experiência em jogos de dama que ele eventualmente se tornou um
+
+20
+00:01:29,235 --> 00:01:33,817
+jogador melhor do que o próprio Arthur Samuel. Isto é uma definição um
+
+21
+00:01:33,817 --> 00:01:38,547
+pouco informal ,e antiga. Aqui há uma definição mais recente por Tom
+
+22
+00:01:38,547 --> 00:01:43,607
+Mitchell, que é um amigo da Carnegie Mellon. Então Tom define aprendizagem de máquina
+
+23
+00:01:43,607 --> 00:01:48,819
+dizendo isso, um problema de aprendizagem bem colocado e definido como segue. Ele diz, um programa
+
+24
+00:01:48,819 --> 00:01:53,843
+de computador é orientado para aprender da experiência E, com respeito a alguma tarefa T, e alguma
+
+25
+00:01:53,843 --> 00:01:58,678
+medida de performance P, se sua performance em T como medida por P melhora
+
+26
+00:01:58,678 --> 00:02:03,764
+com a experiência E. Eu atualmente acho que ele criou esta definição apenas para deixá-la com
+
+27
+00:02:03,764 --> 00:02:08,346
+rima. Para o exemplo do jogo de damas a experiência E será a
+
+28
+00:02:08,346 --> 00:02:13,253
+experiência de fazer o programa jogar 10000 jogos contra ele mesmo. A
+
+29
+00:02:13,253 --> 00:02:17,735
+tarefa T será a tarefa de jogar damas. E a medida de performance P
+
+30
+00:02:17,735 --> 00:02:22,399
+será a probabilidade que ele ganhe o próximo jogo de damas contra
+
+31
+00:02:22,399 --> 00:02:27,157
+algum novo oponente. Durante esses vídeos, além de tentar ensinar a vocês,
+
+32
+00:02:27,157 --> 00:02:32,291
+eu irei ocasionalmente fazer perguntas a vocês para assegurar que vocês entenderam o
+
+33
+00:02:32,291 --> 00:02:36,891
+conteúdo. Aqui está uma, no topo está a definição de aprendizagem de máquina de Tom
+
+34
+00:02:36,891 --> 00:02:42,292
+Mitchell. Vamos dizer que seu programa de email observa quais email você assinala ou não
+
+35
+00:02:42,292 --> 00:02:47,826
+como spam. Então em um cliente de email como este você pode clicar neste botão de spam para reportar
+
+36
+00:02:47,826 --> 00:02:53,263
+algum email como spam, mas não outros emails. E baseado em quais emails você marca como
+
+37
+00:02:53,263 --> 00:02:59,046
+spam, seu programa de email aprende melhor como filtrar email de spam. O que é a
+
+38
+00:02:59,046 --> 00:03:04,290
+tarefa T neste caso? Em poucos segundos, o vídeo irá pausar. E quando isso acontecer
+
+39
+00:03:04,290 --> 00:03:09,598
+você pode usar seu mouse para selecionar um destas quatro opções para me informar
+
+40
+00:03:09,598 --> 00:03:40,190
+qual destes quatro você acha que é a resposta certa para esta questão.
+
+41
+00:03:40,190 --> 00:03:45,747
+Isso pode ser uma medida de performance P. E então, nossa performance na tarefa T
+
+42
+00:03:45,747 --> 00:03:50,529
+irá melhorar depois da
+
+43
+00:03:50,529 --> 00:03:55,957
+experiência E. Neste curso eu espero ensinar a vocês sobre vários tipos diferentes de
+
+44
+00:03:55,957 --> 00:04:00,933
+algoritmos de aprendizagem de máquina. Há vários tipos de algoritmos de aprendizagem.
+
+45
+00:04:00,933 --> 00:04:05,650
+Os dois tipos principais são os que chamados de aprendizagem supervisionada e aprendizagem
+
+46
+00:04:05,650 --> 00:04:10,690
+não-supervisionada. Eu definirei o que esses termos significam nos próximos vídeos. Mas
+
+47
+00:04:10,690 --> 00:04:16,028
+em aprendizagem supervisionada a idéia é que nos vamos ensinar o
+
+48
+00:04:16,028 --> 00:04:20,513
+computador como fazer alguma coisa, já em aprendizagem não-supervisionada nós vamos permitir
+
+49
+00:04:20,513 --> 00:04:25,016
+que ele aprenda sozinho. Não se preocupe se estes dois termos não fazem sentido ainda, nos
+
+50
+00:04:25,016 --> 00:04:29,739
+próximos dois vídeos eu vou dizer exatamente o que são estes dois tipos de aprendizagem. Você
+
+51
+00:04:29,739 --> 00:04:34,070
+também irá ouvir outros termos tais como aprendizagem por reforço e sistemas
+
+52
+00:04:34,070 --> 00:04:38,621
+recomendadores. Há outros tipos de algoritmos de aprendizagem que nós falaremos
+
+53
+00:04:38,621 --> 00:04:42,460
+mais tarde mas os dois tipos mais usados são provavelmente
+
+54
+00:04:42,460 --> 00:04:46,791
+o de aprendizagem supervisionado e o de aprendizagem não-supervisionada e eu irei definí-las nos próximos
+
+55
+00:04:46,791 --> 00:04:51,123
+dois vídeos e gastaremos a maior parte da aula falando sobre estes dois tipos de
+
+56
+00:04:51,123 --> 00:04:55,720
+algoritmos de aprendizagem. Acontece que uma das coisas em que gastaremos muito tempo
+
+57
+00:04:55,720 --> 00:05:00,054
+neste curso é o conselho prático para aplicar algoritmos de aprendizagem. Isto é
+
+58
+00:05:00,054 --> 00:05:04,444
+algo que eu sinto ser muito forte sobre isso, e é atualmente algo que eu
+
+59
+00:05:04,444 --> 00:05:08,167
+não sei de qualquer outra universidade que ensine. Ensinar algoritmos de
+
+60
+00:05:08,167 --> 00:05:12,509
+aprendizagem é como dar a você um conjunto de ferramentas, e igualmente importante ou mais
+
+61
+00:05:12,509 --> 00:05:17,616
+importante que dar a você as ferramentas é ensinar a você como aplicar estas ferramentas. Eu gosto
+
+62
+00:05:17,616 --> 00:05:22,413
+de fazer uma analogia com aprender a se tornar um carpinteiro. Imagine que alguém está
+
+63
+00:05:22,413 --> 00:05:26,959
+ensinado a você como ser um carpinteiro e eles dizem: aqui está um martelo, aqui está uma
+
+64
+00:05:26,959 --> 00:05:31,077
+chave de fenda, aqui está um serrote, boa sorte. Bem, isso não é bom, certo? Você, você, você
+
+65
+00:05:31,077 --> 00:05:34,799
+tem todas estas ferramentas, mas a coisa mais importante é aprender como usar
+
+66
+00:05:34,799 --> 00:05:38,927
+estas ferramenras apropriadamente. Há uma grande diferença entre, entre pessoas que
+
+67
+00:05:38,927 --> 00:05:43,456
+sabem como usar estes algoritmos de aprendizagem, contra pessoas que não sabem
+
+68
+00:05:43,456 --> 00:05:47,626
+como usar estas ferramentas bem. Aqui no Vale do Silício onde eu vivo, quando eu vou
+
+69
+00:05:47,626 --> 00:05:52,328
+visitar diferentes companhias mesmo as melhores companhias do Vale do Silício muitas vezes eu vejo
+
+70
+00:05:52,328 --> 00:05:56,428
+que pessoas estão tentando aplicar algoritmos de aprendizagem de máquina para alguns problemas e
+
+71
+00:05:56,428 --> 00:06:00,857
+algumas vezes eles ficam nisso por seis meses. Mas algumas vezes quando eu olho para
+
+72
+00:06:00,857 --> 00:06:05,121
+o que eles estão fazendo eu, eu, eu digo, você sabe, eu poderia dizer a eles, Jesus, eu poderia
+
+73
+00:06:05,121 --> 00:06:09,714
+ter dito a vocês seis meses atrás que vocês deveriam ter pego um algoritmo de aprendizagem e
+
+74
+00:06:09,714 --> 00:06:14,470
+aplicado de uma forma ligeiramente modificada e sua chance de sucesso teria sido
+
+75
+00:06:14,470 --> 00:06:19,648
+muito maior. Então o que nós vamos fazer neste curso é atualmente gastar muito
+
+76
+00:06:19,648 --> 00:06:23,523
+tempo falando sobre como, se você atualmente tentou desenvolver um sistema de
+
+77
+00:06:23,523 --> 00:06:27,596
+aprendizagem de máquina, como fazer aquelas decisões do tipo de melhores práticas sobre a forma na qual você
+
+78
+00:06:27,596 --> 00:06:31,321
+constrói o seu sistema então, quando você aplica algoritmo de aprendizagem, você terá
+
+79
+00:06:31,321 --> 00:06:35,394
+menos chance de terminar como aquelas pessoas que perseguiam algum caminho por seis meses
+
+80
+00:06:35,394 --> 00:06:39,373
+que, você sabe, alguém mais poderia ter visto que não funcionaria de
+
+81
+00:06:39,373 --> 00:06:43,515
+modo algum e é só uma perda de tempo por seis meses. Então eu atualmente vou gastar
+
+82
+00:06:43,515 --> 00:06:47,707
+muito tempo ensinando a você esses tipos de melhores práticas em aprendizagem de máquina e
+
+83
+00:06:47,707 --> 00:06:52,052
+IA e como fazer essa coisa funcionar e como nós fazemos isso, como as melhores pessoas fazem no
+
+84
+00:06:52,052 --> 00:06:56,143
+Vale do Silício e pelo mundo. Eu espero tornar você um dos melhores em
+
+85
+00:06:56,143 --> 00:06:59,905
+saber como projetar e construir sistemas sérios de aprendizagem de máquina e IA. Então,
+
+86
+00:06:59,905 --> 00:07:04,698
+isso é aprendizagem de máquina e estes são os tópicos principais que eu espero ensinar. No próximo
+
+87
+00:07:04,698 --> 00:07:09,023
+vídeo eu vou definir o que é aprendizagem supervisionada e depois disso, o que
+
+88
+00:07:09,023 --> 00:07:13,757
+é aprendizagem não-supervisionada. E também, começar a falar quando você poderia usar cada uma delas.

@@ -1,0 +1,503 @@
+1
+00:00:00,493 --> 00:00:03,492
+Ustedes ahora ya saben acerca del algoritmo de gradiente de descenso estocástico,
+
+2
+00:00:03,492 --> 00:00:09,907
+pero cuando están ejecutando el algoritmo, ¿cómo se aseguran de que está completamente depurado y que está convergiendo bien?
+
+3
+00:00:09,907 --> 00:00:15,813
+Igualmente importante, ¿cómo sintonizan el índice de aprendizaje «alfa» con el gradiente de descenso estocástico?.
+
+4
+00:00:15,813 --> 00:00:25,950
+En este vídeo hablaremos de algunas técnicas para hacer esto, para asegurarse de que está convergiendo, y para captar el índice de aprendizaje «alfa».
+
+5
+00:00:25,950 --> 00:00:30,600
+Antes, cuando usamos el gradiente de descenso por lotes, nuestra forma estándar para asegurarnos de que
+
+6
+00:00:30,600 --> 00:00:36,493
+el gradiente de descenso estaba convergiendo, fue que trazamos la función de costos de optimización como una función del número de iteraciones.
+
+7
+00:00:36,493 --> 00:00:44,366
+Así que esa fue la función de costos y nos debemos asegurar de que esta función de costos disminuya en cada iteración.
+
+8
+00:00:44,366 --> 00:00:50,438
+Cuando los tamaños de los conjuntos de entrenamiento eran pequeños, podíamos hacer eso porque podíamos calcular la suma de manera eficaz.
+
+9
+00:00:50,438 --> 00:00:57,950
+Pero cuando se tiene un tamaño enorme de conjunto de entrenamiento, entonces usted no desea tener que pausar su algoritmo de manera periódica,
+
+10
+00:00:57,950 --> 00:01:04,045
+no quiere pausar el gradiente de descenso estocástico periódicamente a fin de calcular la función de costos
+
+11
+00:01:04,045 --> 00:01:07,442
+ya que requiere una suma del tamaño del conjunto de entrenamiento completo
+
+12
+00:01:07,442 --> 00:01:12,466
+y todo el punto del gradiente estocástico fue que deseaban empezar a hacer progresos
+
+13
+00:01:12,466 --> 00:01:19,130
+después de ver sólo un ejemplo, sin necesidad de revisar de vez en cuando a través de todo el conjunto de entrenamiento
+
+14
+00:01:19,130 --> 00:01:25,583
+justo a la mitad del algoritmo, sólo para calcular cosas como la función de costos de todo el conjunto de entrenamiento.
+
+15
+00:01:25,583 --> 00:01:32,472
+Así que para el gradiente de descenso estocástico, a fin de verificar que el algoritmo está convergiendo, esto es lo que podemos hacer en su lugar.
+
+16
+00:01:32,472 --> 00:01:36,367
+Tomemos la definición del costo que teníamos con anterioridad,
+
+17
+00:01:36,367 --> 00:01:42,647
+de modo que el costo de los parámetros «theta» con respecto a un solo ejemplo de entrenamiento es sólo una mitad del error al cuadrado en ese ejemplo de entrenamiento.
+
+18
+00:01:42,647 --> 00:01:49,754
+Después, mientras que el gradiente de descenso estocástico está aprendiendo, justo antes de que entrenemos en un ejemplo concreto,
+
+19
+00:01:49,754 --> 00:01:54,601
+en el gradiente de descenso estocástico vamos a mirar los ejemplos «xi», «yi» en orden, y
+
+20
+00:01:54,601 --> 00:01:57,329
+después tomamos una pequeña actualización con respecto a este ejemplo,
+
+21
+00:01:57,329 --> 00:02:04,095
+y pasamos al siguiente ejemplo, «xi» más 1, «yi» más 1, y así sucesivamente, ¿correcto?
+
+22
+00:02:04,095 --> 00:02:05,880
+Eso es lo que hace el gradiente de descenso estocástico.
+
+23
+00:02:05,880 --> 00:02:15,024
+Así que, mientras el algoritmo está mirando el ejemplo «xi, yi», pero antes de que haya actualizado los parámetros «theta»
+
+24
+00:02:15,024 --> 00:02:20,255
+usando ese ejemplo, vamos a calcular el costo de ese ejemplo.
+
+25
+00:02:20,255 --> 00:02:23,577
+Sólo para decir lo mismo otra vez, pero usando palabras ligeramente diferentes,
+
+26
+00:02:23,577 --> 00:02:33,294
+un gradiente de descenso estocástico está buscando a través de nuestro conjunto de entrenamiento justo antes de que actualicemos «theta», utilizando un ejemplo de entrenamiento específico «x(i)» coma «y(i)»;
+
+27
+00:02:33,294 --> 00:02:38,198
+vamos a calcular qué tan bien está funcionando nuestra hipótesis en ese ejemplo de entrenamiento.
+
+28
+00:02:38,198 --> 00:02:43,852
+Y queremos hacer esto antes de actualizar «theta» porque si sólo hemos actualizado «theta» utilizando ese ejemplo de entrenamiento,
+
+29
+00:02:43,852 --> 00:02:49,061
+ya saben, eso podría estar funcionando mejor en ese ejemplo de lo que sería representativo.
+
+30
+00:02:49,061 --> 00:02:57,438
+Por último, a fin de comprobar la convergencia del gradiente de descenso estocástico, lo que podemos hacer es cada, digamos, cada mil iteraciones,
+
+31
+00:02:57,438 --> 00:03:01,511
+podemos trazar estos costos que hemos estado calculando en el paso anterior.
+
+32
+00:03:01,511 --> 00:03:07,450
+Podemos trazar esos costos promedio sobre, digamos, los últimos mil ejemplos procesados ​​por el algoritmo.
+
+33
+00:03:07,450 --> 00:03:12,714
+Y si lo hacen así, es posible que les dé un cálculo sobre qué tan bien está funcionando el algoritmo
+
+34
+00:03:12,714 --> 00:03:17,049
+sobre, ya saben, los últimos 1000 ejemplos de entrenamiento que su algoritmo ha observado.
+
+35
+00:03:17,049 --> 00:03:23,974
+Así, en lugar de calcular «J entrenar» periódicamente, lo que haría necesario revisar a través de todo el conjunto de entrenamiento,</u>
+
+36
+00:03:23,974 --> 00:03:27,973
+con este otro procedimiento, como parte del gradiente de descenso estocástico,
+
+37
+00:03:27,973 --> 00:03:32,965
+no cuesta mucho calcular estos costos también, justo antes de actualizar al parámetro «theta».
+
+38
+00:03:32,965 --> 00:03:40,276
+Y todo lo que estamos haciendo es, cada mil integraciones más o menos, simplemente promediamos los últimos 1000 costos que hemos calculado y trazamos eso.
+
+39
+00:03:40,276 --> 00:03:47,537
+Y al ver esos gráficos, esto nos permitirá comprobar si el gradiente de descenso estocástico está convergiendo.
+
+40
+00:03:47,537 --> 00:03:51,708
+Así que aquí están algunos ejemplos de cómo pudieran verse estos gráficos.
+
+41
+00:03:51,708 --> 00:03:55,519
+Supongan que han trazado el costo promedio sobre los últimos mil ejemplos,
+
+42
+00:03:55,519 --> 00:04:01,073
+debido a que éstos se promedian sobre sólo un millar de ejemplos, van a ser un poco ruidosos, así que
+
+43
+00:04:01,073 --> 00:04:03,873
+pudieran no disminuir en cada iteración individual.
+
+44
+00:04:03,873 --> 00:04:07,828
+Entonces, si obtienen una figura como esta, de manera que el gráfico es ruidoso
+
+45
+00:04:07,828 --> 00:04:11,721
+porque su promedio está sobre sólo un pequeño subconjunto, por decir, un millar de ejemplos de entrenamiento,
+
+46
+00:04:11,721 --> 00:04:17,283
+si obtiene una figura que se vea así, ya saben, eso sería una ejecución bastante decente con el algoritmo
+
+47
+00:04:17,283 --> 00:04:24,195
+tal vez, en donde parece que el costo ha bajado y entonces esta meseta que parece un poco aplanada, ya saben, empezando alrededor de ese punto.
+
+48
+00:04:24,195 --> 00:04:29,603
+Así que parece que así es como se ven sus costos; entonces tal vez su algoritmo de aprendizaje ha convergido.
+
+49
+00:04:29,603 --> 00:04:34,252
+Si desean probar el uso de una frecuencia de aprendizaje más pequeña, algo que pueden ver es que
+
+50
+00:04:34,252 --> 00:04:39,229
+el algoritmo puede aprender más lentamente al inicio, por lo que el costo se reduce más lentamente,
+
+51
+00:04:39,229 --> 00:04:47,585
+pero luego, eventualmente, tienen una frecuencia de aprendizaje más pequeña. En realidad, es posible que el algoritmo termine en una solución ligeramente mejor.
+
+52
+00:04:47,585 --> 00:04:53,426
+De modo que la línea roja puede representar el comportamiento del gradiente en descenso estocástico usando una frecuencia de aprendizaje menor, más lenta.
+
+53
+00:04:53,426 --> 00:05:00,594
+Y la razón de que este es el caso se debe a que, si recuerdan, el gradiente de descenso estocástico no sólo converge en el mínimo global,
+
+54
+00:05:00,594 --> 00:05:05,068
+es que lo que hace es que los parámetros oscilarán un poco alrededor del mínimo global.
+
+55
+00:05:05,068 --> 00:05:09,231
+Así que, mediante el uso de un índice de aprendizaje más pequeño, terminarán con oscilaciones más pequeñas.
+
+56
+00:05:09,231 --> 00:05:12,896
+Y a veces, esta pequeña diferencia será insignificante,
+
+57
+00:05:12,896 --> 00:05:19,686
+y algunas veces con el más pequeño pueden obtener un valor ligeramente mejor para los parámetros.
+
+58
+00:05:19,686 --> 00:05:22,269
+Aquí hay algunas otras cosas que podrían ocurrir.
+
+59
+00:05:22,269 --> 00:05:27,986
+Digamos que ejecutan el gradiente de descenso  estocástico y tienen un  promedio de más de mil ejemplos cuando trazan estos costos.
+
+60
+00:05:27,986 --> 00:05:32,369
+Así que aquí podría estar el resultado de otro de estos gráficos.
+
+61
+00:05:32,369 --> 00:05:34,353
+De nuevo, parece que ha convergido.
+
+62
+00:05:34,353 --> 00:05:42,119
+Si fueran a tomar este número, mil, y aumentar a un promedio de más de 5000 ejemplos,
+
+63
+00:05:42,119 --> 00:05:47,913
+entonces es posible que pudieran obtener una curva más suave que se parece más a esto.
+
+64
+00:05:47,913 --> 00:05:56,547
+Y al promediar sobre estos, digamos 5000 ejemplos en lugar de 1000, podrían ser capaces de obtener una curva más suave como esta.
+
+65
+00:05:56,547 --> 00:06:00,248
+Y eso es el efecto de aumentar el número de ejemplos sobre los cuales promediar.
+
+66
+00:06:00,248 --> 00:06:06,229
+La desventaja de hacer esto demasiado grande, es que, por supuesto, ahora tienen un punto de datos sólo cada 5,000 ejemplos.
+
+67
+00:06:06,229 --> 00:06:12,001
+Así que la retroalimentación que obtienen sobre lo bien que está funcionando su algoritmo de aprendizaje es tal vez más retrasada
+
+68
+00:06:12,001 --> 00:06:17,681
+debido a que obtuvieron un punto de datos en su gráfico sólo cada 5,000 ejemplos, en vez de cada 1,000 ejemplos.
+
+69
+00:06:17,681 --> 00:06:23,911
+Siguiendo una linea de pensamiento similar, algunas veces pudieran ejecutar un gradiente de descenso estocástico y terminar con un gráfico que se parece a esto.
+
+70
+00:06:23,911 --> 00:06:32,079
+Y con un gráfico que se parezca a esto, ya saben, parece que el costo simplemente no disminuye en absoluto,
+
+71
+00:06:32,079 --> 00:06:34,023
+parece que el algoritmo sencillamente no está aprendiendo.
+
+72
+00:06:34,023 --> 00:06:39,261
+Sólo parece que aquí hay una curva plana y que el costo no está disminuyendo.
+
+73
+00:06:39,261 --> 00:06:46,260
+Pero, de nuevo, si aumentaran esto para promediar sobre un mayor número de ejemplos,
+
+74
+00:06:46,260 --> 00:06:49,729
+es posible que observen algo como esta línea roja,
+
+75
+00:06:49,729 --> 00:06:55,127
+parece que el costo realmente está disminuyendo, es sólo que la línea azul con un promedio de más de 2, 3 ejemplos,
+
+76
+00:06:55,127 --> 00:07:01,374
+la línea azul era demasiado ruidosa, así que no se podía ver la tendencia real del costo disminuyendo en realidad
+
+77
+00:07:01,374 --> 00:07:06,688
+y posiblemente promediar más de 5,000 ejemplos, en lugar de 1,000, pudiera ayudar.
+
+78
+00:07:06,688 --> 00:07:12,358
+Por supuesto, cuando promediamos sobre un número de ejemplos más grande, si promediáramos sobre 5,000 ejemplos,
+
+79
+00:07:12,358 --> 00:07:16,998
+sólo estoy utilizando un color diferente, también es posible que vean una curva de aprendizaje que termina viéndose así.
+
+80
+00:07:16,998 --> 00:07:21,197
+Que sigue siendo plana, incluso cuando promedian sobre un número mayor de ejemplos.
+
+81
+00:07:21,197 --> 00:07:25,908
+Y si obtienen eso, entonces eso es una verificación más firme de que,
+
+82
+00:07:25,908 --> 00:07:29,287
+desafortunadamente, el algoritmo no está aprendiendo mucho por alguna razón.
+
+83
+00:07:29,287 --> 00:07:34,969
+Y necesitan cambiar el índice de aprendizaje, o cambiar las variables, o cambiar algo más sobre el algoritmo.
+
+84
+00:07:34,969 --> 00:07:39,235
+Finalmente, una última cosa que pudieran observar si tuvieran que trazar estas curvas
+
+85
+00:07:39,235 --> 00:07:43,273
+y ven una curva que se ve así, en donde realmente parece que está aumentando,
+
+86
+00:07:43,273 --> 00:07:48,066
+y si ese es el caso, entonces esto es una señal de que el algoritmo es divergente.
+
+87
+00:07:48,066 --> 00:07:53,965
+Y lo que realmente deben hacer es utilizar un valor menor de la «alfa» del índice de aprendizaje.
+
+88
+00:07:53,965 --> 00:07:58,143
+Así que espero que esto les dé un sentido de los fenómenos que pudieran ver
+
+89
+00:07:58,143 --> 00:08:02,946
+cuando trazan este promedio de costos sobre algún rango de ejemplos, al igual que
+
+90
+00:08:02,946 --> 00:08:07,765
+sugerir el tipo de cosas que pudieran tratar de hacer cuando ven diferentes gráficos.
+
+91
+00:08:07,765 --> 00:08:15,070
+De modo que si los gráficos parecen demasiado ruidosos, o si se menea demasiado hacia arriba y hacia abajo, entonces traten de aumentar el número de ejemplos
+
+92
+00:08:15,070 --> 00:08:18,734
+sobre los que están promediando, de modo que puedan ver mejor la tendencia general en el gráfico.
+
+93
+00:08:18,734 --> 00:08:25,836
+Y si ven que los errores están en realidad aumentando, los costos están aumentando, traten de utilizar un valor de «alfa» más pequeño.
+
+94
+00:08:25,836 --> 00:08:31,649
+Por último, vale la pena examinar la cuestión del índice de aprendizaje un poco más.
+
+95
+00:08:31,649 --> 00:08:38,922
+Vimos que cuando ejecutamos el gradiente de descenso estocástico, el algoritmo comienza aquí y hará un tipo de serpenteo hacia el mínimo,
+
+96
+00:08:38,922 --> 00:08:43,494
+y entonces realmente no convergerá y, en su lugar, va a deambular alrededor de la mínima por siempre.
+
+97
+00:08:43,494 --> 00:08:50,225
+Así que terminan con un valor de parámetro que con suerte está cerca del global mínimo  pero que no estará exactamente en el mínimo global.
+
+98
+00:08:50,225 --> 00:08:57,991
+En las implementaciones más típicas del gradiente de descenso estocástico, el índice de aprendizaje «alfa» suele mantenerse constante.
+
+99
+00:08:57,991 --> 00:09:02,022
+Así que con lo que terminamos, es una imagen como esta.
+
+100
+00:09:02,022 --> 00:09:06,523
+Si desean que el gradiente de descenso estocástico converja realmente al mínimo global,
+
+101
+00:09:06,523 --> 00:09:11,825
+hay una cosa que pueden hacer, que es que pueden disminuir lentamente el índice de aprendizaje «alfa» a través del tiempo.
+
+102
+00:09:11,825 --> 00:09:22,240
+Por lo tanto, una forma muy típica de hacerlo sería establecer «alfa» es igual a cierta constante 1, dividida por el número de iteración, más la constante 2.
+
+103
+00:09:22,240 --> 00:09:28,169
+De modo que el número de iteración es el número de iteraciones que han ejecutado del gradiente de descenso estocástico,
+
+104
+00:09:28,169 --> 00:09:29,519
+en realidad es el número de ejemplos de entrenamiento que han visto,
+
+105
+00:09:29,519 --> 00:09:34,103
+y la const 1 y la const 2 son los parámetros adicionales del algoritmo
+
+106
+00:09:34,103 --> 00:09:38,160
+con los que tuviera que jugar un poco a fin de obtener un buen desempeño.
+
+107
+00:09:38,160 --> 00:09:43,004
+Una de las razones por la que las personas tienden a no hacer esto es porque terminan teniendo que invertir tiempo
+
+108
+00:09:43,004 --> 00:09:48,122
+jugando con estos 2 parámetros adicionales, la constante 1 y la constante 2, y esto hace que el algoritmo sea más meticuloso.
+
+109
+00:09:48,122 --> 00:09:52,113
+Ya saben, son sólo más parámetros con los que se puede juguetear a fin de hacer que el algoritmo funcione bien.
+
+110
+00:09:52,113 --> 00:09:57,246
+Pero si consiguen sintonizar bien los parámetros, entonces la imagen que pueden obtener es que
+
+111
+00:09:57,246 --> 00:10:02,834
+el algoritmo realmente serpenteará alrededor hacia el mínimo, pero a medida que se acerca
+
+112
+00:10:02,834 --> 00:10:07,024
+debido a que están disminuyendo el índice de aprendizaje, el serpenteo se hará cada vez más pequeño,
+
+113
+00:10:07,024 --> 00:10:12,729
+hasta que prácticamente simplemente converge hacia el mínimo global. Espero que esto tenga sentido, ¿cierto?
+
+114
+00:10:12,729 --> 00:10:21,608
+Y la razón por la que esta fórmula tiene sentido es que, a medida que se ejecuta el algoritmo, el número de iteración se hace grande, de manera que «alfa» se hará lentamente pequeño,
+
+115
+00:10:21,608 --> 00:10:27,506
+así que tomarán pasos más y más pequeños hasta que, con suerte, converjan hacia el global mínimo.
+
+116
+00:10:27,506 --> 00:10:33,484
+Así que si disminuyen lentamente «alfa» a cero, pueden terminar con una hipótesis ligeramente mejor.
+
+117
+00:10:33,484 --> 00:10:40,078
+Pero debido al trabajo extra que se necesita para juguetear con las constantes, y porque, francamente, generalmente nos ponemos muy contentos
+
+118
+00:10:40,078 --> 00:10:43,892
+con cualquier valor de parámetro que esté, ya saben, muy cerca del mínimo global,
+
+119
+00:10:43,892 --> 00:10:50,863
+normalmente, este proceso de disminución lenta de «alfa» generalmente no se hace y mantener constante el índice de aprendizaje «alfa»
+
+120
+00:10:50,863 --> 00:10:56,983
+es la aplicación más común del gradiente de descenso estocástico, aunque verán personas que usan cualquiera de las versiones.
+
+121
+00:10:56,983 --> 00:11:03,595
+En resumen, en este video hablamos de una manera para monitorear de manera aproximada
+
+122
+00:11:03,595 --> 00:11:08,256
+cómo está funcionando el gradiente de descenso estocástico en términos de la optimización de la función de costos.
+
+123
+00:11:08,256 --> 00:11:17,043
+Y este es un método que no requiere de exploración en todo el conjunto de entrenamiento de manera periódica para calcular la función de costos en todo el conjunto de entrenamiento.
+
+124
+00:11:17,043 --> 00:11:20,693
+Pero en vez de eso, mira, por decir,  sólo los últimos mil ejemplos más o menos.
+
+125
+00:11:20,693 --> 00:11:27,592
+Y pueden utilizar este método ya sea para asegurarse de que el gradiente de descenso estocástico está bien y que está convergiendo,
+
+126
+00:11:27,592 --> 00:11:31,468
+o utilizarlo para ajustar el índice de aprendizaje «alfa».

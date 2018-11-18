@@ -1,0 +1,2473 @@
+1
+00:00:00,140 --> 00:00:01,310
+Hasta el momento hemos hablado de
+
+2
+00:00:01,640 --> 00:00:03,290
+las SVM a un nivel abstracto.
+
+3
+00:00:03,980 --> 00:00:05,030
+En este video me gustaría
+
+4
+00:00:05,200 --> 00:00:06,460
+necesitas hacer para
+
+5
+00:00:06,740 --> 00:00:09,410
+ejecutar o utilizar una SVM.
+
+6
+00:00:11,320 --> 00:00:12,300
+El algoritmo de la máquina de soporte vectorial
+
+7
+00:00:12,850 --> 00:00:14,870
+presenta un problema de optimización peculiar.
+
+8
+00:00:15,530 --> 00:00:16,940
+Como comenté en el
+
+9
+00:00:17,120 --> 00:00:18,150
+video anterior, no recomiendo
+
+10
+00:00:18,380 --> 00:00:20,570
+que escribas tu propio software
+
+11
+00:00:20,630 --> 00:00:22,810
+para resolver por ti mismo los parámetros teta.
+
+12
+00:00:23,950 --> 00:00:26,110
+Hoy en día, muy pocos
+
+13
+00:00:26,420 --> 00:00:27,730
+de nosotros, quizá
+
+14
+00:00:28,090 --> 00:00:29,400
+ninguno, pensaría en escribir
+
+15
+00:00:29,530 --> 00:00:31,680
+código nosotros mismos para invertir una matriz
+
+16
+00:00:31,950 --> 00:00:33,940
+o sustraer la raíz cuadrada de un número, etc.,
+
+17
+00:00:34,190 --> 00:00:36,570
+simplemente utilizamos una función de biblioteca para hacerlo.
+
+18
+00:00:36,700 --> 00:00:38,090
+De la misma manera, el
+
+19
+00:00:38,850 --> 00:00:40,310
+software para resolver el problema de
+
+20
+00:00:40,620 --> 00:00:42,200
+optimización de las SVM es
+
+21
+00:00:42,440 --> 00:00:43,880
+muy complejo. Algunos investigadores
+
+22
+00:00:43,990 --> 00:00:44,960
+han realizado investigaciones
+
+23
+00:00:45,110 --> 00:00:47,560
+de optimización numérica esencial por muchos años para
+
+24
+00:00:47,850 --> 00:00:48,960
+desarrollar
+
+25
+00:00:49,150 --> 00:00:50,550
+excelentes bibliotecas de software y paquetes de
+
+26
+00:00:50,930 --> 00:00:52,270
+software para llevar esto a cabo.
+
+27
+00:00:52,470 --> 00:00:53,480
+Yo recomiendo ampliamente utilizar
+
+28
+00:00:53,860 --> 00:00:55,260
+una de las bibliotecas de software altamente
+
+29
+00:00:55,710 --> 00:00:57,780
+optimizado en vez de intentar implementar algo tú mismo.
+
+30
+00:00:58,730 --> 00:01:00,680
+Existen bibliotecas de software excelentes.
+
+31
+00:01:00,970 --> 00:01:02,060
+Las dos que utilizo más seguido son
+
+32
+00:01:02,210 --> 00:01:03,220
+la SVM lineares pero hay
+
+33
+00:01:03,400 --> 00:01:05,000
+muchas
+
+34
+00:01:05,410 --> 00:01:06,860
+bibliotecas de software excelentes
+
+35
+00:01:07,030 --> 00:01:08,430
+para hacer esto que
+
+36
+00:01:08,600 --> 00:01:10,190
+puedes adaptar a
+
+37
+00:01:10,450 --> 00:01:11,860
+muchos de los lenguajes de programación más importantes
+
+38
+00:01:11,950 --> 00:01:14,410
+que quizá estés utilizando para codificar un algoritmo de aprendizaje.
+
+39
+00:01:15,280 --> 00:01:16,460
+Aunque no deberías
+
+40
+00:01:16,730 --> 00:01:18,330
+escribir tu propio software de optimización
+
+41
+00:01:19,120 --> 00:01:20,680
+de SVM, hay algunas cosas sí de debes hacer.
+
+42
+00:01:21,420 --> 00:01:23,130
+Primero, debes elegir
+
+43
+00:01:23,130 --> 00:01:24,230
+el parámetro “C”. Hablamos
+
+44
+00:01:24,320 --> 00:01:25,640
+de las propiedades
+
+45
+00:01:25,940 --> 00:01:26,930
+de oscilación y varianza
+
+46
+00:01:27,040 --> 00:01:28,850
+en videos anteriores.
+
+47
+00:01:30,290 --> 00:01:31,480
+Segundo, necesitas elegir
+
+48
+00:01:31,630 --> 00:01:33,040
+el kernel o la
+
+49
+00:01:33,410 --> 00:01:34,880
+función de similaridad que deseas utilizar.
+
+50
+00:01:35,730 --> 00:01:37,080
+Una elección pudiera ser si decidimos
+
+51
+00:01:37,280 --> 00:01:38,980
+no utilizar ningún kernel.
+
+52
+00:01:40,560 --> 00:01:41,510
+La idea de que no haya un kernel
+
+53
+00:01:41,910 --> 00:01:43,600
+también se llama kernel lineal.
+
+54
+00:01:44,130 --> 00:01:45,320
+Si alguien dice “utilizo una
+
+55
+00:01:45,530 --> 00:01:46,760
+SVM con un kernel lineal” se refiere
+
+56
+00:01:47,180 --> 00:01:48,330
+a que utilizan una
+
+57
+00:01:48,490 --> 00:01:50,690
+SVM sin
+
+58
+00:01:51,020 --> 00:01:52,250
+un kernel y
+
+59
+00:01:52,360 --> 00:01:53,410
+a que era un versión de SVM
+
+60
+00:01:54,120 --> 00:01:55,870
+que sólo utiliza teta transpuesta de “x”, ¿sí?
+
+61
+00:01:56,140 --> 00:01:57,620
+Esto predice que teta 0
+
+62
+00:01:57,850 --> 00:01:59,420
+más teta 1, “x1” más
+
+63
+00:01:59,740 --> 00:02:01,000
+el resto más teta
+
+64
+00:02:01,690 --> 00:02:04,160
+“n”, “Xn” es mayor que o igual a 0.
+
+65
+00:02:05,520 --> 00:02:06,830
+El término de kernel linear
+
+66
+00:02:06,950 --> 00:02:08,250
+lo puedes utilizar como
+
+67
+00:02:08,480 --> 00:02:09,290
+la versión de la SVM
+
+68
+00:02:10,340 --> 00:02:12,320
+que resulta en un clasificador estándar lineal.
+
+69
+00:02:13,940 --> 00:02:14,700
+Esta sería una
+
+70
+00:02:15,040 --> 00:02:16,160
+elección razonable para algunos problemas
+
+71
+00:02:17,130 --> 00:02:18,080
+y, como mencioné, hay muchas bibliotecas de software,
+
+72
+00:02:18,470 --> 00:02:20,900
+como SVM linear, que fue mi ejemplo, con las
+
+73
+00:02:21,210 --> 00:02:22,320
+que se puede entrenar
+
+74
+00:02:22,840 --> 00:02:23,880
+una
+
+75
+00:02:24,560 --> 00:02:25,620
+SVM
+
+76
+00:02:25,980 --> 00:02:27,410
+sin un kernel. A esta SVM se le
+
+77
+00:02:27,760 --> 00:02:29,470
+llama kernel lineal.
+
+78
+00:02:29,850 --> 00:02:31,340
+Ahora ¿por qué queremos hacer esto?
+
+79
+00:02:31,410 --> 00:02:32,820
+Si tienes un gran número de
+
+80
+00:02:33,150 --> 00:02:34,280
+variables, si “n” es
+
+81
+00:02:34,430 --> 00:02:37,800
+grande y “m”, el número
+
+82
+00:02:37,990 --> 00:02:39,590
+de ejemplos de entrenamiento, es
+
+83
+00:02:39,670 --> 00:02:41,050
+pequeño, tendrás un número
+
+84
+00:02:41,230 --> 00:02:42,300
+enorme de variables
+
+85
+00:02:42,360 --> 00:02:43,630
+si “x” es
+
+86
+00:02:43,710 --> 00:02:45,850
+“Rn, Rn” + 1.
+
+87
+00:02:46,010 --> 00:02:46,940
+Así que, tenemos un número
+
+88
+00:02:47,080 --> 00:02:48,700
+enorme de variables con
+
+89
+00:02:48,800 --> 00:02:50,540
+un conjunto de entrenamiento pequeño. Quizá
+
+90
+00:02:50,610 --> 00:02:51,430
+sólo quieres ajustar una
+
+91
+00:02:51,710 --> 00:02:52,890
+barrera de decisión lineal y no
+
+92
+00:02:53,060 --> 00:02:54,420
+ajustar una función no lineal complicada porque
+
+93
+00:02:54,860 --> 00:02:56,980
+quizá no tengas suficientes datos.
+
+94
+00:02:57,560 --> 00:02:59,330
+Y si estás intentando ajustar
+
+95
+00:02:59,470 --> 00:03:00,530
+una variable muy complicada en un espacio con una dimensión de variables
+
+96
+00:03:01,540 --> 00:03:03,220
+alta, corres el riesgo de sobreajustar.
+
+97
+00:03:03,980 --> 00:03:04,990
+Por el contrario, si la muestra de tu conjunto de
+
+98
+00:03:05,040 --> 00:03:07,120
+entrenamiento es pequeña,  esta sería una condición
+
+99
+00:03:07,340 --> 00:03:08,600
+razonable en la que puedes
+
+100
+00:03:08,740 --> 00:03:09,950
+decidir no utilizar
+
+101
+00:03:10,700 --> 00:03:11,960
+un kernel o algo equivalente. A
+
+102
+00:03:12,250 --> 00:03:15,580
+esto se le llama kernel lineal.
+
+103
+00:03:15,740 --> 00:03:16,740
+Una segunda elección para el kernel que
+
+104
+00:03:16,820 --> 00:03:18,010
+puedes generar es el kernel Gaussiano,
+
+105
+00:03:18,370 --> 00:03:19,920
+que utilizamos previamente.
+
+106
+00:03:21,270 --> 00:03:22,350
+Si utilizas este kernel, la otra elección
+
+107
+00:03:22,440 --> 00:03:23,130
+que debes tomar es fijar
+
+108
+00:03:23,420 --> 00:03:25,980
+el parámetro «sigma» cuadrada.
+
+109
+00:03:26,850 --> 00:03:29,800
+Cuando hablamos de las compensaciones entre oscilación y varianza hablamos
+
+110
+00:03:30,820 --> 00:03:32,360
+de que cuando «sigma» cuadrada
+
+111
+00:03:32,600 --> 00:03:33,890
+es alta, tiende a generar un clasificador de oscilación
+
+112
+00:03:34,160 --> 00:03:35,580
+alto y varianza baja; por el contrario, si
+
+113
+00:03:35,770 --> 00:03:37,650
+«sigma» cuadrada es pequeña,
+
+114
+00:03:37,800 --> 00:03:39,700
+tendremos un clasificador
+
+115
+00:03:40,060 --> 00:03:42,360
+de varianza alta y oscilación baja.
+
+116
+00:03:43,940 --> 00:03:45,350
+Entonces ¿cuándo podemos elegir el kernel Gaussiano?
+
+117
+00:03:46,210 --> 00:03:48,050
+En tus variables
+
+118
+00:03:48,310 --> 00:03:49,540
+originales “x”, quiero decir
+
+119
+00:03:49,820 --> 00:03:51,370
+“Rn”, “n”
+
+120
+00:03:51,570 --> 00:03:53,890
+si es “n” es bajo y si “m” es
+
+121
+00:03:55,660 --> 00:03:57,110
+alto,
+
+122
+00:03:58,470 --> 00:04:00,170
+tendremos un
+
+123
+00:04:00,550 --> 00:04:02,340
+conjunto de entrenamiento bidimensional
+
+124
+00:04:03,130 --> 00:04:04,880
+como en el ejemplo que ilustré anteriormente.
+
+125
+00:04:05,470 --> 00:04:08,320
+Así que “n” es igual a 2. Aquí tenemos un conjunto de entrenamiento muy grande,
+
+126
+00:04:08,680 --> 00:04:09,770
+así que dibujé una gran cantidad
+
+127
+00:04:09,950 --> 00:04:10,890
+de ejemplos de entrenamiento. Quizá
+
+128
+00:04:11,650 --> 00:04:12,410
+después quieras utilizar
+
+129
+00:04:12,540 --> 00:04:14,400
+un kernel para ajustar una
+
+130
+00:04:14,910 --> 00:04:16,260
+barrera de decisión no lineal más compleja.
+
+131
+00:04:16,650 --> 00:04:18,750
+Una buena opción sería utilizar el kernel Gaussiano.
+
+132
+00:04:19,480 --> 00:04:20,610
+Al final de este
+
+133
+00:04:20,720 --> 00:04:22,570
+video hablaré un poco más
+
+134
+00:04:22,660 --> 00:04:23,760
+acerca de cuando elegimos
+
+135
+00:04:23,970 --> 00:04:26,310
+un kernel lineal, como el Gaussiano, u otros.
+
+136
+00:04:27,860 --> 00:04:29,740
+De manera concreta, si decides
+
+137
+00:04:30,040 --> 00:04:31,210
+utilizar un kernel Gaussiano, aquí
+
+138
+00:04:31,720 --> 00:04:33,910
+está lo que debes hacer:
+
+139
+00:04:35,380 --> 00:04:36,550
+Dependiendo del paquete de software de
+
+140
+00:04:37,280 --> 00:04:38,990
+máquina de soporte vectorial que utilizarás,
+
+141
+00:04:39,100 --> 00:04:40,960
+te preguntará si quieres
+
+142
+00:04:41,070 --> 00:04:42,200
+implementar una función de kernel o
+
+143
+00:04:43,060 --> 00:04:43,880
+de similaridad.
+
+144
+00:04:45,020 --> 00:04:46,750
+Si utilizarás una implementación octave o MATLAB de
+
+145
+00:04:47,010 --> 00:04:49,820
+una SVM, quizá te
+
+146
+00:04:50,000 --> 00:04:50,720
+pida que proveas una función
+
+147
+00:04:50,810 --> 00:04:52,560
+para calcular una variable específica
+
+148
+00:04:52,690 --> 00:04:54,680
+en el kernel.
+
+149
+00:04:55,110 --> 00:04:56,480
+Esto será calcular “f”
+
+150
+00:04:56,770 --> 00:04:57,890
+subíndice “i” para un
+
+151
+00:04:58,220 --> 00:04:59,560
+valor particular de “i”, donde
+
+152
+00:05:00,570 --> 00:05:02,310
+esta “f” es sólo un número real
+
+153
+00:05:02,330 --> 00:05:03,570
+simple.
+
+154
+00:05:03,840 --> 00:05:05,060
+Quizá debería denotar esto como “f(i)”.
+
+155
+00:05:05,250 --> 00:05:07,230
+Lo que debes hacer es
+
+156
+00:05:07,510 --> 00:05:08,130
+escribir una función de
+
+157
+00:05:08,480 --> 00:05:09,530
+kernel que toma esta entrada; es decir,
+
+158
+00:05:10,610 --> 00:05:11,910
+un ejemplo de entrenamiento o un
+
+159
+00:05:12,020 --> 00:05:13,140
+ejemplo de prueba, lo que sea, en un
+
+160
+00:05:13,280 --> 00:05:14,640
+vector “x” y tomar la
+
+161
+00:05:14,990 --> 00:05:16,220
+entrada de alguno de los puntos de
+
+162
+00:05:16,370 --> 00:05:18,270
+referencia.
+
+163
+00:05:18,880 --> 00:05:20,750
+Aquí sólo escribí “x1” y “x2”, pero
+
+164
+00:05:20,950 --> 00:05:21,810
+los puntos de
+
+165
+00:05:21,900 --> 00:05:23,750
+referencia también son ejemplos de entrenamiento.
+
+166
+00:05:24,470 --> 00:05:26,160
+Lo que necesitas hacer, ahora, es escribir el
+
+167
+00:05:26,400 --> 00:05:27,490
+software que
+
+168
+00:05:27,670 --> 00:05:28,960
+tome esa entrada, “x1” y “x2”,
+
+169
+00:05:29,150 --> 00:05:30,320
+y calcule este tipo de
+
+170
+00:05:30,580 --> 00:05:31,950
+función de similaridad entre ellos
+
+171
+00:05:32,530 --> 00:05:33,470
+y arroje un número real.
+
+172
+00:05:36,180 --> 00:05:37,430
+Lo que hacen algunos paquetes de
+
+173
+00:05:37,580 --> 00:05:39,040
+máquina de soporte vectorial es
+
+174
+00:05:39,510 --> 00:05:40,860
+esperar que proveas la función de kernel que
+
+175
+00:05:41,410 --> 00:05:44,580
+toma entrada “x1” y “x2”, y arrojará un número real.
+
+176
+00:05:45,580 --> 00:05:46,460
+También, de estos datos,
+
+177
+00:05:46,850 --> 00:05:49,070
+generará automáticamente todas las variables; es decir,
+
+178
+00:05:49,410 --> 00:05:51,480
+tomara “x” para
+
+179
+00:05:51,600 --> 00:05:53,370
+mapearlo en “f1”
+
+180
+00:05:53,420 --> 00:05:54,420
+y “f2” hasta “f(m)” utilizando
+
+181
+00:05:54,750 --> 00:05:56,200
+la función que escribas. También
+
+182
+00:05:56,310 --> 00:05:57,190
+generará todas las variables y
+
+183
+00:05:57,650 --> 00:05:59,080
+entrenará a la máquina de soporte vectorial a partir de ello.
+
+184
+00:05:59,870 --> 00:06:00,800
+Algunas veces tú
+
+185
+00:06:00,880 --> 00:06:04,710
+necesitas proveer la función.
+
+186
+00:06:05,680 --> 00:06:06,770
+Otras implementaciones de SVM también incluirán el kernel Gaussiano,
+
+187
+00:06:06,980 --> 00:06:09,950
+y otros kernels
+
+188
+00:06:10,040 --> 00:06:10,990
+adicionales, ya que probablemente
+
+189
+00:06:11,230 --> 00:06:13,580
+el kernel Gaussiano es el kernel más común.
+
+190
+00:06:14,880 --> 00:06:16,290
+Los kernels Gaussianos y no lineales
+
+191
+00:06:16,380 --> 00:06:18,210
+son, por mucho, los dos kernels más populares.
+
+192
+00:06:19,130 --> 00:06:20,230
+Añadiré una nota de implementación:
+
+193
+00:06:20,750 --> 00:06:21,820
+Si tienes variables
+
+194
+00:06:22,080 --> 00:06:23,620
+de escalas muy distintas, es importante
+
+195
+00:06:24,700 --> 00:06:26,270
+modificar la escala antes
+
+196
+00:06:26,600 --> 00:06:27,780
+de utilizar el kernel Gaussiano.
+
+197
+00:06:28,580 --> 00:06:29,180
+Explicaré por qué:
+
+198
+00:06:30,150 --> 00:06:31,600
+Imagina el cálculo
+
+199
+00:06:32,290 --> 00:06:33,570
+de la norma entre “x” y “L”.
+
+200
+00:06:33,790 --> 00:06:34,890
+Este término de aquí
+
+201
+00:06:35,390 --> 00:06:37,150
+es como el numerador de acá arriba.
+
+202
+00:06:38,300 --> 00:06:39,780
+Lo que hacemos con esto es
+
+203
+00:06:40,070 --> 00:06:40,930
+calcular el
+
+204
+00:06:41,130 --> 00:06:42,140
+vector “V”
+
+205
+00:06:42,450 --> 00:06:43,290
+que es igual a
+
+206
+00:06:43,410 --> 00:06:44,980
+“x” menos “L” y luego
+
+207
+00:06:45,250 --> 00:06:47,940
+calcularemos la norma
+
+208
+00:06:48,130 --> 00:06:49,080
+del vector “V”, que es la
+
+209
+00:06:49,170 --> 00:06:50,510
+diferencia de “x-L”. La norma
+
+210
+00:06:50,580 --> 00:06:51,510
+de “V” es igual a
+
+211
+00:06:53,360 --> 00:06:54,140
+“V1” cuadrada
+
+212
+00:06:54,250 --> 00:06:55,610
+más “V2” cuadrada más
+
+213
+00:06:55,830 --> 00:06:58,290
+el resto, más “Vn” cuadrada,
+
+214
+00:06:58,900 --> 00:07:00,320
+porque “X” es
+
+215
+00:07:01,060 --> 00:07:02,200
+“Rn” o “Rn” más 1,
+
+216
+00:07:02,290 --> 00:07:05,180
+pero ignoraré “x0” y
+
+217
+00:07:06,540 --> 00:07:08,420
+fingiremos que “x”
+
+218
+00:07:08,510 --> 00:07:10,800
+es “Rn”. El cuadrado en
+
+219
+00:07:10,950 --> 00:07:12,320
+el lado izquierdo hace esta ecuación correcta.
+
+220
+00:07:12,570 --> 00:07:14,090
+Entonces, esto es igual a
+
+221
+00:07:14,400 --> 00:07:16,120
+esto de acá ¿sí?
+
+222
+00:07:17,210 --> 00:07:18,710
+Esto, escrito de otra manera
+
+223
+00:07:18,850 --> 00:07:20,100
+será “x1” menos “L1” cuadrado
+
+224
+00:07:20,290 --> 00:07:22,600
+más “x2” menos “L2”
+
+225
+00:07:22,910 --> 00:07:24,590
+cuadrada más
+
+226
+00:07:24,910 --> 00:07:26,580
+el resto de los términos más “xn” menos
+
+227
+00:07:27,130 --> 00:07:28,540
+“Ln” cuadrada.
+
+228
+00:07:29,720 --> 00:07:30,790
+Ahora veremos qué
+
+229
+00:07:31,850 --> 00:07:33,460
+pasa cuando las variables tienen un amplio rango de valores.
+
+230
+00:07:33,940 --> 00:07:35,150
+Tomaremos
+
+231
+00:07:35,360 --> 00:07:37,180
+el ejemplo de la predicción de
+
+232
+00:07:38,020 --> 00:07:40,490
+la vivienda donde nuestros datos son acerca de casas.
+
+233
+00:07:41,420 --> 00:07:43,000
+Si “x” está en el rango de
+
+234
+00:07:43,140 --> 00:07:44,660
+miles de pies
+
+235
+00:07:44,950 --> 00:07:47,190
+cuadrados para
+
+236
+00:07:48,010 --> 00:07:48,840
+la primera variable “x1”,
+
+237
+00:07:49,700 --> 00:07:51,630
+pero para la segunda variable “x2” se refiere al número de habitaciones y
+
+238
+00:07:52,540 --> 00:07:53,610
+su valor variará de entre
+
+239
+00:07:53,730 --> 00:07:56,720
+1 y 5 habitaciones, entonces “x1” menos
+
+240
+00:07:57,810 --> 00:07:59,320
+“L1” será enorme;
+
+241
+00:07:59,780 --> 00:08:00,820
+resultaría como en mil pies cuadrados mientras
+
+242
+00:08:01,000 --> 00:08:02,880
+que “x2” menos “L2”
+
+243
+00:08:03,200 --> 00:08:04,620
+será mucho más pequeño. Si
+
+244
+00:08:04,750 --> 00:08:06,800
+ese es el caso, entonces, estas
+
+245
+00:08:08,320 --> 00:08:09,660
+distancias estarán determinadas
+
+246
+00:08:10,060 --> 00:08:12,060
+esencialmente por
+
+247
+00:08:12,570 --> 00:08:13,280
+el tamaño de las casas
+
+248
+00:08:14,390 --> 00:08:15,760
+y el número de cuartos se ignoraría.
+
+249
+00:08:16,950 --> 00:08:18,060
+Para evitar esto y para
+
+250
+00:08:18,230 --> 00:08:19,070
+lograr que funcione nuestra máquina,
+
+251
+00:08:19,360 --> 00:08:21,890
+debemos hacer una modificación de escalas.
+
+252
+00:08:23,420 --> 00:08:24,830
+Esto nos asegura que la SVM
+
+253
+00:08:25,810 --> 00:08:27,020
+le pondrá una atención comparable
+
+254
+00:08:27,950 --> 00:08:28,870
+a todas las variables y no sólo
+
+255
+00:08:29,190 --> 00:08:30,450
+al tamaño de las casas,
+
+256
+00:08:30,600 --> 00:08:31,870
+como en este ejemplo, ignorando
+
+257
+00:08:32,150 --> 00:08:33,440
+todas las otras variables.
+
+258
+00:08:34,700 --> 00:08:35,810
+Cuando probamos una máquina
+
+259
+00:08:36,110 --> 00:08:38,760
+de soporte vectorial, las probabilidades de que
+
+260
+00:08:38,970 --> 00:08:40,000
+utilices los dos kernels más comunes,
+
+261
+00:08:40,460 --> 00:08:41,750
+es decir, el kernel lineal, o sin kernel,
+
+262
+00:08:41,850 --> 00:08:43,120
+y el kernel Gaussiano del
+
+263
+00:08:43,320 --> 00:08:45,600
+que ya hablamos, son altísimas.
+
+264
+00:08:46,520 --> 00:08:47,390
+Agregaré una advertencia:
+
+265
+00:08:47,900 --> 00:08:49,070
+No todas las funciones de
+
+266
+00:08:49,580 --> 00:08:50,590
+similaridad que te encuentres
+
+267
+00:08:50,770 --> 00:08:52,520
+serán kernels válidos.
+
+268
+00:08:53,450 --> 00:08:54,840
+El kernel Gaussiano, el
+
+269
+00:08:55,090 --> 00:08:56,410
+kernel lineal y otros kernels que
+
+270
+00:08:56,710 --> 00:08:57,850
+se utilizan, necesitan
+
+271
+00:08:58,030 --> 00:08:59,840
+satisfacer una condición técnica llamada
+
+272
+00:09:00,380 --> 00:09:02,510
+teorema de Mercer. La razón
+
+273
+00:09:02,630 --> 00:09:03,560
+por la cual se necesita esto
+
+274
+00:09:03,710 --> 00:09:05,430
+es porque un algoritmo o implementación de
+
+275
+00:09:06,380 --> 00:09:08,140
+una máquina de soporte vectorial
+
+276
+00:09:08,480 --> 00:09:09,560
+tiene muchos trucos de
+
+277
+00:09:10,050 --> 00:09:11,380
+optimización numérica
+
+278
+00:09:12,110 --> 00:09:13,270
+para despejar los parámetros teta de
+
+279
+00:09:13,340 --> 00:09:15,650
+manera eficiente.
+
+280
+00:09:16,590 --> 00:09:18,840
+En el diseño original de las SVM
+
+281
+00:09:19,470 --> 00:09:21,010
+se tomó la decisión de restringir nuestra
+
+282
+00:09:21,540 --> 00:09:22,900
+atención solamente a los kernels
+
+283
+00:09:23,510 --> 00:09:25,860
+para satisfacer esta condición técnica llamada teorema de Mercer.
+
+284
+00:09:26,280 --> 00:09:27,360
+Lo que hace esto es asegurarnos de que
+
+285
+00:09:27,570 --> 00:09:28,540
+todos estos paquetes de
+
+286
+00:09:28,820 --> 00:09:30,270
+SVM y de software de
+
+287
+00:09:30,500 --> 00:09:32,210
+SVM puedan utilizar una gran
+
+288
+00:09:32,310 --> 00:09:34,740
+clase de optimizaciones y
+
+289
+00:09:35,280 --> 00:09:37,470
+puedan obtener el parámetro teta rápidamente.
+
+290
+00:09:39,320 --> 00:09:40,340
+Lo que muchos terminan haciendo es
+
+291
+00:09:40,840 --> 00:09:42,470
+utilizar ya sea el kernel
+
+292
+00:09:42,610 --> 00:09:44,210
+lineal o el Gaussiano, pero hay
+
+293
+00:09:44,430 --> 00:09:45,610
+otros kernels que también
+
+294
+00:09:45,940 --> 00:09:47,460
+satisfacen el teorema de Mercer y
+
+295
+00:09:47,560 --> 00:09:48,690
+que puedes encontrar en el trabajo de
+
+296
+00:09:48,850 --> 00:09:50,050
+otros. Yo, personalmente, utilizo
+
+297
+00:09:50,880 --> 00:09:53,780
+otros kernels muy rara vez, si acaso.
+
+298
+00:09:54,160 --> 00:09:56,990
+Mencionaré algunos de los kernels con los que te puedes topar:
+
+299
+00:09:57,990 --> 00:10:00,300
+Uno es el kernel de polinomio.
+
+300
+00:10:01,570 --> 00:10:03,350
+Para este kernel, la similaridad entre
+
+301
+00:10:03,800 --> 00:10:05,520
+“x” y “L” se define, entre muchas
+
+302
+00:10:05,730 --> 00:10:06,760
+opciones, como
+
+303
+00:10:06,830 --> 00:10:07,880
+“x” transpuesta
+
+304
+00:10:08,640 --> 00:10:10,370
+de “L” cuadrada.
+
+305
+00:10:10,960 --> 00:10:13,410
+Esta es una medida de lo similar que resultan “x” y “L”.
+
+306
+00:10:13,610 --> 00:10:14,930
+Si “x” y “L” están muy cerca una
+
+307
+00:10:15,500 --> 00:10:18,260
+de la otra, el producto interno tenderá a ser grande.
+
+308
+00:10:20,200 --> 00:10:21,870
+Bueno, como ya sabes, este es un kernel
+
+309
+00:10:23,080 --> 00:10:23,520
+un tanto inusual.
+
+310
+00:10:24,000 --> 00:10:25,130
+No se utiliza seguido, pero
+
+311
+00:10:26,490 --> 00:10:29,190
+puedes encontrar que algunas personas lo usan.
+
+312
+00:10:30,050 --> 00:10:31,810
+Esta es otra versión de un kernel de polinomio.
+
+313
+00:10:32,330 --> 00:10:35,090
+Otra se expresa “x” transpuesta de “L” al cubo.
+
+314
+00:10:36,690 --> 00:10:38,780
+Todos estos son ejemplos de kernels de polinomios.
+
+315
+00:10:39,040 --> 00:10:41,270
+“x” transpuesta de “L” más 1 al cubo.
+
+316
+00:10:42,560 --> 00:10:43,620
+“x” transpuesta de “L” más un
+
+317
+00:10:43,910 --> 00:10:44,930
+número diferente de 1, como 5,
+
+318
+00:10:44,970 --> 00:10:46,680
+a la cuarta potencia.
+
+319
+00:10:47,700 --> 00:10:49,840
+El kernel de polinomio tiene dos parámetros:
+
+320
+00:10:50,610 --> 00:10:53,020
+Uno es el número que se debe añadir aquí.
+
+321
+00:10:53,520 --> 00:10:53,920
+Puede ser 0.
+
+322
+00:10:54,430 --> 00:10:58,660
+Este de aquí es, en realidad, más 0. El otro es el grado del polinomio.
+
+323
+00:10:58,680 --> 00:11:01,670
+El grado o la potencia y estos números.
+
+324
+00:11:02,250 --> 00:11:04,140
+La formulación más general del
+
+325
+00:11:04,280 --> 00:11:05,530
+kernel de polinomio es “x” transpuesta
+
+326
+00:11:05,720 --> 00:11:07,620
+de “L” más
+
+327
+00:11:07,940 --> 00:11:11,510
+una constante elevada
+
+328
+00:11:11,800 --> 00:11:14,850
+a un grado en
+
+329
+00:11:15,060 --> 00:11:16,720
+X1.
+
+330
+00:11:16,940 --> 00:11:19,650
+Estos dos son parámetros para el kernel de polinomio.
+
+331
+00:11:20,510 --> 00:11:22,820
+Los kernels de polinomio casi siempre tienen
+
+332
+00:11:23,350 --> 00:11:24,440
+un menor desempeño que el
+
+333
+00:11:24,820 --> 00:11:25,950
+kernel Gaussiano y no es un kernel que
+
+334
+00:11:26,270 --> 00:11:28,370
+se utilice mucho pero quizá en algún momento te lo topes.
+
+335
+00:11:29,320 --> 00:11:30,480
+Se utiliza generalmente sólo para
+
+336
+00:11:30,750 --> 00:11:31,710
+datos donde “x” y “L” son
+
+337
+00:11:32,000 --> 00:11:33,180
+estrictamente no negativos. Esto
+
+338
+00:11:33,740 --> 00:11:34,720
+nos asegura que los productos
+
+339
+00:11:34,910 --> 00:11:36,710
+internos tampoco sean negativos.
+
+340
+00:11:37,850 --> 00:11:40,010
+Esto captura la intuición de que
+
+341
+00:11:40,390 --> 00:11:41,340
+“x” y “L” son muy similares
+
+342
+00:11:41,540 --> 00:11:44,110
+uno al otro, por lo que el producto interno entre ellos será grande.
+
+343
+00:11:44,420 --> 00:11:45,590
+Tienen otras propiedades, pero no
+
+344
+00:11:46,260 --> 00:11:48,080
+se utilizan mucho.
+
+345
+00:11:49,130 --> 00:11:50,150
+Después, dependiendo de lo
+
+346
+00:11:50,260 --> 00:11:51,210
+que eses haciendo, hay otros kernels
+
+347
+00:11:52,330 --> 00:11:54,950
+más esotéricos que te puedes encontrar.
+
+348
+00:11:55,670 --> 00:11:57,180
+Está el kernel de secuencia que se utiliza
+
+349
+00:11:57,340 --> 00:11:58,430
+a veces si
+
+350
+00:11:58,550 --> 00:12:01,350
+tus datos de entrada son cadenas de variables u otras cadenas.
+
+351
+00:12:02,270 --> 00:12:02,940
+Hay otros como el
+
+352
+00:12:03,260 --> 00:12:06,000
+kernel chi-square, el kernel de intersección de histograma, etc.
+
+353
+00:12:06,690 --> 00:12:08,420
+Hay otros kernels más raros
+
+354
+00:12:08,660 --> 00:12:09,840
+que podemos utilizar para
+
+355
+00:12:10,760 --> 00:12:12,030
+medir la similaridad entre objetos distintos.
+
+356
+00:12:12,660 --> 00:12:13,800
+Por ejemplo, si intentas hacer
+
+357
+00:12:14,380 --> 00:12:15,840
+algún tipo de problema de clasificación de
+
+358
+00:12:16,170 --> 00:12:17,060
+texto, donde la entrada “x” es una cadena,
+
+359
+00:12:17,200 --> 00:12:19,300
+entonces, quizá
+
+360
+00:12:19,490 --> 00:12:20,490
+quieras encontrar la
+
+361
+00:12:20,550 --> 00:12:22,050
+similaridad entre dos cadenas utilizando
+
+362
+00:12:22,430 --> 00:12:24,240
+el kernel de secuencia, pero
+
+363
+00:12:24,520 --> 00:12:26,440
+personalmente sé que el resultado será raro,
+
+364
+00:12:26,990 --> 00:12:29,340
+si es que lo obtenemos, utilizando kernels extraños.
+Creo que
+
+365
+00:12:29,880 --> 00:12:30,970
+he utilizado el kernel chi-square
+
+366
+00:12:31,170 --> 00:12:32,270
+sólo una vez
+
+367
+00:12:32,340 --> 00:12:33,670
+en mi vida y el kernel de histogramas
+
+368
+00:12:34,240 --> 00:12:35,580
+una o dos veces. Nunca he
+
+369
+00:12:35,630 --> 00:12:38,500
+utilizado el kernel de secuencias. Pero, en caso de que
+
+370
+00:12:39,350 --> 00:12:41,560
+te los encuentres en otras aplicaciones, puedes hacer una búsqueda rápida en
+
+371
+00:12:42,700 --> 00:12:43,640
+Google o en Bing
+
+372
+00:12:43,860 --> 00:12:44,850
+y encontrar
+
+373
+00:12:45,040 --> 00:12:46,000
+las definiciones de estos
+
+374
+00:12:46,590 --> 00:12:48,240
+kernels también.
+Añadiré sólo dos detalles de los
+
+375
+00:12:51,480 --> 00:12:55,680
+que quiero hablar en este video. Uno es la clasificación de clases múltiples. Digamos que
+
+376
+00:12:56,370 --> 00:12:59,510
+tienes cuatro clases o, de manera más general,
+
+377
+00:12:59,800 --> 00:13:01,880
+“k” clases ¿cómo tomas
+
+378
+00:13:02,530 --> 00:13:06,860
+la decisión más adecuada entre tus clases múltiples? La mayoría, o muchos de los paquetes de
+
+379
+00:13:07,220 --> 00:13:08,750
+SVM ya tienen una funcionalidad
+
+380
+00:13:09,030 --> 00:13:10,430
+de clasificación de clases múltiples integrada. Entonces, si utilizas
+
+381
+00:13:11,100 --> 00:13:12,060
+un paquete como este, sólo debes
+
+382
+00:13:12,270 --> 00:13:13,320
+usar la funcionalidad y con eso debe
+
+383
+00:13:13,540 --> 00:13:15,370
+ser
+
+384
+00:13:15,490 --> 00:13:16,940
+suficiente. De otra manera, una
+
+385
+00:13:17,790 --> 00:13:18,790
+manera de hacer esto
+
+386
+00:13:19,000 --> 00:13:19,880
+es utilizar
+
+387
+00:13:20,000 --> 00:13:21,280
+el método uno contra todos del que
+
+388
+00:13:21,370 --> 00:13:23,690
+hablamos cuando desarrollamos la regresión logística. Entonces,
+
+389
+00:13:24,680 --> 00:13:25,410
+intercambias
+
+390
+00:13:26,160 --> 00:13:27,550
+kSVM si tienes clases "k"
+
+391
+00:13:27,700 --> 00:13:29,190
+para distinguirlas
+
+392
+00:13:29,900 --> 00:13:31,060
+del resto.
+
+393
+00:13:31,850 --> 00:13:32,930
+Esto nos arrojará “k” vectores parámetro; es decir
+
+394
+00:13:33,520 --> 00:13:34,530
+teta 1, que intenta
+
+395
+00:13:34,680 --> 00:13:36,210
+distinguir la clase “y” igual
+
+396
+00:13:36,530 --> 00:13:38,170
+a 1
+
+397
+00:13:38,630 --> 00:13:39,980
+de todas
+
+398
+00:13:40,130 --> 00:13:41,340
+las otras clases. Después tenemos
+
+399
+00:13:41,420 --> 00:13:42,910
+un segundo parámetro vector
+
+400
+00:13:42,970 --> 00:13:43,910
+teta 2, que es lo que
+
+401
+00:13:44,020 --> 00:13:45,420
+obtenemos cuando
+
+402
+00:13:45,720 --> 00:13:47,080
+tenemos “y” igual a 2 como clase positiva, y
+
+403
+00:13:47,460 --> 00:13:48,680
+todas las demás como negativas,
+
+404
+00:13:49,260 --> 00:13:50,550
+etc., hasta el parámetro
+
+405
+00:13:50,800 --> 00:13:52,400
+vector teta “k”, que
+
+406
+00:13:52,750 --> 00:13:54,520
+es el parámetro vector para distinguir la
+
+407
+00:13:54,600 --> 00:13:56,770
+clase final de todo lo de más.
+
+408
+00:13:57,360 --> 00:13:59,380
+Por último,
+
+409
+00:13:59,490 --> 00:14:00,590
+este es exactamente igual
+
+410
+00:14:01,270 --> 00:14:02,040
+el método uno contra todo
+
+411
+00:14:02,420 --> 00:14:04,230
+que vimos en la regresión logística con
+
+412
+00:14:04,760 --> 00:14:05,910
+el que predijimos la clase (i)
+
+413
+00:14:06,390 --> 00:14:07,690
+con la teta transpuesta de “x” más alta.
+
+414
+00:14:08,030 --> 00:14:11,840
+Esta es la clasificación de clase múltiple.
+
+415
+00:14:12,440 --> 00:14:13,750
+Pero el caso más común es
+
+416
+00:14:14,300 --> 00:14:15,090
+que cualquier paquete de software
+
+417
+00:14:15,180 --> 00:14:16,460
+que utilices tendrá
+
+418
+00:14:16,780 --> 00:14:18,010
+ya integrado
+
+419
+00:14:18,340 --> 00:14:19,650
+una funcionalidad de
+
+420
+00:14:19,920 --> 00:14:21,740
+clasificación de clases múltiples. Si no la tiene, no te preocupes
+
+421
+00:14:21,920 --> 00:14:24,410
+por este resultado.
+
+422
+00:14:25,280 --> 00:14:27,010
+Finalmente, desarrollamos máquinas de
+
+423
+00:14:27,210 --> 00:14:28,650
+soporte vectorial iniciando con la regresión
+
+424
+00:14:29,090 --> 00:14:31,500
+logística y luego modificando un poco la función de costos.
+
+425
+00:14:31,910 --> 00:14:34,900
+Lo último que quiero hacer en este video es hablar un poco acerca de
+
+426
+00:14:35,550 --> 00:14:36,570
+cuando utilizas uno
+
+427
+00:14:36,660 --> 00:14:38,840
+de estos dos algoritmos.
+
+428
+00:14:39,080 --> 00:14:40,000
+Digamos que “n” es el número
+
+429
+00:14:40,160 --> 00:14:42,000
+de variables y “m” es el número de ejemplos de entrenamiento.
+
+430
+00:14:43,190 --> 00:14:45,250
+¿Cuándo debemos utilizar un algoritmo en vez del otro?
+
+431
+00:14:47,130 --> 00:14:48,430
+Aquí “n” es mayor en relación con
+
+432
+00:14:48,980 --> 00:14:50,140
+el tamaño del conjunto de aprendizaje.
+
+433
+00:14:50,360 --> 00:14:51,390
+Podemos pensar
+
+434
+00:14:52,810 --> 00:14:53,990
+en “n”
+
+435
+00:14:54,250 --> 00:14:55,180
+como un número de variables
+
+436
+00:14:55,330 --> 00:14:56,870
+mayor que “m”. Esto puede
+
+437
+00:14:57,120 --> 00:14:58,210
+presentarse cuando
+
+438
+00:14:58,320 --> 00:15:00,590
+tenemos un problema de clasificación, donde la dimensión
+
+439
+00:15:01,550 --> 00:15:02,430
+del vector de variables es,
+
+440
+00:15:02,700 --> 00:15:04,160
+quizá, 10 mil.
+
+441
+00:15:05,370 --> 00:15:06,350
+El tamaño del
+
+442
+00:15:06,720 --> 00:15:08,290
+conjunto de aprendizaje es de 10 hasta
+
+443
+00:15:08,510 --> 00:15:10,250
+hasta 1000.
+
+444
+00:15:10,500 --> 00:15:12,140
+Imagina un problema de spam donde tenemos
+
+445
+00:15:12,320 --> 00:15:14,250
+10,000 variables de correos spam
+
+446
+00:15:14,510 --> 00:15:15,840
+que corresponden a 10,000
+
+447
+00:15:16,150 --> 00:15:18,010
+palabras, pero sólo tienes
+
+448
+00:15:18,190 --> 00:15:19,550
+10 ejemplos de entrenamiento o hasta 1,000
+
+449
+00:15:19,780 --> 00:15:21,150
+ejemplos.
+
+450
+00:15:22,450 --> 00:15:23,750
+Entonces, “n” es grande con relación
+
+451
+00:15:23,890 --> 00:15:25,090
+a “m”. Lo que yo haría usualmente
+
+452
+00:15:25,250 --> 00:15:26,480
+es utilizar la regresión
+
+453
+00:15:26,850 --> 00:15:27,990
+logística o utilizarla como
+
+454
+00:15:28,100 --> 00:15:29,030
+“m” sin un kernel o
+
+455
+00:15:29,460 --> 00:15:30,790
+utilizar un kernel lineal,
+
+456
+00:15:31,620 --> 00:15:32,430
+porque si tienes tantas variables con
+
+457
+00:15:32,580 --> 00:15:33,830
+un conjunto de entrenamiento pequeño,
+
+458
+00:15:34,530 --> 00:15:35,870
+una función lineal funcionará porque
+
+459
+00:15:36,330 --> 00:15:37,380
+probablemente no tengas datos suficientes
+
+460
+00:15:37,640 --> 00:15:38,790
+para ajustar una función
+
+461
+00:15:38,910 --> 00:15:40,760
+no lineal complicada.
+
+462
+00:15:41,340 --> 00:15:42,410
+Ahora, “n” es
+
+463
+00:15:42,520 --> 00:15:44,020
+pequeña y “m” es
+
+464
+00:15:44,350 --> 00:15:45,890
+intermedia; a lo que me
+
+465
+00:15:45,940 --> 00:15:47,450
+refiero con esto es que “n”
+
+466
+00:15:48,040 --> 00:15:50,350
+está entre 1 y 1000 (1 sería muy pequeño, pero
+
+467
+00:15:50,530 --> 00:15:51,470
+podemos fijarlo en 1000
+
+468
+00:15:51,700 --> 00:15:54,270
+variables), y
+
+469
+00:15:54,590 --> 00:15:56,180
+el número de ejemplos
+
+470
+00:15:56,330 --> 00:15:57,700
+de entrenamiento está entre
+
+471
+00:15:58,210 --> 00:16:00,750
+10 y 10,000 ejemplos, o
+
+472
+00:16:01,350 --> 00:16:03,160
+quizá hasta 50,000 ejemplos; es decir,
+
+473
+00:16:03,630 --> 00:16:06,490
+“m” es muy grande (alrededor de 10,000),
+
+474
+00:16:06,760 --> 00:16:08,100
+pero no tanto como un millón. Si “m” es
+
+475
+00:16:08,300 --> 00:16:09,950
+de un tamaño intermedio como esta,
+
+476
+00:16:10,790 --> 00:16:12,980
+entonces una SVM con un kernel lineal funcionarán bien.
+
+477
+00:16:13,530 --> 00:16:14,580
+Ya hablamos de esto
+
+478
+00:16:14,710 --> 00:16:15,800
+anteriormente con un ejemplo concreto en el que
+
+479
+00:16:16,350 --> 00:16:17,100
+teníamos un conjunto de entrenamiento
+
+480
+00:16:17,520 --> 00:16:19,720
+bidimensional. Entonces, si “n” es igual a 2
+
+481
+00:16:19,900 --> 00:16:21,010
+y has
+
+482
+00:16:21,320 --> 00:16:23,710
+dibujado un gran número de ejemplos de entrenamiento,
+
+483
+00:16:24,710 --> 00:16:25,860
+el kernel Gaussiano hará un
+
+484
+00:16:26,130 --> 00:16:28,160
+buen trabajo separando las clases negativas y las positivas.
+
+485
+00:16:29,770 --> 00:16:30,890
+Una tercera opción de interés es si
+
+486
+00:16:30,980 --> 00:16:32,420
+“n” es pequeño
+
+487
+00:16:32,520 --> 00:16:34,270
+pero “m” es grande.
+
+488
+00:16:34,890 --> 00:16:36,560
+Si “n” es, de nuevo, entre
+
+489
+00:16:37,390 --> 00:16:39,280
+1 a 1000, o mayor pero
+
+490
+00:16:40,200 --> 00:16:42,750
+“m” es de entre
+
+491
+00:16:43,320 --> 00:16:46,400
+50,000 o mayor, hasta millones
+
+492
+00:16:47,520 --> 00:16:50,270
+(50,000 a 100,000 o un millón o un billón).
+
+493
+00:16:51,290 --> 00:16:54,020
+Puedes tener un conjunto de entrenamiento muy muy grande ¿cierto?
+
+494
+00:16:55,240 --> 00:16:56,160
+Si este es el caso, una SVM con kernel
+
+495
+00:16:56,380 --> 00:16:57,630
+Gaussiano
+
+496
+00:16:57,900 --> 00:16:59,850
+será lenta.
+
+497
+00:17:00,160 --> 00:17:02,300
+Los paquetes de SVM actuales, cuando
+
+498
+00:17:02,410 --> 00:17:04,900
+usamos el kernel Gaussiano, tienen algunas dificultades.
+
+499
+00:17:05,050 --> 00:17:06,250
+Si tienes unos 50,000 ejemplos
+
+500
+00:17:06,590 --> 00:17:07,530
+está bien, pero
+
+501
+00:17:07,620 --> 00:17:10,250
+si tienes un millón de ejemplos de entrenamiento,
+
+502
+00:17:10,450 --> 00:17:11,950
+o incluso 100,000 con un valor
+
+503
+00:17:12,170 --> 00:17:13,730
+masivo de “m”. Los paquetes de SVM actuales
+
+504
+00:17:14,180 --> 00:17:15,590
+son muy buenos, pero todavía
+
+505
+00:17:15,870 --> 00:17:17,100
+pueden encontrar dificultades
+
+506
+00:17:17,600 --> 00:17:18,400
+cuando tienes un conjunto de
+
+507
+00:17:19,010 --> 00:17:20,940
+entrenamiento masivo y utilizas el kernel Gaussiano.
+
+508
+00:17:22,050 --> 00:17:23,150
+En este caso, lo que haría
+
+509
+00:17:23,350 --> 00:17:24,960
+es tratar de
+
+510
+00:17:25,330 --> 00:17:26,660
+crear manualmente más variables y
+
+511
+00:17:26,800 --> 00:17:28,600
+luego utilizar la regresión logística
+
+512
+00:17:28,930 --> 00:17:30,340
+o una SVM
+
+513
+00:17:30,630 --> 00:17:32,060
+sin el kernel.
+
+514
+00:17:33,140 --> 00:17:34,030
+Si ves esta diapositiva
+
+515
+00:17:34,230 --> 00:17:35,900
+encontrarás subrayado “regresión
+
+516
+00:17:36,460 --> 00:17:37,750
+logística o SVM sin un kernel”
+
+517
+00:17:38,510 --> 00:17:39,890
+en dos ocasiones. Los
+
+518
+00:17:39,980 --> 00:17:41,750
+puse juntos por una razón en específico.
+
+519
+00:17:42,060 --> 00:17:43,050
+La regresión logística y la
+
+520
+00:17:43,900 --> 00:17:45,640
+SVM sin
+
+521
+00:17:46,000 --> 00:17:47,130
+el kernel son algoritmos
+
+522
+00:17:47,350 --> 00:17:49,450
+muy similares porque, ya sea la regresión
+
+523
+00:17:49,680 --> 00:17:51,170
+logística o la SVM
+
+524
+00:17:51,500 --> 00:17:53,230
+sin un kernel, harán cosas similares
+
+525
+00:17:53,380 --> 00:17:54,780
+y arrojarán
+
+526
+00:17:54,900 --> 00:17:56,690
+un desempeño similar. Dependiendo
+
+527
+00:17:57,060 --> 00:18:00,340
+de tus detalles de implementación, una pudiera resultar más eficiente que la otra.
+
+528
+00:18:00,930 --> 00:18:02,220
+Cuando uno de estos algoritmos funciona,
+
+529
+00:18:02,310 --> 00:18:03,530
+ya sea la regresión logística o la
+
+530
+00:18:03,740 --> 00:18:05,190
+SVM sin kernel, lo
+
+531
+00:18:05,420 --> 00:18:05,840
+más seguro es que el
+
+532
+00:18:06,650 --> 00:18:07,600
+otro también funcione bien.
+
+533
+00:18:08,540 --> 00:18:09,660
+Buena parte de la eficacia de
+
+534
+00:18:09,720 --> 00:18:11,610
+la SVM surge cuando utilizas
+
+535
+00:18:11,810 --> 00:18:14,100
+kernels diferentes para
+
+536
+00:18:14,430 --> 00:18:15,860
+aprender funciones complejas no lineales.
+
+537
+00:18:16,680 --> 00:18:20,300
+El régimen de cuando
+
+538
+00:18:20,550 --> 00:18:22,530
+tienes hasta 10,000 ejemplos o hasta 50,000 ejemplos,
+
+539
+00:18:22,610 --> 00:18:25,010
+y el número de variables
+
+540
+00:18:26,580 --> 00:18:27,540
+es razonablemente grande, es un
+
+541
+00:18:27,840 --> 00:18:29,230
+régimen muy común
+
+542
+00:18:29,670 --> 00:18:30,910
+en el que una
+
+543
+00:18:31,430 --> 00:18:33,830
+máquina de soporte vectorial con kernel fallaría y
+
+544
+00:18:34,320 --> 00:18:35,640
+haría cosas mucho más difíciles
+
+545
+00:18:35,860 --> 00:18:39,850
+que la regresión logística.
+
+546
+00:18:40,100 --> 00:18:40,930
+Finalmente, ¿dónde encajan estas redes neuronales?
+
+547
+00:18:41,120 --> 00:18:42,230
+Para todos estos problemas
+
+548
+00:18:42,440 --> 00:18:43,890
+o para todos estos
+
+549
+00:18:43,960 --> 00:18:46,310
+regímenes diferentes,
+
+550
+00:18:46,630 --> 00:18:49,110
+una red neuronal bien diseñada funcionará bien también.
+
+551
+00:18:50,320 --> 00:18:51,700
+La única desventaja o la única
+
+552
+00:18:51,830 --> 00:18:52,980
+razón por la que a veces evitamos
+
+553
+00:18:53,220 --> 00:18:54,690
+las redes neuronales es que,
+
+554
+00:18:54,920 --> 00:18:56,080
+para algunos problemas,
+
+555
+00:18:56,180 --> 00:18:57,640
+la red neuronal puede ser de entrenamiento lento.
+
+556
+00:18:58,250 --> 00:18:59,080
+Pero con un paquete de implementación de
+
+557
+00:18:59,350 --> 00:19:01,190
+SVM muy bueno que pueda ejecutarse
+
+558
+00:19:01,400 --> 00:19:04,120
+más rápidamente que una red neuronal podrás resolver esto.
+
+559
+00:19:05,130 --> 00:19:06,130
+Aunque no mostramos esto
+
+560
+00:19:06,350 --> 00:19:07,520
+anteriormente, resulta que
+
+561
+00:19:07,630 --> 00:19:09,800
+el problema de optimización que
+
+562
+00:19:10,070 --> 00:19:11,120
+presenta la SVM es un
+
+563
+00:19:12,320 --> 00:19:13,830
+problema de optimización convexo y, por lo tanto,
+
+564
+00:19:14,410 --> 00:19:15,800
+los mejores paquetes de software de optimización de SVM
+
+565
+00:19:16,160 --> 00:19:17,870
+siempre encontrarán el mínimo global
+
+566
+00:19:18,240 --> 00:19:21,370
+o un valor cercano.
+
+567
+00:19:21,720 --> 00:19:24,100
+Al utilizar las SVM no necesitas preocuparte por las óptimas locales.
+
+568
+00:19:25,280 --> 00:19:26,440
+En la práctica, las óptimas
+
+569
+00:19:26,580 --> 00:19:27,920
+locales o son un gran problema para las
+
+570
+00:19:28,090 --> 00:19:29,120
+redes neuronales porque todas resuelven.
+
+571
+00:19:29,310 --> 00:19:31,520
+Esta es una preocupación menos cuando utilizas una SVM.
+
+572
+00:19:33,350 --> 00:19:34,560
+Dependiendo de tu problema, la
+
+573
+00:19:34,910 --> 00:19:37,050
+red neuronal podrá ser más lenta, especialmente
+
+574
+00:19:37,580 --> 00:19:41,020
+en este tipo de regímenes que con la SVM.
+
+575
+00:19:41,420 --> 00:19:42,200
+En caso de que los lineamientos
+
+576
+00:19:42,520 --> 00:19:43,500
+que expliqué aquí parezcan vagos,
+
+577
+00:19:43,860 --> 00:19:44,600
+y si ves tus problemas y los lineamientos
+
+578
+00:19:46,930 --> 00:19:48,050
+no parecen claros o no te
+
+579
+00:19:48,170 --> 00:19:49,190
+queda claro
+
+580
+00:19:49,570 --> 00:19:50,730
+qué algoritmo debes
+
+581
+00:19:50,780 --> 00:19:52,690
+utilizar, está bien.
+
+582
+00:19:52,950 --> 00:19:54,100
+Cuando me enfrento con un problema de
+
+583
+00:19:54,330 --> 00:19:55,570
+aprendizaje automático, a veces no
+
+584
+00:19:55,730 --> 00:19:57,010
+me queda claro cuál es el
+
+585
+00:19:57,150 --> 00:19:58,700
+mejor algoritmo pero, como
+
+586
+00:19:59,540 --> 00:20:00,590
+viste en los videos anteriores, el
+
+587
+00:20:01,200 --> 00:20:02,470
+algoritmo es de importancia, aunque a veces
+
+588
+00:20:02,700 --> 00:20:03,920
+importan más otras cosas como
+
+589
+00:20:04,250 --> 00:20:06,400
+la cantidad de datos que tenemos
+
+590
+00:20:07,090 --> 00:20:08,280
+y qué tan hábil seas
+
+591
+00:20:08,450 --> 00:20:09,500
+realizando análisis
+
+592
+00:20:09,750 --> 00:20:11,450
+de errores, limpiando
+
+593
+00:20:11,660 --> 00:20:13,090
+algoritmos de aprendizaje y
+
+594
+00:20:13,220 --> 00:20:15,120
+entendiendo cómo diseñar nuevas variables y qué otras variables
+
+595
+00:20:15,280 --> 00:20:17,540
+debes darle a tu algoritmo de aprendizaje, etc.
+
+596
+00:20:17,960 --> 00:20:19,110
+Algunas veces estas cosas
+
+597
+00:20:19,660 --> 00:20:20,700
+importarán más que
+
+598
+00:20:20,840 --> 00:20:22,370
+tu decisión de utilizar la regresión logística o la SVM.
+
+599
+00:20:23,280 --> 00:20:24,650
+Una vez dicho esto,
+
+600
+00:20:25,010 --> 00:20:26,180
+la SVM sigue siendo
+
+601
+00:20:26,630 --> 00:20:27,890
+percibida como
+
+602
+00:20:27,950 --> 00:20:29,600
+uno de los algoritmos de aprendizaje más eficaces y
+
+603
+00:20:29,740 --> 00:20:31,570
+existe un régimen que
+
+604
+00:20:31,790 --> 00:20:34,340
+provee una manera efectiva de aprender funciones complejas no lineales.
+
+605
+00:20:35,150 --> 00:20:36,840
+Así que en realidad, creo que utilizando
+
+606
+00:20:37,040 --> 00:20:38,930
+la regresión logística, las redes neuronales y las SVMs
+
+607
+00:20:39,090 --> 00:20:40,630
+estás bien
+
+608
+00:20:40,760 --> 00:20:42,170
+colocado para
+
+609
+00:20:42,440 --> 00:20:43,610
+construir
+
+610
+00:20:44,120 --> 00:20:45,120
+sistemas de aprendizaje automático
+
+611
+00:20:45,310 --> 00:20:46,710
+de última generación para
+
+612
+00:20:46,960 --> 00:20:49,110
+una gama amplia de aplicaciones. Esta es
+
+613
+00:20:49,330 --> 00:20:52,460
+excelente arma en tu arsenal.
+
+614
+00:20:53,160 --> 00:20:54,270
+Un arma que se utiliza
+
+615
+00:20:54,460 --> 00:20:55,850
+por todos lados en Silicon Valley, en la
+
+616
+00:20:56,390 --> 00:20:58,030
+industria y en la academia para
+
+617
+00:20:58,310 --> 00:20:59,860
+construir sistemas de aprendizaje
+
+618
+00:21:00,120 --> 00:21:01,680
+automático de alto rendimiento.

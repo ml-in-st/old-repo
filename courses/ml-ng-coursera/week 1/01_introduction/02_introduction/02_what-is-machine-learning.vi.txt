@@ -1,0 +1,48 @@
+Máy học (ML) là gì? trong video này chúng ta
+ sẽ thử định nghĩa nó là gì và cũng thử giúp bạn hiểu được khi nào thì dùng máy học. Thậm chí đối với những người có chuyên môn về máy học cũng không 
+có chấp nhận được định nghĩa thế nào là máy học và thế nào không phải là máy học. Nhưng hãy để tôi cho bạn một vài ví dụ về cách mà mọi người hay cố gắng dùng để định nghĩa máy học. Đây là một 
+định nghĩa về máy học của Arthur Samual. Ông định nghĩa máy học
+ như là một lĩnh vực nghiên cứu cung cấp cho máy tính khả năng học hỏi mà không cần được
+ lập trình rõ ràng. Danh tiếng của Samuel bắt đầu là vào những năm 1950, ông
+ đã viết một phần mềm chơi cờ đam Checker. Điều kinh ngạc về phần mềm chơi cờ này là 
+thực ra bản thân Samuel chơi cờ đam không giỏi. Nhưng
+ những gì ông đã làm là ông đã lập trình để nó có thể chơi rất nhiều ván chống lại chính nó.
+ Và bằng cách quan sát nước đi nào có khuynh hướng sẽ chiến thắng và ngược lại, phần mềm chơi cờ đam học nhiều lầm để chọn ra vị trí tốt và xấu trên bàn cờ. Và cuối cùng là học cách chơi cờ đam giỏi hơn Arthur Samuel. Đây quả là kết quả đáng chú ý. Mặc dù Samuel đã tỏ ra là một người
+ không giỏi chơi cờ đam, nhưng máy tính có sự kiên nhẫn để tự chơi hàng trăm ngàn ván. Không người nào có kiên nhẫn để chơi 
+chừng đó vòng. Nhờ đó, máy tính có thể có nhiều kinh nghiệm chơi cờ hơn và cuối cùng là chơi giỏi hơn cả Arthur Samuel. 
+Đây là một định nghĩa không chính thức lắm và cũng hơi lâu rồi. Có một định nghĩa chính thức gần đây được 
+đề xuất bởi Tom Mitchell, bạn của Carnegie Mellon. 
+Tom định nghĩa 'Máy học' là một vấn đề học tập được định nghĩa như sau.
+ Ông nói, Vấn đề học được giải quyết tốt khi: một chương trình máy tính được làm ra để học hỏi 
+kinh nghiệm E, liên quan đến bài toán T và thước đo hiệu quả P, 
+nếu hiệu quả của nó khi giải quyết T, đo bởi P, được cải thiện bởi kinh nghiệm E. Tôi thực sự nghĩ rằng
+ ông ấy đưa ra định nghĩa này chỉ để nó hợp vần. Đối với ví dụ chơi cờ đam, kinh nghiệm E là kinh nghiệm máy tính có được sau khi 
+chơi hơn 100k lượt với chính nó. Nhiệm vụ T sẽ là nhiệm vụ chơi cờ đam. 
+Và độ đo hiệu suất P sẽ là xác suất máy tính chiến thắng
+ khi đấu với một đối thủ mới. Trong suốt những video này, 
+bên cạnh việc dạy mọi thứ cho bạn, tôi cũng sẽ hỏi một câu hỏi 
+để đảm bảo là bạn hiểu hết nội dung. Trên cùng là định nghĩa về máy học của Tom Mitchell Giả sử phần mềm email của bạn quan sát email nào bạn gắn cờ spam. Trong một phần mềm quản lý email như thế này, bạn có thể đánh dấu một email là Spam mà không phải là email khác. Dựa vào email bạn đã đánh dấu spam, phần mềm quản lý email học được cách lọc spam email tốt hơn. Nhiệm vụ T ở đây là gì? Video sẽ dừng một chút, bạn hãy chọn một đáp án trong 4 đáp án dưới đây.
+(A) Phân loại email là spam hay không (B) Quan sát bạn gắn cờ email là spam hay không
+(C) Số lượng hay tỷ lệ email được phân loại đúng là spam (D) Không có đáp án nào đúng Hy vọng bạn chọn câu này là câu trả lời: (A) Phân loại email là spam hay không. 
+Đây là nhiệm vụ T. Thật ra, định nghĩa này định nghĩa về nhiệm vụ T, thước đo hiệu quả P và kinh nghiệm E. Vì thế (B) chính là kinh nghiệm E, và (C) chính là là đo lương hiệu suất P. Vì thế Hiệu quả khi thực hiện bài toán T, 
+được đo bởi P sẽ được cải thiện dựa vào kinh nghiệm E. 
+ Trong khóa này, Tôi hy vọng sẽ dạy các bạn về 
+các loại khác nhau của thuật toán học máy. Có nhiều loại thuật toán học tập khác nhau. 2 loại chính là: học máy có giám sát (supervised learning) 
+và học máy không có giám sát (unsupervised learning)
+Tôi sẽ giải thích nghĩa chúng trong các video sau. Nhưng chủ yếu là 'Học có giám sát'.
+ Ý tưởng là: chúng ta sẽ dạy máy tính cách làm, trong khi đối với 
+học không có giám sát ta sẽ để máy tự học. Đừng lo khi không hiểu nghĩa 2 từ này, trong 2 video tiếp theo, tôi sẽ nói chính xác 2 loại này là gì. Các bạn cũng sẽ nghe về các thuật ngữ khác 
+như là Học Tăng Cường (Reinforcement Learning), Hệ thống gợi ý (Recommender System).
+ Chúng đều là các thuật toán học máy mà chúng ta sẽ bàn sau nhưng 2 thuật toán học máy được dùng nhiều nhất là: học có giám sát và học không có giám sát. Tôi sẽ giải thích trong 2 video sau và ta sẽ học nhiều về 2 loại này. Điều này chỉ ra rằng, tốn nhiều thời gian trong lớp học này chính là lời khuyên thiết thực
+ cho việc áp dụng các thuật toán học máy. Đây là điều mà tôi cảm thấy khá chắc chắn, và thực sự là tôi không chắc có bao nhiêu trường đại học dạy điều này. 
+Giảng dạy về thuật toán học máy giống như là cung cấp cho bạn 1 bộ dụng cụ, và quan trọng là làm thể nào để dạy bạn các sử dụng cái công cụ đó. Tôi thích làm một phép so sánh để
+việc học như là trở thành một thợ mộc. Thử tưởng tượng một người nào đó dạy bạn cách để thành một thợ mộc
+và họ đưa bạn 1 cái búa, một cái kềm một cái cưa và "chúc may mắn". 
+ Thật không hay tí nào, đúng không? bạn có tất cả công cụ này, 
+nhưng quan trọng là, cách để sử dụng chúng hợp lý. Có sự khác biệt lớn giữa những người biết cách sử dụng thuật toán học máy với những người không biết dử dụng các công cụ. Trong thung lũng Silicon, khi tôi tới thăm nhiều công ty lớn ở thung lũng Silicon tôi thường thấy nhiều người cố gắng áp dụng
+ các thuật toán học máy vào nhiều vấn đề và thỉnh thoảng họ không giải quyết được trong vòng
+ cả 6 tháng. Tuy nhiên thỉnh thoảng khi tôi nhìn những gì họ làm, tôi nói: "bạn biết không, tôi phải nói là tôi nên nói cách đây 6 tháng là bạn 
+nên áp dụng một thuật toán học máy đi và áp dụng nó như một cách điều chỉnh chút ít và cơ hội thành công có thể sẽ tốt hơn đó". Cho nên, việc mà chúng ta 
+sẽ làm trong lớp này là dành thật nhiều thời gian để tìm cách giải quyết việc: làm cách nào nếu bạn 
+thực sự lập trình 1 hệ thống học máy, làm cách nào để có được những quyết định tốt nhất về cách xây dựng hệ thống khi áp dụng các thuật toán học máy mà tốn ít thời gian hơn. Bạn biết không, nhiều người chỉ có thể nhận ra hệ thống không hoạt đông và chỉ làm phí thời gian sau 6 tháng. Nên tôi thực sự dành nhiều thời gian để dạy cho bạn các loại thực tiễn tốt nhất trong máy học và AI, và làm cách nào để có thể sử dụng bộ công cụ này, 
+cách nào để ta giải quyết nó và cách mà nhiều người giỏi trong thung lung Silicon và trên thế giời giải quyết nó. Tôi hy vọng sẽ giúp bạn thành một người có kiến thức tốt về cách thiết kế và xây dựng hệ thống học máy và AI. Vừa rồi là chút kiến thức về học máy mà tôi sẽ dạy bạn. Tôi sẽ giải thích về học có giám sát trong video sau. Và sau đó là học không có giám sát. Đồng thời cũng sẽ giải thích khi nào bạn sẽ sử dụng nó.

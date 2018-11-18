@@ -1,0 +1,87 @@
+Algoritma belajar pertama kita adalah
+regresi linier. Dalam video ini, Anda akan melihat modelnya seperti apa dan lebih
+penting Anda akan melihat bagaimana proses supervised learning secara menyeluruh. Mari kita
+gunakan beberapa contoh yang memotivasi prediksi harga perumahan. Kita akan menggunakan kumpulan
+data harga perumahan dari kota Portland, Oregon. Dan di sini saya akan
+memplot kumpulan data saya dari sejumlah rumah yang berbeda ukuran yang telah terjual
+dengan harga yang berbeda-beda. Katakanlah dengan data yang diberikan ini, Anda punya
+teman yang sedang coba menjual rumah dan mari kita lihat jika rumahnya berukuran
+1250 kaki persegi dan Anda ingin beritahu mereka berapa harga rumah tersebut yang mungkin dapat
+mereka jual. Satu hal yang dapat Anda lakukan adalah mencocokkan suatu model. Mungkin mencocokkan garis lurus
+ke data ini. Terlihat seperti itu dan berdasarkan itu, mungkin Anda dapat katakan pada teman Anda
+bahwa katakanlah mungkin ia dapat menjual rumahnya sekitar $220,000.
+Jadi ini satu contoh dari algoritma supervised learning. Dan ini
+supervised learning karena kita memberikan "jawaban benar" untuk setiap
+contoh kita. Sebut saja kita memberitahu berapa harga aktual
+dari setiap rumah di data kita saat terjual dan selain itu, ini
+contoh persoalan regresi dimana istilah regresi merujuk pada fakta
+bahwa kita sedang memprediksi hasil bernilai riil sebut saja harga. Dan hanya mengingatkan Anda
+jenis paling umum lainnya dari persoalan supervised learning dinamakan
+persoalan klasifikasi dimana kita memprediksi hasil bernilai diskrit seperti jika kita
+sedang melihat tumor kanker dan mencoba memutuskan jika suatu tumor ganas atau jinak.
+Jadi itu hasil bernilai diskrit nol-satu. Lebih formilnya, dalam supervised learning, kita punya
+sekumpulan data dan data ini disebut set pelatihan. Jadi dalam contoh harga
+perumahan, kita punya set pelatihan harga perumahan yang berbeda-beda dan tugas kita
+belajar dari data ini bagaimana memprediksi harga rumah. Mari kita definisikan beberapa notasi
+yang akan kita gunakan disepanjang matapelajaran ini. Kita akan menetapkan banyak sekali
+simbol. Tidak mengapa jika Anda tidak mengingat semua simbolnya sekarang tapi seiring dengan
+majunya matapelajaran ini akan berguna jika Anda perlu notasi yang nyaman. Jadi saya akan gunakan
+m kecil disepanjang matapelajaran ini untuk menunjukkan jumlah contoh latihan. Jadi
+dalam kumpulan data ini, jika saya punya, Anda tahu, katakanlah 47 baris di tabel ini. Lalu saya
+punya 47 contoh latihan dan m sama dengan 47. Biar saya gunakan x kecil untuk menunjukkan
+variabel input juga sering disebut ciri-ciri. Jadi x di sini, itu merupakan ciri-ciri input.
+Dan saya akan menggunakan y untuk menunjukkan variabel output atau
+variabel target yang akan saya prediksi dan itu adalah kolom
+kedua di sini. Melihat pada notasi, saya akan gunakan (x, y) untuk menunjukkan contoh
+latihan tunggal. Jadi satu baris di tabel ini dapat disamakan dengan satu contoh
+latihan dan menunjuk pada contoh latihan tertentu, saya akan gunakan
+notasi x(i) koma y(i) Dan, kita akan gunakan ini untuk menunjuk pada contoh
+latihan ke-i. Jadi huruf i di atas ini, bukan eksponen
+ya? (x(i), y(i)) ini, huruf i dalam tanda kurung hanya indeks pada
+set latihan saya dan menunjukkan baris ke-i dalam tabel ini, oke? Jadi ini bukan x
+pangkat i, y pangkat i. Sebaliknya (x(i), y(i)) hanya menunjukkan baris ke-i pada
+tabel ini. Jadi sebagai contoh, x(1) menunjukkan nilai input untuk contoh latihan pertama jadi
+itu 2104. Yaitu x di baris pertama ini. x(2) sama dengan
+1416 kan? Itu x kedua dan y(1) akan sama dengan 460.
+Yang pertama, nilai y untuk contoh latihan pertama saya, itu yang dimaksud (1) itu. Jadi
+seperti yang disebutkan, terkadang saya akan menanyai Anda pertanyaan agar Anda memeriksa
+pengertian Anda dan beberapa detik dalam video ini pertanyaan pilihan ganda
+akan muncul di video. Saat itu terjadi, silahkan gunakan mouse untuk memilih apa yang Anda
+pikir jawaban yang benar. Apa yang dinyatakan oleh set latihan. Jadi begini caranya algoritma
+supervised learning bekerja. Kita lihat dengan set latihan seperti set
+latihan harga rumah kita dan kita masukkan itu ke algoritma belajar kita. Adalah tugas
+algoritma belajar menghasilkan fungsi yang dengan ketentuan
+biasanya ditunjukkan huruf h kecil dan h kependekan dari hipotesis dan tugas
+hipotesis adalah, suatu fungsi yang mengambil sebagai input ukuran rumah seperti
+mungkin ukuran rumah baru yang teman Anda coba jual jadi algoritma mengambil nilai
+x dan mencoba mengeluarkan nilai y yang diperkirakan untuk rumah yang dimaksud.
+Jadi h adalah fungsi yang memetakan dari x ke y. Orang sering bertanya pada saya, Anda
+tahu mengapa fungsi ini disebut hipotesis. Beberapa dari Anda mungkin tahu
+arti dari istilah hipotesis, dari kamus atau dari ilmu pengetahuan atau apapun.
+Jelas bahwa di machine learning, ini nama yang digunakan diawal-awal munculnya
+machine learning dan itu seperti melekat. Karena mungkin bukan nama yang bagus untuk jenis
+fungsi ini, untuk memetakan dari ukuran rumah ke prediksinya, yang Anda tahu...
+Saya pikir istilah hipotesis, mungkin bukan nama terbaik untuk ini, namun ini adalah
+istilah standar yang orang gunakan dalam machine learning. Jadi jangan terlalu khawatir
+tentang mengapa orang memanggilnya seperti itu. Saat mendesain algoritma belajar, hal
+berikut yang kita perlu putuskan adalah bagaimana kita menampilkan hipotesis h ini. Untuk video ini dan
+beberapa video berikutnya, saya akan memilih pilihan pertama kita, untuk menampilkan
+hipotesis, akan seperti berikut. Kita akan menampilkan h seperti berikut. Dan kita akan menulis ini
+seperti h theta(x) sama dengan theta 0 tambah theta 1 x. Dan singkatnya,
+kadang sebagai pengganti menulis, Anda tahu, h subscript theta x, kadang
+ada tulisan singkat, saya hanya akan menulis h dari x. Tapi lebih sering saya akan menulisnya seperti
+subscript theta di atas sana. Dan memplot ini dalam gambar, semua ini maksudnya adalah,
+kita akan memprediksi bahwa y adalah fungsi linier dari x. Jadi itu
+datanya dan apa yang fungsi ini lakukan, adalah memprediksi bahwa y adalah fungsi
+garis lurus dari x. Yaitu h dari x sama dengan theta 0 tambah theta 1 x, oke? Dan mengapa fungsi
+linier? Nah, kadang-kadang kita akan mau mencocokkan lebih rumit, mungkin fungsi
+non linier juga. Tapi karena kasus linier ini adalah blok bangunan sederhana, pertama kita
+akan mulai dengan contoh ini mencocokkan fungsi linier, dan kita akan mengembangkan
+ini hingga akhirnya punya model yang lebih kompleks, dan algoritma belajar yang
+lebih kompleks. Biarkan juga saya memberikan model khusus ini sebuah nama. Model ini
+disebut regresi linier atau ini, sebagai contoh, sebenarnya adalah regresi linier
+dengan satu variabel, dengan variabelnya x. Memprediksi semua harga sebagai fungsi
+dari satu variabel x. Dan nama lain untuk model ini adalah regresi linier
+univariate. Dan univariate hanya suatu cara yang indah untuk mengatakan satu variabel. Jadi
+itulah regresi linier. Dalam video berikut kita akan mulai bicara tentang bagaimana
+kita bekerja mengimplementasikan model ini.

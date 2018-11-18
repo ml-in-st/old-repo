@@ -1,0 +1,428 @@
+1
+00:00:02,338 --> 00:00:04,677
+El primer algoritmo que aprenderemos será
+la regresión lineal. En este video, verás
+
+2
+00:00:06,956 --> 00:00:09,234
+cómo son los modelos y lo más
+importante, cómo es el proceso
+
+3
+00:00:09,234 --> 00:00:14,801
+general de aprendizaje supervisado. Utilicemos
+un ejemplo motivador para predecir
+
+4
+00:00:14,801 --> 00:00:20,036
+los precios de viviendas. Utilizaremos un conjunto de
+datos de precios de viviendas de la ciudad de
+
+5
+00:00:20,036 --> 00:00:25,205
+Portland, Oregón. Aquí, voy a
+trazar mi conjunto de datos para una cantidad de casas
+
+6
+00:00:25,205 --> 00:00:30,833
+de diferentes tamaños y que se vendieron
+en un rango de precios diferentes. Digamos
+
+7
+00:00:30,833 --> 00:00:35,872
+que con este conjunto de datos, tienes un
+amigo que trata de vender una casa y
+
+8
+00:00:35,872 --> 00:00:41,238
+si la casa de tu amigo es de
+1250 pies cuadrados quieres decirle
+
+9
+00:00:41,238 --> 00:00:46,459
+en cuánto podría vender
+la casa. Bueno, lo que podrías hacer es
+
+10
+00:00:46,648 --> 00:00:53,039
+ajustar un modelo. Tal vez ajustar una línea recta
+con estos datos, y se ve así y con base
+
+11
+00:00:53,039 --> 00:00:59,168
+en esto, tal vez podrías decirle a tu amigo
+que, digamos, quizás podría vender
+
+12
+00:00:59,168 --> 00:01:03,575
+la casa en aproximadamente $220,000 USD.
+Así que este es un ejemplo de un
+
+13
+00:01:03,575 --> 00:01:08,834
+algoritmo de aprendizaje supervisado. Y es
+un aprendizaje supervisado porque se nos da
+
+14
+00:01:08,834 --> 00:01:14,287
+la “respuesta correcta” para cada uno de
+nuestros ejemplos. Es decir, nos dice cuál fue
+
+15
+00:01:14,287 --> 00:01:19,351
+la casa real, cuál fue el precio
+real de cada casa que se vendió en
+
+16
+00:01:19,351 --> 00:01:24,441
+nuestro conjunto de datos y, además,
+es un ejemplo de un problema de regresión,
+
+17
+00:01:24,441 --> 00:01:29,545
+el término regresión se refiere al hecho
+de que predecimos el resultado del valor real,
+
+18
+00:01:29,545 --> 00:01:34,586
+es decir, el precio. Y sólo para recordarte,
+el otro tipo más común de problema de
+
+19
+00:01:34,586 --> 00:01:39,006
+aprendizaje supervisado se llama
+problema de clasificación, donde predecimos
+
+20
+00:01:39,006 --> 00:01:45,202
+los resultados de valor discreto, es como si viéramos
+tumores cancerígenos y tratáramos de
+
+21
+00:01:45,202 --> 00:01:52,032
+determinar si el tumor es maligno o benigno.
+Entonces, este el resultado del valor discreto de cero a uno. De forma
+
+22
+00:01:52,032 --> 00:01:57,087
+más formal, en el aprendizaje supervisado, tenemos
+un conjunto de datos que se llama
+
+23
+00:01:57,087 --> 00:02:02,018
+conjunto de entrenamiento. En el ejemplo de precios
+de viviendas, tenemos un conjunto de entrenamiento de
+
+24
+00:02:02,018 --> 00:02:07,386
+diferentes precios de viviendas y nuestro trabajo es
+aprender, a partir de estos datos, cómo predecir los precios
+
+25
+00:02:07,386 --> 00:02:11,907
+de las viviendas. Definamos otra anotación
+que usaremos durante este curso.
+
+26
+00:02:11,907 --> 00:02:16,100
+Definiremos muchos
+símbolos. No pasa nada si no recuerdas
+
+27
+00:02:16,100 --> 00:02:20,075
+todos los símbolos en este momento pero
+a medida que el curso avance, será útil
+
+28
+00:02:20,075 --> 00:02:24,267
+tener una anotación conveniente. Así que usaré
+la letra "m" minúscula durante este curso para
+
+29
+00:02:24,267 --> 00:02:28,897
+denotar el número de ejemplos de entrenamiento. Ahora, 
+si en este conjunto de datos digamos
+
+30
+00:02:28,897 --> 00:02:34,366
+que tengo 47 filas en esta tabla. Entonces,
+tengo 47 ejemplos de entrenamiento y "m" es igual a 47.
+
+31
+00:02:34,366 --> 00:02:39,497
+Usaré la letra "x" minúscula para denotar las
+variables de entrada, que con frecuencia se llaman
+
+32
+00:02:39,497 --> 00:02:44,290
+funciones. Eso sería las x de aquí, que son las funciones de entrada. Y utilizaré
+
+33
+00:02:44,290 --> 00:02:49,556
+la letra "y" para denotar mis variables de salida o la
+variable objetivo que voy a
+
+34
+00:02:49,556 --> 00:02:54,552
+predecir, que es la segunda
+columna de aquí. Una anotación más,
+
+35
+00:02:54,552 --> 00:03:05,749
+utilizaré "(x,y)" para denotar un solo ejemplo
+de entrenamiento. Así que una sola fila en esta
+
+36
+00:03:05,749 --> 00:03:12,068
+tabla corresponde a un solo ejemplo
+de entrenamiento y para referirse a un
+
+37
+00:03:12,068 --> 00:03:19,708
+ejemplo de entrenamiento específico, usaré
+esta anotación "(x(i), y(i))", y
+
+38
+00:03:25,322 --> 00:03:30,935
+usaremos esto para referirnos al ejemplo
+"i" de entrenamiento. Así que este superíndice “i”
+
+39
+00:03:30,935 --> 00:03:37,864
+de aquí, no es un exponente,
+¿correcto? En "(x(i), y(i))", el superíndice “i” entre
+
+40
+00:03:37,864 --> 00:03:44,873
+paréntesis es sólo un índice en mi
+conjunto de entrenamiento y se refiere a la fila "i" en
+
+41
+00:03:44,873 --> 00:03:51,629
+esta tabla, ¿ok? Así que no es "x" a la
+potencia de "i",o "y" a la potencia de "i". En lugar de eso
+
+42
+00:03:51,629 --> 00:03:58,216
+(x(i), y(i)) se refiere a la fila "i" de esta
+tabla. Por ejemplo, "x(1)" se refiere al
+
+43
+00:03:58,216 --> 00:04:04,972
+valor de entrada del primer ejemplo de entrenamiento
+que es 2104. Eso es "x" en la primera
+
+44
+00:04:04,972 --> 00:04:11,685
+fila, "x(2)" será igual a
+1416, ¿cierto? Esa es la segunda x
+
+45
+00:04:11,685 --> 00:04:17,385
+y "y(1)" será igual a 460.
+El primer valor de “y” de mi primer
+
+46
+00:04:17,385 --> 00:04:24,526
+ejemplo de entrenamiento, eso es a lo que ese "(1)"
+se refiere. Como mencioné, de vez en cuando haré
+
+47
+00:04:24,526 --> 00:04:28,345
+una pregunta para que sepas si
+has entendido y en algunos segundos en el video
+
+48
+00:04:28,345 --> 00:04:34,044
+saldrá una pregunta de opción
+múltiple en el video. Cuando pase,
+
+49
+00:04:34,044 --> 00:04:40,362
+por favor usa tu ratón para seleccionar cuál
+crees que es la respuesta correcta. Para definir
+
+50
+00:04:40,362 --> 00:04:45,124
+qué es el conjunto de entrenamiento Así es cómo funciona
+el algoritmo de aprendizaje supervisado.
+
+51
+00:04:45,124 --> 00:04:50,513
+Vimos que con el conjunto de entrenamiento como nuestro
+conjunto de entrenamiento de precios de viviendas, se
+
+52
+00:04:50,513 --> 00:04:55,715
+lo damos a nuestro algoritmo de aprendizaje el trabajo
+de un algoritmo de aprendizaje es producir
+
+53
+00:04:55,715 --> 00:05:00,101
+una función que mediante convención
+generalmente está denotada por la letra "h" minúscula
+
+54
+00:05:00,101 --> 00:05:06,574
+y "h" se refiere a la hipótesis. Y el trabajo de
+la hipótesis es una función que
+
+55
+00:05:06,574 --> 00:05:12,471
+tome como entrada el tamaño de la casa,
+tal vez el tamaño de la casa nueva que tu
+
+56
+00:05:12,471 --> 00:05:18,368
+amigo trata de vender, así que toma el valor de
+“x” y trata de generar un valor
+
+57
+00:05:18,368 --> 00:05:31,630
+estimado de “y” para la casa correspondiente.
+Entonces "h" es una función que se traza de las "x"
+
+58
+00:05:31,630 --> 00:05:37,729
+a las "y". Con frecuencia la gente me pregunta
+por qué se llama hipótesis
+
+59
+00:05:37,729 --> 00:05:42,121
+a esta función. Es posible que algunos de ustedes
+sepan el significado del término hipótesis del
+
+60
+00:05:42,121 --> 00:05:46,744
+diccionario o de ciencia o de donde sea. Resulta
+que en aprendizaje automático, este
+
+61
+00:05:46,744 --> 00:05:51,310
+es el nombre que se utilizó a principios del
+aprendizaje automático y de ahí quedó. Y
+
+62
+00:05:51,310 --> 00:05:55,239
+puede que no sea un buen nombre para este tipo
+de función, para trazar, desde tamaños de
+
+63
+00:05:55,239 --> 00:05:59,978
+casas y las predicciones, ya sabes...
+Creo que el término hipótesis, tal vez no es
+
+64
+00:05:59,978 --> 00:06:04,543
+el mejor nombre para esto, pero es la
+terminología estándar que se usa en
+
+65
+00:06:04,543 --> 00:06:09,362
+el aprendizaje automático. No prestes tanta atención
+a por qué la llaman así. Al
+
+66
+00:06:09,362 --> 00:06:14,332
+diseñar un algoritmo de aprendizaje, lo
+siguiente a decidir es cómo representar
+
+67
+00:06:14,332 --> 00:06:20,540
+esta hipótesis "h". Para este video y
+en los siguientes videos, escogeré
+
+68
+00:06:20,540 --> 00:06:26,978
+nuestra elección inicial, para representar a
+la hipótesis. Que será la siguiente. Vamos a
+
+69
+00:06:26,978 --> 00:06:33,009
+representar "h" de la siguiente manera. Lo escribiremos como
+"h teta(x) igual a teta 0</u></u>
+
+70
+00:06:33,009 --> 00:06:39,254
+más teta 1 de x". Y en cuanto a las abreviaturas,
+a veces en lugar de escribir</u>
+
+71
+00:06:39,254 --> 00:06:45,441
+"h subíndice teta de x", algunas veces
+habrá una abreviatura, sólo escribiré "h" de "x".
+
+72
+00:06:45,441 --> 00:06:51,627
+Pero con mayor frecuencia, escribiré
+teta como subíndice. Y al trazar
+
+73
+00:06:51,627 --> 00:06:58,210
+esto en las imágenes, significa que
+vamos a predecir que “y” es una función
+
+74
+00:06:58,210 --> 00:07:04,634
+lineal de "x". Bueno, eso es el
+conjunto de datos y lo que hace su función
+
+75
+00:07:04,634 --> 00:07:11,698
+es predecir que “y” es alguna
+función lineal recta de "x". Eso es "h de x igual a teta 0
+
+76
+00:07:11,698 --> 00:07:18,450
+más teta 1x", ¿ok? Y, ¿por qué una función
+lineal? Bueno, a veces también
+
+77
+00:07:18,450 --> 00:07:23,405
+queremos ajustar funciones más complicadas
+o tal vez no lineales. Pero ya que este caso
+
+78
+00:07:23,405 --> 00:07:28,298
+lineal es un componente simple,
+iniciaremos con el primer ejemplo para ajustar
+
+79
+00:07:28,298 --> 00:07:32,943
+funciones lineales, y trabajaremos sobre
+esto para, finalmente, tener modelos más
+
+80
+00:07:32,943 --> 00:07:37,403
+complejos y algoritmos de aprendizaje
+más complejos. Deja que le de un
+
+81
+00:07:37,403 --> 00:07:42,628
+nombre a este modelo en especial. Este modelo se
+llama regresión lineal o, este por
+
+82
+00:07:42,628 --> 00:07:48,271
+ejemplo, es una regresión lineal real
+con una variable, una variable que es
+
+83
+00:07:48,271 --> 00:07:53,914
+"x" y predice todos los precios como funciones
+de una variable "x". Otro nombre para
+
+84
+00:07:53,914 --> 00:07:58,852
+este modelo es regresión lineal
+univariante. Univariante es sólo una
+
+85
+00:07:58,852 --> 00:08:04,400
+forma elegante de decir una variable. Así que, 
+esto es la regresión lineal. En el siguiente
+
+86
+00:08:04,400 --> 00:08:09,760
+video, empezaremos a ver cómo
+implementar este modelo.

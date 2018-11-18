@@ -1,0 +1,195 @@
+1
+00:00:00,000 --> 00:00:04,162
+En este video, quiero llevarte rápidamente
+a través de la logística de cómo trabajar en
+
+2
+00:00:04,162 --> 00:00:09,387
+las tareas en esta clase y cómo usar el
+sistema de envío que te permitirá comprobar
+
+3
+00:00:09,387 --> 00:00:15,619
+enseguida que tienes la respuesta correcta de
+tu ejercicio de programación de aprendizaje automático
+
+4
+00:00:15,619 --> 00:00:19,354
+Aquí está mi ventana de Octave y
+primero vamos a ir a mi escritorio.
+
+5
+00:00:19,354 --> 00:00:25,374
+Guardé los archivos para mi primer ejercicio,
+algunos de los archivos en mi escritorio:
+
+6
+00:00:25,374 --> 00:00:27,994
+en este directorio, "ml-class-ex1".
+
+7
+00:00:27,994 --> 00:00:32,921
+Te proporcionamos algunos archivos
+y te pedimos editar algunos de ellos.
+
+8
+00:00:32,921 --> 00:00:40,701
+Así que el primer archivo debe cumplir con los detalles en
+el archivo PDF para este ejercicio de programación.
+
+9
+00:00:40,701 --> 00:00:45,352
+Uno de los archivos que te pedimos que edites es
+este archivo llamado «warmUpExercise.m», donde el
+
+10
+00:00:45,352 --> 00:00:49,890
+ejercicio es sólo para asegurar que
+estás familiarizado con el sistema de envío.
+
+11
+00:00:49,890 --> 00:00:53,795
+Y todo lo que tiene que hacer es
+devolver la matriz de identidad 5x5.
+
+12
+00:00:53,795 --> 00:01:00,301
+Así que la solución a este ejercicio que acabo de
+mostrarte es escribir A = eye(5).
+
+13
+00:01:00,301 --> 00:01:05,766
+Así que modifica esta función para
+generar la matriz de identidad 5x5.
+
+14
+00:01:05,766 --> 00:01:11,149
+Esta función «warmUpExercise()»
+ahora devuelve la matriz de identidad 5x5.
+
+15
+00:01:11,149 --> 00:01:13,727
+Sólo voy a guardarlo.
+
+16
+00:01:13,727 --> 00:01:17,465
+Así que he hecho la primera parte de esta tarea.
+Volviendo a mi ventana de Octave,
+
+17
+00:01:17,465 --> 00:01:27,185
+ahora vamos a ir a mi directorio,
+"C:\Users\ang\Desktop\ml-class-ex1".
+
+18
+00:01:27,185 --> 00:01:33,347
+Y si quiero asegurarme de que he implementado
+esto, escribo "warmUpExercise()" como tal.
+
+19
+00:01:33,347 --> 00:01:39,671
+Y sí, devuelve la matriz de identidad 5x5
+del código que acabamos de escribir para crearla.
+
+20
+00:01:39,671 --> 00:01:43,870
+Y ahora puedo enviar el código de la siguiente manera.
+Voy a escribir "submit()" en este
+
+21
+00:01:43,870 --> 00:01:49,300
+directorio y estoy listo para enviar la parte 1
+así que voy a introducir la opción "1".
+
+22
+00:01:49,300 --> 00:01:54,387
+Me pide mi dirección de correo electrónico.
+Me dirijo al sitio web del curso.
+
+23
+00:01:54,387 --> 00:01:59,682
+Este es un sitio de pruebas internas, por lo que tu versión
+del sitio web puede verse un poco diferente.
+
+24
+00:01:59,682 --> 00:02:07,934
+Pero esa es mi dirección de correo electrónico y esta es mi
+contraseña para el envío, voy a escribirlas aquí.
+
+25
+00:02:07,934 --> 00:02:19,205
+Así que tengo «ang@cs.stanford.edu» y
+mi contraseña de envío es «9yC75USsGf».
+
+26
+00:02:19,205 --> 00:02:23,849
+Voy a presionar «enter»; se conecta con el servidor
+y lo envía, y de inmediato
+
+27
+00:02:23,849 --> 00:02:28,567
+te dice "¡Felicidades! has completado
+con éxito la tarea 1 parte 1".
+
+28
+00:02:28,567 --> 00:02:33,160
+Y esto te da una verificación
+de que tienes correcta esta parte.
+
+29
+00:02:33,160 --> 00:02:36,795
+Si no envías la respuesta correcta,
+entonces te dará un mensaje que indica
+
+30
+00:02:36,795 --> 00:02:39,501
+que no lo has conseguido completamente bien todavía.
+
+31
+00:02:39,501 --> 00:02:47,861
+Puedes utilizar esta contraseña de envío y
+puedes generar nuevas contraseñas; no importa.
+
+32
+00:02:47,861 --> 00:02:52,556
+Pero también puedes utilizar tu
+contraseña del sitio web, ya que esta contraseña
+
+33
+00:02:52,556 --> 00:02:59,281
+está escrita en texto claro en tu monitor,
+te dimos esta contraseña de envío adicional
+
+34
+00:02:59,281 --> 00:03:03,650
+en caso de que no desees escribir tu
+contraseña normal para el sitio web en una ventana
+
+35
+00:03:03,650 --> 00:03:09,219
+que, dependiendo de tu sistema operativo,
+puede o no puede aparecer en forma de texto al escribirla
+
+36
+00:03:09,219 --> 00:03:14,544
+en el script de envío de Octave.
+
+37
+00:03:14,544 --> 00:03:18,746
+Así es como se envían las
+tareas después de que las has hecho.
+
+38
+00:03:18,746 --> 00:03:23,696
+Buena suerte, y cuando trabajes en las
+tareas, espero que obtengas todas como correctas.
+
+39
+00:03:23,696 --> 00:03:28,329
+Y, por último, en el próximo y último
+video tutorial de Octave, quiero contarles acerca
+
+40
+00:03:28,329 --> 00:03:33,337
+de la vectorización, que es una manera de lograr que
+tu código Octave se ejecute mucho más eficientemente.

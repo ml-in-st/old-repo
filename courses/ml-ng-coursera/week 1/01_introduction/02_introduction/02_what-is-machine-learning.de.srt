@@ -1,0 +1,483 @@
+1
+00:00:00,000 --> 00:00:04,904
+Was ist maschinelles Lernen? 
+In diesem Video werden wir versuchen,
+ zu definieren, was das ist und außerdem
+
+2
+00:00:04,904 --> 00:00:09,520
+werden wir versuchen, Ihnen einen Einblick zu geben,
+ wann Sie maschinelles Lernen verwenden können.
+
+3
+00:00:09,520 --> 00:00:14,252
+Sogar unter Fachleuten, 
+die maschinelles Lernen anwenden, 
+gibt es keine allgemein anerkannte Definition, was
+
+4
+00:00:14,252 --> 00:00:18,926
+maschinelles Lernen ist und was nicht. 
+Aber lassen Sie mich Ihnen 
+einige Beispiele zeigen, wie
+
+5
+00:00:18,926 --> 00:00:23,600
+Leute versucht haben es zu definieren.
+ Hier ist die Definition für maschinelles Lernen
+
+6
+00:00:23,600 --> 00:00:28,520
+nach Arthur Samuel: Er definiert maschinelles Lernen 
+als ein Fachgebiet, das Computern
+
+7
+00:00:31,037 --> 00:00:33,554
+die Fähigkeit gibt zu lernen
+ ohne explizit programmiert worden zu sein.
+ Samuels Bekanntheit
+
+8
+00:00:33,554 --> 00:00:38,452
+kam dadurch, dass er 1950
+ ein Dame spielendes Programm geschrieben hatte.
+
+9
+00:00:38,452 --> 00:00:43,603
+Das verblüffende an diesem 
+Dame spielenden Programm war, 
+dass Arthur Samuel selber
+
+10
+00:00:43,603 --> 00:00:48,268
+gar kein guter Damespieler war. 
+Was er jedoch tat, war folgendes:
+ er schrieb das Programm so, 
+dass es zehntausende Partien gegen
+
+11
+00:00:48,268 --> 00:00:52,245
+sich selbst spielen würde.
+ Indem das Dame spielende Programm beobachtete,
+
+12
+00:00:52,245 --> 00:00:56,698
+welche Spielsituationen eher zum Sieg führten und 
+welche Spielsituationen eher zur Niederlage führten,
+
+13
+00:00:56,698 --> 00:01:00,725
+lernte es mit der Zeit, was gute Spielsituationen sind
+
+14
+00:01:00,725 --> 00:01:04,713
+und was schlechte Spielsituationen sind.
+Es lernte dann schließlich
+
+15
+00:01:04,713 --> 00:01:09,514
+besser Dame zu spielen 
+als Arthur Samuel es selbst konnte. 
+Das war ein beeindruckendes Ergebnis.
+
+16
+00:01:09,514 --> 00:01:14,535
+Es stellte sich heraus, dass Arthur Samuel selbst
+ kein sehr guter Damespieler war.
+
+17
+00:01:14,535 --> 00:01:19,254
+Der Computer jedoch hat das Durchhaltevermögen
+ zehntausende Partien gegen sich selber zu spielen
+
+18
+00:01:19,254 --> 00:01:24,275
+- kein Mensch hat das Durchhaltevermögen,
+ so viele Partien zu spielen - 
+indem der Computer dies tat,
+
+19
+00:01:24,275 --> 00:01:29,235
+war er in der Lage, soviel Dame-Spielerfahrung
+ anzusammeln, dass er schließlich
+
+20
+00:01:29,235 --> 00:01:33,817
+ein besserer Damespieler wurde, 
+als Arthur Samuel selbst. Das ist die etwas informellere
+
+21
+00:01:33,817 --> 00:01:38,547
+und ältere Definition. 
+Hier ist eine etwas neuere Definition von Tom Mitchell,
+
+22
+00:01:38,547 --> 00:01:43,607
+der ein Freund von der Carnegie Mellon Universität 
+ist. Tom definiert maschinelles Lernen indem
+
+23
+00:01:43,607 --> 00:01:48,819
+er sagt, dass ein wohlgestelltes Lernproblem 
+wie folgt definiert ist: 
+Man sagt, dass ein Computerprogramm
+
+24
+00:01:48,819 --> 00:01:53,843
+von einer Erfahrung (experience) E, 
+bezogen auf irgendeine Aufgabe (task) T und
+ irgendein Maß für die Erfüllung (performance) P,
+ lernt,
+
+25
+00:01:53,843 --> 00:01:58,678
+wenn die Erfüllung von T,
+ wie von P gemessen, besser wird
+
+26
+00:01:58,678 --> 00:02:03,764
+mit der Erfahrung E. 
+Ich glaube ja, dass er diese Definition
+ nur gewählt hat, damit sie sich reimt.
+
+27
+00:02:03,764 --> 00:02:08,346
+Im Beispiel des Dame spielenden Programms 
+wäre die Erfahrung E diejenige Erfahrung,
+
+28
+00:02:08,346 --> 00:02:13,253
+die sich daraus ergibt, dass das Programm 
+zehntausende Spiele mit sich selbst spielt.
+
+29
+00:02:13,253 --> 00:02:17,735
+Die Aufgabe T wäre 
+die Aufgabe des Damespielens und 
+das Erfüllungsmaß P wäre die Wahrscheinlichkeit,
+
+30
+00:02:17,735 --> 00:02:22,399
+dass es die nächste Partie Dame gegen irgendeinen
+
+31
+00:02:22,399 --> 00:02:27,157
+neuen Gegner gewinnt. 
+In den folgenden Videos, abgesehen davon, 
+dass ich versuchen werde, Ihnen Dinge beizubringen,
+
+32
+00:02:27,157 --> 00:02:32,291
+werde ich Ihnen gelegentlich eine Frage stellen,
+ um sicher zu stellen, dass Sie den Stoff verstehen.
+
+33
+00:02:32,291 --> 00:02:36,891
+Hier ist eine. Ganz oben steht die Definition
+ des maschinellen Lernens von Tom Mitchell.
+
+34
+00:02:36,891 --> 00:02:42,292
+Stellen Sie sich vor, 
+Ihr Email-Programm beobachtet, welche Emails Sie 
+als Spam markieren und welche nicht.
+
+35
+00:02:42,292 --> 00:02:47,826
+In einem Email-Programm wie diesem hier, 
+würden Sie dann diesen Spamknopf drücken,
+
+36
+00:02:47,826 --> 00:02:53,263
+um irgendeine Email als Spam zu markieren, 
+aber eben nicht die anderen. Darauf basierend, 
+welche Emails Sie als Spam markieren
+
+37
+00:02:53,263 --> 00:02:59,046
+lernt Ihr Email-Programm besser, 
+Spam-Emails herauszufiltern. 
+Was ist dann die Aufgabe T
+
+38
+00:02:59,046 --> 00:03:04,290
+in dieser Situation? 
+In ein paar Sekunden wird das Video anhalten
+ und wenn es das tut,
+
+39
+00:03:04,290 --> 00:03:09,598
+können Sie Ihre Maus benutzen, um einen
+ dieser vier runden Knöpfe auszuwählen
+ und mich wissen zu lassen,
+
+40
+00:03:09,598 --> 00:03:40,190
+von welcher dieser vier Sie glauben, 
+dass es die richtige Antwort zu dieser Frage ist. 
+- Nun, ich hoffe, dass Sie diese Antwort hier
+ gewählt haben: Emails als Spam oder keinen Spam
+ klassifizieren. Tatsächlich definiert diese Definition
+ die Aufgabe T, das Erfüllungsmaß P und 
+die Erfahrung E. Ihnen dabei zuzusehen, 
+wie Sie Emails als Spam oder keinen Spam 
+etikettieren, das wäre dann die Erfahrung E. 
+Der Anteil an korrekt klassifizierten Emails wäre dann
+
+41
+00:03:40,190 --> 00:03:45,747
+das Erfüllungsmaß P.
+ Unsere Aufgabenerfüllung (task performance), 
+unsere Systemleistung (system's performance),
+
+42
+00:03:45,747 --> 00:03:50,529
+unser Erfüllungsmaß P
+ wird sich mit der Erfahrung E verbessern.
+
+43
+00:03:50,529 --> 00:03:55,957
+In diesem Kurs, hoffe ich, Ihnen mehrere
+ verschiedene Arten von Lernalgorithmen beizubringen.
+
+44
+00:03:55,957 --> 00:04:00,933
+Es gibt etliche 
+verschiedene Arten von Lernalgorithmen.
+
+45
+00:04:00,933 --> 00:04:05,650
+Die wichtigsten zwei Arten sind 
+überwachtes(supervised) und 
+unüberwachtes (unsupervised) Lernen.
+
+46
+00:04:05,650 --> 00:04:10,690
+Ich werde das, was diese beiden Ausdrücke bedeuten,
+ in den nächsten paar Videos genauer definieren.
+
+47
+00:04:10,690 --> 00:04:16,028
+Es sei nur kurz gesagt: 
+es stellt sich heraus, dass man beim
+ überwachten Lernen dem Computer beibringt,
+
+48
+00:04:16,028 --> 00:04:20,513
+wie er etwas tun soll, 
+wohingegen beim unüberwachten Lernen
+ man ihn selber lernen lässt.
+
+49
+00:04:20,513 --> 00:04:25,016
+Machen Sie sich keine Sorgen, wenn diese zwei 
+Ausdrücke Ihnen jetzt noch nichts sagen.
+
+50
+00:04:25,016 --> 00:04:29,739
+In den nächsten paar Videos, werde ich genau sagen,
+ was diese beiden Arten des Lernens sind.
+
+51
+00:04:29,739 --> 00:04:34,070
+Sie werden noch weitere Fachwörter wie 
+'Verstärkendes Lernen' (reinforcement learning) und
+ 'Empfehlungsdienste' (recommender systems) hören.
+
+52
+00:04:34,070 --> 00:04:38,621
+Das sind zwei weitere Arten von
+ maschinellen Lernalgorithmen, 
+über die wir später sprechen werden.
+
+53
+00:04:38,621 --> 00:04:42,460
+Aber die wohl am häufigsten gebrauchten Arten
+ von Lernalgorithmen sind
+
+54
+00:04:42,460 --> 00:04:46,791
+überwachtes Lernen und unüberwachtes Lernen. 
+Ich werde dies in den nächsten zwei
+
+55
+00:04:46,791 --> 00:04:51,123
+Videos definieren und wir werden die meiste Zeit
+ in diesem Kurs über diese zwei Arten
+ von Lernalgorithmen sprechen.
+
+56
+00:04:51,123 --> 00:04:55,720
+Wir werden aber auch viel Zeit
+ in diesem Kurs darauf verwenden,
+
+57
+00:04:55,720 --> 00:05:00,054
+praktische Hinweise zu geben,
+ um Lernalgorithmen anzuwenden.
+
+58
+00:05:00,054 --> 00:05:04,444
+Das ist etwas, das mir sehr wichtig ist 
+und etwas, von dem ich nicht glaube,
+
+59
+00:05:04,444 --> 00:05:08,167
+dass irgendeine andere Universität das so
+ unterrichtet. Das Unterrichten von Lernalgorithmen
+
+60
+00:05:08,167 --> 00:05:12,509
+ist so, als ob ich Ihnen eine Kiste voll Werkzeuge
+ gebe. Genauso wichtig oder vielleicht noch wichtiger
+
+61
+00:05:12,509 --> 00:05:17,616
+als Ihnen diese Werkzeuge zu geben, 
+ist es Ihnen beizubringen, wie 
+Sie diese Werkzeuge anwenden können.
+
+62
+00:05:17,616 --> 00:05:22,413
+Ich würde gerne eine Analogie zum Erlernen des
+ Schreinerhandwerks machen. Stellen Sie sich vor,
+
+63
+00:05:22,413 --> 00:05:26,959
+jemand bringt Ihnen das Schreinerhandwerk bei 
+und sagt: 'Hier ist ein Hammer, 
+hier ist ein Schraubenzieher,
+
+64
+00:05:26,959 --> 00:05:31,077
+hier ist eine Säge. Viel Glück!' 
+Das ist doch nicht gut, oder?
+
+65
+00:05:31,077 --> 00:05:34,799
+Sie haben dann zwar alle diese Werkzeuge, 
+aber das wichtigere ist doch zu lernen, 
+wie man diese Werkzeuge
+
+66
+00:05:34,799 --> 00:05:38,927
+richtig benutzt. Es gibt einen enormen Unterschied 
+zwischen Menschen, die wissen wie man
+
+67
+00:05:38,927 --> 00:05:43,456
+diese maschinellen Lernalgorithmen anwendet
+ und denen, die nicht wissen,
+
+68
+00:05:43,456 --> 00:05:47,626
+wie man diese Werkzeuge richtig benutzt. 
+Hier im Silicon Valley, wo ich lebe, erlebe ich es oft,
+
+69
+00:05:47,626 --> 00:05:52,328
+wenn ich verschiedene Firmen besuche, selbst bei 
+den etablierten Silicon Valley Unternehmen,
+
+70
+00:05:52,328 --> 00:05:56,428
+dass Leute versuchen maschinelle Lernalgorithmen
+ auf irgendein Problem anzuwenden
+
+71
+00:05:56,428 --> 00:06:00,857
+- manchmal haben sie das schon
+ seit sechs Monaten versucht - 
+aber wenn ich manchmal sehe,
+
+72
+00:06:00,857 --> 00:06:05,121
+was sie tun, 
+dann hätte ich Ihnen früher sagen können
+
+73
+00:06:05,121 --> 00:06:09,714
+- sechs Monate früher - dass sie einen 
+Lernalgorithmus hätten nehmen sollen und ihn
+
+74
+00:06:09,714 --> 00:06:14,470
+in einer etwas veränderten Art anwenden sollen. 
+Dann wäre ihr Ausblick auf Erfolg
+
+75
+00:06:14,470 --> 00:06:19,648
+viel größer gewesen. Wir werden also in diesem Kurs
+ viel Zeit darauf verwenden, darüber zu sprechen,
+
+76
+00:06:19,648 --> 00:06:23,523
+wie, wenn man wirklich versucht ein 
+maschinelles Lernsystem zu entwickeln,
+
+77
+00:06:23,523 --> 00:06:27,596
+wie man optimale Entscheidungen
+ über Vorgehensweisen trifft, 
+mit denen man dann sein System aufbaut,
+
+78
+00:06:27,596 --> 00:06:31,321
+sodass man, 
+wenn man einen Lernalgorithmus anwendet,
+
+79
+00:06:31,321 --> 00:06:35,394
+seltener als jemand endet, 
+der etwas sechs Monate lang versucht hat,
+
+80
+00:06:35,394 --> 00:06:39,373
+wovon jemand anderes sofort gesehen hätte,
+ dass das so überhaupt nicht gehen kann
+
+81
+00:06:39,373 --> 00:06:43,515
+und dass es eine reine Zeitverschwendung 
+von sechs Monaten war.
+ Ich werde also viel Zeit darauf verwenden,
+
+82
+00:06:43,515 --> 00:06:47,707
+Ihnen diese optimalen Vorgehensweisen
+ für Maschinelles Lernen 
+und künstliche Intelligenz beizubringen
+
+83
+00:06:47,707 --> 00:06:52,052
+und auch wie man diese Sachen dann 
+zum Laufen bekommt, wie wir es tun, 
+wie es die besten Leute in Silicon Valley
+
+84
+00:06:52,052 --> 00:06:56,143
+und überall auf der Erde tun. Ich hoffe, ich kann 
+Sie zu einem - oder einer - der Besten machen,
+
+85
+00:06:56,143 --> 00:06:59,905
+die wissen, wie man ernsthafte maschinelle 
+Lernsysteme und Systeme mit künstlicher Intelligenz
+ entwirft und aufbaut.
+
+86
+00:06:59,905 --> 00:07:04,698
+Das ist also maschinelles Lernen und 
+das sind die Hauptpunkte, von denen ich hoffe, 
+dass ich sie vermitteln werde.
+
+87
+00:07:04,698 --> 00:07:09,023
+In den nächsten Videos werde ich definieren, 
+was überwachtes Lernen ist und danach
+
+88
+00:07:09,023 --> 00:07:13,757
+was unüberwachtes Lernen ist und außerdem 
+werde ich damit beginnen, darüber zu sprechen,
+ wann man welches verwendet.

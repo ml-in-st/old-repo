@@ -1,0 +1,44 @@
+U ovome videu bih 
+bih da pričam o grupisanju. Biće uzbudljivo jer je ovo naš prvi
+ algoritam nenadgledanog učenja, gde učimo iz neoznačenih
+podataka umesto iz označenih. Dakle, šta je nenadgledano učenje? Ukratko sam pričao o 
+nenadgledanom učenju na početku kursa ali je korisno da ga uporedimo 
+sa nadgledanim učenjem. Dakle, ovo je tipičan problem
+ nadgledanog učenja gde smo dobili označen trening skup i cilj je pronaći
+ granicu odluke koja razdvaja pozitivne oznake od negativnih primera. Dakle, problem nadgledanog učenja je u ovome
+ slučaju dobio skup oznaka da nađe hipotezu na osnovu njega. Suprotno tome, u nenadgledanom
+ problemu učenja dobili smo podatke koji nisu povezani
+ sa bilo kakvim oznakama. Dakle, dobili smo podatke 
+koji izgledaju ovako. Ovo je trening skup tačaka
+ bez oznaka, i on je napisan samo sa x1, x2, i tako dalje
+ do xm a nemamo bilo kakvu oznaku y. Zato iscrtane tačke na grafu nemaju oznake na sebi. Dakle, u nenadgledanom učenju 
+šta radimo je da dajemo tu vrstu neoznačenih trening podataka algoritmu i samo pitamo algoritam da nađe
+ neku strukturu u podacima za nas. Dajući ovome skupu podataka tip
+ strukture možemo da imamo algoritam koji izgleda kao da taj skup ima tačke 
+grupisane u dve odvojene grupe i algoritam koji traži grupe koje sam upravo zaokružio 
+se zove algoritam grupisanja. I ovo bi bio naš prvi tip
+ nenadgledanog učenja, ipak, biće i drugih tipova algoritama
+ nenadgledanog učenja o kojima ćemo da pričamo kasnije, koji 
+pronalaze druge tipove struktura, drugačije tipove obrazaca 
+od grupa podataka. O tome ćemo da govorimo
+ posle grupisanja. Dakle, za šta je dobro grupisanje? Ranije na kursu sam 
+spomenuo par aplikacija. Jedna je segmentacija tržišta gde 
+možete da imate bazu podataka korisnika i želite da ih grupišete u 
+različite segmente tržišta tako da im možete da prodajete
+ odvojeno po segmentima tržišta. Analiza društvenih mreža. Već postoje grupe koje su 
+napravljene gledanjem u grupe ljudi na socijalnim mrežama. Stvari kao Fejsbuk, Gugl+, 
+ili možda informacija o tome ko su ljudi kojima ste 
+nejčešće slali mejlove ili ko su ljudi koji su najčešće slali mejlove i 
+naći vezu u grupama ljudi. Dakle, ovo bi bio još jedan algoritam 
+grupisanja gde želite da nađete koje su povezane grupe prijatelja
+ u društvenoj mreži. Ovo je nešto na čemu je radio 
+jedan moj prijatelj koji je koristio grupisanje da bi bolje organizovao 
+grupe računara ili centre podataka. Da bi našao koji računari u centru 
+podataka u grupi mogu da rade zajedno, možete da koristite 
+ovo da biste organizovali resurse i kako da osmislite mrežu i komunikaciju
+ vašeg centra podataka. I na kraju, nešto na čemu je 
+radio drugi prijatelj koristeći algoritme grupisanja da bi razumio
+ raspored u galaksiji i koristeći ovo, razumeo 
+podatke iz astronomije. Dakle, to je grupisanje, što je 
+naš prvi primer algoritma nenadgledanog učenja. U sledećem videu počećemo da govorimo
+o specifičnim algoritmima grupisanja.

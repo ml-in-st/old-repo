@@ -1,0 +1,395 @@
+1
+00:00:00,004 --> 00:00:03,840
+Bienvenidos al último vídeo de esta clase de aprendizaje automático.
+
+2
+00:00:03,840 --> 00:00:06,473
+Hemos compartido muchos vídeos diferentes.
+
+3
+00:00:06,473 --> 00:00:08,774
+En este vídeo me gustaría resumir
+
+4
+00:00:08,774 --> 00:00:11,003
+rápidamente los temas principales de este curso
+
+5
+00:00:11,003 --> 00:00:13,089
+y luego decir algunas palabras al final, y eso
+
+6
+00:00:13,089 --> 00:00:14,729
+concluirá la clase.
+
+7
+00:00:16,390 --> 00:00:18,020
+Entonces, ¿qué hemos hecho?
+
+8
+00:00:18,020 --> 00:00:21,957
+En esta clase dedicamos mucho tiempo hablando de los algoritmos de aprendizaje supervisado,
+
+9
+00:00:21,957 --> 00:00:25,436
+como la regresión lineal, la regresión logística, las redes neuronales, SVMs
+
+10
+00:00:25,436 --> 00:00:29,435
+para problemas en los que tienen datos asignados y ejemplos asignados
+
+11
+00:00:29,435 --> 00:00:31,300
+como “x(i), y(i)“;
+
+12
+00:00:31,300 --> 00:00:35,715
+Y también pasamos mucho tiempo hablando de los algoritmos del aprendizaje no supervisado,
+
+13
+00:00:35,715 --> 00:00:37,344
+como los agrupamientos medios de K,
+
+14
+00:00:37,344 --> 00:00:40,316
+el análisis de componentes principales para la reducción de dimensionalidad
+
+15
+00:00:40,316 --> 00:00:43,847
+y los algoritmos de detección de anomalías para cuando tienen solamente
+
+16
+00:00:43,847 --> 00:00:46,363
+datos no etiquetados “x(i)“,
+
+17
+00:00:46,363 --> 00:00:49,378
+aunque la detección de anomalías también puede utilizar algunos datos con valor asignado
+
+18
+00:00:49,378 --> 00:00:51,189
+para evaluar el algoritmo.
+
+19
+00:00:51,451 --> 00:00:54,725
+También pasamos mucho tiempo hablando de aplicaciones especiales,
+
+20
+00:00:54,725 --> 00:00:56,407
+o temas especiales como los sistemas recomendadores
+
+21
+00:00:56,407 --> 00:00:58,895
+y los sistemas de aprendizaje automático a gran escala,
+
+22
+00:00:58,895 --> 00:01:01,477
+incluyendo los sistemas paralelizados y de de uso rápido,
+
+23
+00:01:01,477 --> 00:01:03,925
+así como algunas aplicaciones especiales como
+
+24
+00:01:03,925 --> 00:01:07,609
+la clasificación de objetos de ventana deslizable para la visión por computadora.
+
+25
+00:01:07,609 --> 00:01:11,549
+Y por último, también dedicamos mucho tiempo hablando sobre diferentes aspectos
+
+26
+00:01:11,549 --> 00:01:15,198
+de, más o menos, el asesoramiento en la creación de un sistema de aprendizaje automático.
+
+27
+00:01:15,198 --> 00:01:17,264
+Y esto incluyó tanto tratar de entender
+
+28
+00:01:17,264 --> 00:01:19,233
+qué es lo que hace que un algoritmo de aprendizaje automático
+
+29
+00:01:19,233 --> 00:01:20,561
+funcione o no funcione,
+
+30
+00:01:20,561 --> 00:01:22,012
+así que hablamos de cosas como la oscilación y la varianza,
+
+31
+00:01:22,012 --> 00:01:25,479
+y cómo la regularización nos puede ayudar con algunos problemas de varianza.
+
+32
+00:01:25,479 --> 00:01:28,445
+Y también pasamos un poco de tiempo hablando de
+
+33
+00:01:28,445 --> 00:01:32,313
+esta cuestión de cómo decidir en qué trabajar después,
+
+34
+00:01:32,313 --> 00:01:35,019
+así que cómo priorizar cómo invierten su tiempo
+
+35
+00:01:35,019 --> 00:01:37,513
+cuando están desarrollando un sistema de aprendizaje automático.
+
+36
+00:01:38,021 --> 00:01:41,044
+Así que hablamos de la evaluación de los algoritmos de aprendizaje,
+
+37
+00:01:41,044 --> 00:01:44,221
+las métricas de evaluación como la recuperación de la precisión, la puntuación F1,
+
+38
+00:01:44,221 --> 00:01:47,072
+así como los aspectos prácticos de la evaluación
+
+39
+00:01:47,072 --> 00:01:49,898
+como el entrenamiento, la validación cruzada y los conjuntos de prueba.
+
+40
+00:01:49,898 --> 00:01:52,319
+Y también pasamos mucho tiempo hablando de los
+
+41
+00:01:52,319 --> 00:01:55,741
+algoritmos de aprendizaje de depuración y de asegurarnos
+
+42
+00:01:55,741 --> 00:01:57,212
+de que el algoritmo de enseñanza esté funcionando.
+
+43
+00:01:57,212 --> 00:01:59,075
+De modo que hablamos de diagnosis,
+
+44
+00:01:59,075 --> 00:02:01,999
+como las curvas de aprendizaje, y también platicamos de cosas como
+
+45
+00:02:01,999 --> 00:02:04,394
+el análisis de errores y el análisis de límite máximo.
+
+46
+00:02:04,394 --> 00:02:08,187
+Así que todos estos fueron diferentes herramientas para ayudarles a decidir
+
+47
+00:02:08,187 --> 00:02:10,349
+qué hacer después y cómo invertir su valioso
+
+48
+00:02:10,349 --> 00:02:12,585
+tiempo cuando están desarrollando un sistema de aprendizaje automático.
+
+49
+00:02:12,585 --> 00:02:17,665
+Así que además de tener a su disposición las herramientas del aprendizaje automático,
+
+50
+00:02:17,665 --> 00:02:20,228
+es decir, conocer las herramientas del aprendizaje automático como son
+
+51
+00:02:20,228 --> 00:02:22,127
+el aprendizaje supervisado y el aprendizaje no supervisado, etcétera,
+
+52
+00:02:22,127 --> 00:02:26,015
+espero que ahora no sólo tengan las herramientas,
+
+53
+00:02:26,015 --> 00:02:29,457
+sino que sepan cómo aplicar estas herramientas realmente bien
+
+54
+00:02:29,457 --> 00:02:32,658
+para construir sistemas de aprendizaje automático potentes.
+
+55
+00:02:33,658 --> 00:02:35,556
+Así que eso es todo.
+
+56
+00:02:35,556 --> 00:02:37,645
+Esos fueron los temas de esta clase,
+
+57
+00:02:37,645 --> 00:02:39,614
+y si trabajaron hasta el final de este curso,
+
+58
+00:02:39,614 --> 00:02:41,308
+ahora deberían considerarse
+
+59
+00:02:41,308 --> 00:02:43,511
+expertos en el aprendizaje automático.
+
+60
+00:02:43,511 --> 00:02:46,879
+Como saben, el aprendizaje automático es una tecnología
+
+61
+00:02:46,879 --> 00:02:49,916
+que está teniendo gran impacto en la ciencia, la tecnología y la industria,
+
+62
+00:02:49,916 --> 00:02:53,360
+y ahora están bien calificados para utilizar estas herramientas
+
+63
+00:02:53,360 --> 00:02:55,351
+del aprendizaje automático con gran eficacia.
+
+64
+00:02:55,351 --> 00:02:57,910
+Espero que muchos de ustedes en esta clase
+
+65
+00:02:57,910 --> 00:02:59,765
+encontrarán maneras de utilizar el aprendizaje automático
+
+66
+00:02:59,765 --> 00:03:02,324
+para construir sistemas geniales y aplicaciones geniales
+
+67
+00:03:02,324 --> 00:03:03,946
+y productos geniales.
+
+68
+00:03:03,946 --> 00:03:06,084
+Y espero que encuentren maneras
+
+69
+00:03:06,084 --> 00:03:07,930
+para usar el aprendizaje automático, no sólo
+
+70
+00:03:07,930 --> 00:03:09,762
+para mejorar su vida, sino para que, tal vez algún día,
+
+71
+00:03:09,762 --> 00:03:14,749
+lo usen para mejorar la vida de muchas otras personas también.
+
+72
+00:03:14,780 --> 00:03:19,699
+También quiero que sepan que ha sido muy divertido para mí enseñar esta clase.
+
+73
+00:03:19,699 --> 00:03:21,788
+Así que, gracias por eso.
+
+74
+00:03:21,788 --> 00:03:23,807
+Y antes de concluir,
+
+75
+00:03:23,807 --> 00:03:25,282
+sólo hay una última cosa que quiero decir,
+
+76
+00:03:25,282 --> 00:03:28,956
+que es: No fue hace mucho tiempo
+
+77
+00:03:28,956 --> 00:03:31,306
+que yo mismo fui un estudiante,
+
+78
+00:03:31,306 --> 00:03:34,711
+y aún ahora, ya saben, todavía trato de tomar diferentes cursos
+
+79
+00:03:34,711 --> 00:03:36,902
+cuando tengo el tiempo, para tratar de aprender cosas nuevas.
+
+80
+00:03:36,902 --> 00:03:39,989
+Así que sé que lleva mucho tiempo
+
+81
+00:03:39,989 --> 00:03:42,273
+aprender estas cosas,
+
+82
+00:03:42,273 --> 00:03:44,663
+sé que probablemente sean personas ocupadas,
+
+83
+00:03:44,663 --> 00:03:47,302
+con muchas, muchas otras cosas en su vida.
+
+84
+00:03:47,302 --> 00:03:49,838
+Así que el hecho de que de todos modos hayan encontrado
+
+85
+00:03:49,838 --> 00:03:52,431
+el tiempo o se hayan tomado el tiempo para ver estos vídeos
+
+86
+00:03:52,431 --> 00:03:55,799
+y, ya saben, muchos de estos vídeos duraron
+
+87
+00:03:55,799 --> 00:03:57,598
+horas, ¿verdad?,
+
+88
+00:03:57,598 --> 00:04:00,068
+y el hecho de que muchos de ustedes se tomaron el tiempo
+
+89
+00:04:00,068 --> 00:04:01,826
+para analizar las preguntas de repaso,
+
+90
+00:04:01,826 --> 00:04:03,731
+y que muchos de ustedes se tomaron el tiempo
+
+91
+00:04:03,731 --> 00:04:06,250
+para trabajar en los ejercicios de programación,
+
+92
+00:04:06,250 --> 00:04:09,483
+y éstos fueron ejercicios de programación largos y complicados;
+
+93
+00:04:09,483 --> 00:04:12,840
+quiero darles las gracias por esto.
+
+94
+00:04:12,840 --> 00:04:17,920
+Y sé que muchos de ustedes han trabajado duro en esta clase
+
+95
+00:04:17,920 --> 00:04:21,880
+y que muchos de ustedes han invertido mucho en esta clase,
+
+96
+00:04:21,880 --> 00:04:25,396
+que muchos de ustedes han puesto de sí mismos en esta clase,
+
+97
+00:04:25,396 --> 00:04:29,292
+así que espero que ustedes también hayan obtenido mucho de esta clase.
+
+98
+00:04:29,292 --> 00:04:31,347
+Y quiero decirles:
+
+99
+00:04:31,347 --> 00:04:36,423
+muchísimas gracias por haber sido un estudiante en esta clase.

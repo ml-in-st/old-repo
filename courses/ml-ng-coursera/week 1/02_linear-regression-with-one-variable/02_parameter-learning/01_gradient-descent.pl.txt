@@ -1,0 +1,72 @@
+Poprzednio zdefiniowaliśmy funkcję kosztu J. W tym nagraniu opowiem Ci o tzw.
+algorytmie gradientu prostego, minimalizującego funkcję kosztu J. Okazuje się, że algorytm gradientu prostego jest bardziej ogólnym algorytmem, używanym nie tylko w przypadku regresji liniowej. Jest właściwie wszechobecny w
+uczeniu maszynowym. W dalszej części kursu wykorzystamy
+gradient prosty także do minimalizacji innych funkcji, nie tylko funkcji kosztu J regresji liniowej. Dlatego też w tym nagraniu porozmawiamy o gradiencie prostym w kontekście minimalizacji dowolnej funkcji J, a w dalszych nagraniach zastosujemy ten algorytm do funkcji kosztu J, którą zdefiniowaliśmy dla regresji liniowej. Oto, jak wygląda nasz problem: Mamy jakąś funkcję J(theta0, theta1) - być może jest to funkcja kosztu J regresji liniowej; być może jest to jakaś inna funkcja, którą chcemy minimalizować. Chcemy mieć algorytm do minimalizacji funkcji J(theta0, theta1). Tak na marginesie: okazuje się, że gradient prosty ma zastosowanie także w przypadku bardziej ogólnych funkcji. Wyobraź sobie więc, że jeśli masz funkcję, która jest np. funkcją J(theta0, theta1, theta2 itd. aż do jakiegoś thetaN) i chcesz minimalizować tę funkcję względem theta0 do thetaN, okazuje się, że algorytm gradientu prostego może rozwiązać ten ogólny problem. Jednak dla prostoty, dla zwięzłości zapisu, przez resztę nagrania
+będę udawał, że mam tylko dwa parametry. Oto, na czym polega gradient prosty: Najpierw wstępnie "zgadujemy" wartości parametrów theta0 i theta1. Nieważne, jakie są to wartości, ale często przyjmuje się theta0 = 0 i theta1 = 0; po prostu zerujemy je. W ramach algorytmu gradientu prostego będziemy powoli zmieniać wartości theta0 i theta1 tak, aby spróbować zminimalizować wartość J(theta0, theta1), aż, przy
+odrobinie szczęścia wylądujemy w minimum (lub, być może, w minimum lokalnym). Zobaczmy na rysunkach, co robi gradient prosty. Powiedzmy, że chcesz minimalizować tę funkcję. Zwróć uwagę na osie: na osi poziomej jest theta0 i theta1, na pionowej - wartość J. Tak więc wysokość powierzchni odpowiada wartości J - chcemy więc tę wysokość minimalizować. Zaczniemy więc od theta0 i theta1 w
+jakimś punkcie. Wyobraź sobie, że wybieramy jakąś wartość theta0 i theta1, co odpowiada rozpoczęciu w jakimś punkcie tej powierzchni. Jakiekolwiek wartości theta0, theta1 dadzą Ci jakiś punkt tej powierzchni. Przyjąłem, że jest to punkt (0, 0), ale czasem przyjmujemy też inne wartości. Teraz chcę, żebyś wyobraził/a sobie ten wykres jako całość. Wyobraź sobie, że jest to krajobraz jakiegoś trawiastego parku. Tutaj mamy pagórki. Wyobraź sobie, że stoimy w tym miejscu na wzgórzu, na tym małym, czerwonym wzgórzu w parku. W ramach gradientu prostego obrócimy się teraz o 360 stopni wokół własnej osi, rozejrzymy się wokoło i zadamy sobie pytanie: "Jeśli chciał(a)bym zrobić malutki krok" "w jakimś kierunku tak, żeby jak najszybciej
+zejść na dół" "w którym kierunku trzeba postawić ten
+malutki kroczek?" "Jak zejść na dół," "fizycznie zejść ze wzgórza tak szybko, jak to tylko możliwe?" Okazuje się, że jeśli stoisz w tym punkcie wzgórza i się rozejrzysz, odkryjesz, że najlepszym kierunkiem do postawienia tego malutkiego kroku jest mniej więcej ten kierunek. Ok - teraz jesteś w nowym punkcie na wzgórzu. Po raz kolejny rozglądasz się i pytasz sam(a) siebie: "W którym kierunku trzeba postawić następny mały krok, żeby
+zejść najszybciej?" Jeśli to zrobisz i postawisz następny krok, będzie to krok w tym kierunku. Następnie kontynuujesz schodzenie. Z tego nowego punktu rozglądasz się, wybierasz kierunek, który najszybciej sprowadzi Cię na dół. Stawiasz kolejny krok, i kolejny, itd. aż dotrzesz do lokalnego minimum,
+które jest tutaj. Gradient prosty ma ciekawą własność: za pierwszym razem zaczęliśmy w tym punkcie, prawda? Zaczęliśmy w tym punkcie - o, tutaj. Wyobraź sobie teraz, że zaczęlibyśmy algorytm gradientu prostego zaledwie kilka kroków dalej,
+po prawej stronie. Wyobraź sobie, że zaczęlibyśmy od tego punktu na górze, po prawej. Jeśli powtórzylibyśmy cały proces, tzn.: zaczęlibyśmy z tego punktu, rozejrzeli się, postawili mały kroczek w kierunku
+najszybszego zejścia, następnie rozejrzeli się, zrobili kolejny krok
+i tak dalej, jeśli zaczęlibyśmy kilka kroków dalej, z prawej strony, gradient prosty zaprowadziłby nas do drugiego lokalnego minimum po prawej. Tak więc jeśli zacząłbyś/zaczęłabyś z tego punktu, wylądował(a)byś w tym lokalnym optimum, ale jeśli zaczęłabyś/zacząłbyś z minimalnie innej pozycji - wylądował(a)byś w zupełnie innym
+optimum lokalnym. Jest to właściwość gradientu prostego, o której powiemy sobie trochę później. A więc tak to wygląda intuicyjnie, na obrazkach. Przyjrzymy się matematyce. Mamy tutaj definicję algorytmu
+gradientu prostego: będziemy powtarzać te etapy,
+dopóki nie osiągniemy zbieżności. Będziemy aktualizować parametry thetaJ, biorąc thetaJ i odejmując od niego alpha razy
+to wyrażenie tutaj, ok? Zobaczmy więc: pozwól, że rzucę trochę światła na to równanie. Pierwsza sprawa: ten zapis: ":=". Będę używał symbolu ":=", aby oznaczyć przypisanie - jest to
+operator przypisania. Krótko mówiąc: zapis a := b oznacza
+w języku komputerowym: "weź wartość b i zastąp nią wartość a, czymkolwiek by ona była." Oznacza więc to: "przypisz zmiennej a wartość b" - jest to przypisanie. Mogę też napisać a : = a + 1. Znaczy to: "weź a i zwiększ jego wartość o 1." Z kolei jeśli wezmę sam znak równości i napiszę: "a = b", oznacza to, że a jest równe b. Ok?
+Jeśli napiszę: "a = b", potwierdzam, że wartość a jest równa
+wartości b, prawda? A więc to po lewej jest operacją komputerową, w ramach której przypisujemy jakiejś zmiennej nową wartość, a po prawej mamy stwierdzenie - stwierdzamy jedynie, że wartości a i b są sobie równe. W związku z tym mogę
+napisać  "a := a+1", co oznacza: "zwiększ wartość a o 1",
+ale mam nadzieję, że nigdy nie napiszę: "a = a+1", bo to byłby po prostu błąd - wartości "a" oraz "a+1" nigdy nie mogą
+być sobie równe. Ok? Tak wygląda pierwsza część definicji. Ten symbol alfa nazywany jest
+współczynnikiem uczenia. Alfa określa, jak duży krok w dół robimy, schodząc ze wzgórza. W związku z tym, jeśli alfa jest duże -
+odpowiada to bardzo agresywnemu gradientowi prostemu, tzn.
+próbujemy robić wielkie kroki; jeśli alfa jest bardzo małe, wykonujemy
+malutkie, maleńkie kroczki w dół. Wrócę jeszcze do tego później i powiem,
+jak wybrać alfa itd. Wreszcie, to wyrażenie jest pochodną. Nie chcę o tym teraz mówić, ale
+wyprowadzę tę pochodną i opowiem dokładnie, czym ona jest, ok? Niektórzy z Was są bardziej biegli
+w różniczkowaniu, jednak nawet, jeśli nie umiesz rachunku różniczkowego,
+nie martw się tym. Opowiem Ci wszystko, co musisz wiedzieć o tym
+wyrażeniu tutaj. Jest jeden niuans gradientu prostego,
+a mianowicie: w ramach gradientu prostego aktualizujemy
+theta0 i theta1, prawda? Ta aktualizacja ma miejsce od
+j = 0 oraz j =1, więc będziemy aktualizować theta0 i theta1. Niuans polega na tym, jak zaimplementujesz
+gradient prosty dla tego wyrażenia, tej aktualizacji równania. Chcemy aktualizować theta0 i theta1
+jednocześnie. Mam przez to na myśli, że w tym równaniu
+będziemy aktualizować theta0 := theta0 - cośtam,
+aktualizować
+theta1 := theta1 - cośtam W ten sposób powinniśmy otrzymać to, co mamy 
+po prawej, prawda? Obliczamy to wyrażenie dla theta0 i theta1,
+a potem, jednocześnie, aktualizujemy theta0 i theta1, ok? Już wyjaśniam, co mam na myśli: Tak wygląda prawidłowa implementacja
+gradientu prostego z jednoczesną aktualizacją. Tworzę więc zmienną temp0 i temp1, aby obliczyć prawą stronę równania i przypisać jej wartość do zmiennych
+temp0 i temp1; następnie zaktualizuję theta0 i theta1 jednocześnie - tak wygląda
+prawidłowa implementacja. Tu z kolei mamy implementację nieprawidłową, która
+nie aktualizuje parametrów jednocześnie. Przy nieprawidłowej implementacji, obliczamy 
+temp0, aktualizujemy theta0, a następnie obliczamy 
+temp1 i aktualizujemy theta1. Różnica między implementacjami
+po lewej i prawej stronie jest następująca: spójrz tu, na dole. Jeśli na tym etapie, w tym momencie,
+theta0 zostało już zaktualizowane - użylibyśmy nowej wartości theta0
+do obliczenia pochodnej. Oznacza to, że otrzymamy inną wartość, niż w przypadku temp1 po lewej, prawda? A to dlatego, że w tym równaniu wykorzystaliśmy 
+już nową wartość theta0. W związku z tym implementacja po prawej stronie
+jest niepoprawną wersją gradientu prostego, ok? Nie będę teraz wyjaśniał, czemu robimy aktualizację jednocześnie. Na razie wiedz, że gradient prosty zwykle
+implementuje się w ten sposób. Później opowiem o tym więcej; Okazuje się, że taka implementacja
+z jednoczesną aktualizacją
+jest po prostu bardziej naturalna. Kiedy ludzie mówią o gradiencie prostym - zawsze mają na myśli jednoczesną aktualizację. Jeśli zaimplementujesz niejednoczesną
+aktualizację, okazuje się, że prawdopodobnie i tak zadziała. Ale to nie będzie właściwy algorytm; kiedy ludzie mówią "gradient prosty",
+mają na myśli co innego, a to jest inny algorytm o innych właściwościach, i z różnych powodów może się zachowywać
+w nieco dziwny sposób, więc należy implementować gradient prosty,
+uwzględniając jednoczesne aktualizacje. Tak z grubsza wygląda algorytm
+gradientu prostego. W następnym nagraniu omówimy szczegóły
+wyrażenia z pochodną, które zapisałem, ale nie zdefiniowałem. Jeśli miałaś/eś zajęcia z rachunku różniczkowego
+i znasz pojęcie pochodnych oraz pochodnych cząstkowych - okazuje się, że
+to wyrażenie jest dokładnie pochodną cząstkową. Jeśli jednak nie znasz rachunku różniczkowego -
+nie martw się. Następny materiał wyrobi Ci potrzebną intuicję i powie wszystko, co musisz wiedzieć,
+aby obliczyć wyrażenie na pochodną, nawet, jeśli nie znasz rachunku różniczkowego, i nawet,
+jeśli nie widziałaś/eś wcześniej
+pochodnych cząstkowych. Tak więc mam nadzieję, że w
+następnym nagraniu wyrobię Ci wszelką intuicję, której potrzebujesz,
+by stosować algorytm gradientu prostego.

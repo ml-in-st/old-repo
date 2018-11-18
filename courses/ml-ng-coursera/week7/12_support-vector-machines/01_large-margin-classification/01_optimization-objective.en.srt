@@ -1,0 +1,1018 @@
+1
+00:00:00,690 --> 00:00:03,738
+By now, you've seen a range of
+difference learning algorithms.
+
+2
+00:00:03,738 --> 00:00:08,029
+With supervised learning, the performance
+of many supervised learning algorithms
+
+3
+00:00:08,029 --> 00:00:11,782
+will be pretty similar, and what matters
+less often will be whether you use
+
+4
+00:00:11,782 --> 00:00:14,345
+learning algorithm a or
+learning algorithm b, but
+
+5
+00:00:14,345 --> 00:00:17,920
+what matters more will often be things
+like the amount of data you create
+
+6
+00:00:17,920 --> 00:00:21,703
+these algorithms on, as well as your
+skill in applying these algorithms.
+
+7
+00:00:21,703 --> 00:00:25,922
+Things like your choice of the features
+you design to give to the learning
+
+8
+00:00:25,922 --> 00:00:29,795
+algorithms, and how you choose
+the colorization parameter, and
+
+9
+00:00:29,795 --> 00:00:30,920
+things like that.
+
+10
+00:00:30,920 --> 00:00:36,470
+But, there's one more algorithm that is
+very powerful and is very widely used
+
+11
+00:00:36,470 --> 00:00:42,370
+both within industry and academia, and
+that's called the support vector machine.
+
+12
+00:00:42,370 --> 00:00:46,410
+And compared to both logistic
+regression and neural networks,
+
+13
+00:00:46,410 --> 00:00:50,970
+the Support Vector Machine, or
+SVM sometimes gives a cleaner, and
+
+14
+00:00:50,970 --> 00:00:55,070
+sometimes more powerful way of
+learning complex non-linear functions.
+
+15
+00:00:55,070 --> 00:00:59,930
+And so let's take the next
+videos to talk about that.
+
+16
+00:00:59,930 --> 00:01:03,240
+Later in this course,
+I will do a quick survey of a range of
+
+17
+00:01:03,240 --> 00:01:07,460
+different supervisory algorithms just
+as a very briefly describe them.
+
+18
+00:01:07,460 --> 00:01:11,630
+But the support vector machine, given
+its popularity and how powerful it is,
+
+19
+00:01:11,630 --> 00:01:16,320
+this will be the last of the supervisory
+algorithms that I'll spend a significant
+
+20
+00:01:16,320 --> 00:01:21,240
+amount of time on in this course as with
+our development other learning algorithms,
+
+21
+00:01:21,240 --> 00:01:24,710
+we're gonna start by talking
+about the optimization objective.
+
+22
+00:01:24,710 --> 00:01:27,008
+So, let's get started on this algorithm.
+
+23
+00:01:29,121 --> 00:01:33,461
+In order to describe the support vector
+machine, I'm actually going to start with
+
+24
+00:01:33,461 --> 00:01:36,685
+logistic regression, and
+show how we can modify it a bit, and
+
+25
+00:01:36,685 --> 00:01:40,240
+get what is essentially
+the support vector machine.
+
+26
+00:01:40,240 --> 00:01:46,030
+So in logistic regression, we have our
+familiar form of the hypothesis there and
+
+27
+00:01:46,030 --> 00:01:48,880
+the sigmoid activation
+function shown on the right.
+
+28
+00:01:50,430 --> 00:01:52,570
+And in order to explain some of the math,
+
+29
+00:01:52,570 --> 00:01:56,130
+I'm going to use z to denote
+theta transpose axiom.
+
+30
+00:01:57,690 --> 00:02:01,260
+Now let's think about what we would
+like logistic regression to do.
+
+31
+00:02:01,260 --> 00:02:06,150
+If we have an example with y equals
+one and by this I mean an example
+
+32
+00:02:06,150 --> 00:02:10,185
+in either the training set or the test
+set or the cross-validation set, but
+
+33
+00:02:10,185 --> 00:02:15,200
+when y is equal to one then we're sort of
+hoping that h of x will be close to one.
+
+34
+00:02:15,200 --> 00:02:18,520
+Right, we're hoping to correctly
+classify that example.
+
+35
+00:02:18,520 --> 00:02:20,260
+And what having x subscript 1,
+
+36
+00:02:20,260 --> 00:02:24,620
+what that means is that theta transpose
+x must be must larger than 0.
+
+37
+00:02:24,620 --> 00:02:29,460
+So there's greater than, greater than sign
+that means much, much greater than 0.
+
+38
+00:02:29,460 --> 00:02:33,600
+And that's because it is z, the theta of
+
+39
+00:02:33,600 --> 00:02:38,670
+transpose x is when z is much bigger than
+0 is far to the right of the sphere.
+
+40
+00:02:38,670 --> 00:02:42,670
+That the outputs of logistic
+progression becomes close to one.
+
+41
+00:02:44,570 --> 00:02:49,250
+Conversely, if we have an example where y
+is equal to zero, then what we're hoping
+
+42
+00:02:49,250 --> 00:02:52,530
+for is that the hypothesis will
+output a value close to zero.
+
+43
+00:02:52,530 --> 00:02:57,460
+And that corresponds to theta transpose
+x of z being much less than zero because
+
+44
+00:02:57,460 --> 00:03:01,150
+that corresponds to a hypothesis
+of putting a value close to zero.
+
+45
+00:03:02,850 --> 00:03:06,340
+If you look at the cost function
+of logistic regression,
+
+46
+00:03:06,340 --> 00:03:10,310
+what you'll find is that each
+example (x,y) contributes
+
+47
+00:03:10,310 --> 00:03:13,070
+a term like this to the overall
+cost function, right?
+
+48
+00:03:14,290 --> 00:03:19,080
+So for the overall cost function,
+we will also have a sum over all
+
+49
+00:03:19,080 --> 00:03:24,150
+the chain examples and the 1 over m term,
+that this expression here,
+
+50
+00:03:24,150 --> 00:03:28,490
+that's the term that a single
+training example contributes
+
+51
+00:03:28,490 --> 00:03:31,700
+to the overall objective function so
+we can just rush them.
+
+52
+00:03:32,970 --> 00:03:37,390
+Now if I take the definition for
+the fall of my hypothesis and
+
+53
+00:03:37,390 --> 00:03:41,470
+plug it in over here,
+then what I get is that each training
+
+54
+00:03:41,470 --> 00:03:46,270
+example contributes this term,
+ignoring the one over M but
+
+55
+00:03:46,270 --> 00:03:50,620
+it contributes that term to my overall
+cost function for logistic regression.
+
+56
+00:03:51,810 --> 00:03:57,450
+Now let's consider two cases of when y is
+equal to one and when y is equal to zero.
+
+57
+00:03:57,450 --> 00:04:01,280
+In the first case,
+let's suppose that y is equal to 1.
+
+58
+00:04:01,280 --> 00:04:05,648
+In that case, only this first
+term in the objective matters,
+
+59
+00:04:05,648 --> 00:04:10,612
+because this one minus y term would be
+equal to zero if y is equal to one.
+
+60
+00:04:13,200 --> 00:04:17,045
+So when y is equal to one,
+when in our example x comma y,
+
+61
+00:04:17,045 --> 00:04:20,344
+when y is equal to 1 what
+we get is this term..
+
+62
+00:04:20,344 --> 00:04:25,200
+Minus log one over one, plus E to the
+negative Z where as similar to the last
+
+63
+00:04:25,200 --> 00:04:30,940
+line I'm using Z to denote data
+transposed X and of course in a cost
+
+64
+00:04:30,940 --> 00:04:35,060
+I should have this minus line that we just
+had if Y is equal to one so that's equal
+
+65
+00:04:35,060 --> 00:04:40,169
+to one I just simplify in a way in the
+expression that I have written down here.
+
+66
+00:04:41,970 --> 00:04:47,450
+And if we plot this function as a function
+of z, what you find is that you get this
+
+67
+00:04:47,450 --> 00:04:51,100
+curve shown on the lower
+left of the slide.
+
+68
+00:04:51,100 --> 00:04:54,850
+And thus, we also see that when
+z is equal to large, that is,
+
+69
+00:04:54,850 --> 00:05:00,380
+when theta transpose x is large, that
+corresponds to a value of z that gives us
+
+70
+00:05:00,380 --> 00:05:06,020
+a fairly small value, a very, very
+small contribution to the consumption.
+
+71
+00:05:06,020 --> 00:05:10,680
+And this kinda explains why, when logistic
+regression sees a positive example,
+
+72
+00:05:10,680 --> 00:05:15,620
+with y=1, it tries to set theta
+transport x to be very large
+
+73
+00:05:15,620 --> 00:05:21,090
+because that corresponds to this term,
+in the cross function, being small.
+
+74
+00:05:21,090 --> 00:05:23,670
+Now, to fill the support vec machine,
+here's what we're going to do.
+
+75
+00:05:23,670 --> 00:05:28,310
+We're gonna take this cross function, this
+minus log 1 over 1 plus e to negative z,
+
+76
+00:05:28,310 --> 00:05:31,370
+and modify it a little bit.
+
+77
+00:05:31,370 --> 00:05:35,140
+Let me take this point 1 over here, and
+
+78
+00:05:35,140 --> 00:05:37,950
+let me draw the cross
+functions you're going to use.
+
+79
+00:05:37,950 --> 00:05:42,240
+The new pass functions can be
+flat from here on out, and
+
+80
+00:05:42,240 --> 00:05:46,626
+then we draw something that
+grows as a straight line,
+
+81
+00:05:46,626 --> 00:05:50,280
+similar to logistic regression.
+
+82
+00:05:50,280 --> 00:05:53,850
+But this is going to be
+a straight line at this portion.
+
+83
+00:05:53,850 --> 00:05:58,080
+So the curve that I just drew in magenta,
+and the curve I just drew purple and
+
+84
+00:05:58,080 --> 00:06:02,130
+magenta, so
+if it's pretty close approximation to
+
+85
+00:06:02,130 --> 00:06:04,470
+the cross function used
+by logistic regression.
+
+86
+00:06:04,470 --> 00:06:09,090
+Except it is now made up of two line
+segments, there's this flat portion on
+
+87
+00:06:09,090 --> 00:06:14,180
+the right, and then there's this
+straight line portion on the left.
+
+88
+00:06:14,180 --> 00:06:17,770
+And don't worry too much about
+the slope of the straight line portion.
+
+89
+00:06:17,770 --> 00:06:20,020
+It doesn't matter that much.
+
+90
+00:06:20,020 --> 00:06:24,490
+But that's the new cost function we're
+going to use for when y is equal to one,
+
+91
+00:06:24,490 --> 00:06:28,285
+and you can imagine it should do something
+pretty similar to logistic regression.
+
+92
+00:06:28,285 --> 00:06:31,970
+But turns out, that this will
+give the support vector machine
+
+93
+00:06:31,970 --> 00:06:36,590
+computational advantages and give us,
+later on, an easier optimization problem
+
+94
+00:06:38,100 --> 00:06:41,080
+that would be easier for
+software to solve.
+
+95
+00:06:41,080 --> 00:06:43,120
+We just talked about
+the case of y equals one.
+
+96
+00:06:43,120 --> 00:06:45,588
+The other case is if y is equal to zero.
+
+97
+00:06:45,588 --> 00:06:48,131
+In that case, if you look at the cost,
+
+98
+00:06:48,131 --> 00:06:53,390
+then only the second term will apply
+because the first term goes away, right?
+
+99
+00:06:53,390 --> 00:06:55,810
+If y is equal to zero,
+then you have a zero here, so
+
+100
+00:06:55,810 --> 00:06:59,140
+you're left only with the second
+term of the expression above.
+
+101
+00:06:59,140 --> 00:07:01,620
+And so the cost of an example, or
+
+102
+00:07:01,620 --> 00:07:06,380
+the contribution of the cost function, is
+going to be given by this term over here.
+
+103
+00:07:06,380 --> 00:07:08,430
+And if you plot that as a function of z,
+
+104
+00:07:08,430 --> 00:07:13,180
+to have pure z on the horizontal axis,
+you end up with this one.
+
+105
+00:07:13,180 --> 00:07:15,190
+And for the support vector machine,
+once again,
+
+106
+00:07:15,190 --> 00:07:18,834
+we're going to replace this blue
+line with something similar and
+
+107
+00:07:18,834 --> 00:07:24,780
+at the same time we replace it with a new
+cost, this flat out here, this 0 out here.
+
+108
+00:07:24,780 --> 00:07:29,020
+And that then grows as a straight line,
+like so.
+
+109
+00:07:29,020 --> 00:07:32,696
+So let me give these two functions names.
+
+110
+00:07:32,696 --> 00:07:37,582
+This function on the left I'm going
+to call cost subscript 1 of z,
+
+111
+00:07:37,582 --> 00:07:42,660
+and this function of the right I'm
+gonna call cost subscript 0 of z.
+
+112
+00:07:42,660 --> 00:07:47,652
+And the subscript just refers to the cost
+corresponding to when y is equal to 1,
+
+113
+00:07:47,652 --> 00:07:49,990
+versus when y Is equal to zero.
+
+114
+00:07:49,990 --> 00:07:53,820
+Armed with these definitions, we're now
+ready to build a support vector machine.
+
+115
+00:07:53,820 --> 00:07:58,360
+Here's the cost function, j of theta,
+that we have for logistic regression.
+
+116
+00:07:58,360 --> 00:08:02,560
+In case this equation looks a bit
+unfamiliar, it's because previously we had
+
+117
+00:08:02,560 --> 00:08:07,140
+a minus sign outside, but here what
+I did was I instead moved the minus
+
+118
+00:08:07,140 --> 00:08:10,529
+signs inside these expressions, so
+it just makes it look a little different.
+
+119
+00:08:12,790 --> 00:08:17,670
+For the support vector machine what we're
+going to do is essentially take this and
+
+120
+00:08:17,670 --> 00:08:25,070
+replace this with cost1 of z,
+that is cost1 of theta transpose x.
+
+121
+00:08:25,070 --> 00:08:30,210
+And we're going to take this and
+replace it with cost0 of z,
+
+122
+00:08:30,210 --> 00:08:34,120
+that is cost0 of theta transpose x.
+
+123
+00:08:34,120 --> 00:08:36,730
+Where the cost one function
+
+124
+00:08:36,730 --> 00:08:39,920
+is what we had on the previous
+slide that looks like this.
+
+125
+00:08:39,920 --> 00:08:44,470
+And the cost zero function, again what
+we had on the previous slide, and
+
+126
+00:08:44,470 --> 00:08:46,130
+it looks like this.
+
+127
+00:08:46,130 --> 00:08:52,082
+So what we have for
+the support vector machine
+
+128
+00:08:52,082 --> 00:08:57,406
+is a minimization problem of one over M,
+
+129
+00:08:57,406 --> 00:09:01,163
+the sum of Y I times cost one,
+
+130
+00:09:01,163 --> 00:09:06,172
+theta transpose X I, plus one minus Y I
+
+131
+00:09:06,172 --> 00:09:11,495
+times cause zero of theta transpose X I,
+
+132
+00:09:11,495 --> 00:09:18,258
+and then plus my usual
+regularization parameter.
+
+133
+00:09:21,253 --> 00:09:23,459
+Like so.
+
+134
+00:09:23,459 --> 00:09:26,448
+Now, by convention, for
+the support of vector machine,
+
+135
+00:09:26,448 --> 00:09:29,132
+we're actually write
+things slightly different.
+
+136
+00:09:29,132 --> 00:09:32,180
+We re-parameterize this just
+very slightly differently.
+
+137
+00:09:33,320 --> 00:09:36,870
+First, we're going to get rid
+of the 1 over m terms, and
+
+138
+00:09:36,870 --> 00:09:41,170
+this just this happens to be a slightly
+different convention that people use for
+
+139
+00:09:41,170 --> 00:09:44,690
+support vector machines compared to or
+just a progression.
+
+140
+00:09:44,690 --> 00:09:46,190
+But here's what I mean.
+
+141
+00:09:46,190 --> 00:09:50,173
+You're one way to do this, we're just
+gonna get rid of these one over m terms
+
+142
+00:09:50,173 --> 00:09:53,546
+and this should give you me the same
+optimal value of beta right?
+
+143
+00:09:53,546 --> 00:09:56,030
+Because one over m is just as constant so
+
+144
+00:09:56,030 --> 00:10:00,793
+whether I solved this minimization
+problem with one over n in front or not.
+
+145
+00:10:00,793 --> 00:10:04,750
+I should end up with the same
+optimal value for theta.
+
+146
+00:10:04,750 --> 00:10:05,740
+Here's what I mean,
+
+147
+00:10:05,740 --> 00:10:10,380
+to give you an example,
+suppose I had a minimization problem.
+
+148
+00:10:10,380 --> 00:10:18,340
+Minimize over a long number U of
+U minus five squared plus one.
+
+149
+00:10:18,340 --> 00:10:22,110
+Well, the minimum of this
+happens to be U equals five.
+
+150
+00:10:23,130 --> 00:10:28,500
+Now if I were to take this objective
+function and multiply it by 10.
+
+151
+00:10:28,500 --> 00:10:36,050
+So here my minimization problem is min
+over U, 10 U minus five squared plus 10.
+
+152
+00:10:36,050 --> 00:10:40,910
+Well the value of U that minimizes
+this is still U equals five right?
+
+153
+00:10:40,910 --> 00:10:45,190
+So multiply something that you're
+minimizing over, by some constant,
+
+154
+00:10:45,190 --> 00:10:50,470
+10 in this case, it does not change
+the value of U that gives us,
+
+155
+00:10:50,470 --> 00:10:52,650
+that minimizes this function.
+
+156
+00:10:52,650 --> 00:10:56,350
+So the same way,
+what I've done is by crossing out the M
+
+157
+00:10:56,350 --> 00:11:01,080
+is all I'm doing is multiplying my
+objective function by some constant M and
+
+158
+00:11:01,080 --> 00:11:03,350
+it doesn't change the value of theta.
+
+159
+00:11:03,350 --> 00:11:05,470
+That achieves the minimum.
+
+160
+00:11:05,470 --> 00:11:09,170
+The second bit of notational change,
+which is just, again, the more standard
+
+161
+00:11:09,170 --> 00:11:14,250
+convention when using SVMs instead of
+logistic regression, is the following.
+
+162
+00:11:14,250 --> 00:11:19,370
+So for logistic regression, we add
+two terms to the objective function.
+
+163
+00:11:19,370 --> 00:11:23,920
+The first is this term, which is the cost
+that comes from the training set and
+
+164
+00:11:23,920 --> 00:11:26,530
+the second is this row,
+which is the regularization term.
+
+165
+00:11:27,540 --> 00:11:32,710
+And what we had was we had a, we control
+the trade-off between these by saying,
+
+166
+00:11:32,710 --> 00:11:39,370
+what we want is A plus, and
+then my regularization parameter lambda.
+
+167
+00:11:39,370 --> 00:11:44,950
+And then times some other term B,
+where I guess I'm using your A to denote
+
+168
+00:11:44,950 --> 00:11:50,080
+this first term, and I'm using B to denote
+the second term, maybe without the lambda.
+
+169
+00:11:51,130 --> 00:11:57,330
+And instead of prioritizing
+this as A plus lambda B,
+
+170
+00:11:57,330 --> 00:12:00,880
+and so what we did was by
+setting different values for
+
+171
+00:12:00,880 --> 00:12:05,010
+this regularization parameter lambda,
+we could trade off the relative weight
+
+172
+00:12:05,010 --> 00:12:09,273
+between how much we wanted the training
+set well, that is, minimizing A,
+
+173
+00:12:09,273 --> 00:12:13,630
+versus how much we care about keeping
+the values of the parameter small, so
+
+174
+00:12:13,630 --> 00:12:17,230
+that will be, the parameter is B for
+the support vector machine,
+
+175
+00:12:17,230 --> 00:12:20,300
+just by convention,
+we're going to use a different parameter.
+
+176
+00:12:20,300 --> 00:12:25,200
+So instead of using lambda here to control
+the relative waiting between the first and
+
+177
+00:12:25,200 --> 00:12:26,160
+second terms.
+
+178
+00:12:26,160 --> 00:12:31,530
+We're instead going to use a different
+parameter which by convention is called C
+
+179
+00:12:31,530 --> 00:12:37,550
+and is set to minimize C times a + B.
+
+180
+00:12:37,550 --> 00:12:43,260
+So for logistic regression,
+if we set a very large value of lambda,
+
+181
+00:12:43,260 --> 00:12:46,040
+that means you will give
+B a very high weight.
+
+182
+00:12:46,040 --> 00:12:49,762
+Here is that if we set C
+to be a very small value,
+
+183
+00:12:49,762 --> 00:12:54,600
+then that responds to giving B
+a much larger rate than C, than A.
+
+184
+00:12:54,600 --> 00:12:58,070
+So this is just a different way of
+controlling the trade off, it's just
+
+185
+00:12:58,070 --> 00:13:02,450
+a different way of prioritizing how much
+we care about optimizing the first term,
+
+186
+00:13:02,450 --> 00:13:05,650
+versus how much we care about
+optimizing the second term.
+
+187
+00:13:05,650 --> 00:13:10,050
+And if you want you can think
+of this as the parameter C
+
+188
+00:13:10,050 --> 00:13:13,551
+playing a role similar to 1 over lambda.
+
+189
+00:13:13,551 --> 00:13:18,429
+And it's not that it's two equations or
+these two expressions will be equal.
+
+190
+00:13:18,429 --> 00:13:20,736
+This equals 1 over lambda,
+that's not the case.
+
+191
+00:13:20,736 --> 00:13:25,511
+It's rather that if C is equal to 1
+over lambda, then these two optimization
+
+192
+00:13:25,511 --> 00:13:30,211
+objectives should give you the same value
+the same optimal value for theta so
+
+193
+00:13:30,211 --> 00:13:33,810
+we just filling that in I'm
+gonna cross out lambda here and
+
+194
+00:13:33,810 --> 00:13:35,740
+write in the constant C there.
+
+195
+00:13:37,290 --> 00:13:41,598
+So that gives us our overall
+optimization objective function for
+
+196
+00:13:41,598 --> 00:13:43,564
+the support vector machine.
+
+197
+00:13:43,564 --> 00:13:45,948
+And if you minimize that function,
+
+198
+00:13:45,948 --> 00:13:49,690
+then what you have is
+the parameters learned by the SVM.
+
+199
+00:13:51,966 --> 00:13:56,748
+Finally unlike logistic regression,
+the support vector machine doesn't output
+
+200
+00:13:56,748 --> 00:14:00,570
+the probability is that what we
+have is we have this cost function,
+
+201
+00:14:00,570 --> 00:14:05,213
+that we minimize to get the parameter's
+data, and what a support vector machine
+
+202
+00:14:05,213 --> 00:14:09,650
+does is it just makes a prediction of y
+being equal to one or zero, directly.
+
+203
+00:14:09,650 --> 00:14:12,350
+So the hypothesis will predict one
+
+204
+00:14:13,400 --> 00:14:17,670
+if theta transpose x is greater or
+equal to zero, and
+
+205
+00:14:17,670 --> 00:14:22,690
+it will predict zero otherwise and so
+having learned the parameters theta,
+
+206
+00:14:22,690 --> 00:14:26,850
+this is the form of the hypothesis for
+the support vector machine.
+
+207
+00:14:26,850 --> 00:14:31,730
+So that was a mathematical definition
+of what a support vector machine does.
+
+208
+00:14:31,730 --> 00:14:35,390
+In the next few videos,
+let's try to get back to intuition about
+
+209
+00:14:35,390 --> 00:14:37,800
+what this optimization
+objective leads to and
+
+210
+00:14:37,800 --> 00:14:42,530
+whether the source of the hypotheses SVM
+will learn and we'll also talk about how
+
+211
+00:14:42,530 --> 00:14:46,870
+to modify this just a little bit to
+the complex nonlinear functions.

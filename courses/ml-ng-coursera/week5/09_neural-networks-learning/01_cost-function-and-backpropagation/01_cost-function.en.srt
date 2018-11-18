@@ -1,0 +1,462 @@
+1
+00:00:00,260 --> 00:00:03,190
+Neural networks are one of the most
+powerful learning algorithms that
+
+2
+00:00:03,190 --> 00:00:04,360
+we have today.
+
+3
+00:00:04,360 --> 00:00:08,390
+In this and in the next few videos,
+I'd like to start talking about a learning
+
+4
+00:00:08,390 --> 00:00:13,360
+algorithm for fitting the parameters of
+a neural network given a training set.
+
+5
+00:00:13,360 --> 00:00:16,570
+As with the discussion of most of our
+learning algorithms, we're going to
+
+6
+00:00:16,570 --> 00:00:20,729
+begin by talking about the cost function
+for fitting the parameters of the network.
+
+7
+00:00:22,290 --> 00:00:25,840
+I'm going to focus on the application
+of neural networks to
+
+8
+00:00:25,840 --> 00:00:27,700
+classification problems.
+
+9
+00:00:27,700 --> 00:00:31,340
+So suppose we have a network
+like that shown on the left.
+
+10
+00:00:31,340 --> 00:00:34,820
+And suppose we have a training
+set like this is x I,
+
+11
+00:00:34,820 --> 00:00:36,869
+y I pairs of M training example.
+
+12
+00:00:38,030 --> 00:00:41,790
+I'm going to use upper case L
+to denote the total number of
+
+13
+00:00:41,790 --> 00:00:43,340
+layers in this network.
+
+14
+00:00:43,340 --> 00:00:47,420
+So for the network shown on the left
+we would have capital L equals 4.
+
+15
+00:00:47,420 --> 00:00:52,390
+I'm going to use S subscript L
+to denote the number of units,
+
+16
+00:00:52,390 --> 00:00:54,390
+that is the number of neurons.
+
+17
+00:00:54,390 --> 00:00:57,830
+Not counting the bias unit
+in their L of the network.
+
+18
+00:00:57,830 --> 00:01:02,360
+So for example, we would have a S one,
+which is equal there,
+
+19
+00:01:02,360 --> 00:01:06,900
+equals S three unit,
+S two in my example is five units.
+
+20
+00:01:06,900 --> 00:01:09,590
+And the output layer S four,
+
+21
+00:01:09,590 --> 00:01:13,280
+which is also equal to S L because
+capital L is equal to four.
+
+22
+00:01:13,280 --> 00:01:16,470
+The output layer in my example
+under that has four units.
+
+23
+00:01:17,650 --> 00:01:20,470
+We're going to consider two types
+of classification problems.
+
+24
+00:01:20,470 --> 00:01:25,370
+The first is Binary classification,
+where the labels y are either 0 or 1.
+
+25
+00:01:25,370 --> 00:01:30,340
+In this case, we will have 1 output unit,
+so this Neural Network unit
+
+26
+00:01:30,340 --> 00:01:35,210
+on top has 4 output units, but if we had
+binary classification we would have only
+
+27
+00:01:35,210 --> 00:01:40,310
+one output unit that computes h(x).
+
+28
+00:01:40,310 --> 00:01:46,670
+And the output of the neural network would
+be h(x) is going to be a real number.
+
+29
+00:01:46,670 --> 00:01:49,460
+And in this case the number
+of output units,
+
+30
+00:01:49,460 --> 00:01:54,050
+S L, where L is again
+the index of the final layer.
+
+31
+00:01:54,050 --> 00:01:56,810
+Cuz that's the number of layers
+we have in the network so
+
+32
+00:01:56,810 --> 00:02:00,770
+the number of units we have in the output
+layer is going to be equal to 1.
+
+33
+00:02:00,770 --> 00:02:05,410
+In this case to simplify notation later,
+I'm also going to set K=1 so
+
+34
+00:02:05,410 --> 00:02:11,430
+you can think of K as also denoting
+the number of units in the output layer.
+
+35
+00:02:11,430 --> 00:02:14,080
+The second type of classification
+problem we'll consider will
+
+36
+00:02:14,080 --> 00:02:19,180
+be multi-class classification problem
+where we may have K distinct classes.
+
+37
+00:02:19,180 --> 00:02:24,910
+So our early example had this
+representation for y if we have 4 classes,
+
+38
+00:02:24,910 --> 00:02:28,940
+and in this case we will have
+capital K output units and
+
+39
+00:02:28,940 --> 00:02:34,980
+our hypothesis or
+output vectors that are K dimensional.
+
+40
+00:02:34,980 --> 00:02:38,990
+And the number of output
+units will be equal to K.
+
+41
+00:02:38,990 --> 00:02:44,020
+And usually we would have K greater
+than or equal to 3 in this case, because
+
+42
+00:02:44,020 --> 00:02:48,660
+if we had two causes, then we don't
+need to use the one verses all method.
+
+43
+00:02:48,660 --> 00:02:53,170
+We use the one verses all method only
+if we have K greater than or equals
+
+44
+00:02:53,170 --> 00:02:58,640
+V classes, so having only two classes we
+will need to use only one upper unit.
+
+45
+00:02:58,640 --> 00:03:01,030
+Now let's define the cost function for
+our neural network.
+
+46
+00:03:03,910 --> 00:03:08,140
+The cost function we use for the neural
+network is going to be a generalization
+
+47
+00:03:08,140 --> 00:03:10,960
+of the one that we use for
+logistic regression.
+
+48
+00:03:10,960 --> 00:03:15,450
+For logistic regression we used to
+minimize the cost function J(theta) that
+
+49
+00:03:15,450 --> 00:03:20,480
+was minus 1/m of this cost function and
+then plus this extra
+
+50
+00:03:20,480 --> 00:03:25,790
+regularization term here,
+where this was a sum from J=1 through n,
+
+51
+00:03:25,790 --> 00:03:29,580
+because we did not regularize
+the bias term theta0.
+
+52
+00:03:31,060 --> 00:03:35,670
+For a neural network, our cost function
+is going to be a generalization of this.
+
+53
+00:03:35,670 --> 00:03:40,360
+Where instead of having basically just
+one, which is the compression output unit,
+
+54
+00:03:40,360 --> 00:03:42,600
+we may instead have K of them.
+
+55
+00:03:42,600 --> 00:03:44,790
+So here's our cost function.
+
+56
+00:03:44,790 --> 00:03:49,296
+Our new network now outputs vectors in R K
+where R might be equal to 1 if we have
+
+57
+00:03:49,296 --> 00:03:51,430
+a binary classification problem.
+
+58
+00:03:51,430 --> 00:03:56,894
+I'm going to use this notation h(x)
+subscript i to denote the ith output.
+
+59
+00:03:56,894 --> 00:04:02,990
+That is, h(x) is a k-dimensional
+vector and so this subscript i just
+
+60
+00:04:02,990 --> 00:04:07,750
+selects out the ith element of the vector
+that is output by my neural network.
+
+61
+00:04:08,930 --> 00:04:12,690
+My cost function J(theta) is
+now going to be the following.
+
+62
+00:04:12,690 --> 00:04:17,480
+Is - 1 over M of a sum of
+a similar term to what we have for
+
+63
+00:04:17,480 --> 00:04:22,510
+logistic regression, except that we
+have the sum from K equals 1 through K.
+
+64
+00:04:22,510 --> 00:04:25,655
+This summation is basically
+a sum over my K output.
+
+65
+00:04:25,655 --> 00:04:28,945
+A unit.
+So if I have four output units,
+
+66
+00:04:28,945 --> 00:04:33,635
+that is if the final layer of my
+neural network has four output units,
+
+67
+00:04:33,635 --> 00:04:39,125
+then this is a sum from k
+equals one through four of
+
+68
+00:04:39,125 --> 00:04:43,355
+basically the logistic regression
+algorithm's cost function but
+
+69
+00:04:43,355 --> 00:04:48,545
+summing that cost function over each
+of my four output units in turn.
+
+70
+00:04:48,545 --> 00:04:52,880
+And so you notice in particular
+that this applies to Yk Hk,
+
+71
+00:04:52,880 --> 00:04:58,700
+because we're basically taking the K upper
+units, and comparing that to the value
+
+72
+00:04:58,700 --> 00:05:06,210
+of Yk which is that one of those
+vectors saying what cost it should be.
+
+73
+00:05:06,210 --> 00:05:10,810
+And finally, the second term
+here is the regularization term,
+
+74
+00:05:10,810 --> 00:05:14,120
+similar to what we had for
+the logistic regression.
+
+75
+00:05:14,120 --> 00:05:18,040
+This summation term looks really
+complicated, but all it's doing is it's
+
+76
+00:05:18,040 --> 00:05:24,370
+summing over these terms theta j i l for
+all values of i j and l.
+
+77
+00:05:24,370 --> 00:05:28,930
+Except that we don't sum over the terms
+corresponding to these bias values
+
+78
+00:05:28,930 --> 00:05:30,950
+like we have for logistic progression.
+
+79
+00:05:30,950 --> 00:05:36,730
+Completely, we don't sum over the terms
+responding to where i is equal to 0.
+
+80
+00:05:36,730 --> 00:05:41,670
+So that is because when we're
+computing the activation of a neuron,
+
+81
+00:05:41,670 --> 00:05:43,411
+we have terms like these.
+
+82
+00:05:43,411 --> 00:05:44,356
+Theta i 0.
+
+83
+00:05:44,356 --> 00:05:51,410
+Plus theta i1, x1 plus and so on.
+
+84
+00:05:51,410 --> 00:05:55,240
+Where I guess put in a two there,
+this is the first hit in there.
+
+85
+00:05:55,240 --> 00:05:57,750
+And so the values with a zero there,
+
+86
+00:05:57,750 --> 00:06:01,590
+that corresponds to something that
+multiplies into an x0 or an a0.
+
+87
+00:06:01,590 --> 00:06:06,450
+And so this is kinda like a bias unit and
+by analogy to what we were doing for
+
+88
+00:06:06,450 --> 00:06:10,539
+logistic progression, we won't sum over
+those terms in our regularization term
+
+89
+00:06:10,539 --> 00:06:15,030
+because we don't want to regularize
+them and string their values as zero.
+
+90
+00:06:15,030 --> 00:06:20,820
+But this is just one possible convention,
+and even if you were to sum over i
+
+91
+00:06:20,820 --> 00:06:25,560
+equals 0 up to Sl, it would work about the
+same and doesn't make a big difference.
+
+92
+00:06:25,560 --> 00:06:29,410
+But maybe this convention of
+not regularizing the bias term
+
+93
+00:06:29,410 --> 00:06:30,470
+is just slightly more common.
+
+94
+00:06:33,090 --> 00:06:36,890
+So that's the cost function we're
+going to use for our neural network.
+
+95
+00:06:36,890 --> 00:06:41,290
+In the next video we'll start
+to talk about an algorithm for
+
+96
+00:06:41,290 --> 00:06:42,900
+trying to optimize the cost function.

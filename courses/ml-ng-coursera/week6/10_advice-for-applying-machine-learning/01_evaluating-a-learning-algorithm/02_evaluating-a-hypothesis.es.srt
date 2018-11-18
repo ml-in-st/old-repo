@@ -1,0 +1,667 @@
+1
+00:00:00,146 --> 00:00:02,515
+En este video me gustaría
+hablar de cómo
+
+2
+00:00:02,523 --> 00:00:06,662
+evaluar una hipótesis 
+aprendida por nuestro algoritmo.
+
+3
+00:00:06,685 --> 00:00:09,200
+En los siguientes videos
+profundizaremos para
+
+4
+00:00:09,231 --> 00:00:11,846
+hablar de cómo
+prevenir los problemas de
+
+5
+00:00:11,869 --> 00:00:14,908
+sobreajuste y de subajuste.
+
+6
+00:00:15,615 --> 00:00:19,023
+Cuando ajustamos los parámetros
+de nuestro algoritmo de aprendizaje
+
+7
+00:00:19,038 --> 00:00:23,154
+pensamos en elegir los parámetros
+para minimizar el error de entrenamiento.
+
+8
+00:00:23,169 --> 00:00:26,077
+Pudiéramos pensar que 
+obtener un valor realmente bajo de
+
+9
+00:00:26,100 --> 00:00:28,108
+error de entrenamiento
+es bueno,
+
+10
+00:00:28,108 --> 00:00:29,562
+pero ya hemos visto que
+
+11
+00:00:29,562 --> 00:00:32,400
+aunque una hipótesis con un
+error de entrenamiento bajo no es
+
+12
+00:00:32,400 --> 00:00:35,254
+necesariamente
+una buena hipótesis.
+
+13
+00:00:35,254 --> 00:00:40,223
+También hemos visto ya un ejemplo de 
+cómo la hipótesis puede causar un sobreajuste e impedir,
+
+14
+00:00:40,415 --> 00:00:45,785
+por lo tanto, la generalización de nuevos ejemplos
+que no se incluyen en el conjunto de datos de entrenamiento.
+
+15
+00:00:45,962 --> 00:00:50,000
+Entonces ¿cómo podemos saber
+si una hipótesis está sobreajustada?
+
+16
+00:00:50,015 --> 00:00:54,346
+En este ejemplo simple 
+podemos trazar la hipótesis de “H” de “X”
+
+17
+00:00:54,365 --> 00:00:56,338
+y ver qué sucede.
+
+18
+00:00:56,346 --> 00:01:00,538
+Pero, en general, para problemas con 
+más de una función; es decir,
+
+19
+00:01:00,554 --> 00:01:03,531
+en problemas con un gran 
+número de funciones, como estos,
+
+20
+00:01:03,546 --> 00:01:06,692
+se vuelve difícil o
+quizá imposible
+
+21
+00:01:06,708 --> 00:01:09,515
+trazar cómo luce la función de la hipótesis.
+
+22
+00:01:09,531 --> 00:01:13,046
+Por lo tanto, necesitamos otra manera
+para evaluar nuestra hipótesis.
+
+23
+00:01:13,062 --> 00:01:17,315
+El método estándar para evaluar
+una hipótesis aprendida es el siguiente.
+
+24
+00:01:17,331 --> 00:01:19,308
+Supongamos que tenemos un 
+conjunto de datos de aprendizaje como este.
+
+25
+00:01:19,323 --> 00:01:21,977
+Aquí sólo se muestran  
+10 ejemplos de entrenamiento pero
+
+26
+00:01:21,992 --> 00:01:23,969
+podemos tener docenas,
+
+27
+00:01:23,985 --> 00:01:27,254
+cientos, o quizá
+miles de ellos.
+
+28
+00:01:27,269 --> 00:01:30,246
+Para asegurarnos de
+poder evaluar nuestra hipótesis,
+
+29
+00:01:30,262 --> 00:01:32,808
+lo que haremos es dividir
+
+30
+00:01:32,823 --> 00:01:35,554
+los datos que tenemos en dos porciones.
+
+31
+00:01:35,569 --> 00:01:40,723
+La primera porción será  
+nuestro conjunto usual de entrenamiento
+
+32
+00:01:42,638 --> 00:01:47,446
+y la segunda porción 
+será nuestro conjunto de prueba.
+
+33
+00:01:47,462 --> 00:01:50,398
+Una división muy típica
+
+34
+00:01:50,413 --> 00:01:53,482
+de los todos datos que tenemos en 
+un conjunto de entrenamiento y en un conjunto de prueba
+
+35
+00:01:53,498 --> 00:01:57,936
+puede ser de aproximadamente el
+70% y 30%, respectivamente.
+
+36
+00:01:57,952 --> 00:02:00,052
+Donde tenemos más datos en el 
+conjunto de entrenamiento y
+
+37
+00:02:00,067 --> 00:02:02,367
+relativamente menos en el conjunto de prueba.
+
+38
+00:02:02,382 --> 00:02:05,782
+Ahora, si 
+tenemos un conjunto de datos
+
+39
+00:02:05,790 --> 00:02:08,459
+asignaremos solamente el 70% de los datos
+
+40
+00:02:08,475 --> 00:02:11,529
+para que sean nuestro
+conjunto de entrenamiento donde “m” es,
+
+41
+00:02:11,544 --> 00:02:14,336
+como de costumbre, nuestro
+número de ejemplos de entrenamiento
+
+42
+00:02:14,352 --> 00:02:16,913
+y el resto de los datos
+
+43
+00:02:16,929 --> 00:02:19,310
+será asignado para
+formar parte de nuestro conjunto de prueba.
+
+44
+00:02:19,325 --> 00:02:23,410
+Aquí, utilizaré
+la notación “m” subíndice “prueba”
+
+45
+00:02:23,425 --> 00:02:27,187
+para denotar el número de ejemplos de prueba.
+
+46
+00:02:27,202 --> 00:02:32,225
+En general, este 
+subíndice “prueba” denotará
+
+47
+00:02:32,241 --> 00:02:34,987
+los ejemplos que
+resulten del conjunto de prueba de manera que
+
+48
+00:02:35,002 --> 00:02:40,810
+“x1” subíndice “prueba” coma 
+“y1” subíndice “prueba” es mi
+
+49
+00:02:40,825 --> 00:02:43,648
+primer ejemplo de prueba.  
+Supongo que en este ejemplo corresponderá a
+
+50
+00:02:43,664 --> 00:02:45,656
+este ejemplo de aquí.
+
+51
+00:02:45,671 --> 00:02:47,495
+Finalmente, un último detalle:
+
+52
+00:02:47,510 --> 00:02:50,795
+Aunque he separado estos datos
+con el primer 70%
+
+53
+00:02:50,810 --> 00:02:54,479
+asignado al conjunto de entrenamiento y 
+el 30% restante al conjunto de pruebas,
+
+54
+00:02:54,495 --> 00:02:57,518
+si hay algún tipo de
+orden en los datos,
+
+55
+00:02:57,533 --> 00:03:01,048
+sería mejor
+asignar un 70% aleatorio
+
+56
+00:03:01,048 --> 00:03:02,948
+de los datos 
+al conjunto de entrenamiento y
+
+57
+00:03:02,964 --> 00:03:05,556
+un 30% aleatorio de 
+los datos al conjunto de prueba.
+
+58
+00:03:05,571 --> 00:03:08,579
+Así que, con los datos ya
+asignados de manera aleatoria,
+
+59
+00:03:08,595 --> 00:03:12,110
+podemos tomar el 
+primer 70% y el último 30%.
+
+60
+00:03:12,125 --> 00:03:14,718
+Pero si los datos no
+estuvieran ordenados aleatoriamente,
+
+61
+00:03:14,733 --> 00:03:16,756
+sería mejor aleatorizar o
+
+62
+00:03:16,771 --> 00:03:19,718
+reordenar de manera aleatoria
+los ejemplos en tu conjunto de entrenamiento.
+
+63
+00:03:19,733 --> 00:03:23,310
+Antes de enviar el primer
+70% al conjunto de entrenamiento y
+
+64
+00:03:23,325 --> 00:03:26,669
+el último 30% al conjunto de prueba.
+
+65
+00:03:27,054 --> 00:03:30,169
+Aquí presento un 
+procedimiento típico
+
+66
+00:03:30,185 --> 00:03:32,008
+para 
+entrenar y probar
+
+67
+00:03:32,023 --> 00:03:34,492
+el algoritmo de aprendizaje y 
+la regresión de aprendizaje.
+
+68
+00:03:34,508 --> 00:03:38,115
+Primero, es necesario aprender los parámetros
+theta de tu conjunto de entrenamiento, para que
+
+69
+00:03:38,131 --> 00:03:41,798
+minimices el error de aprendizaje 
+usual objetivo de “J” de theta,
+
+70
+00:03:41,813 --> 00:03:44,713
+donde “J” de theta 
+se definió utilizando el
+
+71
+00:03:44,729 --> 00:03:47,059
+70% de todos los datos que tenemos.
+
+72
+00:03:47,075 --> 00:03:49,759
+Es decir, sólo los datos de entrenamiento.
+
+73
+00:03:49,882 --> 00:03:52,167
+Después es necesario 
+calcular el error de prueba.
+
+74
+00:03:52,182 --> 00:03:56,298
+Denotaré el error de prueba
+como “J” subíndice “prueba”.
+
+75
+00:03:56,313 --> 00:03:59,229
+Lo que haremos es tomar el
+parámetro theta
+
+76
+00:03:59,259 --> 00:04:02,190
+que hemos aprendido del 
+conjunto de entrenamiento y lo insertaremos aquí.
+
+77
+00:04:02,205 --> 00:04:04,875
+Luego calcularemos el error de prueba,
+
+78
+00:04:04,890 --> 00:04:08,529
+que escribiré como sigue.
+
+79
+00:04:08,698 --> 00:04:11,275
+Esto es, básicamente,
+
+80
+00:04:11,290 --> 00:04:15,244
+el error cuadrático promedio
+
+81
+00:04:15,269 --> 00:04:18,154
+como se midió en el conjunto de prueba.
+
+82
+00:04:18,169 --> 00:04:19,915
+Es lo que uno se esperaría.
+
+83
+00:04:19,931 --> 00:04:23,415
+Si aplicamos cada ejemplo de
+prueba a la hipótesis con
+
+84
+00:04:23,431 --> 00:04:28,008
+el parámetro theta y 
+medimos el error cuadrático
+
+85
+00:04:28,023 --> 00:04:33,338
+de la hipótesis en
+“m” subíndice “prueba”, es decir, en los ejemplos de prueba.
+
+86
+00:04:33,354 --> 00:04:37,054
+Y, por supuesto, esta es
+la definición del
+
+87
+00:04:37,069 --> 00:04:40,815
+error del conjunto de prueba 
+si utilizamos la regresión linear
+
+88
+00:04:40,831 --> 00:04:44,362
+y utilizamos
+la métrica del error cuadrático.
+
+89
+00:04:44,377 --> 00:04:47,477
+Pero, ¿qué pasa si estamos resolviendo
+un problema de clasificación
+
+90
+00:04:47,492 --> 00:04:50,654
+utilizando, en cambio, la 
+regresión logística?
+
+91
+00:04:50,669 --> 00:04:53,877
+En este caso, el
+procedimiento para entrenar
+
+92
+00:04:53,892 --> 00:04:57,085
+y probar la
+regresión logística es muy similar.
+
+93
+00:04:57,100 --> 00:04:59,985
+Primero obtendremos los parámetros 
+de los datos de entrenamiento; es decir,
+
+94
+00:05:00,000 --> 00:05:02,331
+el 70% de los datos.
+
+95
+00:05:02,346 --> 00:05:05,115
+Después calcularemos
+el error de prueba así.
+
+96
+00:05:05,131 --> 00:05:07,015
+Es la misma función objetiva que
+
+97
+00:05:07,031 --> 00:05:09,592
+utilizamos siempre para
+la regresión logística,
+
+98
+00:05:09,608 --> 00:05:11,569
+pero esta vez la definiremos
+
+99
+00:05:11,585 --> 00:05:15,115
+usando “m” subíndice “prueba”; 
+es decir, los ejemplos de prueba.
+
+100
+00:05:15,131 --> 00:05:17,600
+Aunque esta definición del 
+error del conjunto de prueba
+
+101
+00:05:17,631 --> 00:05:20,238
+“J” subíndice “prueba” es
+perfectamente razonable.
+
+102
+00:05:20,254 --> 00:05:22,231
+A veces hay una alternativa
+
+103
+00:05:22,246 --> 00:05:25,469
+de medición de los conjuntos de prueba que
+puede resultar más fácil de interpretar,
+
+104
+00:05:25,485 --> 00:05:27,877
+y ese el error de mala clasificación.
+
+105
+00:05:27,892 --> 00:05:30,792
+También se le llama error de 
+clasificación cero-uno en donde
+
+106
+00:05:30,808 --> 00:05:32,692
+cero y uno denotan que puedes obtener ya sea
+
+107
+00:05:32,708 --> 00:05:36,146
+un ejemplo correcto o 
+un ejemplo erróneo.
+
+108
+00:05:36,162 --> 00:05:37,910
+Esto es lo que quiero decir.
+
+109
+00:05:37,925 --> 00:05:41,795
+Permítanme definir
+el error de una predicción.
+
+110
+00:05:41,825 --> 00:05:44,202
+Es decir “h” de “x”,
+
+111
+00:05:44,218 --> 00:05:47,518
+con un valor asignado a “y”
+
+112
+00:05:47,533 --> 00:05:51,848
+igual a 1
+si los resultados de mi
+
+113
+00:05:51,864 --> 00:05:54,633
+hipótesis arrojan un valor
+mayor o igual a 5 y
+
+114
+00:05:54,641 --> 00:05:57,510
+“Y” es igual a 0,
+
+115
+00:05:57,525 --> 00:06:03,718
+o si mi hipótesis arroja  
+un valor menor a 0.5
+
+116
+00:06:03,733 --> 00:06:05,402
+y “y” es igual a 1,
+
+117
+00:06:05,418 --> 00:06:08,118
+bien, ambos casos
+responden, básicamente,
+
+118
+00:06:08,133 --> 00:06:11,833
+si la hipótesis
+clasificó mal el ejemplo
+
+119
+00:06:11,833 --> 00:06:14,518
+asumiendo que asignaste un umbral de 0.5.
+
+120
+00:06:14,533 --> 00:06:18,171
+Así que, pensamos que era más
+probable que fuera 1, pero resultó ser 0,
+
+121
+00:06:18,187 --> 00:06:20,733
+o si la hipótesis era más
+propensa al
+
+122
+00:06:20,748 --> 00:06:23,556
+0, pero el valor asignado era
+en realidad 1.
+
+123
+00:06:23,571 --> 00:06:28,471
+De otra manera, definimos esta
+función de error como 0,
+
+124
+00:06:28,487 --> 00:06:34,841
+si tu hipótesis clasificó el 
+ejemplo “Y” de manera correcta.
+
+125
+00:06:34,864 --> 00:06:38,841
+Entonces, podríamos
+definir este error de prueba
+
+126
+00:06:38,856 --> 00:06:42,371
+utilizando la medición del 
+error de mala clasificación como
+
+127
+00:06:42,387 --> 00:06:46,779
+uno de las pruebas m
+de la suma de “i” igual a 1 a
+
+128
+00:06:46,795 --> 00:06:49,941
+“m” subíndice “prueba” del error
+
+129
+00:06:49,956 --> 00:06:55,164
+de “h” de “x(i) prueba”
+
+130
+00:06:55,179 --> 00:06:57,971
+coma “y(i)”.
+
+131
+00:06:57,987 --> 00:07:02,010
+Esta es mi manera de 
+escribirlo y es exactamente la
+
+132
+00:07:02,025 --> 00:07:05,587
+fracción de 
+ejemplos en el conjunto de prueba
+
+133
+00:07:05,602 --> 00:07:08,864
+mal asignados por mi hipótesis.
+
+134
+00:07:08,871 --> 00:07:10,602
+Esta es la definición del
+
+135
+00:07:10,618 --> 00:07:13,687
+error del conjunto de prueba utilizando el 
+error de mala clasificación de
+
+136
+00:07:13,718 --> 00:07:16,948
+la medición del error de  
+mala clasificación 0 1.
+
+137
+00:07:16,971 --> 00:07:19,995
+Esta es la técnica 
+estándar para evaluar
+
+138
+00:07:20,010 --> 00:07:22,833
+qué tan buena es una hipótesis.
+
+139
+00:07:22,848 --> 00:07:25,579
+En el siguiente video 
+adaptaremos estas ideas para
+
+140
+00:07:25,595 --> 00:07:28,525
+ayudarnos a hacer cosas
+como elegir las características,
+
+141
+00:07:28,541 --> 00:07:31,641
+como el grado polinomial
+que se utilizarán en el algoritmo de aprendizaje
+
+142
+00:07:31,656 --> 00:07:34,964
+o a elegir los parámetros de regularización 
+para un algoritmo de aprendizaje.

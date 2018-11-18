@@ -1,0 +1,308 @@
+1
+00:00:00,000 --> 00:00:04,353
+In filmul anterior, am dat o definitie matematica a optimizarii pe baza de gradient.
+
+2
+00:00:04,353 --> 00:00:09,464
+Hai sa studiem mai multe in acest video si sa intelegem mai bine
+
+3
+00:00:09,464 --> 00:00:14,701
+ce face algoritmul si de ce au sens pasii algoritmului.
+
+4
+00:00:14,701 --> 00:00:20,639
+Iata algoritmul de optimizare pe baza de gradient pe care l-am vazut data trecuta.
+
+5
+00:00:20,639 --> 00:00:26,427
+Ca sa va amintiti, parametrul sau termenul alpha se numeste rata de invatare.
+
+6
+00:00:26,427 --> 00:00:32,444
+El controleaza cat de mare este pasul pe care il face algoritmul cand actualizeaza parametrul theta.
+
+7
+00:00:32,444 --> 00:00:41,360
+Al doilea termen de aici este termenul derivativ. Ceea ce imi propun in acest video
+
+8
+00:00:41,360 --> 00:00:47,360
+este sa va dau o explicatie intuitiva despre ce face fiecare dintre acesti termeni si de ce, atunci cand
+
+9
+00:00:47,360 --> 00:00:53,077
+sunt pusi laolalta, intregul proces de actualizare functioneaza. Pentru a va ajuta sa intelegeti,
+
+10
+00:00:53,077 --> 00:00:58,460
+vreau sa folosesc un exemplu ceva mai simplu, in care dorim sa minimizam
+
+11
+00:00:58,460 --> 00:01:03,022
+o functie cu un singur parametru. Deci, sa presupunem ca avem o functie cost J
+
+12
+00:01:03,022 --> 00:01:07,294
+cu un singur parametru, theta1, cum am avut intr-unul din filmele anterioare.
+
+13
+00:01:07,294 --> 00:01:11,913
+Theta1 este un numar real, da? Asta ca sa avem grafice unidimensionale, care
+
+14
+00:01:11,913 --> 00:01:16,416
+sunt mai usor de interpretat. Hai sa incercam sa intelegem ce face
+
+15
+00:01:16,416 --> 00:01:23,940
+optimizarea pe baza de gradient in cazul acestei functii. Sa zicem ca asta e functia.
+
+16
+00:01:24,660 --> 00:01:31,696
+J(theta1) unde theta1 este un numar real. Bun, acum
+
+17
+00:01:31,696 --> 00:01:39,202
+sa zicem ca am initializat algoritmul de optimizare pe baza de gradient cu theta1 aflat in aceasta locatie.
+
+18
+00:01:39,202 --> 00:01:46,989
+Imaginati-va ca pornim din acest punct al functiei. Ce face algoritmul de gradient este
+
+19
+00:01:46,989 --> 00:01:56,935
+sa se actualizeze. Theta1 este actualizat dupa relatia Theta1=Theta1 - alpha  dJ/dTheta1.
+
+20
+00:01:56,935 --> 00:02:04,694
+Oh, si ca sa stiti, in dreapta este tot termenul
+
+21
+00:02:04,694 --> 00:02:11,636
+derivativ, dar poate va intrebati de ce am schimbat acele simboluri
+
+22
+00:02:11,636 --> 00:02:16,132
+de derivate partiale. Daca nu stiti care este diferenta
+
+23
+00:02:16,132 --> 00:02:20,523
+intre simbolurile de derivate partiale si dJ/dTtheta, nu va faceti griji. Teoretic,
+
+24
+00:02:20,523 --> 00:02:24,491
+in matematica, numim asta derivata partiala, sau o numim doar derivata,
+
+25
+00:02:24,491 --> 00:02:28,299
+in functie de numarul de parametri ai functiei J, dar asta este numai o
+
+26
+00:02:28,299 --> 00:02:32,428
+conventie matematica. Pentru scopul acestui curs, ganditi-va ca
+
+27
+00:02:32,428 --> 00:02:36,768
+simbolurile de derivata partiala si dJ.dTheta sunt acelasi lucru. Nu va ingrijorati
+
+28
+00:02:36,768 --> 00:02:41,056
+in ceea ce priveste diferentele care ar putea exista. Eu voi incerca sa folosesc
+
+29
+00:02:41,056 --> 00:02:45,190
+notatiile matematice conventionale. Dar pentru scopurile noastre, aceste notatii sunt echivalente.
+
+30
+00:02:45,360 --> 00:02:49,627
+Deci, hai sa vedem ce face aceasta ecuatie. Vom incerca sa calculam
+
+31
+00:02:49,627 --> 00:02:54,293
+aceasta derivata - nu stiu daca va sunt cunoscute derivatele de la algebra. Dar
+
+32
+00:02:54,293 --> 00:02:58,666
+ce face o derivata, in acest context, este sa "spuna" - "Hai sa luam tangenta in acest punct",
+
+33
+00:02:58,666 --> 00:03:02,877
+adica linia asta dreapta, cea rosie, care atinge graficul functiei,
+
+34
+00:03:02,877 --> 00:03:06,976
+si hai sa vedem care este panta dreptei rosii. Asta
+
+35
+00:03:06,976 --> 00:03:11,352
+este semnificatia derivatei. Ea spune cat este panta dreptei (liniei) care e
+
+36
+00:03:11,352 --> 00:03:15,563
+tangenta la graficul functiei, ok? Iar panta unei drepte este - stiti -
+
+37
+00:03:15,563 --> 00:03:20,789
+inaltimea impartita la chestia asta orizontala. Dreapta
+
+38
+00:03:20,789 --> 00:03:28,378
+asta are panta pozitiva, deci derivata este pozitiva. Si deci actualizarea lui Theta va fi
+
+39
+00:03:28,378 --> 00:03:36,258
+Theta1 = Theta1 - alpha  (un numar pozitiv).
+
+40
+00:03:36,258 --> 00:03:43,103
+Ok. Rata de invatare (alpha) este intotdeauna un numar pozitiv. Deci o sa am
+
+41
+00:03:43,103 --> 00:03:47,932
+Theta1 = Theta1 minus ceva, ceea ce inseamna
+
+42
+00:03:47,932 --> 00:03:52,644
+ca Theta1 se va muta catre stanga. Theta1 va scadea si observ ca
+
+43
+00:03:52,644 --> 00:03:57,473
+este exact ce trebuie sa se intample, pentru ca de fapt am avansat in directia
+
+44
+00:03:57,473 --> 00:04:02,582
+care ma duce catre minimul de aici. Deci pana acum, algoritmul de gradient
+
+45
+00:04:02,582 --> 00:04:08,115
+pare sa faca ceea ce trebuie. Hai sa luam un alt exemplu. Sa consideram aceeasi
+
+46
+00:04:08,115 --> 00:04:13,787
+functie J. Desenez aceeasi functie J(Theta1). Si acum sa
+
+47
+00:04:13,787 --> 00:04:19,181
+zicem ca am initializat parametrul meu in alta parte, acolo, in stanga. Deci Theta1
+
+48
+00:04:19,181 --> 00:04:24,161
+este aici. Voi adauga acel punct pe suprafata. Acum, termenul derivativ dJ/dTheta1
+
+49
+00:04:24,161 --> 00:04:29,567
+cand este evaluat in acest punct, va indica directia catre dreapta. Panta acelei drepte.
+
+50
+00:04:29,567 --> 00:04:35,035
+Termenul derivativ este panta acestei drepte. Dar
+
+51
+00:04:35,035 --> 00:04:42,745
+dreapta aceasta este orientata in jos,
+
+52
+00:04:42,745 --> 00:04:48,718
+adica functia are derivata negative, ceea ce inseamna panta negative
+
+53
+00:04:48,718 --> 00:04:54,770
+in acel punct. Deci asta este  < = 0. Cand actualizez Theta,
+
+54
+00:04:54,770 --> 00:05:02,840
+care este calculat ca Theta - alpha  (un numar negativ),
+
+55
+00:05:02,840 --> 00:05:07,881
+de fapt voi creste Theta,
+
+56
+00:05:07,881 --> 00:05:13,106
+corect? Pentru ca am minus un numar negativ, ceea ce inseamna ca adun ceva la Theta
+
+57
+00:05:13,106 --> 00:05:17,900
+deci voi creste Theta. Si in felul asta vom incepe sa
+
+58
+00:05:17,900 --> 00:05:23,002
+crestem Theta, ceea ce pare ca este exact lucrul pe care trebuia sa-l facem
+
+59
+00:05:23,002 --> 00:05:28,335
+ca sa ne apropiem de minim. Sper ca asta explica intuitiv
+
+60
+00:05:28,335 --> 00:05:33,874
+ce face termenul derivativ. Hai sa ne uitam acum la
+
+61
+00:05:33,874 --> 00:05:39,956
+rata de invatare, alpha, si sa incercam sa ne dam seama care este rolul ei. Deci, asta este
+
+62
+00:05:39,956 --> 00:05:46,641
+relatia de optimizare (coborare) prin gradient. Hai sa vedem ce se intampla daca
+
+63
+00:05:46,641 --> 00:05:52,845
+alpha este fie prea mic, fie prea mare. In acest prim exemplu, vom vedea
+
+64
+00:05:52,845 --> 00:05:59,583
+ce se intampla daca alpha este prea mic. 
+Iata functia J(Theta).
+
+65
+00:05:59,583 --> 00:06:04,230
+Hai sa incepem de aici. Daca alpha este prea mic, atunci ce voi face este sa
+
+66
+00:06:04,230 --> 00:06:09,322
+inmultesc termenul derivativ cu un numar foarte mic. Si voi sfarsi prin a face pasi extrem de mici,
+
+67
+00:06:09,322 --> 00:06:13,841
+cam asa. Ok, deci asta este un pas minuscul. Apoi, din acest nou punct,
+
+68
+00:06:13,841 --> 00:06:18,870
+vom face un alt pas minuscul pentru ca alpha este prea mic. Hai sa facem un alt
+
+69
+00:06:18,870 --> 00:06:25,342
+pas mititel. Si asa, daca rata de invatare este prea mica, o sa
+
+70
+00:06:25,342 --> 00:06:30,589
+ajung sa fac acesti pasi mici, mititei, de copil mic, incercand sa ajung la minim.
+
+71
+00:06:30,589 --> 00:06:35,837
+Si o sa am nevoie de foarte multi pasi ca sa ating minimul, astfle incat, daca alpha este prea mic,
+
+72
+00:06:35,837 --> 00:06:41,019
+algoritmul va fi lent, pentru ca va face pasi foarte micuti. Va avea nevoie
+
+73
+00:06:41,019 --> 00:06:45,829
+de foarte multi pasi inainte ca macar sa se apropie de minimul global. Acum, [...]
+
+74
+00:06:45,829 --> 00:06:52,236
+Iata functia mea. Din moment ce alpha este prea mare,
+
+75
+00:06:52,236 --> 00:06:57,590
+algoritmul de gradient poate depasi minimul si ar putea chiar
+
+76
+00:06:57,590 --> 00:07:03,362
+sa nu fie convergent, sau sa fie divergent. [...]
+
+77
+00:07:03,362 --> 00:07:08,647
+Deci daca alpha este prea mare, algoritmul face un pas urias, asa,

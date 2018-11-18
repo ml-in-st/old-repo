@@ -1,0 +1,420 @@
+1
+00:00:00,000 --> 00:00:04,262
+Willkommen zu dem kostenlosen Kurs in
+maschinellem Lernen. Maschinelles Lernen ist eine
+
+2
+00:00:04,262 --> 00:00:08,579
+der spannendsten neuen Technologien.
+Und in diesem Kurs werden Sie über den
+
+3
+00:00:08,579 --> 00:00:13,115
+letzen Stand der Technik lernen und Erfahrungen
+in der Implementierung erhalten, um diese Algorithmen selbst anzuwenden.
+
+4
+00:00:13,115 --> 00:00:17,487
+Sie haben höchstwahrscheinlich bereits einen
+Lern Algorithmus zig Mal pro Tag benutzt ohne
+
+5
+00:00:17,487 --> 00:00:21,422
+es zu wissen. Jedes mal wenn sie eine Suchmaschine
+wie Google oder Bing benutzen
+
+6
+00:00:21,422 --> 00:00:25,794
+um im Internet zu suchen, ist einer der Gründe
+warum dies so gut funktioniert ein Lern Algorithmus
+
+7
+00:00:25,794 --> 00:00:30,002
+der von Google oder Microsoft implementiert wurde
+und gelernt hat Webseiten zu ranken.
+
+8
+00:00:30,002 --> 00:00:35,144
+Jedes Mal wenn Sie Facebook oder
+Apples Fotomarkierungs Anwendung benutzen und es
+
+9
+00:00:35,144 --> 00:00:40,595
+die Fotos ihrer Freunde erkennt, dann 
+ist dies auch maschinelles Lernen. Jedes mal wenn Sie
+
+10
+00:00:40,595 --> 00:00:46,054
+E-Mails lesen und Ihr Spam-Filter Sie davor bewahrt sich
+durch Unmengen von Spam-E-Mails durchzukämpfen
+
+11
+00:00:46,054 --> 00:00:50,980
+dann ist dies auch maschinellem Lernen zu verdanken.
+Für mich ist eine der Gründe warum ich so begeistert
+
+12
+00:00:50,980 --> 00:00:55,643
+bin ist der alte Traum in der künstlichen Intelligent eines Tages Maschinen zu bilden, 
+die genauso intelligent sind wie du und ich. Wir sind noch
+
+13
+00:00:55,643 --> 00:01:00,076
+weit weg von diesem Ziel, aber viele Forscher in der KI glauben,
+dass der beste Weg, dieses Ziel zu erreichen
+
+14
+00:01:00,076 --> 00:01:04,567
+die Verwendung von Lernalgorithmen ist, 
+die versuchen, die Art wie das menschliche Gehrin lernt
+
+15
+00:01:04,567 --> 00:01:08,994
+zu imitieren. Ich werde dir auch darüber etwas in diesem Kurs erzählen.
+Hier
+
+16
+00:01:08,994 --> 00:01:13,542
+du den Status-quo der maschinellen Lernalgorithmen. Aber es stellt sich heraus,
+
+17
+00:01:13,542 --> 00:01:17,919
+dass es nicht genügt, nur die Algorithmen zu kennen und
+alle Mathematik nicht hilft,
+
+18
+00:01:17,919 --> 00:01:22,466
+wenn man nicht gleichzeitig in der Lage ist, 
+dieses Wissen auf Probleme anzuwenden, die einen
+
+19
+00:01:22,466 --> 00:01:26,844
+interessieren. Also haben wir viel Zeit darauf verwendet, 
+Aufgaben zu entwickeln,
+
+20
+00:01:26,844 --> 00:01:32,088
+die diese Algorithmen implementieren und zu sehen,
+wie diese für dich funktionieren. Aber was
+
+21
+00:01:32,088 --> 00:01:37,075
+ist der Grund, dass maschinelles Lernen so wichtig ist in der heutigen Zeit?
+Es stellt sich heraus, dass es sich
+
+22
+00:01:37,075 --> 00:01:41,713
+hierbei um ein Feld handelt, dass aus dem KI-Umfeld herausgewachsen ist.
+Wir wollten
+
+23
+00:01:41,713 --> 00:01:46,642
+intelligente Maschinen entwickeln, aber es stellt sich heraus, dass wir einige Basics programmieren konnten,
+
+24
+00:01:46,642 --> 00:01:51,454
+wie beispielsweise den kürzesten Pfad von A nach B zu finden.
+
+25
+00:01:51,454 --> 00:01:56,267
+Aber eigentlich wissen wir einfach nicht,
+wie man KI-Programme schreibt, die
+
+26
+00:01:56,267 --> 00:02:00,905
+interessante Sachen macht wie beispielsweise das Internet zu durchsuchen, Foto zu taggen oder Anti-Spam. Es
+
+27
+00:02:00,905 --> 00:02:05,718
+gab die Vermutung, dass der einzige Weg, dies zu tun , es ein maschinelles Programm
+
+28
+00:02:05,718 --> 00:02:11,237
+lernen zu lassen. Maschinelles Lernen wurde als ein neue Funktion für
+
+29
+00:02:11,237 --> 00:02:16,950
+Computer entwickelt und heutzutage betrifft es viele Bereiche der Industrie und der Grundlagenforschung.
+
+30
+00:02:16,950 --> 00:02:21,496
+Ich persönlich arbeite im Bereich des Maschinelles Lernens
+und in einer typischen Woche ergeben sich Gespräche mit
+
+31
+00:02:21,496 --> 00:02:25,698
+Hubschrauberpiloten, Biologen, einem Haufen
+Informatiker (also meine
+
+32
+00:02:25,698 --> 00:02:30,590
+Kollegen hier in Stanford) und durchscnittlich zwei- 
+bis dreimal pro Woche bekomme ich eine e-mail von
+
+33
+00:02:30,590 --> 00:02:35,021
+Leuten aus der Privatwirtschaft in Silicon Valley,
+die mich kontaktieren weil sie daran interessiert sind
+
+34
+00:02:35,021 --> 00:02:39,741
+Lernalgorithmen auf ihre Problemstellungen 
+anzuwenden. Das ist bezeichnend für die große
+
+35
+00:02:39,741 --> 00:02:44,000
+Bandbreite an Problemen, die mit Maschinellem Lernen
+in Zusammenhang gebracht werden können. Es gibt
+
+36
+00:02:44,000 --> 00:02:48,777
+autonome Robotik, rechnergestützte Biologie und eine
+Menge anderer Dinge in Silicon Valley, die von Maschinellem
+
+37
+00:02:48,777 --> 00:02:55,320
+Lernen geprägt werden. Hier sind noch ein paar Beispiele
+für Maschinelles Lernen. Es gibt Database Mining.
+
+38
+00:02:55,320 --> 00:03:00,063
+Einer der Gründe warum Maschinelles Lernen so viel
+an Einfluss gewonnen hat ist der Wachstum des Webs und
+
+39
+00:03:00,063 --> 00:03:04,751
+der Automation. All das bedeutet, dass wir heute mit
+viel größeren Datensets zu tun haben als je
+
+40
+00:03:04,751 --> 00:03:09,272
+zuvor. So sammeln zum Beispiel viele Silicon Valley Firmen heutzutage Web
+
+41
+00:03:09,272 --> 00:03:13,737
+Click Daten, sogenannte click stream Daten,
+und sie verwenden Algorithmen aus dem Maschinellen Lernen
+
+42
+00:03:13,737 --> 00:03:18,481
+um diese Daten auszuwerten und um die
+Nutzer besser zu verstehen und um besser auf sie einzugehen.
+
+43
+00:03:18,481 --> 00:03:22,327
+Das ist ein riesiger Bereich des Silicon Valley im Moment. Medizinisch
+
+44
+00:03:22,327 --> 00:03:27,483
+daten. Mit der Einführung der Automatisierung
+haben wir jetzt elektronische Patientendaten, also
+
+45
+00:03:27,483 --> 00:03:32,640
+können wir Patientendaten in 
+Wissen umwandeln, damit können wir Krankheiten
+
+46
+00:03:32,640 --> 00:03:37,238
+besser verstehen.
+Wieder mit Automatisierung, sammeln Biologen
+
+47
+00:03:37,238 --> 00:03:41,774
+sehr viele Daten über Gensequenzen,
+DNA-Sequenzen, und so weiter, und
+
+48
+00:03:41,774 --> 00:03:46,931
+Algorithmen ausfürhende Maschinen verhelfen uns
+zu einem sehr viel besseren Verständnis des menschlichen
+
+49
+00:03:46,931 --> 00:03:51,376
+Genoms, und dessen was es heißt, ein Mensch zu sein.
+Und auch in allen Feldern der Ingenieurwissenschaften
+
+50
+00:03:51,376 --> 00:03:55,034
+haben wir größere und größere,
+und immer größere Datensätze, welche
+
+51
+00:03:55,034 --> 00:03:59,249
+wir mithilfe lernender Algorithmen zu verstehen versuchen.
+Eine zweite Reihe and maschinellen
+
+52
+00:03:59,249 --> 00:04:03,440
+Anwendungen ist eine die wir nicht
+von Hand programmieren können. Zum Beispiel
+
+53
+00:04:03,440 --> 00:04:08,328
+habe ich viele Jahre lang an autonomen Hubschraubern gearbeitet.
+Wir wussten jedoch einfach nicht, wie wir ein Programm
+
+54
+00:04:08,328 --> 00:04:18,023
+schreiben konnten, das den Hubschrauber von selbst fliegen ließ.
+Die einzig funktionierende Sache
+
+55
+00:04:18,023 --> 00:04:35,580
+war, den Computer selbst lernen zu lassen,
+wie man diesen Hubschrauber fliegt. [Hubschrauber rattert]
+
+56
+00:04:37,120 --> 00:04:42,880
+Erkennung von Handschrift. Es stellt sich heraus, dass
+einer der Gründe weshalb es heutzutage so teuer ist,
+
+57
+00:04:42,880 --> 00:04:47,330
+Post quer durch das Land zu schicken,
+sowohl in den USA als auch international,
+
+58
+00:04:47,330 --> 00:04:51,899
+die Handschrift auf dem Umschlag ist. Es stellt sich heraus,
+dass es einen lernenden Algorithmus gibt,
+
+59
+00:04:51,899 --> 00:04:56,943
+der gelernt hat, eine Handschrift zu
+lesen, so dass er den Umschlag
+
+60
+00:04:56,943 --> 00:05:01,749
+automatisch auf den Weg schicken kann.
+So kostet es uns nur wenige Cent, dieses Ding
+
+61
+00:05:01,749 --> 00:05:06,318
+tausende von Meilen weit zu verschicken. Und tatsächlich,
+wenn man die Bereiche der Spracherkennung
+
+62
+00:05:06,318 --> 00:05:10,531
+oder Computer Vision gesehen hat:
+Dies sind die Gebiete der K.I., welche uns helfen,
+
+63
+00:05:10,531 --> 00:05:15,321
+Sprache und Bilder besser zu verstehen.
+Der größte Teil der Spracherkennung
+
+64
+00:05:15,321 --> 00:05:20,689
+und der Computer Vision sind heute
+angewandtes maschinelles Lernen. Lernende
+
+65
+00:05:20,689 --> 00:05:25,576
+Alogrithmen werden auch oftmals bei sich selbst verbessernden
+Programmen eingesetzt. Jedes Mal wenn man
+
+66
+00:05:25,576 --> 00:05:30,286
+Amazon oder Netflix oder iTunes Genius benutzt,
+und man Vorschläge für Filme, Produkte und Musik erhält,
+
+67
+00:05:30,286 --> 00:05:35,073
+dann war das ein lernender Algorithmus.
+Wenn man bedenkt, dass diese Diente von Millionen
+
+68
+00:05:35,073 --> 00:05:39,999
+genutzt werden; es ist unmöglich, für alle diese Nutzer
+Millionen von Programmen zu schreiben.
+
+69
+00:05:39,999 --> 00:05:44,807
+Der einzige Weg, damit Software diese angepassten
+Empfehlungen machen kann, besteht darin,
+
+70
+00:05:44,807 --> 00:05:49,258
+sie selbst lernend zu machen. So passt sie sich an
+die Vorlieben der Nutzer an. Schließlich werden
+
+71
+00:05:49,258 --> 00:05:53,294
+lernende Algorithmen heutzutage auch dazu genutzt,
+menschliches Lernen und
+
+72
+00:05:53,294 --> 00:05:58,042
+das Gehirn zu verstehen. Wir werden darüber sprechen,
+wie Forscher diese Erkenntnisse nutzen,
+
+73
+00:05:58,042 --> 00:06:03,182
+um dem großen Traum der vollumfänglichen künstlichen Intelligenz
+näher zu kommen.
+Vor einigen Monaten zeigte mir ein Student einen Artikel
+
+74
+00:06:03,182 --> 00:06:07,996
+über die 12 wichtigsten IT-Kenntnisse. Die Fähigkeiten,
+zu denen kein Manager, der jemanden in diesem Bereich einstellen möchte,
+
+75
+00:06:07,996 --> 00:06:13,006
+nein sagen kann. Der Artikel war schon
+ein wenig älter, aber an der Spitze der Liste
+
+76
+00:06:13,006 --> 00:06:17,988
+der beliebtesten 12 IT-Fähigkeiten
+war maschinelles Lernen. Hier in
+
+77
+00:06:17,988 --> 00:06:21,793
+Stanford, die Zahl der Personalanwerber,
+die bei mir anfragen, ob ich irgendwelche
+
+78
+00:06:21,793 --> 00:06:25,920
+Absolventen in diesem Bereich kenne,
+ist wesentlich größer als die Zahl der
+
+79
+00:06:25,920 --> 00:06:30,047
+Studenten in diesem Bereich jedes Jahr.
+Daher glaube ich, dass es eine riesige,
+
+80
+00:06:30,047 --> 00:06:34,280
+unerfüllte Nachfrage nach diesen Fähigkeiten gibt.
+Und es ist eine tolle Zeit, über maschinelles Lernen zu lernen.
+
+81
+00:06:34,280 --> 00:06:38,454
+Und ich hoffe, dass ich euch viel über maschinelles Lernen
+in diesem Kurs beinbringen kann. Im nächsten Video
+
+82
+00:06:38,454 --> 00:06:42,123
+werden wir mit einer formelleren Definition
+des maschinellen Lernens einsteigen.
+
+83
+00:06:42,123 --> 00:06:46,044
+Und wir werden anfangen über die Haupt-Typen von
+Problemen und Algortihmen in diesem Bereich zu sprechen.
+
+84
+00:06:46,044 --> 00:06:49,864
+Ihr werdet einige der wichtigsten Begriffe
+des maschinellen Lernens aufgreifen
+
+85
+00:06:49,864 --> 00:06:53,684
+und anfangen, ein Gefühl die verschiedenen Algorithmen
+zu bekommen, und welcher wann
+
+86
+00:06:53,684 --> 00:06:54,740
+angemessen sein könnte.

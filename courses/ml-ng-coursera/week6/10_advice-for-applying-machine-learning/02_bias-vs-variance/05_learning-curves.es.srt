@@ -1,0 +1,1416 @@
+1
+00:00:00,090 --> 00:00:02,040
+En este video, me gustaría hablarles de las curvas de aprendizaje.
+
+2
+00:00:03,310 --> 00:00:05,850
+Trazar una curva de aprendizaje es, a menudo, muy útil.
+
+3
+00:00:06,710 --> 00:00:08,170
+Si quieres verificar que
+
+4
+00:00:08,430 --> 00:00:09,590
+tu algoritmo funcione de manera correcta o si
+
+5
+00:00:10,400 --> 00:00:12,730
+quieres mejorar el desempeño del algoritmo.
+
+6
+00:00:13,950 --> 00:00:15,200
+Una curva de aprendizaje es
+
+7
+00:00:15,310 --> 00:00:16,410
+una herramienta que utilizo
+
+8
+00:00:16,820 --> 00:00:17,920
+mucho para
+
+9
+00:00:18,290 --> 00:00:20,030
+diagnosticar si un algoritmo de aprendizaje en particular sufre de
+
+10
+00:00:20,180 --> 00:00:23,220
+alta oscilación , varianza alta o un poco de ambos.
+
+11
+00:00:27,170 --> 00:00:28,070
+A continuación definiré la curva de aprendizaje.
+
+12
+00:00:28,830 --> 00:00:30,550
+Para trazar una curva de aprendizaje, lo que
+
+13
+00:00:30,700 --> 00:00:31,760
+hago generalmente es trazar
+
+14
+00:00:32,210 --> 00:00:33,950
+“J entrenamiento” que es, digamos,
+
+15
+00:00:35,030 --> 00:00:36,050
+el error cuadrático promedio de mi
+
+16
+00:00:36,440 --> 00:00:39,090
+conjunto de entrenamiento, o “Jvc” que es
+
+17
+00:00:39,340 --> 00:00:41,130
+el error cuadrático promedio en mi conjunto de validación cruzada.
+
+18
+00:00:41,590 --> 00:00:42,900
+Luego trazaré
+
+19
+00:00:43,140 --> 00:00:44,160
+esto como una función de
+
+20
+00:00:44,500 --> 00:00:46,380
+“m”; es decir, una función
+
+21
+00:00:47,230 --> 00:00:51,260
+del número de mis ejemplos de entrenamiento.
+
+22
+00:00:51,950 --> 00:00:53,420
+“M” será, generalmente, una constante, como, quizá, 100
+
+23
+00:00:53,650 --> 00:00:55,220
+ejemplos de aprendizaje. Lo
+
+24
+00:00:55,330 --> 00:00:57,670
+que haré realmente es reducir
+
+25
+00:00:57,860 --> 00:00:59,280
+artificialmente el tamaño de  mi conjunto de entrenamiento; es decir,
+
+26
+00:00:59,500 --> 00:01:01,460
+limitarme intencionalmente a usar sólo,
+
+27
+00:01:01,840 --> 00:01:03,440
+digamos, 10, 20, 30 o
+
+28
+00:01:03,660 --> 00:01:06,040
+40 ejemplos de entrenamiento y
+
+29
+00:01:06,170 --> 00:01:07,610
+trazar el error de entrenamiento y
+
+30
+00:01:07,740 --> 00:01:09,640
+el error de validación cruzada para
+
+31
+00:01:10,040 --> 00:01:12,260
+los conjuntos de entrenamiento más pequeños.
+Ahora,
+
+32
+00:01:12,620 --> 00:01:14,090
+veamos cómo se ven estos
+
+33
+00:01:14,270 --> 00:01:15,530
+trazos. Supongamos que sólo tenemos
+
+34
+00:01:15,730 --> 00:01:17,210
+un ejemplo de entrenamiento, como
+
+35
+00:01:17,390 --> 00:01:18,450
+el que se muestra en este primer ejemplo de
+
+36
+00:01:18,860 --> 00:01:19,970
+aquí, y digamos que estoy ajustando una función cuadrática. Bien, sólo tengo un
+
+37
+00:01:22,470 --> 00:01:24,490
+ejemplo de entrenamiento. Seré capaz de
+
+38
+00:01:25,040 --> 00:01:26,100
+realizar un ajuste perfecto
+
+39
+00:01:26,650 --> 00:01:28,590
+¿si? Si ajusto la función cuadrática Tendré
+
+40
+00:01:28,760 --> 00:01:30,000
+un error de 0
+
+41
+00:01:30,150 --> 00:01:32,240
+en este único ejemplo de entrenamiento. Si tuviera
+
+42
+00:01:32,570 --> 00:01:34,170
+dos ejemplos de entrenamiento la función cuadrática también se ajustaría bien. Aún
+
+43
+00:01:37,050 --> 00:01:38,550
+si estuviera usando la regularización,
+
+44
+00:01:38,750 --> 00:01:40,220
+probablemente podría ajustar la función bastante bien o aún
+
+45
+00:01:41,080 --> 00:01:41,970
+sin utilizar la regularización, probablemente
+
+46
+00:01:42,030 --> 00:01:45,200
+ajustaría la función perfectamente.
+
+47
+00:01:45,440 --> 00:01:46,400
+Ahora, si
+
+48
+00:01:47,260 --> 00:01:48,380
+tuviera tres ejemplos de entrenamiento podría ajustar la función
+
+49
+00:01:48,660 --> 00:01:51,320
+cuadrática perfectamente. Entonces si
+
+50
+00:01:51,550 --> 00:01:52,590
+si “m” es igual a 1, o “m” es igual a 2 o “m” es igual a 3,
+
+51
+00:01:54,850 --> 00:01:56,770
+mi error de entrenamiento
+
+52
+00:01:57,350 --> 00:01:58,870
+en mi conjunto de entrenamiento será
+
+53
+00:01:59,110 --> 00:02:01,180
+de 0, suponiendo que no
+
+54
+00:02:01,220 --> 00:02:02,760
+estoy utilizando la regularización, o
+
+55
+00:02:03,150 --> 00:02:04,290
+un poco más alto que 0 si
+
+56
+00:02:04,560 --> 00:02:06,400
+suponemos que estoy utilizando la regularización.
+
+57
+00:02:06,500 --> 00:02:07,350
+Si tengo un
+
+58
+00:02:07,740 --> 00:02:08,980
+conjunto de entrenamiento grande y
+
+59
+00:02:09,940 --> 00:02:11,040
+limito artificialmente el tamaño de
+
+60
+00:02:11,120 --> 00:02:13,080
+mi conjunto de entrenamiento para trazar “J entrenamiento”.
+
+61
+00:02:13,830 --> 00:02:14,770
+Si aquí establezco “m” igual a
+
+62
+00:02:15,110 --> 00:02:16,720
+3 y si lo entreno en sólo
+
+63
+00:02:17,040 --> 00:02:18,290
+tres ejemplos solamente, entonces
+
+64
+00:02:19,270 --> 00:02:21,030
+para esta figura,
+
+65
+00:02:21,110 --> 00:02:22,430
+mediré mi error de entrenamiento
+
+66
+00:02:22,830 --> 00:02:24,450
+sólo en los tres ejemplos en los que
+
+67
+00:02:24,550 --> 00:02:25,580
+ajusté mis datos.
+
+68
+00:02:27,150 --> 00:02:28,130
+Y aún si tuviera
+
+69
+00:02:28,290 --> 00:02:31,160
+100 ejemplos de entrenamiento pero quiero trazar
+
+70
+00:02:31,430 --> 00:02:32,620
+el error de entrenamiento con “m” igual a tres lo que haré es
+
+71
+00:02:34,270 --> 00:02:35,200
+medir mi
+
+72
+00:02:35,340 --> 00:02:36,660
+error de entrenamiento
+
+73
+00:02:36,750 --> 00:02:39,870
+solamente en los tres ejemplos a los que ajusté para mi hipótesis 2.
+
+74
+00:02:41,290 --> 00:02:42,900
+Y en todos los otros ejemplos que deliberadamente
+
+75
+00:02:43,010 --> 00:02:44,940
+omití del proceso de
+
+76
+00:02:45,140 --> 00:02:46,750
+entrenamiento. Para recapitular, hemos visto que
+
+77
+00:02:46,960 --> 00:02:48,460
+si el tamaño del conjunto de entrenamiento
+
+78
+00:02:48,820 --> 00:02:50,560
+es pequeño, entonces el
+
+79
+00:02:50,630 --> 00:02:52,630
+error de entrenamiento también será pequeño porque si
+
+80
+00:02:52,960 --> 00:02:53,900
+tenemos un
+
+81
+00:02:53,930 --> 00:02:55,150
+conjunto de entrenamiento pequeño
+
+82
+00:02:55,350 --> 00:02:56,790
+será más fácil
+
+83
+00:02:56,900 --> 00:02:58,080
+ajustar bien, o incluso perfectamente,
+
+84
+00:02:58,720 --> 00:02:59,490
+el conjunto de
+
+85
+00:02:59,790 --> 00:03:02,970
+entrenamiento.
+
+86
+00:03:03,190 --> 00:03:04,460
+En cambio, si tenemos que “m” es igual a 4
+
+87
+00:03:04,680 --> 00:03:06,800
+entonces la función cuadrática ya no se
+
+88
+00:03:06,920 --> 00:03:07,900
+ajustará perfectamente a este
+
+89
+00:03:08,100 --> 00:03:09,680
+conjunto de datos y si tenemos que
+
+90
+00:03:09,790 --> 00:03:11,350
+“m” es igual a 5, entonces
+
+91
+00:03:11,460 --> 00:03:13,830
+quizá la función cuadrática no se ajuste tan bien.
+
+92
+00:03:14,090 --> 00:03:15,940
+A medida que el conjunto de entrenamiento se hace más grande
+
+93
+00:03:16,980 --> 00:03:18,460
+será cada vez más difícil
+
+94
+00:03:18,620 --> 00:03:19,860
+asegurarme de que
+
+95
+00:03:20,060 --> 00:03:21,820
+encontraré una función cuadrática que se ajuste perfectamente
+
+96
+00:03:21,960 --> 00:03:25,460
+a todos mis ejemplos. Ahora,
+
+97
+00:03:25,840 --> 00:03:27,300
+conforme crece el conjunto de entrenamiento
+
+98
+00:03:27,690 --> 00:03:28,770
+encontraremos que el
+
+99
+00:03:29,300 --> 00:03:30,960
+error de entrenamiento promedio
+
+100
+00:03:31,310 --> 00:03:33,080
+en realidad aumenta y si trazas
+
+101
+00:03:33,500 --> 00:03:34,650
+esta figura, lo que encontrarás será
+
+102
+00:03:35,220 --> 00:03:36,860
+que el error del conjunto de entrenamiento;
+
+103
+00:03:37,130 --> 00:03:38,520
+es decir, el error promedio
+
+104
+00:03:38,940 --> 00:03:40,660
+en la hipótesis, crece
+
+105
+00:03:41,300 --> 00:03:44,730
+a medida que “m” crece. Para aclarar, el concepto, cuando “m” es
+
+106
+00:03:45,020 --> 00:03:46,200
+pequeña o cuando tenemos pocos
+
+107
+00:03:46,500 --> 00:03:48,070
+ejemplos de entrenamiento, es muy fácil ajustar perfectamente
+
+108
+00:03:48,350 --> 00:03:49,420
+cada uno de los
+
+109
+00:03:49,790 --> 00:03:51,350
+ejemplos de entrenamiento por lo que
+
+110
+00:03:51,610 --> 00:03:52,840
+el error será
+
+111
+00:03:52,940 --> 00:03:54,540
+pequeño, mientas que a medida que
+
+112
+00:03:54,710 --> 00:03:56,100
+"m" crece, será
+
+113
+00:03:56,460 --> 00:03:57,900
+más difícil ajustar perfectamente todos los
+
+114
+00:03:58,220 --> 00:03:59,900
+ejemplos de entrenamiento y, por lo tanto,
+
+115
+00:04:00,430 --> 00:04:01,830
+el error del conjunto de aprendizaje
+
+116
+00:04:02,370 --> 00:04:05,840
+se hace más grande. ¿Qué pasa con el error de validación cruzada?
+
+117
+00:04:06,720 --> 00:04:08,460
+El error de validación cruzada
+
+118
+00:04:08,590 --> 00:04:10,100
+es el error en el conjunto de
+
+119
+00:04:10,350 --> 00:04:12,660
+validación cruzada que ya hemos visto.
+
+120
+00:04:12,880 --> 00:04:14,600
+Cuando tenemos un
+
+121
+00:04:14,720 --> 00:04:15,900
+conjunto de entrenamiento muy pequeño,
+
+122
+00:04:16,080 --> 00:04:16,890
+no podrá generalizarse bien. Simplemente
+
+123
+00:04:17,020 --> 00:04:19,610
+no se desempeñará bien y
+
+124
+00:04:19,850 --> 00:04:21,220
+esta hipótesis de aquí
+
+125
+00:04:21,620 --> 00:04:22,720
+no se verá como una buena hipótesis.
+
+126
+00:04:23,020 --> 00:04:23,970
+Sin embargo, si
+
+127
+00:04:24,050 --> 00:04:25,270
+tenemos un conjunto de aprendizaje más grande
+
+128
+00:04:25,500 --> 00:04:26,380
+empezaremos a
+
+129
+00:04:26,890 --> 00:04:28,100
+tener hipótesis que se ajustan
+
+130
+00:04:28,480 --> 00:04:30,810
+mejor a los datos.
+
+131
+00:04:31,380 --> 00:04:32,050
+De manera que el error de validación cruzada y
+
+132
+00:04:32,260 --> 00:04:35,650
+el error del conjunto de prueba tenderán a
+
+133
+00:04:35,890 --> 00:04:37,160
+disminuir a medida que
+
+134
+00:04:37,470 --> 00:04:39,150
+aumenta el tamaño del conjunto de entrenamiento porque, entre
+
+135
+00:04:39,250 --> 00:04:40,700
+más datos tengamos, mejor
+
+136
+00:04:40,990 --> 00:04:43,410
+será la generalización con ejemplos nuevos.
+
+137
+00:04:44,010 --> 00:04:46,730
+Es decir, entre más datos tengamos, la hipótesis se ajustará mejor.
+
+138
+00:04:47,560 --> 00:04:48,560
+Si trazas “J entrenamiento” y
+
+139
+00:04:49,420 --> 00:04:51,670
+“Jcv”, este es el tipo de resultado que obtienes.
+
+140
+00:04:52,490 --> 00:04:53,550
+Ahora veamos cómo
+
+141
+00:04:53,770 --> 00:04:54,940
+se verían las curvas de aprendizaje
+
+142
+00:04:55,360 --> 00:04:56,550
+si tenemos ya sea un problema de
+
+143
+00:04:56,930 --> 00:04:58,210
+alta oscilación  o alta varianza.
+
+144
+00:04:58,920 --> 00:05:00,530
+Supongamos que tu hipótesis tiene un
+
+145
+00:05:00,830 --> 00:05:02,150
+alta oscilación. Para explicar
+
+146
+00:05:02,370 --> 00:05:03,780
+esto pondré un ejemplo
+
+147
+00:05:03,940 --> 00:05:05,250
+ajustando una línea recta
+
+148
+00:05:05,440 --> 00:05:06,500
+a datos que realmente
+
+149
+00:05:06,770 --> 00:05:08,240
+no se pueden ajustar con una línea recta.
+
+150
+00:05:09,540 --> 00:05:12,330
+Así, terminaremos con una hipótesis que quizá se vea como esta.
+
+151
+00:05:13,910 --> 00:05:15,450
+Ahora pensemos qué pasaría
+
+152
+00:05:15,750 --> 00:05:16,840
+si aumentáramos el
+
+153
+00:05:17,470 --> 00:05:18,880
+tamaño del conjunto de entrenamiento. Imaginemos que en vez
+
+154
+00:05:19,160 --> 00:05:20,480
+de cinco ejemplos, como
+
+155
+00:05:20,590 --> 00:05:22,400
+lo he trazado aquí, tenemos
+
+156
+00:05:22,570 --> 00:05:24,080
+muchos más.
+
+157
+00:05:25,280 --> 00:05:27,230
+Lo que pasaría o lo que encontrarías
+
+158
+00:05:27,980 --> 00:05:29,700
+si ajustas una línea recta a esto, seria
+
+159
+00:05:30,040 --> 00:05:31,360
+una línea igual de recta.
+
+160
+00:05:31,690 --> 00:05:32,940
+Una línea recta simplemente
+
+161
+00:05:33,530 --> 00:05:35,110
+no puede ajustar estos
+
+162
+00:05:35,270 --> 00:05:37,320
+datos y obtener una tonelada de datos adicionales
+
+163
+00:05:37,890 --> 00:05:39,460
+simplemente no cambiará mucho la situación.
+
+164
+00:05:40,230 --> 00:05:41,400
+Esta es la línea recta que mejor se
+
+165
+00:05:41,840 --> 00:05:42,770
+ajusta a estos datos, pero una
+
+166
+00:05:42,890 --> 00:05:44,160
+línea recta simplemente no puede
+
+167
+00:05:44,320 --> 00:05:45,630
+ajustar bien estos datos. Aún
+
+168
+00:05:45,870 --> 00:05:47,420
+si trazas el error de validación cruzada,
+
+169
+00:05:49,260 --> 00:05:50,170
+se vería así.
+
+170
+00:05:51,320 --> 00:05:54,470
+Aquí arriba a la izquierda, si tienes un conjunto de entrenamiento minúsculo con, digamos,
+
+171
+00:05:55,410 --> 00:05:57,710
+un sólo ejemplo de entrenamiento, no resultará bien.
+
+172
+00:05:58,550 --> 00:05:59,470
+Para cuando alcances un
+
+173
+00:05:59,660 --> 00:06:00,760
+cierto número de ejemplos o de ejemplos de
+
+174
+00:06:00,940 --> 00:06:02,350
+entrenamiento, has ajustado
+
+175
+00:06:02,810 --> 00:06:04,010
+casi la mejor línea recta
+
+176
+00:06:04,200 --> 00:06:05,400
+posible y aún si
+
+177
+00:06:05,490 --> 00:06:06,260
+terminas con un conjunto de entrenamiento
+
+178
+00:06:06,480 --> 00:06:07,790
+mayor o un valor
+
+179
+00:06:07,970 --> 00:06:09,170
+de “m” mucho mayor,
+
+180
+00:06:10,010 --> 00:06:12,040
+obtendrás básicamente la misma línea recta.
+
+181
+00:06:12,370 --> 00:06:14,190
+Por lo tanto, el error de validación cruzada,
+
+182
+00:06:14,480 --> 00:06:15,420
+voy a anotar esto,
+
+183
+00:06:15,650 --> 00:06:17,040
+o el error del conjunto de prueba se
+
+184
+00:06:17,140 --> 00:06:18,660
+aplanarán o se harán rectos
+
+185
+00:06:18,990 --> 00:06:20,480
+muy pronto una vez que has
+
+186
+00:06:20,910 --> 00:06:22,920
+pasado cierto número de
+
+187
+00:06:23,270 --> 00:06:24,700
+ejemplos de aprendizaje o has ajustado
+
+188
+00:06:25,130 --> 00:06:27,480
+la mejor línea recta posible.
+
+189
+00:06:28,390 --> 00:06:29,540
+Y ¿qué hay el error de aprendizaje?
+
+190
+00:06:30,120 --> 00:06:33,050
+El error de aprendizaje será pequeño de nuevo.
+
+191
+00:06:34,620 --> 00:06:36,280
+Lo que encontrarás en un caso
+
+192
+00:06:36,760 --> 00:06:38,080
+de alta oscilación  es que
+
+193
+00:06:38,210 --> 00:06:40,770
+el error de entrenamiento terminará
+
+194
+00:06:41,000 --> 00:06:42,510
+muy cerca del
+
+195
+00:06:42,830 --> 00:06:44,700
+error de validación. Debido a que
+
+196
+00:06:44,810 --> 00:06:46,370
+tenemos muy pocos parámetros y
+
+197
+00:06:46,590 --> 00:06:48,070
+muchos datos, por lo menos cuando “m” tiene un valor alto,
+
+198
+00:06:48,900 --> 00:06:49,840
+el desempeño del conjunto de
+
+199
+00:06:50,220 --> 00:06:52,500
+entrenamiento y el conjunto de validación cruzada serán muy similares.
+
+200
+00:06:53,800 --> 00:06:54,750
+Así es como lucirán las
+
+201
+00:06:54,870 --> 00:06:56,460
+curvas de aprendizaje
+
+202
+00:06:56,770 --> 00:06:58,850
+si tenemos un algoritmo con alta oscilación.
+
+203
+00:07:00,220 --> 00:07:01,470
+Finalmente, el problema de
+
+204
+00:07:01,630 --> 00:07:03,260
+alta oscilación se ve reflejado en el
+
+205
+00:07:03,450 --> 00:07:04,930
+hecho de que ambos, el error de
+
+206
+00:07:05,580 --> 00:07:07,350
+validación cursada y el
+
+207
+00:07:07,420 --> 00:07:09,130
+error de entrenamiento son altos
+
+208
+00:07:09,560 --> 00:07:10,440
+y terminaremos con
+
+209
+00:07:10,650 --> 00:07:12,040
+un valor relativamente alto de
+
+210
+00:07:12,280 --> 00:07:14,250
+“Jcv” y de “j entrenamiento”.
+
+211
+00:07:15,370 --> 00:07:16,820
+Esto también implica algo
+
+212
+00:07:17,120 --> 00:07:18,520
+muy interesante:
+
+213
+00:07:18,800 --> 00:07:19,990
+Si un algoritmo de aprendizaje tiene un
+
+214
+00:07:20,360 --> 00:07:22,250
+alta oscilación , a medida
+
+215
+00:07:22,390 --> 00:07:23,430
+que tenemos más ejemplos de entrenamiento,
+
+216
+00:07:24,060 --> 00:07:25,100
+es decir, que nos
+
+217
+00:07:25,210 --> 00:07:26,600
+movemos hacia la derecha esta figura, nos
+
+218
+00:07:26,740 --> 00:07:27,880
+daremos cuenta de que el error de
+
+219
+00:07:28,220 --> 00:07:29,430
+validación cruzada no disminuye
+
+220
+00:07:29,740 --> 00:07:31,020
+mucho sino que más bien
+
+221
+00:07:31,560 --> 00:07:32,820
+permanece plano. Por lo tanto,
+
+222
+00:07:32,950 --> 00:07:35,020
+si los algoritmos de aprendizaje tienen una oscilación realmente alta,
+
+223
+00:07:36,640 --> 00:07:38,200
+el hecho de obtener más datos de entrenamiento
+
+224
+00:07:38,370 --> 00:07:39,710
+no ayudará
+
+225
+00:07:40,190 --> 00:07:41,580
+mucho.
+
+226
+00:07:41,760 --> 00:07:43,120
+Un ejemplo concreto de esto es, en la figura
+
+227
+00:07:43,210 --> 00:07:45,670
+de la derecha empezamos sólo cinco ejemplos
+
+228
+00:07:46,060 --> 00:07:47,970
+de entrenamiento y ajustamos cierta línea recta y después
+
+229
+00:07:48,550 --> 00:07:49,270
+tuvimos muchos
+
+230
+00:07:49,540 --> 00:07:50,730
+más datos de entrenamiento y
+
+231
+00:07:51,040 --> 00:07:52,710
+aún así terminamos con la misma línea recta.
+
+232
+00:07:53,200 --> 00:07:54,290
+Si un algoritmo de aprendizaje
+
+233
+00:07:54,440 --> 00:07:57,090
+tiene un alta oscilación , darle más datos de entrenamiento
+
+234
+00:07:57,650 --> 00:07:59,060
+no ayudará a tener
+
+235
+00:07:59,830 --> 00:08:01,290
+un error de validación cruzada
+
+236
+00:08:01,890 --> 00:08:02,890
+o un error del conjunto de prueba más bajo.
+
+237
+00:08:03,730 --> 00:08:04,950
+Saber si tu algoritmo de
+
+238
+00:08:05,250 --> 00:08:06,600
+aprendizaje sufre de un sesgo
+
+239
+00:08:06,780 --> 00:08:07,620
+alto es útil
+
+240
+00:08:08,100 --> 00:08:09,500
+porque
+
+241
+00:08:09,640 --> 00:08:11,140
+puede evitar que pases
+
+242
+00:08:11,290 --> 00:08:12,520
+recolectando más ejemplos de entrenamiento
+
+243
+00:08:12,920 --> 00:08:15,440
+datos de entrenamiento cuando quizá no sean útiles.
+
+244
+00:08:16,200 --> 00:08:17,070
+A continuación veremos
+
+245
+00:08:17,140 --> 00:08:18,530
+la situación de un algoritmo de aprendizaje
+
+246
+00:08:19,470 --> 00:08:20,340
+con una varianza alta.
+
+247
+00:08:21,590 --> 00:08:22,880
+Veamos, primero, el
+
+248
+00:08:23,550 --> 00:08:24,260
+error de entrenamiento. Si
+
+249
+00:08:25,120 --> 00:08:26,350
+tienes un conjunto de entrenamiento
+
+250
+00:08:26,680 --> 00:08:28,730
+muy pequeño con, digamos, cinco ejemplos, como
+
+251
+00:08:29,130 --> 00:08:30,720
+se muestra en la figura de la derecha,
+
+252
+00:08:31,150 --> 00:08:32,170
+y estas ajustando un
+
+253
+00:08:32,200 --> 00:08:33,050
+polinomio de alto grado
+
+254
+00:08:34,380 --> 00:08:36,530
+,aquí escribí un polinomio del 100mo grado que
+
+255
+00:08:37,090 --> 00:08:38,750
+nadie utiliza realmente, sólo como ejemplo,
+
+256
+00:08:39,920 --> 00:08:41,460
+con un valor de
+
+257
+00:08:41,550 --> 00:08:43,160
+«lambda» relativamente pequeño que
+
+258
+00:08:43,800 --> 00:08:44,920
+quizá no llegue a cero, pero sí
+
+259
+00:08:45,070 --> 00:08:46,830
+un valor pequeño para «lambda», entonces
+
+260
+00:08:47,040 --> 00:08:47,980
+acabaremos ajustando mejor
+
+261
+00:08:48,190 --> 00:08:50,590
+estos datos que con una función
+
+262
+00:08:50,860 --> 00:08:53,390
+que causa sobreajuste.
+
+263
+00:08:54,380 --> 00:08:55,640
+Entonces, si el conjunto
+
+264
+00:08:55,990 --> 00:08:57,820
+de entrenamiento es pequeño, nuestro
+
+265
+00:08:58,320 --> 00:08:59,530
+error de entrenamiento, es decir, “J entrenamiento”
+
+266
+00:09:00,030 --> 00:09:01,810
+de «theta» también será pequeño.
+
+267
+00:09:03,130 --> 00:09:04,330
+A medida que este conjunto de aprendizaje aumenta,
+
+268
+00:09:04,940 --> 00:09:05,870
+quizá sigamos sobreajustando
+
+269
+00:09:06,000 --> 00:09:07,160
+estos datos
+
+270
+00:09:07,330 --> 00:09:08,810
+un poco y
+
+271
+00:09:09,780 --> 00:09:11,880
+se volverá cada vez más
+
+272
+00:09:12,020 --> 00:09:12,970
+difícil ajustar este conjunto de datos
+
+273
+00:09:13,940 --> 00:09:15,140
+perfectamente y a medida que crece el
+
+274
+00:09:15,350 --> 00:09:16,810
+conjunto de entrenamiento, encontraremos
+
+275
+00:09:16,960 --> 00:09:19,390
+que “j entrenamiento” también se incrementa y
+
+276
+00:09:19,840 --> 00:09:21,040
+será un poco más difícil
+
+277
+00:09:21,260 --> 00:09:22,720
+ajustar perfectamente el conjunto de entrenamiento cuando
+
+278
+00:09:22,890 --> 00:09:25,700
+tenemos más ejemplos, aunque el error del conjunto de entrenamiento será aún muy bajo.
+
+279
+00:09:26,530 --> 00:09:28,600
+Pero ¿Qué pasa con el error de validación cruzada?
+
+280
+00:09:29,220 --> 00:09:30,590
+En una situación de
+
+281
+00:09:31,040 --> 00:09:32,760
+alta varianza, la hipótesis
+
+282
+00:09:32,980 --> 00:09:34,190
+se sobreajusta, por lo que nuestro
+
+283
+00:09:34,290 --> 00:09:35,680
+error de validación cruzada se
+
+284
+00:09:36,120 --> 00:09:37,650
+mantendrá alto, aún si
+
+285
+00:09:37,750 --> 00:09:38,930
+tenemos un número moderado de
+
+286
+00:09:39,260 --> 00:09:40,520
+ejemplos de entrenamiento. El
+
+287
+00:09:41,170 --> 00:09:42,950
+error de validación cruzada, entonces,
+
+288
+00:09:43,730 --> 00:09:45,520
+se vería así.
+
+289
+00:09:45,660 --> 00:09:47,720
+Un diagnóstico indicativo de que
+
+290
+00:09:47,830 --> 00:09:49,200
+tenemos un problema de alta varianza
+
+291
+00:09:50,210 --> 00:09:51,490
+es el hecho de tener
+
+292
+00:09:51,720 --> 00:09:54,010
+este gran espacio
+
+293
+00:09:54,340 --> 00:09:56,440
+entre el error de entrenamiento y el error de validación cruzada.
+
+294
+00:09:57,440 --> 00:09:58,180
+Al mirar esta figura,
+
+295
+00:09:58,720 --> 00:10:00,170
+si pensamos en añadir más
+
+296
+00:10:00,440 --> 00:10:01,810
+datos de entrenamiento, es decir, si tomamos
+
+297
+00:10:02,110 --> 00:10:03,660
+esta figura y la extrapolamos a
+
+298
+00:10:03,790 --> 00:10:05,220
+la derecha, podemos
+
+299
+00:10:05,330 --> 00:10:06,830
+predecir que
+
+300
+00:10:07,030 --> 00:10:08,120
+las dos curvas, la curva azul y
+
+301
+00:10:08,480 --> 00:10:10,480
+la curva magenta, convergerán una con la otra y
+
+302
+00:10:11,420 --> 00:10:12,360
+si extrapolamos esta
+
+303
+00:10:12,520 --> 00:10:13,840
+figura a la
+
+304
+00:10:13,980 --> 00:10:21,230
+derecha, parece
+
+305
+00:10:21,360 --> 00:10:23,000
+probable que el
+
+306
+00:10:23,170 --> 00:10:24,120
+error de entrenamiento
+
+307
+00:10:24,270 --> 00:10:25,740
+seguirá subiendo y que el
+
+308
+00:10:27,130 --> 00:10:29,040
+error de validación cruzada seguirá bajando.
+
+309
+00:10:30,000 --> 00:10:32,340
+Lo que realmente nos importa es el error de validación cruzada
+
+310
+00:10:33,010 --> 00:10:35,150
+o el error del conjunto de aprendizaje ¿cierto?
+
+311
+00:10:35,300 --> 00:10:36,460
+En este tipo de figuras,
+
+312
+00:10:36,730 --> 00:10:37,850
+podemos predecir que
+
+313
+00:10:38,230 --> 00:10:39,420
+si seguimos añadiendo
+
+314
+00:10:39,820 --> 00:10:40,930
+ejemplos de entrenamiento y extrapolándolos a la
+
+315
+00:10:41,050 --> 00:10:42,650
+derecha, nuestro error de
+
+316
+00:10:43,290 --> 00:10:44,610
+validación cruzada seguirá disminuyendo.
+
+317
+00:10:45,120 --> 00:10:46,090
+Por lo tanto, es probable que en una situación de
+
+318
+00:10:46,330 --> 00:10:47,980
+varianza alta, obtener más
+
+319
+00:10:48,180 --> 00:10:49,550
+datos de entrenamiento sea, efectivamente,
+
+320
+00:10:50,170 --> 00:10:51,240
+de ayuda.
+
+321
+00:10:51,520 --> 00:10:52,810
+De nuevo, saber si tu algoritmo
+
+322
+00:10:53,060 --> 00:10:54,180
+tiene un problema de
+
+323
+00:10:54,330 --> 00:10:55,830
+varianza alta es útil
+
+324
+00:10:56,150 --> 00:10:57,460
+porque indica
+
+325
+00:10:57,810 --> 00:10:59,150
+que puede valer
+
+326
+00:10:59,220 --> 00:11:00,100
+la pena
+
+327
+00:11:00,680 --> 00:11:02,430
+averiguar si puedes obtener más datos de entrenamiento.
+
+328
+00:11:03,700 --> 00:11:04,920
+Ahora, en la diapositiva anterior
+
+329
+00:11:05,330 --> 00:11:06,450
+y en esta dibujé curvas
+
+330
+00:11:06,970 --> 00:11:08,510
+muy idealizadas y limpias.
+
+331
+00:11:08,900 --> 00:11:10,050
+Si trazas estas curvas en
+
+332
+00:11:10,170 --> 00:11:11,970
+un algoritmo de aprendizaje real,
+
+333
+00:11:12,500 --> 00:11:13,910
+lo que verás en son
+
+334
+00:11:14,560 --> 00:11:15,900
+curvas, como las que dibujé aquí,
+
+335
+00:11:16,600 --> 00:11:17,730
+pero algunas veces serán
+
+336
+00:11:18,150 --> 00:11:19,160
+más irregulares y
+
+337
+00:11:19,230 --> 00:11:20,820
+con más ruido que estas.
+
+338
+00:11:21,090 --> 00:11:22,440
+Trazar las curvas de aprendizaje, como
+
+339
+00:11:22,620 --> 00:11:23,850
+estas, puede decirte
+
+340
+00:11:24,120 --> 00:11:25,460
+o puede ayudarte a
+
+341
+00:11:25,570 --> 00:11:26,650
+saber si tu algoritmo de aprendizaje
+
+342
+00:11:26,950 --> 00:11:29,080
+sufre de un alta oscilación o una alta varianza o un poco de los dos.
+
+343
+00:11:29,170 --> 00:11:31,030
+Algo que siempre hago
+
+344
+00:11:31,200 --> 00:11:32,700
+cuando intento mejorar
+
+345
+00:11:32,760 --> 00:11:34,060
+el desempeño de
+
+346
+00:11:34,260 --> 00:11:35,720
+un algoritmo de aprendizaje,
+
+347
+00:11:35,960 --> 00:11:37,440
+es trazar estas líneas
+
+348
+00:11:37,970 --> 00:11:39,460
+de aprendizaje. Esto, generalmente,
+
+349
+00:11:39,490 --> 00:11:41,710
+te dará una mejor idea de si hay un problema de oscilación o de varianza.
+
+350
+00:11:44,280 --> 00:11:45,180
+En el siguiente video
+
+351
+00:11:45,420 --> 00:11:46,440
+veremos cómo esto puede
+
+352
+00:11:46,650 --> 00:11:48,370
+sugerir acciones específicas
+
+353
+00:11:48,450 --> 00:11:49,580
+que se deben realizar o no
+
+354
+00:11:50,260 --> 00:11:53,250
+para mejorar el desempeño de un algoritmo de aprendizaje.

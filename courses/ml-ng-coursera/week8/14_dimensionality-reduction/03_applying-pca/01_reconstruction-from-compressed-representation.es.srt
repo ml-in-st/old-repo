@@ -1,0 +1,451 @@
+1
+00:00:00,120 --> 00:00:01,020
+En algunos de los videos anteriores,
+
+2
+00:00:01,690 --> 00:00:03,300
+estuve hablando del ACP como
+
+3
+00:00:03,410 --> 00:00:05,270
+un algoritmo de compresión en el que
+
+4
+00:00:05,330 --> 00:00:06,760
+podríamos tener datos de digamos 1000 dimensiones
+
+5
+00:00:07,270 --> 00:00:08,760
+y comprimirlos
+
+6
+00:00:09,100 --> 00:00:10,850
+a un vector de variables en 100 dimensiones
+
+7
+00:00:11,010 --> 00:00:12,360
+o de datos tres dimensiones
+
+8
+00:00:12,810 --> 00:00:14,980
+y comprimirlos a una representación de dos dimensiones.
+
+9
+00:00:16,360 --> 00:00:17,430
+Así que si este es un
+
+10
+00:00:17,620 --> 00:00:19,040
+algoritmo de compresión, debe haber
+
+11
+00:00:19,360 --> 00:00:20,440
+una manera de volver, a partir
+
+12
+00:00:20,660 --> 00:00:22,930
+de esta representación comprimida, a una
+
+13
+00:00:23,030 --> 00:00:25,560
+aproximación de su conjunto de datos original.
+
+14
+00:00:26,340 --> 00:00:28,070
+Así, dado z (i), que tal vez
+
+15
+00:00:28,780 --> 00:00:30,250
+tenga un centenar de dimensiones, ¿cómo
+
+16
+00:00:30,320 --> 00:00:31,710
+volvemos a la representación original
+
+17
+00:00:32,050 --> 00:00:34,720
+x (i), que era tal vez de mil dimensiones?
+
+18
+00:00:35,760 --> 00:00:36,820
+En este video, me gustaría
+
+19
+00:00:36,930 --> 00:00:40,350
+describir cómo hacerlo.
+
+20
+00:00:40,500 --> 00:00:43,620
+En el algoritmo ACP, podemos tener un ejemplo como este,
+
+21
+00:00:43,940 --> 00:00:45,670
+entonces, tal vez este es mi ejemplo x(1)
+
+22
+00:00:45,910 --> 00:00:47,810
+y tal vez este es mi ejemplo x(2) y
+
+23
+00:00:48,110 --> 00:00:49,340
+lo que hacemos
+
+24
+00:00:49,570 --> 00:00:51,010
+es tomar estos ejemplos y
+
+25
+00:00:51,120 --> 00:00:54,160
+los proyectamos en esta superficie de una dimensión,
+
+26
+00:00:55,150 --> 00:00:56,280
+ahora tenemos que
+
+27
+00:00:56,450 --> 00:00:57,750
+utilizar sólo un número real,
+
+28
+00:00:58,350 --> 00:01:00,500
+digamos z1, para especificar la
+
+29
+00:01:00,600 --> 00:01:01,950
+ubicación de estos puntos después
+
+30
+00:01:02,300 --> 00:01:04,640
+de que los proyectamos en esta superficie de una dimensión. Entonces,
+
+31
+00:01:04,890 --> 00:01:06,930
+dado un punto
+
+32
+00:01:07,730 --> 00:01:08,730
+como este, dado un punto z1,
+
+33
+00:01:08,980 --> 00:01:10,840
+¿cómo podemos volver a
+
+34
+00:01:11,000 --> 00:01:12,580
+este espacio bidimensional original?
+
+35
+00:01:13,290 --> 00:01:15,380
+y en particular, dado el punto
+
+36
+00:01:15,510 --> 00:01:16,510
+z, que está en R,
+
+37
+00:01:16,660 --> 00:01:17,840
+¿podemos mapear
+
+38
+00:01:18,160 --> 00:01:19,660
+esto a alguna representación aproximada
+
+39
+00:01:20,440 --> 00:01:22,060
+x en R2 de
+
+40
+00:01:22,370 --> 00:01:24,970
+cualquiera que fuera el valor original de los datos?
+
+41
+00:01:26,520 --> 00:01:28,090
+Así, mientras que z=U reducida
+
+42
+00:01:28,400 --> 00:01:29,570
+x transpuesta, si
+
+43
+00:01:29,680 --> 00:01:30,640
+quiere ir en la dirección opuesta,
+
+44
+00:01:30,930 --> 00:01:33,620
+la ecuación para
+
+45
+00:01:33,780 --> 00:01:35,150
+esto es, vamos a escribir
+
+46
+00:01:35,290 --> 00:01:38,220
+x"aprox"= u"reducir"
+
+47
+00:01:40,470 --> 00:01:43,570
+elevado a "z".
+
+48
+00:01:44,020 --> 00:01:44,880
+Una vez más, sólo para comprobar las dimensiones,
+
+49
+00:01:45,950 --> 00:01:47,760
+aquí u "reducir" va a ser un
+
+50
+00:01:47,970 --> 00:01:48,990
+vector dimensional nxk,
+
+51
+00:01:49,680 --> 00:01:51,260
+z va a ser un
+
+52
+00:01:51,370 --> 00:01:53,270
+vector kx1 dimensional.
+
+53
+00:01:54,030 --> 00:01:56,280
+Así, multiplicamos estos y va a resultar nx1,
+
+54
+00:01:56,720 --> 00:01:58,270
+entonces, x "aprox" va a ser
+
+55
+00:01:58,450 --> 00:01:59,990
+un vector "n" dimensional.
+
+56
+00:02:00,310 --> 00:02:01,320
+Y así, la intención del ACP
+
+57
+00:02:01,390 --> 00:02:03,320
+que es que el error de proyección al cuadrado
+
+58
+00:02:03,620 --> 00:02:04,510
+no sea demasiado grande, es que
+
+59
+00:02:04,730 --> 00:02:06,050
+este x "aprox" estará
+
+60
+00:02:06,500 --> 00:02:08,640
+cerca de lo que fue
+
+61
+00:02:08,960 --> 00:02:10,090
+el valor original de x
+
+62
+00:02:10,270 --> 00:02:13,140
+que había usado para derivar "z" al principio.
+
+63
+00:02:14,080 --> 00:02:16,630
+Para mostrar una imagen de cómo luce esto, esta es su apariencia.
+
+64
+00:02:16,870 --> 00:02:17,820
+Lo que se obtiene de este
+
+65
+00:02:17,970 --> 00:02:19,640
+procedimiento son los puntos que se encuentran
+
+66
+00:02:19,920 --> 00:02:22,860
+en la proyección en la línea verde.
+
+67
+00:02:23,500 --> 00:02:24,580
+Entonces, para retomar nuestro ejemplo anterior,
+
+68
+00:02:24,920 --> 00:02:26,400
+si comenzamos con
+
+69
+00:02:26,610 --> 00:02:28,570
+este valor de x1, y obtuvimos
+
+70
+00:02:28,850 --> 00:02:29,690
+este valor z1, si ponemos z1
+
+71
+00:02:30,310 --> 00:02:32,760
+a través de esta fórmula para obtener
+
+72
+00:02:33,440 --> 00:02:35,510
+x1 "aprox", entonces este
+
+73
+00:02:35,730 --> 00:02:37,040
+punto aquí será
+
+74
+00:02:37,590 --> 00:02:40,110
+x1 "aprox", que a su vez estará en
+
+75
+00:02:40,260 --> 00:02:41,990
+R2.
+
+76
+00:02:42,780 --> 00:02:44,060
+De manera similar, si
+
+77
+00:02:44,180 --> 00:02:45,640
+hace el mismo procedimiento, este será
+
+78
+00:02:45,760 --> 00:02:47,840
+x2 "aprox" y
+
+79
+00:02:49,640 --> 00:02:50,630
+esa es una aproximación
+
+80
+00:02:50,780 --> 00:02:53,160
+buena a los datos originales.
+
+81
+00:02:53,670 --> 00:02:54,870
+Así que, así es como puede
+
+82
+00:02:55,060 --> 00:02:56,190
+volver de su representación z de
+
+83
+00:02:56,630 --> 00:02:58,350
+bajas dimensiones a una
+
+84
+00:02:58,700 --> 00:03:00,720
+representación no comprimida de
+
+85
+00:03:00,760 --> 00:03:01,990
+los datos, obtenemos de vuelta
+
+86
+00:03:02,240 --> 00:03:03,480
+una aproximación a sus datos
+
+87
+00:03:03,690 --> 00:03:05,400
+originales x, también
+
+88
+00:03:05,500 --> 00:03:07,210
+llamamos a este proceso reconstrucción
+
+89
+00:03:08,220 --> 00:03:08,900
+de datos originales.
+
+90
+00:03:09,530 --> 00:03:10,950
+Cuando pensamos en tratar de reconstruir
+
+91
+00:03:11,310 --> 00:03:13,630
+el valor original de "x", a partir de la representación comprimida.
+
+92
+00:03:16,770 --> 00:03:18,370
+Entonces, dado un grupo de datos no etiquetados,
+
+93
+00:03:18,610 --> 00:03:19,850
+ahora ya sabe cómo utilizar
+
+94
+00:03:19,990 --> 00:03:21,710
+el ACP y tomar
+
+95
+00:03:21,970 --> 00:03:23,800
+sus altas variables dimensionales "x" y
+
+96
+00:03:24,130 --> 00:03:25,440
+mapearlas a esta
+
+97
+00:03:25,560 --> 00:03:27,200
+representación z de menos dimensiones,
+
+98
+00:03:27,400 --> 00:03:28,630
+a partir de este video, esperamos que ahora
+
+99
+00:03:28,910 --> 00:03:29,670
+también sepa cómo tomar
+
+100
+00:03:30,260 --> 00:03:31,690
+esta representación z de pocas dimensiones y
+
+101
+00:03:31,860 --> 00:03:32,810
+mapearlas de vuelta a una aproximación
+
+102
+00:03:33,700 --> 00:03:35,780
+de su conjunto de datos original.
+
+103
+00:03:37,300 --> 00:03:38,180
+Ahora que sabe cómo
+
+104
+00:03:38,460 --> 00:03:40,280
+implementar y aplicar ACP, lo que
+
+105
+00:03:40,470 --> 00:03:41,290
+me gustaría hacer a continuación es
+
+106
+00:03:41,390 --> 00:03:42,250
+hablar sobre algunos de los
+
+107
+00:03:42,290 --> 00:03:43,460
+mecanismos para usar realmente
+
+108
+00:03:43,990 --> 00:03:45,240
+de forma correcta el ACP y
+
+109
+00:03:45,530 --> 00:03:46,670
+en particular, en el siguiente video
+
+110
+00:03:46,890 --> 00:03:47,610
+me gustaría hablar
+
+111
+00:03:48,090 --> 00:03:49,730
+acerca de cómo elegir k, que es el
+
+112
+00:03:49,910 --> 00:03:51,140
+cómo elegir la dimensión
+
+113
+00:03:51,560 --> 00:03:53,570
+de este vector z de representación reducida.

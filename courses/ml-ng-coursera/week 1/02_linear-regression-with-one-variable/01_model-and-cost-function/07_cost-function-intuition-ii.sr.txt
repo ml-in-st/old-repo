@@ -1,0 +1,33 @@
+U ovome videu ćemo da zakopamo malo dublje da 
+bismo dobili jasniju sliku o tome šta funkcija koštanja radi. Podrazumeva se da ste
+ upoznati sa crtanjem kontura. Ako niste upoznati, neke od ilustracija u videu će imati smisla a neke 
+neće ali je u redu da preskočite ovaj video ili neki od njih jer niste ranije videli crtanje kontura. To je u redu i opet ćete razumeti ostatak kursa bez tih delova. Kao i obično, 
+ovo je formulacija našeg problema, sa parametrima hipoteze, funkcijom 
+koštanja i ciljem naše optimizacije. Za razliku od prošlog puta, zadržaću oba parametra, teta0 i teta1 dok budemo pravili vizualizaciju
+ funkcije koštanja. Dakle, isto kao i prošli put, želimo da razumemo 
+hipotezu h i funkciju koštanja J. Dakle, ovo je moj trening skup cena 
+nekretnina, hajde da napravimo neku hipotezu. Recimo, ovo uopšte nije dobra hipoteza. Ako postavim
+ teta0 = 50 i teta1 = 0.06, dobiću ovu dole hipotezu koja odgovara ovoj pravoj liniji. Za ove vrednosti teta0 i teta1, želimo da iscrtamo odgovarajuću funkciju koštanja. Evo šta smo uradili prošli put kada smo imali 
+samo teta1. Drugim rečima, iscrtali smo crtež koji izgleda ovako kao funkciju od 
+teta1. Ali sad imamo dva parametra, teta0 i teta1 pa će crtanje da bude malo složenije. Ispada da, kada smo imali samo jedan parametar, 
+dio koji smo crtali je bila funkcija u obliku luka. Sad kada imamo dva 
+parametra, ispada da funkcija koštanja takođe ima oblik luka. U zavisnosti od vašeg trening skupa, možete da dobijete funkciju koja izgleda ovako. Dakle, ovo je 3D oblik gde su ose označene kao teta0 i teta1. Ako menjate teta0 i teta1, dva 
+parametra, dobijate različite vrednosti funkcije koštanja J (teta0, teta1) a visina ove površi iznad određene tačke teta0, teta1, to je vertikalna osa, visina tačke na površi upućuje na vrednost J(teta0, teta1). Kao što možete da vidite ima oblik luka. Pokazaću vam isti crtež u 3D. Dakle, ovo je ista figura 
+u 3D, imamo ose teta0 i teta1 a vertikalna osa J(teta0, teta1) i ako rotiram ovo dobićete osećaj ravni u obliku luka i tako izgleda funkcija koštanja J. Radi ilustracije, u ostatku ovoga videa neću da koristim ove 3D oblike da bih vam pokazao funkciju J, umesto toga koristiću 
+konturu, ili ono što volim da zovem oblikom konture, mislim da imaju isto
+ značenje, da bih vam pokazao ravni. Dakle, ovo je primer oblika konture, na desnoj strani, gde su ose teta0 i teta1. Šta svaki od ovih ovala, šta 
+svaka od ovih elipsi pokazuje je skup tačaka koje uzimaju iste vrednosti za J(teta0, teta1). Konkretno, na primer ovo, uzećete tu tačku, tu tačku i tu tačku. Sve tri tačke koje sam nacrtao magenta
+ bojom liniji imaju istu vrednost za J(teta0, teta1). U redu. Ovo je teta0, teta1 osa ali sve tri imaju istu vrednost za J(teta0, teta1) a ako niste mnogo viđali slike kontura, zamislite da funkcija u obliku luka izlazi iz mog 
+ekrana. Dakle, to je minimum, dno luka je tačka upravo ovde, ova sredina, sredina tih koncentričnih elipsi. I zamislite oblik 
+luka koji kao da izrasta iz mog ekrana, ovako, tako da svaka elipsa ima istu visinu iznad mog ekrana. A minimum luka je baš dole. I tako, oblici kontura su možda prihvaćeniji način predstavljanja moje funkcije J. 
+Pogledajmo neke primere. Ovde imam određenu tačku, u redu. A to je ako je teta0 jednako otprilike 800 a teta1 jednako oko -0.15. Tako, ova crvena tačka odgovara skupu vrednosti para teta0, teta1 i u stvari odgovara hipotezi teta0 je oko 800, seče horizontalnu osu na oko 800, a ovo je nagib od oko -0.15. Ova linija ne odgovara baš najbolje podacima. Ova hipoteza h(x) sa ovim vrednostima teta0 teta1 uopšte ne odgovara podacima. To shvatate, to je koštanje. Ta vrednost je tamo, 
+poprilično je udaljena od minimuma, ovo je prilično visoka cena jer ovo ne odgovara podacima. Pogledajmo još neke primere. Ovo je drugačija hipoteza, koja još uvek ne odgovara podacima ali je malo bolja tako da evo je tačka na desnoj strani, to su parametri teta0 teta1 i moja teta0 vrednost. To je oko 360 i moja vrednost za teta1. Jednaka je 0. Hajde da napišemo, teta0 = 360 a teta1 = 0. A taj par parametara odgovara ovoj hipotezi, odgovara pravoj koja je h(x) = 360 + 0 * x. Dakle, to je hipoteza. I ona ima svoju cenu, a ta cena je visina J funkcije u toj tački. Pogledajmo par primera. Još jednom, ovo je, u ovoj vrednosti teta0 i u toj vrednosti teta1 dobijamo ovu hipotezu h(x) i još jednom ne tako dobro slaganje sa podacima 
+i još je dalje od minimuma. Poslednji primer, ovo nije baš minimum ali je blizu minimuma. Dakle, prilično dobro odgovara podacima gde, za određenu vrednost teta0 i za određenu vrednost teta1 imamo određeno h(x). Ovo nije baš minimum ali je prilično blizu. Suma kvadrata 
+grešaka je suma rastojanja između mojih trening primera i moje hipoteze. 
+To je suma kvadrata rastojanja. Sve ove greške, sve je to prilično blizu minimuma iako nije baš minimum. Nadam se da su 
+vam ove slike pomogle da bolje razumete šta su vrednosti funkcije koštanja J, kako odgovaraju različitim hipotezama 
+i kako bolje hipoteze odgovaraju tačkama koje su bliže minimumu funkcije koštanja J. Ono što zaista želimo je efikasan algoritam, efikasan softver za automatsko pronalaženje vrednosti 
+teta0 i teta1 koje minimizuju funkciju koštanja J, u redu? A ono što ne želimo je da napišemo softver, iscrtamo tačke i onda ručno čitamo brojeve, to nije dobar način. Videćemo kasnije da, kada budemo gledali komplikovanije 
+primere, imaćemo visokodimenzione oblike sa više parametara, videćete kasnije u ovome kursu da postoje primeri gde ne možete da iscrtate ove oblike i to postaje teže da se sagleda. Ono što želimo je softver koji pronalazi vrednosti teta0, teta1 
+koje minimizuju ovu funkciju a u sledećem videu počećemo da govorimo 
+o algoritmu koji automatski pronalazi te vrednosti teta0 i teta1 koje minimizuju funkciju koštanja J.

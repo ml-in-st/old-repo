@@ -1,0 +1,786 @@
+1
+00:00:00,370 --> 00:00:02,420
+Poprzednio zdefiniowaliśmy funkcję kosztu J.
+
+2
+00:00:02,420 --> 00:00:06,960
+W tym nagraniu opowiem Ci o tzw.
+algorytmie gradientu prostego,
+
+3
+00:00:06,960 --> 00:00:09,360
+minimalizującego funkcję kosztu J.
+
+4
+00:00:09,360 --> 00:00:12,860
+Okazuje się, że algorytm gradientu prostego jest bardziej ogólnym algorytmem,
+
+5
+00:00:12,860 --> 00:00:15,000
+używanym nie tylko w przypadku regresji liniowej.
+
+6
+00:00:15,000 --> 00:00:17,910
+Jest właściwie wszechobecny w
+uczeniu maszynowym.
+
+7
+00:00:17,910 --> 00:00:21,010
+W dalszej części kursu wykorzystamy
+gradient prosty także
+
+8
+00:00:21,010 --> 00:00:25,110
+do minimalizacji innych funkcji, nie tylko funkcji kosztu J regresji liniowej.
+
+9
+00:00:26,150 --> 00:00:30,163
+Dlatego też w tym nagraniu porozmawiamy o gradiencie prostym w kontekście minimalizacji
+
+10
+00:00:30,163 --> 00:00:34,434
+dowolnej funkcji J, a w dalszych nagraniach zastosujemy ten algorytm
+
+11
+00:00:34,434 --> 00:00:38,122
+do funkcji kosztu J, którą zdefiniowaliśmy dla
+
+12
+00:00:38,122 --> 00:00:39,306
+regresji liniowej.
+
+13
+00:00:41,848 --> 00:00:43,849
+Oto, jak wygląda nasz problem:
+
+14
+00:00:43,849 --> 00:00:46,748
+Mamy jakąś funkcję J(theta0, theta1) -
+
+15
+00:00:46,748 --> 00:00:50,202
+być może jest to funkcja kosztu J regresji liniowej;
+
+16
+00:00:50,202 --> 00:00:53,340
+być może jest to jakaś inna funkcja, którą chcemy minimalizować.
+
+17
+00:00:53,340 --> 00:00:55,919
+Chcemy mieć algorytm do
+
+18
+00:00:55,919 --> 00:00:59,617
+minimalizacji funkcji J(theta0, theta1).
+
+19
+00:00:59,617 --> 00:01:04,324
+Tak na marginesie: okazuje się, że gradient prosty ma zastosowanie także w przypadku
+
+20
+00:01:04,324 --> 00:01:05,800
+bardziej ogólnych funkcji.
+
+21
+00:01:05,800 --> 00:01:09,530
+Wyobraź sobie więc, że jeśli masz funkcję, która jest np. funkcją J(theta0, theta1, theta2 itd. aż do jakiegoś thetaN)
+
+22
+00:01:09,530 --> 00:01:16,360
+i chcesz minimalizować tę funkcję względem
+
+23
+00:01:16,360 --> 00:01:23,880
+theta0 do thetaN,
+
+24
+00:01:23,880 --> 00:01:25,690
+okazuje się, że algorytm gradientu prostego
+
+25
+00:01:25,690 --> 00:01:27,740
+może rozwiązać ten ogólny problem.
+
+26
+00:01:27,740 --> 00:01:30,520
+Jednak dla prostoty,
+
+27
+00:01:30,520 --> 00:01:34,840
+dla zwięzłości zapisu, przez resztę nagrania
+będę udawał,
+
+28
+00:01:34,840 --> 00:01:37,470
+że mam tylko dwa parametry.
+
+29
+00:01:37,470 --> 00:01:40,420
+Oto, na czym polega gradient prosty:
+
+30
+00:01:40,420 --> 00:01:45,240
+Najpierw wstępnie "zgadujemy" wartości parametrów
+
+31
+00:01:45,240 --> 00:01:47,180
+theta0 i theta1.
+
+32
+00:01:47,180 --> 00:01:51,916
+Nieważne, jakie są to wartości, ale często przyjmuje się theta0 = 0
+
+33
+00:01:51,916 --> 00:01:55,600
+i theta1 = 0; po prostu zerujemy je.
+
+34
+00:01:55,600 --> 00:02:00,372
+W ramach algorytmu gradientu prostego będziemy powoli zmieniać wartości theta0
+
+35
+00:02:00,372 --> 00:02:05,359
+i theta1 tak, aby spróbować zminimalizować wartość J(theta0, theta1), aż, przy
+odrobinie szczęścia
+
+36
+00:02:05,359 --> 00:02:08,420
+wylądujemy w minimum (lub, być może, w minimum lokalnym).
+
+37
+00:02:09,880 --> 00:02:13,588
+Zobaczmy na rysunkach, co robi gradient prosty.
+
+38
+00:02:13,588 --> 00:02:16,269
+Powiedzmy, że chcesz minimalizować tę funkcję.
+
+39
+00:02:16,269 --> 00:02:18,812
+Zwróć uwagę na osie: na osi poziomej
+
+40
+00:02:18,812 --> 00:02:22,784
+jest theta0 i theta1, na pionowej - wartość J.
+
+41
+00:02:22,784 --> 00:02:27,730
+Tak więc wysokość powierzchni odpowiada wartości J - chcemy więc tę wysokość minimalizować.
+
+42
+00:02:27,730 --> 00:02:31,840
+Zaczniemy więc od theta0 i theta1 w
+jakimś punkcie.
+
+43
+00:02:31,840 --> 00:02:35,450
+Wyobraź sobie, że wybieramy jakąś wartość theta0 i theta1, co
+
+44
+00:02:35,450 --> 00:02:40,160
+odpowiada rozpoczęciu w jakimś punkcie tej powierzchni.
+
+45
+00:02:40,160 --> 00:02:43,130
+Jakiekolwiek wartości theta0, theta1 dadzą Ci jakiś punkt tej powierzchni.
+
+46
+00:02:43,130 --> 00:02:44,917
+Przyjąłem, że jest to punkt (0, 0), ale
+
+47
+00:02:44,917 --> 00:02:47,700
+czasem przyjmujemy też inne wartości.
+
+48
+00:02:49,280 --> 00:02:54,290
+Teraz chcę, żebyś wyobraził/a sobie ten wykres jako całość.
+
+49
+00:02:54,290 --> 00:02:57,930
+Wyobraź sobie, że jest to krajobraz jakiegoś trawiastego parku.
+
+50
+00:02:57,930 --> 00:03:02,710
+Tutaj mamy pagórki. Wyobraź sobie, że stoimy
+
+51
+00:03:02,710 --> 00:03:08,030
+w tym miejscu na wzgórzu, na tym małym, czerwonym wzgórzu w parku.
+
+52
+00:03:08,030 --> 00:03:12,270
+W ramach gradientu prostego obrócimy się teraz o 360 stopni wokół własnej osi,
+
+53
+00:03:12,270 --> 00:03:17,260
+rozejrzymy się wokoło i zadamy sobie pytanie: "Jeśli chciał(a)bym zrobić malutki krok"
+
+54
+00:03:17,260 --> 00:03:22,290
+"w jakimś kierunku tak, żeby jak najszybciej
+zejść na dół"
+
+55
+00:03:22,290 --> 00:03:25,060
+"w którym kierunku trzeba postawić ten
+malutki kroczek?"
+
+56
+00:03:25,060 --> 00:03:26,790
+"Jak zejść na dół,"
+
+57
+00:03:26,790 --> 00:03:30,300
+"fizycznie zejść ze wzgórza tak szybko, jak to tylko możliwe?"
+
+58
+00:03:31,370 --> 00:03:35,060
+Okazuje się, że jeśli stoisz w tym punkcie wzgórza i się rozejrzysz,
+
+59
+00:03:35,060 --> 00:03:38,820
+odkryjesz, że najlepszym kierunkiem do postawienia tego malutkiego kroku
+
+60
+00:03:38,820 --> 00:03:40,930
+jest mniej więcej ten kierunek.
+
+61
+00:03:40,930 --> 00:03:44,530
+Ok - teraz jesteś w nowym punkcie na wzgórzu.
+
+62
+00:03:44,530 --> 00:03:46,750
+Po raz kolejny rozglądasz się
+
+63
+00:03:46,750 --> 00:03:52,230
+i pytasz sam(a) siebie: "W którym kierunku trzeba postawić następny mały krok, żeby
+zejść najszybciej?"
+
+64
+00:03:52,230 --> 00:03:56,050
+Jeśli to zrobisz i postawisz następny krok, będzie to krok w tym kierunku.
+
+65
+00:03:57,220 --> 00:03:58,446
+Następnie kontynuujesz schodzenie.
+
+66
+00:03:58,446 --> 00:04:00,293
+Z tego nowego punktu rozglądasz się,
+
+67
+00:04:00,293 --> 00:04:04,020
+wybierasz kierunek, który najszybciej sprowadzi Cię na dół.
+
+68
+00:04:04,020 --> 00:04:06,190
+Stawiasz kolejny krok, i kolejny, itd.
+
+69
+00:04:06,190 --> 00:04:10,660
+aż dotrzesz do lokalnego minimum,
+które jest tutaj.
+
+70
+00:04:11,920 --> 00:04:13,690
+Gradient prosty ma ciekawą własność:
+
+71
+00:04:14,810 --> 00:04:18,500
+za pierwszym razem zaczęliśmy w tym punkcie,
+
+72
+00:04:18,500 --> 00:04:20,130
+prawda?
+
+73
+00:04:20,130 --> 00:04:22,290
+Zaczęliśmy w tym punkcie - o, tutaj.
+
+74
+00:04:22,290 --> 00:04:26,940
+Wyobraź sobie teraz, że zaczęlibyśmy algorytm gradientu prostego zaledwie kilka kroków dalej,
+po prawej stronie.
+
+75
+00:04:26,940 --> 00:04:31,000
+Wyobraź sobie, że zaczęlibyśmy od tego punktu na górze, po prawej.
+
+76
+00:04:31,000 --> 00:04:35,064
+Jeśli powtórzylibyśmy cały proces, tzn.: zaczęlibyśmy z tego punktu, rozejrzeli się,
+
+77
+00:04:35,064 --> 00:04:38,961
+postawili mały kroczek w kierunku
+najszybszego zejścia,
+
+78
+00:04:38,961 --> 00:04:42,120
+następnie rozejrzeli się, zrobili kolejny krok
+i tak dalej,
+
+79
+00:04:43,960 --> 00:04:47,910
+jeśli zaczęlibyśmy kilka kroków dalej, z prawej strony, gradient prosty
+
+80
+00:04:47,910 --> 00:04:52,860
+zaprowadziłby nas do drugiego lokalnego minimum po prawej.
+
+81
+00:04:54,250 --> 00:04:58,005
+Tak więc jeśli zacząłbyś/zaczęłabyś z tego punktu, wylądował(a)byś w tym
+
+82
+00:04:58,005 --> 00:05:02,090
+lokalnym optimum, ale jeśli zaczęłabyś/zacząłbyś z minimalnie innej pozycji -
+
+83
+00:05:02,090 --> 00:05:06,050
+wylądował(a)byś w zupełnie innym
+optimum lokalnym.
+
+84
+00:05:06,050 --> 00:05:08,810
+Jest to właściwość gradientu prostego, o której powiemy sobie
+
+85
+00:05:08,810 --> 00:05:10,780
+trochę później.
+
+86
+00:05:10,780 --> 00:05:14,970
+A więc tak to wygląda intuicyjnie, na obrazkach.
+
+87
+00:05:14,970 --> 00:05:18,070
+Przyjrzymy się matematyce.
+
+88
+00:05:18,070 --> 00:05:21,130
+Mamy tutaj definicję algorytmu
+gradientu prostego:
+
+89
+00:05:21,130 --> 00:05:26,540
+będziemy powtarzać te etapy,
+dopóki nie osiągniemy zbieżności.
+
+90
+00:05:26,540 --> 00:05:31,950
+Będziemy aktualizować parametry thetaJ, biorąc thetaJ
+
+91
+00:05:31,950 --> 00:05:36,560
+i odejmując od niego alpha razy
+to wyrażenie tutaj, ok?
+
+92
+00:05:36,560 --> 00:05:40,920
+Zobaczmy więc: pozwól, że rzucę trochę światła na to równanie.
+
+93
+00:05:40,920 --> 00:05:45,715
+Pierwsza sprawa: ten zapis: ":=". Będę używał symbolu ":=",
+
+94
+00:05:45,715 --> 00:05:50,847
+aby oznaczyć przypisanie - jest to
+operator przypisania.
+
+95
+00:05:50,847 --> 00:05:56,965
+Krótko mówiąc: zapis a := b oznacza
+w języku komputerowym:
+
+96
+00:05:56,965 --> 00:06:02,650
+"weź wartość b i zastąp nią wartość a, czymkolwiek by ona była."
+
+97
+00:06:02,650 --> 00:06:07,025
+Oznacza więc to: "przypisz zmiennej a wartość b" - jest to przypisanie.
+
+98
+00:06:07,025 --> 00:06:10,515
+Mogę też napisać a : = a + 1.
+
+99
+00:06:10,515 --> 00:06:13,020
+Znaczy to: "weź a i zwiększ jego wartość o 1."
+
+100
+00:06:13,020 --> 00:06:17,489
+Z kolei jeśli wezmę sam znak równości
+
+101
+00:06:17,489 --> 00:06:22,308
+i napiszę: "a = b", oznacza to, że a jest równe b.
+
+102
+00:06:24,854 --> 00:06:26,542
+Ok?
+Jeśli napiszę: "a = b",
+
+103
+00:06:26,542 --> 00:06:31,160
+potwierdzam, że wartość a jest równa
+wartości b, prawda?
+
+104
+00:06:31,160 --> 00:06:34,136
+A więc to po lewej jest operacją komputerową,
+
+105
+00:06:34,136 --> 00:06:36,450
+w ramach której przypisujemy jakiejś zmiennej nową wartość,
+
+106
+00:06:36,450 --> 00:06:40,480
+a po prawej mamy stwierdzenie - stwierdzamy jedynie, że wartości
+
+107
+00:06:40,480 --> 00:06:45,620
+a i b są sobie równe. W związku z tym mogę
+napisać  "a := a+1", co oznacza:
+
+108
+00:06:45,620 --> 00:06:50,810
+"zwiększ wartość a o 1",
+ale mam nadzieję, że nigdy nie napiszę: "a = a+1", bo to byłby po prostu błąd -
+
+109
+00:06:50,810 --> 00:06:54,100
+wartości "a" oraz "a+1" nigdy nie mogą
+być sobie równe.
+
+110
+00:06:54,100 --> 00:06:55,020
+Ok?
+
+111
+00:06:55,020 --> 00:06:59,404
+Tak wygląda pierwsza część definicji.
+
+112
+00:06:59,404 --> 00:07:06,640
+Ten symbol alfa nazywany jest
+współczynnikiem uczenia.
+
+113
+00:07:08,760 --> 00:07:12,310
+Alfa określa,
+
+114
+00:07:12,310 --> 00:07:15,280
+jak duży krok w dół robimy, schodząc ze wzgórza.
+
+115
+00:07:15,280 --> 00:07:19,750
+W związku z tym, jeśli alfa jest duże -
+odpowiada to bardzo agresywnemu
+
+116
+00:07:19,750 --> 00:07:22,880
+gradientowi prostemu, tzn.
+próbujemy robić wielkie kroki;
+
+117
+00:07:22,880 --> 00:07:26,730
+jeśli alfa jest bardzo małe, wykonujemy
+malutkie, maleńkie kroczki w dół.
+
+118
+00:07:26,730 --> 00:07:30,980
+Wrócę jeszcze do tego później i powiem,
+jak wybrać alfa itd.
+
+119
+00:07:32,090 --> 00:07:37,320
+Wreszcie, to wyrażenie jest pochodną.
+
+120
+00:07:37,320 --> 00:07:42,400
+Nie chcę o tym teraz mówić, ale
+wyprowadzę tę pochodną i
+
+121
+00:07:42,400 --> 00:07:45,360
+opowiem dokładnie, czym ona jest, ok?
+
+122
+00:07:45,360 --> 00:07:49,100
+Niektórzy z Was są bardziej biegli
+w różniczkowaniu, jednak nawet,
+
+123
+00:07:49,100 --> 00:07:51,550
+jeśli nie umiesz rachunku różniczkowego,
+nie martw się tym.
+
+124
+00:07:51,550 --> 00:07:54,010
+Opowiem Ci wszystko, co musisz wiedzieć o tym
+wyrażeniu tutaj.
+
+125
+00:07:55,450 --> 00:08:00,260
+Jest jeden niuans gradientu prostego,
+a mianowicie:
+
+126
+00:08:00,260 --> 00:08:04,230
+w ramach gradientu prostego aktualizujemy
+theta0 i theta1, prawda?
+
+127
+00:08:04,230 --> 00:08:07,809
+Ta aktualizacja ma miejsce od
+j = 0 oraz j =1, więc
+
+128
+00:08:07,809 --> 00:08:12,260
+będziemy aktualizować theta0 i theta1.
+
+129
+00:08:12,260 --> 00:08:19,593
+Niuans polega na tym, jak zaimplementujesz
+gradient prosty dla
+
+130
+00:08:19,593 --> 00:08:25,201
+tego wyrażenia, tej aktualizacji równania.
+
+131
+00:08:25,201 --> 00:08:32,127
+Chcemy aktualizować theta0 i theta1
+jednocześnie.
+
+132
+00:08:32,127 --> 00:08:36,304
+Mam przez to na myśli, że w tym równaniu
+będziemy aktualizować
+
+133
+00:08:36,304 --> 00:08:40,569
+theta0 := theta0 - cośtam,
+aktualizować
+theta1 := theta1 - cośtam
+
+134
+00:08:40,569 --> 00:08:46,552
+W ten sposób powinniśmy otrzymać to, co mamy 
+po prawej, prawda?
+
+135
+00:08:46,552 --> 00:08:51,661
+Obliczamy to wyrażenie dla theta0 i theta1,
+a potem, jednocześnie,
+
+136
+00:08:51,661 --> 00:08:55,654
+aktualizujemy theta0 i theta1, ok?
+
+137
+00:08:55,654 --> 00:08:58,175
+Już wyjaśniam, co mam na myśli:
+
+138
+00:08:58,175 --> 00:09:02,387
+Tak wygląda prawidłowa implementacja
+gradientu prostego z jednoczesną
+
+139
+00:09:02,387 --> 00:09:02,960
+aktualizacją.
+
+140
+00:09:02,960 --> 00:09:05,928
+Tworzę więc zmienną temp0 i temp1, aby
+
+141
+00:09:05,928 --> 00:09:09,736
+obliczyć prawą stronę równania
+
+142
+00:09:09,736 --> 00:09:13,824
+i przypisać jej wartość do zmiennych
+temp0 i temp1; następnie zaktualizuję theta0
+
+143
+00:09:13,824 --> 00:09:17,240
+i theta1 jednocześnie - tak wygląda
+prawidłowa implementacja.
+
+144
+00:09:18,550 --> 00:09:19,460
+Tu z kolei
+
+145
+00:09:19,460 --> 00:09:24,140
+mamy implementację nieprawidłową, która
+nie aktualizuje parametrów jednocześnie.
+
+146
+00:09:24,140 --> 00:09:28,274
+Przy nieprawidłowej implementacji, obliczamy 
+temp0,
+
+147
+00:09:28,274 --> 00:09:33,580
+aktualizujemy theta0, a następnie obliczamy 
+temp1 i aktualizujemy theta1.
+
+148
+00:09:34,780 --> 00:09:37,010
+Różnica między implementacjami
+po lewej i prawej stronie
+
+149
+00:09:37,010 --> 00:09:40,510
+jest następująca: spójrz tu, na dole.
+
+150
+00:09:40,510 --> 00:09:45,260
+Jeśli na tym etapie, w tym momencie,
+theta0 zostało już zaktualizowane -
+
+151
+00:09:45,260 --> 00:09:52,130
+użylibyśmy nowej wartości theta0
+do obliczenia pochodnej.
+
+152
+00:09:52,130 --> 00:09:58,366
+Oznacza to, że otrzymamy inną wartość, niż w przypadku temp1 po lewej, prawda?
+
+153
+00:09:58,366 --> 00:10:02,700
+A to dlatego, że w tym równaniu wykorzystaliśmy 
+już nową wartość theta0.
+
+154
+00:10:02,700 --> 00:10:05,750
+W związku z tym implementacja po prawej stronie
+jest niepoprawną
+
+155
+00:10:05,750 --> 00:10:07,720
+wersją gradientu prostego, ok?
+
+156
+00:10:07,720 --> 00:10:10,710
+Nie będę teraz wyjaśniał, czemu robimy aktualizację jednocześnie.
+
+157
+00:10:10,710 --> 00:10:15,670
+Na razie wiedz, że gradient prosty zwykle
+implementuje się w ten sposób.
+
+158
+00:10:15,670 --> 00:10:17,680
+Później opowiem o tym więcej;
+
+159
+00:10:17,680 --> 00:10:21,990
+Okazuje się, że taka implementacja
+z jednoczesną aktualizacją
+jest po prostu bardziej naturalna.
+
+160
+00:10:21,990 --> 00:10:23,765
+Kiedy ludzie mówią o gradiencie prostym -
+
+161
+00:10:23,765 --> 00:10:26,020
+zawsze mają na myśli jednoczesną aktualizację.
+
+162
+00:10:26,020 --> 00:10:28,470
+Jeśli zaimplementujesz niejednoczesną
+aktualizację,
+
+163
+00:10:28,470 --> 00:10:31,210
+okazuje się, że prawdopodobnie i tak zadziała.
+
+164
+00:10:31,210 --> 00:10:32,690
+Ale to nie będzie właściwy algorytm;
+
+165
+00:10:32,690 --> 00:10:35,010
+kiedy ludzie mówią "gradient prosty",
+mają na myśli co innego,
+
+166
+00:10:35,010 --> 00:10:37,423
+a to jest inny algorytm o innych właściwościach,
+
+167
+00:10:37,423 --> 00:10:42,234
+i z różnych powodów może się zachowywać
+w nieco dziwny sposób, więc
+
+168
+00:10:42,234 --> 00:10:48,010
+należy implementować gradient prosty,
+uwzględniając jednoczesne aktualizacje.
+
+169
+00:10:48,010 --> 00:10:51,420
+Tak z grubsza wygląda algorytm
+gradientu prostego.
+
+170
+00:10:51,420 --> 00:10:56,080
+W następnym nagraniu omówimy szczegóły
+wyrażenia z pochodną,
+
+171
+00:10:56,080 --> 00:10:58,660
+które zapisałem, ale nie zdefiniowałem.
+
+172
+00:10:58,660 --> 00:11:02,620
+Jeśli miałaś/eś zajęcia z rachunku różniczkowego
+i znasz pojęcie pochodnych
+
+173
+00:11:02,620 --> 00:11:06,970
+oraz pochodnych cząstkowych - okazuje się, że
+to wyrażenie jest dokładnie pochodną cząstkową.
+
+174
+00:11:06,970 --> 00:11:11,870
+Jeśli jednak nie znasz rachunku różniczkowego -
+nie martw się.
+
+175
+00:11:11,870 --> 00:11:14,010
+Następny materiał wyrobi Ci potrzebną intuicję
+
+176
+00:11:14,010 --> 00:11:18,260
+i powie wszystko, co musisz wiedzieć,
+aby obliczyć wyrażenie na pochodną, nawet,
+
+177
+00:11:18,260 --> 00:11:23,050
+jeśli nie znasz rachunku różniczkowego, i nawet,
+jeśli nie widziałaś/eś wcześniej
+pochodnych cząstkowych.
+
+178
+00:11:23,050 --> 00:11:25,860
+Tak więc mam nadzieję, że w
+następnym nagraniu
+
+179
+00:11:25,860 --> 00:11:29,280
+wyrobię Ci wszelką intuicję, której potrzebujesz,
+by stosować algorytm gradientu prostego.

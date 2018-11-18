@@ -1,0 +1,247 @@
+1
+00:00:00,000 --> 00:00:07,306
+En el video anterior, hablamos del gradiente de descenso estocástico y de cómo éste puede ser mucho más rápido que el gradiente de descenso en lotes.
+
+2
+00:00:07,306 --> 00:00:12,866
+En este vídeo vamos a hablar de otra variación sobre estas ideas que se llama gradiente de descenso de mini lote,
+
+3
+00:00:12,866 --> 00:00:16,906
+que puede trabajar a veces incluso un poco más rápido que el gradiente de descenso estocástico.
+
+4
+00:00:16,906 --> 00:00:22,046
+Para resumir el algoritmo del que hemos hablado hasta ahora,
+
+5
+00:00:22,046 --> 00:00:26,619
+en el gradiente de descenso por lotes vamos a utilizar todos los ejemplos «m» en cada iteración,
+
+6
+00:00:26,619 --> 00:00:31,792
+mientras que en el gradiente de descenso estocástico vamos a utilizar un solo ejemplo en cada iteración.
+
+7
+00:00:31,792 --> 00:00:36,120
+Lo que hace el gradiente de descenso de mini lotes es algo en un punto intermedio.
+
+8
+00:00:36,120 --> 00:00:46,559
+Específicamente con este algoritmo, vamos a utilizar ejemplos «b» en cada iteración, en donde «b» es un parámetro llamado "tamaño de mini lote",
+
+9
+00:00:46,559 --> 00:00:52,688
+de modo que la idea es que está de alguna manera entre el gradiente de descenso por lotes y el gradiente de descenso estocástico.
+
+10
+00:00:52,688 --> 00:00:57,488
+Esto es igual que el gradiente de descenso por lotes, excepto que voy a utilizar un tamaño de lote mucho más pequeño.
+
+11
+00:00:57,488 --> 00:01:08,672
+Una elección típica para el valor de «b» podría ser que «b» es igual a 10, digamos, y un rango típico realmente podría estar en cualquier lugar desde «b» es igual a 2, hasta «b» es igual a 100.
+
+12
+00:01:08,672 --> 00:01:13,668
+Así que ese será un rango de valores bastante típico para el lote de mini lotes.
+
+13
+00:01:13,668 --> 00:01:21,153
+La idea es que, en lugar de utilizar un ejemplo a la vez, o «m» ejemplos a la vez, usaremos «b» ejemplos a la vez.
+
+14
+00:01:21,153 --> 00:01:28,833
+De modo que escribiré esto de manera informal, vamos a obtener, digamos, «b». Para este ejemplo, digamos que «b» es igual a 10.
+
+15
+00:01:28,833 --> 00:01:37,782
+Así que vamos a obtener los próximos 10 ejemplos de mi conjunto de entrenamiento, de modo ese pueda ser algún conjunto de ejemplos «xi, yi».
+
+16
+00:01:37,782 --> 00:01:46,114
+Si se trata de 10 ejemplos entonces la indexación será hasta «x(i+9), y(i+9)»,
+
+17
+00:01:46,114 --> 00:01:57,794
+de modo que son 10 ejemplos en total y luego vamos a realizar básicamente una actualización del gradiente de descenso usando estos 10 ejemplos.
+
+18
+00:01:57,794 --> 00:02:19,012
+Así que eso es frecuencia de aprendizaje multiplicado por un décimo multiplicado por la suma sobre «k» es igual a «i» hasta «i+9» de «h» subíndice «theta» de «x(k)» menos «y(k)» multiplicado por «x(k)j».
+
+19
+00:02:19,012 --> 00:02:27,213
+De modo que en esta expresión, estamos sumando los términos del gradiente sobre mis diez ejemplos.
+
+20
+00:02:27,229 --> 00:02:32,370
+Así que, el número diez, este es mi tamaño de mini lote y en «i+9»
+
+21
+00:02:32,370 --> 00:02:39,384
+el 9 proviene de la elección del parámetro «b» y después de esto, aumentaremos
+
+22
+00:02:39,384 --> 00:02:46,755
+«i» por el décimo. Vamos a pasar a los próximos diez ejemplos y luego nos seguiremos moviendo de esta manera.
+
+23
+00:02:46,755 --> 00:02:50,584
+Sólo para escribir el algoritmo en su totalidad,
+
+24
+00:02:50,584 --> 00:02:55,231
+a fin de simplificar la indexación para esto
+
+25
+00:02:55,231 --> 00:02:59,843
+voy a suponer que tenemos un tamaño de mini lote de diez y un tamaño de conjunto de entrenamiento de mil.
+
+26
+00:02:59,843 --> 00:03:05,045
+Lo que vamos a hacer es tener este tipo de fórmula: para «i» es igual a 1, 11, 21, así que escalonando
+
+27
+00:03:05,045 --> 00:03:07,926
+en pasos de 10 porque observamos 10 ejemplos a la vez;
+
+28
+00:03:07,926 --> 00:03:13,648
+y luego realizamos este tipo de actualización del gradiente de descenso usando diez ejemplos a la vez,
+
+29
+00:03:13,648 --> 00:03:21,566
+de modo que este 10 y este i+9, esos son la consecuencia de haber elegido que mi mini lote sea 10.
+
+30
+00:03:21,566 --> 00:03:27,435
+Y este último bucle de cuatro , éste conjunto n 991 aquí porque,
+
+31
+00:03:27,435 --> 00:03:34,457
+si tengo 1000 muestras de entrenamiento, entonces necesito 100 pasos de tamaño 10 a fin de pasar a través de mi conjunto de entrenamiento.
+
+32
+00:03:34,457 --> 00:03:37,729
+Así que este es el gradiente de descenso de mini lote.
+
+33
+00:03:37,729 --> 00:03:43,219
+Comparado con el gradiente de descenso por lotes, éste también nos permite hacer progresos mucho más rápido.
+
+34
+00:03:43,219 --> 00:03:49,487
+Así que tenemos de nuevo nuestro ejemplo de ejecución de, ya saben, los datos del censo de EE.UU. con 300 millones de ejemplos de entrenamiento,
+
+35
+00:03:49,487 --> 00:03:55,621
+entonces lo que estamos diciendo después de ver tan sólo los 10 primeros ejemplos, podemos empezar a hacer progresos
+
+36
+00:03:55,621 --> 00:04:00,873
+para mejorar los parámetros «theta» así que no tenemos que buscar a través de todo el conjunto de entrenamiento.
+
+37
+00:04:00,873 --> 00:04:05,377
+Sólo tenemos que mirar a los primeros 10 ejemplos y esto nos permitirá empezar a hacer progresos y después
+
+38
+00:04:05,377 --> 00:04:09,289
+podemos ver los segundos diez ejemplos y modificar los parámetros un poco de nuevo, y así sucesivamente.
+
+39
+00:04:09,289 --> 00:04:14,186
+Por lo tanto, esa es la razón por la que el gradiente de descenso de mini lote puede ser más rápido que el gradiente de descenso por lotes,
+
+40
+00:04:14,186 --> 00:04:19,578
+a saber, pueden empezar a hacer progresos en la modificación de los parámetros después de mirar sólo diez ejemplos,
+
+41
+00:04:19,578 --> 00:04:24,836
+en lugar de tener que esperar hasta que hayan buscado cada ejemplo individual de los 300 millones de ellos.
+
+42
+00:04:24,836 --> 00:04:29,699
+Así que, ¿qué hay del gradiente de descenso de mini lote, en comparación con el gradiente de descenso estocástico?.
+
+43
+00:04:29,699 --> 00:04:38,237
+Así que, ¿por qué queremos observar los ejemplos «b» a la vez, en lugar de mirar un solo ejemplo a la vez, como en el gradiente de descenso estocástico?
+
+44
+00:04:38,237 --> 00:04:42,044
+La respuesta está en la vectorización.
+
+45
+00:04:42,044 --> 00:04:47,450
+En particular, es posible que el gradiente de descenso de mini lote supere el desempeño del gradiente de descenso estocástico
+
+46
+00:04:47,450 --> 00:04:50,817
+sólo si tienen una buena implementación vectorizada.
+
+47
+00:04:50,817 --> 00:04:58,571
+En ese caso, la suma sobre 10 ejemplos se puede realizar de una manera más vectorizada,
+
+48
+00:04:58,571 --> 00:05:05,376
+que le permitirá paralelizar parcialmente sus cálculos en los diez ejemplos.
+
+49
+00:05:05,376 --> 00:05:09,953
+Así que, en otras palabras, usando la vectorización apropiada para calcular los términos derivativos,
+
+50
+00:05:09,953 --> 00:05:18,565
+algunas veces pueden usar parcialmente las buenas bibliotecas de álgebra lineal numérica y paralelizar sus cálculos del gradiente en los ejemplos «b»,
+
+51
+00:05:18,565 --> 00:05:24,152
+mientras que, si están viendo un solo ejemplo a la vez con el gradiente de descenso estocástico entonces, ya saben,
+
+52
+00:05:24,152 --> 00:05:27,456
+sólo mirando un ejemplo a la vez, no hay mucho para paralelizar.
+
+53
+00:05:27,456 --> 00:05:29,824
+Al menos, hay menos para paralelizar.
+
+54
+00:05:29,824 --> 00:05:34,866
+Una desventaja del gradiente de descenso de mini lote es que ahora existe este parámetro extra «b»,
+
+55
+00:05:34,866 --> 00:05:39,006
+el tamaño de mini lote con el que quizás tengan que jugar y que, por tanto, podría llevar tiempo.
+
+56
+00:05:39,006 --> 00:05:45,611
+Pero si tienen una buena implementación vectorizada, esto se puede ejecutar aún más rápido que el gradiente de descenso estocástico.
+
+57
+00:05:45,611 --> 00:05:52,937
+Así que este fue el gradiente de descenso de mini lote que es un algoritmo que, en cierto sentido, hace algo
+
+58
+00:05:52,937 --> 00:05:57,697
+que de alguna manera está entre lo que hace el gradiente de descenso  estocástico y lo que hace el gradiente de descenso por lotes.
+
+59
+00:05:57,697 --> 00:06:02,626
+Y si eligen su valor razonable de «b», yo suelo usar «b» es igual a 10, pero,
+
+60
+00:06:02,626 --> 00:06:07,343
+ya saben, otros valores, desde por ejemplo 2 hasta 100, serían razonablemente comunes.
+
+61
+00:06:07,343 --> 00:06:11,917
+Así que si elegimos un valor de «b», y si usan una buena implementación vectorizada,
+
+62
+00:06:11,917 --> 00:06:15,917
+a veces pudiera ser más rápido que el gradiente de descenso estocástico, y más rápido que el gradiente de descenso por lotes.

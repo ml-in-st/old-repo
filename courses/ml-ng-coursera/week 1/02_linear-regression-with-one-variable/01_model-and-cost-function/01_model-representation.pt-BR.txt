@@ -1,0 +1,81 @@
+Nosso primeiro algoritmo de aprendizado será o
+de regressão linear. Neste vídeo você verá com o que o modelo se parece e ainda
+mais importante você verá com o que se parece o processo de aprendizado supervisionado.
+Vamos utilizar alguns exemplos motivadores para a previsão do preços de casas. Vamos utilizar um conjunto
+de dados de preços de casas da cidade de Portland, Oregon. E aqui eu vou plotar meu
+conjunto de dados de um número de casas que possui diferentes tamanhos e que
+foram vendidas por diferentes preços. Digamos que dado este conjunto de dados, você tenha um
+amigo que está tentando vender uma casa e vamos ver por qual valor, a casa do amigo que possui 1250
+pés quadrados (apróx. 116 metros quadrados), poderá ser vendida. Uma coisa que você poderia fazer é encaixar um modelo. Talvez encaixar uma linha reta nestes dados. Irá parecer-se com isto e talvez você poderá dizer ao seu amigo que
+ele pode vender a casa por cerca de $220.000. Então este é um exemplo de um algoritmo de aprendizado supervisionado. E ele é de
+aprendizado supervisionado porque nós recebemos a "resposta certa" para cada um
+dos nossos exemplos. Somos informados qual é exatamente a casa, por qual preço cada
+uma das casas em nosso conjunto de dados foi vendida e muito mais, este é um exemplo de
+um problema de regressão onde o termo regressão refere-se ao fato de que
+estamos predizendo um valor de saída real no caso o preço. E relembrando
+o outro tipo mais comum de problema de aprendizado supervisionado é chamado de
+problema de classificação onde predizemos saídas de valor discreto como se estivéssemos
+olhando tumores de câncer e tentando decidir se um tumor é maligno ou benigno. Então esta
+é uma saída de valor discreto zero-um. Formalmente no aprendizado supervisionado, nós temos
+um conjunto de dados e este conjunto de dados é chamado conjunto de dados de treinamento. Então para p exemplo de precificação de casas, temos um conjunto de diferentes preços de casas e o nosso trabalho é aprender a partir destes dados como prever os preços. Vamos definir a mesma notação que temos usado ao longo do curso. Vamos definir bastantes símbolos.
+É normal se não se lembrar de todos os símbolos de imediato mas 
+à medida que o curso avançar vai ser [inaudível] uma notação conveniente.. Portanto, vou usar
+o m minúsculo ao longo do curso para notar o número de exemplos de treino. Portanto, 
+neste conjunto de dados, se eu tiver digamos, 47 colunas nesta tabela. Então,
+ tenho 47 exemplos de treino e m é igual a 47. Eu vou usar o x minúsculo para indicar
+variáveis de entrada, também chamadas de atributos. O que seria o x está aqui, que seriam os atributos de entrada. E eu vou usar o y para indicar minhas variáveis de saída ou a
+variável que eu quero obter, a qual eu vou predizer e assim, essa é a segunda
+coluna aqui [inaudivel] notação, eu vou usar (x,y) para indicar um
+único exemplo de treino. Assim, uma única linha nessa tabela corresponde a um único exemplo
+de treino e para se referir a um exemplo de treino específico, eu vou usar essa
+notação x(i) vírgula y(i) e, vamos usar isso para nos referirmos ao i-ésimo
+exemplo de treino. Assim, o superscrito i aqui, isso não é exponenciação
+certo? Esse (x(i), y(i)), o superscrito i entre parenteses, é apenas um índice no meu
+conjunto de treinos e refere-se a i-ésima linha nessa tabela, certo? Assim, isso não é x
+elevado a potencia de i, y a potencia de i. Ao invés disso, (x(i), y(i)) apenas se refere a i-ésima linha dessa
+tabela. Portanto, para o exemplo, x(1) se refere ao valor da entrada para o primeiro exemplo de treino,
+ou seja, 2104. Esse é o x na primeira linha. x(2) vai ser igual a
+1416, certo? Esse é o segundo x e y(1) será igual a 460.
+O primeiro, o valor y para meu primeiro exemplo de treino, que é o que o (1)
+se refere. Assim, como foi mencionado, ocasionalmente vou fazer uma pergunta pra você checar seu
+conhecimento e em poucos segundos nesse vídeo, uma questão de multiplas escolhas
+irá aparecer nesse vídeo. Quando isso acontecer, por favor, use o seu mouse para selecionar
+o que você acha ser a resposta certa. O que foi definido por conjunto de treinos. Assim, aqui está como esse
+algoritmo de aprendizado supervisionado trabalha. Pegamos o conjunto de treinamento,
+como o conjunto de preços de casas, e introduzimos os valores no algoritmo de
+aprendizagem. O papel desse algoritmo é, devolver uma função, que convencionalmente
+é denotada h minúsculo, onde 'h' representa "hipótese". A hipótese, sendo uma
+função que recebe como entrada o tamanho de uma casa, como a casa
+que seu amigo quer vender, e devolve o valor estimado
+de y para a casa em questão. Portanto, h é uma função que
+mapeia os valores de x aos de y. Frequentemente me perguntam
+por que essa função é chamada hipótese. Alguns de vocês devem saber
+o significado do termo hipótese, do dicionário ou de outro lugar. Em aprendizado
+de máquina, esse é um nome que foi usado no começo do desenvolvimento
+dessa ciência, e acabou ficando. Talvez esse não é um bom nome para
+esse tipo de função, mapeando tamanhos de casas a previsões... Eu acho que
+o termo hipótese pode não ser o melhor nome pare isso, mas essa é a
+terminologia padrão que se usa em aprendizado de máquina. Então, não se
+preocupe com por que se chama isso. Quando fazemos um algoritmo de aprendizagem,
+a próxima coisa que devemos decidir é como representar essa hipótese h. Nesse e nos
+próximos vídeos, a nossa escolha inicial para representar a hipótese será
+a seguinte. Vamos representar h assim. E vamos escrever isso como
+h_θ(x) = θ₀ + θ₁ · x. Às vezes, em vez de escrever h_θ(x),
+podemos escrever de uma forma reduzida, vou só escrever como h(x). Mas
+escreverei mais da primeira forma. E, desenhando isso nos gráficos, tudo
+o que isso significa é que nós vamos prever que y é uma função linear
+de x. Certo, esse é o conjunto de dados, e o que essa função
+faz é prever que y é uma linha reta, uma função linear de x.
+Ou seja, h_θ(x) = θ₀ + θ₁ · x. E por que uma função linear?
+Bom, às vezes vamos preferir ajustar funções mais complicadas,
+talvez não lineares. Mas como esse caso linear é um precursor simples,
+vamos começar com esse exemplo de aproximar funções lineares, e partiremos
+disso para mais pra frente termos modelos mais complexos, e algoritmos de aprendizagem
+mais complexos. Deixe-me dar um nome a esse modelo. Esse modelo se chama
+regressão linear, e nesse caso em particular é uma regressão linear com uma
+variável, sendo essa variável o x. Estimamos todos os preços com uma
+função de uma variável, x. Outro nome para este modelo é regressão linear
+univariável. Mas "univariável" é só uma forma cique de se dizer uma variável.
+Bom, isso foi regressão linear. No próximo vídeo começaremos a falar sobre
+como implementar esse modelo.
+Tradutores: Marcel Dall'Agnol, Delcio Torres | Revisor: Eduardo Bonet

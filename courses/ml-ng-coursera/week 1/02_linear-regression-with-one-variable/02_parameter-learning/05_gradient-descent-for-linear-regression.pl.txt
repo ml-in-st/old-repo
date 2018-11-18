@@ -1,0 +1,57 @@
+W poprzednich nagraniach rozmawialiśmy o 
+algorytmie gradientu prostego oraz modelu regresji liniowej i kwadratowej
+funkcji kosztu. W tym nagraniu złożymy do kupy
+gradient prosty i naszą funkcję kosztu. Otrzymamy w ten sposób algorytm
+regresji liniowej, czyli dopasowanie prostej do naszych danych. Oto, nad czym pracowaliśmy w poprzednich
+nagraniach: Tu jest gradient prosty, który nie jest Ci już obcy, a tutaj - model regresji liniowej, z naszą hipotezą
+liniową oraz funkcją kosztu opartą na kwadracie błędu. Zastosujemy teraz gradient prosty do minimalizacji naszej kwadratowej
+funkcji kosztu. Aby zastosować gradient prosty, tzn. napisać odpowiedni program, kluczowym elementem jest to
+wyrażenie na pochodną. Musimy więc dowiedzieć się, czym jest wyrażenie na
+pochodną cząstkową, a następnie spiąć je z definicją funkcji kosztu J. Wyrażenie wygląda w ten sposób: Suma od i = 1 do m kwadratów błędów (nasza funkcja kosztu)... W tym miejscu po prostu wstawiłem definicję naszej funkcji kosztu. Po uproszczeniu okazuje się, że jest to równe: suma od i=1 do m ( theta0 + theta1*x - y(i) )^2 Jedyne, co zrobiłem, to wziąłem definicję hipotezy, i wstawiłem ją tutaj. Okazuje się, że musimy jeszcze wiedzieć, czym jest ta
+pochodna cząstkowa w obydwu przypadkach, tj. gdy j = 0 oraz gdy j = 1. Innymi słowy: chcemy się dowiedzieć, jaka jest
+pochodna cząstkowa dla theta0 oraz theta1. Właśnie to mam zamiar teraz napisać. Okazuje się, że pierwsze wyrażenie upraszcza się do 1/m razy suma po moich przykładach treningowych, natomiast w przypadku tego wyrażenia pochodna cząstkowa wygląda tak: ... minus y(i) razy x(i). W porządku. Jeśli chodzi o obliczanie tych pochodnych cząstkowych:
+wychodzimy od tego równania i uzyskujemy pierwsze oraz drugie równanie. Obliczenie tych pochodnych cząstkowych wymaga pewnej
+znajomości rachunku różniczkowego wielu zmiennych. Jeśli znasz rachunek różniczkowy, zachęcam do
+wyprowadzenia pochodnych samodzielnie i potwierdzenia, że rzeczywiście otrzymasz wynik, który
+podałem. Jeśli jednak nie jesteś biegły/a w różniczkowaniu,
+nie przejmuj się tym - będzie ok, jeśli po prostu skorzystasz z tych równań, które
+napisałem; rachunek różniczkowy nie będzie Ci potrzebny do wykonania prac domowych. Wróćmy więc do implementacji gradientu prostego: uzbrojeni w te definicje, które okazały się być pochodnymi (czyli tak naprawdę nachyleniem stycznych
+funkcji kosztu J), możemy teraz wstawić je do naszego
+algorytmu gradientu prostego. Mamy więc tu gradient prosty dla regresji liniowej - będziemy powtarzać te kroki
+aż do osiągnięcia zbieżności, tzn. theta0 i theta1 będą aktualizowane jako to minus alfa razy ten
+człon pochodnej, czyli ten człon. Tak więc wygląda nasz algorytm gradientu prostego. To pierwsze wyrażenie jest oczywiście pochodną cząstkową względem theta0, którą pokazaliśmy na poprzednim slajdzie. Drugie wyrażenie z kolei jest po prostu pochodną cząstkową względem theta1, co również pokazaliśmy na
+poprzednim slajdzie. Szybkie przypomnienie: implementując gradient prosty należy aktualizować parametry theta0 i theta1 jednocześnie. A więc, zobaczmy, jak działa gradient prosty. Jednym z problemów gradientu prostego, które widzieliśmy, 
+jest jego wrażliwość na optima lokalne. Gdy tłumaczyłem zasadę gradientu prostego po raz pierwszy,
+pokazałem Ci rysunek, na którym schodziliśmy w dół wzgórza, i widzieliśmy, że w zależności od tego, gdzie zaczniemy, możemy lądować w różnych optimach lokalnych. Wylądujemy tutaj lub tutaj. Okazuje się jednak, że funkcja kosztu dla regresji liniowej zawsze ma kształt miski podobny do tego: Formalna nazwa takiej funkcji to funkcja wypukła. Nie będę teraz podawał formalnej definicji funkcji wypukłej, (W-Y-P-U-K-Ł-A) ale tak "na chłopski rozum" oznacza to funkcję
+o kształcie miski, czyli taką, która nie ma żadnych optimów poza globalnym. Gradient prosty, zastosowany do funkcji kosztu tego typu
+(a stosując regresję liniową... ...zawsze otrzymamy taki typ) zawsze osiągnie
+minimum globalne, ponieważ nie mamy żadnego innego optimum lokalnego -
+jedynie optimum globalne. Przyjrzyjmy się więc temu algorytmowi w akcji. Jak zwykle, mamy tutaj wykresy funkcji hipotezy oraz
+funkcji kosztu J. Powiedzmy, że zainicjowałem parametry do tych wartości: zwykle inicjujemy parametry do wartości (0, 0), tzn. theta0 = 0 oraz theta1 = 0. Na potrzeby demonstracji jednak, w tym konkretnym przypadku, przyjąłem na początku
+theta0 = 900, a theta1 = -0,1, co przekłada się na h(x) = -900 - 0,1*x, co z kolei odpowiada takiej prostej. Teraz, jeśli wykonamy jeden krok gradientu prostego, z tego punktu tutaj wylądujemy na dole, po lewej, w tym punkcie tutaj. Zauważ, że moja prosta trochę się zmieniła, i wraz z kolejnymi krokami gradientu prostego, moja prosta
+po lewej stronie będzie się dalej zmieniać. Zgadza się? Znalazłem się też w nowym punkcie mojej funkcji kosztu. Wraz z kolejnymi krokami gradientu prostego zmniejszam koszt, a moje parametry podążają tą trajektorią. Jeśli teraz spojrzysz na lewą stronę, odpowiada to hipotezie, która będzie coraz lepiej dopasowywać się do danych, aż w końcu wyląduję w minimum globalnym,
+a minimum globalne odpowiada hipotezie dającej dobre dopasowanie do danych. A więc tak wygląda gradient prosty - właśnie go uruchomiliśmy i uzyskaliśmy dobre dopasowanie do zbioru danych
+- cen domów. Możemy teraz przewidzieć, jak pójdzie Twojemu znajomemu z domem o powierzchni
+1250 stóp kwadratowych. Możemy odczytać wartość i powiedzieć mu, że być może sprzeda dom za ok. 250 000 dolarów. Algorytm, którego użyliśmy, nazywa się również czasami algorytmem gradientowym zbiorczym
+(ang. batch gradient descent). Okazuje się, że w uczeniu maszynowym
+(mam wrażenie, że my w branży uczenia maszynowego... ... nie jesteśmy zbyt dobrzy w wymyślaniu nazw algorytmów) określenie "zbiorczy" odnosi się do faktu, że w każdej iteracji gradientu prostego bierzemy pod uwagę
+wszystkie elementy zbioru uczącego, Wobec tego, licząc pochodne, obliczamy sumy takie ja ta: Tak więc w każdym kroku gradientu prostego obliczamy sumę
+po wszystkich naszych przykładach treningowych, więc termin
+"algorytm gradientowy zbiorczy" oznacza, że rozpatrujemy cały ZBIÓR uczący
+(tj. wszystkie przykłady treningowe). Podkreślam: nie jest to super nazwa, ale tak to nazwali ludzie od uczenia maszynowego. Okazuje się bowiem, że są czasem inne wersje
+gradientu prostego, które nie są zbiorcze, tzn. nie patrzą na cały zbiór uczący, tylko w każdym kroku rozpatrują małe podzbiory przykładów treningowych. W dalszej części kursu poznamy także te inne wersje algorytmu, ale na razie, korzystając z algorytmu, który właśnie poznaliśmy, czyli algorytmu gradientowego zbiorczego,
+wiesz już, jak zaimplementować gradient prosty dla
+regresji liniowej. To tyle, jeśli chodzi o regresję liniową z użyciem
+gradientu prostego. Jeśli zetknąłeś/ęłaś się wcześniej z
+zaawansowaną algebrą liniową (niektórzy z Was mogli mieć zajęcia
+z zaawansowanej algebry liniowej), być może wiesz, że istnieje rozwiązanie, które wprost wyznacza minimum funkcji J, i niepotrzebny jest do tego algorytm iteracyjny, taki jak gradient prosty. W dalszej części kursu opowiemy sobie o tej metodzie, wyznaczającej minimum funkcji kosztu J,
+i nie potrzebującej do tego wielu iteracji, w przeciwieństwie do gradientu prostego. Metoda ta nazywa się metodą równań normalnych. Jednak jeśli znasz tę metodę - okazuje się, 
+że gradient prosty lepiej skaluje się na większe zbiory danych niż 
+metoda równań normalnych, i teraz, znając gradient prosty, będziemy w stanie
+wykorzystać go w wielu różnych kontekstach i zastosujemy go też do wielu różnych problemów
+uczenia maszynowego. A więc: gratulacje z okazji opanowania Twojego pierwszego
+uczącego się algorytmu! W dalszej części będziemy mieli ćwiczenia, w których Twoim
+zadaniem będzie implementacja gradientu prostego, dzięki czemu przekonasz się sam(a),
+jak działa ten algorytm. Jednak wcześniej chcę Ci jeszcze opowiedzieć
+o paru rzeczach w następnych nagraniach. Najpierw, chcę pokazać Ci uogólnienie algorytmu gradientu prostego, dzięki któremu będzie on
+o wiele potężniejszy. Myślę, że przejdziemy do tego w następnym nagraniu.

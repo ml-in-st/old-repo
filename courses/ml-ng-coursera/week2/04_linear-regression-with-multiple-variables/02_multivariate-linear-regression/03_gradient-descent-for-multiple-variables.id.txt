@@ -1,0 +1,60 @@
+Di video sebelumnya, kita bicara tentang
+bentuk hipotesis untuk regresi linier dengan banyak sifat atau
+variabel. Di video ini, kita membahas bagaimana
+mencocokkan parameter hipotesis itu. Khususnya membahas bagaimana menggunakan
+gradient descent untuk regresi linier dengan banyak sifat. Untuk merangkum notasi kita,
+ini hipotesis formal kita dalam regresi linier dengan banyak variabel
+dimana kita sepakat x0 = 1. Parameter model ini adalah theta0
+s/d theta n, tapi gantinya berpikir ini sebagai n parameter terpisah, yang
+juga benar, saya akan berpikir parameternya sebagai theta yang
+merupakan vektor n+1-dimensi. Jadi saya akan berpikir
+parameter model ini sebagai sebuah vektor. Fungsi harga kita adalah J theta0 s/d
+theta n yaitu penjumlahan ketidaktelitian kwadrat ini. Tapi
+gantinya berpikir J sebagai fungsi dari jumlah n+1 ini, saya akan
+lebih sering menulis J sebagai fungsi parameter theta vektor,
+jadi theta disini adalah vektor. Inilah gradient descent. Kita akan 
+memperbaharui berulang kali setiap parameter theta j menurut theta j
+kurang alfa kali bagian derivatif ini. Sekali lagi, kita menulis ini J theta,
+jadi theta j diperbaharui dengan cara theta j kurang kecepatan belajar alfa
+kali derivatif, derivatif sebagian dari fungsi harga dengan
+mengacu pada parameter theta j. Mari lihat bagaimana jadinya ketika kita
+mengimplementasikan gradient descent, khususnya, bagian derivatif sebagian. Ini gradient descent yang kita punya
+untuk kasus n = 1 sifat. Kita punya 2 aturan pembaruan terpisah
+untuk parameter theta0 dan theta1, dan semoga Anda sudah tahu ini.
+Bagian ini tentu saja derivatif sebagian dari fungsi harga
+dengan mengacu pada parameter theta0, dan sama juga, kita punya aturan 
+pembaruan berbeda utk parameter theta1. Hanya ada 1 perbedaan kecil yaitu
+sebelumnya kita cuma punya 1 sifat, kita akan namai itu sifat x(i),
+tapi sekarang dalam notasi baru, kita akan sebut ini x(i) subskrip
+1 untuk menunjukkan 1 sifat. Jadi begitulah jika kita
+cuma punya 1 sifat. Mari lihat algoritma baru untuk
+sifat lebih dari satu, dimana jumlah sifat n
+mungkin jauh lebih besar dari 1. Ini aturan pembaruan kita untuk gradient
+descent, dan bagi Anda yang tahu kalkulus, jika Anda ambil
+definisi fungsi harga dan mengerjakan derivatif sebagian fungsi harga J
+dengan mengacu pada parameter theta j, Anda akan temukan bahwa
+hasilnya adalah bagian di dalam kotak biru yang saya gambar itu. Dan jika Anda implementasikan ini, Anda
+akan mendapatkan implementasi gradient descent yang bekerja untuk
+regresi linier dengan banyak variabel. Hal terakhir yang ingin saya lakukan
+adalah memberi Anda pengertian mengapa algoritma lama dan baru ini
+sepertinya sama, atau mengapa kedua algoritmanya mirip, atau mengapa
+keduanya algoritma gradient descent. Mari perhatikan 1 kasus
+dimana kita punya 2 sifat atau mungkin lebih dari 2 sifat,
+jadi kita punya 3 aturan pembaruan utk parameter theta0, theta1, theta2
+dan mungkin nilai theta lain juga. Jika Anda lihat aturan pembaruan
+theta0, apa yang Anda temukan adalah aturan pembaruan disini sama seperti
+aturan pembaruan yang kita punya sebelumnya untuk kasus n = 1. Dan alasan bahwa mereka ekivalen,
+tentu saja, karena dalam kesepakatan notasi kita,
+kita sepakat x0(i) = 1, itulah mengapa 2 term dalam kotak magenta yang
+saya gambar ini adalah ekivalen. Begitu juga, jika Anda lihat aturan
+pembaruan untuk theta1, Anda temukan bahwa term disini ini ekivalen dengan
+term yang kita punya sebelumnya, atau aturan pembaruan untuk 
+theta1 yang kita punya sebelumnya, dimana kita menggunakan notasi baru ini
+x(i) subskrip 1 untuk menunjukkan sifat pertama kita. Dan sekarang bahwa
+kita punya lebih dari 1 sifat, kita bisa punya aturan pembaruan yang sama untuk
+parameter lain seperti theta2, dst. Ada banyak yang terjadi di slide ini,
+jadi saya mendorong Anda, jika Anda perlu untuk menghentikan sementara
+video ini dan melihat matematika di slide ini untuk memastikan Anda
+mengerti semua yang terjadi disini. Tapi jika Anda mengimplementasikan
+algoritma yang tertulis disini, maka Anda punya implementasi regresi linier
+yang bekerja untuk banyak sifat.

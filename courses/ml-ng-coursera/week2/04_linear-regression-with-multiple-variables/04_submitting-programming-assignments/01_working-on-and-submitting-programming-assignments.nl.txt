@@ -1,0 +1,39 @@
+In deze video wil ik je in een paar snelle stappen
+door het proces leiden van het maken van het huiswerk voor deze cursus en
+hoe het beoordelingssysteem werkt
+dat je direct laat controleren of jouw antwoord voor de
+machine learning opdracht correct was. Dit is mijn Octave scherm en
+laten we naar m'n desktop gaan: Ik heb de bestanden voor de eerste oefening
+bewaard op mijn desktop: in deze directory, 'ml-class-ex1'. We hebben een aantal bestanden voorbereid en
+we vragen je er een aantal aan te passen. Het eerste bestand moet gaan voldoen aan de details
+die in de pdf voor deze programmeeropdracht
+zijn beschreven. Een van de bestanden die we je vragen te bewerken
+is dit bestand, genaamd 'warmUpExersise.m', waar de opdracht alleen is om je bekend te maken
+met het inlever- en beoordelingssysteem. En alles wat je hoeft te doen is de
+5x5 eenheidsmatrix retourneren. Dus de oplossing voor deze oefening is het
+typen van A = eye(5). Dus dat wijzigt deze functie om nu een
+5x5 eenheidsmatrix te genereren. En deze functie, warmUpExersise(), retourneert
+nu een 5x5 eenheidsmatrix. En ik bewaar het bestand even. Dus nu heb ik het eerste deel van het huiswerk gedaan.
+Teruggaand naar mijn Octave scherm, laten we nu naar mijn directory,
+'C:\Users\ang\Desktop\ml-class-ex1', gaan. En om te controleren dat de implementatie correct was,
+type ik nu 'warmUpExercise()' En ja, het retourneert de 5x5 eenheidsmatrix,
+waarvoor we de code net hebben geschreven. En ik kan nu de code inleveren, op de volgende manier:
+Ik type nu 'submit()' in deze map en ik ben klaar om deel 1 in te leveren,
+dus ik kies nu voor de optie '1'. Nu vraagt het naar mijn e-mailadres,
+en nu ga ik naar de cursus website. Dit is een interne test versie van de website,
+dus jouw versie van de website ziet er wellicht anders uit. Maar dat is mijn e-mailadres en dit is mijn wachtwoord
+voor het inleveren en ik type deze nu hier Dus ik heb ang@cs.stanford.edu en
+mijn inleverwachtwoord is 9yC75USsGf. Nu druk ik op enter, het maakt verbinding met de server,
+en het wordt ingeleverd en meteen krijg je de respons "Gefeliciteerd! Je hebt
+succesvol Huiswerk 1 Deel 1 afgerond!" . En dit geeft je een bevestiging
+dat je dit deel correct hebt gedaan. En als je niet een correct antwoord instuurt,
+dan zie je een bericht dat aangeeft dat je het nog niet 100% correct hebt. Trouwens, je kunt het oorspronkelijke inleverwachtwoord
+gebruiken en je kunt ook nieuwe genereren; het maakt niet uit. Maar, je zou ook jouw normale login wachtwoord
+kunnen gebruiken, maar omdat je dit wachtwoord hier in normale tekst moet intypen op  je scherm,
+hebben we je een extra inleverwachtwoord gegeven in het geval dat je niet jouw normale login
+wachtwoord wilt intypen in dit scherm dat, afhankelijk van je besturingssysteem,
+mogelijk als normale tekst wordt getoond, wanneer je het in het Octave inleverscript typt. Dus, dit is hoe je jouw huiswerk inlevert,
+nadat je het gemaakt hebt. Succes en ik hoop dat je tijd hebt voor het huiswerk,
+ik hoop dat je ze allen goed afrond. En tenslotte, in de volgende en laatste Octave
+handleidingsvideo, wil ik je vertellen over 'vectorisatie', dit is een manier om er voor te zorgen dat
+jouw Octave code veel efficienter loopt.

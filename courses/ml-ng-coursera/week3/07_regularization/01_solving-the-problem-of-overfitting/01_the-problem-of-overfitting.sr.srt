@@ -1,0 +1,1124 @@
+1
+00:00:00,360 --> 00:00:01,753
+Za sada, videli smo
+
+2
+00:00:01,760 --> 00:00:04,097
+par različitih algoritama učenja, linearnu
+
+3
+00:00:04,097 --> 00:00:06,504
+regresiju i logističku regresiju.
+
+4
+00:00:06,510 --> 00:00:08,583
+One rade dobro za mnoge probleme,
+
+5
+00:00:08,583 --> 00:00:09,684
+ali kad ih primenite
+
+6
+00:00:09,684 --> 00:00:11,903
+na određene aplikacije mašinskog učenja, one
+
+7
+00:00:11,903 --> 00:00:13,889
+bi mogle da upadnu u problem zvani
+
+8
+00:00:13,900 --> 00:00:18,052
+prekomernost koji može da izazove loše performanse.
+
+9
+00:00:18,052 --> 00:00:18,866
+Ono što bih želeo da uradim u
+
+10
+00:00:18,866 --> 00:00:20,393
+ovom video je da vam objasnim
+
+11
+00:00:20,393 --> 00:00:22,400
+šta je problem
+
+12
+00:00:22,400 --> 00:00:24,083
+prekomernosti, a u
+
+13
+00:00:24,083 --> 00:00:25,861
+sledećih nekoliko videa nakon ovoga,
+
+14
+00:00:25,861 --> 00:00:27,759
+govorićemo o tehnici zvanoj
+
+15
+00:00:27,760 --> 00:00:29,787
+regularizacija, to će nam omogućiti
+
+16
+00:00:29,787 --> 00:00:31,529
+da poboljšamo ili da
+
+17
+00:00:31,529 --> 00:00:33,607
+smanjimo problem prekomernosti i
+
+18
+00:00:33,607 --> 00:00:36,844
+učinimo da ti algoritmi 
+učenja rade mnogo bolje.
+
+19
+00:00:36,860 --> 00:00:39,607
+Dakle, šta je to prekomernost?
+
+20
+00:00:39,607 --> 00:00:41,616
+Hajde da koristimo naš postojeći
+
+21
+00:00:41,620 --> 00:00:44,030
+primer predviđanja cena
+
+22
+00:00:44,050 --> 00:00:46,146
+nekretnina sa linearnom regresijom
+
+23
+00:00:46,146 --> 00:00:47,123
+gde želite da predvidite
+
+24
+00:00:47,123 --> 00:00:50,730
+cenu kao funkciju od veličine kuće.
+
+25
+00:00:50,730 --> 00:00:51,870
+Ono što možemo da uradimo je
+
+26
+00:00:51,910 --> 00:00:53,620
+da pridružimo linearnu funkciju
+
+27
+00:00:53,620 --> 00:00:54,892
+ovim podacima, i ako
+
+28
+00:00:54,892 --> 00:00:56,296
+to uradimo, dobićemo
+
+29
+00:00:56,296 --> 00:00:58,913
+otprilike ovakvu pravu liniju
+ koja odgovara podacima.
+
+30
+00:00:58,913 --> 00:01:01,012
+Ali ovo nije baš najbolji model.
+
+31
+00:01:01,012 --> 00:01:02,543
+Ako pogledamo podatke, čini se
+
+32
+00:01:02,560 --> 00:01:04,100
+veoma jasno da
+
+33
+00:01:04,100 --> 00:01:06,274
+ako veličina nekretnina raste,
+
+34
+00:01:06,274 --> 00:01:08,268
+njihova cena se ne menja mnogo, ili
+
+35
+00:01:08,270 --> 00:01:11,721
+poravnava se kako se pomeramo na desno, dakle
+
+36
+00:01:11,740 --> 00:01:14,020
+ovaj algoritam
+
+37
+00:01:14,020 --> 00:01:15,898
+ne odgovara trening skupu u potpunosti
+
+38
+00:01:15,898 --> 00:01:19,166
+i to zovemo problemom nedostatka, a
+
+39
+00:01:19,180 --> 00:01:20,494
+drugi naziv za ovo je
+
+40
+00:01:20,500 --> 00:01:24,666
+da algoritam ima visoko odstupanje.
+
+41
+00:01:25,140 --> 00:01:26,841
+Oba ova gruba
+
+42
+00:01:26,890 --> 00:01:30,760
+značenja kažu da podaci ne odgovaraju baš najbolje.
+
+43
+00:01:30,760 --> 00:01:32,328
+Pojam odstupanje je više
+
+44
+00:01:32,328 --> 00:01:34,515
+istorijski ili tehnički
+
+45
+00:01:34,515 --> 00:01:36,109
+ali ideja je da
+
+46
+00:01:36,110 --> 00:01:37,303
+ako prava linija odgovara
+
+47
+00:01:37,303 --> 00:01:38,909
+podacima, tad, ako
+
+48
+00:01:38,920 --> 00:01:40,290
+algoritam ima
+
+49
+00:01:40,330 --> 00:01:42,638
+veoma jako predznanje, ili
+
+50
+00:01:42,638 --> 00:01:44,633
+veoma jako odstupanje, tad će cene
+
+51
+00:01:44,650 --> 00:01:46,339
+nekretnina da se menjaju
+
+52
+00:01:46,339 --> 00:01:49,988
+linearno sa promenom njihovih veličina
+ uprkos podacima.
+
+53
+00:01:50,000 --> 00:01:51,281
+Uprkos činjenici
+
+54
+00:01:51,290 --> 00:01:54,174
+da je predznanje još uvek
+
+55
+00:01:54,174 --> 00:01:55,413
+odstupanje, još uvek je blizu
+
+56
+00:01:55,440 --> 00:01:56,974
+da odgovara pravoj liniji
+
+57
+00:01:56,974 --> 00:02:00,638
+i to na kraju ne odgovara podacima.
+
+58
+00:02:00,638 --> 00:02:02,173
+Sad, u sredini bismo mogli
+
+59
+00:02:02,210 --> 00:02:04,626
+da pridružimo kvadratnu funkciju i
+
+60
+00:02:04,626 --> 00:02:06,222
+sa ovim skupom podataka, pridružujemo
+
+61
+00:02:06,222 --> 00:02:07,793
+kvadratnu funkciju, možda dobijemo
+
+62
+00:02:07,810 --> 00:02:10,211
+ovu vrstu krive
+
+63
+00:02:10,211 --> 00:02:14,361
+i to radi prilično dobro.
+
+64
+00:02:14,361 --> 00:02:17,543
+A druga krajnost bi bila da podacima pridružimo,
+ recimo, polinom četvrtog stepena.
+
+65
+00:02:17,550 --> 00:02:19,442
+Dakle, ovde imamo pet parametara,
+
+66
+00:02:19,470 --> 00:02:23,196
+teta nula do teta četiri,
+
+67
+00:02:23,210 --> 00:02:23,926
+i sa time možemo da nacrtamo krivu
+
+68
+00:02:23,926 --> 00:02:26,727
+koja prolazi kroz svih pet trening primera.
+
+69
+00:02:26,727 --> 00:02:29,507
+Mogli biste da dobijete 
+krivu koja izgleda kao ova.
+
+70
+00:02:31,260 --> 00:02:32,454
+U jednu ruku
+
+71
+00:02:32,460 --> 00:02:33,791
+čini se da pravi
+
+72
+00:02:33,791 --> 00:02:35,052
+veoma dobar posao pridruživanja
+
+73
+00:02:35,052 --> 00:02:36,291
+trening skupu i
+
+74
+00:02:36,291 --> 00:02:38,269
+barem obuhvata sve moje podatke.
+
+75
+00:02:38,270 --> 00:02:40,284
+Ali, to je još uvek veoma
+ krivudava kriva, zar ne?
+
+76
+00:02:40,300 --> 00:02:41,660
+Ide gore, dole čitavom
+
+77
+00:02:41,660 --> 00:02:43,430
+dužinom, i u stvari
+
+78
+00:02:43,430 --> 00:02:46,996
+mislimo da je to dobar model za 
+predviđanje cena nekretnina.
+
+79
+00:02:47,000 --> 00:02:48,924
+Dakle, ovaj problem zovemo
+
+80
+00:02:48,924 --> 00:02:51,967
+prekomernost, a drugi
+
+81
+00:02:51,970 --> 00:02:53,165
+pojam za ovo je da
+
+82
+00:02:53,170 --> 00:02:57,304
+algoritam ima veliko variranje.
+
+83
+00:02:57,890 --> 00:02:59,951
+Pojam variranje je još jedan
+
+84
+00:02:59,951 --> 00:03:02,110
+istorijski ili tehnički pojam.
+
+85
+00:03:02,130 --> 00:03:03,797
+Ali je intuitivno da
+
+86
+00:03:03,800 --> 00:03:05,080
+ako pridružimo polinom tako
+
+87
+00:03:05,080 --> 00:03:07,326
+velikog stepena, tad
+
+88
+00:03:07,330 --> 00:03:08,603
+pretpostavka može da odgovara, znate,
+
+89
+00:03:08,620 --> 00:03:09,584
+skoro da može da
+
+90
+00:03:09,584 --> 00:03:11,995
+odgovara skoro svakoj funkciji i
+
+91
+00:03:11,995 --> 00:03:14,159
+ovakva pretpostavka
+
+92
+00:03:14,159 --> 00:03:16,601
+je prevelika, previše je varijabilna.
+
+93
+00:03:16,610 --> 00:03:18,052
+Nemamo dovoljno podataka
+
+94
+00:03:18,052 --> 00:03:19,279
+da je ograničimo da nam
+
+95
+00:03:19,279 --> 00:03:22,714
+da dobru pretpostavku i to se zove prekomernost.
+
+96
+00:03:22,740 --> 00:03:24,340
+A u sredini, nema imena kojim
+
+97
+00:03:24,350 --> 00:03:26,990
+zovemo ovo ali upravo ću da 
+napišem, znate, samo ispravno,
+
+98
+00:03:26,990 --> 00:03:29,911
+gde se polinom drugog stepena, 
+kvadratna funkcija
+
+99
+00:03:29,911 --> 00:03:32,559
+čini da je ispravna da bi 
+se pridružila podacima.
+
+100
+00:03:32,559 --> 00:03:34,684
+Da zaključimo,
+
+101
+00:03:34,690 --> 00:03:37,042
+problem prekomernosti se javlja
+
+102
+00:03:37,042 --> 00:03:38,258
+kad imamo
+
+103
+00:03:38,258 --> 00:03:40,729
+mnogo osobina,
+
+104
+00:03:40,729 --> 00:03:43,881
+naučena hipoteza može veoma 
+dobro da odgovara trening skupu.
+
+105
+00:03:43,881 --> 00:03:46,023
+Dakle, vaša funkcija
+
+106
+00:03:46,023 --> 00:03:47,344
+može da bude veoma blizu
+
+107
+00:03:47,344 --> 00:03:48,446
+nule ili da bude
+
+108
+00:03:48,446 --> 00:03:50,750
+tačno nula, ali
+
+109
+00:03:50,750 --> 00:03:52,063
+možete da dobijete
+
+110
+00:03:52,063 --> 00:03:53,950
+krivu kao što je ova,
+
+111
+00:03:53,950 --> 00:03:55,314
+koja uporno pokušava da
+
+112
+00:03:55,314 --> 00:03:57,103
+odgovara trening skupu, tako da
+
+113
+00:03:57,110 --> 00:03:59,233
+bezuspešno generalizuje
+
+114
+00:03:59,250 --> 00:04:01,117
+nove primere i bezuspešno
+
+115
+00:04:01,120 --> 00:04:03,018
+predviđa cene u novim primerima
+
+116
+00:04:03,050 --> 00:04:04,337
+a ovaj
+
+117
+00:04:04,350 --> 00:04:06,853
+pojam generalizovan se odnosi na to
+
+118
+00:04:06,853 --> 00:04:10,868
+koliko dobro hipoteza odgovara novim primerima.
+
+119
+00:04:10,868 --> 00:04:12,274
+Tako je sa podacima
+
+120
+00:04:12,320 --> 00:04:16,467
+kuća koje se ne vide u trening skupu.
+
+121
+00:04:16,600 --> 00:04:17,910
+Na ovom slajdu smo videli
+
+122
+00:04:17,910 --> 00:04:20,802
+prekomernost na slučaju linearne regresije.
+
+123
+00:04:20,810 --> 00:04:24,182
+Isto tako, slična stvar se može
+ primeniti na logističku regresiju.
+
+124
+00:04:24,190 --> 00:04:26,090
+Ovo je primer logističke
+
+125
+00:04:26,090 --> 00:04:28,871
+regresije sa dve osobine X1 i X2.
+
+126
+00:04:28,910 --> 00:04:30,136
+Ono što bismo mogli da uradimo je
+
+127
+00:04:30,140 --> 00:04:31,522
+da logističkoj regresiji pridružimo
+
+128
+00:04:31,522 --> 00:04:34,518
+jednostavnu hipotezu kao što je ova,
+
+129
+00:04:34,530 --> 00:04:38,076
+gde je g kao i obično 
+moja sigmoidna funkcija.
+
+130
+00:04:38,120 --> 00:04:39,334
+Ako to uradite, dobićete
+
+131
+00:04:39,334 --> 00:04:41,593
+hipotezu koja pokušava
+
+132
+00:04:41,600 --> 00:04:42,923
+da koristi pravu
+
+133
+00:04:42,923 --> 00:04:45,713
+liniju da odvoji pozitivne 
+i negativne primere.
+
+134
+00:04:45,713 --> 00:04:49,071
+Ovo ne odgovara baš najbolje hipotezi.
+
+135
+00:04:49,100 --> 00:04:50,659
+Dakle, još jednom, ovo
+
+136
+00:04:50,659 --> 00:04:52,577
+je primer nedostatka
+
+137
+00:04:52,577 --> 00:04:56,040
+ili to da hipoteza ima veliko odstupanje.
+
+138
+00:04:56,210 --> 00:04:57,504
+Suprotno tome, ako ste
+
+139
+00:04:57,504 --> 00:04:59,146
+svojim osobinama dodali
+
+140
+00:04:59,170 --> 00:05:01,032
+ove kvadratne pojmove, tad
+
+141
+00:05:01,032 --> 00:05:02,613
+biste mogli da dobijete granicu
+
+142
+00:05:02,613 --> 00:05:05,620
+odluke koja bi mogla da
+ izgleda više ovako.
+
+143
+00:05:05,620 --> 00:05:07,784
+Znate, to prilično dobro odgovara podacima.
+
+144
+00:05:07,784 --> 00:05:10,838
+Verovatno najbolje
+
+145
+00:05:10,860 --> 00:05:13,991
+što smo mogli da dobijemo,
+ na ovom trening skupu.
+
+146
+00:05:14,010 --> 00:05:15,157
+I konačno, na drugoj
+
+147
+00:05:15,170 --> 00:05:16,169
+krajnosti, ako pokušate da
+
+148
+00:05:16,169 --> 00:05:18,207
+pridružite polinom 
+velikog stepena, ako
+
+149
+00:05:18,207 --> 00:05:20,036
+generišete mnogo
+
+150
+00:05:20,036 --> 00:05:22,461
+pojmova osobina u polinomu 
+visokog stepena,
+
+151
+00:05:22,490 --> 00:05:24,730
+tad logistička regresija može da se iskrivi,
+
+152
+00:05:24,750 --> 00:05:26,551
+može uporno da pokušava
+
+153
+00:05:26,560 --> 00:05:28,233
+da nađe
+
+154
+00:05:28,233 --> 00:05:31,742
+granicu odluke koja odgovara
+
+155
+00:05:31,742 --> 00:05:33,013
+vašim trening podacima ili da se
+
+156
+00:05:33,030 --> 00:05:35,006
+poveća da bi se iskrivila
+
+157
+00:05:35,006 --> 00:05:37,689
+i tako odgovarala svakom
+ pojedinačnom trening primeru.
+
+158
+00:05:37,700 --> 00:05:38,757
+I ako
+
+159
+00:05:38,757 --> 00:05:39,547
+osobine X1 i
+
+160
+00:05:39,550 --> 00:05:41,435
+X2 nude predviđanje, možda,
+
+161
+00:05:41,435 --> 00:05:43,350
+raka, recimo,
+
+162
+00:05:43,390 --> 00:05:46,448
+rak dojke je maligna ili benigna vrsta tumora.
+
+163
+00:05:46,448 --> 00:05:47,988
+Ovo stvarno ne izgleda kao
+
+164
+00:05:47,988 --> 00:05:51,893
+dobra hipoteza kada se prave predviđanja.
+
+165
+00:05:51,930 --> 00:05:53,463
+Još jednom, ovo je
+
+166
+00:05:53,463 --> 00:05:55,432
+primer prekomernosti
+
+167
+00:05:55,432 --> 00:05:57,128
+a hipoteza ima
+
+168
+00:05:57,128 --> 00:05:59,403
+veliko odstupanje i
+
+169
+00:05:59,403 --> 00:06:04,243
+ne odgovara novim primerima.
+
+170
+00:06:04,560 --> 00:06:06,158
+Kasnije kada budemo
+
+171
+00:06:06,158 --> 00:06:08,453
+govorili o otkrivanju grešaka i dijagnostici
+
+172
+00:06:08,460 --> 00:06:09,794
+stvari koje mogu da krenu na loše
+
+173
+00:06:09,810 --> 00:06:11,490
+sa algoritmima učenja, 
+daćemo vam
+
+174
+00:06:11,490 --> 00:06:13,297
+određeni alat koji prepoznaje
+
+175
+00:06:13,297 --> 00:06:14,953
+kad se prekomernost i, takođe,
+
+176
+00:06:14,953 --> 00:06:17,503
+nedostatak možda dese.
+
+177
+00:06:17,503 --> 00:06:18,775
+Za sada, govorićemo o
+
+178
+00:06:18,780 --> 00:06:20,342
+problemu, ako
+
+179
+00:06:20,360 --> 00:06:22,206
+pretpostavimo da se dešava prekomernost,
+
+180
+00:06:22,250 --> 00:06:24,864
+kad ćemo moći da upotrebimo taj alat.
+
+181
+00:06:24,864 --> 00:06:26,640
+U prethodnim primerima, imali smo
+
+182
+00:06:26,660 --> 00:06:28,701
+jednodimenzionalne ili 
+dvodimenzionalne podatke, dakle
+
+183
+00:06:28,701 --> 00:06:31,335
+mogli smo samo da 
+iscrtamo hipotezu i vidimo šta
+
+184
+00:06:31,335 --> 00:06:34,612
+se dešava i odaberemo 
+odgovarajući stepen polinoma.
+
+185
+00:06:34,620 --> 00:06:36,836
+Tako, u ranijem primeru određivanja
+
+186
+00:06:36,836 --> 00:06:38,405
+cena nekretnina, mogli smo samo
+
+187
+00:06:38,410 --> 00:06:40,597
+da iscrtamo hipotezu i,
+
+188
+00:06:40,600 --> 00:06:41,628
+možda vidimo da li
+
+189
+00:06:41,628 --> 00:06:42,830
+odgovara vrsti neke
+
+190
+00:06:42,830 --> 00:06:46,339
+veoma krivudave funkcije koja se proteže preko 
+cele površine da bi predvidela cene nekretnina.
+
+191
+00:06:46,339 --> 00:06:47,701
+Tada bismo mogli da koristimo ovakve
+
+192
+00:06:47,740 --> 00:06:50,667
+oblike da bismo odabrali 
+odgovarajući stepen polinoma.
+
+193
+00:06:50,680 --> 00:06:54,166
+Dakle, iscrtavanje hipoteze bi mogao
+
+194
+00:06:54,166 --> 00:06:55,728
+da bude način donošenja
+
+195
+00:06:55,750 --> 00:06:58,160
+odluke koji stepen polinoma da se koristi.
+
+196
+00:06:58,160 --> 00:07:00,163
+Ali to ne uspeva uvek.
+
+197
+00:07:00,180 --> 00:07:02,019
+I, veoma često
+
+198
+00:07:02,019 --> 00:07:06,075
+ćemo imati problem 
+učenja sa mnogo osobina.
+
+199
+00:07:06,075 --> 00:07:07,563
+A to se ne tiče
+
+200
+00:07:07,563 --> 00:07:10,599
+samo odabira stepena polinoma.
+
+201
+00:07:10,630 --> 00:07:12,147
+U stvari, kada
+
+202
+00:07:12,170 --> 00:07:13,779
+imamo previše osobina, takođe
+
+203
+00:07:13,779 --> 00:07:15,593
+je teže iscrtati
+
+204
+00:07:15,630 --> 00:07:17,698
+podatke i postaje
+
+205
+00:07:17,710 --> 00:07:19,211
+teže učiniti ih vidljivim,
+
+206
+00:07:19,211 --> 00:07:22,396
+da bi se odlučilo koje podatke zadržati.
+
+207
+00:07:22,420 --> 00:07:24,142
+Konkretno, ako pokušamo
+
+208
+00:07:24,160 --> 00:07:27,849
+da predvidimo cene nekretnina 
+moguće je da imamo mnogo različitih osobina.
+
+209
+00:07:27,880 --> 00:07:31,373
+Mnoge od njih mogu da se
+ čine kao da su korisne.
+
+210
+00:07:31,373 --> 00:07:32,609
+Ali, ako imamo
+
+211
+00:07:32,609 --> 00:07:34,123
+mnogo osobina i veoma mali
+
+212
+00:07:34,123 --> 00:07:35,820
+trening skup tad
+
+213
+00:07:35,840 --> 00:07:37,776
+prekomernost može da bude problem.
+
+214
+00:07:37,776 --> 00:07:39,180
+Da bi se otklonio problem
+
+215
+00:07:39,180 --> 00:07:40,651
+prekomernosti, postoje dve
+
+216
+00:07:40,651 --> 00:07:43,780
+glavne opcije šta možemo da uradimo.
+
+217
+00:07:43,780 --> 00:07:45,759
+Prva je da probamo da
+
+218
+00:07:45,770 --> 00:07:47,976
+smanjimo broj osobina.
+
+219
+00:07:47,990 --> 00:07:49,337
+Konkretno, mogli bismo
+
+220
+00:07:49,337 --> 00:07:51,383
+da manuelno pregledamo
+
+221
+00:07:51,383 --> 00:07:53,236
+listu osobina i
+
+222
+00:07:53,236 --> 00:07:54,894
+da pokušamo da odlučimo koje
+
+223
+00:07:54,894 --> 00:07:57,256
+osobine su važnije i stoga
+
+224
+00:07:57,256 --> 00:07:58,476
+koje bismo trebali
+
+225
+00:07:58,476 --> 00:08:01,844
+da zadržimo a koje da odbacimo.
+
+226
+00:08:01,844 --> 00:08:03,401
+Kasnije u ovom kursu ćemo
+
+227
+00:08:03,401 --> 00:08:06,018
+da govorimo o algoritmima odabira modela.
+
+228
+00:08:06,040 --> 00:08:08,361
+Koji su algoritmi za automatsko
+
+229
+00:08:08,361 --> 00:08:09,788
+odlučivanje koje osobine
+
+230
+00:08:09,800 --> 00:08:12,500
+treba zadržati a koje odbaciti.
+
+231
+00:08:12,500 --> 00:08:13,987
+Ova ideja smanjenja
+
+232
+00:08:13,987 --> 00:08:15,562
+broja osobina može da se pokaže
+
+233
+00:08:15,562 --> 00:08:17,853
+dobro i može da smanji prekomernost.
+
+234
+00:08:17,853 --> 00:08:19,383
+A kada govorimo o odabiru
+
+235
+00:08:19,383 --> 00:08:22,534
+modela, ući ćemo mnogo dublje.
+
+236
+00:08:22,534 --> 00:08:24,386
+Ali je mana to što,
+
+237
+00:08:24,386 --> 00:08:25,603
+odbacivanjem nekih
+
+238
+00:08:25,603 --> 00:08:27,010
+osobina takođe odbacujemo
+
+239
+00:08:27,370 --> 00:08:30,615
+neke informacije o problemu.
+
+240
+00:08:30,650 --> 00:08:31,942
+Na primer, sve
+
+241
+00:08:31,942 --> 00:08:33,760
+te osobine su u stvari korisne
+
+242
+00:08:33,780 --> 00:08:35,050
+za predviđanje cene
+
+243
+00:08:35,070 --> 00:08:36,636
+kuće pa možda nije dobro
+
+244
+00:08:36,640 --> 00:08:37,687
+da odbacimo neke od
+
+245
+00:08:37,687 --> 00:08:40,990
+informacija ili neke od osobina.
+
+246
+00:08:41,540 --> 00:08:44,515
+Druga opcija, o kojoj ćemo da
+
+247
+00:08:44,515 --> 00:08:45,995
+govorimo u
+
+248
+00:08:46,010 --> 00:08:49,268
+sledećih nekoliko videa je regularizacija.
+
+249
+00:08:49,268 --> 00:08:50,390
+Ovde ćemo da zadržimo
+
+250
+00:08:50,390 --> 00:08:52,579
+sve osobine, ali ćemo
+
+251
+00:08:52,579 --> 00:08:55,063
+da smanjimo veličinu
+
+252
+00:08:55,063 --> 00:08:56,506
+ili vrednosti parametara
+
+253
+00:08:56,520 --> 00:08:58,745
+teta J. A taj
+
+254
+00:08:58,750 --> 00:09:00,690
+model radi dobro, videćemo,
+
+255
+00:09:00,690 --> 00:09:01,925
+kada imamo mnogo
+
+256
+00:09:01,925 --> 00:09:03,822
+osobina koje sve učestvuju
+
+257
+00:09:03,822 --> 00:09:05,502
+pomalo u predviđanju
+
+258
+00:09:05,502 --> 00:09:07,723
+vrednosti Y, kao što
+
+259
+00:09:07,740 --> 00:09:10,283
+smo videli u primeru 
+ predviđanja cena nekretnina,
+
+260
+00:09:10,283 --> 00:09:11,413
+gde bismo mogli da imamo mnogo
+
+261
+00:09:11,413 --> 00:09:12,720
+osobina, od kojih
+
+262
+00:09:12,750 --> 00:09:16,902
+su sve korisne, tako da 
+ ne želimo da ih odbacimo.
+
+263
+00:09:16,930 --> 00:09:19,247
+Dakle, ovo najavljuje
+
+264
+00:09:19,250 --> 00:09:22,790
+ideju regularizacije na 
+veoma visokom nivou.
+
+265
+00:09:22,790 --> 00:09:24,354
+I shvatio sam da vam svi
+
+266
+00:09:24,360 --> 00:09:26,763
+ti detalji verovatno još 
+uvek nemaju smisla.
+
+267
+00:09:26,763 --> 00:09:28,316
+Ali u sledećem videu ćemo
+
+268
+00:09:28,316 --> 00:09:30,960
+da počnemo da formulišemo kako
+
+269
+00:09:30,960 --> 00:09:35,117
+da primenimo regularizaciju i 
+šta tačno regularizacija znači.
+
+270
+00:09:35,140 --> 00:09:36,810
+I tad ćemo početi
+
+271
+00:09:36,810 --> 00:09:38,310
+da shvatamo kako da to koristimo,
+
+272
+00:09:38,310 --> 00:09:40,412
+da učinimo da algoritam učenja radi
+
+273
+00:09:40,412 --> 00:09:42,460
+dobro i da izbegnemo prekomernost.

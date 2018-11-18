@@ -1,0 +1,603 @@
+1
+00:00:00,130 --> 00:00:01,140
+En el último video, hablamos
+
+2
+00:00:01,470 --> 00:00:03,380
+sobre reducción de dimensionalidad para
+
+3
+00:00:03,530 --> 00:00:05,090
+comprimir datos.
+
+4
+00:00:05,830 --> 00:00:06,770
+En este video me gustaría
+
+5
+00:00:06,910 --> 00:00:08,140
+contarles sobre una segunda aplicación
+
+6
+00:00:08,870 --> 00:00:12,490
+de la reducción de dimensionalidad que es visualizar los datos.
+
+7
+00:00:13,440 --> 00:00:14,210
+Para un montón de tareas de aprendizaje de máquina
+
+8
+00:00:14,560 --> 00:00:15,890
+realmente ayuda
+
+9
+00:00:16,220 --> 00:00:17,650
+desarrollar algoritmos de aprendizaje eficaz,
+
+10
+00:00:17,990 --> 00:00:20,260
+si podemos entender nuestros datos mejor.
+
+11
+00:00:20,610 --> 00:00:21,890
+Si hay alguna manera de visualizar
+
+12
+00:00:22,100 --> 00:00:23,790
+los datos mejor y así,
+
+13
+00:00:24,080 --> 00:00:25,810
+la reducción de la dimensionalidad nos ofrece,
+
+14
+00:00:25,990 --> 00:00:27,870
+a menudo, otra herramienta útil hacerlo.
+
+15
+00:00:28,700 --> 00:00:29,290
+Comencemos con un ejemplo.
+
+16
+00:00:30,840 --> 00:00:31,370
+Digamos que hemos recopilado un gran
+
+17
+00:00:31,720 --> 00:00:33,190
+conjunto de datos de muchas estadísticas
+
+18
+00:00:33,840 --> 00:00:35,730
+y datos sobre diferentes países alrededor del mundo.
+
+19
+00:00:36,030 --> 00:00:37,190
+Así, tal vez el primer atributo, X1
+
+20
+00:00:38,090 --> 00:00:39,530
+es el PIB del país, o el
+
+21
+00:00:39,720 --> 00:00:41,710
+Producto Interno Bruto, y
+
+22
+00:00:41,850 --> 00:00:43,210
+X2 es per cápita, lo que significa
+
+23
+00:00:43,600 --> 00:00:45,770
+el PIB por persona , X3
+
+24
+00:00:46,080 --> 00:00:48,340
+índice de desarrollo humano, esperanza
+
+25
+00:00:48,530 --> 00:00:51,290
+de vida, X5, X6 y así sucesivamente.
+
+26
+00:00:51,560 --> 00:00:52,670
+Y podemos tener un gran conjunto de datos
+
+27
+00:00:52,880 --> 00:00:54,080
+como éste, donde, ya sabes,
+
+28
+00:00:54,290 --> 00:00:56,890
+tal vez 50 atributos
+
+29
+00:00:57,650 --> 00:00:59,660
+cada país y tenemos un gran conjunto de países.
+
+30
+00:01:01,310 --> 00:01:02,300
+¿Hay algo
+
+31
+00:01:02,810 --> 00:01:05,210
+que podemos hacer para tratar de entender nuestros datos mejor?
+
+32
+00:01:05,490 --> 00:01:07,200
+He recivido esta enorme tabla de números.
+
+33
+00:01:07,850 --> 00:01:11,010
+¿Cómo visualizas estos datos?
+
+34
+00:01:11,510 --> 00:01:12,420
+Si tienes 50 atributos, tiene
+
+35
+00:01:12,600 --> 00:01:13,970
+muy difícil graficar en 50 dimensiones
+
+36
+00:01:15,620 --> 00:01:15,620
+dimensiones.
+
+37
+00:01:16,470 --> 00:01:19,060
+¿Cual es una buena forma de examinar estos datos?
+
+38
+00:01:20,750 --> 00:01:22,820
+Utilice la reducción de la dimensionalidad, lo que
+
+39
+00:01:22,960 --> 00:01:24,920
+que podemos hacer es, en lugar de
+
+40
+00:01:25,200 --> 00:01:27,240
+tener cada país representado por
+
+41
+00:01:27,430 --> 00:01:30,220
+este vector, xi, que
+
+42
+00:01:30,460 --> 00:01:33,140
+es de 50 dimensiones, por lo que en su lugar
+
+43
+00:01:33,410 --> 00:01:34,800
+de, digamos, tener un país
+
+44
+00:01:35,330 --> 00:01:37,260
+como Canadá, en lugar de
+
+45
+00:01:37,380 --> 00:01:38,880
+tener 50 números para representar los atributos
+
+46
+00:01:39,320 --> 00:01:41,030
+de Canadá, digamos que nos
+
+47
+00:01:41,240 --> 00:01:42,350
+puede intentar con un atrinuto diferente
+
+48
+00:01:42,900 --> 00:01:44,930
+a modo de representación de estos
+
+49
+00:01:45,320 --> 00:01:47,650
+z vectores, esto es en R2
+
+50
+00:01:49,590 --> 00:01:50,780
+Si ese es el caso, si
+
+51
+00:01:50,910 --> 00:01:51,930
+podemos tener sólo un par de
+
+52
+00:01:52,230 --> 00:01:53,640
+números, z1 y z2 que
+
+53
+00:01:53,790 --> 00:01:55,500
+de alguna manera, resume mi 50
+
+54
+00:01:55,640 --> 00:01:56,730
+números, tal vez lo que
+
+55
+00:01:56,810 --> 00:01:57,880
+puede hacer [xx] es para trazar
+
+56
+00:01:58,190 --> 00:01:59,750
+estos países en R2 y
+
+57
+00:01:59,970 --> 00:02:01,500
+utilizan para intentar
+
+58
+00:02:01,590 --> 00:02:03,810
+comprender el espacio en
+
+59
+00:02:03,950 --> 00:02:05,630
+[xx] de los atributos de diferentes
+
+60
+00:02:05,900 --> 00:02:08,250
+[xx] países mejor y
+
+61
+00:02:08,520 --> 00:02:10,690
+así que, aquí, lo que
+
+62
+00:02:10,780 --> 00:02:11,980
+puede hacer es reducir los
+
+63
+00:02:12,070 --> 00:02:14,630
+datos de 50
+
+64
+00:02:14,850 --> 00:02:16,580
+D, de 50 dimensiones
+
+65
+00:02:17,470 --> 00:02:18,380
+en 2D, así que usted puede
+
+66
+00:02:18,740 --> 00:02:19,960
+graficar esto en 2
+
+67
+00:02:20,170 --> 00:02:21,470
+dimesiones y, cuando
+
+68
+00:02:21,610 --> 00:02:23,060
+hacerlo, resulta
+
+69
+00:02:23,270 --> 00:02:24,110
+que, si te fijas en el
+
+70
+00:02:24,280 --> 00:02:25,770
+output de los algoritmos de reducción de la dimensionalidad,
+
+71
+00:02:26,720 --> 00:02:28,650
+Generalmente no a implica en un
+
+72
+00:02:28,920 --> 00:02:32,340
+significado físico a estas nuevas características que desea [xx].
+
+73
+00:02:32,710 --> 00:02:35,210
+Ha a menudo nos corresponde a nosotros saber de usted saber, más o menos lo que estos nuevos atributos significan
+
+74
+00:02:36,810 --> 00:02:39,440
+Pero, y si se trazan estos atributos, aquí está lo que usted podría encontrar.
+
+75
+00:02:39,750 --> 00:02:41,090
+Así que, aquí, cada país
+
+76
+00:02:41,760 --> 00:02:43,060
+está representado por un punto
+
+77
+00:02:43,820 --> 00:02:44,640
+ZI, que es R2
+
+78
+00:02:44,990 --> 00:02:46,440
+y así cada uno de estos
+
+79
+00:02:46,790 --> 00:02:47,780
+puntos y esta figura
+
+80
+00:02:48,050 --> 00:02:48,980
+representa a un país y así,
+
+81
+00:02:49,200 --> 00:02:50,830
+aquí es Z1 y aquí es
+
+82
+00:02:51,200 --> 00:02:53,380
+Z2 y [xx] [xx] de estos.
+
+83
+00:02:54,090 --> 00:02:55,310
+Por lo tanto, puede que encuentre,
+
+84
+00:02:55,680 --> 00:02:57,270
+por ejemplo, que el eje horizontial
+
+85
+00:02:57,690 --> 00:02:59,240
+Z1
+
+86
+00:03:00,270 --> 00:03:01,980
+corresponde aproximadamente al
+
+87
+00:03:02,260 --> 00:03:05,150
+tamaño total del país, o
+
+88
+00:03:05,230 --> 00:03:07,410
+la actividad económica general de un país.
+
+89
+00:03:07,800 --> 00:03:09,950
+Así que el PIB global, tamaño
+
+90
+00:03:10,750 --> 00:03:13,490
+económico general de un país.
+
+91
+00:03:14,350 --> 00:03:15,860
+Considerando que el eje vertical en nuestros
+
+92
+00:03:15,920 --> 00:03:18,250
+datos pueden corresponder al
+
+93
+00:03:18,390 --> 00:03:21,430
+PIB por persona
+
+94
+00:03:22,290 --> 00:03:23,900
+O wl bien estar por persona
+
+95
+00:03:24,160 --> 00:03:30,730
+o por la actividad económica de la persona y,
+
+96
+00:03:31,030 --> 00:03:32,370
+puede que encuentre que, dados estos
+
+97
+00:03:32,570 --> 00:03:33,540
+50 atributos, ustedes saben, estos
+
+98
+00:03:34,040 --> 00:03:35,160
+realmente son las 2 principales dimensiones
+
+99
+00:03:35,800 --> 00:03:37,760
+de la desviación y por lo tanto,
+
+100
+00:03:38,170 --> 00:03:39,140
+aquí usted puede tener un país
+
+101
+00:03:39,820 --> 00:03:41,220
+como los Estados Unidos, que
+
+102
+00:03:41,500 --> 00:03:43,370
+es un PIB relativamente grande,
+
+103
+00:03:43,690 --> 00:03:44,990
+sabes, es un muy
+
+104
+00:03:45,270 --> 00:03:46,490
+gran PIB y un relativamente
+
+105
+00:03:46,710 --> 00:03:48,760
+alto por persona PIB también.
+
+106
+00:03:49,470 --> 00:03:50,710
+Mientras que aquí puede que
+
+107
+00:03:51,410 --> 00:03:53,720
+un país como Singapur, que
+
+108
+00:03:53,970 --> 00:03:55,040
+realmente tiene un muy
+
+109
+00:03:55,390 --> 00:03:56,760
+alta por persona del PIB
+
+110
+00:03:57,030 --> 00:03:58,010
+pero ya que Singapur es mucho
+
+111
+00:03:58,100 --> 00:03:59,820
+más pequeño país, el tamaño
+
+112
+00:04:01,030 --> 00:04:02,230
+general de la economía de Singapur
+
+113
+00:04:03,460 --> 00:04:05,060
+es mucho menor que los Estados Unidos.
+
+114
+00:04:06,270 --> 00:04:08,140
+Y, aquí, lo haría
+
+115
+00:04:08,290 --> 00:04:10,880
+países donde individuos
+
+116
+00:04:12,020 --> 00:04:13,320
+lamentablemente, son menos
+
+117
+00:04:13,430 --> 00:04:14,660
+bien apagado, tal vez más corta esperanza de vida,
+
+118
+00:04:15,820 --> 00:04:17,000
+menos servicios de salud, menos madurez
+
+119
+00:04:18,290 --> 00:04:19,370
+económica, es por eso que paises
+
+120
+00:04:19,700 --> 00:04:21,950
+más pequeños, mientras que un punto
+
+121
+00:04:22,280 --> 00:04:23,780
+como esto corresponderá a
+
+122
+00:04:24,450 --> 00:04:26,000
+un país que tiene un
+
+123
+00:04:26,160 --> 00:04:27,870
+equitativo, tiene una cantidad sustancial de
+
+124
+00:04:28,090 --> 00:04:29,540
+actividad económica, pero donde individuos
+
+125
+00:04:30,520 --> 00:04:32,520
+tienden a estar en algo peor situación.
+
+126
+00:04:32,600 --> 00:04:33,700
+Así que usted podría encontrar
+
+127
+00:04:33,840 --> 00:04:35,610
+los ejes Z1 y Z2
+
+128
+00:04:35,680 --> 00:04:37,140
+puede ayudarle a mas sucintamente
+
+129
+00:04:37,670 --> 00:04:39,010
+capturar realmente cuáles son las
+
+130
+00:04:39,120 --> 00:04:40,120
+dos dimensiones principales de las variaciones
+
+131
+00:04:41,360 --> 00:04:42,120
+entre diferentes países.
+
+132
+00:04:43,430 --> 00:04:44,910
+Como la actividad
+
+133
+00:04:45,400 --> 00:04:46,850
+económica global del país proyectado
+
+134
+00:04:47,390 --> 00:04:48,800
+por el tamaño de la
+
+135
+00:04:49,090 --> 00:04:50,770
+economía general del país, así
+
+136
+00:04:51,320 --> 00:04:53,440
+en la medida que el bienestar
+
+137
+00:04:54,040 --> 00:04:55,290
+indivudual, medido por el PIB por persona,
+
+138
+00:04:56,960 --> 00:04:58,470
+cuidado de la salud por persona y cosas así.
+
+139
+00:05:00,930 --> 00:05:02,130
+Así es cómo puede
+
+140
+00:05:02,290 --> 00:05:04,410
+Utilice la reducción de la dimensionalidad, de
+
+141
+00:05:04,540 --> 00:05:06,230
+manera de reducir los datos de
+
+142
+00:05:06,470 --> 00:05:07,860
+50 dimensiones o lo que sea, bajando
+
+143
+00:05:08,150 --> 00:05:09,520
+a dos dimensiones, o tal vez
+
+144
+00:05:09,680 --> 00:05:11,270
+hasta tres dimensiones, por lo que
+
+145
+00:05:11,380 --> 00:05:13,740
+puede graficarlo y comprender sus datos mejores.
+
+146
+00:05:14,840 --> 00:05:16,010
+En el siguiente video, vamos a empezar
+
+147
+00:05:16,440 --> 00:05:17,580
+desarrollar un algoritmo específico,
+
+148
+00:05:18,200 --> 00:05:19,500
+llamado PCA, o análisis de componentes principales
+
+149
+00:05:20,010 --> 00:05:21,360
+que permitirá
+
+150
+00:05:21,550 --> 00:05:22,630
+que lo hagamos y también
+
+151
+00:05:23,820 --> 00:05:26,690
+realizar la aplicación que mencioné anteriormente para comprimir los datos.

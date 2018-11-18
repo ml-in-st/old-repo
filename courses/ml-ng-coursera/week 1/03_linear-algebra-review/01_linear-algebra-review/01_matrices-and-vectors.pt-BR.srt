@@ -1,0 +1,960 @@
+1
+00:00:00,100 --> 00:00:01,850
+Vamos começar com a revisão de algebra linear.
+
+2
+00:00:02,880 --> 00:00:03,850
+Neste vídeo eu quero te
+
+3
+00:00:03,910 --> 00:00:06,210
+explicar o que são matrizes e o que são vetores.
+
+4
+00:00:09,280 --> 00:00:10,770
+Uma matriz é uma
+
+5
+00:00:11,020 --> 00:00:12,590
+ordenação retangular de números
+
+6
+00:00:13,570 --> 00:00:14,810
+escrita entre colchetes.
+
+7
+00:00:16,070 --> 00:00:17,250
+Então, por exemplo, aqui a direita
+
+8
+00:00:17,280 --> 00:00:20,180
+temos uma matriz, a esquerda um abre colchete.
+
+9
+00:00:22,000 --> 00:00:24,660
+E então, vários números.
+
+10
+00:00:27,020 --> 00:00:29,100
+Que podem ser valores de
+
+11
+00:00:29,550 --> 00:00:30,660
+um problema de aprendizado ou podem
+
+12
+00:00:30,800 --> 00:00:33,740
+ser dados de outra coisa,
+
+13
+00:00:35,080 --> 00:00:36,900
+mas os valores em específico não são importantes.
+
+14
+00:00:37,440 --> 00:00:40,470
+e então eu fecho um outro colchete na direita.
+
+15
+00:00:40,680 --> 00:00:41,440
+Então temos uma matriz.
+
+16
+00:00:41,930 --> 00:00:43,520
+Aqui está mais um exemplo
+
+17
+00:00:44,290 --> 00:00:46,360
+de matriz, vamos escrever 1, 2, 3, 4 , 5, 6.
+
+18
+00:00:46,810 --> 00:00:48,020
+Então matriz e apenas uma
+
+19
+00:00:48,300 --> 00:00:49,630
+maneira de dizer, uma forma
+
+20
+00:00:49,690 --> 00:00:51,540
+ajeitar números em duas dimensões.
+
+21
+00:00:53,260 --> 00:00:54,920
+E a outra
+
+22
+00:00:55,260 --> 00:00:56,320
+informação que precisamos é
+
+23
+00:00:56,650 --> 00:00:57,740
+que a dimensão da
+
+24
+00:00:57,810 --> 00:00:58,980
+matriz se escreve
+
+25
+00:00:59,110 --> 00:01:01,070
+como o número de
+
+26
+00:01:01,170 --> 00:01:04,750
+linhas vezes o número de colunas da matriz.
+
+27
+00:01:05,480 --> 00:01:07,190
+Este exemplo
+
+28
+00:01:07,830 --> 00:01:09,700
+da esquerda
+
+29
+00:01:09,900 --> 00:01:11,000
+tem 1, 2 , 3, 4
+
+30
+00:01:11,290 --> 00:01:13,370
+linhas e duas colunas.
+
+31
+00:01:14,540 --> 00:01:15,950
+e então este exemplo da
+
+32
+00:01:16,110 --> 00:01:17,850
+esquerda é uma matriz 4 por 2
+
+33
+00:01:18,640 --> 00:01:23,320
+número de linhas por número de colunas.
+
+34
+00:01:23,600 --> 00:01:24,380
+Quatro linhas, duas colunas.
+
+35
+00:01:25,290 --> 00:01:27,740
+Esta matriz à direita tem duas linhas
+
+36
+00:01:28,330 --> 00:01:29,790
+Esta é a primeira linha, esta
+
+37
+00:01:30,040 --> 00:01:32,580
+é a segunda linha, e ela tem três colunas.
+
+38
+00:01:35,430 --> 00:01:36,890
+Esta primeira coluna, esta é a
+
+39
+00:01:37,070 --> 00:01:38,350
+segunda coluna, e esta é a terceira
+
+40
+00:01:38,610 --> 00:01:41,340
+coluna.  Assim, esta segunda
+
+41
+00:01:41,670 --> 00:01:42,800
+matriz, é chamada
+
+42
+00:01:42,970 --> 00:01:44,660
+de uma matriz 2 por 3.
+
+43
+00:01:45,700 --> 00:01:48,230
+Assim dizemos que a dimensão desta matriz é 2 por 3
+
+44
+00:01:50,460 --> 00:01:51,690
+Algumas vezes você vê isso
+
+45
+00:01:51,850 --> 00:01:53,480
+escrito, no caso
+
+46
+00:01:53,740 --> 00:01:54,510
+da esquerda, você verá escrito
+
+47
+00:01:55,000 --> 00:01:56,360
+como R 4 por 2,
+
+48
+00:01:56,460 --> 00:01:58,090
+ou que as pessoas
+
+49
+00:01:58,470 --> 00:02:00,280
+às vezes dizem é que esta matriz
+
+50
+00:02:00,930 --> 00:02:02,840
+é um elemento do conjunto R 4 por 2.
+
+51
+00:02:03,060 --> 00:02:04,270
+Isso aqui
+
+52
+00:02:04,410 --> 00:02:05,180
+simplesmente quer dizer "o conjunto de todas
+
+53
+00:02:05,790 --> 00:02:07,020
+as matrizes com a dimensão
+
+54
+00:02:07,520 --> 00:02:08,960
+4 por 2", e este outro
+
+55
+00:02:09,100 --> 00:02:10,650
+na direita pode ser
+
+56
+00:02:10,880 --> 00:02:12,800
+escrito como uma matriz em R 2 por 3.
+
+57
+00:02:13,130 --> 00:02:16,080
+Então se você
+
+58
+00:02:16,560 --> 00:02:17,460
+ver algo
+
+59
+00:02:17,570 --> 00:02:18,700
+parecido com R 4 por 2
+
+60
+00:02:18,880 --> 00:02:19,960
+ou R 2 por 3,
+
+61
+00:02:20,320 --> 00:02:21,450
+as pessoas estão apenas se referindo
+
+62
+00:02:21,900 --> 00:02:23,830
+à matrizes de uma dimensão especifica.
+
+63
+00:02:26,760 --> 00:02:28,240
+Agora, vamos falar de como
+
+64
+00:02:28,590 --> 00:02:31,370
+referenciar elementos específicos da matriz.
+
+65
+00:02:31,980 --> 00:02:32,850
+E por elementos da matriz, além
+
+66
+00:02:33,020 --> 00:02:34,090
+da matriz em si eu quero dizer
+
+67
+00:02:34,360 --> 00:02:35,930
+os valores, os números dentro da matriz.
+
+68
+00:02:37,200 --> 00:02:38,270
+Na notação padrão
+
+69
+00:02:38,890 --> 00:02:40,110
+se esta matriz
+
+70
+00:02:40,290 --> 00:02:41,860
+é A, então A índice ij
+
+71
+00:02:42,830 --> 00:02:44,050
+se refere
+
+72
+00:02:44,420 --> 00:02:46,060
+ao valor em (i vírgula j),
+
+73
+00:02:46,950 --> 00:02:48,490
+ou seja, o número que está
+
+74
+00:02:48,570 --> 00:02:50,690
+na i-ésima linha e j-ésima coluna da matriz.
+
+75
+00:02:51,880 --> 00:02:54,200
+Por exemplo, A 1,1
+
+76
+00:02:54,530 --> 00:02:55,660
+se refere ao número na
+
+77
+00:02:56,220 --> 00:02:57,510
+primeira linha e
+
+78
+00:02:57,600 --> 00:02:58,900
+primeira coluna, sendo
+
+79
+00:02:58,960 --> 00:02:59,720
+essa é a primeira linha e
+
+80
+00:03:00,090 --> 00:03:02,600
+a primeira coluna, então
+
+81
+00:03:02,640 --> 00:03:03,920
+é igual a
+
+82
+00:03:04,240 --> 00:03:05,880
+1402.
+
+83
+00:03:06,420 --> 00:03:07,620
+Outro exemplo: A 1,2
+
+84
+00:03:07,780 --> 00:03:10,020
+se refere
+
+85
+00:03:10,160 --> 00:03:11,160
+ao valor na primeira
+
+86
+00:03:11,660 --> 00:03:13,860
+linha e segunda coluna,
+
+87
+00:03:14,290 --> 00:03:16,170
+logo A 1,2
+
+88
+00:03:16,270 --> 00:03:19,000
+é igual a 191.
+
+89
+00:03:20,430 --> 00:03:21,190
+Mais alguns exemplos:
+
+90
+00:03:22,430 --> 00:03:24,360
+Vejamos, A...
+
+91
+00:03:24,530 --> 00:03:26,970
+Digamos A 3,2 se refere
+
+92
+00:03:27,350 --> 00:03:29,240
+ao valor na terceira
+
+93
+00:03:30,040 --> 00:03:32,340
+linha e segunda coluna,
+
+94
+00:03:33,750 --> 00:03:35,030
+porque os índices são 3 e 2,
+
+95
+00:03:35,470 --> 00:03:41,270
+então é igual a 1437.
+
+96
+00:03:41,490 --> 00:03:42,480
+Finalmente, A 4,1
+
+97
+00:03:43,370 --> 00:03:44,540
+se refere a
+
+98
+00:03:45,320 --> 00:03:47,320
+este aqui, quarta linha,
+
+99
+00:03:47,710 --> 00:03:49,220
+primeira coluna, é
+
+100
+00:03:49,520 --> 00:03:53,150
+igual a 147.
+
+101
+00:03:53,770 --> 00:03:54,600
+Espero que não aconteça, mas
+
+102
+00:03:54,660 --> 00:03:55,560
+se você escrevesse
+
+103
+00:03:55,660 --> 00:03:57,540
+A 4,3
+
+104
+00:03:57,870 --> 00:03:59,200
+isso se refere à
+
+105
+00:03:59,610 --> 00:04:01,130
+quarta linha e
+
+106
+00:04:01,230 --> 00:04:02,730
+terceira coluna, mas
+
+107
+00:04:02,850 --> 00:04:03,940
+a matriz não tem terceira
+
+108
+00:04:04,190 --> 00:04:05,420
+coluna, então esse número é indefinido
+
+109
+00:04:06,640 --> 00:04:08,280
+Ou também podemos pensar nisso como um erro.
+
+110
+00:04:08,830 --> 00:04:10,720
+Não existe o elemento
+
+111
+00:04:10,840 --> 00:04:12,540
+A 4,3, então
+
+112
+00:04:12,950 --> 00:04:14,500
+você não devia referenciar A 4,3.
+
+113
+00:04:14,620 --> 00:04:17,120
+A matriz
+
+114
+00:04:17,640 --> 00:04:19,070
+oferece uma forma rápida
+
+115
+00:04:19,380 --> 00:04:22,280
+de organizar, indexar e acessar muitos dados.
+
+116
+00:04:22,670 --> 00:04:24,200
+Se eu estiver
+
+117
+00:04:24,320 --> 00:04:25,140
+jogando muitos
+
+118
+00:04:25,440 --> 00:04:26,110
+conceitos, muitas notações novas
+
+119
+00:04:26,570 --> 00:04:27,920
+de uma só vez, não precisa
+
+120
+00:04:28,140 --> 00:04:29,230
+memorizar tudo isso,
+
+121
+00:04:29,530 --> 00:04:31,500
+no website do curso, onde
+
+122
+00:04:31,700 --> 00:04:33,340
+disponibilizamos as notas de aula,
+
+123
+00:04:33,700 --> 00:04:35,960
+você também vai encontrar essas definições por escrito.
+
+124
+00:04:36,650 --> 00:04:37,740
+Você sempre pode consultar
+
+125
+00:04:38,160 --> 00:04:39,200
+tanto estes slides
+
+126
+00:04:39,560 --> 00:04:40,950
+disponibilizados no site, quanto as
+
+127
+00:04:41,260 --> 00:04:44,060
+notas de aula se você pensar "O que era A 4,1 mesmo?"
+
+128
+00:04:44,290 --> 00:04:45,320
+"Qual linha e qual coluna era?"
+
+129
+00:04:45,650 --> 00:04:47,160
+Não se preocupe em decorar tudo agora.
+
+130
+00:04:47,470 --> 00:04:48,960
+Você pode sempre voltar aos
+
+131
+00:04:49,100 --> 00:04:51,590
+textos no site do curso, e usá-los como referência.
+
+132
+00:04:52,500 --> 00:04:53,740
+Então isso é o que uma matriz é.
+
+133
+00:04:54,160 --> 00:04:57,000
+Agora, vamos falar sobre o que é um vetor.
+
+134
+00:04:57,300 --> 00:04:59,400
+Um vetor é, na verdade, um caso especial de matriz
+
+135
+00:04:59,890 --> 00:05:01,170
+Um vetor é uma matriz
+
+136
+00:05:02,070 --> 00:05:03,590
+que só tem uma coluna,
+
+137
+00:05:03,740 --> 00:05:04,650
+uma matriz N x 1,
+
+138
+00:05:04,850 --> 00:05:07,330
+Lembre-se que
+
+139
+00:05:07,820 --> 00:05:08,970
+N é o número de
+
+140
+00:05:09,190 --> 00:05:10,750
+linhas, e o 1 aqui
+
+141
+00:05:10,870 --> 00:05:12,540
+é o número de colunas,
+
+142
+00:05:12,710 --> 00:05:13,760
+então uma matriz com uma só coluna
+
+143
+00:05:14,720 --> 00:05:15,730
+é o que chamamos de vetor.
+
+144
+00:05:16,700 --> 00:05:17,950
+Aqui está um exemplo
+
+145
+00:05:18,310 --> 00:05:19,800
+de vetor,
+
+146
+00:05:20,120 --> 00:05:22,700
+onde N = 4.
+
+147
+00:05:23,860 --> 00:05:25,090
+Existe também
+
+148
+00:05:25,370 --> 00:05:26,560
+um outro termo para isto,
+
+149
+00:05:26,660 --> 00:05:28,300
+este é um vetor de quatro dimensões,
+
+150
+00:05:30,130 --> 00:05:31,410
+o que significa que
+
+151
+00:05:32,880 --> 00:05:34,410
+ele tem quatro
+
+152
+00:05:34,800 --> 00:05:36,400
+elementos, quatro números.
+
+153
+00:05:36,870 --> 00:05:38,130
+Da mesma forma que antes,
+
+154
+00:05:38,510 --> 00:05:39,520
+com matrizes, você viu
+
+155
+00:05:39,740 --> 00:05:40,960
+essa notação ℝ³ˣ²
+
+156
+00:05:41,120 --> 00:05:42,340
+para se referir às matrizes
+
+157
+00:05:42,340 --> 00:05:43,770
+2 por 3, também podemos
+
+158
+00:05:44,660 --> 00:05:46,340
+nos referir a esse vetor
+
+159
+00:05:46,500 --> 00:05:48,270
+como um do conjunto ℝ⁴
+
+160
+00:05:49,640 --> 00:05:50,900
+e esse ℝ⁴ significa
+
+161
+00:05:51,020 --> 00:05:53,480
+o conjunto de vetores de 4 dimensões.
+
+162
+00:05:56,350 --> 00:05:59,230
+Vamos falar agora sobre como se referir aos elementos desse vetor.
+
+163
+00:06:01,790 --> 00:06:02,970
+Vamos usar a notação
+
+164
+00:06:03,730 --> 00:06:06,030
+y índice i (y_i) para nos referirmos
+
+165
+00:06:06,310 --> 00:06:07,620
+ao i-ésimo elemento
+
+166
+00:06:07,690 --> 00:06:08,650
+do vetor y.
+
+167
+00:06:08,810 --> 00:06:11,470
+Se y é um vetor, y_i é o i-ésimo elemento.
+
+168
+00:06:12,050 --> 00:06:13,080
+Assim, y_1 é
+
+169
+00:06:13,450 --> 00:06:16,320
+o primeiro elemento, 460,
+
+170
+00:06:16,540 --> 00:06:18,670
+y_2 é o segundo elemento, 232,
+
+171
+00:06:19,690 --> 00:06:21,030
+aqui está o primeiro
+
+172
+00:06:21,380 --> 00:06:21,780
+e aqui o segundo.
+
+173
+00:06:22,570 --> 00:06:24,840
+y_3 é igual a 315,
+
+174
+00:06:24,970 --> 00:06:26,380
+e por aí vai, mas
+
+175
+00:06:26,760 --> 00:06:28,240
+somente y_1 a y_4 são
+
+176
+00:06:28,650 --> 00:06:31,600
+definidos em um vetor de 4 dimensões.
+
+177
+00:06:32,940 --> 00:06:33,990
+Na verdade, existem
+
+178
+00:06:34,560 --> 00:06:35,950
+duas convenções para
+
+179
+00:06:36,320 --> 00:06:37,590
+como indexar um vetor,
+
+180
+00:06:37,730 --> 00:06:39,250
+aqui estão elas.
+
+181
+00:06:39,560 --> 00:06:41,020
+Às vezes, as pessoas usam
+
+182
+00:06:41,630 --> 00:06:43,820
+vetores índice-1 e às vezes vetores índice-0.
+
+183
+00:06:44,770 --> 00:06:45,620
+Neste exemplo à esquerda,
+
+184
+00:06:46,090 --> 00:06:47,980
+o vetor é
+
+185
+00:06:48,180 --> 00:06:49,240
+composto pelos elementos
+
+186
+00:06:49,650 --> 00:06:51,870
+y_1, y_2, y_3 e y_4.
+
+187
+00:06:53,540 --> 00:06:54,710
+No exemplo à direita,
+
+188
+00:06:54,870 --> 00:06:56,340
+indexamos o primeiro elemento
+
+189
+00:06:56,840 --> 00:06:58,380
+com índice 0,
+
+190
+00:06:58,730 --> 00:07:00,460
+esta é uma indexação índice-0.
+
+191
+00:07:01,520 --> 00:07:04,620
+Assim, os elementos vão de y_0 a y_3.
+
+192
+00:07:05,450 --> 00:07:07,170
+É assim que funcionam
+
+193
+00:07:07,380 --> 00:07:08,780
+as arrays em linguagens de programação,
+
+194
+00:07:09,940 --> 00:07:11,080
+onde elas podem ser
+
+195
+00:07:11,440 --> 00:07:12,740
+indexadas começando por 1,
+
+196
+00:07:13,140 --> 00:07:14,390
+o primeiro elemento
+
+197
+00:07:14,510 --> 00:07:15,590
+da array é y[1]
+
+198
+00:07:16,160 --> 00:07:17,480
+em notação de sequência,
+
+199
+00:07:17,940 --> 00:07:20,580
+e às vezes é y[0],
+
+200
+00:07:21,260 --> 00:07:22,860
+dependendo da linguagem de programação que você usa.
+
+201
+00:07:23,640 --> 00:07:25,000
+Em matemática,
+
+202
+00:07:25,190 --> 00:07:26,680
+é mais comum vermos
+
+203
+00:07:27,120 --> 00:07:28,390
+a versão com índice 1,
+
+204
+00:07:28,570 --> 00:07:30,150
+mas em muitas
+
+205
+00:07:30,380 --> 00:07:32,640
+aplicações de aprendizado de máquina
+
+206
+00:07:33,680 --> 00:07:35,400
+vetores índice-0 são uma notação mais conveniente.
+
+207
+00:07:36,810 --> 00:07:37,650
+O que você deve normalmente fazer,
+
+208
+00:07:37,970 --> 00:07:39,580
+a não ser que esteja claramente especificado,
+
+209
+00:07:40,630 --> 00:07:43,070
+é assumir que estamos usando vetores índice 1.
+
+210
+00:07:43,680 --> 00:07:44,750
+Na verdade, durante o restante
+
+211
+00:07:44,890 --> 00:07:46,380
+desses vídeos de revisão de
+
+212
+00:07:46,770 --> 00:07:49,190
+álgebra linear usarei vetores índice 1.
+
+213
+00:07:50,210 --> 00:07:51,170
+Mas tenha em mente que
+
+214
+00:07:51,280 --> 00:07:52,150
+quando falamos sobre aplicações de
+
+215
+00:07:52,390 --> 00:07:53,980
+aprendizado de máquina, vou
+
+216
+00:07:54,220 --> 00:07:55,340
+falar explicitamente,
+
+217
+00:07:55,480 --> 00:07:56,640
+mas às vezes vamos
+
+218
+00:07:56,740 --> 00:07:57,760
+trocar para a notação índice 0
+
+219
+00:07:59,020 --> 00:07:59,280
+para vetores.
+
+220
+00:08:00,240 --> 00:08:02,470
+Finalmente, por convenção,
+
+221
+00:08:02,940 --> 00:08:04,470
+normalmente quando escrevemos matrizes e vetores,
+
+222
+00:08:05,060 --> 00:08:06,710
+as pessoas usarão letras maiúsculas
+
+223
+00:08:06,900 --> 00:08:08,450
+para se referirem a matrizes.
+
+224
+00:08:09,000 --> 00:08:09,750
+Assim, vamos usar
+
+225
+00:08:09,930 --> 00:08:12,030
+letras maiúsculas,
+
+226
+00:08:12,260 --> 00:08:13,840
+como A, B, C e
+
+227
+00:08:14,100 --> 00:08:15,370
+X, para denotar matrizes,
+
+228
+00:08:16,630 --> 00:08:17,910
+e geralmente usaremos letras minúsculas,
+
+229
+00:08:18,660 --> 00:08:19,630
+como a, b, x e y
+
+230
+00:08:21,140 --> 00:08:22,460
+para denotar números,
+
+231
+00:08:23,060 --> 00:08:25,400
+escalares, ou vetores.
+
+232
+00:08:26,150 --> 00:08:27,860
+Isso não é necessariamente o caso,
+
+233
+00:08:28,110 --> 00:08:29,210
+mas essa é a notação mais comum
+
+234
+00:08:29,460 --> 00:08:30,610
+onde usamos a letra
+
+235
+00:08:30,940 --> 00:08:31,870
+y minúscula para nos referirmos
+
+236
+00:08:32,020 --> 00:08:33,360
+a um vetor, e letras
+
+237
+00:08:34,150 --> 00:08:35,460
+maiúsculas para nos referirmos a uma matriz.
+
+238
+00:08:37,200 --> 00:08:39,820
+Agora você sabe o que são matrizes e vetores.
+
+239
+00:08:40,800 --> 00:08:42,310
+A seguir, vamos falar sobre
+
+240
+00:08:42,500 --> 00:08:44,330
+algumas coisas que você pode fazer com eles.
+Tradução: Marcel Dall'Agnol, Roberto Bruno | Revisão: Eduardo Bonet

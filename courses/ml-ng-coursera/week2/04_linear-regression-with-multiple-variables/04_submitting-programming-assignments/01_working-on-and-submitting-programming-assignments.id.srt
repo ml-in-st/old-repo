@@ -1,0 +1,196 @@
+1
+00:00:00,000 --> 00:00:04,162
+Di video ini, saya akan jelaskan
+bagaimana mengerjakan PR untuk kelas ini,
+
+2
+00:00:04,162 --> 00:00:09,387
+juga bagaimana menggunakan sistem yang
+ada agar Anda dapat memverifikasi bahwa
+
+3
+00:00:09,387 --> 00:00:15,619
+Anda mendapatkan jawaban yang benar untuk
+tugas pemrograman machine learning Anda.
+
+4
+00:00:15,619 --> 00:00:19,354
+Ini jendela Octave saya, dan
+pertama-tama kita ke desktop saya.
+
+5
+00:00:19,354 --> 00:00:25,374
+Saya telah menyimpan beberapa berkas
+untuk tugas pertama di desktop,
+
+6
+00:00:25,374 --> 00:00:27,994
+dalam direktori 'ml-class-ex1'.
+
+7
+00:00:27,994 --> 00:00:32,921
+Kami menyediakan sejumlah berkas & tugas
+Anda memperbaiki beberapa diantaranya.
+
+8
+00:00:32,921 --> 00:00:40,701
+Jadi, berkas harus memenuhi rincian yang
+ada dalam berkas pdf untuk tugas ini.
+
+9
+00:00:40,701 --> 00:00:45,352
+Salah satu berkas yang harus Anda
+perbaiki adalah berkas warmUpExercise.m,
+
+10
+00:00:45,352 --> 00:00:49,890
+dimana tugas ini hanya memastikan
+Anda akrab dengan sistemnya.
+
+11
+00:00:49,890 --> 00:00:53,795
+Dan yang harus Anda lakukan hanyalah
+mengembalikan matriks identitas 5x5.
+
+12
+00:00:53,795 --> 00:01:00,301
+Jadi, solusi untuk tugas ini
+adalah menuliskan A = eye(5).
+
+13
+00:01:00,301 --> 00:01:05,766
+Itu memodifikasi fungsi ini untuk
+menghasilkan matriks identitas 5x5.
+
+14
+00:01:05,766 --> 00:01:11,149
+Sekarang, fungsi warmUpExercise() ini
+mengembalikan matriks identitas 5x5.
+
+15
+00:01:11,149 --> 00:01:13,727
+Saya akan menyimpannya.
+
+16
+00:01:13,727 --> 00:01:17,465
+Bagian pertama PR ini telah rampung.
+Kembali ke jendela Octave saya,
+
+17
+00:01:17,465 --> 00:01:27,185
+kita sekarang ke direktori,
+'C:\Users\ang\Desktop\ml-class-ex1'.
+
+18
+00:01:27,185 --> 00:01:33,347
+Jika saya ingin memastikan bahwa saya
+telah mengerjakannya, ketik
+'warmUpExercise()' seperti itu.
+
+19
+00:01:33,347 --> 00:01:39,671
+Dan benar, kode yang kita tulis
+menghasilkan matriks identitas 5x5.
+
+20
+00:01:39,671 --> 00:01:43,870
+Sekarang saya dapat menyerahkan kodenya
+dengan mengetik 'submit()' di direktori
+
+21
+00:01:43,870 --> 00:01:49,300
+ini, dan saya siap menyerahkan bagian 1
+jadi saya memasukkan pilihan '1'.
+
+22
+00:01:49,300 --> 00:01:54,387
+Sistem akan menanyakan alamat surel saya.
+Saya akan ke website pelajaran ini.
+
+23
+00:01:54,387 --> 00:01:59,682
+Versi website yang Anda lihat mungkin
+sedikit berbeda dari yang ini.
+
+24
+00:01:59,682 --> 00:02:07,934
+Itu alamat surel saya dan ini kata kunci
+saya, akan saya ketikkan di sini.
+
+25
+00:02:07,934 --> 00:02:19,205
+Jadi, surelnya ang@cs.stanford.edu dan
+kata kuncinya adalah 9yC75USsGf.
+
+26
+00:02:19,205 --> 00:02:23,849
+Tekan Enter. Sistem tersambung ke server
+dan mengirimkan berkasnya, lalu
+
+27
+00:02:23,849 --> 00:02:28,567
+balasannya "Congratulations! You have
+successfully completed Homework 1 Part 1".
+
+28
+00:02:28,567 --> 00:02:33,160
+Ini adalah verifikasi bahwa jawaban
+Anda untuk bagian ini benar.
+
+29
+00:02:33,160 --> 00:02:36,795
+Jika jawaban Anda salah, sistem akan
+menampilkan pesan yang menunjukkan
+
+30
+00:02:36,795 --> 00:02:39,501
+jawaban Anda masih belum benar.
+
+31
+00:02:39,501 --> 00:02:47,861
+Anda bisa menggunakan kata kunci ini,
+atau bisa juga membuat yang baru.
+
+32
+00:02:47,861 --> 00:02:52,556
+Bisa juga Anda gunakan kata kunci akun
+Coursera Anda, tapi karena kata kunci
+
+33
+00:02:52,556 --> 00:02:59,281
+yang diketik ditampilkan di monitor Anda
+dalam teks, kita beri kata kunci ekstra
+
+34
+00:02:59,281 --> 00:03:03,650
+sekiranya Anda tidak ingin ketik kata
+kunci akun Coursera Anda ke jendela
+
+35
+00:03:03,650 --> 00:03:09,219
+yang, tergantung pada OS Anda, bisa saja
+menampilkannya sebagai teks saat Anda
+
+36
+00:03:09,219 --> 00:03:14,544
+mengetikkannya di Octave.
+
+37
+00:03:14,544 --> 00:03:18,746
+Begitulah cara Anda memasukkan PR
+setelah Anda selesai mengerjakannya.
+
+38
+00:03:18,746 --> 00:03:23,696
+Semoga sukses dan Anda bisa menjawab
+semua PR dengan benar.
+
+39
+00:03:23,696 --> 00:03:28,329
+Akhir kata, pada video Octave berikut,
+saya ingin mengajari Anda tentang
+
+40
+00:03:28,329 --> 00:03:33,337
+vektorisasi, yang dapat membuat kode 
+Octave Anda bekerja jauh lebih efisien.

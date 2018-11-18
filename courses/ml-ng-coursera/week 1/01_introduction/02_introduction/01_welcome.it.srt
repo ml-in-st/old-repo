@@ -1,0 +1,343 @@
+1
+00:00:00,000 --> 00:00:04,262
+Benvenuti a questo corso online e gratuito sull'apprendimento. L'apprendimento automatico,
+
+2
+00:00:04,262 --> 00:00:08,579
+è una delle più eccitanti tecnologie degli ultimi tempi. E in questa classe, lo imparerai
+
+3
+00:00:08,579 --> 00:00:13,115
+allo stato dell'arte ad inoltre farai pratica per implementare e sviluppare questi algoritmi
+
+4
+00:00:13,115 --> 00:00:17,487
+da solo. Probabilmente avrai usato algoritmi d'apprendimento dozzine di volte al giorno senza
+
+5
+00:00:17,487 --> 00:00:21,422
+saperlo. Ogni volta che tu usi un motore di ricerca come Google o Bing per
+
+6
+00:00:21,422 --> 00:00:25,794
+cercare qualcosa su internet, una delle ragioni perché funzionano così bene è a algoritmi
+
+7
+00:00:25,794 --> 00:00:30,002
+d'apprendimenti, implementati da Google o Microsoft, che hanno imparato come classificare pagine
+
+8
+00:00:30,002 --> 00:00:35,144
+web. Ogni volta che usi l'applicazione di facebook o Apple per le tue foto e questa
+
+9
+00:00:35,144 --> 00:00:40,595
+riconosce i tuoi amici nelle foto, si tratta ancora di apprendimento automatico.Ogni volta che leggi
+
+10
+00:00:40,595 --> 00:00:46,054
+la tua email e il filtro anti-spam ti evita di dover guadare attraverso tonnellate di spam
+
+11
+00:00:46,054 --> 00:00:50,980
+si tratta ancora di apprendimento automatico. Per quanto mi riguarda uno delle ragioni per cui io sono eccitato è
+
+12
+00:00:50,980 --> 00:00:55,643
+il sogno, un giorno, di costruire macchine intelligenti come te o me. Siamo ancora
+
+13
+00:00:55,643 --> 00:01:00,076
+molto distanti dall'obbiettivo, ma molti ricercatori sul AI credono che il modo migliore per
+
+14
+00:01:00,076 --> 00:01:04,567
+raggiungere il traguardo sia attraverso algoritmi d'apprendimento provato a imitare il sistema del cervello
+
+15
+00:01:04,567 --> 00:01:08,994
+umano. Ti parlerò un po' anche di questo in questa classe, In questa
+
+16
+00:01:08,994 --> 00:01:13,542
+classe imparerai gli algoritmi d'apprendimento allo stato dell'arte. Imparare
+
+17
+00:01:13,542 --> 00:01:17,919
+solo gli algoritmi e conoscere la matematica non è molto utile, se
+
+18
+00:01:17,919 --> 00:01:22,466
+poi si vuole veramente applicare queste conoscenze ai problemi che
+
+19
+00:01:22,466 --> 00:01:26,844
+t'interessano. Quindi, noi abbiamo speso molto tempo per sviluppare esercizi che ti permettessero
+
+20
+00:01:26,844 --> 00:01:32,088
+di implementare ognuno di questi algoritmi e vedere come questi funzionano da te. Allora perché
+
+21
+00:01:32,088 --> 00:01:37,075
+apprendimento automatico è così importante oggi? Questo campo è
+
+22
+00:01:37,075 --> 00:01:41,713
+cresciuto fuori dai campo del AI o intelligenza artificiale. Noi volevamo
+
+23
+00:01:41,713 --> 00:01:46,642
+costruire macchine intelligenti e scomprimmo che c'erano solo poche cose che
+
+24
+00:01:46,642 --> 00:01:51,454
+noi potevamo programmare come trovare il percorso più breve da A a B.
+
+25
+00:01:51,454 --> 00:01:56,267
+Ma cosa più importante, non non sapevamo come scrive programmi di AI per fare cose più
+
+26
+00:01:56,267 --> 00:02:00,905
+interessanti come una ricerca sul web, foto tagging o una email anti-spam.
+
+27
+00:02:00,905 --> 00:02:05,718
+Capimmo che l'unico modo per fare queste cose era tramite macchine di apprendimento automatico
+
+28
+00:02:05,718 --> 00:02:11,237
+che imparassero da solo. Così è stata sviluppata delle nuove funzionalità per i computer e oggi
+
+29
+00:02:11,237 --> 00:02:16,950
+tocca molto settori dell'industria e scienze di base.
+
+30
+00:02:16,950 --> 00:02:21,496
+Io lavoro sull'apprendimento automatico e in un tipica settimana i finisco con parlare
+
+31
+00:02:21,496 --> 00:02:25,698
+con piloti di elicotteri, biologi, un gruppo di assistenti informatici qui miei
+
+32
+00:02:25,698 --> 00:02:30,590
+miei colleghi a Stanford rand ,in media, due o tre volte a settimana ricevo una mail da
+
+33
+00:02:30,590 --> 00:02:35,021
+persone nella Silicon Valley che mi contattato perché sono interessate ad
+
+34
+00:02:35,021 --> 00:02:39,741
+applicare degli algoritmi d'apprendimento ai loro problemi.  Questa è una prova del raggio dei
+
+35
+00:02:39,741 --> 00:02:44,000
+problemi che l'apprendimento automatico tocca. C'è un [inudibile], biologia
+
+36
+00:02:44,000 --> 00:02:48,777
+computazionale e tonnellate di cose nella Silicon Valley sul quale l'apprendimento automatico sta avendo un impatto.
+
+37
+00:02:48,777 --> 00:02:55,320
+Ci sono altri esempi di apprendimento automatico, come il Database mining.
+
+38
+00:02:55,320 --> 00:03:00,063
+Una delle ragioni per cui l'apprendimento automatico si è così diffuso è la crescita del web e la
+
+39
+00:03:00,063 --> 00:03:04,751
+crescita dell'automazione, e questo significa che oggi più che mai, c'è bisogno di
+
+40
+00:03:04,751 --> 00:03:09,272
+valutare. Ad esempio, tonnellate di compagnie nella Silicone Valley stanno collezionando dati veloci
+
+41
+00:03:09,272 --> 00:03:13,737
+dal web, anche chiamate flusso di dati veloce, e sono analizzati tramite algoritmi ad
+
+42
+00:03:13,737 --> 00:03:18,481
+apprendimento automatico per estrarre i dati per capire chi sono gli utenti e cosa serve a questi
+
+43
+00:03:18,481 --> 00:03:22,327
+utenti, questo è un grosso segmento della Silicone Valley adesso. Archivi
+
+44
+00:03:22,327 --> 00:03:27,483
+Medici, Con l'avvento dell'automazione, adesso abbiamo un sacco di archivi medici elettronici, quindi
+
+45
+00:03:27,483 --> 00:03:32,640
+se noi potessimo trasformare gli archivi medici in conoscenze mediche, potremmo iniziare a capire meglio
+
+46
+00:03:32,640 --> 00:03:37,238
+le malattie. Biologia computazionale. Ancora con l'automazione, i biologi stanno
+
+47
+00:03:37,238 --> 00:03:41,774
+collezionando un sacco di dati su sequenza di geni, DNA, eccetera, e
+
+48
+00:03:41,774 --> 00:03:46,931
+le macchine eseguono algoritmi che ci danno una migliore comprensione del genoma
+
+49
+00:03:46,931 --> 00:03:51,376
+umano e su cosa significhi essere umani. Ed in ingegneria, In tutti i campi dell'ingegneria,
+
+50
+00:03:51,376 --> 00:03:55,034
+noi abbiamo una grande, grande, grande quantità di dati sul
+
+51
+00:03:55,034 --> 00:03:59,249
+quale noi stiamo provando a capire usando algoritmi d'apprendimento. Un secondo campo d'applicazione
+
+52
+00:03:59,249 --> 00:04:03,440
+è quando noi non possiamo programmarlo a mano. Per esempio, ho
+
+53
+00:04:03,440 --> 00:04:08,328
+lavorato su elicotteri automatici per molti anni per molti anni, Non sapevamo come scrivere un programma per
+
+54
+00:04:08,328 --> 00:04:18,023
+computer che permettesse di volare all'elicottero da solo. L'unico modo che funzionò
+
+55
+00:04:18,023 --> 00:04:35,580
+è stata quella di fare imparare al computer a volare da solo. [suono]
+
+56
+00:04:37,120 --> 00:04:42,880
+Riconoscimento della scrittura. Uno dei motivi per cui è poco costoso oggi
+
+57
+00:04:42,880 --> 00:04:47,330
+mandare posta attraverso gli stati, in america e internazionalmente,
+
+58
+00:04:47,330 --> 00:04:51,899
+è che quando scrivi un involucro come questo, esce fuori che c'è un algoritmo di
+
+59
+00:04:51,899 --> 00:04:56,943
+scrittura che ha imparo come leggere la tua scrittura a mano e quindi può automaticamente
+
+60
+00:04:56,943 --> 00:05:01,749
+dirigere questo pacco sulla sua strada e il costo è solo pochi centesimi per mandare
+
+61
+00:05:01,749 --> 00:05:06,318
+a centinaia di miglia. E infatti se hai famigliarità con i campi dell'elaborazione del linguaggio naturale
+
+62
+00:05:06,318 --> 00:05:10,531
+o della visione artificiale, entrambi branchie del AI per
+
+63
+00:05:10,531 --> 00:05:15,321
+capire il linguaggio o le immagini saprai che dal elaborazione del linguaggio naturale
+
+64
+00:05:15,321 --> 00:05:20,689
+a molte applicazioni della visione artificiale oggi sono applicate degli apprendimenti automatici. [Suono] Gli algoritmi
+
+65
+00:05:20,689 --> 00:05:25,576
+d'apprendimento sono anche diffusamente usati per personalizzare programmi. Ogni volta che vai su
+
+66
+00:05:25,576 --> 00:05:30,286
+Amazon o Netflix o iTunes, le raccomandazioni per film o produzioni e
+
+67
+00:05:30,286 --> 00:05:35,073
+musica usano algoritmi d'apprendimento. Se pensi che hanno milioni di
+
+68
+00:05:35,073 --> 00:05:39,999
+utenti, non c'è nessun modo per scrivere milioni di differenti programmi per milioni di utenti.
+
+69
+00:05:39,999 --> 00:05:44,807
+L'unico modo per dare delle raccomandazioni personalizzate è
+
+70
+00:05:44,807 --> 00:05:49,258
+apprendere da soli dalle preferenze, Infine oggi
+
+71
+00:05:49,258 --> 00:05:53,294
+gli algoritmi d'apprendimento sono usato per capire come l'uomo appende e
+
+72
+00:05:53,294 --> 00:05:58,042
+per capire il cervello. Noi parleremo di queste ricerche per fare progressi
+
+73
+00:05:58,042 --> 00:06:03,182
+nel realizzare il grande sogno del AI. Qualche mese fa uno studente mi mostrò un articolo che mostrava
+
+74
+00:06:03,182 --> 00:06:07,996
+le dodici migliori abilità nel IT. Le abilità che i responsabili della tecnologia
+
+75
+00:06:07,996 --> 00:06:13,006
+non posso dire no. Era un articolo un po' datato, a in cima
+
+76
+00:06:13,006 --> 00:06:17,988
+alla lista delle dodici abilità più desiderata c'erano gli algoritmi di apprendimento automatico. Qui a
+
+77
+00:06:17,988 --> 00:06:21,793
+Stanford, il numero di reclutatori che mi contatta per chiedermi se conosco qualche
+
+78
+00:06:21,793 --> 00:06:25,920
+laureando in algoritmi d'apprendimento è più grande del numero di studenti di algoritmi
+
+79
+00:06:25,920 --> 00:06:30,047
+d'apprendimento che si laureano ogni anno. Quindi, penso ci sia un vasta insoddisfatta domanda
+
+80
+00:06:30,047 --> 00:06:34,280
+per questo genere d'abilità, e questo è un ottimo momento per imparare, spero
+
+81
+00:06:34,280 --> 00:06:38,454
+d'insegnarti molto sull'apprendimento automatico in questa classe. Nel prossimo video,
+
+82
+00:06:38,454 --> 00:06:42,123
+incominceremo a dare una definizione formale sull'apprendimento automatico
+
+83
+00:06:42,123 --> 00:06:46,044
+E incominceremo a parlare dei principali tipi di problemi e
+
+84
+00:06:46,044 --> 00:06:49,864
+algoritmi. Coglierai alcune delle principali terminologie dell'apprendimento automatico e
+
+85
+00:06:49,864 --> 00:06:53,684
+incomincerai a farti un idea sui diversi algoritmi e quando usarli
+
+86
+00:06:53,684 --> 00:06:54,740
+in modo appropriato.

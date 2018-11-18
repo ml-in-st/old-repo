@@ -1,0 +1,76 @@
+U prethodnom videu
+sam vam predstavio matematičku definiciju gradijenta opadanja. Hajdemo malo dublje da vidimo šta algoritam radi i zašto koraci gradijenta 
+opadanja imaju smisla. Ovo je algoritam gradijenta 
+opadanja koji smo videli prošli put. Samo da vas podsetim, ovaj parametar 
+ili ovaj član alfa se zove stopa učenja. On određuje koliko veliki korak 
+pravimo kada menjamo parametar tetaj. Drugi član ovde je izvod a ono što želim da uradim u ovome 
+videu je da vam približim šta svaki od ova dva člana rade i zašto imaju 
+smisla kada se koriste zajedno. Da bih vam prenio te intuicije, 
+koristiću malo jednostavniji primer gde želimo da minimizujemo 
+koristeći samo jedan parametar. Recimo da imamo funkciju J 
+od samo jednog parametra, teta1, kao što smo imali par 
+videa pre, gde je on realan broj. Možemo da imamo jedan 
+crtež koji je malo jednostavniji. Pokušajmo da shvatimo šta 
+gradijent opadanja radi u ovoj funkciji. Recimo da je ovo moja funkcija J(teta1). To je moja ... A teta1 je realan broj. U redu? Hajde da inicijalizujemo gradijent 
+opadanja sa teta1 na ovoj lokaciji. Recimo da počinjemo od te tačke na funkciji. Gradijent opadanja će da vrši izmene. Teta1 je promenjen u teta1 minus alfa puta d d teta1 J(teta1), u redu? Usput, ovaj član izvoda, ako se pitate zašto sam promenio 
+oznaku tih parcijalnih izvoda, ako ne znate šta je razlika između 
+tih simbola parcijalnih izvoda i d d teta, ne brinite. Tehnički, u matematici to zovemo parcijalni izvod i zovite ga izvod, u zavisnosti od broja parametara u funkciji J. Ali to je matematička tehnika. A za svrhe ove lekcije, smatrajte te parcijalne simbole 
+d d teta1 kao potpuno istu stvar. I ne brinite šta je stvarna razlika. Pokušaću da koristim 
+matematički preciznu oznaku ali za naše potrebe te dve oznake su ista stvar. Da vidimo šta ova jednačina radi. Izračunaćemo ovaj izvod, nisam 
+siguran jeste li videli izvode u računu pre, ali šta izvod u ovoj 
+tački radi je da u stvari govori, nacrtajmo tangentu u ovoj tački, 
+kao što je ta prava, ta crvena linija, koja samo dodiruje ovu funkciju, da vidimo nagib ove crvene linije. to je izvod, on govori koji je nagib prave 
+koja je tangenta ove funkcije. U redu, nagib prave je ova visina 
+podeljena ovim horizontalnim delom. Ova linija ima pozitivan nagib, tako da mu je pozitivan izvod. Promena teta će da bude teta1, biće promenjen u teta1 minus 
+alfa puta neki pozitivan broj. U rеdu. Alfa je stopa učenja, uvek je pozitivan broj. Tako imamo da je teta1 
+promenjen u teta1 minus nešto. Tako ću da pomerim teta1 na levo. Smanjiću teta1 i vidimo da je ovo ispravno jer želim da sam usmeren u ovome smeru. Da me dovede do ovoga ovde minimuma. Dakle, gradijent opadanja govori da radimo ispravno. Hajde da vidimo drugi primer. Uzmimo istu moju funkciju J, 
+pokušajmo da nacrtamo istu funkciju J(teta1). A sada, recimo da sam inicijalizovao 
+moj parametar ovde levo. Dakle, teta1 je ovde. Dobijam tu tačku na površi. Sada, moj član izvod po teta1 od J(teta1) u ovoj tački, gledaćemo nagib ove linije, dakle, izvod je nagib ove prave. Ali ova prava je nageta ka dole 
+tako da ona ima negativan nagib, zar ne, kažem da ova funkcija ima negativan izvod, to samo znači da je negativan nagib u toj tački. To je manje ili jednako 0 tako da, 
+kada menjam teta, imaću teta, menjam ovo teta minus alfa puta negativan broj. Imam teta1 minus negativan broj što znači da ću da povećam teta jer minus negativan broj znači da dodajem nešto na teta. A to znači da ću da povećavam teta dok god nije ovde, povećavam teta dok god me vodi bliže minimumu. Nadam se da ste dobili osećaj šta izvod radi, hajde da vidimo stopu učenja alfa i šta radi. Ovo je pravilo gradijenta opadanja, 
+to je ova jednačina. Hajde da vidimo šta će da se 
+desi ako je alfa previše malo ili je previše veliko. U ovome prvom primeru, 
+šta se dešava ako je alfa previše malo? Ovo je moja funkcija J od teta. Hajde da počnemo ovde. Ako je alfa previše malo, tada ću da množim moju promenu malim brojem tako da 
+ću da pravim male korake kao što je ovaj. U redu, ovaj korak. Tada, od ove nove tačke ću 
+da napravim drugi korak. Ali ako je alfa premalo, pravim još jedan mali korak. I tako, ako je stopa učenja previše mala, dobiću te male, male korake ka minimumu. Trebaće mi mnogo koraka 
+da dođem do minimuma i ako je alf previše malo, 
+gradijent opadanja će da bude spor jer će da pravi male, male korake i tako će mu trebati mnogo koraka pre nego 
+što dođe blizu globalnog minimuma. A šta ako je alfa previše veliko? Dakle, ovo je moja funkcija J od teta, 
+i alfa je previše veliko, tada gradijent opadanja može da prebaci 
+minimum i može da pogreši u konvergenciji ili čak da divergira, dakle na ovo sam mislio. Recimo da su svi podaci ovde, blizu minimuma. Tačke izvoda na desno, ali ako je alfa previše veliko, želim da napravim veliki korak, zapamtite, veliki korak kao ovaj, tako dobijamo veliki korak, 
+i sada moja funkcija koštanja ide na gore. Jer počinje od ove vrednosti i sada one idu na gore. Sada moj izvod kaže da treba umanjiti podatke. Ali ako je moja stopa učenja previše velika, mogu da napravim previše veliki korak dovde. Znači, došli smo dovde, u redu? Ako je korak previše velik možemo 
+da napravimo sledeći veliki korak i pravimo prekoračenje, i opet, dok god ne shvatite da se udaljavate od minimuma. Ako je alfa previše veliko, može se desiti da 
+konvergencija ne uspe ili čak da se desi divergencija. Sada imam još jedno pitanje za vas. To je jedno trik pitanje i kada sam 
+ovo učio prvi put, trebalo mi je mnogo vremena da shvatim. Šta ako je vaš parametar teta1 
+već u lokalnom minimumu, šta mislite koji će korak 
+gradijent opadanja da napravi? Recimo da ste inicijalizovali 
+teta1 na lokalni minimum. Recimo da je to vaša inicijalna vrednost teta1 ovde i već je u lokalnom optimumu 
+ili lokalnom minimumu. Videćete da je lokalni optimum, 
+vaš izvod, jednak nuli. Za taj nagib, tu tačku tangente, 
+dakle nagib u ovoj tački će da bude jednak nuli i tako je i izvod jednak nuli. A u gradijentu opadanja, imate teta1 jer menjate sa teta1 minus alfa puta 0. To znači da ako ste već na lokalnom optimumu, teta1 ostaje nepromenjeno 
+jer je promena teta1 = teta1. Ako su vaši parametri već na lokalnom minimumu korak gradijenta opadanja ne radi ništa, 
+ne menja vaš parametar a to je ono što želite jer čuva vaše 
+rešenje u lokalnom optimumu. Ovo takođe objašnjava zašto gradijent 
+opadanja konvergira lokalnom minimumu iako je stopa učenja fiksna. Na ovo sam mislio, pogledajmo primer. Ovo je funkcija koštanja J(teta) koju bih mogao da minimizujem 
+i recimo da inicijalizujem algoritam, moj algoritam gradijenta opadanja 
+tamo u toj magenta tački. Ako napravim jedan korak u gradijentu opadanja, 
+može da me odvede u tu tačku, jer je izvod veoma strm tamo. Shvatate? Sada sam u ovoj zelenoj tački, 
+i ako napravim sledeći korak u gradijentu opadanja, primetite da je moj izvod, znači nagib, manje strm u toj zelenoj tački nego u magenta tački. Jer što više prilazim minimumu, 
+moj izvod postaje bliži i bliži 0, kako prilazim minimumu. Nakon jednog koraka u opadanju, 
+moj novi izvod je malo manji. Tako da ću da napravim drugi 
+korak u gradijentu opadanja. Prirodno, napraviću manji korak iz ove zelene tačke nego iz magenta tačke. Sada sa novom tačkom, crvenom tačkom, 
+ja sam još bliži globalnom minimumu pa je izvod još manji nego što je bio u zelenoj tački. Tako ću napraviti još jedan 
+korak u gradijentu opadanja. Sada je moj izvod još manji pa je opseg promene teta1 još manji tako da 
+pravim mali korak kao što je ovaj. I kako se gradijent opadanja izvršava, automatski ćete da pravite 
+sve manje i manje korake. Sve dok ne počnete da pravite 
+veoma male korake, znate, i konačno ne konvergirate lokalnom minimumu. Dakle, da ukratko ponovimo, u gradijentu opadanja, 
+kako prilazimo lokalnom minimumu, gradijent opadanja će automatski 
+da pravi manje korake. To je zato što, kada prilazimo lokalnom minimumu, po definiciji lokalni minimum je 
+mesto gde je izvod jednak nuli, što više prilazimo lokalnom minimumu, 
+ovaj izvod će automatski da bude manji i tako će gradijent 
+opadanja da pravi manje korake. Zato nema potrebe da 
+smanjujemo alfa tokom vremena. Dakle, to je algoritam gradijenta opadanja i
+ možete da ga koristite da biste minimizovali bilo koju funkciju koštanja J, ne samo funkciju 
+koštanja koju smo definisali za linearnu regresiju. U sledećem videu ćemo da uzmemo funkciju J i postavićemo je da bude baš funkcija koštanja linearne regresije, kvadratna funkcija koštanja 
+sa kojom smo se sreli ranije. Uzećemo gradijent opadanja i tu sjajnu 
+funkciju koštanja i spojićemo ih zajedno. To će da nam da prvi algoritam učenja, daće nam algoritam linearne regresije.

@@ -1,0 +1,1851 @@
+1
+00:00:00,302 --> 00:00:01,883
+Di video ini, kita akan bicara tentang
+
+2
+00:00:01,883 --> 00:00:03,948
+persamaan normal, dimana untuk
+
+3
+00:00:03,948 --> 00:00:05,660
+beberapa persoalan regresi linier, akan
+
+4
+00:00:05,660 --> 00:00:06,981
+memberi kita cara yang jauh lebih baik
+
+5
+00:00:06,981 --> 00:00:09,115
+untuk mendapatkan nilai optimal
+
+6
+00:00:09,115 --> 00:00:10,879
+bagi parameter theta.
+
+7
+00:00:10,879 --> 00:00:13,096
+Konkritnya, sejauh ini
+
+8
+00:00:13,096 --> 00:00:14,399
+algoritma yang telah kita gunakan
+
+9
+00:00:14,399 --> 00:00:16,042
+untuk regresi linier adalah gradient
+
+10
+00:00:16,042 --> 00:00:17,823
+descent, dimana untuk
+
+11
+00:00:17,823 --> 00:00:19,410
+meminimalkan fungsi harga
+
+12
+00:00:19,410 --> 00:00:21,354
+J theta, kita akan memakai
+
+13
+00:00:21,354 --> 00:00:23,792
+algoritma iterasi ini yang mengambil
+
+14
+00:00:23,792 --> 00:00:26,410
+banyak langkah, banyak iterasi
+
+15
+00:00:26,410 --> 00:00:28,259
+gradient descent agar konvergen
+
+16
+00:00:28,259 --> 00:00:30,396
+ke minimum global.
+
+17
+00:00:30,396 --> 00:00:32,563
+Di samping itu, persamaan normal
+
+18
+00:00:32,563 --> 00:00:34,413
+akan memberi kita metode untuk
+
+19
+00:00:34,413 --> 00:00:36,986
+memecahkan theta secara analitik, agar
+
+20
+00:00:36,986 --> 00:00:38,761
+daripada menjalankan
+
+21
+00:00:38,761 --> 00:00:40,594
+algoritma iteratif ini, kita bisa
+
+22
+00:00:40,594 --> 00:00:41,365
+memecahkan
+
+23
+00:00:41,365 --> 00:00:42,791
+nilai optimal theta
+
+24
+00:00:42,791 --> 00:00:44,403
+hanya dalam sekali jalan, jadi
+
+25
+00:00:44,403 --> 00:00:46,096
+dalam satu langkah Anda sampai
+
+26
+00:00:46,096 --> 00:00:48,136
+ke nilai optimal di sana.
+
+27
+00:00:49,136 --> 00:00:51,947
+Persamaan normal
+
+28
+00:00:52,209 --> 00:00:54,442
+punya beberapa keuntungan dan
+
+29
+00:00:54,442 --> 00:00:56,024
+kerugian, tapi sebelum
+
+30
+00:00:56,024 --> 00:00:57,817
+kita membahasnya dan bicara tentang
+
+31
+00:00:57,903 --> 00:00:59,426
+kapan Anda harus menggunakannya, mari
+
+32
+00:00:59,426 --> 00:01:02,539
+pelajari beberapa intuisi akan apa yang
+dilakukan metode ini.
+
+33
+00:01:02,539 --> 00:01:04,633
+Contohnya,
+
+34
+00:01:04,633 --> 00:01:06,120
+bayangkan, kita ambil
+
+35
+00:01:06,120 --> 00:01:07,505
+fungsi harga J theta
+
+36
+00:01:07,505 --> 00:01:09,291
+yang sangat sederhana, berupa
+
+37
+00:01:09,291 --> 00:01:11,958
+fungsi theta dengan angka riil.
+
+38
+00:01:11,958 --> 00:01:13,642
+Jadi, bayangkan theta
+
+39
+00:01:13,842 --> 00:01:16,615
+bernilai skalar atau riil.
+
+40
+00:01:16,769 --> 00:01:18,918
+Theta hanyalah sebuah angka, bukan
+vektor.
+
+41
+00:01:19,171 --> 00:01:24,595
+Bayangkan kita punya fungsi harga J
+berupa fungsi kwadrat dari parameter
+
+42
+00:01:25,028 --> 00:01:27,420
+theta yang bernilai riil ini, sehingga
+J theta tampak seperti itu.
+
+43
+00:01:27,851 --> 00:01:30,336
+Bagaimana Anda meminimalkan fungsi
+kwadrat?
+
+44
+00:01:30,720 --> 00:01:32,745
+Untuk Anda yang tahu kalkulus,
+
+45
+00:01:32,858 --> 00:01:34,965
+Anda mungkin tahu cara untuk
+
+46
+00:01:34,965 --> 00:01:36,628
+meminimalkan suatu fungsi adalah dengan
+
+47
+00:01:36,628 --> 00:01:38,991
+mengambil derivatifnya dan
+
+48
+00:01:38,991 --> 00:01:41,707
+set derivatif itu sama dengan nol.
+
+49
+00:01:41,707 --> 00:01:44,721
+Jadi, ambil derivatif dari J theta.
+
+50
+00:01:44,797 --> 00:01:46,847
+Anda dapatkan rumusnya,
+
+51
+00:01:46,847 --> 00:01:49,161
+set derivatif itu
+
+52
+00:01:49,161 --> 00:01:50,782
+sama dengan nol, dan ini
+
+53
+00:01:50,782 --> 00:01:53,503
+membuat Anda mendapatkan
+
+54
+00:01:53,503 --> 00:01:57,866
+nilai theta yang meminimalkan J theta.
+
+55
+00:01:57,866 --> 00:01:59,096
+Itu kasus yang lebih sederhana
+
+56
+00:01:59,096 --> 00:02:01,716
+ketika data hanyalah angka riil.
+
+57
+00:02:01,716 --> 00:02:04,272
+Persoalan yang kita minati, theta
+
+58
+00:02:04,929 --> 00:02:06,559
+tidak lagi hanya sebuah angka riil,
+
+59
+00:02:06,559 --> 00:02:07,847
+tapi, sebagai gantinya,
+
+60
+00:02:07,847 --> 00:02:11,986
+vektor parameter berdimensi n+1 ini,
+dan
+
+61
+00:02:11,986 --> 00:02:13,809
+fungsi harga J adalah
+
+62
+00:02:13,809 --> 00:02:15,742
+fungsi dari nilai vektor ini
+
+63
+00:02:15,742 --> 00:02:17,501
+atau theta0 - theta m.
+
+64
+00:02:17,501 --> 00:02:18,924
+Dan fungsi harganya
+
+65
+00:02:18,924 --> 00:02:21,957
+tampak seperti ini, fungsi
+harga kwadrat di kanan ini.
+
+66
+00:02:22,373 --> 00:02:25,712
+Bagaimana kita meminimalkan
+fungsi harga J ini?
+
+67
+00:02:25,712 --> 00:02:27,163
+Kalkulus mengajari kita
+
+68
+00:02:27,163 --> 00:02:29,377
+caranya,
+
+69
+00:02:29,377 --> 00:02:30,709
+yaitu dengan
+
+70
+00:02:30,709 --> 00:02:38,604
+mengambil derivatif parsial dari J, pada
+setiap parameter theta J, lalu set
+
+71
+00:02:38,604 --> 00:02:40,271
+semua ini ke 0.
+
+72
+00:02:40,271 --> 00:02:41,394
+Jika Anda lakukan itu, dan Anda
+
+73
+00:02:41,394 --> 00:02:42,718
+mendapatkan hasil dari
+
+74
+00:02:42,718 --> 00:02:44,000
+theta 0, theta 1,
+
+75
+00:02:44,000 --> 00:02:45,973
+hingga theta n, maka
+
+76
+00:02:45,973 --> 00:02:47,217
+Anda akan mendapatkan nilai
+
+77
+00:02:47,217 --> 00:02:48,765
+theta yang meminimalkan fungsi
+
+78
+00:02:48,765 --> 00:02:50,878
+harga J. Jika
+
+79
+00:02:50,878 --> 00:02:52,176
+Anda benar-benar mengerjakan
+
+80
+00:02:52,176 --> 00:02:53,597
+kalkulusnya hingga mendapatkan
+
+81
+00:02:53,597 --> 00:02:55,194
+solusi bagi parameter
+
+82
+00:02:55,194 --> 00:02:57,316
+theta 0 hingga theta n,
+
+83
+00:02:57,316 --> 00:03:00,520
+derivasinya akan sangat ruwet.
+
+84
+00:03:00,520 --> 00:03:01,625
+Dan di video ini,
+
+85
+00:03:01,625 --> 00:03:03,113
+saya tidak akan
+
+86
+00:03:03,113 --> 00:03:04,852
+mengerjakan
+
+87
+00:03:04,852 --> 00:03:06,297
+derivasinya, karena panjang
+
+88
+00:03:06,297 --> 00:03:07,657
+dan ruwet, tapi
+
+89
+00:03:07,657 --> 00:03:08,962
+yang ingin saya lakukan
+
+90
+00:03:08,962 --> 00:03:10,545
+hanyalah mengatakan pada Anda apa yang
+perlu Anda tahu
+
+91
+00:03:10,545 --> 00:03:12,619
+untuk mengimplementasikan proses ini
+
+92
+00:03:12,619 --> 00:03:14,138
+supaya Anda mendapatkan
+
+93
+00:03:14,138 --> 00:03:15,511
+nilai theta yang
+
+94
+00:03:15,511 --> 00:03:16,892
+derivatif parsialnya
+
+95
+00:03:16,892 --> 00:03:19,273
+sama dengan nol.
+
+96
+00:03:19,273 --> 00:03:21,733
+Atau alternatifnya,
+
+97
+00:03:21,733 --> 00:03:23,357
+nilai theta yang
+
+98
+00:03:23,357 --> 00:03:25,901
+meminimalkan fungsi harga J theta.
+
+99
+00:03:25,901 --> 00:03:27,283
+Saya sadar beberapa
+
+100
+00:03:27,283 --> 00:03:28,846
+perkataan saya lebih
+
+101
+00:03:28,846 --> 00:03:29,914
+masuk akal bagi
+
+102
+00:03:29,914 --> 00:03:31,896
+mereka yang familiar dengan kalkulus.
+
+103
+00:03:31,896 --> 00:03:33,065
+Tapi jika Anda tidak
+
+104
+00:03:33,065 --> 00:03:34,487
+tahu atau kurang familiar
+
+105
+00:03:34,487 --> 00:03:36,354
+dengan kalkulus, jangan khawatir.
+
+106
+00:03:36,354 --> 00:03:37,404
+Saya hanya akan mengatakan pada Anda
+
+107
+00:03:37,404 --> 00:03:38,374
+apa yang Anda perlu tahu untuk
+
+108
+00:03:38,374 --> 00:03:41,358
+mengimplementasikan algoritma ini agar
+bekerja.
+
+109
+00:03:41,358 --> 00:03:42,585
+Contoh yang
+
+110
+00:03:42,585 --> 00:03:43,737
+saya ingin gunakan,
+
+111
+00:03:43,737 --> 00:03:46,339
+katakanlah
+
+112
+00:03:46,339 --> 00:03:49,056
+saya punya contoh latihan m = 4.
+
+113
+00:03:50,409 --> 00:03:52,881
+Untuk mengimplementasikan metode
+
+114
+00:03:52,881 --> 00:03:56,515
+persamaan normal ini, ini yang akan
+saya lakukan.
+
+115
+00:03:56,515 --> 00:03:57,640
+Saya akan mengambil set
+
+116
+00:03:57,640 --> 00:04:00,375
+data saya, 4 contoh latihan ini.
+
+117
+00:04:00,375 --> 00:04:01,844
+Asumsinya,
+
+118
+00:04:01,844 --> 00:04:06,073
+4 contoh ini adalah seluruh data yang
+saya punya.
+
+119
+00:04:06,073 --> 00:04:07,890
+Yang akan saya lakukan adalah mengambil
+
+120
+00:04:07,890 --> 00:04:09,007
+set data saya dan menambahkan
+
+121
+00:04:09,007 --> 00:04:11,289
+1 kolom ekstra yang merupakan
+
+122
+00:04:11,289 --> 00:04:14,579
+fitur tambahan, x0,
+
+123
+00:04:14,579 --> 00:04:15,967
+yang selalu
+
+124
+00:04:15,967 --> 00:04:17,527
+bernilai 1.
+
+125
+00:04:17,527 --> 00:04:18,681
+Lalu,
+
+126
+00:04:18,681 --> 00:04:19,943
+saya akan membuat
+
+127
+00:04:19,943 --> 00:04:22,638
+sebuah matriks, X, yang
+
+128
+00:04:22,638 --> 00:04:24,632
+berisi semua
+
+129
+00:04:24,632 --> 00:04:26,100
+fitur dari
+
+130
+00:04:26,100 --> 00:04:28,140
+data latihan saya, jadi jelasnya
+
+131
+00:04:28,140 --> 00:04:31,528
+ini adalah
+
+132
+00:04:31,528 --> 00:04:33,743
+semua fitur saya, dan kita
+
+133
+00:04:33,743 --> 00:04:34,797
+akan memasukkan semua angka itu
+
+134
+00:04:34,797 --> 00:04:37,777
+ke dalam matriks X.
+
+135
+00:04:37,777 --> 00:04:39,179
+Jadi, salin
+
+136
+00:04:39,179 --> 00:04:41,233
+datanya per kolom,
+
+137
+00:04:41,233 --> 00:04:45,962
+lalu saya akan melakukan hal yang
+sama untuk y.
+
+138
+00:04:45,962 --> 00:04:47,087
+Saya akan mengambil nilai yang
+
+139
+00:04:47,087 --> 00:04:47,952
+akan
+
+140
+00:04:47,952 --> 00:04:49,360
+saya coba prediksi dan membuat
+
+141
+00:04:49,360 --> 00:04:52,894
+sebuah vektor, seperti itu
+
+142
+00:04:52,894 --> 00:04:55,440
+dan menamakannya vektor y.
+
+143
+00:04:55,440 --> 00:04:58,038
+Jadi, X akan menjadi
+
+144
+00:04:59,653 --> 00:05:05,688
+matriks berdimensi m x (n+1), dan
+
+145
+00:05:05,688 --> 00:05:07,490
+y akan jadi
+
+146
+00:05:07,490 --> 00:05:14,421
+vektor berdimensi m
+
+147
+00:05:14,421 --> 00:05:16,624
+dimana m adalah jumlah contoh latihan,
+
+148
+00:05:16,984 --> 00:05:18,688
+dan n adalah
+
+149
+00:05:18,688 --> 00:05:20,713
+jumlah fitur, n+1, karena
+
+150
+00:05:20,713 --> 00:05:24,825
+tambahan fitur x0 ini.
+
+151
+00:05:24,825 --> 00:05:26,350
+Terakhir, jika Anda mengambil
+
+152
+00:05:26,350 --> 00:05:27,489
+matriks X dan
+
+153
+00:05:27,489 --> 00:05:28,595
+vektor y, dan
+
+154
+00:05:28,595 --> 00:05:31,065
+menghitung ini, dan set
+
+155
+00:05:31,065 --> 00:05:32,419
+theta sama dengan
+
+156
+00:05:32,419 --> 00:05:34,440
+X transpos X invers kali
+
+157
+00:05:34,440 --> 00:05:36,516
+X transpos y, ini akan
+
+158
+00:05:36,516 --> 00:05:38,583
+menghasilkan nilai theta
+
+159
+00:05:38,583 --> 00:05:42,559
+yang meminimalkan fungsi harga Anda.
+
+160
+00:05:42,559 --> 00:05:43,436
+Ada banyak
+
+161
+00:05:43,436 --> 00:05:44,416
+yang terjadi di slide dan
+
+162
+00:05:44,416 --> 00:05:47,514
+saya mengerjakannya menggunakan
+1 contoh khusus dari 1 set data.
+
+163
+00:05:47,514 --> 00:05:49,241
+Biar saya tulis ini
+
+164
+00:05:49,333 --> 00:05:50,770
+dalam bentuk yang lebih umum,
+
+165
+00:05:50,955 --> 00:05:53,418
+dan nanti di video ini
+
+166
+00:05:53,621 --> 00:05:56,531
+biar saya jelaskan sedikit persamaan
+ini.
+
+167
+00:05:57,581 --> 00:06:00,687
+Masih belum sepenuhnya jelas
+bagaimana mengerjakan ini.
+
+168
+00:06:00,687 --> 00:06:02,129
+Secara umum, katakanlah
+
+169
+00:06:02,129 --> 00:06:04,124
+kita punya m contoh latihan
+
+170
+00:06:04,124 --> 00:06:05,697
+x1, y1 hingga
+
+171
+00:06:05,697 --> 00:06:09,319
+xm, ym dan n fitur.
+
+172
+00:06:09,319 --> 00:06:10,811
+Jadi, setiap contoh latihan
+
+173
+00:06:10,811 --> 00:06:12,926
+x(i) tampak seperti vektor
+
+174
+00:06:12,926 --> 00:06:16,297
+ini, yaitu vektor fitur berdimensi n+1.
+
+175
+00:06:16,943 --> 00:06:18,350
+Caranya saya membuat
+
+176
+00:06:18,350 --> 00:06:20,674
+matriks X, ini
+
+177
+00:06:20,674 --> 00:06:24,827
+juga dinamakan "design matrix",
+
+178
+00:06:24,827 --> 00:06:26,712
+seperti berikut.
+
+179
+00:06:26,712 --> 00:06:28,640
+Setiap contoh latihan memberi
+
+180
+00:06:28,640 --> 00:06:30,549
+saya vektor fitur seperti ini.
+
+181
+00:06:30,549 --> 00:06:34,491
+Sejenis vektor berdimensi n+1.
+
+182
+00:06:34,491 --> 00:06:36,190
+Cara saya membuat
+
+183
+00:06:36,359 --> 00:06:39,734
+"design matrix" X saya, hanya dengan
+menyusun matriksnya seperti ini.
+
+184
+00:06:39,734 --> 00:06:40,834
+Dan yang akan saya
+
+185
+00:06:40,834 --> 00:06:42,109
+lakukan adalah mengambil contoh latihan
+
+186
+00:06:42,109 --> 00:06:43,711
+pertama,
+
+187
+00:06:43,711 --> 00:06:46,350
+vektor itu, mentransposnya
+
+188
+00:06:46,350 --> 00:06:48,692
+sehingga menjadi
+
+189
+00:06:48,692 --> 00:06:50,250
+1 baris dan
+
+190
+00:06:50,250 --> 00:06:55,153
+menempatkannya di baris pertama pada
+matriks saya.
+
+191
+00:06:55,153 --> 00:06:56,225
+Lalu saya akan mengambil
+
+192
+00:06:56,225 --> 00:06:58,682
+contoh latihan kedua, x2,
+
+193
+00:06:58,682 --> 00:07:00,437
+mentransposnya dan
+
+194
+00:07:00,437 --> 00:07:01,838
+menempatkannya pada baris ke-2
+
+195
+00:07:01,838 --> 00:07:04,068
+matriks X, dan seterusnya,
+
+196
+00:07:04,068 --> 00:07:07,206
+hingga contoh latihan terakhir saya.
+
+197
+00:07:07,206 --> 00:07:09,279
+Mentransposnya, dan itu adalah
+
+198
+00:07:09,279 --> 00:07:10,850
+baris terakhir dari
+
+199
+00:07:10,850 --> 00:07:12,665
+matriks X saya. Dan,
+
+200
+00:07:12,665 --> 00:07:14,418
+itulah matriks X saya,
+
+201
+00:07:14,418 --> 00:07:17,129
+matriks berdimensi
+
+202
+00:07:17,129 --> 00:07:19,836
+m x (n+1).
+
+203
+00:07:19,836 --> 00:07:21,953
+Sebagai contoh konkrit,
+
+204
+00:07:21,953 --> 00:07:23,505
+katakanlah saya hanya punya
+
+205
+00:07:23,505 --> 00:07:24,670
+1 fitur,
+
+206
+00:07:24,670 --> 00:07:26,631
+selain x0
+
+207
+00:07:26,631 --> 00:07:28,165
+yang selalu bernilai 1.
+
+208
+00:07:28,165 --> 00:07:30,376
+Jadi, jika vektor fitur x(i)
+
+209
+00:07:30,376 --> 00:07:32,186
+saya sama dengan 1,
+
+210
+00:07:32,186 --> 00:07:33,878
+yakni x0, lalu
+
+211
+00:07:33,878 --> 00:07:35,912
+beberapa fitur riil, mungkin seperti
+
+212
+00:07:35,912 --> 00:07:37,662
+ukuran rumah, maka
+
+213
+00:07:37,662 --> 00:07:40,947
+"design matrix", X, akan sama dengan
+ini.
+
+214
+00:07:40,947 --> 00:07:42,589
+Untuk baris pertama, saya akan
+
+215
+00:07:42,589 --> 00:07:46,071
+ambil ini dan mentransposnya.
+
+216
+00:07:46,071 --> 00:07:51,644
+Jadinya 1 x(1)1.
+
+217
+00:07:51,644 --> 00:07:53,309
+Untuk baris ke-2,
+
+218
+00:07:53,309 --> 00:07:56,077
+1 x(1)2
+
+219
+00:07:56,077 --> 00:07:58,046
+dan seterusnya
+
+220
+00:07:58,046 --> 00:07:59,046
+hingga
+
+221
+00:07:59,046 --> 00:08:01,420
+1 x(1)m.
+
+222
+00:08:01,420 --> 00:08:03,084
+Dan akhirnya, ini akan jadi
+
+223
+00:08:03,084 --> 00:08:07,776
+matriks berdimensi m x 2.
+
+224
+00:08:07,776 --> 00:08:08,821
+Jadi, demikianlah cara
+
+225
+00:08:08,821 --> 00:08:11,251
+membuat matriks X. Dan,
+
+226
+00:08:11,251 --> 00:08:13,886
+vektor y, kadang saya akan
+
+227
+00:08:13,886 --> 00:08:15,487
+menulis tanda panah diatasnya untuk
+
+228
+00:08:15,487 --> 00:08:16,541
+menunjukkan bahwa ini sebuah vektor,
+
+229
+00:08:16,541 --> 00:08:19,871
+tapi lebih sering saya hanya menulis y.
+
+230
+00:08:19,871 --> 00:08:21,182
+Vektor y diperoleh dengan
+
+231
+00:08:21,182 --> 00:08:23,275
+mengambil semua
+
+232
+00:08:23,275 --> 00:08:25,098
+harga rumah dari
+
+233
+00:08:25,098 --> 00:08:27,076
+contoh latihan saya, dan
+
+234
+00:08:27,076 --> 00:08:28,963
+menyusunnya menjadi
+
+235
+00:08:28,963 --> 00:08:32,011
+vektor berdimensi m, dan
+
+236
+00:08:32,011 --> 00:08:34,511
+itulah y. Sesudah
+
+237
+00:08:34,511 --> 00:08:36,724
+membentuk matriks X
+
+238
+00:08:36,724 --> 00:08:38,184
+dan vektor y, kita
+
+239
+00:08:38,184 --> 00:08:40,887
+hitung theta sebagai X transpos X
+
+240
+00:08:40,887 --> 00:08:47,243
+invers kali X transpos y.
+
+241
+00:08:47,243 --> 00:08:49,356
+Saya hanya ingin memastikan
+
+242
+00:08:49,356 --> 00:08:51,348
+Anda mengerti persamaan ini
+
+243
+00:08:51,348 --> 00:08:52,242
+dan tahu menggunakannya.
+
+244
+00:08:52,242 --> 00:08:55,221
+Jadi, apa ini X transpos X invers?
+
+245
+00:08:55,221 --> 00:08:57,903
+X transpos X invers adalah
+
+246
+00:08:57,903 --> 00:09:02,101
+invers dari matriks X transpos X.
+
+247
+00:09:02,101 --> 00:09:04,498
+Konkritnya, jika Anda
+
+248
+00:09:04,498 --> 00:09:08,055
+katakanlah, set A
+
+249
+00:09:08,055 --> 00:09:11,120
+sama dengan X transpos X,
+
+250
+00:09:11,120 --> 00:09:12,542
+X transpos adalah
+
+251
+00:09:12,542 --> 00:09:14,063
+sebuah matriks, X transpos kali X
+
+252
+00:09:14,063 --> 00:09:15,305
+menghasilkan matriks lain,
+
+253
+00:09:15,305 --> 00:09:17,560
+kita sebut matriks A. Lalu,
+
+254
+00:09:17,560 --> 00:09:19,968
+X transpos X invers adalah
+
+255
+00:09:19,968 --> 00:09:22,352
+invers dari matriks A ini.
+
+256
+00:09:23,245 --> 00:09:24,417
+Ini sama dengan A invers.
+
+257
+00:09:26,025 --> 00:09:28,919
+Begitulah Anda menghitung ini.
+
+258
+00:09:28,919 --> 00:09:31,451
+Anda menghitung X transpos X lalu
+menghitung inversnya.
+
+259
+00:09:31,451 --> 00:09:34,296
+Kita belum bicara tentang Octave.
+
+260
+00:09:34,296 --> 00:09:35,941
+Kita akan membicarakannya
+
+261
+00:09:35,941 --> 00:09:37,211
+pada set video berikutnya, tapi
+
+262
+00:09:37,211 --> 00:09:39,073
+bahasa pemrograman Octave,
+
+263
+00:09:39,073 --> 00:09:40,652
+dan juga
+
+264
+00:09:40,652 --> 00:09:42,957
+matlab sangatlah mirip.
+
+265
+00:09:42,957 --> 00:09:46,937
+Perintah untuk menghitung kuantitas ini,
+
+266
+00:09:47,384 --> 00:09:50,326
+X transpos X invers kali
+
+267
+00:09:50,326 --> 00:09:52,537
+X transpos y, sebagai berikut.
+
+268
+00:09:52,537 --> 00:09:54,903
+Dalam Octave, X' adalah
+
+269
+00:09:54,903 --> 00:09:58,354
+notasi yang Anda gunakan untuk
+menunjukkan X transpos.
+
+270
+00:09:58,354 --> 00:10:00,737
+Jadi, ekspresi
+
+271
+00:10:00,737 --> 00:10:03,588
+di kotak merah itu, menghitung
+
+272
+00:10:03,588 --> 00:10:06,633
+X transpos kali X.
+
+273
+00:10:06,633 --> 00:10:08,551
+pinv adalah fungsi untuk
+
+274
+00:10:08,551 --> 00:10:09,701
+menghitung invers
+
+275
+00:10:09,701 --> 00:10:11,818
+sebuah matriks. Jadi, ini menghitung
+
+276
+00:10:11,818 --> 00:10:14,656
+X transpos X invers,
+
+277
+00:10:14,656 --> 00:10:16,453
+dan Anda kalikan itu dengan
+
+278
+00:10:16,453 --> 00:10:18,267
+X transpos, dan kalikan
+
+279
+00:10:18,267 --> 00:10:19,712
+dengan y. Jadi, Anda
+
+280
+00:10:19,712 --> 00:10:22,325
+akhiri dengan menghitung rumus itu
+
+281
+00:10:22,325 --> 00:10:24,369
+yang tidak saya buktikan,
+
+282
+00:10:24,369 --> 00:10:25,994
+tapi itu mungkin
+
+283
+00:10:25,994 --> 00:10:27,382
+diperlihatkan dengan matematika
+meskipun saya
+
+284
+00:10:27,382 --> 00:10:28,537
+tidak melakukannya
+
+285
+00:10:28,537 --> 00:10:31,071
+di sini, bahwa rumus ini memberi Anda
+
+286
+00:10:31,071 --> 00:10:32,316
+nilai optimal theta
+
+287
+00:10:32,316 --> 00:10:34,865
+jika Anda set theta sama dengan
+
+288
+00:10:34,865 --> 00:10:36,512
+ini, itulah nilai
+
+289
+00:10:36,512 --> 00:10:38,000
+theta yang meminimalkan
+
+290
+00:10:38,000 --> 00:10:40,169
+fungsi harga J theta
+
+291
+00:10:40,169 --> 00:10:41,993
+untuk regresi linier.
+
+292
+00:10:41,993 --> 00:10:44,530
+Satu hal terakhir, pada video
+sebelumnya,
+
+293
+00:10:44,530 --> 00:10:46,131
+saya bicara tentang mengskala fitur,
+
+294
+00:10:46,131 --> 00:10:47,061
+suatu gagasan
+
+295
+00:10:47,061 --> 00:10:48,878
+membuat fitur-fitur
+
+296
+00:10:48,878 --> 00:10:50,726
+memiliki
+
+297
+00:10:50,726 --> 00:10:54,900
+jarak skala atau jarak nilai yang sama
+satu sama lain.
+
+298
+00:10:54,900 --> 00:10:56,872
+Jika Anda menggunakan metode
+
+299
+00:10:56,872 --> 00:10:59,843
+persamaan normal ini, maka
+
+300
+00:10:59,843 --> 00:11:02,315
+tidak perlu mengskala fitur,
+
+301
+00:11:02,315 --> 00:11:04,361
+dan jika,
+
+302
+00:11:04,361 --> 00:11:06,094
+katakanlah, fitur x1
+
+303
+00:11:06,094 --> 00:11:07,552
+antara 0 dan 1,
+
+304
+00:11:07,552 --> 00:11:08,846
+dan fitur x2
+
+305
+00:11:08,846 --> 00:11:10,550
+antara 0 dan 1000,
+
+306
+00:11:10,550 --> 00:11:12,019
+lalu fitur x3
+
+307
+00:11:12,019 --> 00:11:14,159
+antara 0
+
+308
+00:11:14,159 --> 00:11:15,822
+hingga 10
+
+309
+00:11:15,822 --> 00:11:17,263
+pangkat -5, jika Anda menggunakan
+
+310
+00:11:17,263 --> 00:11:18,321
+metode persamaan normal,
+
+311
+00:11:18,321 --> 00:11:20,296
+ini okey dan tidak perlu
+
+312
+00:11:20,296 --> 00:11:21,550
+mengskala fitur,
+
+313
+00:11:21,550 --> 00:11:22,740
+meskipun demikian
+
+314
+00:11:22,740 --> 00:11:25,667
+jika Anda menggunakan gradient descent,
+
+315
+00:11:25,667 --> 00:11:27,814
+maka penting untuk mengskala fitur.
+
+316
+00:11:28,030 --> 00:11:31,020
+Terakhir, kapan Anda harus menggunakan
+gradient descent
+
+317
+00:11:31,020 --> 00:11:33,273
+dan kapan Anda harus menggunakan metode
+persamaan normal.
+
+318
+00:11:33,273 --> 00:11:35,800
+Ini beberapa keuntungan dan kerugiannya.
+
+319
+00:11:35,800 --> 00:11:38,305
+Katakanlah Anda punya m contoh latihan
+
+320
+00:11:38,305 --> 00:11:40,918
+dan n fitur.
+
+321
+00:11:40,918 --> 00:11:42,854
+1 kerugian dari gradient descent
+
+322
+00:11:42,854 --> 00:11:46,015
+adalah Anda harus memilih kecepatan
+belajar alfa.
+
+323
+00:11:46,015 --> 00:11:47,374
+Ini berarti menjalankannya
+
+324
+00:11:47,374 --> 00:11:49,128
+beberapa kali dengan kecepatan belajar
+
+325
+00:11:49,128 --> 00:11:51,154
+alfa yang berbeda, lalu melihat mana
+yang terbaik.
+
+326
+00:11:51,154 --> 00:11:54,274
+Jadi, itu kerjanya ekstra.
+
+327
+00:11:54,274 --> 00:11:55,976
+Kerugian lain gradient descent,
+
+328
+00:11:55,976 --> 00:11:57,841
+itu memerlukan banyak iterasi.
+
+329
+00:11:57,841 --> 00:11:59,346
+Jadi, tergantung pada detilnya,
+
+330
+00:11:59,346 --> 00:12:00,839
+itu bisa membuat lebih lambat, meskipun
+
+331
+00:12:00,839 --> 00:12:04,391
+ada keuntungannya yang akan kita
+lihat sebentar lagi.
+
+332
+00:12:04,391 --> 00:12:07,544
+Pada persamaan normal, Anda tidak perlu
+memilih kecepatan belajar alfa.
+
+333
+00:12:07,821 --> 00:12:11,208
+Jadi itu membuat lebih nyaman dan
+sederhana untuk diimplementasikan.
+
+334
+00:12:11,208 --> 00:12:13,888
+Anda tinggal jalankan, dan biasanya
+itu bekerja.
+
+335
+00:12:13,888 --> 00:12:15,061
+Dan Anda tidak perlu
+
+336
+00:12:15,061 --> 00:12:16,129
+mengiterasi, sehingga tidak perlu
+
+337
+00:12:16,129 --> 00:12:17,456
+memplot J theta atau
+
+338
+00:12:17,456 --> 00:12:20,497
+mengecek konvergensi atau melakukan semua
+langkah ekstra itu.
+
+339
+00:12:20,497 --> 00:12:21,931
+Sejauh ini,
+
+340
+00:12:21,931 --> 00:12:23,846
+persamaan normal lebih diuntungkan.
+
+341
+00:12:24,826 --> 00:12:27,085
+Ini beberapa kerugian persamaan normal,
+
+342
+00:12:27,612 --> 00:12:29,435
+dan beberapa keuntungan gradient
+descent.
+
+343
+00:12:29,681 --> 00:12:31,447
+Gradient descent bekerja sangat baik,
+
+344
+00:12:31,928 --> 00:12:34,698
+bahkan ketika Anda memiliki banyak
+sekali fitur.
+
+345
+00:12:34,698 --> 00:12:36,168
+Jadi, jika Anda
+
+346
+00:12:36,168 --> 00:12:37,812
+punya jutaan fitur, Anda
+
+347
+00:12:37,812 --> 00:12:40,865
+bisa menjalankan gradient descent dan
+itu akan lebih efisien.
+
+348
+00:12:40,865 --> 00:12:43,381
+Itu lebih masuk akal.
+
+349
+00:12:43,381 --> 00:12:46,566
+Bertolak belakang dengan persamaan
+normal,
+
+350
+00:12:46,566 --> 00:12:48,014
+untuk mencari solusi parameter
+
+351
+00:12:48,014 --> 00:12:50,394
+theta, kita perlu menghitung ini.
+
+352
+00:12:50,394 --> 00:12:53,058
+Kita perlu menghitung X transpos X
+invers.
+
+353
+00:12:53,058 --> 00:12:56,328
+Matriks X transpos X ini,
+
+354
+00:12:56,328 --> 00:13:00,206
+adalah matriks n x n,
+jika Anda punya n fitur.
+
+355
+00:13:00,770 --> 00:13:02,947
+Karena, jika Anda lihat
+
+356
+00:13:02,947 --> 00:13:03,917
+dimensi dari
+
+357
+00:13:03,917 --> 00:13:05,529
+X transpos, dan dimensi X,
+
+358
+00:13:05,529 --> 00:13:07,024
+kalikan keduanya,
+
+359
+00:13:07,024 --> 00:13:08,749
+dimensi hasil perkaliannya,
+
+360
+00:13:08,749 --> 00:13:10,983
+matriks X transpos X
+
+361
+00:13:10,983 --> 00:13:13,727
+berdimensi n x n dimana
+
+362
+00:13:13,727 --> 00:13:15,853
+n adalah jumlah fitur, dan
+
+363
+00:13:15,853 --> 00:13:18,641
+pada semua implementasi perhitungan,
+
+364
+00:13:18,641 --> 00:13:20,990
+waktu menginversi
+
+365
+00:13:20,990 --> 00:13:23,087
+matriks, bertambah kira-kira
+
+366
+00:13:23,087 --> 00:13:25,707
+pangkat tiga dari dimensi matriks.
+
+367
+00:13:25,707 --> 00:13:28,180
+Jadi, menghitung invers ini makan waktu
+
+368
+00:13:28,180 --> 00:13:29,964
+kira-kira n^3.
+
+369
+00:13:29,964 --> 00:13:31,213
+Terkadang, lebih cepat dari
+
+370
+00:13:31,213 --> 00:13:35,050
+n^3, tapi mendekati itu.
+
+371
+00:13:35,489 --> 00:13:36,605
+Jadi, jika jumlah fitur n sangat besar,
+
+372
+00:13:37,643 --> 00:13:39,025
+maka menghitungnya
+
+373
+00:13:39,025 --> 00:13:40,570
+bisa lambat dan
+
+374
+00:13:40,570 --> 00:13:44,289
+menggunakan metode persamaan normal
+bisa jadi sangat lambat.
+
+375
+00:13:44,289 --> 00:13:45,491
+Jadi jika n
+
+376
+00:13:45,491 --> 00:13:47,622
+besar maka saya
+
+377
+00:13:47,622 --> 00:13:49,490
+biasanya menggunakan gradient descent
+karena
+
+378
+00:13:49,490 --> 00:13:51,872
+kita tidak ingin menghabiskan waktu n^3
+untuk itu.
+
+379
+00:13:51,872 --> 00:13:53,525
+Tapi, jika n relatif kecil,
+
+380
+00:13:53,525 --> 00:13:57,395
+maka persamaan normal memberi Anda cara 
+yg lebih baik untuk mencari jawabannya.
+
+381
+00:13:57,395 --> 00:13:59,080
+Berapa yang dimaksudkan kecil dan besar?
+
+382
+00:13:59,080 --> 00:14:00,741
+Jika n pada
+
+383
+00:14:00,741 --> 00:14:02,130
+kisaran 100, maka
+
+384
+00:14:02,130 --> 00:14:03,822
+menginversi matriks 100 x 100
+
+385
+00:14:03,822 --> 00:14:06,539
+bukan masalah pada standar perhitungan
+modern.
+
+386
+00:14:06,539 --> 00:14:10,966
+Jika n = 1000, saya masih akan
+menggunakan metode persamaan normal.
+
+387
+00:14:10,966 --> 00:14:12,583
+Menginversi matriks 1000 x 1000
+
+388
+00:14:12,583 --> 00:14:15,408
+sebenarnya sangat cepat pada komputer
+modern.
+
+389
+00:14:15,408 --> 00:14:18,406
+Jika n = 10000, maka saya mungkin akan
+mulai berpikir.
+
+390
+00:14:18,406 --> 00:14:20,618
+Menginversi matriks 10000 x 10000
+
+391
+00:14:20,618 --> 00:14:22,208
+mulai menjadi lambat,
+
+392
+00:14:22,208 --> 00:14:23,471
+dan saya mungkin mulai
+
+393
+00:14:23,471 --> 00:14:25,007
+condong beralih
+
+394
+00:14:25,007 --> 00:14:27,007
+ke gradient descent, tapi mungkin
+tidak juga.
+
+395
+00:14:27,114 --> 00:14:28,672
+n = 10000, Anda bisa
+
+396
+00:14:28,672 --> 00:14:31,148
+mengkonversi matriks 10000 x 10000.
+
+397
+00:14:31,148 --> 00:14:34,345
+Tapi jika n jauh lebih besar dari itu,
+saya akan menggunakan gradient descent.
+
+398
+00:14:34,345 --> 00:14:35,834
+Jadi, jika n = 10^6
+
+399
+00:14:35,834 --> 00:14:36,920
+dengan sejuta
+
+400
+00:14:36,920 --> 00:14:38,963
+fitur, maka menginversi
+
+401
+00:14:38,963 --> 00:14:41,565
+matriks 10^6 x 10^6 akan mulai
+
+402
+00:14:41,565 --> 00:14:42,631
+sangat mahal, dan
+
+403
+00:14:42,631 --> 00:14:46,163
+saya tentu saja lebih suka gradient
+descent jika fiturnya sebanyak itu.
+
+404
+00:14:46,163 --> 00:14:47,859
+Jadi tepatnya berapa besar
+
+405
+00:14:47,859 --> 00:14:49,282
+harusnya jumlah fitur
+
+406
+00:14:49,282 --> 00:14:52,655
+sebelum Anda beralih ke gradient descent,
+sulit untuk memberi angka pastinya.
+
+407
+00:14:52,655 --> 00:14:53,855
+Tapi bagi saya, biasanya
+
+408
+00:14:53,855 --> 00:14:55,501
+sekitar 10000, maka saya akan
+
+409
+00:14:55,501 --> 00:14:58,258
+mulai mempertimbangkan beralih ke
+
+410
+00:14:58,335 --> 00:15:00,663
+gradient descent, atau mungkin
+
+411
+00:15:00,663 --> 00:15:04,324
+beralih ke algoritma lain yang akan
+kita bahas nanti.
+
+412
+00:15:04,324 --> 00:15:05,765
+Untuk merangkum, sepanjang
+
+413
+00:15:05,765 --> 00:15:06,999
+jumlah fitur
+
+414
+00:15:06,999 --> 00:15:08,475
+tidak terlalu besar, persamaan normal
+
+415
+00:15:08,475 --> 00:15:12,229
+merupakan metode alternatif yang sangat
+bagus untuk mencari parameter theta.
+
+416
+00:15:12,583 --> 00:15:13,983
+Konkritnya, sepanjang
+
+417
+00:15:13,983 --> 00:15:15,749
+jumlah fitur kurang dari
+
+418
+00:15:15,749 --> 00:15:17,472
+1000, saya akan
+
+419
+00:15:17,472 --> 00:15:18,881
+menggunakan
+
+420
+00:15:18,881 --> 00:15:21,955
+metode persamaan normal daripada
+gradient descent.
+
+421
+00:15:21,955 --> 00:15:23,549
+Untuk meninjau beberapa gagasan yang
+
+422
+00:15:23,549 --> 00:15:24,493
+akan kita bahas nanti
+
+423
+00:15:24,493 --> 00:15:26,235
+di pelajaran ini, begitu kita
+sampai pada
+
+424
+00:15:26,235 --> 00:15:27,912
+algoritma belajar yang lebih kompleks,
+
+425
+00:15:27,912 --> 00:15:29,617
+contohnya, saat kita membahas tentang
+
+426
+00:15:29,617 --> 00:15:32,188
+algoritma klasifikasi, seperti algoritma
+regresi logistik,
+
+427
+00:15:32,834 --> 00:15:34,319
+kita akan lihat algoritma itu
+
+428
+00:15:34,319 --> 00:15:35,467
+sebenarnya...
+
+429
+00:15:35,467 --> 00:15:37,592
+metode persamaan normal tidak bekerja
+
+430
+00:15:37,592 --> 00:15:39,388
+pada algoritm belajar
+
+431
+00:15:39,388 --> 00:15:41,190
+yang lebih pintar seperti itu, dan
+kita
+
+432
+00:15:41,190 --> 00:15:43,916
+akan harus menggunakan gradient descent
+untuk algoritma itu.
+
+433
+00:15:43,916 --> 00:15:46,682
+Jadi, untuk diketahui, gradient descent
+adalah algoritma yang sangat berguna.
+
+434
+00:15:46,682 --> 00:15:48,859
+Regresi linier akan punya
+
+435
+00:15:48,982 --> 00:15:50,017
+sejumlah besar fitur dan
+
+436
+00:15:50,017 --> 00:15:52,373
+untuk beberapa algoritma lain
+
+437
+00:15:52,373 --> 00:15:53,893
+yang akan kita lihat di
+
+438
+00:15:53,893 --> 00:15:55,438
+pelajaran ini, pada algoritma itu,
+metode
+
+439
+00:15:55,438 --> 00:15:58,747
+persamaan normal tidak bekerja.
+
+440
+00:15:58,747 --> 00:16:00,537
+Tapi untuk regresi linier
+
+441
+00:16:00,537 --> 00:16:02,904
+model begini, persamaan normal
+
+442
+00:16:02,904 --> 00:16:05,827
+bisa memberi Anda alternatif
+
+443
+00:16:07,219 --> 00:16:08,612
+yang bisa jauh lebih cepat dari
+gradient descent.
+
+444
+00:16:09,604 --> 00:16:11,920
+Jadi, bergantung pada detil algoritma
+Anda,
+
+445
+00:16:12,007 --> 00:16:14,164
+bergantung pada detil masalahnya, dan
+
+446
+00:16:14,164 --> 00:16:15,550
+berapa banyak fitur yang Anda punya,
+
+447
+00:16:15,550 --> 00:16:19,550
+kedua algoritma ini layak untuk
+diketahui.

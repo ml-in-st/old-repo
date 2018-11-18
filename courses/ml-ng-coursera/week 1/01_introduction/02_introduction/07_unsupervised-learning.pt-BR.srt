@@ -1,0 +1,1647 @@
+1
+00:00:00,380 --> 00:00:01,550
+Neste vídeo, vamos falar sobre
+
+2
+00:00:01,670 --> 00:00:02,690
+um segundo tipo importante
+
+3
+00:00:03,010 --> 00:00:05,030
+de aprendizagem de máquina, chamado de Aprendizado Não Supervisionado.
+
+4
+00:00:06,300 --> 00:00:08,500
+No vídeo anterior, nós falamos sobre o Aprendizado Supervisionado.
+
+5
+00:00:09,250 --> 00:00:10,700
+Relembrando, tínhamos conjuntos de dados
+
+6
+00:00:11,020 --> 00:00:12,670
+semelhante a esses, onde cada
+
+7
+00:00:12,890 --> 00:00:15,150
+exemplo foi rotulado como
+
+8
+00:00:15,610 --> 00:00:16,900
+um exemplo positivo ou negativo,
+
+9
+00:00:17,530 --> 00:00:19,800
+como se fosse um tumor benigno ou maligno.
+
+10
+00:00:20,850 --> 00:00:21,920
+Assim, para cada exemplo no Aprendizado Supervisionado,
+
+11
+00:00:22,410 --> 00:00:24,270
+fomos explicitamente informados qual
+
+12
+00:00:24,440 --> 00:00:25,760
+é a resposta chamada certa,
+
+13
+00:00:26,490 --> 00:00:27,580
+se é benigno ou maligno.
+
+14
+00:00:28,550 --> 00:00:30,210
+No Aprendizado Não-Supervisionado, temos dados
+
+15
+00:00:30,540 --> 00:00:31,720
+que são diferentes
+
+16
+00:00:31,950 --> 00:00:32,910
+desses e que
+
+17
+00:00:33,190 --> 00:00:34,600
+não tem nenhum rótulo
+
+18
+00:00:34,720 --> 00:00:35,920
+ou que todos
+
+19
+00:00:36,130 --> 00:00:37,460
+tem o mesmo rótulo.
+
+20
+00:00:39,680 --> 00:00:40,740
+Então, temos um conjunto de dados e
+
+21
+00:00:40,980 --> 00:00:42,460
+não sabemos o que
+
+22
+00:00:42,560 --> 00:00:43,290
+fazer com ele e não
+
+23
+00:00:43,640 --> 00:00:44,800
+sabemos o que é cada ponto desse conjunto.
+
+24
+00:00:45,290 --> 00:00:47,190
+Em vez disso, sabemos apenas que é um conjunto de dados.
+
+25
+00:00:47,870 --> 00:00:49,650
+Vôce consegue achar alguma estrutura nesses dados?
+
+26
+00:00:50,480 --> 00:00:51,670
+Dado esse conjunto de dados, um
+
+27
+00:00:52,350 --> 00:00:53,940
+algoritmo de Aprendizado Não-Supervisionado pode decidir que
+
+28
+00:00:54,060 --> 00:00:56,090
+os dados estão em dois diferentes grupos.
+
+29
+00:00:56,800 --> 00:00:57,960
+E assim há um grupo aqui
+
+30
+00:00:59,120 --> 00:00:59,910
+e outro grupo diferente ali.
+
+31
+00:01:01,110 --> 00:01:02,710
+E sim, um algoritmo the Aprendizado Não-Supervisionado pode
+
+32
+00:01:03,040 --> 00:01:05,070
+quebrar esses dados em dois grupos separados.
+
+33
+00:01:06,410 --> 00:01:08,000
+Então isso é chamado de algoritmo de agrupamento.
+
+34
+00:01:08,860 --> 00:01:10,310
+E isso vem sendo utilizado em muitos casos.
+
+35
+00:01:11,930 --> 00:01:13,310
+Um exemplo onde o agrupamento
+
+36
+00:01:13,530 --> 00:01:14,860
+é usado é no Google
+
+37
+00:01:15,060 --> 00:01:16,160
+News, e se você ainda não
+
+38
+00:01:16,360 --> 00:01:17,320
+conhecia, você pode ir
+
+39
+00:01:18,210 --> 00:01:19,040
+até a URL news.google.com
+
+40
+00:01:19,830 --> 00:01:20,460
+e dar uma olhada.
+
+41
+00:01:21,280 --> 00:01:22,970
+O que o Google News faz todos os dias
+
+42
+00:01:23,480 --> 00:01:24,220
+é ir até a web e verificar até dezenas de milhares ou
+
+43
+00:01:24,470 --> 00:01:25,430
+centenas de
+
+44
+00:01:25,720 --> 00:01:26,740
+milhares de novos assuntos e
+
+45
+00:01:26,800 --> 00:01:29,410
+agrupá-los de modo coeso em novos assuntos.
+
+46
+00:01:30,730 --> 00:01:31,690
+Por exemplo, vejamos esse aqui.
+
+47
+00:01:33,380 --> 00:01:35,370
+As URLs aqui levam a
+
+48
+00:01:35,910 --> 00:01:37,260
+diferentes assuntos
+
+49
+00:01:38,010 --> 00:01:40,110
+sobre a BP Oil Well.
+
+50
+00:01:41,300 --> 00:01:42,160
+Então, vamos clicar em
+
+51
+00:01:42,260 --> 00:01:43,090
+um desses
+
+52
+00:01:43,550 --> 00:01:44,780
+links.
+
+53
+00:01:45,100 --> 00:01:46,970
+O que eu terei é uma pagina como essa.
+
+54
+00:01:47,210 --> 00:01:48,390
+Aqui está um artigo do Wall Street
+
+55
+00:01:48,590 --> 00:01:50,180
+Journal sobre
+
+56
+00:01:51,110 --> 00:01:52,530
+histórias de vazamentos na BP Oil Well,
+
+57
+00:01:52,920 --> 00:01:54,350
+com o título "BP Kills Macondo"
+
+58
+00:01:54,590 --> 00:01:55,700
+que é o nome da plataforma
+
+59
+00:01:55,980 --> 00:01:57,960
+que vazou, e se
+
+60
+00:01:58,020 --> 00:01:59,360
+você clicar em um link diferente
+
+61
+00:02:00,690 --> 00:02:02,500
+a partir daquele grupo, então você pode ver uma história diferente.
+
+62
+00:02:02,950 --> 00:02:04,760
+Aqui está na CNN o assunto sobre um
+
+63
+00:02:04,820 --> 00:02:06,090
+jogo, o BP Oil Spill,
+
+64
+00:02:07,090 --> 00:02:08,180
+e se você clicar
+
+65
+00:02:08,740 --> 00:02:10,990
+em um terceiro link, então você pode ver uma história diferente.
+
+66
+00:02:11,440 --> 00:02:13,380
+Aqui está um artigo do UK Guardian
+
+67
+00:02:13,940 --> 00:02:15,510
+sobre o vazamento na BP Oil
+
+68
+00:02:16,530 --> 00:02:17,790
+O que o Google News faz
+
+69
+00:02:17,990 --> 00:02:19,440
+é procurar por dezenas de milhares
+
+70
+00:02:19,490 --> 00:02:22,170
+de novos assuntos e agrupá-los automaticamente.
+
+71
+00:02:23,030 --> 00:02:24,660
+Assim, os novos assuntos que são todos
+
+72
+00:02:25,080 --> 00:02:27,010
+sobre o mesmo tópico, podem ser mostrados juntos.
+
+73
+00:02:27,210 --> 00:02:29,170
+Desse modo,
+
+74
+00:02:29,380 --> 00:02:31,020
+algoritmos de agrupamento e algoritmos de Aprendizado Não Supervisionado,
+
+75
+00:02:31,530 --> 00:02:33,550
+são também usados na solução de muitos problemas.
+
+76
+00:02:35,320 --> 00:02:36,690
+Aqui esta um para o estudo de genomas.
+
+77
+00:02:38,270 --> 00:02:40,510
+Aqui um exemplo de micro arranjos de dados de DNA.
+
+78
+00:02:40,990 --> 00:02:42,230
+A ideia é colocar
+
+79
+00:02:42,430 --> 00:02:44,360
+um grupo de diferentes indivíduos e
+
+80
+00:02:44,510 --> 00:02:45,590
+para cada um deles, você mede
+
+81
+00:02:46,100 --> 00:02:48,580
+quanto ele tem ou não tem de um determinado genoma.
+
+82
+00:02:49,050 --> 00:02:51,640
+Tecnicamente, você mede o quanto certos genes são expressados.
+
+83
+00:02:52,000 --> 00:02:54,190
+Assim, as cores vermelha, verde,
+
+84
+00:02:54,930 --> 00:02:56,210
+cinza, e assim por diante,
+
+85
+00:02:56,340 --> 00:02:57,500
+mostram o grau de quantos
+
+86
+00:02:57,780 --> 00:02:59,440
+indivíduos têm ou
+
+87
+00:02:59,510 --> 00:03:01,270
+não têm um gene específico.
+
+88
+00:03:02,500 --> 00:03:03,400
+Então o que você pode fazer é
+
+89
+00:03:03,610 --> 00:03:05,070
+rodar um algoritmo de agrupamento para agrupar
+
+90
+00:03:05,380 --> 00:03:07,140
+individuos em diferentes categorias
+
+91
+00:03:07,780 --> 00:03:08,810
+ou em diferentes tipos de pessoas.
+
+92
+00:03:10,230 --> 00:03:11,660
+Assim, isso é o Aprendizado Não Supervisionado, porque
+
+93
+00:03:11,930 --> 00:03:14,010
+não estamos dizendo antecipadamente para o algoritmo
+
+94
+00:03:14,590 --> 00:03:15,690
+que essas são pessoas do tipo 1,
+
+95
+00:03:16,130 --> 00:03:17,420
+e aquelas são pessoas do tipo 2,
+
+96
+00:03:17,560 --> 00:03:18,650
+aquelas outras são pessoas do tipo 3, e assim
+
+97
+00:03:19,610 --> 00:03:22,390
+por diante. Ao invés disso, estamos dizendo que sim, aqui há um monte de dados.
+
+98
+00:03:23,110 --> 00:03:24,030
+Eu não sei que dados são esses.
+
+99
+00:03:24,750 --> 00:03:25,870
+Eu não sei quem são ou de que tipo são.
+
+100
+00:03:26,150 --> 00:03:26,940
+Eu nem sei que tipo de diferenças
+
+101
+00:03:27,260 --> 00:03:28,480
+essas pessoas têm, mas será que
+
+102
+00:03:28,610 --> 00:03:30,210
+você pode, automaticamente, achar
+
+103
+00:03:30,360 --> 00:03:31,260
+uma estrutura nos dados de modo a
+
+104
+00:03:32,180 --> 00:03:33,620
+agrupar os indivíduos em tipos que
+
+105
+00:03:33,870 --> 00:03:35,490
+eu nem sei previamente?
+
+106
+00:03:35,890 --> 00:03:37,610
+Como não estamos dando ao algoritmo
+
+107
+00:03:38,160 --> 00:03:40,140
+a resposta correta para
+
+108
+00:03:40,370 --> 00:03:41,270
+os exemplos em meu conjunto de dados,
+
+109
+00:03:41,590 --> 00:03:43,090
+isso é chamado Aprendizado Não Supervisionado.
+
+110
+00:03:44,290 --> 00:03:47,040
+Aprendizado Não Supervisionado, ou agrupamento, é usado em muitas outras aplicações.
+
+111
+00:03:48,340 --> 00:03:50,340
+É usado para organizar grandes grupos de computadores.
+
+112
+00:03:51,390 --> 00:03:52,530
+Eu tinha alguns amigos que ficavam observando
+
+113
+00:03:52,680 --> 00:03:53,970
+grandes centros de dados, ou seja,
+
+114
+00:03:54,180 --> 00:03:55,970
+grandes agrupamentos de computadores e tentando
+
+115
+00:03:56,230 --> 00:03:57,470
+descobrir quais máquinas
+
+116
+00:03:57,590 --> 00:03:59,130
+tendiam a trabalhar juntas e se
+
+117
+00:03:59,200 --> 00:04:00,270
+era possível colocar essas máquinas mais próximas e
+
+118
+00:04:01,100 --> 00:04:03,220
+fazer o centro de dados trabalhar mais eficientemente.
+
+119
+00:04:04,810 --> 00:04:06,820
+Essa segunda aplicação, é uma análise de rede social.
+
+120
+00:04:07,890 --> 00:04:09,230
+Assim, baseado no conhecimento de quais amigos
+
+121
+00:04:09,630 --> 00:04:10,840
+você mais troca e-mails ou
+
+122
+00:04:10,880 --> 00:04:12,150
+se relaciona com amigos no Facebook ou
+
+123
+00:04:12,180 --> 00:04:14,150
+seus circulos no Google+, será
+
+124
+00:04:14,290 --> 00:04:16,380
+que podemos automaticamente identificar quais
+
+125
+00:04:16,450 --> 00:04:17,950
+são grupos de amigos mais chegados,
+
+126
+00:04:18,460 --> 00:04:19,420
+e também quais são grupos de pessoas
+
+127
+00:04:20,230 --> 00:04:21,010
+que se conhecem?
+
+128
+00:04:22,540 --> 00:04:22,880
+Segmentação de mercado.
+
+129
+00:04:24,680 --> 00:04:26,780
+Muitas empresas tem uma grande base de dados com informações de clientes.
+
+130
+00:04:27,700 --> 00:04:28,410
+Assim, será que você pode olhar para
+
+131
+00:04:28,510 --> 00:04:30,000
+esse conjunto de dados de clientes e, automaticamente,
+
+132
+00:04:30,740 --> 00:04:32,340
+descobrir segmentos de mercado
+
+133
+00:04:33,340 --> 00:04:35,290
+e agrupar seus clientes em diferentes
+
+134
+00:04:35,820 --> 00:04:37,400
+segmentos de mercado, de modo que
+
+135
+00:04:37,710 --> 00:04:39,490
+você possa, automaticamente e com mais eficiência,
+
+136
+00:04:39,650 --> 00:04:41,580
+vender
+
+137
+00:04:41,890 --> 00:04:43,250
+para diferentes segmentos de mercado ao mesmo tempo?
+
+138
+00:04:44,260 --> 00:04:45,580
+De novo, isso é Aprendizado Não Supervisionado
+
+139
+00:04:45,820 --> 00:04:46,720
+porque nós temos todos esses
+
+140
+00:04:46,900 --> 00:04:48,340
+dados de usuários, mas não
+
+141
+00:04:48,590 --> 00:04:49,710
+sabemos, previamente, quais são
+
+142
+00:04:49,790 --> 00:04:51,270
+os segmentos de mercado e
+
+143
+00:04:51,440 --> 00:04:52,570
+para os usuários em nosso
+
+144
+00:04:52,660 --> 00:04:53,590
+grupo de dados, nós não sabemos previamente,
+
+145
+00:04:53,690 --> 00:04:54,700
+quem está no
+
+146
+00:04:54,800 --> 00:04:55,840
+segmento de mercado um, quem está
+
+147
+00:04:55,940 --> 00:04:57,800
+no segmento de mercado dois, e assim por diante.
+
+148
+00:04:57,930 --> 00:05:00,630
+Mas podemos deixar o algorítmo descobrir tudo isso, a partir dos dados.
+
+149
+00:05:01,970 --> 00:05:03,140
+Finalmente, verifica-se que Aprendizado Não Supervisionado
+
+150
+00:05:03,690 --> 00:05:05,620
+também é utilizado na
+
+151
+00:05:06,090 --> 00:05:08,060
+análise de dados em astronomia
+
+152
+00:05:08,890 --> 00:05:10,390
+e esses algorítmos de agrupamento dão
+
+153
+00:05:10,580 --> 00:05:12,440
+teorias interessantes e surpreendentemente úteis
+
+154
+00:05:12,900 --> 00:05:15,610
+de como as galáxias surgiram.
+
+155
+00:05:15,880 --> 00:05:17,620
+Todos esses são exemplos de agrupamento,
+
+156
+00:05:18,400 --> 00:05:20,550
+que é apenas mais um tipo de Aprendizado não Supervisionado.
+
+157
+00:05:21,530 --> 00:05:22,470
+Deixe-me falar sobre um outro.
+
+158
+00:05:23,200 --> 00:05:25,020
+Vou falar sobre o problema da festa do coquetel.
+
+159
+00:05:26,310 --> 00:05:28,270
+Então, você já participou de coqueteis antes, certo?
+
+160
+00:05:28,440 --> 00:05:30,080
+Bem, você pode imaginar uma
+
+161
+00:05:30,300 --> 00:05:31,690
+festa, a sala cheia de gente, todos
+
+162
+00:05:31,870 --> 00:05:32,930
+sentados ao redor, falando ao mesmo
+
+163
+00:05:32,970 --> 00:05:34,390
+tempo e as vozes
+
+164
+00:05:34,480 --> 00:05:36,230
+de todos se sobrepondo porque todos
+
+165
+00:05:36,590 --> 00:05:37,920
+estão falando ao mesmo tempo, e
+
+166
+00:05:38,070 --> 00:05:39,730
+fica muito difícil ouvir a pessoa que está proxima de você.
+
+167
+00:05:40,690 --> 00:05:41,970
+Então, talvez
+
+168
+00:05:42,020 --> 00:05:43,990
+numa festa com duas pessoas,
+
+169
+00:05:45,690 --> 00:05:46,670
+as duas pessoas falando ao mesmo tempo,
+
+170
+00:05:46,770 --> 00:05:48,090
+e essa é uma
+
+171
+00:05:48,740 --> 00:05:49,710
+festa pequena.
+
+172
+00:05:50,690 --> 00:05:51,630
+E vamos colocar dois
+
+173
+00:05:51,890 --> 00:05:53,080
+microfones na sala.
+
+174
+00:05:54,060 --> 00:05:55,640
+Então, temos microfones, e porque
+
+175
+00:05:56,050 --> 00:05:57,430
+esses microfones estão a
+
+176
+00:05:57,560 --> 00:05:58,900
+distancias diferentes de
+
+177
+00:05:58,990 --> 00:06:01,250
+cada pessoa, cada microfone grava
+
+178
+00:06:01,830 --> 00:06:04,720
+uma combinação diferente das vozes dessas duas pessoas.
+
+179
+00:06:05,810 --> 00:06:06,970
+Talvez a pessoa um fale
+
+180
+00:06:07,120 --> 00:06:08,320
+um pouco alto no microfone um
+
+181
+00:06:09,120 --> 00:06:10,680
+e talvez a pessoa dois fale
+
+182
+00:06:10,800 --> 00:06:12,350
+um pouco mais alto no microfone 2
+
+183
+00:06:12,560 --> 00:06:14,040
+porque os 2 microfones estão
+
+184
+00:06:14,230 --> 00:06:15,950
+em posições diferentes relativas as
+
+185
+00:06:16,400 --> 00:06:19,020
+2 pessoas, mas
+
+186
+00:06:19,250 --> 00:06:20,390
+cada microfone poderia causar uma
+
+187
+00:06:20,970 --> 00:06:22,590
+combinação de sobreposição das duas vozes.
+
+188
+00:06:23,960 --> 00:06:25,500
+Então, aqui está a gravação
+
+189
+00:06:26,520 --> 00:06:29,280
+atual das vozes gravada pelo pesquisador.
+
+190
+00:06:29,740 --> 00:06:30,950
+Deixa eu executar para você o
+
+191
+00:06:31,060 --> 00:06:32,760
+primeiro, o que o primeiro microfone gravou.
+
+192
+00:06:33,560 --> 00:06:34,800
+Um (uno), dois (dos),
+
+193
+00:06:35,070 --> 00:06:36,590
+três (tres), quatro (cuatro), cinco
+
+194
+00:06:37,060 --> 00:06:38,550
+(cinco), seis (seis), sete (siete),
+
+195
+00:06:38,990 --> 00:06:40,610
+oito (ocho), nove (nueve), dez (y diez).
+
+196
+00:06:41,610 --> 00:06:42,650
+Tudo bem, talvez não seja a festa mais interessante,
+
+197
+00:06:43,000 --> 00:06:44,270
+mas são duas pessoas
+
+198
+00:06:44,620 --> 00:06:45,670
+contando de um a dez
+
+199
+00:06:46,010 --> 00:06:47,880
+em dois idiomas, como você pode perceber.
+
+200
+00:06:48,870 --> 00:06:49,760
+O que você ouviu foi a
+
+201
+00:06:49,820 --> 00:06:52,500
+gravação do microfone um. Aqui está a segunda gravação.
+
+202
+00:06:57,440 --> 00:06:58,040
+Uno (um), dos (dois), tres (três), cuatro
+
+203
+00:06:58,060 --> 00:06:58,730
+(quatro), cinco (cinco), seis (seis), siete (sete),
+
+204
+00:06:59,160 --> 00:07:00,900
+ocho (oito), nueve (nove) y diez (dez).
+
+205
+00:07:01,860 --> 00:07:02,850
+Então, o que podemos fazer é
+
+206
+00:07:03,380 --> 00:07:04,660
+pegar essas duas gravações e
+
+207
+00:07:04,980 --> 00:07:06,480
+dá-las para um algoritmo de Aprendizado Não Supervisionado
+
+208
+00:07:07,010 --> 00:07:08,560
+chamado algorítmo para festas de coqueteis,
+
+209
+00:07:08,780 --> 00:07:09,910
+e pedir para o algorítmo que
+
+210
+00:07:10,450 --> 00:07:12,140
+encontre uma estrutura nesses dados.
+
+211
+00:07:12,250 --> 00:07:14,010
+E o que o algorítmo irá fazer
+
+212
+00:07:14,410 --> 00:07:15,730
+é ouvir esses
+
+213
+00:07:15,980 --> 00:07:17,990
+áudios gravados e dizer pra você
+
+214
+00:07:18,140 --> 00:07:19,020
+que parece que
+
+215
+00:07:19,360 --> 00:07:20,950
+os dois áudios gravados foram
+
+216
+00:07:21,240 --> 00:07:22,450
+adicionados juntos ou que
+
+217
+00:07:22,670 --> 00:07:25,220
+foram gravados juntos para produzir essas gravações que temos.
+
+218
+00:07:25,990 --> 00:07:27,330
+Mais do que isso, o que o algorítmo para festa de coquetel
+
+219
+00:07:27,710 --> 00:07:29,210
+fará, é separar
+
+220
+00:07:29,570 --> 00:07:30,810
+essas duas vozes
+
+221
+00:07:31,480 --> 00:07:32,700
+que foram gravadas juntas ou
+
+222
+00:07:33,000 --> 00:07:34,240
+somadas para formar
+
+223
+00:07:34,410 --> 00:07:35,600
+uma gravação e, de fato,
+
+224
+00:07:36,200 --> 00:07:38,630
+aqui está a primeira saida do algorítmo para festa de coquetel.
+
+225
+00:07:39,790 --> 00:07:41,910
+Um, dois, três, quatro,
+
+226
+00:07:42,590 --> 00:07:46,270
+cinco, seis, sete, oito, nove, dez.
+
+227
+00:07:47,630 --> 00:07:48,780
+Assim, eu separei a voz em Inglês
+
+228
+00:07:49,240 --> 00:07:51,220
+em uma das gravações.
+
+229
+00:07:52,460 --> 00:07:53,300
+E aqui está a segunda.
+
+230
+00:07:53,380 --> 00:07:55,280
+Uno, dos, tres, quatro, cinco,
+
+231
+00:07:55,980 --> 00:07:59,830
+seis, siete, ocho, nueve y diez.
+
+232
+00:08:00,270 --> 00:08:01,180
+Nada mal. Para dar a você
+
+233
+00:08:03,810 --> 00:08:05,270
+mais um exemplo, aqui está outra
+
+234
+00:08:05,600 --> 00:08:07,370
+gravação de uma outra situação similar.
+
+235
+00:08:08,060 --> 00:08:09,790
+Aqui está o primeiro microfone: Um,
+
+236
+00:08:10,470 --> 00:08:12,430
+dois, três, quatro, cinco, seis
+
+237
+00:08:13,370 --> 00:08:15,710
+sete, oito, nove, dez.
+
+238
+00:08:16,980 --> 00:08:17,920
+Tudo bem, o pobre rapaz
+
+239
+00:08:18,180 --> 00:08:19,350
+foi pra casa depois da festa e
+
+240
+00:08:19,420 --> 00:08:21,880
+ele está sentado na sala falando ele mesmo para o radio.
+
+241
+00:08:23,090 --> 00:08:24,130
+Aqui está a gravação do segundo microfone.
+
+242
+00:08:28,810 --> 00:08:31,800
+Um, dois, tres, quatro, cinco, seis sete, oito, nove, dez.
+
+243
+00:08:33,310 --> 00:08:34,160
+Quando você passa essas
+
+244
+00:08:34,610 --> 00:08:35,530
+gravações desses dois microfones para o mesmo algorítmo,
+
+245
+00:08:36,360 --> 00:08:37,790
+o que ele faz é dizer, novamente,
+
+246
+00:08:38,380 --> 00:08:39,470
+que parece haver
+
+247
+00:08:39,690 --> 00:08:41,370
+duas fontes nesse áudio e, mais do que isso,
+
+248
+00:08:42,410 --> 00:08:43,820
+o algoritmo diz: aqui está
+
+249
+00:08:44,070 --> 00:08:46,010
+a fonte do primeiro áudio que eu achei.
+
+250
+00:08:47,480 --> 00:08:49,300
+Um, dois, três, quatro,
+
+251
+00:08:49,730 --> 00:08:53,430
+cinco, seis, sete, oito, nove, dez.
+
+252
+00:08:54,650 --> 00:08:56,110
+Não está perfeito porque
+
+253
+00:08:56,340 --> 00:08:57,360
+ele pegou a voz mas
+
+254
+00:08:57,570 --> 00:08:59,070
+também pegou um pouco da música.
+
+255
+00:08:59,890 --> 00:09:01,360
+Então aqui está a segunda saida do algoritmo.
+
+256
+00:09:10,020 --> 00:09:11,310
+Nada mal para essa segunda
+
+257
+00:09:11,540 --> 00:09:13,300
+saida onde êle conseguiu remover totalmente a voz.
+
+258
+00:09:13,760 --> 00:09:14,850
+E assim,
+
+259
+00:09:15,020 --> 00:09:17,380
+ele limpou a música, removendo a contagem de um a dez.
+
+260
+00:09:18,840 --> 00:09:20,090
+Assim, você pode olhar para
+
+261
+00:09:20,180 --> 00:09:21,750
+um algoritmo de Aprendizado Não Supervisionado
+
+262
+00:09:21,950 --> 00:09:23,050
+como esse, e perguntar
+
+263
+00:09:23,250 --> 00:09:25,110
+o quão complicado é implementar isso, certo?
+
+264
+00:09:25,330 --> 00:09:26,560
+Parece que,
+
+265
+00:09:26,970 --> 00:09:28,870
+para construir essa aplicação
+
+266
+00:09:28,930 --> 00:09:30,550
+pra fazer o processamento do áudio, você
+
+267
+00:09:30,670 --> 00:09:31,430
+precisa escrever uma tonelada de código
+
+268
+00:09:32,240 --> 00:09:33,580
+ou talvez ligar à uma série
+
+269
+00:09:33,690 --> 00:09:35,380
+de bibliotecas de sintetizadores Java que
+
+270
+00:09:35,470 --> 00:09:37,150
+processam áudio, o que parece ser
+
+271
+00:09:37,240 --> 00:09:38,880
+realmente uma aplicação complicada, que
+
+272
+00:09:39,060 --> 00:09:41,040
+faça um áudio, separando áudios e assim por diante.
+
+273
+00:09:42,460 --> 00:09:43,860
+Na verdade o algoritmo,
+
+274
+00:09:44,070 --> 00:09:45,640
+pra fazer o que você acabou de ouvir,
+
+275
+00:09:45,900 --> 00:09:47,280
+pode ser feito com uma linha
+
+276
+00:09:47,530 --> 00:09:49,270
+de código - que é mostrado aqui.
+
+277
+00:09:50,640 --> 00:09:52,350
+Isso toma muito tempo de
+
+278
+00:09:52,610 --> 00:09:54,060
+pesquisadores para chegar a essa linha de código.
+
+279
+00:09:54,490 --> 00:09:56,090
+Não estou dizendo que esse é um problema simples,
+
+280
+00:09:57,080 --> 00:09:57,980
+mas verifica-se que quando você
+
+281
+00:09:58,180 --> 00:10:00,330
+usa o ambiente de programação correto, muitos
+
+282
+00:10:00,670 --> 00:10:02,060
+algoritmos de aprendizagem podem ser,
+realmente, programas pequenos.
+
+283
+00:10:03,510 --> 00:10:04,700
+Então, é por isso que
+
+284
+00:10:04,840 --> 00:10:05,890
+nesse curso vamos usar
+
+285
+00:10:06,010 --> 00:10:07,430
+o Octave como ambiente de programação.
+
+286
+00:10:08,550 --> 00:10:09,910
+Octave é um software de código aberto
+
+287
+00:10:10,120 --> 00:10:11,620
+e, ao usar
+
+288
+00:10:11,670 --> 00:10:13,130
+uma ferramenta como Octave ou Matlab,
+
+289
+00:10:14,000 --> 00:10:15,400
+muitos algoritmos the aprendizagem podem
+
+290
+00:10:15,690 --> 00:10:17,910
+tornar a implementação em algumas linhas de código.
+
+291
+00:10:18,380 --> 00:10:19,400
+Mais pra frente, nesse curso, eu irei ensinar
+
+292
+00:10:19,620 --> 00:10:20,570
+a você, um pouco sobre
+
+293
+00:10:20,720 --> 00:10:21,920
+como usar o Octave e você irá
+
+294
+00:10:22,050 --> 00:10:24,590
+implementar alguns desses algoritmos em Octave.
+
+295
+00:10:24,980 --> 00:10:26,050
+Ou, se você tiver Matlab, pode usar também.
+
+296
+00:10:27,120 --> 00:10:28,500
+Verifica-se que no Vale do Silício, para
+
+297
+00:10:28,620 --> 00:10:29,470
+uma grande parte dos algoritmos 
+de aprendizado de máquina,
+
+298
+00:10:30,290 --> 00:10:31,310
+o que se faz é primeiro prototipar
+
+299
+00:10:32,040 --> 00:10:33,900
+nosso software no Octave, já que o Octave
+
+300
+00:10:34,330 --> 00:10:35,250
+torna incrivelmente rápida
+
+301
+00:10:35,540 --> 00:10:36,920
+a implementação desses algoritmos de aprendizagem.
+
+302
+00:10:38,230 --> 00:10:39,110
+Aqui, cada uma dessas funções
+
+303
+00:10:39,720 --> 00:10:41,460
+como, por exemplo, a função SVD
+
+304
+00:10:41,680 --> 00:10:42,920
+que significa Decomposição em Valores Singulares,
+
+305
+00:10:43,240 --> 00:10:44,520
+mas que se verifica
+
+306
+00:10:44,640 --> 00:10:45,690
+ser uma
+
+307
+00:10:45,820 --> 00:10:48,420
+rotina de álgebra linear, que faz parte do Octave.
+
+308
+00:10:49,500 --> 00:10:50,390
+Se você tentar fazer isso
+
+309
+00:10:50,460 --> 00:10:51,490
+usando C++ ou Java,
+
+310
+00:10:51,780 --> 00:10:53,040
+isso pode tomar muitas e muitas linhas
+
+311
+00:10:53,180 --> 00:10:55,680
+de código e ligar bibliotecas complexas de C++ ou Java.
+
+312
+00:10:56,440 --> 00:10:57,490
+Assim, se você implementa esse tipo de coisa
+
+313
+00:10:57,680 --> 00:10:58,690
+em C++ ou Java
+
+314
+00:10:59,050 --> 00:11:00,090
+ou Python, será bem mais complicado
+
+315
+00:11:00,290 --> 00:11:02,090
+fazer isso com essas linguagens.
+
+316
+00:11:03,750 --> 00:11:05,060
+O que eu tenho visto depois de ensinar
+
+317
+00:11:05,300 --> 00:11:06,980
+aprendizado de máquina por quase
+
+318
+00:11:07,210 --> 00:11:08,680
+uma década, é que você
+
+319
+00:11:08,890 --> 00:11:10,340
+aprende bem mais rápido se você
+
+320
+00:11:10,480 --> 00:11:11,700
+fizer uso do Octave como seu
+
+321
+00:11:11,790 --> 00:11:14,070
+ambiente de programação, e se
+
+322
+00:11:14,250 --> 00:11:15,570
+você usa o Octave como sua
+
+323
+00:11:16,260 --> 00:11:17,110
+ferramenta de aprendizagem e
+
+324
+00:11:17,240 --> 00:11:18,640
+prototipagem, isso poderá
+
+325
+00:11:19,000 --> 00:11:21,280
+fazer com que você entenda e faça protótipos de algoritmos de aprendizagem muito mais rapidamente.
+
+326
+00:11:22,640 --> 00:11:23,850
+De fato, o que muitas pessoas
+
+327
+00:11:23,990 --> 00:11:25,390
+fazem em grandes
+
+328
+00:11:25,730 --> 00:11:27,360
+companhias no Vale do Silício, é fazer
+
+329
+00:11:27,560 --> 00:11:29,020
+uso de algoritmos como Octave para primeiro
+
+330
+00:11:29,370 --> 00:11:31,110
+prototipar o algoritmo de aprendizagem e só
+
+331
+00:11:31,510 --> 00:11:32,780
+depois de estar rodando,
+
+332
+00:11:32,860 --> 00:11:33,820
+fazer a migração
+
+333
+00:11:34,390 --> 00:11:35,910
+para C++ ou Java ou similar.
+
+334
+00:11:36,890 --> 00:11:37,960
+Verifica-se que, ao fazer
+
+335
+00:11:38,220 --> 00:11:39,070
+esse tipo de procedimento, você pode, quase sempre,
+
+336
+00:11:39,400 --> 00:11:40,440
+ter seu algoritmo rodando
+
+337
+00:11:41,300 --> 00:11:43,050
+bem antes do que se fizesse em C++
+
+338
+00:11:44,440 --> 00:11:46,010
+Eu sei que como
+
+339
+00:11:46,100 --> 00:11:47,490
+instrutor eu tenho o direito dizer
+
+340
+00:11:47,570 --> 00:11:48,580
+"acreditem no que eu falo"
+
+341
+00:11:48,730 --> 00:11:49,790
+apenas algumas
+
+342
+00:11:50,030 --> 00:11:51,420
+poucas vezes,
+
+343
+00:11:51,560 --> 00:11:52,720
+mas para aqueles que nunca usaram antes
+
+344
+00:11:53,330 --> 00:11:54,880
+ambientes de programação como Octave,
+
+345
+00:11:55,240 --> 00:11:56,070
+eu posso dizer pra você
+
+346
+00:11:56,130 --> 00:11:56,970
+que pode confiar no que eu digo,
+
+347
+00:11:57,570 --> 00:11:58,950
+e dizer que você e
+
+348
+00:11:59,700 --> 00:12:01,180
+o seu tempo de desenvolvimento
+
+349
+00:12:01,700 --> 00:12:03,100
+são os recursos mais importantes.
+
+350
+00:12:04,210 --> 00:12:05,570
+E tendo uma grande
+
+351
+00:12:05,800 --> 00:12:06,850
+experiência nisso, eu penso que
+
+352
+00:12:07,190 --> 00:12:08,460
+você como pesquisador
+
+353
+00:12:08,850 --> 00:12:09,990
+em aprendizado de máquina, ou desenvolvedor em aprendizado de maquina,
+
+354
+00:12:10,830 --> 00:12:12,080
+você será muito mais produtivo se
+
+355
+00:12:12,220 --> 00:12:13,010
+você aprender a começar pelo protótipo,
+
+356
+00:12:13,580 --> 00:12:15,250
+usando o Octave ou alguma outra linguagem.
+
+357
+00:12:17,570 --> 00:12:19,790
+Finalmente, para encerrar
+
+358
+00:12:20,090 --> 00:12:22,890
+esse vídeo, eu tenho uma rápido questionário de revisão pra você.
+
+359
+00:12:24,400 --> 00:12:26,400
+Nós falamos sobre Aprendizado Não Supervisionado, que
+
+360
+00:12:26,700 --> 00:12:27,670
+é um aprendizado onde você
+
+361
+00:12:27,760 --> 00:12:28,730
+passa ao algoritmo uma tonelada
+
+362
+00:12:28,840 --> 00:12:30,120
+de dados e apenas pede a ele
+
+363
+00:12:30,240 --> 00:12:32,900
+que ache uma estrutura nos dados para nós.
+
+364
+00:12:33,160 --> 00:12:35,170
+Dos próximos quatro exemplos, quais
+
+365
+00:12:35,490 --> 00:12:36,410
+deles, quais desses quatro
+
+366
+00:12:36,870 --> 00:12:37,630
+você acha que seriam
+
+367
+00:12:37,720 --> 00:12:39,520
+algoritmos de Aprendizado Não Supervisionado em
+
+368
+00:12:40,220 --> 00:12:41,950
+oposição aos problemas de Aprendizado Supervisionado?
+
+369
+00:12:42,730 --> 00:12:43,590
+Para cada uma das quatro
+
+370
+00:12:43,860 --> 00:12:44,850
+caixas de selecao a esquerda,
+
+371
+00:12:45,640 --> 00:12:46,900
+selecione aquelas que
+
+372
+00:12:47,210 --> 00:12:49,400
+você acha serem algoritmos de
+
+373
+00:12:49,700 --> 00:12:51,300
+Aprendizado Não Supervisionado e
+
+374
+00:12:51,440 --> 00:12:53,930
+entao clique no botão na parte inferior direita para confirmar sua resposta.
+
+375
+00:12:54,690 --> 00:12:57,030
+Então, quando o vídeo parar, por favor
+
+376
+00:12:57,370 --> 00:12:58,750
+responda às questões no slide.
+
+377
+00:13:01,860 --> 00:13:03,950
+Assim, espero que você se 
+lembre do problema de diretório de spam.
+
+378
+00:13:04,710 --> 00:13:06,310
+Se você já rotulou dados, você
+
+379
+00:13:06,450 --> 00:13:07,680
+sabe, com e-mails
+
+380
+00:13:07,800 --> 00:13:10,470
+de spam e não spam, nós tratamos disso como um problema de Aprendizado Supervisionado.
+
+381
+00:13:11,620 --> 00:13:13,870
+O exemplo da notícia histórica, que é exatamente
+
+382
+00:13:14,100 --> 00:13:15,370
+o que o exemplo do Google News
+
+383
+00:13:15,910 --> 00:13:16,600
+que vimos nesse vídeo,
+
+384
+00:13:17,090 --> 00:13:17,950
+nós vimos como você pode
+
+385
+00:13:18,080 --> 00:13:19,460
+usar um algoritmo de agrupamento para agrupar
+
+386
+00:13:19,880 --> 00:13:21,980
+esses artigos juntos. Então isso é um Aprendizado Não Supervisionado.
+
+387
+00:13:23,250 --> 00:13:25,440
+No exemplo de segmentação de mercado, que eu
+
+388
+00:13:25,510 --> 00:13:27,120
+falei um pouco no início, você
+
+389
+00:13:27,220 --> 00:13:29,110
+pode encarar como um problema de Aprendizado Não Supervisionado
+
+390
+00:13:29,970 --> 00:13:30,860
+porque eu apenas
+
+391
+00:13:30,930 --> 00:13:32,340
+coloco meus dados no algoritmo e peço
+
+392
+00:13:32,500 --> 00:13:34,340
+para ele descobrir, automaticamente, os segmentos de mercado.
+
+393
+00:13:35,610 --> 00:13:37,930
+E o exemplo final, diabetes, bem,
+
+394
+00:13:38,070 --> 00:13:39,080
+isso é apenas como nosso
+
+395
+00:13:39,350 --> 00:13:41,480
+exemplo de câncer de mama do último vídeo.
+
+396
+00:13:42,190 --> 00:13:43,320
+Apenas ao invés de, você sabe,
+
+397
+00:13:43,600 --> 00:13:45,280
+tumores de câncer bom ou ruim ou
+
+398
+00:13:45,550 --> 00:13:47,390
+tumores benignos ou malignos,
+
+399
+00:13:47,550 --> 00:13:49,270
+trabalhamos com ter diabetes ou
+
+400
+00:13:49,330 --> 00:13:50,440
+não e, assim, nós
+
+401
+00:13:50,700 --> 00:13:51,830
+usamos isso como supervisionado,
+
+402
+00:13:52,370 --> 00:13:53,740
+nós resolvemos isso como
+
+403
+00:13:53,870 --> 00:13:54,670
+um problema de Aprendizado Supervisionado, assim como
+
+404
+00:13:54,730 --> 00:13:56,450
+fizemos com os dados de tumor de câncer de mama.
+
+405
+00:13:58,270 --> 00:13:59,400
+Isso é o Aprendizado
+
+406
+00:14:00,100 --> 00:14:01,580
+Não Supervisionado e no
+
+407
+00:14:01,650 --> 00:14:02,940
+próximo vídeo, nós iremos investigar com
+
+408
+00:14:03,270 --> 00:14:04,600
+detalhes mais específicos os algoritmos de aprendizado
+
+409
+00:14:05,550 --> 00:14:06,590
+e começar a falar sobre
+
+410
+00:14:07,220 --> 00:14:08,750
+como esses algoritmos trabalham e
+
+411
+00:14:08,920 --> 00:14:11,270
+como podemos, como você pode fazer para implementa-los.
+Tradutor: Carlos Lacerda | Revisor: Eduardo Bonet / Carlos Lage

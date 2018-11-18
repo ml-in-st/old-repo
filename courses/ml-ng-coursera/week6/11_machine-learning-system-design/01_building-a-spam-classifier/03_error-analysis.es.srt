@@ -1,0 +1,1575 @@
+1
+00:00:00,210 --> 00:00:01,300
+En el video anterior también
+
+2
+00:00:01,600 --> 00:00:03,390
+de como cuando nos encontramos
+
+3
+00:00:03,520 --> 00:00:04,780
+con un problema de aprendizaje automático
+
+4
+00:00:04,980 --> 00:00:07,260
+tenemos muchas ideas de cómo mejorar el algoritmo.
+
+5
+00:00:08,460 --> 00:00:09,510
+En este video me gustaría hablar
+
+6
+00:00:09,650 --> 00:00:11,060
+del concepto de análisis
+
+7
+00:00:11,330 --> 00:00:12,980
+de errores, que me ayudará
+
+8
+00:00:13,070 --> 00:00:13,980
+a explicarte una manera más
+
+9
+00:00:14,300 --> 00:00:15,830
+sistemática para tomar ciertas decisiones.
+
+10
+00:00:18,070 --> 00:00:19,420
+Si estás empezando a trabajar en una
+
+11
+00:00:19,540 --> 00:00:21,210
+aplicación de aprendizaje automático o estás
+
+12
+00:00:21,400 --> 00:00:23,340
+construyendo una aplicación de aprendizaje automático,
+
+13
+00:00:23,480 --> 00:00:24,880
+se considera una buena práctica
+
+14
+00:00:25,840 --> 00:00:27,000
+empezar, no por construir un sistema
+
+15
+00:00:27,520 --> 00:00:29,070
+muy complicado con muchas
+
+16
+00:00:29,220 --> 00:00:30,490
+funciones complejas,
+
+17
+00:00:30,930 --> 00:00:32,450
+sino empezar
+
+18
+00:00:33,060 --> 00:00:34,120
+por construir un algoritmo
+
+19
+00:00:34,510 --> 00:00:35,760
+simple que puedes implementar rápidamente.
+
+20
+00:00:37,480 --> 00:00:38,610
+Cuando inicio con
+
+21
+00:00:38,740 --> 00:00:39,770
+un problema de aprendizaje, lo que hago
+
+22
+00:00:40,150 --> 00:00:41,350
+generalmente es pasar
+
+23
+00:00:41,570 --> 00:00:43,160
+un día, literalmente casi 24
+
+24
+00:00:43,460 --> 00:00:46,030
+horas, produciendo algo muy rápido y desordenado.
+
+25
+00:00:47,040 --> 00:00:48,550
+No será un sistema sofisticado, francamente,
+
+26
+00:00:49,370 --> 00:00:50,310
+sino algo rápido y
+
+27
+00:00:50,400 --> 00:00:52,080
+desordenado que implementaré
+
+28
+00:00:52,590 --> 00:00:53,710
+y luego probaré
+
+29
+00:00:53,880 --> 00:00:55,870
+en los datos de validación cruzada. Una vez
+
+30
+00:00:56,050 --> 00:00:57,140
+hecho esto, puedes trazar las
+
+31
+00:00:57,480 --> 00:00:58,690
+curvas de aprendizaje.
+
+32
+00:00:59,960 --> 00:01:02,670
+De esto fue de lo que hablamos en el conjunto de video anterior.
+
+33
+00:01:03,230 --> 00:01:05,160
+Pero trazar las curvas de aprendizaje
+
+34
+00:01:05,370 --> 00:01:07,120
+de los errores de entrenamiento y de prueba
+
+35
+00:01:07,310 --> 00:01:08,280
+para saber
+
+36
+00:01:08,400 --> 00:01:09,630
+si el algoritmo tiene un
+
+37
+00:01:10,120 --> 00:01:11,240
+alta oscilación  o una varianza
+
+38
+00:01:11,440 --> 00:01:13,180
+alta o algo similar, y
+
+39
+00:01:13,440 --> 00:01:14,380
+utilizar eso para tratar de
+
+40
+00:01:14,490 --> 00:01:15,610
+para decidir si
+
+41
+00:01:16,080 --> 00:01:17,990
+nos ayudará tener más funciones o más datos.
+
+42
+00:01:18,670 --> 00:01:19,830
+La razón por la
+
+43
+00:01:20,000 --> 00:01:20,980
+que este es un buen enfoque
+
+44
+00:01:21,940 --> 00:01:22,980
+es que cuando inicias un
+
+45
+00:01:23,100 --> 00:01:24,460
+problema de aprendizaje, no hay
+
+46
+00:01:24,680 --> 00:01:25,820
+una manera de saber de antemano
+
+47
+00:01:26,480 --> 00:01:27,360
+si necesitas funciones
+
+48
+00:01:27,790 --> 00:01:29,200
+más complejas o
+
+49
+00:01:29,250 --> 00:01:30,950
+más datos o algo más.
+
+50
+00:01:31,280 --> 00:01:32,270
+Es difícil predecir
+
+51
+00:01:32,510 --> 00:01:33,840
+sin la evidencia
+
+52
+00:01:33,970 --> 00:01:36,040
+necesaria, sin tener una
+
+53
+00:01:36,160 --> 00:01:37,840
+curva de aprendizaje
+
+54
+00:01:37,970 --> 00:01:39,130
+es verdaderamente
+
+55
+00:01:39,750 --> 00:01:42,860
+difícil predecir dónde debes invertir tu tiempo.
+
+56
+00:01:43,760 --> 00:01:45,360
+Generalmente, implementar un
+
+57
+00:01:45,730 --> 00:01:46,670
+algoritmo muy rápido y
+
+58
+00:01:46,980 --> 00:01:48,100
+poco refinado y trazar las
+
+59
+00:01:48,540 --> 00:01:51,070
+curvas de aprendizaje nos ayuda a tomar estas decisiones.
+
+60
+00:01:52,580 --> 00:01:53,340
+Si gustas, puedes pensar
+
+61
+00:01:53,560 --> 00:01:54,490
+en esto como una manera
+
+62
+00:01:54,620 --> 00:01:56,270
+de evitar lo que se denomina
+
+63
+00:01:56,570 --> 00:01:58,950
+optimización prematura en programación.
+
+64
+00:02:00,000 --> 00:02:01,070
+Esta idea sólo
+
+65
+00:02:01,200 --> 00:02:03,130
+nos sugiere que debemos
+
+66
+00:02:03,460 --> 00:02:04,920
+dejar que la evidencia guíe nuestras decisiones
+
+67
+00:02:05,650 --> 00:02:06,540
+sobre en qué debemos
+
+68
+00:02:07,160 --> 00:02:08,150
+dedicar nuestro tiempo, en vez de confiar
+
+69
+00:02:09,070 --> 00:02:09,680
+en presentimientos, que generalmente resultan mal.
+
+70
+00:02:10,930 --> 00:02:12,120
+Además de trazar las curvas de
+
+71
+00:02:12,390 --> 00:02:13,540
+aprendizaje, otra cosa útil
+
+72
+00:02:13,810 --> 00:02:16,440
+es lo que llamamos análisis de errores.
+
+73
+00:02:18,120 --> 00:02:19,080
+Con esto me refiero a
+
+74
+00:02:19,280 --> 00:02:20,520
+que, al construir, digamos,
+
+75
+00:02:20,770 --> 00:02:22,190
+un clasificador de spam,
+
+76
+00:02:22,470 --> 00:02:24,500
+veré mi
+
+77
+00:02:24,730 --> 00:02:26,690
+conjunto de validación cruzada y
+
+78
+00:02:27,360 --> 00:02:29,110
+analizaré manualmente los correos
+
+79
+00:02:29,310 --> 00:02:30,910
+en los que mi algoritmo arroja errores.
+
+80
+00:02:31,180 --> 00:02:32,250
+Revisaré los correos spam y los
+
+81
+00:02:32,630 --> 00:02:34,440
+correos normales que fueron mal
+
+82
+00:02:34,640 --> 00:02:36,920
+clasificados por mi algoritmo y
+
+83
+00:02:37,430 --> 00:02:38,590
+veré si puedo identificar patrones
+
+84
+00:02:39,210 --> 00:02:41,300
+sistemáticos en el tipo de ejemplos mal clasificados.
+
+85
+00:02:42,980 --> 00:02:44,560
+Este proceso, si
+
+86
+00:02:44,810 --> 00:02:45,960
+lo seguimos, te inspirará
+
+87
+00:02:47,170 --> 00:02:48,800
+a diseñar nuevas funciones,
+
+88
+00:02:49,430 --> 00:02:50,420
+señalará los asuntos
+
+89
+00:02:50,920 --> 00:02:52,150
+u oportunidades
+
+90
+00:02:52,400 --> 00:02:53,290
+actuales del sistema y te
+
+91
+00:02:54,270 --> 00:02:55,550
+dará sugerencias
+
+92
+00:02:55,660 --> 00:02:57,680
+para implementar mejoras.
+
+93
+00:02:58,260 --> 00:03:00,070
+Aquí tenemos un ejemplo concreto.
+
+94
+00:03:01,350 --> 00:03:02,360
+Digamos que construiste un clasificador de spam
+
+95
+00:03:02,780 --> 00:03:05,740
+y tienes
+
+96
+00:03:05,840 --> 00:03:07,720
+500 ejemplos en el
+
+97
+00:03:07,940 --> 00:03:09,650
+conjunto de validación cruzada.
+
+98
+00:03:10,410 --> 00:03:11,760
+Digamos que en este ejemplo
+
+99
+00:03:12,010 --> 00:03:13,060
+el algoritmo tiene una tasa
+
+100
+00:03:13,340 --> 00:03:14,640
+de error muy alta y clasifica mal
+
+101
+00:03:14,910 --> 00:03:16,500
+cien de estos ejemplos de validación cruzada.
+
+102
+00:03:18,770 --> 00:03:19,850
+Lo que haré es examinar y clasificar
+
+103
+00:03:20,450 --> 00:03:22,370
+manualmente estos 100 errores y
+
+104
+00:03:22,530 --> 00:03:24,450
+clasificarlos con
+
+105
+00:03:24,700 --> 00:03:25,810
+base en aspectos como el
+
+106
+00:03:25,980 --> 00:03:27,110
+tipo de correo y las
+
+107
+00:03:27,270 --> 00:03:28,630
+acciones o qué funciones
+
+108
+00:03:28,710 --> 00:03:31,130
+probablemente hicieron que el algoritmo los clasificara mal.
+
+109
+00:03:32,450 --> 00:03:33,880
+Y de forma específica, por
+
+110
+00:03:34,080 --> 00:03:35,050
+el tipo de correo que es.
+
+111
+00:03:35,560 --> 00:03:36,870
+Si vemos
+
+112
+00:03:37,140 --> 00:03:38,180
+estos cien errores, quizá encuentre que
+
+113
+00:03:38,520 --> 00:03:39,660
+los tipos más frecuente de errores
+
+114
+00:03:39,970 --> 00:03:41,350
+o de correos
+
+115
+00:03:41,840 --> 00:03:43,450
+spam mal clasificados
+
+116
+00:03:44,010 --> 00:03:45,610
+sean correos de medicinas. Estos
+
+117
+00:03:45,610 --> 00:03:48,300
+correos que, básicamente, intentan
+
+118
+00:03:48,610 --> 00:03:50,000
+vender medicamentos. O correos
+
+119
+00:03:50,180 --> 00:03:51,740
+que intentan vender réplicas, como
+
+120
+00:03:51,760 --> 00:03:54,330
+relojes falsos o cosas falsas en general.
+
+121
+00:03:56,160 --> 00:03:59,410
+Quizá también encontremos correos que intentan robar contraseñas.
+
+122
+00:04:00,240 --> 00:04:01,400
+A estos también se les llama correos de phishing y son
+
+123
+00:04:02,180 --> 00:04:04,690
+otra categoría de correos. O quizá encontremos otras categorías.
+
+124
+00:04:06,160 --> 00:04:07,800
+En cuanto a la clasificación
+
+125
+00:04:08,120 --> 00:04:09,230
+de los tipos de correos, lo que
+
+126
+00:04:09,530 --> 00:04:10,420
+haría sería revisar
+
+127
+00:04:10,890 --> 00:04:11,990
+mis 100
+
+128
+00:04:12,200 --> 00:04:14,220
+correos para encontrar que
+
+129
+00:04:14,400 --> 00:04:15,510
+12 de los correos mal
+
+130
+00:04:15,620 --> 00:04:17,600
+clasificados son correos de medicinas,
+
+131
+00:04:18,100 --> 00:04:19,460
+cuatro de ellos son
+
+132
+00:04:19,700 --> 00:04:20,840
+correos que intentan
+
+133
+00:04:20,980 --> 00:04:22,680
+vender réplicas o relojes falsos o algo similar.
+
+134
+00:04:23,720 --> 00:04:25,060
+Supongamos que encontramos también
+
+135
+00:04:25,650 --> 00:04:26,970
+53 correos de
+
+136
+00:04:27,720 --> 00:04:29,480
+phishing que
+
+137
+00:04:29,730 --> 00:04:30,900
+intentan persuadirte
+
+138
+00:04:31,020 --> 00:04:32,760
+de que les des tu contraseña y, por último, 31 correos de otras categorías.
+
+139
+00:04:35,330 --> 00:04:37,210
+Y es al contar el
+
+140
+00:04:37,280 --> 00:04:38,280
+número de correos en
+
+141
+00:04:38,430 --> 00:04:39,540
+estas categorías que podrás
+
+142
+00:04:39,790 --> 00:04:41,570
+descubrir que el
+
+143
+00:04:41,870 --> 00:04:43,100
+algoritmo se desempeña especialmente
+
+144
+00:04:44,170 --> 00:04:45,640
+mal en los correos que
+
+145
+00:04:45,780 --> 00:04:47,240
+intentan robar contraseñas. Esto
+
+146
+00:04:47,400 --> 00:04:49,230
+sugiere que
+
+147
+00:04:49,380 --> 00:04:50,490
+puede valer la pena
+
+148
+00:04:50,690 --> 00:04:51,650
+revisar con más cuidado este
+
+149
+00:04:51,900 --> 00:04:53,350
+tipo de correos y ver
+
+150
+00:04:53,450 --> 00:04:54,450
+si podemos obtener funciones
+
+151
+00:04:55,070 --> 00:04:56,280
+mejores para categorizarlos correctamente.
+
+152
+00:04:57,550 --> 00:04:58,930
+Otra cosa que
+
+153
+00:04:59,000 --> 00:05:00,130
+puedes hacer es ver las
+
+154
+00:05:00,550 --> 00:05:02,120
+acciones o las variables
+
+155
+00:05:02,620 --> 00:05:04,920
+adicionales que hicieron que el algoritmo clasificara mal estos correos.
+
+156
+00:05:06,090 --> 00:05:06,970
+Digamos que una
+
+157
+00:05:07,060 --> 00:05:09,700
+de las hipótesis de
+
+158
+00:05:09,840 --> 00:05:10,780
+las funciones que nos pueden ayudar
+
+159
+00:05:10,920 --> 00:05:13,240
+a clasificar mejor los correos es intentar
+
+160
+00:05:13,490 --> 00:05:15,600
+detectar errores ortográficos intencionales y compararlo con
+
+161
+00:05:16,220 --> 00:05:18,610
+un enrutamiento inusual o
+
+162
+00:05:19,950 --> 00:05:21,450
+una puntuación inusual, como
+
+163
+00:05:21,790 --> 00:05:23,230
+el uso de muchos signos de admiración.
+
+164
+00:05:23,700 --> 00:05:24,470
+Digamos que, revisaré
+
+165
+00:05:24,860 --> 00:05:25,670
+manualmente estos correos
+
+166
+00:05:25,760 --> 00:05:27,490
+me encuentro con cinco casos
+
+167
+00:05:27,620 --> 00:05:29,400
+de este tipo, 16 de este,
+
+168
+00:05:29,500 --> 00:05:30,560
+32 de este y
+
+169
+00:05:31,180 --> 00:05:33,620
+un montón de otros tipos de correos.
+
+170
+00:05:34,770 --> 00:05:36,180
+Si esto es lo que
+
+171
+00:05:36,350 --> 00:05:37,470
+obtienes de tu conjunto de
+
+172
+00:05:38,070 --> 00:05:39,170
+validación cruzada, indica que
+
+173
+00:05:39,300 --> 00:05:41,060
+el fenómeno de los errores ortográficos intencionados
+
+174
+00:05:41,660 --> 00:05:42,730
+quizá sea muy raro
+
+175
+00:05:43,500 --> 00:05:44,480
+y no valga la pena
+
+176
+00:05:44,840 --> 00:05:47,120
+invertir tiempo escribiendo
+
+177
+00:05:47,710 --> 00:05:48,780
+algoritmos para intentar detectarlos.
+
+178
+00:05:49,480 --> 00:05:50,480
+Por el contrario, si encuentras que
+
+179
+00:05:50,780 --> 00:05:52,070
+de hecho, hay muchos spammers
+
+180
+00:05:52,140 --> 00:05:54,150
+que utilizan una puntuación inusual,
+
+181
+00:05:54,290 --> 00:05:55,250
+es un indicador de
+
+182
+00:05:55,670 --> 00:05:56,730
+que tal vez
+
+183
+00:05:57,000 --> 00:05:58,510
+valga la pena invertir
+
+184
+00:05:58,780 --> 00:06:00,280
+tiempo desarrollando funciones
+
+185
+00:06:00,910 --> 00:06:02,190
+más sofisticadas con base en la puntuación.
+
+186
+00:06:03,330 --> 00:06:04,870
+Este tipo de análisis de
+
+187
+00:06:05,040 --> 00:06:06,390
+errores, que es el proceso
+
+188
+00:06:06,690 --> 00:06:08,430
+de examinar manualmente
+
+189
+00:06:09,190 --> 00:06:10,540
+los errores que comete el
+
+190
+00:06:10,780 --> 00:06:12,220
+algoritmo, nos puede guiar
+
+191
+00:06:12,560 --> 00:06:14,620
+hacia los métodos más eficientes que podemos intentar.
+
+192
+00:06:16,000 --> 00:06:17,410
+Esto también explica porqué
+
+193
+00:06:17,590 --> 00:06:19,260
+recomiendo llevar a cabo la implementación rápida
+
+194
+00:06:19,550 --> 00:06:21,250
+y desordenada de un algoritmo.
+
+195
+00:06:22,040 --> 00:06:22,940
+Lo que queremos saber
+
+196
+00:06:23,260 --> 00:06:24,290
+es cuáles
+
+197
+00:06:24,310 --> 00:06:26,770
+son los ejemplos que resultan más difíciles de clasificar para el algoritmo.
+
+198
+00:06:27,860 --> 00:06:29,920
+Y muy a menudo resulta que diferentes
+
+199
+00:06:30,460 --> 00:06:31,730
+algoritmos, de diferentes algoritmos de aprendizaje,
+
+200
+00:06:32,010 --> 00:06:33,500
+encuentran, generalmente,
+
+201
+00:06:33,560 --> 00:06:35,920
+categorías similares de dificultad de ejemplos.
+
+202
+00:06:37,010 --> 00:06:37,970
+Implementar un algoritmo
+
+203
+00:06:38,060 --> 00:06:39,840
+rápido y desordenado es una
+
+204
+00:06:39,910 --> 00:06:40,850
+manera rápida de
+
+205
+00:06:41,430 --> 00:06:43,070
+identificar algunos errores
+
+206
+00:06:43,620 --> 00:06:44,690
+y los ejemplos
+
+207
+00:06:44,790 --> 00:06:47,760
+más difíciles para concentrar tus esfuerzos en ellos.
+
+208
+00:06:49,230 --> 00:06:51,220
+Por último, cuando desarrollamos algoritmos de aprendizaje,
+
+209
+00:06:52,260 --> 00:06:53,880
+otra cosa que es útil es
+
+210
+00:06:54,190 --> 00:06:55,230
+asegurarte de que
+
+211
+00:06:55,590 --> 00:06:56,450
+tienes una evaluación
+
+212
+00:06:56,810 --> 00:06:59,710
+numérica de tu algoritmo de aprendizaje.
+
+213
+00:07:02,130 --> 00:07:03,220
+Con esto me refiero a que
+
+214
+00:07:03,460 --> 00:07:04,670
+si estás desarrollando un algoritmo de aprendizaje,
+
+215
+00:07:05,230 --> 00:07:07,180
+a veces es increíblemente útil
+
+216
+00:07:08,060 --> 00:07:09,170
+tener una manera
+
+217
+00:07:09,460 --> 00:07:10,830
+de evaluar el algoritmo de aprendizaje
+
+218
+00:07:11,290 --> 00:07:13,100
+que arroje como resultado un número real simple que indique
+
+219
+00:07:13,650 --> 00:07:14,880
+ya sea la precisión o el error.
+
+220
+00:07:15,620 --> 00:07:18,390
+Un número real simple que te indique qué tan bien se desempeña tu algoritmo de aprendizaje.
+
+221
+00:07:20,280 --> 00:07:21,330
+Hablaré más acerca de estos
+
+222
+00:07:21,770 --> 00:07:24,650
+conceptos en los videos siguientes, pero aquí presento un ejemplo específico.
+
+223
+00:07:25,790 --> 00:07:26,600
+Supongamos que estamos intentando
+
+224
+00:07:26,690 --> 00:07:27,990
+decidir si
+
+225
+00:07:28,060 --> 00:07:29,140
+debemos tratar palabras como “descuento,
+
+226
+00:07:29,590 --> 00:07:32,060
+descuentos, descontar, descontando” como una sola palabra.
+
+227
+00:07:32,370 --> 00:07:33,390
+Una manera de hacerlo es
+
+228
+00:07:33,520 --> 00:07:34,770
+buscar
+
+229
+00:07:35,400 --> 00:07:38,780
+las primeras letras de una palabra.
+
+230
+00:07:38,960 --> 00:07:40,240
+Es decir, sólo tomamos los
+
+231
+00:07:40,300 --> 00:07:41,690
+primeros caracteres
+
+232
+00:07:41,780 --> 00:07:44,640
+de la palabra porque suponemos
+
+233
+00:07:44,920 --> 00:07:45,970
+que, quizá, todas estas palabras
+
+234
+00:07:46,130 --> 00:07:47,990
+tendrán significados similares.
+
+235
+00:07:50,460 --> 00:07:52,090
+En el procesamiento del lenguaje natural,
+
+236
+00:07:52,250 --> 00:07:53,270
+una manera de hacer esto
+
+237
+00:07:53,510 --> 00:07:55,960
+es utilizando un software llamado software de radicación.
+
+238
+00:07:56,940 --> 00:07:58,080
+Si algún día quieres
+
+239
+00:07:58,160 --> 00:07:59,880
+intentar esto tú mismo, utiliza un
+
+240
+00:07:59,950 --> 00:08:01,240
+motor de Búsqueda con
+
+241
+00:08:01,500 --> 00:08:02,660
+Porter Stemmer. Este sería
+
+242
+00:08:02,960 --> 00:08:04,320
+un buen elemento de software para
+
+243
+00:08:04,620 --> 00:08:05,830
+llevar a cabo este
+
+244
+00:08:06,110 --> 00:08:07,020
+tipo de radicación, que te permitirá
+
+245
+00:08:07,130 --> 00:08:08,140
+tratar todas estas palabras, descuento,
+
+246
+00:08:08,800 --> 00:08:10,540
+descuentos, y similares, como la misma palabra.
+
+247
+00:08:13,950 --> 00:08:15,930
+Utilizar un software de radicación
+
+248
+00:08:16,630 --> 00:08:17,710
+que toma las
+
+249
+00:08:17,830 --> 00:08:19,290
+primeras letras de
+
+250
+00:08:19,450 --> 00:08:21,630
+la palabra, puede ayudar y a la vez puede estorbar.
+
+251
+00:08:22,240 --> 00:08:23,490
+Puede estorbar porque, por
+
+252
+00:08:23,900 --> 00:08:25,360
+ejemplo, este software puede
+
+253
+00:08:25,930 --> 00:08:27,850
+confundir las palabras universo
+
+254
+00:08:27,990 --> 00:08:29,980
+y universidad
+
+255
+00:08:30,070 --> 00:08:31,220
+como la misma porque estas
+
+256
+00:08:31,450 --> 00:08:33,220
+palabras inician con
+
+257
+00:08:33,480 --> 00:08:35,480
+caracteres muy similares, o con las mismas letras.
+
+258
+00:08:37,300 --> 00:08:39,050
+La decisión
+
+259
+00:08:39,280 --> 00:08:40,290
+decides utilizar o
+
+260
+00:08:40,630 --> 00:08:42,490
+no este software de radicación
+
+261
+00:08:42,670 --> 00:08:45,960
+para un clasificador de raíces a veces es difícil.
+
+262
+00:08:46,350 --> 00:08:47,810
+Particularmente, el análisis de errores
+
+263
+00:08:48,510 --> 00:08:49,590
+quizá no sea de ayuda para
+
+264
+00:08:51,030 --> 00:08:52,860
+decidir si
+
+265
+00:08:53,060 --> 00:08:54,410
+la radicación es una buena idea.
+
+266
+00:08:55,570 --> 00:08:56,740
+La mejor manera de
+
+267
+00:08:57,020 --> 00:08:58,320
+saber si será bueno
+
+268
+00:08:58,690 --> 00:08:59,970
+utilizar software de radicación
+
+269
+00:09:00,190 --> 00:09:01,570
+para ayudar a tu clasificador es
+
+270
+00:09:01,740 --> 00:09:02,980
+intentar rápidamente y
+
+271
+00:09:03,370 --> 00:09:05,170
+ver si funciona.
+
+272
+00:09:08,560 --> 00:09:09,530
+Para hacer esto,
+
+273
+00:09:10,260 --> 00:09:11,350
+tener una manera de evaluar numéricamente
+
+274
+00:09:12,250 --> 00:09:14,570
+el algoritmo será muy útil.
+
+275
+00:09:15,940 --> 00:09:17,670
+Lo que resulta más natural
+
+276
+00:09:18,110 --> 00:09:19,190
+es tomar
+
+277
+00:09:19,350 --> 00:09:20,250
+el error de validación cruzada
+
+278
+00:09:20,900 --> 00:09:23,510
+del desempeño del algoritmo con y sin radicación.
+
+279
+00:09:24,590 --> 00:09:25,560
+Si ejecutas tu
+
+280
+00:09:25,800 --> 00:09:27,190
+algoritmo con radicación y
+
+281
+00:09:27,330 --> 00:09:28,430
+terminas con un error de
+
+282
+00:09:29,080 --> 00:09:31,260
+clasificación del cinco por ciento, y después lo
+
+283
+00:09:31,360 --> 00:09:32,410
+vuelves a ejecutar y obtienes
+
+284
+00:09:32,540 --> 00:09:33,780
+un error de clasificación
+
+285
+00:09:34,110 --> 00:09:36,170
+del tres por ciento, esta
+
+286
+00:09:36,440 --> 00:09:37,920
+disminución del error nos
+
+287
+00:09:38,640 --> 00:09:39,980
+permite decidir rápidamente
+
+288
+00:09:40,310 --> 00:09:42,250
+que utilizar la radicación es, de hecho, una buena idea.
+
+289
+00:09:43,080 --> 00:09:44,650
+En este problema en particular,
+
+290
+00:09:44,940 --> 00:09:46,560
+hay una métrica de evaluación con un
+
+291
+00:09:46,830 --> 00:09:50,210
+número real simple; es decir, el error de validación cruzada.
+
+292
+00:09:50,930 --> 00:09:52,700
+Más delante veremos ejemplos en
+
+293
+00:09:53,080 --> 00:09:54,360
+los que encontrar esta métrica de
+
+294
+00:09:54,790 --> 00:09:58,220
+evaluación con un número real simple será un poco más complicado,
+
+295
+00:09:58,790 --> 00:09:59,840
+pero, como veremos en el
+
+296
+00:09:59,930 --> 00:10:01,620
+video siguiente, calcular esto también
+
+297
+00:10:01,750 --> 00:10:02,860
+te permitiría
+
+298
+00:10:02,990 --> 00:10:04,290
+tomar decisiones más rápidamente acerca de
+
+299
+00:10:04,760 --> 00:10:06,380
+si debes usar radicación o no.
+
+300
+00:10:08,700 --> 00:10:09,950
+Aquí pondré otro ejemplo rápido.
+
+301
+00:10:10,680 --> 00:10:11,670
+Imaginemos que también
+
+302
+00:10:12,040 --> 00:10:13,450
+decides utilizar o
+
+303
+00:10:13,650 --> 00:10:15,710
+distinguir o no entre mayúsculas y minúsculas.
+
+304
+00:10:15,990 --> 00:10:16,910
+Aquí tenemos la palabra Mamá
+
+305
+00:10:17,060 --> 00:10:18,850
+con mayúscula y
+
+306
+00:10:19,060 --> 00:10:20,390
+con minúscula.
+
+307
+00:10:20,700 --> 00:10:21,720
+¿Debemos tratarla como dos palabras
+
+308
+00:10:21,780 --> 00:10:23,810
+diferentes o como la misma?
+
+309
+00:10:23,970 --> 00:10:26,890
+¿Debemos tratar esto como una variable o como variables diferentes?
+
+310
+00:10:27,010 --> 00:10:28,060
+Una vez más, con nuestro
+
+311
+00:10:28,350 --> 00:10:29,150
+método para evaluar
+
+312
+00:10:29,300 --> 00:10:30,790
+un algoritmo, si
+
+313
+00:10:31,060 --> 00:10:32,350
+intento esto; es decir, si dejo de
+
+314
+00:10:32,650 --> 00:10:34,910
+distinguir entre mayúsculas
+
+315
+00:10:35,140 --> 00:10:36,490
+y minúscula, quizá
+
+316
+00:10:36,600 --> 00:10:38,580
+obtenga un 3.2% de
+
+317
+00:10:38,700 --> 00:10:39,820
+error. Con esto me daré cuenta
+
+318
+00:10:40,020 --> 00:10:41,750
+que se desempeña peor que
+
+319
+00:10:42,260 --> 00:10:43,360
+si sólo utilizara
+
+320
+00:10:43,640 --> 00:10:45,110
+la radicación y me permite decidir
+
+321
+00:10:45,370 --> 00:10:47,420
+rápidamente si debo
+
+322
+00:10:48,270 --> 00:10:49,720
+distinguir o no
+
+323
+00:10:49,820 --> 00:10:51,540
+entre mayúsculas y minúsculas.
+
+324
+00:10:52,140 --> 00:10:53,390
+Cuando desarrollas un
+
+325
+00:10:53,690 --> 00:10:55,260
+algoritmo de aprendizaje,
+
+326
+00:10:55,650 --> 00:10:56,840
+intentarás muchas nuevas
+
+327
+00:10:57,050 --> 00:10:59,930
+versiones de tu algoritmo de aprendizaje.
+
+328
+00:11:00,960 --> 00:11:02,050
+Cada vez que vez que
+
+329
+00:11:02,350 --> 00:11:03,740
+idea nueva, acabas examinando
+
+330
+00:11:03,840 --> 00:11:05,610
+manualmente un
+
+331
+00:11:05,750 --> 00:11:06,730
+montón de ejemplos para ver si
+
+332
+00:11:06,860 --> 00:11:08,530
+está mejor o peor, se volverá
+
+333
+00:11:08,640 --> 00:11:09,410
+muy difícil tomar
+
+334
+00:11:09,580 --> 00:11:10,610
+decisiones sobre si debes
+
+335
+00:11:10,980 --> 00:11:12,410
+utilizar o no la radicación o
+
+336
+00:11:12,580 --> 00:11:13,640
+si debes distinguir entre mayúsculas y minúsculas.
+
+337
+00:11:15,180 --> 00:11:16,590
+Al tener una métrica de evaluación
+
+338
+00:11:16,770 --> 00:11:18,520
+de un número real simple, puedes
+
+339
+00:11:18,680 --> 00:11:21,150
+evaluar si el error subió o bajó y puedes
+
+340
+00:11:22,420 --> 00:11:23,620
+llegar a un resultado
+
+341
+00:11:23,940 --> 00:11:25,760
+más rápidamente e intentar
+
+342
+00:11:25,840 --> 00:11:27,820
+nuevas ideas casi al
+
+343
+00:11:27,990 --> 00:11:29,550
+instante sabiendo si tu nueva idea
+
+344
+00:11:29,690 --> 00:11:31,480
+aumentó o disminuyó el
+
+345
+00:11:32,440 --> 00:11:33,230
+desempeño de tu algoritmo de aprendizaje.
+
+346
+00:11:33,930 --> 00:11:35,440
+Esto te permitirá
+
+347
+00:11:35,560 --> 00:11:38,340
+tener un progreso más rápido.
+
+348
+00:11:38,530 --> 00:11:39,720
+La vía más recomendada para
+
+349
+00:11:40,220 --> 00:11:41,790
+realizar el análisis de errores es
+
+350
+00:11:42,370 --> 00:11:44,760
+en el conjunto de validación cruzada en vez de en el conjunto de prueba.
+
+351
+00:11:45,490 --> 00:11:46,970
+Hay personas que
+
+352
+00:11:47,240 --> 00:11:48,260
+aplicarán esto al
+
+353
+00:11:48,370 --> 00:11:49,480
+conjunto de prueba aunque es
+
+354
+00:11:49,730 --> 00:11:51,530
+menos apropiado matemáticamente.
+
+355
+00:11:52,190 --> 00:11:54,560
+Es menos apropiado que
+
+356
+00:11:54,730 --> 00:11:55,660
+realizar el análisis
+
+357
+00:11:55,780 --> 00:11:57,240
+de errores en el
+
+358
+00:11:57,450 --> 00:11:58,760
+conjunto de validación cruzada.
+
+359
+00:11:59,140 --> 00:12:01,160
+Para terminar con este video, cuando
+
+360
+00:12:01,830 --> 00:12:03,340
+comienzas con un problema de aprendizaje automático,
+
+361
+00:12:03,610 --> 00:12:05,370
+lo que recomiendo siempre es
+
+362
+00:12:05,610 --> 00:12:06,930
+implementar una ejecución
+
+363
+00:12:07,030 --> 00:12:08,710
+rápida e informal del algoritmo de aprendizaje.
+
+364
+00:12:09,780 --> 00:12:11,760
+Rara vez he visto que alguien
+
+365
+00:12:12,120 --> 00:12:15,370
+pase poco tiempo en esta implementación rápida.
+
+366
+00:12:18,640 --> 00:12:20,210
+Casi siempre veo que
+
+367
+00:12:20,480 --> 00:12:22,050
+ponen mucho tiempo
+
+368
+00:12:22,370 --> 00:12:23,720
+construyendo el primer
+
+369
+00:12:24,580 --> 00:12:25,800
+borrador supuestamente rápido para la implementación.
+
+370
+00:12:26,590 --> 00:12:28,100
+Realmente, no te preocupes
+
+371
+00:12:29,070 --> 00:12:31,210
+por hacerlo demasiado rápido o demasiado informal.
+
+372
+00:12:32,120 --> 00:12:33,580
+Sólo implementa algo tan rápido
+
+373
+00:12:33,690 --> 00:12:35,220
+como quieras y una vez que tengas
+
+374
+00:12:35,450 --> 00:12:37,550
+la implementación inicial
+
+375
+00:12:37,820 --> 00:12:38,860
+te servirá como una herramienta
+
+376
+00:12:39,230 --> 00:12:40,420
+útil para decidir en dónde enfocar
+
+377
+00:12:40,610 --> 00:12:42,170
+tus esfuerzos porque te
+
+378
+00:12:42,390 --> 00:12:43,390
+permite ver el tipo de errores que comete
+
+379
+00:12:43,630 --> 00:12:44,720
+y analizarlos para
+
+380
+00:12:45,280 --> 00:12:46,360
+sacar ideas para
+
+381
+00:12:47,010 --> 00:12:48,420
+tu futuro desarrollo.
+
+382
+00:12:49,030 --> 00:12:50,880
+En segundo lugar, si asumimos que
+
+383
+00:12:51,000 --> 00:12:53,360
+tu implementación rápida incorporó
+
+384
+00:12:53,620 --> 00:12:55,700
+una medición de evaluación con un número real simple,
+
+385
+00:12:55,940 --> 00:12:57,660
+esto será un vehículo para que
+
+386
+00:12:57,730 --> 00:12:58,980
+implementes nuevas ideas
+
+387
+00:12:59,810 --> 00:13:00,810
+y verifiques rápidamente
+
+388
+00:13:01,030 --> 00:13:02,170
+si las ideas que estás intentando
+
+389
+00:13:02,440 --> 00:13:03,830
+mejorarán el desempeño de
+
+390
+00:13:03,920 --> 00:13:05,420
+tu algoritmo y, por lo tanto, te
+
+391
+00:13:05,570 --> 00:13:06,470
+permitirán tomar decisiones más
+
+392
+00:13:06,860 --> 00:13:08,440
+rápidamente acerca de las
+
+393
+00:13:08,760 --> 00:13:09,900
+cosas que puedes incorporar a
+
+394
+00:13:10,240 --> 00:13:11,520
+tu algoritmo de aprendizaje.

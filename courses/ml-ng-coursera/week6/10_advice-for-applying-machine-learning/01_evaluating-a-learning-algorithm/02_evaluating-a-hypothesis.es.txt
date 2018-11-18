@@ -1,0 +1,101 @@
+En este video me gustaría
+hablar de cómo evaluar una hipótesis 
+aprendida por nuestro algoritmo. En los siguientes videos
+profundizaremos para hablar de cómo
+prevenir los problemas de sobreajuste y de subajuste. Cuando ajustamos los parámetros
+de nuestro algoritmo de aprendizaje pensamos en elegir los parámetros
+para minimizar el error de entrenamiento. Pudiéramos pensar que 
+obtener un valor realmente bajo de error de entrenamiento
+es bueno, pero ya hemos visto que aunque una hipótesis con un
+error de entrenamiento bajo no es necesariamente
+una buena hipótesis. También hemos visto ya un ejemplo de 
+cómo la hipótesis puede causar un sobreajuste e impedir, por lo tanto, la generalización de nuevos ejemplos
+que no se incluyen en el conjunto de datos de entrenamiento. Entonces ¿cómo podemos saber
+si una hipótesis está sobreajustada? En este ejemplo simple 
+podemos trazar la hipótesis de “H” de “X” y ver qué sucede. Pero, en general, para problemas con 
+más de una función; es decir, en problemas con un gran 
+número de funciones, como estos, se vuelve difícil o
+quizá imposible trazar cómo luce la función de la hipótesis. Por lo tanto, necesitamos otra manera
+para evaluar nuestra hipótesis. El método estándar para evaluar
+una hipótesis aprendida es el siguiente. Supongamos que tenemos un 
+conjunto de datos de aprendizaje como este. Aquí sólo se muestran  
+10 ejemplos de entrenamiento pero podemos tener docenas, cientos, o quizá
+miles de ellos. Para asegurarnos de
+poder evaluar nuestra hipótesis, lo que haremos es dividir los datos que tenemos en dos porciones. La primera porción será  
+nuestro conjunto usual de entrenamiento y la segunda porción 
+será nuestro conjunto de prueba. Una división muy típica de los todos datos que tenemos en 
+un conjunto de entrenamiento y en un conjunto de prueba puede ser de aproximadamente el
+70% y 30%, respectivamente. Donde tenemos más datos en el 
+conjunto de entrenamiento y relativamente menos en el conjunto de prueba. Ahora, si 
+tenemos un conjunto de datos asignaremos solamente el 70% de los datos para que sean nuestro
+conjunto de entrenamiento donde “m” es, como de costumbre, nuestro
+número de ejemplos de entrenamiento y el resto de los datos será asignado para
+formar parte de nuestro conjunto de prueba. Aquí, utilizaré
+la notación “m” subíndice “prueba” para denotar el número de ejemplos de prueba. En general, este 
+subíndice “prueba” denotará los ejemplos que
+resulten del conjunto de prueba de manera que “x1” subíndice “prueba” coma 
+“y1” subíndice “prueba” es mi primer ejemplo de prueba.  
+Supongo que en este ejemplo corresponderá a este ejemplo de aquí. Finalmente, un último detalle: Aunque he separado estos datos
+con el primer 70% asignado al conjunto de entrenamiento y 
+el 30% restante al conjunto de pruebas, si hay algún tipo de
+orden en los datos, sería mejor
+asignar un 70% aleatorio de los datos 
+al conjunto de entrenamiento y un 30% aleatorio de 
+los datos al conjunto de prueba. Así que, con los datos ya
+asignados de manera aleatoria, podemos tomar el 
+primer 70% y el último 30%. Pero si los datos no
+estuvieran ordenados aleatoriamente, sería mejor aleatorizar o reordenar de manera aleatoria
+los ejemplos en tu conjunto de entrenamiento. Antes de enviar el primer
+70% al conjunto de entrenamiento y el último 30% al conjunto de prueba. Aquí presento un 
+procedimiento típico para 
+entrenar y probar el algoritmo de aprendizaje y 
+la regresión de aprendizaje. Primero, es necesario aprender los parámetros
+theta de tu conjunto de entrenamiento, para que minimices el error de aprendizaje 
+usual objetivo de “J” de theta, donde “J” de theta 
+se definió utilizando el 70% de todos los datos que tenemos. Es decir, sólo los datos de entrenamiento. Después es necesario 
+calcular el error de prueba. Denotaré el error de prueba
+como “J” subíndice “prueba”. Lo que haremos es tomar el
+parámetro theta que hemos aprendido del 
+conjunto de entrenamiento y lo insertaremos aquí. Luego calcularemos el error de prueba, que escribiré como sigue. Esto es, básicamente, el error cuadrático promedio como se midió en el conjunto de prueba. Es lo que uno se esperaría. Si aplicamos cada ejemplo de
+prueba a la hipótesis con el parámetro theta y 
+medimos el error cuadrático de la hipótesis en
+“m” subíndice “prueba”, es decir, en los ejemplos de prueba. Y, por supuesto, esta es
+la definición del error del conjunto de prueba 
+si utilizamos la regresión linear y utilizamos
+la métrica del error cuadrático. Pero, ¿qué pasa si estamos resolviendo
+un problema de clasificación utilizando, en cambio, la 
+regresión logística? En este caso, el
+procedimiento para entrenar y probar la
+regresión logística es muy similar. Primero obtendremos los parámetros 
+de los datos de entrenamiento; es decir, el 70% de los datos. Después calcularemos
+el error de prueba así. Es la misma función objetiva que utilizamos siempre para
+la regresión logística, pero esta vez la definiremos usando “m” subíndice “prueba”; 
+es decir, los ejemplos de prueba. Aunque esta definición del 
+error del conjunto de prueba “J” subíndice “prueba” es
+perfectamente razonable. A veces hay una alternativa de medición de los conjuntos de prueba que
+puede resultar más fácil de interpretar, y ese el error de mala clasificación. También se le llama error de 
+clasificación cero-uno en donde cero y uno denotan que puedes obtener ya sea un ejemplo correcto o 
+un ejemplo erróneo. Esto es lo que quiero decir. Permítanme definir
+el error de una predicción. Es decir “h” de “x”, con un valor asignado a “y” igual a 1
+si los resultados de mi hipótesis arrojan un valor
+mayor o igual a 5 y “Y” es igual a 0, o si mi hipótesis arroja  
+un valor menor a 0.5 y “y” es igual a 1, bien, ambos casos
+responden, básicamente, si la hipótesis
+clasificó mal el ejemplo asumiendo que asignaste un umbral de 0.5. Así que, pensamos que era más
+probable que fuera 1, pero resultó ser 0, o si la hipótesis era más
+propensa al 0, pero el valor asignado era
+en realidad 1. De otra manera, definimos esta
+función de error como 0, si tu hipótesis clasificó el 
+ejemplo “Y” de manera correcta. Entonces, podríamos
+definir este error de prueba utilizando la medición del 
+error de mala clasificación como uno de las pruebas m
+de la suma de “i” igual a 1 a “m” subíndice “prueba” del error de “h” de “x(i) prueba” coma “y(i)”. Esta es mi manera de 
+escribirlo y es exactamente la fracción de 
+ejemplos en el conjunto de prueba mal asignados por mi hipótesis. Esta es la definición del error del conjunto de prueba utilizando el 
+error de mala clasificación de la medición del error de  
+mala clasificación 0 1. Esta es la técnica 
+estándar para evaluar qué tan buena es una hipótesis. En el siguiente video 
+adaptaremos estas ideas para ayudarnos a hacer cosas
+como elegir las características, como el grado polinomial
+que se utilizarán en el algoritmo de aprendizaje o a elegir los parámetros de regularización 
+para un algoritmo de aprendizaje.

@@ -1,0 +1,1186 @@
+1
+00:00:00,090 --> 00:00:01,330
+Neste vídeo, eu gostaria de
+
+2
+00:00:01,500 --> 00:00:02,560
+começar a falar sobre um segundo tipo
+
+3
+00:00:03,030 --> 00:00:04,620
+de problema do aprendizado não supervisionado,
+
+4
+00:00:04,950 --> 00:00:06,320
+que é chamado de redução de dimensão.
+
+5
+00:00:07,600 --> 00:00:08,460
+Existem algumas diferentes
+
+6
+00:00:08,660 --> 00:00:09,710
+razões pelas quais pode-se desejar
+
+7
+00:00:09,890 --> 00:00:11,270
+a redução de dimensão.
+
+8
+00:00:12,220 --> 00:00:14,420
+Uma delas é a compressão de dados,
+
+9
+00:00:14,600 --> 00:00:15,860
+e como veremos mais tarde,
+
+10
+00:00:16,570 --> 00:00:18,200
+alguns vídeos mais tarde,
+
+11
+00:00:18,490 --> 00:00:19,660
+a compressão de dados não só
+
+12
+00:00:19,970 --> 00:00:20,940
+nos permite uma economia,
+
+13
+00:00:21,330 --> 00:00:22,670
+em termos de memória computacional
+
+14
+00:00:23,050 --> 00:00:24,410
+e espaço em disco, mas também irá nos ajudar
+
+15
+00:00:24,730 --> 00:00:26,960
+a aumentar a velocidade de nossos algoritmos de aprendizado.
+
+16
+00:00:27,980 --> 00:00:29,490
+Mas antes, vamos começar falando
+
+17
+00:00:29,620 --> 00:00:31,840
+sobre o que é a redução de dimensão.
+
+18
+00:00:33,490 --> 00:00:35,800
+Como exemplo motivacional, 
+
+19
+00:00:35,990 --> 00:00:37,440
+digamos que nós coletamos um conjunto de dados
+
+20
+00:00:37,680 --> 00:00:38,700
+com muitas, muitas, muitas variáveis,
+
+21
+00:00:39,290 --> 00:00:40,600
+e que colocamos apenas duas delas neste gráfico.
+
+22
+00:00:41,600 --> 00:00:42,770
+E digamos que não tivéssemos conhecimento
+
+23
+00:00:42,890 --> 00:00:44,000
+que duas de nossas variáveis
+
+24
+00:00:44,070 --> 00:00:45,730
+eram na verdade o comprimento 
+
+25
+00:00:45,860 --> 00:00:47,150
+de algo em centímetros,
+
+26
+00:00:47,550 --> 00:00:48,920
+e uma outra variávei, x2,
+
+27
+00:00:49,460 --> 00:00:51,150
+era o mesmo comprimento, mas em polegadas.
+
+28
+00:00:52,250 --> 00:00:53,030
+E assim nós teremos
+
+29
+00:00:53,500 --> 00:00:55,910
+uma representação altamente redundante,
+
+30
+00:00:56,170 --> 00:00:57,920
+e, talvez, ao invés de termos duas variáveis,
+
+31
+00:00:58,430 --> 00:00:58,820
+x1 e x2,
+
+32
+00:00:59,090 --> 00:01:00,240
+ambas basicamente medindo a mesma coisa,
+
+33
+00:01:00,370 --> 00:01:01,490
+talvez o que desejaríamos
+
+34
+00:01:01,640 --> 00:01:03,340
+seria reduzir os nossos dados
+
+35
+00:01:03,430 --> 00:01:06,800
+em uma única dimensão e,
+
+36
+00:01:06,920 --> 00:01:08,840
+assim, termos apenas um número contendo o comprimento.
+
+37
+00:01:09,620 --> 00:01:11,080
+Caso esse exemplo pareça um pouco fictício,
+
+38
+00:01:11,150 --> 00:01:13,920
+esse caso do centímetro junto com as polegadas
+
+39
+00:01:14,030 --> 00:01:15,850
+não é assim tão irreal,
+
+40
+00:01:16,220 --> 00:01:17,140
+e não é tão distante 
+
+41
+00:01:17,510 --> 00:01:18,870
+do que eu vejo acontecendo no mercado.
+
+42
+00:01:19,970 --> 00:01:21,320
+Se você tem centenas 
+
+43
+00:01:21,790 --> 00:01:23,160
+ou mesmo milhares de variáveis, 
+
+44
+00:01:23,240 --> 00:01:24,450
+é realmente fácil 
+
+45
+00:01:24,680 --> 00:01:26,580
+perder-se a noção do que cada variável faz.
+
+46
+00:01:26,930 --> 00:01:28,190
+E às vezes também podemos ter
+
+47
+00:01:28,420 --> 00:01:29,650
+diferentes equipes de engenheiros,
+
+48
+00:01:30,110 --> 00:01:31,090
+talvez um dos times forneça
+
+49
+00:01:31,200 --> 00:01:32,500
+duas centenas de variáveis,
+
+50
+00:01:32,770 --> 00:01:34,000
+o segundo time fornece
+
+51
+00:01:34,340 --> 00:01:35,420
+outras três centenas,
+
+52
+00:01:35,550 --> 00:01:36,640
+e um terceiro contribui com cinco centenas,
+
+53
+00:01:36,940 --> 00:01:38,150
+então você terminaria
+
+54
+00:01:38,290 --> 00:01:39,220
+com mil variáveis ao todo,
+
+55
+00:01:39,940 --> 00:01:40,910
+e realmente torna-se difícil
+
+56
+00:01:41,040 --> 00:01:42,820
+manter uma noção de quais variáveis, exatamente,
+
+57
+00:01:43,200 --> 00:01:44,540
+você recebeu de cada time,
+
+58
+00:01:44,860 --> 00:01:47,310
+e assim temos que não é tão difícil que ocorra redundância como mostrado aqui.
+
+59
+00:01:47,530 --> 00:01:49,440
+Então,
+
+60
+00:01:50,090 --> 00:01:51,520
+se o comprimento em centímetros
+
+61
+00:01:51,940 --> 00:01:53,920
+for arredondado para o centímetro mais próximo,
+
+62
+00:01:54,060 --> 00:01:56,480
+assim como as polegadas.
+
+63
+00:01:57,070 --> 00:01:58,050
+Então, esse é o porquê desses exemplos
+
+64
+00:01:58,720 --> 00:01:59,900
+não ajustarem-se perfeitamente em uma linha reta,
+
+65
+00:02:00,100 --> 00:02:01,270
+por causa, como disse,  
+
+66
+00:02:01,740 --> 00:02:03,420
+do arredondamento que gerará um erro em centímetros e polegadas.
+
+67
+00:02:04,260 --> 00:02:05,160
+E se nós pudermos reduzir
+
+68
+00:02:05,610 --> 00:02:06,680
+os dados para uma dimensão ao invés de duas,
+
+69
+00:02:07,130 --> 00:02:10,320
+isso reduziria a redundância.
+
+70
+00:02:11,590 --> 00:02:14,030
+Para um exemplo diferente, que pareça menos fictício.
+
+71
+00:02:14,590 --> 00:02:16,560
+Por muitos anos
+
+72
+00:02:16,920 --> 00:02:19,920
+eu trabalho com pilotos autônomos de helicópteros.
+
+73
+00:02:20,990 --> 00:02:22,610
+Ou tenho trabalhado com pilotos de helicóptero. 
+
+74
+00:02:23,950 --> 00:02:24,040
+
+75
+00:02:25,080 --> 00:02:28,090
+Se você fosse medir,
+
+76
+00:02:28,250 --> 00:02:29,100
+se você fosse interrogar,
+
+77
+00:02:29,590 --> 00:02:30,500
+ou fazer um teste com esses diferentes pilotos,
+
+78
+00:02:30,770 --> 00:02:32,200
+você pode ter uma variável,
+
+79
+00:02:32,440 --> 00:02:33,780
+x1, que será
+
+80
+00:02:34,050 --> 00:02:35,600
+a habilidade desses pilotos de helicóptero,
+
+81
+00:02:35,820 --> 00:02:38,190
+e talvez
+
+82
+00:02:38,460 --> 00:02:41,810
+x2 pudesse ser o proveito do piloto.
+
+83
+00:02:42,700 --> 00:02:43,770
+Isso é, em outras palavras,
+
+84
+00:02:43,870 --> 00:02:45,050
+o quanto ele se diverte pilotando,
+
+85
+00:02:45,280 --> 00:02:46,810
+e talvez essas duas variáveis sejam altamente correlacionadas.
+
+86
+00:02:48,310 --> 00:02:49,730
+E o que você realmente está se preocupando
+
+87
+00:02:49,940 --> 00:02:52,530
+em ter como medida
+
+88
+00:02:53,610 --> 00:02:55,120
+é essa direção, uma variável diferente que 
+
+89
+00:02:55,370 --> 00:02:57,190
+capture e messa a aptidão do piloto.
+
+90
+00:03:00,450 --> 00:03:01,240
+E eu estou chamando de "aptidão",
+
+91
+00:03:01,590 --> 00:03:03,220
+mas, novamente, 
+
+92
+00:03:03,320 --> 00:03:04,780
+se você tem variáveis altamente correlacionadas,
+
+93
+00:03:04,990 --> 00:03:06,500
+talvez você realmente queira reduzir a sua dimensão.
+
+94
+00:03:07,570 --> 00:03:08,760
+Então, deixe-me mostrar
+
+95
+00:03:09,040 --> 00:03:09,950
+um pouco mais sobre 
+
+96
+00:03:10,060 --> 00:03:11,390
+o que significa reduzir a dimensão
+
+97
+00:03:11,520 --> 00:03:12,950
+de um conjunto de dados
+
+98
+00:03:13,150 --> 00:03:14,400
+de 2 dimensões, ou seja 2D,
+
+99
+00:03:14,600 --> 00:03:16,300
+para 1 dimensão, 1D.
+
+100
+00:03:16,840 --> 00:03:18,660
+Bom, 
+
+101
+00:03:18,830 --> 00:03:19,940
+vou colorir esses exemplos 
+
+102
+00:03:21,600 --> 00:03:21,600
+com diferentes cores.
+
+103
+00:03:21,730 --> 00:03:22,890
+E neste caso
+
+104
+00:03:23,370 --> 00:03:24,740
+ao reduzirmos a dimensão,
+
+105
+00:03:25,010 --> 00:03:26,320
+o que quero passar é que 
+
+106
+00:03:26,540 --> 00:03:28,400
+eu talvez gostaria de encontrar essa linha.
+
+107
+00:03:28,660 --> 00:03:30,560
+Essa direção, sabe?
+
+108
+00:03:30,710 --> 00:03:31,700
+Na qual a maioria dos dados
+
+109
+00:03:31,910 --> 00:03:33,150
+parece acomodar-se, e projetar todos os dados
+
+110
+00:03:33,380 --> 00:03:34,740
+nessa linha,
+
+111
+00:03:34,910 --> 00:03:36,230
+e ao fazer isso,
+
+112
+00:03:36,510 --> 00:03:37,430
+o que eu posso fazer
+
+113
+00:03:37,970 --> 00:03:39,420
+agora é somente medir
+
+114
+00:03:39,580 --> 00:03:41,480
+a posição de cada exemplo nessa linha.
+
+115
+00:03:42,010 --> 00:03:42,820
+E o que eu posso fazer é criar
+
+116
+00:03:43,100 --> 00:03:45,080
+uma nova variável, z1,
+
+117
+00:03:46,830 --> 00:03:48,200
+e para especificar a posição
+
+118
+00:03:48,730 --> 00:03:49,530
+nesta linha eu preciso apenas
+
+119
+00:03:49,890 --> 00:03:50,940
+de um número, 
+
+120
+00:03:51,200 --> 00:03:51,980
+então diremos que z1 é uma nova variável
+
+121
+00:03:52,750 --> 00:03:54,630
+que especifica a localidade de cada
+
+122
+00:03:54,830 --> 00:03:57,610
+um desses pontos nessa linha verde.
+
+123
+00:03:58,060 --> 00:03:59,300
+E isso significa que
+
+124
+00:03:59,400 --> 00:04:00,680
+onde antes eu tinha
+
+125
+00:04:00,930 --> 00:04:02,540
+um exemplo de x1, 
+
+126
+00:04:03,430 --> 00:04:04,740
+talvez esse fosse o meu primeiro exemplo x1,
+
+127
+00:04:05,040 --> 00:04:06,480
+E para que eu pudesse
+
+128
+00:04:06,820 --> 00:04:08,550
+representar o x1 originalmente
+
+129
+00:04:09,620 --> 00:04:10,760
+eu precisava de um número de duas dimensões,
+
+130
+00:04:11,570 --> 00:04:12,800
+ou um vector de variáveis com duas dimensões.
+
+131
+00:04:13,700 --> 00:04:14,920
+Agora eu posso representar
+
+132
+00:04:18,120 --> 00:04:20,330
+como z1, 
+
+133
+00:04:20,520 --> 00:04:22,170
+u poderia usar apenas z1 para representar meu primeiro exemplo,
+
+134
+00:04:23,270 --> 00:04:25,380
+e ele será apenas um único número real.
+
+135
+00:04:25,940 --> 00:04:29,260
+E da mesma forma será x2,
+
+136
+00:04:29,590 --> 00:04:31,400
+se ele é meu segundo exemplo aqui,
+
+137
+00:04:32,690 --> 00:04:35,110
+então, novamente, enquanto ele requer
+
+138
+00:04:35,830 --> 00:04:37,520
+dois números para ser representado,
+
+139
+00:04:37,720 --> 00:04:39,930
+se, ao invés disso, eu calcular a sua projeção,
+
+140
+00:04:40,930 --> 00:04:42,730
+a do x negro
+
+141
+00:04:43,130 --> 00:04:44,250
+nessa linha,
+
+142
+00:04:44,700 --> 00:04:45,980
+agora eu precisarei
+
+143
+00:04:46,210 --> 00:04:47,350
+de apenas um número real,
+
+144
+00:04:47,550 --> 00:04:49,580
+que será z2 e representará 
+
+145
+00:04:49,620 --> 00:04:51,230
+a posição deste ponto
+
+146
+00:04:51,790 --> 00:04:53,070
+z2 na linha.
+
+147
+00:04:54,300 --> 00:04:56,730
+E da mesma forma será para todos os M exemplos.
+
+148
+00:04:57,790 --> 00:04:59,560
+Então, apenas resumindo,
+
+149
+00:04:59,810 --> 00:05:01,310
+se aproximar-mos
+
+150
+00:05:02,340 --> 00:05:03,800
+o conjunto original de dados
+
+151
+00:05:04,000 --> 00:05:05,270
+ao projetá-los todos
+
+152
+00:05:05,590 --> 00:05:07,690
+nesse linha verde aqui,
+
+153
+00:05:07,880 --> 00:05:10,260
+então precisarei
+
+154
+00:05:10,360 --> 00:05:12,090
+apenas de um número,
+
+155
+00:05:12,170 --> 00:05:13,700
+apenas um único número real
+
+156
+00:05:13,820 --> 00:05:15,270
+para especificar a posição
+
+157
+00:05:15,370 --> 00:05:16,710
+de um ponto na linha,
+
+158
+00:05:17,080 --> 00:05:18,220
+e portanto o que eu posso fazer
+
+159
+00:05:18,300 --> 00:05:19,730
+é usar apenas
+
+160
+00:05:20,070 --> 00:05:21,850
+um número para representar 
+
+161
+00:05:21,930 --> 00:05:23,170
+a posição de cada um dos meus exemplos de treinamento
+
+162
+00:05:23,280 --> 00:05:26,520
+após eles terem sido projetados nessa linha verde.
+
+163
+00:05:27,570 --> 00:05:29,060
+Então isso é uma aproximação
+
+164
+00:05:29,210 --> 00:05:30,300
+do conjunto original de dados,
+
+165
+00:05:30,570 --> 00:05:32,770
+pois eu projetei todos os exemplos em uma linha.
+
+166
+00:05:33,630 --> 00:05:34,790
+Mas eu poderia gerar
+
+167
+00:05:35,130 --> 00:05:36,140
+eu preciso de apenas um
+
+168
+00:05:36,530 --> 00:05:39,800
+número para representar cada exemplo.
+
+169
+00:05:41,220 --> 00:05:42,960
+E então isso corta pela metade a memória necessária,
+
+170
+00:05:43,340 --> 00:05:44,640
+ou espaço requerido,
+
+171
+00:05:45,090 --> 00:05:47,760
+ou o que for que você use para armazenar dados.
+
+172
+00:05:49,100 --> 00:05:50,530
+E, talvez, até mais interessante,
+
+173
+00:05:50,700 --> 00:05:51,940
+mais importante, o que veremos mais tarde,
+
+174
+00:05:52,200 --> 00:05:53,520
+nos vídeos posteriores,
+
+175
+00:05:53,780 --> 00:05:55,730
+esse procedimento
+
+176
+00:05:55,930 --> 00:05:56,940
+nos permitirá
+
+177
+00:05:57,200 --> 00:05:59,170
+rodar nossos algoritmos de aprendizado mais rapidamente.
+
+178
+00:05:59,480 --> 00:06:00,600
+E esse é, na verdade,
+
+179
+00:06:00,920 --> 00:06:02,060
+o benefício mais interessante
+
+180
+00:06:02,140 --> 00:06:03,800
+da compressão de dados.
+
+181
+00:06:04,580 --> 00:06:06,220
+ao invés de apenas reduzir a memória
+
+182
+00:06:06,680 --> 00:06:08,620
+ou espaço de disco para armazenar dados.
+
+183
+00:06:10,250 --> 00:06:11,490
+No slide anterior,
+
+184
+00:06:11,580 --> 00:06:13,140
+mostramos um exemplo de redução
+
+185
+00:06:13,620 --> 00:06:15,060
+de dados de 2D para 1D.
+
+186
+00:06:15,210 --> 00:06:16,290
+Nesse slide, 
+
+187
+00:06:16,660 --> 00:06:18,010
+irei mostrar outro exemplo de redução de dados,
+
+188
+00:06:18,450 --> 00:06:21,080
+mas de três dimensões 3D para duas dimensões 2D.
+
+189
+00:06:22,590 --> 00:06:23,360
+À propósito, nos exemplos mais típicos
+
+190
+00:06:23,750 --> 00:06:25,570
+de redução de dimensão,
+
+191
+00:06:26,390 --> 00:06:27,790
+nós podemos ter algo como dados com milhares de dimensões
+
+192
+00:06:28,230 --> 00:06:30,330
+ou dados 1000D,
+
+193
+00:06:30,720 --> 00:06:31,880
+que nós desejaríamos reduzir
+
+194
+00:06:32,150 --> 00:06:34,080
+para algo com centenas de dimensões,
+
+195
+00:06:34,110 --> 00:06:35,590
+ou 100D, 
+
+196
+00:06:35,700 --> 00:06:37,760
+mas devido as limitações gráficas que posso usar nos slides,
+
+197
+00:06:38,460 --> 00:06:41,520
+irei usar exemplos de 3D para 2D, ou 2D para 1D.
+
+198
+00:06:43,160 --> 00:06:45,830
+Então, se temos um conjunto de dados como o mostrado aqui,
+
+199
+00:06:46,050 --> 00:06:47,420
+e eu teria um conjunto de exemplos,
+
+200
+00:06:48,110 --> 00:06:49,430
+x(i), que são pontos no R3.
+
+201
+00:06:49,800 --> 00:06:51,790
+Portanto, exemplos com três dimensões,
+
+202
+00:06:52,740 --> 00:06:53,300
+eu sei que pode ser um pouco difícil
+
+203
+00:06:53,690 --> 00:06:54,610
+visualizar isso no gráfico,
+
+204
+00:06:54,920 --> 00:06:55,980
+mas temos aqui uma nuvem de pontos 3D
+
+205
+00:06:56,310 --> 00:06:58,190
+no gráfico.
+
+206
+00:06:59,050 --> 00:07:00,280
+E pode ser difícil ver aqui,
+
+207
+00:07:00,380 --> 00:07:01,970
+mas cada um desses pontos,
+
+208
+00:07:02,230 --> 00:07:04,020
+desses dados, podem acomodar-se à grosso modo no plano,
+
+209
+00:07:04,130 --> 00:07:05,700
+desta forma.
+
+210
+00:07:07,110 --> 00:07:08,130
+E o que podemos fazer
+
+211
+00:07:08,380 --> 00:07:09,970
+com a redução de dimensão,
+
+212
+00:07:10,210 --> 00:07:11,960
+é pegar todos esses dados
+
+213
+00:07:12,110 --> 00:07:13,800
+e projetá-los 
+
+214
+00:07:14,630 --> 00:07:15,350
+até um plano de duas dimensões.
+
+215
+00:07:15,700 --> 00:07:16,670
+Então, aqui o que eu fiz foi:
+
+216
+00:07:16,730 --> 00:07:18,060
+peguei todos os dados 
+
+217
+00:07:18,300 --> 00:07:19,250
+e projetei de maneira
+
+218
+00:07:19,770 --> 00:07:21,390
+que todos ficassem no plano.
+
+219
+00:07:22,590 --> 00:07:23,910
+Agora, finalmente, 
+
+220
+00:07:24,040 --> 00:07:25,580
+para especificar o local de um ponto do plano,
+
+221
+00:07:25,750 --> 00:07:27,810
+nós precisamos de dois números, correto?
+
+222
+00:07:28,000 --> 00:07:29,150
+Nós precisamos apenas especificar
+
+223
+00:07:29,290 --> 00:07:30,660
+a posição do ponto ao longo desse eixo,
+
+224
+00:07:30,970 --> 00:07:32,370
+e também fazê-lo
+
+225
+00:07:32,650 --> 00:07:35,090
+para esse outro eixo.
+
+226
+00:07:35,730 --> 00:07:37,470
+Portanto, precisamos de dois números,
+
+227
+00:07:37,850 --> 00:07:39,900
+que seriam z1 e z2, 
+
+228
+00:07:40,600 --> 00:07:42,450
+para especificar a localização de um ponto no plano.
+
+229
+00:07:43,290 --> 00:07:44,730
+E o que isso significa
+
+230
+00:07:44,890 --> 00:07:45,910
+é que agora podemos representar cada exemplo,
+
+231
+00:07:46,690 --> 00:07:48,310
+cada dado de treinamento,
+
+232
+00:07:48,740 --> 00:07:50,310
+usando apenas dois números,
+
+233
+00:07:50,630 --> 00:07:52,950
+que defini aqui como z1 e z2.
+
+234
+00:07:53,990 --> 00:07:55,890
+Então nossos dados podem ser representados
+
+235
+00:07:56,610 --> 00:07:59,130
+usando apenas um vetor z que pertence ao R2.
+
+236
+00:08:00,580 --> 00:08:02,110
+E esse subscrito,
+
+237
+00:08:02,350 --> 00:08:03,990
+z1, z2,
+
+238
+00:08:04,560 --> 00:08:05,440
+o que quero dizer com isso é que meu vetor z
+
+239
+00:08:05,500 --> 00:08:07,520
+é um vetor de duas dimensões:
+
+240
+00:08:07,750 --> 00:08:09,680
+z1 e z2.
+
+241
+00:08:10,600 --> 00:08:11,580
+Então, se eu tiver um exemplo em particular,
+
+242
+00:08:11,790 --> 00:08:13,690
+z(i), ele pode ser visto
+
+243
+00:08:13,760 --> 00:08:15,700
+como o vetor de duas dimensões: o primeiro z(i)1, 
+
+244
+00:08:16,350 --> 00:08:19,110
+e o segundo z(i)2.
+
+245
+00:08:20,580 --> 00:08:21,990
+E no slide anterior, 
+
+246
+00:08:22,230 --> 00:08:23,750
+quando eu estava reduzindo dados para uma dimensão,
+
+247
+00:08:23,950 --> 00:08:25,270
+então eu teria, nesse caso,
+
+248
+00:08:25,360 --> 00:08:27,500
+apenas z1, correto?
+
+249
+00:08:27,760 --> 00:08:28,610
+E era isso que representava o z1
+
+250
+00:08:28,700 --> 00:08:29,830
+no slide anterior.
+
+251
+00:08:30,550 --> 00:08:31,720
+Mas aqui eu tenho dados com duas dimensões,
+
+252
+00:08:32,100 --> 00:08:32,730
+então eu tenho z1 e z2
+
+253
+00:08:33,040 --> 00:08:34,940
+como os dois componentes dos dados.
+
+254
+00:08:36,690 --> 00:08:37,830
+Agora só para ter certeza que
+
+255
+00:08:38,020 --> 00:08:39,200
+essas figuras fazem sentido.
+
+256
+00:08:39,290 --> 00:08:40,790
+Mostrarei novamente essas três
+
+257
+00:08:41,600 --> 00:08:45,080
+mesmas imagens, mas com gráficos 3D.
+
+258
+00:08:45,540 --> 00:08:46,570
+Então o processo que aplicamos
+
+259
+00:08:47,040 --> 00:08:48,110
+apresentados com esse conjunto de dados fictícios,
+
+260
+00:08:48,480 --> 00:08:49,520
+e no centro temos o conjunto
+
+261
+00:08:49,590 --> 00:08:50,540
+de dados projetados no plano 2D,
+
+262
+00:08:51,040 --> 00:08:52,140
+e na direita temos os dados em 2D,
+
+263
+00:08:52,820 --> 00:08:54,900
+definidos no eixo z1 e z2.
+
+264
+00:08:55,780 --> 00:08:56,610
+Olhemos para eles um pouco além.
+
+265
+00:08:56,820 --> 00:08:57,960
+Aqui estão os dados iriginais,
+
+266
+00:08:58,270 --> 00:08:59,210
+mostrados à esquerda,
+
+267
+00:08:59,410 --> 00:09:00,680
+então eu tinha começado
+
+268
+00:09:01,380 --> 00:09:02,420
+com uma nuvem de pontos em 3D,
+
+269
+00:09:02,660 --> 00:09:04,000
+onde os eixos eram definidos
+
+270
+00:09:04,360 --> 00:09:05,390
+como x1, 
+
+271
+00:09:05,570 --> 00:09:07,410
+x2, x3 e, portanto, temos 3D,
+
+272
+00:09:07,960 --> 00:09:08,970
+mas a maioria dos dados,
+
+273
+00:09:09,500 --> 00:09:10,750
+mesmo grosseiramente, 
+
+274
+00:09:10,850 --> 00:09:12,800
+talvez comodem-se em algum plano 2D.
+
+275
+00:09:13,930 --> 00:09:14,950
+Então o que podemos fazer
+
+276
+00:09:15,040 --> 00:09:17,460
+é pegar esses dados e, como vemos aqui na figura central,
+
+277
+00:09:17,800 --> 00:09:19,110
+irei projetá-los no plano 2D.
+
+278
+00:09:19,370 --> 00:09:20,790
+Portanto, projetei todos os dados
+
+279
+00:09:20,900 --> 00:09:23,220
+nessa superfície 2D.
+
+280
+00:09:23,750 --> 00:09:25,330
+Como você pode notar,
+
+281
+00:09:26,190 --> 00:09:27,470
+todos os dados estão no plano 2D,
+
+282
+00:09:27,700 --> 00:09:30,520
+pois projetamos tudo nesse plano,
+
+283
+00:09:30,570 --> 00:09:31,490
+então o que isso significa para nós
+
+284
+00:09:31,800 --> 00:09:33,190
+é que agora nós precisamos de apenas dois números,
+
+285
+00:09:33,820 --> 00:09:35,090
+z1 e z2, para representar a posição
+
+286
+00:09:35,620 --> 00:09:37,470
+de um ponto neste plano.
+
+287
+00:09:40,530 --> 00:09:41,480
+E este é o processo que podemos aplicar
+
+288
+00:09:41,810 --> 00:09:42,990
+para que possamos reduzir
+
+289
+00:09:43,500 --> 00:09:45,180
+os nossos dados de três dimensões
+
+290
+00:09:45,340 --> 00:09:48,520
+para duas dimensões.
+
+291
+00:09:49,230 --> 00:09:50,850
+Ou seja, é a redução de dimensão
+
+292
+00:09:51,070 --> 00:09:52,740
+e é assim que podemos usá-la para comprimir nossos dados.
+
+293
+00:09:54,010 --> 00:09:55,400
+E como veremos mais tarde,
+
+294
+00:09:55,580 --> 00:09:56,970
+isso nos permitirá
+
+295
+00:09:57,110 --> 00:09:58,020
+fazer com que alguns algoritmos rodem
+
+296
+00:09:58,580 --> 00:09:59,670
+mais rapidamente também,
+
+297
+00:09:59,740 --> 00:10:01,210
+mas veremos isso apenas nos próximos vídeos.

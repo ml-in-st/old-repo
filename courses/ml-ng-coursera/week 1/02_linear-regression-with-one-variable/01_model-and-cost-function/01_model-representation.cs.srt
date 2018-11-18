@@ -1,0 +1,416 @@
+1
+00:00:02,338 --> 00:00:04,677
+Náš první učicí algoritmus bude lineární regrese.
+V tomto videu uvidíte,
+
+2
+00:00:06,956 --> 00:00:09,234
+jak vypadá daný model a, co je ještě důležitější, uvidíte, jak vypadá celý proces
+
+3
+00:00:09,234 --> 00:00:14,801
+učení s učitelem.
+Podívejme se na motivační příklad predikce
+
+4
+00:00:14,801 --> 00:00:20,036
+cen bydlení. Použijeme datovou sadu
+cen bydlení z Portlandu v Oregonu.
+
+5
+00:00:20,036 --> 00:00:25,205
+Do grafu zakreslím několik domů,
+
+6
+00:00:25,205 --> 00:00:30,833
+které měly různou velikost a prodaly se za různou cenu.
+
+7
+00:00:30,833 --> 00:00:35,872
+Řekněme, že máte tuto datovou sadu a že vaši kamarádi
+zkouší prodat dům,
+
+8
+00:00:35,872 --> 00:00:41,238
+který má třeba 1250 stop [tj. 116 metrů] čtverečných, a vy jim chcete říct,
+
+9
+00:00:41,238 --> 00:00:46,459
+za kolik by mohli svůj dům prodat.
+Jedna věc, co byste mohli udělat,
+
+10
+00:00:46,648 --> 00:00:53,039
+je fitovat model, třeba proložit tato data přímkou, což vypadá nějak takto,
+
+11
+00:00:53,039 --> 00:00:59,168
+a na základě toho byste kamarádovi mohli říct,
+že může dům prodat, řekněme,
+
+12
+00:00:59,168 --> 00:01:03,575
+okolo 220 tisíc dolarů. Takže, toto je příklad
+
+13
+00:01:03,575 --> 00:01:08,834
+algoritmu strojového učení s učitelem.
+A učení "s učitelem" je to proto,
+
+14
+00:01:08,834 --> 00:01:14,287
+že - v uvozovkách - "správná odpověď" pro každý příklad byla dána.
+Konkrétně, bylo nám řečeno,
+
+15
+00:01:14,287 --> 00:01:19,351
+za kolik se každý dům z naší datové sady prodal,
+
+16
+00:01:19,351 --> 00:01:24,441
+a také je to příklad regresní úlohy,
+
+17
+00:01:24,441 --> 00:01:29,545
+kde pojem regrese souvisí s faktem, že odhadujeme reálný výstup, konkrétně cenu.
+
+18
+00:01:29,545 --> 00:01:34,586
+Jen pro připomenutí, druhou nejběžnější úlohou učení s učitelem
+
+19
+00:01:34,586 --> 00:01:39,006
+je klasifikační úloha, kde odhadujeme výstup,
+
+20
+00:01:39,006 --> 00:01:45,202
+který nabývá diskrétních hodnot, například, díváme-li se na rakovinový nádor a pokoušíme se
+
+21
+00:01:45,202 --> 00:01:52,032
+rozhodnout, je-li to nádor maligní nebo benigní.
+To je tedy diskrétní výstup s hodnotou nula nebo jedna.
+
+22
+00:01:52,032 --> 00:01:57,087
+Formálně řečeno, při učení s učitelem máme
+nějakou datovou sadu a tu nazýváme
+
+23
+00:01:57,087 --> 00:02:02,018
+trénovací sada. Tedy v příkladu s cenami bydlení
+máme trénovací sadu
+
+24
+00:02:02,018 --> 00:02:07,386
+různých cen bydlení a naším úkolem je
+naučit se z těchto dat odhadovat ceny domů.
+
+25
+00:02:07,386 --> 00:02:11,907
+Definujme si nějaký zápis,
+který budeme používat během celého kurzu.
+
+26
+00:02:11,907 --> 00:02:16,100
+Definujeme docela dost symbolů.
+Nic se nestane, pokud si nezapamatujete
+
+27
+00:02:16,100 --> 00:02:20,075
+všechny hned teď, ale jak bude kurz pokračovat,
+bude užitečné mít vhodný zápis.
+
+28
+00:02:20,075 --> 00:02:24,267
+Takže, v průběhu tohoto kurzu budu používat malé písmeno m
+
+29
+00:02:24,267 --> 00:02:28,897
+pro označení počtu trénovacích příkladů.
+Tak tedy, pokud mám v této datové sadě,
+
+30
+00:02:28,897 --> 00:02:34,366
+řekněme, 47 řádků v této tabulce, pak
+mám 47 trénovacích příkladů a m se rovná 47.
+
+31
+00:02:34,366 --> 00:02:39,497
+Dovolte mi, abych malý písmenem x značil
+vstupní proměnné, které se také často nazývají
+
+32
+00:02:39,497 --> 00:02:44,290
+příznaky. To by byla tato x zde,
+tedy vstupní příznaky.
+
+33
+00:02:44,290 --> 00:02:49,556
+A y budu používat pro označení svých výstupních
+proměnných, nebo cílové proměnné,
+
+34
+00:02:49,556 --> 00:02:54,552
+kterou budu predikovat, a to je tedy
+můj druhý sloupec zde. [nezřetelné]
+
+35
+00:02:54,552 --> 00:03:05,749
+Budu používat (x, y) k označení jednoho
+trénovacího příkladu. Tedy, jeden řádek
+
+36
+00:03:05,749 --> 00:03:12,068
+v této tabulce odpovídá jednomu trénovacímu
+příkladu a k určitému
+
+37
+00:03:12,068 --> 00:03:19,708
+trénovacímu příkladu budu odkazovat zápisem
+x(i) čárka y(i) a tímto
+
+38
+00:03:25,322 --> 00:03:30,935
+budeme odkazovat k i. trénovacímu příkladu.
+Takže to i v horním indexu,
+
+39
+00:03:30,935 --> 00:03:37,864
+to není umocňování, ano? Toto (x(i), y(i)),
+to i v závorce v horním indexu,
+
+40
+00:03:37,864 --> 00:03:44,873
+to je jenom ukazatel do mé trénovací sady
+a odkazuje k i. řádku
+
+41
+00:03:44,873 --> 00:03:51,629
+v této tabulce, ano? Takže toto není
+i. mocnina x, i. mocnina y.
+
+42
+00:03:51,629 --> 00:03:58,216
+(x(i), y(i)) místo toho prostě odkazuje na i. řádek
+této tabulky. Takže například x(1) odkazuje
+
+43
+00:03:58,216 --> 00:04:04,972
+na vstupní proměnnou prvního trénovacího
+příkladu, což je 2104. To je toto x v prvním řádku.
+
+44
+00:04:04,972 --> 00:04:11,685
+x(2) bude rovno 1416, že ano?
+To je druhé x
+
+45
+00:04:11,685 --> 00:04:17,385
+a y(1) bude rovno 460.
+Hodnota y pro můj první
+
+46
+00:04:17,385 --> 00:04:24,526
+trénovací příklad, k tomu odkazuje ta (1).
+Jak bylo řečeno, občas vám položím otázku,
+
+47
+00:04:24,526 --> 00:04:28,345
+abyste si ověřili, jestli tomu rozumíte,
+a za několik vteřin se v tomto videu
+
+48
+00:04:28,345 --> 00:04:34,044
+objeví otázka s více možnými odpověďmi.
+Až se objeví,
+
+49
+00:04:34,044 --> 00:04:40,362
+vyberte, prosím, myší ty odpovědi,
+které si myslíte, že jsou správně.
+
+50
+00:04:40,362 --> 00:04:45,124
+Definovali jsme, co je trénovací množina.
+Takto tedy funguje náš algoritmus učení s učitelem.
+
+51
+00:04:45,124 --> 00:04:50,513
+Viděli jsme, že s trénovací sadou, jako byla naše
+trénovací sada s cenami bydlení, že jí nakrmíme
+
+52
+00:04:50,513 --> 00:04:55,715
+náš učicí algoritmus. Úkolem učicího
+algoritmu je pak vrátit funkci,
+
+53
+00:04:55,715 --> 00:05:00,101
+kterou na základě zvyklosti obvykle značíme h
+a h znamená hypotéza.
+
+54
+00:05:00,101 --> 00:05:06,574
+A jaký je cíl této hypotézy?
+To je nějaká funkce,
+
+55
+00:05:06,574 --> 00:05:12,471
+která má jako vstup velikost domu,
+možná velikost toho nového domu,
+
+56
+00:05:12,471 --> 00:05:18,368
+který se snaží prodat váš kamarád, vezme
+tedy hodnotu x a snaží se odhadnout
+
+57
+00:05:18,368 --> 00:05:31,630
+hodnotu y pro daný dům.
+Takže h je nějaká funkce, která zobrazuje
+
+58
+00:05:31,630 --> 00:05:37,729
+x na y. Lidé se mě často ptají,
+proč se tato funkce nazývá hypotéza.
+
+59
+00:05:37,729 --> 00:05:42,121
+Někteří z vás možná znají význam
+pojmu hypotéza, ze slovníku
+
+60
+00:05:42,121 --> 00:05:46,744
+nebo z vědy nebo odjinud.
+Ukazuje se, že ve strojovém učení
+
+61
+00:05:46,744 --> 00:05:51,310
+je to jméno, které se kdysi ve strojovém
+učení používalo a tak to už zůstalo.
+
+62
+00:05:51,310 --> 00:05:55,239
+Protože možná to není skvělé jméno
+pro takovou funkci, pro zobrazení z velikosti domu
+
+63
+00:05:55,239 --> 00:05:59,978
+na ty odhady, víte ...
+Myslím, že pojem hypotéza možná není
+
+64
+00:05:59,978 --> 00:06:04,543
+to nejlepší jméno pro toto, ale toto je
+uznávané názvosloví, které lidé
+
+65
+00:06:04,543 --> 00:06:09,362
+ve strojovém učení používají. Takže si nedělejte
+moc starosti s tím, proč to lidé tak nazvali.
+
+66
+00:06:09,362 --> 00:06:14,332
+Když navrhujeme učicí algoritmus, další věc,
+kterou musíme rozhodnout, je, jak budeme
+
+67
+00:06:14,332 --> 00:06:20,540
+naši hypotézu h reprezentovat. Pro toto
+a několik dalších videí, zvolím
+
+68
+00:06:20,540 --> 00:06:26,978
+naši počáteční možnost, jak hypotézu reprezentovat,
+následovně. Budeme
+
+69
+00:06:26,978 --> 00:06:33,009
+h reprezentovat takto. A budeme to zapisovat
+jako h, théta v dolním indexu, x, což se rovná
+
+70
+00:06:33,009 --> 00:06:39,254
+théta nula plus théta 1 krát x.
+A jako zkratku někdy místo, však víte,
+
+71
+00:06:39,254 --> 00:06:45,441
+h, théta v dolním indexu, x, někdy použiju
+zkratku a jen napíšu jako h x.
+
+72
+00:06:45,441 --> 00:06:51,627
+Ale častěji budu to psát jako s thétou
+v dolním indexu. A zakreslíme-li to do grafu,
+
+73
+00:06:51,627 --> 00:06:58,210
+to všechno znamená, že budeme
+odhadovat, že y je lineární funkcí x.
+
+74
+00:06:58,210 --> 00:07:04,634
+Dobrá, takže to je datová sada a co dělá
+tato funkce,
+
+75
+00:07:04,634 --> 00:07:11,698
+je odhad, že y leží na rovné přímce jako funkce x.
+To je h(x) rovná se théta nula
+
+76
+00:07:11,698 --> 00:07:18,450
+plus théta jedna krát x, ano? A proč lineární
+funkce? Dobrá, někdy budeme chtít
+
+77
+00:07:18,450 --> 00:07:23,405
+fitovat nějaké komplikovanější, možná také
+nelineární funkce. Ale protože tento lineární
+
+78
+00:07:23,405 --> 00:07:28,298
+případ je jednoduchý stavební kámen,
+nejprve začneme tímto příkladem fitování
+
+79
+00:07:28,298 --> 00:07:32,943
+lineárních funkcí a na tomto budeme stavět,
+abychom nakonec dostali komplexnější modely
+
+80
+00:07:32,943 --> 00:07:37,403
+a komplexnější učicí algoritmy.
+Dovolte mi, abych tento konkrétní
+
+81
+00:07:37,403 --> 00:07:42,628
+model pojmenoval. Tento model se nazývá
+lineární regrese, nebo toto je, například,
+
+82
+00:07:42,628 --> 00:07:48,271
+ve skutečnosti lineární regrese s jednou
+proměnnou, kterou je x.
+
+83
+00:07:48,271 --> 00:07:53,914
+Všechny ty ceny odhadujeme jako funkce
+jedné proměnné X. A další jméno
+
+84
+00:07:53,914 --> 00:07:58,852
+pro tento model je jednorozměrná lineární
+regrese. A "jednorozměrná" je pouze
+
+85
+00:07:58,852 --> 00:08:04,400
+fajnové označení pro jednu proměnnou.
+To je tedy lineární regrese.
+
+86
+00:08:04,400 --> 00:08:09,760
+V dalším videu začneme mluvit o tom,
+jak tento model vlastně implementovat.

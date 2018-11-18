@@ -1,0 +1,587 @@
+1
+00:00:00,000 --> 00:00:04,620
+Trong video này tôi sẽ định nghĩa vấn đề máy học phổ biến nhất
+
+2
+00:00:04,620 --> 00:00:08,910
+là học có giám sát (SL - supervised learning). Tôi sẽ định nghĩa SL
+
+3
+00:00:08,910 --> 00:00:13,255
+hoàn chỉnh hơn sau này, nhưng có lẽ tốt nhất để giải thích là bắt đầu với một ví dụ
+
+4
+00:00:13,255 --> 00:00:17,820
+nó là gì và chúng tôi sẽ định nghĩa chính thức sau đó. Xem ví dụ bạn muốn
+
+5
+00:00:17,820 --> 00:00:23,072
+dự đoán giá nhà ở. Trước đó, một sinh viên thu thập tập dữ liệu từ
+
+6
+00:00:23,072 --> 00:00:28,745
+Viện Portland Oregon. Và bạn phân bổ tập dữ liệu như này.
+
+7
+00:00:28,745 --> 00:00:34,347
+Trục hoành biểu thị kích thước của các nhà khác nhau đơn vị feet^2
+
+8
+00:00:34,347 --> 00:00:39,879
+và trên trục tung, giá nhà ở khác nhau đơn vị ngàn đô la.
+
+9
+00:00:39,879 --> 00:00:45,168
+Cho dữ liệu này, bạn có một người bạn sở hữu một căn nhà
+
+10
+00:00:45,168 --> 00:00:50,708
+750 feet^2 để bán và họ muốn biết họ có thể nhà
+
+11
+00:00:50,708 --> 00:00:56,116
+với giá bao nhiêu. Vậy làm thế nào có thể các thuật toán học giúp bạn?
+
+12
+00:00:56,116 --> 00:01:01,524
+Thuật toán học có thể vẽ một đường thẳng như này xuyên suốt dữ liệu hoặc
+
+13
+00:01:01,524 --> 00:01:07,111
+và dựa vào đó có thể suy ra giá nhà có thể được bán là
+
+14
+00:01:07,111 --> 00:01:13,239
+tầm $150,000. Nhưng đây không phải thứ duy nhất thuật toán học (Learning Algorithm - LA) mà ban có thể sử dụng.
+
+15
+00:01:13,239 --> 00:01:18,536
+Có một cách tốt hơn. Ví dụ, thay vì của vẽ một thẳng
+
+16
+00:01:18,536 --> 00:01:23,620
+trên dòng dữ liệu, chúng tôi có thể quyết định rằng để phù hợp hơn thì nên dùng hàm bậc hai hay đa thức cấp hai
+
+17
+00:01:23,620 --> 00:01:29,110
+trên dữ liệu này. Và nếu bạn làm điều đó cho bài toán dự đoán này thì
+
+18
+00:01:29,110 --> 00:01:34,667
+giá bán nhà chúng ta có thể bán là gần 200k USD.
+
+19
+00:01:34,667 --> 00:01:39,184
+Một trong những điều chúng ta sẽ nói về sau là làm thế nào để lựa chọn và làm thế nào để
+
+20
+00:01:39,184 --> 00:01:43,792
+quyết định đặt hàm tuyến tính hay hàm bậc hai vào dữ liệu này.
+
+21
+00:01:43,792 --> 00:01:48,631
+bậc hai chức năng để các dữ liệu. Đưa hai hàm khác nhau vào dữ liệu thì cho kết quả không giống nhau cho giá nhà của bạn bạn.
+
+22
+00:01:48,631 --> 00:01:53,182
+Nhưng chúng là ví dụ miêu tả LA.
+
+23
+00:01:53,182 --> 00:01:57,834
+Đây là một ví dụ về SL. Và
+
+24
+00:01:57,834 --> 00:02:03,736
+cụm từ SL đề cập đến việc chúng ta cung cấp thuật toán một tập dữ liệu
+
+25
+00:02:03,736 --> 00:02:09,089
+với các "đáp án đúng" tương ứng. Có nghĩa là, chúng ta đưa vào một tập dữ liệu
+
+26
+00:02:09,089 --> 00:02:14,580
+nhà trong đó ở mỗi mốc diện tích thì sẽ có giá trị bán
+
+27
+00:02:14,580 --> 00:02:20,002
+được coi là đúng ("đáp án đúng" để bán nhà) và
+
+28
+00:02:20,002 --> 00:02:25,423
+nhiệm vụ của thuật toán là để chỉ xuất ra nhiều "đáp án đúng" khác cho những ngôi nhà mới khác.
+
+29
+00:02:25,423 --> 00:02:30,579
+Và bao gồm cả ngôi nhà mà bạn bạn muốn bán. Để định nghĩa mang tính
+
+30
+00:02:30,579 --> 00:02:35,257
+thuật ngữ hơn thì điều này này được gọi là một bài toán hồi quy và 
+
+31
+00:02:35,257 --> 00:02:40,467
+bài toán hồi quy ở đây đang dự đoán giá trị đầu ra liên tục. Cụ thể là giá.
+
+32
+00:02:40,467 --> 00:02:44,720
+Đúng thì giá nhà có thể làm tròn ở phần thập phân. Vì thế
+
+33
+00:02:44,720 --> 00:02:49,246
+giá cả thực tế là giá trị rời rạc, nhưng thường chúng ta nghĩ rằng giá của một ngôi nhà
+
+34
+00:02:49,246 --> 00:02:53,608
+như một số thực, như một giá trị vô hướng, như một số giá trị liên tục và thuật ngữ
+
+35
+00:02:53,608 --> 00:02:58,080
+hồi qui đề cập đến một thực tế là chúng ta đang cố gắng để dự đoán loại giá trị liên tục.
+
+36
+00:02:58,080 --> 00:03:02,060
+Đây là ví dụ SL khác, một số người bạn của tôi
+
+37
+00:03:02,060 --> 00:03:06,427
+và tôi đã làm về vấn đề này trước đó. Giả sử bạn nhìn vào
+
+38
+00:03:06,427 --> 00:03:11,675
+hồ sơ y tế và cố gắng để dự đoán một bệnh ung thư vú là ác tính hay lành tính.
+
+39
+00:03:11,675 --> 00:03:16,856
+Nếu một người phát hiện ra một khối u bướu trong vú của họ, thì một khối u ác tính là một
+
+40
+00:03:16,856 --> 00:03:22,300
+khối u là có hại, nguy hiểm và một khối u lành tính là một khối u là vô hại.
+
+41
+00:03:22,300 --> 00:03:27,876
+Rõ ràng là con người quan tâm rất nhiều về việc này.
+Hãy xem một tập dữ liệu được thu thập và giả sử
+
+42
+00:03:27,876 --> 00:03:33,164
+trong dữ liệu của bạn thiết lập trục hoành đại diện cho kích thước của các khối u và
+
+43
+00:03:33,164 --> 00:03:39,317
+trên trục tung tôi sẽ đặt hai giá trị 1(CÓ) và 0(KHÔNG). Trong ví dụ trên thì
+
+44
+00:03:39,317 --> 00:03:45,184
+Khối u có ác tính là 1, số 0 nếu lành tính.
+
+45
+00:03:45,184 --> 00:03:50,392
+Chúng ta có biểu thị dữ liệu như này. Chúng ta phát hiện trường hợp khối u có kích thước x này
+
+46
+00:03:50,392 --> 00:03:56,283
+thì là lành tính. Cũng như thế các kích thước X này là lành tính.
+
+47
+00:03:56,283 --> 00:04:02,227
+Và buồn thay thì chúng ta cũng phát hiện những khối u có kích thước như các X này là ác tính.
+
+48
+00:04:02,227 --> 00:04:08,572
+Tương tự như vậy. Trong ví dụ này... Tôi có năm dữ liệu về 
+
+49
+00:04:08,572 --> 00:04:15,159
+khối u lành tính được hiển thị ở đây, và dữ liệu khối u ác tính biểu thị trên
+
+50
+00:04:15,159 --> 00:04:21,504
+dòng giá trị 1(CÓ). Và giả sử chúng ta có người bạn có
+
+51
+00:04:21,504 --> 00:04:28,097
+khối u, và giả sử kích thước khối u vú của cô là có lẽ ở khoảng giá trị này.
+
+52
+00:04:28,097 --> 00:04:32,930
+Bài toán cho máy học là, có thể ước tính xác suất
+
+53
+00:04:32,930 --> 00:04:37,819
+giữa khối u ác tính so với lành tính là bao nhiêu? Về mặt thuật ngữ
+
+54
+00:04:37,819 --> 00:04:42,719
+đây là một ví dụ về một vấn đề phân loại. Thuật ngữ
+
+55
+00:04:42,719 --> 00:04:47,342
+phân loại đề cập đến một thực tế là ở đây ta cố gắng để dự đoán một
+
+56
+00:04:47,342 --> 00:04:52,321
+giá trị đầu ra rời rạc. 1 hay 0, ác tính hoặc lành tính. Và thực tế thì
+
+57
+00:04:52,321 --> 00:04:58,331
+vấn đề phân loại đôi khi bạn có thể có nhiều hơn hai giá trị cho hai
+
+58
+00:04:58,331 --> 00:05:03,852
+giá trị xảy ra ở đáp án. Ở ví dụ cụ thể khác có thể có những ba
+
+59
+00:05:03,852 --> 00:05:09,947
+loại bệnh ung thư vú và do đó, bạn có thể phải dự đoán giá trị rời rạc 0,
+
+60
+00:05:09,947 --> 00:05:15,138
+1, 2, 3 với số 0là lành tính.
+Khối u lành tính, vì vậy không có bệnh ung thư. Và 1 là
+
+61
+00:05:15,138 --> 00:05:19,836
+ung thu loại 1. (Giả sử ung thư có 3 loại)
+
+62
+00:05:19,836 --> 00:05:24,654
+2 là ung thư loại 2 và 3 là ung thư loại 3.
+
+63
+00:05:24,654 --> 00:05:29,111
+Nhưng đây cũng là một bài toán phân loại, bởi vì tập giá trị đáp án rời rạc tương ứng với
+
+64
+00:05:29,111 --> 00:05:33,929
+các giá trị không ung thư và các loại ung thư
+
+65
+00:05:33,929 --> 00:05:39,094
+loại 1, 2 hoặc 3. Trong vấn đề phân loại có cách khác
+
+66
+00:05:39,094 --> 00:05:44,413
+để biểu thị dữ liệu này. Để tôi cho bạn thấy điều này. Tố sẽ sự dụng tập hợp biểu tượng
+
+67
+00:05:44,413 --> 00:05:49,206
+khác để biểu thị tập dữ liệu này. Vì vậy, nếu kích thước khối u là
+
+68
+00:05:49,206 --> 00:05:54,303
+thuộc tính mà tôi sẽ sử dụng để dự đoán bệnh ác tính hoặc lành tính, tôi cũng có thể vẽ
+
+69
+00:05:54,303 --> 00:05:58,975
+dữ liệu của tôi như thế này. Tôi sẽ sử dụng các biểu tượng khác nhau để biểu thị lành tính và
+
+70
+00:05:58,975 --> 00:06:03,707
+ác tính, hoặc ví dụ âm tính và dương tính. Như vậy thay vì của vẽ X,
+
+71
+00:06:03,707 --> 00:06:11,595
+Tôi giờ sẽ vẽ O cho các khối u lành tính. Như vậy. Và tôi sẽ giữ
+
+72
+00:06:11,595 --> 00:06:18,655
+X để biểu thị ác tính. 
+Ok? Tôi hy vọng bạn hiểu những điều tôi vừa làm
+
+73
+00:06:18,655 --> 00:06:23,624
+Tất cả những gì tôi đã làm là lấy dữ liệu bên trên phân bổ xuống
+
+74
+00:06:23,624 --> 00:06:30,894
+bên dưới xuống trục hoành này..
+Và bắt đầu sử dụng các biểu tượng khác nhau,
+
+75
+00:06:30,894 --> 00:06:35,828
+X và O, để biểu thị ác tính so với lành tính.
+
+76
+00:06:35,828 --> 00:06:41,091
+Trong ví dụ này thì tôi chỉ dùng một thuộc tính chủ yếu là kích thước khối u theo thứ tự để
+
+77
+00:06:41,091 --> 00:06:46,289
+dự đoán khối u là ác tính hay lành tính.
+
+78
+00:06:46,289 --> 00:06:51,355
+Trong các vấn đề ML thì thường nhiều hơn một thuộc tính. Đây là
+
+79
+00:06:51,355 --> 00:06:56,749
+một ví dụ. Giả sử rằng thay vì chỉ biết kích thước khối u, chúng tôi biết cả
+
+80
+00:06:56,749 --> 00:07:02,387
+tuổi của bệnh nhân và kích thước khối u. Trong trường hợp đó dữ liệu của bạn sẽ
+
+81
+00:07:02,387 --> 00:07:08,562
+như thế này, tôi có tập hợp bệnh nhân với các lứa tuổi và có kích thước khối u và
+
+82
+00:07:08,562 --> 00:07:14,980
+họ trông như thế này. Và một tập khác nhau của bệnh nhân. Dữ liệu khác một chút -
+
+83
+00:07:15,600 --> 00:07:23,968
+mà được chẩn đoán là ác tính X. Giả sử
+
+84
+00:07:23,968 --> 00:07:32,027
+bạn xấu số của bạn có một khối u. Và có lẽ, kích thước khối u và tuổi
+
+85
+00:07:32,027 --> 00:07:37,657
+rơi xung quanh khoảng này. Dựa vào tập dữ liệu này, những gì mà LA
+
+86
+00:07:37,657 --> 00:07:42,462
+có thể làm là xác định đường thẳng qua các dữ liệu để tách
+
+87
+00:07:42,462 --> 00:07:47,710
+các khối u ác tính từ những cái lành tính và do đó các thuật toán học có thể quyết định
+
+88
+00:07:47,710 --> 00:07:53,004
+vẽ ra một đường thẳng như thế này.
+
+89
+00:07:53,004 --> 00:07:57,644
+Và với kết quả như thế này thì bạn có thể kết luận là khối u của bạn bạn
+
+90
+00:07:57,644 --> 00:08:02,322
+nhiều khả năng là lành tính vì nó nằm về phía
+
+91
+00:08:02,322 --> 00:08:07,305
+lành tính của tập dữ liệu.
+
+92
+00:08:07,305 --> 00:08:12,044
+Trong ví dụ này chúng tôi đã có hai thuộc tính, cụ thể là,
+
+93
+00:08:12,044 --> 00:08:17,147
+độ tuổi bệnh nhân và kích thước của khối u. Trong bài toán ML
+
+94
+00:08:17,147 --> 00:08:21,454
+thường có nhiều thuộc tính hơn, và bạn tôi làm ngành này
+
+95
+00:08:21,454 --> 00:08:25,849
+sử dụng các thuộc tính khác nhau là độ dày, độ dày khối u
+
+96
+00:08:25,849 --> 00:08:30,299
+ung thư vú. Tính đồng nhất của kích thước tế bào của khối u. Tính đồng nhất của hình dạng tế bào của
+
+97
+00:08:30,299 --> 00:08:34,911
+các khối u, và như vậy, và các thuộc kính khác. Và một trông những LA
+
+98
+00:08:34,911 --> 00:08:39,907
+thú vị mà chúng ta sẽ thấy trong lớp này là một LA
+
+99
+00:08:39,907 --> 00:08:45,153
+có thể đối phó với, không chỉ hai hoặc ba hoặc năm thuộc tính, nhưng vô số
+
+100
+00:08:45,153 --> 00:08:50,150
+thuộc tính. Trong slide này tôi đã liệt kê tổng cộng năm thuộc tính khác nhau.
+
+101
+00:08:50,150 --> 00:08:54,482
+02 ở các trục tung hoành và 03 ở bên phải đây.
+Nhưng nó chỉ ra rằng đối với một số bài toán
+
+102
+00:08:54,482 --> 00:08:58,497
+LA, những gì bạn thật sự sử dụng không chỉ 3, 5 thuộc tính mà
+
+103
+00:08:58,497 --> 00:09:02,566
+Thay vào đó, bạn muốn sử dụng một số lượng vô hạn của thuộc tính, vô số
+
+104
+00:09:02,566 --> 00:09:06,211
+thuộc tính, do đó LA có rất nhiều thuộc tính
+
+105
+00:09:06,211 --> 00:09:10,333
+để dự đoán. Vậy làm thế nào để bạn đối phó với
+
+106
+00:09:10,333 --> 00:09:14,439
+vô số các thuộc tính. Làm thế nào làm bạn lưu trữ vô số
+
+107
+00:09:14,439 --> 00:09:18,290
+những thứ trên máy tính khi máy tính của bạn sẽ hết bộ nhớ.
+
+108
+00:09:18,290 --> 00:09:22,188
+Trong khi nói về thuật toán gọi là Máy Véc-tơ Hỗ trợ (SVM Support Vector Machine)
+
+109
+00:09:22,188 --> 00:09:26,675
+sẽ có một thủ thuật toán gọn gàng mà sẽ cho phép một máy tính đối phó
+
+110
+00:09:26,675 --> 00:09:31,214
+với vô số các thuộc tính. Hãy tưởng tượng rằng tôi đã không chỉ viết ra hai thuộc tính
+
+111
+00:09:31,214 --> 00:09:35,487
+ở đây và ba thuộc tính bên phải. Mà hãy tưởng tượng rằng tôi đã viết xuống một danh sách dài vô hạn, tôi
+
+112
+00:09:35,487 --> 00:09:39,866
+tiếp tục ghi thêm nhiều thuộc tính hơn và nhiều hơn và nhiều hơn nữa. Giống như một danh sách dài vô hạn
+
+113
+00:09:39,866 --> 00:09:44,192
+thuộc tính.Chúng ta có thể làm một thuật toán mà có thể đối phó với điều đó.
+
+114
+00:09:44,192 --> 00:09:49,701
+Vì vậy, tóm lại. Trong lớp này tôi sẽ nói về SL học có giám sát.
+
+115
+00:09:49,701 --> 00:09:54,167
+Và ý tưởng đó, là SL, trong ví dụ về
+
+116
+00:09:54,167 --> 00:09:58,880
+tập dữ liệu của chúng ta, chúng ta nhận được "đáp án đúng" nhờ vào khả năng dự đoán
+
+117
+00:09:58,880 --> 00:10:03,960
+của các thuật toán. Chẳng hạn như giá của nhà, 
+
+118
+00:10:03,960 --> 00:10:08,428
+hay một khối u là ác tính hay lành tính. Chúng ta cũng đã nói chuyện về các
+
+119
+00:10:08,428 --> 00:10:13,202
+bài toán hồi quy. Và hồi qui, có nghĩa rằng mục tiêu của chúng ta là để dự đoán một
+
+120
+00:10:13,202 --> 00:10:17,977
+giá trị đầu ra liên tục. Và chúng ta nói về vấn đề phân loại,
+
+121
+00:10:17,977 --> 00:10:22,690
+mục tiêu là để dự đoán giá trị đầu ra rời rạc. Đây là một câu hỏi tổng kết
+
+122
+00:10:22,690 --> 00:10:27,541
+Giả sử bạn đang vận hành một công ty và bạn muốn phát triển thuật toán học để
+
+123
+00:10:27,541 --> 00:10:32,618
+giải quyết hai vấn đề. Vấn đề đầu tiên. Bạn có tồn kho hàng lớn
+
+124
+00:10:32,618 --> 00:10:38,113
+những sản phẩm giống nhau. Hãy tưởng tượng bạn có hàng ngàn phiên bản các sản phẩm giống nhau
+
+125
+00:10:38,113 --> 00:10:43,607
+và bán muốn dự đoán số lượng bán ra trong suốt 3 tháng tới.
+
+126
+00:10:43,607 --> 00:10:49,172
+Ở vấn đề thứ 2, bạn có nhiều người dùng
+
+127
+00:10:49,172 --> 00:10:54,145
+và bạn muốn viết một phần mềm thẩm định xem mỗ cá nhân trong tập
+
+128
+00:10:54,145 --> 00:10:59,193
+tài khoản của khách hàng của bạn, mỗi tài khoản khách hàng của bạn; mỗi tài khoản này
+
+129
+00:10:59,193 --> 00:11:04,178
+quyết định có hay không các tài khoản đã được hacked hoặc tấn công không. Vì vậy, cho từng
+
+130
+00:11:04,178 --> 00:11:08,914
+vấn đề này, nó nên được giải quyết như một bài toán phân loại, hay là bài toán hồi quy.
+
+131
+00:11:08,914 --> 00:11:14,087
+Khi đoạn video này dừng, bạn sử dụng chuột để chọn câu trả lời đúng.
+
+132
+00:11:14,087 --> 00:11:20,884
+(A) Giải quyết cả 2 như bài toán phân loại
+(B) 1 là bài toán phân loại, 2 là bài toán hồi quy
+(C) 1 là bài toán hồi quy, 2 là bài toán phân loại
+(D) Cả 2 giải quyết như bài toán hồi quy.
+
+133
+00:11:20,884 --> 00:11:25,871
+Hy vọng là bạn đã chọn câu này. (C)
+
+134
+00:11:25,871 --> 00:11:31,058
+1 là bài toán hồi quy vì nếu tôi có hàng ngàn sản phẩm thì tôi sẽ xem giá trị đầu ra như
+
+135
+00:11:31,058 --> 00:11:36,071
+một giá trị thực, như một giá trị liên tục. Và,
+
+136
+00:11:36,290 --> 00:11:41,837
+do đó số lượng bán ra là một giá trị liên tục. Và đối với
+
+137
+00:11:41,837 --> 00:11:47,748
+vấn đề thứ hai, tôi sẽ coi đó như một bài toán phân loại, bởi vì, tôi
+
+138
+00:11:47,748 --> 00:11:53,659
+thiết lập giá trị 0 cho việc an toàn
+
+139
+00:11:53,659 --> 00:11:58,850
+và 1 là đã bị tấn công.
+
+140
+00:11:58,850 --> 00:12:03,287
+Giống ví dụ ung thư vú, là, 0 là lành tính, 1 là ác tính. Vì vậy tôi
+
+141
+00:12:03,287 --> 00:12:08,150
+Vì thế chúng ta thiết lập 0 và 1 cho tình trạng bị tấn công hay không và
+
+142
+00:12:08,150 --> 00:12:13,134
+thuật toán cố gắng để dự đoán một trong hai giá trị rời rạc này. Và bởi vì có một
+
+143
+00:12:13,134 --> 00:12:17,693
+số lượng nhỏ của các giá trị rời rạc, do đó tôi sẽ giải quyết nó như bài toán phân loại
+
+144
+00:12:17,693 --> 00:12:23,075
+Đó là nó cho học tập có giám sát và trong video tiếp theo tôi sẽ nói
+
+145
+00:12:23,075 --> 00:12:28,325
+về việc học không có giám sát, một loại khác quan trọng của LA.

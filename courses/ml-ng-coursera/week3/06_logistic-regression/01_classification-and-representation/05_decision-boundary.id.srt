@@ -1,0 +1,1620 @@
+1
+00:00:00,133 --> 00:00:02,423
+Pada video sebelumnya, kita bicara
+
+2
+00:00:02,423 --> 00:00:06,653
+tentang gambaran hipotesis regresi
+logistik.
+
+3
+00:00:06,700 --> 00:00:07,963
+Sekarang,
+
+4
+00:00:07,963 --> 00:00:09,389
+saya akan bicara tentang
+
+5
+00:00:09,389 --> 00:00:11,370
+batas penentuan.
+Ini akan memberi kita
+
+6
+00:00:11,380 --> 00:00:12,894
+pengertian yang lebih baik
+
+7
+00:00:12,894 --> 00:00:15,017
+akan apa yang dihitung oleh
+
+8
+00:00:15,030 --> 00:00:17,870
+fungsi hipotesis regresi logistik.
+
+9
+00:00:17,870 --> 00:00:20,080
+Sebagai rangkuman, ini yang
+
+10
+00:00:20,080 --> 00:00:21,264
+kita tulis terakhir,
+
+11
+00:00:21,280 --> 00:00:22,663
+dimana
+
+12
+00:00:22,663 --> 00:00:24,916
+hipotesis digambarkan sebagai
+
+13
+00:00:24,930 --> 00:00:26,119
+h(x) = g((theta)T x)
+
+14
+00:00:26,119 --> 00:00:28,363
+dimana
+
+15
+00:00:28,363 --> 00:00:29,871
+g adalah
+
+16
+00:00:29,871 --> 00:00:32,729
+fungsi sigmoid, yang tampak seperti ini.
+
+17
+00:00:32,750 --> 00:00:35,131
+Jadi, kurvanya naik perlahan dari 0
+
+18
+00:00:35,131 --> 00:00:38,996
+ke 1, mendatar di 1.
+
+19
+00:00:38,996 --> 00:00:40,391
+Yang ingin saya lakukan sekarang adalah
+
+20
+00:00:40,391 --> 00:00:42,452
+mencoba mengerti kapan
+
+21
+00:00:42,452 --> 00:00:44,054
+hipotesis ini akan memprediksi
+
+22
+00:00:44,070 --> 00:00:45,327
+bahwa
+
+23
+00:00:45,327 --> 00:00:47,049
+y = 1 dan kapan hipotesis akan
+
+24
+00:00:47,049 --> 00:00:48,361
+memprediksi
+
+25
+00:00:48,361 --> 00:00:50,602
+y = 0, dan mengerti
+
+26
+00:00:50,630 --> 00:00:52,351
+lebih baik bagaimana gambaran
+
+27
+00:00:52,351 --> 00:00:56,622
+fungsi hipotesis, khususnya saat kita
+memiliki lebih dari satu ciri-ciri.
+
+28
+00:00:56,640 --> 00:00:59,064
+Konkritnya, hipotesis ini menghasilkan
+
+29
+00:00:59,064 --> 00:01:00,827
+perkiraan
+
+30
+00:01:00,827 --> 00:01:02,057
+probabilitas bahwa
+
+31
+00:01:02,060 --> 00:01:05,493
+y = 1 dengan x dan parameter theta.
+
+32
+00:01:05,530 --> 00:01:06,807
+Jadi,
+
+33
+00:01:06,807 --> 00:01:08,181
+jika kita ingin prediksi
+
+34
+00:01:08,181 --> 00:01:09,478
+y = 1 atau
+
+35
+00:01:09,478 --> 00:01:12,217
+y = 0, ini yang akan kita lakukan.
+
+36
+00:01:12,240 --> 00:01:14,737
+Bilamana hipotesisnya menghasilkan
+
+37
+00:01:14,737 --> 00:01:16,412
+probabilitas dari y = 1
+
+38
+00:01:16,412 --> 00:01:17,570
+lebih besar atau
+
+39
+00:01:17,570 --> 00:01:19,340
+sama dengan 0.5, ini berarti
+
+40
+00:01:19,350 --> 00:01:21,068
+hasilnya lebih ke y = 1
+
+41
+00:01:21,068 --> 00:01:22,295
+daripada
+
+42
+00:01:22,295 --> 00:01:26,509
+y = 0, maka kita prediksi y = 1.
+
+43
+00:01:26,509 --> 00:01:27,942
+Sebaliknya, 
+
+44
+00:01:27,960 --> 00:01:30,168
+jika perkiraan probabilitas dari
+
+45
+00:01:30,180 --> 00:01:31,898
+y = 1
+
+46
+00:01:31,898 --> 00:01:35,025
+kurang dari 0.5, maka kita prediksi
+y = 0.
+
+47
+00:01:35,025 --> 00:01:36,277
+Saya memilih lebih besar
+
+48
+00:01:36,277 --> 00:01:39,666
+dari atau sama dengan di sini dan
+kurang dari di sini.
+
+49
+00:01:39,670 --> 00:01:41,010
+Jika h(x) persis
+
+50
+00:01:41,010 --> 00:01:43,063
+sama dengan 0.5, maka
+
+51
+00:01:43,063 --> 00:01:44,670
+kita bisa prediksi positif
+
+52
+00:01:44,670 --> 00:01:45,820
+atau negatif tapi saya
+
+53
+00:01:45,820 --> 00:01:47,464
+menempatkan tanda >= di sini
+
+54
+00:01:47,464 --> 00:01:49,220
+jadi secara otomatis kita prediksi
+
+55
+00:01:49,220 --> 00:01:51,459
+positif jika h(x) = 0.5.
+
+56
+00:01:51,459 --> 00:01:52,883
+Tapi,
+
+57
+00:01:52,883 --> 00:01:56,675
+itu rincian yang tidak begitu penting.
+
+58
+00:01:56,680 --> 00:01:58,136
+Yang ingin saya lakukan adalah
+memahami
+
+59
+00:01:58,140 --> 00:01:59,273
+dengan lebih baik
+
+60
+00:01:59,273 --> 00:02:01,187
+kapan tepatnya h(x)
+
+61
+00:02:01,187 --> 00:02:02,927
+akan lebih besar
+
+62
+00:02:02,927 --> 00:02:04,666
+atau sama dengan 0.5 sehingga
+
+63
+00:02:04,666 --> 00:02:09,111
+pada akhirnya kita prediksi y = 1.
+
+64
+00:02:09,530 --> 00:02:11,525
+Jika kita lihat plot
+
+65
+00:02:11,540 --> 00:02:14,208
+fungsi sigmoid ini,
+
+66
+00:02:14,208 --> 00:02:17,094
+fungsi sigmoid, g(z),
+
+67
+00:02:17,094 --> 00:02:18,981
+lebih besar dari
+
+68
+00:02:18,981 --> 00:02:21,019
+atau sama dengan 0.5
+
+69
+00:02:21,030 --> 00:02:24,296
+saat z lebih besar atau
+
+70
+00:02:24,300 --> 00:02:25,994
+sama dengan 0.
+
+71
+00:02:25,994 --> 00:02:28,163
+Jadi, disetengah bagian gambar
+
+72
+00:02:28,163 --> 00:02:29,963
+sebelah sini,
+
+73
+00:02:29,963 --> 00:02:32,522
+g bernilai 0.5 ke atas.
+
+74
+00:02:32,522 --> 00:02:34,482
+Ini titik 0.5.
+
+75
+00:02:34,482 --> 00:02:35,957
+Jadi,
+
+76
+00:02:35,970 --> 00:02:38,352
+saat z positif, fungsi sigmoid
+
+77
+00:02:38,352 --> 00:02:41,959
+g(z) lebih besar atau sama dengan 0.5.
+
+78
+00:02:41,959 --> 00:02:44,226
+Karena hipotesis
+
+79
+00:02:44,226 --> 00:02:46,428
+regresi logistik adalah
+
+80
+00:02:46,428 --> 00:02:48,525
+h(x) = g((theta)T x),
+
+81
+00:02:48,525 --> 00:02:50,964
+ini akan menjadi
+
+82
+00:02:50,964 --> 00:02:52,163
+lebih besar dari
+
+83
+00:02:52,180 --> 00:02:54,338
+atau sama dengan 0.5
+
+84
+00:02:54,338 --> 00:02:58,329
+apabila (theta)T x
+
+85
+00:02:58,340 --> 00:03:01,642
+lebih besar atau sama dengan 0.
+
+86
+00:03:01,642 --> 00:03:03,470
+Jadi, yang terlihat
+
+87
+00:03:03,470 --> 00:03:05,835
+disini, (theta)T x
+
+88
+00:03:05,835 --> 00:03:08,113
+menggantikan z.
+
+89
+00:03:08,120 --> 00:03:09,543
+Jadi,
+
+90
+00:03:09,543 --> 00:03:11,077
+hipotesis kita akan
+
+91
+00:03:11,077 --> 00:03:13,191
+memprediksi y = 1
+
+92
+00:03:13,200 --> 00:03:15,420
+apabila (theta)T x
+
+93
+00:03:15,420 --> 00:03:17,924
+lebih besar dari atau sama dengan 0.
+
+94
+00:03:17,924 --> 00:03:20,016
+Mari perhatikan kasus lain
+
+95
+00:03:20,016 --> 00:03:22,380
+saat hipotesis
+
+96
+00:03:22,380 --> 00:03:25,043
+akan memprediksi y = 0.
+
+97
+00:03:25,043 --> 00:03:27,210
+Dengan argumen yang sama,
+
+98
+00:03:27,210 --> 00:03:28,987
+h(x) < 0.5
+
+99
+00:03:28,987 --> 00:03:30,709
+bila
+
+100
+00:03:30,730 --> 00:03:32,266
+g(z) < 0.5
+
+101
+00:03:32,266 --> 00:03:34,711
+karena nilai z
+
+102
+00:03:34,720 --> 00:03:36,468
+yang membuat
+
+103
+00:03:36,480 --> 00:03:38,013
+g(z) < 0.5
+
+104
+00:03:38,020 --> 00:03:42,626
+yakni saat z bernilai negatif.
+
+105
+00:03:42,626 --> 00:03:44,916
+Jadi, saat g(z) < 0.5
+
+106
+00:03:44,916 --> 00:03:46,874
+hipotesis kita akan memprediksi
+
+107
+00:03:46,874 --> 00:03:48,876
+y = 0, dan
+
+108
+00:03:48,876 --> 00:03:50,540
+dengan argumen yang sama
+
+109
+00:03:50,540 --> 00:03:52,608
+seperti sebelumnya,
+
+110
+00:03:52,608 --> 00:03:54,293
+h(x) = g((theta)T x).
+
+111
+00:03:54,320 --> 00:03:56,932
+Dengan demikian,
+
+112
+00:03:56,932 --> 00:03:58,739
+kita akan prediksi
+
+113
+00:03:58,739 --> 00:04:01,029
+y = 0 ketika
+
+114
+00:04:01,029 --> 00:04:04,937
+(theta)T x < 0.
+
+115
+00:04:04,940 --> 00:04:06,461
+Untuk merangkum semuanya,
+
+116
+00:04:06,470 --> 00:04:08,377
+kita lihat bahwa, jika kita putuskan
+
+117
+00:04:08,377 --> 00:04:09,900
+memprediksi
+
+118
+00:04:09,900 --> 00:04:11,076
+apakah y = 1, atau
+
+119
+00:04:11,076 --> 00:04:12,396
+y = 0,
+
+120
+00:04:12,400 --> 00:04:14,216
+dengan bergantung pada apakah
+
+121
+00:04:14,216 --> 00:04:15,807
+probabilitasnya
+
+122
+00:04:15,807 --> 00:04:17,845
+lebih besar atau sama dengan 0.5,
+
+123
+00:04:17,845 --> 00:04:19,602
+atau lebih kecil dari 0.5, maka
+
+124
+00:04:19,602 --> 00:04:20,935
+itu sama saja
+
+125
+00:04:20,935 --> 00:04:22,920
+dengan memprediksi y = 1
+
+126
+00:04:22,920 --> 00:04:25,010
+bila (theta)T x lebih besar dari
+
+127
+00:04:25,010 --> 00:04:26,002
+atau sama dengan 0,
+
+128
+00:04:26,002 --> 00:04:27,815
+dan
+
+129
+00:04:27,815 --> 00:04:30,025
+y = 0 bila
+
+130
+00:04:30,025 --> 00:04:32,953
+(theta)T x < 0.
+
+131
+00:04:32,953 --> 00:04:34,192
+Mari gunakan ini untuk memahami
+
+132
+00:04:34,192 --> 00:04:36,890
+lebih baik lagi bagaimana hipotesis
+
+133
+00:04:36,890 --> 00:04:40,029
+regresi logistik membuat semua
+prediksi itu.
+
+134
+00:04:40,040 --> 00:04:41,535
+Anggap kita punya
+
+135
+00:04:41,535 --> 00:04:43,113
+set latihan seperti yang terlihat,
+
+136
+00:04:43,113 --> 00:04:45,165
+dan anggaplah
+
+137
+00:04:45,165 --> 00:04:47,278
+hipotesis kita adalah
+
+138
+00:04:47,278 --> 00:04:48,678
+h(x) = g(theta0 + theta1 x1 + theta2 x2)
+
+139
+00:04:48,678 --> 00:04:50,254
+h(x) = g(theta0 + theta1 x1 + theta2 x2)
+
+140
+00:04:50,260 --> 00:04:52,854
+h(x) = g(theta0 + theta1 x1 + theta2 x2).
+
+141
+00:04:52,854 --> 00:04:54,516
+Kita belum belajar bagaimana
+
+142
+00:04:54,516 --> 00:04:56,725
+mencocokkan parameter dari model ini.
+
+143
+00:04:56,725 --> 00:04:59,355
+Kita akan bicarakan itu pada video
+berikutnya.
+
+144
+00:04:59,355 --> 00:05:01,770
+Tapi anggaplah prosedur beragam
+
+145
+00:05:01,770 --> 00:05:03,575
+ditetapkan, kita akhirnya
+
+146
+00:05:03,575 --> 00:05:06,224
+memilih nilai-nilai berikut untuk
+parameternya.
+
+147
+00:05:06,224 --> 00:05:07,861
+Katakanlah
+
+148
+00:05:07,861 --> 00:05:09,750
+kita memilih theta0 = -3,
+
+149
+00:05:09,750 --> 00:05:13,553
+theta1 = 1, dan theta2 = 1.
+
+150
+00:05:13,553 --> 00:05:15,430
+Ini artinya vektor parameternya
+
+151
+00:05:15,430 --> 00:05:17,263
+akan menjadi
+
+152
+00:05:17,263 --> 00:05:22,963
+theta = [-3 1 1].
+
+153
+00:05:24,140 --> 00:05:27,055
+Jadi, ini pilihan untuk
+
+154
+00:05:27,060 --> 00:05:30,115
+parameter hipotesis saya.
+
+155
+00:05:30,115 --> 00:05:32,243
+Mari cari tahu kapan
+
+156
+00:05:32,280 --> 00:05:33,778
+hipotesis akan
+
+157
+00:05:33,778 --> 00:05:35,493
+memprediksi y = 1 dan
+
+158
+00:05:35,493 --> 00:05:39,055
+kapan akan memprediksi y = 0.
+
+159
+00:05:39,060 --> 00:05:40,660
+Menggunakan rumusan
+
+160
+00:05:40,660 --> 00:05:42,900
+yang kita kerjakan sebelumnya,
+
+161
+00:05:42,900 --> 00:05:44,539
+kita tahu y = 1
+
+162
+00:05:44,539 --> 00:05:45,849
+bila
+
+163
+00:05:45,849 --> 00:05:47,404
+probabilitas y = 1
+
+164
+00:05:47,404 --> 00:05:48,943
+lebih besar dari
+
+165
+00:05:48,950 --> 00:05:51,553
+atau sama dengan 0.5
+
+166
+00:05:51,570 --> 00:05:55,256
+ketika (theta)T x
+
+167
+00:05:55,256 --> 00:05:57,211
+lebih besar dari 0.
+
+168
+00:05:57,230 --> 00:05:58,729
+Rumus yang
+
+169
+00:05:58,729 --> 00:06:00,846
+saya garis bawahi ini
+
+170
+00:06:00,850 --> 00:06:03,033
+-3 + x1 + x2 adalah
+
+171
+00:06:03,033 --> 00:06:05,216
+(theta)T x
+
+172
+00:06:05,220 --> 00:06:07,014
+dimana theta sama dengan
+
+173
+00:06:07,014 --> 00:06:09,746
+nilai parameter ini
+
+174
+00:06:09,760 --> 00:06:12,516
+yang kita telah pilih.
+
+175
+00:06:12,516 --> 00:06:14,640
+Sebagai contoh
+
+176
+00:06:14,640 --> 00:06:16,426
+dengan ciri-ciri
+
+177
+00:06:16,426 --> 00:06:19,300
+x1 dan x2 yang memenuhi
+
+178
+00:06:19,300 --> 00:06:21,187
+persamaan ini yakni
+
+179
+00:06:21,187 --> 00:06:23,526
+-3 + x1 + x2
+
+180
+00:06:23,530 --> 00:06:24,723
+lebih besar atau sama dengan 0,
+
+181
+00:06:24,723 --> 00:06:27,028
+hipotesis kita akan lebih berpikir
+
+182
+00:06:27,028 --> 00:06:28,066
+y = 1
+
+183
+00:06:28,066 --> 00:06:32,463
+atau akan memprediksi y = 1.
+
+184
+00:06:32,463 --> 00:06:34,505
+Kita bisa juga memindahkan -3
+
+185
+00:06:34,505 --> 00:06:35,752
+ke kanan
+
+186
+00:06:35,760 --> 00:06:37,703
+dan menulis
+
+187
+00:06:37,740 --> 00:06:41,435
+x1 + x2 >= 3.
+
+188
+00:06:41,435 --> 00:06:43,584
+Dengan demikian, kita dapati
+
+189
+00:06:43,590 --> 00:06:45,826
+hipotesis ini akan memprediksi
+
+190
+00:06:45,826 --> 00:06:47,561
+y = 1 ketika
+
+191
+00:06:47,561 --> 00:06:51,854
+x1 + x2 >= 3.
+
+192
+00:06:51,870 --> 00:06:54,893
+Mari lihat maksudnya pada gambar.
+
+193
+00:06:54,893 --> 00:06:57,209
+Jika saya tulis persamaannya
+
+194
+00:06:57,209 --> 00:07:00,217
+x1 + x2 = 3,
+
+195
+00:07:00,230 --> 00:07:03,356
+ini adalah persamaan garis lurus. 
+
+196
+00:07:03,360 --> 00:07:05,040
+Jika saya menggambarnya,
+
+197
+00:07:05,040 --> 00:07:07,695
+hasilnya adalah
+
+198
+00:07:07,730 --> 00:07:10,116
+garis yang melalui 3 dan 3
+
+199
+00:07:10,116 --> 00:07:11,627
+pada
+
+200
+00:07:11,627 --> 00:07:14,946
+sumbu x1 dan x2.
+
+201
+00:07:15,886 --> 00:07:17,250
+Jadi, 
+
+202
+00:07:17,270 --> 00:07:18,827
+bagian
+
+203
+00:07:18,827 --> 00:07:21,553
+pada bidang x1, x2 dimana
+
+204
+00:07:21,553 --> 00:07:24,948
+x1 + x2 >= 3 adalah
+
+205
+00:07:24,948 --> 00:07:27,195
+bidang yang paling atas ini.
+
+206
+00:07:27,210 --> 00:07:29,442
+Semua yang di atas
+
+207
+00:07:29,442 --> 00:07:30,701
+dan
+
+208
+00:07:30,701 --> 00:07:34,109
+bagian kanan atas garis magenta ini.
+
+209
+00:07:34,109 --> 00:07:35,584
+Dengan demikian,
+
+210
+00:07:35,610 --> 00:07:37,135
+area dimana hipotesis akan memprediksi
+
+211
+00:07:37,135 --> 00:07:38,324
+y = 1 adalah 
+
+212
+00:07:38,330 --> 00:07:40,023
+area yang besar ini,
+
+213
+00:07:40,023 --> 00:07:41,586
+semua
+
+214
+00:07:41,620 --> 00:07:44,393
+setengah bagian ke kanan atas ini.
+
+215
+00:07:44,393 --> 00:07:45,483
+Biar saya tandai.
+
+216
+00:07:45,483 --> 00:07:47,395
+Saya akan sebut ini
+
+217
+00:07:47,395 --> 00:07:50,263
+wilayah y = 1.
+
+218
+00:07:50,263 --> 00:07:54,293
+Sebaliknya, wilayah dimana
+
+219
+00:07:54,293 --> 00:07:56,500
+x1 + x2 < 3
+
+220
+00:07:56,510 --> 00:07:58,691
+adalah ketika
+
+221
+00:07:58,691 --> 00:08:00,090
+kita memprediksi y = 0,
+
+222
+00:08:00,110 --> 00:08:01,988
+dan
+
+223
+00:08:01,988 --> 00:08:04,679
+itu adalah bagian yang ini.
+
+224
+00:08:04,710 --> 00:08:06,096
+Setengah bidang ini.
+
+225
+00:08:06,096 --> 00:08:08,530
+Area di kiri itu adalah
+
+226
+00:08:08,530 --> 00:08:11,736
+wilayah dimana hipotesis memprediksi
+y = 0.
+
+227
+00:08:11,740 --> 00:08:13,431
+Saya ingin memberi nama
+
+228
+00:08:13,431 --> 00:08:16,475
+garis magenta yang saya gambar ini.
+
+229
+00:08:16,475 --> 00:08:19,458
+Garis ini disebut
+
+230
+00:08:19,458 --> 00:08:24,648
+"batas penentuan".
+
+231
+00:08:24,648 --> 00:08:27,085
+Konkritnya, garis lurus
+
+232
+00:08:27,085 --> 00:08:28,468
+x1 + x2 = 3 ini
+
+233
+00:08:28,470 --> 00:08:31,170
+berhubungan dengan sejumlah titik.
+
+234
+00:08:31,170 --> 00:08:33,334
+Itu berkaitan dengan wilayah
+
+235
+00:08:33,334 --> 00:08:34,606
+dimana
+
+236
+00:08:34,606 --> 00:08:37,000
+h(x) = 0.5, dan 
+
+237
+00:08:37,000 --> 00:08:38,731
+batas penentuannya,
+
+238
+00:08:38,750 --> 00:08:40,696
+yakni garis lurus ini,
+
+239
+00:08:40,720 --> 00:08:42,772
+memisahkan wilayah
+
+240
+00:08:42,772 --> 00:08:44,659
+dimana hipotesis memprediksi
+
+241
+00:08:44,659 --> 00:08:46,433
+y = 1 dan
+
+242
+00:08:46,433 --> 00:08:49,773
+wilayah dimana hipotesis memprediksi
+y = 0.
+
+243
+00:08:49,773 --> 00:08:51,387
+Untuk lebih jelasnya,
+
+244
+00:08:51,390 --> 00:08:53,353
+batas penentuan adalah
+
+245
+00:08:53,353 --> 00:08:57,458
+properti dari hipotesis
+
+246
+00:08:57,458 --> 00:09:00,705
+termasuk parameter theta0, theta1, 
+theta2.
+
+247
+00:09:00,720 --> 00:09:03,216
+Di gambar saya tempatkan sejumlah
+
+248
+00:09:03,240 --> 00:09:06,455
+data untuk mempermudah visualisasinya.
+
+249
+00:09:06,480 --> 00:09:07,721
+Tapi,
+
+250
+00:09:07,721 --> 00:09:09,276
+meskipun datanya dihilangkan,
+
+251
+00:09:09,280 --> 00:09:11,076
+batas penentuan dan
+
+252
+00:09:11,076 --> 00:09:12,299
+wilayah dimana
+
+253
+00:09:12,300 --> 00:09:14,321
+kita memprediksi y = 1 vs y = 0,
+
+254
+00:09:14,321 --> 00:09:15,513
+itu adalah properti
+
+255
+00:09:15,513 --> 00:09:16,838
+hipotesis dan
+
+256
+00:09:16,838 --> 00:09:18,804
+parameternya,
+
+257
+00:09:18,820 --> 00:09:22,163
+dan bukan properti dari set datanya.
+
+258
+00:09:22,163 --> 00:09:23,606
+Nanti, kita bicara
+
+259
+00:09:23,606 --> 00:09:24,683
+bagaimana mencocokkan
+
+260
+00:09:24,683 --> 00:09:26,736
+parameternya, dan kita akan
+
+261
+00:09:26,736 --> 00:09:28,222
+menggunakan sekumpulan data
+
+262
+00:09:28,222 --> 00:09:32,547
+untuk menentukan nilai parameternya.
+
+263
+00:09:32,563 --> 00:09:34,550
+Begitu kita dapatkan nilai-nilai
+
+264
+00:09:34,550 --> 00:09:37,283
+parameter theta0, theta1, theta2,
+
+265
+00:09:37,290 --> 00:09:39,645
+maka itu menentukan
+
+266
+00:09:39,645 --> 00:09:41,721
+batas penentuannya, dan kita
+
+267
+00:09:41,721 --> 00:09:43,117
+tidak perlu memplot
+
+268
+00:09:43,117 --> 00:09:44,886
+data untuk
+
+269
+00:09:44,886 --> 00:09:48,180
+memplot batas penentuannya.
+
+270
+00:09:49,620 --> 00:09:50,626
+Mari lihat
+
+271
+00:09:50,626 --> 00:09:52,398
+contoh yang lebih kompleks,
+
+272
+00:09:52,420 --> 00:09:54,039
+seperti biasa, tanda "x" menunjukkan
+
+273
+00:09:54,040 --> 00:09:55,932
+data positif dan
+
+274
+00:09:55,932 --> 00:09:58,926
+tanda "O" menunjukkan data negatif.
+
+275
+00:09:58,926 --> 00:10:00,696
+Dengan data seperti ini,
+
+276
+00:10:00,710 --> 00:10:02,873
+bagaimana regresi logistik
+
+277
+00:10:02,900 --> 00:10:05,550
+mencocokkan data ini?
+
+278
+00:10:05,550 --> 00:10:07,168
+Awalnya, ketika kita bicara tentang
+
+279
+00:10:07,168 --> 00:10:09,120
+regresi polinomial atau tentang
+
+280
+00:10:09,120 --> 00:10:10,993
+regresi linier,
+
+281
+00:10:10,993 --> 00:10:12,530
+kita bicara bagaimana menambahkan
+
+282
+00:10:12,530 --> 00:10:15,561
+polinomial orde tinggi untuk
+ciri-cirinya.
+
+283
+00:10:15,561 --> 00:10:18,996
+Kita bisa menggunakan cara yang sama
+untuk regresi logistik.
+
+284
+00:10:18,996 --> 00:10:22,220
+Konkritnya, katakanlah hipotesis saya
+tampak seperti ini.
+
+285
+00:10:22,220 --> 00:10:23,718
+Saya telah
+
+286
+00:10:23,718 --> 00:10:27,691
+menambahkan 2 ciri-ciri ekstra,
+x1^2 dan x2^2.
+
+287
+00:10:27,691 --> 00:10:29,811
+Jadi, sekarang saya punya 5 parameter
+
+288
+00:10:29,811 --> 00:10:32,676
+theta0 sampai theta4.
+
+289
+00:10:32,676 --> 00:10:34,936
+Seperti sebelumnya, kita akan menunda
+
+290
+00:10:34,936 --> 00:10:37,398
+pada video berikutnya pembahasan
+
+291
+00:10:37,420 --> 00:10:39,289
+bagaimana memilih secara otomatis
+
+292
+00:10:39,289 --> 00:10:42,511
+nilai parameter theta0 sampai theta4.
+
+293
+00:10:42,511 --> 00:10:44,326
+Tapi katakanlah,
+
+294
+00:10:44,326 --> 00:10:46,691
+dari beragam prosedur yang ada,
+
+295
+00:10:46,691 --> 00:10:49,243
+saya akhirnya memilih theta0 = -1,
+
+296
+00:10:49,243 --> 00:10:51,324
+theta1 = 0,
+
+297
+00:10:51,324 --> 00:10:52,921
+theta2 = 0,
+
+298
+00:10:52,921 --> 00:10:55,664
+theta3 = 1, dan
+
+299
+00:10:55,664 --> 00:10:58,039
+theta4 = 1.
+
+300
+00:10:58,039 --> 00:11:00,223
+Dengan pemilihan
+
+301
+00:11:00,223 --> 00:11:02,160
+parameter-parameter ini,
+
+302
+00:11:02,160 --> 00:11:04,566
+vektor theta parameter
+
+303
+00:11:04,566 --> 00:11:09,422
+tampak seperti -1,0,0,1,1.
+
+304
+00:11:10,550 --> 00:11:12,356
+Mengikuti pembahasan awal kita,
+
+305
+00:11:12,356 --> 00:11:14,439
+ini berarti hipotesis akan memprediksi
+
+306
+00:11:14,439 --> 00:11:16,407
+y = 1
+
+307
+00:11:16,407 --> 00:11:18,259
+saat
+
+308
+00:11:18,259 --> 00:11:21,088
+-1 + x1^2 + x2^2 >= 0.
+
+309
+00:11:21,088 --> 00:11:24,184
+Ini artinya ketika
+
+310
+00:11:24,184 --> 00:11:26,346
+theta transpos ciri-ciri,
+
+311
+00:11:26,350 --> 00:11:30,030
+(theta)T x >= 0.
+
+312
+00:11:30,060 --> 00:11:31,685
+Jika saya
+
+313
+00:11:31,690 --> 00:11:32,950
+pindahkan -1
+
+314
+00:11:32,950 --> 00:11:34,810
+ke kanan,
+
+315
+00:11:34,810 --> 00:11:36,642
+hipotesis akan memprediksi
+
+316
+00:11:36,642 --> 00:11:38,100
+y = 1
+
+317
+00:11:38,120 --> 00:11:40,710
+ketika
+
+318
+00:11:40,710 --> 00:11:43,648
+x1^2 + x2^2 >= 1.
+
+319
+00:11:43,648 --> 00:11:47,990
+Jadi, bagaimanakah tampilan batas
+penentuan?
+
+320
+00:11:47,990 --> 00:11:49,767
+Jika Anda plot
+
+321
+00:11:49,780 --> 00:11:51,905
+kurva
+
+322
+00:11:51,905 --> 00:11:53,665
+x1^2 + x2^2 = 1,
+
+323
+00:11:53,665 --> 00:11:55,531
+beberapa dari Anda
+
+324
+00:11:55,531 --> 00:11:58,294
+akan mengenali itu adalah persamaan
+
+325
+00:11:58,294 --> 00:12:01,296
+lingkaran dengan jari-jari 1
+
+326
+00:12:01,296 --> 00:12:04,163
+mengelilingi titik asal.
+
+327
+00:12:04,163 --> 00:12:08,382
+Jadi, itulah batas penentuannya.
+
+328
+00:12:10,410 --> 00:12:12,190
+Semua yang berada diluar
+
+329
+00:12:12,250 --> 00:12:14,207
+lingkaran akan diprediksi sebagai
+
+330
+00:12:14,207 --> 00:12:15,404
+y = 1.
+
+331
+00:12:15,404 --> 00:12:17,706
+Jadi, diluar sini
+
+332
+00:12:17,706 --> 00:12:19,337
+wilayah y = 1.
+
+333
+00:12:19,360 --> 00:12:22,693
+Saya akan prediksi y = 1 diluar sini.
+
+334
+00:12:22,693 --> 00:12:24,294
+Dan, di dalam lingkaran
+
+335
+00:12:24,310 --> 00:12:27,786
+saya akan prediksi y = 0.
+
+336
+00:12:27,790 --> 00:12:30,060
+Jadi, dengan menambahkan bagian yang
+
+337
+00:12:30,060 --> 00:12:33,163
+lebih kompleks atau polinomial ini ke
+ciri-ciri saya,
+
+338
+00:12:33,163 --> 00:12:35,040
+saya bisa mendapatkan batas penentuan
+
+339
+00:12:35,040 --> 00:12:36,550
+yang lebih kompleks
+
+340
+00:12:36,550 --> 00:12:39,560
+yang tidak hanya coba memisahkan data
+positif dan negatif dengan garis lurus.
+
+341
+00:12:39,560 --> 00:12:41,317
+Dalam contoh ini saya dapatkan
+
+342
+00:12:41,317 --> 00:12:44,258
+batas penentuan berbentuk lingkaran.
+
+343
+00:12:44,258 --> 00:12:46,010
+Sekali lagi, batas penentuan
+
+344
+00:12:46,010 --> 00:12:47,888
+bukan properti dari
+
+345
+00:12:47,888 --> 00:12:51,636
+kumpulan data, tapi properti dari
+hipotesis dan parameternya.
+
+346
+00:12:51,640 --> 00:12:53,115
+Jadi, asalkan kita diberikan
+
+347
+00:12:53,115 --> 00:12:55,389
+parameter vektor theta,
+
+348
+00:12:55,389 --> 00:12:57,185
+itu menentukan batas penentuannya
+
+349
+00:12:57,185 --> 00:12:59,208
+yakni lingkaran itu.
+
+350
+00:12:59,210 --> 00:13:03,052
+Jadi, kumpulan data tidak digunakan
+untuk menentukan batas penentuan.
+
+351
+00:13:03,052 --> 00:13:06,563
+Kumpulan data digunakan untuk
+mencocokkan parameter theta.
+
+352
+00:13:06,563 --> 00:13:08,632
+Kita akan bicarakan caranya nanti.
+
+353
+00:13:08,632 --> 00:13:09,858
+Tapi, begitu Anda
+
+354
+00:13:09,858 --> 00:13:13,638
+mendapatkan parameter thetanya, itulah
+yang menentukan batas penentuannya.
+
+355
+00:13:13,638 --> 00:13:16,388
+Biar saya tampilkan lagi datanya
+
+356
+00:13:16,400 --> 00:13:18,587
+untuk visualisasi.
+
+357
+00:13:18,587 --> 00:13:22,313
+Terakhir, mari lihat contoh yang
+lebih kompleks lagi.
+
+358
+00:13:22,320 --> 00:13:23,303
+Jadi, bisakah
+
+359
+00:13:23,303 --> 00:13:26,538
+kita dapatkan batas penentuan
+yang lebih kompleks dari ini?
+
+360
+00:13:26,538 --> 00:13:28,418
+Jika saya punya polinomial
+
+361
+00:13:28,420 --> 00:13:31,155
+dengan orde yang lebih tinggi
+
+362
+00:13:31,155 --> 00:13:34,505
+seperti x1^2,
+
+363
+00:13:34,505 --> 00:13:36,604
+x1^2 * x2,
+
+364
+00:13:36,604 --> 00:13:37,826
+x1^2 * x2^2, dst,
+
+365
+00:13:37,826 --> 00:13:39,001
+maka
+
+366
+00:13:39,001 --> 00:13:41,574
+sangat mungkin
+
+367
+00:13:41,574 --> 00:13:42,856
+Anda dapatkan
+
+368
+00:13:42,856 --> 00:13:45,268
+batas penentuan yang bahkan lebih
+kompleks lagi, dan
+
+369
+00:13:45,268 --> 00:13:46,963
+regresi logistik
+
+370
+00:13:46,963 --> 00:13:48,480
+dapat digunakan untuk mencari
+batas penentuan
+
+371
+00:13:48,500 --> 00:13:50,093
+yang mungkin berbentuk
+
+372
+00:13:50,093 --> 00:13:52,085
+elips seperti itu,
+
+373
+00:13:52,085 --> 00:13:53,503
+atau mungkin
+
+374
+00:13:53,503 --> 00:13:55,453
+dengan pengaturan parameter yang berbeda
+
+375
+00:13:55,453 --> 00:13:57,834
+Anda dapatkan batas penentuan lain
+
+376
+00:13:57,840 --> 00:13:59,776
+yang bahkan mungkin
+
+377
+00:13:59,776 --> 00:14:04,145
+berbentuk lucu seperti itu.
+
+378
+00:14:04,145 --> 00:14:06,423
+Atau, untuk contoh yang bahkan
+lebih kompleks lagi
+
+379
+00:14:06,423 --> 00:14:08,915
+Anda bisa dapatkan batas penentuan
+
+380
+00:14:08,950 --> 00:14:10,381
+yang tampak
+
+381
+00:14:10,390 --> 00:14:12,045
+kompleks seperti itu.
+
+382
+00:14:12,045 --> 00:14:13,365
+Semua di dalam sini
+
+383
+00:14:13,365 --> 00:14:15,453
+Anda prediksi y = 1, dan
+
+384
+00:14:15,453 --> 00:14:17,531
+semua yang diluar Anda prediksi y = 0.
+
+385
+00:14:17,531 --> 00:14:19,556
+Jadi, dengan ciri-ciri polinomial
+
+386
+00:14:19,560 --> 00:14:23,060
+berorde tinggi ini, Anda bisa dapatkan
+batas penentuan yang sangat kompleks.
+
+387
+00:14:23,070 --> 00:14:24,786
+Saya harap
+
+388
+00:14:24,786 --> 00:14:26,163
+visualisasi ini memberi Anda pengertian
+
+389
+00:14:26,163 --> 00:14:28,623
+sejauh apa fungsi hipotesis
+
+390
+00:14:28,623 --> 00:14:30,676
+dapat kita wakilkan dengan menggunakan
+
+391
+00:14:30,676 --> 00:14:34,966
+gambaran yang kita punya untuk
+regresi logistik.
+
+392
+00:14:34,966 --> 00:14:37,713
+Setelah kita tahu apa yang diwakilkan
+oleh h(x),
+
+393
+00:14:37,713 --> 00:14:39,004
+yang ingin saya lakukan dalam
+
+394
+00:14:39,004 --> 00:14:40,560
+video selanjutnya adalah
+
+395
+00:14:40,560 --> 00:14:44,096
+bicara tentang cara memilih nilai
+parameter theta secara otomatis.
+
+396
+00:14:44,110 --> 00:14:45,570
+Supaya, dengan data
+
+397
+00:14:45,570 --> 00:14:49,359
+yang diberikan, kita dapat mencocokkan
+parameter itu ke data secara otomatis.

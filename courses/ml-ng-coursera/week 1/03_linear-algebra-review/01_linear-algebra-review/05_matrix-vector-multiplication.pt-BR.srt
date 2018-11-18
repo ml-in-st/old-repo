@@ -1,0 +1,1461 @@
+1
+00:00:00,230 --> 00:00:01,364
+Neste vídeo, eu gostaria de
+
+2
+00:00:01,364 --> 00:00:02,699
+começar a falar sobre como
+
+3
+00:00:02,699 --> 00:00:05,020
+multiplicar duas matrizes.
+
+4
+00:00:05,020 --> 00:00:06,618
+Vamos iniciar com um caso especial,
+
+5
+00:00:06,618 --> 00:00:08,347
+o caso de multiplicação
+
+6
+00:00:08,350 --> 00:00:12,530
+matriz vetor - multiplicando matriz com um vetor.
+
+7
+00:00:12,530 --> 00:00:13,975
+E nós veremos isso em mais detalhes.
+Vamos começar com um exemplo:
+
+8
+00:00:13,975 --> 00:00:15,722
+Aqui está uma matriz,
+
+9
+00:00:15,722 --> 00:00:17,283
+e aqui um vetor, e
+
+10
+00:00:17,283 --> 00:00:18,351
+Digamos que queremos
+
+11
+00:00:18,351 --> 00:00:21,281
+multiplicar essa matriz
+
+12
+00:00:21,281 --> 00:00:24,202
+com esse vetor, qual é o resultado?
+
+13
+00:00:24,202 --> 00:00:25,209
+Deixe-me demostrar a operação nesse
+
+14
+00:00:25,210 --> 00:00:27,058
+exemplo e então nós
+
+15
+00:00:27,058 --> 00:00:29,886
+podemos voltar algumas etapas e olhar quais  foram elas.
+
+16
+00:00:29,886 --> 00:00:31,104
+Verifica-se que o resultado do
+
+17
+00:00:31,104 --> 00:00:32,912
+processo de multiplicação vai ser,
+
+18
+00:00:32,912 --> 00:00:34,554
+um vetor.
+
+19
+00:00:34,560 --> 00:00:35,931
+E eu vou trabalhar apenas
+
+20
+00:00:35,931 --> 00:00:37,108
+primeiro com esse e, mais tarde, nós
+
+21
+00:00:37,108 --> 00:00:39,650
+voltamos e vemos o que eu fiz aqui.
+
+22
+00:00:39,652 --> 00:00:41,228
+Para ter o primeiro elemento
+
+23
+00:00:41,228 --> 00:00:42,445
+desse vetor, e vou
+
+24
+00:00:42,445 --> 00:00:44,840
+pegar esses dois números
+
+25
+00:00:44,849 --> 00:00:47,682
+e multiplica-los com
+
+26
+00:00:47,682 --> 00:00:49,463
+a primeira linha da
+
+27
+00:00:49,463 --> 00:00:51,884
+matriz e adicionar os números correspondentes.
+
+28
+00:00:51,884 --> 00:00:54,223
+Vamos pegar um e multiplicar por
+
+29
+00:00:54,223 --> 00:00:57,430
+um, e pegar
+
+30
+00:00:57,430 --> 00:00:58,616
+três e multiplica-lo por
+
+31
+00:00:58,616 --> 00:01:01,557
+cinco, e isso é
+
+32
+00:01:01,580 --> 00:01:04,542
+um mais quinze que me dá dezesseis.
+
+33
+00:01:04,542 --> 00:01:06,879
+Eu vou escrever dezesseis aqui.
+
+34
+00:01:06,880 --> 00:01:09,926
+Então, para a segunda linha,
+
+35
+00:01:09,926 --> 00:01:12,555
+segundo elemento, eu vou
+
+36
+00:01:12,555 --> 00:01:14,022
+pegar a segunda linha
+
+37
+00:01:14,022 --> 00:01:15,255
+e multiplica-la por esse vetor,
+
+38
+00:01:15,255 --> 00:01:17,762
+e assim, eu tenho quatro
+
+39
+00:01:17,800 --> 00:01:20,554
+vezes um, mais zero
+
+40
+00:01:20,554 --> 00:01:21,894
+vezes cinco, o que é
+
+41
+00:01:21,894 --> 00:01:25,625
+igual a quatro, assim você terá quatro aqui.
+
+42
+00:01:25,625 --> 00:01:28,168
+E, finalmente, para o último
+
+43
+00:01:28,168 --> 00:01:30,015
+eu tenho dois um vezes
+
+44
+00:01:30,015 --> 00:01:31,540
+um cinco, assim dois
+
+45
+00:01:31,540 --> 00:01:33,791
+por um, mais um
+
+46
+00:01:33,791 --> 00:01:36,361
+por 5, que é igual
+
+47
+00:01:36,361 --> 00:01:39,422
+a 7, e assim
+
+48
+00:01:39,422 --> 00:01:43,145
+eu tenho 7 aqui.
+
+49
+00:01:43,810 --> 00:01:45,464
+Verifica-se que os
+
+50
+00:01:45,464 --> 00:01:48,102
+resultados da multiplicação de
+
+51
+00:01:48,102 --> 00:01:50,750
+uma matriz 3x2 por uma
+
+52
+00:01:51,030 --> 00:01:53,498
+matriz 2x1 é também
+
+53
+00:01:53,498 --> 00:01:55,504
+um vetor bi-dimensional.
+
+54
+00:01:55,504 --> 00:01:57,034
+O resultado disso
+
+55
+00:01:57,040 --> 00:02:01,975
+vai ser uma matriz 3x1,
+
+56
+00:02:01,980 --> 00:02:03,945
+e é por isso que
+
+57
+00:02:03,960 --> 00:02:05,737
+eu tenho uma matriz três por um.
+
+58
+00:02:05,750 --> 00:02:07,534
+Em outras palavras,
+
+59
+00:02:07,550 --> 00:02:13,141
+uma matriz 3x1 é apenas um vetor tri-dimensional.
+
+60
+00:02:13,170 --> 00:02:14,359
+Assim, eu acho que
+
+61
+00:02:14,359 --> 00:02:16,072
+fiz isso muito rápido e,
+
+62
+00:02:16,072 --> 00:02:17,078
+provavelmente, você não tem certeza
+
+63
+00:02:17,078 --> 00:02:18,530
+que possa repetir o processo sozinho,
+
+64
+00:02:18,530 --> 00:02:20,196
+mas vamos ver o processo com mais detalhes
+
+65
+00:02:20,196 --> 00:02:22,019
+e ver o que foi feito e
+
+66
+00:02:22,020 --> 00:02:26,618
+como funciona esse processo de multiplicação de matriz por um vetor.
+
+67
+00:02:26,618 --> 00:02:28,478
+Aqui estão os detalhes de como
+
+68
+00:02:28,478 --> 00:02:30,532
+multiplicar uma matriz por um vetor.
+
+69
+00:02:30,540 --> 00:02:32,014
+Digamos que eu tenha uma matriz A
+
+70
+00:02:32,014 --> 00:02:33,355
+e quero multiplica-la por
+
+71
+00:02:33,355 --> 00:02:35,637
+um vetor x.
+
+72
+00:02:35,637 --> 00:02:37,220
+O resultado será
+
+73
+00:02:37,220 --> 00:02:39,569
+um vetor y.
+
+74
+00:02:39,569 --> 00:02:41,334
+Assim, a matriz A
+
+75
+00:02:41,334 --> 00:02:43,388
+é uma matriz de dimensão m x n, ou seja
+
+76
+00:02:43,388 --> 00:02:45,062
+m linhas e n colunas e
+
+77
+00:02:45,062 --> 00:02:46,570
+vamos multiplicar isso por uma
+
+78
+00:02:46,570 --> 00:02:49,651
+matriz n por 1. Em outras palavras, um vetor de dimensão n.
+
+79
+00:02:49,651 --> 00:02:51,203
+Verifica-se então que, esse
+
+80
+00:02:51,203 --> 00:02:54,694
+"n" aqui tem que ser igual a esse "n" aqui.
+
+81
+00:02:54,694 --> 00:02:55,933
+Em outras palavras, o número de
+
+82
+00:02:55,933 --> 00:02:58,560
+colunas nessa matriz
+
+83
+00:02:58,580 --> 00:03:01,821
+é o número de n colunas.
+
+84
+00:03:01,821 --> 00:03:03,457
+O número de colunas aqui tem que
+
+85
+00:03:03,457 --> 00:03:06,442
+coincidir com o número de linhas aqui.
+
+86
+00:03:06,442 --> 00:03:09,274
+Ele tem que coincidir com a dimensão desse vetor.
+
+87
+00:03:09,280 --> 00:03:10,645
+E o resultado desse produto
+
+88
+00:03:10,645 --> 00:03:15,681
+será um vetor y
+
+89
+00:03:15,761 --> 00:03:19,858
+de dimensão n. Aqui, linhas.
+
+90
+00:03:19,858 --> 00:03:23,009
+"M" será
+
+91
+00:03:23,010 --> 00:03:24,972
+igual ao número de linhas
+
+92
+00:03:24,972 --> 00:03:28,237
+nessa matriz "A".
+
+93
+00:03:28,250 --> 00:03:31,082
+Então, como você gera o vetor "Y"?
+
+94
+00:03:31,082 --> 00:03:32,110
+Para calcular
+
+95
+00:03:32,110 --> 00:03:34,280
+esse vetor "Y", o processo
+
+96
+00:03:34,280 --> 00:03:36,860
+para ter Yi é multiplicar a linha
+
+97
+00:03:37,200 --> 00:03:38,799
+Ai com os
+
+98
+00:03:38,799 --> 00:03:40,218
+elementos do vetor "x"
+
+99
+00:03:40,218 --> 00:03:41,623
+e somá-los.
+
+100
+00:03:41,625 --> 00:03:42,464
+Então, veja o que eu quero dizer.
+
+101
+00:03:42,470 --> 00:03:45,035
+Para ter o
+
+102
+00:03:45,060 --> 00:03:47,847
+primeiro elemento de "Y",
+
+103
+00:03:47,847 --> 00:03:49,980
+que é o primeiro número - não importa que número
+
+104
+00:03:49,980 --> 00:03:51,424
+será esse - nós vamos pegar
+
+105
+00:03:51,424 --> 00:03:53,012
+a primeira linha da
+
+106
+00:03:53,020 --> 00:03:55,486
+matriz "A" e multiplicar
+
+107
+00:03:55,486 --> 00:03:57,680
+um elemento de cada vez
+
+108
+00:03:57,680 --> 00:03:59,842
+com os elementos do vetor "X".
+
+109
+00:03:59,842 --> 00:04:01,755
+Assim, eu pego esse primeiro número
+
+110
+00:04:01,760 --> 00:04:03,912
+e multiplico por esse primeiro número.
+
+111
+00:04:03,912 --> 00:04:07,331
+Depois pego o segundo número e multiplico por esse segundo número.
+
+112
+00:04:07,331 --> 00:04:09,264
+Pego esse terceiro número, qualquer
+
+113
+00:04:09,264 --> 00:04:10,603
+que seja, e multiplico pelo terceiro número
+
+114
+00:04:10,603 --> 00:04:12,871
+e assim por diante, até o final.
+
+115
+00:04:13,320 --> 00:04:14,578
+E somo os
+
+116
+00:04:14,578 --> 00:04:16,289
+resultados desses produtos e
+
+117
+00:04:16,300 --> 00:04:19,918
+o resultado disso tudo me da o primeiro elemento de "Y".
+
+118
+00:04:19,922 --> 00:04:21,690
+Então, nós queremos o
+
+119
+00:04:21,690 --> 00:04:25,334
+segundo elemento de "Y", digamos, esse elemento.
+
+120
+00:04:25,340 --> 00:04:26,735
+O modo como fazemos isso, é
+
+121
+00:04:26,735 --> 00:04:28,688
+pegarmos a segunda linha de
+
+122
+00:04:28,688 --> 00:04:30,078
+A e repetimos todo o processo.
+
+123
+00:04:30,078 --> 00:04:31,265
+Assim, pegamos a segunda linha
+
+124
+00:04:31,265 --> 00:04:32,994
+de A, multiplicamos cada
+
+125
+00:04:32,994 --> 00:04:34,407
+elemento "i" com os elementos
+
+126
+00:04:34,407 --> 00:04:35,814
+de X e adicionamos
+
+127
+00:04:35,830 --> 00:04:37,460
+os resultados dos produtos
+
+128
+00:04:37,460 --> 00:04:38,402
+e isso me dá o
+
+129
+00:04:38,402 --> 00:04:40,107
+segundo elemento de Y. E
+
+130
+00:04:40,107 --> 00:04:41,598
+continuando o processo
+
+131
+00:04:41,600 --> 00:04:42,839
+pego a terceira linha
+
+132
+00:04:42,850 --> 00:04:44,720
+de A, multiplico os elementos
+
+133
+00:04:44,720 --> 00:04:47,558
+com os elementos de X,
+
+134
+00:04:47,560 --> 00:04:48,682
+somo os resultados e então
+
+135
+00:04:48,682 --> 00:04:50,246
+tenho o terceiro elemento
+
+136
+00:04:50,260 --> 00:04:51,600
+e assim por diante, até chegar
+
+137
+00:04:51,600 --> 00:04:55,139
+a última linha.
+
+138
+00:04:55,676 --> 00:04:57,930
+Esse é o procedimento.
+
+139
+00:04:58,340 --> 00:05:00,685
+Vamos fazer mais um exemplo.
+
+140
+00:05:00,685 --> 00:05:05,240
+Aqui vai um exemplo: Vamos dar uma olhada nas dimensões.
+
+141
+00:05:05,240 --> 00:05:08,428
+Aqui, está é uma
+
+142
+00:05:08,428 --> 00:05:11,086
+matriz de dimensão três por quatro.
+
+143
+00:05:11,086 --> 00:05:13,280
+Esse é um vetor de quatro dimensões,
+
+144
+00:05:13,280 --> 00:05:15,292
+ou uma matriz 4 x 1, e
+
+145
+00:05:15,292 --> 00:05:16,825
+então o resultado disso, o
+
+146
+00:05:16,825 --> 00:05:18,210
+resultado desse produto será
+
+147
+00:05:18,220 --> 00:05:20,881
+um vetor de três dimensões.
+
+148
+00:05:20,890 --> 00:05:23,169
+Escreva o vetor,
+
+149
+00:05:23,180 --> 00:05:26,531
+com espaço para três elementos.
+
+150
+00:05:26,531 --> 00:05:30,256
+Vamos calcular os produtos.
+
+151
+00:05:30,256 --> 00:05:32,915
+Então para o primeiro elemento, eu vou
+
+152
+00:05:32,915 --> 00:05:35,068
+pegar esses quatro números
+
+153
+00:05:35,068 --> 00:05:36,272
+e multiplicá-los com o
+
+154
+00:05:36,272 --> 00:05:38,873
+vetor X. Então eu tenho
+
+155
+00:05:38,873 --> 00:05:42,227
+1x1, mais 2x3,
+
+156
+00:05:42,568 --> 00:05:47,301
+mais 1x2, mais 5x1, que
+
+157
+00:05:47,301 --> 00:05:49,994
+é igual a
+
+158
+00:05:50,050 --> 00:05:55,602
+1+6+2+6, que me dá 14.
+
+159
+00:05:55,630 --> 00:05:58,156
+E então para
+
+160
+00:05:58,156 --> 00:05:59,754
+segundo elemento, eu vou
+
+161
+00:05:59,754 --> 00:06:01,422
+pegar essa linha agora e
+
+162
+00:06:01,422 --> 00:06:04,604
+multiplicá-la por esse vetor.
+
+163
+00:06:04,604 --> 00:06:06,196
+Tudo bem, então
+
+164
+00:06:06,243 --> 00:06:12,764
+0x1+  3x3 mais
+
+165
+00:06:12,764 --> 00:06:19,958
+0x2 mais 4x1,
+
+166
+00:06:20,840 --> 00:06:22,974
+que é igual a, vamos
+
+167
+00:06:22,974 --> 00:06:26,105
+ver que é 9+4, que é 13.
+
+168
+00:06:26,105 --> 00:06:28,093
+E finalmente, para o último
+
+169
+00:06:28,093 --> 00:06:29,455
+elemento, eu vou pegar
+
+170
+00:06:29,455 --> 00:06:30,847
+essa última linha, então eu
+
+171
+00:06:30,847 --> 00:06:33,978
+tenho menos um vezes um.
+
+172
+00:06:34,110 --> 00:06:38,068
+Você tem menos dois, ou realmente tem um mais do lado de um dois, eu acho.
+
+173
+00:06:38,080 --> 00:06:40,656
+Vezes três mais
+
+174
+00:06:40,656 --> 00:06:42,441
+0x2 mais 0x1
+
+175
+00:06:42,441 --> 00:06:44,047
+e então será
+
+176
+00:06:44,047 --> 00:06:45,496
+-1 -7
+
+177
+00:06:45,496 --> 00:06:46,474
+seis, que fará isso
+
+178
+00:06:46,474 --> 00:06:49,636
+dar -7.
+
+179
+00:06:49,636 --> 00:06:50,136
+OK?
+
+180
+00:06:50,136 --> 00:06:51,097
+Então, minha resposta final é esse
+
+181
+00:06:51,097 --> 00:06:54,033
+vetor, só para
+
+182
+00:06:54,033 --> 00:06:56,117
+escrever isso sem as cores, catorze,
+
+183
+00:06:56,117 --> 00:06:59,843
+treze, sete negativo.
+
+184
+00:07:01,190 --> 00:07:03,567
+E, como prometido, o
+
+185
+00:07:03,567 --> 00:07:07,775
+resultado aqui é uma matriz três por um.
+
+186
+00:07:07,775 --> 00:07:11,147
+Então é assim que você multiplica uma matriz por um vetor.
+
+187
+00:07:11,170 --> 00:07:12,309
+Eu sei que acabou de acontecer muita coisa
+
+188
+00:07:12,309 --> 00:07:13,710
+nesse slide, então
+
+189
+00:07:13,710 --> 00:07:14,662
+se você não está muito seguro de para onde todos
+
+190
+00:07:14,680 --> 00:07:16,228
+esses números foram, você sabe,
+
+191
+00:07:16,228 --> 00:07:17,260
+sinta-se a vontade para pausar o vídeo
+
+192
+00:07:17,280 --> 00:07:18,345
+e dar uma
+
+193
+00:07:18,345 --> 00:07:19,980
+olhada lenta e cuidadosa nesse
+
+194
+00:07:19,980 --> 00:07:21,195
+grande cálculo que nós acabamos
+
+195
+00:07:21,195 --> 00:07:22,318
+de fazer e tente ter certeza
+
+196
+00:07:22,318 --> 00:07:23,755
+de que você entende os passos
+
+197
+00:07:23,760 --> 00:07:25,144
+do que acabou de acontecer para nos
+
+198
+00:07:25,144 --> 00:07:29,570
+dar esses números, catorze, treze e menos sete.
+
+199
+00:07:29,650 --> 00:07:31,959
+Finalmente, deixe-me mostrá-lo um truque.
+
+200
+00:07:31,959 --> 00:07:33,939
+Digamos que nós temos
+
+201
+00:07:33,940 --> 00:07:36,462
+um conjunto de quatro casas então 4
+
+202
+00:07:36,462 --> 00:07:38,650
+casas com 4 tamanhos como esses.
+
+203
+00:07:38,650 --> 00:07:39,908
+E digamos que eu tenho uma
+
+204
+00:07:39,908 --> 00:07:41,418
+hipótese para prever qual é
+
+205
+00:07:41,420 --> 00:07:43,885
+o preço de uma casa, e
+
+206
+00:07:43,890 --> 00:07:45,861
+vamos dizer que eu quero computar,
+
+207
+00:07:45,861 --> 00:07:49,347
+x(x) para cada uma das minhas 4 casas aqui.
+
+208
+00:07:49,347 --> 00:07:51,039
+Existe um jeito elegante
+
+209
+00:07:51,039 --> 00:07:52,979
+de colocar isso, aplicando essa
+
+210
+00:07:52,980 --> 00:07:56,780
+hipótese para todas as minhas casas ao mesmo tempo.
+
+211
+00:07:56,780 --> 00:07:57,795
+Há uma maneira
+
+212
+00:07:57,795 --> 00:07:59,509
+elegante de colocar isso como uma
+
+213
+00:07:59,509 --> 00:08:01,798
+multiplicação entre Matriz e Vetor.
+
+214
+00:08:02,240 --> 00:08:03,672
+Então, é assim que eu vou fazer isso.
+
+215
+00:08:03,672 --> 00:08:06,717
+Eu vou construir uma matriz da seguinte forma.
+
+216
+00:08:06,717 --> 00:08:08,122
+Minha matriz será
+
+217
+00:08:08,122 --> 00:08:11,892
+1 1 1 1  vezes, e eu vou
+
+218
+00:08:11,892 --> 00:08:15,495
+escrever os tamanhos
+
+219
+00:08:15,510 --> 00:08:19,935
+das minha quatro casas aqui e
+
+220
+00:08:19,935 --> 00:08:21,249
+eu vou construir um vetor
+
+221
+00:08:21,249 --> 00:08:23,354
+também, e meu
+
+222
+00:08:23,354 --> 00:08:25,609
+vetor será esse
+
+223
+00:08:25,609 --> 00:08:30,072
+vetor de dois elementos, isso é
+
+224
+00:08:30,072 --> 00:08:32,182
+menos 40 e 0,25.
+
+225
+00:08:32,182 --> 00:08:34,607
+São esses dois coeficientes;
+
+226
+00:08:34,607 --> 00:08:35,432
+dado 0 e dado 1.
+
+227
+00:08:35,432 --> 00:08:36,835
+E o que eu vou
+
+228
+00:08:36,835 --> 00:08:38,048
+fazer é pegar a matriz
+
+229
+00:08:38,060 --> 00:08:39,708
+e aquele vetor e multiplicá-los,
+
+230
+00:08:39,708 --> 00:08:42,465
+esse vezes é aquele símbolo de multiplicação.
+
+231
+00:08:42,465 --> 00:08:43,288
+Então o que eu obtenho?
+
+232
+00:08:43,288 --> 00:08:46,412
+Bom, isso é uma
+
+233
+00:08:46,420 --> 00:08:48,228
+matriz quatro por dois.
+
+234
+00:08:48,228 --> 00:08:52,005
+Isso é uma matriz dois por um.
+
+235
+00:08:52,005 --> 00:08:53,952
+Então o resultado
+
+236
+00:08:53,952 --> 00:08:55,355
+será um vetor
+
+237
+00:08:55,355 --> 00:08:59,506
+quatro por um, tudo bem.
+
+238
+00:08:59,520 --> 00:09:02,860
+Então, deixe-me...
+
+239
+00:09:02,870 --> 00:09:05,334
+então essa
+
+240
+00:09:05,334 --> 00:09:06,188
+será uma matriz
+
+241
+00:09:06,188 --> 00:09:06,957
+4 por 1 é o resultado ou
+
+242
+00:09:06,957 --> 00:09:10,035
+realmente um vetor de quatro dimensões,
+
+243
+00:09:10,035 --> 00:09:11,562
+então deixe-me escrever isso como
+
+244
+00:09:11,562 --> 00:09:15,991
+um dos meu quatro elementos nos meus quatro números reais aqui.
+
+245
+00:09:16,010 --> 00:09:17,202
+Agora
+
+246
+00:09:17,202 --> 00:09:18,952
+esse primeiro elemento do
+
+247
+00:09:18,952 --> 00:09:20,497
+resultado, o modo como eu
+
+248
+00:09:20,497 --> 00:09:21,505
+vou fazer isso é, eu
+
+249
+00:09:21,505 --> 00:09:25,526
+vou pegar isso e multiplicá-lo pelo vetor.
+
+250
+00:09:25,526 --> 00:09:29,381
+E então isso será
+
+251
+00:09:29,381 --> 00:09:33,053
+-40 x 1  mais
+
+252
+00:09:33,053 --> 00:09:37,645
+4.25 x 2104.
+
+253
+00:09:37,645 --> 00:09:38,998
+Falando nisso, nos
+
+254
+00:09:38,998 --> 00:09:40,915
+primeiros slides eu estava
+
+255
+00:09:40,915 --> 00:09:42,257
+escrevendo 1 x -40 e
+
+256
+00:09:42,260 --> 00:09:44,405
+2104 x 0,25, mas
+
+257
+00:09:44,405 --> 00:09:46,570
+a ordem não importa, certo?
+
+258
+00:09:46,580 --> 00:09:49,637
+-40 x 1 é o mesmo que 1 x -40.
+
+259
+00:09:49,637 --> 00:09:52,115
+E esse primeiro elemento, é claro,
+
+260
+00:09:52,115 --> 00:09:55,288
+é "H" aplicado a 2104.
+
+261
+00:09:55,288 --> 00:09:57,395
+Então é realmente o
+
+262
+00:09:57,395 --> 00:09:59,969
+preço previsto da minha primeira casa.
+
+263
+00:09:59,969 --> 00:10:02,351
+Bom, e quanto ao segundo elemento?
+
+264
+00:10:02,390 --> 00:10:04,089
+Espero que você possa ver
+
+265
+00:10:04,089 --> 00:10:07,912
+onde eu vou obter o segundo elemento.
+
+266
+00:10:07,912 --> 00:10:08,750
+OK?
+
+267
+00:10:08,750 --> 00:10:11,052
+Eu vou pegar isso e multiplicar pelo meu vetor.
+
+268
+00:10:11,052 --> 00:10:13,154
+E então será
+
+269
+00:10:13,180 --> 00:10:15,038
+-40 x 1 + 0,25 x 1416.
+
+270
+00:10:15,038 --> 00:10:23,037
+E então isso será "H" de 1416.
+
+271
+00:10:23,110 --> 00:10:23,110
+OK?
+
+272
+00:10:25,810 --> 00:10:27,024
+E assim vai para o
+
+273
+00:10:27,024 --> 00:10:30,720
+terceiro e o quarto
+
+274
+00:10:30,760 --> 00:10:33,797
+elementos desse vetor 4 x 1.
+
+275
+00:10:33,800 --> 00:10:37,142
+E quase lá, certo?
+
+276
+00:10:37,142 --> 00:10:39,239
+Essa coisa aqui que eu
+
+277
+00:10:39,239 --> 00:10:41,131
+acabei de desenhar uma caixa verde ao redor,
+
+278
+00:10:41,131 --> 00:10:42,752
+esse é um número real.
+
+279
+00:10:42,752 --> 00:10:44,169
+Esse é um único número real,
+
+280
+00:10:44,180 --> 00:10:45,673
+e essa coisa aqui que
+
+281
+00:10:45,680 --> 00:10:47,812
+eu desenhei uma caixa magenta ao redor--a
+
+282
+00:10:47,812 --> 00:10:49,826
+caixa de cor roxa,
+
+283
+00:10:49,850 --> 00:10:50,908
+ao redor--é um número real.
+
+284
+00:10:50,920 --> 00:10:52,683
+E então essa coisa na
+
+285
+00:10:52,683 --> 00:10:54,104
+direita--essa coisa à
+
+286
+00:10:54,104 --> 00:10:55,200
+direita de tudo, isso é uma
+
+287
+00:10:55,220 --> 00:10:59,288
+matriz de dimensão 4 por 1, é um vetor de 4 dimensões.
+
+288
+00:10:59,288 --> 00:11:00,728
+E o elegante disso
+
+289
+00:11:00,728 --> 00:11:02,128
+é que quando você está
+
+290
+00:11:02,130 --> 00:11:04,613
+realmente implementando isso em software,
+
+291
+00:11:04,613 --> 00:11:06,344
+quando você tem quatro casas e
+
+292
+00:11:06,350 --> 00:11:08,525
+quando você quer usar sua hipótese
+
+293
+00:11:08,525 --> 00:11:12,308
+para prever os preços, pode-se prever o preço "y" de todas essas quatro casas.
+
+294
+00:11:12,308 --> 00:11:13,553
+O que isso significa é que
+
+295
+00:11:13,553 --> 00:11:16,130
+você pode escrever isso em uma linha de código.
+
+296
+00:11:16,140 --> 00:11:17,878
+Quando nós falarmos sobre o octave e
+
+297
+00:11:17,878 --> 00:11:19,782
+linguagens de programação mais adiante, você poderá
+
+298
+00:11:19,790 --> 00:11:22,120
+escrever isso em uma linha de código.
+
+299
+00:11:22,120 --> 00:11:24,879
+Você escreverá a previsão igual a minha
+
+300
+00:11:24,879 --> 00:11:29,697
+matriz de dados vezes
+
+301
+00:11:30,582 --> 00:11:33,888
+os parâmetros.
+
+302
+00:11:33,890 --> 00:11:36,994
+Onde a matriz de dados é
+
+303
+00:11:36,994 --> 00:11:38,661
+isso aqui, e os parâmetros
+
+304
+00:11:38,661 --> 00:11:40,447
+são isso aqui,
+
+305
+00:11:40,447 --> 00:11:44,138
+e esse vezes é uma multiplicação de matriz e vetor.
+
+306
+00:11:44,138 --> 00:11:45,834
+E se você fizer apenas isso então
+
+307
+00:11:45,834 --> 00:11:47,579
+essa para prever a variável - desculpe
+
+308
+00:11:47,579 --> 00:11:49,270
+pela minha caligrafia ruim - então
+
+309
+00:11:49,270 --> 00:11:50,942
+apenas implemente essa única
+
+310
+00:11:50,942 --> 00:11:52,357
+linha de código assumindo que você tem
+
+311
+00:11:52,357 --> 00:11:55,328
+uma biblioteca apropriada para fazer multiplicação de matriz e vetor.
+
+312
+00:11:55,328 --> 00:11:56,518
+Se você fizer só isso,
+
+313
+00:11:56,518 --> 00:11:58,965
+então a predição se torna esse
+
+314
+00:11:58,965 --> 00:12:00,714
+vetor de dimensão 4 por 1, à direita,
+
+315
+00:12:00,714 --> 00:12:04,655
+que lhe dá todos os preços previstos.
+
+316
+00:12:04,655 --> 00:12:07,163
+E sua alternativa para fazer
+
+317
+00:12:07,163 --> 00:12:09,286
+isso como uma multiplicação de matriz e vetor
+
+318
+00:12:09,310 --> 00:12:11,241
+seria escrever algo como,
+
+319
+00:12:11,241 --> 00:12:13,542
+você sabe, para I igual a 1 até 4... certo?
+
+320
+00:12:13,542 --> 00:12:15,150
+E se você tiver mil casas
+
+321
+00:12:15,160 --> 00:12:17,451
+seria para I igual a 1 até mil ou o que quer que seja.
+
+322
+00:12:17,451 --> 00:12:18,772
+E então você tem que escrever uma
+
+323
+00:12:18,772 --> 00:12:21,898
+previsão se I é igual.
+
+324
+00:12:21,910 --> 00:12:23,123
+E então fazer um monte
+
+325
+00:12:23,130 --> 00:12:25,645
+de trabalho a mais.
+
+326
+00:12:25,645 --> 00:12:27,188
+E quando você
+
+327
+00:12:27,188 --> 00:12:28,549
+tem um grande número de casas,
+
+328
+00:12:28,549 --> 00:12:29,928
+se você está tentando prever os preços
+
+329
+00:12:29,930 --> 00:12:31,033
+de não apenas quatro mas talvez
+
+330
+00:12:31,033 --> 00:12:33,230
+de mil casas então
+
+331
+00:12:33,410 --> 00:12:35,175
+quando
+
+332
+00:12:35,175 --> 00:12:36,118
+você implementar isso
+
+333
+00:12:36,118 --> 00:12:40,087
+no computador dessa maneira, em qualquer uma das várias linguagens.
+
+334
+00:12:40,087 --> 00:12:41,535
+Isso não é verdade apenas para
+
+335
+00:12:41,535 --> 00:12:43,022
+Octave, mas para C++
+
+336
+00:12:43,030 --> 00:12:46,252
+Java ou Python, outras de alto nível, outras linguagens também.
+
+337
+00:12:46,252 --> 00:12:48,045
+Acontece que escrever
+
+338
+00:12:48,045 --> 00:12:49,811
+código nesse estilo à
+
+339
+00:12:49,811 --> 00:12:51,552
+esquerda permite
+
+340
+00:12:51,552 --> 00:12:53,283
+não apenas simplificar o
+
+341
+00:12:53,283 --> 00:12:54,677
+código  por estar
+
+342
+00:12:54,677 --> 00:12:55,857
+escrevendo apenas uma linha de código
+
+343
+00:12:55,870 --> 00:12:58,427
+em vez da forma com um monte de coisas dentro,
+
+344
+00:12:58,450 --> 00:12:59,727
+mas também, por razões sutis, que nós
+
+345
+00:12:59,730 --> 00:13:01,398
+veremos depois,
+
+346
+00:13:01,400 --> 00:13:03,392
+é muito mais
+
+347
+00:13:03,392 --> 00:13:05,617
+eficiente  computacionalmente fazer predições
+
+348
+00:13:05,617 --> 00:13:06,583
+sobre todos os preços de
+
+349
+00:13:06,583 --> 00:13:08,348
+todas as casas usando
+
+350
+00:13:08,360 --> 00:13:09,693
+a forma à esquerda do que
+
+351
+00:13:09,693 --> 00:13:13,334
+a forma à direita se você fosse escrever sua própria fórmula.
+
+352
+00:13:13,334 --> 00:13:14,596
+Eu direi mais a respeito disso
+
+353
+00:13:14,596 --> 00:13:15,978
+depois quando nós falarmos sobre
+
+354
+00:13:15,978 --> 00:13:17,684
+vetorização,
+
+355
+00:13:17,684 --> 00:13:19,145
+mas colocando uma predição dessa forma
+
+356
+00:13:19,145 --> 00:13:20,511
+você obtém não só um pedaço de
+
+357
+00:13:20,511 --> 00:13:23,200
+código mais simples, mas também um mais eficiente.
+
+358
+00:13:23,200 --> 00:13:25,151
+Então, isto é tudo para
+
+359
+00:13:25,151 --> 00:13:27,063
+multiplicação de matriz e vetor e nós
+
+360
+00:13:27,063 --> 00:13:28,432
+faremos bom uso desses tipos
+
+361
+00:13:28,432 --> 00:13:30,352
+de operações conforme nós desenvolvermos
+
+362
+00:13:30,370 --> 00:13:32,888
+a regressão em mais outros modelos.
+
+363
+00:13:32,910 --> 00:13:34,259
+Mas, no próximo vídeo nós vamos
+
+364
+00:13:34,259 --> 00:13:36,150
+pegar isso e generalizar
+
+365
+00:13:36,150 --> 00:13:39,527
+para o caso de multiplicação de matriz por matriz.
+Tradução: Carlos Lacerda, Yuri David Santos | Revisão: Eduardo Bonet

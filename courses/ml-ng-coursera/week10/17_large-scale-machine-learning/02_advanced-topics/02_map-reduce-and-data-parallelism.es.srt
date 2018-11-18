@@ -1,0 +1,1679 @@
+1
+00:00:00,320 --> 00:00:01,510
+En los últimos videos, hemos hablado
+
+2
+00:00:01,810 --> 00:00:03,430
+acerca del gradiente de descenso estocástico y,
+
+3
+00:00:03,620 --> 00:00:05,020
+ya saben, otras variaciones del
+
+4
+00:00:05,120 --> 00:00:06,530
+algoritmo de gradiente de descenso estocástico,
+
+5
+00:00:06,910 --> 00:00:09,150
+incluidas las adaptaciones para el aprendizaje
+
+6
+00:00:09,490 --> 00:00:10,420
+en línea, pero todos estos
+
+7
+00:00:10,610 --> 00:00:11,810
+algoritmos pueden ejecutarse en
+
+8
+00:00:12,110 --> 00:00:13,740
+una máquina, se pueden ejecutar en una computadora.
+
+9
+00:00:14,800 --> 00:00:15,870
+Y algunos de los problemas del aprendizaje automático
+
+10
+00:00:16,310 --> 00:00:17,270
+son demasiado grandes para que los ejecuten
+
+11
+00:00:17,520 --> 00:00:19,160
+en una máquina, a veces simplemente
+
+12
+00:00:19,300 --> 00:00:21,050
+tienen tantos datos, que
+
+13
+00:00:21,170 --> 00:00:22,350
+simplemente no quieren  volver a ejecutar
+
+14
+00:00:22,670 --> 00:00:23,980
+todos esos datos a través de una
+
+15
+00:00:24,100 --> 00:00:26,270
+sola computadora, sin importa qué algoritmo usarían en esa computadora.
+
+16
+00:00:28,470 --> 00:00:29,640
+Así que este video me gustaría
+
+17
+00:00:29,740 --> 00:00:31,240
+hablar de un enfoque diferente
+
+18
+00:00:31,770 --> 00:00:33,610
+para el aprendizaje automático a gran escala que se llama
+
+19
+00:00:34,010 --> 00:00:36,190
+el enfoque de MapReduce.
+
+20
+00:00:37,030 --> 00:00:38,080
+Y aunque tenemos
+
+21
+00:00:38,380 --> 00:00:39,400
+bastantes vídeos sobre el gradiente
+
+22
+00:00:39,970 --> 00:00:41,230
+de descenso estocástico, y vamos a
+
+23
+00:00:41,550 --> 00:00:43,100
+pasar relativamente menos tiempo
+
+24
+00:00:43,460 --> 00:00:45,350
+con el MapReduce -no
+
+25
+00:00:45,560 --> 00:00:46,750
+juzguen la importancia relativa del MapReduce
+
+26
+00:00:47,160 --> 00:00:48,240
+contra el gradiente de descenso
+
+27
+00:00:48,690 --> 00:00:49,590
+basándose en la cantidad de tiempo
+
+28
+00:00:49,660 --> 00:00:51,480
+que paso en estas ideas. En particular,
+
+29
+00:00:52,230 --> 00:00:53,380
+mucha gente dirá que
+
+30
+00:00:53,790 --> 00:00:54,840
+el MapReduce es al menos
+
+31
+00:00:55,090 --> 00:00:56,330
+igualmente importante, y algunos
+
+32
+00:00:56,580 --> 00:00:57,850
+que es una idea aún más importante,
+
+33
+00:00:58,500 --> 00:01:00,620
+en comparación con el gradiente de descenso, sólo
+
+34
+00:01:01,460 --> 00:01:03,040
+que es relativamente más fácil de
+
+35
+00:01:03,160 --> 00:01:04,620
+explicar,  por lo que voy
+
+36
+00:01:04,720 --> 00:01:05,580
+a pasar menos tiempo en
+
+37
+00:01:05,830 --> 00:01:07,040
+él, pero usando estas ideas
+
+38
+00:01:07,670 --> 00:01:08,400
+podrán ser capaces de ampliar
+
+39
+00:01:09,070 --> 00:01:10,640
+los algoritmos de aprendizaje para
+
+40
+00:01:10,880 --> 00:01:12,520
+problemas mucho más grandes de lo que es
+
+41
+00:01:12,630 --> 00:01:14,530
+posible cuando usan el  gradiente de descenso estocástico.
+
+42
+00:01:18,720 --> 00:01:19,000
+Esta es la idea.
+
+43
+00:01:19,810 --> 00:01:21,020
+Digamos que queremos ajustar
+
+44
+00:01:21,490 --> 00:01:22,960
+un modelo de regresión lineal o
+
+45
+00:01:23,140 --> 00:01:24,440
+un modelo de regresión logística o alguno de
+
+46
+00:01:24,540 --> 00:01:26,100
+éstos; y vamos a empezar de nuevo
+
+47
+00:01:26,430 --> 00:01:27,660
+con el gradiente de descenso por lotes, así que
+
+48
+00:01:27,840 --> 00:01:30,300
+esa es nuestra regla de aprendizaje con el gradiente de descenso por lotes.
+
+49
+00:01:31,240 --> 00:01:32,430
+Y para mantener la escritura
+
+50
+00:01:32,850 --> 00:01:34,170
+de esta diapositiva manejable, voy a
+
+51
+00:01:34,340 --> 00:01:36,990
+suponer en todo, que tenemos «m» es igual a 400 ejemplos.
+
+52
+00:01:37,530 --> 00:01:39,560
+Desde luego, por nuestros
+
+53
+00:01:39,750 --> 00:01:40,850
+estándares, en términos del aprendizaje automático
+
+54
+00:01:41,090 --> 00:01:42,050
+a gran escala, ustedes saben que «m»
+
+55
+00:01:42,170 --> 00:01:43,210
+puede ser muy pequeña y por eso,
+
+56
+00:01:43,770 --> 00:01:45,390
+esto se podría aplicar más comúnmente
+
+57
+00:01:45,870 --> 00:01:46,920
+a problemas en los que
+
+58
+00:01:47,050 --> 00:01:48,190
+podrían tener tal vez cerca de 400
+
+59
+00:01:48,740 --> 00:01:49,940
+millones de ejemplos, o algo
+
+60
+00:01:50,080 --> 00:01:51,310
+como eso, pero sólo para
+
+61
+00:01:51,390 --> 00:01:52,330
+hacer que la escritura en la diapositiva
+
+62
+00:01:52,770 --> 00:01:55,000
+sea más sencilla, voy a fingir que tenemos 400 ejemplos.
+
+63
+00:01:55,690 --> 00:01:57,460
+En este caso, la
+
+64
+00:01:57,790 --> 00:01:59,080
+regla de aprendizaje con el gradiente de descenso por lotes
+
+65
+00:01:59,570 --> 00:02:00,930
+tiene este 1 sobre 400 y la
+
+66
+00:02:01,500 --> 00:02:02,930
+suma de “i” es igual a 1 a través de 400,
+
+67
+00:02:03,330 --> 00:02:05,050
+mis 400 ejemplos
+
+68
+00:02:05,590 --> 00:02:06,890
+aquí, y si «m»
+
+69
+00:02:07,050 --> 00:02:09,780
+es grande, entonces este es un paso costoso computacionalmente.
+
+70
+00:02:10,890 --> 00:02:12,830
+Así que lo que hace la idea del MapReduce
+
+71
+00:02:13,250 --> 00:02:14,470
+es lo siguiente, y
+
+72
+00:02:14,890 --> 00:02:15,740
+debo decir que la idea del MapReduce
+
+73
+00:02:15,950 --> 00:02:16,940
+se debe a
+
+74
+00:02:17,680 --> 00:02:20,190
+dos investigadores, Jeff Dean
+
+75
+00:02:20,700 --> 00:02:22,060
+y Sanjay Gimawat.
+
+76
+00:02:22,640 --> 00:02:23,490
+Jeff Dean, por cierto, es
+
+77
+00:02:24,190 --> 00:02:26,520
+uno de los ingenieros más legendarios en
+
+78
+00:02:26,660 --> 00:02:28,300
+todo Silicon Valley y el
+
+79
+00:02:28,420 --> 00:02:29,530
+construyó una gran
+
+80
+00:02:29,820 --> 00:02:31,670
+porción de la infraestructura
+
+81
+00:02:32,310 --> 00:02:34,770
+arquitectónica sobre la que funciona Google en la actualidad.
+
+82
+00:02:36,000 --> 00:02:37,320
+Pero aquí está la idea de MapReduce.
+
+83
+00:02:37,850 --> 00:02:38,570
+Así que digamos que tengo
+
+84
+00:02:38,700 --> 00:02:39,840
+algunos conjuntos de entrenamiento, si
+
+85
+00:02:39,900 --> 00:02:41,220
+deseamos indicarlo mediante este cuadro
+
+86
+00:02:41,610 --> 00:02:42,760
+aquí de pares «X Y»,
+
+87
+00:02:44,250 --> 00:02:47,730
+donde está «X1», «Y1», bajando
+
+88
+00:02:47,990 --> 00:02:49,640
+a mis 400 ejemplos
+
+89
+00:02:50,520 --> 00:02:51,660
+«Xm», «Ym».
+
+90
+00:02:52,190 --> 00:02:53,780
+Así que ese es mi conjunto de entrenamiento con 400 ejemplos de entrenamiento.
+
+91
+00:02:55,060 --> 00:02:56,550
+En la idea del MapReduce, una manera
+
+92
+00:02:56,690 --> 00:02:58,190
+de hacerlo es dividir este conjunto
+
+93
+00:02:58,570 --> 00:03:00,510
+de entrenamiento en diferentes subconjuntos.
+
+94
+00:03:01,890 --> 00:03:02,590
+Voy a
+
+95
+00:03:02,950 --> 00:03:04,150
+suponer para este ejemplo que
+
+96
+00:03:04,290 --> 00:03:05,530
+tengo 4 computadoras,
+
+97
+00:03:06,160 --> 00:03:07,160
+o 4 máquinas para correr en
+
+98
+00:03:07,300 --> 00:03:08,670
+paralelo en mi conjunto de entrenamiento,
+
+99
+00:03:08,890 --> 00:03:10,570
+que es por lo que estoy dividiendo esto en 4 máquinas.
+
+100
+00:03:10,920 --> 00:03:12,290
+Si tienen 10 máquinas, o
+
+101
+00:03:12,400 --> 00:03:13,810
+100 máquinas, entonces dividirían
+
+102
+00:03:13,970 --> 00:03:15,890
+su conjunto de entrenamiento en 10 piezas, o 100 piezas, o lo que sea.
+
+103
+00:03:18,040 --> 00:03:19,710
+Y lo que debe hacer la primera de mis
+
+104
+00:03:19,850 --> 00:03:20,840
+4 máquinas es, por decir,
+
+105
+00:03:21,100 --> 00:03:23,170
+utilizar sólo el
+
+106
+00:03:23,270 --> 00:03:25,170
+primer cuarto de mi
+
+107
+00:03:25,300 --> 00:03:28,680
+conjunto de entrenamiento -así que usar sólo los primeros 100 ejemplos de entrenamiento.
+
+108
+00:03:30,020 --> 00:03:31,440
+Y, en particular, lo
+
+109
+00:03:31,480 --> 00:03:32,520
+que va a hacer es mirar
+
+110
+00:03:32,630 --> 00:03:34,800
+esta suma y ​​calcular
+
+111
+00:03:35,490 --> 00:03:38,560
+esa suma sólo para los primeros 100 ejemplos de entrenamiento.
+
+112
+00:03:40,030 --> 00:03:40,960
+Así que permítanme escribir eso.
+
+113
+00:03:41,110 --> 00:03:42,530
+Voy a calcular una variable
+
+114
+00:03:43,560 --> 00:03:46,230
+temp 1 al superíndice 1,  que indica
+
+115
+00:03:46,320 --> 00:03:49,410
+la primera máquina, «j»  igual a
+
+116
+00:03:50,450 --> 00:03:52,150
+la suma de “i” es igual a 1 hasta
+
+117
+00:03:52,260 --> 00:03:53,160
+100, y luego voy a colocar
+
+118
+00:03:53,500 --> 00:03:56,610
+exactamente ese término allí; así que tengo
+
+119
+00:03:57,260 --> 00:04:00,140
+«h» theta, «Xi», menos «Yi»
+
+120
+00:04:01,800 --> 00:04:03,230
+multiplicado por «Xij», ¿correcto?
+
+121
+00:04:03,740 --> 00:04:05,680
+Así que eso es sólo ese
+
+122
+00:04:05,910 --> 00:04:07,460
+término del gradiente de descenso allí.
+
+123
+00:04:08,300 --> 00:04:09,780
+Y luego, de manera similar, voy
+
+124
+00:04:10,010 --> 00:04:11,330
+a tomar el segundo cuarto
+
+125
+00:04:11,600 --> 00:04:13,130
+de mis datos y los voy a enviar
+
+126
+00:04:13,320 --> 00:04:14,520
+a mi segunda máquina, y
+
+127
+00:04:14,690 --> 00:04:15,680
+mi segunda máquina usará
+
+128
+00:04:15,900 --> 00:04:18,750
+los ejemplos de entrenamiento 101 a 200
+
+129
+00:04:19,350 --> 00:04:21,170
+y calcularán las variables similares
+
+130
+00:04:21,720 --> 00:04:22,880
+de un temp 2 «j», que
+
+131
+00:04:23,110 --> 00:04:24,450
+es la misma suma para el índice
+
+132
+00:04:24,890 --> 00:04:26,620
+de los ejemplos 101 a 200.
+
+133
+00:04:26,840 --> 00:04:29,680
+Y del mismo modo, las máquinas 3
+
+134
+00:04:29,830 --> 00:04:32,720
+y 4 usarán el
+
+135
+00:04:32,830 --> 00:04:34,110
+tercer cuarto y el último
+
+136
+00:04:34,570 --> 00:04:36,550
+cuarto de mi conjunto de entrenamiento.
+
+137
+00:04:37,530 --> 00:04:38,950
+Así que ahora cada máquina tiene
+
+138
+00:04:39,190 --> 00:04:40,580
+que sumar sobre 100, en lugar
+
+139
+00:04:41,060 --> 00:04:42,570
+de sobre 400 ejemplos, así que
+
+140
+00:04:42,760 --> 00:04:43,750
+sólo tiene que hacer un cuarto
+
+141
+00:04:44,050 --> 00:04:45,220
+del trabajo y, por tanto, presuntamente,
+
+142
+00:04:45,900 --> 00:04:48,000
+podría hacerlo aproximadamente cuatro veces más rápido.
+
+143
+00:04:49,380 --> 00:04:50,630
+Finalmente, después de que todas estas máquinas
+
+144
+00:04:50,990 --> 00:04:51,740
+han realizado este trabajo, voy a
+
+145
+00:04:51,850 --> 00:04:53,560
+tomar estas variables temp
+
+146
+00:04:55,350 --> 00:04:56,480
+y las voy a unir de nuevo.
+
+147
+00:04:56,870 --> 00:04:58,400
+De modo que tomo estas variables y
+
+148
+00:04:58,530 --> 00:04:59,950
+las envío al, ya saben,
+
+149
+00:05:00,090 --> 00:05:03,080
+el servidor maestro centralizado y
+
+150
+00:05:03,300 --> 00:05:04,750
+lo que hará el servidor maestro
+
+151
+00:05:05,140 --> 00:05:06,720
+es combinar estos resultados juntos y,
+
+152
+00:05:07,360 --> 00:05:08,470
+en particular, actualizará
+
+153
+00:05:08,780 --> 00:05:10,780
+mis parámetros «theta»
+
+154
+00:05:11,000 --> 00:05:13,160
+«j» de acuerdo con «theta»
+
+155
+00:05:13,410 --> 00:05:14,720
+«j» se actualiza como «theta» «j»
+
+156
+00:05:15,730 --> 00:05:17,560
+menos el
+
+157
+00:05:17,680 --> 00:05:19,510
+índice de aprendizaje «alfa» multiplicado por uno
+
+158
+00:05:20,120 --> 00:05:22,940
+sobre 400 veces temp,
+
+159
+00:05:23,300 --> 00:05:27,410
+1, «j», más temp
+
+160
+00:05:27,760 --> 00:05:30,290
+«2j», más temp «3j»,
+
+161
+00:05:32,400 --> 00:05:35,470
+más temp «4j» y,
+
+162
+00:05:35,560 --> 00:05:37,890
+desde luego, tenemos que hacer esto por separado para «j» es igual a 0
+
+163
+00:05:37,980 --> 00:05:39,570
+hasta n donde n es el
+
+164
+00:05:39,820 --> 00:05:41,220
+número de variables.
+
+165
+00:05:42,550 --> 00:05:45,420
+Discúlpenme por desglosar esta ecuación en múltiples líneas pero espero que quede claro.
+
+166
+00:05:45,670 --> 00:05:47,870
+Así que lo que esta ecuación
+
+167
+00:05:50,930 --> 00:05:53,220
+está haciendo es exactamente lo
+
+168
+00:05:53,290 --> 00:05:54,570
+mismo que eso, cuando
+
+169
+00:05:54,660 --> 00:05:56,140
+tienen un servidor maestro centralizado
+
+170
+00:05:56,680 --> 00:05:57,950
+que toma los resultados, los diez
+
+171
+00:05:58,040 --> 00:05:58,780
+1«j», los diez 2«j»,
+
+172
+00:05:59,000 --> 00:05:59,850
+diez 3«j» y diez 4«j»
+
+173
+00:05:59,970 --> 00:06:01,760
+y los suma
+
+174
+00:06:02,030 --> 00:06:03,430
+y, por supuesto, la suma
+
+175
+00:06:04,090 --> 00:06:04,960
+de estas cuatro cosas,
+
+176
+00:06:06,360 --> 00:06:07,810
+¿cierto? eso es sólo la suma de
+
+177
+00:06:08,060 --> 00:06:09,440
+esto, más la suma
+
+178
+00:06:09,760 --> 00:06:11,490
+de esto, más la suma
+
+179
+00:06:11,630 --> 00:06:13,000
+de esto, más la suma
+
+180
+00:06:13,120 --> 00:06:14,290
+de eso, y esas cuatro
+
+181
+00:06:14,470 --> 00:06:15,830
+cosas sencillamente se suman
+
+182
+00:06:15,920 --> 00:06:17,740
+para ser iguales a esta suma que
+
+183
+00:06:17,880 --> 00:06:19,580
+estábamos calculando originalmente con el descenso de corriente por lotes.
+
+184
+00:06:20,590 --> 00:06:21,550
+Y luego tenemos «alfa» multiplicado
+
+185
+00:06:21,860 --> 00:06:22,910
+por 1 de 400, «alfa» multiplicado por 1
+
+186
+00:06:23,350 --> 00:06:24,690
+de 100, y esto es
+
+187
+00:06:25,020 --> 00:06:27,020
+exactamente equivalente al
+
+188
+00:06:27,140 --> 00:06:29,390
+algoritmo de gradiente de descenso por lotes, sólo
+
+189
+00:06:29,910 --> 00:06:30,880
+que en lugar de tener que sumar
+
+190
+00:06:31,290 --> 00:06:32,540
+sobre todos los cuatrocientos ejemplos de
+
+191
+00:06:32,810 --> 00:06:33,900
+entrenamiento en una sola máquina,
+
+192
+00:06:34,040 --> 00:06:35,280
+podemos
+
+193
+00:06:35,760 --> 00:06:37,460
+dividir la carga de trabajo en cuatro máquinas.
+
+194
+00:06:39,090 --> 00:06:40,190
+Así que aquí está la imagen general
+
+195
+00:06:40,630 --> 00:06:43,410
+de cómo se ve la técnica de MapReduce.
+
+196
+00:06:45,060 --> 00:06:46,510
+Tenemos algunos conjuntos de entrenamiento, y
+
+197
+00:06:46,670 --> 00:06:48,200
+si queremos paralelizar a través de cuatro
+
+198
+00:06:48,420 --> 00:06:49,100
+máquinas, vamos a tomar
+
+199
+00:06:49,170 --> 00:06:51,670
+el conjunto de entrenamiento y lo vamos a dividir, ya saben, por igual,
+
+200
+00:06:52,120 --> 00:06:54,640
+dividirlo tan uniformemente como sea posible en cuatro subgrupos.
+
+201
+00:06:56,470 --> 00:06:57,110
+Después, vamos a tomar los
+
+202
+00:06:57,180 --> 00:06:59,560
+4 subconjuntos de los datos de entrenamiento y a enviarlos a 4 computadoras diferentes.
+
+203
+00:07:00,530 --> 00:07:01,660
+Y cada una de las 4 computadoras
+
+204
+00:07:02,130 --> 00:07:03,570
+puede calcular una suma sobre
+
+205
+00:07:03,950 --> 00:07:04,850
+sólo un cuarto del
+
+206
+00:07:04,910 --> 00:07:06,230
+conjunto de aprendizaje y luego,
+
+207
+00:07:06,340 --> 00:07:07,720
+finalmente, cada una de las
+
+208
+00:07:07,780 --> 00:07:09,310
+computadoras toma los resultados, los envía
+
+209
+00:07:09,580 --> 00:07:12,720
+a un servidor centralizado, que entonces combina los resultados juntos.
+
+210
+00:07:13,570 --> 00:07:14,900
+Así que en la línea anterior
+
+211
+00:07:15,190 --> 00:07:16,540
+en ese ejemplo, el grueso
+
+212
+00:07:16,800 --> 00:07:17,910
+del trabajo en el gradiente de descenso
+
+213
+00:07:18,330 --> 00:07:20,140
+fue calcular la suma de
+
+214
+00:07:20,430 --> 00:07:22,270
+«i» es igual a 1 a 400 de algo.
+
+215
+00:07:22,670 --> 00:07:24,110
+Así, de manera más general, la suma de
+
+216
+00:07:24,370 --> 00:07:25,570
+«i» igual a 1 hasta «m»
+
+217
+00:07:26,320 --> 00:07:28,180
+de esa fórmula para el gradiente de descenso.
+
+218
+00:07:29,160 --> 00:07:30,430
+Y ahora, debido a que cada una
+
+219
+00:07:30,550 --> 00:07:31,890
+de las cuatro computadoras puede hacer sólo
+
+220
+00:07:32,190 --> 00:07:33,800
+una cuarta parte del trabajo, potencialmente
+
+221
+00:07:34,350 --> 00:07:35,940
+pueden conseguir hasta un aceleramiento de hasta 4x.
+
+222
+00:07:38,820 --> 00:07:39,980
+En particular, si no existieran
+
+223
+00:07:40,190 --> 00:07:41,900
+latencias de la red y
+
+224
+00:07:42,100 --> 00:07:42,970
+ningún costo de las comunicaciones
+
+225
+00:07:43,400 --> 00:07:44,450
+de la red para enviar los
+
+226
+00:07:44,600 --> 00:07:45,450
+datos de ida y vuelta, podrían
+
+227
+00:07:45,610 --> 00:07:47,820
+conseguir potencialmente un aceleramiento de hasta 4x.
+
+228
+00:07:48,050 --> 00:07:49,410
+Por supuesto, en la práctica,
+
+229
+00:07:50,100 --> 00:07:52,080
+debido a las latencias de la red,
+
+230
+00:07:52,810 --> 00:07:54,500
+la sobrecarga por combinar los
+
+231
+00:07:54,600 --> 00:07:55,880
+resultados después y otros factores,
+
+232
+00:07:56,640 --> 00:07:59,150
+en la práctica obtienen un aceleramiento de poco menos de 4x.
+
+233
+00:08:00,140 --> 00:08:01,280
+Pero, sin embargo, este tipo
+
+234
+00:08:01,360 --> 00:08:02,710
+de enfoque de MapReduce nos ofrece
+
+235
+00:08:03,110 --> 00:08:04,560
+una manera para procesar conjuntos
+
+236
+00:08:04,870 --> 00:08:05,940
+de datos mucho más grandes
+
+237
+00:08:06,270 --> 00:08:07,550
+de lo que es posible utilizando una sola computadora,
+
+238
+00:08:08,770 --> 00:08:10,060
+si están pensando en aplicar
+
+239
+00:08:10,730 --> 00:08:12,200
+el MapReduce a algunos algoritmos
+
+240
+00:08:12,350 --> 00:08:14,260
+de aprendizaje, a fin de acelerar este proceso
+
+241
+00:08:14,750 --> 00:08:16,160
+por medio de paralelizar el cálculo
+
+242
+00:08:16,900 --> 00:08:18,480
+sobre diferentes computadoras, la pregunta
+
+243
+00:08:18,730 --> 00:08:20,040
+clave que deben hacerse es,
+
+244
+00:08:20,760 --> 00:08:22,190
+¿puede su algoritmo de aprendizaje
+
+245
+00:08:22,880 --> 00:08:25,150
+expresarse como una suma sobre el conjunto de entrenamiento?
+
+246
+00:08:25,440 --> 00:08:26,430
+Y resulta que muchos
+
+247
+00:08:26,670 --> 00:08:28,100
+algoritmos de aprendizaje se pueden
+
+248
+00:08:28,410 --> 00:08:29,880
+expresar en realidad como el cálculo de sumas de
+
+249
+00:08:30,170 --> 00:08:31,820
+funciones sobre el conjunto de entrenamiento y
+
+250
+00:08:32,610 --> 00:08:34,030
+el costo computacional de ejecutarlas
+
+251
+00:08:34,250 --> 00:08:35,480
+en grandes conjuntos de datos es
+
+252
+00:08:35,600 --> 00:08:37,810
+porque tienen que sumar sobre un conjunto de entrenamiento muy grande.
+
+253
+00:08:38,620 --> 00:08:39,870
+De modo que, siempre que su algoritmo de aprendizaje
+
+254
+00:08:40,200 --> 00:08:41,350
+se pueda expresar como una
+
+255
+00:08:41,450 --> 00:08:42,410
+suma sobre el conjunto de entrenamiento,
+
+256
+00:08:42,660 --> 00:08:43,760
+y siempre que el grueso del
+
+257
+00:08:43,860 --> 00:08:44,810
+trabajo del algoritmo de aprendizaje
+
+258
+00:08:45,200 --> 00:08:46,170
+se pueda expresar como la suma
+
+259
+00:08:46,320 --> 00:08:47,780
+del conjunto de entrenamiento, entonces
+
+260
+00:08:48,030 --> 00:08:49,030
+MapReduce puede ser un buen candidato
+
+261
+00:08:50,100 --> 00:08:52,830
+para ampliar sus algoritmos de aprendizaje a través de conjuntos de datos muy grandes.
+
+262
+00:08:53,880 --> 00:08:54,910
+Veamos un ejemplo más.
+
+263
+00:08:56,020 --> 00:08:58,120
+Digamos que queremos usar uno de los algoritmos de optimización avanzada.
+
+264
+00:08:58,410 --> 00:08:59,430
+Asi que cosas como
+
+265
+00:08:59,550 --> 00:09:00,460
+LBFGS, la constante
+
+266
+00:09:00,900 --> 00:09:02,960
+gradiente, etcétera.
+
+267
+00:09:03,070 --> 00:09:05,190
+Y digamos que queremos entrenar un algoritmo de aprendizaje de regresión logística.
+
+268
+00:09:06,080 --> 00:09:08,680
+Para eso, tenemos que calcular dos cantidades principales.
+
+269
+00:09:09,300 --> 00:09:10,460
+Una es para los algoritmos
+
+270
+00:09:10,960 --> 00:09:13,520
+de optimización avanzada como, ya saben, LBFGS y el gradiente constante.
+
+271
+00:09:14,310 --> 00:09:15,270
+Tenemos que proporcionarle
+
+272
+00:09:15,530 --> 00:09:17,210
+una rutina para calcular la
+
+273
+00:09:17,460 --> 00:09:18,760
+función de costos del objetivo de optimización,
+
+274
+00:09:20,220 --> 00:09:21,690
+así que para la regresión logística, recuerdan
+
+275
+00:09:21,820 --> 00:09:22,870
+que una función de costos
+
+276
+00:09:23,660 --> 00:09:24,700
+tiene esta especie de suma sobre
+
+277
+00:09:24,960 --> 00:09:26,340
+el conjunto de entrenamiento, así que
+
+278
+00:09:26,970 --> 00:09:28,980
+si están paralelizando sobre
+
+279
+00:09:29,110 --> 00:09:29,970
+diez máquinas, dividirían
+
+280
+00:09:30,310 --> 00:09:31,640
+el conjunto de entrenamiento en diez
+
+281
+00:09:31,910 --> 00:09:33,150
+máquinas y hacen que cada una
+
+282
+00:09:33,360 --> 00:09:35,380
+de las diez máquinas calcule la suma
+
+283
+00:09:35,860 --> 00:09:37,460
+de esta cantidad sobre sólo
+
+284
+00:09:37,760 --> 00:09:38,660
+un décimo de los datos
+
+285
+00:09:40,370 --> 00:09:40,370
+dimensiones.
+
+286
+00:09:40,670 --> 00:09:41,550
+Entonces, algo más que necesita
+
+287
+00:09:42,110 --> 00:09:43,400
+el algoritmo de optimización avanzada
+
+288
+00:09:43,660 --> 00:09:44,790
+es una rutina para calcular estos
+
+289
+00:09:45,190 --> 00:09:47,160
+términos derivados parciales.
+
+290
+00:09:47,280 --> 00:09:48,980
+Una vez más, estos términos derivados, para
+
+291
+00:09:49,100 --> 00:09:50,350
+la regresión logística, se pueden
+
+292
+00:09:50,540 --> 00:09:51,840
+expresar como una suma sobre
+
+293
+00:09:52,010 --> 00:09:53,130
+el conjunto de entrenamiento, así que
+
+294
+00:09:53,330 --> 00:09:54,600
+una vez más, similar a nuestro ejemplo
+
+295
+00:09:54,950 --> 00:09:56,060
+anterior, harían que
+
+296
+00:09:56,520 --> 00:09:57,800
+cada máquina calculara esa suma
+
+297
+00:09:58,800 --> 00:10:01,170
+sobre solamente una  pequeña fracción de sus datos de entrenamiento.
+
+298
+00:10:02,440 --> 00:10:04,590
+Y, por último, después de haber calculado
+
+299
+00:10:05,050 --> 00:10:06,260
+todas estas cosas,  podrían
+
+300
+00:10:06,400 --> 00:10:07,520
+entonces enviar sus resultados a
+
+301
+00:10:07,680 --> 00:10:09,400
+un servidor centralizado, que puede
+
+302
+00:10:09,640 --> 00:10:12,760
+entonces sumar las sumas parciales.
+
+303
+00:10:13,320 --> 00:10:14,410
+Esto corresponde a sumar
+
+304
+00:10:14,500 --> 00:10:17,000
+esas variables temp «i» o
+
+305
+00:10:17,550 --> 00:10:21,880
+temp «ij», que
+
+306
+00:10:22,100 --> 00:10:23,610
+se calcularon localmente en la máquina
+
+307
+00:10:23,980 --> 00:10:25,390
+número i, y así
+
+308
+00:10:25,420 --> 00:10:26,800
+el servidor centralizado  puede sumar
+
+309
+00:10:27,050 --> 00:10:28,220
+estas cosas y obtener
+
+310
+00:10:28,450 --> 00:10:30,230
+la función de costos general
+
+311
+00:10:30,870 --> 00:10:32,750
+y obtener la derivada parcial general,
+
+312
+00:10:33,390 --> 00:10:35,710
+la cual pueden pasar entonces a través del algoritmo de optimización avanzada.
+
+313
+00:10:36,890 --> 00:10:38,100
+Así que, en general, al tomar
+
+314
+00:10:39,080 --> 00:10:40,790
+otros algoritmos de aprendizaje y
+
+315
+00:10:41,020 --> 00:10:42,430
+expresarlos en una especie de
+
+316
+00:10:42,720 --> 00:10:43,800
+forma sumatoria, o por medio de expresarlos
+
+317
+00:10:44,340 --> 00:10:45,660
+en términos de calcular sumas
+
+318
+00:10:45,990 --> 00:10:47,100
+de funciones sobre el conjunto de entrenamiento,
+
+319
+00:10:47,740 --> 00:10:49,290
+pueden utilizar la técnica de MapReduce para
+
+320
+00:10:49,440 --> 00:10:51,420
+paralelizar otros algoritmos de aprendizaje también,
+
+321
+00:10:51,710 --> 00:10:53,310
+y ampliarlos a grandes conjuntos de entrenamiento.
+
+322
+00:10:54,340 --> 00:10:55,850
+Por último, como un último comentario,
+
+323
+00:10:56,390 --> 00:10:57,170
+hasta ahora hemos estado
+
+324
+00:10:57,510 --> 00:10:59,630
+analizando los algoritmos de MapReduce que
+
+325
+00:10:59,850 --> 00:11:01,400
+les permiten paralelizar sobre
+
+326
+00:11:02,090 --> 00:11:03,630
+varias computadoras, tal vez múltiples
+
+327
+00:11:03,940 --> 00:11:05,020
+computadoras en un clúster de
+
+328
+00:11:05,220 --> 00:11:08,060
+computadoras, o sobre múltiples computadoras en el centro de datos.
+
+329
+00:11:09,150 --> 00:11:10,580
+Resulta que a veces incluso
+
+330
+00:11:10,770 --> 00:11:12,010
+si tienen sólo una computadora,
+
+331
+00:11:13,090 --> 00:11:14,390
+MapReduce también puede ser aplicable.
+
+332
+00:11:15,530 --> 00:11:16,970
+En particular, en muchas computadoras
+
+333
+00:11:17,320 --> 00:11:18,510
+individuales actualmente, pueden tener
+
+334
+00:11:18,780 --> 00:11:20,520
+múltiples núcleos de procesamiento.
+
+335
+00:11:21,170 --> 00:11:21,860
+Puede tener varias CPU,
+
+336
+00:11:22,180 --> 00:11:23,120
+y dentro de cada CPU pueden
+
+337
+00:11:23,240 --> 00:11:26,170
+tener múltiples núcleos de procesamiento.
+
+338
+00:11:26,310 --> 00:11:27,170
+Si tienen un gran conjunto
+
+339
+00:11:27,520 --> 00:11:28,460
+de entrenamiento, lo que pueden
+
+340
+00:11:28,570 --> 00:11:29,540
+hacer si, por ejemplo, tienen
+
+341
+00:11:29,740 --> 00:11:31,520
+una computadora con 4
+
+342
+00:11:31,880 --> 00:11:33,400
+núcleos de procesamiento, lo que
+
+343
+00:11:33,460 --> 00:11:34,390
+pueden hacer es, incluso en una
+
+344
+00:11:34,550 --> 00:11:35,580
+sola computadora, pueden dividir los
+
+345
+00:11:35,760 --> 00:11:37,680
+conjuntos de entrenamiento en pedazos y
+
+346
+00:11:37,810 --> 00:11:39,140
+enviar el conjunto de entrenamiento a diferentes
+
+347
+00:11:39,660 --> 00:11:40,960
+núcleos dentro de una sola caja,
+
+348
+00:11:41,220 --> 00:11:42,570
+como dentro de una sola computadora de escritorio,
+
+349
+00:11:43,240 --> 00:11:45,070
+o un solo servidor, y usar
+
+350
+00:11:45,370 --> 00:11:47,200
+MapReduce de esta forma para dividir la carga de trabajo.
+
+351
+00:11:48,000 --> 00:11:49,010
+Cada uno de los núcleos puede entonces
+
+352
+00:11:49,200 --> 00:11:50,240
+realizar la suma sobre,
+
+353
+00:11:50,950 --> 00:11:52,000
+por decir, un cuarto de
+
+354
+00:11:52,050 --> 00:11:53,440
+su conjunto de entrenamiento y luego
+
+355
+00:11:53,510 --> 00:11:55,090
+puede tomar las sumas parciales y
+
+356
+00:11:55,510 --> 00:11:56,890
+combinarlas a fin de
+
+357
+00:11:57,220 --> 00:11:59,360
+obtener la suma sobre todo el conjunto de entrenamiento.
+
+358
+00:11:59,750 --> 00:12:01,280
+La ventaja de pensar
+
+359
+00:12:01,600 --> 00:12:02,880
+en MapReduce de esta manera, como
+
+360
+00:12:03,350 --> 00:12:04,760
+paralelizando sobre los núcleos dentro de una
+
+361
+00:12:04,900 --> 00:12:06,720
+sola máquina, en lugar de paralelizar sobre
+
+362
+00:12:06,910 --> 00:12:08,480
+múltiples máquinas es que,
+
+363
+00:12:09,060 --> 00:12:09,970
+de esta manera, no tienen que
+
+364
+00:12:10,100 --> 00:12:11,740
+preocuparse por la latencia de la red, ya que
+
+365
+00:12:12,020 --> 00:12:13,380
+toda la comunicación, todo el
+
+366
+00:12:13,460 --> 00:12:14,810
+envío de las variables temp j
+
+367
+00:12:15,890 --> 00:12:18,020
+de ida y vuelta, todo eso sucede dentro de una sola máquina.
+
+368
+00:12:18,420 --> 00:12:20,170
+Y así la latencia de red se convierte
+
+369
+00:12:20,590 --> 00:12:21,530
+en un problema mucho menor, si lo comparan
+
+370
+00:12:21,960 --> 00:12:23,050
+con el hecho de usar esto para paralelizar
+
+371
+00:12:23,540 --> 00:12:26,080
+sobre diferentes ordenadores dentro del centro de datos.
+
+372
+00:12:27,040 --> 00:12:27,930
+Finalmente, un último detalle sobre
+
+373
+00:12:27,990 --> 00:12:30,740
+la paralelización dentro de una máquina con múltiples núcleos.
+
+374
+00:12:31,580 --> 00:12:32,600
+Dependiendo de los detalles
+
+375
+00:12:32,930 --> 00:12:34,290
+de su implementación, si tienen una
+
+376
+00:12:34,610 --> 00:12:35,920
+máquina de múltiples núcleos y si
+
+377
+00:12:36,190 --> 00:12:38,130
+tienen ciertas bibliotecas de álgebra lineal numérica.
+
+378
+00:12:39,350 --> 00:12:40,490
+Resulta que la suma de las bibliotecas de álgebra lineal numérica
+
+379
+00:12:41,490 --> 00:12:43,940
+puede paralelizar automáticamente sus
+
+380
+00:12:44,680 --> 00:12:47,500
+operaciones de álgebra lineal a través de múltiples núcleos dentro de la máquina.
+
+381
+00:12:48,770 --> 00:12:50,140
+Así que si tienen la suerte de
+
+382
+00:12:50,280 --> 00:12:51,300
+usar una de esas bibliotecas de álgebra lineal
+
+383
+00:12:51,710 --> 00:12:52,980
+numérica, y ciertamente
+
+384
+00:12:53,640 --> 00:12:55,120
+esto no aplica a todas y cada una de las bibliotecas,
+
+385
+00:12:55,830 --> 00:12:57,800
+si están usando una de esas bibliotecas y
+
+386
+00:12:58,200 --> 00:13:00,680
+si tienen una muy buena implementación de vectorización del algoritmo de aprendizaje,
+
+387
+00:13:01,720 --> 00:13:02,710
+algunas veces simplemente pueden  implementar
+
+388
+00:13:03,160 --> 00:13:05,060
+su algoritmo estándar de aprendizaje de
+
+389
+00:13:05,150 --> 00:13:06,460
+una forma vectorizada y no
+
+390
+00:13:06,710 --> 00:13:08,630
+preocuparse por la paralelización, y  las bibliotecas de álgebra lineal numérica
+
+391
+00:13:10,030 --> 00:13:12,480
+pueden hacerse cargo de algunos de ellos por ustedes.
+
+392
+00:13:12,620 --> 00:13:14,710
+Así que no necesitan implementar MapReduce pero,
+
+393
+00:13:14,860 --> 00:13:16,570
+para otros problemas de aprendizaje, aprovecharse
+
+394
+00:13:17,180 --> 00:13:18,660
+de este tipo de aplicación reductora de mapas,
+
+395
+00:13:19,240 --> 00:13:20,690
+encontrar y usar estas
+
+396
+00:13:20,880 --> 00:13:22,070
+formulas de MapReduce y
+
+397
+00:13:22,170 --> 00:13:23,410
+paralelizar a través de los núcleos expresamente
+
+398
+00:13:23,890 --> 00:13:24,970
+por sí mismos, podría ser una
+
+399
+00:13:25,070 --> 00:13:27,310
+buena idea también y le podría permitir acelerar su algoritmo de aprendizaje.
+
+400
+00:13:29,860 --> 00:13:31,390
+En este vídeo hablamos acerca
+
+401
+00:13:31,730 --> 00:13:33,650
+del enfoque MapReduce para paralelizar
+
+402
+00:13:34,460 --> 00:13:35,850
+el aprendizaje automático por medio de tomar
+
+403
+00:13:36,070 --> 00:13:37,450
+los datos y extenderlos a través
+
+404
+00:13:37,830 --> 00:13:39,660
+de muchas computadoras en el centro de datos.
+
+405
+00:13:40,160 --> 00:13:41,930
+Aunque estas ideas son
+
+406
+00:13:42,290 --> 00:13:43,970
+aplicables para paralelizar a través de múltiples
+
+407
+00:13:44,290 --> 00:13:45,400
+núcleos dentro de una sola computadora
+
+408
+00:13:46,870 --> 00:13:47,150
+las ventas.
+
+409
+00:13:47,650 --> 00:13:48,600
+Actualmente existen muchas buenas
+
+410
+00:13:49,260 --> 00:13:51,080
+implementaciones de código abierto de MapReduce,
+
+411
+00:13:51,440 --> 00:13:52,210
+así que hay muchos usuarios
+
+412
+00:13:52,710 --> 00:13:54,480
+en el sistema de código abierto llamado
+
+413
+00:13:54,890 --> 00:13:55,820
+Hadoop, y usando ya sea su
+
+414
+00:13:56,010 --> 00:13:57,580
+propia implementación, o usando la implementación
+
+415
+00:13:57,850 --> 00:13:59,770
+de código abierto de alguien más, pueden
+
+416
+00:13:59,920 --> 00:14:01,090
+usar estas ideas para
+
+417
+00:14:01,410 --> 00:14:02,730
+paralelizar los algoritmos de aprendizaje y
+
+418
+00:14:03,540 --> 00:14:04,580
+conseguir que se ejecuten sobre conjuntos
+
+419
+00:14:04,950 --> 00:14:05,980
+de datos mucho más grandes
+
+420
+00:14:06,320 --> 00:14:07,770
+posible utilizando una sola máquina.

@@ -1,0 +1,1070 @@
+1
+00:00:00,180 --> 00:00:02,402
+Saat mengembangkan algoritma belajar,
+
+2
+00:00:02,402 --> 00:00:04,066
+sering kali beberapa plot sederhana
+
+3
+00:00:04,066 --> 00:00:05,279
+memberi tahu Anda
+
+4
+00:00:05,279 --> 00:00:06,593
+kerja dari algoritma
+
+5
+00:00:06,593 --> 00:00:08,423
+tsb untuk mengecek
+
+6
+00:00:08,423 --> 00:00:09,503
+apakah algoritma itu
+
+7
+00:00:09,510 --> 00:00:12,405
+bekerja sebagaimana mestinya.
+
+8
+00:00:12,410 --> 00:00:13,924
+Sebagai contoh, pada video
+
+9
+00:00:13,924 --> 00:00:15,244
+sebelumnya, saya membahas, bagaimana
+
+10
+00:00:15,244 --> 00:00:16,826
+memplot fungsi harga
+
+11
+00:00:16,826 --> 00:00:18,433
+J(theta) bisa menolong Anda
+
+12
+00:00:18,433 --> 00:00:21,383
+memastikan bila gradient descent
+mencapai satu titik.
+
+13
+00:00:21,383 --> 00:00:23,084
+Seringkali, plot-plot data atau semua
+
+14
+00:00:23,084 --> 00:00:24,795
+output algoritma belajar
+
+15
+00:00:24,810 --> 00:00:26,422
+akan memberi Anda ide
+
+16
+00:00:26,422 --> 00:00:29,391
+untuk memperbaiki algoritma belajar
+Anda.
+
+17
+00:00:29,391 --> 00:00:31,312
+Untungnya, Octave punya tool yang
+
+18
+00:00:31,330 --> 00:00:33,045
+sangat sederhana untuk menghasilkan
+banyak
+
+19
+00:00:33,070 --> 00:00:34,534
+plot-plot berbeda dan saat
+
+20
+00:00:34,534 --> 00:00:36,518
+saya menggunakan algoritma belajar,
+saya dapati
+
+21
+00:00:36,518 --> 00:00:38,082
+bahwa memplot data, memplot
+
+22
+00:00:38,082 --> 00:00:40,175
+algoritma belajar dan lain sebagainya,
+
+23
+00:00:40,175 --> 00:00:42,057
+merupakan bagian penting
+
+24
+00:00:42,060 --> 00:00:43,165
+bagaimana saya menemukan
+
+25
+00:00:43,165 --> 00:00:45,937
+ide untuk memperbaiki
+
+26
+00:00:45,980 --> 00:00:47,199
+algoritmanya, dan di video ini,
+
+27
+00:00:47,199 --> 00:00:48,482
+saya akan tunjukkan
+
+28
+00:00:48,482 --> 00:00:52,773
+beberapa tool Octave untuk memplot dan
+memvisualisasi data.
+
+29
+00:00:53,700 --> 00:00:55,301
+Ini jendela Octave saya.
+
+30
+00:00:55,301 --> 00:00:57,471
+Mari buat beberapa data
+
+31
+00:00:57,471 --> 00:00:58,646
+untuk diplot.
+
+32
+00:00:58,646 --> 00:00:59,724
+Saya akan set t
+
+33
+00:00:59,740 --> 00:01:02,181
+sama dengan deretan angka ini.
+
+34
+00:01:02,210 --> 00:01:03,828
+Ini t, kumpulan
+
+35
+00:01:03,828 --> 00:01:06,685
+angka dari 0 hingga 0.98.
+
+36
+00:01:06,700 --> 00:01:09,048
+Mari kita set
+
+37
+00:01:09,060 --> 00:01:11,340
+y1 = sin(2*pi*4*t), dan
+
+38
+00:01:12,540 --> 00:01:16,102
+jika saya ingin memplot fungsi sin tsb,
+itu sangat mudah.
+
+39
+00:01:16,102 --> 00:01:17,918
+Ketik saja plot(t,y1)
+
+40
+00:01:17,918 --> 00:01:20,304
+dan tekan enter.
+
+41
+00:01:20,320 --> 00:01:22,233
+Inilah plotnya
+
+42
+00:01:22,233 --> 00:01:24,270
+dimana sumbu horisontalnya adalah
+
+43
+00:01:24,270 --> 00:01:25,515
+variabel t dan sumbu
+
+44
+00:01:25,515 --> 00:01:26,946
+vertikalnya adalah y1,
+
+45
+00:01:26,960 --> 00:01:30,577
+yaitu fungsi sinusoidal yang baru saja
+dibuat.
+
+46
+00:01:30,990 --> 00:01:32,281
+Mari set
+
+47
+00:01:32,281 --> 00:01:34,401
+y2 = cos(2*pi*4*t)
+
+48
+00:01:34,410 --> 00:01:38,735
+seperti itu.
+
+49
+00:01:38,750 --> 00:01:41,403
+Jika saya plot(t,y2),
+
+50
+00:01:41,403 --> 00:01:43,835
+yang akan Octave
+
+51
+00:01:43,835 --> 00:01:45,045
+lakukan adalah mengambil plot
+
+52
+00:01:45,060 --> 00:01:46,988
+sinusoidal saya, dan
+
+53
+00:01:46,988 --> 00:01:48,681
+menggantinya dengan
+
+54
+00:01:48,690 --> 00:01:51,322
+fungsi cos ini.
+
+55
+00:01:51,330 --> 00:01:53,006
+Sekarang, bagaimana jika saya
+
+56
+00:01:53,010 --> 00:01:54,581
+ingin kedua
+
+57
+00:01:54,610 --> 00:01:56,981
+plot sin dan cos ditampilkan bersama?
+
+58
+00:01:56,990 --> 00:01:59,702
+Yang akan saya lakukan,
+
+59
+00:01:59,702 --> 00:02:01,164
+saya akan ketik plot(t,y1).
+
+60
+00:02:01,164 --> 00:02:03,332
+Ini fungsi sin saya, lalu
+
+61
+00:02:03,332 --> 00:02:06,958
+saya akan menggunakan fungsi 'hold on'.
+
+62
+00:02:06,958 --> 00:02:08,908
+'hold on' mengunci
+
+63
+00:02:08,920 --> 00:02:10,247
+gambar Octave berada
+
+64
+00:02:10,270 --> 00:02:11,490
+di atas
+
+65
+00:02:11,490 --> 00:02:13,772
+jendela Octave, dan
+
+66
+00:02:13,772 --> 00:02:15,249
+sekarang saya plot(t,y2).
+
+67
+00:02:15,249 --> 00:02:19,812
+Saya akan memplotnya dengan warna yang
+berbeda.
+
+68
+00:02:19,850 --> 00:02:22,166
+Jadi, saya tambahkan
+
+69
+00:02:22,180 --> 00:02:24,093
+r dalam tanda petik
+
+70
+00:02:24,093 --> 00:02:25,339
+dan
+
+71
+00:02:25,339 --> 00:02:26,615
+saya akan plot
+
+72
+00:02:26,620 --> 00:02:28,499
+fungsi cos di gambar di atas, dan
+
+73
+00:02:28,499 --> 00:02:32,915
+r menunjukkan warna merah.
+
+74
+00:02:32,915 --> 00:02:35,166
+Ini perintah tambahan,
+
+75
+00:02:35,166 --> 00:02:39,157
+xlabel('time'), untuk menamai sumbu
+horisontal.
+
+76
+00:02:39,160 --> 00:02:41,451
+Dan, ylabel('value'),
+
+77
+00:02:41,451 --> 00:02:44,688
+untuk menamai 'value' sumbu vertikalnya.
+
+78
+00:02:44,688 --> 00:02:47,032
+Saya juga bisa
+
+79
+00:02:54,532 --> 00:02:57,616
+menamai dua garis saya
+
+80
+00:02:57,620 --> 00:03:01,514
+dengan perintah legend('sin', 'cos')
+
+81
+00:03:01,514 --> 00:03:02,860
+dan menempatkannya
+
+82
+00:03:02,890 --> 00:03:04,125
+di kanan atas, menunjukkan apa
+
+83
+00:03:04,125 --> 00:03:05,122
+kedua garis itu.
+
+84
+00:03:05,122 --> 00:03:08,285
+Dan terakhir, title('my plot'),
+
+85
+00:03:08,290 --> 00:03:12,753
+yaitu judul di atas gambar ini.
+
+86
+00:03:12,753 --> 00:03:13,835
+Jika Anda ingin menyimpan
+
+87
+00:03:13,835 --> 00:03:18,197
+gambar ini, ketik print -dpng
+
+88
+00:03:18,197 --> 00:03:20,128
+myPlot
+
+89
+00:03:20,128 --> 00:03:21,505
+.png.
+
+90
+00:03:21,505 --> 00:03:23,292
+png adalah format
+
+91
+00:03:23,292 --> 00:03:25,170
+fail gambar, dan jika Anda
+
+92
+00:03:25,170 --> 00:03:27,612
+lakukan ini, sebuah fail akan tersimpan.
+
+93
+00:03:27,612 --> 00:03:28,902
+Jika saya eksekusi itu,
+
+94
+00:03:28,920 --> 00:03:31,287
+saya ganti direktori dulu,
+
+95
+00:03:31,320 --> 00:03:35,114
+seperti itu,
+
+96
+00:03:35,130 --> 00:03:39,180
+lalu mencetaknya.
+
+97
+00:03:39,230 --> 00:03:41,692
+Ini akan makan waktu,
+
+98
+00:03:41,700 --> 00:03:43,869
+tergantung bagaimana
+
+99
+00:03:43,890 --> 00:03:46,193
+pengaturan konfigurasi Octave Anda,
+
+100
+00:03:46,230 --> 00:03:48,891
+bisa beberapa detik, kecuali mengganti
+
+101
+00:03:48,900 --> 00:03:50,730
+direktori ke desktop saya, dan sekarang
+
+102
+00:03:50,730 --> 00:03:53,943
+Octave perlu beberapa detik untuk
+menyimpannya.
+
+103
+00:03:54,750 --> 00:03:57,635
+Jika saya ke desktop saya,
+
+104
+00:03:57,670 --> 00:03:59,358
+inilah myPlot.png
+
+105
+00:03:59,370 --> 00:04:00,720
+yang disimpan Octave,
+
+106
+00:04:00,740 --> 00:04:03,481
+dan itu gambar yang disimpan sebagai
+fail png.
+
+107
+00:04:03,481 --> 00:04:05,530
+Octave juga bisa menyimpan ribuan format
+lainnya.
+
+108
+00:04:05,530 --> 00:04:07,468
+Anda bisa ketik help plot
+
+109
+00:04:07,468 --> 00:04:09,497
+jika Anda ingin melihat
+
+110
+00:04:09,510 --> 00:04:11,512
+format fail lainnya, selain
+
+111
+00:04:11,530 --> 00:04:13,377
+png, yang bisa digunakan
+
+112
+00:04:13,377 --> 00:04:15,149
+untuk menyimpan gambar.
+
+113
+00:04:15,149 --> 00:04:16,471
+Jika Anda ingin
+
+114
+00:04:16,471 --> 00:04:18,507
+menutup plot itu,
+
+115
+00:04:18,540 --> 00:04:23,867
+gunakan perintah 'close'.
+
+116
+00:04:23,867 --> 00:04:24,963
+Itu gambarnya, jika saya ketik
+
+117
+00:04:24,963 --> 00:04:26,628
+close, gambarnya
+
+118
+00:04:26,628 --> 00:04:30,153
+hilang dari desktop saya.
+
+119
+00:04:30,640 --> 00:04:33,372
+Octave juga membolehkan Anda menentukan
+sebuah gambar dengan angka.
+
+120
+00:04:33,372 --> 00:04:36,935
+Ketik figure(1); plot(t,y1);
+
+121
+00:04:36,935 --> 00:04:39,582
+Itu memulai gambar pertama,
+
+122
+00:04:39,670 --> 00:04:41,959
+dan itu plot t, y1.
+
+123
+00:04:41,970 --> 00:04:45,075
+Lalu, jika Anda ingin gambar kedua, Anda
+tentukan nomor gambar berbeda.
+
+124
+00:04:45,075 --> 00:04:47,765
+Jadi, figure(2); plot(t,y2);
+
+125
+00:04:47,780 --> 00:04:49,924
+seperti itu, dan
+
+126
+00:04:49,924 --> 00:04:53,084
+sekarang di desktop saya, saya punya
+2 gambar.
+
+127
+00:04:53,084 --> 00:04:54,625
+Gambar 1 dan gambar 2.
+
+128
+00:04:54,625 --> 00:04:55,874
+Yang 1 memplot
+
+129
+00:04:55,874 --> 00:04:59,169
+fungsi sin, 1 lagi memplot fungsi cos.
+
+130
+00:04:59,170 --> 00:05:00,498
+Ini 1 perintah cerdik lain yang
+
+131
+00:05:00,498 --> 00:05:02,825
+sering saya gunakan, yaitu perintah
+'subplot'.
+
+132
+00:05:02,825 --> 00:05:05,401
+Kita akan menggunakan subplot(1,2,1).
+
+133
+00:05:05,401 --> 00:05:07,958
+Perintah itu membagi
+
+134
+00:05:07,958 --> 00:05:11,200
+plot ke dalam
+
+135
+00:05:11,780 --> 00:05:13,760
+grid 1x2, itu
+
+136
+00:05:13,820 --> 00:05:16,010
+2 parameter pertama, dan
+
+137
+00:05:16,010 --> 00:05:17,607
+mulai mengakses
+
+138
+00:05:17,620 --> 00:05:19,335
+elemen pertama. Itu
+
+139
+00:05:19,340 --> 00:05:21,714
+parameter 1 terakhir.
+
+140
+00:05:21,714 --> 00:05:23,568
+Jadi, bagi gambar saya ke dalam
+
+141
+00:05:23,568 --> 00:05:24,913
+grid 1x2, dan
+
+142
+00:05:24,913 --> 00:05:26,585
+saya ingin mengakses elemen
+
+143
+00:05:26,585 --> 00:05:27,948
+pertama sekarang.
+
+144
+00:05:27,970 --> 00:05:30,435
+Sehingga, jika saya ketik begitu,
+
+145
+00:05:30,435 --> 00:05:32,722
+gambar ini berada di sebelah kiri.
+
+146
+00:05:32,760 --> 00:05:35,291
+Jika saya plot(t,y1),
+
+147
+00:05:35,350 --> 00:05:37,682
+hasilnya menempati
+
+148
+00:05:37,682 --> 00:05:40,462
+elemen pertama ini.
+
+149
+00:05:40,462 --> 00:05:42,565
+Jika saya ketik subplot(1,2,2),
+
+150
+00:05:42,565 --> 00:05:44,456
+saya akan mulai
+
+151
+00:05:44,456 --> 00:05:48,724
+mengakses elemen kedua. Dan, plot(t,y2)
+
+152
+00:05:49,270 --> 00:05:51,323
+akan menempatkan y2 pada
+
+153
+00:05:51,323 --> 00:05:54,875
+sisi kanan atau pada elemen kedua.
+
+154
+00:05:54,910 --> 00:05:56,114
+Perintah terakhir, Anda bisa
+
+155
+00:05:56,114 --> 00:05:58,165
+juga mengganti skala sumbu
+
+156
+00:05:58,165 --> 00:06:00,308
+dengan axis([0.5 1 -1 1]).
+
+157
+00:06:00,330 --> 00:06:02,892
+Ini
+
+158
+00:06:02,892 --> 00:06:05,071
+mengatur jarak sumbu x
+
+159
+00:06:05,071 --> 00:06:07,448
+dan y untuk
+
+160
+00:06:07,448 --> 00:06:09,874
+gambar di kanan.
+
+161
+00:06:09,890 --> 00:06:12,381
+Itu mengatur nilai sumbu horisontal
+
+162
+00:06:12,381 --> 00:06:13,668
+pada gambar
+
+163
+00:06:13,670 --> 00:06:14,856
+di kanan ini
+
+164
+00:06:14,856 --> 00:06:16,334
+dari 0.5 s/d 1, dan nilai
+
+165
+00:06:16,340 --> 00:06:19,572
+sumbu vertikal dari -1 s/d 1.
+
+166
+00:06:19,572 --> 00:06:21,736
+Anda tidak perlu mengingat semua
+perintah ini.
+
+167
+00:06:21,736 --> 00:06:23,178
+Jika Anda perlu untuk
+
+168
+00:06:23,178 --> 00:06:24,773
+mengganti sumbunya atau
+
+169
+00:06:24,780 --> 00:06:25,703
+ingin tahu tentang itu,
+
+170
+00:06:25,703 --> 00:06:26,628
+ada perintah axis, dan
+
+171
+00:06:26,628 --> 00:06:28,364
+Anda bisa dapat rinciannya
+
+172
+00:06:28,364 --> 00:06:31,590
+dari perintah help Octave.
+
+173
+00:06:31,600 --> 00:06:32,861
+Akhirnya, 2 perintah
+
+174
+00:06:32,861 --> 00:06:35,449
+terakhir, clf, untuk menghapus
+
+175
+00:06:35,450 --> 00:06:38,362
+gambar, dan ada satu lagi trik cantik.
+
+176
+00:06:38,362 --> 00:06:39,772
+Mari set A sama dengan
+
+177
+00:06:39,772 --> 00:06:42,076
+persegi magis 5 x 5.
+
+178
+00:06:42,076 --> 00:06:43,375
+Jadi, A
+
+179
+00:06:43,380 --> 00:06:45,290
+adalah matriks
+
+180
+00:06:45,310 --> 00:06:47,581
+5 x 5. Ada suatu trik
+
+181
+00:06:47,581 --> 00:06:49,341
+cerdik yang kadang saya gunakan
+
+182
+00:06:49,350 --> 00:06:51,582
+untuk memvisualisasi matriks, yaitu
+
+183
+00:06:51,582 --> 00:06:54,792
+imagesc(A)
+
+184
+00:06:54,800 --> 00:06:56,362
+yang akan
+
+185
+00:06:56,370 --> 00:06:58,056
+memplot matriks
+
+186
+00:06:58,056 --> 00:07:03,925
+5 x 5, grid warna 5 x 5.
+
+187
+00:07:03,925 --> 00:07:05,739
+Perbedaan warnanya berkaitan dengan
+
+188
+00:07:05,739 --> 00:07:09,011
+perbedaan nilai dalam matriks A.
+
+189
+00:07:09,060 --> 00:07:13,262
+Saya juga bisa lakukan colorbar.
+
+190
+00:07:13,630 --> 00:07:14,903
+Biar saya gunakan
+
+191
+00:07:14,903 --> 00:07:16,715
+perintah yang lebih baik, imagesc(A),
+
+192
+00:07:16,715 --> 00:07:19,608
+colorbar,
+
+193
+00:07:19,608 --> 00:07:22,454
+colormap gray.
+
+194
+00:07:22,454 --> 00:07:24,757
+Ini menjalankan 3 perintah sekaligus.
+
+195
+00:07:24,760 --> 00:07:26,286
+Saya menjalankan imagesc(A), lalu
+
+196
+00:07:26,286 --> 00:07:28,943
+colorbar, lalu colormap gray.
+
+197
+00:07:28,943 --> 00:07:30,142
+Perintah ini menset
+
+198
+00:07:30,160 --> 00:07:31,355
+peta warna
+
+199
+00:07:31,355 --> 00:07:32,749
+abu-abu, dan
+
+200
+00:07:32,749 --> 00:07:35,333
+menempatkan pita warna di sebelah kanan.
+
+201
+00:07:35,360 --> 00:07:37,525
+Jadi, pita warna ini
+
+202
+00:07:37,550 --> 00:07:40,701
+menunjukkan arti dari perbedaan
+corak warna.
+
+203
+00:07:40,720 --> 00:07:42,704
+Lebih jelasnya, elemen kiri
+
+204
+00:07:42,704 --> 00:07:44,494
+atas matriks A
+
+205
+00:07:44,494 --> 00:07:46,358
+adalah 17, dan itu berkaitan
+
+206
+00:07:46,358 --> 00:07:49,297
+dengan corak abu-abu pada umumnya.
+
+207
+00:07:49,297 --> 00:07:52,012
+Sebaliknya, elemen kedua A
+
+208
+00:07:52,012 --> 00:07:53,210
+elemen
+
+209
+00:07:53,280 --> 00:07:55,640
+baris 1 kolom 2 adalah 24.
+
+210
+00:07:55,640 --> 00:07:57,716
+A(1,2) adalah 24.
+
+211
+00:07:57,716 --> 00:07:59,683
+Itu berkaitan dengan
+
+212
+00:07:59,690 --> 00:08:01,343
+abu-abu di atas ini, yakni
+
+213
+00:08:01,360 --> 00:08:03,677
+hampir bercorak putih.
+
+214
+00:08:03,677 --> 00:08:05,640
+Dan nilai terkecil, katakanlah
+
+215
+00:08:05,690 --> 00:08:08,657
+A(4,5)
+
+216
+00:08:08,657 --> 00:08:12,260
+yaitu nilai 3 ini,
+
+217
+00:08:12,300 --> 00:08:14,346
+yang berkaitan dengan,
+
+218
+00:08:14,360 --> 00:08:15,548
+Anda bisa lihat,
+
+219
+00:08:15,548 --> 00:08:16,618
+itu terkait dengan
+
+220
+00:08:16,618 --> 00:08:19,499
+corak yang jauh lebih gelap dalam
+gambar ini.
+
+221
+00:08:19,499 --> 00:08:21,141
+Ini contoh lainnya.
+
+222
+00:08:21,141 --> 00:08:23,228
+Saya bisa plot
+
+223
+00:08:23,230 --> 00:08:24,768
+magic(15)
+
+224
+00:08:24,770 --> 00:08:26,029
+persegi magis
+
+225
+00:08:26,029 --> 00:08:27,675
+15 x 15, dan
+
+226
+00:08:27,680 --> 00:08:29,504
+ini menghasilkan plot
+
+227
+00:08:29,504 --> 00:08:33,675
+tampilan nilai-nilai persegi magis
+15 x 15.
+
+228
+00:08:33,700 --> 00:08:35,225
+Dan akhirnya, sebagai penutup
+
+229
+00:08:35,225 --> 00:08:37,075
+video ini, apa yang telah
+
+230
+00:08:37,075 --> 00:08:38,318
+Anda lihat di sini,
+
+231
+00:08:38,318 --> 00:08:41,917
+saya menggunakan koma untuk memanggil
+fungsi-fungsi.
+
+232
+00:08:41,940 --> 00:08:43,195
+Ini cara melakukannya.
+
+233
+00:08:43,210 --> 00:08:44,638
+Jika saya ketik
+
+234
+00:08:44,690 --> 00:08:46,613
+a=1, b=2, c=3
+
+235
+00:08:46,613 --> 00:08:48,620
+dan menekan enter, maka
+
+236
+00:08:48,620 --> 00:08:50,628
+ini sebenarnya memanggil
+
+237
+00:08:50,628 --> 00:08:52,039
+3 perintah secara serentak.
+
+238
+00:08:52,040 --> 00:08:53,490
+Atau memanggil
+
+239
+00:08:53,490 --> 00:08:55,849
+3 perintah, satu per satu,
+
+240
+00:08:55,849 --> 00:08:57,521
+dan mencetak ketiga hasilnya.
+
+241
+00:08:57,521 --> 00:08:58,417
+Ini mirip dengan
+
+242
+00:08:58,417 --> 00:09:00,489
+a=1; b=2;
+
+243
+00:09:00,489 --> 00:09:01,755
+c=3; kecuali
+
+244
+00:09:01,755 --> 00:09:03,532
+jika saya gunakan titik koma pengganti
+
+245
+00:09:03,540 --> 00:09:05,854
+koma, hasilnya tidak akan dicetak.
+
+246
+00:09:05,854 --> 00:09:07,195
+Jadi,
+
+247
+00:09:07,210 --> 00:09:08,865
+ini kita sebut
+
+248
+00:09:08,870 --> 00:09:12,185
+rangkaian koma perintah, atau
+rangkaian koma pemanggilan fungsi.
+
+249
+00:09:12,240 --> 00:09:13,755
+Itu hanyalah cara
+
+250
+00:09:13,755 --> 00:09:15,520
+lain dalam Octave untuk
+
+251
+00:09:15,520 --> 00:09:17,778
+menempatkan beberapa perintah seperti
+
+252
+00:09:17,778 --> 00:09:19,358
+imagesc, colorbar, colormap
+
+253
+00:09:19,360 --> 00:09:22,919
+dalam 1 baris.
+
+254
+00:09:22,930 --> 00:09:24,104
+Itu saja.
+
+255
+00:09:24,104 --> 00:09:25,281
+Sekarang Anda tahu cara memplot
+
+256
+00:09:25,281 --> 00:09:27,504
+gambar-gambar berbeda dengan Octave, dan
+
+257
+00:09:27,504 --> 00:09:29,270
+pada video berikut,
+
+258
+00:09:29,280 --> 00:09:30,430
+hal yang ingin
+
+259
+00:09:30,460 --> 00:09:31,985
+saya bahas adalah
+
+260
+00:09:31,985 --> 00:09:33,622
+cara menulis pernyataan kontrol
+
+261
+00:09:33,630 --> 00:09:35,294
+seperti if, while, for,
+
+262
+00:09:35,294 --> 00:09:39,426
+di Octave, juga cara mendefinisikan
+dan menggunakan fungsi-fungsi.

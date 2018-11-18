@@ -1,0 +1,2111 @@
+1
+00:00:00,680 --> 00:00:01,740
+Nesse vídeo, eu gostaria de
+
+2
+00:00:01,900 --> 00:00:02,960
+explicar a base matemática
+
+3
+00:00:03,210 --> 00:00:04,680
+por trás da classificação de margem larga.
+
+4
+00:00:05,960 --> 00:00:08,390
+Este vídeo é opcional, então fique à vontade para pulá-lo,
+
+5
+00:00:09,260 --> 00:00:10,380
+mas ele pode te dar uma idéia
+
+6
+00:00:10,650 --> 00:00:11,980
+melhor de como o problema
+
+7
+00:00:12,460 --> 00:00:13,830
+de otimização da
+
+8
+00:00:13,940 --> 00:00:15,540
+máquina de vetores de suporte, como
+
+9
+00:00:15,860 --> 00:00:17,150
+leva aos classificadores de margem larga.
+
+10
+00:00:21,180 --> 00:00:22,530
+Para começar, vamos
+
+11
+00:00:22,600 --> 00:00:23,730
+relembrar algumas propriedades
+
+12
+00:00:23,970 --> 00:00:26,490
+do produto interno de vetores.
+
+13
+00:00:28,310 --> 00:00:29,280
+Digamos que temos dois vetores
+
+14
+00:00:29,900 --> 00:00:32,180
+u e v, que têm esta forma,
+
+15
+00:00:32,950 --> 00:00:34,180
+ambos vetores de duas dimensões,
+
+16
+00:00:35,460 --> 00:00:36,940
+então qual seria a forma de
+
+17
+00:00:37,440 --> 00:00:39,550
+u transposto v ?
+
+18
+00:00:40,160 --> 00:00:42,180
+E u transposto v também
+
+19
+00:00:42,300 --> 00:00:43,720
+é chamado "produto interno
+
+20
+00:00:44,490 --> 00:00:45,880
+dos vetores u e v".
+
+21
+00:00:48,360 --> 00:00:49,960
+u é um vetor bidimensional, então
+
+22
+00:00:50,380 --> 00:00:51,940
+eu posso desenhá-lo nessa figura.
+
+23
+00:00:52,760 --> 00:00:53,860
+Vamos assumir que
+
+24
+00:00:54,040 --> 00:00:55,850
+esse é o vetor u. E
+
+25
+00:00:55,960 --> 00:00:56,930
+o que eu quero dizer com isso é que
+
+26
+00:00:57,110 --> 00:00:59,160
+se, no eixo horizontal esse
+
+27
+00:00:59,360 --> 00:01:00,820
+valor equivale ao que quer que
+
+28
+00:01:01,560 --> 00:01:03,280
+u1 seja, e no eixo
+
+29
+00:01:03,350 --> 00:01:04,820
+vertical esta altura
+
+30
+00:01:05,100 --> 00:01:06,360
+equivale ao valor representado por u2,
+
+31
+00:01:07,340 --> 00:01:08,530
+o segundo componente
+
+32
+00:01:08,990 --> 00:01:12,580
+do vetor u. Então, seria
+
+33
+00:01:12,860 --> 00:01:13,760
+muito bom saber o valor
+
+34
+00:01:14,040 --> 00:01:15,430
+da norma do vetor u.
+
+35
+00:01:16,500 --> 00:01:17,540
+Entoa, essas 
+
+36
+00:01:17,860 --> 00:01:19,390
+barras duplas à esquerda
+
+37
+00:01:19,540 --> 00:01:20,380
+e à direita de u representam
+
+38
+00:01:20,800 --> 00:01:22,610
+a norma ou comprimento do vetor
+
+39
+00:01:22,730 --> 00:01:23,930
+u. Isso significa simplesmente a
+
+40
+00:01:24,200 --> 00:01:27,330
+distãncia euclideana representada
+
+41
+00:01:27,410 --> 00:01:30,800
+pelo vetor u. E isso,
+
+42
+00:01:31,350 --> 00:01:33,600
+pelo teorema de Pitágoras é 
+
+43
+00:01:33,940 --> 00:01:35,420
+igual a u1 ao quadrado
+
+44
+00:01:35,620 --> 00:01:37,300
+mais u2 quadrado,
+
+45
+00:01:37,530 --> 00:01:40,190
+sob a raiz quadrada, não é ?
+
+46
+00:01:40,300 --> 00:01:42,780
+E isso é o comprimento do vetor U, é um número real.
+
+47
+00:01:43,730 --> 00:01:44,750
+É simplesmente isso, qual o comprimento
+
+48
+00:01:45,080 --> 00:01:46,120
+disso, qual o comprimento
+
+49
+00:01:46,220 --> 00:01:48,900
+desse vetor aqui ?
+
+50
+00:01:49,680 --> 00:01:50,490
+Qual é o comprimento dessa
+
+51
+00:01:50,760 --> 00:01:52,990
+seta que eu acabei de desenhar - é a norma de U.
+
+52
+00:01:56,020 --> 00:01:57,300
+Agora vamos voltar e
+
+53
+00:01:57,450 --> 00:01:59,660
+olhar para o vetor v, porque queremos computar o produto interno.
+
+54
+00:02:00,430 --> 00:02:01,380
+Então, v é algum outro
+
+55
+00:02:01,520 --> 00:02:03,150
+vetor com algum,
+
+56
+00:02:03,310 --> 00:02:06,900
+algum valor v1, v2,
+
+57
+00:02:08,340 --> 00:02:10,490
+Então, o vetor
+
+58
+00:02:10,880 --> 00:02:15,050
+v se parece com isso.
+
+59
+00:02:16,920 --> 00:02:18,260
+Agora, vamos volta e e
+
+60
+00:02:18,640 --> 00:02:19,880
+e ver como computar
+
+61
+00:02:20,400 --> 00:02:21,610
+o produto interno entre u
+
+62
+00:02:21,860 --> 00:02:23,320
+e v. Aqui está como isso é feito.
+
+63
+00:02:24,010 --> 00:02:25,780
+Eu pego o vetor v e
+
+64
+00:02:26,200 --> 00:02:28,440
+o projeto sobre o vetor
+
+65
+00:02:28,550 --> 00:02:29,700
+u. Então, eu faço
+
+66
+00:02:29,930 --> 00:02:31,900
+uma projeção ortogonal, ou
+
+67
+00:02:31,970 --> 00:02:33,700
+uma projeção de 90 graus, sobre
+
+68
+00:02:33,920 --> 00:02:35,490
+o vetor u, assim.
+
+69
+00:02:36,650 --> 00:02:37,410
+E agora eu vou
+
+70
+00:02:38,130 --> 00:02:39,480
+medir o comprimento desta
+
+71
+00:02:40,210 --> 00:02:41,520
+linha vermelha que acabei de desenhar.
+
+72
+00:02:41,720 --> 00:02:42,620
+Então, eu vou chamar esse comprimento da
+
+73
+00:02:42,730 --> 00:02:44,670
+linha vermelha P. Então, P
+
+74
+00:02:45,530 --> 00:02:46,830
+é o comprimento, ou
+
+75
+00:02:46,890 --> 00:02:48,230
+a magnitude da projeção
+
+76
+00:02:49,670 --> 00:02:51,670
+do vetor v sobre o 
+
+77
+00:02:51,790 --> 00:02:54,380
+vetor u. Deixe-me escrever isso aqui.
+
+78
+00:02:54,560 --> 00:02:55,600
+Então P é o comprimento
+
+79
+00:02:57,500 --> 00:03:02,150
+da projeção do
+
+80
+00:03:02,260 --> 00:03:05,800
+vetor v sobre o
+
+81
+00:03:05,920 --> 00:03:08,210
+vetor u. E é 
+
+82
+00:03:08,430 --> 00:03:10,510
+possível mostrar que o produto
+
+83
+00:03:10,790 --> 00:03:12,710
+interno de u transposta vezes v
+
+84
+00:03:12,870 --> 00:03:13,540
+ igual a
+
+85
+00:03:13,840 --> 00:03:16,330
+ P vezes 
+
+86
+00:03:16,430 --> 00:03:18,020
+a norma (ou o comprimento) do
+
+87
+00:03:18,110 --> 00:03:21,130
+vetor u. Então, essa
+
+88
+00:03:21,460 --> 00:03:23,400
+é uma maneira de calcular o produto interno.
+
+89
+00:03:24,070 --> 00:03:25,590
+E se você efetivamente fizer
+
+90
+00:03:25,780 --> 00:03:27,160
+o cálculo geométrico e determinar
+
+91
+00:03:27,330 --> 00:03:29,280
+o valor de P e a norma de u,
+
+92
+00:03:29,900 --> 00:03:30,690
+isso deveria dar no mesmo,
+
+93
+00:03:31,050 --> 00:03:32,330
+chegar à mesma resposta que
+
+94
+00:03:32,680 --> 00:03:33,840
+a outra forma de calcular o produto interno.
+
+95
+00:03:34,860 --> 00:03:34,860
+Certo.
+
+96
+00:03:35,070 --> 00:03:36,140
+Isso significa que, expandindo
+
+97
+00:03:36,280 --> 00:03:38,150
+u transposta vezes v, u transposta
+
+98
+00:03:39,000 --> 00:03:40,930
+[ u1, u2], essa
+
+99
+00:03:41,090 --> 00:03:42,650
+matriz de um por dois,
+
+100
+00:03:43,220 --> 00:03:45,250
+vezes v. Essa operação
+
+101
+00:03:45,620 --> 00:03:46,930
+dá como resultado
+
+102
+00:03:47,490 --> 00:03:50,630
+u1 vezes v1 mais u2 vezes v2.
+
+103
+00:03:51,700 --> 00:03:53,140
+E então o teorema da 
+
+104
+00:03:53,310 --> 00:03:55,010
+álgebra linear diz que essas duas
+
+105
+00:03:55,180 --> 00:03:56,880
+fórmulas dão o mesmo resultado.
+
+106
+00:03:57,890 --> 00:03:58,720
+Aliás, u transposta vezes 
+
+107
+00:03:59,290 --> 00:04:01,010
+também é igual a
+
+108
+00:04:01,320 --> 00:04:03,490
+v transposta vezes u. Então, se
+
+109
+00:04:03,650 --> 00:04:04,510
+fizermos o mesmo processo
+
+110
+00:04:05,050 --> 00:04:06,860
+ao contrário, ao invés
+
+111
+00:04:07,120 --> 00:04:08,130
+de projetar v sobre u, projetarmos
+
+112
+00:04:08,520 --> 00:04:09,940
+u sobre v. Então, ao
+
+113
+00:04:10,160 --> 00:04:12,410
+realizar o mesmo cálculo, mas com u e v invertidos,
+
+114
+00:04:13,170 --> 00:04:14,390
+efetivamente, vamos chegar
+
+115
+00:04:14,710 --> 00:04:16,900
+ao mesmo resultado, qualquer que seja ele.
+
+116
+00:04:17,540 --> 00:04:18,790
+Somente para deixar claro o
+
+117
+00:04:18,990 --> 00:04:20,850
+que está acontecendo nessa equação, a
+
+118
+00:04:21,030 --> 00:04:21,920
+norma de u é um número real, e
+
+119
+00:04:22,100 --> 00:04:25,260
+P também é um número real.
+
+120
+00:04:25,760 --> 00:04:28,720
+Então, u transposta vezes v é
+
+121
+00:04:29,410 --> 00:04:32,350
+a multiplicação simples de dois números reais, o
+
+122
+00:04:33,040 --> 00:04:34,440
+comprimento p vezes a norma de u.
+
+123
+00:04:35,580 --> 00:04:36,960
+Um último detalhe é que
+
+124
+00:04:37,190 --> 00:04:38,240
+se observarmos P,
+
+125
+00:04:38,330 --> 00:04:40,250
+veremos que P tem um sinal, correto ?
+
+126
+00:04:41,350 --> 00:04:43,240
+E esse sinal pode ser positivo ou negativo.
+
+127
+00:04:44,350 --> 00:04:45,530
+O que eu quero dizer com isso
+
+128
+00:04:45,650 --> 00:04:46,740
+é que, se u é
+
+129
+00:04:47,170 --> 00:04:49,360
+um vetor com esse sentido
+
+130
+00:04:49,640 --> 00:04:51,360
+e v um vetor com esse sentido,
+
+131
+00:04:52,380 --> 00:04:53,890
+Então, se o ângulo entre u
+
+132
+00:04:54,130 --> 00:04:55,770
+e v é maior que noventa graus,
+
+133
+00:04:56,620 --> 00:04:57,960
+se projetarmos v sobre
+
+134
+00:04:58,270 --> 00:05:00,220
+u, teremos uma projeção
+
+135
+00:05:00,420 --> 00:05:01,590
+mais ou menos assim,
+
+136
+00:05:01,720 --> 00:05:03,860
+e esse comprimento é P.
+
+137
+00:05:04,110 --> 00:05:05,490
+E nesse caso,
+
+138
+00:05:05,670 --> 00:05:06,900
+ainda temos que
+
+139
+00:05:07,670 --> 00:05:09,510
+u transposta vezes v é
+
+140
+00:05:09,660 --> 00:05:11,720
+igual a P vezes a norma de u.
+
+141
+00:05:11,800 --> 00:05:14,070
+Exceto que, nesse caso,
+
+142
+00:05:14,200 --> 00:05:16,600
+P é negativo.
+
+143
+00:05:19,150 --> 00:05:20,990
+Então, em casos de produtos internos, se o
+
+144
+00:05:21,320 --> 00:05:22,540
+ângulo entre u e v é menor que
+
+145
+00:05:22,790 --> 00:05:23,820
+noventa graus, então P
+
+146
+00:05:24,100 --> 00:05:26,480
+é o valor positivo do comprimento dessa
+
+147
+00:05:27,130 --> 00:05:28,420
+linha vermelha, enquanto que se o
+
+148
+00:05:28,720 --> 00:05:29,640
+ângulo é maior que
+
+149
+00:05:30,000 --> 00:05:31,890
+90 graus, então P
+
+150
+00:05:32,130 --> 00:05:33,880
+é o valor negativo do
+
+151
+00:05:34,130 --> 00:05:37,260
+comprimento desse segmento aqui.
+
+152
+00:05:37,650 --> 00:05:38,750
+Então, o produto interno entre
+
+153
+00:05:38,900 --> 00:05:40,130
+dois vetores pode ser negativo,
+
+154
+00:05:40,820 --> 00:05:42,900
+se o ângulo entre eles for maior que 90 graus.
+
+155
+00:05:43,770 --> 00:05:45,100
+É assim que o produto interno
+
+156
+00:05:45,310 --> 00:05:46,490
+de vetores funciona. Vamos usar
+
+157
+00:05:46,930 --> 00:05:47,960
+estas propriedades do produto
+
+158
+00:05:48,280 --> 00:05:49,610
+interno de vetores para tentar
+
+159
+00:05:49,840 --> 00:05:51,880
+entender o objetivo de
+
+160
+00:05:52,400 --> 00:05:54,490
+otimização da máquina de vetores de suporte.
+
+161
+00:05:54,630 --> 00:05:58,620
+Aqui temos o objetivo de otimização para a
+
+162
+00:05:58,650 --> 00:06:00,900
+máquina de vetores de suporte que usamos anteriormente.
+
+163
+00:06:01,100 --> 00:06:02,070
+Somente durante este slide, eu
+
+164
+00:06:02,120 --> 00:06:04,520
+vou fazer uma simplificação,
+
+165
+00:06:04,910 --> 00:06:08,220
+somente para tornar o objetivo mais
+
+166
+00:06:08,670 --> 00:06:10,110
+fácil de analisar. O que vou fazer é
+
+167
+00:06:10,270 --> 00:06:14,160
+ignorar os termos de interceptação. Então, vamos ignorar θ0, definí-lo como 0.
+
+168
+00:06:16,510 --> 00:06:22,950
+Para facilitar o desenho, também vou definir n, o número de parâmetros, como 2.
+
+169
+00:06:23,980 --> 00:06:24,710
+Então, vamos ter somente 2 parâmetros, x1 e x2.
+
+170
+00:06:26,510 --> 00:06:27,980
+Agora, vamos analisar a função objetivo,
+
+171
+00:06:28,470 --> 00:06:29,910
+o objetivo de otimização da
+
+172
+00:06:30,160 --> 00:06:32,130
+SVM. Quando temos somente dois parâmetros,
+
+173
+00:06:32,630 --> 00:06:33,710
+quando n é igual a 2,
+
+174
+00:06:34,170 --> 00:06:35,340
+ela pode ser escrita como
+
+175
+00:06:36,130 --> 00:06:37,900
+metade de θ1²
+
+176
+00:06:38,040 --> 00:06:40,080
+mais θ2²,
+
+177
+00:06:40,620 --> 00:06:42,870
+porque temos somente dois parâmetros, θ1 e θ2.
+
+178
+00:06:45,240 --> 00:06:46,730
+Eu vou então reescrever essa fórmula,
+
+179
+00:06:46,940 --> 00:06:47,900
+escrevê-la como metade
+
+180
+00:06:48,090 --> 00:06:49,980
+de θ1²
+
+181
+00:06:50,190 --> 00:06:51,860
+mais θ2² e então
+
+182
+00:06:52,050 --> 00:06:54,160
+raiz quadrada ao quadrado.
+
+183
+00:06:54,820 --> 00:06:55,760
+A razão pela qual eu posso fazer isso
+
+184
+00:06:56,100 --> 00:06:58,990
+é que, para qualquer número w, como você sabe, a
+
+185
+00:07:00,830 --> 00:07:02,480
+raiz quadrada de W elevada
+
+186
+00:07:02,570 --> 00:07:03,930
+ao quadrado, isso é simplesmente
+
+187
+00:07:04,080 --> 00:07:05,650
+igual a w. Então, essa raiz quadrada
+
+188
+00:07:05,840 --> 00:07:07,250
+ao quadrado dá no mesmo.
+
+189
+00:07:08,600 --> 00:07:09,500
+Mas você pode reparar que
+
+190
+00:07:09,730 --> 00:07:11,870
+o termo entre parênteses é
+
+191
+00:07:12,290 --> 00:07:13,450
+igual à norma
+
+192
+00:07:14,530 --> 00:07:16,460
+ou o comprimento do
+
+193
+00:07:16,690 --> 00:07:18,250
+vetor Θ, e o que
+
+194
+00:07:18,430 --> 00:07:20,020
+eu quero mostrar é que
+
+195
+00:07:20,200 --> 00:07:21,640
+se representarmos o 
+
+196
+00:07:21,700 --> 00:07:22,590
+vetor Θ assim, como
+
+197
+00:07:23,080 --> 00:07:24,320
+[θ1, θ2],
+
+198
+00:07:25,260 --> 00:07:26,260
+então este termo
+
+199
+00:07:26,690 --> 00:07:28,230
+sublinhado em vermelho é exatamente
+
+200
+00:07:28,640 --> 00:07:30,480
+o comprimento (ou a norma) do vetor Θ,
+
+201
+00:07:30,900 --> 00:07:32,180
+de acordo com a definição de
+
+202
+00:07:32,950 --> 00:07:35,050
+norma do vetor que temos no slide anterior.
+
+203
+00:07:36,140 --> 00:07:37,040
+E de fato isso é igual ao
+
+204
+00:07:37,400 --> 00:07:38,320
+comprimento do vetor Θ,
+
+205
+00:07:38,370 --> 00:07:39,760
+mesmo incluindo
+
+206
+00:07:40,020 --> 00:07:41,620
+θ0 com θ1 e θ2, isso é,
+
+207
+00:07:42,280 --> 00:07:45,230
+se θ0 for igual a zero, como defini aqui.
+
+208
+00:07:45,860 --> 00:07:46,770
+Ou simplesmente o comprimento de
+
+209
+00:07:46,900 --> 00:07:48,680
+[θ1 e θ2]; por agora
+
+210
+00:07:48,830 --> 00:07:50,450
+eu vou ignorar θ0.
+
+211
+00:07:50,940 --> 00:07:52,710
+Então eu vou simplesmente tratar Θ
+
+212
+00:07:53,150 --> 00:07:54,730
+como isso, vou
+
+213
+00:07:54,960 --> 00:07:56,360
+escrever Θ, a norma de
+
+214
+00:07:56,720 --> 00:07:58,480
+Θ como θ1 e θ2 somente
+
+215
+00:07:58,620 --> 00:08:00,180
+mas a matemática
+
+216
+00:08:00,260 --> 00:08:01,220
+funciona de qualquer maneira,
+
+217
+00:08:01,460 --> 00:08:03,790
+incluindo θ0 ou não.
+
+218
+00:08:03,970 --> 00:08:05,870
+Logo, não vai importar para o restante de nossa derivação.
+
+219
+00:08:07,630 --> 00:08:09,120
+Finalmente, isso significa que
+
+220
+00:08:09,390 --> 00:08:11,440
+meu objetivo de otimização é igual
+
+221
+00:08:11,750 --> 00:08:13,100
+a metade da
+
+222
+00:08:13,190 --> 00:08:14,610
+norma de Θ ao quadrado.
+
+223
+00:08:16,190 --> 00:08:17,230
+Então o que a máquina de vetores de suporte
+
+224
+00:08:17,530 --> 00:08:19,010
+está fazendo no objetivo
+
+225
+00:08:19,910 --> 00:08:21,500
+de otimização é minimizando
+
+226
+00:08:21,590 --> 00:08:23,100
+o quadrado da norma do quadrado
+
+227
+00:08:23,470 --> 00:08:24,840
+do comprimento do vetor de parâmetros Θ.
+
+228
+00:08:28,330 --> 00:08:29,160
+Agora vamos analisar
+
+229
+00:08:29,370 --> 00:08:30,790
+estes termos Θ transposto
+
+230
+00:08:31,090 --> 00:08:33,670
+vezes x e entender melhor o que eles representam.
+
+231
+00:08:34,230 --> 00:08:36,600
+Dado o vetor de parâmetros Θ e dado
+
+232
+00:08:36,930 --> 00:08:39,880
+um exemplo x, qual o valor dessa expressão ?
+
+233
+00:08:40,820 --> 00:08:42,120
+E, no slide anterior, nós
+
+234
+00:08:42,230 --> 00:08:44,070
+determinamos o resultado de
+
+235
+00:08:44,870 --> 00:08:45,850
+ u transposta vezes v, para
+
+236
+00:08:46,110 --> 00:08:47,880
+os vetores u e v. Então, vamos
+
+237
+00:08:48,130 --> 00:08:50,340
+usar estas definições, com Θ
+
+238
+00:08:50,980 --> 00:08:52,300
+e x(i) representando
+
+239
+00:08:52,410 --> 00:08:53,310
+os vetores u e v.
+
+240
+00:08:54,400 --> 00:08:57,430
+E ver como fica esse gráfico.
+
+241
+00:08:57,860 --> 00:08:59,160
+Então, vamos desenhar, digamos que eu observe
+
+242
+00:08:59,430 --> 00:09:01,130
+um único exemplo de treinamento. Digamos que eu
+
+243
+00:09:01,230 --> 00:09:03,360
+tenha um exemplo positivo, representado
+
+244
+00:09:03,720 --> 00:09:05,050
+por essa cruz aqui, e digamos que
+
+245
+00:09:05,800 --> 00:09:09,310
+esse é o meu exemplo x(i). O que
+
+246
+00:09:09,500 --> 00:09:10,970
+isso significa é que
+
+247
+00:09:12,100 --> 00:09:13,510
+eu marco no eixo horizontal
+
+248
+00:09:14,450 --> 00:09:16,210
+algum valor x(i)1 e
+
+249
+00:09:17,140 --> 00:09:19,620
+no eixo vertical
+
+250
+00:09:21,240 --> 00:09:22,290
+x(i)2.
+
+251
+00:09:22,650 --> 00:09:24,070
+É assim que se marca cada exemplo de treinamento.
+
+252
+00:09:25,400 --> 00:09:27,160
+E ainda que não estejamos pensando
+
+253
+00:09:27,320 --> 00:09:28,310
+neste ponto como um vetor, é isso
+
+254
+00:09:28,570 --> 00:09:29,600
+que ele realmente é, um
+
+255
+00:09:29,650 --> 00:09:30,910
+vetor da origem,
+
+256
+00:09:31,610 --> 00:09:33,520
+de (0, 0) até
+
+257
+00:09:34,560 --> 00:09:36,210
+a posição deste exemplo de treinamento.
+
+258
+00:09:37,830 --> 00:09:39,460
+Agora digamos que temos
+
+259
+00:09:39,980 --> 00:09:41,850
+um vetor de parâmetros Θ e
+
+260
+00:09:42,080 --> 00:09:43,620
+que vou desenhá-lo
+
+261
+00:09:43,800 --> 00:09:45,720
+como um vetor também. 
+
+262
+00:09:46,390 --> 00:09:48,410
+Ou seja, vou marcar θ1
+
+263
+00:09:49,100 --> 00:09:53,530
+aqui e θ2 ali,
+
+264
+00:09:56,230 --> 00:09:57,050
+Então, qual é o produto
+
+265
+00:09:57,290 --> 00:09:58,940
+interno de Θ transposto vezes x(i) ?
+
+266
+00:09:59,220 --> 00:10:01,240
+Usando nosso método de antes,
+
+267
+00:10:01,990 --> 00:10:03,360
+calculamos esse valor ao
+
+268
+00:10:04,310 --> 00:10:06,170
+tomar este exemplo e
+
+269
+00:10:06,320 --> 00:10:08,710
+projetá-lo sobre o vetor de parâmetros Θ.
+
+270
+00:10:09,830 --> 00:10:10,700
+Então vamos olhar para
+
+271
+00:10:10,950 --> 00:10:13,070
+o comprimento deste segmento
+
+272
+00:10:13,680 --> 00:10:14,660
+que estou colorindo de vermelho.
+
+273
+00:10:15,090 --> 00:10:16,500
+Vou chamá-lo de
+
+274
+00:10:16,670 --> 00:10:19,480
+de p expoente i (p(i))
+
+275
+00:10:20,330 --> 00:10:21,330
+para representar que é uma
+
+276
+00:10:21,610 --> 00:10:22,920
+projeção do i-ésimo exemplo de treinamento
+
+277
+00:10:24,860 --> 00:10:25,540
+sobre o vetor de parâmetros Θ.
+
+278
+00:10:26,900 --> 00:10:28,140
+Então temos que
+
+279
+00:10:28,350 --> 00:10:30,790
+Θ transposto vezes x(i) é
+
+280
+00:10:30,920 --> 00:10:32,830
+igual a, segundo o que
+
+281
+00:10:32,960 --> 00:10:34,210
+determinamos no slide anterior, isso
+
+282
+00:10:34,430 --> 00:10:35,350
+ é igual a
+
+283
+00:10:36,560 --> 00:10:40,000
+P vezes o comprimento
+
+284
+00:10:40,090 --> 00:10:42,090
+da norma do vetor Θ.
+
+285
+00:10:43,410 --> 00:10:44,690
+Que também é igual a
+
+286
+00:10:44,750 --> 00:10:46,660
+θ1 . x1
+
+287
+00:10:47,920 --> 00:10:50,610
+mais θ2 . x2. Então, todas essas
+
+288
+00:10:50,810 --> 00:10:52,360
+são maneiras igualmente
+
+289
+00:10:52,680 --> 00:10:54,080
+válidas de calcular o
+
+290
+00:10:54,180 --> 00:10:56,160
+produto interno entre Θ e x(i).
+
+291
+00:10:57,780 --> 00:10:57,780
+OK.
+
+292
+00:10:58,140 --> 00:10:59,040
+Então, onde chegamos com isso ?
+
+293
+00:10:59,280 --> 00:11:00,770
+Temos então que
+
+294
+00:11:01,020 --> 00:11:02,890
+Θ transposto vezes x(i) é restrito a
+
+295
+00:11:03,130 --> 00:11:05,330
+ser maior ou igual a um ou menor ou igual a menos 1.
+
+296
+00:11:06,110 --> 00:11:06,860
+Isso significa que podemos
+
+297
+00:11:06,970 --> 00:11:07,830
+substituir estas restrições por
+
+298
+00:11:08,610 --> 00:11:12,000
+P(i) vezes norma de Θ.
+
+299
+00:11:12,320 --> 00:11:13,500
+ser maior ou igual a um.
+
+300
+00:11:13,680 --> 00:11:16,280
+Porque Θ transposta vezes x(i) é
+
+301
+00:11:16,400 --> 00:11:19,470
+igual a P(i) vezes a norma de Θ.
+
+302
+00:11:21,250 --> 00:11:23,080
+Então, colocando isso em nosso objetivo de otimização,
+
+303
+00:11:23,910 --> 00:11:24,870
+obtemos essa expressão,
+
+304
+00:11:25,130 --> 00:11:26,290
+Onde, ao invés de
+
+305
+00:11:27,090 --> 00:11:28,400
+Θ transposta vezes x(i), temos
+
+306
+00:11:28,620 --> 00:11:30,920
+esse P(i) vezes a norma de Θ.
+
+307
+00:11:31,970 --> 00:11:32,970
+E lembrando, 
+
+308
+00:11:33,090 --> 00:11:34,240
+determinamos também que
+
+309
+00:11:34,460 --> 00:11:36,310
+o objetivo de otimização pode ser
+
+310
+00:11:36,510 --> 00:11:38,130
+escrito como a metade
+
+311
+00:11:38,500 --> 00:11:39,910
+do quadrado da norma de Θ.
+
+312
+00:11:41,730 --> 00:11:43,490
+Então vamos considerar
+
+313
+00:11:44,210 --> 00:11:45,550
+o exemplo de treinamento que
+
+314
+00:11:45,700 --> 00:11:47,100
+temos abaixo e,
+
+315
+00:11:47,450 --> 00:11:49,620
+por agora, continuar com a simplificação de que
+
+316
+00:11:50,180 --> 00:11:51,340
+θ0 é igual a 0.
+
+317
+00:11:52,030 --> 00:11:54,810
+Vamos ver que fronteira de decisão a máquina de vetores de suporte vai escolher.
+
+318
+00:11:55,860 --> 00:11:57,710
+Aqui está uma alternativa, digamos que
+
+319
+00:11:57,870 --> 00:11:59,190
+a máquina de vetores de suporte escolhesse
+
+320
+00:11:59,340 --> 00:12:01,750
+esta fronteira de decisão.
+
+321
+00:12:02,690 --> 00:12:05,110
+Esta não é uma escolha muito boa, porque ela tem margens muito estreitas.
+
+322
+00:12:05,530 --> 00:12:08,210
+A fronteira de decisão passa muito perto dos exemplos de treinamento.
+
+323
+00:12:09,810 --> 00:12:12,360
+Vamos entender porque a máquina de vetores de suporte não vai fazer isso.
+
+324
+00:12:14,130 --> 00:12:15,420
+Para esta escolha de parâmetros,
+
+325
+00:12:16,410 --> 00:12:18,280
+é possível demostrar que o
+
+326
+00:12:19,030 --> 00:12:21,250
+vetor de parâmetros Θ está efetivamente
+
+327
+00:12:21,760 --> 00:12:23,350
+a 90 graus da fronteira de decisão.
+
+328
+00:12:24,060 --> 00:12:25,440
+Então, esta fronteira de decisão verde
+
+329
+00:12:26,250 --> 00:12:27,550
+corresponde a um vetor de parâmetros Θ
+
+330
+00:12:27,920 --> 00:12:29,650
+apontando nesta direção.
+
+331
+00:12:30,730 --> 00:12:32,280
+Falando nisso, a simplificação de que
+
+332
+00:12:32,510 --> 00:12:34,120
+θ0 é igual a 0,
+
+333
+00:12:34,300 --> 00:12:35,410
+ela só implica que a fronteira de decisão
+
+334
+00:12:35,910 --> 00:12:37,960
+tem que passar pela origem (0, 0) aqui.
+
+335
+00:12:38,330 --> 00:12:40,350
+Então, vamos ver
+
+336
+00:12:40,690 --> 00:12:41,780
+quais as implicações
+
+337
+00:12:41,840 --> 00:12:43,590
+para o objetivo de otimização.
+
+338
+00:12:45,260 --> 00:12:46,420
+Digamos que este exemplo aqui,
+
+339
+00:12:47,460 --> 00:12:48,560
+digamos que este é o primeiro exemplo,
+
+340
+00:12:50,480 --> 00:12:50,650
+x(1).
+
+341
+00:12:51,690 --> 00:12:52,630
+Se calcularmos a projeção
+
+342
+00:12:53,320 --> 00:12:54,870
+deste exemplo sobre os parâmetros θ,
+
+343
+00:12:56,180 --> 00:12:56,520
+essa é a projeção,
+
+344
+00:12:57,660 --> 00:12:59,230
+então este pequeno segmento vermelho,
+
+345
+00:13:00,450 --> 00:13:01,720
+ele é igual a p(1).
+
+346
+00:13:02,380 --> 00:13:04,650
+E ele é bem pequeno, correto ?
+
+347
+00:13:05,860 --> 00:13:08,590
+De forma similar, para este
+
+348
+00:13:09,610 --> 00:13:10,710
+exemplo aqui, se o chamarmos
+
+349
+00:13:11,170 --> 00:13:12,620
+de x(2), esse é o segundo exemplo.
+
+350
+00:13:13,880 --> 00:13:16,620
+Então, ao calcularmos a projeção deste exemplo sobre Θ.
+
+351
+00:13:18,080 --> 00:13:18,170
+Bem,
+
+352
+00:13:18,440 --> 00:13:20,460
+Vou desenhar este em magenta.
+
+353
+00:13:21,600 --> 00:13:23,690
+Este pequeno segumento magenta, este
+
+354
+00:13:24,000 --> 00:13:25,820
+é p(2). Essa é
+
+355
+00:13:26,070 --> 00:13:27,370
+a projeção do segundo exemplo
+
+356
+00:13:27,770 --> 00:13:28,870
+sobre a direção do vetor
+
+357
+00:13:30,100 --> 00:13:32,650
+de parâmetros Θ, que fica deste jeito.
+
+358
+00:13:33,870 --> 00:13:34,250
+Então, este pequeno
+
+359
+00:13:35,270 --> 00:13:35,270
+segmento projetado ficou bem curto mesmo.
+
+360
+00:13:36,850 --> 00:13:38,420
+P(2) é um valor negativo, correto, pois p(2)
+
+361
+00:13:38,560 --> 00:13:42,490
+está na direção oposta a p(1),
+
+362
+00:13:43,710 --> 00:13:45,250
+já que este vetor tem um ângulo
+
+363
+00:13:45,560 --> 00:13:47,130
+de mais de 90 graus com o
+
+364
+00:13:47,270 --> 00:13:48,980
+vetor de parâmetros Θ, então p(2) vai ser menor que 0.
+
+365
+00:13:50,280 --> 00:13:51,580
+O que estamos vendo é que
+
+366
+00:13:51,850 --> 00:13:54,880
+estes termos p(i) são
+
+367
+00:13:55,200 --> 00:13:57,230
+números bem pequenos.
+
+368
+00:13:58,210 --> 00:13:59,080
+Então, se considerarmos
+
+369
+00:13:59,110 --> 00:14:01,650
+o objetivo de otimização vemos que, para exemplos positivos
+
+370
+00:14:02,490 --> 00:14:04,860
+precisamos que p(i) vezes a
+
+371
+00:14:05,220 --> 00:14:07,590
+norma de Θ seja maior ou igual a um.
+
+372
+00:14:08,670 --> 00:14:10,640
+Mas, se p(i),
+
+373
+00:14:10,860 --> 00:14:12,140
+se p(1) é bem pequeno,
+
+374
+00:14:12,770 --> 00:14:14,160
+isso significa que
+
+375
+00:14:14,410 --> 00:14:15,580
+precisamos que a norma de Θ
+
+376
+00:14:15,650 --> 00:14:18,420
+seja bem grande, não ? Se
+
+377
+00:14:19,830 --> 00:14:20,840
+p(1) tende a ser pequeno
+
+378
+00:14:21,790 --> 00:14:23,110
+e queremos que p(1)
+
+379
+00:14:23,410 --> 00:14:24,600
+vezes a norma de Θ seja
+
+380
+00:14:24,920 --> 00:14:25,890
+maior ou igual a um, bem,
+
+381
+00:14:26,400 --> 00:14:27,300
+a única maneira disso ser verdadeiro,
+
+382
+00:14:27,510 --> 00:14:28,440
+do produto destes
+
+383
+00:14:28,650 --> 00:14:29,750
+dois números ser grande
+
+384
+00:14:30,020 --> 00:14:31,120
+se p(1) é pequeno, como
+
+385
+00:14:31,240 --> 00:14:32,980
+dissemos, precisamos que a norma de Θ seja grande.
+
+386
+00:14:34,150 --> 00:14:36,450
+Da mesma forma, para o
+
+387
+00:14:36,650 --> 00:14:38,560
+exemplo negativo, precisamos que p(2)
+
+388
+00:14:39,750 --> 00:14:41,070
+vezes a norma de Θ
+
+389
+00:14:41,350 --> 00:14:44,990
+seja menor ou
+
+390
+00:14:45,160 --> 00:14:46,910
+igual a menos um.
+
+391
+00:14:47,760 --> 00:14:48,540
+E já vimos neste exemplo
+
+392
+00:14:48,710 --> 00:14:50,200
+que p(2) vai ser
+
+393
+00:14:50,260 --> 00:14:51,520
+um número negativo bem pequeno,
+
+394
+00:14:52,040 --> 00:14:53,290
+então a única maneira
+
+395
+00:14:53,420 --> 00:14:54,490
+disso acontecer é
+
+396
+00:14:54,530 --> 00:14:56,730
+a norma de Θ ser
+
+397
+00:14:57,010 --> 00:14:59,630
+grande, mas o que
+
+398
+00:14:59,790 --> 00:15:00,900
+estamos fazendo no objetivo
+
+399
+00:15:01,290 --> 00:15:02,400
+de otimização é tentar 
+
+400
+00:15:02,540 --> 00:15:03,840
+encontrar um conjunto de
+
+401
+00:15:04,170 --> 00:15:05,320
+parâmetros tal que a norma
+
+402
+00:15:05,550 --> 00:15:07,100
+de Θ seja pequena, então,
+
+403
+00:15:07,830 --> 00:15:09,040
+bem, então essa não parece
+
+404
+00:15:09,330 --> 00:15:10,070
+ser uma direção muito boa
+
+405
+00:15:10,610 --> 00:15:14,160
+para o vetor de parâmetros Θ.
+
+406
+00:15:14,450 --> 00:15:15,510
+Em contraste, vamos observar uma fronteira de decisão diferente.
+
+407
+00:15:17,040 --> 00:15:19,500
+Aqui, vamos dizer que a SVM escolha
+
+408
+00:15:20,510 --> 00:15:21,280
+esta fronteira de decisão.
+
+409
+00:15:22,870 --> 00:15:23,980
+A situação aqui é bem diferente.
+
+410
+00:15:24,420 --> 00:15:25,890
+Se essa é a fronteira de decisão,
+
+411
+00:15:26,190 --> 00:15:27,380
+então esta é a 
+
+412
+00:15:27,450 --> 00:15:28,770
+direção correspondente de Θ.
+
+413
+00:15:29,210 --> 00:15:30,920
+Então, com a fronteira de
+
+414
+00:15:31,000 --> 00:15:32,110
+decisão sendo esta, esta
+
+415
+00:15:32,300 --> 00:15:33,560
+linha vertical, ela corresponde a,
+
+416
+00:15:34,470 --> 00:15:35,960
+é possível demonstrar,
+
+417
+00:15:36,190 --> 00:15:37,880
+usando álgebra linear, que
+
+418
+00:15:38,070 --> 00:15:39,140
+a maneira de obter esta fronteira
+
+419
+00:15:39,460 --> 00:15:41,190
+de decisão verde é colocar o vetor Θ
+
+420
+00:15:41,390 --> 00:15:42,620
+a 90 graus dela.
+
+421
+00:15:43,610 --> 00:15:44,470
+E agora, se fizermos
+
+422
+00:15:44,560 --> 00:15:45,570
+as projeções dos
+
+423
+00:15:45,710 --> 00:15:47,540
+dados sobre o vetor
+
+424
+00:15:48,800 --> 00:15:50,010
+horizontal, digamos que,
+
+425
+00:15:50,010 --> 00:15:52,620
+como antes, este exemplo é x(1). Então,
+
+426
+00:15:52,890 --> 00:15:54,600
+quando o projeto sobre o eixo x
+
+427
+00:15:55,410 --> 00:15:59,110
+sobre o vetor Θ, o resultado é este p(1).
+
+428
+00:16:00,650 --> 00:16:02,410
+Este comprimento aqui é p(1)
+
+429
+00:16:03,750 --> 00:16:05,820
+Com outro exemplo, esse
+
+430
+00:16:06,260 --> 00:16:08,620
+exemplo aqui, eu
+
+431
+00:16:08,840 --> 00:16:11,300
+calculo a mesma projeção e
+
+432
+00:16:11,410 --> 00:16:12,580
+o resultado é que este
+
+433
+00:16:12,780 --> 00:16:14,680
+comprimento aqui é
+
+434
+00:16:15,610 --> 00:16:17,880
+p(2), que vai ser negativo.
+
+435
+00:16:18,830 --> 00:16:19,940
+E é fácil de ver que agora
+
+436
+00:16:20,480 --> 00:16:22,490
+p(1) e p(2), estes comprimentos
+
+437
+00:16:23,810 --> 00:16:24,740
+das projeções vão ser
+
+438
+00:16:24,780 --> 00:16:26,800
+bem maiores, e então
+
+439
+00:16:27,440 --> 00:16:28,460
+já que ainda precisamos garantir
+
+440
+00:16:28,890 --> 00:16:30,700
+estas restrições de que p(1)
+
+441
+00:16:30,800 --> 00:16:33,040
+vezes a norma de Θ seja
+
+442
+00:16:33,230 --> 00:16:35,670
+maior que um, como p(1) agora é bem maior
+
+443
+00:16:36,580 --> 00:16:39,110
+a norma de Θ pode ser menor.
+
+444
+00:16:41,960 --> 00:16:43,090
+Então, isso significa que
+
+445
+00:16:43,210 --> 00:16:44,320
+ao escolher a fronteira de
+
+446
+00:16:44,730 --> 00:16:45,760
+decisão à direita
+
+447
+00:16:46,010 --> 00:16:47,610
+ao invés da à esquerda, a
+
+448
+00:16:47,850 --> 00:16:49,000
+SVM pode fazer  a
+
+449
+00:16:49,080 --> 00:16:50,560
+norma do parâmetro Θ
+
+450
+00:16:50,840 --> 00:16:52,420
+ser bem menor. E se podemos
+
+451
+00:16:52,550 --> 00:16:54,080
+diminuir a norma de Θ, vamos
+
+452
+00:16:54,260 --> 00:16:55,140
+por conseqüência fazer o quadrado
+
+453
+00:16:55,590 --> 00:16:57,080
+da norma de Θ menor, que é
+
+454
+00:16:57,210 --> 00:16:58,130
+a razão da SVM escolher
+
+455
+00:16:58,710 --> 00:17:00,920
+esta hipótese à direita ao invés da outra.
+
+456
+00:17:02,800 --> 00:17:04,260
+E é assim que
+
+457
+00:17:05,580 --> 00:17:07,160
+a SVM dá origem
+
+458
+00:17:07,500 --> 00:17:09,550
+ao efeito de classificação de margem larga.
+
+459
+00:17:10,700 --> 00:17:11,620
+Basicamente, se observarmos
+
+460
+00:17:11,820 --> 00:17:13,250
+esta linha verde, se olharmos para
+
+461
+00:17:13,490 --> 00:17:14,990
+esta hipótese verde, queremos que
+
+462
+00:17:15,070 --> 00:17:16,250
+as projeções dos exemplos
+
+463
+00:17:17,190 --> 00:17:18,780
+positivos e negativos sobre Θ sejam grandes, e
+
+464
+00:17:19,200 --> 00:17:20,360
+a única maneira disso ser
+
+465
+00:17:20,710 --> 00:17:23,490
+verdadeiro é se, em volta da linha verde
+
+466
+00:17:24,950 --> 00:17:27,710
+há uma margem bem larga,
+
+467
+00:17:27,880 --> 00:17:31,460
+um espaço largo separando
+
+468
+00:17:33,970 --> 00:17:37,240
+os exemplos positivos e negativos; isso é
+
+469
+00:17:38,020 --> 00:17:40,740
+a magnitude deste espaço,
+
+470
+00:17:41,080 --> 00:17:42,050
+a magnitude dessa margem, 
+
+471
+00:17:43,040 --> 00:17:44,900
+exatamente os valores de
+
+472
+00:17:45,060 --> 00:17:47,730
+p(1), p(2), p(3) e assim por diante.
+
+473
+00:17:47,890 --> 00:17:48,970
+Então, ao alargar esta
+
+474
+00:17:49,480 --> 00:17:51,270
+margem, ao aumentar estes termos
+
+475
+00:17:51,470 --> 00:17:53,650
+p(1), p(2), p(3), etc., a
+
+476
+00:17:53,830 --> 00:17:55,520
+SVM pode conseguir definir
+
+477
+00:17:55,670 --> 00:17:56,860
+um valor menor para
+
+478
+00:17:56,960 --> 00:17:59,450
+a norma de Θ, que é o que ela está buscando com o objetivo.
+
+479
+00:18:00,250 --> 00:18:01,290
+E é por isso que a máquina de
+
+480
+00:18:01,960 --> 00:18:03,300
+vetores de suporte acaba com classificadores
+
+481
+00:18:03,790 --> 00:18:05,510
+de margem larga, porque ela está
+
+482
+00:18:05,640 --> 00:18:07,570
+tentando maximizar a norma
+
+483
+00:18:07,720 --> 00:18:08,910
+destes parâmetros p(i), que é a distância
+
+484
+00:18:09,060 --> 00:18:10,450
+dos exemplos de treinamento para a fronteira de decisão.
+
+485
+00:18:14,360 --> 00:18:16,450
+Para finalizar, fizemos toda esta derivação
+
+486
+00:18:17,200 --> 00:18:18,590
+usando a simplificação de que
+
+487
+00:18:18,750 --> 00:18:21,150
+o parâmetro θ0 é igual a 0.
+
+488
+00:18:21,860 --> 00:18:23,440
+O efeito disso, como falei
+
+489
+00:18:23,560 --> 00:18:25,380
+de passagem anteriormente, é que se
+
+490
+00:18:25,540 --> 00:18:26,560
+θ0 é igual a 0,
+
+491
+00:18:26,830 --> 00:18:28,280
+isso significa que estamos
+
+492
+00:18:28,460 --> 00:18:29,770
+considerando somente fronteiras
+
+493
+00:18:30,200 --> 00:18:31,510
+de decisão que passam pela
+
+494
+00:18:31,750 --> 00:18:33,640
+origem, fronteiras de decisão que passam através
+
+495
+00:18:33,800 --> 00:18:35,510
+da origem, como estas. Se permitirmos
+
+496
+00:18:35,710 --> 00:18:37,980
+que θ0 seja diferente
+
+497
+00:18:38,080 --> 00:18:39,540
+de 0, podemos considerar
+
+498
+00:18:39,870 --> 00:18:41,190
+avaliar casos em que
+
+499
+00:18:41,380 --> 00:18:43,120
+a fronteira de decisão não
+
+500
+00:18:43,390 --> 00:18:45,730
+passa pela origem, como esse que acabei de desenhar.
+
+501
+00:18:46,380 --> 00:18:47,940
+Não vou demonstrar
+
+502
+00:18:48,010 --> 00:18:49,540
+toda a derivaçãio disso.
+
+503
+00:18:49,650 --> 00:18:50,600
+O que acontece é que esta mesma
+
+504
+00:18:51,060 --> 00:18:52,720
+prova da margem larga funciona
+
+505
+00:18:52,780 --> 00:18:54,240
+praticamente da mesma maneira.
+
+506
+00:18:54,390 --> 00:18:56,100
+E existe uma generalização deste
+
+507
+00:18:56,850 --> 00:18:57,830
+argumento que acabamos de derivar
+
+508
+00:18:58,030 --> 00:18:59,400
+não vou detalhar aqui, mas ela mostra
+
+509
+00:18:59,870 --> 00:19:01,540
+que mesmo quando θ0
+
+510
+00:19:01,840 --> 00:19:03,690
+é diferente de 0, a
+
+511
+00:19:03,960 --> 00:19:06,940
+SVM está tentando com este objetivo de otimização
+
+512
+00:19:08,200 --> 00:19:09,620
+(que corresponde ao caso em que
+
+513
+00:19:09,720 --> 00:19:11,570
+C é muito grande)
+
+514
+00:19:14,010 --> 00:19:15,110
+é possível demonstrar que
+
+515
+00:19:15,290 --> 00:19:16,510
+quando θ0 
+
+516
+00:19:16,810 --> 00:19:18,420
+não é igual a 0 a
+
+517
+00:19:18,620 --> 00:19:19,750
+mãquina de vetores de suporte ainda está
+
+518
+00:19:20,100 --> 00:19:21,360
+buscando, está de fato tentando
+
+519
+00:19:21,640 --> 00:19:22,650
+buscar o separador de margem
+
+520
+00:19:23,040 --> 00:19:24,060
+larga entre os exemplos positivos
+
+521
+00:19:24,630 --> 00:19:28,200
+e negativos. Isso explica
+
+522
+00:19:28,420 --> 00:19:31,060
+como a máquina de vetores de suporte é um classificador de margem larga.
+
+523
+00:19:32,920 --> 00:19:34,020
+No próximo vídeo vamos
+
+524
+00:19:34,190 --> 00:19:35,080
+começar a falar sobre
+
+525
+00:19:35,400 --> 00:19:36,480
+como tomar algumas destas idéias 
+
+526
+00:19:36,710 --> 00:19:37,980
+de SVM e começar a
+
+527
+00:19:38,190 --> 00:19:39,200
+aplicá-las para construir classificadores
+
+528
+00:19:39,900 --> 00:19:41,370
+não lineares complexos.

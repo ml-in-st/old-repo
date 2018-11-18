@@ -1,0 +1,972 @@
+1
+00:00:00,080 --> 00:00:01,060
+En el siguiente grupo de
+
+2
+00:00:01,180 --> 00:00:01,970
+vídeos, me gustaría
+
+3
+00:00:02,300 --> 00:00:03,700
+hablarles acerca de los sistemas de recomendación.
+
+4
+00:00:04,730 --> 00:00:05,810
+Hay dos razones que tuve,
+
+5
+00:00:05,940 --> 00:00:08,590
+dos motivaciones, por las que quería hablarles de los sistemas de recomendación.
+
+6
+00:00:09,640 --> 00:00:10,670
+La primera es que simplemente
+
+7
+00:00:10,830 --> 00:00:13,830
+es una aplicación importante del aprendizaje automático.
+
+8
+00:00:14,160 --> 00:00:15,680
+En los últimos años, en algunas ocasiones
+
+9
+00:00:15,810 --> 00:00:16,840
+he visitado distintas empresas
+
+10
+00:00:17,510 --> 00:00:18,720
+de tecnología aquí en Silicon Valley
+
+11
+00:00:18,820 --> 00:00:20,040
+y a menudo platico con personas
+
+12
+00:00:20,390 --> 00:00:21,270
+que trabajan en las aplicaciones del aprendizaje automático allí,
+
+13
+00:00:21,370 --> 00:00:23,010
+y les he preguntado
+
+14
+00:00:23,200 --> 00:00:24,120
+cuáles son las aplicaciones
+
+15
+00:00:24,260 --> 00:00:26,840
+de aprendizaje automático más importantes
+
+16
+00:00:27,450 --> 00:00:28,530
+de las cuales desearían
+
+17
+00:00:28,550 --> 00:00:29,520
+que se mejorara
+
+18
+00:00:29,790 --> 00:00:31,130
+su desempeño.
+
+19
+00:00:31,890 --> 00:00:32,690
+Y una de las respuestas que recibo con mayor
+
+20
+00:00:33,020 --> 00:00:34,240
+frecuencia es que
+
+21
+00:00:34,590 --> 00:00:35,710
+existen muchos grupos en la actualidad en Silicon
+
+22
+00:00:36,020 --> 00:00:38,250
+Valley, intentando construir mejores sistemas de recomendación.
+
+23
+00:00:39,570 --> 00:00:40,460
+Así es que si piensan en lo
+
+24
+00:00:40,800 --> 00:00:42,390
+que los sitios web
+
+25
+00:00:42,540 --> 00:00:44,100
+como Amazon, o lo que Netflix
+
+26
+00:00:44,840 --> 00:00:46,100
+o lo que eBay, o lo que
+
+27
+00:00:46,830 --> 00:00:48,230
+iTunes Genius, fabricado por Apple
+
+28
+00:00:48,480 --> 00:00:49,450
+hacen, hay muchos sitios web
+
+29
+00:00:50,050 --> 00:00:51,520
+o sistemas que tratan de
+
+30
+00:00:51,670 --> 00:00:53,140
+recomendar nuevos productos para utilizar.
+
+31
+00:00:53,360 --> 00:00:54,380
+Así, Amazon les recomienda libros nuevos
+
+32
+00:00:54,630 --> 00:00:55,840
+Netflix trata de recomendarles
+
+33
+00:00:56,230 --> 00:00:58,090
+películas nuevas, y así sucesivamente.
+
+34
+00:00:58,430 --> 00:00:59,560
+Y este tipo de sistemas de recomendación,
+
+35
+00:01:00,130 --> 00:01:01,480
+que observan qué libros
+
+36
+00:01:01,560 --> 00:01:02,430
+han comprado en el pasado,
+
+37
+00:01:02,890 --> 00:01:03,820
+o cuáles películas han clasificado
+
+38
+00:01:04,010 --> 00:01:05,100
+en el pasado, pero estos también son
+
+39
+00:01:05,140 --> 00:01:06,390
+los sistemas que son responsables
+
+40
+00:01:07,470 --> 00:01:09,410
+por hoy, una fracción sustancial de
+
+41
+00:01:09,620 --> 00:01:10,630
+los ingresos de Amazon y por una
+
+42
+00:01:10,710 --> 00:01:12,520
+empresa como Netflix, las recomendaciones
+
+43
+00:01:13,950 --> 00:01:14,710
+que le hacen a los usuarios
+
+44
+00:01:15,180 --> 00:01:16,610
+es responsable también por una
+
+45
+00:01:16,830 --> 00:01:18,250
+fracción sustancial de las películas
+
+46
+00:01:18,520 --> 00:01:20,700
+que ven sus usuarios. 
+De manera que una
+
+47
+00:01:20,780 --> 00:01:22,410
+mejora en el desempeño de
+
+48
+00:01:22,520 --> 00:01:24,070
+un sistema de recomendación puede tener
+
+49
+00:01:24,680 --> 00:01:26,340
+un impacto sustancial e inmediato
+
+50
+00:01:26,880 --> 00:01:28,010
+en la parte fundamental de
+
+51
+00:01:28,370 --> 00:01:31,380
+muchas de estas
+
+52
+00:01:31,710 --> 00:01:32,660
+empresas. Los sistemas de recomendación son un problema
+
+53
+00:01:32,870 --> 00:01:34,530
+un tanto gracioso dentro del aprendizaje
+
+54
+00:01:34,870 --> 00:01:35,890
+automático académico de manera que podríamos
+
+55
+00:01:35,980 --> 00:01:37,230
+asistir a una conferencia de aprendizaje automático académico,
+
+56
+00:01:38,430 --> 00:01:39,950
+el problema de los sistemas de recomendación,
+
+57
+00:01:40,190 --> 00:01:41,560
+recibe en realidad relativamente poca atención,
+
+58
+00:01:42,430 --> 00:01:43,680
+o por lo menos en una fracción menor a lo
+
+59
+00:01:43,960 --> 00:01:46,200
+que sucede dentro del mundo académico.
+
+60
+00:01:47,140 --> 00:01:48,010
+Pero si observan lo que está pasando,
+
+61
+00:01:48,570 --> 00:01:50,200
+muchas empresas de tecnología, la capacidad para
+
+62
+00:01:50,700 --> 00:01:53,500
+construir estos sistemas parece ser una gran prioridad para muchas empresas.
+
+63
+00:01:54,430 --> 00:01:56,460
+Y esa es una de las razones por las que quiero hablar de ellos en esta clase.
+
+64
+00:01:58,280 --> 00:01:59,420
+La segunda razón por la que
+
+65
+00:01:59,520 --> 00:02:00,570
+deseo hablarles acerca de los sistemas de recomendación
+
+66
+00:02:01,170 --> 00:02:02,460
+es que a medida que nos acercamos a
+
+67
+00:02:02,910 --> 00:02:04,080
+los últimos conjuntos de vídeos
+
+68
+00:02:05,120 --> 00:02:06,300
+de esta clase, quiero hablar acerca de
+
+69
+00:02:06,700 --> 00:02:07,740
+algunas de las grandes ideas
+
+70
+00:02:08,410 --> 00:02:09,410
+en el aprendizaje automático y compartir con ustedes,
+
+71
+00:02:09,510 --> 00:02:11,560
+ya saben, algunas de las grandes ideas en el aprendizaje automático.
+
+72
+00:02:12,400 --> 00:02:13,840
+Y ya hemos visto
+
+73
+00:02:14,070 --> 00:02:15,870
+en esta clase que las variables son
+
+74
+00:02:15,990 --> 00:02:17,000
+importantes para el aprendizaje automático, las
+
+75
+00:02:17,640 --> 00:02:19,170
+variables que elijan tendrán
+
+76
+00:02:19,400 --> 00:02:22,340
+un gran efecto en el desempeño de su algoritmo de aprendizaje.
+
+77
+00:02:23,290 --> 00:02:24,320
+Entonces existe esta gran idea en aprendizaje
+
+78
+00:02:24,620 --> 00:02:25,890
+automático, que para
+
+79
+00:02:25,990 --> 00:02:27,630
+algunos problemas, tal vez no para
+
+80
+00:02:27,790 --> 00:02:29,690
+todos los problemas, sino para algunos problemas,
+
+81
+00:02:29,910 --> 00:02:31,610
+hay algoritmos que pueden intentar
+
+82
+00:02:31,950 --> 00:02:34,860
+aprender de forma automática un buen conjunto de variables por ti.
+
+83
+00:02:35,210 --> 00:02:35,970
+Entonces, en lugar de intentar diseñar
+
+84
+00:02:36,660 --> 00:02:37,840
+a mano o de codificar a mano las
+
+85
+00:02:38,100 --> 00:02:39,120
+variables, que es lo que hemos estado
+
+86
+00:02:39,340 --> 00:02:40,350
+haciendo hasta ahora, existen
+
+87
+00:02:40,430 --> 00:02:41,790
+algunas configuraciones en las que uno podría
+
+88
+00:02:42,050 --> 00:02:42,650
+tener un
+
+89
+00:02:42,770 --> 00:02:43,780
+algoritmo, sólo para aprender qué variable
+
+90
+00:02:43,920 --> 00:02:45,200
+usar y los sistemas de recomendación
+
+91
+00:02:45,580 --> 00:02:47,690
+son solo un ejemplo de ese tipo de escenario.
+
+92
+00:02:47,880 --> 00:02:49,250
+Existen muchos otros, pero grabados
+
+93
+00:02:49,690 --> 00:02:51,150
+a través de sistemas de recomendación,
+
+94
+00:02:51,320 --> 00:02:52,770
+se podrá ir un poco más dentro de
+
+95
+00:02:53,090 --> 00:02:54,380
+esta idea de aprender
+
+96
+00:02:54,710 --> 00:02:56,450
+las variables y podrán
+
+97
+00:02:56,540 --> 00:02:57,320
+ver al menos un ejemplo
+
+98
+00:02:58,170 --> 00:03:00,120
+de esta, creo yo, gran idea del aprendizaje automático también.
+
+99
+00:03:01,220 --> 00:03:02,800
+Así que, sin más preámbulos, vamos a
+
+100
+00:03:02,990 --> 00:03:04,220
+empezar y hablaremos
+
+101
+00:03:04,400 --> 00:03:06,120
+de la formulación del problema del sistema de recomendación.
+
+102
+00:03:08,110 --> 00:03:09,690
+Como mi ejemplo de ejecución, voy a
+
+103
+00:03:09,870 --> 00:03:11,210
+utilizar el
+
+104
+00:03:11,390 --> 00:03:13,230
+problema moderno de la predicción de las clasificaciones de películas.
+
+105
+00:03:14,150 --> 00:03:14,640
+Por lo tanto, aquí tenemos un problema.
+
+106
+00:03:15,100 --> 00:03:16,520
+Imaginen que son un
+
+107
+00:03:16,660 --> 00:03:18,140
+sitio web o una empresa que
+
+108
+00:03:18,910 --> 00:03:21,340
+vende o alquila películas o lo que sea.
+
+109
+00:03:21,560 --> 00:03:22,880
+Así es que, ya saben, Amazon y Netflix, y
+
+110
+00:03:23,610 --> 00:03:24,930
+creo que iTunes, son ejemplos
+
+111
+00:03:26,540 --> 00:03:28,180
+de empresas que hacen esto,
+
+112
+00:03:28,750 --> 00:03:30,450
+y digamos que permiten
+
+113
+00:03:30,930 --> 00:03:32,610
+que sus usuarios califiquen diferentes películas
+
+114
+00:03:33,560 --> 00:03:34,130
+utilizando una calificación de 1 a 5 estrellas.
+
+115
+00:03:34,560 --> 00:03:36,300
+De modo que los usuarios pueden, ya saben,
+
+116
+00:03:36,400 --> 00:03:39,070
+usar una, dos, tres, cuatro o cinco estrellas
+
+117
+00:03:40,420 --> 00:03:41,440
+Con el fin de hacer que este ejemplo sea
+
+118
+00:03:41,980 --> 00:03:43,170
+sólo un poco más agradable, voy
+
+119
+00:03:43,360 --> 00:03:44,860
+a permitir el 0 hasta
+
+120
+00:03:45,180 --> 00:03:46,720
+5 estrellas también
+
+121
+00:03:47,300 --> 00:03:49,170
+porque eso hace que algunos de los cálculos sean más agradables,
+
+122
+00:03:49,360 --> 00:03:51,580
+aunque la mayoría de estos sitios web utilizan la escala de 1 a 5 estrellas.
+
+123
+00:03:53,000 --> 00:03:54,520
+Así que aquí tengo 5 películas.
+
+124
+00:03:55,110 --> 00:03:56,600
+Love at Last,
+
+125
+00:03:56,710 --> 00:03:58,050
+Romance Forever, Cute puppies of
+
+126
+00:03:58,160 --> 00:04:00,230
+love, Nonstop car chases,
+
+127
+00:04:01,040 --> 00:04:03,340
+y Swords vs. Karate.
+
+128
+00:04:03,550 --> 00:04:04,380
+Y tenemos 4 usuarios, que
+
+129
+00:04:05,020 --> 00:04:06,190
+vamos a llamar Alice, Bob, Carol
+
+130
+00:04:06,410 --> 00:04:07,610
+y Dave, con las iniciales A, B,
+
+131
+00:04:07,690 --> 00:04:09,790
+C y D; los llamaremos  usuarios 1, 2, 3 y 4.
+
+132
+00:04:10,390 --> 00:04:11,940
+Así que, digamos que a Alice realmente
+
+133
+00:04:12,190 --> 00:04:13,360
+le gustó Love at last y
+
+134
+00:04:13,460 --> 00:04:15,680
+la califica con 5 estrellas; le gustó Romance
+
+135
+00:04:16,070 --> 00:04:17,220
+Forever y la califica con 5 estrellas.
+
+136
+00:04:18,060 --> 00:04:19,050
+No vio Cute puppies
+
+137
+00:04:19,370 --> 00:04:20,810
+of love y no la calificó, así es que
+
+138
+00:04:20,950 --> 00:04:22,190
+no tenemos una calificación para esa,
+
+139
+00:04:23,120 --> 00:04:24,400
+y a Alice realmente no
+
+140
+00:04:24,590 --> 00:04:27,170
+le gustó Nonstop car chases ni
+
+141
+00:04:27,240 --> 00:04:29,330
+Swords vs Karate. Y un usuario diferente,
+
+142
+00:04:29,720 --> 00:04:31,390
+Bob, el usuario dos, tal vez calificó
+
+143
+00:04:31,630 --> 00:04:32,680
+un conjunto diferente de películas, tal vez
+
+144
+00:04:32,850 --> 00:04:33,580
+a él le gustó Love at last,
+
+145
+00:04:34,300 --> 00:04:35,520
+no vio Romance forever,
+
+146
+00:04:36,130 --> 00:04:37,960
+sólo tiene una calificación de 4, un 0,
+
+147
+00:04:38,360 --> 00:04:42,530
+un 0; y tal vez nuestro tercer usuario
+
+148
+00:04:43,170 --> 00:04:44,280
+califica esta con 0, no vio
+
+149
+00:04:44,550 --> 00:04:45,610
+esa, 0, 5, 5, y, ya saben, vamos a
+
+150
+00:04:45,980 --> 00:04:48,150
+llenar algunos de los números.
+
+151
+00:04:52,150 --> 00:04:53,910
+De modo que, sólo para introducir un
+
+152
+00:04:53,970 --> 00:04:55,090
+poco de notación, esta notación
+
+153
+00:04:55,600 --> 00:04:57,200
+que usaremos a lo largo del cálculo, voya usar
+
+154
+00:04:57,400 --> 00:04:59,650
+nu para denotar el número de usuarios.
+
+155
+00:05:00,260 --> 00:05:02,800
+Así, en este ejemplo, nu será igual a 4.
+
+156
+00:05:03,550 --> 00:05:04,750
+De manera que subíndice u significa
+
+157
+00:05:05,040 --> 00:05:07,290
+los usuarios y nm
+
+158
+00:05:07,770 --> 00:05:08,900
+lo voy a usar para denotar el número
+
+159
+00:05:09,090 --> 00:05:11,210
+de películas, así es que aquí tengo cinco películas,
+
+160
+00:05:11,610 --> 00:05:12,960
+de modo que nm es igual a 5.
+
+161
+00:05:13,320 --> 00:05:15,320
+Y para este ejemplo, tengo
+
+162
+00:05:15,950 --> 00:05:17,640
+aproximadamente
+
+163
+00:05:18,920 --> 00:05:20,440
+3, tal vez películas románticas o
+
+164
+00:05:20,700 --> 00:05:24,020
+películas de comedia romántica y 2
+
+165
+00:05:24,260 --> 00:05:25,750
+películas de acción y si
+
+166
+00:05:25,960 --> 00:05:27,460
+observan este pequeño ejemplo, parece
+
+167
+00:05:27,580 --> 00:05:29,430
+que Alice y Bob están
+
+168
+00:05:29,550 --> 00:05:31,360
+dando calificaciones altas a estas
+
+169
+00:05:32,170 --> 00:05:33,650
+comedias o películas románticas
+
+170
+00:05:33,960 --> 00:05:34,850
+sobre el amor, y le dan calificaciones muy
+
+171
+00:05:35,140 --> 00:05:36,790
+bajas a las películas sobre acción,
+
+172
+00:05:37,060 --> 00:05:39,470
+y para Carol y Dave, es todo lo contrario, ¿cierto?
+
+173
+00:05:39,620 --> 00:05:40,800
+A Carol y David, los usuarios tres
+
+174
+00:05:41,010 --> 00:05:42,170
+y cuatro, realmente les gustan
+
+175
+00:05:42,350 --> 00:05:43,390
+las películas de acción y les dan
+
+176
+00:05:43,490 --> 00:05:45,020
+calificaciones altas, pero no les gustan
+
+177
+00:05:45,510 --> 00:05:46,910
+las películas sobre romance y amor
+
+178
+00:05:47,060 --> 00:05:48,440
+tanto.
+
+179
+00:05:50,330 --> 00:05:51,720
+Específicamente, en el problema del sistema de recomendación
+
+180
+00:05:52,120 --> 00:05:54,170
+se nos dan los siguientes datos.
+
+181
+00:05:54,700 --> 00:05:56,230
+Nuestros datos comprende lo siguiente:
+
+182
+00:05:56,390 --> 00:05:58,780
+tenemos estos valores r(i, j), y
+
+183
+00:05:58,910 --> 00:06:00,080
+r(i, j) es 1 si el usuario
+
+184
+00:06:00,350 --> 00:06:01,580
+j ha calificado película i.
+
+185
+00:06:01,950 --> 00:06:02,920
+Así que nuestros usuarios calificaron sólo
+
+186
+00:06:03,180 --> 00:06:04,200
+algunas de las películas así es que,
+
+187
+00:06:04,820 --> 00:06:06,050
+ya saben, no tenemos
+
+188
+00:06:06,190 --> 00:06:08,140
+calificaciones para esas películas.
+
+189
+00:06:08,310 --> 00:06:09,890
+Y siempre que r(i, j) sea igual
+
+190
+00:06:10,450 --> 00:06:11,790
+a 1, siempre que el usuario j haya
+
+191
+00:06:11,980 --> 00:06:13,150
+calificado la película i, también
+
+192
+00:06:13,660 --> 00:06:15,310
+obtenemos este número y(i, j),
+
+193
+00:06:16,090 --> 00:06:17,520
+que es la calificación otorgada por
+
+194
+00:06:17,740 --> 00:06:18,870
+el usuario j a la película i. De modo
+
+195
+00:06:19,030 --> 00:06:20,370
+que y(i, j) sería
+
+196
+00:06:20,540 --> 00:06:22,890
+un número de cero a
+
+197
+00:06:23,090 --> 00:06:24,360
+cinco, dependiendo de la calificación con estrellas,
+
+198
+00:06:24,790 --> 00:06:25,810
+de cero a cinco
+
+199
+00:06:26,160 --> 00:06:28,470
+estrellas que el usuario dio a esa película en particular.
+
+200
+00:06:30,240 --> 00:06:31,700
+De modo que el problema del sistema de recomendación es,
+
+201
+00:06:32,200 --> 00:06:33,540
+dados estos datos
+
+202
+00:06:33,900 --> 00:06:35,210
+que son estos conjuntos de datos r(i, j)
+
+203
+00:06:35,440 --> 00:06:38,540
+y los y(i, j), observar
+
+204
+00:06:38,820 --> 00:06:40,150
+todos los datos y
+
+205
+00:06:40,320 --> 00:06:41,700
+ver todas las calificaciones de las películas
+
+206
+00:06:41,860 --> 00:06:42,940
+faltantes y tratar
+
+207
+00:06:43,220 --> 00:06:44,590
+de predecir cuáles deberían ser los valores
+
+208
+00:06:45,110 --> 00:06:47,290
+para los signos de interrogación.
+
+209
+00:06:47,520 --> 00:06:48,710
+En este ejemplo particular, tengo
+
+210
+00:06:48,840 --> 00:06:49,920
+un número muy reducido de películas
+
+211
+00:06:50,210 --> 00:06:51,250
+y un número muy reducido de usuarios,
+
+212
+00:06:51,620 --> 00:06:52,790
+así es que la mayoría de los usuarios han calificado la mayoría
+
+213
+00:06:53,020 --> 00:06:53,820
+de las películas pero en  escenarios reales,
+
+214
+00:06:54,190 --> 00:06:55,870
+sus usuarios, cada uno
+
+215
+00:06:56,040 --> 00:06:57,120
+de sus usuarios podrían haber calificado
+
+216
+00:06:57,600 --> 00:06:58,940
+sólo una fracción minúscula de sus
+
+217
+00:06:59,200 --> 00:07:00,170
+películas; pero al observar estos
+
+218
+00:07:00,310 --> 00:07:01,430
+datos, si a Alice y Bob
+
+219
+00:07:01,730 --> 00:07:02,990
+les gustan las películas románticas
+
+220
+00:07:03,740 --> 00:07:05,810
+tal vez pensemos que Alice le habría dado un cinco a esta.
+
+221
+00:07:06,160 --> 00:07:07,290
+Tal vez pensamos que Bob le daría
+
+222
+00:07:07,430 --> 00:07:08,570
+a esta un 4.5
+
+223
+00:07:08,750 --> 00:07:10,560
+o algún valor alto, así como
+
+224
+00:07:10,690 --> 00:07:11,710
+pensaríamos que quizás Carol y Dave
+
+225
+00:07:12,590 --> 00:07:15,050
+darían estas calificaciones muy bajas.
+
+226
+00:07:15,610 --> 00:07:16,520
+Y Dave, bueno, si a Dave realmente le gustan las películas de acción,
+
+227
+00:07:16,740 --> 00:07:17,790
+tal vez le habría dado
+
+228
+00:07:18,490 --> 00:07:19,540
+a Swords y Karate una calificación de 4
+
+229
+00:07:20,020 --> 00:07:22,080
+o tal vez una calificación de 5, ¿cierto?
+
+230
+00:07:22,590 --> 00:07:23,700
+De manera que nuestro trabajo al desarrollar
+
+231
+00:07:24,330 --> 00:07:25,950
+un sistema de recomendación es
+
+232
+00:07:26,460 --> 00:07:28,120
+proponer un algoritmo de aprendizaje
+
+233
+00:07:28,360 --> 00:07:29,440
+que pueda, de forma automática,
+
+234
+00:07:30,380 --> 00:07:31,490
+llenar esos valores faltantes
+
+235
+00:07:31,880 --> 00:07:33,260
+por nosotros para que podamos
+
+236
+00:07:33,390 --> 00:07:34,380
+ver, por ejemplo, las
+
+237
+00:07:34,490 --> 00:07:35,630
+películas que el usuario no haya
+
+238
+00:07:35,870 --> 00:07:37,370
+visto aún y recomendar
+
+239
+00:07:38,230 --> 00:07:39,570
+nuevas películas a ese usuario para que las vea.
+
+240
+00:07:39,860 --> 00:07:42,500
+Ustedes intentan predecir qué otra cosa podría ser interesante para un usuario.
+
+241
+00:07:45,210 --> 00:07:47,890
+Así que ese es el formalismo del problema en el sistema de recomendación.
+
+242
+00:07:49,290 --> 00:07:50,450
+En el siguiente vídeo empezaremos
+
+243
+00:07:50,770 --> 00:07:53,360
+a desarrollar un algoritmo de aprendizaje para abordar este problema.

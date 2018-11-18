@@ -1,0 +1,1715 @@
+1
+00:00:00,090 --> 00:00:01,140
+Dans les précédentes vidéos, j'ai répété plusieurs fois que, lorsque
+
+2
+00:00:01,260 --> 00:00:02,510
+Dans les précédentes vidéos, j'ai répété plusieurs fois que, lorsque
+
+3
+00:00:02,650 --> 00:00:03,980
+vous développez un système d'apprentissage automatique, l'une des plus importante ressource est
+
+4
+00:00:04,770 --> 00:00:06,630
+vous développez un système d'apprentissage automatique, l'une des plus importante ressource est
+
+5
+00:00:06,810 --> 00:00:08,050
+votre temps en tant que développeur afin de choisir sur quoi travailler ensuite.
+
+6
+00:00:08,490 --> 00:00:09,820
+votre temps en tant que développeur afin de choisir sur quoi travailler ensuite.
+
+7
+00:00:09,950 --> 00:00:11,520
+votre temps en tant que développeur afin de choisir sur quoi travailler ensuite.
+
+8
+00:00:11,950 --> 00:00:12,710
+Ou bien alors,  vous avez une équipe de développeurs ou une équipe d'ingénieurs qui travaillent ensemble
+
+9
+00:00:13,300 --> 00:00:14,610
+Ou bien alors,  vous avez une équipe de développeurs ou une équipe d'ingénieurs qui travaillent ensemble
+
+10
+00:00:15,090 --> 00:00:16,620
+sur un système d'apprentissage automatique, là encore l'une des ressources les plus importante est
+
+11
+00:00:16,930 --> 00:00:18,420
+sur un système d'apprentissage automatique, là encore l'une des ressources les plus importante est
+
+12
+00:00:18,990 --> 00:00:20,790
+le temps que les ingénieurs ou les développeurs passerons sur le système.
+
+13
+00:00:22,420 --> 00:00:23,340
+Et ce que vous voulez vraiment éviter, est que vous ou vos collègues ou vos amis passent
+
+14
+00:00:23,430 --> 00:00:25,340
+Et ce que vous voulez vraiment éviter, est que vous ou vos collègues ou vos amis passent
+
+15
+00:00:25,360 --> 00:00:26,410
+Et ce que vous voulez vraiment éviter, est que vous ou vos collègues ou vos amis passent
+
+16
+00:00:26,680 --> 00:00:27,560
+beaucoup de temps à travailler sur des composants, afin de réaliser
+
+17
+00:00:27,970 --> 00:00:29,510
+beaucoup de temps à travailler sur des composants, afin de réaliser
+
+18
+00:00:30,470 --> 00:00:31,540
+après quelques semaines ou quelques mois de temps passé, que tout ce
+
+19
+00:00:31,620 --> 00:00:33,070
+après quelques semaines ou quelques mois de temps passé, que tout ce
+
+20
+00:00:33,310 --> 00:00:35,090
+travail, ne fait simplement pas une grosse différence sur la performance du système final.
+
+21
+00:00:35,380 --> 00:00:38,120
+travail, ne fait simplement pas une grosse différence sur la performance du système final.
+
+22
+00:00:39,350 --> 00:00:40,430
+Dans cette vidéo, ce que j'aimerai faire est de parler de quelque chose nommé "ceiling analysis" (analyse plafond ?).
+
+23
+00:00:40,550 --> 00:00:42,960
+Dans cette vidéo, ce que j'aimerai faire est de parler de quelque chose nommé "ceiling analysis" (analyse plafond ?).
+
+24
+00:00:44,510 --> 00:00:45,760
+Ensuite vous ou votre équipe travaillerez sur un système d'apprentissage automatique
+
+25
+00:00:46,280 --> 00:00:47,270
+Ensuite vous ou votre équipe travaillerez sur un système d'apprentissage automatique
+
+26
+00:00:47,520 --> 00:00:48,860
+de pipeline, cela peut parfois vous donner un très important signal, une très bonne
+
+27
+00:00:49,020 --> 00:00:50,380
+de pipeline, cela peut parfois vous donner un très important signal, une très bonne
+
+28
+00:00:50,630 --> 00:00:51,650
+de pipeline, cela peut parfois vous donner un très important signal, une très bonne
+
+29
+00:00:52,340 --> 00:00:53,730
+orientation, sur quelle parties du pipeline, vous devriez travailler le plus de temps.
+
+30
+00:00:54,150 --> 00:00:56,550
+orientation, sur quelle parties du pipeline, vous devriez travailler le plus de temps.
+
+31
+00:00:59,740 --> 00:01:01,700
+Pour parler de ceiling analysys (l'analyse plafond ?), je vais continuer à utiliser l'exemple de la photo
+
+32
+00:01:01,860 --> 00:01:03,140
+Pour parler de ceiling analysys (l'analyse plafond ?), je vais continuer à utiliser l'exemple de la photo
+
+33
+00:01:03,690 --> 00:01:04,910
+Pour parler de ceiling analysys (l'analyse plafond ?), je vais continuer à utiliser l'exemple de la photo
+
+34
+00:01:05,640 --> 00:01:06,870
+Pipeline de l'OCR et j'ai précisé plus tôt que chacune de ces boîtes de détection de texte, de segmentation de caractère
+
+35
+00:01:07,170 --> 00:01:08,270
+Pipeline de l'OCR et j'ai précisé plus tôt que chacune de ces boîtes de détection de texte, de segmentation de caractère
+
+36
+00:01:08,480 --> 00:01:09,900
+Pipeline de l'OCR et j'ai précisé plus tôt que chacune de ces boîtes de détection de texte, de segmentation de caractère
+
+37
+00:01:10,200 --> 00:01:12,140
+de reconnaissance de caractères, chacune de ces boîtes peut avoir même un petit travail d'équipe ingénierie à faire
+
+38
+00:01:12,310 --> 00:01:13,730
+de reconnaissance de caractères, chacune de ces boîtes peut avoir même un petit travail d'équipe ingénierie à faire
+
+39
+00:01:14,100 --> 00:01:15,550
+de reconnaissance de caractères, chacune de ces boîtes peut avoir même un petit travail d'équipe ingénierie à faire
+
+40
+00:01:15,920 --> 00:01:17,370
+ou peut-être le système tout entier est juste construit par vous, de toute façon, mais la question est, où vous devez allouer des ressources ?
+
+41
+00:01:17,690 --> 00:01:18,640
+ou peut-être le système tout entier est juste construit par vous, de toute façon, mais la question est, où vous devez allouer des ressources ?
+
+42
+00:01:18,800 --> 00:01:19,700
+ou peut-être le système tout entier est juste construit par vous, de toute façon, mais la question est, où vous devez allouer des ressources ?
+
+43
+00:01:19,960 --> 00:01:22,340
+ou peut-être le système tout entier est juste construit par vous, de toute façon, mais la question est, où vous devez allouer des ressources ?
+
+44
+00:01:22,730 --> 00:01:24,250
+Laquelle de ces boîtes doit mériter vos efforts, afin d'en améliorer la performance.
+
+45
+00:01:24,430 --> 00:01:26,630
+Laquelle de ces boîtes doit mériter vos efforts, afin d'en améliorer la performance.
+
+46
+00:01:26,920 --> 00:01:28,260
+Laquelle de ces boîtes doit mériter vos efforts, afin d'en améliorer la performance.
+
+47
+00:01:29,070 --> 00:01:30,350
+Afin d'expliquer l'idée de l'analyse de plafond, je vais pour continuer à utiliser l'exemple de notre pipeline photo OCR.
+
+48
+00:01:30,840 --> 00:01:32,560
+Afin d'expliquer l'idée de l'analyse de plafond, je vais pour continuer à utiliser l'exemple de notre pipeline photo OCR.
+
+49
+00:01:32,730 --> 00:01:35,690
+Afin d'expliquer l'idée de l'analyse de plafond, je vais pour continuer à utiliser l'exemple de notre pipeline photo OCR.
+
+50
+00:01:37,000 --> 00:01:38,320
+Comme je l'ai mentionné plus tôt, chacune de ces boîtes, chacun de ces composants d'apprentissage automatique
+
+51
+00:01:38,430 --> 00:01:39,630
+Comme je l'ai mentionné plus tôt, chacune de ces boîtes, chacun de ces composants d'apprentissage automatique
+
+52
+00:01:39,850 --> 00:01:41,860
+pourraient même être le travail d'une petite équipe d'ingénieurs, ou peut-être que l'ensemble du système pourrait être construit par une seule personne.
+
+53
+00:01:42,170 --> 00:01:43,270
+pourraient même être le travail d'une petite équipe d'ingénieurs, ou peut-être que l'ensemble du système pourrait être construit par une seule personne.
+
+54
+00:01:43,470 --> 00:01:44,720
+pourraient même être le travail d'une petite équipe d'ingénieurs, ou peut-être que l'ensemble du système pourrait être construit par une seule personne.
+
+55
+00:01:45,280 --> 00:01:48,110
+pourraient même être le travail d'une petite équipe d'ingénieurs, ou peut-être que l'ensemble du système pourrait être construit par une seule personne.
+
+56
+00:01:48,780 --> 00:01:49,920
+Mais la question est, où devriez vous allouer les ressources limitées dont vous disposez ?
+
+57
+00:01:50,100 --> 00:01:51,990
+Mais la question est, où devriez vous allouer les ressources limitées dont vous disposez ?
+
+58
+00:01:52,130 --> 00:01:53,200
+Maintenant cela, lequelle de ces composants, ou dont un ou deux ou peut-être trois,
+
+59
+00:01:53,690 --> 00:01:54,860
+Maintenant cela, lequelle de ces composants, ou dont un ou deux ou peut-être trois,
+
+60
+00:01:54,950 --> 00:01:56,250
+Maintenant cela, lequelle de ces composants, ou dont un ou deux ou peut-être trois,
+
+61
+00:01:57,080 --> 00:01:58,540
+devriez vous passez le plus clair de votre temps pour tenter d'en améliorer les performances.
+
+62
+00:01:59,200 --> 00:02:01,060
+devriez vous passez le plus clair de votre temps pour tenter d'en améliorer les performances.
+
+63
+00:02:01,660 --> 00:02:02,810
+Voici donc l'idée de l'analyse plafond.
+
+64
+00:02:04,140 --> 00:02:05,520
+Comme dans le processus de développement pour autres systèmes d'apprentissage automatique:
+
+65
+00:02:05,890 --> 00:02:07,170
+Comme dans le processus de développement pour autres systèmes d'apprentissage automatique:
+
+66
+00:02:07,340 --> 00:02:08,490
+Ainsi, afin de prendre des décisions sur comment développer le système
+
+67
+00:02:08,670 --> 00:02:09,740
+Ainsi, afin de prendre des décisions sur comment développer le système
+
+68
+00:02:09,970 --> 00:02:11,150
+Ainsi, afin de prendre des décisions sur comment développer le système
+
+69
+00:02:11,710 --> 00:02:12,770
+il va être très utile d'avoir une métrique d'évaluation unique pour ce système d'apprentissage.
+
+70
+00:02:12,900 --> 00:02:14,070
+il va être très utile d'avoir une métrique d'évaluation unique pour ce système d'apprentissage.
+
+71
+00:02:14,580 --> 00:02:17,650
+il va être très utile d'avoir une métrique d'évaluation unique pour ce système d'apprentissage.
+
+72
+00:02:18,450 --> 00:02:19,390
+Maintenant choisissons le niveau de précision de sélection des caractères.
+
+73
+00:02:19,530 --> 00:02:21,140
+Si si, vous le savez, étant donné un
+
+74
+00:02:21,570 --> 00:02:22,840
+test de la valeur image, alors que c'est juste
+
+75
+00:02:22,860 --> 00:02:24,710
+une fraction des alphabets de
+
+76
+00:02:25,060 --> 00:02:26,570
+caractères dans les tests d'image qui
+
+77
+00:02:28,980 --> 00:02:29,390
+Nous reconnaissons correctement.
+
+78
+00:02:29,550 --> 00:02:30,830
+Ou vous pouvez choisir un autre monde unique
+
+79
+00:02:31,030 --> 00:02:32,270
+numéro si métriques, de l'évaluation vous
+
+80
+00:02:32,370 --> 00:02:33,740
+tiens, mais disons que
+
+81
+00:02:34,040 --> 00:02:35,820
+Quelle que soit métrique d'évaluation nous
+
+82
+00:02:35,920 --> 00:02:37,680
+choix, nous obtenons, nous
+
+83
+00:02:37,880 --> 00:02:40,090
+trouver que l'ensemble du système a actuellement 72 % d'exactitude.
+
+84
+00:02:40,350 --> 00:02:42,210
+Ainsi, dans d'autres
+
+85
+00:02:42,350 --> 00:02:43,380
+mots, nous avons un ensemble
+
+86
+00:02:43,520 --> 00:02:44,960
+des images de jeu test et pour
+
+87
+00:02:45,180 --> 00:02:46,460
+chaque test set images, nous
+
+88
+00:02:46,640 --> 00:02:47,850
+courir à travers la section de texte, puis
+
+89
+00:02:47,980 --> 00:02:49,280
+nation de caractère 7, puis le caractère
+
+90
+00:02:49,560 --> 00:02:50,680
+reconnaissance et nous trouver
+
+91
+00:02:51,010 --> 00:02:52,240
+que sur notre test de la valeur, la
+
+92
+00:02:52,370 --> 00:02:53,570
+la précision globale de la
+
+93
+00:02:53,800 --> 00:02:56,220
+tout le système était de 72 % sur l'un de la métrique, que vous avez choisi.
+
+94
+00:02:58,120 --> 00:02:59,700
+Maintenant juste l'idée de
+
+95
+00:03:00,070 --> 00:03:01,610
+l'analyse qui est celle de scellement
+
+96
+00:03:01,910 --> 00:03:03,530
+Nous allons aller à laisser
+
+97
+00:03:03,670 --> 00:03:05,100
+voir le premier module d'un
+
+98
+00:03:05,400 --> 00:03:06,810
+détection de texte de pipelines machines.
+
+99
+00:03:07,270 --> 00:03:08,400
+Et ce que nous allons
+
+100
+00:03:08,420 --> 00:03:09,170
+pour ce faire est que nous allons
+
+101
+00:03:09,270 --> 00:03:11,310
+singe avec le jeu de test.
+
+102
+00:03:11,980 --> 00:03:12,920
+Nous allons aller à la
+
+103
+00:03:12,990 --> 00:03:14,270
+le test défini pour chaque exemple de test
+
+104
+00:03:14,830 --> 00:03:16,170
+Nous allons juste de lui fournir
+
+105
+00:03:16,380 --> 00:03:18,230
+les sorties de détection du texte correct.
+
+106
+00:03:19,210 --> 00:03:20,300
+En d'autres termes, nous allons
+
+107
+00:03:20,560 --> 00:03:21,760
+pour l'ensemble du test et juste
+
+108
+00:03:21,960 --> 00:03:23,340
+dire manuellement l'algorithme
+
+109
+00:03:24,350 --> 00:03:26,210
+où le texte est
+
+110
+00:03:26,780 --> 00:03:27,940
+dans chacun des exemples de test.
+
+111
+00:03:28,950 --> 00:03:29,960
+Autrement dit, si nous
+
+112
+00:03:30,030 --> 00:03:31,510
+allez simuler ce qui se passe
+
+113
+00:03:32,030 --> 00:03:33,640
+Si nous avons une détection de texte
+
+114
+00:03:33,890 --> 00:03:35,350
+système 100 %
+
+115
+00:03:35,610 --> 00:03:37,180
+précision, dans le but
+
+116
+00:03:38,300 --> 00:03:40,410
+de détection de texte dans une image.
+
+117
+00:03:42,050 --> 00:03:43,070
+Et vraiment la façon dont vous
+
+118
+00:03:43,110 --> 00:03:44,210
+faire c'est très simple de droit, au lieu de cela
+
+119
+00:03:44,620 --> 00:03:45,840
+de laisser votre algorithme d'apprentissage
+
+120
+00:03:46,340 --> 00:03:47,630
+détecter le texte dans les images.
+
+121
+00:03:48,180 --> 00:03:49,110
+Vous ne serait pas dire aller à la
+
+122
+00:03:49,340 --> 00:03:51,230
+les images et tout manuellement label ce qui
+
+123
+00:03:51,540 --> 00:03:53,620
+l'emplacement du texte dans mon test a la valeur image.
+
+124
+00:03:54,200 --> 00:03:55,040
+Et vous serait alors laissez ces
+
+125
+00:03:55,530 --> 00:03:56,620
+corriger, laissons donc ces sol
+
+126
+00:03:56,990 --> 00:03:58,370
+étiquettes vrais où comme
+
+127
+00:03:58,560 --> 00:04:00,010
+le texte comme faisant partie de
+
+128
+00:04:00,090 --> 00:04:01,330
+votre texte, définir et utiliser ces
+
+129
+00:04:01,580 --> 00:04:02,990
+vrai motif étiquettes de ce que vous
+
+130
+00:04:03,110 --> 00:04:04,200
+nourrir dans la prochaine
+
+131
+00:04:04,470 --> 00:04:07,550
+stade du pipeline, à la canalisation de segmentation du personnage.
+
+132
+00:04:07,710 --> 00:04:09,250
+Si seulement il dit encore une fois, par
+
+133
+00:04:09,680 --> 00:04:10,790
+mettre une coche ici,
+
+134
+00:04:11,500 --> 00:04:12,590
+ce que je veux dire Im va
+
+135
+00:04:12,750 --> 00:04:13,750
+aller à mon ensemble de test et
+
+136
+00:04:13,860 --> 00:04:14,970
+juste donner les bonnes réponses,
+
+137
+00:04:15,480 --> 00:04:16,520
+lui donner les étiquettes correctes, pour
+
+138
+00:04:16,650 --> 00:04:18,250
+la partie détection de texte du pipeline.
+
+139
+00:04:19,240 --> 00:04:20,280
+Afin que, comme elle, j'ai
+
+140
+00:04:20,410 --> 00:04:21,700
+un système de détection de texte parfait
+
+141
+00:04:22,370 --> 00:04:24,270
+sur mon test, l'un en
+
+142
+00:04:24,460 --> 00:04:26,570
+que courir ces données
+
+143
+00:04:27,190 --> 00:04:28,150
+pour le reste des cinq points
+
+144
+00:04:28,530 --> 00:04:29,860
+définition présentation et compteur de papier.
+
+145
+00:04:30,680 --> 00:04:31,930
+Et ensuite, utiliser le même
+
+146
+00:04:32,300 --> 00:04:33,310
+métriques d'évaluation comme avant,
+
+147
+00:04:34,000 --> 00:04:35,240
+pour mesurer ce qu'est la
+
+148
+00:04:35,450 --> 00:04:36,900
+précision globale de l'ensemble du système.
+
+149
+00:04:37,790 --> 00:04:39,890
+Et avec un sens parfait j'espère que le rendement augmente.
+
+150
+00:04:40,330 --> 00:04:41,870
+Laisser dire que TI du
+
+151
+00:04:41,930 --> 00:04:44,550
+jusqu'à 89 %, puis
+
+152
+00:04:44,680 --> 00:04:45,830
+allaient continuer, suivant permet
+
+153
+00:04:46,090 --> 00:04:47,120
+aller à la prochaine sélection de
+
+154
+00:04:47,330 --> 00:04:50,230
+pipeline, segmentation de caractère deux et encore devaient aller à mon test.
+
+155
+00:04:50,540 --> 00:04:52,300
+Et maintenant à
+
+156
+00:04:52,390 --> 00:04:54,140
+donner la détection correcte texte
+
+157
+00:04:54,900 --> 00:04:55,970
+de sortie et de donner le bon
+
+158
+00:04:56,490 --> 00:04:58,220
+sorties de la segmentation de caractères et
+
+159
+00:04:59,400 --> 00:05:00,780
+étiqueter manuellement le bon
+
+160
+00:05:01,330 --> 00:05:03,710
+orientations de segment de texte en caractères individuels.
+
+161
+00:05:04,730 --> 00:05:05,560
+Et voir combien qui aide.
+
+162
+00:05:05,810 --> 00:05:06,670
+Et disons que cela va jusqu'à
+
+163
+00:05:06,800 --> 00:05:09,140
+précision de 90 % pour l'ensemble du système.
+
+164
+00:05:10,070 --> 00:05:11,060
+Très bien donc comme toujours est l'exactitude.
+
+165
+00:05:11,340 --> 00:05:13,420
+Exactitude de l'ensemble des systèmes.
+
+166
+00:05:14,120 --> 00:05:15,460
+Donc quelle que soit la finale de la production
+
+167
+00:05:15,830 --> 00:05:17,450
+système est la reconnaissance de caractères.
+
+168
+00:05:17,560 --> 00:05:18,870
+Quel que soit le résultat final de
+
+169
+00:05:19,040 --> 00:05:19,660
+le pipeline global est, c'est aller
+
+170
+00:05:19,930 --> 00:05:22,400
+pour mesurer l'exactitude de cette.
+
+171
+00:05:22,520 --> 00:05:23,720
+Et puis finalement comme caractère de reconnaissance
+
+172
+00:05:24,170 --> 00:05:26,170
+système et qui donnent la bonne étiquette ainsi.
+
+173
+00:05:26,780 --> 00:05:29,270
+Et si je fais que trop alors, n'étonne pas que je devrais recevoir une précision de 100 %.
+
+174
+00:05:31,270 --> 00:05:32,530
+Maintenant, la belle chose d'avoir
+
+175
+00:05:32,850 --> 00:05:34,340
+fait cette analyse est de nous
+
+176
+00:05:34,450 --> 00:05:36,080
+peut maintenant comprendre ce qui est
+
+177
+00:05:36,700 --> 00:05:40,250
+les bénéfices potentiels pour l'amélioration de chacun de ces composants.
+
+178
+00:05:41,390 --> 00:05:44,180
+Si nous voyons que si nous obtenons la détection de texte parfait.
+
+179
+00:05:44,950 --> 00:05:46,360
+Notre rendement est passé de
+
+180
+00:05:46,710 --> 00:05:48,080
+72 à 89 %, donc
+
+181
+00:05:48,420 --> 00:05:50,670
+C'est « un gain de rendement de 17 %.
+
+182
+00:05:51,640 --> 00:05:52,680
+Cela signifie donc que vous avez
+
+183
+00:05:52,890 --> 00:05:54,030
+pour prendre votre système vous
+
+184
+00:05:54,160 --> 00:05:56,130
+passer beaucoup de temps à améliorer la détection du texte.
+
+185
+00:05:57,330 --> 00:05:58,750
+Cela signifie que nous pourrions améliorer potentiellement
+
+186
+00:05:59,200 --> 00:06:00,640
+performance de notre système de 17 p. 100.
+
+187
+00:06:01,020 --> 00:06:02,850
+Cela semble comme il convient bien de notre temps.
+
+188
+00:06:03,770 --> 00:06:05,840
+Alors qu'en revanche, lorsque vous
+
+189
+00:06:06,200 --> 00:06:08,360
+de détection du texte lorsque nous
+
+190
+00:06:08,640 --> 00:06:12,450
+Il a segmentation personnage parfait, performance a augmenté seulement d'un pour cent.
+
+191
+00:06:13,020 --> 00:06:14,820
+Donc, c'est un message plus matière à réfléchir.
+
+192
+00:06:15,250 --> 00:06:16,880
+Cela signifie que, peu importe
+
+193
+00:06:17,090 --> 00:06:18,510
+beaucoup de temps à vous consacrer segmentation de caractère,
+
+194
+00:06:19,800 --> 00:06:20,990
+les bénéfices potentiels est peut-être
+
+195
+00:06:21,080 --> 00:06:22,280
+va pour être assez petit et peut-être
+
+196
+00:06:22,460 --> 00:06:23,420
+vous ne le souhaitez pas
+
+197
+00:06:23,580 --> 00:06:24,340
+avoir une importante équipe d'ingénieurs
+
+198
+00:06:24,860 --> 00:06:26,860
+travail sur la segmentation de caractère qui
+
+199
+00:06:26,990 --> 00:06:28,860
+ce genre d'analyse montre que
+
+200
+00:06:29,150 --> 00:06:30,180
+même quand vous donnez les
+
+201
+00:06:30,260 --> 00:06:32,480
+Perfect segmentation de caractère, votre
+
+202
+00:06:32,620 --> 00:06:34,180
+performance monte par seulement un pour cent.
+
+203
+00:06:34,620 --> 00:06:36,090
+Alors là, c'est vraiment des estimations.
+
+204
+00:06:36,890 --> 00:06:38,080
+Quel est le plafond, ou ce que de
+
+205
+00:06:38,300 --> 00:06:39,360
+une limite supérieure sur la quantité
+
+206
+00:06:39,550 --> 00:06:40,690
+vous pouvez améliorer les performances de votre
+
+207
+00:06:40,740 --> 00:06:42,710
+système en travaillant sur l'un de ces composants ?
+
+208
+00:06:44,330 --> 00:06:45,600
+Et enfin, pour les caractères,
+
+209
+00:06:46,320 --> 00:06:47,700
+Quand nous arrivons mieux
+
+210
+00:06:47,900 --> 00:06:50,080
+reconnaissance de caractères, le rendement a augmenté de dix pour cent.
+
+211
+00:06:50,530 --> 00:06:51,640
+Pour que vous sachiez, encore une fois vous
+
+212
+00:06:51,750 --> 00:06:52,570
+peut décider, est un dix
+
+213
+00:06:52,860 --> 00:06:55,630
+amélioration de pourcentage, combien qui marche ?
+
+214
+00:06:55,830 --> 00:06:57,200
+Il vous dit que, peut-être
+
+215
+00:06:57,400 --> 00:06:58,670
+avec plus d'efforts dépensés pour les
+
+216
+00:06:58,730 --> 00:06:59,690
+dernière station du pipeline,
+
+217
+00:07:00,360 --> 00:07:02,840
+vous pouvez améliorer les performances
+
+218
+00:07:03,760 --> 00:07:04,500
+des systèmes aussi bien.
+
+219
+00:07:05,610 --> 00:07:06,580
+Une autre façon de penser à ce sujet
+
+220
+00:07:06,870 --> 00:07:08,090
+C'est que, en passant par ce
+
+221
+00:07:08,290 --> 00:07:09,470
+genre d'analyse que vous essayez de
+
+222
+00:07:09,570 --> 00:07:10,640
+découvrir, vous savez, ce qui est
+
+223
+00:07:10,740 --> 00:07:12,700
+les bénéfices potentiels, d'améliorer
+
+224
+00:07:13,480 --> 00:07:14,980
+chacune de ces composantes ou comment
+
+225
+00:07:15,080 --> 00:07:16,730
+beaucoup pourraient vous gagner si
+
+226
+00:07:17,260 --> 00:07:18,910
+un de ces composants est devenu absolument
+
+227
+00:07:19,380 --> 00:07:20,780
+parfait et vraiment
+
+228
+00:07:21,060 --> 00:07:23,230
+impose une limite supérieure sur la performance de ce système.
+
+229
+00:07:24,220 --> 00:07:26,290
+L'idée de l'analyse du plafond est donc très importante.
+
+230
+00:07:26,900 --> 00:07:29,840
+Je voudrais juste illustrer cette idée, encore une fois, mais avec un exemple différent mais plus complexe.
+
+231
+00:07:31,860 --> 00:07:32,990
+Disons que vous voulez
+
+232
+00:07:33,260 --> 00:07:34,830
+face à la reconnaissance d'images,
+
+233
+00:07:35,280 --> 00:07:35,960
+donc, sauf si vous voulez regarder
+
+234
+00:07:35,990 --> 00:07:37,650
+l'image et de reconnaître si ou
+
+235
+00:07:37,820 --> 00:07:38,770
+pas la personne sur cette photo
+
+236
+00:07:39,470 --> 00:07:40,640
+est un ami particulier du vôtre,
+
+237
+00:07:40,670 --> 00:07:43,880
+essayer de reconnaître la personne dans l'image.
+
+238
+00:07:44,180 --> 00:07:46,260
+C'est un exemple un peu artificiel.
+
+239
+00:07:47,130 --> 00:07:51,080
+Ce n'est pas réellement comment faire face
+
+240
+00:07:51,320 --> 00:07:52,790
+reconnaissance se fait en
+
+241
+00:07:52,800 --> 00:07:53,660
+pratique, mais je veux un exemple de ce que l'étape un
+
+242
+00:07:53,870 --> 00:07:54,800
+pipeline pourrait ressembler à
+
+243
+00:07:54,940 --> 00:07:56,220
+vous donner un autre exemple de la façon dont
+
+244
+00:07:56,450 --> 00:07:57,820
+pourrait ressembler à un processus d'analyse de plafond.
+
+245
+00:07:58,710 --> 00:07:59,980
+Nous avons donc un
+
+246
+00:08:00,160 --> 00:08:03,830
+appareil photo image et disons que nous concevons comme suit un pipeline.
+
+247
+00:08:04,420 --> 00:08:05,120
+Disons que la première chose que vous voulez
+
+248
+00:08:05,380 --> 00:08:07,480
+pour ce faire est faire prétraitement de
+
+249
+00:08:07,560 --> 00:08:08,770
+l'image, donc prenons ceux
+
+250
+00:08:08,910 --> 00:08:10,310
+comme je l'ai montré sur des images
+
+251
+00:08:10,390 --> 00:08:11,040
+la partie supérieure droite et supposons que nous
+
+252
+00:08:11,140 --> 00:08:12,510
+pour supprimer l'arrière-plan, si
+
+253
+00:08:13,030 --> 00:08:14,790
+par prétraitement l'arrière-plan disparaît.
+
+254
+00:08:16,070 --> 00:08:18,820
+Ensuite, nous voulons dire détecter le visage de la personne.
+
+255
+00:08:19,370 --> 00:08:20,550
+Cela est habituellement fait avec un algorithme d'apprentissage.
+
+256
+00:08:20,930 --> 00:08:21,960
+Donc nous allons exécuter un glissement
+
+257
+00:08:22,180 --> 00:08:24,900
+crossfire de Windows pour dessiner une zone autour de visage de la personne.
+
+258
+00:08:25,680 --> 00:08:26,720
+Après avoir détecté le visage il
+
+259
+00:08:26,790 --> 00:08:27,650
+s'avère que si vous
+
+260
+00:08:27,770 --> 00:08:29,320
+tiens à reconnaître les personnes, qu'il s'avère
+
+261
+00:08:29,530 --> 00:08:31,630
+que les yeux est un signal fort utile.
+
+262
+00:08:32,000 --> 00:08:33,860
+Nous avons en fait, en termes
+
+263
+00:08:34,130 --> 00:08:35,420
+ofrecognizing vos amis, les
+
+264
+00:08:35,700 --> 00:08:36,870
+l'apparence de leurs yeux est réellement
+
+265
+00:08:37,330 --> 00:08:38,680
+un des plus importants repères que vous utilisez.
+
+266
+00:08:39,470 --> 00:08:41,610
+Alors disons exécuter une autre entre deux feux afin de détecter les yeux de la personne.
+
+267
+00:08:42,500 --> 00:08:43,660
+Oui, segment sur les yeux,
+
+268
+00:08:44,410 --> 00:08:45,650
+et ensuite et depuis cette
+
+269
+00:08:45,900 --> 00:08:47,290
+nous donnera des fonctionnalités utiles à
+
+270
+00:08:47,380 --> 00:08:48,840
+reconnaître une personne, puis
+
+271
+00:08:49,100 --> 00:08:50,400
+autres parties du visage d'intérêt physique.
+
+272
+00:08:50,990 --> 00:08:52,330
+Peut-être que le segment sur le nez,
+
+273
+00:08:52,830 --> 00:08:54,750
+segment sur la bouche, et
+
+274
+00:08:54,980 --> 00:08:56,230
+Ensuite, après avoir constaté la
+
+275
+00:08:56,370 --> 00:08:57,060
+yeux, le nez et la bouche,
+
+276
+00:08:57,340 --> 00:08:58,420
+tous ces nous donnent utile
+
+277
+00:08:58,740 --> 00:08:59,920
+caractéristiques de peut-être alimenter
+
+278
+00:09:00,580 --> 00:09:01,540
+un crossfire de régression logistique.
+
+279
+00:09:02,500 --> 00:09:03,200
+Et c'est le travail de la
+
+280
+00:09:03,480 --> 00:09:04,420
+Crossfire pour ensuite nous donner la
+
+281
+00:09:04,710 --> 00:09:05,850
+étiquette générale pour trouver les
+
+282
+00:09:05,970 --> 00:09:06,930
+étiquette de qui nous pensons
+
+283
+00:09:07,190 --> 00:09:08,450
+est l'identité de cette personne.
+
+284
+00:09:10,110 --> 00:09:11,730
+C'est une sorte de pipeline compliquée.
+
+285
+00:09:12,160 --> 00:09:13,300
+C'est en fait probablement plus compliqué
+
+286
+00:09:13,950 --> 00:09:16,810
+que vous devriez employer, si vous voulez réellement reconnaître les gens.
+
+287
+00:09:17,620 --> 00:09:20,330
+Mais il y a un exemple utile à réfléchir pour l'analyse du plafond.
+
+288
+00:09:22,150 --> 00:09:24,510
+Alors, comment allez-vous faire grâce à l'analyse du plafond pour ce pipeline ?
+
+289
+00:09:25,000 --> 00:09:26,790
+Bien, nous allons étape grâce à ces pièces une à la fois.
+
+290
+00:09:27,470 --> 00:09:28,900
+Supposons que votre système global
+
+291
+00:09:29,150 --> 00:09:30,560
+précision de 85 p. 100, le premier
+
+292
+00:09:30,720 --> 00:09:31,670
+Je le fais, c'est passer
+
+293
+00:09:31,750 --> 00:09:32,890
+Mon test set et manuellement
+
+294
+00:09:33,860 --> 00:09:36,200
+Il donne un premier plan au sol, fond,
+
+295
+00:09:36,740 --> 00:09:38,090
+segmentation et ensuite manuellement aller à
+
+296
+00:09:38,150 --> 00:09:39,670
+le jeu de test et l'utilisation de Photoshop
+
+297
+00:09:40,290 --> 00:09:41,750
+ou quelque chose, pour tout dire il
+
+298
+00:09:41,950 --> 00:09:43,130
+où est l'arrière-plan et seulement
+
+299
+00:09:43,360 --> 00:09:45,230
+supprimer manuellement l'arrière-plan, si
+
+300
+00:09:45,470 --> 00:09:48,050
+véritable fond du sol et voir combien la précision change.
+
+301
+00:09:48,990 --> 00:09:50,320
+Dans cet exemple, la précision
+
+302
+00:09:50,800 --> 00:09:53,700
+Monte donc par 0,1 %
+
+303
+00:09:53,860 --> 00:09:54,900
+C'est un signe que
+
+304
+00:09:55,100 --> 00:09:56,240
+même si vous avez eu fond parfait
+
+305
+00:09:56,630 --> 00:09:59,680
+segmentation vos performances, même
+
+306
+00:09:59,840 --> 00:10:01,650
+si parfaite élimination de l'arrière-plan, le
+
+307
+00:10:01,730 --> 00:10:03,740
+performances de votre système ne va pas aller jusqu'à que beaucoup plus.
+
+308
+00:10:03,880 --> 00:10:05,000
+Donc c'est peut-être pas une valeur un
+
+309
+00:10:05,190 --> 00:10:07,720
+effort énorme pour travailler sur le prétraitement, sur la suppression de l'arrière-plan.
+
+310
+00:10:09,270 --> 00:10:10,170
+Ensuite, tout se passe à la
+
+311
+00:10:10,230 --> 00:10:11,290
+jeu de test, compte tenu de la bonne
+
+312
+00:10:11,780 --> 00:10:13,650
+face à des images de détection, puis de nouveau
+
+313
+00:10:14,140 --> 00:10:16,690
+étape à travers les yeux, le nez, la segmentation de la bouche dans un certain ordre.
+
+314
+00:10:17,100 --> 00:10:17,470
+Choisir un ordre.
+
+315
+00:10:17,700 --> 00:10:18,890
+Donnons à l'emplacement correct
+
+316
+00:10:19,340 --> 00:10:20,520
+des yeux, corriger l'emplacement du
+
+317
+00:10:20,750 --> 00:10:22,510
+le nez, l'emplacement correct des
+
+318
+00:10:22,520 --> 00:10:23,740
+la bouche, puis enfin
+
+319
+00:10:24,130 --> 00:10:26,200
+Si je donner juste l'étiquette générale correcte, j'obtiens 100 % d'exactitude.
+
+320
+00:10:27,900 --> 00:10:29,390
+Et donc, vous savez, comme
+
+321
+00:10:29,500 --> 00:10:30,430
+Je vais au moyen du système
+
+322
+00:10:31,040 --> 00:10:32,080
+et juste donner plus
+
+323
+00:10:32,210 --> 00:10:33,900
+composants les étiquettes corrects
+
+324
+00:10:34,370 --> 00:10:35,350
+dans le jeu de test, les performances
+
+325
+00:10:35,830 --> 00:10:37,550
+Donc, si l'ensemble du système s'en va là-haut,
+
+326
+00:10:37,730 --> 00:10:38,640
+et vous pouvez regarder comment beaucoup
+
+327
+00:10:38,890 --> 00:10:39,860
+les performances sont érigées dans
+
+328
+00:10:40,240 --> 00:10:41,660
+différentes étapes, donc, vous le savez, de
+
+329
+00:10:42,550 --> 00:10:43,830
+lui donnant la détection de visage parfait,
+
+330
+00:10:44,440 --> 00:10:45,270
+et il semble que l'ensemble
+
+331
+00:10:45,570 --> 00:10:48,290
+performance de ce système a augmenté de 5,9 %.
+
+332
+00:10:49,710 --> 00:10:50,670
+C'est un assez grand saut,
+
+333
+00:10:50,980 --> 00:10:52,100
+signifie que, peut-être, qu'il convient tout à fait
+
+334
+00:10:52,370 --> 00:10:53,660
+un peu d'effort sur la meilleure détection de visage.
+
+335
+00:10:54,670 --> 00:10:56,290
+A quatre pour cent, est allé
+
+336
+00:10:56,710 --> 00:10:58,680
+un pour cent, un pour cent
+
+337
+00:10:59,160 --> 00:11:00,600
+Il et de trois pour cent.
+
+338
+00:11:01,520 --> 00:11:02,840
+Donc il semble que la
+
+339
+00:11:02,980 --> 00:11:04,250
+composants que la plupart une valeur
+
+340
+00:11:04,730 --> 00:11:06,520
+sont de notre temps, quand
+
+341
+00:11:06,680 --> 00:11:08,540
+Détection de visage parfait, j'ai donné il
+
+342
+00:11:09,680 --> 00:11:10,190
+système est passée.
+
+343
+00:11:10,490 --> 00:11:11,990
+Par la performance de 5,9, pourrait donner
+
+344
+00:11:12,170 --> 00:11:14,170
+Il parfait de segmentation de le œil, est allé
+
+345
+00:11:14,380 --> 00:11:15,540
+4 %, puis mon final logistique
+
+346
+00:11:16,000 --> 00:11:19,220
+Crossfire, de plus il existe un autre écart de 3 pour cent il y peut-être.
+
+347
+00:11:19,570 --> 00:11:20,580
+Et donc, cela nous apprend
+
+348
+00:11:20,810 --> 00:11:23,400
+peut-être l'un des composants les plus utile de nos temps de travail sur.
+
+349
+00:11:24,610 --> 00:11:25,690
+Et au passage, je
+
+350
+00:11:25,830 --> 00:11:28,110
+tiens à vous dire, c'est une histoire vraie de la mise en garde.
+
+351
+00:11:28,680 --> 00:11:29,620
+La raison pour laquelle que j'ai mis dans ce
+
+352
+00:11:29,850 --> 00:11:32,350
+suppression de l'arrière-plan de prétraitement est
+
+353
+00:11:32,600 --> 00:11:34,050
+parce que je sais en fait
+
+354
+00:11:34,340 --> 00:11:35,530
+d'une histoire vraie où il
+
+355
+00:11:35,770 --> 00:11:37,140
+a la recherche de l'équipe qui en fait
+
+356
+00:11:37,480 --> 00:11:38,990
+littéralement avaient deux personnes passent
+
+357
+00:11:39,580 --> 00:11:40,250
+environ un an et demi,
+
+358
+00:11:40,530 --> 00:11:42,410
+passer 18 mois, travail sur
+
+359
+00:11:42,770 --> 00:11:44,050
+meilleure élimination de fond.
+
+360
+00:11:44,480 --> 00:11:45,680
+Nous sommes se précipitant ici... Je suis
+
+361
+00:11:46,120 --> 00:11:47,490
+masquer les détails pour évident
+
+362
+00:11:47,970 --> 00:11:48,770
+motifs, mais il y a un
+
+363
+00:11:48,820 --> 00:11:50,610
+application de vision informatique où il
+
+364
+00:11:50,720 --> 00:11:51,660
+une équipe de deux ingénieurs
+
+365
+00:11:51,770 --> 00:11:52,850
+qui littéralement passé je pense
+
+366
+00:11:52,990 --> 00:11:54,210
+sur un an et demi, travail
+
+367
+00:11:54,550 --> 00:11:56,050
+sur l'enlèvement de fond mieux.
+
+368
+00:11:56,550 --> 00:11:57,720
+En fait, ils ont travaillé
+
+369
+00:11:57,820 --> 00:12:00,270
+vraiment compliqué les algorithmes, donc j'ai fini par édition, je crois, document de recherche.
+
+370
+00:12:01,080 --> 00:12:02,000
+Mais après tout ce qu'ils
+
+371
+00:12:02,110 --> 00:12:03,020
+a conclu qu'il l'a juste fait
+
+372
+00:12:03,260 --> 00:12:04,910
+pas faire une différence énorme pour
+
+373
+00:12:05,200 --> 00:12:06,490
+la performance globale de la
+
+374
+00:12:06,710 --> 00:12:09,120
+application concrète qu'ils travaillaient.
+
+375
+00:12:09,450 --> 00:12:10,770
+Et si seulement, vous savez si
+
+376
+00:12:10,770 --> 00:12:13,170
+seule une personne a été de faire une analyse [xx]
+
+377
+00:12:13,700 --> 00:12:15,790
+au préalable, peut-être que nous pourrions ont compris cela.
+
+378
+00:12:17,240 --> 00:12:18,360
+Et l'un d'eux m'a dit :
+
+379
+00:12:18,480 --> 00:12:19,510
+par la suite, vous le savez, ne serait-ce qu'ils
+
+380
+00:12:19,640 --> 00:12:20,580
+a fait le genre d'analyse
+
+381
+00:12:20,850 --> 00:12:21,710
+comme ça, peut-être qu'ils pouvaient
+
+382
+00:12:21,990 --> 00:12:23,190
+ont réalisé avant que 18 mois
+
+383
+00:12:23,440 --> 00:12:25,180
+de travail, qu'ils
+
+384
+00:12:25,240 --> 00:12:26,300
+Il ont passé leur effort en se concentrant
+
+385
+00:12:26,680 --> 00:12:28,920
+sur certains composants différents que littéralement
+
+386
+00:12:29,380 --> 00:12:31,230
+Dépenses de 18 mois de travail sur l'élimination de l'arrière-plan.
+
+387
+00:12:33,910 --> 00:12:36,140
+Donc pour résumer, les pipelines sont
+
+388
+00:12:36,390 --> 00:12:38,630
+assez complexe et pénétrante apprentissage automatique des applications.
+
+389
+00:12:39,890 --> 00:12:40,950
+Et lorsque vous travaillez sur
+
+390
+00:12:41,200 --> 00:12:42,780
+une grande machine d'apprentissage demande, je
+
+391
+00:12:42,830 --> 00:12:45,450
+moyenne je pense que votre temps comme un développeur est tellement précieux.
+
+392
+00:12:46,090 --> 00:12:47,360
+Si tout ne perdez pas votre
+
+393
+00:12:47,460 --> 00:12:50,120
+temps à travailler sur quelque chose qui finalement n'aura pas à la matière.
+
+394
+00:12:51,350 --> 00:12:52,370
+Et dans cette vidéo, nous avons parlé
+
+395
+00:12:52,490 --> 00:12:53,570
+Cette idée de l'analyse du plafond,
+
+396
+00:12:54,340 --> 00:12:55,750
+dont j'ai souvent trouvé à
+
+397
+00:12:55,850 --> 00:12:57,000
+être un très bon outil pour
+
+398
+00:12:57,130 --> 00:12:58,660
+identifier le composant et si
+
+399
+00:12:58,760 --> 00:12:59,830
+vous mettez réellement un effort ciblé
+
+400
+00:13:00,050 --> 00:13:01,010
+sur ce composant et faire un
+
+401
+00:13:01,250 --> 00:13:02,420
+grande différence, il serait effectivement
+
+402
+00:13:03,050 --> 00:13:04,360
+avoir un effet énorme sur la
+
+403
+00:13:04,620 --> 00:13:06,040
+performances globales de votre système final.
+
+404
+00:13:07,070 --> 00:13:08,010
+Ainsi, au cours des années de travail
+
+405
+00:13:08,340 --> 00:13:09,520
+avec l'apprentissage de la machine, j'ai réellement appris
+
+406
+00:13:09,710 --> 00:13:10,900
+ne pas confiance mon tube digestif
+
+407
+00:13:11,100 --> 00:13:13,200
+sentiment sur ce composant pour travailler sur.
+
+408
+00:13:13,280 --> 00:13:14,310
+Donc, très souvent, lorsque vous avez
+
+409
+00:13:14,540 --> 00:13:15,440
+a travaillé avec l'apprentissage de la machine pour une
+
+410
+00:13:15,570 --> 00:13:17,160
+longtemps, mais souvent, nos locaux
+
+411
+00:13:17,360 --> 00:13:18,770
+problème d'apprentissage machine et je
+
+412
+00:13:18,950 --> 00:13:20,130
+peut-être certains sentiment du tube digestif
+
+413
+00:13:20,450 --> 00:13:22,970
+Oh, disons, vous le savez, sauter sur ce composant et vient de passer plus de temps sur ce.
+
+414
+00:13:24,120 --> 00:13:25,050
+Qu'au cours des années que je
+
+415
+00:13:25,160 --> 00:13:26,600
+en sont venus à la même confiance mon
+
+416
+00:13:26,740 --> 00:13:27,800
+propre intuition et ne sachant ne pas
+
+417
+00:13:28,130 --> 00:13:29,310
+faire confiance à intuition que beaucoup
+
+418
+00:13:29,980 --> 00:13:31,450
+et au contraire ont vraiment un
+
+419
+00:13:31,520 --> 00:13:33,060
+problème d'apprentissage machine solide, où il a
+
+420
+00:13:33,180 --> 00:13:34,750
+possible aux choses de la structure.
+
+421
+00:13:34,960 --> 00:13:36,340
+Faire une analyse de plafond souvent
+
+422
+00:13:36,660 --> 00:13:37,720
+est beaucoup mieux et beaucoup
+
+423
+00:13:37,910 --> 00:13:39,110
+moyen plus fiable pour décider
+
+424
+00:13:39,670 --> 00:13:40,900
+où mettre un effort ciblé
+
+425
+00:13:40,940 --> 00:13:42,270
+en, pour vraiment améliorer cela,
+
+426
+00:13:42,690 --> 00:13:44,570
+les performances de certains composants et
+
+427
+00:13:44,680 --> 00:13:45,900
+nous sorte de s'assurer que, lorsque
+
+428
+00:13:46,180 --> 00:13:46,960
+faire qu'il aura réellement
+
+429
+00:13:47,200 --> 00:13:49,460
+un énorme effet sur le rendement final de votre système.

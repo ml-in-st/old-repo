@@ -1,0 +1,128 @@
+En el video anterior, te di la
+definición matemática de gradiente de descenso. Vamos a profundizar y en este
+video tendrás una mejor idea sobre lo que hace el algoritmo, y por qué los pasos
+del algoritmos de gradiente de descenso tienen sentido. Este es el algoritmo de gradiente
+de descenso que vimos la última vez. Y sólo para recordarte, este parámetro o este
+término alfa se llama índice de aprendizaje. Y controla qué tan grande es un paso que
+hacemos al actualizar mi parámetro theta J. Y este segundo término es el término de
+derivada. Y lo que quiero hacer en este video es darte una mejor idea de qué hace cada
+uno de los dos términos y por qué tiene sentido toda la actualización cuando ponemos todo junto.
+Con el fin de transmitir estos conceptos, lo que quiero hacer es usar un ejemplo
+más simple donde queremos minimizar la función de un sólo parámetro. Entonces, digamos
+que tenemos una función de costos J de un sólo parámetro, theta uno, así
+como hicimos en videos anteriores. Donde theta uno es un número real, ¿ok? Sólo para que podamos tener gráficas de 1D, que son un poco más simples de ver. Y
+tratemos de entender qué haría el gradiente de descenso en esta función.
+[Sonido]. Digamos que aquí está mi función J de theta uno, y
+donde theta uno es un número real. Bien, ahora digamos que inicié el gradiente de
+descenso con theta uno en este lugar. Así que imagina que iniciamos en ese punto
+de mi función. Lo que el gradiente de descenso hará es que se actualizará. Theta uno se
+actualiza como theta uno menos alfa por dd theta uno J de theta uno, ¿correcto? y
+sólo como una nota, este término de derivada, ¿sí? Si te
+preguntas por qué cambié la notación de estos símbolos de derivada parcial. Si
+no sabes cuál es la diferencia entre estos símbolos de derivada parcial y 
+theta dd, no te preocupes. Técnicamente en matemáticas esta se llama derivada
+parcial, esta se llama derivada dependiendo del número de parámetros
+en la función J, pero eso es un tecnicismo matemático.
+Para fines de esta lección, piensa en estos símbolos parciales y dd theta uno como
+exactamente lo mismo. Y no te preocupes si hay alguna diferencia.
+Trataré de usar una notación matemáticamente precisa. Pero para nuestros fines,
+estas notaciones realmente son lo mismo. Entonces, veamos lo que hará
+esta ecuación. Y vamos a calcular esta derivada, no estoy seguro si has
+visto derivadas en cálculo anteriormente. Pero lo que hace una derivada en este punto es,
+básicamente, decir llevemos la tangente a ese punto, como
+esta línea recta, la línea roja que sólo toca esta función y
+veamos la pendiente de esta línea roja. Ahí es donde está la derivada. Dice
+cuál es la pendiente de la línea que es la tangente de la función, ¿ok? y la
+pendiente de la línea es, por su puesto, justo la altura dividida entre
+esta horizontal. Ahora. Esta línea tiene una pendiente positiva, así que tiene
+una derivada positiva. Entonces, mi actualización a theta será, theta uno da la actualización de
+theta uno menos alfa por algún número positivo. ¿Ok? Alfa, el índice
+de aprendizaje, siempre es un número positivo. Así que voy a tomar theta uno, se actualiza
+como theta uno menos algo. Así que terminaré moviendo theta uno a la izquierda. Voy a
+reducir theta uno y podemos ver que es lo correcto porque
+en realidad continué en esta dirección para acercarme al mínimo de
+ahí. Hasta ahora parece que el gradiente de descenso hace lo correcto. Veamos
+otro ejemplo. Así que tomemos la misma función J. Sólo trato de dibujar la misma
+función J de theta uno. Ahora digamos que inicié mi parámetro
+de aquí de la izquierda. Así que theta uno está aquí. Voy a añadir este punto en la
+superficie. Ahora, mi término de derivada, d, d theta uno J de theta uno, cuando se evalúa
+en este punto, se verá como la pendiente de la línea. Entonces, este término de
+derivada es una pendiente de esta línea. Pero esta línea está inclinada hacia abajo, así que esta
+línea tiene una pendiente negativa. ¿Correcto? O de forma alternativa, diré que esta función tiene una derivada
+negativa, sólo significa pendiente negativa en este punto. Así que esto es menos que igual a
+cero. Cuando actualice theta, entonces si theta se actualiza como theta menos alfa
+por un número negativo. Tengo theta uno menos un número negativo que
+significa que realmente aumentaré theta, ¿correcto? Debido a que es menos de un número
+negativo significa que añado algo a theta y lo que significa es que voy a
+terminar aumentando theta. Entonces, empezaremos aquí y aumentaremos theta, que una
+vez más parece lo que quiero hacer para tratar de acercarme al mínimo. Así que,
+con suerte, esto explica la idea detrás de lo que hace el término de derivada. Echemos
+un vistazo al término de índice de aprendizaje alfa, y tratemos de averiguar qué
+hace. Esta es mi regla de actualización de gradiente de descenso. Bien, está esta ecuación
+y veamos lo qué puede pasar si alfa es muy pequeño o si alfa es
+muy grande. En este primer ejemplo, lo que pasa es que alfa es muy pequeño. Esta es
+mi función J, J de theta. Empecemos justo aquí. Si alfa es muy pequeño,
+entonces lo que haré es multiplicar la actualización por algún número pequeño.
+Terminaremos, ya sabes, es como un pequeño paso como este. Bien, ese es un paso
+[inaudible]. Entonces, desde este nuevo punto, tomaremos otro paso. Pero si
+alfa es muy pequeño, hagamos otro paso pequeño. Y si mi
+índice de aprendizaje es muy pequeño, terminaré haciendo estos pasos muy, muy pequeños
+para tratar de obtener el mínimo y necesitaré muchos pasos para obtener
+el mínimo y así sucesivamente. Si alfa es demasiado pequeño, el gradiente de descenso puede ser lento ya que
+haré pasos muy, muy pequeños. Y serán necesarios muchos pasos antes de acercarse
+un poco al mínimo global. Ahora, ¿qué tal si alfa es demasiado grande?
+Esta es mi función J de theta. Resulta que alfa es muy grande, entonces
+el gradiente de descenso puede sobrepasar el mínimo y puede fallar para converger o divergir. Me explicaré mejor. Digamos que inicio con
+theta ahí. En realidad está muy cerca del mínimo. Entonces, están los puntos de derivada a la derecha, pero si alfa es muy grande, haré un paso grande. Tal vez haré un paso grande como ese. ¿Correcto? Termino haciendo un gran paso. Ahora, mi función de costos empeoró porque inicia desde este valor, y ahora mi valor empeoró. Ahora mi derivada, los puntos de la izquierda, en realidad disminuyeron theta. Pero mira, si mi índice de aprendizaje es muy grande, podría hacer un paso grande que va desde aquí,
+de modo que termine yendo todo por ahí. ¿Correcto? Y si mi índice de aprendizaje fuera muy
+grande, puedo dar otro paso grande en la siguiente elevación y sobrepasarme
+y sobrepasarme, y así sucesivamente hasta que observes que me alejo más y más
+del mínimo. Y si alfa es muy grande, puede fallar para converger o incluso
+divergir. Ahora, te tengo otra pregunta. Es una capciosa. Cuando
+empezaba a aprender esto, me tomó mucho tiempo averiguarlo.
+¿Qué pasa si theta preferente ya es un mínimo local? ¿Qué crees que hará
+un paso de gradiente de descenso? Así que supongamos que inicias theta
+uno con un mínimo local. Entonces, supón que este es tu valor inicial de theta uno
+de aquí, y ya está en un óptimo local o mínimo local. Resulta
+que con el óptimo local, tu derivada sería igual a cero. Así que ve
+esa pendiente donde está ese punto de tangente, la pendiente de esta línea será igual a cero
+y, por lo tanto, este término de derivada es igual a cero. Entonces, en tu actualización de
+gradiente de descenso, tienes theta uno, que da theta uno actualizada, menos alfa por cero.
+Y lo que esto significa es que si ya tienes un óptimo local, theta
+uno no cambia ya que, como sabes, se obtiene theta uno actualizada igual a theta uno.
+Si tu parámetro ya está en el mínimo local, un paso de gradiente de descenso
+no hace absolutamente nada. No cambia el parámetro, que es lo que
+quieres. Ya que mantiene tu solución en el óptimo local. Esto también explica porqué
+el gradiente de descenso puede converger el mínimo local, incluso con el índice de aprendizaje alfa
+fijo. Esto es lo que quiero decir. Echemos un vistazo a un ejemplo. Esta es una función
+de costos J con theta que tal vez quiero minimizar y, digamos que inicio mi
+algoritmo de gradiente de descenso de aquí en el punto color magenta. Si tomo
+un paso de gradiente de descenso tal vez me lleve al punto, ya que mi
+derivada está muy elevada, ¿correcto? Ahora, estoy en este punto verde y si hago
+otro paso del gradiente de descenso, verás que mi derivada, es decir la
+pendiente, es menos elevada en el punto verde cuando se compara con el punto color magenta
+de aquí, ¿cierto? Porque a medida que me acerco al mínimo, mi derivada se acerca más
+y más a cero cuando me acerco al mínimo. Después de un paso del gradiente de descenso,
+mi nueva derivada es un poco más pequeña. Así que quiero hacer otro paso del gradiente
+de descenso. Naturalmente, haré un paso un poco más pequeño que este punto verde
+comparado con el punto magenta. Ahora, estoy en el punto nuevo, el punto rojo, y ahora más
+cerca del mínimo global, por lo que la derivada será más pequeña que
+con el punto verde. Así que cuando tomo otro paso de gradiente de descenso, ahora
+mi término de derivada es incluso más pequeño y la magnitud de la actualización a theta
+uno es aún más pequeña, entonces puedes hacer un paso como ese, y mientras el gradiente de descenso
+se ejecuta, automáticamente harás pasos más y más pequeños hasta que finalmente hagas
+pasos muy pequeños, y encuentres la convergencia al mínimo
+local. Entonces, sólo para recapitular. En el gradiente de descenso, a medida que nos acercamos al mínimo local,
+el gradiente de descenso automáticamente hará pasos más pequeños debido a que
+nos acercamos al mínimo local, por definición, el mínimo local es cuando tienes esta
+derivada igual a cero. Así que a medida que nos acercamos al mínimo local, este
+término de derivada se hará automáticamente más pequeño y el gradiente de descenso hará pasos más pequeños
+de forma automática. Entonces, así es como se ve el gradiente de descenso y, de hecho,
+no hay necesidad de disminuir alfa con el tiempo. Este es el algoritmo de gradiente
+de descenso, y puedes usarlo para minimizar, tratar de minimizar cualquier función de costos J.
+No la función de costos J que definimos para la regresión lineal. En el siguiente video,
+tomaremos la función J y la regresaremos para que sea exactamente la función
+de costos de la regresión lineal. La función de costos cuadrática que obtuvimos
+anteriormente. Y con el gradiente de descenso y la función de costos cuadrática, y al
+juntarlas, nos dará nuestro primer algoritmo de aprendizaje, que nos dará
+nuestro algoritmo de regresión lineal.

@@ -1,0 +1,929 @@
+1
+00:00:00,200 --> 00:00:03,878
+Agora você já conhece Regressão Linear com múltiplas variáveis.
+
+2
+00:00:03,910 --> 00:00:05,185
+Neste vídeo, eu quero falar
+
+3
+00:00:05,185 --> 00:00:06,369
+um pouco sobre a escolha
+
+4
+00:00:06,380 --> 00:00:07,830
+de caracterísitcas que você dispõe e
+
+5
+00:00:07,830 --> 00:00:09,742
+como você pode obter um algoritmo de aprendizagem diferente,
+
+6
+00:00:09,750 --> 00:00:11,477
+às vezes mais poderosos,
+
+7
+00:00:11,477 --> 00:00:13,803
+por meio da escolha apropriada de variáveis.
+
+8
+00:00:13,810 --> 00:00:15,229
+E, particularmente, eu também quero
+
+9
+00:00:15,229 --> 00:00:17,826
+lhe falar sobre a Regressão Polinomial que possibilita
+
+10
+00:00:17,826 --> 00:00:19,535
+empregar o mecanismo de
+
+11
+00:00:19,535 --> 00:00:21,247
+Regressão Linear adequado a
+
+12
+00:00:21,247 --> 00:00:25,060
+funções muito complicadas, mesmo as não-lineares.
+
+13
+00:00:25,690 --> 00:00:28,827
+Consideremos o exemplo de predição do preço de uma casa.
+
+14
+00:00:29,300 --> 00:00:31,147
+Suponha que você possua duas variáveis,
+
+15
+00:00:31,147 --> 00:00:33,805
+a frente da casa e a profundidade da casa.
+
+16
+00:00:33,805 --> 00:00:35,428
+Então, aqui está a imagem da casa que estamos tentando vender.
+
+17
+00:00:35,428 --> 00:00:37,264
+A frente é
+
+18
+00:00:37,264 --> 00:00:40,103
+definida como esta distância,
+
+19
+00:00:40,103 --> 00:00:43,009
+que é a largura
+
+20
+00:00:43,009 --> 00:00:44,949
+ou o comprimento
+
+21
+00:00:44,960 --> 00:00:46,652
+do seu terreno,
+
+22
+00:00:46,652 --> 00:00:47,994
+se esse for  o seu terreno,
+
+23
+00:00:48,020 --> 00:00:49,468
+e a profundidade
+
+24
+00:00:49,500 --> 00:00:53,120
+da casa é o quão
+
+25
+00:00:53,130 --> 00:00:54,758
+profunda a sua propriedade é.
+
+26
+00:00:54,770 --> 00:00:57,992
+Temos então uma fachada e uma profundidade,
+
+27
+00:00:57,992 --> 00:00:59,858
+chamados frente e fundos.
+
+28
+00:00:59,858 --> 00:01:01,355
+Você pode construir um Modelo de Regressão Linear
+
+29
+00:01:01,360 --> 00:01:04,163
+como este em que a frente
+
+30
+00:01:04,180 --> 00:01:06,062
+é a sua primeira variável x1 e
+
+31
+00:01:06,062 --> 00:01:07,535
+fundos é a sua segunda
+
+32
+00:01:07,535 --> 00:01:10,169
+variável x2, mas quando você está
+
+33
+00:01:10,169 --> 00:01:11,772
+aplicando Regressão Linear, você não
+
+34
+00:01:11,772 --> 00:01:13,342
+necessariamente tem que usar
+
+35
+00:01:13,342 --> 00:01:16,607
+apenas as características x1 e x2 dadas.
+
+36
+00:01:16,610 --> 00:01:20,531
+Você pode também criar novas variáveis.
+
+37
+00:01:20,531 --> 00:01:21,709
+Então, se eu quero prever
+
+38
+00:01:21,710 --> 00:01:22,895
+o preço de uma casa, o que eu
+
+39
+00:01:22,895 --> 00:01:24,840
+talvez o que eu faça é decidir
+
+40
+00:01:24,850 --> 00:01:27,468
+que o que realmente determina
+
+41
+00:01:27,490 --> 00:01:29,133
+o tamanho da casa é
+
+42
+00:01:29,133 --> 00:01:32,164
+a área ou a superfície do terreno.
+
+43
+00:01:32,190 --> 00:01:33,365
+Então, posso criar uma nova variável.
+
+44
+00:01:33,380 --> 00:01:34,609
+Eu irei chamar esta variável
+
+45
+00:01:34,609 --> 00:01:40,409
+de x, que é a frente vezes os fundos.
+
+46
+00:01:40,440 --> 00:01:42,404
+Este é um símbolo de multiplicação.
+
+47
+00:01:42,404 --> 00:01:44,334
+Ele representa a frente vezes os fundos porque
+
+48
+00:01:44,334 --> 00:01:46,040
+esta é a superfície
+
+49
+00:01:46,090 --> 00:01:48,035
+que eu possuo, e eu posso
+
+50
+00:01:48,035 --> 00:01:50,651
+então criar a minha hipótese
+
+51
+00:01:50,710 --> 00:01:53,327
+usando apenas
+
+52
+00:01:53,350 --> 00:01:54,785
+uma variável que é a minha
+
+53
+00:01:54,785 --> 00:01:57,430
+superfície de terra, certo?
+
+54
+00:01:57,580 --> 00:01:58,939
+Porque a área de um
+
+55
+00:01:58,940 --> 00:02:00,345
+retângulo é
+
+56
+00:02:00,345 --> 00:02:01,432
+o produto do comprimento
+
+57
+00:02:01,460 --> 00:02:03,822
+pelo tamanho. Então, dependendo
+
+58
+00:02:03,822 --> 00:02:05,253
+do critério que você talvez possua
+
+59
+00:02:05,280 --> 00:02:07,481
+para um problema particular, em vez de
+
+60
+00:02:07,490 --> 00:02:09,604
+apenas considerar as características x
+
+61
+00:02:09,620 --> 00:02:11,103
+que existem no começo,
+
+62
+00:02:11,130 --> 00:02:13,489
+pode ser que definindo
+
+63
+00:02:13,489 --> 00:02:16,771
+novas características tenhamos um modelo melhor.
+
+64
+00:02:16,790 --> 00:02:18,163
+Relacionada à
+
+65
+00:02:18,163 --> 00:02:19,745
+ideia de escolher as suas características
+
+66
+00:02:19,745 --> 00:02:22,973
+está esta ideia chamada de Regressão Polinomial.
+
+67
+00:02:23,010 --> 00:02:26,868
+Digamos que você possua um conjunto de dados de preço de moradias semelhante a este.
+
+68
+00:02:26,880 --> 00:02:29,646
+Então, existem alguns modelos diferentes que podem ser usados.
+
+69
+00:02:29,660 --> 00:02:32,587
+Você poderia aplicar um modelo quadrático como este.
+
+70
+00:02:32,600 --> 00:02:35,598
+Uma linha reta aparentemente não se aplica bem a estes dados.
+
+71
+00:02:35,598 --> 00:02:36,788
+Então você pode querer aplicar
+
+72
+00:02:36,788 --> 00:02:38,408
+um modelo quadrádico como este
+
+73
+00:02:38,420 --> 00:02:40,248
+em que você considera o tamanho, em que
+
+74
+00:02:40,248 --> 00:02:42,017
+você considera o preço em uma Função
+
+75
+00:02:42,020 --> 00:02:43,956
+Quandrádica e talvez  que lhe
+
+76
+00:02:43,970 --> 00:02:45,018
+propiciará um ajuste
+
+77
+00:02:45,020 --> 00:02:47,070
+aos dados
+com essa cara.
+
+78
+00:02:47,280 --> 00:02:48,560
+Mas você poderia decidir também que o seu
+
+79
+00:02:48,570 --> 00:02:50,013
+Modelo Quadrático não faz sentido
+
+80
+00:02:50,013 --> 00:02:52,582
+porque uma Função Quadrática eventualmente
+
+81
+00:02:52,582 --> 00:02:53,858
+decresce,
+
+82
+00:02:53,858 --> 00:02:55,591
+mas os preços de
+
+83
+00:02:55,600 --> 00:02:58,899
+moradias não deveriam  descer quando o tamanho aumenta tanto.
+
+84
+00:02:58,970 --> 00:03:00,649
+Então talvez possamos
+
+85
+00:03:00,650 --> 00:03:02,700
+escolher um Modelo Polinomial diferente
+
+86
+00:03:02,700 --> 00:03:04,274
+e selecionar uma
+
+87
+00:03:04,290 --> 00:03:07,480
+Função Cúbica em que
+
+88
+00:03:07,480 --> 00:03:09,225
+temos agora um termo de terceira ordem
+
+89
+00:03:09,225 --> 00:03:10,764
+e o ajustamos, obtendo
+
+90
+00:03:10,800 --> 00:03:12,367
+talvez este tipo de
+
+91
+00:03:12,390 --> 00:03:13,907
+modelo, e pode ser que a
+
+92
+00:03:13,910 --> 00:03:15,278
+linha verde seja algo mais adequado
+
+93
+00:03:15,278 --> 00:03:18,052
+aos dados, pois ele não decresce após certo ponto.
+
+94
+00:03:18,052 --> 00:03:21,992
+Como ajustamos então um modelo como este aos nossos dados?
+
+95
+00:03:22,020 --> 00:03:23,868
+Usando a ideia de Regressão
+
+96
+00:03:23,868 --> 00:03:27,059
+Linear Multivariável, podemos
+
+97
+00:03:27,059 --> 00:03:30,692
+fazer isto com uma pequena modificação no nosso algoritmo.
+
+98
+00:03:30,692 --> 00:03:32,632
+A forma da hipótese que
+
+99
+00:03:32,632 --> 00:03:34,217
+sabemos como ajustar
+
+100
+00:03:34,217 --> 00:03:35,782
+se parece com esta, em que dizemos
+
+101
+00:03:35,782 --> 00:03:37,612
+h(x) é  θ₀
+
+102
+00:03:37,612 --> 00:03:41,608
+mais θ₁x1 mais θ₂x2 mais θ₃x3.
+
+103
+00:03:41,608 --> 00:03:42,775
+E se quisermos
+
+104
+00:03:42,775 --> 00:03:45,220
+ajustar este Modelo Cúbico no
+
+105
+00:03:45,250 --> 00:03:47,239
+quadrado em verde,
+
+106
+00:03:47,239 --> 00:03:48,940
+o que estamos dizendo é que
+
+107
+00:03:48,940 --> 00:03:49,825
+para predizer o preço de uma
+
+108
+00:03:49,825 --> 00:03:51,364
+casa, teríamos é θ₀ mais
+
+109
+00:03:51,364 --> 00:03:53,056
+θ₁ vezes o tamanho da casa (size)
+
+110
+00:03:53,056 --> 00:03:55,905
+mais θ₂ vezes o quadrado do tamanho da casa.
+
+111
+00:03:55,910 --> 00:03:58,974
+Então este termo é igual àquele termo.
+
+112
+00:03:58,974 --> 00:04:00,885
+E então, mais θ₃
+
+113
+00:04:00,890 --> 00:04:02,343
+vezes o cubo do
+
+114
+00:04:02,350 --> 00:04:05,302
+tamanho da casa produz aquele terceiro termo.
+
+115
+00:04:05,470 --> 00:04:06,967
+Para mapear estas
+
+116
+00:04:06,990 --> 00:04:08,668
+duas definições
+
+117
+00:04:08,668 --> 00:04:10,339
+corretamente, a forma natural
+
+118
+00:04:10,339 --> 00:04:12,128
+de se fazer isso é definir
+
+119
+00:04:12,150 --> 00:04:13,568
+a primeira variável x1 como
+
+120
+00:04:13,568 --> 00:04:15,320
+sendo o tamanho da casa e
+
+121
+00:04:15,320 --> 00:04:16,721
+definir a segunda característica x2
+
+122
+00:04:16,721 --> 00:04:17,766
+como sendo o quadrado do tamanho
+
+123
+00:04:17,766 --> 00:04:20,400
+da casa e definir a terceira caracterísitca x3 como
+
+124
+00:04:20,400 --> 00:04:22,780
+sendo o cubo do tamanho da casa.
+
+125
+00:04:22,800 --> 00:04:24,292
+E, apenas pela escolha das minhas
+
+126
+00:04:24,292 --> 00:04:26,311
+três características desta maneira, e
+
+127
+00:04:26,311 --> 00:04:27,720
+aplicando  Regressão
+
+128
+00:04:27,720 --> 00:04:30,540
+Linear eu posso ajustar este
+
+129
+00:04:30,540 --> 00:04:31,901
+modelo e acabar com
+
+130
+00:04:31,901 --> 00:04:34,374
+um ajuste cúbico para os meus dados.
+
+131
+00:04:34,374 --> 00:04:35,523
+Quero apenas apontar mais
+
+132
+00:04:35,523 --> 00:04:36,799
+uma coisa:
+
+133
+00:04:36,800 --> 00:04:38,610
+se você escolher as suas variáveis
+
+134
+00:04:38,610 --> 00:04:40,925
+deste modo, definir escalas de características
+
+135
+00:04:40,925 --> 00:04:43,688
+torna-se cada vez mais importante.
+
+136
+00:04:44,130 --> 00:04:45,254
+Assim, se o tamanho da
+
+137
+00:04:45,254 --> 00:04:46,794
+casa varia de um para
+
+138
+00:04:46,800 --> 00:04:47,992
+mil,
+
+139
+00:04:47,992 --> 00:04:49,300
+de um a mil pés quadrados
+
+140
+00:04:49,310 --> 00:04:50,918
+dizer que o tamanho
+
+141
+00:04:50,930 --> 00:04:52,175
+quadrado da casa irá
+
+142
+00:04:52,175 --> 00:04:54,519
+variar de um a um
+
+143
+00:04:54,520 --> 00:04:55,953
+milhão, o quadrado de
+
+144
+00:04:55,953 --> 00:04:58,468
+mil, e que sua terceira
+
+145
+00:04:58,490 --> 00:05:01,335
+característica x ao cubo, desculpe,
+
+146
+00:05:01,360 --> 00:05:03,106
+sua terceira característica x3,
+
+147
+00:05:03,120 --> 00:05:04,732
+a qual é o tamanho
+
+148
+00:05:04,732 --> 00:05:05,941
+cúbico da casa, irá variar
+
+149
+00:05:05,950 --> 00:05:07,478
+de um, dois, ....., dez
+
+150
+00:05:07,478 --> 00:05:09,311
+o nove, e então estas
+
+151
+00:05:09,330 --> 00:05:10,955
+três características assumem várias
+
+152
+00:05:10,955 --> 00:05:13,459
+e diferentes faixas de valores, e
+
+153
+00:05:13,490 --> 00:05:15,105
+é importante aplicar o redimensionamento
+
+154
+00:05:15,110 --> 00:05:16,509
+de varáveis se você está usando gradiente
+
+155
+00:05:16,509 --> 00:05:18,554
+descendente para obtê-los em
+
+156
+00:05:18,554 --> 00:05:21,139
+faixas de valores comparáveis.
+
+157
+00:05:21,140 --> 00:05:23,243
+Finalmente, eis aqui um último exemplo
+
+158
+00:05:23,250 --> 00:05:25,138
+sobre como você realmente tem
+
+159
+00:05:25,150 --> 00:05:29,056
+amplas opções nas características que você usa.
+
+160
+00:05:29,090 --> 00:05:30,446
+Inicialmente, falamos sobre como um
+
+161
+00:05:30,446 --> 00:05:31,559
+Modelo Quadrático como este aqui pode
+
+162
+00:05:31,559 --> 00:05:33,122
+não ser apropriado, já que
+
+163
+00:05:33,122 --> 00:05:34,408
+talvez o Modelo Quadrático se ajuste aos
+
+164
+00:05:34,408 --> 00:05:35,952
+dados corretamente, mas a função
+
+165
+00:05:35,952 --> 00:05:37,514
+quadrática regride
+
+166
+00:05:37,514 --> 00:05:39,065
+e não queremos isso.
+
+167
+00:05:39,070 --> 00:05:40,352
+Preços de moradias que decrescem
+
+168
+00:05:40,352 --> 00:05:43,567
+para predizer que o tamanho das casa se mantém.
+
+169
+00:05:43,567 --> 00:05:45,388
+Mas, em vez de caminhar para
+
+170
+00:05:45,388 --> 00:05:46,938
+o modelo cúbico, você
+
+171
+00:05:46,938 --> 00:05:48,389
+pode ter outras escolhas de
+
+172
+00:05:48,389 --> 00:05:50,798
+características, e são várias possibilidades.
+
+173
+00:05:50,800 --> 00:05:52,313
+Mas apenas para dar-lhe outro
+
+174
+00:05:52,313 --> 00:05:53,691
+exemplo de uma escolha
+
+175
+00:05:53,691 --> 00:05:55,620
+razoável,
+
+176
+00:05:55,620 --> 00:05:57,263
+poderia se dizer que o
+
+177
+00:05:57,263 --> 00:05:58,832
+preço de uma casa é θ₀
+
+178
+00:05:58,850 --> 00:05:59,992
+mais θ₁ vezes
+
+179
+00:05:59,992 --> 00:06:01,264
+o tamanho, mais θ₂
+
+180
+00:06:01,320 --> 00:06:03,625
+vezes a raiz quadrada do tamanho, certo?
+
+181
+00:06:03,630 --> 00:06:05,364
+Desta forma, a Raiz Quadrada é
+
+182
+00:06:05,364 --> 00:06:08,110
+este tipo de função, e talvez
+
+183
+00:06:08,110 --> 00:06:09,318
+haverá algum valor de θ₁,
+
+184
+00:06:09,318 --> 00:06:11,355
+θ₂, θ₃, que
+
+185
+00:06:11,355 --> 00:06:14,049
+o levará a esse modelo,
+
+186
+00:06:14,080 --> 00:06:15,445
+para uma curva que se pareça
+
+187
+00:06:15,445 --> 00:06:16,952
+com esta,
+
+188
+00:06:16,952 --> 00:06:19,500
+que cresce, mas achatam
+
+189
+00:06:19,520 --> 00:06:21,529
+um pouco e não decrescem
+
+190
+00:06:21,540 --> 00:06:23,877
+mais.
+
+191
+00:06:24,154 --> 00:06:26,584
+E assim, tendo conhecimento
+
+192
+00:06:26,584 --> 00:06:27,630
+da forma de uma
+
+193
+00:06:27,630 --> 00:06:30,952
+função de Raiz Quadrada, e na
+
+194
+00:06:30,990 --> 00:06:32,555
+na forma dos dados, escolhendo
+
+195
+00:06:32,555 --> 00:06:36,469
+diferentes variáveis, pode-se obter modelos melhores.
+
+196
+00:06:36,469 --> 00:06:39,026
+Neste vídeo, falamos sobre Regressão Polinomial.
+
+197
+00:06:39,026 --> 00:06:40,672
+Isto é, como adaptar um
+
+198
+00:06:40,672 --> 00:06:42,298
+polinônimo, como uma Função Quadrática,
+
+199
+00:06:42,298 --> 00:06:43,868
+ou uma Função Cúbica, aos seus dados
+
+200
+00:06:43,868 --> 00:06:45,112
+Também foi lançada esta ideia,
+
+201
+00:06:45,112 --> 00:06:46,640
+e de que você tem a escolha de quais
+
+202
+00:06:46,640 --> 00:06:47,732
+características usar, tais como
+
+203
+00:06:47,748 --> 00:06:48,804
+em vez de usar
+
+204
+00:06:48,804 --> 00:06:50,078
+a frente e a pronfundidade
+
+205
+00:06:50,078 --> 00:06:51,092
+da casa, pode-se
+
+206
+00:06:51,092 --> 00:06:53,133
+multiplicá-las para obter
+
+207
+00:06:53,133 --> 00:06:55,317
+uma característica que expresse a área da superfície da casa.
+
+208
+00:06:55,317 --> 00:06:57,551
+No caso, isto parece um pouco
+
+209
+00:06:57,551 --> 00:06:58,895
+confuso, já que tendo todas
+
+210
+00:06:58,896 --> 00:07:03,265
+estas diferentes escolhas de variáveis, como faço para decidir quais usar?
+
+211
+00:07:03,265 --> 00:07:04,594
+Mais tarde nesta aula, falaremos
+
+212
+00:07:04,594 --> 00:07:06,622
+sobre alguns algoritmos para escolher, automaticamente,
+
+213
+00:07:06,622 --> 00:07:08,083
+quais características serão usadas,
+
+214
+00:07:08,083 --> 00:07:09,466
+onde você teria
+
+215
+00:07:09,466 --> 00:07:10,611
+um algoritmo que observa os dados
+
+216
+00:07:10,611 --> 00:07:12,040
+e escolhe, automaticamente, se você
+
+217
+00:07:12,040 --> 00:07:13,357
+ajustaria uma
+
+218
+00:07:13,357 --> 00:07:15,528
+Função Quadrática, ou uma Função Cúbica, ou algo diferente.
+
+219
+00:07:15,528 --> 00:07:17,164
+Mas, até chegarmos
+
+220
+00:07:17,164 --> 00:07:18,764
+a esses algoritmos, por hora eu apenas
+
+221
+00:07:18,764 --> 00:07:20,295
+quero que você esteja ciente de que
+
+222
+00:07:20,295 --> 00:07:21,582
+você possui uma escolha sobre
+
+223
+00:07:21,582 --> 00:07:23,094
+quais variáveis usar e
+
+224
+00:07:23,094 --> 00:07:25,256
+pelo projeto de diferentes variáveis
+
+225
+00:07:25,256 --> 00:07:26,888
+você pode ajustar funções mais complexas aos
+
+226
+00:07:26,888 --> 00:07:28,156
+seus dados em vez de ajustar apenas uma
+
+227
+00:07:28,156 --> 00:07:30,471
+linha reta para os dados e,
+
+228
+00:07:30,471 --> 00:07:32,092
+em particular, você pode aplicar Funções
+
+229
+00:07:32,092 --> 00:07:35,065
+Polinomiais, e algumas vezes,
+
+230
+00:07:35,065 --> 00:07:36,072
+pelo conhecimento da
+
+231
+00:07:36,072 --> 00:07:37,564
+variável, simplesmente obtendo um
+
+232
+00:07:37,564 --> 00:07:40,020
+modelo muito mais adequado para os seus dados.
+Tradução: Osvandre Martins | Revisão: Eduardo Bonet

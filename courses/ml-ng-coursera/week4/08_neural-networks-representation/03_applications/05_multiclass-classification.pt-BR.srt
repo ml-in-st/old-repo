@@ -1,0 +1,444 @@
+1
+00:00:00,320 --> 00:00:01,410
+Neste vídeo, eu quero
+
+2
+00:00:01,490 --> 00:00:02,710
+contar-lhes sobre como usar
+
+3
+00:00:02,900 --> 00:00:04,390
+Redes Neurais para classificações
+
+4
+00:00:04,830 --> 00:00:06,690
+de múltiplas classes, onde podemos ter
+
+5
+00:00:06,820 --> 00:00:07,840
+mais de uma categoria
+
+6
+00:00:07,930 --> 00:00:09,600
+para distinguir das outras.
+
+7
+00:00:10,470 --> 00:00:12,280
+Na última parte
+
+8
+00:00:12,600 --> 00:00:13,920
+do último vídeo, no qual vimos
+
+9
+00:00:14,400 --> 00:00:15,320
+o problema de reconhecimento
+
+10
+00:00:15,830 --> 00:00:17,030
+de números escritos à mão, já foi
+
+11
+00:00:17,700 --> 00:00:19,000
+uma classificação multi-classe,
+
+12
+00:00:19,440 --> 00:00:20,730
+pois havia 10 categorias possíveis,
+
+13
+00:00:21,550 --> 00:00:22,820
+para reconhecer os dígitos
+
+14
+00:00:23,040 --> 00:00:23,980
+de 0 até 9.
+
+15
+00:00:24,060 --> 00:00:25,430
+Então, vamos apresentar
+
+16
+00:00:25,830 --> 00:00:27,840
+para você os detalhes de como fazer isso.
+
+17
+00:00:30,410 --> 00:00:31,870
+Fazemos a classificação multi-classe
+
+18
+00:00:32,990 --> 00:00:34,380
+em uma Rede Neural , basicamente,
+
+19
+00:00:35,060 --> 00:00:37,600
+como uma extensão do método "um contra todos".
+
+20
+00:00:38,610 --> 00:00:39,650
+Então, digamos que temos
+
+21
+00:00:39,790 --> 00:00:41,660
+um exemplo de Visão Computacional,
+
+22
+00:00:42,630 --> 00:00:43,810
+no qual, ao invés de apenas
+
+23
+00:00:44,010 --> 00:00:46,170
+tentar reconhecer carros, como
+
+24
+00:00:46,310 --> 00:00:47,290
+no exemplo original,
+
+25
+00:00:47,470 --> 00:00:48,670
+digamos que vamos
+
+26
+00:00:49,060 --> 00:00:51,380
+tentar reconhecer 4
+
+27
+00:00:51,510 --> 00:00:52,820
+categorias de objetos. E dada
+
+28
+00:00:53,030 --> 00:00:53,900
+uma imagem, queremos
+
+29
+00:00:54,100 --> 00:00:56,360
+decidir se é um pedestre, carro, moto, ou caminhão.
+
+30
+00:00:57,200 --> 00:00:58,750
+Se for esse o caso,
+
+31
+00:00:58,920 --> 00:01:00,480
+o que faríamos seria:
+
+32
+00:01:00,970 --> 00:01:02,820
+construir uma Rede Neural com 4
+
+33
+00:01:03,160 --> 00:01:04,500
+unidades de saída, assim,
+
+34
+00:01:04,710 --> 00:01:08,110
+nossa Rede Neural irá gerar um vetor com 4 números.
+
+35
+00:01:09,110 --> 00:01:10,450
+A saída, agora, será um vetor
+
+36
+00:01:11,170 --> 00:01:11,840
+precisa ser um vetor de quatro números
+
+37
+00:01:12,070 --> 00:01:13,300
+de 4 números, e tentaremos
+
+38
+00:01:13,540 --> 00:01:14,400
+fazer será 
+
+39
+00:01:14,780 --> 00:01:16,680
+pegar a primeira unidade de saida
+
+40
+00:01:17,180 --> 00:01:18,840
+para classificar: é uma imagem
+
+41
+00:01:19,160 --> 00:01:20,650
+de um pedestre? Sim ou não.
+
+42
+00:01:21,200 --> 00:01:24,530
+segunda unidade para classificar: esta imagem é um carro? Sim ou não.
+
+43
+00:01:25,110 --> 00:01:26,880
+Terceira unidade para classificar:
+
+44
+00:01:27,130 --> 00:01:29,150
+essa é a imagem de uma moto? Sim ou não.
+
+45
+00:01:29,230 --> 00:01:30,460
+E a última classificaria:
+
+46
+00:01:30,930 --> 00:01:32,930
+é uma imagem de um caminhão? Sim ou não.
+
+47
+00:01:33,720 --> 00:01:35,730
+E desta forma, quando a imagem
+
+48
+00:01:36,390 --> 00:01:37,630
+for de um pedestre,
+
+49
+00:01:37,820 --> 00:01:38,930
+o ideal é que a rede
+
+50
+00:01:39,410 --> 00:01:40,140
+gere [1  0  0  0].
+
+51
+00:01:40,250 --> 00:01:41,260
+Quando for um carro,
+
+52
+00:01:41,520 --> 00:01:42,310
+queremos a saída
+
+53
+00:01:42,750 --> 00:01:43,530
+[0  1  0  0].
+
+54
+00:01:43,840 --> 00:01:45,960
+Quando for uma moto, queremos que a saída seja
+
+55
+00:01:46,390 --> 00:01:47,460
+[0  0  1  0] ,
+
+56
+00:01:47,580 --> 00:01:48,970
+e assim por diante.
+
+57
+00:01:50,750 --> 00:01:51,880
+Então, fica assim,
+
+58
+00:01:52,270 --> 00:01:53,690
+como no método "um contra todos"
+
+59
+00:01:54,190 --> 00:01:55,520
+que falamos, quando
+
+60
+00:01:55,680 --> 00:01:58,120
+descrevíamos a Regressão Logística,
+
+61
+00:01:58,320 --> 00:02:00,480
+e aqui nós temos, essencialmente, 4 regressões
+
+62
+00:02:01,290 --> 00:02:03,100
+logísticas classificadoras, cada uma
+
+63
+00:02:03,260 --> 00:02:04,800
+tentando reconhecer uma
+
+64
+00:02:05,000 --> 00:02:06,780
+das quatro classes que
+
+65
+00:02:06,940 --> 00:02:08,830
+queremos distinguir das outras.
+
+66
+00:02:09,540 --> 00:02:10,780
+Portanto, reorganizando o slide:
+
+67
+00:02:10,860 --> 00:02:12,130
+aqui está a nossa Rede Neural,
+
+68
+00:02:12,540 --> 00:02:14,070
+com 4 unidades de saída,
+
+69
+00:02:14,330 --> 00:02:15,510
+e aqui está o que queremos
+
+70
+00:02:15,670 --> 00:02:16,790
+que o h(x) seja,
+
+71
+00:02:16,990 --> 00:02:18,930
+quando tivermos imagens diferentes.
+
+72
+00:02:19,580 --> 00:02:20,860
+E, a maneira que representaremos
+
+73
+00:02:21,110 --> 00:02:22,690
+o conjunto de treinamento nesse modelo
+
+74
+00:02:23,260 --> 00:02:24,670
+será como segue:
+
+75
+00:02:24,890 --> 00:02:26,170
+para um conjunto de treinamento
+
+76
+00:02:27,350 --> 00:02:28,990
+com diferentes imagens de pedestres,
+
+77
+00:02:29,260 --> 00:02:30,450
+carros, motos e caminhões;
+
+78
+00:02:30,510 --> 00:02:31,940
+o que faremos é:
+
+79
+00:02:32,190 --> 00:02:34,580
+enquanto anteriormente
+
+80
+00:02:34,990 --> 00:02:36,780
+nós tínhamos as classes
+
+81
+00:02:37,040 --> 00:02:38,320
+como "Y" sendo um inteiro,
+
+82
+00:02:38,710 --> 00:02:42,180
+"1, 2, 3 ou 4". Ao invés de
+
+83
+00:02:42,280 --> 00:02:44,210
+representar "Y" desta forma,
+
+84
+00:02:44,890 --> 00:02:46,340
+agora vamos representá-lo
+
+85
+00:02:47,050 --> 00:02:49,400
+da seguinte forma:
+
+86
+00:02:54,850 --> 00:02:55,230
+será ou 1, 0, 0, 0; 
+
+87
+00:02:55,230 --> 00:02:57,040
+y⁽ᴵ⁾ será um desses, dependendo
+
+88
+00:02:57,490 --> 00:02:59,100
+de que imagem x⁽ᴵ⁾ corresponde.
+
+89
+00:02:59,410 --> 00:03:00,700
+Então, um exemplo
+
+90
+00:03:01,230 --> 00:03:03,090
+será um par (x⁽ᴵ⁾, y⁽ᴵ⁾),
+
+91
+00:03:04,530 --> 00:03:06,340
+onde x⁽ᴵ⁾ é uma imagem,
+
+92
+00:03:06,440 --> 00:03:08,000
+de um dos 4 objetos,
+
+93
+00:03:08,170 --> 00:03:09,640
+e y⁽ᴵ⁾ será um desses vetores.
+
+94
+00:03:10,970 --> 00:03:12,020
+E esperamos poder
+
+95
+00:03:12,420 --> 00:03:13,670
+encontrar uma maneira de fazer
+
+96
+00:03:14,020 --> 00:03:15,100
+nossa Rede Neural
+
+97
+00:03:15,290 --> 00:03:16,480
+gerar uma saída, tal que h(X)
+
+98
+00:03:17,310 --> 00:03:20,360
+seja aproximadamente y⁽ᴵ⁾.
+
+99
+00:03:20,550 --> 00:03:22,000
+E tanto h(X) quanto  y⁽ᴵ⁾
+
+100
+00:03:22,600 --> 00:03:23,770
+serão, nesse
+
+101
+00:03:24,020 --> 00:03:25,170
+nosso exemplo,
+
+102
+00:03:26,060 --> 00:03:28,700
+vetores de 4 dimensões, quando tivermos 4 classes.
+
+103
+00:03:31,810 --> 00:03:33,020
+É assim que fazemos com que
+
+104
+00:03:33,170 --> 00:03:34,830
+Rede Neural faça classificação multi-classe.
+
+105
+00:03:36,290 --> 00:03:37,780
+Isso resume nossa discussão
+
+106
+00:03:38,050 --> 00:03:39,620
+de como representar Redes Neurais,
+
+107
+00:03:40,120 --> 00:03:41,620
+isso é, a representação da hipótese.
+
+108
+00:03:42,780 --> 00:03:44,180
+Nos próximos vídeos
+
+109
+00:03:44,690 --> 00:03:45,830
+começaremos a falar sobre como
+
+110
+00:03:45,990 --> 00:03:47,360
+pegar um conjunto de treinamento,
+
+111
+00:03:47,570 --> 00:03:49,970
+e encontrar automaticamente os parâmetros da nossa Rede Neural.
+Tradução: Luís Moneda | Revisão: Pablo de Morais Andrade

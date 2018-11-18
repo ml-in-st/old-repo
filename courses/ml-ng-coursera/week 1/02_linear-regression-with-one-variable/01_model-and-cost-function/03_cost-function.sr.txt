@@ -1,0 +1,44 @@
+U ovome videu ćemo da definišemo 
+nešto što se zove funkcija koštanja. Ona će da nam pomogne da shvatimo kako da 
+našim podacima pridružimo najbolju pravu liniju. Kod linearne regresije imamo trening 
+skup koji sam ovde prikazao, sećate se, oznaka m je bila broj trening 
+primera, neka je m jednako 47. A oblik naše hipoteze, koju koristimo da bismo napravili 
+predviđanje je ova linearna funkcija. Uvedimo još malo pojmova, teta0 i teta1, oni čine ono što ja zovem parametrima modela. A ono šta ćemo da radimo u ovome videu 
+je da ćemo da govorimo o tome kako da odaberemo vrednosti ta dva 
+parametra, teta0 i teta1. Različitim odabirom parametara teta0 i teta1, dobijamo različite hipoteze, drugačije funkcije. Znam da su neki od vas već upoznati o ovome što radim na slajdu ali 
+da ponovimo, evo par primera. Ako je teta0 1.5 a teta1 0, tada će funkcija hipoteze da izgleda ovako. Jer je vaša funkcija hipoteze h(x) + 1.5 + 0 * x što je konstantna funkcija vrednosti 1.5. Iko je teta0 = 0, teta1 = 0.5,
+ tada će hipoteza da izgleda ovako, i treba da prolazi kroz tačku (2, 1) tako da sada imate h(x). h teta od x, ponekad ću da 
+izostavim teta zbog kratkoće. Tako, h(x) = 0.5 * x, što izgleda ovako. I konačno, ako je teta0 = 1, a teta1 = 0.5, tada ćemo da dobijemo hipotezu poput ove. Da vidimo, treba da prođe kroz tačku (2, 2). Ovako, ovo je moj novi vektor x, ili 
+moj novi h sabskript teta od x. Bilo koji način da zapamtite, 
+h sabskript teta od x, ali zbog kratkoće ponekad 
+ću samo da pišem h od x. Kod linearne regresije imamo 
+trening skup, kao ovaj iscrtan ovde. Ono šta želim da uradim je da 
+dobijem vrednosti parametara teta0 i teta1 tako da prava linija koju 
+dobijemo ovime odgovara pravoj liniji koja dobro odgovara 
+podacima, kao ova linija ovde. Pa, kako da dobijemo vrednosti, teta0, teta1 da bi odgovaralo podacima? Ideja je da odaberemo naše 
+parametre teta0 i teta1 tako da h od x bude vrednost koju predviđamo za x, bude blizu vrednosti y za primere u našem trening primeru. Tako, u našem trening skupu dobili 
+smo primere gde je poznato x, veličina kuća, i znamo po kojoj su ceni prodane. Hajde da probamo da odaberemo 
+vrednosti parametara tako da, u ovome trening skupu, za dato x u trening skupu da predvidimo y vrednosti. Uprostimo ovo. U linearnoj regresiji ću da rešim problem minimizacije. Napisaću: minimizovati preko teta0 teta1. Želim da to bude malo, u redu? Želim da razlika između h(x) i y bude mala. Ono što mogu da uradim je da 
+minimizujem kvadrat razlike između izlaza hipoteze i stvarne cene kuće. U redu, da vidimo neke detalje. Sećate se da sam koristio obeležje (x(i),y(i)) da bih predstavio i - ti trening primer. Ono što stvarno želim je da 
+sumiram kroz moj trening skup, nešto kao i = 1 do m, kvadrat razlike između predviđanja moje hipoteze za ulaznu 
+veličinu kuće u i - tom primeru. U redu, minus stvarna cena po kojoj je kuća prodana, i želim da minimizujem
+ sumu u trening skupu, sumu od i = 1 do m, razlike kvadrata greške, kvadrata razlike između predviđene cene kuće i cene po kojoj je prodana. Samo da vas podsetim na oznake, 
+ovo m je veličina moga trening skupa. Dakle, ovo m ovde je broj trening primera. Ovaj heš znak je skraćenica za 
+broj trening primera, u redu? Da bismo matematiku učinili malo lakšom, u stvari ću pogledati od 1 do m puta hajde da minimizujemo srednju vrednost Stavljanjem konstante 1/2 na početak čini da matematika izgleda lakšom ako se 
+minimizuje jedna polovina nečega daće vam iste vrednosti procesa, 
+teta0 teta1, u procesu minimizacije. Da budemo sigurni da je jednačina jasna, ovaj izraz ovde, h sabskript teta od x je poznat, u redu? To je jednako ovo plus teta1 x i. A ova oznaka, minimizacija preko teta0 teta1, to znači nađi mi vrednosti teta0 i teta1 da bi ovaj izraz bio minimalan a on zavisi od teta0 i teta1, u redu? Da sumiramo. Ovaj problem postavljamo tako 
+da nađemo teta0 i teta1 da bi srednja vrednost, od 1 do m puta, kvadrata greške između 
+predviđanja u trening skupu minus stvarna vrednost kuća u 
+trening skupu bila minimalna. To bi bilo sve o mojoj ciljnoj 
+funkciji linearne regresije. Da još jednom napišemo, 
+ono što ću da uradim je, po pravilu obično definišemo funkciju koštanja, što je upravo ovo, formula ovde gore. Ono što želim da uradim je da 
+minimizujem po teta0 i teta1. Moja funkcija J(teta0, teta1). Samo ovo ispišite. Ovo je moja funkcija koštanja. Ova funkcija koštanja se takođe 
+zove i funkcija kvadrata greške. Ponekad se zove i funkcija 
+koštanja kvadrata greške i ispada da, zašto uzimamo kvadrat greške, ispada da je taj kvadrat greške razložan izbor i radi dobro za mnoge probleme, 
+za mnoge programe regresije. Postoje i druge funkcije koštanja 
+koje rade prilično dobro. Ali je funkcija kvadrata greške najčešće korištena za probleme regresije. Kasnije na kursu ćemo takođe da govorimo 
+i o alternativama funkcije koštanja ali ovaj izbor koji smo upravo 
+napravili je sasvim razložan izbor za mnoge probleme linearne regresije. U rеdu. Dakle, to je funkcija koštanja. Do sada smo videli mamematičku 
+definiciju funkcije koštanja, u slučaju J od teta0 teta1, u slučaju da ta funkcija izgleda apstraktno, i da još uvek nemate osećaj šta ona radi, u sledećem videu, u sledećih par videa ću da idem malo dublje u to šta 
+funkcija koštanja J radi i da vam dam bolju intuiciju o tome šta 
+ona računa i zašto se koristi.

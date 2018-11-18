@@ -1,0 +1,1026 @@
+1
+00:00:00,190 --> 00:00:01,270
+U ovome videu i
+
+2
+00:00:01,440 --> 00:00:02,720
+onome posle ovoga,
+
+3
+00:00:02,850 --> 00:00:04,040
+želeo bih da vam kažem nešto o
+
+4
+00:00:04,180 --> 00:00:06,940
+praktičnim trikovima da bi algoritam
+ opadajućeg gradijenta dobro radio.
+
+5
+00:00:07,680 --> 00:00:10,250
+U ovom video rekao bih vam nešto o
+ ideji zvanoj skaliranje osobina.
+
+6
+00:00:11,770 --> 00:00:12,210
+Ovo je ideja.
+
+7
+00:00:13,030 --> 00:00:14,080
+Ako imate problem gde
+
+8
+00:00:14,180 --> 00:00:15,880
+imate više osobina, ako
+
+9
+00:00:16,320 --> 00:00:17,410
+ste sigurni da su osobine
+
+10
+00:00:18,050 --> 00:00:19,440
+na sličnoj skali,
+
+11
+00:00:19,570 --> 00:00:20,480
+mislim, ako ste sigurni da
+
+12
+00:00:20,650 --> 00:00:22,130
+različite osobine zauzimaju
+
+13
+00:00:22,300 --> 00:00:23,390
+slične opsege vrednosti,
+
+14
+00:00:24,420 --> 00:00:26,490
+tada opadajući gradijent brže konvergira.
+
+15
+00:00:27,510 --> 00:00:28,680
+Konkretno, recimo da
+
+16
+00:00:28,820 --> 00:00:29,860
+imate problem sa dve osobine
+
+17
+00:00:30,380 --> 00:00:31,680
+gde je x1 veličina
+
+18
+00:00:31,950 --> 00:00:32,860
+kuće i uzima vrednosti
+
+19
+00:00:33,530 --> 00:00:34,540
+između 0 i 2.000
+
+20
+00:00:35,490 --> 00:00:36,270
+a druga je broj
+
+21
+00:00:36,520 --> 00:00:37,570
+spavaćih soba, i može da uzme
+
+22
+00:00:37,820 --> 00:00:39,250
+vrednosti između 1 i 5.
+
+23
+00:00:40,100 --> 00:00:41,690
+Ako iscrtate konture
+
+24
+00:00:41,800 --> 00:00:43,000
+funkcije koštanja J od teta,
+
+25
+00:00:44,810 --> 00:00:46,540
+one bi mogle da izgledaju
+
+26
+00:00:46,750 --> 00:00:49,010
+ovako, gde, recimo,
+
+27
+00:00:49,230 --> 00:00:50,570
+J od teta je funkcija
+
+28
+00:00:50,910 --> 00:00:53,590
+parametara teta0, teta1 i teta2.
+
+29
+00:00:54,300 --> 00:00:55,400
+Ignorisaću teta0,
+
+30
+00:00:56,020 --> 00:00:57,230
+dakle, zaboravimo teta0
+
+31
+00:00:57,480 --> 00:00:58,730
+i pravimo se kao da je funkcija
+
+32
+00:00:58,840 --> 00:01:01,080
+samo od teta1 i teta2,
+
+33
+00:01:01,510 --> 00:01:02,810
+ali ako x1 može da
+
+34
+00:01:02,940 --> 00:01:04,110
+uzme mnogo veći rang
+
+35
+00:01:04,370 --> 00:01:05,790
+vrednosti od x2 ispada
+
+36
+00:01:06,120 --> 00:01:07,270
+da konture funkcije
+
+37
+00:01:07,340 --> 00:01:08,320
+koštanja J od teta
+
+38
+00:01:09,420 --> 00:01:11,400
+mogu da dobiju ovaj veoma
+
+39
+00:01:11,690 --> 00:01:14,720
+nakošen eliptični oblik, izuzev
+
+40
+00:01:15,070 --> 00:01:16,620
+ako koristimo odnos 2000 prema 5,
+
+41
+00:01:16,770 --> 00:01:18,470
+mogle bi biti više skalirane.
+
+42
+00:01:18,800 --> 00:01:20,190
+Dakle, ovo su veoma visoke
+
+43
+00:01:20,560 --> 00:01:23,070
+i tanke elipse, ili
+
+44
+00:01:23,320 --> 00:01:24,950
+veoma visoki tanki ovali, i mogu
+
+45
+00:01:25,310 --> 00:01:27,940
+da formiraju konture funkcije 
+koštanja J od teta.
+
+46
+00:01:29,420 --> 00:01:30,860
+Ako pokrenete opadajući gradijent
+
+47
+00:01:30,930 --> 00:01:34,290
+na ovoj funkciji koštanja, vaši
+
+48
+00:01:34,830 --> 00:01:36,480
+gradijenti bi mogli
+
+49
+00:01:36,970 --> 00:01:38,660
+da uzmu mnogo vremena i
+
+50
+00:01:39,080 --> 00:01:40,360
+mogli bi da osciliraju napred, nazad
+
+51
+00:01:41,100 --> 00:01:43,130
+i potrajalo bi dok bi
+
+52
+00:01:43,190 --> 00:01:46,120
+konačno našli globalni minimum.
+
+53
+00:01:47,470 --> 00:01:48,720
+U stvari, zamislite da
+
+54
+00:01:48,890 --> 00:01:50,400
+su te konture preuveličane čak
+
+55
+00:01:50,580 --> 00:01:51,970
+iako crtate neverovatno
+
+56
+00:01:52,480 --> 00:01:54,300
+tanke, visoke tanke konture,
+
+57
+00:01:56,230 --> 00:01:57,030
+moglo bi da bude i ekstremnije
+
+58
+00:01:57,380 --> 00:01:59,060
+tad opadajući gradijent
+
+59
+00:01:59,790 --> 00:02:02,310
+treba više vremena
+
+60
+00:02:02,630 --> 00:02:04,280
+da nađe svoj put,
+
+61
+00:02:04,690 --> 00:02:06,030
+krivudajući okolo, može da
+
+62
+00:02:06,120 --> 00:02:08,270
+potraje dok ne pronađe 
+svoj put do globalnog minimuma.
+
+63
+00:02:12,130 --> 00:02:14,370
+U takvim postavkama, korisna
+
+64
+00:02:14,780 --> 00:02:16,280
+stvar je da se osobine skaliraju.
+
+65
+00:02:17,380 --> 00:02:18,760
+Konkretno, ako umesto da
+
+66
+00:02:19,200 --> 00:02:20,370
+definišete osobinu x1
+
+67
+00:02:20,570 --> 00:02:21,770
+da bude veličina kuće
+
+68
+00:02:21,870 --> 00:02:23,070
+podeljena sa 2000,
+
+69
+00:02:24,040 --> 00:02:25,140
+a x2 da bude
+
+70
+00:02:25,270 --> 00:02:26,520
+možda broj spavaćih soba podeljen
+
+71
+00:02:26,940 --> 00:02:29,010
+sa 5, tada,
+
+72
+00:02:29,170 --> 00:02:30,020
+konture
+
+73
+00:02:30,090 --> 00:02:31,840
+funkcije koštanja J bi postale
+
+74
+00:02:32,900 --> 00:02:34,430
+mnogo manje
+
+75
+00:02:34,840 --> 00:02:36,990
+nakrivljene tako da 
+bi više ličile na krugove.
+
+76
+00:02:38,210 --> 00:02:39,180
+I ako pokrenete opadajući
+
+77
+00:02:39,520 --> 00:02:40,540
+gradijent na funkciji koštanja kao
+
+78
+00:02:40,750 --> 00:02:42,120
+što je ova, tada bi opadajući gradijent,
+
+79
+00:02:44,110 --> 00:02:45,630
+možete pokazati matematički,
+
+80
+00:02:45,860 --> 00:02:47,430
+možete naći mnogo direktniji put
+
+81
+00:02:47,540 --> 00:02:48,830
+ka globalnom minimumu 
+nego uzimajući
+
+82
+00:02:49,390 --> 00:02:51,200
+mnogo komplikovaniji put
+
+83
+00:02:51,530 --> 00:02:52,530
+gde ste nekako pokušavali da
+
+84
+00:02:52,620 --> 00:02:53,520
+pratite mnogo komplikovaniju
+
+85
+00:02:54,310 --> 00:02:55,910
+putanju do globalnog minimuma.
+
+86
+00:02:57,300 --> 00:02:58,710
+Znači, skaliranjem osobina
+
+87
+00:02:58,950 --> 00:03:01,000
+se dobijaju slični rangovi vrednosti.
+
+88
+00:03:01,620 --> 00:03:02,810
+U ovom primeru dobili smo
+
+89
+00:03:02,970 --> 00:03:04,150
+obe osobine, x1
+
+90
+00:03:04,300 --> 00:03:06,960
+i x2, između 0 i 1.
+
+91
+00:03:09,580 --> 00:03:12,290
+Možete se igrati sa implementacijama 
+opadajućeg gradijenta.
+
+92
+00:03:12,690 --> 00:03:13,810
+Oni mogu da konvergiraju mnogo brže.
+
+93
+00:03:18,120 --> 00:03:19,640
+Uopšteno, kada radimo
+
+94
+00:03:20,160 --> 00:03:21,240
+skaliranje osobina, ono što često
+
+95
+00:03:21,530 --> 00:03:22,480
+želimo da uradimo jeste da svaku
+
+96
+00:03:22,750 --> 00:03:25,670
+osobinu smestimo približno u
+
+97
+00:03:25,780 --> 00:03:28,170
+opseg -1 do +1 i konkretno,
+
+98
+00:03:28,960 --> 00:03:31,710
+vaša osobina x0 je uvek 1.
+
+99
+00:03:31,760 --> 00:03:32,810
+Dakle, to je već u tom opsegu,
+
+100
+00:03:34,110 --> 00:03:35,150
+ali može da se desi da i ostale
+
+101
+00:03:35,630 --> 00:03:36,950
+osobine u različitim opsezima
+
+102
+00:03:37,330 --> 00:03:39,150
+da treba da dobijete u ovom rangu.
+
+103
+00:03:39,510 --> 00:03:41,520
+Brojevi -1 i +1 nisu toliko važni.
+
+104
+00:03:42,270 --> 00:03:42,900
+Tako da, ako imate osobinu
+
+105
+00:03:44,150 --> 00:03:45,340
+x1 koja ima vrednosti
+
+106
+00:03:45,510 --> 00:03:48,000
+između 0 i 3, to nije problem.
+
+107
+00:03:48,400 --> 00:03:49,410
+Ako se desi da imate različite
+
+108
+00:03:49,600 --> 00:03:51,190
+osobine koje imaju vrednosti
+
+109
+00:03:52,140 --> 00:03:54,020
+između -2 i +0.5,
+
+110
+00:03:54,300 --> 00:03:55,710
+ponovo, to je dovoljno blizu
+
+111
+00:03:56,070 --> 00:03:57,070
+-1 i +1
+
+112
+00:03:57,320 --> 00:03:59,160
+to je u redu.
+
+113
+00:04:00,310 --> 00:04:01,260
+Jedino ako imate
+
+114
+00:04:01,340 --> 00:04:02,580
+drugačiju osobinu, recimo x3,
+
+115
+00:04:02,820 --> 00:04:04,780
+koja je između
+
+116
+00:04:05,840 --> 00:04:09,070
+-100 i +100
+
+117
+00:04:09,330 --> 00:04:10,850
+tad su to
+
+118
+00:04:11,090 --> 00:04:13,570
+veoma različite vrednosti od -1 i +1.
+
+119
+00:04:13,860 --> 00:04:15,020
+Dakle, to bi mogla da bude
+
+120
+00:04:15,230 --> 00:04:17,480
+slabije skalirana osobina i slično,
+
+121
+00:04:17,970 --> 00:04:19,340
+ako vaše osobine upadaju
+
+122
+00:04:19,420 --> 00:04:20,680
+u opseg veoma malih
+
+123
+00:04:20,950 --> 00:04:22,060
+vrednosti, recimo x4
+
+124
+00:04:22,340 --> 00:04:25,530
+uzima vrednosti između
+
+125
+00:04:25,740 --> 00:04:28,290
+-0.0001 i +0.0001, tad
+
+126
+00:04:29,720 --> 00:04:30,780
+opet pada u rang
+
+127
+00:04:30,910 --> 00:04:31,960
+veoma malih vrednosti
+
+128
+00:04:32,460 --> 00:04:33,760
+od -1 do +1 opsega.
+
+129
+00:04:34,040 --> 00:04:36,630
+I opet, i ovu osobinu bih 
+smatrao slabo skaliranom.
+
+130
+00:04:37,850 --> 00:04:39,150
+Znači, vaš raspon
+
+131
+00:04:39,430 --> 00:04:40,350
+vrednosti može da bude
+
+132
+00:04:41,070 --> 00:04:42,010
+veći od +1 ili manji
+
+133
+00:04:42,370 --> 00:04:43,840
+od +1, ali ne
+
+134
+00:04:44,040 --> 00:04:45,170
+mnogo veći, kao što je
+
+135
+00:04:45,610 --> 00:04:47,470
++100 ovde, ili mnogo
+
+136
+00:04:47,650 --> 00:04:49,990
+manji kao što je 0.001 ovde.
+
+137
+00:04:50,770 --> 00:04:52,530
+Različiti ljudi imaju različite mere.
+
+138
+00:04:52,870 --> 00:04:53,910
+Ali ona koju ja koristim je
+
+139
+00:04:54,070 --> 00:04:55,440
+da, ako osobina uzima
+
+140
+00:04:55,670 --> 00:04:56,750
+vrednosti u rasponu od
+
+141
+00:04:56,980 --> 00:04:58,590
+recimo -3 do +3
+
+142
+00:04:58,840 --> 00:05:00,120
+što bi trebalo smatrati
+
+143
+00:05:00,170 --> 00:05:01,690
+ispravnim, ali možda
+
+144
+00:05:02,000 --> 00:05:03,050
+uzimaju mnogo veće vrednosti
+
+145
+00:05:03,440 --> 00:05:04,360
+od +3 ili -3
+
+146
+00:05:04,530 --> 00:05:06,400
+ne treba da brinete i ako
+
+147
+00:05:06,700 --> 00:05:09,660
+uzima vrednosti između -1/3 i 1/3.
+
+148
+00:05:10,920 --> 00:05:12,020
+Mislim da je to u redu
+
+149
+00:05:12,270 --> 00:05:14,880
+od 0 do 1/3 ili -1/3 do 0.
+
+150
+00:05:14,910 --> 00:05:17,890
+Pretpostavljam da je to 
+tipičan uredan rang vrednosti.
+
+151
+00:05:18,560 --> 00:05:19,310
+Ali ako uzima
+
+152
+00:05:19,450 --> 00:05:20,640
+mnogo tanji raspon vrednosti
+
+153
+00:05:20,900 --> 00:05:23,220
+kao x4 ovde tad opet 
+ne treba da brinete.
+
+154
+00:05:23,790 --> 00:05:25,060
+Dakle, poruka je
+
+155
+00:05:25,500 --> 00:05:26,780
+ne brinite ako vaše
+
+156
+00:05:27,000 --> 00:05:28,550
+osobine nisu baš u
+
+157
+00:05:28,700 --> 00:05:30,920
+istoj skali ili u 
+istom rasponu vrednosti.
+
+158
+00:05:31,170 --> 00:05:31,930
+Dokle god su sve
+
+159
+00:05:32,090 --> 00:05:35,060
+dovoljno blizu ovom opadajućem 
+gradijentu, trebalo bi biti u redu.
+
+160
+00:05:35,930 --> 00:05:37,530
+Dodatno, kada se deli
+
+161
+00:05:37,930 --> 00:05:39,960
+nekom maksimalnom vrednošću prilikom
+
+162
+00:05:40,220 --> 00:05:42,080
+izvođenja skaliranja osobina, ponekad
+
+163
+00:05:42,730 --> 00:05:45,070
+se takođe radi takozvana 
+normalizacija srednje vrednosti.
+
+164
+00:05:45,330 --> 00:05:47,150
+Šta mislim pod time
+
+165
+00:05:47,320 --> 00:05:48,130
+je da želite da
+
+166
+00:05:48,350 --> 00:05:49,810
+uzmete osobinu xi i zamenite
+
+167
+00:05:50,230 --> 00:05:51,850
+je sa xi - mui
+
+168
+00:05:52,870 --> 00:05:55,260
+da dobijete vaše osobine 
+sa srednjom vrednosti 0.
+
+169
+00:05:56,530 --> 00:05:57,730
+Očigledno ne želimo
+
+170
+00:05:57,890 --> 00:05:59,260
+da to primenimo na osobinu
+
+171
+00:05:59,650 --> 00:06:00,750
+x0 jer osobina
+
+172
+00:06:00,940 --> 00:06:02,260
+x0 je uvek jednaka
+
+173
+00:06:02,360 --> 00:06:03,600
+1 tako da ona ne može da ima
+
+174
+00:06:03,810 --> 00:06:05,100
+srednju vrednost 0.
+
+175
+00:06:06,370 --> 00:06:07,760
+A, konkretno za ostale
+
+176
+00:06:07,950 --> 00:06:09,320
+osobine, ako raspon
+
+177
+00:06:09,600 --> 00:06:10,320
+veličina kuća
+
+178
+00:06:10,960 --> 00:06:14,170
+uzima vrednost između 0
+
+179
+00:06:14,310 --> 00:06:15,080
+i 2000 i ako srednja
+
+180
+00:06:15,230 --> 00:06:16,230
+vrednost veličine
+
+181
+00:06:16,470 --> 00:06:18,340
+kuće je jednaka
+
+182
+00:06:18,500 --> 00:06:20,080
+1000 tad biste mogli da
+
+183
+00:06:21,470 --> 00:06:21,950
+koristite ovu formulu.
+
+184
+00:06:23,940 --> 00:06:24,970
+Veličina, postavite osobinu
+
+185
+00:06:25,250 --> 00:06:26,270
+x1 na veličina minus
+
+186
+00:06:26,590 --> 00:06:28,010
+srednja vrednost podeljeno sa 2000
+
+187
+00:06:28,630 --> 00:06:31,820
+i slično tome,
+
+188
+00:06:32,530 --> 00:06:34,010
+ako vaše kuće imaju
+
+189
+00:06:34,520 --> 00:06:37,630
+od jedne do pet soba i ako
+
+190
+00:06:39,240 --> 00:06:40,460
+je srednja vrednost soba u
+
+191
+00:06:40,890 --> 00:06:41,920
+kućama dva, tad biste mogli
+
+192
+00:06:42,110 --> 00:06:44,750
+da koristite ovu 
+formulu da normalizujete
+
+193
+00:06:45,080 --> 00:06:47,460
+vašu drugu osobinu x2.
+
+194
+00:06:49,340 --> 00:06:50,720
+U oba ova slučaja
+
+195
+00:06:50,840 --> 00:06:52,730
+dobijete osobine x1 i x2.
+
+196
+00:06:52,930 --> 00:06:54,490
+Oba mogu da dobiju vrednosti otprilike
+
+197
+00:06:54,880 --> 00:06:56,580
+između -0.5 i +0.5.
+
+198
+00:06:57,130 --> 00:06:57,880
+Nije baš tačno, x2
+
+199
+00:06:58,210 --> 00:07:00,920
+može malo da bude veće 
+od 0.5 ali, vrlo blizu.
+
+200
+00:07:01,800 --> 00:07:03,140
+Opštije pravilo je
+
+201
+00:07:03,530 --> 00:07:04,860
+da možete da uzmete
+
+202
+00:07:04,900 --> 00:07:06,390
+osobinu x1 i da je zamenite
+
+203
+00:07:08,060 --> 00:07:10,110
+sa x1 - mu1
+
+204
+00:07:10,940 --> 00:07:13,410
+preko S1 gde
+
+205
+00:07:13,550 --> 00:07:15,890
+ćemo definisati mu1 kao
+
+206
+00:07:16,200 --> 00:07:18,290
+srednju vrednost od x1
+
+207
+00:07:19,960 --> 00:07:21,310
+u trening skupu
+
+208
+00:07:22,320 --> 00:07:24,190
+a S1 je
+
+209
+00:07:24,350 --> 00:07:27,420
+opseg vrednosti te
+
+210
+00:07:27,820 --> 00:07:28,940
+osobine a pod time
+
+211
+00:07:29,040 --> 00:07:30,110
+mislim vrednost maksimuma
+
+212
+00:07:30,630 --> 00:07:31,900
+minus minimalna vrednost
+
+213
+00:07:32,290 --> 00:07:33,350
+ili za vas
+
+214
+00:07:33,590 --> 00:07:35,360
+koji razumete devijaciju
+
+215
+00:07:35,850 --> 00:07:37,390
+varijable, S1 bi bila
+
+216
+00:07:37,760 --> 00:07:40,790
+standardna devijacija varijable.
+
+217
+00:07:41,020 --> 00:07:43,240
+Ali i maks minus min bi bilo u redu.
+
+218
+00:07:44,330 --> 00:07:45,170
+I slično tome, za drugu
+
+219
+00:07:45,610 --> 00:07:47,380
+osobinu, x2, menjate
+
+220
+00:07:47,840 --> 00:07:49,740
+x2 sa razlikom
+
+221
+00:07:51,040 --> 00:07:52,220
+srednje vrednosti osobine
+
+222
+00:07:52,800 --> 00:07:54,110
+i delite je opsegom
+
+223
+00:07:54,380 --> 00:07:55,980
+vrednosti, znači maks minus min.
+
+224
+00:07:56,880 --> 00:07:57,910
+A ta vrsta formule će
+
+225
+00:07:58,370 --> 00:07:59,630
+vašu osobinu da stavi, možda
+
+226
+00:07:59,850 --> 00:08:01,020
+ne tačno, ali otprilike
+
+227
+00:08:01,920 --> 00:08:03,320
+u te opsege
+
+228
+00:08:03,490 --> 00:08:04,820
+i, usput,
+
+229
+00:08:04,890 --> 00:08:05,700
+za vas koji ste
+
+230
+00:08:05,940 --> 00:08:07,570
+tehnički pedantni, ako
+
+231
+00:08:07,710 --> 00:08:09,300
+uzmemo opseg kao maks
+
+232
+00:08:09,610 --> 00:08:12,410
+minus min, ovo 5 ovde će da bude 4.
+
+233
+00:08:13,140 --> 00:08:14,390
+Dakle, ako je maks 5
+
+234
+00:08:14,600 --> 00:08:15,830
+minus 1 tad je opseg
+
+235
+00:08:16,320 --> 00:08:17,160
+njihovih vrednosti u stvari
+
+236
+00:08:17,860 --> 00:08:18,530
+jednak 4, ali sve to
+
+237
+00:08:18,690 --> 00:08:20,380
+je približno i bilo koja vrednost
+
+238
+00:08:20,830 --> 00:08:22,010
+koja stavlja osobinu u
+
+239
+00:08:22,450 --> 00:08:24,750
+bilo šta blizu tim 
+opsezima će da odgovara.
+
+240
+00:08:25,200 --> 00:08:27,220
+A skaliranje osobine
+
+241
+00:08:27,660 --> 00:08:28,520
+ne mora da bude precizno,
+
+242
+00:08:29,050 --> 00:08:30,390
+da biste dobili opadajući
+
+243
+00:08:30,790 --> 00:08:32,290
+gradijent da radi brže.
+
+244
+00:08:34,610 --> 00:08:35,840
+Dakle, sada znate
+
+245
+00:08:36,020 --> 00:08:37,420
+o skaliranju osobina i ako
+
+246
+00:08:37,530 --> 00:08:39,040
+primenite ovaj jednostavan trik,
+
+247
+00:08:39,250 --> 00:08:40,650
+možete da ubrzate rad 
+opadajućeg gradijenta
+
+248
+00:08:40,870 --> 00:08:43,680
+i da konvergirate u 
+manjem broju iteracija.
+
+249
+00:08:44,990 --> 00:08:45,540
+To je bilo skaliranje osobina.
+
+250
+00:08:46,080 --> 00:08:47,190
+U sledećem videu, govoriću
+
+251
+00:08:47,350 --> 00:08:49,410
+vam o još jednom triku da
+
+252
+00:08:49,710 --> 00:08:50,970
+opadajući gradijent u praksi radi dobro.

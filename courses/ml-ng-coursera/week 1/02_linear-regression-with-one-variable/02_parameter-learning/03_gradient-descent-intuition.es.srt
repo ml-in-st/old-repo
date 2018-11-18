@@ -1,0 +1,654 @@
+1
+00:00:00,000 --> 00:00:04,353
+En el video anterior, te di la
+definición matemática de gradiente
+
+2
+00:00:04,353 --> 00:00:09,464
+de descenso. Vamos a profundizar y en este
+video tendrás una mejor idea sobre lo
+
+3
+00:00:09,464 --> 00:00:14,701
+que hace el algoritmo, y por qué los pasos
+del algoritmos de gradiente de descenso tienen
+
+4
+00:00:14,701 --> 00:00:20,639
+sentido. Este es el algoritmo de gradiente
+de descenso que vimos la última vez. Y sólo
+
+5
+00:00:20,639 --> 00:00:26,427
+para recordarte, este parámetro o este
+término alfa se llama índice de aprendizaje.
+
+6
+00:00:26,427 --> 00:00:32,444
+Y controla qué tan grande es un paso que
+hacemos al actualizar mi parámetro theta J.
+
+7
+00:00:32,444 --> 00:00:41,360
+Y este segundo término es el término de
+derivada. Y lo que quiero hacer en este video es
+
+8
+00:00:41,360 --> 00:00:47,360
+darte una mejor idea de qué hace cada
+uno de los dos términos y por qué tiene
+
+9
+00:00:47,360 --> 00:00:53,077
+sentido toda la actualización cuando ponemos todo junto.
+Con el fin de transmitir estos conceptos, lo que
+
+10
+00:00:53,077 --> 00:00:58,460
+quiero hacer es usar un ejemplo
+más simple donde queremos minimizar la
+
+11
+00:00:58,460 --> 00:01:03,022
+función de un sólo parámetro. Entonces, digamos
+que tenemos una función de costos J de
+
+12
+00:01:03,022 --> 00:01:07,294
+un sólo parámetro, theta uno, así
+como hicimos en videos anteriores. Donde
+
+13
+00:01:07,294 --> 00:01:11,913
+theta uno es un número real, ¿ok? Sólo para que podamos tener gráficas de 1D,
+
+14
+00:01:11,913 --> 00:01:16,416
+que son un poco más simples de ver. Y
+tratemos de entender qué haría
+
+15
+00:01:16,416 --> 00:01:23,940
+el gradiente de descenso en esta función.
+[Sonido]. Digamos que aquí está mi función
+
+16
+00:01:24,660 --> 00:01:31,696
+J de theta uno, y
+donde theta uno es un número real. Bien,
+
+17
+00:01:31,696 --> 00:01:39,202
+ahora digamos que inicié el gradiente de
+descenso con theta uno en este lugar.
+
+18
+00:01:39,202 --> 00:01:46,989
+Así que imagina que iniciamos en ese punto
+de mi función. Lo que el gradiente de descenso
+
+19
+00:01:46,989 --> 00:01:56,935
+hará es que se actualizará. Theta uno se
+actualiza como theta uno menos alfa por dd
+
+20
+00:01:56,935 --> 00:02:04,694
+theta uno J de theta uno, ¿correcto? y
+sólo como una nota, este
+
+21
+00:02:04,694 --> 00:02:11,636
+término de derivada, ¿sí? Si te
+preguntas por qué cambié la notación de
+
+22
+00:02:11,636 --> 00:02:16,132
+estos símbolos de derivada parcial. Si
+no sabes cuál es la diferencia entre
+
+23
+00:02:16,132 --> 00:02:20,523
+estos símbolos de derivada parcial y 
+theta dd, no te preocupes. Técnicamente
+
+24
+00:02:20,523 --> 00:02:24,491
+en matemáticas esta se llama derivada
+parcial, esta se llama derivada
+
+25
+00:02:24,491 --> 00:02:28,299
+dependiendo del número de parámetros
+en la función J, pero eso es
+
+26
+00:02:28,299 --> 00:02:32,428
+un tecnicismo matemático.
+Para fines de esta lección, piensa en
+
+27
+00:02:32,428 --> 00:02:36,768
+estos símbolos parciales y dd theta uno como
+exactamente lo mismo. Y no te preocupes
+
+28
+00:02:36,768 --> 00:02:41,056
+si hay alguna diferencia.
+Trataré de usar una notación
+
+29
+00:02:41,056 --> 00:02:45,190
+matemáticamente precisa. Pero para nuestros fines,
+estas notaciones realmente son lo mismo.
+
+30
+00:02:45,360 --> 00:02:49,627
+Entonces, veamos lo que hará
+esta ecuación. Y vamos a calcular
+
+31
+00:02:49,627 --> 00:02:54,293
+esta derivada, no estoy seguro si has
+visto derivadas en cálculo anteriormente. Pero
+
+32
+00:02:54,293 --> 00:02:58,666
+lo que hace una derivada en este punto es,
+básicamente, decir llevemos
+
+33
+00:02:58,666 --> 00:03:02,877
+la tangente a ese punto, como
+esta línea recta, la línea roja que
+
+34
+00:03:02,877 --> 00:03:06,976
+sólo toca esta función y
+veamos la pendiente de esta línea roja. Ahí
+
+35
+00:03:06,976 --> 00:03:11,352
+es donde está la derivada. Dice
+cuál es la pendiente de la línea que es
+
+36
+00:03:11,352 --> 00:03:15,563
+la tangente de la función, ¿ok? y la
+pendiente de la línea es, por su puesto,
+
+37
+00:03:15,563 --> 00:03:20,789
+justo la altura dividida entre
+esta horizontal. Ahora. Esta línea tiene
+
+38
+00:03:20,789 --> 00:03:28,378
+una pendiente positiva, así que tiene
+una derivada positiva. Entonces, mi actualización a theta
+
+39
+00:03:28,378 --> 00:03:36,258
+será, theta uno da la actualización de
+theta uno menos alfa por algún número
+
+40
+00:03:36,258 --> 00:03:43,103
+positivo. ¿Ok? Alfa, el índice
+de aprendizaje, siempre es un número positivo. Así que
+
+41
+00:03:43,103 --> 00:03:47,932
+voy a tomar theta uno, se actualiza
+como theta uno menos algo. Así que
+
+42
+00:03:47,932 --> 00:03:52,644
+terminaré moviendo theta uno a la izquierda. Voy a
+reducir theta uno y podemos ver
+
+43
+00:03:52,644 --> 00:03:57,473
+que es lo correcto porque
+en realidad continué en esta dirección
+
+44
+00:03:57,473 --> 00:04:02,582
+para acercarme al mínimo de
+ahí. Hasta ahora parece que el gradiente
+
+45
+00:04:02,582 --> 00:04:08,115
+de descenso hace lo correcto. Veamos
+otro ejemplo. Así que tomemos la misma
+
+46
+00:04:08,115 --> 00:04:13,787
+función J. Sólo trato de dibujar la misma
+función J de theta uno. Ahora digamos que
+
+47
+00:04:13,787 --> 00:04:19,181
+inicié mi parámetro
+de aquí de la izquierda. Así que theta uno está
+
+48
+00:04:19,181 --> 00:04:24,161
+aquí. Voy a añadir este punto en la
+superficie. Ahora, mi término de derivada, d, d
+
+49
+00:04:24,161 --> 00:04:29,567
+theta uno J de theta uno, cuando se evalúa
+en este punto, se verá como la
+
+50
+00:04:29,567 --> 00:04:35,035
+pendiente de la línea. Entonces, este término de
+derivada es una pendiente de esta línea. Pero esta
+
+51
+00:04:35,035 --> 00:04:42,745
+línea está inclinada hacia abajo, así que esta
+línea tiene una pendiente negativa. ¿Correcto? O de forma alternativa, diré
+
+52
+00:04:42,745 --> 00:04:48,718
+que esta función tiene una derivada
+negativa, sólo significa pendiente
+
+53
+00:04:48,718 --> 00:04:54,770
+negativa en este punto. Así que esto es menos que igual a
+cero. Cuando actualice theta, entonces
+
+54
+00:04:54,770 --> 00:05:02,840
+si theta se actualiza como theta menos alfa
+por un número negativo. Tengo
+
+55
+00:05:02,840 --> 00:05:07,881
+theta uno menos un número negativo que
+significa que realmente aumentaré theta,
+
+56
+00:05:07,881 --> 00:05:13,106
+¿correcto? Debido a que es menos de un número
+negativo significa que añado algo a theta
+
+57
+00:05:13,106 --> 00:05:17,900
+y lo que significa es que voy a
+terminar aumentando theta. Entonces,
+
+58
+00:05:17,900 --> 00:05:23,002
+empezaremos aquí y aumentaremos theta, que una
+vez más parece lo que quiero hacer para
+
+59
+00:05:23,002 --> 00:05:28,335
+tratar de acercarme al mínimo. Así que,
+con suerte, esto explica la idea detrás
+
+60
+00:05:28,335 --> 00:05:33,874
+de lo que hace el término de derivada. Echemos
+un vistazo al término de índice de aprendizaje
+
+61
+00:05:33,874 --> 00:05:39,956
+alfa, y tratemos de averiguar qué
+hace. Esta es mi regla de actualización
+
+62
+00:05:39,956 --> 00:05:46,641
+de gradiente de descenso. Bien, está esta ecuación
+y veamos lo qué puede pasar si
+
+63
+00:05:46,641 --> 00:05:52,845
+alfa es muy pequeño o si alfa es
+muy grande. En este primer ejemplo, lo que
+
+64
+00:05:52,845 --> 00:05:59,583
+pasa es que alfa es muy pequeño. Esta es
+mi función J, J de theta. Empecemos
+
+65
+00:05:59,583 --> 00:06:04,230
+justo aquí. Si alfa es muy pequeño,
+entonces lo que haré es multiplicar
+
+66
+00:06:04,230 --> 00:06:09,322
+la actualización por algún número pequeño.
+Terminaremos, ya sabes, es como un pequeño paso
+
+67
+00:06:09,322 --> 00:06:13,841
+como este. Bien, ese es un paso
+[inaudible]. Entonces, desde este nuevo punto,
+
+68
+00:06:13,841 --> 00:06:18,870
+tomaremos otro paso. Pero si
+alfa es muy pequeño, hagamos otro
+
+69
+00:06:18,870 --> 00:06:25,342
+paso pequeño. Y si mi
+índice de aprendizaje es muy pequeño, terminaré
+
+70
+00:06:25,342 --> 00:06:30,589
+haciendo estos pasos muy, muy pequeños
+para tratar de obtener el mínimo y
+
+71
+00:06:30,589 --> 00:06:35,837
+necesitaré muchos pasos para obtener
+el mínimo y así sucesivamente. Si alfa es demasiado pequeño, el gradiente de
+
+72
+00:06:35,837 --> 00:06:41,019
+descenso puede ser lento ya que
+haré pasos muy, muy pequeños. Y serán necesarios
+
+73
+00:06:41,019 --> 00:06:45,829
+muchos pasos antes de acercarse
+un poco al mínimo global. Ahora,
+
+74
+00:06:45,829 --> 00:06:52,236
+¿qué tal si alfa es demasiado grande?
+Esta es mi función J de theta.
+
+75
+00:06:52,236 --> 00:06:57,590
+Resulta que alfa es muy grande, entonces
+el gradiente de descenso puede sobrepasar el mínimo
+
+76
+00:06:57,590 --> 00:07:03,362
+y puede fallar para converger o divergir. Me explicaré mejor. Digamos que inicio con
+theta ahí.
+
+77
+00:07:03,362 --> 00:07:08,647
+En realidad está muy cerca del mínimo. Entonces, están los puntos de derivada a la derecha, pero si alfa es muy grande,
+
+78
+00:07:08,686 --> 00:07:14,140
+haré un paso grande. Tal vez haré un paso grande como ese. ¿Correcto? Termino haciendo un gran paso.
+
+79
+00:07:14,140 --> 00:07:20,051
+Ahora, mi función de costos empeoró porque inicia desde este valor, y ahora mi valor empeoró. Ahora mi
+
+80
+00:07:20,051 --> 00:07:25,190
+derivada, los puntos de la izquierda, en realidad disminuyeron theta. Pero mira, si mi índice de aprendizaje es muy grande,
+
+81
+00:07:25,190 --> 00:07:29,792
+podría hacer un paso grande que va desde aquí,
+de modo que termine yendo todo por
+
+82
+00:07:29,792 --> 00:07:35,372
+ahí. ¿Correcto? Y si mi índice de aprendizaje fuera muy
+grande, puedo dar otro paso grande en la
+
+83
+00:07:35,372 --> 00:07:41,034
+siguiente elevación y sobrepasarme
+y sobrepasarme, y así sucesivamente hasta que observes
+
+84
+00:07:41,034 --> 00:07:46,765
+que me alejo más y más
+del mínimo. Y si alfa es
+
+85
+00:07:46,765 --> 00:07:51,905
+muy grande, puede fallar para converger o incluso
+divergir. Ahora, te tengo otra
+
+86
+00:07:51,905 --> 00:07:56,057
+pregunta. Es una capciosa. Cuando
+empezaba a aprender esto, me tomó
+
+87
+00:07:56,057 --> 00:08:00,005
+mucho tiempo averiguarlo.
+¿Qué pasa si theta preferente ya
+
+88
+00:08:00,005 --> 00:08:04,106
+es un mínimo local? ¿Qué crees que hará
+un paso de gradiente de
+
+89
+00:08:04,106 --> 00:08:10,857
+descenso? Así que supongamos que inicias theta
+uno con un mínimo local. Entonces,
+
+90
+00:08:10,857 --> 00:08:16,713
+supón que este es tu valor inicial de theta uno
+de aquí, y ya está en un óptimo
+
+91
+00:08:16,713 --> 00:08:22,718
+local o mínimo local. Resulta
+que con el óptimo local, tu derivada
+
+92
+00:08:22,718 --> 00:08:28,796
+sería igual a cero. Así que ve
+esa pendiente donde está ese punto de tangente,
+
+93
+00:08:28,796 --> 00:08:35,528
+la pendiente de esta línea será igual a cero
+y, por lo tanto, este término de derivada es igual a
+
+94
+00:08:35,528 --> 00:08:40,941
+cero. Entonces, en tu actualización de
+gradiente de descenso, tienes theta uno, que da theta
+
+95
+00:08:40,941 --> 00:08:46,284
+uno actualizada, menos alfa por cero.
+Y lo que esto significa es que si ya
+
+96
+00:08:46,284 --> 00:08:51,222
+tienes un óptimo local, theta
+uno no cambia ya que, como sabes,
+
+97
+00:08:51,222 --> 00:08:56,132
+se obtiene theta uno actualizada igual a theta uno.
+Si tu parámetro ya está en el mínimo
+
+98
+00:08:56,132 --> 00:09:00,694
+local, un paso de gradiente de descenso
+no hace absolutamente nada. No cambia
+
+99
+00:09:00,694 --> 00:09:05,257
+el parámetro, que es lo que
+quieres. Ya que mantiene tu solución en
+
+100
+00:09:05,257 --> 00:09:09,706
+el óptimo local. Esto también explica porqué
+el gradiente de descenso puede converger el mínimo
+
+101
+00:09:09,706 --> 00:09:14,326
+local, incluso con el índice de aprendizaje alfa
+fijo. Esto es lo que quiero decir. Echemos un
+
+102
+00:09:14,326 --> 00:09:21,550
+vistazo a un ejemplo. Esta es una función
+de costos J con theta que tal vez quiero
+
+103
+00:09:21,550 --> 00:09:26,811
+minimizar y, digamos que inicio mi
+algoritmo de gradiente de descenso
+
+104
+00:09:26,811 --> 00:09:32,080
+de aquí en el punto color magenta. Si tomo
+un paso de gradiente de descenso
+
+105
+00:09:32,080 --> 00:09:36,941
+tal vez me lleve al punto, ya que mi
+derivada está muy elevada, ¿correcto?
+
+106
+00:09:36,941 --> 00:09:42,051
+Ahora, estoy en este punto verde y si hago
+otro paso del gradiente de descenso,
+
+107
+00:09:42,051 --> 00:09:47,036
+verás que mi derivada, es decir la
+pendiente, es menos elevada en el punto verde cuando
+
+108
+00:09:47,036 --> 00:09:51,959
+se compara con el punto color magenta
+de aquí, ¿cierto? Porque a medida que me acerco
+
+109
+00:09:51,959 --> 00:09:56,883
+al mínimo, mi derivada se acerca más
+y más a cero cuando me acerco al mínimo.
+
+110
+00:09:56,883 --> 00:10:01,794
+Después de un paso del gradiente de descenso,
+mi nueva derivada es un poco más pequeña.
+
+111
+00:10:01,794 --> 00:10:06,635
+Así que quiero hacer otro paso del gradiente
+de descenso. Naturalmente, haré un paso
+
+112
+00:10:06,635 --> 00:10:11,598
+un poco más pequeño que este punto verde
+comparado con el punto magenta. Ahora, estoy en el
+
+113
+00:10:11,598 --> 00:10:16,038
+punto nuevo, el punto rojo, y ahora más
+cerca del mínimo global, por lo que
+
+114
+00:10:16,038 --> 00:10:21,229
+la derivada será más pequeña que
+con el punto verde. Así que cuando tomo
+
+115
+00:10:21,229 --> 00:10:26,420
+otro paso de gradiente de descenso, ahora
+mi término de derivada es incluso más pequeño y
+
+116
+00:10:26,420 --> 00:10:31,360
+la magnitud de la actualización a theta
+uno es aún más pequeña, entonces puedes
+
+117
+00:10:31,360 --> 00:10:39,145
+hacer un paso como ese, y mientras el gradiente de descenso
+se ejecuta, automáticamente harás pasos más y
+
+118
+00:10:39,145 --> 00:10:46,343
+más pequeños hasta que finalmente hagas
+pasos muy pequeños, y
+
+119
+00:10:46,343 --> 00:10:52,737
+encuentres la convergencia al mínimo
+local. Entonces, sólo para recapitular. En el gradiente de
+
+120
+00:10:52,737 --> 00:10:57,716
+descenso, a medida que nos acercamos al mínimo local,
+el gradiente de descenso automáticamente
+
+121
+00:10:57,716 --> 00:11:02,634
+hará pasos más pequeños debido a que
+nos acercamos al mínimo local, por definición,
+
+122
+00:11:02,634 --> 00:11:07,122
+el mínimo local es cuando tienes esta
+derivada igual a cero. Así que a
+
+123
+00:11:07,122 --> 00:11:12,408
+medida que nos acercamos al mínimo local, este
+término de derivada se hará automáticamente
+
+124
+00:11:12,408 --> 00:11:16,957
+más pequeño y el gradiente de descenso hará pasos más pequeños
+de forma automática. Entonces, así es como
+
+125
+00:11:16,957 --> 00:11:21,506
+se ve el gradiente de descenso y, de hecho,
+no hay necesidad de disminuir alfa
+
+126
+00:11:21,506 --> 00:11:26,258
+con el tiempo. Este es el algoritmo de gradiente
+de descenso, y puedes usarlo para minimizar,
+
+127
+00:11:26,258 --> 00:11:30,713
+tratar de minimizar cualquier función de costos J.
+No la función de costos J que definimos para
+
+128
+00:11:30,713 --> 00:11:34,738
+la regresión lineal. En el siguiente video,
+tomaremos la función J y la
+
+129
+00:11:34,738 --> 00:11:38,549
+regresaremos para que sea exactamente la función
+de costos de la regresión lineal. La
+
+130
+00:11:38,549 --> 00:11:43,057
+función de costos cuadrática que obtuvimos
+anteriormente. Y con el gradiente de descenso y la
+
+131
+00:11:43,057 --> 00:11:47,351
+función de costos cuadrática, y al
+juntarlas, nos dará nuestro primer
+
+132
+00:11:47,351 --> 00:11:50,948
+algoritmo de aprendizaje, que nos dará
+nuestro algoritmo de regresión lineal.

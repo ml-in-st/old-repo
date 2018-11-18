@@ -1,0 +1,132 @@
+Di video sebelumnya, kita memberi
+definisi matematika pada gradient descent. Di video ini, mari belajar lebih
+dalam dan mendapat intuisi lebih baik tentang apa yang algoritma itu lakukan, dan mengapa langkah
+algoritma gradient descent bisa masuk akal. Ini algoritma gradient descent yang
+kita lihat terakhir. Dan, hanya mengingatkan Anda, parameter ini, atau istilah
+ini, alfa, disebut kecepatan belajar. Itu mengontrol berapa besar langkah yang kita ambil
+saat memperbarui parameter theta J saya. Dan istilah kedua ini adalah derivatif.
+Dan apa yang ingin saya kerjakan di video ini adalah memberi Anda intuisi yang lebih baik tentang
+apa yang dikerjakan oleh kedua istilah ini dan mengapa, saat digabungkan, semua pembaharuan ini masuk akal.
+Untuk menyampaikan intuisi ini, apa yang saya ingin lakukan adalah menggunakan contoh yang
+sedikit lebih sederhana dimana kita ingin meminimalkan fungsi dengan satu parameter. Jadi
+katakan kita punya fungsi harga J dengan satu parameter, theta satu, seperti
+yang kita lakukan beberapa video sebelumnya. Dimana theta satu adalah angka riil, okey? Jadi kita punya plot 1D yang sedikit lebih sederhana untuk dilihat. Dan
+mari kita coba pahami mengapa gradient descent akan bekerja di fungsi ini.
+Jadi, katakanlah ini fungsi saya. J(theta satu) dimana theta satu 
+adalah angka riil. Baik, sekarang katakanlah saya telah menginisialisasi
+gradient descent dengan theta satu pada lokasi ini. Jadi bayangkan kita mulai pada titik itu
+di fungsi saya. Apa yang gradient descent akan lakukan adalah memperbaharui theta satu
+sebagai theta satu kurang alfa kali dd theta satu J(theta satu), oke?
+Dan sebagai tambahan, Anda tahu ini derivatif, kan? Jika Anda ingin tahu
+mengapa saya mengubah notasi dari simbol derivatif parsial ini, jika Anda
+tidak tahu perbedaan antara simbol derivatif parsial ini dan 
+dd theta, jangan khawatirkan itu. Teknisnya dalam matematika kita memanggil ini derivatif
+parsial, kita memanggil ini derivarif, tergantung pada jumlah parameter
+dalam fungsi J, tapi itu dasar-dasar teknik matematika. Jadi,
+untuk pelajaran ini, pikirkan simbol parsial dan dd theta satu ini sebagai
+hal yang sama. Dan, jangan khawatir tentang apakah ada perbedaan antara keduanya.
+Saya akan coba gunakan notasi yang tepat secara matematika. Tapi untuk tujuan kita,
+kedua notasi ini benar-benar hal yang sama. Jadi, mari kita lihat apa yang akan dikerjakan
+persamaan ini. Jadi kita akan menghitung derivatif ini, saya tidak yakin jika Anda telah
+melihat derivatif di kalkulus sebelumnya. Tapi apa yang derivatif, pada titik ini, kerjakan
+adalah pada dasarnya mengatakan, mari ambil garis singgung pada titik itu, seperti
+garis lurus itu, garis merah, menyentuh fungsi ini dan
+lihat kemiringan garis merah ini. Itu derivatifnya. Itu mengatakan,
+kemiringan dari garis itu yaitu garis singgung dari fungsi itu, okey, dan
+kemiringan garis itu tentu saja hanya tinggi dibagi oleh bagian horisontal ini.
+Sekarang. Garis ini punya kemiringan positif, jadi derivatifnya
+positif. Dengan demikian, pembaharuan theta saya menjadi, theta satu kurang
+alfa kali beberapa angka positif. Okey? Alfa, kecepatan belajar
+selalu bernilai positif. Jadi saya akan mengambil theta satu, pembaharuan ini
+sebagai theta satu kurang sesuatu. Jadi saya akan berakhir dengan memindahkan theta satu ke kiri.
+Saya akan mengurangi theta satu dan kita bisa lihat ini hal yang benar untuk dilakukan karena
+saya sebenarnya bergerak ke arah ini agar saya lebih dekat ke minimum di sebelah
+sana. Jadi, gradient descent sejauh ini tampaknya melakukan hal yang benar. Mari lihat
+contoh lain. Mari kita ambil fungsi J saya yang sama. Hanya mencoba menggambar fungsi J
+theta satu yang sama. Dan sekarang, katakanlah saya telah menginisialisasi parameter saya
+di sebelah kiri sana. Jadi theta satu ini. Saya akan tambahkan titik itu di atas
+permukaan. Sekarang, derivatif saya, dd theta satu J(theta satu), saat dievaluasi
+di titik ini, lihat di kanan. Kemiringan dari garis itu. Jadi derivatif ini
+adalah kemiringan dari garis ini. Tapi garis ini miring ke bawah, jadi garis ini punya
+kemiringan negatif. Setuju? Atau alternatifnya saya katakan bahwa fungsi ini punya derivatif
+negatif, yang artinya kemiringan negatif pada titik itu. Jadi ini kurang dari sama dengan
+nol. Jadi saat saya memperbaharui theta, jika theta dibaharui sebagai theta kurang alfa
+kali suatu angka negatif, menghasilkan theta satu kurang angka negatif yang
+artinya saya sebenarnya akan menambah theta, setuju? Karena ini kurang angka negatif
+artinya saya sedang menambahkan sesuatu ke theta dan itu artinya saya akan menambahkan
+theta. Jadi kita akan mulai di sini dan menambah theta, yang lagi
+tampaknya seperti hal yang saya ingin lakukan, coba lebih mendekatkan saya ke minimum. Jadi, semoga
+ini menjelaskan intuisi dibalik apa yang derivatif lakukan. Berikutnya mari
+lihat pada kecepatan belajar, alfa, dan mencoba mencari tahu apa yang
+dilakukannya. Jadi, ini aturan pembaharuan gradient descent saya. Baik, ada persamaan ini
+dan mari lihat apa yang bisa terjadi, jika alfa terlalu kecil atau terlalu besar.
+Jadi, contoh pertama ini, apa yang terjadi jika alfa terlalu kecil. Jadi ini
+fungsi J saya. J theta. Mari mulai dari sini. Jika alfa terlalu kecil
+maka apa yang akan saya lakukan adalah mengalikan pembaruan saya dengan beberapa angka kecil.
+Jadi berakhir dengan mengambil langkah bayi kecil seperti itu. Okey, jadi itu satu langkah.
+Lalu dari titik baru ini kita akan mengambil langkah lain. Tapi jika
+alfa terlalu kecil, mari ambil langkah bayi kecil lainnya. Jadi jika kecepatan
+belajar saya terlalu kecil, saya akan berakhir dengan mengambil langkah bayi yang sangat kecil
+ini untuk mencapai minimum dan saya akan perlu banyak langkah untuk mencapai minimum. 
+Jadi jika alfa terlalu kecil, gradient descent bisa lambat karena harus mengambil langkah 
+bayi yang sangat kecil ini. Dan itu akan membutuhkan banyak langkah sebelum
+lebih dekat ke minimum global. Sekarang, bagaimana jika alfa terlalu besar.
+Jadi ini fungsi J theta saya. Tampaknya jika alfa terlalu besar, maka
+gradient descent bisa melampaui minimum dan bahkan bisa gagal untuk bertemu atau bahkan menyimpang.
+Jadi ini yang saya maksudkan. Katakanlah theta di sana. Itu sebenarnya dekat ke minimum. Jadi derivatifnya
+mengarah ke kanan, tapi jika alfa terlalu besar, saya akan mengambil langkah yang sangat besar. Mungkin seperti itu.
+Jadi saya berakhir dengan mengambil langkah yang sangat besar. Sekarang, fungsi harga saya semakin buruk. Karena itu mulai
+dari nilai ini lalu sekarang nilai saya jadi buruk. Sekarang derivatif saya menuju ke kiri, itu sebenarnya mengurangi
+theta. Tapi lihat, jika kecepatan belajar saya terlalu besar, saya mungkin mengambil langkah sangat besar
+berangkat dari sini ke sana. Jadi saya berakhir di sana. Benar? Dan jika kecepatan belajar saya terlalu
+besar, saya bisa mengambil langkah besar lainnya pada akselerasi berikutnya dan melampaui minimum dan
+melampaui dan seterusnya hingga Anda perhatikan saya sebenarnya semakin jauh dan pergi jauh
+dari minimumnya. Jadi jika alfa terlalu besar, itu bisa gagal untuk menemui atau bahkan
+menyimpang dari minimum. Sekarang, saya punya pertanyaan lain untuk Anda. Ini salah satu yang rumit.
+Dan ketika saya mempelajari hal ini pertama kali, butuh waktu lama buat saya untuk memahaminya.
+Bagaimana jika theta satu Anda sudah berada pada minimum lokal? Menurut Anda
+apa satu langkah yang gradient descent akan lakukan? Anggap Anda menginisialisasi theta
+satu pada minimum lokal. Jadi, anggap ini nilai awal theta satu Anda
+di sini dan itu sudah berada pada optimum lokal atau minimum lokal. Itu mengisyaratkan
+bahwa pada optimum lokal, derivatif Anda akan sama dengan nol. Karena itu kemiringannya
+dimana itu adalah titik garis singgung itu, jadi kemiringan garis ini akan sama dengan nol,
+makanya derivatif ini sama dengan nol. Jadi, gradien descent terbaru
+Anda, theta satu, dibaharui jadi theta satu kurang alfa kali nol.
+Jadi, maksudnya, jika Anda telah berada pada optimum lokal, 
+theta satu tidak berubah karena ini, theta satu terbaru sama dengan theta satu.
+Jadi jika parameter Anda sudah berada pada minimum lokal, satu langkah gradient descent
+tidak melakukan apa-apa. Itu tidak mengubah parameternya, yaitu apa yang Anda inginkan.
+Karena itu solusi Anda tetap pada optimum lokal. Ini juga menjelaskan mengapa
+gradient descent bisa menemui minimum lokalnya, bahkan dengan kecepatan belajar, 
+alfa, tetap. Ini maksud saya. Mari lihat satu contoh. Ini fungsi harga J
+dengan theta. Yang mungkin ingin saya minimalkan dan katakanlah saya menginisialisasi
+algoritma gradient descent saya, di sana pada titik magenta itu. Jika saya
+ambil satu langkah gradient descent, mungkin saya akan dibawa ke titik itu karena
+derivatif saya sangat curam di sana, benar? Sekarang saya pada titik hijau ini dan jika
+saya ambil langkah gradient descent lain, Anda perhatikan derivatif saya, kemiringannya,
+kurang curam pada titik hijau saat dibandingkan dengan titik magenta di sana,
+benar? Karena ketika saya mendekati minimum, derivatif saya semakin dekat dan
+dekat ke nol saat saya mencapai minimum. Jadi, sesudah satu langkah gradient descent,
+derivatif baru saya sedikit lebih kecil. Jadi saya akan ambil langkah
+gradient descent lain. Saya akan ambil langkah yang lebih kecil dari titik hijau ini
+daripada yang saya lakukan di titik magenta. Sekarang saya di titik baru, titik merah, dan
+sekarang lebih dekat ke minimum global, jadi derivatif di sini akan lebih kecil dari
+derivatif di titik hijau. Jadi saat saya ambil langkah gradient descent lain, sekarang
+derivatif saya bahkan lebih kecil, dan jadi besarnya pembaharuan terhadap theta satu
+bahkan lebih kecil, jadi Anda bisa ambil langkah kecil seperti itu, dan sambil gradient
+descent berjalan, Anda akan secara otomatis mengambil langkah lebih kecil dan kecil hingga
+akhirnya Anda mengambil langkah sangat kecil, dan Anda menemukan minimum lokal.
+Jadi, untuk merangkum. Dalam gradient descent ketika kita mendekati minimum lokal,
+gradient descent akan secara otomatis mengambil langkah lebih kecil dan itu karena ketika kita
+mendekati minimum lokal, menurut definisi, minimum lokal adalah saat derivatif ini
+sama dengan nol. Jadi saat kita mendekati minimum lokal, derivatif ini
+akan secara otomatis semakin kecil dan gradient descent akan otomatis mengambil
+langkah lebih kecil. Jadi beginilah gradient descent, dan sebenarnya
+tidak perlu mengurangi alfa sepanjang waktu. Itulah algoritma gradient
+descent, dan Anda bisa menggunakannya untuk mencoba meminimalkan setiap fungsi harga J.
+Bukan fungsi harga J yang dinyatakan untuk regresi linier. Dalam video berikut,
+kita akan mengambil fungsi J, dan menset itu kembali ke fungsi harga
+untuk regresi linier. Fungsi harga kwadrat yang kita hasilkan
+pada awalnya. Lalu mengambil gradient descent dan fungsi harga kwadrat, dan menggabungkan 
+mereka bersama. Itu akan menghasilkan algoritma belajar kita yang pertama,
+algoritma regresi linier.

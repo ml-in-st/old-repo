@@ -1,0 +1,176 @@
+By now, you've seen a range of
+difference learning algorithms. With supervised learning, the performance
+of many supervised learning algorithms will be pretty similar, and what matters
+less often will be whether you use learning algorithm a or
+learning algorithm b, but what matters more will often be things
+like the amount of data you create these algorithms on, as well as your
+skill in applying these algorithms. Things like your choice of the features
+you design to give to the learning algorithms, and how you choose
+the colorization parameter, and things like that. But, there's one more algorithm that is
+very powerful and is very widely used both within industry and academia, and
+that's called the support vector machine. And compared to both logistic
+regression and neural networks, the Support Vector Machine, or
+SVM sometimes gives a cleaner, and sometimes more powerful way of
+learning complex non-linear functions. And so let's take the next
+videos to talk about that. Later in this course,
+I will do a quick survey of a range of different supervisory algorithms just
+as a very briefly describe them. But the support vector machine, given
+its popularity and how powerful it is, this will be the last of the supervisory
+algorithms that I'll spend a significant amount of time on in this course as with
+our development other learning algorithms, we're gonna start by talking
+about the optimization objective. So, let's get started on this algorithm. In order to describe the support vector
+machine, I'm actually going to start with logistic regression, and
+show how we can modify it a bit, and get what is essentially
+the support vector machine. So in logistic regression, we have our
+familiar form of the hypothesis there and the sigmoid activation
+function shown on the right. And in order to explain some of the math, I'm going to use z to denote
+theta transpose axiom. Now let's think about what we would
+like logistic regression to do. If we have an example with y equals
+one and by this I mean an example in either the training set or the test
+set or the cross-validation set, but when y is equal to one then we're sort of
+hoping that h of x will be close to one. Right, we're hoping to correctly
+classify that example. And what having x subscript 1, what that means is that theta transpose
+x must be must larger than 0. So there's greater than, greater than sign
+that means much, much greater than 0. And that's because it is z, the theta of transpose x is when z is much bigger than
+0 is far to the right of the sphere. That the outputs of logistic
+progression becomes close to one. Conversely, if we have an example where y
+is equal to zero, then what we're hoping for is that the hypothesis will
+output a value close to zero. And that corresponds to theta transpose
+x of z being much less than zero because that corresponds to a hypothesis
+of putting a value close to zero. If you look at the cost function
+of logistic regression, what you'll find is that each
+example (x,y) contributes a term like this to the overall
+cost function, right? So for the overall cost function,
+we will also have a sum over all the chain examples and the 1 over m term,
+that this expression here, that's the term that a single
+training example contributes to the overall objective function so
+we can just rush them. Now if I take the definition for
+the fall of my hypothesis and plug it in over here,
+then what I get is that each training example contributes this term,
+ignoring the one over M but it contributes that term to my overall
+cost function for logistic regression. Now let's consider two cases of when y is
+equal to one and when y is equal to zero. In the first case,
+let's suppose that y is equal to 1. In that case, only this first
+term in the objective matters, because this one minus y term would be
+equal to zero if y is equal to one. So when y is equal to one,
+when in our example x comma y, when y is equal to 1 what
+we get is this term.. Minus log one over one, plus E to the
+negative Z where as similar to the last line I'm using Z to denote data
+transposed X and of course in a cost I should have this minus line that we just
+had if Y is equal to one so that's equal to one I just simplify in a way in the
+expression that I have written down here. And if we plot this function as a function
+of z, what you find is that you get this curve shown on the lower
+left of the slide. And thus, we also see that when
+z is equal to large, that is, when theta transpose x is large, that
+corresponds to a value of z that gives us a fairly small value, a very, very
+small contribution to the consumption. And this kinda explains why, when logistic
+regression sees a positive example, with y=1, it tries to set theta
+transport x to be very large because that corresponds to this term,
+in the cross function, being small. Now, to fill the support vec machine,
+here's what we're going to do. We're gonna take this cross function, this
+minus log 1 over 1 plus e to negative z, and modify it a little bit. Let me take this point 1 over here, and let me draw the cross
+functions you're going to use. The new pass functions can be
+flat from here on out, and then we draw something that
+grows as a straight line, similar to logistic regression. But this is going to be
+a straight line at this portion. So the curve that I just drew in magenta,
+and the curve I just drew purple and magenta, so
+if it's pretty close approximation to the cross function used
+by logistic regression. Except it is now made up of two line
+segments, there's this flat portion on the right, and then there's this
+straight line portion on the left. And don't worry too much about
+the slope of the straight line portion. It doesn't matter that much. But that's the new cost function we're
+going to use for when y is equal to one, and you can imagine it should do something
+pretty similar to logistic regression. But turns out, that this will
+give the support vector machine computational advantages and give us,
+later on, an easier optimization problem that would be easier for
+software to solve. We just talked about
+the case of y equals one. The other case is if y is equal to zero. In that case, if you look at the cost, then only the second term will apply
+because the first term goes away, right? If y is equal to zero,
+then you have a zero here, so you're left only with the second
+term of the expression above. And so the cost of an example, or the contribution of the cost function, is
+going to be given by this term over here. And if you plot that as a function of z, to have pure z on the horizontal axis,
+you end up with this one. And for the support vector machine,
+once again, we're going to replace this blue
+line with something similar and at the same time we replace it with a new
+cost, this flat out here, this 0 out here. And that then grows as a straight line,
+like so. So let me give these two functions names. This function on the left I'm going
+to call cost subscript 1 of z, and this function of the right I'm
+gonna call cost subscript 0 of z. And the subscript just refers to the cost
+corresponding to when y is equal to 1, versus when y Is equal to zero. Armed with these definitions, we're now
+ready to build a support vector machine. Here's the cost function, j of theta,
+that we have for logistic regression. In case this equation looks a bit
+unfamiliar, it's because previously we had a minus sign outside, but here what
+I did was I instead moved the minus signs inside these expressions, so
+it just makes it look a little different. For the support vector machine what we're
+going to do is essentially take this and replace this with cost1 of z,
+that is cost1 of theta transpose x. And we're going to take this and
+replace it with cost0 of z, that is cost0 of theta transpose x. Where the cost one function is what we had on the previous
+slide that looks like this. And the cost zero function, again what
+we had on the previous slide, and it looks like this. So what we have for
+the support vector machine is a minimization problem of one over M, the sum of Y I times cost one, theta transpose X I, plus one minus Y I times cause zero of theta transpose X I, and then plus my usual
+regularization parameter. Like so. Now, by convention, for
+the support of vector machine, we're actually write
+things slightly different. We re-parameterize this just
+very slightly differently. First, we're going to get rid
+of the 1 over m terms, and this just this happens to be a slightly
+different convention that people use for support vector machines compared to or
+just a progression. But here's what I mean. You're one way to do this, we're just
+gonna get rid of these one over m terms and this should give you me the same
+optimal value of beta right? Because one over m is just as constant so whether I solved this minimization
+problem with one over n in front or not. I should end up with the same
+optimal value for theta. Here's what I mean, to give you an example,
+suppose I had a minimization problem. Minimize over a long number U of
+U minus five squared plus one. Well, the minimum of this
+happens to be U equals five. Now if I were to take this objective
+function and multiply it by 10. So here my minimization problem is min
+over U, 10 U minus five squared plus 10. Well the value of U that minimizes
+this is still U equals five right? So multiply something that you're
+minimizing over, by some constant, 10 in this case, it does not change
+the value of U that gives us, that minimizes this function. So the same way,
+what I've done is by crossing out the M is all I'm doing is multiplying my
+objective function by some constant M and it doesn't change the value of theta. That achieves the minimum. The second bit of notational change,
+which is just, again, the more standard convention when using SVMs instead of
+logistic regression, is the following. So for logistic regression, we add
+two terms to the objective function. The first is this term, which is the cost
+that comes from the training set and the second is this row,
+which is the regularization term. And what we had was we had a, we control
+the trade-off between these by saying, what we want is A plus, and
+then my regularization parameter lambda. And then times some other term B,
+where I guess I'm using your A to denote this first term, and I'm using B to denote
+the second term, maybe without the lambda. And instead of prioritizing
+this as A plus lambda B, and so what we did was by
+setting different values for this regularization parameter lambda,
+we could trade off the relative weight between how much we wanted the training
+set well, that is, minimizing A, versus how much we care about keeping
+the values of the parameter small, so that will be, the parameter is B for
+the support vector machine, just by convention,
+we're going to use a different parameter. So instead of using lambda here to control
+the relative waiting between the first and second terms. We're instead going to use a different
+parameter which by convention is called C and is set to minimize C times a + B. So for logistic regression,
+if we set a very large value of lambda, that means you will give
+B a very high weight. Here is that if we set C
+to be a very small value, then that responds to giving B
+a much larger rate than C, than A. So this is just a different way of
+controlling the trade off, it's just a different way of prioritizing how much
+we care about optimizing the first term, versus how much we care about
+optimizing the second term. And if you want you can think
+of this as the parameter C playing a role similar to 1 over lambda. And it's not that it's two equations or
+these two expressions will be equal. This equals 1 over lambda,
+that's not the case. It's rather that if C is equal to 1
+over lambda, then these two optimization objectives should give you the same value
+the same optimal value for theta so we just filling that in I'm
+gonna cross out lambda here and write in the constant C there. So that gives us our overall
+optimization objective function for the support vector machine. And if you minimize that function, then what you have is
+the parameters learned by the SVM. Finally unlike logistic regression,
+the support vector machine doesn't output the probability is that what we
+have is we have this cost function, that we minimize to get the parameter's
+data, and what a support vector machine does is it just makes a prediction of y
+being equal to one or zero, directly. So the hypothesis will predict one if theta transpose x is greater or
+equal to zero, and it will predict zero otherwise and so
+having learned the parameters theta, this is the form of the hypothesis for
+the support vector machine. So that was a mathematical definition
+of what a support vector machine does. In the next few videos,
+let's try to get back to intuition about what this optimization
+objective leads to and whether the source of the hypotheses SVM
+will learn and we'll also talk about how to modify this just a little bit to
+the complex nonlinear functions.

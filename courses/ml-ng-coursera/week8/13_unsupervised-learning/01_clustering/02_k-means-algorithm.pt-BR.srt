@@ -1,0 +1,1539 @@
+1
+00:00:00,300 --> 00:00:02,220
+Em problemas de agrupamento nos é
+
+2
+00:00:02,360 --> 00:00:03,630
+fornecido um conjunto de dados não rotulados
+
+3
+00:00:03,950 --> 00:00:05,040
+e  gostaríamos de ter
+
+4
+00:00:05,200 --> 00:00:06,480
+um algoritmo que automaticamente
+
+5
+00:00:07,320 --> 00:00:08,700
+agrupe os dados em subconjuntos
+
+6
+00:00:09,340 --> 00:00:11,000
+coerentes ou em agrupamentos coerentes para nós.
+
+7
+00:00:12,380 --> 00:00:14,160
+O algoritmo das K-médias é de longe
+
+8
+00:00:14,310 --> 00:00:15,860
+o mais popular e o
+
+9
+00:00:16,090 --> 00:00:17,410
+algoritmo de agrupamento
+
+10
+00:00:17,780 --> 00:00:19,380
+mais utilizado.  
+
+11
+00:00:19,550 --> 00:00:20,320
+Neste vídeo vou demonstrar
+
+12
+00:00:20,570 --> 00:00:23,400
+o algoritmo das K-médias e como ele funciona.
+
+13
+00:00:27,000 --> 00:00:29,310
+O algoritmo de agrupamento das K-médias é melhor explicado com figuras.
+
+14
+00:00:29,960 --> 00:00:30,770
+Digamos que eu queira pegar
+
+15
+00:00:31,080 --> 00:00:32,330
+um conjunto de dados não rotulados,
+
+16
+00:00:32,490 --> 00:00:34,040
+como este mostrado aqui, 
+
+17
+00:00:34,100 --> 00:00:36,450
+e deseje agrupar os dados em dois grupos.
+
+18
+00:00:37,710 --> 00:00:38,740
+Se eu executar o algoritmo de agrupamento das K-médias,
+
+19
+00:00:39,080 --> 00:00:41,560
+isto é o que vou fazer. 
+
+20
+00:00:41,910 --> 00:00:44,190
+O primeiro passo é inicializar aleatoriamente dois pontos,
+
+21
+00:00:44,410 --> 00:00:45,920
+chamados de centróides dos grupos.
+
+22
+00:00:46,700 --> 00:00:48,170
+Assim, estas duas cruzes aqui,
+
+23
+00:00:49,010 --> 00:00:51,730
+serão chamadas de centróides do grupo.
+
+24
+00:00:53,270 --> 00:00:54,320
+Eu tenho duas delas
+
+25
+00:00:55,100 --> 00:00:57,840
+porque eu quero agrupar meus dados em dois grupos.
+
+26
+00:00:59,130 --> 00:01:02,400
+O K-médias é um algoritmo iterativo e realiza dois passos.
+
+27
+00:01:03,480 --> 00:01:04,790
+O primeiro é um passo de  atribuição de grupo
+
+28
+00:01:05,330 --> 00:01:07,800
+e o segundo é  um passo de  movimentação do centróide.
+
+29
+00:01:08,360 --> 00:01:09,630
+Vou explicar o que isso significa. 
+
+30
+00:01:11,170 --> 00:01:12,520
+O primeiro dos dois passos no
+
+31
+00:01:12,700 --> 00:01:14,930
+laço do K-média é este passo de atribuição de grupo.
+
+32
+00:01:15,840 --> 00:01:17,070
+O que isso significa é que ele
+
+33
+00:01:17,220 --> 00:01:18,360
+visitará cada um dos
+
+34
+00:01:18,700 --> 00:01:19,880
+exemplos, ou seja, cada um desses
+
+35
+00:01:20,170 --> 00:01:22,120
+pontos verdes mostrados aqui e, dependendo
+
+36
+00:01:22,580 --> 00:01:24,140
+deles estarem mais próximos do
+
+37
+00:01:24,350 --> 00:01:25,530
+centróide vermelho ou do
+
+38
+00:01:25,620 --> 00:01:27,390
+centróide azul, 
+
+39
+00:01:27,560 --> 00:01:28,570
+ele atribuirá cada um dos 
+
+40
+00:01:28,670 --> 00:01:30,670
+pontos de dados a um dos dois centróides dos grupos.
+
+41
+00:01:32,040 --> 00:01:33,350
+Especificamente, o que quero
+
+42
+00:01:33,460 --> 00:01:34,610
+dizer é que ele visitará
+
+43
+00:01:34,730 --> 00:01:36,930
+o conjunto de dados e
+
+44
+00:01:37,130 --> 00:01:38,510
+colorirá cada um dos pontos de vermelho ou de azul,
+
+45
+00:01:38,810 --> 00:01:39,890
+dependendo do ponto
+
+46
+00:01:40,160 --> 00:01:41,060
+estar mais próximo do 
+
+47
+00:01:41,170 --> 00:01:42,150
+centróide vermelho ou do 
+
+48
+00:01:42,470 --> 00:01:45,210
+centróide azul, como fiz neste diagrama aqui.
+
+49
+00:01:46,930 --> 00:01:48,700
+Isto conclui o passo de atribuição de grupo.
+
+50
+00:01:49,780 --> 00:01:52,270
+A outra parte do K-médias, no 
+
+51
+00:01:52,410 --> 00:01:53,390
+laço do K-médias, é o passo
+
+52
+00:01:53,590 --> 00:01:54,860
+de movimentação do centróide.
+
+53
+00:01:55,020 --> 00:01:55,730
+O que faremos aqui é
+
+54
+00:01:55,800 --> 00:01:56,890
+pegar os dois centróides dos grupos,
+
+55
+00:01:57,390 --> 00:01:58,550
+ou seja, a cruz vermelha e
+
+56
+00:01:58,830 --> 00:02:00,270
+a cruz azul, e movê-las
+
+57
+00:02:00,420 --> 00:02:01,420
+para a média dos pontos
+
+58
+00:02:02,070 --> 00:02:03,900
+coloridos com a mesma cor.
+
+59
+00:02:04,880 --> 00:02:05,700
+O que farei então é
+
+60
+00:02:05,730 --> 00:02:06,510
+olhar em todos os
+
+61
+00:02:06,630 --> 00:02:07,810
+pontos vermelhos e calcular a
+
+62
+00:02:08,240 --> 00:02:09,520
+média das posições
+
+63
+00:02:10,080 --> 00:02:11,500
+de todos os pontos vermelhos e depois
+
+64
+00:02:11,650 --> 00:02:13,690
+mover o centróide vermelho para lá.
+
+65
+00:02:14,190 --> 00:02:15,260
+Repetimos o mesmo para o
+
+66
+00:02:15,460 --> 00:02:16,370
+centróide azul -- olhe todos os
+
+67
+00:02:16,560 --> 00:02:17,720
+pontos azuis e calcule a média deles.
+
+68
+00:02:17,840 --> 00:02:19,710
+Depois mova o centróide azul para lá.
+
+69
+00:02:20,320 --> 00:02:20,880
+Vou fazer isso agora.
+
+70
+00:02:21,170 --> 00:02:22,990
+Moveremos os centróides dos grupos desta forma.
+
+71
+00:02:24,590 --> 00:02:27,350
+Agora eu os movi para suas novas médias.
+
+72
+00:02:28,300 --> 00:02:29,760
+O vermelho moveu para cá
+
+73
+00:02:29,820 --> 00:02:31,350
+e o azul moveu para lá
+
+74
+00:02:31,510 --> 00:02:34,460
+e o vermelho moveu para cá.
+
+75
+00:02:34,620 --> 00:02:35,460
+Agora vamos retornar para um outro
+
+76
+00:02:35,910 --> 00:02:36,920
+passo de atribuição de grupo e cá estamos
+
+77
+00:02:37,190 --> 00:02:38,090
+novamente olhando todos os
+
+78
+00:02:38,160 --> 00:02:39,670
+exemplos não rotulados e dependendo
+
+79
+00:02:40,090 --> 00:02:42,840
+deles estarem mais próximos aos centróides vermelho ou azul,
+
+80
+00:02:43,340 --> 00:02:45,150
+eu os colorirei de vermelho ou de azul.
+
+81
+00:02:45,640 --> 00:02:47,160
+Eu atribuirei cada ponto 
+
+82
+00:02:47,530 --> 00:02:48,550
+a um dos dois centróides de grupo.
+
+83
+00:02:51,450 --> 00:02:52,260
+Note que as cores de alguns pontos mudaram.
+
+84
+00:02:53,400 --> 00:02:55,690
+E, de novo, eu darei mais um passo de movimentação do centróide.
+
+85
+00:02:56,040 --> 00:02:56,810
+Calcularei a
+
+86
+00:02:57,070 --> 00:02:57,880
+média de todos os pontos azuis,
+
+87
+00:02:58,110 --> 00:02:59,000
+depois a média de todos
+
+88
+00:02:59,040 --> 00:03:00,360
+os pontos vermelhos e moverei meus
+
+89
+00:03:00,480 --> 00:03:03,770
+centróides dessa forma.
+
+90
+00:03:03,930 --> 00:03:05,650
+Vamos fazer isso novamente.
+
+91
+00:03:06,160 --> 00:03:07,810
+Farei mais um passo de atribuição de grupo.
+
+92
+00:03:08,320 --> 00:03:09,450
+Assim, eu coloro cada ponto de vermelho 
+
+93
+00:03:09,620 --> 00:03:10,840
+ou de azul, com base no que
+
+94
+00:03:11,170 --> 00:03:13,070
+está mais próximo e depois
+
+95
+00:03:13,310 --> 00:03:20,000
+dou mais um passo de movimentação do centróide e acabamos.
+
+96
+00:03:20,350 --> 00:03:21,230
+Se você continuar
+
+97
+00:03:21,290 --> 00:03:23,250
+executando mais iterações do
+
+98
+00:03:23,500 --> 00:03:26,020
+K-médias, a partir daqui
+
+99
+00:03:26,160 --> 00:03:27,240
+os centróides dos grupos não mudarão
+
+100
+00:03:27,540 --> 00:03:28,770
+mais e as cores dos pontos 
+
+101
+00:03:28,830 --> 00:03:29,760
+não mudarão mais.
+
+102
+00:03:29,940 --> 00:03:31,520
+mais. E assim, 
+
+103
+00:03:31,810 --> 00:03:33,520
+é neste ponto
+
+104
+00:03:33,770 --> 00:03:35,290
+que o K-médias convergiu e fez
+
+105
+00:03:35,400 --> 00:03:36,430
+um trabalho muito bom ao encontrar
+
+106
+00:03:37,470 --> 00:03:38,750
+os dois agrupamentos destes dados.
+
+107
+00:03:39,360 --> 00:03:40,310
+Vamos escrever o algoritmo das K-médias mais formalmente.
+
+108
+00:03:42,150 --> 00:03:43,930
+O algoritmo das K-médias recebe duas entradas.
+
+109
+00:03:44,570 --> 00:03:46,200
+Uma é um parâmetro K,
+
+110
+00:03:46,450 --> 00:03:47,260
+que é o número de agrupamentos
+
+111
+00:03:47,830 --> 00:03:48,900
+que se quer encontrar nos dados.
+
+112
+00:03:49,640 --> 00:03:50,820
+Depois eu direi como nós
+
+113
+00:03:51,170 --> 00:03:53,290
+tentaremos escolher k, mas
+
+114
+00:03:53,470 --> 00:03:54,600
+por ora, digamos que
+
+115
+00:03:55,110 --> 00:03:56,210
+já decidimos que queremos
+
+116
+00:03:56,360 --> 00:03:57,600
+um certo número de grupos
+
+117
+00:03:57,690 --> 00:03:58,810
+e diremos ao algoritmo quantos
+
+118
+00:03:59,040 --> 00:04:00,730
+agrupamentos pensamos existir no conjunto de dados.
+
+119
+00:04:01,170 --> 00:04:02,120
+O K-médias também
+
+120
+00:04:02,490 --> 00:04:03,430
+recebe como entrada este tipo
+
+121
+00:04:03,880 --> 00:04:05,060
+de conjunto de treinamento não rotulado contendo
+
+122
+00:04:05,250 --> 00:04:06,530
+somente os x's e,
+
+123
+00:04:06,710 --> 00:04:08,430
+como este é um aprendizado não supervisionado,
+
+124
+00:04:08,520 --> 00:04:10,690
+não temos mais os rótulos dos y's.
+
+125
+00:04:10,980 --> 00:04:12,470
+Para o aprendizado não supervisionado
+
+126
+00:04:12,740 --> 00:04:14,020
+do K-médias, eu usarei
+
+127
+00:04:14,550 --> 00:04:16,160
+a convenção de que x(i)
+
+128
+00:04:16,420 --> 00:04:17,750
+é um vetor de dimensão n,
+
+129
+00:04:18,280 --> 00:04:19,190
+razão pela qual meus exemplos de treinamento
+
+130
+00:04:19,750 --> 00:04:22,460
+são agora vetores de dimensão n e não de dimensão n mais 1.
+
+131
+00:04:24,340 --> 00:04:25,430
+Isto é o que o algoritmo das K-médias faz.
+
+132
+00:04:27,180 --> 00:04:28,630
+O primeiro passo é
+
+133
+00:04:28,790 --> 00:04:31,170
+inicializar aleatoriamente os
+
+134
+00:04:31,570 --> 00:04:33,550
+K centróides dos agrupamentos,  
+
+135
+00:04:33,820 --> 00:04:34,610
+os quais chamaremos de μ1, μ2 até
+
+136
+00:04:34,840 --> 00:04:36,250
+μk.
+
+137
+00:04:36,650 --> 00:04:38,450
+No diagrama anterior, 
+
+138
+00:04:38,550 --> 00:04:40,770
+os centróides dos agrupamentos correspondem à
+
+139
+00:04:41,060 --> 00:04:42,240
+posição da cruz vermelha
+
+140
+00:04:42,660 --> 00:04:44,020
+e à posição da cruz azul.
+
+141
+00:04:44,410 --> 00:04:45,640
+Como tínhamos apenas dois centróides,
+
+142
+00:04:45,960 --> 00:04:47,000
+poderíamos chamar a cruz
+
+143
+00:04:47,170 --> 00:04:48,470
+vermelha de μ1 e
+
+144
+00:04:48,650 --> 00:04:49,940
+e a cruz azul de μ2.
+
+145
+00:04:50,300 --> 00:04:51,360
+Em geral poderemos ter
+
+146
+00:04:51,820 --> 00:04:53,830
+K centróides ao invés de apenas dois.
+
+147
+00:04:54,520 --> 00:04:56,240
+Depois, o laço interno
+
+148
+00:04:56,520 --> 00:04:57,360
+do K-médias faz o seguinte,
+
+149
+00:04:57,830 --> 00:04:59,020
+faremos o seguinte repetidamente:
+
+150
+00:05:00,070 --> 00:05:01,950
+Primeiro, para cada um dos
+
+151
+00:05:02,160 --> 00:05:03,920
+exemplos de treinamento, eu 
+
+152
+00:05:04,110 --> 00:05:05,950
+definirei esta variável c(i)
+
+153
+00:05:06,790 --> 00:05:07,960
+como um índice de 1 a K
+
+154
+00:05:08,170 --> 00:05:10,520
+do centróide do agrupamento mais próximo de x(i).
+
+155
+00:05:11,170 --> 00:05:13,810
+Assim, este é o meu passo de atribuição de grupo
+
+156
+00:05:14,330 --> 00:05:16,870
+onde pegamos
+
+157
+00:05:17,000 --> 00:05:18,680
+cada um dos meus exemplos e 
+
+158
+00:05:18,980 --> 00:05:20,740
+colorimos de vermelho ou
+
+159
+00:05:21,050 --> 00:05:22,050
+de azul, dependendo de qual
+
+160
+00:05:22,380 --> 00:05:23,940
+centróide está maix próximo.
+
+161
+00:05:24,140 --> 00:05:25,090
+Assim, c(i) será
+
+162
+00:05:25,280 --> 00:05:26,280
+um número de 1 a K
+
+163
+00:05:26,380 --> 00:05:27,680
+K que me dirá se
+
+164
+00:05:27,780 --> 00:05:28,760
+o x(i) está mais próximo da
+
+165
+00:05:28,920 --> 00:05:29,820
+cruz vermelha ou da
+
+166
+00:05:29,900 --> 00:05:31,170
+cruz azul.
+
+167
+00:05:32,200 --> 00:05:33,210
+Uma outra forma de escrever isto é, 
+
+168
+00:05:33,580 --> 00:05:35,350
+para
+
+169
+00:05:35,620 --> 00:05:37,820
+calcular c(i), 
+
+170
+00:05:37,890 --> 00:05:39,120
+pegarei o i-ésimo
+
+171
+00:05:39,380 --> 00:05:41,170
+exemplo x(i) e
+
+172
+00:05:41,360 --> 00:05:42,670
+medirei a distância dele
+
+173
+00:05:43,900 --> 00:05:44,860
+a cada um dos meus centróides.
+
+174
+00:05:45,410 --> 00:05:46,690
+Isto é o μ com
+
+175
+00:05:47,060 --> 00:05:48,640
+o k minúsculo, pois o
+
+176
+00:05:48,890 --> 00:05:50,630
+K maiúsculo é o número
+
+177
+00:05:50,910 --> 00:05:51,900
+total de centróides. Eu usarei
+
+178
+00:05:52,100 --> 00:05:53,160
+o k minúsculo aqui
+
+179
+00:05:53,770 --> 00:05:55,140
+para indexar sobre os diferentes centróides.
+
+180
+00:05:56,240 --> 00:05:58,470
+Assim, c(i) minimizará
+
+181
+00:05:58,550 --> 00:06:00,110
+sobre todos os valores
+
+182
+00:06:00,550 --> 00:06:01,930
+de k e encontrará
+
+183
+00:06:02,120 --> 00:06:03,650
+o valor de k que minimiza esta
+
+184
+00:06:03,900 --> 00:06:04,750
+distância entre x(i) e o
+
+185
+00:06:04,800 --> 00:06:06,130
+centróide do agrupamento, 
+
+186
+00:06:06,340 --> 00:06:08,990
+depois disto,  
+
+187
+00:06:09,070 --> 00:06:10,350
+o valor de k que minimiza
+
+188
+00:06:10,940 --> 00:06:12,160
+isto será usado como
+
+189
+00:06:12,300 --> 00:06:14,100
+o valor de c(i). Assim, aqui está
+
+190
+00:06:14,360 --> 00:06:16,470
+uma outra forma de escrever o que c(i) é.
+
+191
+00:06:18,050 --> 00:06:19,150
+Se eu calcular a norma entre
+
+192
+00:06:19,270 --> 00:06:21,500
+x(i) menos μk, 
+
+193
+00:06:23,000 --> 00:06:24,120
+ela será a distância entre
+
+194
+00:06:24,630 --> 00:06:26,040
+meu i-ésimo exemplo de treinamento
+
+195
+00:06:26,180 --> 00:06:27,350
+x(i) e o centróide μk
+
+196
+00:06:28,140 --> 00:06:30,280
+do agrupamento, este
+
+197
+00:06:31,150 --> 00:06:32,830
+aqui, escrito com k minúsculo. O K maiúsculo
+
+198
+00:06:33,320 --> 00:06:34,710
+será usado para
+
+199
+00:06:34,980 --> 00:06:36,210
+denotar o número total
+
+200
+00:06:36,450 --> 00:06:38,020
+centróides dos agrupamentos.
+
+201
+00:06:38,770 --> 00:06:40,430
+Esse k minúsculo é 
+
+202
+00:06:40,790 --> 00:06:41,840
+um número entre um e
+
+203
+00:06:41,960 --> 00:06:42,940
+o K maiúsculo. Eu apenas estou usando
+
+204
+00:06:43,210 --> 00:06:44,450
+o k minúsculo para indexar
+
+205
+00:06:44,930 --> 00:06:45,990
+sobre os diferentes centróides.
+
+206
+00:06:47,130 --> 00:06:49,020
+Assim,
+
+207
+00:06:50,050 --> 00:06:51,330
+isto é a distância entre o exemplo e centróide do agrupamento.
+
+208
+00:06:51,490 --> 00:06:52,810
+O que farei 
+
+209
+00:06:53,050 --> 00:06:54,330
+é encontrar o valor 
+
+210
+00:06:55,250 --> 00:06:56,390
+de k, o k minúsculo,
+
+211
+00:06:56,710 --> 00:06:58,900
+que minimize isto e
+
+212
+00:06:59,080 --> 00:07:00,320
+assim o valor de 
+
+213
+00:07:00,480 --> 00:07:02,100
+k que minimiza isso
+
+214
+00:07:02,280 --> 00:07:03,610
+será o valor que usarei
+
+215
+00:07:04,000 --> 00:07:06,560
+para definir c(i). 
+
+216
+00:07:06,760 --> 00:07:07,850
+Por convenção, eu escrevi
+
+217
+00:07:08,190 --> 00:07:09,430
+a distância entre x(i) e
+
+218
+00:07:09,480 --> 00:07:11,310
+o centróide do agrupamento, 
+
+219
+00:07:11,820 --> 00:07:13,330
+como sendo a distância quadrática.
+
+220
+00:07:13,780 --> 00:07:15,370
+Podemos pensar em c(i) pegando
+
+221
+00:07:15,660 --> 00:07:16,860
+o centróide do agrupamento com a menor
+
+222
+00:07:17,450 --> 00:07:20,110
+distância quadrática em relação a meu exemplo de treinamento x(i).
+
+223
+00:07:20,750 --> 00:07:22,080
+Naturalmente, minimizar a distância quadrática
+
+224
+00:07:22,500 --> 00:07:23,700
+ou minimizar a distância deveria
+
+225
+00:07:23,880 --> 00:07:25,670
+resultar no mesmo valor de c(i).
+
+226
+00:07:25,830 --> 00:07:26,670
+Normalmente elevamos ao 
+
+227
+00:07:26,750 --> 00:07:28,120
+quadrado aqui, apenas seguindo
+
+228
+00:07:28,430 --> 00:07:31,020
+a convenção usada por pessoas que utilizam o K-médias.
+
+229
+00:07:31,170 --> 00:07:32,320
+Isto termina o passo de atribuição de grupo.
+
+230
+00:07:33,480 --> 00:07:34,750
+O outro laço
+
+231
+00:07:34,980 --> 00:07:37,740
+do K-médias realiza o passo de movimentação do centróide.
+
+232
+00:07:40,540 --> 00:07:41,750
+E o que ele faz é pegar
+
+233
+00:07:42,160 --> 00:07:43,460
+cada um dos centróides dos agrupamentos, 
+
+234
+00:07:43,550 --> 00:07:44,740
+tal que para k minúsculo variando de 1 a K
+
+235
+00:07:44,870 --> 00:07:46,190
+faça μk igual 
+
+236
+00:07:46,710 --> 00:07:48,460
+à média dos pontos atribuídos ao agrupamento.
+
+237
+00:07:49,270 --> 00:07:50,720
+Como um exemplo concreto, digamos
+
+238
+00:07:50,910 --> 00:07:52,100
+que um dos meus centróides,
+
+239
+00:07:52,340 --> 00:07:53,420
+digamos o centróide dois,
+
+240
+00:07:53,750 --> 00:07:55,030
+tenha os exemplos de treinamento
+
+241
+00:07:55,820 --> 00:08:02,390
+um, cinco, seis e dez atribuídos a ele.
+
+242
+00:08:03,220 --> 00:08:04,270
+Isso quer dizer que 
+
+243
+00:08:04,470 --> 00:08:05,510
+c(1) é igual a dois,
+
+244
+00:08:06,560 --> 00:08:09,180
+c(5) é igual a dois,
+
+245
+00:08:10,690 --> 00:08:12,180
+c(6) é igual a dois, e
+
+246
+00:08:12,300 --> 00:08:13,730
+similarmente c(10) é igual a dois, certo?
+
+247
+00:08:14,970 --> 00:08:17,070
+Se recebermos isto
+
+248
+00:08:17,160 --> 00:08:18,940
+do passo de atribuição de grupos, então
+
+249
+00:08:19,190 --> 00:08:21,250
+isso significa que os exemplos um, cinco, seis e dez
+
+250
+00:08:21,450 --> 00:08:22,960
+foram atribuídos ao centróide dois.
+
+251
+00:08:24,020 --> 00:08:25,210
+Assim, neste passo de movimentação do centróide,
+
+252
+00:08:25,540 --> 00:08:26,580
+o que estou fazendo é somente
+
+253
+00:08:27,180 --> 00:08:29,290
+calcular a média destas quatro coisas.
+
+254
+00:08:31,340 --> 00:08:33,950
+Ou seja, somar x(1) com x(5), x(6) 
+
+255
+00:08:34,270 --> 00:08:35,620
+e x(10).
+
+256
+00:08:35,890 --> 00:08:37,190
+Agora, para tomar 
+
+257
+00:08:37,380 --> 00:08:38,630
+a média deles, como tenho
+
+258
+00:08:38,920 --> 00:08:40,020
+quatro pontos atribuídos a 
+
+259
+00:08:40,100 --> 00:08:41,700
+este centróide, basta
+
+260
+00:08:42,280 --> 00:08:43,240
+dividir a somatória por quatro.
+
+261
+00:08:43,980 --> 00:08:45,890
+Agora μ2 será 
+
+262
+00:08:46,100 --> 00:08:47,910
+um vetor de dimensão n,
+
+263
+00:08:48,420 --> 00:08:49,480
+pois cada um desses
+
+264
+00:08:49,700 --> 00:08:51,050
+exemplos x1, x5, x6 e x10,
+
+265
+00:08:52,160 --> 00:08:53,170
+cada um deles é um vetor com dimensão n,
+
+266
+00:08:53,700 --> 00:08:55,150
+e eu os somarei 
+
+267
+00:08:55,240 --> 00:08:56,270
+juntos e depois
+
+268
+00:08:56,550 --> 00:08:57,870
+dividirei por quatro, pois tenho
+
+269
+00:08:57,940 --> 00:08:59,320
+quatro pontos atribuídos a este
+
+270
+00:08:59,490 --> 00:09:00,730
+centróide,  eu concluo
+
+271
+00:09:01,280 --> 00:09:02,770
+meu passo de movimentação de centróides,
+
+272
+00:09:03,870 --> 00:09:05,260
+para o meu centróide μ2. 
+
+273
+00:09:05,870 --> 00:09:06,850
+Isto tem como efeito mover
+
+274
+00:09:07,210 --> 00:09:08,950
+μ2 para a média dos
+
+275
+00:09:09,130 --> 00:09:10,620
+quatro pontos listados aqui.
+
+276
+00:09:12,430 --> 00:09:13,850
+Vamos falar agora sobre o número de agrupamentos.
+
+277
+00:09:14,080 --> 00:09:16,600
+Seja μk a média dos pontos atribuídos ao agrupamento.
+
+278
+00:09:17,500 --> 00:09:18,900
+Mas o que acontece se
+
+279
+00:09:18,960 --> 00:09:21,310
+existir um centróide com nenhum ponto,
+
+280
+00:09:21,690 --> 00:09:23,000
+com zero pontos atribuídos a ele?
+
+281
+00:09:23,280 --> 00:09:24,300
+Nesse caso, a coisa mais 
+
+282
+00:09:24,650 --> 00:09:25,720
+comum a fazer é apenas
+
+283
+00:09:26,140 --> 00:09:27,220
+eliminar esse centróide.
+
+284
+00:09:27,830 --> 00:09:28,630
+Se fizermos isto, ficamos com 
+
+285
+00:09:28,840 --> 00:09:30,260
+ K menos um agrupamentos
+
+286
+00:09:31,350 --> 00:09:33,840
+ao invés de K agrupamentos.
+
+287
+00:09:34,400 --> 00:09:35,620
+Às vezes, se você de fato precisar
+
+288
+00:09:35,830 --> 00:09:37,380
+de K agrupamentos, então a outra 
+
+289
+00:09:37,490 --> 00:09:38,220
+coisa a ser feita se você
+
+290
+00:09:38,290 --> 00:09:39,530
+tem um centróide com nenhum
+
+291
+00:09:39,740 --> 00:09:41,170
+ponto atribuído a ele, é 
+
+292
+00:09:41,260 --> 00:09:42,590
+apenas reinicializar aleatoriamente esse
+
+293
+00:09:43,450 --> 00:09:44,870
+centróide. Mas, é mais
+
+294
+00:09:45,170 --> 00:09:46,590
+comum apenas eliminar um
+
+295
+00:09:46,670 --> 00:09:48,210
+agrupamento se em algum lugar, durante
+
+296
+00:09:48,410 --> 00:09:49,690
+o K-médias, existir um agrupamento
+
+297
+00:09:50,290 --> 00:09:52,020
+com nenhum ponto atribuído a ele.
+
+298
+00:09:52,140 --> 00:09:53,340
+Embora isso possa ocorrer, na prática,
+
+299
+00:09:53,820 --> 00:09:55,590
+não é muito comum.
+
+300
+00:09:55,810 --> 00:09:57,280
+Esse é o algoritmo das K-médias.
+
+301
+00:09:59,330 --> 00:10:00,220
+Antes de encerrar este vídeo
+
+302
+00:10:00,620 --> 00:10:01,290
+só quero comentar
+
+303
+00:10:01,350 --> 00:10:02,710
+sobre uma outra aplicação comum
+
+304
+00:10:03,350 --> 00:10:04,680
+do K-médias em
+
+305
+00:10:04,920 --> 00:10:06,840
+problemas com agrupamentos não muito bem separados.
+
+306
+00:10:08,160 --> 00:10:08,640
+O que eu quero dizer é
+
+307
+00:10:09,280 --> 00:10:10,320
+Até agora temos retratado o K-médias
+
+308
+00:10:10,950 --> 00:10:12,090
+aplicando-o a conjuntos
+
+309
+00:10:12,330 --> 00:10:13,520
+de dados como aqueles mostrados aqui, 
+
+310
+00:10:14,150 --> 00:10:15,590
+onde temos três agrupamentos
+
+311
+00:10:15,900 --> 00:10:17,380
+bem separados, e queremos
+
+312
+00:10:17,670 --> 00:10:19,930
+um algoritmo capaz de encontrar talvez os 3 agrupamentos para nós.
+
+313
+00:10:20,750 --> 00:10:21,840
+No entanto, 
+
+314
+00:10:21,980 --> 00:10:23,180
+com bastante frequência o K-médias é também
+
+315
+00:10:23,600 --> 00:10:24,860
+aplicado a conjuntos de dados
+
+316
+00:10:25,170 --> 00:10:26,240
+parecidos com este aqui, onde
+
+317
+00:10:26,330 --> 00:10:28,300
+pode ser que não existam
+
+318
+00:10:28,550 --> 00:10:30,250
+agrupamentos bem separados.
+
+319
+00:10:30,830 --> 00:10:32,960
+Este é um exemplo de aplicação -- dimensionamento de camisetas.
+
+320
+00:10:34,070 --> 00:10:34,650
+Digamos que você seja um
+
+321
+00:10:35,270 --> 00:10:37,360
+fabricante de camisetas que foi
+
+322
+00:10:38,030 --> 00:10:39,310
+até a população para a qual 
+
+323
+00:10:39,380 --> 00:10:40,520
+deseja vender as camisetas e
+
+324
+00:10:40,800 --> 00:10:42,190
+você deseja vender as camisetas e
+
+325
+00:10:42,580 --> 00:10:43,770
+exemplos da altura e peso
+
+326
+00:10:44,270 --> 00:10:45,350
+das pessoas naquela
+
+327
+00:10:45,680 --> 00:10:46,740
+população e, como sabemos,
+
+328
+00:10:47,220 --> 00:10:48,280
+a altura e o peso tendem a ser
+
+329
+00:10:48,370 --> 00:10:50,310
+correlacionados positivamente.
+
+330
+00:10:50,540 --> 00:10:51,160
+Talvez você obtenha com um conjunto
+
+331
+00:10:51,430 --> 00:10:52,590
+de dados como este, contendo
+
+332
+00:10:52,830 --> 00:10:53,910
+uma amostra ou conjunto de
+
+333
+00:10:53,980 --> 00:10:56,000
+exemplos dos pesos e alturas de diferentes pessoas.
+
+334
+00:10:56,530 --> 00:10:57,880
+Digamos que você queira dimensionar suas camisetas.
+
+335
+00:10:58,570 --> 00:10:59,810
+Digamos que eu queira confeccionar
+
+336
+00:11:00,330 --> 00:11:01,480
+e vender camisetas de três
+
+337
+00:11:01,660 --> 00:11:03,970
+tamanhos, pequeno, médio e grande.
+
+338
+00:11:04,660 --> 00:11:06,420
+Que tamanho deveria ser a minha menor camiseta?
+
+339
+00:11:06,550 --> 00:11:07,320
+Quão grande deveria ser a média?
+
+340
+00:11:07,690 --> 00:11:09,300
+E  qual tamanho eu deveria confeccionar as minhas camisetas grandes?
+
+341
+00:11:10,370 --> 00:11:11,290
+Uma forma de se fazer isto poderia 
+
+342
+00:11:11,410 --> 00:11:12,050
+ser executar o algoritmo 
+
+343
+00:11:12,270 --> 00:11:13,570
+de agrupamento K-médias sobre esse conjunto
+
+344
+00:11:13,830 --> 00:11:14,640
+de dados mostrado a
+
+345
+00:11:14,820 --> 00:11:16,570
+direita e talvez o que o
+
+346
+00:11:16,770 --> 00:11:18,270
+K-médias fará é agrupar
+
+347
+00:11:18,600 --> 00:11:20,460
+todos esses pontos em um
+
+348
+00:11:20,660 --> 00:11:22,120
+agrupamento e agrupar todos
+
+349
+00:11:22,340 --> 00:11:24,150
+estes pontos em um
+
+350
+00:11:24,190 --> 00:11:25,530
+segundo agrupamento e agrupar
+
+351
+00:11:25,740 --> 00:11:28,080
+todos aqueles pontos em um terceiro agrupamento.
+
+352
+00:11:28,520 --> 00:11:29,870
+Assim, embora os dados
+
+353
+00:11:30,020 --> 00:11:30,960
+de antemão não pareciam ter, 
+
+354
+00:11:31,060 --> 00:11:31,990
+encontramos 3
+
+355
+00:11:32,050 --> 00:11:33,920
+agrupamentos bem separados, o K-médias 
+
+356
+00:11:34,050 --> 00:11:36,870
+conseguiu separar os dados
+
+357
+00:11:37,320 --> 00:11:38,560
+em múltiplos agrupamentos para você.
+
+358
+00:11:39,270 --> 00:11:40,220
+Então o que você pode fazer é 
+
+359
+00:11:40,420 --> 00:11:42,010
+olhar para a primeira população de
+
+360
+00:11:42,130 --> 00:11:44,340
+pessoas e, observando-as,
+
+361
+00:11:44,500 --> 00:11:45,590
+prestando atenção 
+
+362
+00:11:45,780 --> 00:11:46,810
+na altura e peso,
+
+363
+00:11:46,900 --> 00:11:47,900
+tentar confeccionar uma camisa pequena
+
+364
+00:11:48,350 --> 00:11:49,540
+tal que ela 
+
+365
+00:11:49,710 --> 00:11:51,160
+sirva bem nas pessoas da primeira população
+
+366
+00:11:51,310 --> 00:11:52,830
+e depois seguir a mesma ideia ao confeccionar
+
+367
+00:11:53,150 --> 00:11:55,800
+camisetas médias ou grandes.
+
+368
+00:11:56,510 --> 00:11:57,860
+O que vimos foi, de fato, um
+
+369
+00:11:57,990 --> 00:11:59,740
+exemplo de segmentação de mercado,
+
+370
+00:12:01,140 --> 00:12:02,800
+onde estamos usando o K-médias para dividir
+
+371
+00:12:02,940 --> 00:12:04,320
+o mercado em 3 segmentos diferentes.
+
+372
+00:12:05,220 --> 00:12:06,500
+Assim, você pode confeccionar um produto
+
+373
+00:12:07,000 --> 00:12:08,260
+separadamente, ou seja, camisetas pequenas, médias ou grandes
+
+374
+00:12:09,880 --> 00:12:11,230
+que tentam se adequar
+
+375
+00:12:11,650 --> 00:12:12,770
+bem às necessidades de cada uma das
+
+376
+00:12:12,920 --> 00:12:15,310
+três subpopulações separadamente.
+
+377
+00:12:16,220 --> 00:12:17,570
+Esse é o algoritmo das K-médias.
+
+378
+00:12:18,240 --> 00:12:19,080
+Nesse ponto, você deveria
+
+379
+00:12:19,300 --> 00:12:20,500
+saber como implementar o algoritmo 
+
+380
+00:12:20,630 --> 00:12:22,510
+das K-médias e pô-lo para funcionar em alguns problemas.
+
+381
+00:12:23,420 --> 00:12:24,380
+Nos próximos vídeos, 
+
+382
+00:12:24,860 --> 00:12:26,430
+o que quero fazer é
+
+383
+00:12:26,580 --> 00:12:27,690
+entrar nos detalhes finos
+
+384
+00:12:28,010 --> 00:12:29,210
+do K-médias e falar um pouco 
+
+385
+00:12:29,510 --> 00:12:32,080
+fazê-la funcionar realmente bem.

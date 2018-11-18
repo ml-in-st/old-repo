@@ -1,0 +1,1323 @@
+1
+00:00:00,390 --> 00:00:02,440
+Ya has visto cómo la regularización nos puede ayudar a
+
+2
+00:00:02,610 --> 00:00:04,660
+evitar el sobreajuste, pero ¿cómo
+
+3
+00:00:04,960 --> 00:00:06,230
+afecta la oscilación y
+
+4
+00:00:06,460 --> 00:00:08,070
+la varianza de un algoritmo de aprendizaje?
+
+5
+00:00:08,630 --> 00:00:09,890
+En este video, me gustaría
+
+6
+00:00:10,020 --> 00:00:11,180
+ahondar en el tema de
+
+7
+00:00:11,550 --> 00:00:13,300
+oscilación y varianza y
+
+8
+00:00:13,520 --> 00:00:14,450
+hablar acerca de cómo interactúan con
+
+9
+00:00:15,070 --> 00:00:15,880
+y se ven afectadas por
+
+10
+00:00:16,070 --> 00:00:18,470
+la regularización de tu algoritmo de aprendizaje.
+
+11
+00:00:22,180 --> 00:00:23,390
+Supongamos que ajustamos un modelo
+
+12
+00:00:23,700 --> 00:00:24,880
+modelo de regresión lineal con un
+
+13
+00:00:25,250 --> 00:00:27,460
+polinomio de alto grado, pero para
+
+14
+00:00:27,670 --> 00:00:28,670
+evitar el sobreajuste, vamos a
+
+15
+00:00:28,790 --> 00:00:30,880
+regularizarlo como se muestra aquí.
+
+16
+00:00:31,560 --> 00:00:32,780
+Imaginemos que estamos ajustando un
+
+17
+00:00:33,190 --> 00:00:34,690
+polinomio de alto orden como el que se
+
+18
+00:00:35,120 --> 00:00:36,320
+muestra aquí, pero para evitar
+
+19
+00:00:36,760 --> 00:00:37,770
+el sobreajuste, utilizaremos
+
+20
+00:00:37,910 --> 00:00:39,540
+la regularización como la que se muestra aquí.
+
+21
+00:00:39,910 --> 00:00:41,070
+De manera que tenemos este término
+
+22
+00:00:41,880 --> 00:00:43,050
+de regularización para intentar
+
+23
+00:00:43,390 --> 00:00:45,280
+mantener bajos los valores de los parámetros.
+
+24
+00:00:45,720 --> 00:00:47,400
+Como de costumbre, la regularización
+
+25
+00:00:47,770 --> 00:00:49,190
+es la suma de “J” igual a 1 a la
+
+26
+00:00:49,290 --> 00:00:50,480
+“m”, en vez de “J” igual a 0
+
+27
+00:00:50,600 --> 00:00:53,130
+a la “m”.  Consideremos estos tres casos.
+
+28
+00:00:53,740 --> 00:00:55,590
+En el primero es el caso con
+
+29
+00:00:55,660 --> 00:00:56,900
+un valor muy alto del
+
+30
+00:00:56,960 --> 00:00:59,250
+parámetro de regularización «lambda»,
+
+31
+00:00:59,490 --> 00:01:00,640
+como si «lambda» fuera igual a
+
+32
+00:01:00,790 --> 00:01:01,600
+10,000. Es un valor enorme.
+
+33
+00:01:01,780 --> 00:01:04,100
+En este caso,
+
+34
+00:01:04,370 --> 00:01:05,510
+todos estos parámetros,
+
+35
+00:01:05,660 --> 00:01:07,250
+«theta» 1, «theta» 2,
+
+36
+00:01:07,580 --> 00:01:08,310
+«theta» 3, etc., estarán
+
+37
+00:01:08,490 --> 00:01:10,390
+muy penalizados
+
+38
+00:01:10,570 --> 00:01:12,660
+y terminaremos con la mayoría
+
+39
+00:01:13,110 --> 00:01:14,440
+de estos parámetros cercanos
+
+40
+00:01:14,790 --> 00:01:17,000
+a cero y la hipótesis será
+
+41
+00:01:17,180 --> 00:01:17,940
+aproximadamente “H” de “X”
+
+42
+00:01:18,280 --> 00:01:19,980
+justo igual o aproximadamente
+
+43
+00:01:20,270 --> 00:01:21,530
+igual a «theta» 0.
+
+44
+00:01:21,690 --> 00:01:23,560
+Terminaremos con una hipótesis que
+
+45
+00:01:23,800 --> 00:01:25,250
+lucirá más o menos así; como una línea más
+
+46
+00:01:25,370 --> 00:01:28,130
+o menos recta y constante.
+
+47
+00:01:28,410 --> 00:01:30,320
+Entonces, esta hipótesis tiene una
+
+48
+00:01:30,660 --> 00:01:32,630
+oscilación alta y subajusta el conjunto de datos.
+
+49
+00:01:32,970 --> 00:01:34,520
+Esta línea recta horizontal
+
+50
+00:01:34,840 --> 00:01:35,810
+no es un buen
+
+51
+00:01:35,940 --> 00:01:38,100
+modelo para este conjunto de datos.
+
+52
+00:01:38,700 --> 00:01:39,870
+En el otro extremo tenemos un
+
+53
+00:01:40,250 --> 00:01:41,560
+valor muy pequeño de
+
+54
+00:01:41,850 --> 00:01:43,310
+«lambda», como si «lambda» fuera
+
+55
+00:01:43,710 --> 00:01:45,630
+igual a 0.
+
+56
+00:01:45,720 --> 00:01:46,940
+En este caso, debido a que estamos
+
+57
+00:01:47,080 --> 00:01:48,240
+ajustando un polinomio de alto orden,
+
+58
+00:01:48,390 --> 00:01:49,690
+resulta generalmente
+
+59
+00:01:49,940 --> 00:01:51,590
+en una situación de sobreajuste.
+
+60
+00:01:52,750 --> 00:01:53,990
+En este caso, debido a que estamos
+
+61
+00:01:54,190 --> 00:01:55,240
+ajustando un polinomio de alto orden,
+
+62
+00:01:56,170 --> 00:01:58,050
+sin regularización o con una
+
+63
+00:01:58,230 --> 00:02:00,170
+regularización mínima, terminaremos con
+
+64
+00:02:00,350 --> 00:02:02,180
+nuestra situación usual de varianza alta o de sobreajuste,
+
+65
+00:02:02,810 --> 00:02:03,900
+porque «lambda»
+
+66
+00:02:04,630 --> 00:02:05,650
+es igual a cero y estamos
+
+67
+00:02:05,790 --> 00:02:08,310
+ajustandola con nuestra regularización
+
+68
+00:02:08,440 --> 00:02:14,460
+para que sobreajuste la hipótesis.
+
+69
+00:02:15,700 --> 00:02:16,570
+Y sólo si tenemos un valor
+
+70
+00:02:16,730 --> 00:02:18,720
+intermedio de «lambda», es decir, ni muy alto ni muy bajo, tendremos unos parámetros «theta»
+
+71
+00:02:19,220 --> 00:02:20,380
+que nos darán un ajuste razonable
+
+72
+00:02:20,770 --> 00:02:22,050
+con estos datos.
+
+73
+00:02:22,890 --> 00:02:23,810
+Entonces, ¿Cómo podemos elegir automáticamente
+
+74
+00:02:24,610 --> 00:02:26,080
+un buen valor
+
+75
+00:02:26,580 --> 00:02:28,090
+para el parámetro de regularización «lambda»?
+
+76
+00:02:29,100 --> 00:02:31,370
+Sólo para recapitular, aquí tenemos nuestro modelo y nuestro objetivo del algoritmo de aprendizaje.
+
+77
+00:02:33,670 --> 00:02:36,580
+Para la situación en la que utilizamos la regularización, definiré
+
+78
+00:02:37,410 --> 00:02:39,540
+“J entrenamiento” de «theta» como algo diferente
+
+79
+00:02:40,410 --> 00:02:42,370
+como el objetivo de optimización
+
+80
+00:02:43,170 --> 00:02:44,800
+pero sin el término de regularización.
+
+81
+00:02:45,540 --> 00:02:47,400
+Anteriormente, en otro video,
+
+82
+00:02:47,750 --> 00:02:48,670
+cuando no utilizamos la
+
+83
+00:02:49,040 --> 00:02:50,800
+regularización, definí “J entrenamiento” de «theta»
+
+84
+00:02:51,650 --> 00:02:54,780
+como igual a “J” de «theta» o la función de costo, pero
+
+85
+00:02:55,030 --> 00:02:57,440
+cuando utilizamos la regularización con este término «lambda» adicional
+
+86
+00:02:58,480 --> 00:03:00,840
+definiremos
+
+87
+00:03:01,080 --> 00:03:02,230
+“j entrenamiento” o el error del conjunto de aprendizaje
+
+88
+00:03:02,500 --> 00:03:03,610
+como la suma de los
+
+89
+00:03:03,830 --> 00:03:05,070
+errores cuadráticos en el conjunto de
+
+90
+00:03:05,410 --> 00:03:06,900
+aprendizaje o el error cuadrático promedio
+
+91
+00:03:07,120 --> 00:03:10,060
+del conjunto de entrenamiento, sin tomar en cuenta el término de regularización.
+
+92
+00:03:10,940 --> 00:03:12,250
+De manera similar, definiré
+
+93
+00:03:12,410 --> 00:03:13,690
+también el error
+
+94
+00:03:14,210 --> 00:03:16,170
+de validación cruzada o el
+
+95
+00:03:16,270 --> 00:03:17,370
+error del conjunto de prueba como antes,
+
+96
+00:03:17,830 --> 00:03:19,720
+para que sea la suma promedio de los errores cuadráticos en
+
+97
+00:03:20,320 --> 00:03:21,990
+los conjuntos de prueba y de validación cruzada.
+
+98
+00:03:23,240 --> 00:03:25,270
+Para resumir,
+
+99
+00:03:25,820 --> 00:03:27,060
+mis definiciones de “J entrenamiento”,
+
+100
+00:03:27,490 --> 00:03:28,410
+“Jcv” y “J
+
+101
+00:03:28,620 --> 00:03:29,820
+prueba” son sólo
+
+102
+00:03:30,050 --> 00:03:31,010
+el error cuadrático promedio o
+
+103
+00:03:31,410 --> 00:03:32,610
+un medio del error
+
+104
+00:03:32,990 --> 00:03:34,600
+cuadrático promedio de mi conjunto de validación, entrenamiento y
+
+105
+00:03:34,840 --> 00:03:36,770
+conjuntos de prueba sin el término de
+
+106
+00:03:38,310 --> 00:03:39,290
+regularización adicional.
+
+107
+00:03:39,360 --> 00:03:41,500
+Así es como podemos elegir automáticamente el parámetro de regularización «lambda».
+
+108
+00:03:43,950 --> 00:03:45,600
+Lo que hago usualmente es
+
+109
+00:03:45,720 --> 00:03:48,040
+tener un rango de valores de «lambda» para probarlos.
+
+110
+00:03:48,220 --> 00:03:49,740
+Puedo
+
+111
+00:03:49,880 --> 00:03:51,050
+considerar no utilizar la regularización
+
+112
+00:03:52,430 --> 00:03:53,560
+o intentar algunos valores
+
+113
+00:03:53,780 --> 00:03:54,740
+que he considerado como
+
+114
+00:03:55,210 --> 00:03:57,390
+“O1”, “O2”, “O4”, etc.
+
+115
+00:03:57,980 --> 00:03:59,400
+Usualmente escalo estos en
+
+116
+00:03:59,660 --> 00:04:02,110
+múltiplos de
+
+117
+00:04:02,310 --> 00:04:04,850
+dos hasta llegar a un valor más alto.
+
+118
+00:04:04,960 --> 00:04:06,140
+Si lo hago con múltiplos de dos
+
+119
+00:04:06,370 --> 00:04:07,890
+terminaré con 10.24 en vez de
+
+120
+00:04:08,160 --> 00:04:10,700
+10 exactamente, pero
+
+121
+00:04:10,870 --> 00:04:12,130
+está suficientemente cerca
+
+122
+00:04:12,750 --> 00:04:14,210
+y unos puntos
+
+123
+00:04:14,500 --> 00:04:16,720
+decimales no afectarán mucho el resultado.
+
+124
+00:04:19,830 --> 00:04:21,610
+Esto me arroja, tal vez,
+
+125
+00:04:22,330 --> 00:04:24,160
+doce modelos diferentes que
+
+126
+00:04:24,300 --> 00:04:26,040
+intentaré seleccionar en correspondencia con
+
+127
+00:04:26,230 --> 00:04:27,900
+12 valores diferentes del
+
+128
+00:04:28,210 --> 00:04:34,120
+parámetro de regularización «lambda».
+
+129
+00:04:34,270 --> 00:04:35,400
+Por supuesto, puedes tener
+
+130
+00:04:35,600 --> 00:04:37,530
+valores menores de 0.01
+
+131
+00:04:37,610 --> 00:04:38,800
+o valores mayores a 10.
+
+132
+00:04:38,900 --> 00:04:41,070
+pero yo lo he reducido por conveniencia.
+
+133
+00:04:46,400 --> 00:04:47,260
+Con estos 12
+
+134
+00:04:47,590 --> 00:04:48,740
+modelos, podemos
+
+135
+00:04:48,970 --> 00:04:49,770
+hacer lo siguiente:
+
+136
+00:04:50,800 --> 00:04:52,100
+Podemos tomar este primer modelo donde
+
+137
+00:04:52,480 --> 00:04:53,850
+«lambda» es igual a 0,
+
+138
+00:04:54,050 --> 00:04:56,110
+y minimizar la función de
+
+139
+00:04:56,390 --> 00:04:58,550
+costos de “J” de «theta». Esto
+
+140
+00:04:58,780 --> 00:05:00,310
+nos daría un parámetro vector «theta».
+
+141
+00:05:00,850 --> 00:05:02,000
+Al igual que en el video anterior,
+
+142
+00:05:02,200 --> 00:05:04,060
+denotaré esto como
+
+143
+00:05:05,550 --> 00:05:06,650
+«theta» superíndice 1.
+
+144
+00:05:08,580 --> 00:05:09,440
+Luego puedo tomar mi
+
+145
+00:05:09,620 --> 00:05:11,210
+segundo modelo con «lambda»
+
+146
+00:05:11,690 --> 00:05:13,220
+igual a 0.01 y
+
+147
+00:05:13,850 --> 00:05:15,810
+minimizar la función de costo usando
+
+148
+00:05:15,940 --> 00:05:17,560
+ahora «lambda» igual a 0.01.
+
+149
+00:05:17,660 --> 00:05:18,770
+para
+
+150
+00:05:18,960 --> 00:05:19,980
+obtener un vector parámetro «theta» diferente
+
+151
+00:05:20,530 --> 00:05:21,420
+que denotaremos como «theta» 2.
+
+152
+00:05:21,550 --> 00:05:22,690
+Con esto, terminaré
+
+153
+00:05:22,930 --> 00:05:24,210
+con «theta» 3
+
+154
+00:05:24,410 --> 00:05:25,280
+si es correcto para mi
+
+155
+00:05:25,350 --> 00:05:27,090
+tercer modelo, y así sucesivamente,
+
+156
+00:05:27,620 --> 00:05:28,980
+hasta mi último modelo,
+
+157
+00:05:29,450 --> 00:05:32,050
+designado como «theta» 12,
+
+158
+00:05:32,050 --> 00:05:35,150
+donde «lambda» está determinado como 10, o 10.14.
+
+159
+00:05:36,340 --> 00:05:37,810
+Ahora, puedo
+
+160
+00:05:38,050 --> 00:05:39,710
+tomar todas estas hipótesis,
+
+161
+00:05:39,790 --> 00:05:41,850
+todos estos parámetros, y utilizar
+
+162
+00:05:42,160 --> 00:05:44,200
+mi conjunto de validación cruzada para evaluarlos.
+
+163
+00:05:44,940 --> 00:05:46,440
+Puedo ver mi
+
+164
+00:05:47,120 --> 00:05:48,420
+primer modelo o mi
+
+165
+00:05:48,770 --> 00:05:49,370
+segundo modelo ajustado a los diferentes valores
+
+166
+00:05:49,400 --> 00:06:00,290
+del parámetro de regularización
+
+167
+00:06:00,440 --> 00:06:01,320
+y evaluarlos en mi conjunto de validación
+
+168
+00:06:01,570 --> 00:06:02,150
+cruzada. Aquí básicamente mido el error cuadrático promedio de cada uno de los parámetros
+
+169
+00:06:02,240 --> 00:06:03,910
+vector «theta» en mi conjunto de validación cruzada.
+
+170
+00:06:04,250 --> 00:06:05,800
+Después elegiré de entre estos
+
+171
+00:06:05,960 --> 00:06:07,400
+12 modelos el que me
+
+172
+00:06:07,570 --> 00:06:10,050
+de el error más bajo en el conjunto de validación cruzada.
+
+173
+00:06:11,050 --> 00:06:11,790
+Digamos que, por
+
+174
+00:06:12,070 --> 00:06:13,660
+ejemplo, elijo
+
+175
+00:06:13,950 --> 00:06:15,570
+«theta» 5, el polinomio del
+
+176
+00:06:15,650 --> 00:06:18,260
+quinto orden, porque tiene el error
+
+177
+00:06:18,650 --> 00:06:21,240
+de validación más bajo.
+
+178
+00:06:22,010 --> 00:06:24,220
+Una vez hecho esto, lo que haré, finalmente,
+
+179
+00:06:24,390 --> 00:06:25,220
+si quiero
+
+180
+00:06:25,490 --> 00:06:26,630
+reportar el error del conjunto de prueba
+
+181
+00:06:27,370 --> 00:06:28,690
+es tomar el parámetro «theta» 5
+
+182
+00:06:29,000 --> 00:06:30,890
+que
+
+183
+00:06:31,040 --> 00:06:32,550
+seleccioné y evaluar qué
+
+184
+00:06:32,670 --> 00:06:34,710
+tan bien se desempeña en mi conjunto de prueba.
+
+185
+00:06:34,840 --> 00:06:36,310
+Una vez más, aquí
+
+186
+00:06:36,480 --> 00:06:37,670
+ajustamos este parámetro
+
+187
+00:06:38,230 --> 00:06:40,440
+«theta» al conjunto de validación
+
+188
+00:06:41,270 --> 00:06:42,460
+cruzada. Por esto
+
+189
+00:06:42,660 --> 00:06:43,940
+guardamos otro conjunto de prueba
+
+190
+00:06:44,420 --> 00:06:45,810
+aparte que
+
+191
+00:06:45,860 --> 00:06:47,060
+utilizaremos para obtener un
+
+192
+00:06:47,350 --> 00:06:48,470
+mejor estimado de qué tan
+
+193
+00:06:48,730 --> 00:06:49,940
+bien se generalizará mi
+
+194
+00:06:50,190 --> 00:06:51,690
+parámetro vector «theta» con ejemplos que no se han visto anteriormente.
+
+195
+00:06:54,120 --> 00:06:55,870
+Esto fue la selección de modelos aplicada
+
+196
+00:06:56,260 --> 00:06:58,310
+a la elección del parámetro de
+
+197
+00:06:59,260 --> 00:07:00,350
+regularización «lambda». Lo último que
+
+198
+00:07:00,490 --> 00:07:01,520
+quisiera hacer en este
+
+199
+00:07:01,770 --> 00:07:02,890
+video es obtener
+
+200
+00:07:02,970 --> 00:07:05,080
+un mejor entendimiento de cómo
+
+201
+00:07:05,650 --> 00:07:07,340
+varían los errores de validación cruzada
+
+202
+00:07:07,680 --> 00:07:10,420
+y de entrenamiento a medida
+
+203
+00:07:10,530 --> 00:07:12,830
+que variamos el parámetro de regularización «lambda».
+
+204
+00:07:13,460 --> 00:07:15,060
+Sólo como resumen, esta era
+
+205
+00:07:15,360 --> 00:07:16,760
+nuestra función de costo original “J” de
+
+206
+00:07:16,840 --> 00:07:18,230
+«theta», pero para este
+
+207
+00:07:18,400 --> 00:07:19,350
+caso definiremos el
+
+208
+00:07:20,450 --> 00:07:21,830
+error de entrenamiento sin utilizar el
+
+209
+00:07:22,240 --> 00:07:24,180
+parámetro de regularización y el error de
+
+210
+00:07:24,860 --> 00:07:26,150
+validación cruzada sin utilizar
+
+211
+00:07:26,360 --> 00:07:28,810
+el parámetro de validación. Lo que
+
+212
+00:07:29,210 --> 00:07:30,770
+me gustaría hacer ahora es trazar “J entrenamiento”
+
+213
+00:07:31,750 --> 00:07:34,420
+y trazar este “Jcv”; es decir, ver
+
+214
+00:07:34,700 --> 00:07:35,820
+qué tan bien se desempeña mi
+
+215
+00:07:35,920 --> 00:07:38,250
+hipótesis en el
+
+216
+00:07:38,580 --> 00:07:39,760
+conjunto de entrenamiento y qué tan bien
+
+217
+00:07:39,920 --> 00:07:41,280
+se desempeña mi hipótesis en el
+
+218
+00:07:41,340 --> 00:07:43,250
+conjunto de validación cruzada a medida que
+
+219
+00:07:43,320 --> 00:07:45,230
+varío mi parámetro de regularización
+
+220
+00:07:45,700 --> 00:07:49,170
+«lambda». Entonces, como
+
+221
+00:07:49,320 --> 00:07:51,740
+vimos anteriormente, si «lambda»
+
+222
+00:07:52,070 --> 00:07:53,730
+es baja, entonces no
+
+223
+00:07:53,920 --> 00:07:56,320
+estaremos aplicando una gran regularización y
+
+224
+00:07:56,770 --> 00:07:58,860
+correremos un riesgo más alto de sobreajuste.
+
+225
+00:07:59,950 --> 00:08:01,680
+Mientras que si «lambda» es
+
+226
+00:08:01,930 --> 00:08:03,090
+alta; es decir, si estuviéramos
+
+227
+00:08:03,310 --> 00:08:04,210
+en el extremo derecho de
+
+228
+00:08:05,190 --> 00:08:07,400
+este eje horizontal, correremos un
+
+229
+00:08:07,690 --> 00:08:08,770
+riesgo alto de tener un problema de oscilación,
+
+230
+00:08:09,560 --> 00:08:12,060
+por el valor alto de «lambda».
+
+231
+00:08:13,040 --> 00:08:14,650
+Si trazas “J entrenamiento” y
+
+232
+00:08:15,280 --> 00:08:16,900
+“Jcv”, lo que encontrarás es
+
+233
+00:08:16,980 --> 00:08:18,730
+que, con valores pequeños
+
+234
+00:08:19,100 --> 00:08:21,170
+de «lambda», puedes
+
+235
+00:08:22,010 --> 00:08:23,040
+ajustar el conjunto de entrenamiento relativamente
+
+236
+00:08:23,640 --> 00:08:24,690
+bien porque no estás usando regularización.
+
+237
+00:08:25,600 --> 00:08:26,890
+Con valores pequeños
+
+238
+00:08:26,990 --> 00:08:28,750
+de «lambda», el término de regularización
+
+239
+00:08:28,960 --> 00:08:30,100
+básicamente desaparece y
+
+240
+00:08:30,420 --> 00:08:32,460
+minimizas, solamente, el error cuadrático.
+
+241
+00:08:32,870 --> 00:08:34,490
+Así que, cuando «lambda» es pequeña,
+
+242
+00:08:34,630 --> 00:08:35,580
+terminaremos con un valor pequeño
+
+243
+00:08:36,170 --> 00:08:37,790
+de “J entrenamiento” mientras que
+
+244
+00:08:37,900 --> 00:08:39,180
+si «lambda» es alta, entonces
+
+245
+00:08:39,740 --> 00:08:42,480
+tendremos un problema de alta oscilación y no estaremos ajustando bien nuestro conjunto de entrenamiento.
+
+246
+00:08:42,640 --> 00:08:43,800
+Así que terminan con un valor acá, hasta arriba.
+
+247
+00:08:44,550 --> 00:08:48,800
+Así, “J entrenamiento” de
+
+248
+00:08:48,930 --> 00:08:50,130
+«theta» tenderá a
+
+249
+00:08:50,320 --> 00:08:52,290
+aumentar cuando «lambda» aumenta,
+
+250
+00:08:53,050 --> 00:08:54,720
+porque un valor alto de
+
+251
+00:08:54,920 --> 00:08:55,850
+«lambda» corresponde a una oscilación alta
+
+252
+00:08:56,400 --> 00:08:57,400
+y quizá no puedas ajustar bien tu
+
+253
+00:08:57,590 --> 00:08:59,160
+conjunto de entrenamiento, mientras
+
+254
+00:08:59,290 --> 00:09:01,380
+que un valor bajo de «lambda» corresponde a
+
+255
+00:09:01,650 --> 00:09:03,500
+que puedes ajustar libremente
+
+256
+00:09:03,850 --> 00:09:06,690
+polinomios de un grado alto a tu conjunto de datos.
+
+257
+00:09:06,920 --> 00:09:10,860
+En cuanto al error de validación cruzada, nos encontramos con una figura como esta.
+
+258
+00:09:12,080 --> 00:09:13,600
+Dónde si tenemos
+
+259
+00:09:13,930 --> 00:09:15,460
+un valor alto de «lambda»
+
+260
+00:09:15,530 --> 00:09:16,470
+aquí a la derecha,
+
+261
+00:09:17,440 --> 00:09:18,600
+quizá generaremos un subajuste.
+
+262
+00:09:19,900 --> 00:09:21,280
+Por lo tanto, este es un régimen de oscilación.
+
+263
+00:09:22,950 --> 00:09:25,750
+Aquí, el error de validación
+
+264
+00:09:26,030 --> 00:09:27,680
+cruzada será
+
+265
+00:09:27,920 --> 00:09:29,060
+alto. Pérmítanme
+
+266
+00:09:29,250 --> 00:09:31,760
+anotar esto. Esta es “Jcv” de «theta».
+
+267
+00:09:32,270 --> 00:09:33,440
+Entonces, con una oscilación alta no
+
+268
+00:09:34,430 --> 00:09:36,580
+tendremos buenos resultados en el conjunto de validación cruzada.
+
+269
+00:09:38,050 --> 00:09:41,000
+Y, a la izquierda tenemos un régimen de varianza alta
+
+270
+00:09:42,120 --> 00:09:43,620
+donde si tenemos un valor muy
+
+271
+00:09:44,020 --> 00:09:45,910
+pequeño de «lambda»,
+
+272
+00:09:46,070 --> 00:09:47,190
+sobreajustaremos los datos.
+
+273
+00:09:47,870 --> 00:09:49,140
+Al sobreajustar
+
+274
+00:09:49,230 --> 00:09:51,320
+los datos, el error de validación
+
+275
+00:09:51,710 --> 00:09:52,610
+también será alto.
+
+276
+00:09:53,700 --> 00:09:55,380
+Así es como se pueden ver los
+
+277
+00:09:56,620 --> 00:09:58,270
+errores de validación y de
+
+278
+00:09:58,510 --> 00:09:59,860
+entrenamiento en
+
+279
+00:10:00,130 --> 00:10:01,410
+un conjunto de entrenamiento
+
+280
+00:10:01,820 --> 00:10:04,270
+a medida que variamos el
+
+281
+00:10:04,950 --> 00:10:06,920
+parámetro «lambda» o el parámetro de regularización «lambda».
+
+282
+00:10:07,110 --> 00:10:08,220
+Una vez más, será
+
+283
+00:10:08,430 --> 00:10:10,100
+un valor intermedio de
+
+284
+00:10:10,790 --> 00:10:13,220
+«lambda» el que
+
+285
+00:10:13,720 --> 00:10:14,990
+funcione bien, o se adapte mejor
+
+286
+00:10:15,120 --> 00:10:16,470
+cuando tenemos
+
+287
+00:10:16,770 --> 00:10:19,710
+un error de validación o un conjunto de prueba pequeños.
+
+288
+00:10:19,920 --> 00:10:20,980
+Las curvas que he dibujado
+
+289
+00:10:21,300 --> 00:10:23,630
+son caricaturescas e idealizadas, de alguna manera, pero
+
+290
+00:10:24,650 --> 00:10:25,670
+en un conjunto de datos real
+
+291
+00:10:26,210 --> 00:10:27,400
+las curvas que obtendría
+
+292
+00:10:27,510 --> 00:10:28,470
+serían un poco más
+
+293
+00:10:28,690 --> 00:10:30,580
+irregulares o con más ruido que estas.
+
+294
+00:10:31,540 --> 00:10:32,640
+En algunos conjuntos de datos
+
+295
+00:10:33,180 --> 00:10:34,450
+podrás ver estos cuatro
+
+296
+00:10:34,740 --> 00:10:36,180
+tipos de tendencias y
+
+297
+00:10:36,450 --> 00:10:37,340
+al mirar el trazo del
+
+298
+00:10:37,900 --> 00:10:38,930
+error de validación
+
+299
+00:10:39,820 --> 00:10:41,460
+cruzada podrás
+
+300
+00:10:41,600 --> 00:10:43,370
+seleccionar, manual o automáticamente,
+
+301
+00:10:43,680 --> 00:10:45,100
+un punto que minimice el
+
+302
+00:10:45,550 --> 00:10:48,590
+error de validación cruzada y
+
+303
+00:10:48,880 --> 00:10:50,600
+seleccionar el valor de «lambda» que corresponda al
+
+304
+00:10:51,280 --> 00:10:52,780
+error de validación cruzada más bajo.
+
+305
+00:10:53,560 --> 00:10:54,790
+Cuando intento elegir
+
+306
+00:10:54,920 --> 00:10:56,870
+el parámetro de regularización «lambda»
+
+307
+00:10:57,200 --> 00:10:59,300
+para un algoritmo de aprendizaje,
+
+308
+00:10:59,420 --> 00:11:00,520
+seguido veo que trazar una figura
+
+309
+00:11:00,800 --> 00:11:02,470
+como esta que acabo de hacer, me ayuda
+
+310
+00:11:02,750 --> 00:11:04,520
+a entender mejor qué
+
+311
+00:11:04,780 --> 00:11:06,320
+es lo que está pasando y a verificar que
+
+312
+00:11:06,880 --> 00:11:08,140
+de hecho estoy eligiendo un buen
+
+313
+00:11:08,320 --> 00:11:09,670
+valor para el parámetro de
+
+314
+00:11:10,520 --> 00:11:12,320
+regularización «lambda». Con suerte, esto te dará un
+
+315
+00:11:12,520 --> 00:11:14,160
+mayor entendimiento de la regularización
+
+316
+00:11:15,650 --> 00:11:16,890
+y sus efectos en la oscilación y la
+
+317
+00:11:17,400 --> 00:11:18,470
+varianza de un algoritmo de aprendizaje.
+
+318
+00:11:19,970 --> 00:11:21,510
+Para este momento ya has visto la
+
+319
+00:11:21,670 --> 00:11:23,410
+oscilación y a la varianza desde muchas perspectivas diferentes.
+
+320
+00:11:24,180 --> 00:11:25,470
+Ahora, lo que me gustaría hacer en el
+
+321
+00:11:25,700 --> 00:11:27,000
+video siguiente es tomar
+
+322
+00:11:27,230 --> 00:11:28,110
+el conocimiento
+
+323
+00:11:28,280 --> 00:11:30,070
+que hemos adquirido y
+
+324
+00:11:30,320 --> 00:11:31,210
+elaborarlo para generar un
+
+325
+00:11:31,920 --> 00:11:33,770
+diagnóstico llamado
+
+326
+00:11:34,050 --> 00:11:35,100
+curva de aprendizaje que es
+
+327
+00:11:35,150 --> 00:11:36,300
+una herramienta que utilizo seguido
+
+328
+00:11:36,720 --> 00:11:37,920
+para diagnosticar si un
+
+329
+00:11:38,190 --> 00:11:39,630
+si el algoritmo tiene un
+
+330
+00:11:40,040 --> 00:11:41,330
+de un problema de oscilación o
+
+331
+00:11:41,560 --> 00:11:42,950
+de varianza o un poco de ambos.

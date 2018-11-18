@@ -1,0 +1,150 @@
+Suppose you're left to decide what degree
+of polynomial to fit to a data set. So that what features to include
+that gives you a learning algorithm. Or suppose you'd like to choose
+the regularization parameter longer for learning algorithm. How do you do that? This account model selection process. Browsers, and in our discussion of how to
+do this, we'll talk about not just how to split your data into the train and test
+sets, but how to switch data into what we discover is called the train,
+validation, and test sets. We'll see in this video just
+what these things are, and how to use them to do model selection. We've already seen a lot of times
+the problem of overfitting, in which just because a learning
+algorithm fits a training set well, that doesn't mean it's a good hypothesis. More generally, this is why the training
+set's error is not a good predictor for how well the hypothesis
+will do on new example. Concretely, if you fit
+some set of parameters. Theta0, theta1, theta2, and
+so on, to your training set. Then the fact that your hypothesis
+does well on the training set. Well, this doesn't mean much in terms of
+predicting how well your hypothesis will generalize to new examples
+not seen in the training set. And a more general
+principle is that once your parameter is what fit to some set of data. Maybe the training set,
+maybe something else. Then the error of your hypothesis
+as measured on that same data set, such as the training error, that's unlikely to be a good estimate
+of your actual generalization error. That is how well the hypothesis
+will generalize to new examples. Now let's consider the model
+selection problem. Let's say you're trying to choose what
+degree polynomial to fit to data. So, should you choose a linear function,
+a quadratic function, a cubic function? All the way up to a 10th-order polynomial. So it's as if there's one extra
+parameter in this algorithm, which I'm going to denote d,
+which is, what degree of polynomial. Do you want to pick. So it's as if, in addition to
+the theta parameters, it's as if there's one more parameter, d, that you're
+trying to determine using your data set. So, the first option is d equals one,
+if you fit a linear function. We can choose d equals two, d equals
+three, all the way up to d equals 10. So, we'd like to fit this extra sort
+of parameter which I'm denoting by d. And concretely let's say that
+you want to choose a model, that is choose a degree of polynomial,
+choose one of these 10 models. And fit that model and
+also get some estimate of how well your fitted hypothesis was
+generalize to new examples. Here's one thing you could do. What you could, first take your first
+model and minimize the training error. And this would give you some
+parameter vector theta. And you could then take your second model,
+the quadratic function, and fit that to your training set and
+this will give you some other. Parameter vector theta. In order to distinguish between these
+different parameter vectors, I'm going to use a superscript one superscript
+two there where theta superscript one just means the parameters I get by
+fitting this model to my training data. And theta superscript two
+just means the parameters I get by fitting this quadratic function
+to my training data and so on. By fitting a cubic model I get parenthesis
+three up to, well, say theta 10. And one thing we ccould do is that take
+these parameters and look at test error. So I can compute on my
+test set J test of one, J test of theta two, and so on. J test of theta three, and so on. So I'm going to take each of my hypotheses
+with the corresponding parameters and just measure the performance
+of on the test set. Now, one thing I could do then is,
+in order to select one of these models, I could then see which model
+has the lowest test set error. And let's just say for this example that I ended up
+choosing the fifth order polynomial. So, this seems reasonable so far. But now let's say I want to take
+my fifth hypothesis, this, this, fifth order model, and let's say I want to
+ask, how well does this model generalize? One thing I could do is look
+at how well my fifth order polynomial hypothesis
+had done on my test set. But the problem is this will not
+be a fair estimate of how well my hypothesis generalizes. And the reason is what we've done is
+we've fit this extra parameter d, that is this degree of polynomial. And what fits that parameter d,
+using the test set, namely, we chose the value of d that gave us the
+best possible performance on the test set. And so, the performance of my parameter
+vector theta5, on the test set, that's likely to be an overly optimistic
+estimate of generalization error. Right, so, that because I had fit this
+parameter d to my test set is no longer fair to evaluate my hypothesis on this
+test set, because I fit my parameters to this test set, I've chose the degree
+d of polynomial using the test set. And so
+my hypothesis is likely to do better on this test set than it would on new
+examples that it hasn't seen before, and that's which is,
+which is what I really care about. So just to reiterate, on the previous
+slide, we saw that if we fit some set of parameters, you know, say theta0,
+theta1, and so on, to some training set, then the performance of the fitted model
+on the training set is not predictive of how well the hypothesis will
+generalize to new examples. Is because these parameters
+were fit to the training set, so they're likely to do
+well on the training set, even if the parameters don't
+do well on other examples. And, in the procedure I just described on
+this line, we just did the same thing. And specifically, what we did was,
+we fit this parameter d to the test set. And by having fit the parameter
+to the test set, this means that the performance of the hypothesis on that
+test set may not be a fair estimate of how well the hypothesis is, is likely to
+do on examples we haven't seen before. To address this problem,
+in a model selection setting, if we want to evaluate a hypothesis,
+this is what we usually do instead. Given the data set, instead of just
+splitting into a training test set, what we're going to do is then
+split it into three pieces. And the first piece is going to be
+called the training set as usual. So let me call this first
+part the training set. And the second piece of this data, I'm
+going to call the cross validation set. [SOUND] Cross validation. And the cross validation, as V-D. Sometimes it's also called the validation
+set instead of cross validation set. And then the loss can be
+to call the usual test set. And the pretty, pretty typical ratio
+at which to split these things will be to send 60% of your data's,
+your training set, maybe 20% to your cross validation set,
+and 20% to your test set. And these numbers can vary a little bit
+but this integration be pretty typical. And so our training sets will now be
+only maybe 60% of the data, and our cross-validation set, or our validation
+set, will have some number of examples. I'm going to denote that m subscript cv. So that's the number of
+cross-validation examples. Following our early notational convention
+I'm going to use xi cv comma y i cv, to denote the i cross validation example. And finally we also have
+a test set over here with our m subscript test being
+the number of test examples. So, now that we've defined
+the training validation or cross validation and test sets. We can also define the training error,
+cross validation error, and test error. So here's my training error, and I'm just writing this as J
+subscript train of theta. This is pretty much the same things. These are the same thing as the J
+of theta that I've been writing so far, this is just a training set error you
+know, as measuring a training set and then J subscript cv my cross validation error,
+this is pretty much what you'd expect, just like the training error you've set
+measure it on a cross validation data set, and here's my test set
+error same as before. So when faced with a model selection
+problem like this, what we're going to do is, instead of using the test set
+to select the model, we're instead going to use the validation set, or the
+cross validation set, to select the model. Concretely, we're going to first take our
+first hypothesis, take this first model, and say, minimize the cross function, and this would give me some parameter
+vector theta for the new model. And, as before,
+I'm going to put a superscript 1, just to denote that this is
+the parameter for the new model. We do the same thing for
+the quadratic model. Get some parameter vector theta two. Get some para,
+parameter vector theta three, and so on, down to theta ten for the polynomial. And what I'm going to do is, instead of
+testing these hypotheses on the test set, I'm instead going to test them
+on the cross validation set. And measure J subscript cv, to see how well each of these hypotheses
+do on my cross validation set. And then I'm going to pick the hypothesis
+with the lowest cross validation error. So for this example, let's say for
+the sake of argument, that it was my 4th order polynomial, that
+had the lowest cross validation error. So in that case I'm going to pick
+this fourth order polynomial model. And finally,
+what this means is that that parameter d, remember d was the degree of polynomial,
+right? So d equals two, d equals three,
+all the way up to d equals 10. What we've done is we'll fit that
+parameter d and we'll say d equals four. And we did so
+using the cross-validation set. And so this degree of polynomial, so the
+parameter, is no longer fit to the test set, and so we've not saved away the test
+set, and we can use the test set to measure, or to estimate the generalization
+error of the model that was selected. By the of them. So, that was model selection and
+how you can take your data, split it into a training,
+validation, and test set. And use your cross validation
+data to select the model and evaluate it on the test set. One final note, I should say that in. The machine learning, as of this
+practice today, there aren't many people that will do that early thing that
+I talked about, and said that, you know, it isn't such a good idea, of selecting
+your model using this test set. And then using the same test set
+to report the error as though selecting your degree of polynomial on the
+test set, and then reporting the error on the test set as though that were a good
+estimate of generalization error. That sort of practice is unfortunately
+many, many people do do it. If you have a massive, massive test that
+is maybe not a terrible thing to do, but many practitioners, most practitioners that machine
+learnimg tend to advise against that. And it's considered better practice
+to have separate train validation and test sets. I just warned you to sometimes people
+to do, you know, use the same data for the purpose of the validation set,
+and for the purpose of the test set. You need a training set and
+a test set, and that's good, that's practice,
+though you will see some people do it. But, if possible, I would recommend
+against doing that yourself.

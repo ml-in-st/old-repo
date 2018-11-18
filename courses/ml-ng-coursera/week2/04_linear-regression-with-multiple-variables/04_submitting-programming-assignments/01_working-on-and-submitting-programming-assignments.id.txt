@@ -1,0 +1,38 @@
+Di video ini, saya akan jelaskan
+bagaimana mengerjakan PR untuk kelas ini, juga bagaimana menggunakan sistem yang
+ada agar Anda dapat memverifikasi bahwa Anda mendapatkan jawaban yang benar untuk
+tugas pemrograman machine learning Anda. Ini jendela Octave saya, dan
+pertama-tama kita ke desktop saya. Saya telah menyimpan beberapa berkas
+untuk tugas pertama di desktop, dalam direktori 'ml-class-ex1'. Kami menyediakan sejumlah berkas & tugas
+Anda memperbaiki beberapa diantaranya. Jadi, berkas harus memenuhi rincian yang
+ada dalam berkas pdf untuk tugas ini. Salah satu berkas yang harus Anda
+perbaiki adalah berkas warmUpExercise.m, dimana tugas ini hanya memastikan
+Anda akrab dengan sistemnya. Dan yang harus Anda lakukan hanyalah
+mengembalikan matriks identitas 5x5. Jadi, solusi untuk tugas ini
+adalah menuliskan A = eye(5). Itu memodifikasi fungsi ini untuk
+menghasilkan matriks identitas 5x5. Sekarang, fungsi warmUpExercise() ini
+mengembalikan matriks identitas 5x5. Saya akan menyimpannya. Bagian pertama PR ini telah rampung.
+Kembali ke jendela Octave saya, kita sekarang ke direktori,
+'C:\Users\ang\Desktop\ml-class-ex1'. Jika saya ingin memastikan bahwa saya
+telah mengerjakannya, ketik
+'warmUpExercise()' seperti itu. Dan benar, kode yang kita tulis
+menghasilkan matriks identitas 5x5. Sekarang saya dapat menyerahkan kodenya
+dengan mengetik 'submit()' di direktori ini, dan saya siap menyerahkan bagian 1
+jadi saya memasukkan pilihan '1'. Sistem akan menanyakan alamat surel saya.
+Saya akan ke website pelajaran ini. Versi website yang Anda lihat mungkin
+sedikit berbeda dari yang ini. Itu alamat surel saya dan ini kata kunci
+saya, akan saya ketikkan di sini. Jadi, surelnya ang@cs.stanford.edu dan
+kata kuncinya adalah 9yC75USsGf. Tekan Enter. Sistem tersambung ke server
+dan mengirimkan berkasnya, lalu balasannya "Congratulations! You have
+successfully completed Homework 1 Part 1". Ini adalah verifikasi bahwa jawaban
+Anda untuk bagian ini benar. Jika jawaban Anda salah, sistem akan
+menampilkan pesan yang menunjukkan jawaban Anda masih belum benar. Anda bisa menggunakan kata kunci ini,
+atau bisa juga membuat yang baru. Bisa juga Anda gunakan kata kunci akun
+Coursera Anda, tapi karena kata kunci yang diketik ditampilkan di monitor Anda
+dalam teks, kita beri kata kunci ekstra sekiranya Anda tidak ingin ketik kata
+kunci akun Coursera Anda ke jendela yang, tergantung pada OS Anda, bisa saja
+menampilkannya sebagai teks saat Anda mengetikkannya di Octave. Begitulah cara Anda memasukkan PR
+setelah Anda selesai mengerjakannya. Semoga sukses dan Anda bisa menjawab
+semua PR dengan benar. Akhir kata, pada video Octave berikut,
+saya ingin mengajari Anda tentang vektorisasi, yang dapat membuat kode 
+Octave Anda bekerja jauh lebih efisien.

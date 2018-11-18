@@ -1,0 +1,496 @@
+1
+00:00:00,500 --> 00:00:04,650
+En este y en el siguiente video
+
+2
+00:00:04,650 --> 00:00:09,510
+de los siguientes videos, quiero
+
+3
+00:00:09,510 --> 00:00:12,651
+empezar a hablar de los problemas de clasificación,
+
+4
+00:00:12,651 --> 00:00:16,931
+donde la variable y lo que
+
+5
+00:00:19,473 --> 00:00:23,270
+quieres predecir tienen
+
+6
+00:00:23,270 --> 00:00:26,530
+valores discretos. Hemos desarrollado un
+
+7
+00:00:26,530 --> 00:00:29,390
+algoritmo llamado regresión logística,
+
+8
+00:00:29,390 --> 00:00:33,110
+que es uno de los
+
+9
+00:00:33,110 --> 00:00:35,540
+algoritmos de aprendizaje más populares y más ampliamente utilizados actualmente.
+
+10
+00:00:35,540 --> 00:00:39,390
+Estos son algunos ejemplos de problemas de clasificación.
+
+11
+00:00:39,390 --> 00:00:44,590
+Anteriormente hablamos de la clasificación de correos electrónicos y
+
+12
+00:00:44,590 --> 00:00:46,830
+de correos no deseados como ejemplo
+
+13
+00:00:46,830 --> 00:00:50,840
+de un problema de clasificación.
+
+14
+00:00:50,840 --> 00:00:53,960
+Otro ejemplo podría ser la clasificación de transacciones en línea.
+
+15
+00:00:55,120 --> 00:00:59,450
+Si tienes un sitio web
+
+16
+00:00:59,450 --> 00:01:04,160
+que vende cosas y quieres
+
+17
+00:01:04,160 --> 00:01:09,080
+saber si una transacción física
+
+18
+00:01:10,500 --> 00:01:15,670
+es fraudulenta o
+
+19
+00:01:15,670 --> 00:01:20,020
+no, si alguien está, ya
+
+20
+00:01:20,020 --> 00:01:23,930
+sabes, usando una tarjeta de crédito robada
+
+21
+00:01:23,930 --> 00:01:27,110
+o tiene una contraseña de usuario robada.
+
+22
+00:01:27,110 --> 00:01:31,370
+Ese es otro problema de clasificación, y
+
+23
+00:01:31,370 --> 00:01:35,120
+anteriormente también hablamos sobre
+
+24
+00:01:35,120 --> 00:01:37,290
+el ejemplo de la clasificación de los tumores
+
+25
+00:01:37,290 --> 00:01:42,220
+como malignos cancerosos o benignos.
+
+26
+00:01:42,220 --> 00:01:46,590
+En todos estos problemas,
+
+27
+00:01:46,590 --> 00:01:51,460
+la variable que estamos tratando
+
+28
+00:01:51,460 --> 00:01:55,170
+de predecir es una variable
+
+29
+00:01:55,170 --> 00:01:58,790
+"y" de la que sabemos
+
+30
+00:02:00,150 --> 00:02:03,080
+que toma dos valores,
+
+31
+00:02:03,080 --> 00:02:05,510
+ya sea cero o uno, ya sea
+
+32
+00:02:05,510 --> 00:02:09,320
+correo deseado o no deseado, fraudulento
+
+33
+00:02:09,320 --> 00:02:14,250
+o no fraudulento, maligno o benigno.
+
+34
+00:02:14,250 --> 00:02:17,720
+Otro nombre para la clase
+
+35
+00:02:17,720 --> 00:02:22,140
+que denotamos con 0 es
+
+36
+00:02:22,140 --> 00:02:25,978
+la clase negativa, y otro
+
+37
+00:02:25,978 --> 00:02:30,580
+nombre para la clase que
+
+38
+00:02:30,580 --> 00:02:34,770
+denotamos con 1 es la clase positiva.
+
+39
+00:02:34,770 --> 00:02:37,410
+Así que 0 puede indicar un
+
+40
+00:02:37,410 --> 00:02:44,570
+tumor benigno y 1,
+
+41
+00:02:44,570 --> 00:02:47,520
+la clase positiva, puede indicar un tumor maligno.
+
+42
+00:02:47,520 --> 00:02:50,309
+La asignación de las 2
+
+43
+00:02:51,410 --> 00:02:53,410
+clases, ya sabes, correo deseado
+
+44
+00:02:53,410 --> 00:02:56,320
+o no deseado, y así sucesivamente,
+
+45
+00:02:56,320 --> 00:02:59,840
+la asignación de las 2
+
+46
+00:02:59,840 --> 00:03:03,730
+clases a positivo y negativo,
+
+47
+00:03:03,730 --> 00:03:05,695
+a 0 y 1 es un tanto
+
+48
+00:03:05,695 --> 00:03:09,100
+arbitraria y en realidad no importa.
+
+49
+00:03:09,100 --> 00:03:14,650
+Pero a menudo existe esta
+
+50
+00:03:14,650 --> 00:03:19,165
+intuición de que la clase negativa
+
+51
+00:03:19,165 --> 00:03:23,985
+está transmitiendo la
+
+52
+00:03:23,985 --> 00:03:27,235
+ausencia de algo, como la ausencia
+
+53
+00:03:27,235 --> 00:03:29,955
+de un tumor maligno, mientras que uno,
+
+54
+00:03:29,955 --> 00:03:32,775
+la clase positiva, está transmitiendo
+
+55
+00:03:32,775 --> 00:03:36,359
+la presencia de algo que podríamos estar buscando.
+
+56
+00:03:36,359 --> 00:03:39,990
+Pero la definición de lo que
+
+57
+00:03:39,990 --> 00:03:43,520
+es negativo y de lo que es positivo
+
+58
+00:03:43,520 --> 00:03:44,710
+es algo arbitrario y que no importa mucho.
+
+59
+00:03:44,710 --> 00:03:50,360
+Por ahora, vamos a empezar
+
+60
+00:03:50,360 --> 00:03:54,629
+con problemas de clasificación con sólo
+
+61
+00:03:55,720 --> 00:03:57,620
+dos clases; cero y uno.
+
+62
+00:03:57,620 --> 00:04:01,630
+Más adelante, hablaremos de problemas multiclase
+
+63
+00:04:01,630 --> 00:04:05,420
+también, en donde la variable
+
+64
+00:04:05,420 --> 00:04:08,120
+"y" puede tomar por ejemplo,
+
+65
+00:04:08,120 --> 00:04:11,530
+el valor de cero, uno, dos y tres.
+
+66
+00:04:11,530 --> 00:04:15,263
+Esto se llama problema de clasificación multiclase,
+
+67
+00:04:15,263 --> 00:04:18,900
+pero para los siguientes
+
+68
+00:04:18,900 --> 00:04:21,960
+videos, vamos a empezar con el
+
+69
+00:04:21,960 --> 00:04:26,200
+problema de dos clases o de clasificación binaria,
+
+70
+00:04:26,200 --> 00:04:28,970
+y nos ocuparemos de la configuración multiclase después.
+
+71
+00:04:28,970 --> 00:04:31,010
+Entonces, ¿cómo se desarrolla un algoritmo de clasificación?
+
+72
+00:04:31,010 --> 00:04:34,930
+Aquí hay un ejemplo de un
+
+73
+00:04:34,930 --> 00:04:39,620
+conjunto de entrenamiento para una tarea de clasificación
+
+74
+00:04:39,620 --> 00:04:44,210
+para clasificar un tumor
+
+75
+00:04:44,210 --> 00:04:44,820
+como maligno o benigno y
+
+76
+00:04:46,200 --> 00:04:50,730
+observa que la malignidad adquiere
+
+77
+00:04:50,730 --> 00:04:54,480
+únicamente dos valores, de 0
+
+78
+00:04:54,480 --> 00:04:56,090
+o No o de 1 o Sí.
+
+79
+00:04:57,600 --> 00:05:02,890
+Así, una cosa que podríamos
+
+80
+00:05:02,890 --> 00:05:06,350
+hacer dado este conjunto de entrenamiento
+
+81
+00:05:06,350 --> 00:05:09,750
+es aplicar el algoritmo
+
+82
+00:05:09,750 --> 00:05:12,070
+que ya conocemos, la regresión lineal para este conjunto de datos
+
+83
+00:05:14,590 --> 00:05:18,820
+y sólo trata de ajustar la línea recta a los datos.
+
+84
+00:05:18,820 --> 00:05:23,110
+Así que, si tomas este conjunto de entrenamiento
+
+85
+00:05:23,110 --> 00:05:28,090
+y si ajustas una línea recta
+
+86
+00:05:28,090 --> 00:05:31,260
+al mismo, tal vez obtienes
+
+87
+00:05:31,260 --> 00:05:34,300
+una hipótesis que se parece a esto.
+
+88
+00:05:34,300 --> 00:05:37,050
+Muy bien, así que esa es mi hipótesis, "h" de
+
+89
+00:05:37,050 --> 00:05:40,260
+"x" es igual a «theta» transpuesta
+
+90
+00:05:40,260 --> 00:05:45,210
+"x".
+Si quieres
+
+91
+00:05:45,210 --> 00:05:50,880
+hacer predicciones, una cosa
+
+92
+00:05:50,880 --> 00:05:55,670
+que puedes tratar de hacer es
+
+93
+00:05:56,900 --> 00:06:01,120
+el umbral de los resultados del clasificador en 0.5.
+
+94
+00:06:01,120 --> 00:06:04,470
+Que está en el valor de acceso vertical 0.5.
+
+95
+00:06:04,470 --> 00:06:09,870
+Y si la hipótesis da como resultado
+
+96
+00:06:09,870 --> 00:06:14,760
+un valor que es mayor que o
+
+97
+00:06:14,760 --> 00:06:19,940
+igual a 0.5 tu predicción de "y=1".
+
+98
+00:06:19,940 --> 00:06:24,760
+Si es menor que 0.5, tu predicción de "y=0".
+
+99
+00:06:24,760 --> 00:06:28,350
+Vamos a ver lo que sucede cuando hacemos eso.
+
+100
+00:06:29,700 --> 00:06:33,830
+Así que tomemos 0.5, y
+
+101
+00:06:33,830 --> 00:06:36,740
+como sabes, ahí es donde está el umbral.
+
+102
+00:06:36,740 --> 00:06:40,630
+Y por lo tanto, al usar la regresión lineal de esta manera,
+
+103
+00:06:40,630 --> 00:06:44,250
+todo lo que está a la derecha
+
+104
+00:06:44,250 --> 00:06:48,380
+de este punto, terminará
+
+105
+00:06:48,380 --> 00:06:52,570
+prediciendo la clase positiva
+
+106
+00:06:53,920 --> 00:06:56,739
+debido a que los valores resultados
+
+107
+00:06:56,739 --> 00:07:00,786
+son mayores que 0.5
+
+108
+00:07:00,786 --> 00:07:05,661
+en el eje vertical y
+
+109
+00:07:09,135 --> 00:07:13,795
+todo lo que está a la izquierda
+
+110
+00:07:13,795 --> 00:07:17,044
+de este punto, terminará
+
+111
+00:07:17,044 --> 00:07:21,635
+prediciendo un valor negativo.
+
+112
+00:07:21,635 --> 00:07:25,114
+En este ejemplo particular,
+
+113
+00:07:26,250 --> 00:07:29,260
+parece que la regresión lineal está en realidad
+
+114
+00:07:29,260 --> 00:07:33,370
+realizando algo razonable a pesar de que
+
+115
+00:07:33,370 --> 00:07:38,230
+esta es una tarea de clasificación en la cual
+
+116
+00:07:38,230 --> 00:07:42,150
+estamos interesados.
+
+117
+00:07:42,150 --> 00:07:44,720
+Pero ahora vamos a tratar de cambiar un poco el problema.
+
+118
+00:07:44,720 --> 00:07:49,210
+Permíteme ampliar el eje horizontal
+
+119
+00:07:49,210 --> 00:07:54,542
+un poco y digamos
+
+120
+00:07:54,542 --> 00:07:56,610
+que tenemos otro ejemplo de entrenamiento
+
+121
+00:07:56,610 --> 00:08:01,000
+más allá a la derecha.
+
+122
+00:08:01,000 --> 00:08:03,640
+Observa que el ejemplo de entrenamiento adicional,
+
+123
+00:08:03,640 --> 00:08:04,500
+este de aquí,
+
+124
+00:08:04,500 --> 00:08:08,080
+en realidad no cambia nada ¿verdad?

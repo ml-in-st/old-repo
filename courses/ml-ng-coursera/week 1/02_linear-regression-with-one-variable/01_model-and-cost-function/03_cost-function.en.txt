@@ -1,0 +1,90 @@
+In this video we'll define
+something called the cost function, this will let us figure out how to fit the
+best possible straight line to our data. In linear progression, we have a training
+set that I showed here remember on notation M was the number of training
+examples, so maybe m equals 47. And the form of our hypothesis, which we use to make predictions
+is this linear function. To introduce a little bit more
+terminology, these theta zero and theta one, they stabilize what I
+call the parameters of the model. And what we're going to do in
+this video is talk about how to go about choosing these two parameter
+values, theta 0 and theta 1. With different choices of
+the parameter's theta 0 and theta 1, we get different hypothesis,
+different hypothesis functions. I know some of you will probably
+be already familiar with what I am going to do on the slide, but
+just for review, here are a few examples. If theta 0 is 1.5 and theta 1 is 0, then the hypothesis function
+will look like this. Because your hypothesis function will
+be h of x equals 1.5 plus 0 times x which is this constant value
+function which is phat at 1.5. If theta0 = 0, theta1 = 0.5, then
+the hypothesis will look like this, and it should pass through this point 2,1 so that you now have h(x). Or really h of theta(x), but sometimes
+I'll just omit theta for brevity. So h(x) will be equal to just 0.5 times x,
+which looks like that. And finally, if theta zero equals one,
+and theta one equals 0.5, then we end up with a hypothesis
+that looks like this. Let's see,
+it should pass through the two-two point. Like so, and this is my new vector of x,
+or my new h subscript theta of x. Whatever way you remember, I said that
+this is h subscript theta of x, but that's a shorthand,
+sometimes I'll just write this as h of x. In linear regression, we have a training
+set, like maybe the one I've plotted here. What we want to do, is come up with
+values for the parameters theta zero and theta one so that the straight line
+we get out of this, corresponds to a straight line that somehow fits the data
+well, like maybe that line over there. So, how do we come up with values, theta zero, theta one, that
+corresponds to a good fit to the data? The idea is we get to choose our
+parameters theta 0, theta 1 so that h of x,
+meaning the value we predict on input x, that this is at least
+close to the values y for the examples in our training set,
+for our training examples. So in our training set, we've given
+a number of examples where we know X decides the wholes and
+we know the actual price is was sold for. So, let's try to choose values for
+the parameters so that, at least in the training set, given the X in the training set we make reason of
+the active predictions for the Y values. Let's formalize this. So linear regression,
+what we're going to do is, I'm going to want to solve
+a minimization problem. So I'll write minimize over theta0 theta1. And I want this to be small, right? I want the difference between h(x) and
+y to be small. And one thing I might do is try
+to minimize the square difference between the output of the hypothesis and
+the actual price of a house. Okay.
+So lets find some details. You remember that I was using
+the notation (x(i),y(i)) to represent the ith training example. So what I want really is to
+sum over my training set, something i = 1 to m, of the square difference between,
+this is the prediction of my hypothesis when it is
+input to size of house number i. Right?
+Minus the actual price that house number I was sold for, and I want to
+minimize the sum of my training set, sum from I equals one through M,
+of the difference of this squared error, the square difference between
+the predicted price of a house, and the price that it was actually sold for. And just remind you of notation, m here
+was the size of my training set right? So my m there is my number
+of training examples. Right that hash sign is the abbreviation
+for number of training examples, okay? And to make some of our,
+make the math a little bit easier, I'm going to actually look at
+we are 1 over m times that so let's try to minimize my
+average minimize one over 2m. Putting the 2 at the constant one
+half in front, it may just sound the math probably easier so minimizing
+one-half of something, right, should give you the same values of the process, theta
+0 theta 1, as minimizing that function. And just to be sure,
+this equation is clear, right? This expression in here, h subscript theta(x), this is our usual, right? That is equal to this plus theta one xi. And this notation,
+minimize over theta 0 theta 1, this means you'll find me the values of theta 0 and
+theta 1 that causes this expression to be minimized and this expression
+depends on theta 0 and theta 1, okay? So just a recap. We're closing this problem as, find me
+the values of theta zero and theta one so that the average, the 1 over the 2m, times the sum of square errors between
+my predictions on the training set minus the actual values of the houses
+on the training set is minimized. So this is going to be my overall
+objective function for linear regression. And just to rewrite this out a little bit
+more cleanly, what I'm going to do is, by convention we usually
+define a cost function, which is going to be exactly this,
+that formula I have up here. And what I want to do is
+minimize over theta0 and theta1. My function j(theta0, theta1). Just write this out. This is my cost function. So, this cost function is also
+called the squared error function. When sometimes called the squared
+error cost function and it turns out that why do we
+take the squares of the erros. It turns out that these squared error
+cost function is a reasonable choice and works well for problems for
+most regression programs. There are other cost functions
+that will work pretty well. But the square cost function is
+probably the most commonly used one for regression problems. Later in this class we'll talk about
+alternative cost functions as well, but this choice that we just had should
+be a pretty reasonable thing to try for most linear regression problems. Okay. So that's the cost function. So far we've just seen a mathematical
+definition of this cost function. In case this function j of theta zero,
+theta one. In case this function seems
+a little bit abstract, and you still don't have a good
+sense of what it's doing, in the next video, in the next
+couple videos, I'm actually going to go a little bit deeper into what
+the cause function "J" is doing and try to give you better intuition about what
+is computing and why we want to use it...

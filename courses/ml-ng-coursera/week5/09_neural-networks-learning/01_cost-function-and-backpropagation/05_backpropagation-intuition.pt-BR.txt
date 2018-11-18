@@ -1,0 +1,150 @@
+No vídeo anterior, falamos sobre o algoritmo de retropropagação. Para muitas pessoas que estiverem vendo isso
+pela primeira vez, a impressão delas é sempre: "uau
+isso é um algoritmo realmente complicado", e há todos estes passos distintos,
+não estou certo de como eles se encaixarão. E isso é um tipo de caixa preta
+que contém todos esses passos. Se este for o seu caso em relação ao
+retro propagação, tudo bem. Retro propagação pode ser, infelizmente,
+matematicamente pouco menos limpo, menos simples matematicamente comparado com a regressão linear ou regressão logística. Eu venho usando a retropropagação com sucesso há muitos anos. E mesmo hoje em dia ainda não me sinto, em certos momentos,
+que tenho um bom entendimento do que está sendo feito, ou a visão do
+que retro propagação está fazendo. Se, para vocês que estiverem fazendo
+os exercícios de programação, eles irão ao menos
+mecanicamente conduzir seus passos através dos distintos passos de como
+implementar retro propagação. Então, vocês serão capazes de fazê-los funcionar
+por si mesmos. E o que pretendo neste vídeo é
+analisar um pouco mais os passos mecânicos da retro propagação, e tentar dar-lhes
+uma visão mais ampla do quê os passos mecânicos na retropropagação
+estão fazendo para, assim espero, convencê-los que, você sabe, 
+ele é ao menos, um algoritmo razoável. No caso de, mesmo após este vídeo, a retro
+propagação ainda parecer meio caixa preta e de certa forma ainda com muitos passos complicados como se fosse um passe de mágica, tudo bem. E mesmo eu que venho usando retro propagação por
+muitos anos, certos momentos é um pouco difícil de entender o algoritmo dele, mas, por sorte,
+este vídeo lhes auxiliará um pouco mais. De modo a entender melhor
+a retro propagação, vamos olhar mais de perto o
+que a propagação progressiva está fazendo. Temos aqui uma rede neural com duas unidades de entrada
+sem contar a unidade de viés, e duas unidades ocultas nesta camada, e
+duas unidades ocultas na camada seguinte. E depois, finalmente, uma unidade de saída. De novo, contamos duas, duas, duas, 
+não contamos as unidades de viés (no topo). Visando ilustrar
+propagação progressiva desenharei esta rede 
+um pouquinho diferente. E em particular, desenharei
+esta rede neural com os desenhos dos nós como sendo estas elipses bem achatadas,
+assim, posso escrever dentro delas. Quando realizando a propagação progressiva,
+a gente pode pegar um exemplo em particular. Digamos x sobrescrito de i vírgula y sobrescrito de i. E será este x i que nós
+alimentaremos na camada de entrada. Então estes devem ser x (i) 1 e x (i) 2
+que são os valores que nós estabelecemos na camada de entrada. E quando fizermos a propagação progressiva
+para a primeira camada oculta aqui, o que fazemos é calcular z (2) 1 e z (2) 2. Eles são a soma ponderada
+das entradas das unidades de entrada. Daí, aplicamos o sigmóide
+da função logística, e a função de ativação sigmóide
+aplicada ao valor z. Estes são os valores de ativação. Então isso nos dá a (2) 1 e a (2) 2. E então progressivamente propagamos
+de novo para obtermos aqui z (3) 1. Aplicar o sigmóide da
+função logística, a função de ativação 
+para nos dar a (3) 1. E, analogamente, desta forma
+até obtermos o z (4) 1. Aplicar a função de ativação. Isso nos dará a (4) 1, que é o valor 
+final de saída da rede neural. Vamos apagar esta seta para
+me dar um pouco mais de espaço aqui. E se você analisar o que esta
+computação está realmente fazendo, focando nesta camada oculta, digamos. Temos que adicionar este peso. Exibidos em magenta, estão os pesos Θ 
+(2) 1 0, a indexação não é relevante. E desta forma aqui,
+a qual está realçada em vermelho, ela é Θ (2) 1 1 e
+este peso aqui, o qual desenho em azul claro,
+é Θ  (2) 1 2. Logo, a forma de calcular este valor,
+z (3) 1 é, z (3) 1 é igual a este
+peso magenta multiplicado por este valor. Então, isso é Θ (2) 1 0 x 1. E então, somados a este peso
+vermelho multiplicado por este valor, nos dá Θ  (2) 1 1 vezes a (2) 1. E finalmente este peso azul claro
+multiplicado por este valor, o qual é portanto somado
+a Θ  (2) 12 multiplicado por a (2) 1. E isso é a propagação progressiva. E isso acaba sendo o que nós 
+veremos mais adiante neste vídeo, o que a retro propagação faz é
+um processo muito semelhante a este. Exceto que ao invés do fluxo computacional
+ser da esquerda para a direita desta rede, a computação segue seu fluxo
+da direita para a esquerda da rede. E usa cálculos muito semelhantes
+a estes. E vou lhes mostrar em duas telas
+exatamente o que quero dizer com isso. Para entendermos melhor a retro propagação,
+vejamos a função de custo. É apenas a função de custo que vimos
+quando tínhamos apenas uma unidade resultante. Se tivermos mais de uma unidade resultante, temos apenas um somatório sobre 
+as unidades resultantes indexadas por k, bem ali. Se tivermos apenas uma unidade resultante
+então esta é a função de custo. E fazemos a propagação progressiva e a
+retro propagação em uma amostra por vez. Então, vamos focar nesta amostra única,
+x (i) y (i)  e focar no caso de
+termos uma unidade resultante. Então, y (i) aqui é apenas um número real. Ignoremos a regularização,
+logo, lambda fica igual a zero. E esse termo final,
+esse de regularização, cai fora. Agora, se você olhar para a somatória, verá que o termo de custo
+associado à amostra de treinamento. isso é o custo associado à 
+amostra de treinamento x (i), y (i). E nos será dado 
+por esta expressão. Então, o custo de ficar sem a 
+amostra i é dado assim: E o que esta função de custo faz é
+seguir a regra tal como a do erro ao quadrado. Então, ao invés de analisar esta
+expressão complicada, se você quiser pode pensar no custo 
+de i sendo aproximadamente a diferença elevada ao quadrado entre o resultado da rede neural,
+versus o seu real valor. Tal como em regressão logística,
+na verdade, preferimos usar uma um pouco mais complicada versão da função de 
+custo usando logaritmo. Mas no intuito de proporcionar uma melhor visão,
+sinta-se à vontade para pensar na função de custo como sendo um tipo de função de custo de erro ao quadrado. Assim, este custo (i) mede a precisão desta rede neural ao prever corretamente o valor da amostra i. Quão perto está o resultado da rede
+em relação ao valor real observado na variável y (i)? Agora vejamos o que a
+retro propagação está fazendo. Uma ideia útil é a de que 
+retro propagação está computando estes termos δ sobrescritos L índices j. Podemos imaginá-los como sendo uma cota de
+erro do valor de ativação que temos para a unidade j na camada L,
+na L-ésima camada. Mais formalmente, para, e
+apenas para os que estiverem mais familiarizados com Cálculo. Mais formalmente,
+o que os termos δ de fato são, eles são as derivadas parciais
+relacionadas ao z (L) j, que são a soma ponderada das entradas
+que confundiam estes termos z. Derivadas parciais relativas a
+estas coisas da função de custo. Então, de fato, a função de custo
+é uma função da variável y e do valor,
+este valor resultante h de x da rede neural. E se pudéssemos entrar na
+rede neural e apenas alterar z (L)
+j um pouquinho, então isso afetaria estes valores
+que a rede neural está gerando. E isso acabaria 
+alterando a função de custo. E, novamente, de verdade, isso é só para
+os que já conhecem bem a matéria de Cálculo diferencial e integral. Se você se sente bem
+com derivadas parciais, o que estes termos δ são é que eles
+acabam se tornando as derivadas parciais da função de custo, em relação aos termos
+intermediários meio confusos. Portanto, eles são uma medida do quanto 
+gostaríamos de altear os pesos das redes neurais de modo a afetar estes valores
+intermediários dos cálculos. De modo a afetar o resultado final
+da rede neural h(x) e e como consequência, afetar o custo total. Caso ainda restem dúvidas sobre
+esta ideia de derivada parcial, caso ela ainda não faça sentido, não se preocupe, o restante desta aula concluiremos sem falar
+sobre derivadas parciais. Mas, vejamos mais detalhadamente o que a
+retro propagação está fazendo. Para a camada resultante, 
+o primeiro passo é calcular o termo δ, δ (4) 1, como sendo y (i) como se
+estivéssemos fazendo a propagação progressiva e retro propagar dele nesta
+amostra de treinamento i. Quer dizer, y(i) menos a(4)1. Logo, isso é o erro real, certo? É a diferença entre
+o valor real de y menos o que foi obtido no valor previsto, e então,
+vamos calcular o δ (4)1 desse jeito. Depois, vamos retro propagar
+estes valores. Explico logo adiante, e
+finalizamos os cálculos dos termos δ da camada anterior. Vamos calcular δ (3) 1. δ (3) 2. Só então vamos retro 
+propagar ainda mais, e calcular δ (2) 1 e
+δ (2) 2. Agora o cálculo da retro 
+propagação está bem parecido com a execução do algoritmo da propagação progressiva
+mas, só que na direção contrária. Então, veja o que eu quero dizer. Vejamos como obtivemos
+este valor de δ (2) 2. Temos δ (2) 2. E, semelhante à propagação progressiva,
+vamos marcar alguns pesos. Então, este peso, 
+o qual vou desenhar em magenta. Digamos que ele é o Θ (2) 12. e este outro aqui embaixo
+vamos marcá-lo em vermelho. Ele será o
+digamos, Θ (2) de 2 2. Então, se olharmos como δ (2) 2 é calculado,
+como é calculado com esta notação. Ocorre que de fato o que vamos fazer é,
+vamos pegar este valor e multiplicá-lo por este peso, e adicioná-lo
+a este valor multiplicado por aquele peso. Então é realmente uma soma ponderada
+destes valores δ, ponderados pelas forças das arestas correspondentes. Completando, vamos levar esse valor,
+este δ (2) 2 que será igual a Θ (2) 1 2, na cor magenta,
+multiplicada por δ (3) 1. Somados ao que temos em vermelho, que é o Θ (2) 2 multiplicado pelo δ (3) 2. Portanto, é exatamente este
+peso vermelho multiplicado por este valor, somados a este peso em magenta multiplicado por este valor. E assim encerramos 
+o valor de δ . E apenas como outro exemplo,
+vejamos este valor aqui. Como chegamos a ele? Bem, é um processo bem parecido. Se este peso
+que estou marcando em verde, se este peso for igual a,
+digamos, Teta (3) 1 2 Então, obtemos o δ (3) 2 que será
+igual ao peso verde, Θ (3) 1 2 multiplicado por δ (4) 1. E, a propósito, para os demais
+eu anotei os valores de delta apenas para as unidades ocultas, mas
+excluindo-se as unidades de viés. Dependendo de como definimos o
+algoritmo de retro propagação, ou dependendo de como o implementamos,
+você sabe, podemos acabar implementando algo que calcule os valores delta para
+estas unidades de viés também. As unidades de viés sempre resultam no valor igual a 
+um positivo (+ 1), e elas são apenas o que são, e não há uma forma de
+alterarmos seus valores. Assim, dependendo da 
+implementação de retro  propagação, a forma como eu geralmente a implemento é que termino calculando estes valores de delta,
+mas simplesmente os descarto, não os usamos. Porque eles, não são
+parte do cálculo necessário para calcular as derivadas. Espero que isso dê
+uma ideia melhor sobre o que a retro propagação faz. Se por acaso isso tudo ainda
+parece mágica, um tipo de caixa preta, mais adiante, 
+no vídeo "juntando tudo", tentarei dar mais uma noção
+sobre o que faz a retro propagação. Mas, infelizmente, ele é um algoritmo 
+difícil de ser visualizado e de compreender o que realmente ele faz. Mas, por sorte, eu o tenho usado, eu acho que muita gente o tem usado
+com êxito há vários anos. E se você implementá-lo, poderá
+ter um algoritmo de aprendizagem bem efetivo. Ainda que em internamente  o trabalho dele,
+como ele funciona, seja difícil de visualizar.

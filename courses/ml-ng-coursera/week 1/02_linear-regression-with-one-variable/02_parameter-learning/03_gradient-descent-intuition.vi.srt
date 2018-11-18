@@ -1,0 +1,534 @@
+1
+00:00:00,000 --> 00:00:04,353
+Trong video trước đó, chúng tôi đã cung cấp một định nghĩa toán học của chuyển màu
+
+2
+00:00:04,353 --> 00:00:09,464
+gốc. Chúng ta hãy nghiên cứu kỹ sâu hơn, và trong video này, có được trực giác tốt hơn về những gì các
+
+3
+00:00:09,464 --> 00:00:14,701
+thuật toán thực hiện, và tại sao các bước của thuật toán gradient descent có thể làm cho
+
+4
+00:00:14,701 --> 00:00:20,639
+ý thức. Dưới đây là các thuật toán gradient descent mà chúng tôi thấy thời gian qua. Và, chỉ
+
+5
+00:00:20,639 --> 00:00:26,427
+để nhắc nhở bạn, tham số này, hoặc này thuật ngữ, alpha, được gọi là tỷ lệ học tập.
+
+6
+00:00:26,427 --> 00:00:32,444
+Và nó kiểm soát như thế nào lớn một bước chúng tôi mất khi Cập Nhật của tôi theta tham số J. và
+
+7
+00:00:32,444 --> 00:00:41,360
+thuật ngữ này lần thứ hai ở đây là khâu. Và những gì tôi muốn làm trong video này
+
+8
+00:00:41,360 --> 00:00:47,360
+là cung cấp cho bạn tốt hơn trực giác về những gì mỗi trong số này hai điều khoản đang làm và tại sao, khi đặt
+
+9
+00:00:47,360 --> 00:00:53,077
+cùng với nhau, Cập Nhật toàn bộ này làm cho tinh thần.
+Để chuyển tải những intuitions, những gì
+
+10
+00:00:53,077 --> 00:00:58,460
+Tôi muốn làm là sử dụng một ví dụ đơn giản hơn một chút nơi chúng tôi muốn giảm thiểu các
+
+11
+00:00:58,460 --> 00:01:03,022
+chức năng của chỉ là một tham số. Như vậy, vì vậy chúng tôi có một, nói rằng chúng tôi đã gây ra chức năng j của
+
+12
+00:01:03,022 --> 00:01:07,294
+chỉ cần một tham số, theta một, như chúng tôi đã làm, bạn đã biết, một vài video trở lại. Nơi
+
+13
+00:01:07,294 --> 00:01:11,913
+Theta một trong những là một số thực, okay? Chỉ cần để chúng tôi có thể có 1 D lô, mà
+
+14
+00:01:11,913 --> 00:01:16,416
+là một chút đơn giản hơn để xem xét. Hãy thử để hiểu tại sao lớp và
+
+15
+00:01:16,416 --> 00:01:23,940
+gốc sẽ làm vào chức năng này.
+[âm thanh]. Vì vậy, hãy nói rằng đây là chức năng của tôi.
+
+16
+00:01:24,660 --> 00:01:31,696
+J theta một, và vì vậy đó của tôi, và nơi theta một trong những là một số thực. Quyền,
+
+17
+00:01:31,696 --> 00:01:39,202
+bây giờ chúng ta hãy nói rằng tôi đã khởi gradient descent với theta một tại vị trí này.
+
+18
+00:01:39,202 --> 00:01:46,989
+Rất hình ảnh mà chúng tôi bắt đầu vào thời điểm đó về chức năng của tôi. Những gì gradient descent sẽ
+
+19
+00:01:46,989 --> 00:01:56,935
+làm, là nó sẽ Cập Nhật. Một trong được Cập Nhật như Theta một trừ Alpha Theta lần DD
+
+20
+00:01:56,935 --> 00:02:04,694
+Theta một J L. Theta một ngay và oh một chỉ là một sang một bên, bạn biết điều này, điều này
+
+21
+00:02:04,694 --> 00:02:11,636
+khâu nếu đúng, nếu bạn tự hỏi tại sao tôi đã thay đổi các ký hiệu từ
+
+22
+00:02:11,636 --> 00:02:16,132
+các biểu tượng này bắt nguồn từ một phần. Nếu bạn không biết những gì là sự khác biệt giữa
+
+23
+00:02:16,132 --> 00:02:20,523
+các biểu tượng này bắt nguồn từ một phần và dd theta Đừng lo lắng về nó. Về mặt kỹ thuật
+
+24
+00:02:20,523 --> 00:02:24,491
+trong toán học chúng tôi gọi đây là bắt nguồn từ một phần, chúng tôi gọi đây là một sản phẩm phái sinh,
+
+25
+00:02:24,491 --> 00:02:28,299
+tùy thuộc vào số lượng, các tham số trong các chức năng J, nhưng đó là một
+
+26
+00:02:28,299 --> 00:02:32,428
+tiêu chuẩn kỹ thuật toán học, vì vậy, bạn biết cho mục đích của bài giảng này, hãy suy nghĩ của
+
+27
+00:02:32,428 --> 00:02:36,768
+các biểu tượng một phần, và DD theta một trong như chính xác cùng một điều. Và đừng lo lắng
+
+28
+00:02:36,768 --> 00:02:41,056
+về việc liệu có bất kỳ sự khác biệt.
+I 'm gonna cố gắng sử dụng các toán học
+
+29
+00:02:41,056 --> 00:02:45,190
+ký hiệu chính xác. Nhưng cho các mục đích của chúng tôi, các tả thực sự là điều tương tự.
+
+30
+00:02:45,360 --> 00:02:49,627
+Vì vậy, hãy xem phương trình này, này sẽ làm gì. Và vì vậy chúng tôi sẽ tính toán
+
+31
+00:02:49,627 --> 00:02:54,293
+này bắt nguồn từ của, I 'm không chắc chắn nếu bạn đã nhìn thấy phái sinh trong tính toán trước. Nhưng
+
+32
+00:02:54,293 --> 00:02:58,666
+những gì một sản phẩm phái sinh, vào thời điểm này, không, là về cơ bản nói rằng, bạn đã biết, chúng ta hãy. Mất
+
+33
+00:02:58,666 --> 00:03:02,877
+ốp như điểm, đường thẳng như thế, dòng màu đỏ, chỉ cần,
+
+34
+00:03:02,877 --> 00:03:06,976
+chỉ cần touching chức năng này và hãy xem xét độ dốc của dòng màu đỏ này. Đó là
+
+35
+00:03:06,976 --> 00:03:11,352
+Where đạo hàm 's. Nó nói gì là độ dốc của đường chỉ
+
+36
+00:03:11,352 --> 00:03:15,563
+ốp chức năng, okay và độ dốc của đường là tất nhiên chỉ
+
+37
+00:03:15,563 --> 00:03:20,789
+đúng, bạn biết chỉ chiều cao chia cho điều này ngang. Bây giờ. Dòng này có
+
+38
+00:03:20,789 --> 00:03:28,378
+một tích cực dốc, vì vậy nó có một đạo hàm tích cực. Và như vậy, Cập Nhật của tôi để theta là
+
+39
+00:03:28,378 --> 00:03:36,258
+sẽ có, theta nhất cho dữ liệu [unintelligible] một trong trừ alpha lần một số tích cực
+
+40
+00:03:36,258 --> 00:03:43,103
+số. >> Được rồi. Tuy nhiên, tỷ lệ học tập là luôn luôn một số dương. Và như vậy
+
+41
+00:03:43,103 --> 00:03:47,932
+I 'm gonna phải theta một, bản cập nhật này như theta một trừ đi một cái gì đó. Do đó, I 'm gonna
+
+42
+00:03:47,932 --> 00:03:52,644
+kết thúc di chuyển theta một bên trái. I 'm gonna giảm theta ai và chúng tôi có thể nhìn thấy
+
+43
+00:03:52,644 --> 00:03:57,473
+Đây là điều phải làm vì tôi đã thực sự đi trước theo hướng này bạn
+
+44
+00:03:57,473 --> 00:04:02,582
+biết để làm cho tôi gần hơn đến tối thiểu trên đó. Vì vậy, gradient descent cho đến nay có vẻ
+
+45
+00:04:02,582 --> 00:04:08,115
+sẽ thực hiện đúng. Hãy xem xét một ví dụ khác. Vì vậy, chúng ta hãy của tôi như vậy
+
+46
+00:04:08,115 --> 00:04:13,787
+chức năng j. Chỉ cần cố gắng để vẽ cùng một chức năng j của theta một trong. Và bây giờ chúng ta hãy nói
+
+47
+00:04:13,787 --> 00:04:19,181
+Tôi thay vào đó có khởi tạo tham số của tôi trên đó ở bên trái. Vì vậy, theta một là
+
+48
+00:04:19,181 --> 00:04:24,161
+Ở đây. Tôi đang gonna thêm đó điểm trên bề mặt. Bây giờ, tôi khâu, d, d
+
+49
+00:04:24,161 --> 00:04:29,567
+Theta một j của theta một, khi đánh giá tại thời điểm này, gonna tìm ở bên phải. Các
+
+50
+00:04:29,567 --> 00:04:35,035
+độ dốc của đường đó. Vì vậy, thuật ngữ này bắt nguồn từ là một dốc của dòng này. Nhưng điều này
+
+51
+00:04:35,035 --> 00:04:42,745
+dòng slanting xuống, do đó, dòng này có độ dốc tiêu cực. Quyền? Hoặc cách khác tôi
+
+52
+00:04:42,745 --> 00:04:48,718
+nói rằng chức năng này có đạo hàm tiêu cực, chỉ có nghĩa là tiêu cực độ dốc lúc
+
+53
+00:04:48,718 --> 00:04:54,770
+thời điểm đó. Vì vậy, điều này là ít hơn bình đẳng bằng không. Vì vậy, khi tôi Cập Nhật theta, sau đó nếu
+
+54
+00:04:54,770 --> 00:05:02,840
+Theta Cập Nhật theta trừ alpha đôi khi một số tiêu cực. Và vì vậy tôi cần
+
+55
+00:05:02,840 --> 00:05:07,881
+Theta một trừ đi một số tiêu cực có nghĩa là tôi thực sự sẽ tăng dữ liệu,
+
+56
+00:05:07,881 --> 00:05:13,106
+quyền? Bởi vì đây là trừ đi của một phương tiện số tiêu cực tôi thêm một cái gì đó để theta
+
+57
+00:05:13,106 --> 00:05:17,900
+và những gì mà có nghĩa là rằng tôi sẽ kết thúc tăng theta. Và vì vậy chúng tôi sẽ
+
+58
+00:05:17,900 --> 00:05:23,002
+bắt đầu ở đây và tăng theta, một lần nữa có vẻ như điều tôi muốn làm để thử
+
+59
+00:05:23,002 --> 00:05:28,335
+để làm cho tôi gần hơn đến tối thiểu. Vì vậy, hy vọng rằng điều này giải thích trực giác phía sau
+
+60
+00:05:28,335 --> 00:05:33,874
+khâu là làm những gì. Hãy [unintelligible] xem xét việc học ngày
+
+61
+00:05:33,874 --> 00:05:39,956
+Alpha, và cố gắng tìm ra những gì mà là làm. Vì vậy, đây là người gốc lớn hơn của tôi
+
+62
+00:05:39,956 --> 00:05:46,641
+Cập nhật các quy tắc. Quyền, đó là phương trình này và hãy xem xét những gì có thể xảy ra, nếu
+
+63
+00:05:46,641 --> 00:05:52,845
+Alpha là hoặc là quá nhỏ, hoặc nếu Alpha là quá lớn. Như vậy ví dụ đầu tiên này, những gì
+
+64
+00:05:52,845 --> 00:05:59,583
+sẽ xảy ra nếu Alpha quá nhỏ. Vì vậy, ở đây là của tôi theta [unintelligible] j. chức năng. Cho phép
+
+65
+00:05:59,583 --> 00:06:04,230
+chỉ cần bắt đầu ở đây. Nếu alpha quá nhỏ thì những gì tôi sẽ làm là gonna
+
+66
+00:06:04,230 --> 00:06:09,322
+nhân [unintelligible] bởi một số lượng nhỏ. Vì vậy, sẽ bước [unintelligible]
+
+67
+00:06:09,322 --> 00:06:13,841
+Giống như vậy. Rồi, do đó, đó là một bước [unintelligible]. Sau đó từ thời điểm này mới
+
+68
+00:06:13,841 --> 00:06:18,870
+chúng tôi đang gonna mất một bước [unintelligible] alpha là quá nhỏ cho phép đi khác
+
+69
+00:06:18,870 --> 00:06:25,342
+ít em bé bước. Và vì vậy nếu và vì vậy, nếu tỷ lệ học tập của tôi là quá nhỏ. Tôi đang gonna cuối cùng
+
+70
+00:06:25,342 --> 00:06:30,589
+lên, bạn biết. Dùng những bước nhỏ, nhỏ bé. Để thử để có được tối thiểu và tôi
+
+71
+00:06:30,589 --> 00:06:35,837
+gonna cần. Rất nhiều bước để nhận được tối thiểu và như vậy. Nếu alpha của quá nhỏ, có thể
+
+72
+00:06:35,837 --> 00:06:41,019
+được làm chậm vì nó gonna mất những em bé nhỏ, nhỏ bước. Và nó gonna cần
+
+73
+00:06:41,019 --> 00:06:45,829
+rất nhiều bước trước khi nó được bất kỳ nơi gần với tối thiểu toàn cầu. Bây giờ,
+
+74
+00:06:45,829 --> 00:06:52,236
+[unintelligible] để nộp. Vì vậy, ở đây là các chức năng của dữ liệu [unintelligible] của tôi. Kể từ f
+
+75
+00:06:52,236 --> 00:06:57,590
+là quá lớn, sau đó chấm điểm ý thức có thể vượt qua tối thiểu và có thể thậm chí chưa
+
+76
+00:06:57,590 --> 00:07:03,362
+hội tụ hay thậm chí phân ra. [unintelligible] như vậy tối thiểu ireful vì vậy hội đồng thành phố phái sinh
+
+77
+00:07:03,362 --> 00:07:08,647
+ngay rằng nếu văn phòng quá lớn mất một bước tiến lớn, phải mất một bước rất lớn như thế
+
+78
+00:07:08,686 --> 00:07:14,140
+[unintelligible], và mất một bước rất lớn và bây giờ các chức năng chéo là mạnh nhất,
+
+79
+00:07:14,140 --> 00:07:20,051
+bắt đầu với giá trị này, nhưng bây giờ giá trị của tôi đã đi xuống. Bây giờ là của tôi dẫn xuất bạn
+
+80
+00:07:20,051 --> 00:07:25,190
+biết điểm bên trái đánh giá các dữ liệu yếu. Nhưng nếu khu vực học tập của tôi là để lớn tôi
+
+81
+00:07:25,190 --> 00:07:29,792
+có thể mất một vài gashes đi từ đây tất cả các cách trên mạng vì vậy tôi sẽ chỉ. Đang được tất cả
+
+82
+00:07:29,792 --> 00:07:35,372
+có. Quyền? Và nếu học tập của tôi đã to lớn tôi có thể mất một bước rất lớn trên các
+
+83
+00:07:35,372 --> 00:07:41,034
+tiếp theo tăng tốc và loại vượt qua và vượt qua vv cho đến khi bạn nhận thấy
+
+84
+00:07:41,034 --> 00:07:46,765
+Tôi thực sự nhận được tiếp tục và tiếp tục đi từ tối thiểu. Và vì vậy, nếu alpha là
+
+85
+00:07:46,765 --> 00:07:51,905
+để lớn nó có thể không hội tụ hay thậm chí phân ra. Bây giờ. Tôi có một câu hỏi cho
+
+86
+00:07:51,905 --> 00:07:56,057
+bạn. Vì vậy, đây là một trong những rối rắm. Và khi tôi lần đầu tiên học tập công cụ này, nó thực sự
+
+87
+00:07:56,057 --> 00:08:00,005
+tôi có phải mất một thời gian dài để con số này ra ngoài.
+Điều gì nếu bạn theta pre-emptive một trong là
+
+88
+00:08:00,005 --> 00:08:04,106
+đã có tại một tối thiểu địa phương? Bạn nghĩ gì đi một bước của lớp và gốc sẽ
+
+89
+00:08:04,106 --> 00:08:10,857
+làm gì? Vì vậy, hãy giả sử bạn khởi tạo dữ liệu một tối thiểu địa phương. Vì vậy, bạn biết
+
+90
+00:08:10,857 --> 00:08:16,713
+cho rằng đây là giá trị ban đầu của bạn của 01 trên đây và nó đã được tại một địa phương
+
+91
+00:08:16,713 --> 00:08:22,718
+tối ưu và tối thiểu địa phương. Nó sẽ gửi ra rằng tại địa phương tối ưu phái sinh của bạn
+
+92
+00:08:22,718 --> 00:08:28,796
+sẽ được bằng không. Vì nó là dốc đó là thời điểm ốp vì vậy các
+
+93
+00:08:28,796 --> 00:08:35,528
+độ dốc của dòng này sẽ tương đương với số không và vì thế này khâu. Bằng
+
+94
+00:08:35,528 --> 00:08:40,941
+Zero. Và vì vậy, trong của bạn Cập Nhật lớp và gốc, bạn có theta một, [unintelligible]
+
+95
+00:08:40,941 --> 00:08:46,284
+này một, theta trừ alpha lần zero.
+Và vì vậy, điều này có nghĩa là, nếu bạn
+
+96
+00:08:46,284 --> 00:08:51,222
+đã lúc một tối ưu địa phương, nó lá theta một trong không thay đổi. ?Nguyên nhân, bạn đã biết,
+
+97
+00:08:51,222 --> 00:08:56,132
+[unintelligible] theta một trong. Bằng theta một trong.
+Vì vậy, nếu tham số của bạn đã tại một địa phương
+
+98
+00:08:56,132 --> 00:09:00,694
+tối thiểu, đi một bước của lớp và dòng máu hiện hoàn toàn không có gì. Nó không thay đổi
+
+99
+00:09:00,694 --> 00:09:05,257
+tham số là, đó là những gì bạn muốn. Cuz nó giữ giải pháp của bạn tại các
+
+100
+00:09:05,257 --> 00:09:09,706
+địa phương tối ưu. Điều này cũng giải thích tại sao lớp và gốc có thể trò chuyện các địa phương
+
+101
+00:09:09,706 --> 00:09:14,326
+tối thiểu, ngay cả với tỷ lệ học tập Alpha cố định. Đây là những gì tôi có nghĩa là bởi đó. Chúng ta hãy
+
+102
+00:09:14,326 --> 00:09:21,550
+xem xét một ví dụ. Vì vậy, đây là một chức năng chi phí J. Với dữ liệu. Rằng có lẽ tôi muốn
+
+103
+00:09:21,550 --> 00:09:26,811
+để giảm thiểu và giả sử tôi khởi tạo của tôi giải thuật [unintelligible] thuật toán bạn biết
+
+104
+00:09:26,811 --> 00:09:32,080
+trên mạng tại điểm đó đỏ tươi. Nếu tôi đi một bước của gradient descent, bạn biết, có thể
+
+105
+00:09:32,080 --> 00:09:36,941
+có tôi sẽ đưa tôi đến đó điểm cuz của tôi dẫn xuất khá dốc lên đó ngay.
+
+106
+00:09:36,941 --> 00:09:42,051
+Bây giờ tôi đang ở thời điểm màu xanh lá cây này và nếu tôi đi một bước tại [unintelligible] gốc bạn
+
+107
+00:09:42,051 --> 00:09:47,036
+thông báo rằng đạo hàm của tôi có nghĩa là độ dốc là ít dốc tại điểm màu xanh lá cây trong
+
+108
+00:09:47,036 --> 00:09:51,959
+so với lúc [unintelligible] chỉ ra có ngay. Bởi vì khi tôi tiếp cận các
+
+109
+00:09:51,959 --> 00:09:56,883
+tối thiểu đạo hàm của tôi được gần hơn và gần bằng không như tôi tiếp cận tối thiểu.
+
+110
+00:09:56,883 --> 00:10:01,794
+So. Sau khi một bước của lớp và gốc, phái sinh mới của tôi là một chút nhỏ hơn.
+
+111
+00:10:01,794 --> 00:10:06,635
+Vì vậy, tôi muốn có một bước của lớp và dòng máu. Tôi tự nhiên sẽ đưa một phần nào
+
+112
+00:10:06,635 --> 00:10:11,598
+nhỏ hơn bước từ màu xanh lá cây điểm hơn tôi đã làm từ điểm đỏ tươi. Bây giờ bởi mới
+
+113
+00:10:11,598 --> 00:10:16,038
+điểm, đỏ điểm và sau đó bây giờ thậm chí gần hơn đến toàn cầu tối thiểu, do đó
+
+114
+00:10:16,038 --> 00:10:21,229
+bắt nguồn từ đây sẽ nhỏ hơn so với nó tại điểm màu xanh lá cây. Vì vậy, khi tôi đi
+
+115
+00:10:21,229 --> 00:10:26,420
+một bước của [unintelligible], bạn đã biết, bây giờ tôi khâu là nhỏ hơn, và do đó
+
+116
+00:10:26,420 --> 00:10:31,360
+các độ lớn của bản Cập Nhật vào theta [unintelligible] là nhỏ hơn, vì bạn có thể
+
+117
+00:10:31,360 --> 00:10:39,145
+bước nhỏ như vậy, và là lớn hơn xuống chạy. Bạn sẽ tự động lấy nhỏ hơn
+
+118
+00:10:39,145 --> 00:10:46,343
+và các bước nhỏ hơn cho đến khi cuối cùng bạn đang dùng các bước rất nhỏ, bạn đã biết, và bạn
+
+119
+00:10:46,343 --> 00:10:52,737
+tìm converge để các tối thiểu địa phương. Vì vậy, chỉ để recap. Trong chuyển màu
+
+120
+00:10:52,737 --> 00:10:57,716
+gốc khi chúng tôi tiếp cận tối thiểu địa phương, chấm điểm gốc sẽ tự động đưa
+
+121
+00:10:57,716 --> 00:11:02,634
+các bước nhỏ hơn và đó là bởi vì khi chúng tôi tiếp cận tối thiểu địa phương, theo định nghĩa
+
+122
+00:11:02,634 --> 00:11:07,122
+tối thiểu địa phương là khi bạn có này bắt nguồn từ bằng 0. Vì vậy, như chúng tôi
+
+123
+00:11:07,122 --> 00:11:12,408
+tiếp cận tối thiểu địa phương này định lý sản sẽ tự động nhận được nhỏ hơn và
+
+124
+00:11:12,408 --> 00:11:16,957
+Vì vậy, gradient descent sẽ tự động bước nhỏ. Vì vậy, đây là những gì
+
+125
+00:11:16,957 --> 00:11:21,506
+[unintelligible] giống như, và như vậy trên thực tế không có cần phải giảm alpha
+
+126
+00:11:21,506 --> 00:11:26,258
+làm thêm giờ. Vì vậy, đó là thuật toán lớp và gốc, và bạn có thể sử dụng nó để giảm thiểu,
+
+127
+00:11:26,258 --> 00:11:30,713
+để cố gắng giảm thiểu bất kỳ chức năng nguyên nhân J.
+Không gây ra chức j được định nghĩa cho
+
+128
+00:11:30,713 --> 00:11:34,738
+hồi quy tuyến tính. Trong video tiếp theo, chúng ta sẽ mất chức năng J, và
+
+129
+00:11:34,738 --> 00:11:38,549
+thiết lập mà trở lại là chính xác hồi quy tuyến tính gây ra chức năng. Các, các
+
+130
+00:11:38,549 --> 00:11:43,057
+nguyên nhân vuông chức năng mà chúng tôi nghĩ ra trước đó. Và lấy lớp và gốc, và
+
+131
+00:11:43,057 --> 00:11:47,351
+Quảng trường gây ra chức năng, và đặt chúng lại với nhau. Mà sẽ cung cấp cho chúng tôi đầu tiên của chúng tôi
+
+132
+00:11:47,351 --> 00:11:50,948
+học thuật toán, mà sẽ cung cấp cho chúng tôi các thuật toán hồi quy tuyến tính của chúng tôi.

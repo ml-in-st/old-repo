@@ -1,0 +1,451 @@
+1
+00:00:00,620 --> 00:00:03,800
+W tym filmie zdefiniujemy tzw. funkcję kosztu.
+
+2
+00:00:03,800 --> 00:00:07,480
+Pozwoli nam to dopasować najlepszą linię prostą do naszych danych.
+
+3
+00:00:10,310 --> 00:00:13,820
+Przy regresji liniowej, mamy zbiór uczący, taki jak ten tu. Pamiętaj:
+
+4
+00:00:13,820 --> 00:00:18,870
+m oznacza liczbę elementów zbioru uczącego - np. tutaj być może m = 47.
+
+5
+00:00:18,870 --> 00:00:20,989
+Nasza hipoteza z kolei,
+
+6
+00:00:22,210 --> 00:00:25,360
+której używamy do robienia prognoz, jest funkcją liniową.
+
+7
+00:00:26,430 --> 00:00:31,240
+Wprowadźmy trochę terminologii: theta 0 oraz
+
+8
+00:00:31,240 --> 00:00:37,260
+theta 1 są tzw. parametrami modelu.
+
+9
+00:00:37,260 --> 00:00:42,560
+W tym filmie porozmawiamy o tym, jak
+
+10
+00:00:42,560 --> 00:00:47,550
+wybrać wartości tych dwóch parametrów: theta 0 oraz theta 1.
+
+11
+00:00:47,550 --> 00:00:51,100
+Wybierając różne wartości theta 0 oraz theta 1,
+
+12
+00:00:51,100 --> 00:00:55,250
+otrzymujemy różne hipotezy, różne funkcje hipotezy.
+
+13
+00:00:55,250 --> 00:00:58,170
+Wiem, że niektórzy z Was są już obeznani z tym,
+
+14
+00:00:58,170 --> 00:01:02,110
+co pokażę na tym slajdzie, ale, dla przypomnienia, podam parę przykładów.
+
+15
+00:01:02,110 --> 00:01:05,990
+Jeśli theta 0 równa się 1,5, a theta 1 równa się 0,
+
+16
+00:01:05,990 --> 00:01:08,870
+wtedy funkcja hipotezy wygląda tak.
+
+17
+00:01:10,070 --> 00:01:17,610
+Ponieważ funkcja hipotezy będzie równa h(x) równe 1,5 plus 0 razy
+
+18
+00:01:17,610 --> 00:01:22,533
+x, co daje nam wartość stałą - 1,5.
+
+19
+00:01:22,533 --> 00:01:26,600
+Jeśli theta0 = 0, theta1 = 0.5, hipoteza będzie wyglądać tak - powinna
+
+20
+00:01:26,600 --> 00:01:31,420
+przechodzić przez punkt (2,1), i tak
+
+21
+00:01:31,420 --> 00:01:34,850
+otrzymamy h(x).
+
+22
+00:01:34,850 --> 00:01:40,150
+Tak naprawdę jest to h_theta(x), ale czasem będę pomijał theta, żeby było krócej.
+
+23
+00:01:40,150 --> 00:01:45,570
+Tak więc h(x) będzie równe 0,5 razy x, co wygląda ten sposób.
+
+24
+00:01:45,570 --> 00:01:49,830
+Wreszcie, jeśli theta0 równa się 1, a theta1 równa się 0,5,
+
+25
+00:01:49,830 --> 00:01:53,280
+wtedy hipoteza będzie wyglądać tak:
+
+26
+00:01:53,280 --> 00:01:59,670
+Zobaczmy: powinna przechodzić przez punkt (2,2).
+
+27
+00:01:59,670 --> 00:02:04,640
+W ten sposób. Teraz to jest moje nowe h(x), czy też h indeks dolny theta (x).
+
+28
+00:02:04,640 --> 00:02:08,618
+Pamiętaj: powiedziałem, że jest to h_theta(x), jednak
+
+29
+00:02:08,618 --> 00:02:12,095
+będę czasem pisał skrótowo po prostu h(x).
+
+30
+00:02:13,917 --> 00:02:19,330
+W przypadku regresji liniowej mamy zbiór uczący, np. taki, jak narysowałem tutaj.
+
+31
+00:02:19,330 --> 00:02:24,880
+Chcemy znaleźć wartości dla parametrów theta0 i
+
+32
+00:02:24,880 --> 00:02:29,960
+theta1 tak, żeby linia prosta dobrze
+
+33
+00:02:29,960 --> 00:02:33,500
+pasowała do danych, tak jak np. ta linia.
+
+34
+00:02:34,590 --> 00:02:37,190
+Tylko skąd wziąć wartości
+
+35
+00:02:37,190 --> 00:02:40,650
+theta0 i theta1, które odpowiadają dobremu dopasowaniu do danych?
+
+36
+00:02:42,540 --> 00:02:46,460
+Idea jest taka, żeby wybrać parametry theta0 i theta1 tak,
+
+37
+00:02:46,460 --> 00:02:51,190
+aby h(x), czyli wartość przewidywana dla danego x,
+
+38
+00:02:51,190 --> 00:02:55,730
+była przynajmniej zbliżona do wartości y
+
+39
+00:02:55,730 --> 00:02:59,908
+w przypadku elementów naszego zbioru uczącego, naszych przykładów uczących.
+
+40
+00:02:59,908 --> 00:03:04,000
+Tak więc w naszym zbiorze danych mamy przykłady, zawierające x - wielkość domu,
+
+41
+00:03:04,000 --> 00:03:07,350
+a także znamy cenę, po jakiej został sprzedany.
+
+42
+00:03:07,350 --> 00:03:11,100
+Tak więc spróbujmy wybrać wartości parametrów tak,
+
+43
+00:03:11,100 --> 00:03:13,830
+abyśmy, mając dane wartości x
+
+44
+00:03:13,830 --> 00:03:19,040
+ze zbioru uczącego, byli w stanie przewidzieć dość dokładnie wartości y.
+
+45
+00:03:19,040 --> 00:03:20,980
+Sformalizujmy to trochę.
+
+46
+00:03:20,980 --> 00:03:23,700
+Tak więc w regresji liniowej chcemy
+
+47
+00:03:23,700 --> 00:03:27,430
+rozwiązać problem minimalizacji.
+
+48
+00:03:27,430 --> 00:03:34,319
+Napiszę więc: "minimalizacja względem theta0 i theta1".
+
+49
+00:03:34,319 --> 00:03:39,620
+I chcę, żeby to wyrażenie przyjęło niską wartość, prawda?
+
+50
+00:03:39,620 --> 00:03:42,960
+Chcę, żeby różnica h(x) - y była niewielka.
+
+51
+00:03:42,960 --> 00:03:47,770
+Mogę spróbować w tym celu minimalizować kwadrat różnicy
+
+52
+00:03:47,770 --> 00:03:51,226
+wartości wyjściowej hipotezy oraz rzeczywistej ceny domu.
+
+53
+00:03:51,226 --> 00:03:54,600
+OK? A teraz trochę więcej szczegółów.
+
+54
+00:03:54,600 --> 00:03:59,328
+Pamiętasz, że używałem notacji (x(i), y(i))
+
+55
+00:03:59,328 --> 00:04:02,380
+na oznaczenie i-tego elementu zbioru uczącego?
+
+56
+00:04:02,380 --> 00:04:07,480
+Tak więc teraz chcę zsumować po wszystkich elementach zbioru,
+
+57
+00:04:07,480 --> 00:04:10,666
+tj. i = 1 do m
+
+58
+00:04:10,666 --> 00:04:16,040
+kwadrat różnicy między prognozą
+
+59
+00:04:16,040 --> 00:04:21,261
+mojej hipotezy, gdy na wejściu jest i-ty dom,
+
+60
+00:04:22,560 --> 00:04:25,530
+oraz rzeczywistą ceną, po której sprzedano i-ty dom,
+
+61
+00:04:25,530 --> 00:04:29,630
+i chcę zminimalizować tę sumę względem całego zbioru uczącego,
+
+62
+00:04:29,630 --> 00:04:34,240
+sumę od i=1 do m, tej różnicy kwadratu błędu;
+
+63
+00:04:34,240 --> 00:04:37,160
+kwadratu różnicy między przewidzianą ceną domu, a
+
+64
+00:04:37,160 --> 00:04:40,550
+ceną, za którą naprawdę go sprzedano.
+
+65
+00:04:40,550 --> 00:04:46,950
+Małe przypomnienie: w tym miejscu m oznacza liczbę elementów zbioru uczącego, ok?
+
+66
+00:04:46,950 --> 00:04:50,570
+Tak więc m w tym miejscu jest liczbą przykładów treningowych.
+
+67
+00:04:50,570 --> 00:04:57,750
+Ten krzyżyk jest skrótem i oznacza liczbę elementów zbioru uczącego, ok?
+
+68
+00:04:57,750 --> 00:05:01,270
+Oprócz tego, aby późniejsze obliczenia były łatwiejsze,
+
+69
+00:05:01,270 --> 00:05:05,950
+pomnożę całość przez 1/m, aby otrzymać wartość średnią
+
+70
+00:05:05,950 --> 00:05:09,380
+i dodamy do tego jeszcze 2, a więc ostatecznie razy 1/2m.
+
+71
+00:05:09,380 --> 00:05:14,450
+Ta dwójka z przodu sprawi, że łatwiej będzie obliczyć
+
+72
+00:05:14,450 --> 00:05:18,730
+to wyrażenie, a minimalizacja połowy jakiejś wartości powinna dać
+
+73
+00:05:18,730 --> 00:05:23,130
+takie same wartości theta0 i theta1, co minimalizacja całego wyrażenia.
+
+74
+00:05:24,300 --> 00:05:27,640
+Tak dla pewności: to równanie jest jasne, prawda?
+
+75
+00:05:27,640 --> 00:05:31,452
+To wyrażenie tutaj: h indeks dolny
+
+76
+00:05:31,452 --> 00:05:36,560
+theta (x), znaczy to samo, co zawsze, prawda?
+
+77
+00:05:37,890 --> 00:05:42,668
+To się równa to plus theta1 razy xi.
+
+78
+00:05:42,668 --> 00:05:48,050
+A ten zapis, minimalizacja względem theta0 i theta1, oznacza:
+
+79
+00:05:48,050 --> 00:05:53,140
+"Znajdź mi takie wartości theta0 i theta1, które sprawią, że to wyrażenie"
+
+80
+00:05:53,140 --> 00:05:57,620
+"przyjmie minimalną wartość.", a to wyrażenie zależy od theta0 i theta1, prawda?
+
+81
+00:05:57,620 --> 00:05:58,710
+Tak więc podsumowując:
+
+82
+00:05:58,710 --> 00:06:03,380
+Zamykamy ten problem w ten sposób: "Znajdź mi wartości theta1 i theta0 takie, żeby"
+
+83
+00:06:03,380 --> 00:06:07,210
+"ich średnia, a dokładniej 1/2m"
+
+84
+00:06:07,210 --> 00:06:11,240
+"razy suma kwadratów błędów - różnic między prognozą dla wymiarów domów, pochodzących ze zbioru uczącego,"
+
+85
+00:06:11,240 --> 00:06:15,250
+"a rzeczywistą ceną domów o danej wielkości, przyjęła jak najmniejszą wartość."
+
+86
+00:06:15,250 --> 00:06:20,709
+Tak więc to będzie moja funkcja celowa dla regresji liniowej.
+
+87
+00:06:22,080 --> 00:06:27,250
+Przepiszmy to teraz na czysto: mam tutaj funkcję
+
+88
+00:06:27,250 --> 00:06:29,790
+(zwykle zwaną funkcją kosztu),
+
+89
+00:06:31,240 --> 00:06:35,930
+która jest opisana tym równaniem.
+
+90
+00:06:37,040 --> 00:06:45,289
+I chcę zminimalizować względem theta0 i theta1
+
+91
+00:06:45,289 --> 00:06:51,770
+moją funkcję J(theta0, theta1).
+
+92
+00:06:51,770 --> 00:06:52,430
+Ok, napiszmy to wyraźnie:
+
+93
+00:06:53,730 --> 00:06:56,540
+to jest moja funkcja kosztu.
+
+94
+00:06:59,380 --> 00:07:04,960
+Funkcja ta jest również zwana kwadratową funkcją błędu.
+
+95
+00:07:06,850 --> 00:07:11,190
+Czasami nazywa się ją funkcją kwadratu błędu.
+
+96
+00:07:11,190 --> 00:07:15,730
+Czemu podnosimy błąd do kwadratu?
+
+97
+00:07:15,730 --> 00:07:19,660
+Okazuje się, że taka funkcja kosztu jest dobrym wyborem i
+
+98
+00:07:19,660 --> 00:07:22,990
+działa dobrze w przypadku większości zagadnień regresji.
+
+99
+00:07:22,990 --> 00:07:25,740
+Są też inne funkcje, które mogą dobrze działać,
+
+100
+00:07:25,740 --> 00:07:29,860
+jednak funkcja błędu kwadratowego jest prawdopodobnie używana najczęściej,
+
+101
+00:07:29,860 --> 00:07:30,935
+gdy stosujemy regresję.
+
+102
+00:07:30,935 --> 00:07:34,980
+W dalszej części kursu będziemy rozmawiać też o alternatywnych funkcjach kosztu,
+
+103
+00:07:34,980 --> 00:07:39,085
+jednak taki wybór funkcji powinien być senswony w przypadku
+
+104
+00:07:39,085 --> 00:07:41,030
+większości problemów wymagających regresji.
+
+105
+00:07:42,340 --> 00:07:43,030
+Okay.
+
+106
+00:07:43,030 --> 00:07:44,280
+A więc to jest funkcja kosztu.
+
+107
+00:07:45,340 --> 00:07:50,840
+Jak na razie widzieliśmy jedynie definicję matematyczną funkcji kosztu.
+
+108
+00:07:50,840 --> 00:07:54,310
+Jeśli ta funkcja - J(theta0, theta1) -
+
+109
+00:07:54,310 --> 00:07:56,260
+jeśli wydaje Ci się jakąś abstrakcją
+
+110
+00:07:56,260 --> 00:07:58,885
+i nie masz jeszcze wyczucia, co ona robi,
+
+111
+00:07:58,885 --> 00:08:03,210
+w następnych paru filmach mam zamiar
+
+112
+00:08:03,210 --> 00:08:07,930
+wytłumaczyć dokładniej, co robi funkcja J. Spróbuję także
+
+113
+00:08:07,930 --> 00:08:11,730
+wyrobić Ci lepszą intuicję odnośnie tego, co ona oblicza i dlaczego chcemy z tego skorzystać.

@@ -1,0 +1,37 @@
+Šioje paskaitoje aš tiesiog norėčiau greitai
+supažindinti jus šio kurso namų darbų logistika bei kiap naudotis pridavimo sistema,
+kuri iš karto patikrins, ar gavote teisingą atsakymą
+atlikę savo programų mokymosi algortimo pratimą. Štai čia yra mano Octave langas ir
+pirmiausia eikime į mano darbalaukį. Aš išsaugojau pirmojo pratimo failus, 
+tiksliau keletą failų, savo darbalaukyje: šiame aplanke, „ml-class-ex1”. Mes paruošėme kelis failus ir jūsų
+užduotis yra keletą jų paredaguoti. Pirmiausia turime išsamiau susipažinti su
+šio programavimo pratimo instrukcijomis, pateiktomis pdf faile. Tačiau vienas iš failų, kurį prašome suredaguoti yra
+šis failas pavadinimu warmUpExercise.m. Užduotis yra tiesiog užtikrinti, kad suspažinote
+su pridavimo sistema. Jums tereikia grąžinti
+5x5 vienetinę matricą. Taigi šio pratimo sprendimas
+yra parašyti A = eye(5). Ši eilutė pakeičią funkciją tiap, kad
+ji generuotų 5x5 vienetinę matricą. Taigi, funkcija warmUpExercise()
+dabar grąžina 5x5 vienetinę matricą. Aš tiesiog įrašysiu. Taigi, atlikau pirmąją šio namų darbo dalį.
+Grįžtu į savo Octave langą, atidarykime aplanką 
+„C:\Users\ang\Desktop\ml-class-ex1”. Jei aš noriu įsitikinti, kad atlikau užduotį,
+turiu įvesti „warmUpExercise()”. Ir būtent, funkcija grąžina 5x5 vienetinę matricą,
+kurią sukuria ką tik parašytas kodas. Taigi dabar galiu priduoti kodą:
+šiame aplanke aš įvedu „submit()” ir kadangi esu pasiruošęs,
+aš pasirenku „1”. Turiu įvesti savo el. pašto adresą.
+Dabar atidarysiu kurso svetainę. Tai yra vidinė testinė svetainė, taigi
+jūs galbūt matysite kitokią svetainės versiją. Čia matyti mano el. pašto adresas ir pridavimo slaptažodis,
+taigi aš tiesiog įvesiu juos čia. Taigi, mano adresas yra ang@cs.stanford.edu, o 
+mano pridavimo slaptažodis yra 9yC75USsGf. Paspaudus Enter, prisijungiate prie serverio ir priduodate
+sprendimą, ir iš karto jums parašo pasveikinimą sėkingai
+atlikus 1 namų darbo 1 dalį. Tokiu būdu galite patikrinti, ar
+teisingai šią dalį išsprendėte teisingai. Jei atsakymas neteisingas, matysite
+pranešimą, informuojantį kad atsakymas neteisingas. Pridavimo slaptažodį galite naudoti daug kartų,
+galite generuoti naują, tai nesvarbu. Galite naudoti ir įprastą sveitainės prisijungimo
+slaptažodį, tačiau kadangi šis slaptažodis būtų matomas neužslaptintas jūsų ekrane,
+suteikėme šį papildomą pridavimo slaptažodį, tam atvejui, jei nenorėtumėte rašyti savo įprasto
+svetainės slaptažodžio lange, kur, priklausomai nuo operacinės sistemos,
+gali matytis, kai įrašysite jį į Octave pridavimo skriptą. Taigi, štai taip priduodate savo
+atliktus namų darbus. Sėkmės, ir tikiuosi
+jums pavyks visus juos atlikti teisingai Kitoje (paskutinėje) pamokos apie Octave dalyje
+noriu papasakoti apie vektorizaciją - taip galėsite savo Octave kodą 
+leisti daug efektyviau.

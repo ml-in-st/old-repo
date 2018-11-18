@@ -1,0 +1,100 @@
+In the last video we talked
+about the process of evaluating an anomaly detection algorithm. And there we started to use some
+label data with examples that we knew were either anomalous or not anomalous
+with Y equals one, or Y equals 0. And so, the question then arises of, and
+if we have the label data, that we have some examples and know the anomalies,
+and some of them will not be anomalies. Why don't we just use
+a supervisor on half of them? So why don't we just use
+logistic regression, or a neuro network to try to learn
+directly from our labeled data to predict whether Y equals one or
+Y equals 0. In this video, I'll try to share with you
+some of the thinking and some guidelines for when you should probably use
+an anomaly detection algorithm, and whether it might be more fruitful instead
+of using a supervisor in the algorithm. This slide shows what are the settings
+under which you should maybe use anomaly detection versus when supervised
+learning might be more fruitful. If you have a problem with a very
+small number of positive examples, and remember the examples of y equals
+one are the anomaly examples. Then you might consider using
+an anomaly detection algorithm instead. So, having 0 to 20,
+it may be up to 50 positive examples, might be pretty typical. And usually we have such a small positive,
+set of positive examples, we're going to save the positive examples just for
+the cross validation set in the test set. And in contrast, in a typical
+normal anomaly detection setting, we will often have a relatively
+large number of negative examples of the normal examples of
+normal aircraft engines. And we can then use this very large
+number of negative examples With which to fit the model p(x). And so there's this idea that in
+many anomaly detection applications, you have very few positive examples and
+lots of negative examples. And when we're doing
+the process of estimating p(x), affecting all those Gaussian parameters,
+we need only negative examples to do that. So if you have a lot negative data,
+we can still fit p(x) pretty well. In contrast, for supervised learning,
+more typically we would have a reasonably large number of both positive and
+negative examples. And so this is one way to
+look at your problem and decide if you should use an anomaly
+detection algorithm or a supervised. Here's another way that people often
+think about anomaly detection. So for anomaly detection applications, often there are very
+different types of anomalies. So think about so
+many different ways for go wrong. There are so many things that could go
+wrong that could the aircraft engine. And so if that's the case, and if you have
+a pretty small set of positive examples, then it can be hard for an algorithm,
+difficult for an algorithm to learn from your small set of positive
+examples what the anomalies look like. And in particular, you know future anomalies may look
+nothing like the ones you've seen so far. So maybe in your set of positive examples,
+maybe you've seen 5 or 10 or 20 different ways that an aircraft
+engine could go wrong. But maybe tomorrow,
+you need to detect a totally new set, a totally new type of anomaly. A totally new way for an aircraft engine to be broken,
+that you've just never seen before. And if that's the case, it might be more promising to just model
+the negative examples with this sort of calcium model p of x instead of try to
+hard to model the positive examples. Because tomorrow's anomaly may be nothing
+like the ones you've seen so far. In contrast, in some other problems,
+you have enough positive examples for an algorithm to get a sense of what
+the positive examples are like. In particular, if you think that future
+positive examples are likely to be similar to ones in the training
+set; then in that setting, it might be more reasonable to have a
+supervisor in the algorithm that looks at all of the positive examples,
+looks at all of the negative examples, and uses that to try to distinguish
+between positives and negatives. Hopefully, this gives you a sense
+of if you have a specific problem, should you think about using
+an anomaly detection algorithm, or a supervised learning algorithm. And a key difference really is that
+in anomaly detection, often we have such a small number of positive
+examples that it is not possible for a learning algorithm to learn that
+much from the positive examples. And so what we do instead is take
+a large set of negative examples and have it just learn a lot, learn p(x)
+from just the negative examples. Of the normal [INAUDIBLE] and we've reserved the small number of
+positive examples for evaluating our algorithms to use in the either
+the transvalidation set or the test set. And just as a side comment about
+this many different types of easier. In some earlier videos we talked
+about the email spam examples. In those examples, there are actually many
+different types of spam email, right? There's spam email that's
+trying to sell you things. Spam email trying to steal your passwords,
+this is called phishing emails and many different types of spam emails. But for the spam problem we usually
+have enough examples of spam email to see most of these
+different types of spam email because we have a large
+set of examples of spam. And that's why we usually think of
+spam as a supervised learning setting even though there are many
+different types of. If we look at some applications of anomaly
+detection versus supervised learning we'll find fraud detection. If you have many different types of ways
+for people to try to commit fraud and a relatively small number of
+fraudulent users on your website, then I use an anomaly detection algorithm. I should say, if you have,
+if you're a very major online retailer and if you actually have had a lot of
+people commit fraud on your website, so you actually have a lot of
+examples of y=1, then sometimes fraud detection could actually shift
+over to the supervised learning column. But, if you haven't seen that many
+examples of users doing strange things on your website, then more frequently
+fraud detection is actually treated as an anomaly detection algorithm rather
+than a supervised learning algorithm. Other examples,
+we've talked about manufacturing already. Hopefully, you see more and more
+examples are not that many anomalies but if again for some manufacturing processes, if you manufacture in very large volumes
+and you see a lot of bad examples, maybe manufacturing can shift to
+the supervised learning column as well. But if you haven't seen that many bad
+examples of so to do the anomaly detection monitoring machines in a data center
+[INAUDIBLE] similar source of apply. Whereas, you must have classification, weather prediction, and
+classifying cancers. If you have equal numbers of positive and
+negative examples. Your positive and your negative examples, then we would tend to treat all
+of these as supervisor problems. So hopefully, that gives you a sense of one of the properties of a learning
+problem that would cause you to treat it as an anomaly detection
+problem versus a supervisory problem. And for many other problems that are faced
+by various technology companies and so on, we actually are in the settings
+where we have very few or sometimes zero positive training examples. There's just so many different types of anomalies
+that we've never seen them before. And for those sorts of problems, very often the algorithm that is used
+is an anomaly detection algorithm.

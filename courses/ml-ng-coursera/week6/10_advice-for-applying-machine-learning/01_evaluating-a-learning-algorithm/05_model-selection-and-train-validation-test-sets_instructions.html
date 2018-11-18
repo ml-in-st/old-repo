@@ -1,0 +1,103 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Model Selection and Train/Validation/Test Sets
+ </h1>
+ <p>
+  Just because a learning algorithm fits a training set well, that does not mean it is a good hypothesis. It could over fit and as a result your predictions on the test set would be poor. The error of your hypothesis as measured on the data set with which you trained the parameters will be lower than the error on any other data set.
+ </p>
+ <p>
+  Given many models with different polynomial degrees, we can use a systematic approach to identify the 'best' function. In order to choose the model of your hypothesis, you can test each degree of polynomial and look at the error result.
+ </p>
+ <p>
+  One way to break down our dataset into the three sets is:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Training set: 60%
+   </p>
+  </li>
+  <li>
+   <p>
+    Cross validation set: 20%
+   </p>
+  </li>
+  <li>
+   <p>
+    Test set: 20%
+   </p>
+  </li>
+ </ul>
+ <p>
+  We can now calculate three separate error values for the three different sets using the following method:
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Optimize the parameters in Θ using the training set for each polynomial degree.
+   </p>
+  </li>
+  <li>
+   <p>
+    Find the polynomial degree d with the least error using the cross validation set.
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Estimate the generalization error using the test set with $$J_{test}(\Theta^{(d)})$$, (d = theta from polynomial with lower error);
+   </p>
+  </li>
+ </ol>
+ <p>
+  This way, the degree of the polynomial d has not been trained using the test set.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

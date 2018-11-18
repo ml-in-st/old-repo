@@ -1,0 +1,67 @@
+1
+00:00:00,000 --> 00:00:04,353
+Im vorherigem Video haben wir Gradient Descent mathematisch definiert.
+
+2
+00:00:04,353 --> 00:00:09,464
+Lasst uns nun tiefer einsteigen und dieses Video soll ein besseres Verständnis über die Vorgänge im
+
+3
+00:00:09,464 --> 00:00:14,701
+Algorithmus geben, und erklären warum die Schritte des Gradient Descent Algorithmusses Sinn machen.
+
+4
+00:00:14,701 --> 00:00:20,639
+Hier ist der Gradient Descent Algorithmus den wir das letzte mal gesehen haben.
+
+5
+00:00:20,639 --> 00:00:26,427
+Zur Erinerung, dieser Parameter, oder dieser Term, Alpha, wird Lernrate genannt.
+
+6
+00:00:26,427 --> 00:00:32,444
+Und er kontroliert die Schrittgröße beim updaten vom Parameter theta J.
+
+7
+00:00:32,444 --> 00:00:41,360
+Und der zweite Term hier ist der abgeleitete Term. Und was ich in diesem Video machen möchte,
+
+8
+00:00:41,360 --> 00:00:47,360
+ist euch ein besseres Verständnis über diese beiden Terme geben, was sie tuen und warum die beiden Terme
+
+9
+00:00:47,360 --> 00:00:53,077
+zusammengesetzt beim updaten Sinn machen. Um das Verständnis zu vermitteln, möchte
+
+10
+00:00:53,077 --> 00:00:58,460
+ich ein vereinfachtes Beispiel nehmen, wo wir die Funktion
+
+11
+00:00:58,460 --> 00:01:03,022
+mit nur einem Parameter minimieren. So, also wir haben eine, sagen wir eine, Funktion J mit
+
+12
+00:01:03,022 --> 00:01:07,294
+nur einem Paramter, theta Eins, wie wir hatten, du weißt, ein paar Videos bevor. Wo
+
+13
+00:01:07,294 --> 00:01:11,913
+theta Eins ist eine reelle Zahl, okay? Das ermöglicht uns ein-dimensionale plots zu erzeugen, die
+
+14
+00:01:11,913 --> 00:01:16,416
+leichter anzuschauen sind. Und lasst uns versuchen zu verstehen warum einstufen und absinken
+
+15
+00:01:16,416 --> 00:01:23,940
+ihre Aufgabe an der Funktion erledigen. So, sagen wir, das ist unsere Funktion.
+
+16
+00:01:24,660 --> 00:01:31,696
+J von theta Eins, wo theta eine reele Zahl ist.
+
+17
+00:01:31,696 --> 00:01:39,202
+Sagen wir, dass ich den Gradient Descent mit theta Eins an dieser Stelle initializiert habe.

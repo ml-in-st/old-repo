@@ -1,0 +1,955 @@
+1
+00:00:00,240 --> 00:00:01,690
+En los últimos dos vídeos, hablamos
+
+2
+00:00:01,820 --> 00:00:02,990
+sobre las ideas de
+
+3
+00:00:03,140 --> 00:00:04,570
+cómo, en primer lugar, si se les han
+
+4
+00:00:04,780 --> 00:00:06,210
+proporcionado variables para sus películas, pueden
+
+5
+00:00:06,920 --> 00:00:08,610
+usar eso para saber los parámetros teta para los usuarios.
+
+6
+00:00:09,490 --> 00:00:11,400
+Y en segundo lugar, si se les proporcionaron los parámetros para los usuarios,
+
+7
+00:00:11,920 --> 00:00:13,570
+pueden usar eso para saber las variables para las películas.
+
+8
+00:00:14,480 --> 00:00:15,550
+En este vídeo, vamos a
+
+9
+00:00:15,650 --> 00:00:16,670
+tomar esas ideas y las vamos a
+
+10
+00:00:16,850 --> 00:00:18,130
+unir para presentar
+
+11
+00:00:18,280 --> 00:00:20,130
+un algoritmo de filtrado colaborativo.
+
+12
+00:00:21,250 --> 00:00:22,450
+Así es que una de las cosas con las que trabajamos
+
+13
+00:00:22,520 --> 00:00:23,640
+anteriormente, es que si
+
+14
+00:00:23,680 --> 00:00:24,510
+tienen las variables para las
+
+15
+00:00:24,600 --> 00:00:25,740
+películas, entonces pueden resolver
+
+16
+00:00:26,070 --> 00:00:27,590
+este problema de minimización para encontrar
+
+17
+00:00:27,950 --> 00:00:30,010
+la parámetros teta para sus usuarios.
+
+18
+00:00:30,730 --> 00:00:32,260
+Y luego también
+
+19
+00:00:32,640 --> 00:00:33,960
+resolvimos que si se les
+
+20
+00:00:34,360 --> 00:00:37,440
+dan los parámetros teta,
+
+21
+00:00:38,080 --> 00:00:38,990
+también pueden usar eso para
+
+22
+00:00:39,170 --> 00:00:40,800
+estimar las variables x, y
+
+23
+00:00:40,870 --> 00:00:42,980
+pueden hacer eso solucionando este problema de minimización.
+
+24
+00:00:44,310 --> 00:00:45,720
+Así que algo que podrían
+
+25
+00:00:45,880 --> 00:00:47,360
+hacer es en realidad ir y venir.
+
+26
+00:00:47,870 --> 00:00:50,230
+Quizás inicializar aleatoriamente los parámetros
+
+27
+00:00:50,510 --> 00:00:51,350
+y luego despejar para teta,
+
+28
+00:00:51,780 --> 00:00:52,690
+despejar para x, despejar para teta,
+
+29
+00:00:52,870 --> 00:00:54,330
+despejar para x. Pero
+
+30
+00:00:54,420 --> 00:00:55,220
+resulta que existe un
+
+31
+00:00:55,400 --> 00:00:56,760
+algoritmo más eficiente que no
+
+32
+00:00:56,980 --> 00:00:57,910
+necesita ir y venir
+
+33
+00:00:58,110 --> 00:00:59,700
+entre las x’s y las
+
+34
+00:00:59,730 --> 00:01:00,670
+teta, pero que puede resolver
+
+35
+00:01:01,300 --> 00:01:04,250
+para teta y x de manera simultánea.
+
+36
+00:01:05,160 --> 00:01:06,310
+Y aquí está. Lo que haremos es básicamente tomar
+
+37
+00:01:06,600 --> 00:01:08,990
+ambos objetivos de optimización y
+
+38
+00:01:09,130 --> 00:01:10,640
+colocarlos en el mismo objetivo.
+
+39
+00:01:11,550 --> 00:01:12,590
+Así es que voy a definir el
+
+40
+00:01:12,730 --> 00:01:15,010
+nuevo objetivo de optimización j, el cual
+
+41
+00:01:15,250 --> 00:01:16,540
+es una función de costos,
+
+42
+00:01:16,640 --> 00:01:17,630
+que es una función de mis variables
+
+43
+00:01:18,050 --> 00:01:19,150
+x y una función
+
+44
+00:01:19,790 --> 00:01:20,750
+de mi parámetros teta.
+
+45
+00:01:21,660 --> 00:01:23,050
+Y son básicamente los dos objetivos de optimización
+
+46
+00:01:23,520 --> 00:01:24,920
+que tenía en la parte superior, pero los puse juntos.
+
+47
+00:01:26,270 --> 00:01:27,760
+Entonces, con el fin de
+
+48
+00:01:28,060 --> 00:01:31,140
+explicar esto, primero quiero señalar que este
+
+49
+00:01:31,400 --> 00:01:33,420
+término aquí, este término de error al cuadrado
+
+50
+00:01:33,820 --> 00:01:35,490
+es el mismo
+
+51
+00:01:35,920 --> 00:01:39,250
+que este término de error al cuadrado, y las
+
+52
+00:01:39,760 --> 00:01:40,880
+sumatorias se ven un poco
+
+53
+00:01:41,050 --> 00:01:42,940
+diferente, pero vamos a ver lo que las sumas están haciendo en realidad.
+
+54
+00:01:43,800 --> 00:01:45,090
+La primera suma es la suma
+
+55
+00:01:45,480 --> 00:01:48,280
+sobre todos los usuarios j y
+
+56
+00:01:48,380 --> 00:01:50,590
+después, la suma sobre todas las películas calificadas por ese usuario.
+
+57
+00:01:51,890 --> 00:01:53,240
+Por lo tanto, esto está realmente sumando sobre todos los
+
+58
+00:01:53,470 --> 00:01:55,950
+pares ij, que corresponden
+
+59
+00:01:56,510 --> 00:01:57,830
+a una película que fue calificada por un usuario.
+
+60
+00:01:58,550 --> 00:01:59,960
+La suma sobre j dice, para cada
+
+61
+00:02:00,150 --> 00:02:01,520
+usuario, la suma de
+
+62
+00:02:01,740 --> 00:02:03,110
+todas las películas calificadas por ese usuario.
+
+63
+00:02:04,250 --> 00:02:07,340
+Esta suma aquí abajo, simplemente hace las cosas en el orden inverso.
+
+64
+00:02:07,630 --> 00:02:08,710
+Esto dice que para cada película
+
+65
+00:02:09,050 --> 00:02:11,140
+i, suma sobre todos los
+
+66
+00:02:11,340 --> 00:02:12,480
+los usuarios j que han
+
+67
+00:02:12,690 --> 00:02:14,580
+calificado esa película, así que
+
+68
+00:02:14,690 --> 00:02:16,100
+estas sumas, ambas
+
+69
+00:02:16,220 --> 00:02:18,150
+son sólo sumas sobre todos los pares
+
+70
+00:02:18,930 --> 00:02:21,150
+ij para las que
+
+71
+00:02:21,440 --> 00:02:24,620
+r de i,j es igual a 1.
+
+72
+00:02:24,660 --> 00:02:26,580
+Es solamente sumar sobre todas los
+
+73
+00:02:27,180 --> 00:02:29,810
+pares de películas del usuario para las que tienen una calificación,
+
+74
+00:02:30,840 --> 00:02:32,230
+de modo que estos dos términos
+
+75
+00:02:32,600 --> 00:02:34,740
+allí son sólo
+
+76
+00:02:34,930 --> 00:02:36,460
+exactamente este primer término, y
+
+77
+00:02:36,500 --> 00:02:38,310
+acabo de escribir la suma aquí de forma explícita,
+
+78
+00:02:39,310 --> 00:02:40,290
+en donde sólo digo que la suma
+
+79
+00:02:40,580 --> 00:02:42,290
+de todos los pares ij, de tal forma que
+
+80
+00:02:42,540 --> 00:02:45,060
+r(i,j) es igual a 1.
+
+81
+00:02:45,310 --> 00:02:46,800
+Así que lo que vamos
+
+82
+00:02:46,940 --> 00:02:48,790
+hacer es definir un
+
+83
+00:02:49,130 --> 00:02:51,410
+objetivo de optimización combinado que
+
+84
+00:02:51,670 --> 00:02:53,290
+queremos minimizar a fin
+
+85
+00:02:53,550 --> 00:02:55,700
+de resolver de forma simultánea para x y teta.
+
+86
+00:02:56,970 --> 00:02:58,040
+Y luego, los otros términos en
+
+87
+00:02:58,070 --> 00:03:00,250
+el objetivo de optimización son estos,
+
+88
+00:03:00,570 --> 00:03:02,870
+que es una regularización en función de teta,
+
+89
+00:03:03,770 --> 00:03:05,830
+así que esto va aquí abajo, y
+
+90
+00:03:06,290 --> 00:03:08,190
+la pieza final es este
+
+91
+00:03:08,900 --> 00:03:10,690
+término, que es
+
+92
+00:03:10,850 --> 00:03:12,970
+mi objetivo de optimización para
+
+93
+00:03:13,170 --> 00:03:16,180
+las x, y que se convirtió en esto.
+
+94
+00:03:16,500 --> 00:03:18,020
+Y este objetivo de optimización.
+
+95
+00:03:18,720 --> 00:03:19,730
+j en realidad tiene una propiedad interesante,
+
+96
+00:03:20,240 --> 00:03:20,950
+que si mantuvieran
+
+97
+00:03:21,410 --> 00:03:23,070
+la constante de x y simplemente
+
+98
+00:03:23,260 --> 00:03:25,490
+minimizaran con respecto a teta, entonces
+
+99
+00:03:25,670 --> 00:03:27,040
+estarían resolviendo exactamente este problema,
+
+100
+00:03:27,840 --> 00:03:28,450
+mientras que si hicieran
+
+101
+00:03:28,620 --> 00:03:29,590
+lo contrario, si fueran a
+
+102
+00:03:29,690 --> 00:03:31,310
+mantener la constante de teta y minimizar
+
+103
+00:03:31,670 --> 00:03:32,650
+j sólo con respecto a
+
+104
+00:03:32,750 --> 00:03:34,920
+las x, entonces se convertiría en equivalente a ésta,
+
+105
+00:03:35,230 --> 00:03:36,780
+ya sea porque este término
+
+106
+00:03:37,060 --> 00:03:38,860
+o este término es una constante si
+
+107
+00:03:38,970 --> 00:03:40,510
+están minimizando sólo respecto a las x , o sólo respecto a las tetas.
+
+108
+00:03:40,920 --> 00:03:43,680
+Así que aquí está un objetivo de optimización
+
+109
+00:03:44,640 --> 00:03:46,840
+objetivo que reúne mis
+
+110
+00:03:47,440 --> 00:03:50,230
+funciones de costo en términos de x, y en términos de teta.
+
+111
+00:03:51,620 --> 00:03:53,050
+Y con el fin de
+
+112
+00:03:53,470 --> 00:03:54,750
+llegar a un solo
+
+113
+00:03:55,090 --> 00:03:56,130
+problema de optimización, lo que vamos
+
+114
+00:03:56,280 --> 00:03:57,590
+a hacer, es tratar esta
+
+115
+00:03:58,430 --> 00:03:59,850
+función de costos como una
+
+116
+00:03:59,880 --> 00:04:00,890
+función de mis variables
+
+117
+00:04:01,410 --> 00:04:02,540
+x y de los parámetros de mi usuario
+
+118
+00:04:03,180 --> 00:04:05,020
+teta y
+
+119
+00:04:05,140 --> 00:04:06,570
+simplemente minimizar todo esto como
+
+120
+00:04:06,740 --> 00:04:07,830
+una función tanto de las x’s,
+
+121
+00:04:08,120 --> 00:04:10,210
+como de los tetas.
+
+122
+00:04:11,300 --> 00:04:12,400
+Y realmente la única diferencia
+
+123
+00:04:12,540 --> 00:04:13,800
+entre éste y el algoritmo anterior
+
+124
+00:04:14,160 --> 00:04:15,650
+es que, en lugar
+
+125
+00:04:15,980 --> 00:04:17,340
+de ir y venir, ya saben, anteriormente
+
+126
+00:04:17,840 --> 00:04:20,110
+hablamos de minimizar con respecto
+
+127
+00:04:20,420 --> 00:04:22,130
+a teta y después minimizar con respecto a x,
+
+128
+00:04:22,260 --> 00:04:23,370
+mientras minimizamos con respecto a teta,
+
+129
+00:04:23,900 --> 00:04:25,270
+minimizamos con respecto a x, y así sucesivamente.
+
+130
+00:04:26,130 --> 00:04:28,090
+En esta nueva versión, en lugar de
+
+131
+00:04:28,560 --> 00:04:30,020
+ir de manera secuencial entre los
+
+132
+00:04:30,220 --> 00:04:31,880
+2 grupos de parámetros x y teta,
+
+133
+00:04:32,180 --> 00:04:32,940
+lo que vamos a hacer
+
+134
+00:04:33,230 --> 00:04:34,600
+es minimizar con respecto
+
+135
+00:04:34,780 --> 00:04:36,410
+a ambos conjuntos de parámetros de manera simultánea.
+
+136
+00:04:39,750 --> 00:04:41,290
+Finalmente, un último detalle,
+
+137
+00:04:42,030 --> 00:04:44,380
+es que cuando estamos aprendiendo las variables de esta forma,
+
+138
+00:04:45,110 --> 00:04:46,410
+anteriormente habíamos usado
+
+139
+00:04:46,840 --> 00:04:49,290
+esta convención de que
+
+140
+00:04:49,470 --> 00:04:50,540
+tenemos una variable x0 igual a x0
+
+141
+00:04:50,740 --> 00:04:52,940
+uno, que corresponde a un término de interceptor.
+
+142
+00:04:54,140 --> 00:04:55,530
+Cuando usamos esta
+
+143
+00:04:55,760 --> 00:04:57,790
+especie de formulación en el que estamos realmente conociendo las variables,
+
+144
+00:04:58,300 --> 00:05:00,200
+realmente vamos a eliminar esta convención.
+
+145
+00:05:01,400 --> 00:05:04,220
+Y así las variables que vamos a aprender, x, estarán en Rn,
+
+146
+00:05:05,430 --> 00:05:06,650
+mientras que anteriormente teníamos
+
+147
+00:05:06,810 --> 00:05:09,770
+las variables x y Rn + 1, incluyendo el término de intercepción
+
+148
+00:05:10,390 --> 00:05:13,390
+al deshacernos de x0, ahora sólo tenemos x en Rn.
+
+149
+00:05:14,880 --> 00:05:16,520
+Y de manera similar, debido a que los
+
+150
+00:05:16,590 --> 00:05:17,780
+parámetros teta están en
+
+151
+00:05:17,850 --> 00:05:19,260
+la misma dimensión, ahora
+
+152
+00:05:19,510 --> 00:05:21,010
+también tenemos a teta en Rn
+
+153
+00:05:21,540 --> 00:05:23,340
+porque, si no hay
+
+154
+00:05:23,710 --> 00:05:24,580
+x0, entonces no hay necesidad
+
+155
+00:05:25,370 --> 00:05:26,880
+del parámetro teta 0 tampoco.
+
+156
+00:05:27,960 --> 00:05:28,880
+Y la razón por la que eliminamos
+
+157
+00:05:29,160 --> 00:05:30,390
+esta convención es porque
+
+158
+00:05:31,010 --> 00:05:32,610
+ahora estamos conociendo todas las variables, ¿verdad?
+
+159
+00:05:32,820 --> 00:05:34,280
+De modo que no hay necesidad
+
+160
+00:05:34,420 --> 00:05:36,650
+para codificar la variable que  siempre es igual a uno.
+
+161
+00:05:37,170 --> 00:05:38,310
+Porque si el algoritmo realmente desea
+
+162
+00:05:38,600 --> 00:05:39,450
+una variable que sea siempre igual
+
+163
+00:05:40,060 --> 00:05:41,830
+a 1, puede optar por aprender una por sí mismo.
+
+164
+00:05:42,290 --> 00:05:43,430
+Así que si el algoritmo lo elige,
+
+165
+00:05:43,720 --> 00:05:45,330
+puede establecer la variable x1 es igual a 1.
+
+166
+00:05:45,670 --> 00:05:47,010
+de modo que no es necesario
+
+167
+00:05:47,260 --> 00:05:48,300
+codificar la variable de
+
+168
+00:05:48,440 --> 00:05:50,060
+001, el algoritmo ahora tiene
+
+169
+00:05:50,340 --> 00:05:55,890
+la flexibilidad para simplemente aprender por sí mismo. Así, uniendo
+
+170
+00:05:56,420 --> 00:05:58,410
+todo, aquí está
+
+171
+00:05:58,780 --> 00:05:59,910
+nuestro algoritmo de filtrado colaborativo.
+
+172
+00:06:01,460 --> 00:06:02,330
+Primero, vamos a
+
+173
+00:06:03,010 --> 00:06:05,580
+inicializar x y
+
+174
+00:06:05,820 --> 00:06:07,290
+teta a pequeños valores aleatorios.
+
+175
+00:06:08,450 --> 00:06:09,200
+Y esto es un poco
+
+176
+00:06:09,310 --> 00:06:11,700
+como el entrenamiento de la red neuronal, en donde
+
+177
+00:06:11,720 --> 00:06:14,240
+también inicializamos todos los parámetros de una red neuronal a pequeños valores aleatorios.
+
+178
+00:06:16,640 --> 00:06:17,730
+Después, vamos a
+
+179
+00:06:17,950 --> 00:06:20,110
+minimizar la función de costos usando
+
+180
+00:06:20,500 --> 00:06:23,360
+descensos de gradiente o uno de los algoritmos de optimización avanzados.
+
+181
+00:06:24,610 --> 00:06:25,890
+Por lo tanto, si toman las derivadas,
+
+182
+00:06:26,020 --> 00:06:27,460
+encontrarán las actualizaciones de gradiente en descenso
+
+183
+00:06:27,590 --> 00:06:29,320
+como estas y por tanto este
+
+184
+00:06:29,630 --> 00:06:31,160
+término aquí es la
+
+185
+00:06:31,660 --> 00:06:33,890
+derivada parcial de la función de costos -
+
+186
+00:06:35,140 --> 00:06:35,940
+no voy a escribir eso -
+
+187
+00:06:36,110 --> 00:06:37,860
+con respecto al valor de variable
+
+188
+00:06:38,070 --> 00:06:40,020
+x(i)k y, de manera similar,
+
+189
+00:06:41,020 --> 00:06:42,430
+este término aquí también es
+
+190
+00:06:43,030 --> 00:06:44,660
+un valor de la derivada parcial de
+
+191
+00:06:44,730 --> 00:06:46,480
+la función de costos con respecto al parámetro
+
+192
+00:06:46,930 --> 00:06:48,950
+teta que estamos minimizando.
+
+193
+00:06:50,210 --> 00:06:51,410
+Y sólo como recordatorio, en
+
+194
+00:06:51,760 --> 00:06:52,920
+esta fórmula ya no
+
+195
+00:06:53,130 --> 00:06:54,760
+tenemos esta x0 que es igual
+
+196
+00:06:54,970 --> 00:06:56,740
+a 1 y tenemos
+
+197
+00:06:57,010 --> 00:07:00,010
+que x está en Rn y teta es una Rn.
+
+198
+00:07:01,480 --> 00:07:03,100
+En esta nueva formulación, estamos regularizando
+
+199
+00:07:03,760 --> 00:07:05,220
+cada uno de nuestros parámetros teta, ya saben, cada uno de nuestros parámetros x.
+
+200
+00:07:07,400 --> 00:07:09,060
+Ya no existe el caso especial
+
+201
+00:07:09,480 --> 00:07:11,850
+teta cero, que se
+
+202
+00:07:12,210 --> 00:07:13,760
+regularizó de manera diferente, o que
+
+203
+00:07:13,860 --> 00:07:15,440
+no se regularizó en comparación con
+
+204
+00:07:15,560 --> 00:07:17,650
+la parámetros teta 1 hasta teta n.
+
+205
+00:07:18,370 --> 00:07:19,710
+Así que ahora ya no hay una
+
+206
+00:07:20,070 --> 00:07:21,150
+teta 0, razón por la que,
+
+207
+00:07:21,400 --> 00:07:22,450
+en estas actualizaciones, no
+
+208
+00:07:22,700 --> 00:07:24,080
+desglosé un paréntesis especial para k es igual a 0.
+
+209
+00:07:26,070 --> 00:07:27,230
+De modo que entonces usamos el gradiente de descenso
+
+210
+00:07:27,740 --> 00:07:28,710
+minimizar la función de costos
+
+211
+00:07:29,090 --> 00:07:30,260
+j con respecto a las
+
+212
+00:07:30,390 --> 00:07:32,000
+variables x y con respecto a los parámetros teta.
+
+213
+00:07:33,160 --> 00:07:35,050
+Finalmente, dado un
+
+214
+00:07:35,140 --> 00:07:36,320
+usuario, si un usuario
+
+215
+00:07:36,570 --> 00:07:38,920
+tiene algunos parámetros, teta, y
+
+216
+00:07:39,410 --> 00:07:40,540
+si hay una película con
+
+217
+00:07:40,690 --> 00:07:41,980
+algún tipo de variables aprendidas x,
+
+218
+00:07:42,580 --> 00:07:43,720
+entonces podríamos predecir que a esa
+
+219
+00:07:43,970 --> 00:07:44,940
+película se le daría una
+
+220
+00:07:45,030 --> 00:07:46,200
+calificación de estrella por parte de ese usuario
+
+221
+00:07:47,010 --> 00:07:48,780
+de transposición teta j. O
+
+222
+00:07:48,860 --> 00:07:50,370
+sólo para llenarlos,
+
+223
+00:07:50,640 --> 00:07:52,250
+entonces diríamos que si el usuario
+
+224
+00:07:52,630 --> 00:07:53,780
+j aún no ha
+
+225
+00:07:54,010 --> 00:07:55,980
+calificado la película i, entonces
+
+226
+00:07:56,170 --> 00:07:57,300
+lo que hacemos es predecir que
+
+227
+00:07:58,150 --> 00:07:59,120
+el usuario j va a
+
+228
+00:07:59,710 --> 00:08:01,420
+calificar la película i de acuerdo con
+
+229
+00:08:02,300 --> 00:08:04,230
+teta j transpone xi.
+
+230
+00:08:06,650 --> 00:08:08,010
+Así que ese es el algoritmo de
+
+231
+00:08:08,810 --> 00:08:10,170
+filtrado colaborativo.
+
+232
+00:08:10,310 --> 00:08:12,230
+Si implementan este algoritmo, obtienen en realidad un algoritmo muy
+
+233
+00:08:12,730 --> 00:08:14,080
+decente que aprenderá de manera simultánea
+
+234
+00:08:15,060 --> 00:08:16,770
+buenas variables para, con suerte,
+
+235
+00:08:17,110 --> 00:08:18,460
+todas las películas, así como
+
+236
+00:08:18,570 --> 00:08:19,890
+conocer los parámetros para todos los
+
+237
+00:08:20,050 --> 00:08:21,290
+usuarios y dar
+
+238
+00:08:21,440 --> 00:08:23,060
+muy buenas predicciones sobre cómo
+
+239
+00:08:23,290 --> 00:08:25,890
+los diferentes usuarios calificarán diferentes películas que aún no hayan calificado

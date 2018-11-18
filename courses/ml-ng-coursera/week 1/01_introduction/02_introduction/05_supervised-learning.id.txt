@@ -1,0 +1,146 @@
+Di video ini saya akan menyatakan apa
+sebenarnya persoalan machine learning yang paling umum, yaitu supervised
+learning. Saya akan definisikan supervised learning lebih formil lagi nanti, tapi mungkin
+paling baik menjelaskan atau memulai dengan contoh apa sebenarnya itu dan kita akan mendefinisikan
+secara formil nanti. Katakanlah Anda ingin memprediksi harga perumahan. Beberapa waktu lalu, seorang
+mahasiswa mengambil beberapa kumpulan data dari Institute of Portland di Oregon. Dan katakan
+Anda memplot satu kumpulan data dan tampak seperti ini. Di sini pada sumbu horizontal,
+ukuran rumah yang berbeda-beda dalam kaki persegi, dan pada sumbu vertikal, harga
+rumah yang berbeda-beda dalam ribuan dolar. Jadi. Dengan data ini, katakan Anda punya teman
+yang memiliki sebuah rumah yang, katakan 750 kaki persegi dan berharap menjualnya
+dan mereka ingin tahu berapa yang bisa mereka dapatkan dari rumah itu. Jadi bagaimana algoritma
+belajar menolong Anda? Satu hal yang mungkin dapat dilakukan algoritma belajar adalah meletakkan
+garis lurus melalui data atau mencocokkan suatu garis lurus ke data tersebut dan, berdasarkan
+hal itu, mungkin sepertinya rumah itu dapat di jual mungkin sekitar $150,000. Tapi mungkin ini
+bukan satu-satunya algoritma belajar yang dapat Anda gunakan. Mungkin ada yang lebih baik.
+Contohnya, sebagai ganti meletakkan garis lurus ke data, kita bisa putuskan bahwa
+lebih baik mencocokkan sebuah fungsi kwadrat atau sebuah polinomial orde kedua ke
+data ini. Dan jika Anda melakukan itu, dan membuat prediksi di sini, maka tampaknya,
+mungkin kita dapat menjual rumah itu mendekati $200,000. Salah satu hal yang akan kita bicarakan
+nanti adalah bagaimana memilih dan bagaimana memutuskan apakah Anda ingin meletakkan garis lurus
+ke data atau apakah Anda ingin mencocokkan fungsi kwadrat ke data dan tidak
+memilih mana yang adil yang memberikan teman Anda rumah yang lebih baik untuk dijual. Tapi masing-
+masing akan menjadi contoh yang baik bagi sebuah algoritma belajar. Jadi ini adalah contoh
+dari algoritma supervised learning. Dan istilah supervised learning mengacu pada
+fakta bahwa kita memberi algoritma ini sekumpulan data dimana "jawaban yang benar" di
+berikan. Artinya, kita memberikan sekumpulan data rumah-rumah dimana untuk setiap contoh dalam kumpulan
+data ini, kita memberitahu algoritma ini berapa harga yang benar begitu juga berapa harga aktualnya begitu,
+rumah itu terjual dan tujuan dari algoritma ini hanya ingin menghasilkan lebih banyak
+jawaban-jawaban benar ini seperti untuk rumah baru ini, Anda tahu, bahwa mungkin teman Anda
+coba untuk menjualnya. Untuk mendefinisikan dengan istilah lagi, ini disebut juga
+persoalan regresi dan dengan persoalan regresi, maksud saya, kita coba memprediksi
+output bernilai kontinyu. Sebut saja harganya. Jadi secara teknis, saya kira harga dapat
+dibulatkan ke nilai sen terdekat. Jadi mungkin harga sebenarnya nilai-nilai diskrit, tapi
+biasanya kita berpikir harga rumah sebagai bilangan riil, sebagai nilai skalar, sebagai
+sejumlah nilai yang kontinyu dan istilah regresi merujuk pada fakta bahwa kita
+sedang mencoba memprediksi jenis sifat yang bernilai kontinyu. Ini contoh lain
+supervised learning, beberapa teman dan saya benar-benar sedang mengerjakan ini
+sebelumnya. Mari kita lihat Anda ingin melihat catatan medis dan coba memprediksi
+kanker payudara apakah ganas atau jinak. Jika seseorang menemukan tumor payudara, gumpalan
+di payudara mereka, tumor ganas adalah tumor yang jahat dan berbahaya, dan
+tumor jinak adalah tumor yang tidak berbahaya. Jadi tak diragukan lagi orang sangat peduli akan hal ini.
+Mari kita lihat sekumpulan data dan anggaplah pada kumpulan data Anda sumbu
+horizontalnya ukuran tumor dan sumbu vertikalnya saya akan memplot satu
+atau nol, ya atau tidak, apakah ya atau bukan, ini contoh tumor yang telah kita lihat sebelumnya yang
+ganas, artinya satu atau nol jika tidak ganas atau jinak. Jadi katakanlah kumpulan data kita tampak
+seperti ini dimana kita melihat tumor seukuran ini yang tampaknya jinak. Satu
+berukuran ini, satu berukuran ini. Dan seterusnya. Dan sedihnya kita juga melihat beberapa tumor
+ganas, satu berukuran itu, satu berukuran itu, satu berukuran itu... Dan seterusnya. Jadi
+contoh ini... Saya punya lima contoh tumor jinak diperlihatkan di bawah ini, dan lima contoh
+tumor ganas ditampilkan dengan sumbu vertikal bernilai satu. Dan katakanlah kita punya
+teman yang tragisnya punya tumor payudara, dan katakanlah ukuran tumor payudaranya
+mungkin sekitar nilai ini. Pertanyaan terkait machine learning adalah, dapatkah Anda
+memperkirakan berapa kemungkinannya, berapa kesempatan bahwa suatu tumor ganas
+versus jinak? Untuk memperkenalkan satu istilah lagi, ini adalah contoh dari
+persoalan klasifikasi. Istilah klasifikasi merujuk pada fakta bahwa
+kita sedang mencoba memprediksi output bernilai diskrit: nol atau satu, ganas atau
+jinak. Dan tampaknya dalam persoalan klasifikasi kadangkala kamu bisa
+memiliki lebih dari dua nilai untuk dua nilai yang paling tepat atas outputnya. Sebagai
+contoh konkrit, mungkin ada tiga tipe kanker payudara sehingga Anda bisa mencoba
+untuk memprediksi nilai diskrit nol, satu, dua, atau tiga dengan nol untuk jinak.
+Tumor jinak, jadi tidak kanker. Dan satu bisa berarti, kanker jenis pertama, seperti, Anda punya
+tiga jenis kanker, jenis pertama bisa yang mana saja dari ketiganya. Dan dua bisa berarti kanker jenis
+kedua, tiga bisa berarti kanker jenis ketiga. Tapi ini juga akan menjadi
+persoalan klasifikasi, karena output kumpulan nilai diskrit ini berhubungan
+dengan, Anda tahu, tidak kanker, atau jenis kanker satu, atau jenis kanker dua, atau jenis kanker
+tiga. Dalam persoalan klasifikasi ada cara lain untuk memplot data ini. Biar saya tunjukkan
+pada Anda apa yang saya maksudkan. Biar saya gunakan simbol yang sedikit berbeda untuk memplot data
+ini. Jadi jika ukuran tumor akan menjadi sifat yang akan saya gunakan untuk memprediksi
+keganasan atau kejinakan, saya dapat juga menggambar data saya seperti ini. Saya akan menggunakan
+simbol lain untuk menunjukkan jinak dan ganas, atau contoh negatif dan positif
+saya. Jadi sebagai ganti menggambar tanda silang, sekarang saya akan menggambar O untuk tumor
+jinak. Seperti ini. Dan saya akan tetap menggunakan X untuk menunjukkan tumor ganas saya.
+Oke? Saya harap ini mulai dapat dimengerti. Semua yang saya lakukan adalah saya mengambil, Anda tahu,
+ini, kumpulan data saya di atas dan saya hanya memetakannya ke bawah. Ke garis riil ini seperti ini.
+Dan mulai menggunakan simbol-simbol yang berbeda, lingkaran dan tanda silang, untuk menunjukkan contoh
+ganas versus jinak. Sekarang di contoh ini kita hanya menggunakan satu ciri atau satu
+sifat, sebagian besar, ukuran tumor untuk memprediksi apakah tumor ganas
+atau jinak. Persoalan machine learning lainnya saat kita punya lebih dari satu
+ciri, lebih dari satu sifat. Ini contohnya. Katakanlah sebagai ganti hanya
+mengetahui ukuran tumor, kita tahu keduanya umur pasien dan ukuran tumor. Dalam
+kasus itu mungkin data Anda akan terlihat seperti ini dimana saya mungkin punya sekumpulan pasien
+dengan umur-umur itu dan ukuran tumor itu dan mereka terlihat seperti ini. Dan sekumpulan pasien
+yang berbeda, mereka terlihat sedikit berbeda, yang memiliki tumor tampaknya ganas, seperti yang
+ditunjukkan oleh tanda-tanda silang. Jadi, katakanlah Anda punya teman yang tragisnya punya
+tumor. Dan mungkin, ukuran tumornya dan umur jatuhnya di sekitar sana. Jadi diberikan kumpulan data
+seperti ini, apa yang algoritma belajar mungkin lakukan adalah membuat garis lurus
+melalui data untuk mencoba memisahkan tumor ganas dari tumor jinak
+dan, jadi algoritma belajar bisa memutuskan untuk membuat garis lurus seperti itu untuk
+memisahkan dua kelas tumor. Dan. Anda tahu, dengan ini, semoga Anda
+dapat memutuskan bahwa tumor teman Anda kemungkinan besar jika di sebelah sana,
+semoga algoritma belajar Anda akan mengatakan bahwa tumor teman Anda jatuh
+di sisi jinak ini dan karena itu kemungkinan besar jinak daripada ganas. Dalam
+contoh ini kita punya dua ciri-ciri, yaitu, umur pasien dan ukuran
+tumor. Dalam persoalan machine learning lainnya kita akan sering punya lebih banyak ciri-ciri, dan
+teman saya yang bekerja pada persoalan ini, mereka sebenarnya menggunakan ciri-ciri lainnya seperti ini,
+yakni ketebalan gumpalan, ketebalan gumpalan dari tumor payudara. Keseragaman ukuran sel
+tumor. Keseragaman bentuk sel tumor, dan seterusnya, dan ciri-ciri lainnya
+juga. Dan tampaknya satu dari yang mena-, algoritma belajar yang paling menarik yang
+akan kita lihat di kelas ini adalah algoritma belajar yang dapat menangani, tidak hanya dua
+atau tiga atau lima ciri-ciri, tapi ciri-ciri yang tak terbatas jumlahnya. Di slide ini, saya
+telah mendaftarkan total lima ciri-ciri yang berbeda. Persis, dua pada sumbu dan tiga lainnya di atas sini.
+Namun tampaknya pada beberapa persoalan belajar, apa yang benar-benar Anda inginkan bukan mau
+menggunakan, seperti, tiga atau lima ciri-ciri. Melainkan, Anda ingin menggunakan ciri-ciri
+yang tak terhingga jumlahnya, sifat-sifat yang tak terhingga jumlahnya, sehingga algoritma
+belajar Anda punya banyak sifat atau ciri atau isyarat lalu membuat prediksi-
+prediksi itu. Jadi bagaimana Anda menangani ciri-ciri yang tak terhingga jumlahnya. Bahkan bagaimana Anda
+menyimpan hal-hal yang tak terhingga jumlahnya di komputer saat komputer
+Anda akan kehabisan memori. Tampaknya saat kita bicara tentang
+algoritma yang disebut Support Vector Machine, akan ada trik matematika
+yang akan memperkenankan komputer untuk menangani ciri-ciri yang tak terhingga jumlahnya. Bayangkan
+bahwa saya tidak hanya menulis dua ciri-ciri di sini dan tiga ciri-ciri di kanan. Tapi, bayangkan
+saya menulis daftar panjang tak berhingga, saya terus menulis lebih dan lebih dan lebih banyak
+ciri-ciri. Seperti daftar panjang tak terhingga ciri-ciri. Tampaknya, kita akan bisa
+memajukan algoritma yang dapat menangani itu. Jadi, sebagai rangkuman. Di kelas
+ini kita akan membahas tentang supervised learning. Dan gagasannya adalah, di
+supervised learning, dalam setiap contoh pada kumpulan data kita, kita diberitahu apa
+"jawaban benarnya" yang kita punya sama seperti algoritma itu telah memprediksi
+contoh itu. Contohnya harga rumah, atau apakah tumor ganas atau
+jinak. Kita juga membahas tentang persoalan regresi. Dan dengan regresi,
+itu maksudnya tujuan kita mau memprediksi output bernilai kontinyu. Dan kita membahas
+tentang persoalan klasifikasi, yang mana tujuannya untuk memprediksi output bernilai
+diskrit. Hanya sebuah pertanyaan cepat terakhir: Anggap Anda sedang menjalankan perusahaan dan Anda
+ingin mengembangkan algoritma belajar untuk mengatasi kedua persoalan berikut. Pada
+soal pertama, Anda punya inventaris besar barang-barang yang identik. Jadi bayangkan Anda punya
+ribuan salinan beberapa barang yang identik untuk dijual dan Anda ingin memprediksi berapa
+banyak dari barang-barang ini yang Anda jual dalam tiga bulan kedepan. Dalam persoalan kedua,
+soal dua, Anda ingin-- Anda punya banyak pengguna dan Anda ingin menulis perangkat lunak untuk
+memeriksa setiap individu dari rekening pelanggan Anda, jadi setiap rekening
+pelanggan Anda; dan untuk setiap rekening, putuskan apakah atau tidak rekening telah
+diretas atau dikompromikan. Jadi, untuk setiap soal ini, haruskah mereka diperlakukan sebagai
+persoalan klasifikasi, atau sebagai persoalan regresi? Saat video berhenti sementara,
+silakan gunakan mouse Anda untuk memilih yang mana dari keempat pilihan di sebelah kiri Anda
+pikir sebagai jawaban yang benar. Jadi semoga, Anda mendapat bahwa ini jawabannya. Untuk
+soal pertama, saya akan memperlakukan ini sebagai persoalan regresi, karena jika saya punya, Anda
+tahu, ribuan barang, well, saya mungkin akan memperlakukan ini sebagai nilai riil,
+sebagai nilai kontinyu. Dan memperlakukan, karenanya, jumlah barang yang saya jual,
+sebagai nilai kontinyu. Dan untuk soal kedua, saya akan memperlakukan itu sebagai
+persoalan klasifikasi, karena saya bisa katakan, atur nilai yang ingin saya prediksi dengan
+nol, untuk menunjukkan rekening tidak di retas. Dan atur nilai satu untuk menunjukkan
+rekening telah diretas. Jadi seperti, Anda tahu, kanker payudara,
+nol adalah jinak, satu adalah ganas. Jadi saya bisa atur ini menjadi nol atau satu tergantung
+apakah rekening telah diretas, dan punya algoritma mencoba memprediksi masing-masing dari
+dua nilai diskrit ini. Dan karena ada sejumlah kecil nilai diskrit, karenanya saya
+akan memperlakukan ini sebagai persoalan klasifikasi. Jadi, itu saja untuk supervised
+learning dan pada video berikutnya saya akan membahas tentang unsupervised learning, yang merupakan
+kategori utama lainnya dari algoritma belajar.

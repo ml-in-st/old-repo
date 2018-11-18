@@ -1,0 +1,453 @@
+1
+00:00:00,960 --> 00:00:05,684
+Nesse vídeo, vamos mergulhar mais fundo, e ter uma
+intuição melhor do que a função de custo faz.
+
+2
+00:00:05,684 --> 00:00:10,523
+Esse vídeo assume que você tem familiaridade com Curvas de Contorno.
+
+3
+00:00:10,523 --> 00:00:15,189
+Caso você não conheça Curvas de Nível,
+algumas das ilustrações nesse vídeo
+
+4
+00:00:15,189 --> 00:00:20,144
+podem não fazer sentido para você,
+mas não tem problema caso você acabe pulando
+
+5
+00:00:20,144 --> 00:00:24,522
+parte desse vídeo, pelo fato de você ainda não ter visto Curvas de Nível.
+
+6
+00:00:24,522 --> 00:00:29,246
+Não tem problema, e você
+ainda entenderá o resto desse curso.
+
+7
+00:00:29,246 --> 00:00:34,935
+Aqui está a formulação do nosso problema, como de costume:
+
+8
+00:00:34,935 --> 00:00:39,882
+com os parâmetros de hipótese, função de custo, e
+objetivo de otimização.
+
+9
+00:00:39,882 --> 00:00:45,163
+Ao contrário do vídeo anterior, eu vou
+manter os meus dois parâmetros, θ₀ e θ₁,
+
+10
+00:00:45,163 --> 00:00:50,573
+quando formos visualizar a função de custo.
+
+11
+00:00:50,573 --> 00:00:57,204
+Então, como da outra vez, nós desejamos entender a
+hipótese "h" e a função de custo "J".
+
+12
+00:00:57,204 --> 00:01:04,167
+Este é o meu conjunto de teste, de preços de casas,
+e vamos fazer algumas hipóteses.
+
+13
+00:01:04,167 --> 00:01:10,219
+Como essa: "h(x)=50+0.06x".
+Essa, em particular, não é uma boa hipótese.
+
+14
+00:01:10,219 --> 00:01:16,270
+Mas, se eu definir "θ₀=50" e "θ₁=0.06",
+então eu terei essa hipótese,
+
+15
+00:01:16,270 --> 00:01:22,190
+que corresponde a essa linha reta.
+Agora, dados esses valores de θ₀ e θ₁,
+
+16
+00:01:22,190 --> 00:01:27,511
+queremos traçar à direita, 
+a função de custo correspondente.
+
+17
+00:01:27,511 --> 00:01:33,150
+O que fizemos da última vez,
+quando tínhamos apenas θ₁,
+
+18
+00:01:33,150 --> 00:01:37,814
+foi traçar figuras como essa, função de θ₁.
+Mas agora temos dois parâmetros, θ₀ e θ₁,
+
+19
+00:01:37,814 --> 00:01:42,340
+então o desenho fica um pouco mais complicado.
+
+20
+00:01:42,340 --> 00:01:47,699
+Acontece que, quando temos apenas um parâmetro,
+os plots têm esse formato de parábola.
+
+21
+00:01:47,699 --> 00:01:52,925
+Agora, quando temos dois
+parâmetros, a função de custo
+
+22
+00:01:52,925 --> 00:01:58,218
+também tem um formato semelhante a um arco.
+ E, dependendo do seu conjunto de testes,
+
+23
+00:01:58,218 --> 00:02:03,511
+você irá obter uma função de custo que talvez
+se pareça com isso.
+
+24
+00:02:03,511 --> 00:02:09,404
+Esse é um traçado de superfície em 3-D,
+onde os eixos representam θ₀ e θ₁.
+
+25
+00:02:09,404 --> 00:02:15,326
+Então, conforme variamos θ₀ e θ₁,
+obtemos valores diferentes
+
+26
+00:02:15,326 --> 00:02:20,964
+para a função de custo "J(θ₀, θ₁)".
+E a altura da superfície
+
+27
+00:02:20,964 --> 00:02:26,347
+em um ponto específico de θ₀ e θ₁
+(que é o eixo vertical),
+
+28
+00:02:26,347 --> 00:02:31,200
+a altura da superfície, naquele ponto,
+indica o valor de "J(θ₀,θ₁)".
+
+29
+00:02:31,200 --> 00:02:36,471
+E você consegue ver essa espécie de formato de arco.
+
+30
+00:02:36,471 --> 00:02:46,351
+Deixe-me mostrar o mesmo traçado em 3D.
+Essa é a mesma figura em 3D, eixo horizontal sendo θ₁,
+
+31
+00:02:46,351 --> 00:02:52,122
+e eixo vertical sendo J(θ₀, θ₁).
+E se eu rotacionar essa figura,
+
+32
+00:02:52,122 --> 00:02:57,608
+você consegue ter uma noção da
+superfície em forma de parábola.
+
+33
+00:02:57,608 --> 00:03:03,592
+E essa é a forma com que a função de custo "J"
+se assemelha. Agora, para fins de ilustração,
+
+34
+00:03:03,592 --> 00:03:09,077
+eu não vou mais usar esse tipo de figuras em 3D,
+para mostrar a função de custo "J".
+
+35
+00:03:09,077 --> 00:03:16,475
+Ao invés disso, vou usar Curvas de Nível,
+ou o que eu chamo também de Figuras de Nível.
+
+36
+00:03:16,475 --> 00:03:24,748
+Acredito que sejam a mesma coisa.
+Para demonstrar essas superfícies:
+
+37
+00:03:24,748 --> 00:03:31,135
+à direita está um exemplo de Curvas de Nível,
+onde os eixos são θ₀ e θ₁,
+
+38
+00:03:31,135 --> 00:03:37,602
+e cada uma dessas elipses mostram um conjunto de pontos,
+
+39
+00:03:37,602 --> 00:03:43,757
+que assumem o mesmo valor para "J(θ₀, θ₁)".
+
+40
+00:03:43,757 --> 00:03:50,514
+Então, por exemplo, se você pegar esses três pontos.
+
+41
+00:03:50,514 --> 00:03:55,583
+Todos esses três pontos,
+que acabei de desenhar em magenta,
+
+42
+00:03:55,583 --> 00:03:59,730
+têm o mesmo valor para "J(θ₀, θ₁)", okay?
+
+43
+00:03:59,730 --> 00:04:04,774
+São diferentes valores de θ₀ e θ₁,
+mas eles têm o mesmo valor para "J(θ₀, θ₁)".
+
+44
+00:04:04,774 --> 00:04:10,218
+E, caso você não tenha visto Curvas de Nível anteriormente,
+
+45
+00:04:10,218 --> 00:04:14,992
+imagine uma parábola 3D saindo da minha tela.
+
+46
+00:04:14,992 --> 00:04:19,668
+Então o mínimo, o fundo da parábola, é esse ponto do meio,
+
+47
+00:04:19,668 --> 00:04:24,285
+o meio dessas elipses concêntricas.
+E imagine uma parábola, que cresce para fora da minha tela.
+
+48
+00:04:24,285 --> 00:04:28,786
+De forma que, cada uma dessas elipses,
+tem a mesma altura acima da minha tela.
+
+49
+00:04:28,786 --> 00:04:33,345
+E o valor mínimo da parábola é aquele no meio.
+
+50
+00:04:33,345 --> 00:04:37,787
+Assim, as Curvas de Nível são uma forma
+mais conveniente de visualizar
+
+51
+00:04:37,787 --> 00:04:45,185
+minha função "J".
+Vamos dar uma olhadas em alguns exemplos.
+
+52
+00:04:45,185 --> 00:04:53,275
+Aqui, em vermelho, tenho um ponto que corresponde a "θ₀=800",
+
+53
+00:04:53,275 --> 00:05:01,964
+e "θ₁=-0.15". E esse ponto em vermelho,
+
+54
+00:05:01,964 --> 00:05:07,322
+corresponde a um par de valores (θ₀, θ₁),
+
+55
+00:05:07,322 --> 00:05:12,092
+que, na verdade, correspondem àquela hipótese, certo?
+
+56
+00:05:12,092 --> 00:05:17,189
+"θ₀ =800", ou seja, a reta intercepta
+o eixo vertical em torno de 800,
+
+57
+00:05:17,189 --> 00:05:21,763
+e tem uma inclinação de -0.15.
+Porém, essa linha,
+
+58
+00:05:21,763 --> 00:05:26,859
+não se ajusta bem aos dados, certo?
+Essa hipótese, "h(x)", com esses valores de θ₀ e θ₁,
+
+59
+00:05:26,859 --> 00:05:32,283
+não é exatamente um bom ajuste para os dados.
+E, como você pode ver,
+
+60
+00:05:32,283 --> 00:05:37,531
+o seu custo corresponde a um valor que é bem longe do mínimo.
+
+61
+00:05:37,531 --> 00:05:42,901
+É um custo bem alto, por que isso simplesmente
+não é um bom ajuste para os dados.
+
+62
+00:05:42,901 --> 00:05:47,247
+Vamos dar uma olhada em mais alguns exemplos.
+ Esta é uma hipótese diferente,
+
+63
+00:05:47,247 --> 00:05:52,489
+que ainda não é perfeita para os dados,
+ mas pode ser um pouco melhor.
+
+64
+00:05:52,489 --> 00:05:57,986
+Então, aqui está o ponto.
+Aqui estão meus parâmetros θ₀, θ₁.
+
+65
+00:05:57,986 --> 00:06:07,387
+Então, meu valor de "θ₀" é em torno de "360",
+e  meu valor para "θ₁" é "0".
+
+66
+00:06:07,387 --> 00:06:14,047
+Vamos escrever isso: "θ₀=360", e "θ₁=0".
+
+67
+00:06:14,047 --> 00:06:20,063
+E esse par de parâmetros corresponde àquela hipótese.
+
+68
+00:06:20,063 --> 00:06:26,161
+Corresponde a uma linha reta horizontal.
+Isso é "h(x)=360+0·x".
+
+69
+00:06:26,161 --> 00:06:32,421
+Essa é minha hipótese.
+E essa hipótese tem um custo,
+
+70
+00:06:32,421 --> 00:06:38,600
+que é mostrado como a 
+altura da função J naquele ponto.
+
+71
+00:06:38,791 --> 00:06:44,886
+Vamos dar uma olhada em mais alguns exemplos.
+Aqui está mais um.
+
+72
+00:06:44,886 --> 00:06:52,231
+Para esse valor de "θ₀", e esse de "θ₁",
+nós obtemos essa hipótese "h(x)".
+
+73
+00:06:52,231 --> 00:06:58,599
+Novamente, não é ótima para os dados,
+está na verdade mais longe do mínimo. Último exemplo:
+
+74
+00:06:58,599 --> 00:07:03,450
+Este ponto não está exatamente no mínimo,
+mas está bem próximo.
+
+75
+00:07:03,450 --> 00:07:08,486
+Então não é um ajuste ruim aos dados.
+Para algum "θ₀",
+
+76
+00:07:08,486 --> 00:07:13,337
+e para um certo valor de "θ₁",
+
+77
+00:07:13,337 --> 00:07:18,004
+temos um certo valor de "h(x)".
+E isso não é exatamente o mínimo, mas está bem perto.
+
+78
+00:07:18,004 --> 00:07:23,039
+Então a soma do quadrado das distâncias entre
+os meus exemplos de treinamento,
+
+79
+00:07:23,039 --> 00:07:28,259
+e a minha hipótese (soma do quadrado dos erros),
+
+80
+00:07:28,259 --> 00:07:32,548
+fica bem perto do mínimo,
+apesar de não ser exatamente o mínimo.
+
+81
+00:07:32,548 --> 00:07:37,096
+Então, eu espero que essas figuras
+tenham lhe dado uma melhor percepção
+
+82
+00:07:37,096 --> 00:07:41,869
+do que são os valores da função de custo "J",
+
+83
+00:07:41,869 --> 00:07:47,324
+de como eles correspondem à diferentes hipóteses.
+E de como melhores hipóteses correpondem
+
+84
+00:07:47,324 --> 00:07:52,983
+a pontos mais próximos do
+mínimo dessa função de custo "J".
+
+85
+00:07:52,983 --> 00:07:57,619
+Mas o que realmente queremos é uma algoritmo eficiente,
+um programa eficiente,
+
+86
+00:07:57,619 --> 00:08:02,218
+para encontrar automaticamente
+os valores de "θ₁" e "θ₀" que minimizam
+
+87
+00:08:02,218 --> 00:08:06,566
+a função de custo "J", certo?
+Não queremos ter que plotar essas figuras,
+
+88
+00:08:06,566 --> 00:08:10,697
+e então ler manualmente os números.
+
+89
+00:08:10,697 --> 00:08:15,263
+E, de fato, veremos mais
+tarde que quando observarmos
+
+90
+00:08:15,426 --> 00:08:19,938
+exemplos mais complexos,
+teremos figuras de alta dimensionalidade,
+
+91
+00:08:19,938 --> 00:08:23,906
+com mais parâmetros.
+Veremos mais ao longo do curso,
+
+92
+00:08:23,906 --> 00:08:28,091
+exemplos onde essa figura não pode ser traçada.
+
+93
+00:08:28,091 --> 00:08:33,664
+Tornando a visualização bem mais difícil.
+Assim, o que queremos é ter um programa,
+
+94
+00:08:33,664 --> 00:08:37,729
+que descubra os valores de "θ₀" e "θ₁"
+que minimizem essa função.
+
+95
+00:08:37,916 --> 00:08:42,914
+E no próximo vídeo nós começaremos a falar
+sobre um algoritmo que encontre automaticamente
+
+96
+00:08:42,914 --> 00:08:47,600
+o valores de "θ₀" e "θ₁" que minimizam  a função de custo "J".
+Tradução: Eduardo Bonet | Revisão: Pablo de Morais Andrade

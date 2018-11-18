@@ -1,0 +1,1432 @@
+1
+00:00:00,180 --> 00:00:01,178
+U ovome videu voleo bih da
+
+2
+00:00:01,178 --> 00:00:02,587
+vam kažem kako da pišete
+
+3
+00:00:02,600 --> 00:00:03,842
+kontrolne iskaze za vaše
+
+4
+00:00:03,842 --> 00:00:05,672
+Oktav programe, dakle stvari
+
+5
+00:00:05,700 --> 00:00:07,280
+kao što su "for", "while" i "if" iskazi
+
+6
+00:00:07,350 --> 00:00:12,176
+a takođe i kako da
+definišemo i koristimo funkcije.
+
+7
+00:00:12,480 --> 00:00:13,980
+Ovo je moj Oktav prozor. Prvo
+
+8
+00:00:13,980 --> 00:00:16,502
+ću da vam pokažem kako 
+da koristite "for" petlju.
+
+9
+00:00:16,502 --> 00:00:17,888
+Počeću tako što ću da inicijalizujem
+
+10
+00:00:17,888 --> 00:00:18,852
+v kao 10 sa 1
+
+11
+00:00:18,870 --> 00:00:20,808
+vektor 0.
+
+12
+00:00:20,830 --> 00:00:22,209
+Evo kako se piše
+
+13
+00:00:22,240 --> 00:00:25,071
+"for" petlja za i jednako 1 do 10.
+
+14
+00:00:25,090 --> 00:00:27,608
+To je for jednako 1 dvotačka 10.
+
+15
+00:00:27,608 --> 00:00:29,905
+Hajde da vidimo,
+
+16
+00:00:29,905 --> 00:00:31,466
+postaviću v od i
+
+17
+00:00:31,466 --> 00:00:33,214
+je jednako dva na
+
+18
+00:00:33,220 --> 00:00:36,848
+i, i konačno
+
+19
+00:00:36,848 --> 00:00:37,671
+kraj.
+
+20
+00:00:37,671 --> 00:00:39,082
+Razmak ne utiče ni na šta,
+
+21
+00:00:39,090 --> 00:00:40,538
+pa ću da stavim razmake
+
+22
+00:00:40,538 --> 00:00:41,960
+samo da bih kod učinio čitljivijim,
+
+23
+00:00:41,990 --> 00:00:44,385
+ali razmaci ne smetaju.
+
+24
+00:00:44,420 --> 00:00:46,163
+Ako uradim ovo, tada će
+
+25
+00:00:46,163 --> 00:00:48,626
+rezultat da bude da v
+
+26
+00:00:48,626 --> 00:00:49,420
+dobija vrednost dva na
+
+27
+00:00:49,500 --> 00:00:51,478
+prvu, dva na drugu, i tako dalje.
+
+28
+00:00:51,490 --> 00:00:52,665
+Dakle ovo je sintaksa za i
+
+29
+00:00:52,665 --> 00:00:55,410
+jednako jedan dvotačka deset koja
+
+30
+00:00:55,410 --> 00:00:57,429
+pravi petlju kroz
+
+31
+00:00:57,440 --> 00:00:59,662
+vrednosti od jedan do deset.
+
+32
+00:00:59,662 --> 00:01:00,830
+Usput, ovo ste mogli da uradite
+
+33
+00:01:00,830 --> 00:01:02,481
+i postavljanjem vaših
+
+34
+00:01:02,481 --> 00:01:04,795
+indeksa da su jednaki od 1 do
+
+35
+00:01:04,800 --> 00:01:07,260
+10, dakle,
+
+36
+00:01:07,270 --> 00:01:09,305
+indeksi u nizu od jedan do deset.
+
+37
+00:01:09,305 --> 00:01:13,249
+Takođe možete da pišete 
+for i jednako indeksi.
+
+38
+00:01:15,040 --> 00:01:17,805
+Ovo je u stvari isto kao 
+for i jednako jedan do deset.
+
+39
+00:01:17,820 --> 00:01:19,459
+Možete tada da prikažete
+
+40
+00:01:19,480 --> 00:01:23,498
+i, i to će da bude ista stvar.
+
+41
+00:01:23,498 --> 00:01:24,698
+Dakle, to je "for" petlja,
+
+42
+00:01:24,698 --> 00:01:27,201
+Ako ste upoznati sa "break"
+
+43
+00:01:27,230 --> 00:01:29,375
+i "continue", postoje "break" i
+
+44
+00:01:29,375 --> 00:01:30,809
+"continue" iskazi, možete
+
+45
+00:01:30,809 --> 00:01:32,061
+takođe da i njih koristite u petljama
+
+46
+00:01:32,061 --> 00:01:33,902
+u oktavi, ali prvo
+
+47
+00:01:33,902 --> 00:01:36,550
+ću da vam pokažem "while" petlju.
+
+48
+00:01:36,570 --> 00:01:39,088
+Dakle, ovo je moj vektor v.
+
+49
+00:01:39,120 --> 00:01:40,912
+Hajde da napišemo "while" petlju.
+
+50
+00:01:40,920 --> 00:01:44,037
+i jednako 1, while i
+
+51
+00:01:44,037 --> 00:01:45,259
+je manje ili jednako
+
+52
+00:01:45,259 --> 00:01:47,662
+5, postavićemo
+
+53
+00:01:47,662 --> 00:01:51,082
+v od i je jednako stotinu
+
+54
+00:01:51,530 --> 00:01:54,449
+i povećaćemo i
+
+55
+00:01:54,449 --> 00:01:56,644
+za jedan, kraj.
+
+56
+00:01:56,700 --> 00:01:58,090
+Šta dakle ovo kaže?
+
+57
+00:01:58,090 --> 00:01:59,932
+Počeo sam sa i jednako
+
+58
+00:01:59,970 --> 00:02:01,359
+jedan i tada sam
+
+59
+00:02:01,380 --> 00:02:02,629
+postavio v od i na
+
+60
+00:02:02,629 --> 00:02:04,249
+stotinu i povećao i za
+
+61
+00:02:04,260 --> 00:02:07,666
+jedan dok i ne postane veće od pet.
+
+62
+00:02:07,690 --> 00:02:09,377
+A rezultat toga je to,
+
+63
+00:02:09,377 --> 00:02:13,022
+dok je prethodno v bilo
+ vektor eksponenata od dva.
+
+64
+00:02:13,022 --> 00:02:14,573
+Uzeo sam prvih
+
+65
+00:02:14,580 --> 00:02:17,225
+pet elemenata vektora
+
+66
+00:02:17,260 --> 00:02:19,618
+i prepisao sam ih vrednošću sto.
+
+67
+00:02:19,618 --> 00:02:22,797
+Dakle, to je sintaksa "while" petlje.
+
+68
+00:02:23,140 --> 00:02:24,503
+Hajde da uradimo još jedan primer.
+
+69
+00:02:24,503 --> 00:02:26,600
+i jednako 1, dok je
+
+70
+00:02:26,600 --> 00:02:28,491
+istinito i ovde
+
+71
+00:02:28,500 --> 00:02:31,892
+ću da vam pokažem kako da
+koristite "break" iskaz.
+
+72
+00:02:31,892 --> 00:02:34,040
+Recimo da je v od i jednako 999
+
+73
+00:02:34,070 --> 00:02:37,331
+i i jednako i plus 1.
+
+74
+00:02:38,110 --> 00:02:45,900
+Ako je i jednako 6 prekini i
+
+75
+00:02:47,910 --> 00:02:47,910
+kraj.
+
+76
+00:02:48,410 --> 00:02:49,425
+Ovo je naša prva
+
+77
+00:02:49,425 --> 00:02:51,945
+upotreba "if" iskaza, tako
+
+78
+00:02:51,945 --> 00:02:53,308
+da se nadam da ova logika ima smisla.
+
+79
+00:02:53,308 --> 00:02:57,297
+i jednako jedan i, petlja povećavanja.
+
+80
+00:02:57,340 --> 00:02:59,900
+While iterativno postavlja 
+v od i jednako jedan.
+
+81
+00:02:59,900 --> 00:03:01,527
+i povećava i za jedan,
+
+82
+00:03:01,527 --> 00:03:02,901
+a kada i
+
+83
+00:03:02,920 --> 00:03:04,451
+postane šest, uradi
+
+84
+00:03:04,451 --> 00:03:05,757
+"break" što dovede do prekida
+
+85
+00:03:05,757 --> 00:03:07,284
+"while" petlje a
+
+86
+00:03:07,284 --> 00:03:08,596
+efekat bi trebao da bude da uzme
+
+87
+00:03:08,596 --> 00:03:09,929
+prvih pet elemenata ovoga
+
+88
+00:03:09,929 --> 00:03:11,748
+vektora v i postavi ih na 999.
+
+89
+00:03:11,748 --> 00:03:14,832
+I da, u stvari smo uzeli
+
+90
+00:03:14,832 --> 00:03:18,345
+v i prepisali prvih pet elemenata sa 999.
+
+91
+00:03:18,345 --> 00:03:20,172
+Dakle, ovo je
+
+92
+00:03:20,172 --> 00:03:21,974
+sintaksa za "if" iskaze, i
+
+93
+00:03:21,974 --> 00:03:25,058
+za "while" iskaze i vidite "end".
+
+94
+00:03:25,070 --> 00:03:27,159
+Ovde imamo dva "end".
+
+95
+00:03:27,170 --> 00:03:29,719
+Ovaj "end" ovde zatvara "if" iskaz
+
+96
+00:03:29,730 --> 00:03:33,228
+a drugi "end" ovde zatvara "while" iskaz.
+
+97
+00:03:33,250 --> 00:03:35,265
+Sad ću da vam pokažem 
+uopšteniju sintaksu
+
+98
+00:03:35,265 --> 00:03:37,763
+kako da koristite "if-else"iskaze.
+
+99
+00:03:37,763 --> 00:03:40,274
+Dakle, da vidimo, v od 1
+
+100
+00:03:40,274 --> 00:03:42,776
+jednako 999, hajde
+
+101
+00:03:42,860 --> 00:03:46,996
+da ukucamo v od jedan jednako dva
+ za ovaj primer.
+
+102
+00:03:47,020 --> 00:03:48,758
+Dalje, kucaću
+
+103
+00:03:48,758 --> 00:03:55,050
+ako je v od jedan jednako jedan
+prikaži "vrednost je jedan"
+
+104
+00:03:56,855 --> 00:03:58,588
+Evo kako pišete "else"
+
+105
+00:03:58,588 --> 00:04:00,040
+iskaze, evo ga jedan
+
+106
+00:04:00,040 --> 00:04:03,853
+else if v od jedan jednako 2.
+
+107
+00:04:03,853 --> 00:04:07,815
+Ako je ovo tačno u 
+našem primeru, prikaži
+
+108
+00:04:07,815 --> 00:04:12,268
+"vrednost je 2", inače
+
+109
+00:04:13,650 --> 00:04:17,960
+prikaži "vrednost nije niti 1 niti 2".
+
+110
+00:04:17,990 --> 00:04:21,699
+U redu, ovde "if-else"
+
+111
+00:04:21,700 --> 00:04:23,889
+iskaz završava.
+
+112
+00:04:23,889 --> 00:04:25,271
+Naravno, ovde smo
+
+113
+00:04:25,271 --> 00:04:27,589
+postavili v od 1 jednako 2, tako da
+
+114
+00:04:27,610 --> 00:04:30,729
+prikazujemo da je vrednost 2.
+
+115
+00:04:30,780 --> 00:04:32,844
+I konačno, mislim da nismo
+
+116
+00:04:32,880 --> 00:04:34,143
+o ovome pričali ranije, ali
+
+117
+00:04:34,143 --> 00:04:35,622
+ako ikada budete 
+trebali da izađete iz oktave,
+
+118
+00:04:35,622 --> 00:04:36,947
+možete da ukucate 
+komandu za izlaz i
+
+119
+00:04:36,947 --> 00:04:38,373
+pritisnete enter pa će oktava
+
+120
+00:04:38,400 --> 00:04:39,981
+da se zatvori ili "q" -- quit
+
+121
+00:04:39,981 --> 00:04:42,428
+komanda takođe radi.
+
+122
+00:04:42,450 --> 00:04:43,857
+Na kraju, hajde da pričamo o
+
+123
+00:04:43,857 --> 00:04:45,292
+funkcijama i kako se definišu
+
+124
+00:04:45,310 --> 00:04:48,592
+i kako se koriste.
+
+125
+00:04:48,620 --> 00:04:49,680
+Ovo je moj desktop, ja
+
+126
+00:04:49,720 --> 00:04:52,078
+imam već definisan
+
+127
+00:04:52,078 --> 00:04:56,818
+ili već sačuvan fajl koji se zove "squarethisnumber.m".
+
+128
+00:04:56,830 --> 00:04:59,471
+Evo kako definišete funkcije u oktavi.
+
+129
+00:04:59,480 --> 00:05:01,681
+Kreirate fajl koji nazovete
+
+130
+00:05:01,681 --> 00:05:03,958
+imenom vaše funkcije i
+završite sa ".m",
+
+131
+00:05:03,960 --> 00:05:05,694
+a kada oktava nađe
+
+132
+00:05:05,730 --> 00:05:07,643
+taj fajl, zna da tu
+
+133
+00:05:07,680 --> 00:05:12,322
+treba da traži definiciju
+funkcije "squarethisnumber.m".
+
+134
+00:05:12,340 --> 00:05:14,076
+Hajde da otvorimo ovaj fajl.
+
+135
+00:05:14,076 --> 00:05:15,717
+Vidite da ja koristim
+
+136
+00:05:15,717 --> 00:05:19,352
+Majkrosoftov program Wordpad
+da bih otvorio ovaj fajl.
+
+137
+00:05:19,352 --> 00:05:20,250
+Samo želim da vas ohrabrim, ako
+
+138
+00:05:20,250 --> 00:05:23,379
+koristite Microsoft Windows, da
+
+139
+00:05:23,379 --> 00:05:25,075
+koristite Wordpad pre nego
+
+140
+00:05:25,110 --> 00:05:27,477
+Notepad da otvarate ove
+
+141
+00:05:27,490 --> 00:05:28,557
+fajlove, ako imate
+
+142
+00:05:28,557 --> 00:05:29,938
+različite editore teksta,
+ i to je u redu
+
+143
+00:05:29,938 --> 00:05:33,325
+ali Notepad ponekad zabrlja razmake.
+
+144
+00:05:33,350 --> 00:05:34,775
+Ako imate samo Notepad,
+to bi trebalo
+
+145
+00:05:34,800 --> 00:05:36,312
+da radi, to bi moglo da radi
+
+146
+00:05:36,312 --> 00:05:37,779
+ali ako takođe
+
+147
+00:05:37,779 --> 00:05:39,354
+imate i Wordpad, ja
+
+148
+00:05:39,354 --> 00:05:40,609
+bih radije koristio taj ili neki
+
+149
+00:05:40,610 --> 00:05:45,053
+drugi editor teksta, ako imate
+različite editore teksta za vaše funkcije.
+
+150
+00:05:45,060 --> 00:05:47,155
+Dakle, evo kako definišete
+funkcije u oktavi.
+
+151
+00:05:47,155 --> 00:05:49,816
+Samo da još malo zumiram.
+
+152
+00:05:49,816 --> 00:05:52,516
+Ovaj fajl ima samo tri linije.
+
+153
+00:05:52,516 --> 00:05:54,440
+Prva linija kaže da je
+funkcija y jednaka kvadratu
+
+154
+00:05:54,440 --> 00:05:56,448
+broja x, ovo kaže
+
+155
+00:05:56,448 --> 00:05:57,705
+oktavi da ću da vratim
+
+156
+00:05:57,705 --> 00:06:00,025
+vrednost y, vratiću
+
+157
+00:06:00,025 --> 00:06:01,315
+jednu vrednost a ta
+
+158
+00:06:01,315 --> 00:06:02,375
+vrednost će da bude
+
+159
+00:06:02,375 --> 00:06:04,443
+sačuvana u promenjivoj y
+
+160
+00:06:04,443 --> 00:06:06,003
+i to još kaže oktavi
+
+161
+00:06:06,003 --> 00:06:08,068
+da ta funkcija
+ ima jedan argument,
+
+162
+00:06:08,070 --> 00:06:10,408
+a to je argument x,
+
+163
+00:06:10,420 --> 00:06:11,846
+i način na koji je telo
+
+164
+00:06:11,846 --> 00:06:15,156
+funkcije definisano, 
+y jednako x na kvadrat.
+
+165
+00:06:15,180 --> 00:06:16,553
+Dakle, hajde da
+ probamo da pozovemo
+
+166
+00:06:16,553 --> 00:06:19,071
+ovu funkciju "kvadrat", ovaj broj
+
+167
+00:06:19,071 --> 00:06:21,854
+pet, ovo u stvari
+
+168
+00:06:21,854 --> 00:06:23,115
+neće da radi, a
+
+169
+00:06:23,115 --> 00:06:25,693
+oktava kaže "squareThisNumber" je nedefinisan.
+
+170
+00:06:25,693 --> 00:06:28,902
+To je zato što oktava
+ne zna gde da nađe taj fajl.
+
+171
+00:06:28,902 --> 00:06:30,682
+Kao i obično, hajde
+da koristimo PWD,
+
+172
+00:06:30,690 --> 00:06:32,592
+ili nije u mom direktorijumu,
+
+173
+00:06:32,592 --> 00:06:36,151
+tako da ćemo da vidimo ovo
+c:\ang\desktop.
+
+174
+00:06:36,151 --> 00:06:39,888
+Tu je moj desktop.
+
+175
+00:06:39,888 --> 00:06:41,276
+Ups, mala greška.
+
+176
+00:06:41,276 --> 00:06:42,848
+Korisnici ang desktop
+
+177
+00:06:42,848 --> 00:06:44,157
+i ako ukucam squareThisNumber
+
+178
+00:06:44,157 --> 00:06:46,728
+broj pet, vratiće mi
+
+179
+00:06:46,728 --> 00:06:48,505
+rezultat 25.
+
+180
+00:06:48,505 --> 00:06:50,347
+Neka vrsta napredne osobine,
+
+181
+00:06:50,347 --> 00:06:51,972
+ovo je samo za vas
+
+182
+00:06:51,972 --> 00:06:54,596
+koji znate šta pojam
+adresa za pretragu znači.
+
+183
+00:06:54,596 --> 00:06:55,945
+Ali ako
+
+184
+00:06:55,945 --> 00:06:57,497
+želite da promenite oktavinu
+
+185
+00:06:57,497 --> 00:06:58,863
+adresu pretrage,
+
+186
+00:06:58,863 --> 00:06:59,866
+razmislite o tome
+
+187
+00:06:59,866 --> 00:07:01,827
+sledeći put kao o naprednom
+
+188
+00:07:01,827 --> 00:07:03,292
+neobaveznom materijalu.
+
+189
+00:07:03,292 --> 00:07:04,214
+Samo za vas koji ste
+
+190
+00:07:04,214 --> 00:07:05,484
+upoznati sa konceptima
+
+191
+00:07:05,484 --> 00:07:07,642
+adresama pretrage i 
+dozvolama jezika,
+
+192
+00:07:07,650 --> 00:07:08,962
+ali možete da koristite
+
+193
+00:07:08,962 --> 00:07:11,875
+pojam addpath, c dvotačka
+
+194
+00:07:11,880 --> 00:07:16,241
+\users\ang\desktop da
+
+195
+00:07:16,241 --> 00:07:17,972
+biste dodali direktorijum u
+
+196
+00:07:17,972 --> 00:07:19,744
+oktavinu adresu pretrage tako da,
+
+197
+00:07:19,744 --> 00:07:21,065
+iako odete u
+
+198
+00:07:21,065 --> 00:07:22,611
+neki drugi direktorijum,
+
+199
+00:07:22,611 --> 00:07:24,510
+oktava opet zna
+
+200
+00:07:24,510 --> 00:07:26,005
+da pogleda u \users\ang
+
+201
+00:07:26,005 --> 00:07:29,214
+desktop direktorijum ima li funkcija
+
+202
+00:07:29,214 --> 00:07:30,521
+tako da, iako sam u
+
+203
+00:07:30,521 --> 00:07:31,868
+drugom direktorijumu, još uvek
+
+204
+00:07:31,868 --> 00:07:35,297
+zna gde da nađe "squareThisNumber" funkciju.
+
+205
+00:07:35,297 --> 00:07:35,935
+U redu?
+
+206
+00:07:35,935 --> 00:07:37,407
+Ali i ako niste upoznati
+
+207
+00:07:37,407 --> 00:07:39,184
+sa konceptom adrese za 
+pretragu, ne brinite
+
+208
+00:07:39,184 --> 00:07:40,068
+o tome.
+
+209
+00:07:40,068 --> 00:07:40,889
+Samo se pobrinite da koristite
+
+210
+00:07:40,889 --> 00:07:42,053
+CD komandu da biste otišli
+
+211
+00:07:42,053 --> 00:07:43,926
+na direktorijum gde 
+je vaša funkcija pre
+
+212
+00:07:43,940 --> 00:07:47,441
+nego što je pokrenete 
+i to radi veoma dobro.
+
+213
+00:07:47,441 --> 00:07:49,587
+Jedan koncept koji oktava ima
+
+214
+00:07:49,600 --> 00:07:51,058
+a koji mnogi drugi programski
+
+215
+00:07:51,058 --> 00:07:52,969
+jezici nemaju je da
+
+216
+00:07:52,969 --> 00:07:54,909
+vam dozvoljava da definišete
+
+217
+00:07:54,909 --> 00:07:58,873
+funkcije koje vraćaju višestruke
+ vrednosti ili višestruke argumente.
+
+218
+00:07:58,873 --> 00:08:00,889
+Evo takvog primera.
+
+219
+00:08:00,889 --> 00:08:02,931
+Definišite funkciju koja se zove
+
+220
+00:08:02,931 --> 00:08:04,964
+"squareAndCubeThisNumber" x
+
+221
+00:08:04,964 --> 00:08:06,644
+i šta ona radi je da
+
+222
+00:08:06,660 --> 00:08:08,547
+funkcija vraća dve vrednosti, y1 i y2.
+
+223
+00:08:08,547 --> 00:08:09,955
+Kada ih postavim, ovo
+
+224
+00:08:09,960 --> 00:08:13,603
+sledi, y1 je kvadrat, y2 je kub.
+
+225
+00:08:13,603 --> 00:08:16,972
+A ono šta radi je
+ da stvarno vrati dva broja.
+
+226
+00:08:16,980 --> 00:08:18,855
+Dakle, neki od vas, u zavisnosti
+
+227
+00:08:18,855 --> 00:08:20,195
+koji programski jezik koristite,
+
+228
+00:08:20,195 --> 00:08:22,931
+ako ste upoznati sa C, C++,
+
+229
+00:08:22,940 --> 00:08:26,051
+često mislite da funkcije 
+vraćaju samo jednu vrednost.
+
+230
+00:08:26,051 --> 00:08:27,847
+Ali takva je sintaksa u oktavi
+
+231
+00:08:27,847 --> 00:08:31,679
+koja bi trebalo da vrati
+višestruku vrednost.
+
+232
+00:08:32,430 --> 00:08:34,087
+Nazad u oktava prozor.
+
+233
+00:08:34,087 --> 00:08:37,914
+Ako kucam a, b jednako
+
+234
+00:08:37,914 --> 00:08:41,263
+"squareAndCubeThisNumber"
+
+235
+00:08:41,263 --> 00:08:44,599
+od pet, tad
+
+236
+00:08:44,610 --> 00:08:46,338
+će a da bude jednako
+
+237
+00:08:46,338 --> 00:08:47,778
+25 a b je jednako
+
+238
+00:08:47,778 --> 00:08:49,729
+pet na kub, 125.
+
+239
+00:08:49,729 --> 00:08:51,645
+Dakle, ovo je često
+
+240
+00:08:51,670 --> 00:08:53,010
+zgodno ako treba da definišete
+
+241
+00:08:53,010 --> 00:08:56,447
+funkciju koja vraća višestruku vrednost.
+
+242
+00:08:56,447 --> 00:08:57,480
+I na kraju, pokazaću vam
+
+243
+00:08:57,480 --> 00:09:01,123
+još jedan, malo sofisticiraniji, 
+primer funkcije.
+
+244
+00:09:01,130 --> 00:09:02,361
+Recimo da imam skup podataka
+
+245
+00:09:02,370 --> 00:09:04,400
+koji izgleda kao ovo, sa tačkama (1, 1), (2, 2) i (3, 3).
+
+246
+00:09:04,430 --> 00:09:07,636
+I hteo bih
+
+247
+00:09:07,636 --> 00:09:09,113
+da definišem jednu
+
+248
+00:09:09,113 --> 00:09:10,798
+oktava funkciju koja računa funkciju
+
+249
+00:09:10,830 --> 00:09:14,341
+cena J od teta za
+različite vrednosti teta.
+
+250
+00:09:14,360 --> 00:09:16,157
+Prvo, hajde da 
+stavimo podatke u oktavu.
+
+251
+00:09:16,160 --> 00:09:17,694
+Postaviću moju matricu
+
+252
+00:09:17,700 --> 00:09:20,998
+da bude 1,1 1,2 1,3.
+
+253
+00:09:21,010 --> 00:09:24,043
+To je moj dizajn
+
+254
+00:09:24,050 --> 00:09:26,073
+matrica x sa x0,
+
+255
+00:09:26,073 --> 00:09:27,428
+prva kolona je podatak
+
+256
+00:09:27,428 --> 00:09:28,746
+o skupu a drugi termin su
+
+257
+00:09:28,770 --> 00:09:32,375
+moje x vrednosti u tri trening primera.
+
+258
+00:09:32,375 --> 00:09:33,594
+I sada ću da postavim
+
+259
+00:09:33,594 --> 00:09:35,488
+y da bude 1 - 2 - 3 kako
+
+260
+00:09:35,488 --> 00:09:38,793
+sledi, koji su vrednosti sa y ose.
+
+261
+00:09:38,810 --> 00:09:40,431
+Recimo da je teta
+
+262
+00:09:40,431 --> 00:09:43,714
+jednako 0;1.
+
+263
+00:09:43,730 --> 00:09:45,652
+Na mom desktopu
+
+264
+00:09:45,660 --> 00:09:47,483
+već sam definisao funkciju cena
+
+265
+00:09:47,490 --> 00:09:49,008
+J i
+
+266
+00:09:49,010 --> 00:09:52,019
+definicija te funkcije izgleda ovako.
+
+267
+00:09:52,019 --> 00:09:53,579
+Dakle, funkcija J jednako je "costFunctionJ"
+
+268
+00:09:53,580 --> 00:09:55,192
+ulazi x, y
+
+269
+00:09:55,192 --> 00:09:57,151
+teta, neki komentari, koji
+
+270
+00:09:57,151 --> 00:09:59,546
+pojašnjavaju ulaze a poslije
+
+271
+00:09:59,560 --> 00:10:01,383
+samo nekoliko koraka, postavljanje m
+
+272
+00:10:01,383 --> 00:10:02,995
+na broj trening primera
+
+273
+00:10:03,020 --> 00:10:05,495
+to je broj redova u x.
+
+274
+00:10:05,510 --> 00:10:07,596
+Računanje predviđanja, predviđanja jednako
+
+275
+00:10:07,596 --> 00:10:10,137
+x puta teta i tako
+
+276
+00:10:10,170 --> 00:10:11,670
+ovo je komentar okružen
+
+277
+00:10:11,710 --> 00:10:14,693
+kodom, to je verovatno 
+prethodna linija komentara.
+
+278
+00:10:14,720 --> 00:10:16,823
+Računanje "sqrErrors" računanjem
+
+279
+00:10:16,823 --> 00:10:18,637
+razlike između predviđanja i
+
+280
+00:10:18,640 --> 00:10:20,265
+y vrednosti i dizanjem
+
+281
+00:10:20,265 --> 00:10:22,126
+dobijene vrednosti na kvadrat i
+
+282
+00:10:22,140 --> 00:10:24,376
+konačno računanje funkcije
+
+283
+00:10:24,376 --> 00:10:26,128
+cena J. A oktava zna
+
+284
+00:10:26,128 --> 00:10:27,439
+da je J vrednost koju
+
+285
+00:10:27,439 --> 00:10:31,383
+treba da vrati jer J se 
+pojavljuje ovde u definiciji funkcije.
+
+286
+00:10:31,420 --> 00:10:34,127
+Usput rečeno, slobodno pauzirajte
+
+287
+00:10:34,170 --> 00:10:35,292
+video ako želite
+
+288
+00:10:35,292 --> 00:10:36,712
+da pogledate definiciju
+
+289
+00:10:36,712 --> 00:10:38,820
+funkcije malo duže i
+
+290
+00:10:38,820 --> 00:10:44,031
+i da se uverite da 
+razumete sve korake.
+
+291
+00:10:44,031 --> 00:10:45,184
+Ali kad pokrenem u
+
+292
+00:10:45,184 --> 00:10:46,630
+oktavi, kucam j jednako
+
+293
+00:10:46,630 --> 00:10:51,197
+costFunctionJ x, y, teta.
+
+294
+00:10:51,197 --> 00:10:55,142
+Računa. Ups, napravio 
+sam grešku u kucanju ovde.
+
+295
+00:10:55,142 --> 00:10:57,018
+Trebalo je da bude veliko X.
+
+296
+00:10:57,018 --> 00:11:00,472
+Računa J jednako 0 jer
+
+297
+00:11:00,510 --> 00:11:03,367
+ako je moj skup podataka,
+
+298
+00:11:03,367 --> 00:11:06,963
+znate, 123, 123 tad teta0
+
+299
+00:11:06,980 --> 00:11:08,741
+jednako 0, teta1 jednako
+
+300
+00:11:08,770 --> 00:11:11,259
+1, ovo mi daje tačno
+
+301
+00:11:11,259 --> 00:11:15,559
+liniju pod 45 stepeni koja savršeno 
+odgovara mome skupu podataka.
+
+302
+00:11:15,600 --> 00:11:16,887
+Dok u suprotnom, ako postavim
+
+303
+00:11:16,887 --> 00:11:19,828
+teta jednako, recimo, 0, 0,
+
+304
+00:11:19,830 --> 00:11:22,524
+tada hipoteza
+
+305
+00:11:22,540 --> 00:11:24,050
+predviđa nule za sve
+
+306
+00:11:24,050 --> 00:11:25,803
+teta 0 jednako 0,
+
+307
+00:11:25,810 --> 00:11:27,139
+teta 1 jednako 0 i
+
+308
+00:11:27,139 --> 00:11:29,345
+tad računam funkciju cena
+
+309
+00:11:29,370 --> 00:11:31,830
+tad je ona 2.333 i to
+
+310
+00:11:31,830 --> 00:11:35,495
+je jednako 1 na kvadrat,
+
+311
+00:11:35,520 --> 00:11:36,745
+što je moja greška na kvadrat u
+
+312
+00:11:36,745 --> 00:11:39,789
+prvom primeru, plus 2 na kvadrat,
+
+313
+00:11:39,800 --> 00:11:42,377
+plus 3 na kvadrat
+
+314
+00:11:42,440 --> 00:11:45,288
+podeljeno sa 2m, što je
+
+315
+00:11:45,288 --> 00:11:47,091
+2 puta broj trening primera,
+
+316
+00:11:47,091 --> 00:11:50,643
+što je stvarno 2.33 i
+
+317
+00:11:50,643 --> 00:11:53,289
+tako, provera ispravnosti
+
+318
+00:11:53,330 --> 00:11:54,909
+koju ova funkcija, znate,
+
+319
+00:11:54,909 --> 00:11:56,302
+računa korektnu funkciju
+
+320
+00:11:56,302 --> 00:11:58,212
+cene i to je par primera
+
+321
+00:11:58,250 --> 00:12:00,222
+koje smo isprobali u našem
+
+322
+00:12:00,222 --> 00:12:03,433
+jednostavnom trening primeru.
+
+323
+00:12:03,490 --> 00:12:04,914
+I tako, provera ispravnosti
+
+324
+00:12:04,960 --> 00:12:08,689
+koja je funkcija cena J,
+
+325
+00:12:08,720 --> 00:12:10,202
+kao što je definisano ovde, to
+
+326
+00:12:10,230 --> 00:12:12,992
+stvarno, znate, računa
+
+327
+00:12:12,992 --> 00:12:14,908
+korektnu funkciju cena, barem
+
+328
+00:12:14,920 --> 00:12:17,424
+u našem jednostavnom trening primeru
+
+329
+00:12:17,430 --> 00:12:18,835
+koji smo ovde imali sa x
+
+330
+00:12:18,835 --> 00:12:20,823
+i y koji su
+
+331
+00:12:20,823 --> 00:12:25,189
+jednostavan trening 
+primer koji smo rešili.
+
+332
+00:12:25,230 --> 00:12:26,285
+Dakle, sada znate da
+
+333
+00:12:26,285 --> 00:12:28,171
+napišete controlne iskaze, kao for petlje
+
+334
+00:12:28,171 --> 00:12:29,838
+while petlje i if iskaze
+
+335
+00:12:29,838 --> 00:12:33,197
+u oktavi kao i da definišete
+ i koristite funkcije.
+
+336
+00:12:33,197 --> 00:12:34,530
+U sledećem videu,
+
+337
+00:12:34,530 --> 00:12:36,123
+brzo ćemo da pređemo
+
+338
+00:12:36,123 --> 00:12:38,144
+preko logistike
+
+339
+00:12:38,144 --> 00:12:39,873
+posla i
+
+340
+00:12:39,873 --> 00:12:41,664
+slanja skupa problema za
+
+341
+00:12:41,664 --> 00:12:45,212
+tu klasu i kako da 
+koristimo naš sistem slanja.
+
+342
+00:12:45,230 --> 00:12:46,794
+I konačno, posle toga, u
+
+343
+00:12:46,794 --> 00:12:48,856
+poslednjem oktava videu,
+
+344
+00:12:48,856 --> 00:12:51,400
+voleo bih da vam 
+kažem o vektorizaciji, to
+
+345
+00:12:51,400 --> 00:12:52,938
+je ideja o tome kako da
+
+346
+00:12:52,938 --> 00:12:56,126
+učinite da program 
+u oktavi radi brže.

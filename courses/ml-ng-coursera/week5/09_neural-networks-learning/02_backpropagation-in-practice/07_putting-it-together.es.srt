@@ -1,0 +1,1583 @@
+1
+00:00:00,240 --> 00:00:01,560
+Bueno pues, nos ha tomado
+
+2
+00:00:01,700 --> 00:00:02,690
+varios videos explicar el tema del algoritmo
+
+3
+00:00:03,120 --> 00:00:04,480
+del aprendizaje de redes neuronales
+
+4
+00:00:05,620 --> 00:00:06,640
+En este video, lo que me gustaría
+
+5
+00:00:06,800 --> 00:00:08,090
+hacer es tratar de
+
+6
+00:00:08,350 --> 00:00:10,040
+unir todas las piezas para
+
+7
+00:00:10,370 --> 00:00:12,120
+dar un resumen general o
+
+8
+00:00:12,360 --> 00:00:13,410
+un panorama más amplio de cómo
+
+9
+00:00:13,650 --> 00:00:15,290
+todas las piezas encajan y
+
+10
+00:00:15,530 --> 00:00:16,990
+del proceso global de cómo
+
+11
+00:00:17,260 --> 00:00:18,830
+implementar un algoritmo de aprendizaje de redes neuronales.
+
+12
+00:00:21,870 --> 00:00:23,210
+Al entrenar una red neuronal, lo
+
+13
+00:00:23,280 --> 00:00:24,290
+primero que debemos hacer
+
+14
+00:00:24,400 --> 00:00:25,920
+es elegir una arquitectura de red
+
+15
+00:00:26,680 --> 00:00:27,950
+y por arquitectura solamente
+
+16
+00:00:28,200 --> 00:00:30,510
+quiero decir un patrón de conectividad entre las neuronas.
+
+17
+00:00:31,080 --> 00:00:31,840
+Así, podemos elegir
+
+18
+00:00:32,700 --> 00:00:33,770
+entre, digamos, una red neuronal
+
+19
+00:00:34,230 --> 00:00:35,440
+con tres unidades de entrada
+
+20
+00:00:35,960 --> 00:00:37,400
+y cinco unidades ocultas y
+
+21
+00:00:37,500 --> 00:00:39,560
+cuatro unidades de salida contra una
+
+22
+00:00:39,800 --> 00:00:41,460
+de 3, 5 ocultas, 5
+
+23
+00:00:41,700 --> 00:00:43,430
+ocultas, 4 de salida y
+
+24
+00:00:43,910 --> 00:00:45,220
+aquí son 3, 5,
+
+25
+00:00:45,550 --> 00:00:47,060
+5, 5 unidades en cada
+
+26
+00:00:47,320 --> 00:00:48,870
+una de las tres capas ocultas y cuatro
+
+27
+00:00:49,120 --> 00:00:50,250
+unidades abiertas, y así estas
+
+28
+00:00:50,430 --> 00:00:52,000
+opciones de cuántas unidades
+
+29
+00:00:52,270 --> 00:00:53,410
+ocultas en cada capa
+
+30
+00:00:53,810 --> 00:00:55,560
+y cuántas capas ocultas,
+
+31
+00:00:55,780 --> 00:00:57,580
+son opciones de arquitectura.
+
+32
+00:00:57,910 --> 00:00:58,680
+Entonces, ¿cómo hacemos estas elecciones?
+
+33
+00:00:59,710 --> 00:01:01,270
+Bueno, primero, el número
+
+34
+00:01:01,530 --> 00:01:03,840
+de unidades de entrada está muy bien definido.
+
+35
+00:01:04,680 --> 00:01:05,960
+Y una vez que decidan la configuración específica
+
+36
+00:01:06,580 --> 00:01:07,870
+de variables de «x»,
+
+37
+00:01:08,080 --> 00:01:09,420
+el número de unidades de entrada, simplemente será, digamos,
+
+38
+00:01:10,140 --> 00:01:12,180
+la dimensión de sus variables de «x(i)»
+
+39
+00:01:12,330 --> 00:01:14,470
+sería determinado por ello.
+
+40
+00:01:14,760 --> 00:01:15,970
+Y si están haciendo clasificaciones
+
+41
+00:01:16,210 --> 00:01:17,370
+multiclase, el número de  salidas
+
+42
+00:01:17,520 --> 00:01:18,320
+de esto será determinado
+
+43
+00:01:18,420 --> 00:01:19,720
+por el número de clases
+
+44
+00:01:20,060 --> 00:01:22,860
+en su problema de clasificación.
+
+45
+00:01:23,260 --> 00:01:24,890
+Y sólo como recordatorio,
+
+46
+00:01:25,160 --> 00:01:27,290
+si tienen una clasificación multiclase
+
+47
+00:01:27,570 --> 00:01:28,970
+en donde «y» toma valores de, digamos,
+
+48
+00:01:30,040 --> 00:01:31,350
+entre 1 y 10 para que tengan
+
+49
+00:01:31,470 --> 00:01:33,560
+diez clases posibles.
+
+50
+00:01:34,690 --> 00:01:37,200
+Entonces, recuerden sobreescribir
+
+51
+00:01:37,820 --> 00:01:39,340
+sus salidas «y» como este tipo de vectores.
+
+52
+00:01:40,130 --> 00:01:41,560
+Entonces, en lugar de clase uno,
+
+53
+00:01:41,730 --> 00:01:42,840
+la recodifican como un vector
+
+54
+00:01:43,150 --> 00:01:44,600
+de ese tipo, o para la segunda clase
+
+55
+00:01:44,670 --> 00:01:47,280
+la recodifican como un vector de ese tipo.
+
+56
+00:01:48,130 --> 00:01:49,080
+Así que si uno de los ejemplos
+
+57
+00:01:49,210 --> 00:01:51,000
+toma el valor de la quinta clase,
+
+58
+00:01:51,140 --> 00:01:53,910
+digamos, «y» es igual a 5, entonces
+
+59
+00:01:54,120 --> 00:01:55,130
+lo que están mostrando a su red neuronal
+
+60
+00:01:55,380 --> 00:01:56,840
+no es en realidad un valor de «y»
+
+61
+00:01:57,250 --> 00:01:59,520
+igual a 5, sino que
+
+62
+00:02:00,030 --> 00:02:00,950
+en la capa superior que tendría
+
+63
+00:02:01,280 --> 00:02:02,650
+diez unidades de salida,
+
+64
+00:02:02,740 --> 00:02:03,920
+entonces alimentarán al vector
+
+65
+00:02:04,070 --> 00:02:05,710
+que conocen
+
+66
+00:02:07,470 --> 00:02:08,430
+con uno de la quinta posición
+
+67
+00:02:08,770 --> 00:02:11,050
+y varios ceros acá abajo.
+
+68
+00:02:11,420 --> 00:02:12,470
+Entonces, la elección del número de
+
+69
+00:02:12,890 --> 00:02:14,330
+unidades de entrada y el número de unidades de salida
+
+70
+00:02:14,970 --> 00:02:16,600
+es, quizá, algo bastante sencillo.
+
+71
+00:02:18,000 --> 00:02:18,950
+Y en cuanto al número
+
+72
+00:02:19,410 --> 00:02:21,040
+de unidades ocultas y
+
+73
+00:02:21,140 --> 00:02:23,110
+al número de capas ocultas, un estándar
+
+74
+00:02:23,210 --> 00:02:24,350
+razonable es usar
+
+75
+00:02:24,540 --> 00:02:26,010
+una única capa oculta
+
+76
+00:02:26,660 --> 00:02:28,040
+y así, este tipo de
+
+77
+00:02:28,880 --> 00:02:30,400
+red neuronal mostrada a la izquierda
+
+78
+00:02:30,580 --> 00:02:33,270
+con sólo una capa oculta es probablemente lo más común.
+
+79
+00:02:34,490 --> 00:02:35,870
+O si usan más de
+
+80
+00:02:36,140 --> 00:02:38,410
+una capa oculta, igualmente,
+
+81
+00:02:38,670 --> 00:02:39,600
+un estándar razonable será tener
+
+82
+00:02:39,760 --> 00:02:40,950
+el mismo número de
+
+83
+00:02:41,130 --> 00:02:42,560
+unidades ocultas en cada una de las capas.
+
+84
+00:02:42,810 --> 00:02:44,600
+Entonces, aquí tenemos
+
+85
+00:02:45,020 --> 00:02:46,370
+dos capas ocultas y
+
+86
+00:02:46,610 --> 00:02:47,650
+cada una de estas capas ocultas
+
+87
+00:02:47,860 --> 00:02:49,500
+tiene las mismas cinco unidades ocultas
+
+88
+00:02:49,790 --> 00:02:50,740
+y aquí tenemos,
+
+89
+00:02:51,600 --> 00:02:53,020
+tres capas ocultas
+
+90
+00:02:53,170 --> 00:02:54,790
+y cada una de ellas tiene el mismo número,
+
+91
+00:02:54,980 --> 00:02:56,400
+es decir, cinco unidades ocultas.
+
+92
+00:02:57,440 --> 00:02:59,440
+En lugar de hacer esta clase de arquitectura como la de la izquierda
+
+93
+00:02:59,740 --> 00:03:02,850
+esto sería un estándar perfectamente razonable,
+
+94
+00:03:04,020 --> 00:03:04,780
+Y en cuanto al número
+
+95
+00:03:05,120 --> 00:03:07,040
+de unidades ocultas, normalmente,
+
+96
+00:03:07,120 --> 00:03:08,100
+entre más unidades ocultas haya, es mejor;
+
+97
+00:03:08,560 --> 00:03:09,640
+sólo que si tienen
+
+98
+00:03:09,900 --> 00:03:11,110
+muchas unidades ocultas,
+
+99
+00:03:11,330 --> 00:03:13,150
+puede llegar a ser computacionalmente más costoso , pero
+
+100
+00:03:13,300 --> 00:03:15,850
+a menudo, el tener más unidades ocultas es bueno.
+
+101
+00:03:17,250 --> 00:03:18,560
+Y normalmente, el número de unidades
+
+102
+00:03:18,720 --> 00:03:20,820
+ocultas en cada capa será tal vez,
+
+103
+00:03:21,080 --> 00:03:22,130
+comparable a la dimensión de «x»,
+
+104
+00:03:22,490 --> 00:03:23,670
+comparable al número de variables
+
+105
+00:03:23,810 --> 00:03:24,950
+o podría ubicarse en cualquier punto
+
+106
+00:03:25,140 --> 00:03:26,880
+a partir del mismo número
+
+107
+00:03:27,180 --> 00:03:29,590
+de unidades ocultas como variables de entrada,
+
+108
+00:03:29,770 --> 00:03:32,430
+hasta tal vez el doble, o hasta tres o cuatro veces ese valor.
+
+109
+00:03:32,680 --> 00:03:34,770
+Así que tener un número de unidades ocultas es comparable,
+
+110
+00:03:35,140 --> 00:03:36,350
+varias veces, o en cierto modo
+
+111
+00:03:36,410 --> 00:03:37,380
+mayor al número
+
+112
+00:03:37,430 --> 00:03:38,750
+de variables de entrada
+
+113
+00:03:39,280 --> 00:03:41,320
+que normalmente es bueno. Así que,
+
+114
+00:03:42,150 --> 00:03:43,490
+esperamos que esto les dé un juego
+
+115
+00:03:43,810 --> 00:03:45,140
+de opciones estándar de elección
+
+116
+00:03:45,650 --> 00:03:47,770
+para la arquitectura de la red y
+
+117
+00:03:48,200 --> 00:03:49,460
+si siguen estos lineamientos,
+
+118
+00:03:49,540 --> 00:03:50,580
+probablemente, conseguirán algo
+
+119
+00:03:50,930 --> 00:03:52,180
+que funcione bien, pero
+
+120
+00:03:52,360 --> 00:03:53,770
+en otros videos en los que más adelante
+
+121
+00:03:54,050 --> 00:03:55,270
+hablaré específicamente de
+
+122
+00:03:55,580 --> 00:03:56,900
+consejos sobre cómo aplicar
+
+123
+00:03:57,410 --> 00:03:58,770
+algoritmos de aprendizaje ,
+
+124
+00:03:58,840 --> 00:04:01,880
+trataré más a fondo el cómo elegir una arquitectura de red neuronal.
+
+125
+00:04:02,540 --> 00:04:03,920
+De hecho,
+
+126
+00:04:03,970 --> 00:04:04,960
+explicaré mucho más
+
+127
+00:04:04,960 --> 00:04:06,180
+sobre cómo hacer buenas elecciones
+
+128
+00:04:06,710 --> 00:04:08,780
+para el número de unidades ocultas, número de capas ocultas y demás.
+
+129
+00:04:10,620 --> 00:04:12,310
+A continuación, esto es
+
+130
+00:04:12,420 --> 00:04:13,740
+lo que necesitamos implementar para
+
+131
+00:04:13,860 --> 00:04:15,360
+practicar una red neuronal,
+
+132
+00:04:15,510 --> 00:04:16,820
+en realidad, son seis los pasos que utilizo,
+
+133
+00:04:17,080 --> 00:04:18,030
+tengo cuatro en esta diapositiva
+
+134
+00:04:18,160 --> 00:04:19,100
+y dos más
+
+135
+00:04:19,380 --> 00:04:21,480
+en la siguiente.
+
+136
+00:04:21,620 --> 00:04:22,220
+El primer paso es configurar la red
+
+137
+00:04:22,430 --> 00:04:23,510
+neuronal e iniciar aleatoriamente
+
+138
+00:04:24,080 --> 00:04:25,570
+los valores de los pesos.
+
+139
+00:04:25,790 --> 00:04:27,000
+Y normalmente iniciamos los
+
+140
+00:04:27,080 --> 00:04:29,710
+pesos con valores bajos, cercanos a cero.
+
+141
+00:04:31,100 --> 00:04:33,120
+Entonces implementamos una propagación hacia adelante
+
+142
+00:04:34,080 --> 00:04:35,060
+para que podamos fijar cualquier
+
+143
+00:04:35,480 --> 00:04:37,150
+entrada «x» en una red neuronal
+
+144
+00:04:37,490 --> 00:04:38,860
+y hacer el cálculo de «h» de «x» que es este
+
+145
+00:04:39,070 --> 00:04:40,820
+vector de salida de los valores «y».
+
+146
+00:04:44,260 --> 00:04:45,910
+Entonces, también implementamos un código para
+
+147
+00:04:46,010 --> 00:04:47,500
+hacer el cálculo de la función de costos de J de «theta».
+
+148
+00:04:49,770 --> 00:04:51,160
+Y después implementamos
+
+149
+00:04:52,120 --> 00:04:53,330
+la retropropagación o su
+
+150
+00:04:54,400 --> 00:04:55,680
+algoritmo, para calcular estos
+
+151
+00:04:55,910 --> 00:04:58,000
+términos de la derivada parcial
+
+152
+00:04:58,440 --> 00:04:59,830
+la derivada parcial de J de «theta»
+
+153
+00:05:00,340 --> 00:05:04,240
+con respecto a los parámetros. En concreto, para implementar la retropropagación.
+
+154
+00:05:04,960 --> 00:05:05,880
+Normalmente haremos esos con un
+
+155
+00:05:06,250 --> 00:05:08,460
+ciclo for en los ejemplos de entrenamiento.
+
+156
+00:05:09,700 --> 00:05:10,650
+Puede que algunos de ustedes hayan escuchado
+
+157
+00:05:10,830 --> 00:05:12,640
+sobre los métodos de factorización avanzada, francamente, muy avanzada
+
+158
+00:05:12,940 --> 00:05:14,500
+en donde ustedes
+
+159
+00:05:14,670 --> 00:05:15,720
+no tienen un ciclo for en
+
+160
+00:05:16,570 --> 00:05:18,580
+los ejemplos de entrenamiento «m»
+
+161
+00:05:18,660 --> 00:05:19,900
+la primera vez que implementen la retropropagación
+
+162
+00:05:20,250 --> 00:05:21,420
+casi siempre debería haber
+
+163
+00:05:21,420 --> 00:05:22,980
+un ciclo for en su código
+
+164
+00:05:23,800 --> 00:05:25,010
+en donde estén repitiendo los ejemplos,
+
+165
+00:05:25,810 --> 00:05:27,760
+es decir, «x1», «y1» entonces
+
+166
+00:05:28,030 --> 00:05:29,510
+hacen la propagación hacia adelante
+
+167
+00:05:29,640 --> 00:05:30,400
+y la retropropagación en el primer ejemplo,
+
+168
+00:05:30,850 --> 00:05:32,510
+y entonces en
+
+169
+00:05:32,710 --> 00:05:33,730
+la segunda repetición del
+
+170
+00:05:33,780 --> 00:05:35,360
+ciclo for, hacen la propagación hacia adelante
+
+171
+00:05:35,980 --> 00:05:38,050
+y la retropropagación en el segundo ejemplo, y así sucesivamente.
+
+172
+00:05:38,170 --> 00:05:40,900
+Hasta que lleguen al ejemplo final.
+
+173
+00:05:41,680 --> 00:05:43,110
+Entonces, debe haber
+
+174
+00:05:43,230 --> 00:05:44,250
+un ciclo for en su implementación
+
+175
+00:05:45,050 --> 00:05:47,180
+de propagación hacia adelante, el menos la primera vez que lo estén implementando.
+
+176
+00:05:48,120 --> 00:05:49,160
+Y, francamente, hay maneras más
+
+177
+00:05:49,390 --> 00:05:50,520
+complicadas de hacer esto
+
+178
+00:05:50,890 --> 00:05:52,660
+sin un ciclo for, pero
+
+179
+00:05:52,810 --> 00:05:53,950
+definitivamente, no recomiendo que
+
+180
+00:05:54,360 --> 00:05:55,340
+intenten hacer la versión mucho más
+
+181
+00:05:55,660 --> 00:05:58,420
+complicada la primera vez que implementen la retropropagación
+
+182
+00:05:59,850 --> 00:06:00,920
+Entonces, en concreto,
+
+183
+00:06:01,010 --> 00:06:02,200
+tenemos un ciclo for en mis ejemplos de entrenamiento «m»
+
+184
+00:06:03,240 --> 00:06:04,630
+y dentro del ciclo de for vamos
+
+185
+00:06:04,770 --> 00:06:06,300
+a llevar a cabo la propagación hacia adelante
+
+186
+00:06:06,580 --> 00:06:08,090
+y la retropropagación usando únicamente este ejemplo.
+
+187
+00:06:09,310 --> 00:06:10,320
+Y lo que significa es que
+
+188
+00:06:10,560 --> 00:06:12,470
+vamos a tomar «x(i)» y a alimentar eso
+
+189
+00:06:12,690 --> 00:06:14,010
+en mi capa de entrada
+
+190
+00:06:14,770 --> 00:06:16,370
+hacer la propagación hacia adelante y la retropropagación
+
+191
+00:06:17,370 --> 00:06:18,360
+y eso me dará todas
+
+192
+00:06:18,430 --> 00:06:19,840
+estas activaciones y todos
+
+193
+00:06:19,930 --> 00:06:22,090
+estos términos «delta» para todas
+
+194
+00:06:22,300 --> 00:06:23,440
+las capas de todas mis
+
+195
+00:06:23,770 --> 00:06:24,720
+unidades en la red
+
+196
+00:06:24,950 --> 00:06:27,170
+neuronal, entonces aún
+
+197
+00:06:27,610 --> 00:06:28,760
+dentro de este ciclo for, déjenme
+
+198
+00:06:29,180 --> 00:06:30,450
+dibujar algunos corchetes
+
+199
+00:06:30,940 --> 00:06:31,950
+sólo para mostrarles el campo
+
+200
+00:06:32,030 --> 00:06:32,930
+del ciclo for, esto es en
+
+201
+00:06:34,160 --> 00:06:35,480
+Código Octave, pero es más bien una secuencia de código Java
+
+202
+00:06:36,190 --> 00:06:38,350
+y un ciclo for abarca todo esto.
+
+203
+00:06:39,060 --> 00:06:40,060
+Vamos a calcular los términos de «delta»
+
+204
+00:06:40,480 --> 00:06:43,690
+que son, aquí está la fórmula que dimos antes,
+
+205
+00:06:45,540 --> 00:06:47,370
+más «delta» a la «l + 1» multiplicado por a matriz traspuesta
+
+206
+00:06:48,630 --> 00:06:51,150
+y entonces la suma del código.
+
+207
+00:06:51,490 --> 00:06:53,540
+Y, finalmente, fuera del ciclo for,
+
+208
+00:06:54,180 --> 00:06:55,630
+habiendo calculado estos
+
+209
+00:06:55,970 --> 00:06:57,550
+términos de «delta», estos términos acumulados
+
+210
+00:06:57,870 --> 00:06:59,050
+entonces tendríamos otro
+
+211
+00:06:59,170 --> 00:07:00,430
+código y eso nos permitirá
+
+212
+00:07:00,720 --> 00:07:03,240
+calcular la derivada parcial.
+
+213
+00:07:03,860 --> 00:07:05,450
+Bien, y esta derivada parcial
+
+214
+00:07:05,970 --> 00:07:07,020
+tiene que tomar en cuenta también
+
+215
+00:07:07,210 --> 00:07:10,270
+el término lambda de regularización.
+
+216
+00:07:11,050 --> 00:07:13,240
+Y así, esas fórmulas se dan en el video anterior.
+
+217
+00:07:14,830 --> 00:07:15,720
+Entonces, después de haber hecho eso
+
+218
+00:07:16,680 --> 00:07:18,080
+esperemos tener el código para calcular
+
+219
+00:07:18,180 --> 00:07:20,050
+los términos de la derivada parcial.
+
+220
+00:07:21,190 --> 00:07:23,030
+El siguiente es el paso cinco, lo que
+
+221
+00:07:23,240 --> 00:07:24,420
+hago es usar la verificación de
+
+222
+00:07:24,730 --> 00:07:26,700
+la gradiente para comparar los términos
+
+223
+00:07:27,120 --> 00:07:28,530
+de la derivada parcial que fueron calculados. Entonces, he comparado
+
+224
+00:07:29,420 --> 00:07:30,980
+las versiones calculadas usando
+
+225
+00:07:31,270 --> 00:07:33,990
+la retropropagación contra la
+
+226
+00:07:34,430 --> 00:07:36,470
+derivada parcial calculada usando
+
+227
+00:07:37,710 --> 00:07:39,850
+los estimaciones numéricas de la derivada.
+
+228
+00:07:40,350 --> 00:07:41,810
+Entonces, hagan la verificación de la gradiente para asegurarnos
+
+229
+00:07:41,970 --> 00:07:44,340
+que ambas les den valores muy similares.
+
+230
+00:07:45,830 --> 00:07:47,410
+El haber hecho la verificación de la gradiente nos asegura
+
+231
+00:07:47,910 --> 00:07:49,280
+que nuestra implementación de la
+
+232
+00:07:49,590 --> 00:07:51,470
+retropropagación es correcta, y entonces
+
+233
+00:07:51,610 --> 00:07:52,850
+es muy importante que deshabilitemos
+
+234
+00:07:53,530 --> 00:07:54,710
+la verificación de la gradiente porque el
+
+235
+00:07:55,080 --> 00:07:57,150
+código de la verificación de la gradiente es computacionalmente muy lento.
+
+236
+00:07:59,020 --> 00:08:00,880
+Finalmente,
+
+237
+00:08:01,120 --> 00:08:03,280
+usamos un algoritmo de optimización como
+
+238
+00:08:03,510 --> 00:08:04,940
+la pendiente de la gradiente, o
+
+239
+00:08:04,960 --> 00:08:07,520
+uno de los métodos de optimización como
+
+240
+00:08:07,740 --> 00:08:10,020
+como LB de GS, gradiente de contrato
+
+241
+00:08:10,250 --> 00:08:13,120
+expresada dentro del mínimo de la función multivariable no restringida «fminunc»
+
+242
+00:08:13,940 --> 00:08:15,500
+Usamos éstas junto con la
+
+243
+00:08:15,730 --> 00:08:17,380
+retropropagación, de modo que ésta
+
+244
+00:08:17,620 --> 00:08:18,670
+es lo que calcula
+
+245
+00:08:18,770 --> 00:08:20,640
+esta derivada parcial por nosotros.
+
+246
+00:08:21,730 --> 00:08:22,680
+Y así, ya sabemos cómo calcular
+
+247
+00:08:22,860 --> 00:08:24,020
+la función de costos, sabemos
+
+248
+00:08:24,100 --> 00:08:25,550
+cómo calcular la derivada parcial usando
+
+249
+00:08:25,830 --> 00:08:27,410
+la retropropagación, de modo que
+
+250
+00:08:27,480 --> 00:08:28,830
+podemos usar uno de estos métodos de
+
+251
+00:08:29,580 --> 00:08:30,850
+optimización para intentar minimizar
+
+252
+00:08:31,130 --> 00:08:33,500
+J de «theta» como una función de los parámetros de «theta».
+
+253
+00:08:34,330 --> 00:08:35,410
+Y por cierto, para
+
+254
+00:08:35,660 --> 00:08:37,330
+redes neuronales, esta función de costos
+
+255
+00:08:38,300 --> 00:08:39,630
+J de «theta» no es convexa,
+
+256
+00:08:40,530 --> 00:08:42,490
+o es no convexa y así
+
+257
+00:08:43,260 --> 00:08:45,600
+puede ser susceptible, teóricamente, a los mínimos locales, y
+
+258
+00:08:46,250 --> 00:08:47,480
+de hecho,
+
+259
+00:08:47,650 --> 00:08:49,580
+los algoritmos como la gradiente de descenso y
+
+260
+00:08:49,840 --> 00:08:51,950
+y los métodos de optimización avanzada
+
+261
+00:08:52,400 --> 00:08:53,660
+en teoría, se atoran en las óptimas locales
+
+262
+00:08:55,190 --> 00:08:56,300
+pero resulta
+
+263
+00:08:56,480 --> 00:08:57,680
+que en la práctica, esto no representa
+
+264
+00:08:57,870 --> 00:08:59,230
+normalmente un gran problema
+
+265
+00:08:59,560 --> 00:09:00,800
+y aún cuando no podemos garantizar
+
+266
+00:09:01,210 --> 00:09:02,320
+que estos algoritmos encontrarán
+
+267
+00:09:02,510 --> 00:09:04,260
+una óptimo global, normalmente los algoritmos como
+
+268
+00:09:04,390 --> 00:09:05,870
+la gradiente de descenso harán un
+
+269
+00:09:05,930 --> 00:09:07,700
+muy buen trabajo minimizando esta
+
+270
+00:09:07,850 --> 00:09:09,230
+función de costos J de «theta»
+
+271
+00:09:09,280 --> 00:09:10,350
+y conseguirá
+
+272
+00:09:10,420 --> 00:09:11,820
+un mínimo local muy bueno, incluso si
+
+273
+00:09:12,060 --> 00:09:13,690
+no llega al óptimo global.
+
+274
+00:09:14,500 --> 00:09:16,950
+Finalmente, la gradiente de descenso para
+
+275
+00:09:17,230 --> 00:09:19,500
+una red neuronal podría aun parecer un poco mágica.
+
+276
+00:09:20,170 --> 00:09:21,680
+Entonces, sólo permítanme enseñar una
+
+277
+00:09:21,890 --> 00:09:22,990
+figura más para intentar obtener esa
+
+278
+00:09:23,170 --> 00:09:25,660
+intuición sobre lo que está haciendo la gradiente de descenso para un red neuronal.
+
+279
+00:09:27,020 --> 00:09:28,460
+De hecho, esta fue similar a
+
+280
+00:09:28,590 --> 00:09:31,190
+la figura que usé antes para explicar la gradiente de descenso.
+
+281
+00:09:31,730 --> 00:09:32,750
+De esta manera, tenemos alguna función de costos
+
+282
+00:09:33,090 --> 00:09:34,480
+y tenemos
+
+283
+00:09:34,710 --> 00:09:36,590
+una cantidad de parámetros en nuestra red neuronal. ¿correcto?
+
+284
+00:09:36,810 --> 00:09:39,190
+Aquí sólo he puesto dos de los valores parámetro.
+
+285
+00:09:40,080 --> 00:09:41,250
+En realidad, por supuesto, en
+
+286
+00:09:41,520 --> 00:09:43,570
+la red neuronal podemos tener muchos parámetros con éstos.
+
+287
+00:09:44,190 --> 00:09:46,980
+«theta» uno, «theta» dos, todas estas son matrices, ¿cierto?
+
+288
+00:09:47,030 --> 00:09:48,130
+Así, podemos tener parámetros dimensionales
+
+289
+00:09:48,580 --> 00:09:49,870
+altos, pero debido
+
+290
+00:09:49,960 --> 00:09:51,620
+a las limitaciones de la fuente
+
+291
+00:09:51,790 --> 00:09:52,970
+de partes que podemos dibujar. Supongamos que
+
+292
+00:09:53,410 --> 00:09:55,840
+tenemos sólo dos parámetros en esta red neuronal.
+
+293
+00:09:56,270 --> 00:09:56,890
+Aunque obviamente tengamos muchos más en la práctica
+
+294
+00:09:59,280 --> 00:10:00,700
+Ahora, esta función de costos J de «theta»
+
+295
+00:10:00,800 --> 00:10:02,470
+mide qué tan bien se ajusta
+
+296
+00:10:02,880 --> 00:10:04,730
+la red neuronal con los datos de entrenamiento.
+
+297
+00:10:06,000 --> 00:10:06,920
+Así que si tomamos un punto
+
+298
+00:10:07,120 --> 00:10:08,590
+como este de aquí abajo,
+
+299
+00:10:10,270 --> 00:10:11,180
+ese es el punto en donde J de «theta»
+
+300
+00:10:11,460 --> 00:10:12,580
+es bastante bajo,
+
+301
+00:10:12,870 --> 00:10:16,170
+y así, esto corresponde a una configuración de los parámetros.
+
+302
+00:10:17,020 --> 00:10:17,840
+Hay una configuración de los parámetros de «theta»
+
+303
+00:10:18,350 --> 00:10:19,920
+en donde para la mayoría
+
+304
+00:10:20,140 --> 00:10:22,450
+de los ejemplos de entrenamiento, la salida
+
+305
+00:10:24,120 --> 00:10:26,270
+de mi hipótesis, que puede
+
+306
+00:10:26,410 --> 00:10:27,420
+estar muy cerca de «y(i)»
+
+307
+00:10:27,650 --> 00:10:28,720
+y si esto es correcto
+
+308
+00:10:28,840 --> 00:10:31,560
+entonces eso es lo que causa que mi función de costos sea bastante baja.
+
+309
+00:10:32,690 --> 00:10:33,770
+Por el contrario, si fueran a tomar
+
+310
+00:10:33,820 --> 00:10:35,140
+un valor como ese,
+
+311
+00:10:35,510 --> 00:10:37,260
+un punto así corresponde a,
+
+312
+00:10:38,080 --> 00:10:39,260
+en donde en muchos ejemplos de entrenamiento,
+
+313
+00:10:39,890 --> 00:10:40,780
+la salida de mi red
+
+314
+00:10:41,040 --> 00:10:42,860
+neuronal está lejos
+
+315
+00:10:43,110 --> 00:10:44,340
+del valor real de «y(i)»,
+
+316
+00:10:44,540 --> 00:10:45,850
+eso se observó en el conjunto de entrenamiento.
+
+317
+00:10:46,610 --> 00:10:47,480
+Así que, puntos como este de la derecha
+
+318
+00:10:47,590 --> 00:10:50,100
+corresponden a lo que
+
+319
+00:10:50,450 --> 00:10:51,450
+la hipótesis en donde la red
+
+320
+00:10:51,740 --> 00:10:53,330
+neuronal está sacando valores que
+
+321
+00:10:53,770 --> 00:10:54,810
+en el conjunto de entrenamiento,
+
+322
+00:10:55,020 --> 00:10:56,260
+están lejos de «y(i)». Así que no está ajustando el conjunto de entrenamiento
+
+323
+00:10:56,470 --> 00:10:57,970
+bien, mientras que
+
+324
+00:10:58,170 --> 00:10:59,640
+puntos así con bajos
+
+325
+00:10:59,970 --> 00:11:01,300
+valores de la función de costos corresponden
+
+326
+00:11:02,130 --> 00:11:03,380
+donde “J” de «theta» es bajo
+
+327
+00:11:04,130 --> 00:11:05,270
+y por lo tanto corresponde
+
+328
+00:11:05,950 --> 00:11:07,590
+a donde la red neuronal
+
+329
+00:11:07,850 --> 00:11:09,290
+ajusta el conjunto de entrenamiento de
+
+330
+00:11:09,510 --> 00:11:11,340
+manera adecuada, porque me refiero a que
+
+331
+00:11:11,550 --> 00:11:14,070
+esto es lo que se necesita que esté correcto para que J de «theta» sea pequeño.
+
+332
+00:11:15,480 --> 00:11:16,810
+Así que lo que la gradiente de descenso hace es que
+
+333
+00:11:16,870 --> 00:11:18,330
+se iniciará desde un punto inicial
+
+334
+00:11:18,730 --> 00:11:20,300
+aleatorio como ese
+
+335
+00:11:20,430 --> 00:11:22,990
+de aquí, y de forma repetitiva ira hacia abajo.
+
+336
+00:11:24,040 --> 00:11:25,400
+Y lo que la retropropagación hace es
+
+337
+00:11:25,570 --> 00:11:27,220
+calcular la dirección
+
+338
+00:11:27,940 --> 00:11:29,370
+de la gradiente y lo que la
+
+339
+00:11:29,520 --> 00:11:30,740
+gradiente de descenso hace es que
+
+340
+00:11:31,040 --> 00:11:32,060
+está dando pequeños pasos hacia abajo
+
+341
+00:11:32,880 --> 00:11:34,220
+hasta que, esperemos que en este caso,
+
+342
+00:11:34,610 --> 00:11:36,410
+llegue a un óptimo local muy bueno.
+
+343
+00:11:37,880 --> 00:11:39,250
+Entonces, cuando implementen
+
+344
+00:11:39,410 --> 00:11:40,840
+la retropropagación y usen la gradiente
+
+345
+00:11:41,200 --> 00:11:42,420
+de descenso o uno de los
+
+346
+00:11:42,840 --> 00:11:44,750
+métodos de optimización avanzados, este
+
+347
+00:11:45,330 --> 00:11:47,290
+diagrama explica lo que hace el algoritmo.
+
+348
+00:11:47,450 --> 00:11:48,820
+Está intentando encontrar un valor
+
+349
+00:11:49,260 --> 00:11:50,920
+de los parámetros en donde
+
+350
+00:11:51,260 --> 00:11:52,180
+los valores de salida en la red neuronal
+
+351
+00:11:52,450 --> 00:11:54,300
+concuerdan estrechamente con
+
+352
+00:11:54,410 --> 00:11:55,520
+los valores de las «y(i)»
+
+353
+00:11:55,660 --> 00:11:58,800
+observadas en su conjunto de entrenamiento.
+
+354
+00:11:58,910 --> 00:12:00,250
+Pero espero que esto les haya dado
+
+355
+00:12:00,400 --> 00:12:01,610
+una mejor concepción de cómo
+
+356
+00:12:01,920 --> 00:12:03,930
+los distintos componentes del
+
+357
+00:12:04,120 --> 00:12:05,760
+aprendizaje de redes neuronales se ajustan cuando se interactúan juntos.
+
+358
+00:12:07,120 --> 00:12:09,010
+En caso de que aún después de este video, la
+
+359
+00:12:09,120 --> 00:12:10,130
+este video todavía sientan que hay
+
+360
+00:12:10,360 --> 00:12:11,420
+muchos componentes
+
+361
+00:12:12,070 --> 00:12:13,450
+y no queda muy claro lo que algunos de esos
+
+362
+00:12:13,690 --> 00:12:14,670
+componentes hacen o cómo interactúan
+
+363
+00:12:14,860 --> 00:12:17,760
+estos componentes, no hay mucho problema.
+
+364
+00:12:18,790 --> 00:12:21,780
+El aprendizaje de redes neuronales y retropropagación es un algoritmo complicado.
+
+365
+00:12:23,000 --> 00:12:23,960
+Y aun cuando he visto  las matemáticas detrás
+
+366
+00:12:24,290 --> 00:12:25,340
+de la retropropagación
+
+367
+00:12:25,860 --> 00:12:26,710
+durante muchos años y la he usado,
+
+368
+00:12:27,030 --> 00:12:28,470
+creo yo, exitosamente por
+
+369
+00:12:28,680 --> 00:12:30,210
+muchos años, al día de hoy
+
+370
+00:12:30,380 --> 00:12:31,510
+aún siento que
+
+371
+00:12:31,570 --> 00:12:32,670
+no siempre tengo la suma comprensión
+
+372
+00:12:33,400 --> 00:12:35,610
+de lo que la retropropagación hace exactamente en algunos casos.
+
+373
+00:12:36,200 --> 00:12:37,850
+Y cómo el proceso de optmización
+
+374
+00:12:38,520 --> 00:12:41,480
+es al minimizar J de «theta».
+
+375
+00:12:41,920 --> 00:12:42,830
+Y este es un algoritmo mucho más complicado
+
+376
+00:12:43,450 --> 00:12:44,680
+de entender, como si lo manejara
+
+377
+00:12:44,830 --> 00:12:46,590
+con menor entendimiento sobre
+
+378
+00:12:46,690 --> 00:12:47,690
+lo que hace
+
+379
+00:12:48,240 --> 00:12:49,360
+comparado con, digamos, la regresión lineal o la logística.
+
+380
+00:12:51,390 --> 00:12:53,180
+las cuales eran matemática y conceptualmente
+
+381
+00:12:53,510 --> 00:12:55,090
+mucho más simples y con algoritmos menos complicados.
+
+382
+00:12:56,200 --> 00:12:57,030
+Pero si se sienten de la misma
+
+383
+00:12:57,070 --> 00:12:58,560
+manera, ya saben que es perfectamente
+
+384
+00:12:58,970 --> 00:13:01,010
+normal, pero si implementan
+
+385
+00:13:01,170 --> 00:13:02,790
+la retroprogresion, esperemos que
+
+386
+00:13:03,160 --> 00:13:04,260
+lo que encuentren es que
+
+387
+00:13:04,460 --> 00:13:05,410
+es uno de los más poderosos algoritmos
+
+388
+00:13:05,790 --> 00:13:08,030
+de aprendizaje y si
+
+389
+00:13:08,130 --> 00:13:09,510
+implementan estos algoritmos, implementen la retropropagación,
+
+390
+00:13:10,250 --> 00:13:11,230
+implementen uno de estos métodos de optimización
+
+391
+00:13:11,340 --> 00:13:13,260
+y encuentren que
+
+392
+00:13:13,610 --> 00:13:14,940
+la retropropagación será capaz
+
+393
+00:13:15,390 --> 00:13:17,330
+de ajustarse de manera muy compleja, poderosa, con funciones no lineares
+
+394
+00:13:17,830 --> 00:13:19,370
+con sus datos,
+
+395
+00:13:20,080 --> 00:13:21,060
+y este es uno de los algoritmos de aprendizaje
+
+396
+00:13:21,190 --> 00:13:22,790
+más efectivos que tenemos hoy en día.

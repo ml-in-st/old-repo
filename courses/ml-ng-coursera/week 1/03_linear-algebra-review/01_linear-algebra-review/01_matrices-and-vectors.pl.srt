@@ -1,0 +1,970 @@
+1
+00:00:00,100 --> 00:00:01,850
+Zróbmy sobie małą powtórkę z algebry liniowej.
+
+2
+00:00:02,880 --> 00:00:03,850
+W tym nagraniu chcę
+
+3
+00:00:03,910 --> 00:00:06,210
+powiedzieć Ci, czym są macierze i wektory.
+
+4
+00:00:09,280 --> 00:00:10,770
+Macierz jest
+
+5
+00:00:11,020 --> 00:00:12,590
+prostokątną tablicą liczb
+
+6
+00:00:13,570 --> 00:00:14,810
+wpisanych w nawiasy prostokątne.
+
+7
+00:00:16,070 --> 00:00:17,250
+Na przykład tutaj mamy
+
+8
+00:00:17,280 --> 00:00:20,180
+macierz: napiszę tutaj lewy nawias kwadratowy...
+
+9
+00:00:22,000 --> 00:00:24,660
+Teraz wpiszę parę liczb...
+
+10
+00:00:27,020 --> 00:00:29,100
+(mogłyby to być cechy...
+
+11
+00:00:29,550 --> 00:00:30,660
+... do uczenia maszynowego lub też ...
+
+12
+00:00:30,800 --> 00:00:33,740
+... jakiekolwiek inne dane ...
+
+13
+00:00:35,080 --> 00:00:36,900
+... Dokładne wartości nie mają znaczenia.)
+
+14
+00:00:37,440 --> 00:00:40,470
+Teraz zamknę całość nawiasem z prawej.
+
+15
+00:00:40,680 --> 00:00:41,440
+No i mamy macierz.
+
+16
+00:00:41,930 --> 00:00:43,520
+Oto kolejny przykład macierzy:
+
+17
+00:00:44,290 --> 00:00:46,360
+napiszmy: 3, 4, 5, 6...
+
+18
+00:00:46,810 --> 00:00:48,020
+Macierz jest więc
+
+19
+00:00:48,300 --> 00:00:49,630
+inną nazwą
+
+20
+00:00:49,690 --> 00:00:51,540
+tablicy dwuwymiarowej.
+
+21
+00:00:53,260 --> 00:00:54,920
+Kolejną rzeczą,
+
+22
+00:00:55,260 --> 00:00:56,320
+którą musimy wiedzieć, to fakt,
+
+23
+00:00:56,650 --> 00:00:57,740
+że wymiary
+
+24
+00:00:57,810 --> 00:00:58,980
+macierzy
+
+25
+00:00:59,110 --> 00:01:01,070
+zapisuje się
+
+26
+00:01:01,170 --> 00:01:04,750
+w formie: liczba wierszy razy liczba kolumn.
+
+27
+00:01:05,480 --> 00:01:07,190
+W tym konkretnym przypadku
+
+28
+00:01:07,830 --> 00:01:09,700
+z lewej,
+
+29
+00:01:09,900 --> 00:01:11,000
+mamy 1, 2, 3, 4
+
+30
+00:01:11,290 --> 00:01:13,370
+wiersze oraz 2 kolumny,
+
+31
+00:01:14,540 --> 00:01:15,950
+więc przykład po lewej
+
+32
+00:01:16,110 --> 00:01:17,850
+jest macierzą
+
+33
+00:01:18,640 --> 00:01:23,320
+4 x 2 - liczba wierszy x liczba kolumn.
+
+34
+00:01:23,600 --> 00:01:24,380
+Cztery wiersze, dwie kolumny.
+
+35
+00:01:25,290 --> 00:01:27,740
+Macierz po prawej ma dwa wiersze;
+
+36
+00:01:28,330 --> 00:01:29,790
+to jest pierwszy wiersz,
+
+37
+00:01:30,040 --> 00:01:32,580
+to drugi; ma też trzy kolumny.
+
+38
+00:01:35,430 --> 00:01:36,890
+To jest pierwsza kolumna,
+
+39
+00:01:37,070 --> 00:01:38,350
+to druga, to trzecia.
+
+40
+00:01:38,610 --> 00:01:41,340
+W takim razie
+
+41
+00:01:41,670 --> 00:01:42,800
+macierz ta
+
+42
+00:01:42,970 --> 00:01:44,660
+jest macierzą 2 x 3.
+
+43
+00:01:45,700 --> 00:01:48,230
+Mówimy więc, że wymiar tej macierzy to 2 na 3.
+
+44
+00:01:50,460 --> 00:01:51,690
+Czasami przy zapisie
+
+45
+00:01:51,850 --> 00:01:53,480
+możemy też
+
+46
+00:01:53,740 --> 00:01:54,510
+zobaczyć zapis
+
+47
+00:01:55,000 --> 00:01:56,360
+R(4 x 2) (dla lewej macierzy),
+
+48
+00:01:56,460 --> 00:01:58,090
+lub też ktoś może powiedzieć,
+
+49
+00:01:58,470 --> 00:02:00,280
+że macierz ta
+
+50
+00:02:00,930 --> 00:02:02,840
+jest elementem zbioru R(4 na 2).
+
+51
+00:02:03,060 --> 00:02:04,270
+Ta litera tutaj
+
+52
+00:02:04,410 --> 00:02:05,180
+oznacza po prostu zbiór
+
+53
+00:02:05,790 --> 00:02:07,020
+wszystkich macierzy o wymiarze
+
+54
+00:02:07,520 --> 00:02:08,960
+4 na 2; ta macierz
+
+55
+00:02:09,100 --> 00:02:10,650
+z prawej może
+
+56
+00:02:10,880 --> 00:02:12,800
+też zostać zapisana jako macierz R(2 x 3).
+
+57
+00:02:13,130 --> 00:02:16,080
+Tak więc jeśli kiedyś zobaczysz
+
+58
+00:02:16,560 --> 00:02:17,460
+coś takiego: 2 na 3,
+
+59
+00:02:17,570 --> 00:02:18,700
+coś takiego jak R(4 x 2)
+
+60
+00:02:18,880 --> 00:02:19,960
+albo R(2 x 3) -
+
+61
+00:02:20,320 --> 00:02:21,450
+ludzie mają na myśli
+
+62
+00:02:21,900 --> 00:02:23,830
+po prostu macierz określonych wymiarów.
+
+63
+00:02:26,760 --> 00:02:28,240
+Teraz pomówmy o tym,
+
+64
+00:02:28,590 --> 00:02:31,370
+jak odnieść się do poszczególnych elementów
+macierzy.
+
+65
+00:02:31,980 --> 00:02:32,850
+Przez elementy macierzy
+
+66
+00:02:33,020 --> 00:02:34,090
+mam na myśli
+
+67
+00:02:34,360 --> 00:02:35,930
+liczby w środku macierzy.
+
+68
+00:02:37,200 --> 00:02:38,270
+Tak więc w standardowej notacji,
+
+69
+00:02:38,890 --> 00:02:40,110
+jeśli A jest
+
+70
+00:02:40,290 --> 00:02:41,860
+tą macierzą, wtedy Aij
+
+71
+00:02:42,830 --> 00:02:44,050
+odnosi się do
+
+72
+00:02:44,420 --> 00:02:46,060
+elementu i,j,
+
+73
+00:02:46,950 --> 00:02:48,490
+tzn. elementu
+
+74
+00:02:48,570 --> 00:02:50,690
+macierzy zapisanego
+w i-tym wierszu i j-tej kolumnie.
+
+75
+00:02:51,880 --> 00:02:54,200
+Więc np. A1,1 to
+
+76
+00:02:54,530 --> 00:02:55,660
+element
+
+77
+00:02:56,220 --> 00:02:57,510
+w 1-szym wierszu
+
+78
+00:02:57,600 --> 00:02:58,900
+i 1-szej kolumnie, a więc
+
+79
+00:02:58,960 --> 00:02:59,720
+mamy pierwszy wiersz
+
+80
+00:03:00,090 --> 00:03:02,600
+i pierwszą kolumnę, więc A1,1
+
+81
+00:03:02,640 --> 00:03:03,920
+będzie się równać
+
+82
+00:03:04,240 --> 00:03:05,880
+1402.
+
+83
+00:03:06,420 --> 00:03:07,620
+Kolejny przykład: A1,2
+
+84
+00:03:07,780 --> 00:03:10,020
+odnosi się do
+
+85
+00:03:10,160 --> 00:03:11,160
+pierwszego wiersza
+
+86
+00:03:11,660 --> 00:03:13,860
+i drugiej kolumny,
+
+87
+00:03:14,290 --> 00:03:16,170
+więc A1,2
+
+88
+00:03:16,270 --> 00:03:19,000
+jest równe 191.
+
+89
+00:03:20,430 --> 00:03:21,190
+Jeszcze parę szybkich przykładów...
+
+90
+00:03:22,430 --> 00:03:24,360
+Zobaczmy: A3,2
+
+91
+00:03:24,530 --> 00:03:26,970
+odnosi się do
+
+92
+00:03:27,350 --> 00:03:29,240
+elementu w 3-im wierszu
+
+93
+00:03:30,040 --> 00:03:32,340
+i 2-ej kolumnie,
+
+94
+00:03:33,750 --> 00:03:35,030
+prawda? A3,2
+
+95
+00:03:35,470 --> 00:03:41,270
+jest więc równe 1437.
+
+96
+00:03:41,490 --> 00:03:42,480
+Wreszcie, A4,1
+
+97
+00:03:43,370 --> 00:03:44,540
+odnosi się do
+
+98
+00:03:45,320 --> 00:03:47,320
+4-ego wiersza,
+
+99
+00:03:47,710 --> 00:03:49,220
+1-ej kolumny, a więc
+
+100
+00:03:49,520 --> 00:03:53,150
+jest równe 147.
+
+101
+00:03:53,770 --> 00:03:54,600
+Jeśli chciał(a)byś
+
+102
+00:03:54,660 --> 00:03:55,560
+napisać np.
+
+103
+00:03:55,660 --> 00:03:57,540
+A4,3 -
+
+104
+00:03:57,870 --> 00:03:59,200
+cóż, odnosi się to
+
+105
+00:03:59,610 --> 00:04:01,130
+do 4-ego wiersza
+
+106
+00:04:01,230 --> 00:04:02,730
+i 3-ej kolumny, a
+
+107
+00:04:02,850 --> 00:04:03,940
+ta macierz nie ma
+
+108
+00:04:04,190 --> 00:04:05,420
+trzeciej kolumny, więc taki element
+nie istnieje.
+
+109
+00:04:06,640 --> 00:04:08,280
+Możesz o tym myśleć jak o błędzie.
+
+110
+00:04:08,830 --> 00:04:10,720
+Nie ma takiego elementu jak
+
+111
+00:04:10,840 --> 00:04:12,540
+A4,3, więc
+
+112
+00:04:12,950 --> 00:04:14,500
+nie należy się odwoływać do A4,3.
+
+113
+00:04:14,620 --> 00:04:17,120
+Tak więc macierz
+
+114
+00:04:17,640 --> 00:04:19,070
+daje Ci możliwość
+
+115
+00:04:19,380 --> 00:04:22,280
+szybkiego uporządkowania, indeksowania
+i dostępu do dużej ilości danych.
+
+116
+00:04:22,670 --> 00:04:24,200
+Jeśli zarzucam Cię
+
+117
+00:04:24,320 --> 00:04:25,140
+wieloma nowymi
+
+118
+00:04:25,440 --> 00:04:26,110
+terminami i notacjami
+
+119
+00:04:26,570 --> 00:04:27,920
+zbyt szybko, nie musisz
+
+120
+00:04:28,140 --> 00:04:29,230
+zapamiętywać wszystkiego
+
+121
+00:04:29,530 --> 00:04:31,500
+- na stronie kursu,
+
+122
+00:04:31,700 --> 00:04:33,340
+gdzie zamieszczone są notatki z wykładów,
+
+123
+00:04:33,700 --> 00:04:35,960
+mamy też zapisane wszystkie te definicje.
+
+124
+00:04:36,650 --> 00:04:37,740
+Możesz więc zawsze się odwołać się do nich
+
+125
+00:04:38,160 --> 00:04:39,200
+albo do tych slajdów,
+
+126
+00:04:39,560 --> 00:04:40,950
+czy do tego wykładu, jeśli
+
+127
+00:04:41,260 --> 00:04:44,060
+spojrzysz na A4,1 i pomyślisz: "co to było?"
+
+128
+00:04:44,290 --> 00:04:45,320
+"Który wiersz, która kolumna?"
+
+129
+00:04:45,650 --> 00:04:47,160
+Nie przejmuj się zapamiętywaniem wszystkiego.
+
+130
+00:04:47,470 --> 00:04:48,960
+Możesz zawsze odwołać się
+
+131
+00:04:49,100 --> 00:04:51,590
+do materiałów pisemnych na stronie kursu
+i traktować je jako odniesienie.
+
+132
+00:04:52,500 --> 00:04:53,740
+Oto, czym jest macierz.
+
+133
+00:04:54,160 --> 00:04:57,000
+Porozmawiajmy teraz o wektorze.
+
+134
+00:04:57,300 --> 00:04:59,400
+Okazuje się, że wektor jest
+specjalnym przypadkiem macierzy.
+
+135
+00:04:59,890 --> 00:05:01,170
+Wektor jest macierzą,
+
+136
+00:05:02,070 --> 00:05:03,590
+która ma tylko 1 kolumnę, np.
+
+137
+00:05:03,740 --> 00:05:04,650
+mamy macierz
+
+138
+00:05:04,850 --> 00:05:07,330
+n x 1, gdzie (pamiętasz?)
+
+139
+00:05:07,820 --> 00:05:08,970
+n jest liczbą
+
+140
+00:05:09,190 --> 00:05:10,750
+wierszy, zaś 1
+
+141
+00:05:10,870 --> 00:05:12,540
+oznacza tu liczbę kolumn, więc
+
+142
+00:05:12,710 --> 00:05:13,760
+macierz o jednej kolumnie
+
+143
+00:05:14,720 --> 00:05:15,730
+nazywamy wektorem.
+
+144
+00:05:16,700 --> 00:05:17,950
+Tutaj mamy przykład
+
+145
+00:05:18,310 --> 00:05:19,800
+wektora, gdzie
+
+146
+00:05:20,120 --> 00:05:22,700
+n = 4 elementy.
+
+147
+00:05:23,860 --> 00:05:25,090
+Tak więc inną nazwą
+
+148
+00:05:25,370 --> 00:05:26,560
+tego tworu
+
+149
+00:05:26,660 --> 00:05:28,300
+jest wektor
+
+150
+00:05:30,130 --> 00:05:31,410
+4-wymiarowy, co znaczy
+
+151
+00:05:32,880 --> 00:05:34,410
+tyle, że mamy
+
+152
+00:05:34,800 --> 00:05:36,400
+w nim 4 elementy; 4 liczby.
+
+153
+00:05:36,870 --> 00:05:38,130
+I tak jak wcześniej,
+
+154
+00:05:38,510 --> 00:05:39,520
+dla macierzy, mieliśmy
+
+155
+00:05:39,740 --> 00:05:40,960
+notację R(3x2),
+
+156
+00:05:41,120 --> 00:05:42,340
+aby odnieść się
+
+157
+00:05:42,340 --> 00:05:43,770
+do macierzy 3x2, tak
+
+158
+00:05:44,660 --> 00:05:46,340
+w przypadku wektora mówimy
+
+159
+00:05:46,500 --> 00:05:48,270
+o wektorze w zbiorze R4.
+
+160
+00:05:49,640 --> 00:05:50,900
+R4 oznacza więc
+
+161
+00:05:51,020 --> 00:05:53,480
+zbiór 4-wymiarowych wektorów.
+
+162
+00:05:56,350 --> 00:05:59,230
+Porozmawiajmy teraz, jak odwołać się do
+elementów wektora.
+
+163
+00:06:01,790 --> 00:06:02,970
+Będziemy używać notacji
+
+164
+00:06:03,730 --> 00:06:06,030
+yi, aby odnieść się
+
+165
+00:06:06,310 --> 00:06:07,620
+do i-tego elementu
+
+166
+00:06:07,690 --> 00:06:08,650
+wektora y; więc jeśli
+
+167
+00:06:08,810 --> 00:06:11,470
+y jest wektorem, y indeks dolny i jest
+i-tym elementem.
+
+168
+00:06:12,050 --> 00:06:13,080
+Tak więc y1
+
+169
+00:06:13,450 --> 00:06:16,320
+to pierwszy element - 460,
+
+170
+00:06:16,540 --> 00:06:18,670
+y2 to drugi element -
+
+171
+00:06:19,690 --> 00:06:21,030
+232. Oto pierwszy,
+
+172
+00:06:21,380 --> 00:06:21,780
+a oto drugi element.
+
+173
+00:06:22,570 --> 00:06:24,840
+y3 jest równe
+
+174
+00:06:24,970 --> 00:06:26,380
+315 i tak dalej. Jedynie
+
+175
+00:06:26,760 --> 00:06:28,240
+elementy y1 do y4 są
+
+176
+00:06:28,650 --> 00:06:31,600
+zdefiniowane, bo jest to
+wektor 4-wymiarowy.
+
+177
+00:06:32,940 --> 00:06:33,990
+Okazuje się też, że
+
+178
+00:06:34,560 --> 00:06:35,950
+są właściwie 2 konwencje
+
+179
+00:06:36,320 --> 00:06:37,590
+indeksowania wektora -
+
+180
+00:06:37,730 --> 00:06:39,250
+oto i one:
+
+181
+00:06:39,560 --> 00:06:41,020
+Czasami ludzie używają
+
+182
+00:06:41,630 --> 00:06:43,820
+indeksacji od 1, a czasami od 0.
+
+183
+00:06:44,770 --> 00:06:45,620
+Po lewej jest przykład
+
+184
+00:06:46,090 --> 00:06:47,980
+indeksacji od 1,
+
+185
+00:06:48,180 --> 00:06:49,240
+więc elementy
+
+186
+00:06:49,650 --> 00:06:51,870
+zapisujemy y1, y2, y3, y4.
+
+187
+00:06:53,540 --> 00:06:54,710
+Po prawej jest przykład
+
+188
+00:06:54,870 --> 00:06:56,340
+indeksacji od 0,
+
+189
+00:06:56,840 --> 00:06:58,380
+gdzie zaczynamy
+
+190
+00:06:58,730 --> 00:07:00,460
+indeksować elementy od 0;
+
+191
+00:07:01,520 --> 00:07:04,620
+tak więc elementy mają numery od 0 do 3 -
+
+192
+00:07:05,450 --> 00:07:07,170
+podobnie jak w przypadku tablic
+
+193
+00:07:07,380 --> 00:07:08,780
+w popularnych językach programowania,
+
+194
+00:07:09,940 --> 00:07:11,080
+gdzie tablica czasem
+
+195
+00:07:11,440 --> 00:07:12,740
+indeksowana jest od 1
+
+196
+00:07:13,140 --> 00:07:14,390
+(pierwszy element ...
+
+197
+00:07:14,510 --> 00:07:15,590
+... tablicy jest oznaczony y1 - ...
+
+198
+00:07:16,160 --> 00:07:17,480
+... jest to, o ile się nie mylę, notacja szeregów),
+
+199
+00:07:17,940 --> 00:07:20,580
+a czasami jest to notacja od 0,
+
+200
+00:07:21,260 --> 00:07:22,860
+w zależności od języka programowania.
+
+201
+00:07:23,640 --> 00:07:25,000
+Okazuje się, że zwykle
+
+202
+00:07:25,190 --> 00:07:26,680
+w matematyce notacja
+
+203
+00:07:27,120 --> 00:07:28,390
+od 1 jest popularniejsza;
+
+204
+00:07:28,570 --> 00:07:30,150
+z kolei w przypadku
+
+205
+00:07:30,380 --> 00:07:32,640
+uczenia maszynowego indeksacja od 0
+
+206
+00:07:33,680 --> 00:07:35,400
+jest dużo wygodniejszą notacją.
+
+207
+00:07:36,810 --> 00:07:37,650
+Tak więc zazwyczaj,
+
+208
+00:07:37,970 --> 00:07:39,580
+o ile ktoś nie powie inaczej,
+
+209
+00:07:40,630 --> 00:07:43,070
+należy zakładać, że indeksacja wektorów 
+zaczyna się od 1.
+
+210
+00:07:43,680 --> 00:07:44,750
+Dlatego też przez
+
+211
+00:07:44,890 --> 00:07:46,380
+resztę wykładów nt. powtórki z algebry
+
+212
+00:07:46,770 --> 00:07:49,190
+liniowej, będę używał wektorów
+indeksowanych od 1.
+
+213
+00:07:50,210 --> 00:07:51,170
+Bądź jednak świadomy/a, że
+
+214
+00:07:51,280 --> 00:07:52,150
+gdy mówimy o zastosowaniach
+
+215
+00:07:52,390 --> 00:07:53,980
+uczenia maszynowego, czasami
+
+216
+00:07:54,220 --> 00:07:55,340
+powiem wprost, że
+
+217
+00:07:55,480 --> 00:07:56,640
+przełączamy się
+
+218
+00:07:56,740 --> 00:07:57,760
+na indeksację wektorów
+
+219
+00:07:59,020 --> 00:07:59,280
+od 0.
+
+220
+00:08:00,240 --> 00:08:02,470
+Wreszcie, zgodnie z konwencją, zwykle
+
+221
+00:08:02,940 --> 00:08:04,470
+gdy mowa o macierzach i wektorach,
+
+222
+00:08:05,060 --> 00:08:06,710
+większość ludzi używa wielkich
+
+223
+00:08:06,900 --> 00:08:08,450
+liter na oznaczenie macierzy.
+
+224
+00:08:09,000 --> 00:08:09,750
+Będziemy więc używać
+
+225
+00:08:09,930 --> 00:08:12,030
+wielkich liter, np.
+
+226
+00:08:12,260 --> 00:08:13,840
+A, B, C, X,
+
+227
+00:08:14,100 --> 00:08:15,370
+aby oznaczać macierze,
+
+228
+00:08:16,630 --> 00:08:17,910
+i zwykle małych liter,
+
+229
+00:08:18,660 --> 00:08:19,630
+np. a, b, x, y,
+
+230
+00:08:21,140 --> 00:08:22,460
+aby odwoływać się do liczb,
+
+231
+00:08:23,060 --> 00:08:25,400
+skalarów albo wektorów.
+
+232
+00:08:26,150 --> 00:08:27,860
+Nie zawsze tak jest, ale
+
+233
+00:08:28,110 --> 00:08:29,210
+częściej spotyka się
+
+234
+00:08:29,460 --> 00:08:30,610
+małe litery,
+
+235
+00:08:30,940 --> 00:08:31,870
+gdy mówimy
+
+236
+00:08:32,020 --> 00:08:33,360
+o wektorach, oraz
+
+237
+00:08:34,150 --> 00:08:35,460
+wielkie litery, gdy o macierzach.
+
+238
+00:08:37,200 --> 00:08:39,820
+Wiesz już więc, czym są macierze i wektory.
+
+239
+00:08:40,800 --> 00:08:42,310
+Następnym razem powiemy sobie,
+
+240
+00:08:42,500 --> 00:08:44,330
+do czego można je wykorzystać.

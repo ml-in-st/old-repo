@@ -1,0 +1,1619 @@
+1
+00:00:00,109 --> 00:00:02,030
+En este vídeo me gustaría hablar
+
+2
+00:00:02,030 --> 00:00:03,738
+acerca de una nueva configuración del
+
+3
+00:00:03,738 --> 00:00:05,369
+aprendizaje automático a gran escala que se llama
+
+4
+00:00:05,369 --> 00:00:07,073
+configuración de aprendizaje en línea.
+
+5
+00:00:07,442 --> 00:00:08,731
+La configuración de aprendizaje en línea
+
+6
+00:00:08,731 --> 00:00:10,659
+nos permite modelar problemas
+
+7
+00:00:10,659 --> 00:00:12,074
+en donde tenemos una inundación continua
+
+8
+00:00:12,074 --> 00:00:14,064
+o un flujo continuo de datos
+
+9
+00:00:14,064 --> 00:00:15,906
+entrantes y nos gustaría
+
+10
+00:00:15,906 --> 00:00:17,839
+un algoritmo que aprenda a partir de eso.
+
+11
+00:00:18,762 --> 00:00:20,759
+Hoy en día, muchos de los sitios web más grandes,
+
+12
+00:00:20,759 --> 00:00:22,245
+o muchas de las empresas de sitios web más grandes
+
+13
+00:00:22,245 --> 00:00:24,335
+utilizan diferentes
+
+14
+00:00:24,335 --> 00:00:25,901
+versiones de algoritmos de aprendizaje
+
+15
+00:00:25,901 --> 00:00:28,102
+en línea para que aprendan de la
+
+16
+00:00:28,117 --> 00:00:29,468
+avalancha de usuarios que siguen
+
+17
+00:00:29,468 --> 00:00:31,370
+llegando, de regreso al sitio web.
+
+18
+00:00:31,370 --> 00:00:32,943
+Específicamente, si tienen
+
+19
+00:00:32,943 --> 00:00:34,992
+un flujo continuo de datos
+
+20
+00:00:34,992 --> 00:00:36,371
+generado por un flujo continuo
+
+21
+00:00:36,371 --> 00:00:37,703
+de usuarios que visitan
+
+22
+00:00:37,703 --> 00:00:39,413
+su sitio web, lo que puede
+
+23
+00:00:39,413 --> 00:00:40,844
+hacer es usar, algunas veces, un
+
+24
+00:00:40,844 --> 00:00:42,632
+algoritmo de aprendizaje en línea para conocer
+
+25
+00:00:42,632 --> 00:00:44,492
+las preferencias de los usuarios a partir del
+
+26
+00:00:44,492 --> 00:00:46,324
+flujo de datos y usar eso
+
+27
+00:00:46,324 --> 00:00:47,470
+para optimizar algunas de las
+
+28
+00:00:47,470 --> 00:00:49,632
+decisiones sobre su sitio web.
+
+29
+00:00:52,063 --> 00:00:54,506
+Supongamos que dirigen un servicio de envíos.
+
+30
+00:00:54,506 --> 00:00:56,163
+Los usuarios vienen y piden
+
+31
+00:00:56,163 --> 00:00:57,307
+ayuda para enviar sus paquetes de
+
+32
+00:00:57,307 --> 00:01:01,533
+la ubicación de A a la ubicación B, y supongamos
+
+33
+00:01:01,533 --> 00:01:02,717
+que dirige un sitio web, en donde los usuarios
+
+34
+00:01:02,717 --> 00:01:04,110
+repetidas veces entran y les dicen
+
+35
+00:01:04,110 --> 00:01:05,689
+desde dónde quieren
+
+36
+00:01:05,689 --> 00:01:07,291
+enviar el paquete y
+
+37
+00:01:07,291 --> 00:01:08,523
+a dónde desean enviarlo
+
+38
+00:01:08,523 --> 00:01:10,947
+(así que el origen y el destino), y
+
+39
+00:01:10,947 --> 00:01:12,748
+su sitio web ofrece enviar el paquete
+
+40
+00:01:12,748 --> 00:01:14,515
+por algún precio de venta,
+
+41
+00:01:14,515 --> 00:01:16,092
+así que yo voy a enviar el paquete por $ 50,
+
+42
+00:01:16,092 --> 00:01:17,926
+yo lo enviaré por $20.
+
+43
+00:01:17,926 --> 00:01:19,343
+Y con base en el precio
+
+44
+00:01:19,343 --> 00:01:20,922
+que ustedes les ofrecen a los usuarios,
+
+45
+00:01:20,922 --> 00:01:23,522
+los usuarios algunas veces eligen utilizar su servicio de envíos;
+
+46
+00:01:23,522 --> 00:01:25,891
+eso es un ejemplo positivo y
+
+47
+00:01:25,891 --> 00:01:28,168
+algunas veces se van y
+
+48
+00:01:28,168 --> 00:01:29,722
+deciden no
+
+49
+00:01:29,722 --> 00:01:31,719
+usar su servicio de envíos.
+
+50
+00:01:31,719 --> 00:01:34,552
+Así que digamos que queremos
+
+51
+00:01:34,552 --> 00:01:36,386
+un algoritmo de aprendizaje para que nos ayude
+
+52
+00:01:36,386 --> 00:01:38,499
+a optimizar lo que es el precio de venta
+
+53
+00:01:38,499 --> 00:01:41,680
+que queremos ofrecer a nuestros usuarios.
+
+54
+00:01:41,680 --> 00:01:43,724
+Y específicamente, digamos que nos
+
+55
+00:01:43,724 --> 00:01:44,908
+encontramos con algún conjunto de variables
+
+56
+00:01:44,908 --> 00:01:46,510
+que capturen las propiedades de los usuarios.
+
+57
+00:01:46,510 --> 00:01:49,376
+Si conocemos algo de las variables demográficas,
+
+58
+00:01:49,376 --> 00:01:50,875
+estas capturan el origen y
+
+59
+00:01:50,875 --> 00:01:54,405
+el destino del paquete, a dónde quieren enviar el paquete
+
+60
+00:01:54,405 --> 00:01:55,635
+y cuál es el precio
+
+61
+00:01:55,635 --> 00:01:57,911
+que les ofrecemos para enviar el paquete,
+
+62
+00:01:57,911 --> 00:01:59,931
+y lo que queremos hacer
+
+63
+00:01:59,931 --> 00:02:00,883
+es conocer cuál es la
+
+64
+00:02:00,883 --> 00:02:02,439
+la probabilidad de que
+
+65
+00:02:02,439 --> 00:02:03,762
+elijan enviar el
+
+66
+00:02:03,762 --> 00:02:05,457
+paquete usando nuestro
+
+67
+00:02:05,457 --> 00:02:07,315
+servicio de envío dadas estas variables, y
+
+68
+00:02:07,315 --> 00:02:10,197
+nuevamente sólo como recordatorio, estas
+
+69
+00:02:10,197 --> 00:02:14,121
+variables «X» también capturan el precio que estamos pidiendo.
+
+70
+00:02:14,121 --> 00:02:15,790
+De modo que si pudiéramos
+
+71
+00:02:15,790 --> 00:02:17,486
+estimar la probabilidad de que vayan
+
+72
+00:02:17,486 --> 00:02:19,629
+a estar de acuerdo en usar nuestro servicio
+
+73
+00:02:19,629 --> 00:02:20,962
+por cualquier precio dado; entonces
+
+74
+00:02:20,962 --> 00:02:21,967
+podemos tratar de elegir
+
+75
+00:02:21,967 --> 00:02:23,183
+un precio para que tengan
+
+76
+00:02:23,183 --> 00:02:25,125
+una probabilidad bastante alta
+
+77
+00:02:25,125 --> 00:02:27,841
+de elegir nuestro sitio web mientras que, de manera simultánea,
+
+78
+00:02:27,841 --> 00:02:29,188
+con suerte nos ofrezcan una
+
+79
+00:02:29,188 --> 00:02:31,371
+retribución justa, ofreciéndonos
+
+80
+00:02:31,371 --> 00:02:34,293
+una ganancia justa por enviar su paquete.
+
+81
+00:02:34,585 --> 00:02:36,489
+Así que si podemos conocer esta propiedad
+
+82
+00:02:36,489 --> 00:02:37,733
+de «y» es igual a 1 dado
+
+83
+00:02:37,733 --> 00:02:38,632
+cualquier precio y dadas las otras
+
+84
+00:02:38,632 --> 00:02:39,660
+variables, realmente podríamos
+
+85
+00:02:39,660 --> 00:02:41,657
+usar esto para elegir los precios adecuados
+
+86
+00:02:41,657 --> 00:02:44,072
+a medida que tenemos usuarios nuevos.
+
+87
+00:02:44,072 --> 00:02:45,907
+Así que para modelar
+
+88
+00:02:45,907 --> 00:02:47,277
+la probabilidad de que «y» es igual a 1,
+
+89
+00:02:47,277 --> 00:02:48,972
+lo que podemos hacer es usar
+
+90
+00:02:48,972 --> 00:02:51,781
+la regresión logística o la red
+
+91
+00:02:51,781 --> 00:02:53,756
+neuronal o algún otro algoritmo como ese.
+
+92
+00:02:53,756 --> 00:02:55,889
+Pero vamos a empezar con la regresión logística.
+
+93
+00:02:57,658 --> 00:02:59,583
+Ahora, si tienen un
+
+94
+00:02:59,583 --> 00:03:01,835
+sitio web que sólo funciona de forma continua,
+
+95
+00:03:01,835 --> 00:03:05,342
+esto es lo que un algoritmo de aprendizaje en línea haría.
+
+96
+00:03:05,342 --> 00:03:07,478
+Voy a escribir «repetir por siempre.»
+
+97
+00:03:07,478 --> 00:03:09,730
+Esto sólo significa que nuestro sitio web
+
+98
+00:03:09,730 --> 00:03:11,170
+va a seguir manteniéndose
+
+99
+00:03:11,170 --> 00:03:12,911
+en funcionamiento.
+
+100
+00:03:12,911 --> 00:03:14,351
+Lo que sucede en el sitio web es que,
+
+101
+00:03:14,351 --> 00:03:16,465
+de vez en cuando, un usuario
+
+102
+00:03:16,465 --> 00:03:17,950
+vendrá, y para
+
+103
+00:03:17,950 --> 00:03:19,576
+el usuario que viene vamos a obtener
+
+104
+00:03:19,576 --> 00:03:25,380
+algún par «x,y» que corresponde a
+
+105
+00:03:25,380 --> 00:03:29,096
+un cliente o a un usuario en el sitio web.
+
+106
+00:03:29,096 --> 00:03:30,884
+De modo que las variables «x» son, ya
+
+107
+00:03:30,884 --> 00:03:32,811
+saben, el origen y el destino especificado
+
+108
+00:03:32,811 --> 00:03:34,111
+por este usuario y el precio
+
+109
+00:03:34,111 --> 00:03:35,358
+que le ofrecimos
+
+110
+00:03:35,358 --> 00:03:37,292
+en esta ocasión, y
+
+111
+00:03:37,292 --> 00:03:38,430
+«y» es ya sea uno o
+
+112
+00:03:38,430 --> 00:03:40,148
+cero, dependiendo de si
+
+113
+00:03:40,148 --> 00:03:41,518
+eligieron o no
+
+114
+00:03:41,518 --> 00:03:43,980
+usar nuestro servicio de envíos.
+
+115
+00:03:43,980 --> 00:03:45,419
+Ahora, una vez que tenemos este par {x, y},
+
+116
+00:03:45,419 --> 00:03:46,813
+lo que hace un algoritmo de aprendizaje en línea
+
+117
+00:03:46,813 --> 00:03:48,391
+es entonces
+
+118
+00:03:48,391 --> 00:03:50,690
+actualizar los parámetros «theta»
+
+119
+00:03:50,690 --> 00:03:54,011
+usando sólo este ejemplo
+
+120
+00:03:54,011 --> 00:03:57,726
+«x,y» y, en particular,
+
+121
+00:03:57,726 --> 00:03:59,839
+actualizaríamos los parámetros «theta»
+
+122
+00:03:59,839 --> 00:04:01,842
+ya que «theta» j se actualiza como «theta» j
+
+123
+00:04:01,842 --> 00:04:06,619
+menos el índice de aprendizaje «alfa» multiplicado
+
+124
+00:04:06,619 --> 00:04:11,356
+por mi regla de gradiente de descenso habitual
+
+125
+00:04:11,356 --> 00:04:13,399
+para la regresión logística.
+
+126
+00:04:13,399 --> 00:04:14,491
+Así que hacemos esto para «j»
+
+127
+00:04:14,491 --> 00:04:15,652
+es igual a cero hasta n,
+
+128
+00:04:15,652 --> 00:04:19,088
+y ese es mi corchete cerrado.
+
+129
+00:04:19,088 --> 00:04:21,218
+Así que para otros algoritmos de aprendizaje,
+
+130
+00:04:21,218 --> 00:04:22,873
+en lugar de escribir «X-Y», cierto, escribí
+
+131
+00:04:22,873 --> 00:04:24,011
+cosas como «Xi,
+
+132
+00:04:24,011 --> 00:04:26,495
+Yi» pero
+
+133
+00:04:26,495 --> 00:04:27,842
+en esta configuración de aprendizaje en línea
+
+134
+00:04:27,842 --> 00:04:29,723
+en realidad estamos desechando la noción
+
+135
+00:04:29,723 --> 00:04:31,464
+de la existencia de un conjunto de entrenamiento fijo,
+
+136
+00:04:31,464 --> 00:04:32,904
+en su lugar tenemos un algoritmo.
+
+137
+00:04:32,904 --> 00:04:34,924
+Ahora, lo que ocurre a medida que obtenemos
+
+138
+00:04:34,924 --> 00:04:37,014
+un ejemplo y luego aprendemos
+
+139
+00:04:37,014 --> 00:04:38,825
+a usar ese ejemplo de esta manera,
+
+140
+00:04:38,825 --> 00:04:41,031
+y luego tiramos ese ejemplo,
+
+141
+00:04:41,031 --> 00:04:43,098
+descartamos ese ejemplo y nunca
+
+142
+00:04:43,098 --> 00:04:45,141
+lo usamos de nuevo,
+
+143
+00:04:45,141 --> 00:04:47,161
+de modo que sólo miramos a un ejemplo a la vez;
+
+144
+00:04:47,161 --> 00:04:48,879
+aprendemos de ese ejemplo,
+
+145
+00:04:48,879 --> 00:04:50,412
+lo descartamos,
+
+146
+00:04:50,412 --> 00:04:51,527
+que es la razón por la que, ya saben, también
+
+147
+00:04:51,527 --> 00:04:52,943
+estamos acabando con esta
+
+148
+00:04:52,943 --> 00:04:54,615
+noción de la existencia de este
+
+149
+00:04:54,615 --> 00:04:58,191
+tipo de conjunto de entrenamiento fijo indexado por «i».
+
+150
+00:04:58,191 --> 00:04:59,328
+Y, si realmente dirigen
+
+151
+00:04:59,328 --> 00:05:01,488
+un sitio web importante en donde
+
+152
+00:05:01,488 --> 00:05:03,624
+en realidad tienen un flujo continuo
+
+153
+00:05:03,624 --> 00:05:05,737
+de usuarios que lo visitan, entonces este
+
+154
+00:05:05,737 --> 00:05:07,525
+tipo de algoritmo de aprendizaje en línea
+
+155
+00:05:07,525 --> 00:05:10,358
+es en realidad un algoritmo bastante razonable,
+
+156
+00:05:10,358 --> 00:05:12,076
+porque los datos están esencialmente
+
+157
+00:05:12,076 --> 00:05:13,330
+gratis, si tienen demasiados
+
+158
+00:05:13,330 --> 00:05:14,979
+datos, esos datos
+
+159
+00:05:14,979 --> 00:05:17,022
+son esencialmente ilimitados, entonces
+
+160
+00:05:17,022 --> 00:05:17,997
+en realidad tal vez no hay
+
+161
+00:05:17,997 --> 00:05:18,949
+necesidad de mirar un
+
+162
+00:05:18,949 --> 00:05:21,527
+ejemplo de entrenamiento más de una vez.
+
+163
+00:05:21,527 --> 00:05:22,432
+Por supuesto, si sólo tuviéramos
+
+164
+00:05:22,432 --> 00:05:24,220
+un número reducido de usuarios, entonces
+
+165
+00:05:24,220 --> 00:05:26,333
+en lugar de utilizar un algoritmo de  aprendizaje en línea
+
+166
+00:05:26,333 --> 00:05:27,912
+como éste, quizás
+
+167
+00:05:27,912 --> 00:05:29,421
+sería mejor que guardaran todos
+
+168
+00:05:29,421 --> 00:05:30,884
+sus datos en un conjunto de entrenamiento fijo
+
+169
+00:05:30,884 --> 00:05:34,042
+y después ejecutaran algún algoritmo sobre ese conjunto de entrenamiento.
+
+170
+00:05:34,042 --> 00:05:35,018
+Pero si realmente tienen un flujo continuo
+
+171
+00:05:35,018 --> 00:05:36,341
+de datos, entonces un
+
+172
+00:05:36,341 --> 00:05:39,881
+algoritmo de aprendizaje en línea puede ser muy eficaz.
+
+173
+00:05:39,881 --> 00:05:41,171
+También debo mencionar que un
+
+174
+00:05:41,171 --> 00:05:43,015
+efecto interesante de este tipo
+
+175
+00:05:43,015 --> 00:05:44,073
+de algoritmo de aprendizaje en línea
+
+176
+00:05:44,073 --> 00:05:49,391
+es que puede adaptarse a las preferencias cambiantes del usuario.
+
+177
+00:05:51,006 --> 00:05:54,592
+Y, en particular, si
+
+178
+00:05:54,592 --> 00:05:55,776
+al paso tiempo, debido a cambios en la
+
+179
+00:05:55,776 --> 00:05:58,377
+la economía, tal vez los usuarios
+
+180
+00:05:58,377 --> 00:05:59,957
+se empiezan a hacer
+
+181
+00:05:59,957 --> 00:06:01,395
+sensibles al precio y están dispuestos a pagar,
+
+182
+00:06:01,395 --> 00:06:03,717
+ya saben, menos dispuestos a pagar precios más altos;
+
+183
+00:06:03,717 --> 00:06:06,527
+O si se vuelven menos sensibles a los precios y están dispuestos a pagar precios más altos,
+
+184
+00:06:06,527 --> 00:06:08,292
+O si diferentes asuntos
+
+185
+00:06:08,292 --> 00:06:10,451
+llegan a ser más importantes para los usuarios;
+
+186
+00:06:10,451 --> 00:06:11,496
+si empiezan a tener nuevos
+
+187
+00:06:11,496 --> 00:06:12,587
+tipos de usuarios que visitan su sitio web;
+
+188
+00:06:12,587 --> 00:06:14,933
+este tipo de algoritmo de aprendizaje en línea
+
+189
+00:06:14,933 --> 00:06:17,278
+también se puede adaptar a las preferencias
+
+190
+00:06:17,278 --> 00:06:18,950
+cambiantes del usuario y
+
+191
+00:06:18,950 --> 00:06:20,157
+realizar un seguimiento de lo que su
+
+192
+00:06:20,157 --> 00:06:21,991
+cambiante población de usuarios
+
+193
+00:06:21,991 --> 00:06:24,685
+podría estar dispuesta a pagar.
+
+194
+00:06:24,685 --> 00:06:26,171
+Y lo hace porque si
+
+195
+00:06:26,171 --> 00:06:28,168
+su grupo de usuarios cambia,
+
+196
+00:06:28,168 --> 00:06:29,793
+entonces estas actualizaciones a sus
+
+197
+00:06:29,793 --> 00:06:31,953
+parámetros «theta» simplemente se adaptarán lentamente
+
+198
+00:06:31,953 --> 00:06:33,555
+a sus parámetros para lo que sea que
+
+199
+00:06:33,555 --> 00:06:36,599
+se parezca su último grupo de usuarios.
+
+200
+00:06:36,599 --> 00:06:37,781
+Aquí hay otro ejemplo de un
+
+201
+00:06:37,781 --> 00:06:40,753
+tipo de aplicación a la que pueden aplicar el aprendizaje en línea.
+
+202
+00:06:40,753 --> 00:06:43,472
+Esta es una aplicación en la búsqueda de producto
+
+203
+00:06:43,472 --> 00:06:44,701
+en la que queremos
+
+204
+00:06:44,701 --> 00:06:46,117
+aplicar el algoritmo de aprendizaje en línea para aprender
+
+205
+00:06:46,117 --> 00:06:48,973
+a dar buenos listados de búsqueda a un usuario.
+
+206
+00:06:48,973 --> 00:06:51,156
+Digamos que dirigen una tienda en línea
+
+207
+00:06:51,156 --> 00:06:53,083
+que vende teléfonos - que
+
+208
+00:06:53,083 --> 00:06:55,312
+vende teléfonos móviles o vende teléfonos celulares.
+
+209
+00:06:55,312 --> 00:06:56,682
+Y tienen una interfaz de usuario
+
+210
+00:06:56,682 --> 00:06:58,284
+en donde el usuario puede visitar
+
+211
+00:06:58,284 --> 00:06:59,445
+su sitio web y escribir una
+
+212
+00:06:59,445 --> 00:07:02,626
+consulta como "teléfono Android 1080p cámara".
+
+213
+00:07:02,626 --> 00:07:03,509
+Así que 1080p es un tipo
+
+214
+00:07:03,509 --> 00:07:04,623
+de una especificación para una
+
+215
+00:07:04,623 --> 00:07:05,808
+cámara de vídeo que podrían
+
+216
+00:07:05,808 --> 00:07:08,710
+tener en un teléfono, un teléfono celular, un teléfono móvil.
+
+217
+00:07:08,710 --> 00:07:12,100
+Supongamos que tenemos un centenar de teléfonos en nuestra tienda.
+
+218
+00:07:12,100 --> 00:07:13,354
+Y debido a la manera en la que nuestro
+
+219
+00:07:13,354 --> 00:07:15,321
+sitio web está diseñado, cuando
+
+220
+00:07:15,321 --> 00:07:16,558
+un usuario escribe una consulta,
+
+221
+00:07:16,558 --> 00:07:18,277
+si se trata de una consulta de búsqueda,
+
+222
+00:07:18,277 --> 00:07:19,601
+nos gustaría encontrar un
+
+223
+00:07:19,601 --> 00:07:20,900
+elección de diez teléfonos diferentes para
+
+224
+00:07:20,900 --> 00:07:22,921
+mostrar qué ofrecer al usuario.
+
+225
+00:07:22,921 --> 00:07:24,987
+Lo que nos gustaría hacer es tener
+
+226
+00:07:24,987 --> 00:07:26,566
+un algoritmo de aprendizaje que nos ayude a
+
+227
+00:07:26,566 --> 00:07:28,447
+averiguar cuáles son los diez teléfonos,
+
+228
+00:07:28,447 --> 00:07:29,771
+de los 100, que
+
+229
+00:07:29,771 --> 00:07:31,791
+deberíamos regresar al usuario en respuesta a
+
+230
+00:07:31,791 --> 00:07:34,531
+la consulta de búsqueda del usuario, como la que está aquí.
+
+231
+00:07:34,531 --> 00:07:36,695
+Así es como podemos abordar el problema.
+
+232
+00:07:37,218 --> 00:07:39,291
+Para cada teléfono y dada
+
+233
+00:07:39,291 --> 00:07:41,311
+una consulta específica  de un usuario,
+
+234
+00:07:41,311 --> 00:07:44,120
+podemos construir un vector de dirección
+
+235
+00:07:44,120 --> 00:07:45,676
+“X”. De modo que el vector de dirección
+
+236
+00:07:45,676 --> 00:07:47,650
+«X» puede capturar diferentes propiedades del teléfono.
+
+237
+00:07:47,650 --> 00:07:49,972
+Puede capturar cosas como,
+
+238
+00:07:49,972 --> 00:07:53,107
+cuán similar es la consulta de búsqueda del usuario con  los teléfonos;
+
+239
+00:07:53,107 --> 00:07:54,059
+Capturamos cosas como cuántas
+
+240
+00:07:54,059 --> 00:07:55,475
+palabras en la consulta de búsqueda del usuario
+
+241
+00:07:55,475 --> 00:07:56,172
+coinciden con el nombre del
+
+242
+00:07:56,172 --> 00:07:57,356
+teléfono, cuántas palabras
+
+243
+00:07:57,356 --> 00:08:01,303
+en la consulta de búsqueda del usuario coinciden con la descripción del teléfono, y así sucesivamente.
+
+244
+00:08:01,303 --> 00:08:02,789
+De modo que las variables «x» capturan
+
+245
+00:08:02,789 --> 00:08:03,672
+las propiedades del teléfono y
+
+246
+00:08:03,672 --> 00:08:05,251
+captura cosas acerca de cuán
+
+247
+00:08:05,251 --> 00:08:06,412
+similar o lo bien
+
+248
+00:08:06,412 --> 00:08:10,591
+que el teléfono coincide con la consulta del usuario a lo largo de diferentes dimensiones.
+
+249
+00:08:10,591 --> 00:08:11,868
+Lo que nos gustaría hacer, es
+
+250
+00:08:11,868 --> 00:08:14,330
+calcular la probabilidad de que un
+
+251
+00:08:14,330 --> 00:08:15,816
+usuario haga clic en el
+
+252
+00:08:15,816 --> 00:08:17,673
+enlace para un teléfono específico,
+
+253
+00:08:17,673 --> 00:08:18,881
+porque le queremos mostrar
+
+254
+00:08:18,881 --> 00:08:20,065
+al usuario los teléfonos que
+
+255
+00:08:20,065 --> 00:08:21,481
+probablemente desee
+
+256
+00:08:21,481 --> 00:08:22,921
+comprar, le queremos mostrar al usuario
+
+257
+00:08:22,921 --> 00:08:24,082
+los teléfonos que tienen alta
+
+258
+00:08:24,082 --> 00:08:27,240
+probabilidad de ser seleccionados con un clic en el navegador web.
+
+259
+00:08:27,240 --> 00:08:29,562
+Así que voy a definir «y» es igual
+
+260
+00:08:29,562 --> 00:08:30,676
+a uno si el usuario hace clic en
+
+261
+00:08:30,676 --> 00:08:31,930
+el enlace para un teléfono, y
+
+262
+00:08:31,930 --> 00:08:34,136
+«y» es igual a cero en caso contrario; y
+
+263
+00:08:34,136 --> 00:08:35,454
+lo que me gustaría hacer es
+
+264
+00:08:35,454 --> 00:08:36,992
+conocer la probabilidad de que el usuario
+
+265
+00:08:36,992 --> 00:08:38,246
+hará clic en un teléfono determinado
+
+266
+00:08:38,246 --> 00:08:39,802
+dadas, ya saben, las
+
+267
+00:08:39,802 --> 00:08:41,693
+variables «x», que  capturan las propiedades
+
+268
+00:08:41,693 --> 00:08:43,819
+del teléfono y lo bien que la consulta coincide con el teléfono.
+
+269
+00:08:43,819 --> 00:08:45,700
+Para dar a este problema un nombre
+
+270
+00:08:45,700 --> 00:08:47,720
+en el idioma de
+
+271
+00:08:47,720 --> 00:08:49,130
+las personas que dirigen los sitios web como
+
+272
+00:08:49,130 --> 00:08:51,249
+éste, el problema de aprender esto,
+
+273
+00:08:51,249 --> 00:08:53,223
+se llama en realidad el problema de
+
+274
+00:08:53,223 --> 00:08:57,296
+conocer el porcentaje de clics predicho, el CTR predicho.
+
+275
+00:08:57,296 --> 00:08:58,796
+Simplemente significa conocer la probabilidad
+
+276
+00:08:58,796 --> 00:09:00,491
+de que el usuario haga clic en el
+
+277
+00:09:00,491 --> 00:09:01,698
+enlace específico que
+
+278
+00:09:01,698 --> 00:09:03,022
+le están ofreciendo, así que CTR es
+
+279
+00:09:03,022 --> 00:09:06,528
+una abreviatura para el porcentaje de clics.
+
+280
+00:09:06,528 --> 00:09:07,550
+Y si pueden estimar el
+
+281
+00:09:07,550 --> 00:09:09,245
+porcentaje de clics predicho para cualquier
+
+282
+00:09:09,245 --> 00:09:10,847
+teléfono, lo que
+
+283
+00:09:10,847 --> 00:09:12,171
+podemos hacer es usar esto
+
+284
+00:09:12,171 --> 00:09:13,819
+para mostrarle al usuario los diez teléfonos
+
+285
+00:09:13,819 --> 00:09:15,770
+sobre los cuales es más probable que hagan clic,
+
+286
+00:09:15,770 --> 00:09:17,441
+porque de los cien teléfonos,
+
+287
+00:09:17,441 --> 00:09:20,553
+podemos calcular esto para
+
+288
+00:09:20,553 --> 00:09:21,737
+cada uno de los 100 teléfonos y
+
+289
+00:09:21,737 --> 00:09:22,759
+sólo seleccionar los 10 teléfonos
+
+290
+00:09:22,759 --> 00:09:25,754
+en los que es más probable que el usuario haga clic,
+
+291
+00:09:25,754 --> 00:09:26,892
+y esto será una manera bastante razonable
+
+292
+00:09:26,892 --> 00:09:29,818
+de decidir cuáles son los diez resultados para mostrar al usuario.
+
+293
+00:09:29,818 --> 00:09:32,186
+Para que quede claro, supongamos que
+
+294
+00:09:32,186 --> 00:09:33,440
+cada vez que un usuario realiza
+
+295
+00:09:33,440 --> 00:09:35,576
+una búsqueda, regresamos diez resultados;
+
+296
+00:09:35,576 --> 00:09:37,225
+lo que esto va a hacer es que,
+
+297
+00:09:37,225 --> 00:09:38,990
+en realidad, nos dará diez
+
+298
+00:09:38,990 --> 00:09:40,870
+pares «x, y», esto realmente
+
+299
+00:09:40,870 --> 00:09:43,332
+nos da diez ejemplos de entrenamiento cada
+
+300
+00:09:43,332 --> 00:09:44,640
+vez que un usuario entra a
+
+301
+00:09:44,640 --> 00:09:46,257
+nuestro sitio web debido a
+
+302
+00:09:46,257 --> 00:09:47,535
+los diez teléfonos que decidimos
+
+303
+00:09:47,535 --> 00:09:48,881
+enseñarle al usuario, por cada
+
+304
+00:09:48,881 --> 00:09:49,896
+uno de los 10 teléfonos obtenemos
+
+305
+00:09:49,896 --> 00:09:51,389
+un vector de dirección «X» y
+
+306
+00:09:51,389 --> 00:09:52,737
+para cada uno de esos 10 teléfonos, que le
+
+307
+00:09:52,737 --> 00:09:54,563
+mostramos al usuario, también obtendremos
+
+308
+00:09:54,563 --> 00:09:56,172
+un valor para «y»,
+
+309
+00:09:56,172 --> 00:09:57,542
+también observaremos el valor
+
+310
+00:09:57,542 --> 00:09:59,517
+de «y», dependiendo de si
+
+311
+00:09:59,517 --> 00:10:00,925
+hicimos clic o no en ese
+
+312
+00:10:00,925 --> 00:10:02,465
+URL, así que
+
+313
+00:10:02,465 --> 00:10:03,696
+una manera de dirigir un
+
+314
+00:10:03,696 --> 00:10:04,903
+sitio web como este sería
+
+315
+00:10:04,903 --> 00:10:06,830
+mostrarle de forma continua al usuario,
+
+316
+00:10:06,830 --> 00:10:08,363
+ya saben, sus diez mejores estimaciones para
+
+317
+00:10:08,363 --> 00:10:09,895
+otros teléfonos que les pudieran agradar
+
+318
+00:10:09,895 --> 00:10:11,428
+así que, cada vez que un usuario
+
+319
+00:10:11,428 --> 00:10:12,728
+los visite, tendrían diez
+
+320
+00:10:12,728 --> 00:10:14,493
+ejemplos, diez pares «x, y»
+
+321
+00:10:14,493 --> 00:10:16,304
+y después usarían un algoritmo de aprendizaje en línea
+
+322
+00:10:16,304 --> 00:10:17,953
+para actualizar los
+
+323
+00:10:17,953 --> 00:10:20,182
+parámetros utilizando esencialmente 10
+
+324
+00:10:20,182 --> 00:10:21,691
+pasos del gradiente de descenso sobre estos
+
+325
+00:10:21,691 --> 00:10:23,386
+10 ejemplos, y luego
+
+326
+00:10:23,386 --> 00:10:25,081
+pueden eliminar los datos, y
+
+327
+00:10:25,081 --> 00:10:26,590
+si realmente tienen un flujo continuo
+
+328
+00:10:26,590 --> 00:10:27,891
+de usuarios que visitan
+
+329
+00:10:27,891 --> 00:10:29,354
+su sitio web, esto sería
+
+330
+00:10:29,354 --> 00:10:31,095
+una manera bastante razonable para conocer
+
+331
+00:10:31,095 --> 00:10:32,395
+los parámetros para su algoritmo,
+
+332
+00:10:32,395 --> 00:10:33,835
+de modo que podamos mostrar los diez teléfonos
+
+333
+00:10:33,835 --> 00:10:35,669
+a sus usuarios que pudieran
+
+334
+00:10:35,669 --> 00:10:39,013
+ser más prometedores y los más probables para que hagan clic en ellos.
+
+335
+00:10:39,013 --> 00:10:40,151
+Así que este es un problema de búsqueda de productos
+
+336
+00:10:40,151 --> 00:10:41,498
+o un ejemplo de aprendizaje para clasificar
+
+337
+00:10:41,498 --> 00:10:44,214
+teléfonos, aprender a buscar teléfonos.
+
+338
+00:10:44,214 --> 00:10:46,422
+Así que voy a mencionar rápidamente algunos más.
+
+339
+00:10:46,422 --> 00:10:47,372
+Uno es, si tienen un
+
+340
+00:10:47,372 --> 00:10:48,231
+sitio web y están tratando de
+
+341
+00:10:48,231 --> 00:10:49,439
+decidir, ya saben, cuál oferta especial
+
+342
+00:10:49,439 --> 00:10:50,321
+mostrarle al usuario,
+
+343
+00:10:50,321 --> 00:10:53,154
+esto es muy similar a los teléfonos,
+
+344
+00:10:53,154 --> 00:10:54,710
+o si tienen un
+
+345
+00:10:54,710 --> 00:10:58,216
+sitio web y le muestran a diferentes usuarios diferentes noticias;
+
+346
+00:10:58,216 --> 00:10:59,911
+así que si son un sitio web que agrega
+
+347
+00:10:59,911 --> 00:11:01,374
+noticias, entonces pueden
+
+348
+00:11:01,374 --> 00:11:02,303
+nuevamente usar un sistema similar para
+
+349
+00:11:02,303 --> 00:11:03,882
+seleccionar, para mostrarle al
+
+350
+00:11:03,882 --> 00:11:05,554
+usuario, ya saben, cuáles
+
+351
+00:11:05,554 --> 00:11:06,877
+son las noticias en las
+
+352
+00:11:06,877 --> 00:11:08,154
+que sea más probable que estén interesados
+
+353
+00:11:08,154 --> 00:11:11,103
+y cuáles son las noticias sobre las que es más probable que hagan clic.
+
+354
+00:11:11,103 --> 00:11:13,495
+En estrecha relación con las ofertas especiales, tenemos recomendaciones de producto.
+
+355
+00:11:13,495 --> 00:11:15,097
+Y de hecho, si tienen
+
+356
+00:11:15,097 --> 00:11:17,953
+un sistema de filtrado colaborativo,
+
+357
+00:11:17,953 --> 00:11:20,693
+pueden hasta imaginar un sistema de filtrado colaborativo
+
+358
+00:11:20,693 --> 00:11:22,643
+que les proporcione variables adicionales
+
+359
+00:11:22,643 --> 00:11:23,897
+para alimentar en un
+
+360
+00:11:23,897 --> 00:11:25,732
+clasificador de regresión logística para tratar
+
+361
+00:11:25,732 --> 00:11:28,100
+de predecir el índice de clic
+
+362
+00:11:28,100 --> 00:11:29,981
+para los diferentes productos que pudieran recomendar a un usuario.
+
+363
+00:11:29,981 --> 00:11:32,280
+Desde luego, debo decir que
+
+364
+00:11:32,280 --> 00:11:34,207
+cualquiera de estos problemas también se podrían
+
+365
+00:11:34,207 --> 00:11:35,600
+haber formulado como un
+
+366
+00:11:35,600 --> 00:11:39,873
+problema de aprendizaje automático estándar, en el que tienen un conjunto de entrenamiento fijo.
+
+367
+00:11:39,873 --> 00:11:40,894
+Tal vez podrían dirigir su
+
+368
+00:11:40,894 --> 00:11:41,823
+sitio web durante unos días y
+
+369
+00:11:41,823 --> 00:11:43,727
+después guardar un conjunto de entrenamiento,
+
+370
+00:11:43,727 --> 00:11:44,842
+un conjunto de entrenamiento fijo y ejecutar
+
+371
+00:11:44,842 --> 00:11:45,771
+un algoritmo de aprendizaje sobre eso.
+
+372
+00:11:45,771 --> 00:11:48,696
+Pero estos son el tipo real
+
+373
+00:11:48,696 --> 00:11:49,950
+de problemas, en donde  observan
+
+374
+00:11:49,950 --> 00:11:51,901
+a las grandes empresas obtener tanta
+
+375
+00:11:51,901 --> 00:11:53,712
+cantidad de datos, que en realidad
+
+376
+00:11:53,712 --> 00:11:55,221
+pudiera no haber necesidad de guardar
+
+377
+00:11:55,221 --> 00:11:56,963
+un conjunto de entrenamiento fijo, sino
+
+378
+00:11:56,963 --> 00:11:59,563
+en lugar de esto, pueden utilizar un algoritmo de aprendizaje en línea para simplemente aprender de manera continua
+
+379
+00:11:59,563 --> 00:12:04,091
+a partir de los datos que los usuarios están generando en su sitio web.
+
+380
+00:12:05,183 --> 00:12:07,249
+Así que, esa fue la configuración de
+
+381
+00:12:07,249 --> 00:12:08,990
+aprendizaje en línea y como vimos,
+
+382
+00:12:08,990 --> 00:12:10,616
+el algoritmo que aplicamos a
+
+383
+00:12:10,616 --> 00:12:12,357
+ésta es realmente muy similar
+
+384
+00:12:12,357 --> 00:12:13,867
+al algoritmo del gradiente de descenso
+
+385
+00:12:13,867 --> 00:12:15,330
+estocástico, sólo que en lugar de
+
+386
+00:12:15,330 --> 00:12:16,871
+buscar a través de un conjunto de entrenamiento
+
+387
+00:12:16,871 --> 00:12:18,000
+fijo, estamos obteniendo
+
+388
+00:12:18,000 --> 00:12:19,974
+un ejemplo de un usuario,
+
+389
+00:12:19,974 --> 00:12:21,290
+aprendiendo de ese ejemplo, y luego
+
+390
+00:12:21,290 --> 00:12:22,644
+descartándolo y siguiendo adelante.
+
+391
+00:12:22,644 --> 00:12:25,593
+Y si tienen un un flujo continuo
+
+392
+00:12:25,593 --> 00:12:26,777
+de datos para alguna aplicación,
+
+393
+00:12:26,777 --> 00:12:28,356
+valdría la pena tomar en cuenta
+
+394
+00:12:28,356 --> 00:12:31,816
+este tipo de algoritmo para su aplicación.
+
+395
+00:12:31,816 --> 00:12:33,952
+Y, por supuesto, una ventaja del
+
+396
+00:12:33,952 --> 00:12:36,128
+aprendizaje en línea es que también,
+
+397
+00:12:36,128 --> 00:12:37,458
+si tienen un grupo cambiante
+
+398
+00:12:37,458 --> 00:12:38,967
+de usuarios, o si las cosas que están
+
+399
+00:12:38,967 --> 00:12:40,082
+tratando de predecir están
+
+400
+00:12:40,082 --> 00:12:42,032
+cambiando lentamente, si
+
+401
+00:12:42,032 --> 00:12:43,751
+el gusto de sus usuarios está cambiando poco a poco, el algoritmo
+
+402
+00:12:43,751 --> 00:12:45,492
+de aprendizaje en línea puede adaptarse
+
+403
+00:12:45,492 --> 00:12:47,211
+poco a poco a sus hipótesis aprendidas para
+
+404
+00:12:47,211 --> 00:12:49,161
+cualesquiera que sean los últimos conjuntos
+
+405
+00:12:49,161 --> 99:59:59,000
+de comportamientos de los usuarios también.

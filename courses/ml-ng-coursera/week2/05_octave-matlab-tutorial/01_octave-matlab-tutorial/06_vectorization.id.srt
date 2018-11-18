@@ -1,0 +1,785 @@
+1
+00:00:00,320 --> 00:00:03,682
+Di video ini, saya ingin membahas
+tentang ide vektorisasi.
+
+2
+00:00:03,682 --> 00:00:08,380
+Apakah Anda menggunakan Octave
+
+3
+00:00:08,380 --> 00:00:12,540
+atau bahasa serupa seperti MATLAB,
+
+4
+00:00:12,540 --> 00:00:17,470
+atau apakah Anda menggunakan Pyhton,
+
+5
+00:00:17,470 --> 00:00:21,840
+NumPy, atau Java, C, C++.
+
+6
+00:00:21,840 --> 00:00:24,400
+Semua bahasa ini punya
+
+7
+00:00:24,400 --> 00:00:29,250
+pustaka aljabar linier numerik berbeda
+
+8
+00:00:29,250 --> 00:00:32,070
+yang terintegrasi atau yang mudah dan
+
+9
+00:00:32,070 --> 00:00:35,590
+siap diakses.
+
+10
+00:00:35,590 --> 00:00:39,880
+Pustaka-pustaka tsb biasanya dibuat
+dengan sangat baik,
+
+11
+00:00:39,880 --> 00:00:44,510
+sangat dioptimalkan, dikembangkan oleh
+
+12
+00:00:44,510 --> 00:00:48,470
+orang yang punya gelar PhD dalam
+perhitungan numerik atau
+
+13
+00:00:48,470 --> 00:00:51,970
+ahli dalam perhitungan numerik.
+
+14
+00:00:51,970 --> 00:00:53,170
+Dan, ketika Anda mengimplementasikan
+
+15
+00:00:53,170 --> 00:00:58,120
+algoritma machine learning, jika Anda
+bisa,
+
+16
+00:00:58,120 --> 00:01:03,080
+ambil keuntungan dari
+
+17
+00:01:03,080 --> 00:01:07,330
+pustaka aljabar linier ini atau
+
+18
+00:01:07,330 --> 00:01:08,540
+pustaka alajabar linier numerik ini, dan
+
+19
+00:01:08,540 --> 00:01:13,450
+gabungkan beberapa rutin untuk
+memanggilnya
+
+20
+00:01:13,450 --> 00:01:18,170
+daripada Anda buat sendiri
+
+21
+00:01:18,170 --> 00:01:22,220
+hal-hal yang bisa dilakukan pustaka tsb.
+
+22
+00:01:22,220 --> 00:01:26,090
+Jika Anda melakukannya, maka
+
+23
+00:01:26,090 --> 00:01:30,310
+Anda akan dapatkan kode yang, pertama,
+lebih efisien.
+
+24
+00:01:30,310 --> 00:01:31,470
+Yang bekerja lebih cepat, dan
+
+25
+00:01:33,090 --> 00:01:36,110
+mendapatkan keuntungan atas
+
+26
+00:01:36,110 --> 00:01:40,010
+perangkat keras paralel yang dimiliki
+
+27
+00:01:40,010 --> 00:01:46,660
+komputer Anda, dst.
+
+28
+00:01:46,660 --> 00:01:51,920
+Kedua, itu juga berarti
+
+29
+00:01:51,920 --> 00:01:56,330
+Anda hanya perlu menulis sedikit kode.
+
+30
+00:01:56,330 --> 00:02:03,220
+Jadi, implementasinya sederhana,
+
+31
+00:02:03,220 --> 00:02:07,221
+dan mungkin bisa terbebas dari bug.
+
+32
+00:02:07,221 --> 00:02:11,632
+Sebagai contoh konkrit.
+
+33
+00:02:11,632 --> 00:02:17,590
+Daripada menulis sendiri
+
+34
+00:02:17,590 --> 00:02:18,820
+kode untuk mengalikan matriks, jika
+Anda ijinkan
+
+35
+00:02:18,820 --> 00:02:23,623
+Octave melakukannya dengan
+
+36
+00:02:23,623 --> 00:02:25,360
+mengetik a * b,
+
+37
+00:02:25,360 --> 00:02:30,160
+itu akan menggunakan rutin
+
+38
+00:02:30,160 --> 00:02:36,057
+yang sangat efisien untuk mengalikan
+2 matriks.
+
+39
+00:02:36,057 --> 00:02:42,320
+Ada banyak contoh
+
+40
+00:02:42,320 --> 00:02:44,740
+seperti ini dimana Anda menggunakan
+implementasi vektor yang tepat.
+
+41
+00:02:44,740 --> 00:02:45,736
+Anda mendapatkan kode yang jauh lebih
+sederhana dan efisien.
+
+42
+00:02:45,736 --> 00:02:51,100
+Mari lihat beberapa contoh.
+
+43
+00:02:51,100 --> 00:02:53,270
+Ini hipotesis regresi
+
+44
+00:02:53,270 --> 00:02:58,543
+linier. Jika Anda ingin
+
+45
+00:02:58,543 --> 00:03:03,557
+menghitung h(x),
+
+46
+00:03:03,557 --> 00:03:08,570
+perhatikan ada penjumlahan di kanan.
+
+47
+00:03:08,570 --> 00:03:13,411
+Satu hal yang dapat Anda
+
+48
+00:03:13,411 --> 00:03:18,620
+lakukan adalah menghitung
+
+49
+00:03:18,620 --> 00:03:25,480
+sendiri penjumlahan dari j=0 hingga j=n.
+
+50
+00:03:25,480 --> 00:03:30,286
+Cara lainnya adalah
+
+51
+00:03:30,286 --> 00:03:33,940
+pikirkan h(x)
+
+52
+00:03:33,940 --> 00:03:39,251
+sebagai theta' x.
+
+53
+00:03:39,251 --> 00:03:43,290
+Dan, yang bisa Anda lakukan
+
+54
+00:03:43,290 --> 00:03:46,620
+adalah menghitungnya
+
+55
+00:03:46,620 --> 00:03:48,150
+dalam sebuah perkalian antara 2 vektor,
+
+56
+00:03:48,150 --> 00:03:52,077
+dimana theta adalah
+
+57
+00:03:52,077 --> 00:03:54,620
+vektor theta0, theta1,
+
+58
+00:03:54,620 --> 00:03:57,764
+theta2, jika Anda punya 2 fitur.
+
+59
+00:03:57,764 --> 00:04:02,604
+Jika n = 2
+
+60
+00:04:02,604 --> 00:04:07,823
+pikirkan x sebagai
+
+61
+00:04:07,823 --> 00:04:13,250
+vektor x0, x1, x2.
+
+62
+00:04:15,850 --> 00:04:17,590
+Dua tampilan ini
+
+63
+00:04:17,590 --> 00:04:22,080
+memberi Anda 2 implementasi berbeda.
+
+64
+00:04:22,080 --> 00:04:24,740
+Ini yang saya maksudkan.
+
+65
+00:04:24,740 --> 00:04:27,820
+Ini implementasi
+
+66
+00:04:27,820 --> 00:04:31,468
+untuk menghitung
+
+67
+00:04:31,468 --> 00:04:35,650
+h(x) tanpa vektorisasi.
+
+68
+00:04:35,650 --> 00:04:40,598
+Pertama, inisialisasi prediksi = 0.0.
+
+69
+00:04:40,598 --> 00:04:42,620
+Prediksi ini
+
+70
+00:04:42,620 --> 00:04:47,720
+akhirnya akan jadi
+
+71
+00:04:47,720 --> 00:04:50,950
+nilai h(x), lalu
+
+72
+00:04:54,410 --> 00:04:59,000
+akhirnya akan jadi
+
+73
+00:04:59,000 --> 00:05:02,500
+untuk j=1 hingga n+1,
+
+74
+00:05:02,500 --> 00:05:06,540
+prediksi ditambahkan dengan
+
+75
+00:05:06,540 --> 00:05:11,230
+theta(j) * x(j).
+
+76
+00:05:11,230 --> 00:05:17,540
+Itu adalah ekspresi yang ini.
+
+77
+00:05:17,540 --> 00:05:22,270
+Ngomong-ngomong, saya harus katakan
+
+78
+00:05:22,270 --> 00:05:26,380
+vektor ini
+
+79
+00:05:26,380 --> 00:05:30,390
+dimulai dari indeks 0.
+
+80
+00:05:30,390 --> 00:05:32,880
+Jadi, saya punya theta0, theta1,
+
+81
+00:05:32,880 --> 00:05:35,800
+theta2. Tapi, karena di MATLAB
+
+82
+00:05:35,800 --> 00:05:39,290
+indeksnya dimulai dari 1,
+
+83
+00:05:40,660 --> 00:05:43,590
+theta0 dalam MATLAB, akan
+
+84
+00:05:43,590 --> 00:05:45,840
+kita tampilkan sebagai theta1,
+
+85
+00:05:45,840 --> 00:05:48,260
+elemen keduanya
+
+86
+00:05:48,260 --> 00:05:55,070
+sebagai theta2,
+
+87
+00:05:55,070 --> 00:05:59,575
+dan elemen ketiganya
+
+88
+00:05:59,575 --> 00:06:03,410
+sebagai theta3,
+
+89
+00:06:03,410 --> 00:06:08,377
+karena indeks vektor
+
+90
+00:06:08,377 --> 00:06:13,230
+dalam MATLAB dimulai dari 1
+
+91
+00:06:14,850 --> 00:06:19,580
+meskipun theta dan x
+
+92
+00:06:20,754 --> 00:06:24,120
+kita di sini dimulai
+
+93
+00:06:24,120 --> 00:06:28,110
+dari indeks 0. Itulah
+
+94
+00:06:28,110 --> 00:06:35,500
+sebabnya for loop ini
+
+95
+00:06:35,500 --> 00:06:39,570
+j dimulai dari 1 hingga n+1
+
+96
+00:06:39,570 --> 00:06:43,830
+bukannya dari
+
+97
+00:06:43,830 --> 00:06:48,540
+0 hingga n.
+
+98
+00:06:48,540 --> 00:06:50,070
+Ini adalah
+
+99
+00:06:50,070 --> 00:06:54,220
+implementasi tanpa vektorisasi dimana
+
+100
+00:06:54,220 --> 00:06:55,500
+kita menggunakan for loop
+
+101
+00:06:55,500 --> 00:06:58,538
+untuk menjumlahkan n elemen.
+
+102
+00:06:58,538 --> 00:07:03,458
+Sebaliknya, ini cara
+
+103
+00:07:03,458 --> 00:07:08,090
+implementasi tervektorisasi, yaitu
+
+104
+00:07:08,090 --> 00:07:12,723
+Anda pikirkan
+
+105
+00:07:12,723 --> 00:07:18,511
+x dan theta sebagai vektor,
+
+106
+00:07:18,511 --> 00:07:21,740
+dan Anda set
+
+107
+00:07:21,740 --> 00:07:28,100
+prediksi = theta' * x.
+
+108
+00:07:28,100 --> 00:07:29,840
+Anda hitung seperti demikian.
+
+109
+00:07:31,310 --> 00:07:34,920
+Daripada menulis semua kode ini
+
+110
+00:07:34,920 --> 00:07:38,170
+dengan for loop,
+
+111
+00:07:38,170 --> 00:07:43,610
+sebagai gantinya Anda punya
+
+112
+00:07:43,610 --> 00:07:50,080
+1 baris kode, dan apa
+
+113
+00:07:50,080 --> 00:07:54,920
+yang akan dilakukan
+
+114
+00:07:54,920 --> 00:07:58,380
+kode di kanan ini adalah menggunakan
+
+115
+00:07:58,380 --> 00:08:04,270
+rutin aljabar linier numerik Octave
+
+116
+00:08:04,270 --> 00:08:06,580
+yang sangat dioptimalkan untuk
+
+117
+00:08:06,580 --> 00:08:10,959
+menghitung perkalian antara
+
+118
+00:08:10,959 --> 00:08:17,040
+2 vektor, theta dan x.
+Tidak hanya
+
+119
+00:08:17,040 --> 00:08:22,066
+implementasi tervektorisasi
+
+120
+00:08:22,066 --> 00:08:27,570
+lebih sederhana, itu juga bekerja lebih
+efisien.
+
+121
+00:08:27,570 --> 00:08:32,203
+Itulah Octave, tapi
+
+122
+00:08:32,203 --> 00:08:37,288
+soal vektorisasi diterapkan juga
+
+123
+00:08:37,288 --> 00:08:42,730
+pada bahasa pemrograman lainnya.
+
+124
+00:08:42,730 --> 00:08:48,621
+Mari lihat contoh dalam C++.
+
+125
+00:08:48,621 --> 00:08:53,964
+Begini tampilan implementasi tanpa
+vektorisasi.
+
+126
+00:08:53,964 --> 00:08:58,360
+Kita inisialisasi prediksi = 0.0,
+
+127
+00:08:58,360 --> 00:09:01,352
+lalu kita punya
+
+128
+00:09:01,352 --> 00:09:04,010
+for loop untuk j=0 hingga n.
+
+129
+00:09:04,010 --> 00:09:09,930
+Prediksi +=
+
+130
+00:09:09,930 --> 00:09:15,782
+theta[j] * x[j] dimana
+
+131
+00:09:15,782 --> 00:09:19,772
+lagi-lagi, Anda menulis sendiri
+for loop ini.
+
+132
+00:09:19,772 --> 00:09:24,427
+Sebaliknya, menggunakan pustaka
+
+133
+00:09:24,427 --> 00:09:29,481
+aljabar linier numerik yang bagus dalam
+
+134
+00:09:29,481 --> 00:09:34,136
+C++, Anda bisa
+
+135
+00:09:34,136 --> 00:09:38,150
+menulis fungsi seperti ...
+
+136
+00:09:38,150 --> 00:09:44,142
+Sebaliknya, menggunakan pustaka
+
+137
+00:09:44,142 --> 00:09:49,504
+aljabar linier numerik yang bagus dalam
+
+138
+00:09:49,504 --> 00:09:54,707
+C++, sebagai gantinya Anda bisa
+
+139
+00:09:54,707 --> 00:10:00,700
+tulis kode seperti ini.
+
+140
+00:10:00,700 --> 00:10:06,080
+Jadi, tergantung pada rincian
+
+141
+00:10:06,080 --> 00:10:10,041
+pustaka aljabar linier numerik,
+
+142
+00:10:10,041 --> 00:10:15,100
+Anda mungkin
+
+143
+00:10:15,100 --> 00:10:19,990
+punya sebuah objek C++,
+
+144
+00:10:19,990 --> 00:10:23,760
+yaitu
+
+145
+00:10:23,760 --> 00:10:30,680
+vektor theta dan sebuah
+
+146
+00:10:30,680 --> 00:10:34,760
+objek C++, yakni vektor x,
+
+147
+00:10:34,760 --> 00:10:36,470
+dan lakukan
+
+148
+00:10:36,470 --> 00:10:40,530
+theta.transpose() * x, dimana
+
+149
+00:10:40,530 --> 00:10:42,940
+tanda * merupakan pustaka C++ untuk
+
+150
+00:10:42,940 --> 00:10:49,740
+memuat operator perkalian sehingga
+
+151
+00:10:49,740 --> 00:10:54,370
+Anda bisa mengalikan 2 vektor ini
+dalam C++.
+
+152
+00:10:54,370 --> 00:10:59,213
+Tergantung pada rincian pustaka
+
+153
+00:10:59,213 --> 00:11:04,244
+aljabar linier numerik,
+
+154
+00:11:04,244 --> 00:11:09,739
+Anda mungkin
+
+155
+00:11:09,739 --> 00:11:14,580
+menggunakan sintaks yang
+
+156
+00:11:14,580 --> 00:11:20,670
+sedikit berbeda, tapi dengan
+mempercayakan
+
+157
+00:11:22,240 --> 00:11:27,592
+sebuah pustaka untuk melakukan
+perkalian ini,
+
+158
+00:11:27,592 --> 00:11:32,800
+Anda bisa memperoleh bagian kode
+
+159
+00:11:32,800 --> 00:11:35,920
+yang jauh lebih sederhana dan efisien.
+
+160
+00:11:35,920 --> 00:11:41,050
+Mari lihat contoh yang lebih rumit.
+
+161
+00:11:41,050 --> 00:11:44,610
+Hanya untuk mengingatkan Anda, ini
+
+162
+00:11:44,610 --> 00:11:46,670
+aturan pembaruan gradient descent
+
+163
+00:11:47,980 --> 00:11:51,940
+untuk regresi linier, jadi
+
+164
+00:11:51,940 --> 00:11:57,010
+kita baharui theta j menggunakan aturan
+ini
+
+165
+00:11:57,010 --> 00:12:02,590
+untuk semua nilai j=0,1,2, dst.
+
+166
+00:12:02,590 --> 00:12:08,435
+Jika saya tulis
+
+167
+00:12:08,435 --> 00:12:12,870
+persamaan ini untuk
+
+168
+00:12:12,870 --> 00:12:18,430
+theta0, theta1, theta2.
+
+169
+00:12:18,430 --> 00:12:21,960
+Dengan asumsi kita punya 2 fitur.
+
+170
+00:12:21,960 --> 00:12:26,560
+Jadi n = 2.
+
+171
+00:12:26,560 --> 00:12:31,420
+Maka, ini adalah pembaharuan
+
+172
+00:12:31,420 --> 00:12:36,000
+yang kita lakukan untuk theta0, theta1,
+theta2.
+
+173
+00:12:37,010 --> 00:12:41,630
+Anda mungkin ingat
+
+174
+00:12:41,630 --> 00:12:44,030
+perkataan saya di video awal-awal
+
+175
+00:12:44,030 --> 00:12:47,230
+bahwa pembaruan ini harus dilakukan
+bersama.
+
+176
+00:12:47,230 --> 00:12:50,620
+Jadi, mari lihat jika
+
+177
+00:12:50,620 --> 00:12:53,839
+kita bisa melakukan
+
+178
+00:12:53,839 --> 00:12:58,610
+implementasi vektorisasi pada
+pembaruan ini.
+
+179
+00:12:58,610 --> 00:13:03,142
+Ini 3 persamaan yang sama, ditulis
+
+180
+00:13:03,142 --> 00:13:08,710
+dengan font yang lebih kecil dan Anda
+
+181
+00:13:08,710 --> 00:13:13,210
+bisa bayangkan 1 cara
+
+182
+00:13:13,210 --> 00:13:17,915
+untuk mengimplementasikan 3 baris
+
+183
+00:13:17,915 --> 00:13:19,650
+kode ini adalah dengan
+
+184
+00:13:19,650 --> 00:13:23,140
+for loop seperti
+
+185
+00:13:23,140 --> 00:13:27,465
+for j = 0,
+
+186
+00:13:27,465 --> 00:13:31,500
+1 hingga 2 untuk membarui
+
+187
+00:13:31,500 --> 00:13:34,220
+theta j atau sesuatu yang seperti itu.
+
+188
+00:13:34,220 --> 00:13:37,860
+Tapi sebagai gantinya, mari
+
+189
+00:13:37,860 --> 00:13:41,820
+implementasikan vektorisasi dan lihat
+jika caranya bisa lebih sederhana.
+
+190
+00:13:41,820 --> 00:13:45,110
+Jadi, pada dasarnya padatkan
+
+191
+00:13:45,110 --> 00:13:47,700
+3 baris kode ini atau

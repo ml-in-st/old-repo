@@ -1,0 +1,101 @@
+In this video I'd like to keep working
+through our example to show how a Neural Network can compute
+complex non linear hypothesis. In the last video we saw how
+a Neural Network can be used to compute the functions x1 AND
+x2, and the function x1 OR x2 when x1 and x2 are binary,
+that is when they take on values 0,1. We can also have a network
+to compute negation, that is to compute the function not x1. Let me just write down the ways
+associated with this network. We have only one input feature x1
+in this case and the bias unit +1. And if I associate this with
+the weights plus 10 and -20, then my hypothesis is computing this
+h(x) equals sigmoid (10- 20 x1). So when x1 is equal to 0,
+my hypothesis would be computing g(10- 20 x 0) is just 10. And so that's approximately 1,
+and when x is equal to 1, this will be g(-10) which is
+approximately equal to 0. And if you look at what these values are,
+that's essentially the not x1 function. Cells include negations,
+the general idea is to put that large negative weight in front
+of the variable you want to negate. Minus 20 multiplied by x1 and that's the general idea of
+how you end up negating x1. And so in an example that I hope
+that you can figure out yourself. If you want to compute a function
+like this NOT x1 AND NOT x2, part of that will probably be putting
+large negative weights in front of x1 and x2, but it should be feasible. So you get a neural network with just
+one output unit to compute this as well. All right, so
+this logical function, NOT x1 AND NOT x2, is going to be equal to 1 if and
+only if x1 equals x2 equals 0. All right since this is a logical
+function, this says NOT x1 means x1 must be 0 and NOT x2,
+that means x2 must be equal to 0 as well. So this logical function is equal
+to 1 if and only if both x1 and x2 are equal to 0 and hopefully you
+should be able to figure out how to make a small neural network to
+compute this logical function as well. Now, taking the three pieces that we
+have put together as the network for computing x1 AND x2, and the network
+computing for computing NOT x1 AND NOT x2. And one last network computing for
+computing x1 OR x2, we should be able to put these three pieces together
+to compute this x1 XNOR x2 function. And just to remind you if this is x1, x2, this function that we want to compute
+would have negative examples here and here, and we'd have positive
+examples there and there. And so clearly this will need
+a non linear decision boundary in order to separate the positive and
+negative examples. Let's draw the network. I'm going to take my input +1, x1,
+x2 and create my first hidden unit here. I'm gonna call this a 21 cuz
+that's my first hidden unit. And I'm gonna copy the weight over
+from the red network, the x1 and x2. As well so then -30, 20, 20. Next let me create a second hidden
+unit which I'm going to call a 2 2. That is the second hidden
+unit of layer two. I'm going to copy over the cyan
+that's work in the middle, so I'm gonna have the weights 10 -20 -20. And so,
+let's pull some of the truth table values. For the red network,
+we know that was computing the x1 and x2, and so
+this will be approximately 0 0 0 1, depending on the values of x1 and
+x2, and for a 2 2, the cyan network. What do we know? The function NOT x1 AND NOT x2,
+that outputs 1 0 0 0, for the 4 values of x1 and x2. Finally, I'm going to create my output
+node, my output unit that is a 3 1. This is one more output h(x) and I'm going
+to copy over the old network for that. And I'm going to need a +1 bias unit here,
+so you draw that in, And I'm going to copy over the weights
+from the green networks. So that's -10, 20, 20 and we know earlier
+that this computes the OR function. So let's fill in the truth table entries. So the first entry is 0 OR
+1 which can be 1 that makes 0 OR 0 which is 0, 0 OR 0 which is 0,
+1 OR 0 and that falls to 1. And thus h(x) is equal to 1 when
+either both x1 and x2 are zero or when x1 and x2 are both 1 and
+concretely h(x) outputs 1 exactly at these two locations and
+then outputs 0 otherwise. And thus will this neural network,
+which has a input layer, one hidden layer, and one output layer, we end up with a nonlinear decision
+boundary that computes this XNOR function. And the more general intuition
+is that in the input layer, we just have our four inputs. Then we have a hidden layer, which computed some slightly more complex
+functions of the inputs that its shown here this is slightly
+more complex functions. And then by adding yet another layer we end up with an even
+more complex non linear function. And this is a sort of intuition about
+why neural networks can compute pretty complicated functions. That when you have multiple layers you
+have relatively simple function of the inputs of the second layer. But the third layer I can build on that to
+complete even more complex functions, and then the layer after that can
+compute even more complex functions. To wrap up this video, I want to show you a fun example of
+an application of a the Neural Network that captures this intuition of the deeper
+layers computing more complex features. I want to show you a video of that
+customer a good friend of mine Yann LeCunj. Yann is a professor at
+New York University, NYU and he was one of the early pioneers
+of Neural Network reasearch and is sort of a legend in the field now and
+his ideas are used in all sorts of products and
+applications throughout the world now. So I wanna show you a video from some
+of his early work in which he was using a neural network to recognize handwriting,
+to do handwritten digit recognition. You might remember early in this class,
+at the start of this class I said that one of the earliest successes of neural
+networks was trying to use it to read zip codes to help USPS Laws and
+read postal codes. So this is one of the attempts, this is one of the algorithms used
+to try to address that problem. In the video that I'll
+show you this area here is the input area that shows a canvasing
+character shown to the network. This column here shows a visualization of
+the features computed by sort of the first hidden layer of the network. So that the first hidden layer of
+the network and so the first hidden layer, this visualization shows
+different features. Different edges and
+lines and so on detected. This is a visualization
+of the next hidden layer. It's kinda harder to see, harder to
+understand the deeper, hidden layers, and that's a visualization of why
+the next hidden layer is confusing. You probably have a hard
+time seeing what's going on much beyond the first hidden layer, but then finally, all of these learned
+features get fed to the upper layer. And shown over here is the final answer,
+it's the final predictive value for what handwritten digit the neural
+network thinks it is being shown. So let's take a look at the video. [MUSIC] So I hope you enjoyed the video and that
+this hopefully gave you some intuition about the source of pretty complicated
+functions neural networks can learn. In which it takes its input this image,
+just takes this input, the raw pixels and the first hidden layer
+computes some set of features. The next hidden layer computes
+even more complex features and even more complex features. And these features can then be
+used by essentially the final layer of the logistic classifiers
+to make accurate predictions without the numbers that the network sees.

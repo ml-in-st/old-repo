@@ -1,0 +1,131 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Simplified Cost Function and Gradient Descent
+ </h1>
+ <p>
+  <strong>
+   Note:
+  </strong>
+  [6:53 - the gradient descent equation should have a 1/m factor]
+ </p>
+ <p>
+  We can compress our cost function's two conditional cases into one case:
+ </p>
+ <p hasmath="true">
+  $$\mathrm{Cost}(h_\theta(x),y) = - y \; \log(h_\theta(x)) - (1 - y) \log(1 - h_\theta(x))$$
+ </p>
+ <p hasmath="true">
+  Notice that when y is equal to 1, then the second term $$(1-y)\log(1-h_\theta(x))$$ will be zero and will not affect the result. If y is equal to 0, then the first term $$-y \log(h_\theta(x))$$ will be zero and will not affect the result.
+ </p>
+ <p>
+  We can fully write out our entire cost function as follows:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$J(\theta) = - \frac{1}{m} \displaystyle \sum_{i=1}^m [y^{(i)}\log (h_\theta (x^{(i)})) + (1 - y^{(i)})\log (1 - h_\theta(x^{(i)}))]$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  A vectorized implementation is:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*} &amp; h = g(X\theta)\newline &amp; J(\theta) = \frac{1}{m} \cdot \left(-y^{T}\log(h)-(1-y)^{T}\log(1-h)\right) \end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <h3 level="3">
+  <strong>
+   Gradient Descent
+  </strong>
+ </h3>
+ <p>
+  Remember that the general form of gradient descent is:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; Repeat \; \lbrace \newline &amp; \; \theta_j := \theta_j - \alpha \dfrac{\partial}{\partial \theta_j}J(\theta) \newline &amp; \rbrace\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  We can work out the derivative part using calculus to get:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*} &amp; Repeat \; \lbrace \newline &amp; \; \theta_j := \theta_j - \frac{\alpha}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} \newline &amp; \rbrace \end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  Notice that this algorithm is identical to the one we used in linear regression. We still have to simultaneously update all values in theta.
+ </p>
+ <p>
+  A vectorized implementation is:
+ </p>
+ <p hasmath="true">
+  $$\theta := \theta - \frac{\alpha}{m} X^{T} (g(X \theta ) - \vec{y})$$
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

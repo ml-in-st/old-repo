@@ -1,0 +1,1715 @@
+1
+00:00:00,090 --> 00:00:01,140
+En vídeos anteriores, he
+
+2
+00:00:01,260 --> 00:00:02,510
+comentado una y otra vez que, cuando
+
+3
+00:00:02,650 --> 00:00:03,980
+desarrollen sistemas de aprendizaje automático,
+
+4
+00:00:04,770 --> 00:00:06,630
+uno de los recursos más valiosos es
+
+5
+00:00:06,810 --> 00:00:08,050
+su tiempo como el desarrollador
+
+6
+00:00:08,490 --> 00:00:09,820
+en cuanto a escoger en qué
+
+7
+00:00:09,950 --> 00:00:11,520
+van a trabajar después;
+
+8
+00:00:11,950 --> 00:00:12,710
+o tienen un equipo de desarrolladores,
+
+9
+00:00:13,300 --> 00:00:14,610
+o un equipo de ingenieros que trabajan juntos
+
+10
+00:00:15,090 --> 00:00:16,620
+en un sistema de aprendizaje automático,  nuevamente
+
+11
+00:00:16,930 --> 00:00:18,420
+uno de los recursos más valiosos es
+
+12
+00:00:18,990 --> 00:00:20,790
+el tiempo de los ingenieros o los desarrolladores que trabajan en el sistema.
+
+13
+00:00:22,420 --> 00:00:23,340
+Y lo que realmente quieren
+
+14
+00:00:23,430 --> 00:00:25,340
+evitar es que ustedes o
+
+15
+00:00:25,360 --> 00:00:26,410
+sus colegas, o sus amigos, pasen
+
+16
+00:00:26,680 --> 00:00:27,560
+mucho tiempo de trabajando en
+
+17
+00:00:27,970 --> 00:00:29,510
+algún componente, sólo para darse cuenta,
+
+18
+00:00:30,470 --> 00:00:31,540
+después de semanas o meses, del
+
+19
+00:00:31,620 --> 00:00:33,070
+tiempo que invirtieron, que todo ese
+
+20
+00:00:33,310 --> 00:00:35,090
+trabajo, ya saben, simplemente no
+
+21
+00:00:35,380 --> 00:00:38,120
+hace una gran diferencia en el rendimiento del sistema final.
+
+22
+00:00:39,350 --> 00:00:40,430
+En este video, lo que me gustaría
+
+23
+00:00:40,550 --> 00:00:42,960
+hacer es hablar acerca de algo llamado análisis de límite máximo.
+
+24
+00:00:44,510 --> 00:00:45,760
+Cuando ustedes o su equipo
+
+25
+00:00:46,280 --> 00:00:47,270
+están trabajando en un sistema de aprendizaje
+
+26
+00:00:47,520 --> 00:00:48,860
+electrónico de flujo de proyecto, éste puede
+
+27
+00:00:49,020 --> 00:00:50,380
+a veces darles una señal
+
+28
+00:00:50,630 --> 00:00:51,650
+muy fuerte, una guía
+
+29
+00:00:52,340 --> 00:00:53,730
+muy fuerte, sobre cuáles partes
+
+30
+00:00:54,150 --> 00:00:56,550
+del flujo de proyecto podrían invertir mejor su tiempo.
+
+31
+00:00:59,740 --> 00:01:01,700
+Para hablar acerca del análisis de límite máximo, voy
+
+32
+00:01:01,860 --> 00:01:03,140
+va a seguir usando el
+
+33
+00:01:03,690 --> 00:01:04,910
+ejemplo del flujo de proyecto
+
+34
+00:01:05,640 --> 00:01:06,870
+de «foto OCR», y ya dije
+
+35
+00:01:07,170 --> 00:01:08,270
+antes que cada uno de estos
+
+36
+00:01:08,480 --> 00:01:09,900
+cuadros, detección de texto, segmentación
+
+37
+00:01:10,200 --> 00:01:12,140
+de caracteres, reconocimiento de caracteres, cada uno
+
+38
+00:01:12,310 --> 00:01:13,730
+de estos cuadros pueden tener hasta
+
+39
+00:01:14,100 --> 00:01:15,550
+un pequeño equipo de trabajo de ingeniería
+
+40
+00:01:15,920 --> 00:01:17,370
+en él, o tal vez
+
+41
+00:01:17,690 --> 00:01:18,640
+ustedes construyeron
+
+42
+00:01:18,800 --> 00:01:19,700
+todo el sistema; de cualquier manera, la
+
+43
+00:01:19,960 --> 00:01:22,340
+pregunta es, ¿en dónde debe asignar los recursos?
+
+44
+00:01:22,730 --> 00:01:24,250
+¿Cuál de estos cuadros
+
+45
+00:01:24,430 --> 00:01:26,630
+vale más su esfuerzo, tratando
+
+46
+00:01:26,920 --> 00:01:28,260
+de mejorar su desempeño?.
+
+47
+00:01:29,070 --> 00:01:30,350
+Con el fin de explicar la idea
+
+48
+00:01:30,840 --> 00:01:32,560
+del análisis de límite máximo, voy
+
+49
+00:01:32,730 --> 00:01:35,690
+a seguir usando el ejemplo de nuestro flujo de proyecto de «foto OCR».
+
+50
+00:01:37,000 --> 00:01:38,320
+Como mencioné antes, cada uno de
+
+51
+00:01:38,430 --> 00:01:39,630
+estos cuadros aquí, cada uno de
+
+52
+00:01:39,850 --> 00:01:41,860
+estos componentes del aprendizaje automático podría ser
+
+53
+00:01:42,170 --> 00:01:43,270
+el trabajo de incluso un
+
+54
+00:01:43,470 --> 00:01:44,720
+pequeño equipo de ingenieros, o
+
+55
+00:01:45,280 --> 00:01:48,110
+tal vez todo el sistema pudo haber sido construido por una persona solamente.
+
+56
+00:01:48,780 --> 00:01:49,920
+Pero la pregunta es, ¿a dónde
+
+57
+00:01:50,100 --> 00:01:51,990
+deben asignar sus escasos recursos?
+
+58
+00:01:52,130 --> 00:01:53,200
+esto es, ¿cuál de estos
+
+59
+00:01:53,690 --> 00:01:54,860
+componentes, o cuál componente,
+
+60
+00:01:54,950 --> 00:01:56,250
+o dos, o tal vez los tres componentes,
+
+61
+00:01:57,080 --> 00:01:58,540
+vale más la pena para darle su tiempo
+
+62
+00:01:59,200 --> 00:02:01,060
+para tratar de mejorar su desempeño?
+
+63
+00:02:01,660 --> 00:02:02,810
+Así que aquí está la idea del análisis de límite máximo.
+
+64
+00:02:04,140 --> 00:02:05,520
+Al igual que en el proceso de desarrollo para
+
+65
+00:02:05,890 --> 00:02:07,170
+otros sistemas de aprendizaje automático también,
+
+66
+00:02:07,340 --> 00:02:08,490
+a fin de tomar
+
+67
+00:02:08,670 --> 00:02:09,740
+decisiones sobre qué hacer
+
+68
+00:02:09,970 --> 00:02:11,150
+para desarrollar el sistema,
+
+69
+00:02:11,710 --> 00:02:12,770
+va a ser
+
+70
+00:02:12,900 --> 00:02:14,070
+muy útil contar con una
+
+71
+00:02:14,580 --> 00:02:17,650
+métrica de evaluación de números de una sola hilera para este sistema de aprendizaje.
+
+72
+00:02:18,450 --> 00:02:19,390
+Así que digamos que seleccionamos exactitud de nivel de los caracteres.
+
+73
+00:02:19,530 --> 00:02:21,140
+Así que si, ya saben, teniendo
+
+74
+00:02:21,570 --> 00:02:22,840
+una imagen del conjunto de pruebas, ¿cuál es
+
+75
+00:02:22,860 --> 00:02:24,710
+una fracción de alfabetos de
+
+76
+00:02:25,060 --> 00:02:26,570
+caracteres en la imagen de prueba que
+
+77
+00:02:28,980 --> 00:02:29,390
+reconocemos correctamente?.
+
+78
+00:02:29,550 --> 00:02:30,830
+O pueden escoger alguna otra métrica de evaluación
+
+79
+00:02:31,030 --> 00:02:32,270
+de números de una sola hilera, si desean,
+
+80
+00:02:32,370 --> 00:02:33,740
+pero digamos que
+
+81
+00:02:34,040 --> 00:02:35,820
+cualquiera que sea la métrica de evaluación
+
+82
+00:02:35,920 --> 00:02:37,680
+que seleccionemos, encontramos
+
+83
+00:02:37,880 --> 00:02:40,090
+que el sistema global tiene actualmente 72% de exactitud.
+
+84
+00:02:40,350 --> 00:02:42,210
+De modo que, en otras
+
+85
+00:02:42,350 --> 00:02:43,380
+palabras, tenemos algunos conjuntos
+
+86
+00:02:43,520 --> 00:02:44,960
+de imágenes del conjunto de pruebas, y para
+
+87
+00:02:45,180 --> 00:02:46,460
+cada imagen del conjunto de pruebas,
+
+88
+00:02:46,640 --> 00:02:47,850
+la ejecutamos a través de la detección de texto, después
+
+89
+00:02:47,980 --> 00:02:49,280
+la segmentación de caracteres, después el reconocimiento
+
+90
+00:02:49,560 --> 00:02:50,680
+de caracteres, y hallamos
+
+91
+00:02:51,010 --> 00:02:52,240
+que en nuestro conjunto de pruebas, la
+
+92
+00:02:52,370 --> 00:02:53,570
+exactitud global del
+
+93
+00:02:53,800 --> 00:02:56,220
+sistema completo, fue de 72% en una de las métricas que eligieron.
+
+94
+00:02:58,120 --> 00:02:59,700
+Ahora, sólo la idea detrás
+
+95
+00:03:00,070 --> 00:03:01,610
+del análisis de límite máximo, que es que
+
+96
+00:03:01,910 --> 00:03:03,530
+vamos a permitir
+
+97
+00:03:03,670 --> 00:03:05,100
+que se vea el primer módulo de una
+
+98
+00:03:05,400 --> 00:03:06,810
+detección de texto de los flujos de proyecto de las máquinas,
+
+99
+00:03:07,270 --> 00:03:08,400
+y lo que vamos
+
+100
+00:03:08,420 --> 00:03:09,170
+a hacer es que vamos a
+
+101
+00:03:09,270 --> 00:03:11,310
+juguetear con el conjunto de prueba,
+
+102
+00:03:11,980 --> 00:03:12,920
+vamos a ir al
+
+103
+00:03:12,990 --> 00:03:14,270
+conjunto de prueba, y para cada ejemplo de prueba
+
+104
+00:03:14,830 --> 00:03:16,170
+simplemente le vamos a proporcionar
+
+105
+00:03:16,380 --> 00:03:18,230
+las salidas de detección de texto correctas.
+
+106
+00:03:19,210 --> 00:03:20,300
+En otras palabras, iremos
+
+107
+00:03:20,560 --> 00:03:21,760
+al conjunto de pruebas y simplemente
+
+108
+00:03:21,960 --> 00:03:23,340
+le diremos manualmente al algoritmo
+
+109
+00:03:24,350 --> 00:03:26,210
+en dónde está el texto
+
+110
+00:03:26,780 --> 00:03:27,940
+en cada uno de los ejemplos de prueba.
+
+111
+00:03:28,950 --> 00:03:29,960
+En otras palabras, vamos
+
+112
+00:03:30,030 --> 00:03:31,510
+simular lo que ocurre
+
+113
+00:03:32,030 --> 00:03:33,640
+si tenemos un sistema de detección
+
+114
+00:03:33,890 --> 00:03:35,350
+de texto con una exactitud
+
+115
+00:03:35,610 --> 00:03:37,180
+del 100%, con el propósito
+
+116
+00:03:38,300 --> 00:03:40,410
+de detectar el texto en una imagen.
+
+117
+00:03:42,050 --> 00:03:43,070
+Y realmente, la manera
+
+118
+00:03:43,110 --> 00:03:44,210
+en la que hacen eso es muy sencilla, ¿cierto?, en lugar de
+
+119
+00:03:44,620 --> 00:03:45,840
+de permitir que el algoritmo de aprendizaje
+
+120
+00:03:46,340 --> 00:03:47,630
+detecte el texto en las imágenes,
+
+121
+00:03:48,180 --> 00:03:49,110
+en su lugar, irían a las
+
+122
+00:03:49,340 --> 00:03:51,230
+imágenes y simplemente asignan valores manualmente
+
+123
+00:03:51,540 --> 00:03:53,620
+cuál es la ubicación del texto en mi imagen de prueba,
+
+124
+00:03:54,200 --> 00:03:55,040
+y entonces permitirían que estas
+
+125
+00:03:55,530 --> 00:03:56,620
+asignaciones de valor correctas, dejarían que estas
+
+126
+00:03:56,990 --> 00:03:58,370
+asignaciones de valor verdaderas de en dónde
+
+127
+00:03:58,560 --> 00:04:00,010
+es el texto parte de
+
+128
+00:04:00,090 --> 00:04:01,330
+su conjunto de texto, y usar
+
+129
+00:04:01,580 --> 00:04:02,990
+estas asignaciones de valores verdaderas como lo
+
+130
+00:04:03,110 --> 00:04:04,200
+que alimentan en la siguiente
+
+131
+00:04:04,470 --> 00:04:07,550
+etapa del flujo de trabajo, al flujo de trabajo de la segmentación de caracteres.
+
+132
+00:04:07,710 --> 00:04:09,250
+Así que para decirlo de nuevo, al
+
+133
+00:04:09,680 --> 00:04:10,790
+colocar una marca de verificación por aquí,
+
+134
+00:04:11,500 --> 00:04:12,590
+lo que quiero decir es que voy
+
+135
+00:04:12,750 --> 00:04:13,750
+a ir a mi conjunto de pruebas y
+
+136
+00:04:13,860 --> 00:04:14,970
+simplemente le daré las respuestas correctas,
+
+137
+00:04:15,480 --> 00:04:16,520
+le daré las asignaciones de valor correctas para
+
+138
+00:04:16,650 --> 00:04:18,250
+la parte de detección de texto del flujo de proyecto.
+
+139
+00:04:19,240 --> 00:04:20,280
+Así que eso es como si tuviera
+
+140
+00:04:20,410 --> 00:04:21,700
+un sistema de detección de texto perfecto
+
+141
+00:04:22,370 --> 00:04:24,270
+en mi conjunto de prueba. Lo que vamos a
+
+142
+00:04:24,460 --> 00:04:26,570
+hacer después es ejecutar estos datos
+
+143
+00:04:27,190 --> 00:04:28,150
+al resto del flujo de proyecto, a través de la
+
+144
+00:04:28,530 --> 00:04:29,860
+segmentación de caracteres y el reconocimiento de caracteres,
+
+145
+00:04:30,680 --> 00:04:31,930
+y después usar la misma
+
+146
+00:04:32,300 --> 00:04:33,310
+métrica de evaluación, como antes,
+
+147
+00:04:34,000 --> 00:04:35,240
+para medir lo que es la
+
+148
+00:04:35,450 --> 00:04:36,900
+exactitud general de todo el sistema.
+
+149
+00:04:37,790 --> 00:04:39,890
+Y con la detección de texto perfecta, esperamos que aumente el desempeño.
+
+150
+00:04:40,330 --> 00:04:41,870
+Digamos que
+
+151
+00:04:41,930 --> 00:04:44,550
+sube 89%, y luego
+
+152
+00:04:44,680 --> 00:04:45,830
+vamos a seguir adelante, después vamos
+
+153
+00:04:46,090 --> 00:04:47,120
+ir a la siguiente selección del
+
+154
+00:04:47,330 --> 00:04:50,230
+flujo de proyecto, a la segmentación de caracteres y nuevamente vamos a mi conjunto de pruebas.
+
+155
+00:04:50,540 --> 00:04:52,300
+Y ahora vamos a
+
+156
+00:04:52,390 --> 00:04:54,140
+dar la salidas de detección de texto correctas
+
+157
+00:04:54,900 --> 00:04:55,970
+y dar las salidas de segmentación de
+
+158
+00:04:56,490 --> 00:04:58,220
+caracteres correctas
+
+159
+00:04:59,400 --> 00:05:00,780
+y vamos a ir al conjunto de pruebas y asignar el valor manualmente las
+
+160
+00:05:01,330 --> 00:05:03,710
+segmentaciones correctas del texto en caracteres individuales,
+
+161
+00:05:04,730 --> 00:05:05,560
+y ver cuánto ayuda eso.
+
+162
+00:05:05,810 --> 00:05:06,670
+Y digamos que aumenta hasta
+
+163
+00:05:06,800 --> 00:05:09,140
+90% de exactitud para el sistema global,
+
+164
+00:05:10,070 --> 00:05:11,060
+¿bien?, así que, como siempre, la exactitud es
+
+165
+00:05:11,340 --> 00:05:13,420
+la exactitud de los sistemas globales,
+
+166
+00:05:14,120 --> 00:05:15,460
+así que sea cual sea el resultado final
+
+167
+00:05:15,830 --> 00:05:17,450
+del sistema de reconocimiento de caracteres,
+
+168
+00:05:17,560 --> 00:05:18,870
+cualquiera que sea el resultado final del
+
+169
+00:05:19,040 --> 00:05:19,660
+flujo de proyecto general, va a
+
+170
+00:05:19,930 --> 00:05:22,400
+medir la exactitud de eso.
+
+171
+00:05:22,520 --> 00:05:23,720
+Y finalmente, voy a ir al sistema de  reconocimiento
+
+172
+00:05:24,170 --> 00:05:26,170
+de caracteres y darle a eso la asignación de valor correcta también.
+
+173
+00:05:26,780 --> 00:05:29,270
+Y si hago eso también entonces, no es de extrañar que obtendré un 100% de exactitud.
+
+174
+00:05:31,270 --> 00:05:32,530
+Ahora, lo bueno de haber
+
+175
+00:05:32,850 --> 00:05:34,340
+hecho este análisis, es que
+
+176
+00:05:34,450 --> 00:05:36,080
+ahora podemos entender cuál es
+
+177
+00:05:36,700 --> 00:05:40,250
+el potencial de crecimiento para mejorar cada uno de estos componentes.
+
+178
+00:05:41,390 --> 00:05:44,180
+De modo que vemos que si conseguimos la detección de texto perfecta,
+
+179
+00:05:44,950 --> 00:05:46,360
+nuestro desempeño se elevó de
+
+180
+00:05:46,710 --> 00:05:48,080
+72 a 89 por ciento, así que eso
+
+181
+00:05:48,420 --> 00:05:50,670
+es un aumento de 17 por ciento en el desempeño.
+
+182
+00:05:51,640 --> 00:05:52,680
+Así que esto significa que tienen
+
+183
+00:05:52,890 --> 00:05:54,030
+que tomar su sistema en el que
+
+184
+00:05:54,160 --> 00:05:56,130
+pasan mucho tiempo para mejorar la detección de texto;
+
+185
+00:05:57,330 --> 00:05:58,750
+eso significa que podríamos mejorar potencialmente
+
+186
+00:05:59,200 --> 00:06:00,640
+el desempeño de nuestro sistema en un 17 por ciento.
+
+187
+00:06:01,020 --> 00:06:02,850
+Parece que esto bien vale la pena por nuestro tiempo.
+
+188
+00:06:03,770 --> 00:06:05,840
+Mientras que, en contraste, cuando vamos
+
+189
+00:06:06,200 --> 00:06:08,360
+de la detección de texto, cuando
+
+190
+00:06:08,640 --> 00:06:12,450
+le damos la segmentación de caracteres perfecta, el desempeño sólo aumentó uno por ciento,
+
+191
+00:06:13,020 --> 00:06:14,820
+así que eso es un mensaje más aleccionador.
+
+192
+00:06:15,250 --> 00:06:16,880
+Quiere decir que no importa cuánto
+
+193
+00:06:17,090 --> 00:06:18,510
+tiempo pasan en la segmentación de caracteres,
+
+194
+00:06:19,800 --> 00:06:20,990
+tal vez el potencial de crecimiento va
+
+195
+00:06:21,080 --> 00:06:22,280
+va a ser muy pequeño, y tal vez
+
+196
+00:06:22,460 --> 00:06:23,420
+no querrán tener
+
+197
+00:06:23,580 --> 00:06:24,340
+un gran equipo de ingenieros
+
+198
+00:06:24,860 --> 00:06:26,860
+trabajando en la segmentación de caracteres de la que
+
+199
+00:06:26,990 --> 00:06:28,860
+este tipo de análisis muestra que,
+
+200
+00:06:29,150 --> 00:06:30,180
+incluso cuando le dan
+
+201
+00:06:30,260 --> 00:06:32,480
+la segmentación de caracteres perfecta, su
+
+202
+00:06:32,620 --> 00:06:34,180
+desempeño sólo se incrementa en uno por ciento.
+
+203
+00:06:34,620 --> 00:06:36,090
+Así que esto realmente calcula
+
+204
+00:06:36,890 --> 00:06:38,080
+lo que es el techo, o qué es
+
+205
+00:06:38,300 --> 00:06:39,360
+un límite superior a la cantidad
+
+206
+00:06:39,550 --> 00:06:40,690
+en la que pueden mejorar el desempeño de su
+
+207
+00:06:40,740 --> 00:06:42,710
+sistema, por medio de trabajar en uno de estos componentes.
+
+208
+00:06:44,330 --> 00:06:45,600
+Y, por último, en cuanto a los caracteres,
+
+209
+00:06:46,320 --> 00:06:47,700
+cuando obtenemos un mejor
+
+210
+00:06:47,900 --> 00:06:50,080
+reconocimiento de caracteres, el desempeño aumentó en un diez por ciento.
+
+211
+00:06:50,530 --> 00:06:51,640
+Así que, ya saben, nuevamente
+
+212
+00:06:51,750 --> 00:06:52,570
+pueden decidir: el diez
+
+213
+00:06:52,860 --> 00:06:55,630
+por ciento de mejoría, ¿qué tanto está resolviendo?
+
+214
+00:06:55,830 --> 00:06:57,200
+Les dice que tal vez,
+
+215
+00:06:57,400 --> 00:06:58,670
+con más esfuerzo invertido en la
+
+216
+00:06:58,730 --> 00:06:59,690
+última estación del flujo de proyecto,
+
+217
+00:07:00,360 --> 00:07:02,840
+pueden mejorar el desempeño
+
+218
+00:07:03,760 --> 00:07:04,500
+de los sistemas también.
+
+219
+00:07:05,610 --> 00:07:06,580
+Otra forma de pensar sobre esto
+
+220
+00:07:06,870 --> 00:07:08,090
+es que, al pasar a través de este
+
+221
+00:07:08,290 --> 00:07:09,470
+tipo de análisis, están tratando de
+
+222
+00:07:09,570 --> 00:07:10,640
+averiguar, ya saben, cuál es
+
+223
+00:07:10,740 --> 00:07:12,700
+el potencial de crecimiento, de mejorar
+
+224
+00:07:13,480 --> 00:07:14,980
+cada uno de estos componentes o cuánto
+
+225
+00:07:15,080 --> 00:07:16,730
+podrían ganar si
+
+226
+00:07:17,260 --> 00:07:18,910
+cada uno de estos componentes se hiciera absolutamente
+
+227
+00:07:19,380 --> 00:07:20,780
+perfecto, y realmente sólo
+
+228
+00:07:21,060 --> 00:07:23,230
+coloca un límite superior en el desempeño de ese sistema.
+
+229
+00:07:24,220 --> 00:07:26,290
+Así que la idea del análisis de límite máximo es bastante importante.
+
+230
+00:07:26,900 --> 00:07:29,840
+Permítanme ilustrar esta idea de nuevo, pero con un ejemplo diferente pero más complejo.
+
+231
+00:07:31,860 --> 00:07:32,990
+Digamos que quieren hacer
+
+232
+00:07:33,260 --> 00:07:34,830
+reconocimiento facial de imágenes,
+
+233
+00:07:35,280 --> 00:07:35,960
+así que digamos que quieren ver
+
+234
+00:07:35,990 --> 00:07:37,650
+una fotografía y reconocer si
+
+235
+00:07:37,820 --> 00:07:38,770
+la persona en esta foto es o no
+
+236
+00:07:39,470 --> 00:07:40,640
+un amigo suyo en particular,
+
+237
+00:07:40,670 --> 00:07:43,880
+tratando de reconocer a la persona que se muestra en esta imagen.
+
+238
+00:07:44,180 --> 00:07:46,260
+Este es un ejemplo ligeramente artificial,
+
+239
+00:07:47,130 --> 00:07:51,080
+esta no es realmente la forma en la
+
+240
+00:07:51,320 --> 00:07:52,790
+se hace el reconocimiento facial en
+
+241
+00:07:52,800 --> 00:07:53,660
+práctica, pero quiero pasar a través de un ejemplo de
+
+242
+00:07:53,870 --> 00:07:54,800
+cómo se vería un flujo de proyecto para
+
+243
+00:07:54,940 --> 00:07:56,220
+darles otro ejemplo de cómo se vería
+
+244
+00:07:56,450 --> 00:07:57,820
+un proceso de análisis de límite máximo.
+
+245
+00:07:58,710 --> 00:07:59,980
+Así que tenemos una
+
+246
+00:08:00,160 --> 00:08:03,830
+imagen de la cámara y digamos que diseñamos un flujo de proyecto de la siguiente manera.
+
+247
+00:08:04,420 --> 00:08:05,120
+Digamos que lo primero que quieren hacer
+
+248
+00:08:05,380 --> 00:08:07,480
+es un pre-procesamiento de
+
+249
+00:08:07,560 --> 00:08:08,770
+la imagen, así que vamos a tomar esas
+
+250
+00:08:08,910 --> 00:08:10,310
+imágenes como les he mostrado en
+
+251
+00:08:10,390 --> 00:08:11,040
+la parte superior derecha, y digamos que
+
+252
+00:08:11,140 --> 00:08:12,510
+queremos quitar el fondo, así que,
+
+253
+00:08:13,030 --> 00:08:14,790
+a través del pre-procesamiento, el fondo desaparece.
+
+254
+00:08:16,070 --> 00:08:18,820
+Después, queremos, digamos, detectar el rostro de la persona.
+
+255
+00:08:19,370 --> 00:08:20,550
+Eso se hace generalmente con un algoritmo de aprendizaje,
+
+256
+00:08:20,930 --> 00:08:21,960
+Así que ejecutamos un fuego cruzado de Windows
+
+257
+00:08:22,180 --> 00:08:24,900
+de deslizamiento para dibujar un cuadro  alrededor de la cara de la persona.
+
+258
+00:08:25,680 --> 00:08:26,720
+Después de haber detectado la cara,
+
+259
+00:08:26,790 --> 00:08:27,650
+resulta que si
+
+260
+00:08:27,770 --> 00:08:29,320
+quieren reconocer personas,
+
+261
+00:08:29,530 --> 00:08:31,630
+los ojos son una señal de gran utilidad.
+
+262
+00:08:32,000 --> 00:08:33,860
+En realidad, en términos
+
+263
+00:08:34,130 --> 00:08:35,420
+de, ya saben, reconocer a sus amigos, la
+
+264
+00:08:35,700 --> 00:08:36,870
+apariencia de sus ojos es en realidad
+
+265
+00:08:37,330 --> 00:08:38,680
+una de las claves más importantes que usan.
+
+266
+00:08:39,470 --> 00:08:41,610
+Así que vamos a ejecutar otro fuego cruzado para detectar los ojos de la persona.
+
+267
+00:08:42,500 --> 00:08:43,660
+De modo que segmenten los ojos,
+
+268
+00:08:44,410 --> 00:08:45,650
+y a continuación, y dado que esto
+
+269
+00:08:45,900 --> 00:08:47,290
+nos dará variables útiles para
+
+270
+00:08:47,380 --> 00:08:48,840
+reconocer a una persona y después
+
+271
+00:08:49,100 --> 00:08:50,400
+otras partes de la cara de interés físico,
+
+272
+00:08:50,990 --> 00:08:52,330
+tal vez segmenten la nariz,
+
+273
+00:08:52,830 --> 00:08:54,750
+segmenten la boca y
+
+274
+00:08:54,980 --> 00:08:56,230
+después, ya que encontraron los
+
+275
+00:08:56,370 --> 00:08:57,060
+ojos, la nariz y la boca,
+
+276
+00:08:57,340 --> 00:08:58,420
+todos ellos nos dan variables útiles
+
+277
+00:08:58,740 --> 00:08:59,920
+para, quizás, alimentar
+
+278
+00:09:00,580 --> 00:09:01,540
+nuestro fuego cruzado de regresión logística.
+
+279
+00:09:02,500 --> 00:09:03,200
+Y es el trabajo del
+
+280
+00:09:03,480 --> 00:09:04,420
+fuego cruzado darnos entonces la
+
+281
+00:09:04,710 --> 00:09:05,850
+asignación de valor general para encontrar el
+
+282
+00:09:05,970 --> 00:09:06,930
+valor asignado para la que pensamos que es
+
+283
+00:09:07,190 --> 00:09:08,450
+la identidad de esta persona.
+
+284
+00:09:10,110 --> 00:09:11,730
+Así que este es un flujo de proyecto un poco complicado,
+
+285
+00:09:12,160 --> 00:09:13,300
+De hecho, es probablemente más complicado
+
+286
+00:09:13,950 --> 00:09:16,810
+de lo que deberían utilizar si en en realidad quieren reconocer personas.
+
+287
+00:09:17,620 --> 00:09:20,330
+Pero hay un ejemplo ilustrativo que es útil para pensar en el análisis de límite máximo.
+
+288
+00:09:22,150 --> 00:09:24,510
+Así que, ¿cómo pasan a través del análisis de límite máximo para este flujo de proyecto?
+
+289
+00:09:25,000 --> 00:09:26,790
+Bueno, pasamos a través de estas piezas de una en una.
+
+290
+00:09:27,470 --> 00:09:28,900
+Digamos que su sistema general tiene
+
+291
+00:09:29,150 --> 00:09:30,560
+85 por ciento de exactitud; lo primero
+
+292
+00:09:30,720 --> 00:09:31,670
+que hago es ir a
+
+293
+00:09:31,750 --> 00:09:32,890
+mi conjunto de pruebas y darle
+
+294
+00:09:33,860 --> 00:09:36,200
+segmentaciones de primer plano,
+
+295
+00:09:36,740 --> 00:09:38,090
+fondo y, a continuación, ir manualmente al
+
+296
+00:09:38,150 --> 00:09:39,670
+conjunto de pruebas, y usar Photoshop
+
+297
+00:09:40,290 --> 00:09:41,750
+o algo así, para simplemente decirle
+
+298
+00:09:41,950 --> 00:09:43,130
+en dónde está el fondo, y sólo
+
+299
+00:09:43,360 --> 00:09:45,230
+quitar el fondo de manera manual, así que,
+
+300
+00:09:45,470 --> 00:09:48,050
+del primer plano al fondo, y ver cuánto cambia la exactitud.
+
+301
+00:09:48,990 --> 00:09:50,320
+En este ejemplo, la exactitud
+
+302
+00:09:50,800 --> 00:09:53,700
+aumenta 0.1%, así que
+
+303
+00:09:53,860 --> 00:09:54,900
+esto es una fuerte señal de que,
+
+304
+00:09:55,100 --> 00:09:56,240
+incluso si tenían la segmentación de fondo
+
+305
+00:09:56,630 --> 00:09:59,680
+perfecto, su desempeño, aún si
+
+306
+00:09:59,840 --> 00:10:01,650
+la eliminación del fondo es perfecta, el
+
+307
+00:10:01,730 --> 00:10:03,740
+desempeño de su sistema no va a aumentar mucho.
+
+308
+00:10:03,880 --> 00:10:05,000
+Así que esto tal vez no vale
+
+309
+00:10:05,190 --> 00:10:07,720
+el enorme esfuerzo para trabajar en el pre-procesamiento, en la eliminación del fondo.
+
+310
+00:10:09,270 --> 00:10:10,170
+Entonces, todo se dirige al
+
+311
+00:10:10,230 --> 00:10:11,290
+conjunto de pruebas, dadas las correctas
+
+312
+00:10:11,780 --> 00:10:13,650
+imágenes de detección facial, de nuevo
+
+313
+00:10:14,140 --> 00:10:16,690
+pasan a través de las segmentaciones de los ojos, la nariz, la boca en algún orden;
+
+314
+00:10:17,100 --> 00:10:17,470
+elijan un orden.
+
+315
+00:10:17,700 --> 00:10:18,890
+Vamos a dar la ubicación correcta
+
+316
+00:10:19,340 --> 00:10:20,520
+de los ojos, la ubicación correcta de
+
+317
+00:10:20,750 --> 00:10:22,510
+la nariz, la ubicación correcta de
+
+318
+00:10:22,520 --> 00:10:23,740
+la boca y finalmente,
+
+319
+00:10:24,130 --> 00:10:26,200
+si le dí la asignación de valor general correcta, obtengo 100% de exactitud.
+
+320
+00:10:27,900 --> 00:10:29,390
+Así que, ya saben, a medida que
+
+321
+00:10:29,500 --> 00:10:30,430
+paso a través del sistema
+
+322
+00:10:31,040 --> 00:10:32,080
+y sólo doy más y más
+
+323
+00:10:32,210 --> 00:10:33,900
+asignaciones de valor correctas a los componentes
+
+324
+00:10:34,370 --> 00:10:35,350
+en el conjunto de pruebas, el desempeño
+
+325
+00:10:35,830 --> 00:10:37,550
+del sistema global aumenta,
+
+326
+00:10:37,730 --> 00:10:38,640
+y pueden ver cuánto aumentó
+
+327
+00:10:38,890 --> 00:10:39,860
+el desempeño en
+
+328
+00:10:40,240 --> 00:10:41,660
+diferentes etapas, así que, ya saben, por
+
+329
+00:10:42,550 --> 00:10:43,830
+darle la detección facial perfecta,
+
+330
+00:10:44,440 --> 00:10:45,270
+y parece que el desempeño general
+
+331
+00:10:45,570 --> 00:10:48,290
+de este sistema aumentó 5.9 por ciento.
+
+332
+00:10:49,710 --> 00:10:50,670
+Así que ése fue un gran salto,
+
+333
+00:10:50,980 --> 00:10:52,100
+significa que tal vez vale la pena
+
+334
+00:10:52,370 --> 00:10:53,660
+un poco de esfuerzo para una mejor detección facial.
+
+335
+00:10:54,670 --> 00:10:56,290
+Subió cuatro por ciento allí, subió
+
+336
+00:10:56,710 --> 00:10:58,680
+uno por ciento allá, uno por ciento
+
+337
+00:10:59,160 --> 00:11:00,600
+allí y tres por ciento allí.
+
+338
+00:11:01,520 --> 00:11:02,840
+Así que parece que los
+
+339
+00:11:02,980 --> 00:11:04,250
+componentes que más valen
+
+340
+00:11:04,730 --> 00:11:06,520
+nuestro tiempo son cuando
+
+341
+00:11:06,680 --> 00:11:08,540
+les di detección facial perfecta,
+
+342
+00:11:09,680 --> 00:11:10,190
+el sistema subió
+
+343
+00:11:10,490 --> 00:11:11,990
+por 5.9 de desempeño, le podría dar
+
+344
+00:11:12,170 --> 00:11:14,170
+segmentación de ojo perfecta y subir
+
+345
+00:11:14,380 --> 00:11:15,540
+4%, y después mi fuego cruzado logístico,
+
+346
+00:11:16,000 --> 00:11:19,220
+bueno, hay otra brecha de 3 por ciento allí posiblemente.
+
+347
+00:11:19,570 --> 00:11:20,580
+Entonces, esto nos dice
+
+348
+00:11:20,810 --> 00:11:23,400
+uno de los componentes en los que más vale la pena trabajar.
+
+349
+00:11:24,610 --> 00:11:25,690
+Por cierto, quiero
+
+350
+00:11:25,830 --> 00:11:28,110
+contarles, es una verdadera historia con moraleja;
+
+351
+00:11:28,680 --> 00:11:29,620
+la razón por la que puse este
+
+352
+00:11:29,850 --> 00:11:32,350
+pre-procesamiento para eliminar el fondo es
+
+353
+00:11:32,600 --> 00:11:34,050
+porque realmente conozco
+
+354
+00:11:34,340 --> 00:11:35,530
+una historia real en la que hubo
+
+355
+00:11:35,770 --> 00:11:37,140
+un equipo de investigación que en realidad,
+
+356
+00:11:37,480 --> 00:11:38,990
+literalmente, tuvo dos personas que pasaron
+
+357
+00:11:39,580 --> 00:11:40,250
+alrededor de un año y medio,
+
+358
+00:11:40,530 --> 00:11:42,410
+pasaron 18 meses trabajando en
+
+359
+00:11:42,770 --> 00:11:44,050
+una mejor eliminación del fondo.
+
+360
+00:11:44,480 --> 00:11:45,680
+Nos apresuramos aquí ... Estoy
+
+361
+00:11:46,120 --> 00:11:47,490
+ocultando los detalles por obvias
+
+362
+00:11:47,970 --> 00:11:48,770
+razones, pero hubo una
+
+363
+00:11:48,820 --> 00:11:50,610
+aplicación de visión por computadora en la que hubo
+
+364
+00:11:50,720 --> 00:11:51,660
+un equipo de dos ingenieros
+
+365
+00:11:51,770 --> 00:11:52,850
+que literalmente pasaron, creo
+
+366
+00:11:52,990 --> 00:11:54,210
+que alrededor de un año y medio, trabajando
+
+367
+00:11:54,550 --> 00:11:56,050
+en una mejor eliminación del fondo.
+
+368
+00:11:56,550 --> 00:11:57,720
+En realidad elaboraron
+
+369
+00:11:57,820 --> 00:12:00,270
+algoritmos muy complicados, y terminaron publicando creo, un trabajo de investigación.
+
+370
+00:12:01,080 --> 00:12:02,000
+Pero después de todo ese trabajo,
+
+371
+00:12:02,110 --> 00:12:03,020
+encontraron que simplemente
+
+372
+00:12:03,260 --> 00:12:04,910
+no tuvo un gran impacto
+
+373
+00:12:05,200 --> 00:12:06,490
+en el desempeño global de la
+
+374
+00:12:06,710 --> 00:12:09,120
+aplicación real en la que estaban trabajando.
+
+375
+00:12:09,450 --> 00:12:10,770
+Y si sólo, ya saben, si
+
+376
+00:12:10,770 --> 00:12:13,170
+sólo alguien hubiera hecho un análisis desde el vacío
+
+377
+00:12:13,700 --> 00:12:15,790
+de antemano, quizás nos podríamos haber dado cuenta de esto.
+
+378
+00:12:17,240 --> 00:12:18,360
+Y uno de ellos me dijo después,
+
+379
+00:12:18,480 --> 00:12:19,510
+ya saben, si tan sólo
+
+380
+00:12:19,640 --> 00:12:20,580
+hubieran hecho un tipo de análisis
+
+381
+00:12:20,850 --> 00:12:21,710
+así, tal vez se habrían
+
+382
+00:12:21,990 --> 00:12:23,190
+dado cuenta antes de los 18 meses
+
+383
+00:12:23,440 --> 00:12:25,180
+de trabajo, que deberían
+
+384
+00:12:25,240 --> 00:12:26,300
+haber invertido su esfuerzo centrándose
+
+385
+00:12:26,680 --> 00:12:28,920
+en algún componente diferente en lugar de, literalmente,
+
+386
+00:12:29,380 --> 00:12:31,230
+pasarse 18 meses trabajando en la eliminación del fondo.
+
+387
+00:12:33,910 --> 00:12:36,140
+Así que para resumir, los flujos de proyecto son
+
+388
+00:12:36,390 --> 00:12:38,630
+aplicaciones de aprendizaje automático bastante generalizadas y complejas,
+
+389
+00:12:39,890 --> 00:12:40,950
+y cuando están trabajando en
+
+390
+00:12:41,200 --> 00:12:42,780
+una gran aplicación de aprendizaje automático, quiero decir,
+
+391
+00:12:42,830 --> 00:12:45,450
+creo que su tiempo como desarrolladores es muy valioso.
+
+392
+00:12:46,090 --> 00:12:47,360
+Así que no pierdan su
+
+393
+00:12:47,460 --> 00:12:50,120
+tiempo trabajando en algo que finalmente no va a importar,
+
+394
+00:12:51,350 --> 00:12:52,370
+y en este vídeo hablamos acerca
+
+395
+00:12:52,490 --> 00:12:53,570
+de esta idea del análisis de límite máximo,
+
+396
+00:12:54,340 --> 00:12:55,750
+que a menudo he encontrado que
+
+397
+00:12:55,850 --> 00:12:57,000
+es una muy buena herramienta para
+
+398
+00:12:57,130 --> 00:12:58,660
+identificar el componente, y si
+
+399
+00:12:58,760 --> 00:12:59,830
+en verdad invierten un esfuerzo enfocado
+
+400
+00:13:00,050 --> 00:13:01,010
+en ese componente y hacen una
+
+401
+00:13:01,250 --> 00:13:02,420
+gran diferencia, en realidad
+
+402
+00:13:03,050 --> 00:13:04,360
+tendría un efecto enorme en el
+
+403
+00:13:04,620 --> 00:13:06,040
+desempeño general de su sistema final.
+
+404
+00:13:07,070 --> 00:13:08,010
+Así que, en los que años que he trabajado
+
+405
+00:13:08,340 --> 00:13:09,520
+con el aprendizaje automático, en realidad he aprendido
+
+406
+00:13:09,710 --> 00:13:10,900
+a no confiar en mi propio instinto,
+
+407
+00:13:11,100 --> 00:13:13,200
+a sentir sobre cuál componente trabajar.
+
+408
+00:13:13,280 --> 00:13:14,310
+Así que, muy a menudo, cuando han
+
+409
+00:13:14,540 --> 00:13:15,440
+trabajado con el aprendizaje automático durante
+
+410
+00:13:15,570 --> 00:13:17,160
+mucho tiempo, pero a menudo, nuestro problema
+
+411
+00:13:17,360 --> 00:13:18,770
+de aprendizaje automático local, y quizá
+
+412
+00:13:18,950 --> 00:13:20,130
+tenga alguna intuición acerca de él,
+
+413
+00:13:20,450 --> 00:13:22,970
+¡oh, vamos, ya saben, a saltar sobre ese componente, y a invertir más tiempo en él!.
+
+414
+00:13:24,120 --> 00:13:25,050
+Pero a través de los años en los que he
+
+415
+00:13:25,160 --> 00:13:26,600
+llegado hasta a confiar en mis
+
+416
+00:13:26,740 --> 00:13:27,800
+instintos y en los que he aprendido a no
+
+417
+00:13:28,130 --> 00:13:29,310
+confiar tanto en mis instintos
+
+418
+00:13:29,980 --> 00:13:31,450
+y, en lugar de eso, si tenemos
+
+419
+00:13:31,520 --> 00:13:33,060
+un problema de aprendizaje automático sólido, en donde es
+
+420
+00:13:33,180 --> 00:13:34,750
+posible estructurar las cosas,
+
+421
+00:13:34,960 --> 00:13:36,340
+realizar un análisis de límite máximo es a menudo
+
+422
+00:13:36,660 --> 00:13:37,720
+mucho mejor y es una manera
+
+423
+00:13:37,910 --> 00:13:39,110
+mucho más confiable para decidir
+
+424
+00:13:39,670 --> 00:13:40,900
+en dónde poner un esfuerzo centrado,
+
+425
+00:13:40,940 --> 00:13:42,270
+para realmente mejorar esto,
+
+426
+00:13:42,690 --> 00:13:44,570
+el desempeño de algún componente, y
+
+427
+00:13:44,680 --> 00:13:45,900
+estaremos seguros de que, cuando
+
+428
+00:13:46,180 --> 00:13:46,960
+hagamos eso, en realidad tendrá
+
+429
+00:13:47,200 --> 00:13:49,460
+un enorme impacto en el desempeño final de su sistema de procesamiento.

@@ -1,0 +1,901 @@
+1
+00:00:00,150 --> 00:00:01,160
+U ovome videu počećemo
+
+2
+00:00:01,520 --> 00:00:02,600
+da govorimo o novoj verziji
+
+3
+00:00:03,250 --> 00:00:04,880
+linearne regresije koja je moćnija.
+
+4
+00:00:05,800 --> 00:00:07,230
+Ona koja radi sa više promenjivih
+
+5
+00:00:08,230 --> 00:00:09,070
+ili sa više osobina.
+
+6
+00:00:10,320 --> 00:00:10,860
+Evo šta hoću da kažem:
+
+7
+00:00:12,200 --> 00:00:13,670
+U originalnoj verziji
+
+8
+00:00:13,900 --> 00:00:14,920
+linearne regresije koju smo razvijali,
+
+9
+00:00:15,780 --> 00:00:17,590
+imali smo jednu osobinu x,
+
+10
+00:00:18,030 --> 00:00:19,450
+veličinu kuće, i
+
+11
+00:00:19,600 --> 00:00:20,650
+želeli smo da je koristimo da
+
+12
+00:00:20,760 --> 00:00:22,510
+predvidimo cenu
+
+13
+00:00:22,660 --> 00:00:24,210
+kuće a to je bilo
+
+14
+00:00:25,310 --> 00:00:26,590
+naša forma hipoteze.
+
+15
+00:00:28,540 --> 00:00:29,210
+Ali, zamislite, šta ako
+
+16
+00:00:29,410 --> 00:00:30,580
+imamo samo veličinu
+
+17
+00:00:31,020 --> 00:00:32,440
+kuće kao osobinu
+
+18
+00:00:33,140 --> 00:00:34,450
+ili kao varijablu na osnovu koje
+
+19
+00:00:34,600 --> 00:00:35,490
+želimo da predvidimo cenu,
+
+20
+00:00:36,450 --> 00:00:38,270
+ali takođe znamo
+
+21
+00:00:38,410 --> 00:00:39,710
+broj soba, broj
+
+22
+00:00:39,990 --> 00:00:42,490
+spratova i starost kuće (godine)?
+
+23
+00:00:43,180 --> 00:00:44,050
+Izgleda da bi nam to dalo
+
+24
+00:00:44,230 --> 00:00:46,630
+mnogo više informacija za 
+za predviđanje cene.
+
+25
+00:00:47,810 --> 00:00:49,130
+Da bismo uveli još malo
+
+26
+00:00:49,290 --> 00:00:50,760
+oznaka, o ovome
+
+27
+00:00:50,940 --> 00:00:51,910
+smo počeli govoriti malo ranije.
+
+28
+00:00:52,900 --> 00:00:53,800
+Koristiću promenjive
+
+29
+00:00:54,560 --> 00:00:56,300
+x sabskript 1, x sabskript 2
+
+30
+00:00:56,880 --> 00:00:59,320
+i tako dalje da
+
+31
+00:00:59,480 --> 00:01:00,780
+bih označio moje, u ovome
+
+32
+00:01:00,960 --> 00:01:03,000
+slučaju, četiri osobine i
+
+33
+00:01:03,310 --> 00:01:04,500
+nastaviću da koristim
+
+34
+00:01:04,850 --> 00:01:06,780
+y da bih označio promenjivu,
+
+35
+00:01:07,370 --> 00:01:09,720
+izlaznu promenjivu cenu koju 
+pokušavamo da predvidimo.
+
+36
+00:01:11,010 --> 00:01:12,600
+Hajde da uvedemo još malo oznaka.
+
+37
+00:01:13,850 --> 00:01:15,210
+Sada kada imamo 4 osobine
+
+38
+00:01:16,560 --> 00:01:18,490
+koristiću malo slovo n
+
+39
+00:01:19,540 --> 00:01:20,670
+da bih označio broj osobina.
+
+40
+00:01:21,180 --> 00:01:22,460
+Dakle, u ovome primeru imamo
+
+41
+00:01:23,030 --> 00:01:24,420
+n = 4 jer imamo
+
+42
+00:01:24,820 --> 00:01:27,610
+jedan, dva, tri, četiri osobine.
+
+43
+00:01:28,850 --> 00:01:30,880
+A n je različito od
+
+44
+00:01:31,700 --> 00:01:33,280
+našeg ranijeg primera gde
+
+45
+00:01:33,570 --> 00:01:36,670
+smo koristili n da bismo
+ označili broj primera.
+
+46
+00:01:37,330 --> 00:01:38,640
+Tako, ako imate
+
+47
+00:01:39,050 --> 00:01:41,070
+47 redova m je
+
+48
+00:01:41,300 --> 00:01:43,580
+broj redova u toj tabeli ili broj trening primera.
+
+49
+00:01:45,480 --> 00:01:47,290
+Takođe ću da
+
+50
+00:01:47,500 --> 00:01:48,910
+koristim x superskript
+
+51
+00:01:49,540 --> 00:01:51,050
+i da bih označio
+
+52
+00:01:51,260 --> 00:01:53,460
+ulazne osobine i - tog trening primera.
+
+53
+00:01:55,190 --> 00:01:58,100
+Kao konkretan primer recimo
+
+54
+00:01:58,720 --> 00:02:00,580
+x2 će da
+
+55
+00:02:00,710 --> 00:02:02,300
+bude vektor
+
+56
+00:02:02,550 --> 00:02:05,690
+osobina za moj drugi trening primer.
+
+57
+00:02:06,430 --> 00:02:08,020
+Tako, x2 će da
+
+58
+00:02:08,160 --> 00:02:09,260
+bude vektor 1416,
+
+59
+00:02:09,520 --> 00:02:10,560
+3, 2, 40 i to
+
+60
+00:02:11,060 --> 00:02:14,110
+su moje 4
+
+61
+00:02:14,410 --> 00:02:16,100
+osobine koje treba da
+
+62
+00:02:17,500 --> 00:02:19,410
+pokušaju da predvide cenu druge kuće.
+
+63
+00:02:20,990 --> 00:02:22,470
+Tako, u ovoj notaciji,
+
+64
+00:02:24,200 --> 00:02:25,250
+superskript 2 ovde
+
+65
+00:02:26,720 --> 00:02:28,620
+je indeks u mom trening skupu.
+
+66
+00:02:28,990 --> 00:02:31,630
+To nije x na drugu.
+
+67
+00:02:32,010 --> 00:02:33,150
+Umesto toga, to je, znate,
+
+68
+00:02:33,370 --> 00:02:36,430
+indeks koji kaže "pogledajte 
+u drugi red ove tabele".
+
+69
+00:02:36,960 --> 00:02:38,260
+Upućuje na moj drugi trening skup.
+
+70
+00:02:39,280 --> 00:02:41,780
+Koristeći tu notaciju, x2 je
+
+71
+00:02:42,140 --> 00:02:43,890
+četvorodimenzioni vektor.
+
+72
+00:02:44,400 --> 00:02:45,760
+Još opštije, ovo je
+
+73
+00:02:45,930 --> 00:02:48,630
+n - dimenziona osobina onde.
+
+74
+00:02:51,030 --> 00:02:52,730
+Po toj notaciji, x2 je
+
+75
+00:02:53,290 --> 00:02:55,320
+sada vektor i tako,
+
+76
+00:02:55,770 --> 00:02:58,300
+koristiću takođe xi
+
+77
+00:02:58,790 --> 00:03:00,030
+sabskript j da bih označio
+
+78
+00:03:00,550 --> 00:03:01,740
+vrednost od j,
+
+79
+00:03:02,850 --> 00:03:04,420
+od osobine broj j
+
+80
+00:03:05,170 --> 00:03:06,360
+u i - tom trening primeru.
+
+81
+00:03:07,950 --> 00:03:11,490
+Konkretno, x2 sabskript 3
+
+82
+00:03:11,920 --> 00:03:14,130
+će da pokazuje na osobinu
+
+83
+00:03:14,420 --> 00:03:15,800
+broj 3 u
+
+84
+00:03:15,930 --> 00:03:17,670
+x vektoru koji je jednak 2, u redu?
+
+85
+00:03:18,300 --> 00:03:20,360
+To je 3 ovamo, ispravljam rukopis.
+
+86
+00:03:20,860 --> 00:03:23,810
+Tako x2 sabskript 3 će da bude 2.
+
+87
+00:03:26,810 --> 00:03:28,010
+Kada imamo više osobina,
+
+88
+00:03:29,110 --> 00:03:30,390
+hajde da govorimo o tome kakav
+
+89
+00:03:30,470 --> 00:03:32,360
+oblik bi trebalo da ima naša hipoteza.
+
+90
+00:03:33,220 --> 00:03:34,790
+Prethodno je ovo bio
+
+91
+00:03:34,860 --> 00:03:36,650
+oblik naše hipoteze, gde je
+
+92
+00:03:37,250 --> 00:03:39,280
+x naša jedina osobina, ali
+
+93
+00:03:39,440 --> 00:03:40,450
+kada imamo više osobina,
+
+94
+00:03:41,010 --> 00:03:43,350
+nećemo više da koristimo 
+jednostavnu predstavu.
+
+95
+00:03:44,460 --> 00:03:46,040
+Umesto toga, oblik
+
+96
+00:03:46,630 --> 00:03:48,140
+hipoteze linearne regresije
+
+97
+00:03:49,380 --> 00:03:50,630
+će da bude ovo, može da bude
+
+98
+00:03:50,820 --> 00:03:52,190
+teta0 + teta1 * x1
+
+99
+00:03:52,440 --> 00:03:55,690
++ teta2 * x2
+
+100
+00:03:55,840 --> 00:03:57,320
++ teta3 * x3
+
+101
+00:03:58,610 --> 00:04:00,140
++ teta4 * x4.
+
+102
+00:04:00,910 --> 00:04:02,610
+Ako imamo n osobina,
+
+103
+00:04:02,860 --> 00:04:04,110
+nećemo da sabiramo po
+
+104
+00:04:04,340 --> 00:04:05,380
+naše 4 osobine, imali bismo
+
+105
+00:04:05,570 --> 00:04:07,050
+sumu po n osobina.
+
+106
+00:04:08,570 --> 00:04:10,270
+Konkretno za pojedinačno
+
+107
+00:04:11,480 --> 00:04:12,880
+postavljenje naših parametara,
+
+108
+00:04:13,010 --> 00:04:15,500
+možemo da imamo h od
+
+109
+00:04:17,370 --> 00:04:18,990
+x jednako je 80 * 0.1*x1 + 0.01*x2 + 3*x3 - 2*x4.
+
+110
+00:04:19,160 --> 00:04:23,070
+Ovo je jedan
+
+111
+00:04:25,710 --> 00:04:27,060
+primer hipoteze
+
+112
+00:04:27,700 --> 00:04:29,170
+i zapamtite,
+
+113
+00:04:29,760 --> 00:04:30,710
+hipoteza je pokušaj predviđanja
+
+114
+00:04:31,100 --> 00:04:32,020
+cene kuće u
+
+115
+00:04:32,360 --> 00:04:33,910
+hiljadama dolara, recimo,
+
+116
+00:04:34,250 --> 00:04:35,020
+znate, osnovna
+
+117
+00:04:35,360 --> 00:04:37,270
+cena kuće
+
+118
+00:04:37,470 --> 00:04:39,960
+je možda 80,000 plus još
+
+119
+00:04:40,690 --> 00:04:41,960
+1, to je dodatno,
+
+120
+00:04:42,460 --> 00:04:43,680
+jedna stotina dolara po kvadratnom fitu,
+
+121
+00:04:44,430 --> 00:04:45,710
+plus cena ide malo
+
+122
+00:04:45,860 --> 00:04:47,340
+gore za svaki
+
+123
+00:04:47,920 --> 00:04:50,120
+dodatni sprat koji kuća ima.
+
+124
+00:04:50,690 --> 00:04:51,480
+x2 je broj
+
+125
+00:04:51,740 --> 00:04:53,020
+spratova, a cena ide
+
+126
+00:04:53,170 --> 00:04:54,300
+gore za svaku dodatnu
+
+127
+00:04:54,790 --> 00:04:55,870
+spavaću sobu koju ima kuća, jer
+
+128
+00:04:56,190 --> 00:04:57,390
+x3 je broj
+
+129
+00:04:57,570 --> 00:04:58,890
+spavaćih soba, a cena
+
+130
+00:04:59,220 --> 00:05:01,090
+opada malo
+
+131
+00:05:01,540 --> 00:05:03,930
+sa svakom dodatnom 
+godinom kuće.
+
+132
+00:05:04,230 --> 00:05:07,150
+Sa svakom dodatnom 
+godinom starosti kuće.
+
+133
+00:05:08,930 --> 00:05:11,630
+Ovo je oblik hipoteze 
+prepisan na slajdu.
+
+134
+00:05:11,990 --> 00:05:13,390
+Ono što ću da uradim je
+
+135
+00:05:13,590 --> 00:05:14,560
+da uvedem još malo
+
+136
+00:05:14,650 --> 00:05:16,300
+obeležja da bismo 
+pojednostavili jednačinu.
+
+137
+00:05:17,840 --> 00:05:19,660
+Zbog jednostavnosti obeležavanja,
+
+138
+00:05:19,770 --> 00:05:22,800
+definisaću x sabskript 0 
+da bude jednako 1.
+
+139
+00:05:23,870 --> 00:05:25,080
+Konkretno, to znači da za
+
+140
+00:05:25,270 --> 00:05:27,770
+svaki primer (i)
+
+141
+00:05:27,850 --> 00:05:29,300
+imam vektor osobina x superskript
+
+142
+00:05:29,850 --> 00:05:31,500
+(i) i x superskript
+
+143
+00:05:32,000 --> 00:05:34,370
+(i) sabskript 0 će da bude jednako 1.
+
+144
+00:05:34,970 --> 00:05:35,990
+Ovo možete da 
+smatrate kao definisanje
+
+145
+00:05:36,810 --> 00:05:38,590
+dodatne osobine nula.
+
+146
+00:05:39,290 --> 00:05:40,320
+Prethodno sam imao
+
+147
+00:05:40,670 --> 00:05:41,790
+n osobina x1, x2
+
+148
+00:05:41,930 --> 00:05:43,920
+do xn, sada definišem
+
+149
+00:05:44,830 --> 00:05:46,150
+dodatnu nula
+
+150
+00:05:47,210 --> 00:05:48,910
+osobinu kao vektor koji uvek uzima
+
+151
+00:05:49,310 --> 00:05:50,590
+vrednost 1.
+
+152
+00:05:52,130 --> 00:05:53,860
+Tako moj vektor osobina
+
+153
+00:05:54,200 --> 00:05:56,390
+x postaje n + 1 dimenzioni
+
+154
+00:05:58,410 --> 00:06:01,020
+vektor koji je indeksovan od 0.
+
+155
+00:06:02,430 --> 00:06:04,080
+I tako je to sada n + 1
+
+156
+00:06:04,190 --> 00:06:05,650
+dimenzioni vektor osobina, ali
+
+157
+00:06:05,940 --> 00:06:07,200
+indeksiraću ga od
+
+158
+00:06:07,420 --> 00:06:09,400
+0 i takođe ću
+
+159
+00:06:09,700 --> 00:06:10,950
+da razmislim o tome
+
+160
+00:06:11,090 --> 00:06:13,240
+da parametri budu vektori.
+
+161
+00:06:13,610 --> 00:06:15,620
+Tako, naši parametri ovde, u redu,
+
+162
+00:06:15,790 --> 00:06:16,800
+bi bili teta0,
+
+163
+00:06:17,150 --> 00:06:18,130
+teta1, teta2, i tako dalje
+
+164
+00:06:18,380 --> 00:06:18,780
+skroz do tetan,
+
+165
+00:06:18,790 --> 00:06:19,950
+sakupljaćemo ih
+
+166
+00:06:20,340 --> 00:06:21,580
+u vektor parametara
+
+167
+00:06:22,380 --> 00:06:24,030
+i pisaćemo teta0, teta1,
+
+168
+00:06:24,190 --> 00:06:25,990
+teta2, i tako dalje
+
+169
+00:06:26,280 --> 00:06:27,390
+skroz do tetan.
+
+170
+00:06:28,330 --> 00:06:30,160
+To je još jedan nula indeksiran vektor.
+
+171
+00:06:30,560 --> 00:06:31,590
+Indeksi počinju od 0.
+
+172
+00:06:32,820 --> 00:06:35,380
+To je još jedan n + 1 dimenzioni vektor.
+
+173
+00:06:37,180 --> 00:06:39,840
+Tako moja hipoteza sada može
+
+174
+00:06:40,000 --> 00:06:42,720
+da bude napisana teta0 * x0 plus
+
+175
+00:06:42,910 --> 00:06:45,560
+teta1 * x1 plus i tako do
+
+176
+00:06:46,400 --> 00:06:47,330
+tetan * xn.
+
+177
+00:06:48,820 --> 00:06:50,310
+A ova jednačina je
+
+178
+00:06:50,460 --> 00:06:51,600
+ista kao ona na
+
+179
+00:06:51,910 --> 00:06:53,670
+vrhu jer, znate,
+
+180
+00:06:54,080 --> 00:06:55,710
+x0 je jednako 1.
+
+181
+00:06:58,270 --> 00:06:59,300
+na kraju ću da
+
+182
+00:06:59,390 --> 00:07:00,700
+uzmem ovaj oblik
+
+183
+00:07:00,740 --> 00:07:02,130
+hipoteze i napisati ovo
+
+184
+00:07:02,500 --> 00:07:04,990
+kao transponovano x,
+
+185
+00:07:05,370 --> 00:07:06,910
+zavisno od toga koliko ste
+
+186
+00:07:07,320 --> 00:07:08,960
+familijarni sa unutrašnjim proizvodima
+
+187
+00:07:09,720 --> 00:07:12,050
+vektora ako
+
+188
+00:07:12,180 --> 00:07:13,880
+napišete teta transponovano puta x
+
+189
+00:07:14,110 --> 00:07:15,260
+teta transponovano
+
+190
+00:07:15,360 --> 00:07:17,370
+je teta0, 
+
+191
+00:07:17,840 --> 00:07:19,730
+teta1, skroz do tetan.
+
+192
+00:07:20,070 --> 00:07:22,880
+Dakle, ovo
+
+193
+00:07:23,140 --> 00:07:24,910
+ovde je teta transponovano
+
+194
+00:07:25,810 --> 00:07:27,820
+i to je u stvari
+
+195
+00:07:27,960 --> 00:07:30,930
+n plus 1 puta 1 matrica.
+
+196
+00:07:31,850 --> 00:07:32,600
+Takođe se zove i vrsta vektor
+
+197
+00:07:34,090 --> 00:07:35,160
+i to uzmete i
+
+198
+00:07:35,420 --> 00:07:37,420
+pomnožite sa
+
+199
+00:07:37,510 --> 00:07:38,440
+vektorom x što je x0,
+
+200
+00:07:38,640 --> 00:07:40,560
+x1, i tako dalje
+
+201
+00:07:40,820 --> 00:07:41,790
+skroz dole do xn.
+
+202
+00:07:43,030 --> 00:07:44,400
+I tako, unutrašnji proizvod
+
+203
+00:07:44,940 --> 00:07:47,050
+teta transponovano x
+
+204
+00:07:47,910 --> 00:07:48,810
+je jednak ovome.
+
+205
+00:07:49,520 --> 00:07:50,610
+To nam daje pogodan način
+
+206
+00:07:50,770 --> 00:07:51,830
+da napišemo hipotezu
+
+207
+00:07:52,110 --> 00:07:53,310
+u obliku unutrašnjeg
+
+208
+00:07:53,510 --> 00:07:55,240
+proizvoda našeg vektora
+
+209
+00:07:55,760 --> 00:07:57,200
+parametara teta i našeg
+
+210
+00:07:57,550 --> 00:07:59,220
+vektora x, A to je
+
+211
+00:07:59,350 --> 00:08:00,360
+jedan mali deo obeležja,
+
+212
+00:08:01,000 --> 00:08:02,270
+jedan mali izvod od
+
+213
+00:08:02,320 --> 00:08:03,690
+konvencije obeležavanja koji
+
+214
+00:08:03,740 --> 00:08:05,530
+nam omogućava da 
+napišemo ovaj kompaktan oblik.
+
+215
+00:08:06,360 --> 00:08:09,230
+Dakle, to je oblik hipoteze 
+kada imamo više osobina.
+
+216
+00:08:09,980 --> 00:08:10,940
+I, čisto da ga imenujemo
+
+217
+00:08:11,230 --> 00:08:12,330
+malo drugačije, zvaćemo ga
+
+218
+00:08:12,570 --> 00:08:13,860
+i multivarijaciona linearna regresija.
+
+219
+00:08:15,200 --> 00:08:16,640
+A pojam multivarijaciona je
+
+220
+00:08:17,120 --> 00:08:18,300
+možda fensi naziv da se kaže
+
+221
+00:08:18,730 --> 00:08:20,370
+da imamo više osobina, ili
+
+222
+00:08:20,830 --> 00:08:22,900
+višestruke varijable pomoću kojih 
+pokušavamo da predvidimo vrednost y.

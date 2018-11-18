@@ -1,0 +1,112 @@
+1
+00:00:00,370 --> 00:00:01,740
+Makine Öğrenmesi nedir ?
+
+2
+00:00:01,740 --> 00:00:05,090
+Muhtemlen her gün farkında bile olmadan defalarca kullanıyoruz.
+
+3
+00:00:05,090 --> 00:00:08,790
+Google da veya Bing de her arama yaptığınızda,  makine öğrenmesi çalışıyor 
+
+4
+00:00:08,790 --> 00:00:12,340
+çünkü onların makine öğrnmesi algoritmları sayfaları nasıl derecelendireceğini biliyor.
+
+5
+00:00:12,340 --> 00:00:17,230
+Facebook veya Apple fotoğraf uygulamaları arkadaşlarınızı sizin fotoğraflarınız içinden tanıdığında,
+
+6
+00:00:17,230 --> 00:00:18,850
+bu da bir makine öğrenmesidir.
+
+7
+00:00:18,850 --> 00:00:20,370
+Her elektronik postanızı okuduğunuzda ve
+
+8
+00:00:20,370 --> 00:00:24,490
+bir e-posta filtresi sizi binlerce istenmeyen e-postadan kurtarıyor, tekrardan
+
+9
+00:00:24,490 --> 00:00:29,390
+çünkü bilgisayarınız bir e-mailin gereksiz olup olmadığını öğrendi.
+
+10
+00:00:29,390 --> 00:00:31,240
+Bu makine öğrenmesidir.
+
+11
+00:00:31,240 --> 00:00:35,260
+Bilgisayarların, özellikle programlanmadan öğrenebildikleri bir bilim vardır.
+
+12
+00:00:35,260 --> 00:00:38,660
+Üzerinde çalıştığım araştırma projelerimden birinde temizlikçi robot
+
+13
+00:00:38,660 --> 00:00:39,780
+Bir araştırma projesinde ev toplayan, temizleyen bir robot üzerinde çalışıyorum..
+
+14
+00:00:39,780 --> 00:00:41,010
+Sizce nasıl yapıyor bunu?
+
+15
+00:00:41,010 --> 00:00:44,860
+Bu robot ona verdiğiniz görevleri yapıyor ve
+
+16
+00:00:44,860 --> 00:00:46,000
+bundan öğreniyor.
+
+17
+00:00:46,000 --> 00:00:49,690
+Robot sizin yerden kaldırıp bir yere bıraktığınız nesneleri izleyebilir ve
+
+18
+00:00:49,690 --> 00:00:52,000
+siz orada yokken aynı hareketi yapmaya çalışabilir.
+
+19
+00:00:52,000 --> 00:00:55,460
+Beni heyecanlandıran sebeplerden biri budur, bu yapay zeka veya
+
+20
+00:00:55,460 --> 00:00:57,530
+yapay zeka problemi.
+
+21
+00:00:57,530 --> 00:00:59,209
+Gerçek anlamda akıllı makinalar üreterek,
+
+22
+00:00:59,209 --> 00:01:01,680
+neredeyse yapabileceğiniz her şeyi yapabilirsiniz.
+
+23
+00:01:01,680 --> 00:01:04,920
+Birçok bilim adamı ilerleme kaydetmek için en iyi yolun öğrenme
+
+24
+00:01:04,920 --> 00:01:09,630
+insan beyinin çalışma şeklini taklit eden ve nöral ağ olarak adlandırılan algoritmalardır.
+
+25
+00:01:09,630 --> 00:01:11,030
+Bunu da size öğreteceğim.
+
+26
+00:01:11,030 --> 00:01:13,170
+Bu sınıfta,
+makine öğrenmesini öğrenecek ve
+
+27
+00:01:13,170 --> 00:01:14,390
+kendiniz uygulayacaksınız.
+
+28
+00:01:14,390 --> 00:01:16,920
+Umarım web sitemizden kayıt olarak bize katılırsınız.

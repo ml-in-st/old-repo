@@ -1,0 +1,1342 @@
+1
+00:00:00,280 --> 00:00:01,330
+En el último video vimos
+
+2
+00:00:01,570 --> 00:00:03,540
+una definición matemática sobre cómo
+
+3
+00:00:03,700 --> 00:00:04,990
+representar, o cómo
+
+4
+00:00:05,090 --> 00:00:07,160
+calcular las hipótesis utilizadas por las redes neuronales.
+
+5
+00:00:08,420 --> 00:00:09,620
+En este video, me gustaría
+
+6
+00:00:09,730 --> 00:00:11,280
+mostrarte cómo realizar
+
+7
+00:00:11,450 --> 00:00:14,040
+ese cálculo de forma eficiente, y
+
+8
+00:00:14,710 --> 00:00:16,050
+eso es, mostrarte la implementación de un aumento de vector.
+
+9
+00:00:17,660 --> 00:00:18,930
+En segundo lugar, y más importante, quiero
+
+10
+00:00:19,100 --> 00:00:21,110
+empezar a darte una intuición sobre
+
+11
+00:00:21,390 --> 00:00:22,590
+por qué estas representaciones en redes neuronales
+
+12
+00:00:23,360 --> 00:00:24,640
+pueden ser una buena idea y cómo
+
+13
+00:00:25,010 --> 00:00:27,290
+pueden ayudarnos a aprender hipótesis complejas no lineales.
+
+14
+00:00:28,970 --> 00:00:29,880
+Considera esta red neuronal.
+
+15
+00:00:30,520 --> 00:00:31,720
+Anteriormente, dije que
+
+16
+00:00:32,010 --> 00:00:33,070
+la secuencia de pasos que
+
+17
+00:00:33,170 --> 00:00:34,090
+necesitamos para calcular
+
+18
+00:00:34,650 --> 00:00:35,850
+la salida de una hipótesis
+
+19
+00:00:36,320 --> 00:00:37,780
+en estas ecuaciones a la
+
+20
+00:00:37,950 --> 00:00:38,770
+izquierda, en las que calculamos
+
+21
+00:00:39,540 --> 00:00:41,330
+los valores de activación de
+
+22
+00:00:41,450 --> 00:00:43,220
+las tres unidades ocultas y después
+
+23
+00:00:43,420 --> 00:00:44,580
+los utilizamos para calcular la
+
+24
+00:00:44,650 --> 00:00:45,710
+salida final de nuestras hipótesis
+
+25
+00:00:46,680 --> 00:00:48,410
+h de x. 
+Ahora, voy a
+
+26
+00:00:48,480 --> 00:00:50,200
+definir algunos términos adicionales.
+
+27
+00:00:50,570 --> 00:00:52,210
+Entonces, este término que
+
+28
+00:00:52,410 --> 00:00:54,090
+estoy subrayando aquí, voy a
+
+29
+00:00:54,180 --> 00:00:55,560
+definirlo como
+
+30
+00:00:56,230 --> 00:00:58,410
+z superíndice 2 subíndice 1.
+
+31
+00:00:58,790 --> 00:00:59,830
+De forma que tengamos que
+
+32
+00:01:00,650 --> 00:01:02,310
+a(2)1, que es este
+
+33
+00:01:02,470 --> 00:01:03,930
+término, sea igual a
+
+34
+00:01:04,170 --> 00:01:06,020
+g de z a 1.
+
+35
+00:01:06,130 --> 00:01:08,100
+Por cierto,
+
+36
+00:01:08,180 --> 00:01:09,750
+estos superíndices 2, ya
+
+37
+00:01:10,570 --> 00:01:11,580
+sabes, lo que significan es que
+
+38
+00:01:11,870 --> 00:01:12,960
+la z2 y esta a2
+
+39
+00:01:13,080 --> 00:01:14,140
+también, el superíndice
+
+40
+00:01:14,840 --> 00:01:16,450
+2 entre paréntesis significa que éstos
+
+41
+00:01:16,740 --> 00:01:18,330
+son valores asociados con la capa
+
+42
+00:01:18,570 --> 00:01:19,810
+2, esto es, con la
+
+43
+00:01:20,100 --> 00:01:21,390
+capa oculta en la red neuronal.
+
+44
+00:01:22,820 --> 00:01:25,200
+Ahora voy a definir
+
+45
+00:01:25,990 --> 00:01:27,640
+este término de forma similar como
+
+46
+00:01:29,530 --> 00:01:30,140
+z(2)2.
+
+47
+00:01:30,490 --> 00:01:31,860
+Y, finalmente, este último término
+
+48
+00:01:32,170 --> 00:01:33,100
+que estoy subrayando,
+
+49
+00:01:34,160 --> 00:01:37,040
+voy a definirlo como z(2)3.
+
+50
+00:01:37,090 --> 00:01:38,710
+Entonces, de forma similar, tenemos a(2)3
+
+51
+00:01:38,850 --> 00:01:43,200
+igual a g de
+
+52
+00:01:44,990 --> 00:01:45,360
+z(2)3.
+
+53
+00:01:45,480 --> 00:01:46,760
+Entonces, estos valores z sólo son
+
+54
+00:01:47,290 --> 00:01:48,940
+una combinación lineal, una combinación
+
+55
+00:01:49,360 --> 00:01:51,200
+lineal ponderada, de los
+
+56
+00:01:51,490 --> 00:01:52,800
+valores de entrada x0, x1,
+
+57
+00:01:53,060 --> 00:01:55,350
+2x, 3x que entran en una neurona particular.
+
+58
+00:01:57,090 --> 00:01:58,260
+Ahora, si observamos
+
+59
+00:01:58,900 --> 00:02:00,470
+este bloque de números,
+
+60
+00:02:01,990 --> 00:02:03,310
+puedes notar que ese bloque
+
+61
+00:02:03,490 --> 00:02:05,880
+de números corresponden de forma sospechosamente similar
+
+62
+00:02:06,950 --> 00:02:08,330
+al la operación de
+
+63
+00:02:08,800 --> 00:02:10,260
+vector matriz, la multiplicación de vector matriz
+
+64
+00:02:11,070 --> 00:02:12,710
+de x1 veces el
+
+65
+00:02:12,790 --> 00:02:14,840
+vector x. Mediante esta observación,
+
+66
+00:02:15,580 --> 00:02:18,730
+Vamos a ser capaces de vectorizar este cálculo
+
+67
+00:02:19,700 --> 00:02:20,280
+de la red neuronal.
+
+68
+00:02:21,470 --> 00:02:23,510
+Específicamente, vamos a definir el
+
+69
+00:02:23,680 --> 00:02:24,810
+vector x de la variable de la forma usual,
+
+70
+00:02:25,290 --> 00:02:27,020
+como el vector de x0, x1,
+
+71
+00:02:27,260 --> 00:02:28,550
+x2, x3 donde x0,
+
+72
+00:02:29,010 --> 00:02:30,280
+como siempre, es siempre igual a
+
+73
+00:02:30,610 --> 00:02:31,860
+1 y eso define
+
+74
+00:02:32,390 --> 00:02:33,420
+z2 como el vector
+
+75
+00:02:34,360 --> 00:02:37,250
+de estos valores z, sabes, de z(2)1 z(2)2, z(2)3.
+
+76
+00:02:38,560 --> 00:02:40,210
+Y nota que, ahí, z2 es
+
+77
+00:02:40,440 --> 00:02:42,500
+un vector de tres dimensiones.
+
+78
+00:02:43,910 --> 00:02:47,200
+Ahora podemos vectorizar el cálculo
+
+79
+00:02:48,270 --> 00:02:48,860
+de a(2)1, a(2)2, a(2)3 de la siguiente manera.
+
+80
+00:02:49,490 --> 00:02:50,690
+Podemos escribir esto en sólo dos pasos.
+
+81
+00:02:51,500 --> 00:02:53,400
+Podemos calcular z2 como «theta»
+
+82
+00:02:53,950 --> 00:02:55,490
+1 veces x y eso
+
+83
+00:02:55,790 --> 00:02:57,020
+nos daría este vector z2;
+
+84
+00:02:57,400 --> 00:02:59,360
+y entonces a2 es
+
+85
+00:02:59,860 --> 00:03:02,180
+g de z2 y, sólo
+
+86
+00:03:02,440 --> 00:03:03,860
+para ser claro, z2 es
+
+87
+00:03:04,200 --> 00:03:05,880
+un vector de tres dimensiones
+
+88
+00:03:06,060 --> 00:03:08,150
+y a2 también es un vector de tres dimensiones
+
+89
+00:03:08,810 --> 00:03:10,410
+y, por lo tanto,
+
+90
+00:03:10,690 --> 00:03:12,680
+la activación g. Esto aplica la
+
+91
+00:03:12,950 --> 00:03:15,290
+función sigmoidea en torno al elemento a cada uno de los
+
+92
+00:03:15,550 --> 00:03:18,290
+elementos de z2.
+Y
+
+93
+00:03:18,380 --> 00:03:19,270
+por cierto, para hacer nuestra notación
+
+94
+00:03:19,950 --> 00:03:21,260
+un poco más coherente con
+
+95
+00:03:21,440 --> 00:03:23,330
+lo que haremos más adelante, en esta
+
+96
+00:03:23,590 --> 00:03:24,600
+capa de entrada tenemos las
+
+97
+00:03:24,670 --> 00:03:25,840
+entradas x, pero también
+
+98
+00:03:25,960 --> 00:03:26,950
+podemos pensar en éstas como
+
+99
+00:03:27,300 --> 00:03:29,270
+en activaciones de las primeras capas.
+
+100
+00:03:29,680 --> 00:03:30,430
+Entonces, si se define que a1 es
+
+101
+00:03:30,470 --> 00:03:32,510
+igual a 0, Entonces,
+
+102
+00:03:32,660 --> 00:03:34,270
+a1 es un vector, y ahora puedo
+
+103
+00:03:34,500 --> 00:03:35,520
+tomar esta x de aquí
+
+104
+00:03:36,230 --> 00:03:38,850
+y reemplazarla con z2 es igual a «theta» 1
+
+105
+00:03:39,570 --> 00:03:40,680
+veces a1 solo definiendo
+
+106
+00:03:41,410 --> 00:03:43,350
+que a1 son activaciones en mi capa de entrada.
+
+107
+00:03:44,990 --> 00:03:46,000
+Ahora, con lo que he escrito
+
+108
+00:03:46,280 --> 00:03:47,500
+hasta ahora he obtenido
+
+109
+00:03:47,900 --> 00:03:49,940
+yo mismo los valores de a1,
+
+110
+00:03:50,820 --> 00:03:52,690
+a2, a3 y, realmente,
+
+111
+00:03:52,780 --> 00:03:53,980
+debería poner los
+
+112
+00:03:54,290 --> 00:03:55,600
+superíndices allí también.
+
+113
+00:03:56,430 --> 00:03:57,530
+Pero necesito un valor
+
+114
+00:03:57,940 --> 00:03:59,810
+más, lo que quiere decir que también quiero este a(0)2
+
+115
+00:04:00,050 --> 00:04:02,050
+y que corresponda con
+
+116
+00:04:02,250 --> 00:04:04,350
+una unidad de oscilación en la
+
+117
+00:04:04,550 --> 00:04:06,420
+capa oculta que va a la salida de allí.
+
+118
+00:04:06,990 --> 00:04:07,780
+Por supuesto, había una
+
+119
+00:04:07,810 --> 00:04:08,850
+unidad de oscilación aquí también que,
+
+120
+00:04:09,000 --> 00:04:10,060
+ya sabes, no la coloqué
+
+121
+00:04:10,270 --> 00:04:11,820
+aquí, pero, para
+
+122
+00:04:11,970 --> 00:04:13,100
+resolver esta unidad de oscilación adicional,
+
+123
+00:04:13,870 --> 00:04:15,650
+lo que vamos a hacer es sumar
+
+124
+00:04:16,320 --> 00:04:18,720
+un a0 superíndice 2 adicional,
+
+125
+00:04:18,890 --> 00:04:20,870
+que es igual a uno, y después de
+
+126
+00:04:21,010 --> 00:04:21,990
+este paso, ahora tenemos que
+
+127
+00:04:22,290 --> 00:04:23,860
+a2 va a ser
+
+128
+00:04:24,010 --> 00:04:25,390
+un vector de variables de cuatro
+
+129
+00:04:25,690 --> 00:04:26,820
+dimensiones porque acabamos de sumar
+
+130
+00:04:27,300 --> 00:04:28,490
+este a0 adicional que
+
+131
+00:04:28,620 --> 00:04:30,260
+es igual a
+
+132
+00:04:30,500 --> 00:04:31,700
+1 correspondiente a la unidad de oscilación
+
+133
+00:04:32,080 --> 00:04:33,550
+en la capa oculta.
+y, finalmente,
+
+134
+00:04:35,080 --> 00:04:37,620
+para calcular el valor
+
+135
+00:04:38,070 --> 00:04:40,100
+real de salida de nuestras hipótesis,
+
+136
+00:04:40,250 --> 00:04:41,190
+simplemente tenemos que calcular
+
+137
+00:04:42,470 --> 00:04:44,980
+z3. entonces, z3 es
+
+138
+00:04:45,350 --> 00:04:47,940
+igual a este término que estoy subrayando.
+
+139
+00:04:48,800 --> 00:04:51,450
+Este término interior es z3.
+
+140
+00:04:53,980 --> 00:04:55,160
+Y z3 se indica como
+
+141
+00:04:55,500 --> 00:04:57,120
+2 veces a2 y, finalmente,
+
+142
+00:04:57,810 --> 00:04:59,560
+la salida de mi hipótesis h de x, que
+
+143
+00:04:59,750 --> 00:05:01,210
+es a3, es
+
+144
+00:05:01,360 --> 00:05:03,910
+la activación de mi
+
+145
+00:05:04,750 --> 00:05:06,040
+única unidad en la
+
+146
+00:05:06,290 --> 00:05:09,500
+capa de salida. entonces, este sólo es el número real. Lo puedes escribir como a3
+
+147
+00:05:10,050 --> 00:05:12,390
+o como a(3)1, y eso es g de z3.
+
+148
+00:05:13,240 --> 00:05:15,020
+A este proceso de calcular h de x
+
+149
+00:05:15,940 --> 00:05:18,110
+también se llama propagación hacia adelante,
+
+150
+00:05:19,130 --> 00:05:20,440
+y se llama así porque comenzamos
+
+151
+00:05:20,550 --> 00:05:21,310
+con las activaciones
+
+152
+00:05:22,010 --> 00:05:24,400
+de las unidades de entrada y luego
+
+153
+00:05:24,940 --> 00:05:26,770
+es como si hubiera una propagación hacia adelante de esto hacia la
+
+154
+00:05:26,860 --> 00:05:29,390
+capa oculta y se calcularan las activaciones de la
+
+155
+00:05:29,580 --> 00:05:30,400
+capa oculta y luego
+
+156
+00:05:30,540 --> 00:05:32,040
+se propagara eso
+
+157
+00:05:32,760 --> 00:05:36,270
+y se calcularan las activaciones de
+
+158
+00:05:37,480 --> 00:05:39,170
+la capa de salida, pero este proceso de calcular las activaciones desde la entrada, entonces
+
+159
+00:05:39,290 --> 00:05:40,400
+la capa oculta y luego la capa de salida,
+
+160
+00:05:40,940 --> 00:05:42,030
+y eso también se llama propagación hacia adelante.
+
+161
+00:05:43,320 --> 00:05:44,150
+Y lo que acabamos de hacer fue
+
+162
+00:05:44,310 --> 00:05:45,370
+trabajar en la implementación
+
+163
+00:05:45,740 --> 00:05:47,140
+de este procedimiento en el sentido de
+
+164
+00:05:47,280 --> 00:05:48,890
+vectores.
+Entonces, si
+
+165
+00:05:48,970 --> 00:05:50,260
+lo implementas usando estas ecuaciones
+
+166
+00:05:50,800 --> 00:05:51,740
+que tenemos a la derecha,
+
+167
+00:05:51,850 --> 00:05:53,280
+te darán una forma eficiente
+
+168
+00:05:53,460 --> 00:05:54,980
+o ambas formas eficientes para
+
+169
+00:05:55,120 --> 00:05:56,130
+calcular h de x.
+
+170
+00:05:58,250 --> 00:05:59,860
+Esta vista de la propagación hacia adelante también
+
+171
+00:06:00,860 --> 00:06:02,270
+nos ayuda a comprender lo
+
+172
+00:06:02,550 --> 00:06:03,640
+que las redes neuronales podrían estar haciendo
+
+173
+00:06:04,110 --> 00:06:05,290
+y por qué podrían ayudarnos a
+
+174
+00:06:05,510 --> 00:06:07,170
+aprender interesantes hipótesis no lineales.
+
+175
+00:06:08,670 --> 00:06:09,760
+Considera la siguiente red neuronal
+
+176
+00:06:10,500 --> 00:06:11,820
+y supongamos que cubro
+
+177
+00:06:12,040 --> 00:06:13,810
+la parte izquierda de esta imagen por ahora.
+
+178
+00:06:14,650 --> 00:06:16,170
+Si miras lo que queda en esta imagen,
+
+179
+00:06:17,030 --> 00:06:18,020
+se ve muy parecido a una
+
+180
+00:06:18,260 --> 00:06:19,520
+regresión logística en donde
+
+181
+00:06:19,660 --> 00:06:20,570
+lo que estamos haciendo es usar
+
+182
+00:06:20,990 --> 00:06:22,000
+esta nota, esa es justo la
+
+183
+00:06:22,130 --> 00:06:23,770
+unidad de la regresión logística y la estamos
+
+184
+00:06:24,120 --> 00:06:26,060
+usando para hacer una
+
+185
+00:06:26,380 --> 00:06:28,290
+predicción h de x. 
+y, en concreto,
+
+186
+00:06:28,440 --> 00:06:30,340
+lo que las hipótesis están mostrando
+
+187
+00:06:30,710 --> 00:06:31,830
+es que h de x va a ser
+
+188
+00:06:31,890 --> 00:06:33,760
+igual a g, lo que
+
+189
+00:06:33,980 --> 00:06:38,110
+es mi función sigmoidea de activación multiplicada por «theta» 0
+
+190
+00:06:38,560 --> 00:06:40,450
+por a0, que es igual
+
+191
+00:06:41,270 --> 00:06:43,380
+a 1 más «theta» 1
+
+192
+00:06:45,220 --> 00:06:49,080
+más «theta» 2
+
+193
+00:06:49,260 --> 00:06:52,090
+por a2 más «theta»
+
+194
+00:06:52,830 --> 00:06:55,180
+2 por a3, siendo que
+
+195
+00:06:55,370 --> 00:06:56,910
+los valores a1, a2, a3
+
+196
+00:06:57,050 --> 00:06:59,860
+son aquellos dados por estas tres unidades.
+
+197
+00:07:01,060 --> 00:07:02,790
+Ahora, para ser realmente consistente
+
+198
+00:07:03,490 --> 00:07:05,000
+a mi notación previa, de hecho, necesitamos,
+
+199
+00:07:05,170 --> 00:07:06,360
+ya sabes, completar
+
+200
+00:07:06,470 --> 00:07:10,700
+estos superíndices 2 en todas partes,
+
+201
+00:07:12,260 --> 00:07:13,920
+y también tengo estos
+
+202
+00:07:14,160 --> 00:07:16,800
+índices 1 aquí porque
+
+203
+00:07:16,930 --> 00:07:20,610
+sólo tengo una unidad de salida, pero si te enfocas en las partes azules de la notación.
+
+204
+00:07:20,930 --> 00:07:21,900
+Esto es, ya sabes, esto se ve
+
+205
+00:07:22,150 --> 00:07:23,680
+como el modelo de la regresión logística
+
+206
+00:07:23,870 --> 00:07:25,530
+estándar, excepto que ahora
+
+207
+00:07:25,600 --> 00:07:28,060
+tengo una «theta» mayúscula en lugar de una «theta» minúscula.
+
+208
+00:07:29,170 --> 00:07:30,690
+Y lo que esto está
+
+209
+00:07:30,850 --> 00:07:32,520
+haciendo sólo es la regresión lineal.
+
+210
+00:07:33,660 --> 00:07:35,240
+Pero donde las variables se introducen
+
+211
+00:07:35,590 --> 00:07:37,250
+en la regresión logística son estos
+
+212
+00:07:38,200 --> 00:07:40,170
+valores calculados por la capa oculta.
+
+213
+00:07:41,340 --> 00:07:42,690
+Sólo para repetirlo, lo que
+
+214
+00:07:42,910 --> 00:07:44,420
+esta red neuronal está haciendo es
+
+215
+00:07:45,130 --> 00:07:47,050
+como una regresión logística, excepto que
+
+216
+00:07:47,440 --> 00:07:48,900
+en lugar de utilizar las
+
+217
+00:07:49,110 --> 00:07:50,770
+variables originales x1, x2, x3,
+
+218
+00:07:52,400 --> 00:07:54,260
+está utilizando estas nuevas variables a1, a2, a3.
+
+219
+00:07:54,440 --> 00:07:56,810
+Una vez más, vamos a poner los superíndices
+
+220
+00:07:58,130 --> 00:08:00,380
+allí, ya sabes, para ser consistentes con la notación.
+
+221
+00:08:02,820 --> 00:08:04,610
+Y lo bueno de esto,
+
+222
+00:08:05,040 --> 00:08:06,220
+es que las variables a1, a2,
+
+223
+00:08:06,720 --> 00:08:08,310
+a3, fueron aprendidas
+
+224
+00:08:08,760 --> 00:08:09,930
+como funciones de la entrada.
+
+225
+00:08:10,960 --> 00:08:12,640
+Concretamente, el mapeo de la función desde la
+
+226
+00:08:13,320 --> 00:08:14,540
+capa 1 a la capa 2,
+
+227
+00:08:14,810 --> 00:08:16,390
+que está determinada por algún
+
+228
+00:08:16,750 --> 00:08:18,550
+otro conjunto de parámetros, «theta» 1.
+
+229
+00:08:19,380 --> 00:08:20,210
+Entonces, es como si la
+
+230
+00:08:20,270 --> 00:08:22,030
+red neuronal, en lugar de estar
+
+231
+00:08:22,240 --> 00:08:24,050
+obligada a alimentar las
+
+232
+00:08:24,120 --> 00:08:25,760
+variables x1, x2, x3 a la regresión logística,
+
+233
+00:08:26,210 --> 00:08:27,440
+llegar a
+
+234
+00:08:27,720 --> 00:08:29,320
+aprender sus propias variables, a1,
+
+235
+00:08:29,810 --> 00:08:32,010
+a2, a3, para introducirlas en la
+
+236
+00:08:32,130 --> 00:08:33,950
+regresión logística y,
+
+237
+00:08:34,650 --> 00:08:36,270
+como puedes imaginarte, dependiendo de
+
+238
+00:08:36,360 --> 00:08:37,690
+los parámetros que elija para
+
+239
+00:08:37,900 --> 00:08:39,880
+«theta» 1. 
+Tú puedes aprender algunas variables
+
+240
+00:08:40,390 --> 00:08:42,460
+bastante interesantes y complejas y, por lo tanto,
+
+241
+00:08:43,780 --> 00:08:44,830
+puedes terminar con una
+
+242
+00:08:45,050 --> 00:08:46,650
+mejores hipótesis que si
+
+243
+00:08:46,840 --> 00:08:47,870
+estuvieras obligado a usar
+
+244
+00:08:48,020 --> 00:08:50,520
+las variables en bruto x1, x2 o x3, o si
+
+245
+00:08:50,640 --> 00:08:52,530
+te vas a limitar a, digamos, elegir los
+
+246
+00:08:52,620 --> 00:08:53,730
+términos polinomiales, ya sabes,
+
+247
+00:08:53,920 --> 00:08:55,550
+x1, x2, x3 y así sucesivamente.
+
+248
+00:08:55,790 --> 00:08:57,250
+Pero, en cambio, este algoritmo tiene
+
+249
+00:08:57,530 --> 00:08:59,130
+la flexibilidad para tratar
+
+250
+00:08:59,420 --> 00:09:01,990
+de aprender cualquier número de variables a la vez, usando
+
+251
+00:09:02,680 --> 00:09:03,990
+estos a1, a2, a3 para
+
+252
+00:09:04,110 --> 00:09:05,190
+introducirlos en
+
+253
+00:09:05,510 --> 00:09:07,830
+esta última unidad que, esencialmente, es
+
+254
+00:09:09,240 --> 00:09:11,920
+la regresión logística de aquí. 
+Me di cuenta de que
+
+255
+00:09:12,550 --> 00:09:13,970
+este ejemplo se describe como con
+
+256
+00:09:14,060 --> 00:09:15,500
+un nivel un poco elevado, por lo que
+
+257
+00:09:15,750 --> 00:09:16,520
+no estoy seguro si esta intuición
+
+258
+00:09:17,440 --> 00:09:18,870
+de la red neuronal, ya sabes, con
+
+259
+00:09:19,720 --> 00:09:21,420
+variables más complejas ya
+
+260
+00:09:21,630 --> 00:09:23,120
+tendrá sentido, pero si
+
+261
+00:09:23,210 --> 00:09:24,440
+todavía no es así, en los siguientes
+
+262
+00:09:24,810 --> 00:09:25,860
+dos videos, voy a
+
+263
+00:09:25,970 --> 00:09:27,300
+explicar un ejemplo específico
+
+264
+00:09:28,250 --> 00:09:29,590
+de cómo una red neuronal puede
+
+265
+00:09:29,830 --> 00:09:30,860
+usar esta capa oculta para calcular
+
+266
+00:09:31,250 --> 00:09:32,880
+variables más complejas para introducirlas
+
+267
+00:09:33,130 --> 00:09:34,520
+en esta capa final de salida,
+
+268
+00:09:35,060 --> 00:09:37,100
+y cómo eso puede aprender hipótesis más complejas.
+
+269
+00:09:37,920 --> 00:09:39,120
+Entonces, si lo que estoy
+
+270
+00:09:39,180 --> 00:09:40,090
+diciendo aquí no tiene mucho
+
+271
+00:09:40,230 --> 00:09:41,650
+sentido, acompáñame en
+
+272
+00:09:41,810 --> 00:09:42,960
+los siguientes dos videos y,
+
+273
+00:09:43,190 --> 00:09:44,370
+con suerte, trabajando con esos
+
+274
+00:09:44,580 --> 00:09:46,690
+ejemplos, esta explicación tendrá
+
+275
+00:09:47,030 --> 00:09:48,640
+un poco más de sentido.
+
+276
+00:09:49,020 --> 00:09:49,740
+Pero sólo el punto O. Tú
+
+277
+00:09:49,820 --> 00:09:51,120
+puedes tener redes neuronales con
+
+278
+00:09:51,470 --> 00:09:52,990
+otros tipos de diagramas
+
+279
+00:09:53,080 --> 00:09:54,270
+también, y la forma en la que
+
+280
+00:09:54,450 --> 00:09:58,000
+las redes neuronales están conectadas, a eso se le llama la arquitectura.
+
+281
+00:09:58,390 --> 00:10:00,150
+Así que el término "arquitectura" se refiere a
+
+282
+00:10:00,490 --> 00:10:02,380
+la forma en la que las diferentes neuronas están conectadas entre sí.
+
+283
+00:10:03,220 --> 00:10:04,180
+Este es un ejemplo
+
+284
+00:10:04,840 --> 00:10:06,300
+de una arquitectura diferente de una red neuronal
+
+285
+00:10:07,480 --> 00:10:08,750
+y, nuevamente, puedes
+
+286
+00:10:09,260 --> 00:10:10,770
+obtener esta intuición de
+
+287
+00:10:10,940 --> 00:10:12,180
+cómo la segunda capa,
+
+288
+00:10:12,900 --> 00:10:14,120
+aquí tenemos tres unidades de dirección
+
+289
+00:10:14,910 --> 00:10:16,200
+que están calculando alguna función
+
+290
+00:10:16,660 --> 00:10:17,900
+compleja, quizás de la
+
+291
+00:10:17,990 --> 00:10:19,530
+capa de entrada, y luego la
+
+292
+00:10:19,730 --> 00:10:20,750
+tercera capa puede tomar las
+
+293
+00:10:20,840 --> 00:10:22,260
+variables de la segunda capa y calcular
+
+294
+00:10:22,550 --> 00:10:24,070
+variables todavía más complejas en la capa tres,
+
+295
+00:10:24,980 --> 00:10:25,880
+de forma que, para el momento en el que llegues
+
+296
+00:10:25,960 --> 00:10:27,160
+a la capa de salida, la capa cuatro,
+
+297
+00:10:27,900 --> 00:10:29,130
+puedes tener variables aún más
+
+298
+00:10:29,370 --> 00:10:30,690
+complejas de lo que
+
+299
+00:10:30,860 --> 00:10:32,040
+podrías calcular en
+
+300
+00:10:32,280 --> 00:10:34,710
+la capa tres y así obtener hipótesis no lineales muy interesantes.
+
+301
+00:10:36,730 --> 00:10:37,580
+Por cierto, en una red
+
+302
+00:10:37,810 --> 00:10:38,980
+como esta, a la capa uno
+
+303
+00:10:39,130 --> 00:10:40,670
+se le llama capa de entrada. La capa cuatro
+
+304
+00:10:41,360 --> 00:10:43,170
+sigue siendo nuestra capa de salida, y
+
+305
+00:10:43,340 --> 00:10:45,040
+esta red tiene dos capas ocultas.
+
+306
+00:10:46,000 --> 00:10:47,440
+Así que, cualquier cosa que no sea
+
+307
+00:10:48,000 --> 00:10:49,020
+una capa de entrada o una capa
+
+308
+00:10:49,340 --> 00:10:50,590
+de salida, es llamado capa oculta.
+
+309
+00:10:53,390 --> 00:10:54,470
+Entonces, espero que de este video
+
+310
+00:10:54,760 --> 00:10:55,840
+hayan obtenido un sentido de
+
+311
+00:10:56,140 --> 00:10:58,360
+cómo el paso de propagación hacia adelante
+
+312
+00:10:58,830 --> 00:11:00,230
+en una red neuronal trabaja donde
+
+313
+00:11:00,390 --> 00:11:01,670
+comienzas desde las activaciones de
+
+314
+00:11:01,720 --> 00:11:03,150
+la capa de entrada y propagando eso
+
+315
+00:11:03,450 --> 00:11:04,480
+hacia adelante hacia la
+
+316
+00:11:04,570 --> 00:11:05,560
+primera capa oculta, después la segunda
+
+317
+00:11:06,070 --> 00:11:08,200
+capa oculta y luego, finalmente, la capa de salida.
+
+318
+00:11:08,990 --> 00:11:10,250
+Y también vimos cómo
+
+319
+00:11:10,560 --> 00:11:12,010
+podemos vectorizar ese cálculo.
+
+320
+00:11:13,660 --> 00:11:14,830
+En el siguiente, me di cuenta
+
+321
+00:11:15,240 --> 00:11:16,680
+de que algunas de las intuiciones en este
+
+322
+00:11:16,850 --> 00:11:19,220
+video sobre cómo, ya sabes, otras
+
+323
+00:11:19,550 --> 00:11:22,570
+capas están calculando variables complejas de las capas anteriores.
+
+324
+00:11:22,910 --> 00:11:23,540
+Me di cuenta de que esa intuición
+
+325
+00:11:24,190 --> 00:11:26,660
+podría seguir siendo un poco abstracta y de un nivel un tanto elevado.
+
+326
+00:11:27,450 --> 00:11:28,240
+Entonces, lo que me gustaría
+
+327
+00:11:28,350 --> 00:11:29,460
+hacer en los dos videos
+
+328
+00:11:30,210 --> 00:11:31,540
+es trabajar con un ejemplo detallado
+
+329
+00:11:32,510 --> 00:11:33,810
+de cómo una red neuronal puede
+
+330
+00:11:33,960 --> 00:11:35,740
+utilizarse para calcular funciones
+
+331
+00:11:36,710 --> 00:11:38,030
+no lineales de la entrada,
+
+332
+00:11:38,330 --> 00:11:39,450
+y espero que eso te de una
+
+333
+00:11:39,540 --> 00:11:40,860
+buena idea del tipo de
+
+334
+00:11:41,010 --> 00:11:44,630
+hipótesis complejas no lineales complejas que podemos obtener de las redes neuronales.

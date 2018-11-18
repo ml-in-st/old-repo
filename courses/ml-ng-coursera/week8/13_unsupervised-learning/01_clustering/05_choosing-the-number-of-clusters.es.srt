@@ -1,0 +1,1043 @@
+1
+00:00:00,200 --> 00:00:01,390
+En este video me gustaría
+
+2
+00:00:01,570 --> 00:00:02,780
+hablar de un último detalle
+
+3
+00:00:03,350 --> 00:00:04,950
+del algoritmo de agrupamiento K-means que
+
+4
+00:00:05,450 --> 00:00:06,680
+es cómo elegir el número
+
+5
+00:00:06,770 --> 00:00:07,890
+de agrupamientos o cómo
+
+6
+00:00:08,290 --> 00:00:09,160
+elegir el valor del parámetro
+
+7
+00:00:10,230 --> 00:00:12,310
+“K” mayúscula.
+
+8
+00:00:12,390 --> 00:00:13,690
+Para ser sincero, no existe
+
+9
+00:00:13,760 --> 00:00:15,420
+una manera de responder a esto o
+
+10
+00:00:15,680 --> 00:00:17,150
+de hacerlo automáticamente y, por
+
+11
+00:00:17,820 --> 00:00:18,930
+mucho, la manera más común de
+
+12
+00:00:19,110 --> 00:00:20,380
+elegir el número de agrupamientos
+
+13
+00:00:20,520 --> 00:00:22,040
+es seleccionarlos manualmente
+
+14
+00:00:22,710 --> 00:00:24,380
+observando los gráficos
+
+15
+00:00:24,450 --> 00:00:26,070
+o el resultado del algoritmo de agrupamiento o algo por el estilo.
+
+16
+00:00:27,340 --> 00:00:28,270
+Pero, seguido me preguntan
+
+17
+00:00:28,600 --> 00:00:29,460
+cómo elijo
+
+18
+00:00:29,650 --> 00:00:30,510
+el número de
+
+19
+00:00:30,810 --> 00:00:31,930
+agrupamientos, así que
+
+20
+00:00:32,240 --> 00:00:33,650
+quiero decirles las tendencias
+
+21
+00:00:33,850 --> 00:00:35,020
+actuales acerca de esto aunque
+
+22
+00:00:35,230 --> 00:00:36,480
+la manera más común
+
+23
+00:00:36,740 --> 00:00:38,060
+es elegir el número de
+
+24
+00:00:38,180 --> 00:00:40,130
+agrupamientos a mano.
+
+25
+00:00:42,230 --> 00:00:43,680
+Una gran parte de
+
+26
+00:00:43,800 --> 00:00:45,020
+la razón por la cual no siempre
+
+27
+00:00:45,390 --> 00:00:46,530
+es sencillo elegir
+
+28
+00:00:46,640 --> 00:00:47,940
+el número de agrupamientos es
+
+29
+00:00:48,190 --> 00:00:51,920
+que el número de agrupamientos en los datos datos es generalmente ambiguo.
+
+30
+00:00:52,940 --> 00:00:53,890
+Si observan este conjunto de
+
+31
+00:00:54,080 --> 00:00:55,110
+datos, algunos de ustedes verán
+
+32
+00:00:55,380 --> 00:00:56,830
+cuatro agrupamientos. Esto
+
+33
+00:00:57,020 --> 00:00:59,440
+sugeriría que “K” es igual a 4.
+
+34
+00:00:59,620 --> 00:01:00,650
+Otros pueden ver
+
+35
+00:01:00,870 --> 00:01:02,620
+dos agrupamientos y
+
+36
+00:01:02,730 --> 00:01:04,460
+el valor de “K” sería
+
+37
+00:01:04,870 --> 00:01:06,630
+2. Quizá otros vean 3 agrupamientos.
+
+38
+00:01:08,070 --> 00:01:09,710
+Al mirar un conjunto
+
+39
+00:01:09,820 --> 00:01:10,750
+de datos como este,
+
+40
+00:01:10,920 --> 00:01:12,390
+el número real de agrupamientos
+
+41
+00:01:12,810 --> 00:01:14,560
+me parece verdaderamente ambiguo
+
+42
+00:01:14,690 --> 00:01:17,160
+y no creo que haya una respuesta correcta.
+
+43
+00:01:18,100 --> 00:01:19,500
+Esto es parte del aprendizaje supervisado.
+
+44
+00:01:20,250 --> 00:01:21,450
+No tenemos valores asignados y
+
+45
+00:01:21,550 --> 00:01:23,950
+no siempre hay una respuesta obvia.
+
+46
+00:01:24,830 --> 00:01:25,730
+Esto es lo que hace más
+
+47
+00:01:25,850 --> 00:01:26,710
+difícil tener
+
+48
+00:01:27,340 --> 00:01:28,530
+un algoritmo
+
+49
+00:01:29,160 --> 00:01:30,860
+automático para elegir el número de agrupamientos que tenemos.
+
+50
+00:01:32,100 --> 00:01:33,250
+Cuando la gente habla de las maneras
+
+51
+00:01:33,320 --> 00:01:34,270
+de elegir el numero de agrupamientos,
+
+52
+00:01:34,840 --> 00:01:36,050
+uno de los métodos de los
+
+53
+00:01:36,440 --> 00:01:39,150
+que hablan se llama el Método Elbow.
+
+54
+00:01:39,630 --> 00:01:40,490
+Permítanme platicarles un poco acerca de
+
+55
+00:01:40,800 --> 00:01:43,760
+él y luego mencionar algunas de sus ventajas y desventajas.
+
+56
+00:01:44,690 --> 00:01:45,980
+En el Método Elbow,
+
+57
+00:01:46,420 --> 00:01:47,570
+lo que intentamos hacer es variar
+
+58
+00:01:48,340 --> 00:01:49,860
+“K”, que es el número total de agrupamientos.
+
+59
+00:01:50,250 --> 00:01:51,570
+Ejecutaremos K-means
+
+60
+00:01:52,050 --> 00:01:53,340
+con un agrupamiento. Esto
+
+61
+00:01:53,630 --> 00:01:54,840
+significa que todo
+
+62
+00:01:54,980 --> 00:01:56,530
+se agrupa en un solo agrupamiento y
+
+63
+00:01:56,660 --> 00:01:57,850
+que se calcula la función de costos o la
+
+64
+00:01:58,460 --> 00:01:59,490
+distorsión “J” y se trazará aquí.
+
+65
+00:02:00,410 --> 00:02:01,090
+Ahora ejecutaremos K-means
+
+66
+00:02:01,310 --> 00:02:03,270
+con dos agrupamientos y quizá incluyamos
+
+67
+00:02:03,610 --> 00:02:05,430
+agentes iniciales múltiples aleatorios, o no.
+
+68
+00:02:06,140 --> 00:02:07,150
+Como sabes, con dos
+
+69
+00:02:07,280 --> 00:02:08,280
+agrupamientos deberíamos, con suerte,
+
+70
+00:02:08,500 --> 00:02:09,510
+obtener una distorsión más pequeña y
+
+71
+00:02:10,710 --> 00:02:11,820
+trazarla aquí.
+
+72
+00:02:11,950 --> 00:02:13,100
+Luego ejecutaré k-means con
+
+73
+00:02:13,310 --> 00:02:14,590
+tres agrupamientos y esperaré obtener
+
+74
+00:02:14,760 --> 00:02:16,680
+una distorsión más pequeña y trazarla aquí.
+
+75
+00:02:16,990 --> 00:02:19,710
+Ahora lo haré con cuatro, cinco, seis, etc.
+
+76
+00:02:19,780 --> 00:02:20,790
+Terminaremos con
+
+77
+00:02:20,970 --> 00:02:22,840
+una curva que muestra
+
+78
+00:02:23,240 --> 00:02:24,560
+cómo disminuye la
+
+79
+00:02:24,800 --> 00:02:27,170
+distorsión a medida que aumentamos los agrupamientos.
+
+80
+00:02:27,440 --> 00:02:29,870
+Es una curva que se ve así.
+
+81
+00:02:31,390 --> 00:02:32,210
+Si observas esta curva
+
+82
+00:02:32,300 --> 00:02:33,400
+del Métod Elbow puedes
+
+83
+00:02:33,720 --> 00:02:35,770
+ver la figura de un codo
+
+84
+00:02:36,450 --> 00:02:39,340
+humano.
+
+85
+00:02:40,230 --> 00:02:41,620
+Así es, esta es
+
+86
+00:02:41,830 --> 00:02:43,210
+una analogía al brazo humano
+
+87
+00:02:43,550 --> 00:02:44,620
+donde si te
+
+88
+00:02:45,370 --> 00:02:46,460
+imaginas un brazo humano,
+
+89
+00:02:47,240 --> 00:02:48,940
+este sería el hombro,
+
+90
+00:02:49,160 --> 00:02:50,340
+esta la articulación del codo y
+
+91
+00:02:50,550 --> 00:02:52,960
+la mano estaría aquí al final.
+
+92
+00:02:53,260 --> 00:02:54,170
+Con el Método Elbow (de codo)
+
+93
+00:02:54,490 --> 00:02:55,930
+te encontrarás con este tipo de
+
+94
+00:02:56,250 --> 00:02:57,630
+patrones en los que la distorsión
+
+95
+00:02:58,550 --> 00:02:59,120
+disminuye rápidamente de 1 a 2 y de 2 a 3 y
+
+96
+00:02:59,280 --> 00:03:01,330
+luego llegas a un
+
+97
+00:03:01,520 --> 00:03:03,160
+codo en el 3. Posteriormente la distorsión
+
+98
+00:03:03,330 --> 00:03:05,260
+baja lentamente.
+
+99
+00:03:05,430 --> 00:03:06,520
+Pareciera que
+
+100
+00:03:06,580 --> 00:03:08,700
+usar tres
+
+101
+00:03:08,960 --> 00:03:09,920
+agrupamientos
+
+102
+00:03:10,040 --> 00:03:11,340
+es un buen número porque
+
+103
+00:03:12,020 --> 00:03:14,430
+está en la curva del codo, ¿cierto?
+
+104
+00:03:14,700 --> 00:03:16,040
+La distorsión baja rápidamente
+
+105
+00:03:16,250 --> 00:03:17,290
+hasta “K” igual a 3 y
+
+106
+00:03:17,610 --> 00:03:19,700
+después baja muy lentamente después.
+
+107
+00:03:19,820 --> 00:03:20,850
+Elijamos, entonces “K” igual a 3.
+
+108
+00:03:23,460 --> 00:03:24,570
+Si aplicas el Método Elbow y
+
+109
+00:03:25,110 --> 00:03:26,240
+obtienes un trazo
+
+110
+00:03:26,540 --> 00:03:27,450
+que se ve así,
+
+111
+00:03:27,890 --> 00:03:29,120
+tienes un buen resultado y
+
+112
+00:03:29,240 --> 00:03:30,160
+sería una manera razonable de
+
+113
+00:03:30,700 --> 00:03:32,590
+elegir el número de agrupamientos.
+
+114
+00:03:33,620 --> 00:03:34,600
+Resulta que el Método Elbow
+
+115
+00:03:35,040 --> 00:03:37,170
+no se utiliza muy seguido. Una
+
+116
+00:03:37,340 --> 00:03:38,270
+de las razones de esto es que
+
+117
+00:03:38,350 --> 00:03:39,470
+si utilizas este método en un
+
+118
+00:03:39,720 --> 00:03:41,060
+problema de agrupamiento, muy
+
+119
+00:03:41,210 --> 00:03:42,640
+seguido
+
+120
+00:03:42,740 --> 00:03:43,610
+acabaremos con una curva que es
+
+121
+00:03:43,910 --> 00:03:46,940
+más ambigua. Quizá algo como esto.
+
+122
+00:03:47,700 --> 00:03:48,370
+En esta curva quizá
+
+123
+00:03:48,920 --> 00:03:50,220
+no haya un
+
+124
+00:03:50,390 --> 00:03:51,580
+codo claro y parece que
+
+125
+00:03:51,720 --> 00:03:53,090
+la distorsión baja continuamente.
+
+126
+00:03:53,440 --> 00:03:54,570
+Quizá 3 sea un buen número,
+
+127
+00:03:54,620 --> 00:03:55,680
+pero también 4.
+
+128
+00:03:55,750 --> 00:03:58,180
+5 no está mal.
+
+129
+00:03:58,390 --> 00:03:59,190
+Si haces esto
+
+130
+00:03:59,600 --> 00:04:00,710
+en la práctica y
+
+131
+00:04:00,820 --> 00:04:02,690
+tu trazo es como el de la izquierda, está muy bien.
+
+132
+00:04:03,400 --> 00:04:04,990
+Te da una respuesta clara pero,
+
+133
+00:04:05,490 --> 00:04:06,550
+también, puedes
+
+134
+00:04:06,740 --> 00:04:07,580
+terminar con un trazo
+
+135
+00:04:07,750 --> 00:04:09,020
+como el de la derecha
+
+136
+00:04:09,110 --> 00:04:11,000
+en el que no es
+
+137
+00:04:11,790 --> 00:04:13,230
+claro cuál es
+
+138
+00:04:13,490 --> 00:04:14,440
+la ubicación del codo. Se vuelve más
+
+139
+00:04:14,640 --> 00:04:16,700
+difícil elegir un número de agrupamientos con este método.
+
+140
+00:04:17,370 --> 00:04:18,220
+El resumen rápido del
+
+141
+00:04:18,700 --> 00:04:20,500
+Método Elbow es que vale la pena intentarlo pero
+
+142
+00:04:21,010 --> 00:04:22,350
+no necesariamente
+
+143
+00:04:23,610 --> 00:04:24,700
+tendría altas expectativas
+
+144
+00:04:24,870 --> 00:04:27,360
+de que funcione en un problema en particular.
+
+145
+00:04:29,880 --> 00:04:31,030
+Finalmente, hay otra
+
+146
+00:04:31,300 --> 00:04:32,850
+manera de elegir
+
+147
+00:04:32,990 --> 00:04:33,980
+el valor de “K”.
+
+148
+00:04:34,930 --> 00:04:36,030
+Seguido, la gente ejecuta el
+
+149
+00:04:36,310 --> 00:04:37,380
+algoritmo K-means para
+
+150
+00:04:37,530 --> 00:04:38,770
+un propósito
+
+151
+00:04:39,240 --> 00:04:40,880
+posterior o para un propósito futuro.
+
+152
+00:04:41,460 --> 00:04:42,900
+Quizá quieras utilizar K-means
+
+153
+00:04:43,380 --> 00:04:44,460
+para realizar una segmentación de mercado
+
+154
+00:04:45,310 --> 00:04:47,600
+como en el ejemplo de las tallas de camisetas que explicamos.
+
+155
+00:04:48,140 --> 00:04:50,570
+Quizá quieres K-means para organizar
+
+156
+00:04:51,130 --> 00:04:52,300
+mejor el agrupamiento de una computadora
+
+157
+00:04:52,480 --> 00:04:53,430
+o un agrupamiento de aprendizaje
+
+158
+00:04:53,630 --> 00:04:55,070
+para algún otro propósito.
+
+159
+00:04:55,450 --> 00:04:57,020
+Si ese proceso futuro,
+
+160
+00:04:57,510 --> 00:04:59,050
+como la segmentación de mercado, te da una métrica
+
+161
+00:04:59,180 --> 00:05:00,420
+de evaluación, una
+
+162
+00:05:01,310 --> 00:05:02,670
+mejor manera de
+
+163
+00:05:02,800 --> 00:05:03,890
+determinar el número de
+
+164
+00:05:03,960 --> 00:05:05,680
+agrupamientos es
+
+165
+00:05:06,010 --> 00:05:07,740
+ver qué tan bien servirán los diferentes
+
+166
+00:05:07,930 --> 00:05:10,140
+números de agrupamientos en el proceso futuro.
+
+167
+00:05:11,230 --> 00:05:13,050
+Aquí les pondré un ejemplo específico.
+
+168
+00:05:14,190 --> 00:05:15,080
+Utilizaré de nuevo el ejemplo de
+
+169
+00:05:15,440 --> 00:05:17,420
+las camisetas y
+
+170
+00:05:17,570 --> 00:05:19,700
+decidiré si quiero hacer camisetas de tres tallas.
+
+171
+00:05:20,330 --> 00:05:22,320
+Entonces, “K” es igual a 3.
+
+172
+00:05:22,560 --> 00:05:25,360
+Tendré camisetas pequeñas, medianas y grandes.
+
+173
+00:05:26,320 --> 00:05:27,250
+También puedo elegir
+
+174
+00:05:27,470 --> 00:05:28,240
+“K” igual a 5 para incluir
+
+175
+00:05:29,030 --> 00:05:30,140
+las tallas extra chica, chica, mediana
+
+176
+00:05:30,390 --> 00:05:33,130
+grande y
+
+177
+00:05:33,620 --> 00:05:35,070
+extra grande.
+
+178
+00:05:35,860 --> 00:05:38,580
+Puedes tener 3 tallas o 5 tallas.
+
+179
+00:05:39,270 --> 00:05:40,100
+También podemos tener cuatro tallas
+
+180
+00:05:40,430 --> 00:05:41,740
+de camisetas, pero
+
+181
+00:05:41,930 --> 00:05:43,240
+mostraré tres y cinco aquí
+
+182
+00:05:43,490 --> 00:05:45,670
+para simplificar esta diapositiva.
+
+183
+00:05:46,930 --> 00:05:49,020
+Si ejecuto K-means con
+
+184
+00:05:49,130 --> 00:05:50,290
+“K” igual a 3, quizá termine
+
+185
+00:05:50,670 --> 00:05:51,860
+con mi talla chica aquí,
+
+186
+00:05:53,100 --> 00:05:55,020
+la mediana esta en el medio y la
+
+187
+00:05:55,140 --> 00:05:56,720
+grande arriba.
+
+188
+00:05:58,580 --> 00:06:00,370
+Sin embargo, si ejecuto K-means
+
+189
+00:06:00,650 --> 00:06:03,540
+con 5 agrupamientos, quizá
+
+190
+00:06:03,700 --> 00:06:05,170
+tendré abajo
+
+191
+00:06:05,330 --> 00:06:07,400
+las camisetas extra chicas, después
+
+192
+00:06:07,740 --> 00:06:10,920
+las chicas, luego
+
+193
+00:06:11,050 --> 00:06:13,740
+las medianas,
+
+194
+00:06:13,990 --> 00:06:17,110
+después las grandes y aquí las extra grandes.
+
+195
+00:06:19,320 --> 00:06:20,150
+Lo bueno de este ejemplo
+
+196
+00:06:20,320 --> 00:06:21,510
+es que nos
+
+197
+00:06:21,810 --> 00:06:22,940
+da otra manera de elegir si queremos
+
+198
+00:06:23,550 --> 00:06:24,730
+3 o 4 o 5
+
+199
+00:06:24,970 --> 00:06:26,070
+agrupamientos.
+
+200
+00:06:28,570 --> 00:06:29,630
+Lo que puedes hacer, en particular, es
+
+201
+00:06:29,730 --> 00:06:30,630
+pensar en esto desde el punto de
+
+202
+00:06:30,810 --> 00:06:31,770
+vista del negocio de
+
+203
+00:06:32,380 --> 00:06:33,810
+venta de camisetas y
+
+204
+00:06:34,320 --> 00:06:35,150
+preguntarte: Si tengo cinco segmentos, ¿qué tan
+
+205
+00:06:35,620 --> 00:06:37,190
+bien le quedarán mis
+
+206
+00:06:38,060 --> 00:06:39,610
+camisetas a mis clientes? y, por lo tanto,
+
+207
+00:06:39,780 --> 00:06:42,100
+¿cuántas camisetas puedo vender?
+
+208
+00:06:42,420 --> 00:06:44,390
+¿Qué tan felices quedarán mis clientes?
+
+209
+00:06:44,550 --> 00:06:45,920
+Tiene sentido ver esto
+
+210
+00:06:46,080 --> 00:06:47,530
+desde la perspectiva del negocio de
+
+211
+00:06:47,590 --> 00:06:49,390
+camisetas en cuanto a
+
+212
+00:06:49,520 --> 00:06:51,480
+si quiero tener más tallas
+
+213
+00:06:51,990 --> 00:06:54,040
+para que les queden mejor a mis clientes o
+
+214
+00:06:54,970 --> 00:06:56,130
+si quiero tener menos
+
+215
+00:06:56,360 --> 00:06:57,570
+tallas para
+
+216
+00:06:58,410 --> 00:07:00,220
+fabricar menos tallas de camisetas
+
+217
+00:07:00,610 --> 00:07:02,290
+y venderlas más baratas a mis clientes.
+
+218
+00:07:02,840 --> 00:07:04,700
+El negocio de venta
+
+219
+00:07:05,040 --> 00:07:06,150
+de camisetas puede darte
+
+220
+00:07:06,660 --> 00:07:09,260
+la manera de decidir entre tres o cinco agrupamientos.
+
+221
+00:07:10,780 --> 00:07:12,000
+Esto te da un ejemplo
+
+222
+00:07:12,480 --> 00:07:13,880
+de un
+
+223
+00:07:14,130 --> 00:07:15,810
+propósito futuro como
+
+224
+00:07:16,010 --> 00:07:17,260
+el problema de decidir
+
+225
+00:07:17,390 --> 00:07:19,230
+cuántas camisetas fabricar, y de
+
+226
+00:07:19,380 --> 00:07:21,980
+cómo eso te puede dar una evaluación métrica para elegir el número de agrupamientos.
+
+227
+00:07:22,900 --> 00:07:23,800
+Para aquellos que estén
+
+228
+00:07:23,880 --> 00:07:25,490
+que están haciendo los ejercicios del programa,
+
+229
+00:07:25,670 --> 00:07:27,070
+si observan el programa de
+
+230
+00:07:27,290 --> 00:07:29,540
+ejercicios de esta semana relativo a K-means
+
+231
+00:07:29,790 --> 00:07:32,000
+encontrarán el ejemplo del uso de K-means para la compresión de imágenes.
+
+232
+00:07:32,910 --> 00:07:33,960
+Si intentas
+
+233
+00:07:34,070 --> 00:07:35,170
+elegir cuántos agrupamientos
+
+234
+00:07:35,410 --> 00:07:36,950
+utilizar para ese problema,
+
+235
+00:07:37,260 --> 00:07:38,550
+puedes usar la
+
+236
+00:07:39,030 --> 00:07:40,330
+métrica de evaluación de la compresión de imágenes
+
+237
+00:07:40,890 --> 00:07:42,470
+para elegir el número de agrupamientos “K”.
+
+238
+00:07:43,130 --> 00:07:43,870
+¿Qué tan bien quieres que se vea la imagen
+
+239
+00:07:44,000 --> 00:07:45,430
+en contraste con qué tanto
+
+240
+00:07:45,680 --> 00:07:46,680
+quieres comprimir el
+
+241
+00:07:46,970 --> 00:07:48,390
+tamaño de la imagen?
+
+242
+00:07:48,610 --> 00:07:49,830
+Si haces el ejercicio de programación, lo
+
+243
+00:07:50,050 --> 00:07:50,980
+que acabo de decir te resultará más
+
+244
+00:07:51,160 --> 00:07:52,480
+coherente.
+
+245
+00:07:53,760 --> 00:07:56,500
+Como resumen, generalmente,
+
+246
+00:07:56,590 --> 00:07:57,800
+el número de agrupamientos
+
+247
+00:07:58,030 --> 00:07:59,560
+“K” aún se elige
+
+248
+00:08:00,150 --> 00:08:01,900
+manualmente por intervención o entendimiento humano.
+
+249
+00:08:02,800 --> 00:08:03,810
+Una manera de intentar
+
+250
+00:08:03,950 --> 00:08:05,010
+elegirlo es con
+
+251
+00:08:05,170 --> 00:08:06,360
+el Método Elbow, pero
+
+252
+00:08:06,520 --> 00:08:07,660
+yo no recomendaría esperar
+
+253
+00:08:07,760 --> 00:08:08,620
+que funcione bien. Creo que
+
+254
+00:08:08,820 --> 00:08:09,730
+la mejor manera de pensar
+
+255
+00:08:09,970 --> 00:08:10,800
+es cómo elegir el número
+
+256
+00:08:10,920 --> 00:08:12,310
+de agrupamientos es preguntarse
+
+257
+00:08:12,520 --> 00:08:13,890
+cuál es el propósito para ejecutar K-means y
+
+258
+00:08:15,490 --> 00:08:16,610
+luego pensar cuál es el
+
+259
+00:08:16,830 --> 00:08:18,210
+número de agrupamientos K
+
+260
+00:08:18,350 --> 00:08:19,490
+que sirve el propósito, cualquiera que este sea,
+
+261
+00:08:19,670 --> 00:08:21,710
+por el cual ejecutas el algoritmo K-means.

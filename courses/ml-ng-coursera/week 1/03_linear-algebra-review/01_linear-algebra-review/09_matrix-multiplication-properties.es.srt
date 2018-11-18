@@ -1,0 +1,535 @@
+1
+00:00:00,100 --> 00:00:04,850
+La multiplicación de matriz realmente
+
+2
+00:00:04,850 --> 00:00:08,160
+es útil, ya que puedes unir
+
+3
+00:00:08,160 --> 00:00:10,880
+muchos cálculos en sólo una
+
+4
+00:00:10,880 --> 00:00:15,046
+operación de multiplicación de matriz.
+
+5
+00:00:18,286 --> 00:00:21,157
+Pero debes tener cuidado de cómo la usas.
+
+6
+00:00:21,157 --> 00:00:26,100
+En este video quiero
+
+7
+00:00:26,100 --> 00:00:29,990
+sobre algunas propiedades de la multiplicación de matriz.
+
+8
+00:00:29,990 --> 00:00:31,690
+Al trabajar sólo con números
+
+9
+00:00:31,690 --> 00:00:35,390
+reales o al trabajar con escalares,
+
+10
+00:00:35,390 --> 00:00:38,790
+la multiplicación es conmutativa.
+
+11
+00:00:40,010 --> 00:00:42,260
+Con esto me refiero a
+
+12
+00:00:42,260 --> 00:00:44,050
+si tomas tres por
+
+13
+00:00:44,050 --> 00:00:47,410
+cinco, que es igual a
+
+14
+00:00:47,410 --> 00:00:50,410
+cinco por tres,
+
+15
+00:00:50,410 --> 00:00:53,160
+el orden de esta multiplicación no es importante.
+
+16
+00:00:53,160 --> 00:00:57,040
+Y esto se llama propiedad conmutativa
+
+17
+00:00:57,040 --> 00:00:58,240
+de la multiplicación de números reales.
+
+18
+00:00:58,240 --> 00:01:03,490
+Resulta que esta propiedad
+
+19
+00:01:03,490 --> 00:01:08,090
+donde puedes invertir
+
+20
+00:01:08,090 --> 00:01:10,996
+el orden en que
+
+21
+00:01:10,996 --> 00:01:13,740
+multiplicas las cosas, no es cierta para la multiplicación de matriz.
+
+22
+00:01:13,740 --> 00:01:17,130
+En concreto, si A y
+
+23
+00:01:17,130 --> 00:01:20,510
+B son matrices, entonces en
+
+24
+00:01:20,510 --> 00:01:24,320
+general, A por B no
+
+25
+00:01:24,320 --> 00:01:26,970
+es igual a B por
+
+26
+00:01:26,970 --> 00:01:30,290
+A.  Sólo ten cuidado con esto.
+
+27
+00:01:30,290 --> 00:01:35,500
+No está bien invertir de forma arbitraria
+
+28
+00:01:36,750 --> 00:01:42,578
+el orden en que multiplicas las matrices.
+
+29
+00:01:42,578 --> 00:01:47,540
+Entonces, decimos que la multiplicación
+
+30
+00:01:47,540 --> 00:01:52,490
+de la matriz no es conmutativa, es una
+
+31
+00:01:52,490 --> 00:01:56,440
+forma elegante de decirlo.
+
+32
+00:01:58,000 --> 00:02:03,270
+Como ejemplo concreto, aquí
+
+33
+00:02:03,270 --> 00:02:09,641
+están dos matrices, matriz 1,1,0,0,
+
+34
+00:02:09,641 --> 00:02:11,302
+por 0,0,2,0, y si multiplicas estas
+
+35
+00:02:11,302 --> 00:02:16,750
+dos matrices, obtienes este resultado de la derecha.
+
+36
+00:02:16,750 --> 00:02:19,040
+Ahora, cambiemos el orden de estas dos matrices.
+
+37
+00:02:19,040 --> 00:02:23,870
+Bien, voy a tomar estas
+
+38
+00:02:23,870 --> 00:02:29,340
+dos matrices y las invertiré.
+
+39
+00:02:29,340 --> 00:02:32,200
+Resulta que si multiplicas
+
+40
+00:02:34,360 --> 00:02:36,280
+estas dos matrices, obtienes
+
+41
+00:02:36,280 --> 00:02:43,450
+la segunda respuesta a la
+
+42
+00:02:43,450 --> 00:02:46,800
+derecha y, ya sabes,
+
+43
+00:02:46,800 --> 00:02:50,360
+claramente estas dos matrices no
+
+44
+00:02:50,360 --> 00:02:57,660
+son iguales entre sí.
+
+45
+00:02:57,660 --> 00:03:00,140
+De hecho, en
+
+46
+00:03:00,140 --> 00:03:01,630
+general, si tienes una
+
+47
+00:03:01,630 --> 00:03:07,775
+operación de matriz como
+
+48
+00:03:07,775 --> 00:03:13,519
+A por B. Si A
+
+49
+00:03:13,519 --> 00:03:18,080
+es una matriz m por n
+
+50
+00:03:18,080 --> 00:03:27,110
+y B es una matriz
+
+51
+00:03:27,110 --> 00:03:30,580
+n por m, sólo como un ejemplo.
+
+52
+00:03:30,580 --> 00:03:34,760
+Entonces, resulta
+
+53
+00:03:34,760 --> 00:03:39,577
+que la matriz A por
+
+54
+00:03:39,577 --> 00:03:43,069
+B será
+
+55
+00:03:43,069 --> 00:03:48,180
+una matriz
+
+56
+00:03:48,180 --> 00:03:51,220
+m por m, mientras
+
+57
+00:03:51,220 --> 00:03:54,000
+que la matriz B por A
+
+58
+00:03:54,000 --> 00:03:55,550
+será una matriz
+
+59
+00:03:55,550 --> 00:03:56,360
+n por n, entonces
+
+60
+00:03:56,360 --> 00:03:59,800
+las dimensiones ni siquiera coinciden,
+
+61
+00:03:59,800 --> 00:04:03,170
+entonces A por B y
+
+62
+00:04:03,170 --> 00:04:05,940
+B por A podrían no tener la misma dimensión.
+
+63
+00:04:05,940 --> 00:04:11,460
+En el ejemplo de la izquierda,
+
+64
+00:04:11,460 --> 00:04:15,980
+tengo todas las matrices dos por dos,
+
+65
+00:04:15,980 --> 00:04:20,460
+entonces las dimensiones son las mismas.
+
+66
+00:04:20,460 --> 00:04:27,130
+Pero, en general, invertir el
+
+67
+00:04:27,130 --> 00:04:33,750
+orden de las matrices
+
+68
+00:04:33,750 --> 00:04:39,670
+incluso puede cambiar la dimensión
+
+69
+00:04:39,670 --> 00:04:41,150
+¿Bien?
+
+70
+00:04:41,150 --> 00:04:44,210
+multiplicación de la matriz no sería conmutativa.
+
+71
+00:04:44,210 --> 00:04:47,100
+Esta es la siguiente propiedad de la que quiero hablar.
+
+72
+00:04:47,100 --> 00:04:50,900
+Así que cuando hablo sobre
+
+73
+00:04:50,900 --> 00:04:54,750
+números reales o escalares,
+
+74
+00:04:54,750 --> 00:04:56,690
+digamos que tengo 3 por 5 por 2,
+
+75
+00:04:56,690 --> 00:05:00,750
+puedo multiplicar primero
+
+76
+00:05:00,750 --> 00:05:04,410
+5 por 2 y
+
+77
+00:05:04,410 --> 00:05:09,910
+calcular esto como 3 por 10,
+
+78
+00:05:09,910 --> 00:05:14,479
+o puedo multiplicar
+
+79
+00:05:14,479 --> 00:05:18,550
+primero tres por cinco y
+
+80
+00:05:18,550 --> 00:05:24,730
+puedo calcular esto como
+
+81
+00:05:25,890 --> 00:05:29,230
+quince por dos, y
+
+82
+00:05:29,230 --> 00:05:33,640
+ambos me darán la misma respuesta, ¿cierto?
+
+83
+00:05:33,640 --> 00:05:38,610
+Cada uno de estos es igual
+
+84
+00:05:38,610 --> 00:05:43,110
+a treinta, entonces no importa si
+
+85
+00:05:43,110 --> 00:05:47,820
+multiplico cinco por
+
+86
+00:05:47,820 --> 00:05:51,850
+2 primero o si
+
+87
+00:05:51,850 --> 00:05:53,470
+multiplico tres por cinco
+
+88
+00:05:53,470 --> 00:05:57,776
+primero, ya que, bueno,
+
+89
+00:05:57,776 --> 00:05:59,880
+tres por cinco por dos
+
+90
+00:05:59,880 --> 00:06:05,600
+es igual a tres por
+
+91
+00:06:07,660 --> 00:06:09,807
+cinco por dos.
+
+92
+00:06:09,807 --> 00:06:12,810
+Y esto se llama propiedad
+
+93
+00:06:12,810 --> 00:06:17,170
+asociativa de la multiplicación de número real.
+
+94
+00:06:17,170 --> 00:06:18,850
+Resulta que la multiplicación de la matriz es asociativa.
+
+95
+00:06:18,850 --> 00:06:21,910
+Entonces, en concreto, digamos
+
+96
+00:06:21,910 --> 00:06:25,120
+que tengo un producto de tres
+
+97
+00:06:25,120 --> 00:06:28,940
+matrices, A por B por
+
+98
+00:06:28,940 --> 00:06:33,900
+C. Entonces,
+
+99
+00:06:33,900 --> 00:06:37,775
+puedo calcular esto como
+
+100
+00:06:37,775 --> 00:06:42,520
+A por, B por C,
+
+101
+00:06:42,520 --> 00:06:46,710
+o puedo calcularlo como
+
+102
+00:06:46,710 --> 00:06:51,640
+A por B, por C
+
+103
+00:06:51,640 --> 00:06:55,180
+y, de hecho, me dará la misma respuesta.
+
+104
+00:06:55,180 --> 00:07:00,180
+No voy a probar esto, pero
+
+105
+00:07:00,180 --> 00:07:03,720
+supongo que pueden confiar en mí.
+
+106
+00:07:03,720 --> 00:07:04,650
+¿Verdad?
+
+107
+00:07:04,650 --> 00:07:07,840
+decir con estos dos casos, veamos
+
+108
+00:07:07,840 --> 00:07:11,290
+el primero, este primer caso.
+
+109
+00:07:12,370 --> 00:07:13,940
+Lo que quiero decir con eso es
+
+110
+00:07:13,940 --> 00:07:17,420
+que si realmente quieres calcular
+
+111
+00:07:17,420 --> 00:07:22,160
+A por B por C, lo que
+
+112
+00:07:23,360 --> 00:07:27,840
+puedes hacer es, primero,
+
+113
+00:07:27,840 --> 00:07:32,560
+calcular B por C.
+
+114
+00:07:32,560 --> 00:07:37,900
+De modo que D igual a B por
+
+115
+00:07:37,900 --> 00:07:42,860
+C, después calcular A por
+
+116
+00:07:44,550 --> 00:07:47,890
+D.  Y esto es calcular
+
+117
+00:07:47,890 --> 00:07:52,355
+en realidad A por B
+
+118
+00:07:52,355 --> 00:07:55,535
+por C. O, en
+
+119
+00:07:55,535 --> 00:07:58,425
+este segundo caso, puedes
+
+120
+00:07:58,425 --> 00:08:02,465
+calcular esto como
+
+121
+00:08:02,465 --> 00:08:06,605
+E igual a A
+
+122
+00:08:06,605 --> 00:08:08,655
+por B. Después, calcular E
+
+123
+00:08:10,100 --> 00:08:15,858
+por C. Y, entonces,
+
+124
+00:08:15,858 --> 00:08:21,928
+esto es lo mismo que
+
+125
+00:08:21,928 --> 00:08:23,280
+¿Verdad?
+
+126
+00:08:23,280 --> 00:08:25,830
+y resulta que está
+
+127
+00:08:25,830 --> 00:08:29,640
+garantizado que ambas
+
+128
+00:08:29,640 --> 00:08:33,830
+opciones te darán la misma respuesta.
+
+129
+00:08:33,830 --> 00:08:38,280
+Entonces, decimos que la
+
+130
+00:08:39,910 --> 00:08:44,260
+multiplicación de la matriz sí tiene la propiedad asociativa,
+
+131
+00:08:44,260 --> 00:08:47,630
+¿Ok?
+
+132
+00:08:47,630 --> 00:08:51,820
+Y no te preocupes por la terminología
+
+133
+00:08:51,820 --> 00:08:57,750
+de asociativa o conmutativa, eso es
+
+134
+00:08:57,750 --> 00:09:02,389
+porque en realidad no usaré

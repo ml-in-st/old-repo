@@ -1,0 +1,1170 @@
+1
+00:00:00,144 --> 00:00:02,011
+Neste vídeo, eu gostaria de
+
+2
+00:00:02,011 --> 00:00:03,990
+mostrar as principais intuições
+
+3
+00:00:03,990 --> 00:00:05,771
+por atrás de como "Regularização" funciona.
+
+4
+00:00:05,771 --> 00:00:07,386
+E também iremos anotar
+
+5
+00:00:07,386 --> 00:00:11,724
+a função de custo que utilizaremos,
+quando estivermos usando Regularização.
+
+6
+00:00:11,780 --> 00:00:13,327
+Com os exemplos escritos a mão
+
+7
+00:00:13,327 --> 00:00:14,916
+que temos nesses slides, acredito
+
+8
+00:00:14,950 --> 00:00:17,642
+que poderei transmitir parte da intuição.
+
+9
+00:00:17,700 --> 00:00:19,608
+Mas, uma maneira ainda melhor
+
+10
+00:00:19,608 --> 00:00:21,192
+de ver, por si próprio, como
+
+11
+00:00:21,192 --> 00:00:22,643
+Regularização funciona,
+
+12
+00:00:22,643 --> 00:00:25,869
+é implementá-la, você mesmo.
+
+13
+00:00:25,869 --> 00:00:26,888
+E, se você fizer
+
+14
+00:00:26,888 --> 00:00:28,603
+corretamente o exercício depois disso,
+
+15
+00:00:28,603 --> 00:00:30,053
+você vai ter a chance
+
+16
+00:00:30,053 --> 00:00:33,927
+de ver Regularização em ação, por si próprio.
+
+17
+00:00:33,930 --> 00:00:36,519
+Assim, aqui está a intuição.
+
+18
+00:00:36,519 --> 00:00:38,233
+No vídeo anterior, vimos que,
+
+19
+00:00:38,233 --> 00:00:39,771
+se tivéssemos que ajustar
+
+20
+00:00:39,771 --> 00:00:41,420
+uma função quadrática a esses
+
+21
+00:00:41,420 --> 00:00:44,283
+dados, isso nos daria um excelente ajuste para os dados.
+
+22
+00:00:44,283 --> 00:00:45,286
+Enquanto que, se
+
+23
+00:00:45,310 --> 00:00:47,175
+tivéssemos que ajustar um polinômio
+
+24
+00:00:47,210 --> 00:00:48,823
+de grau muito maior, terminaríamos
+
+25
+00:00:48,850 --> 00:00:50,111
+com uma curva que se ajustaria
+muito bem aos dados de treino,
+
+26
+00:00:50,111 --> 00:00:51,760
+com uma curva que se ajustaria
+muito bem aos dados de treino,
+
+27
+00:00:51,760 --> 00:00:53,381
+mas, que na realidade, se ajustaria
+
+28
+00:00:53,420 --> 00:00:54,497
+muito mal os dados,
+
+29
+00:00:54,497 --> 00:00:57,225
+não generalizando muito bem.
+
+30
+00:00:57,900 --> 00:01:00,453
+Considere o seguinte: suponha que nós
+
+31
+00:01:00,453 --> 00:01:02,088
+vamos penalizar, e tornar
+
+32
+00:01:02,088 --> 00:01:04,753
+os parâmetros "θ₃" e "θ₄" bem pequenos.
+
+33
+00:01:04,753 --> 00:01:06,543
+Aqui está o que quero dizer:
+
+34
+00:01:06,543 --> 00:01:09,676
+aqui está nosso objetivo de otimização,
+
+35
+00:01:09,690 --> 00:01:10,859
+ou nosso problema,
+
+36
+00:01:10,870 --> 00:01:12,574
+onde minimizamos nossa função
+
+37
+00:01:12,580 --> 00:01:15,526
+de custo de erro quadrático habitual.
+
+38
+00:01:15,526 --> 00:01:17,350
+Digamos que eu pegue esse objetivo,
+
+39
+00:01:17,370 --> 00:01:19,125
+e modifique, adicionando
+
+40
+00:01:19,160 --> 00:01:23,291
+a ele "1000·θ₃²+1000·θ₄²".
+
+41
+00:01:23,291 --> 00:01:28,334
+a ele "1000·θ₃²+1000·θ₄²".
+
+42
+00:01:28,334 --> 00:01:32,354
+"1000" serve apenas como um número grande.
+
+43
+00:01:32,354 --> 00:01:33,538
+Agora, se formos
+
+44
+00:01:33,540 --> 00:01:35,127
+minimizar essa função,
+
+45
+00:01:35,140 --> 00:01:36,688
+a única maneira de fazer essa
+
+46
+00:01:36,710 --> 00:01:38,620
+nova função de custo menor,
+
+47
+00:01:38,620 --> 00:01:40,769
+é se "θ₃" e "θ₄"
+
+48
+00:01:40,769 --> 00:01:42,133
+forem pequenos, certo?
+
+49
+00:01:42,133 --> 00:01:43,264
+Porque, caso contrário,
+
+50
+00:01:43,264 --> 00:01:44,956
+tendo "1000·θ₃", essa
+
+51
+00:01:44,970 --> 00:01:48,103
+nova função de custo será grande.
+
+52
+00:01:48,140 --> 00:01:49,245
+Assim, quando minimizarmos
+
+53
+00:01:49,245 --> 00:01:50,402
+essa nova função,
+
+54
+00:01:50,402 --> 00:01:52,107
+terminaremos com "θ₃"
+
+55
+00:01:52,110 --> 00:01:53,776
+perto de "0",
+
+56
+00:01:53,776 --> 00:01:56,700
+e "θ₄" perto de "0".
+
+57
+00:01:56,700 --> 00:01:59,691
+Assim, acabamos nos livrando
+
+58
+00:01:59,691 --> 00:02:03,206
+desses dois termos, de maior grau.
+
+59
+00:02:03,710 --> 00:02:05,282
+E se fizermos isso, se
+
+60
+00:02:05,290 --> 00:02:06,783
+"θ₃" e "θ₄" forem próximos de "0",
+
+61
+00:02:06,783 --> 00:02:07,973
+terminaremos com
+
+62
+00:02:07,973 --> 00:02:09,643
+uma função quadrática.
+
+63
+00:02:09,643 --> 00:02:11,089
+Assim, teremos
+
+64
+00:02:11,110 --> 00:02:13,343
+um ajuste aos dados, que é
+
+65
+00:02:13,343 --> 00:02:15,463
+uma função quadrática, e uma mínima
+
+66
+00:02:15,463 --> 00:02:17,856
+contribuição dos pequenos termos
+
+67
+00:02:17,860 --> 00:02:20,207
+"θ₃" e "θ₄", que são quase 0.
+
+68
+00:02:20,207 --> 00:02:27,293
+E assim, essencialmente terminamos
+
+69
+00:02:27,293 --> 00:02:29,386
+com uma função quadrática, o que é muito bom.
+
+70
+00:02:29,386 --> 00:02:30,544
+Porque essa é uma
+
+71
+00:02:30,544 --> 00:02:34,060
+hipótese bem melhor.
+
+72
+00:02:34,104 --> 00:02:36,666
+Nesse exemplo, em particular, nós vimos o efeito
+
+73
+00:02:36,700 --> 00:02:39,023
+de penalizarmos 2 dos
+
+74
+00:02:39,023 --> 00:02:41,446
+valores de parâmetros que são grandes.
+
+75
+00:02:41,446 --> 00:02:46,510
+De modo mais geral, aqui está a ideia por trás da Regularização.
+
+76
+00:02:46,980 --> 00:02:48,924
+A ideia é que, se tivermos
+
+77
+00:02:48,924 --> 00:02:50,303
+valores pequenos
+
+78
+00:02:50,303 --> 00:02:53,083
+para os parâmetros, isso,
+
+79
+00:02:53,083 --> 00:02:55,250
+de alguma forma,
+
+80
+00:02:55,250 --> 00:02:57,866
+corresponde a ter
+
+81
+00:02:57,866 --> 00:03:00,386
+uma hipótese mais simples.
+
+82
+00:03:00,386 --> 00:03:02,279
+Assim, para o exemplo anterior,
+
+83
+00:03:02,279 --> 00:03:04,024
+nós penalizamos "θ₃" e "θ₄".
+
+84
+00:03:04,024 --> 00:03:05,666
+E quando ambos
+
+85
+00:03:05,666 --> 00:03:07,046
+estavam próximos de "0",
+
+86
+00:03:07,046 --> 00:03:08,450
+nós ficamos com uma hipótese
+
+87
+00:03:08,480 --> 00:03:12,549
+bem mais simples: uma função quadrática.
+Mas, de forma geral,
+
+88
+00:03:12,549 --> 00:03:13,991
+podemos pensar em
+
+89
+00:03:13,991 --> 00:03:15,989
+penalizar todos os parâmetros como
+
+90
+00:03:15,989 --> 00:03:17,416
+uma tentativa de achar
+
+91
+00:03:17,420 --> 00:03:19,076
+uma hipótese mais simples.
+
+92
+00:03:19,110 --> 00:03:20,943
+Porque, quando
+
+93
+00:03:20,943 --> 00:03:22,380
+esses parâmetros forem
+
+94
+00:03:22,410 --> 00:03:23,700
+próximos de "0" - esse exemplo
+
+95
+00:03:23,700 --> 00:03:26,105
+resultou em uma função quadrática -
+
+96
+00:03:26,105 --> 00:03:29,038
+mas, em geral, é possivel
+
+97
+00:03:29,038 --> 00:03:30,493
+mostrar que, ter
+
+98
+00:03:30,530 --> 00:03:32,536
+valores menores para os parâmetros,
+
+99
+00:03:32,540 --> 00:03:34,416
+corresponde também, geralmente,
+
+100
+00:03:34,416 --> 00:03:36,780
+a suavizar as funções mais simples.
+
+101
+00:03:36,780 --> 00:03:41,667
+E , portanto, tornando-as menos
+sujeitas a sobreajuste ("overfitting").
+
+102
+00:03:41,680 --> 00:03:43,245
+Eu imagino que o raciocínio do porquê
+
+103
+00:03:43,245 --> 00:03:45,441
+ter todos os parâmetros pequenos,
+
+104
+00:03:45,441 --> 00:03:46,944
+corresponde a ter hipóteses
+
+105
+00:03:46,960 --> 00:03:48,916
+mais simples, não esteja
+
+106
+00:03:48,916 --> 00:03:51,572
+completamente claro para você ainda.
+
+107
+00:03:51,590 --> 00:03:52,784
+E é um pouco difícil
+
+108
+00:03:52,784 --> 00:03:54,477
+de explicar, a menos que você
+
+109
+00:03:54,480 --> 00:03:56,446
+implemente e veja, por si próprio.
+
+110
+00:03:56,470 --> 00:03:58,247
+Mas, espero que esse exemplo
+
+111
+00:03:58,247 --> 00:03:59,610
+de ter "θ₃" e "θ₄"
+
+112
+00:03:59,650 --> 00:04:01,230
+pequenos, e de como
+
+113
+00:04:01,230 --> 00:04:02,535
+isso nos dá uma
+
+114
+00:04:02,540 --> 00:04:04,776
+hipótese mais simples, eu espero que
+
+115
+00:04:04,800 --> 00:04:06,314
+isso ajude a explicar o porquê,
+
+116
+00:04:06,330 --> 00:04:09,320
+e dê alguma intuição de como isso pode ser verdadeiro.
+
+117
+00:04:09,320 --> 00:04:11,476
+Vamos ver um exemplo específico.
+
+118
+00:04:12,010 --> 00:04:13,873
+Para a predição de preços de casas,
+
+119
+00:04:13,873 --> 00:04:15,465
+podemos ter centenas de recursos,
+
+120
+00:04:15,480 --> 00:04:17,223
+como já dissemos. Onde,
+
+121
+00:04:17,250 --> 00:04:18,756
+"x₁" pode ser o tamanho,
+
+122
+00:04:18,756 --> 00:04:20,096
+"x₂", o número de quartos,
+
+123
+00:04:20,096 --> 00:04:21,963
+"x₃", o número de andares, e assim por diante.
+
+124
+00:04:21,963 --> 00:04:24,502
+E podemos ter uma centena de parâmetros.
+
+125
+00:04:24,502 --> 00:04:26,896
+E, diferentemente do exemplo
+
+126
+00:04:26,920 --> 00:04:28,459
+do polinômio, nós não sabemos
+
+127
+00:04:28,460 --> 00:04:29,826
+se "θ₃" e "θ₄" são os termos
+
+128
+00:04:29,826 --> 00:04:32,641
+de ordem mais alta do polinômio.
+
+129
+00:04:32,641 --> 00:04:34,515
+Assim, se tivermos apenas
+
+130
+00:04:34,540 --> 00:04:35,863
+um conjunto de centenas
+
+131
+00:04:35,863 --> 00:04:38,074
+de parâmetros, é difícil saber,
+
+132
+00:04:38,100 --> 00:04:40,210
+antecipadamente, quais são
+
+133
+00:04:40,260 --> 00:04:42,729
+aqueles que, provavelmente, são menos relevantes.
+
+134
+00:04:42,729 --> 00:04:45,773
+Portanto, temos 101 parâmetros,
+
+135
+00:04:45,780 --> 00:04:47,340
+e não sabemos
+
+136
+00:04:47,340 --> 00:04:48,987
+quais parâmetros
+
+137
+00:04:49,010 --> 00:04:50,445
+devemos escolher,
+
+138
+00:04:50,450 --> 00:04:54,272
+para tentar comprimir.
+
+139
+00:04:54,430 --> 00:04:56,237
+Assim, em Relgularização, o que
+
+140
+00:04:56,237 --> 00:04:58,438
+vamos fazer, é pegar nossa
+
+141
+00:04:58,438 --> 00:05:01,213
+função de custo. Aqui está minha função de custo para Regressão Linear.
+
+142
+00:05:01,213 --> 00:05:02,656
+E o que vou fazer
+
+143
+00:05:02,660 --> 00:05:04,326
+é, modificar essa
+
+144
+00:05:04,340 --> 00:05:06,246
+função de custo para simplificar todos
+
+145
+00:05:06,270 --> 00:05:07,643
+os meus parâmetros, porque
+
+146
+00:05:07,643 --> 00:05:09,059
+eu não sei qual,
+
+147
+00:05:09,059 --> 00:05:10,440
+ou quais, posso tentar comprimir.
+
+148
+00:05:10,440 --> 00:05:11,690
+Então, vou modificá-la,
+
+149
+00:05:11,690 --> 00:05:16,732
+para adicionar um termo no final.
+
+150
+00:05:17,390 --> 00:05:20,436
+Desse modo, [nós temos colchetes aqui também]
+
+151
+00:05:20,440 --> 00:05:22,212
+eu adiciono um termo
+
+152
+00:05:22,212 --> 00:05:23,516
+extra de regularização,
+
+153
+00:05:23,530 --> 00:05:25,510
+para comprimir
+
+154
+00:05:25,560 --> 00:05:27,286
+todos os parâmetros.
+
+155
+00:05:27,320 --> 00:05:28,745
+Então, esse termo irá
+
+156
+00:05:28,760 --> 00:05:30,747
+comprimir todos os meus parâmetros:
+
+157
+00:05:30,747 --> 00:05:32,746
+"θ₁", "θ₂", "θ₃", ...,
+
+158
+00:05:32,746 --> 00:05:35,490
+até "θ₁₀₀".
+
+159
+00:05:36,790 --> 00:05:39,629
+A propósito, por convenção, esse somatório
+
+160
+00:05:39,629 --> 00:05:41,007
+começa em "1", então eu
+
+161
+00:05:41,007 --> 00:05:43,341
+não vou penalizar "θ₀",
+
+162
+00:05:43,360 --> 00:05:45,416
+sendo grande. Isso é
+
+163
+00:05:45,470 --> 00:05:46,435
+uma convenção,
+
+164
+00:05:46,435 --> 00:05:48,664
+que a soma é de "i=1" até "n",
+
+165
+00:05:48,664 --> 00:05:50,185
+ao invés de "0" a "n".
+
+166
+00:05:50,190 --> 00:05:51,953
+Mas, na prática,
+
+167
+00:05:51,960 --> 00:05:53,464
+isso faz pouca diferença e,
+
+168
+00:05:53,490 --> 00:05:54,788
+se você incluir,
+
+169
+00:05:54,788 --> 00:05:56,221
+"θ₀" ou não,
+
+170
+00:05:56,221 --> 00:05:59,532
+na prática, vai fazer pouca
+diferença no resultado.
+
+171
+00:05:59,540 --> 00:06:01,804
+Mas, por convenção, geralmente regularizamos
+
+172
+00:06:01,804 --> 00:06:03,356
+apenas "θ₁"até "θ₁₀₀".
+
+173
+00:06:03,360 --> 00:06:06,084
+Vamos escrever o nosso objetivo
+
+174
+00:06:06,084 --> 00:06:08,978
+de otimização, nossa Função
+
+175
+00:06:08,978 --> 00:06:10,655
+de Custo Regularizada.
+
+176
+00:06:10,655 --> 00:06:11,718
+Aqui está ela,
+
+177
+00:06:11,718 --> 00:06:13,903
+"J(θ)", onde esse termo
+
+178
+00:06:13,970 --> 00:06:15,863
+à direita, é o termo de Regularização.
+
+179
+00:06:15,863 --> 00:06:17,548
+E esse "λ"
+
+180
+00:06:17,570 --> 00:06:23,950
+é chamado "parâmetro de regularização".
+
+181
+00:06:23,973 --> 00:06:26,334
+E o que "λ" faz é
+
+182
+00:06:26,334 --> 00:06:28,480
+controlar o equilibrio
+
+183
+00:06:28,510 --> 00:06:30,636
+entre dois objetivos diferentes.
+
+184
+00:06:30,636 --> 00:06:32,478
+O primeiro objetivo, capturado
+
+185
+00:06:32,500 --> 00:06:34,399
+pelo primeiro termo no objetivo,
+
+186
+00:06:34,399 --> 00:06:36,081
+é que gostariamos de ter
+
+187
+00:06:36,090 --> 00:06:38,350
+um bom ajuste aos dados de treino.
+
+188
+00:06:38,390 --> 00:06:41,083
+Queremos os dados de treino bem ajustados.
+
+189
+00:06:41,083 --> 00:06:42,954
+E o segundo objetivo é,
+
+190
+00:06:42,954 --> 00:06:44,474
+que queremos manter os parâmetros
+
+191
+00:06:44,474 --> 00:06:46,053
+pequenos, e isso é capturado pelo
+
+192
+00:06:46,060 --> 00:06:49,103
+segundo termo,
+pelo objetivo de Regularização.
+
+193
+00:06:49,103 --> 00:06:53,583
+E o parâmetro de regularização, "λ",
+
+194
+00:06:53,583 --> 00:06:55,937
+controla o equilibrio
+
+195
+00:06:55,937 --> 00:06:57,694
+entre esses dois objetivos.
+
+196
+00:06:57,694 --> 00:06:58,938
+Entre se ajustar
+
+197
+00:06:58,960 --> 00:07:00,562
+bem aos dados de treino,
+
+198
+00:07:00,562 --> 00:07:02,043
+e manter os parâmetros
+
+199
+00:07:02,080 --> 00:07:05,688
+pequenos, e assim manter a hipotese relativamente
+
+200
+00:07:05,688 --> 00:07:09,134
+simples, evitando o sobreajuste ("overfitting").
+
+201
+00:07:09,290 --> 00:07:11,026
+Para o nosso exemplo de predição de preços
+
+202
+00:07:11,030 --> 00:07:13,026
+de casas, onde, previamente,
+
+203
+00:07:13,030 --> 00:07:14,256
+se tivessemos que ajustar um
+
+204
+00:07:14,256 --> 00:07:15,968
+polinomio de ordem muito alta,
+
+205
+00:07:15,968 --> 00:07:17,461
+poderíamos terminar com uma
+
+206
+00:07:17,480 --> 00:07:19,020
+função curvilínia como essa.
+
+207
+00:07:19,020 --> 00:07:22,460
+Se você ajustar um polinomio de grau alto,
+
+208
+00:07:22,460 --> 00:07:24,120
+usando todos os seus parâmetros.
+
+209
+00:07:24,120 --> 00:07:26,038
+Mas, ao invés disso,
+
+210
+00:07:26,038 --> 00:07:27,956
+você pode garantir que esse
+
+211
+00:07:27,970 --> 00:07:30,798
+objetivo de Regularização é utilizado.
+
+212
+00:07:30,798 --> 00:07:32,272
+Assim, você pode ter,
+
+213
+00:07:32,272 --> 00:07:34,332
+de fato, uma curva que não é
+
+214
+00:07:34,340 --> 00:07:36,465
+bem uma função quadrática, mas é
+
+215
+00:07:36,490 --> 00:07:38,510
+bem mais simples, e suave,
+
+216
+00:07:38,510 --> 00:07:39,870
+como a curva em magenta,
+
+217
+00:07:39,870 --> 00:07:42,261
+que dá uma hipótese
+
+218
+00:07:42,261 --> 00:07:45,445
+bem melhor para esses dados.
+
+219
+00:07:45,445 --> 00:07:46,613
+Novamente, eu sei que
+
+220
+00:07:46,613 --> 00:07:47,919
+pode ser difícil ver porque
+
+221
+00:07:47,919 --> 00:07:50,064
+encolher esses parâmetros, pode dar
+
+222
+00:07:50,064 --> 00:07:51,668
+esse efeito. Mas se você
+
+223
+00:07:51,690 --> 00:07:54,584
+implementar esse algoritmo
+com a Regularização
+
+224
+00:07:54,650 --> 00:07:56,063
+você poderá ver
+
+225
+00:07:56,090 --> 00:07:58,859
+esse efeito, claramente.
+
+226
+00:08:00,620 --> 00:08:02,777
+Na Regressão Linear regularizada,
+
+227
+00:08:02,777 --> 00:08:05,748
+se o parâmetro de Regularização, "λ",
+
+228
+00:08:05,748 --> 00:08:07,669
+for muito grande,
+
+229
+00:08:07,669 --> 00:08:09,542
+o que acontece é que
+
+230
+00:08:09,542 --> 00:08:11,698
+nós iremos penalizar
+
+231
+00:08:11,698 --> 00:08:13,513
+os parâmetros "θ₁", "θ₂",
+
+232
+00:08:13,520 --> 00:08:15,207
+"θ₃", "θ₄", ...,
+
+233
+00:08:15,230 --> 00:08:17,409
+muito fortemente.
+
+234
+00:08:17,430 --> 00:08:21,916
+E assim, se nossa hipótese for essa, aqui embaixo,
+
+235
+00:08:21,930 --> 00:08:23,674
+e se penalizarmos fortemente
+
+236
+00:08:23,674 --> 00:08:24,913
+"θ₁", "θ₂", "θ₃", "θ₄", ...,
+
+237
+00:08:24,990 --> 00:08:26,145
+então teremos todos esses
+parâmetros proximos de zero.
+
+238
+00:08:26,145 --> 00:08:29,463
+então teremos todos esses
+parâmetros proximos de zero.
+
+239
+00:08:29,463 --> 00:08:32,240
+"θ₁" será quase 0; "θ₂" será quase 0,
+
+240
+00:08:32,240 --> 00:08:34,410
+"θ₃" e "θ₄"
+
+241
+00:08:34,410 --> 00:08:36,646
+também ficarão proximos de 0.
+
+242
+00:08:36,646 --> 00:08:37,810
+E se fizermos isso,
+
+243
+00:08:37,810 --> 00:08:39,143
+removeremos todos
+
+244
+00:08:39,160 --> 00:08:41,189
+os termos da nossa hipótese,
+
+245
+00:08:41,189 --> 00:08:43,597
+ficando apenas com
+uma hipótese como essa:
+
+246
+00:08:43,597 --> 00:08:44,224
+ficando apenas com
+uma hipótese como essa:
+
+247
+00:08:44,230 --> 00:08:46,020
+"h(x)=θ₀". Ou seja,
+
+248
+00:08:46,020 --> 00:08:48,624
+o preço das casas são iguais a "θ₀".
+
+249
+00:08:48,650 --> 00:08:50,830
+e isso se assemelha a ajustar
+
+250
+00:08:50,830 --> 00:08:54,679
+os dados a uma linha reta horizontal.
+
+251
+00:08:54,679 --> 00:08:56,533
+E isso é um exemplo
+
+252
+00:08:56,570 --> 00:08:58,773
+de ajuste para baixo ("underfitting"),
+
+253
+00:08:58,773 --> 00:09:00,926
+e em particular, essa hipótese,
+
+254
+00:09:00,950 --> 00:09:02,552
+essa linha reta, é falha
+
+255
+00:09:02,570 --> 00:09:04,063
+em ajustar-se bem ao
+
+256
+00:09:04,070 --> 00:09:05,423
+conjunto de treino. É apenas
+
+257
+00:09:05,423 --> 00:09:07,173
+uma linha reta, e não chega
+
+258
+00:09:07,173 --> 00:09:10,432
+perto da maioria dos exemplos de treino.
+
+259
+00:09:10,432 --> 00:09:11,592
+Outra maneira de dizer isso,
+
+260
+00:09:11,592 --> 00:09:13,697
+é que essa hipótese tem
+
+261
+00:09:13,720 --> 00:09:15,410
+um viés tão alto,
+
+262
+00:09:15,450 --> 00:09:17,091
+que os preços
+
+263
+00:09:17,120 --> 00:09:18,446
+das casas são
+
+264
+00:09:18,460 --> 00:09:20,183
+iguais a "θ₀".
+
+265
+00:09:20,230 --> 00:09:22,123
+E, apesar dos dados mostrarem o contrário,
+
+266
+00:09:22,123 --> 00:09:23,207
+esse foi o ajuste escolhido,
+apenas essa linha reta,
+
+267
+00:09:23,207 --> 00:09:25,648
+esse foi o ajuste escolhido,
+apenas essa linha reta,
+
+268
+00:09:25,650 --> 00:09:28,230
+horizontal - que eu não desenhei muito bem.
+
+269
+00:09:28,230 --> 00:09:30,447
+Essa é apenas uma linha horizontal
+
+270
+00:09:30,447 --> 00:09:33,059
+para os dados. Portanto, para
+
+271
+00:09:33,060 --> 00:09:35,626
+a Regularização funcionar direito, alguns
+
+272
+00:09:35,626 --> 00:09:37,835
+cuidados precisam ser tomados,
+
+273
+00:09:37,850 --> 00:09:39,903
+para fazer boas escolhas, para
+
+274
+00:09:39,903 --> 00:09:42,991
+o parâmetro "λ" da Regularização.
+
+275
+00:09:42,991 --> 00:09:44,908
+E quando falarmos mais tarde,
+
+276
+00:09:44,920 --> 00:09:46,717
+sobre multi-seleção,
+
+277
+00:09:46,717 --> 00:09:48,413
+falaremos sobre alguns modos
+
+278
+00:09:48,420 --> 00:09:50,803
+de escolher, automaticamente,
+
+279
+00:09:50,810 --> 00:09:54,833
+o parâmetro da Regularização, "λ".
+Então, essa é a ideia por trás de Regularização,
+
+280
+00:09:54,833 --> 00:09:56,570
+o parâmetro da Regularização, "λ".
+Então, essa é a ideia por trás de Regularização,
+
+281
+00:09:56,570 --> 00:09:58,254
+e da função de custo que usamos,
+para utilizar Regularização.
+
+282
+00:09:58,254 --> 00:10:00,454
+e da função de custo que usamos,
+para utilizar Regularização.
+
+283
+00:10:00,454 --> 00:10:01,885
+Nos próximos 2 vídeos, vamos pegar
+
+284
+00:10:01,885 --> 00:10:03,736
+essas idéias e aplicá-las
+
+285
+00:10:03,750 --> 00:10:05,440
+a Regressão Linear,
+
+286
+00:10:05,440 --> 00:10:07,111
+e a Regressão Logística,
+
+287
+00:10:07,111 --> 00:10:09,020
+a fim de pode usá-las
+
+288
+00:10:09,060 --> 00:10:10,982
+para evitar problemas de sobreajuste.
+Tradução: Carlos Lacerda | Revisão: Pablo de Morais Andrade

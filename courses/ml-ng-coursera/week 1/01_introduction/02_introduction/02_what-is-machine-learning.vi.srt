@@ -1,0 +1,398 @@
+1
+00:00:00,000 --> 00:00:04,904
+Máy học (ML) là gì? trong video này chúng ta
+ sẽ thử định nghĩa nó là gì và cũng thử
+
+2
+00:00:04,904 --> 00:00:09,520
+giúp bạn hiểu được khi nào thì dùng máy học. Thậm chí đối với những người
+
+3
+00:00:09,520 --> 00:00:14,252
+có chuyên môn về máy học cũng không 
+có chấp nhận được định nghĩa thế nào là máy học và thế nào không phải là
+
+4
+00:00:14,252 --> 00:00:18,926
+máy học. Nhưng hãy để tôi cho bạn một vài ví dụ về cách mà
+
+5
+00:00:18,926 --> 00:00:23,600
+mọi người hay cố gắng dùng để định nghĩa máy học. Đây là một 
+định nghĩa về máy học
+
+6
+00:00:23,600 --> 00:00:28,520
+của Arthur Samual. Ông định nghĩa máy học
+ như là một lĩnh vực nghiên cứu cung cấp cho
+
+7
+00:00:31,037 --> 00:00:33,554
+máy tính khả năng học hỏi mà không cần được
+ lập trình rõ ràng. Danh tiếng của Samuel bắt đầu
+
+8
+00:00:33,554 --> 00:00:38,452
+là vào những năm 1950, ông
+ đã viết một phần mềm chơi cờ đam Checker.
+
+9
+00:00:38,452 --> 00:00:43,603
+Điều kinh ngạc về phần mềm chơi cờ này là 
+thực ra bản thân Samuel
+
+10
+00:00:43,603 --> 00:00:48,268
+chơi cờ đam không giỏi. Nhưng
+ những gì ông đã làm là ông đã lập trình để nó có thể
+
+11
+00:00:48,268 --> 00:00:52,245
+chơi rất nhiều ván chống lại chính nó.
+ Và bằng cách quan sát
+
+12
+00:00:52,245 --> 00:00:56,698
+nước đi nào có khuynh hướng sẽ chiến thắng và ngược lại,
+
+13
+00:00:56,698 --> 00:01:00,725
+phần mềm chơi cờ đam học nhiều lầm để chọn ra
+
+14
+00:01:00,725 --> 00:01:04,713
+vị trí tốt và xấu trên bàn cờ. Và cuối cùng là học cách
+
+15
+00:01:04,713 --> 00:01:09,514
+chơi cờ đam giỏi hơn Arthur Samuel. Đây quả là kết quả đáng chú ý.
+
+16
+00:01:09,514 --> 00:01:14,535
+Mặc dù Samuel đã tỏ ra là một người
+ không giỏi chơi cờ đam, nhưng
+
+17
+00:01:14,535 --> 00:01:19,254
+máy tính có sự kiên nhẫn để tự chơi hàng trăm ngàn ván. 
+
+18
+00:01:19,254 --> 00:01:24,275
+Không người nào có kiên nhẫn để chơi 
+chừng đó vòng. Nhờ đó, máy tính có thể
+
+19
+00:01:24,275 --> 00:01:29,235
+có nhiều kinh nghiệm chơi cờ hơn và cuối cùng là
+
+20
+00:01:29,235 --> 00:01:33,817
+chơi giỏi hơn cả Arthur Samuel. 
+Đây là một định nghĩa không chính thức lắm và cũng hơi lâu rồi.
+
+21
+00:01:33,817 --> 00:01:38,547
+Có một định nghĩa chính thức gần đây được 
+đề xuất bởi Tom Mitchell,
+
+22
+00:01:38,547 --> 00:01:43,607
+bạn của Carnegie Mellon. 
+Tom định nghĩa 'Máy học' là
+
+23
+00:01:43,607 --> 00:01:48,819
+một vấn đề học tập được định nghĩa như sau.
+ Ông nói, Vấn đề học được giải quyết tốt khi:
+
+24
+00:01:48,819 --> 00:01:53,843
+một chương trình máy tính được làm ra để học hỏi 
+kinh nghiệm E, liên quan đến bài toán T và
+
+25
+00:01:53,843 --> 00:01:58,678
+thước đo hiệu quả P, 
+nếu hiệu quả của nó khi giải quyết T, đo bởi P,
+
+26
+00:01:58,678 --> 00:02:03,764
+được cải thiện bởi kinh nghiệm E. Tôi thực sự nghĩ rằng
+ ông ấy đưa ra định nghĩa này chỉ để nó
+
+27
+00:02:03,764 --> 00:02:08,346
+hợp vần. Đối với ví dụ chơi cờ đam, kinh nghiệm E là
+
+28
+00:02:08,346 --> 00:02:13,253
+kinh nghiệm máy tính có được sau khi 
+chơi hơn 100k lượt với chính nó.
+
+29
+00:02:13,253 --> 00:02:17,735
+Nhiệm vụ T sẽ là nhiệm vụ chơi cờ đam. 
+Và độ đo hiệu suất P
+
+30
+00:02:17,735 --> 00:02:22,399
+sẽ là xác suất máy tính chiến thắng
+ khi đấu với một đối thủ mới.
+
+31
+00:02:22,399 --> 00:02:27,157
+Trong suốt những video này, 
+bên cạnh việc dạy mọi thứ cho bạn,
+
+32
+00:02:27,157 --> 00:02:32,291
+tôi cũng sẽ hỏi một câu hỏi 
+để đảm bảo là bạn hiểu hết nội dung.
+
+33
+00:02:32,291 --> 00:02:36,891
+Trên cùng là định nghĩa về máy học của Tom Mitchell
+
+34
+00:02:36,891 --> 00:02:42,292
+Giả sử phần mềm email của bạn quan sát email nào bạn gắn cờ spam.
+
+35
+00:02:42,292 --> 00:02:47,826
+Trong một phần mềm quản lý email như thế này, bạn có thể đánh dấu
+
+36
+00:02:47,826 --> 00:02:53,263
+một email là Spam mà không phải là email khác. Dựa vào email bạn đã đánh dấu spam,
+
+37
+00:02:53,263 --> 00:02:59,046
+phần mềm quản lý email học được cách lọc spam email tốt hơn.
+
+38
+00:02:59,046 --> 00:03:04,290
+Nhiệm vụ T ở đây là gì? Video sẽ dừng một chút,
+
+39
+00:03:04,290 --> 00:03:09,598
+bạn hãy chọn một đáp án trong 4 đáp án dưới đây.
+(A) Phân loại email là spam hay không (B) Quan sát bạn gắn cờ email là spam hay không
+(C) Số lượng hay tỷ lệ email được phân loại đúng là spam (D) Không có đáp án nào đúng
+
+40
+00:03:09,598 --> 00:03:40,190
+Hy vọng bạn chọn câu này là câu trả lời: (A) Phân loại email là spam hay không. 
+Đây là nhiệm vụ T. Thật ra, định nghĩa này định nghĩa về nhiệm vụ T, thước đo hiệu quả P và kinh nghiệm E. Vì thế (B) chính là kinh nghiệm E, và (C) chính là
+
+41
+00:03:40,190 --> 00:03:45,747
+là đo lương hiệu suất P. Vì thế
+
+42
+00:03:45,747 --> 00:03:50,529
+Hiệu quả khi thực hiện bài toán T, 
+được đo bởi P sẽ được
+
+43
+00:03:50,529 --> 00:03:55,957
+cải thiện dựa vào kinh nghiệm E. 
+ Trong khóa này,
+
+44
+00:03:55,957 --> 00:04:00,933
+Tôi hy vọng sẽ dạy các bạn về 
+các loại khác nhau của thuật toán học máy. Có nhiều loại thuật toán học tập khác nhau.
+
+45
+00:04:00,933 --> 00:04:05,650
+2 loại chính là: học máy có giám sát (supervised learning) 
+và 
+
+46
+00:04:05,650 --> 00:04:10,690
+học máy không có giám sát (unsupervised learning)
+Tôi sẽ giải thích nghĩa chúng trong các video sau.
+
+47
+00:04:10,690 --> 00:04:16,028
+Nhưng chủ yếu là 'Học có giám sát'.
+ Ý tưởng là: chúng ta sẽ
+
+48
+00:04:16,028 --> 00:04:20,513
+dạy máy tính cách làm, trong khi đối với 
+học không có giám sát
+
+49
+00:04:20,513 --> 00:04:25,016
+ta sẽ để máy tự học. Đừng lo khi không hiểu nghĩa 2 từ này,
+
+50
+00:04:25,016 --> 00:04:29,739
+trong 2 video tiếp theo, tôi sẽ nói chính xác 2 loại này là gì.
+
+51
+00:04:29,739 --> 00:04:34,070
+Các bạn cũng sẽ nghe về các thuật ngữ khác 
+như là Học Tăng Cường (Reinforcement Learning),
+
+52
+00:04:34,070 --> 00:04:38,621
+Hệ thống gợi ý (Recommender System).
+ Chúng đều là các thuật toán học máy mà chúng ta sẽ bàn sau
+
+53
+00:04:38,621 --> 00:04:42,460
+nhưng 2 thuật toán học máy được dùng nhiều nhất là:
+
+54
+00:04:42,460 --> 00:04:46,791
+học có giám sát và học không có giám sát. Tôi sẽ giải thích
+
+55
+00:04:46,791 --> 00:04:51,123
+trong 2 video sau và ta sẽ học nhiều về 2 loại này.
+
+56
+00:04:51,123 --> 00:04:55,720
+Điều này chỉ ra rằng, tốn nhiều thời gian
+
+57
+00:04:55,720 --> 00:05:00,054
+trong lớp học này chính là lời khuyên thiết thực
+ cho việc áp dụng các thuật toán học máy.
+
+58
+00:05:00,054 --> 00:05:04,444
+Đây là điều mà tôi cảm thấy khá chắc chắn, và thực sự là tôi
+
+59
+00:05:04,444 --> 00:05:08,167
+không chắc có bao nhiêu trường đại học dạy điều này. 
+Giảng dạy về thuật toán học máy
+
+60
+00:05:08,167 --> 00:05:12,509
+giống như là cung cấp cho bạn 1 bộ dụng cụ, và
+
+61
+00:05:12,509 --> 00:05:17,616
+quan trọng là làm thể nào để dạy bạn các sử dụng cái công cụ đó.
+
+62
+00:05:17,616 --> 00:05:22,413
+Tôi thích làm một phép so sánh để
+việc học như là trở thành một thợ mộc. Thử tưởng tượng
+
+63
+00:05:22,413 --> 00:05:26,959
+một người nào đó dạy bạn cách để thành một thợ mộc
+và họ đưa bạn 1 cái búa, một cái kềm
+
+64
+00:05:26,959 --> 00:05:31,077
+một cái cưa và "chúc may mắn". 
+ Thật không hay tí nào, đúng không?
+
+65
+00:05:31,077 --> 00:05:34,799
+bạn có tất cả công cụ này, 
+nhưng quan trọng là, cách để sử dụng chúng
+
+66
+00:05:34,799 --> 00:05:38,927
+hợp lý. Có sự khác biệt lớn giữa những người
+
+67
+00:05:38,927 --> 00:05:43,456
+biết cách sử dụng thuật toán học máy với những người
+
+68
+00:05:43,456 --> 00:05:47,626
+không biết dử dụng các công cụ. Trong thung lũng Silicon,
+
+69
+00:05:47,626 --> 00:05:52,328
+khi tôi tới thăm nhiều công ty lớn ở thung lũng Silicon
+
+70
+00:05:52,328 --> 00:05:56,428
+tôi thường thấy nhiều người cố gắng áp dụng
+ các thuật toán học máy vào nhiều vấn đề
+
+71
+00:05:56,428 --> 00:06:00,857
+và thỉnh thoảng họ không giải quyết được trong vòng
+ cả 6 tháng. Tuy nhiên thỉnh thoảng khi tôi nhìn
+
+72
+00:06:00,857 --> 00:06:05,121
+những gì họ làm, tôi nói: "bạn biết không, tôi phải nói là
+
+73
+00:06:05,121 --> 00:06:09,714
+tôi nên nói cách đây 6 tháng là bạn 
+nên áp dụng một thuật toán học máy đi và
+
+74
+00:06:09,714 --> 00:06:14,470
+áp dụng nó như một cách điều chỉnh chút ít và cơ hội thành công có thể sẽ
+
+75
+00:06:14,470 --> 00:06:19,648
+tốt hơn đó". Cho nên, việc mà chúng ta 
+sẽ làm trong lớp này là dành thật nhiều thời gian
+
+76
+00:06:19,648 --> 00:06:23,523
+để tìm cách giải quyết việc: làm cách nào nếu bạn 
+thực sự lập trình 1 hệ thống học máy,
+
+77
+00:06:23,523 --> 00:06:27,596
+làm cách nào để có được những quyết định tốt nhất về cách
+
+78
+00:06:27,596 --> 00:06:31,321
+xây dựng hệ thống khi áp dụng các thuật toán học máy
+
+79
+00:06:31,321 --> 00:06:35,394
+mà tốn ít thời gian hơn.
+
+80
+00:06:35,394 --> 00:06:39,373
+Bạn biết không, nhiều người chỉ có thể nhận ra hệ thống không hoạt đông
+
+81
+00:06:39,373 --> 00:06:43,515
+và chỉ làm phí thời gian sau 6 tháng. Nên tôi thực sự dành
+
+82
+00:06:43,515 --> 00:06:47,707
+nhiều thời gian để dạy cho bạn các loại thực tiễn tốt nhất trong máy học
+
+83
+00:06:47,707 --> 00:06:52,052
+và AI, và làm cách nào để có thể sử dụng bộ công cụ này, 
+cách nào để ta giải quyết nó và cách mà nhiều người giỏi trong
+
+84
+00:06:52,052 --> 00:06:56,143
+thung lung Silicon và trên thế giời giải quyết nó. Tôi hy vọng sẽ giúp bạn thành một người có
+
+85
+00:06:56,143 --> 00:06:59,905
+kiến thức tốt về cách thiết kế và xây dựng hệ thống học máy và AI.
+
+86
+00:06:59,905 --> 00:07:04,698
+Vừa rồi là chút kiến thức về học máy mà tôi sẽ dạy bạn.
+
+87
+00:07:04,698 --> 00:07:09,023
+Tôi sẽ giải thích về học có giám sát trong video sau. Và
+
+88
+00:07:09,023 --> 00:07:13,757
+sau đó là học không có giám sát. Đồng thời cũng sẽ giải thích khi nào bạn sẽ sử dụng nó.

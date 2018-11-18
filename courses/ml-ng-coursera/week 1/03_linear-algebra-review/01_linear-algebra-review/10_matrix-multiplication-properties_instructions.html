@@ -1,0 +1,117 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Matrix Multiplication Properties
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    Matrices are not commutative: $$A∗B \neq B∗A$$
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Matrices are associative: $$(A∗B)∗C =  A∗(B∗C)$$
+   </p>
+  </li>
+ </ul>
+ <p>
+  The
+  <strong>
+   identity matrix
+  </strong>
+  , when multiplied by any matrix of the same dimensions, results in the original matrix. It's just like multiplying numbers by 1. The identity matrix simply has 1's on the diagonal (upper left to lower right diagonal) and 0's elsewhere.
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix} 1 &amp; 0 &amp; 0 \newline 0 &amp; 1 &amp; 0 \newline 0 &amp; 0 &amp; 1 \newline \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  When multiplying the identity matrix after some matrix (A∗I), the square identity matrix's dimension should match the other matrix's
+  <strong>
+   columns
+  </strong>
+  . When multiplying the identity matrix before some other matrix (I∗A), the square identity matrix's dimension should match the other matrix's
+  <strong>
+   rows
+  </strong>
+  .
+ </p>
+ <pre evaluatorid="En9Gc7jWTMa_RnO41szGWw@2" language="matlab">% Initialize random matrices A and B 
+A = [1,2;4,5]
+B = [1,1;0,2]
+
+% Initialize a 2 by 2 identity matrix
+I = eye(2)
+
+% The above notation is the same as I = [1,0;0,1]
+
+% What happens when we multiply I*A ? 
+IA = I*A 
+
+% How about A*I ? 
+AI = A*I 
+
+% Compute A*B 
+AB = A*B 
+
+% Is it equal to B*A? 
+BA = B*A 
+
+% Note that IA = AI but AB != BA</pre>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,574 @@
+1
+00:00:00,200 --> 00:00:03,950
+In the last video we talked
+about the process of evaluating
+
+2
+00:00:03,950 --> 00:00:05,750
+an anomaly detection algorithm.
+
+3
+00:00:05,750 --> 00:00:09,660
+And there we started to use some
+label data with examples that we knew
+
+4
+00:00:09,660 --> 00:00:14,570
+were either anomalous or not anomalous
+with Y equals one, or Y equals 0.
+
+5
+00:00:14,570 --> 00:00:18,670
+And so, the question then arises of, and
+if we have the label data, that we have
+
+6
+00:00:18,670 --> 00:00:23,070
+some examples and know the anomalies,
+and some of them will not be anomalies.
+
+7
+00:00:23,070 --> 00:00:25,690
+Why don't we just use
+a supervisor on half of them?
+
+8
+00:00:25,690 --> 00:00:28,280
+So why don't we just use
+logistic regression, or
+
+9
+00:00:28,280 --> 00:00:32,310
+a neuro network to try to learn
+directly from our labeled data
+
+10
+00:00:32,310 --> 00:00:34,940
+to predict whether Y equals one or
+Y equals 0.
+
+11
+00:00:34,940 --> 00:00:38,970
+In this video, I'll try to share with you
+some of the thinking and some guidelines
+
+12
+00:00:38,970 --> 00:00:42,200
+for when you should probably use
+an anomaly detection algorithm, and
+
+13
+00:00:42,200 --> 00:00:45,549
+whether it might be more fruitful instead
+of using a supervisor in the algorithm.
+
+14
+00:00:47,170 --> 00:00:51,540
+This slide shows what are the settings
+under which you should maybe use
+
+15
+00:00:51,540 --> 00:00:55,830
+anomaly detection versus when supervised
+learning might be more fruitful.
+
+16
+00:00:55,830 --> 00:01:00,210
+If you have a problem with a very
+small number of positive examples, and
+
+17
+00:01:00,210 --> 00:01:05,420
+remember the examples of y equals
+one are the anomaly examples.
+
+18
+00:01:05,420 --> 00:01:09,308
+Then you might consider using
+an anomaly detection algorithm instead.
+
+19
+00:01:09,308 --> 00:01:13,470
+So, having 0 to 20,
+it may be up to 50 positive examples,
+
+20
+00:01:13,470 --> 00:01:14,910
+might be pretty typical.
+
+21
+00:01:14,910 --> 00:01:19,710
+And usually we have such a small positive,
+set of positive examples, we're going to
+
+22
+00:01:19,710 --> 00:01:24,270
+save the positive examples just for
+the cross validation set in the test set.
+
+23
+00:01:24,270 --> 00:01:29,320
+And in contrast, in a typical
+normal anomaly detection setting,
+
+24
+00:01:29,320 --> 00:01:33,180
+we will often have a relatively
+large number of negative examples
+
+25
+00:01:33,180 --> 00:01:37,730
+of the normal examples of
+normal aircraft engines.
+
+26
+00:01:37,730 --> 00:01:41,480
+And we can then use this very large
+number of negative examples With
+
+27
+00:01:41,480 --> 00:01:43,280
+which to fit the model p(x).
+
+28
+00:01:43,280 --> 00:01:47,700
+And so there's this idea that in
+many anomaly detection applications,
+
+29
+00:01:47,700 --> 00:01:51,900
+you have very few positive examples and
+lots of negative examples.
+
+30
+00:01:51,900 --> 00:01:56,290
+And when we're doing
+the process of estimating p(x),
+
+31
+00:01:56,290 --> 00:02:00,640
+affecting all those Gaussian parameters,
+we need only negative examples to do that.
+
+32
+00:02:00,640 --> 00:02:05,380
+So if you have a lot negative data,
+we can still fit p(x) pretty well.
+
+33
+00:02:05,380 --> 00:02:10,010
+In contrast, for supervised learning,
+more typically we would have a reasonably
+
+34
+00:02:10,010 --> 00:02:13,890
+large number of both positive and
+negative examples.
+
+35
+00:02:13,890 --> 00:02:16,770
+And so this is one way to
+look at your problem and
+
+36
+00:02:16,770 --> 00:02:22,170
+decide if you should use an anomaly
+detection algorithm or a supervised.
+
+37
+00:02:22,170 --> 00:02:25,540
+Here's another way that people often
+think about anomaly detection.
+
+38
+00:02:25,540 --> 00:02:27,950
+So for anomaly detection applications,
+
+39
+00:02:27,950 --> 00:02:30,580
+often there are very
+different types of anomalies.
+
+40
+00:02:30,580 --> 00:02:34,280
+So think about so
+many different ways for go wrong.
+
+41
+00:02:34,280 --> 00:02:38,800
+There are so many things that could go
+wrong that could the aircraft engine.
+
+42
+00:02:38,800 --> 00:02:44,430
+And so if that's the case, and if you have
+a pretty small set of positive examples,
+
+43
+00:02:44,430 --> 00:02:47,550
+then it can be hard for an algorithm,
+difficult for an algorithm
+
+44
+00:02:47,550 --> 00:02:51,670
+to learn from your small set of positive
+examples what the anomalies look like.
+
+45
+00:02:51,670 --> 00:02:52,430
+And in particular,
+
+46
+00:02:52,430 --> 00:02:56,060
+you know future anomalies may look
+nothing like the ones you've seen so far.
+
+47
+00:02:56,060 --> 00:02:59,770
+So maybe in your set of positive examples,
+maybe you've seen 5 or 10 or
+
+48
+00:02:59,770 --> 00:03:03,810
+20 different ways that an aircraft
+engine could go wrong.
+
+49
+00:03:03,810 --> 00:03:08,090
+But maybe tomorrow,
+you need to detect a totally new set,
+
+50
+00:03:08,090 --> 00:03:10,450
+a totally new type of anomaly.
+
+51
+00:03:10,450 --> 00:03:12,000
+A totally new way for
+
+52
+00:03:12,000 --> 00:03:16,050
+an aircraft engine to be broken,
+that you've just never seen before.
+
+53
+00:03:16,050 --> 00:03:17,610
+And if that's the case,
+
+54
+00:03:17,610 --> 00:03:23,160
+it might be more promising to just model
+the negative examples with this sort of
+
+55
+00:03:23,160 --> 00:03:27,310
+calcium model p of x instead of try to
+hard to model the positive examples.
+
+56
+00:03:27,310 --> 00:03:30,990
+Because tomorrow's anomaly may be nothing
+like the ones you've seen so far.
+
+57
+00:03:32,310 --> 00:03:37,820
+In contrast, in some other problems,
+you have enough positive examples for
+
+58
+00:03:37,820 --> 00:03:41,250
+an algorithm to get a sense of what
+the positive examples are like.
+
+59
+00:03:41,250 --> 00:03:46,150
+In particular, if you think that future
+positive examples are likely to be similar
+
+60
+00:03:46,150 --> 00:03:48,830
+to ones in the training
+set; then in that setting,
+
+61
+00:03:48,830 --> 00:03:53,210
+it might be more reasonable to have a
+supervisor in the algorithm that looks at
+
+62
+00:03:53,210 --> 00:03:56,710
+all of the positive examples,
+looks at all of the negative examples, and
+
+63
+00:03:56,710 --> 00:03:59,910
+uses that to try to distinguish
+between positives and negatives.
+
+64
+00:04:01,710 --> 00:04:05,410
+Hopefully, this gives you a sense
+of if you have a specific problem,
+
+65
+00:04:05,410 --> 00:04:09,130
+should you think about using
+an anomaly detection algorithm, or
+
+66
+00:04:09,130 --> 00:04:10,039
+a supervised learning algorithm.
+
+67
+00:04:11,080 --> 00:04:14,560
+And a key difference really is that
+in anomaly detection, often we
+
+68
+00:04:14,560 --> 00:04:18,830
+have such a small number of positive
+examples that it is not possible for
+
+69
+00:04:18,830 --> 00:04:22,450
+a learning algorithm to learn that
+much from the positive examples.
+
+70
+00:04:22,450 --> 00:04:26,160
+And so what we do instead is take
+a large set of negative examples and
+
+71
+00:04:26,160 --> 00:04:30,080
+have it just learn a lot, learn p(x)
+from just the negative examples.
+
+72
+00:04:30,080 --> 00:04:32,590
+Of the normal [INAUDIBLE] and
+
+73
+00:04:32,590 --> 00:04:36,600
+we've reserved the small number of
+positive examples for evaluating
+
+74
+00:04:36,600 --> 00:04:40,150
+our algorithms to use in the either
+the transvalidation set or the test set.
+
+75
+00:04:41,190 --> 00:04:45,710
+And just as a side comment about
+this many different types of easier.
+
+76
+00:04:45,710 --> 00:04:50,060
+In some earlier videos we talked
+about the email spam examples.
+
+77
+00:04:50,060 --> 00:04:53,940
+In those examples, there are actually many
+different types of spam email, right?
+
+78
+00:04:53,940 --> 00:04:55,850
+There's spam email that's
+trying to sell you things.
+
+79
+00:04:55,850 --> 00:04:59,950
+Spam email trying to steal your passwords,
+this is called phishing emails and
+
+80
+00:04:59,950 --> 00:05:01,310
+many different types of spam emails.
+
+81
+00:05:01,310 --> 00:05:05,950
+But for the spam problem we usually
+have enough examples of spam
+
+82
+00:05:05,950 --> 00:05:09,640
+email to see most of these
+different types of spam email
+
+83
+00:05:09,640 --> 00:05:12,390
+because we have a large
+set of examples of spam.
+
+84
+00:05:12,390 --> 00:05:16,540
+And that's why we usually think of
+spam as a supervised learning setting
+
+85
+00:05:16,540 --> 00:05:18,107
+even though there are many
+different types of.
+
+86
+00:05:22,318 --> 00:05:27,017
+If we look at some applications of anomaly
+detection versus supervised learning
+
+87
+00:05:27,017 --> 00:05:29,320
+we'll find fraud detection.
+
+88
+00:05:29,320 --> 00:05:34,390
+If you have many different types of ways
+for people to try to commit fraud and
+
+89
+00:05:34,390 --> 00:05:38,580
+a relatively small number of
+fraudulent users on your website,
+
+90
+00:05:38,580 --> 00:05:40,690
+then I use an anomaly detection algorithm.
+
+91
+00:05:40,690 --> 00:05:46,960
+I should say, if you have,
+if you're a very major online retailer and
+
+92
+00:05:46,960 --> 00:05:50,500
+if you actually have had a lot of
+people commit fraud on your website, so
+
+93
+00:05:50,500 --> 00:05:53,780
+you actually have a lot of
+examples of y=1, then sometimes
+
+94
+00:05:53,780 --> 00:05:58,880
+fraud detection could actually shift
+over to the supervised learning column.
+
+95
+00:05:58,880 --> 00:06:05,300
+But, if you haven't seen that many
+examples of users doing strange things
+
+96
+00:06:05,300 --> 00:06:09,890
+on your website, then more frequently
+fraud detection is actually treated as
+
+97
+00:06:09,890 --> 00:06:13,040
+an anomaly detection algorithm rather
+than a supervised learning algorithm.
+
+98
+00:06:14,150 --> 00:06:16,266
+Other examples,
+we've talked about manufacturing already.
+
+99
+00:06:16,266 --> 00:06:20,732
+Hopefully, you see more and more
+examples are not that many anomalies but
+
+100
+00:06:20,732 --> 00:06:23,470
+if again for some manufacturing processes,
+
+101
+00:06:23,470 --> 00:06:27,935
+if you manufacture in very large volumes
+and you see a lot of bad examples,
+
+102
+00:06:27,935 --> 00:06:32,493
+maybe manufacturing can shift to
+the supervised learning column as well.
+
+103
+00:06:32,493 --> 00:06:38,645
+But if you haven't seen that many bad
+examples of so to do the anomaly detection
+
+104
+00:06:38,645 --> 00:06:45,300
+monitoring machines in a data center
+[INAUDIBLE] similar source of apply.
+
+105
+00:06:45,300 --> 00:06:47,400
+Whereas, you must have classification,
+
+106
+00:06:47,400 --> 00:06:50,310
+weather prediction, and
+classifying cancers.
+
+107
+00:06:50,310 --> 00:06:54,600
+If you have equal numbers of positive and
+negative examples.
+
+108
+00:06:55,600 --> 00:06:57,290
+Your positive and your negative examples,
+
+109
+00:06:57,290 --> 00:07:00,900
+then we would tend to treat all
+of these as supervisor problems.
+
+110
+00:07:00,900 --> 00:07:05,390
+So hopefully, that gives you a sense of
+
+111
+00:07:05,390 --> 00:07:09,090
+one of the properties of a learning
+problem that would cause
+
+112
+00:07:09,090 --> 00:07:14,320
+you to treat it as an anomaly detection
+problem versus a supervisory problem.
+
+113
+00:07:14,320 --> 00:07:18,500
+And for many other problems that are faced
+by various technology companies and so
+
+114
+00:07:18,500 --> 00:07:22,380
+on, we actually are in the settings
+where we have very few or
+
+115
+00:07:22,380 --> 00:07:25,440
+sometimes zero positive training examples.
+
+116
+00:07:25,440 --> 00:07:26,830
+There's just so
+
+117
+00:07:26,830 --> 00:07:29,490
+many different types of anomalies
+that we've never seen them before.
+
+118
+00:07:29,490 --> 00:07:31,650
+And for those sorts of problems,
+
+119
+00:07:31,650 --> 00:07:35,490
+very often the algorithm that is used
+is an anomaly detection algorithm.

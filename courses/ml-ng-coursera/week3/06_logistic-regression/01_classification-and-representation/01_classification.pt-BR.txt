@@ -1,0 +1,100 @@
+Neste e em alguns dos próximos vídeos, gostaria de começar falando sobre problemas de classificação, onde a variável y que
+desejamos estimar é um valor discreto. Desenvolveremos um algoritmo
+chamado regressão logística, o qual é um dos mais populares e mais
+largamente usados hoje em dia em Aprendizagem de Máquina. Estes são alguns exemplos de
+problemas de classificação. Nos vídeos anteriores, 
+falamos sobre classificação de spams de e-mails, como um exemplo de problema de classificação. Outro exemplo poderia ser a classificação de transações online. Então, se você tem um web site
+de venda de coisas e se você quiser saber se uma transação
+específica é fraudulenta ou não, se alguém está usando um cartão de crédito 
+roubado, ou se roubou a senha de um usuário. Há outro problema de classificação, do qual falamos anteriormente: 
+o exemplo da classificação de tumores como sendo cancerígenos,
+que são malignos, ou em tumores benignos. Em todos estes problemas a variável que
+estamos tentando estimar é uma variável "y" que nós podemos pensar como se
+ela pudesse ter dois valores: ou zero ou um, ou spam ou não spam, fraudulento ou 
+não fraudulento, cancerígino ou benigno. Outro nome para a classe denotada 
+pelo zero é a classe negativa, e o outro nome para a classe denotada 
+pelo um é a classe positiva. Portanto, o zero significa tumor benigno,
+e o um, a classe positiva, 
+um tumor maligno. Da mesma forma, as duas classes, 
+para spam, um, ou não spam, zero. Atribuir as duas classes,
+positiva e negativa, ao zero e ao um é de certo modo arbitrário e não importa muito, mas frequentemente há
+esta intuição de que uma classe negativa representa a falta de algo
+como a falta de um tumor maligno. Conquanto que o um, a classe positiva
+representa a presença de algo que podemos estar procurando, mas
+a definição de qual é negativo e qual é positivo é de certo modo arbitrário
+e não importa muito. Por hora, estudaremos os 
+problemas de classificação com apenas duas classes: zero e um. Mais tarde, falaremos sobre problemas
+de múltiplas classes, nos quais o "y" poder ter quatro valores: zero
+um, dois ou três. Eles são chamados de problemas
+de classificação multiclasse. Porém, em alguns dos próximos vídeos, vamos
+começar com duas classes, chamado de problema de classificação binária, e nos
+importaremos com multiclasse mais adiante. Como desenvolver
+um algoritmo de classificação? Temos aqui um exemplo  de um conjunto 
+de treino para uma tarefa de classificação visando classificar um tumor em maligno ou
+benigno. Observe que a malignidade recebe
+apenas dois valores, zero para não, e um par sim. Logo, algo que poderíamos fazer
+dado este conjunto de treino é aplicar o algoritmo
+que já conhecemos. A regressão linear neste conjunto de dados e apenas tentar ajustar a 
+reta aos dados. Se pegarmos este conjunto de treino e
+ajustarmos uma reta à ele, pode ser que obtenha uma 
+hipótese que se pareça com esta aqui, certo? Logo, essa é minha hipótese, h(x) = teta transposta multiplicada por x. Se quisermos estimar algo, podemos
+tentar o seguinte: estabelecer um limite para os resultados do classificador em 0,5,
+cujo valor é representado no eixo vertical na altura 0,5 e assim, se a hipótese resultar num valor maior ou 
+igual a 0,5, assumimos y = 1. Se o valor for menor do que 0,5, 
+assumimos y = 0. Vamos ver o que acontece quando fazemos isto. Temos 0,5 aqui
+como limite para os resultados e usando a Regressão Linear desta forma: tudo que cair do lado direito deste
+ponto vamos estimar como sendo casos positivos, porque os valores resultantes são maiores que
+0,5 no eixo vertical e tudo que cair à esquerda deste ponto, estimaremos
+como sendo um valor de negação. Neste caso particular, parece que a Regressão Linear está,
+na verdade, fazendo algo razoável, e é isso que estamos interessados,
+nesta tarefa de classificação. Mas, vamos alterar um pouco o problema. Deixem-me estender o eixo horizontal
+um pouco mais e digamos que temos mais um
+exemplo de treino bem mais à direita. Note que este exemplo adicional, este bem aqui, ele de fato,
+não altera nada, certo? Analisando o conjunto de treino fica 
+claro o que é ter uma boa hipótese. É que, tudo o que está 
+aqui pela direita, à direita disso,
+podemos estimar como positivo. Tudo à esquerda provavelmente podemos
+estimar como sendo negativo, porque a partir deste conjunto de treino, parece que todos os tumores
+maiores do que um certo valor por aqui são malignos, e todos os tumores menores
+do que isso não são malignos, pelo menos para este conjunto de treino. Mas, após termos adicionado um exemplo extra,
+aqui, se rodarmos a regressão linear, obteremos uma 
+outra reta, que se ajusta os dados. Que deve parecer com essa linha azul. E se estabelecermos agora o limite
+da hipótese em 0,5, acabaremos tendo o limite de 0,5
+posicionado mais ou menos aqui, então, tudo à direita deste
+ponto estimaremos como positivo e tudo à esquerda dele
+estimaremos como sendo negativo. Isso parece péssimo, 
+que foi feito pela Regressão Linear, porque como sabemos, estes são nossos exemplos
+positivos, e estes nossos exemplos negativos. Ficou bem claro que nós deveríamos
+separar os dois mais ou menos aqui, mas, de algum jeito, ao adicionarmos um exemplo
+aqui bem à direita, este exemplo não nos trouxe
+nada de novo. Digo, não deveria haver nenhuma surpresa
+para o algoritmo de aprendizagem. Ou seja, classificar este novo exemplo aqui
+como maligno, mas, de alguma forma este novo exemplo aqui
+fez com que a Regressão Linear mudasse sua reta para se ajustar aos dados
+desta linha magenta aqui para esta linha azul, e 
+resultou para nós numa hipótese pior. Portanto, aplicar Regressão Linear
+em um problema de classificação geralmente não é uma grande ideia. No primeiro exemplo, antes de ter
+adicionado um exemplo de treino extra, a Regressão Linear sobre eles estava apeas
+tendo sorte e nos havia dado uma hipótese que funcionava bem para aquele exemplo
+em particular, mas, geralmente aplicar Regressão Linear a um conjunto de dados, é
+apenas uma questão de sorte, não é uma boa ideia. Eu não usaria Regressão Linear para
+problemas de classificação. Aqui vai outra coisa engraçada 
+que poderia ocorrer se aplicássemos Regressão Linear para 
+problemas de classificação. Para classificação, nós sabemos 
+que y é ou zero ou um. Mas, usando Regressão Linear onde a hipótese pode resultar em valores ou muito 
+acima de um ou muito abaixo de zero, mesmo se todos os seus exemplos de treino
+tiveram y estabelecido em zero ou um, soa um pouco estranho,
+mesmo que saibamos que deveriam ser zero,
+ou um, fica esquisito se o algoritmo nos der valores muito maiores do que um 
+ou muito menores do que zero. Assim, o que faremos em alguns dos próximos vídeos,
+é desenvolver um algoritmo chamado de Regressão Logística, o qual tem a propriedade que os valores estimados estejam 
+sempre entre zero e um, e não se tornam maiores do que um
+nem menores do que zero. Aliás, Regressão Logística é, um algoritmo de classificação. Pode ser confuso o termo
+regressão aparecer neste nome ainda que Regressão Logística seja,
+de fato, um algoritmo de classificação. Mas, é só um nome que foi dado
+por razões históricas. Então, não se confunda Regressão
+Logística é na verdade um algorítimo de classificação que aplicamos a conjuntos de dados,
+nos quais os valores de y são discretos, quando y puder ser zero ou um. Espero que, agora, você saiba o porquê,
+tendo um problema de classificação, não é uma boa ideia de se usar Regressão Linear. No próximo vídeo, começaremos a trabalhar nos detalhes
+do algoritmo de Regressão Logística.
+Tradução: Carlos Lage | Revisão:

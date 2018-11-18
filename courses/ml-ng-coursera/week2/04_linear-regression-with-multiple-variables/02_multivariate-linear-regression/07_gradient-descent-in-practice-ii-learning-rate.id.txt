@@ -1,0 +1,24 @@
+Di video ini, saya ingin mengajarkan tips praktis lainnya untuk membuat
+gradien descent bekerja. Idenya akan berpusat di sekitar kecepatan belajar
+alfa. Konkritnya, ini aturan terbaru gradient descent, dan apa yang saya ingin lakukan di video ini adalah mengajari Anda tentang apa yang saya pikir "debugging", yakni tips untuk memastikan gradient descent bekerja dengan benar. Kedua, saya ingin mengajarkan bagaimana memilih kecepatan belajar alfa. Ini yang sering saya lakukan untuk memastikan gradient descent
+bekerja dengan benar. Tugas gradient descent adalah mencari nilai theta yang diharapkan dapat meminimalkan fungsi
+harga J theta. Apa yang sering saya lakukan adalah memplot fungsi harga J theta selagi gradient descent bekerja. Jadi, sumbu x ini adalah jumlah iterasi gradient descent, dan selagi gradient descent bekerja, diharapkan mendapat plot yang mungkin
+terlihat seperti ini. Perhatikan, sumbu x ini adalah jumlah iterasi, sebelumnya kita melihat plot J theta dimana sumbu x-nya adalah vektor parameter theta, tapi
+di sini berbeda. Konkritnya, titik ini adalah saya akan menyusun gradient descent untuk seratus
+iterasi. Dan beberapa pun nilai theta yang saya peroleh setelah seratus iterasi saya akan mengevaluasi fungsi harga J theta untuk nilai theta yang saya peroleh setelah seratus iterasi, dan tinggi vertikal ini adalah nilai J theta untuk nilai theta yang saya peroleh setelah 100 iterasi gradient descent. Dan, titik ini berkaitan dengan nilai J theta untuk theta yang saya peroleh setelah saya menjalankan gradient descent untuk 200
+iterasi. Jadi, plot ini menunjukkan nilai fungsi harga Anda setelah beberapa
+iterasi gradient descent. Jika, gradient descent bekerja dengan baik, maka J theta seharusnya berkurang setiap iterasi. Dan 1 hal berguna yang plot ini bisa katakan pada Anda adalah jika Anda lihat gambar yang saya buat, tampaknya saat mencapai 300 iterasi, antara 300 dan 400 iterasi, di bagian ini, tampaknya J theta tidak berkurang banyak
+lagi. Sehingga, saat Anda mencapai 400 iterasi, tampaknya kurva ini telah rata di sini. Jadi, pada 400 iterasi tampaknya gradient descent kurang lebih telah konverge, karena fungsi harga J Anda tidak berkurang
+banyak lagi. Jadi, dengan melihat gambar ini bisa membantu
+Anda menilai gradient descent sudah konverge
+atau belum. Jumlsh iterasi yang diambil gradient descent agar konverge untuk aplikasi fisik bisa sangat bervariasi. Mungkin di 1 aplikasi gradient descent bisa konverge setelah 30 iterasi, untuk aplikasi lain gradient descent membuat 3000 iterasi. Untuk algoritma belajar lain akan perlu 3 juta iterasi. Akan sangat sulit mengatakan lebih dulu berapa banyak iterasi gradient descent perlukan untuk
+konverge, dan biasanya dengan memplot fungsi harga sambil menambah jumlah
+iterasinya. Biasanya dengan melihat plot-plot ini saya bisa katakan jika gradient descent telah
+konverge. Mungkin juga melakukan uji konvergensi otomatis, sebut saja punya algoritma yang coba mengatakan pada Anda jika gradient
+descent telah konverge, dan ini mungkin contoh yang sangat khas dari uji konvergensi otomatis yang menyatakan konvergen jika fungsi harga J theta Anda berkurang
+hingga kurang dari suatu nilai epsilon yang kecil, 10 pangkat -3 dalam 1 iterasi, tapi yang saya temukan, biasanya memilih batas ambang seperti ini sangat
+sulit. Jadi, untuk mengecek gradient descent telah konverge, saya cenderung melihat pada plot seperti gambar di kiri ini daripada bergantung pada uji
+konvergensi otomatis. Dengan melihat pada gambar seperti ini, Anda
+bisa diperingatkan terlebih dahulu jika gradient descent
+tidak bekerja dengan benar. Konkritnya, jika Anda plot J theta sebagai fungsi jumlah iterasi, maka jika
+Anda melihat gambar seperti ini, dimana J theta sebenarnya

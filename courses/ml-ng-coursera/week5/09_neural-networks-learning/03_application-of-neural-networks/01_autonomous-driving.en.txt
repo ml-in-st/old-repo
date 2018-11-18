@@ -1,0 +1,66 @@
+In this video, I'd like to show you
+a fun and historically important example of neural networks learning of using
+a neural network for autonomous driving. That is getting a car to
+learn to drive itself. The video that I'll showed a minute
+was something that I'd gotten from Dean Pomerleau, who was a colleague who
+works out in Carnegie Mellon University out on the east coast
+of the United States. And in part of the video you
+see visualizations like this. And I want to tell what a visualization
+looks like before starting the video. Down here on the lower left is the view
+seen by the car of what's in front of it. And so here you kinda see a road that's
+maybe going a bit to the left, and then going a little bit to the right. And up here on top, this first horizontal bar shows the
+direction selected by the human driver. And this location of this bright white
+band that shows the steering direction selected by the human driver where you
+know here far to the left corresponds to steering hard left, here corresponds
+to steering hard to the right. And so this location which is a little bit
+to the left, a little bit left of center means that the human driver at this
+point was steering slightly to the left. And this second bot here corresponds
+to the steering direction selected by the learning algorithm and again the location of this sort of white
+band means that the neural network was here selecting a steering direction
+that's slightly to the left. And in fact before the neural
+network starts leaning initially, you see that the network outputs
+a grey band, like a grey, like a uniform grey band throughout this
+region and sort of a uniform gray fuzz corresponds to the neural network
+having been randomly initialized. And initially having no
+idea how to drive the car. Or initially having no idea of
+what direction to steer in. And is only after it has learned for a while, that will then start to output
+like a solid white band in just a small part of the region corresponding to
+choosing a particular steering direction. And that corresponds to when the neural
+network becomes more confident in selecting a band in
+one particular location, rather than outputting a sort of light
+gray fuzz, but instead outputting a white band that's more constantly
+selecting one's steering direction. >> ALVINN is a system of
+artificial neural networks that learns to steer by
+watching a person drive. ALVINN is designed to
+control the NAVLAB 2, a modified Army Humvee who
+had put sensors, computers, and actuators for
+autonomous navigation experiments. The initial step in configuring ALVINN
+is creating a network just here. During training, a person drives
+the vehicle while ALVINN watches. Once every two seconds, ALVINN digitizes
+a video image of the road ahead, and records the person's steering direction. This training image is reduced in
+resolution to 30 by 32 pixels and provided as input to ALVINN's
+three layered network. Using the back propagation learning
+algorithm,ALVINN is training to output the same steering direction as
+the human driver for that image. Initially the network
+steering response is random. After about two minutes of training
+the network learns to accurately imitate the steering reactions
+of the human driver. This same training procedure is
+repeated for other road types. After the networks have been trained
+the operator pushes the run switch and ALVINN begins driving. Twelve times per second,
+ALVINN digitizes the image and feeds it to its neural networks. Each network, running in parallel,
+produces a steering direction, and a measure of its'
+confidence in its' response. The steering direction,
+from the most confident network, in this network training for the one lane
+road, is used to control the vehicle. Suddenly an intersection
+appears ahead of the vehicle. As the vehicle approaches the intersection
+the confidence of the lone lane network decreases. As it crosses the intersection and
+the two lane road ahead comes into view, the confidence of the two
+lane network rises. When its' confidence rises the two
+lane network is selected to steer. Safely guiding the vehicle into
+its lane onto the two lane road. >> So that was autonomous driving
+using the neural network. Of course there are more recently more
+modern attempts to do autonomous driving. There are few projects in the US and
+Europe and so on, that are giving more robust
+driving controllers than this, but I think it's still pretty remarkable and
+pretty amazing how instant neural network trained with backpropagation can actually
+learn to drive a car somewhat well.

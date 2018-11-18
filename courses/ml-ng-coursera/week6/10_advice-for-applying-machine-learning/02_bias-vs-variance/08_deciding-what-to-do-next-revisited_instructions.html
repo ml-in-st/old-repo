@@ -1,0 +1,175 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Deciding What to Do Next Revisited
+ </h1>
+ <p>
+  Our decision process can be broken down as follows:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <strong>
+     Getting more training examples:
+    </strong>
+    Fixes high variance
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <strong>
+     Trying smaller sets of features:
+    </strong>
+    Fixes high variance
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <strong>
+     Adding features:
+    </strong>
+    Fixes high bias
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <strong>
+     Adding polynomial features:
+    </strong>
+    Fixes high bias
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <strong>
+     Decreasing λ:
+    </strong>
+    Fixes high bias
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <strong>
+     Increasing λ:
+    </strong>
+    Fixes high variance.
+   </p>
+  </li>
+ </ul>
+ <h3 level="3">
+  <strong>
+   Diagnosing Neural Networks
+  </strong>
+ </h3>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    A neural network with fewer parameters is
+    <strong>
+     prone to underfitting
+    </strong>
+    . It is also
+    <strong>
+     computationally cheaper
+    </strong>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    A large neural network with more parameters is
+    <strong>
+     prone to overfitting
+    </strong>
+    . It is also
+    <strong>
+     computationally expensive
+    </strong>
+    . In this case you can use regularization (increase λ) to address the overfitting.
+   </p>
+  </li>
+ </ul>
+ <p>
+  Using a single hidden layer is a good starting default. You can train your neural network on a number of hidden layers using your cross validation set. You can then select the one that performs best.
+ </p>
+ <p>
+  <strong>
+   Model Complexity Effects:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Lower-order polynomials (low model complexity) have high bias and low variance. In this case, the model fits poorly consistently.
+   </p>
+  </li>
+  <li>
+   <p>
+    Higher-order polynomials (high model complexity) fit the training data extremely well and the test data extremely poorly. These have low bias on the training data, but very high variance.
+   </p>
+  </li>
+  <li>
+   <p>
+    In reality, we would want to choose a model somewhere in between, that can generalize well but also fits the data reasonably well.
+   </p>
+  </li>
+ </ul>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

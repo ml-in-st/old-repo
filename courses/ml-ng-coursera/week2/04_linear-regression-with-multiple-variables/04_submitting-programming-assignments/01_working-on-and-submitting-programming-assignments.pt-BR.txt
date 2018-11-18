@@ -1,0 +1,34 @@
+Nesse vídeo, eu vou apenas mostra como fazer as tarefas de casa, e como usar o sistema de envio, que lhe permite verificar instantaneamente se você acertou as respostas
+nos seus exercícios de Aprendizado de Máquina. Aqui está minha janela do Octave e,
+primeiro vamos para o meu desktop. Eu salvei os arquivos para o meu primeiro exercício,
+alguns deles no meu desktop: nesse diretório, 'ml-class-ex1'. E nós fornecemos um número de arquivos
+e pedimos pra você editar alguns deles. Assim, para o primeiro arquivo, voce vai encontrar detalhes
+no arquivo pdf para esse exercício de programação. Mas, um dos arquivos que pedimos para você editar
+é esse, chamado "warmUpExercise.m", onde o exercício é apenas para ver se você está
+familiarizado com o sistema de envio. E tudo o que você precisa fazer é
+retornar a matriz identidade "5x5". Portanto, a solução desse exercício, eu vou
+mostrar, é so escrever "A = eye(5)". Assim, isso modifica a função para
+gerar a matriz identidade "5x5". E essa função "warmUpExercise()"
+agora retorna a matriz identidade "5x5" E eu vou salvar. Então, eu fiz a primeira parte da tarefa.
+Voltando para a janela do Octave, vamos para o diretório,
+'C:\Users\ang\Desktop\ml-class-ex1'. E, se eu quiser ter certeza que isso foi implementado,
+eu digito 'warmUpExercise()', e isso retorna a matriz identidade "5x5"
+que acabamos de criar. E agora eu posso enviar o código, da seguinte maneira:
+Eu digito 'submit()' nesse diretório, e estou pronto para enviar a parte 1,
+então entro '1'. Então, o sistema pede meu endereço de email.
+Eu vou ao site do curso. Esse é um site interno de testes.
+Sua versão do website pode ser um pouco diferente. Mas, esse é meu endereço de email e essa é mina
+senha de envio, e eu vou digita-los aqui. Então eu tenho 'ang@cs.stanford.edu' e
+minha senha de envio é '9yC75USsGf'. Eu aperto <enter>, e ele se conecta ao servidor e faz o envio, e o sistema diz "Parabéns! Você completou
+com sucesso a Tarefa de casa 1 Parte 1". E verifica se você fez essa parte corretamente. E se você não enviar a resposta correta,
+o sistema mostrará uma mensagem, indicando que sua resposta está incorreta. E, você pode usar essa senha de envio,
+ou você pode gerar uma nova senha. Você pode usar a senha de login do site,
+mas como essa senha será digitada, em texto visível no seu monitor,
+nós damos a você uma senha de envio extra, caso você não queira digitar sua
+senha normal do site em uma janela que, dependendo do sistema operacional,
+pode ou não aparecer como um texto, quando você digita no script de envio do Octave. Portanto, é assim que você envia a
+tarefa de casa, depois que tiver terminado. Boa sorte e, quando você estiver fazendo as tarefas,
+espero que você consiga fazê-las corretamente. E, finalmente, no próximo e último vídeo
+de tutorial do Octave, eu vou falar sobre vetorização, que é uma maneira de
+fazer seu código Octave rodar de maneira mais eficiente.
+Tradução: Carlos Lacerda | Revisão: Pablo de Morais Andrade

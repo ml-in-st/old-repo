@@ -1,0 +1,1697 @@
+1
+00:00:01,370 --> 00:00:02,420
+En el último vídeo hablamos
+
+2
+00:00:02,740 --> 00:00:04,200
+acerca del problema del sistema de recomendación
+
+3
+00:00:05,030 --> 00:00:06,270
+en el que, por ejemplo, pudieran
+
+4
+00:00:06,380 --> 00:00:07,810
+tener un conjunto de películas y
+
+5
+00:00:07,940 --> 00:00:09,140
+pudiera tener un conjunto de usuarios,
+
+6
+00:00:09,810 --> 00:00:10,960
+cada uno de los cuales ha calificado
+
+7
+00:00:11,670 --> 00:00:13,170
+algún subconjunto de las películas,
+
+8
+00:00:13,370 --> 00:00:14,340
+calificando las películas con 1 a
+
+9
+00:00:14,500 --> 00:00:15,460
+5 estrellas o de 0 a 5
+
+10
+00:00:15,630 --> 00:00:16,830
+estrellas, y lo que me gustaría
+
+11
+00:00:17,200 --> 00:00:18,170
+hacer, es ver a
+
+12
+00:00:18,240 --> 00:00:19,720
+estos usuarios y predecir cómo
+
+13
+00:00:19,910 --> 00:00:22,540
+habrían calificado otras películas que aún no han calificado.
+
+14
+00:00:23,530 --> 00:00:24,540
+En este video, me gustaría
+
+15
+00:00:24,600 --> 00:00:25,950
+hablar de nuestro primer planteamiento
+
+16
+00:00:26,430 --> 00:00:28,190
+para construir un sistema de recomendación; este
+
+17
+00:00:28,360 --> 00:00:30,100
+enfoque se denomina «recomendaciones basadas en el contenido.»
+
+18
+00:00:31,460 --> 00:00:32,690
+Aquí tenemos el conjunto de datos que establecimos anteriormente
+
+19
+00:00:33,310 --> 00:00:34,470
+y, sólo para recordarles un
+
+20
+00:00:34,550 --> 00:00:35,780
+poco de la notación, estuve usando
+
+21
+00:00:36,690 --> 00:00:37,870
+nu para denotar el número
+
+22
+00:00:38,030 --> 00:00:39,110
+de usuarios, así es que ese es igual
+
+23
+00:00:39,290 --> 00:00:40,990
+a 4, y nm
+
+24
+00:00:41,990 --> 00:00:44,780
+para indicar el número de películas; tengo cinco películas.
+
+25
+00:00:47,230 --> 00:00:48,140
+Así que, ¿cómo puedo predecir
+
+26
+00:00:48,960 --> 00:00:50,950
+cuales serían estos valores faltantes?
+
+27
+00:00:52,490 --> 00:00:53,520
+Supongamos que para cada
+
+28
+00:00:53,700 --> 00:00:55,500
+una de estas películas, tengo un
+
+29
+00:00:55,540 --> 00:00:57,460
+conjunto de variables para ellas.
+
+30
+00:00:57,910 --> 00:00:58,990
+En particular, digamos que
+
+31
+00:00:59,690 --> 00:01:00,850
+para cada una de las películas, tengo dos variables
+
+32
+00:01:01,920 --> 00:01:03,500
+que voy a llamar x1 y
+
+33
+00:01:04,080 --> 00:01:05,700
+x2, en donde x1 mide hasta qué grado
+
+34
+00:01:06,130 --> 00:01:07,450
+una película es una
+
+35
+00:01:07,650 --> 00:01:09,270
+película romántica y x2 mide
+
+36
+00:01:09,810 --> 00:01:12,080
+hasta qué una película es una película de acción.
+
+37
+00:01:12,840 --> 00:01:13,700
+Así que si tomamos la película
+
+38
+00:01:14,470 --> 00:01:16,490
+Love at last,
+
+39
+00:01:16,800 --> 00:01:17,960
+la calificación de 0.9 en la
+
+40
+00:01:18,030 --> 00:01:19,190
+escala de romance, es una
+
+41
+00:01:19,260 --> 00:01:20,850
+película muy romántica, pero cero en
+
+42
+00:01:20,920 --> 00:01:22,400
+la escala de la acción, de modo que casi no hay
+
+43
+00:01:22,520 --> 00:01:24,390
+acción en esa
+
+44
+00:01:24,540 --> 00:01:25,860
+película. Romance forever tuvo 1.0,
+
+45
+00:01:26,230 --> 00:01:27,610
+mucho romance, y 0.01 de acción,
+
+46
+00:01:27,860 --> 00:01:29,790
+no sé, tal vez
+
+47
+00:01:30,700 --> 00:01:32,650
+hay un accidente de tráfico menor en
+
+48
+00:01:33,630 --> 00:01:35,580
+esa película o algo parecido, así que poca acción.
+
+49
+00:01:35,610 --> 00:01:36,760
+Nos vamos a saltar una; veamos
+
+50
+00:01:37,860 --> 00:01:39,630
+Swords vs. Karate; tal vez esa
+
+51
+00:01:39,870 --> 00:01:41,110
+tiene una calificación de cero en romance
+
+52
+00:01:41,520 --> 00:01:42,780
+y sin romance en absoluto en ella,
+
+53
+00:01:43,250 --> 00:01:46,040
+pero mucha acción y, ya saben, persecuciones de coches sin parar.
+
+54
+00:01:46,300 --> 00:01:47,120
+Tal vez haya
+
+55
+00:01:47,220 --> 00:01:48,390
+un poco de romance en
+
+56
+00:01:48,500 --> 00:01:49,800
+esa película, pero sobre todo acción,
+
+57
+00:01:50,460 --> 00:01:51,560
+y en Cute puppies of
+
+58
+00:01:51,680 --> 00:01:52,730
+love nuevamente, es sobre todo una película de romance
+
+59
+00:01:53,510 --> 00:01:54,410
+sin acción en absoluto.
+
+60
+00:01:55,990 --> 00:01:57,150
+Así que si tenemos variables
+
+61
+00:01:57,550 --> 00:01:59,220
+como éstas, entonces cada película
+
+62
+00:01:59,800 --> 00:02:01,510
+se puede representar con un vector de dirección.
+
+63
+00:02:02,380 --> 00:02:03,810
+Tomemos la película 1, sólo
+
+64
+00:02:04,020 --> 00:02:06,210
+las llamaremos películas 1 2, 3, 4 y 5.
+
+65
+00:02:06,630 --> 00:02:08,180
+Para mi primera película,
+
+66
+00:02:08,520 --> 00:02:09,810
+Love at last, tengo
+
+67
+00:02:10,170 --> 00:02:11,710
+mis dos variables, 0.9 y
+
+68
+00:02:12,180 --> 00:02:12,950
+0, por lo que estas son las variables
+
+69
+00:02:13,380 --> 00:02:16,170
+x1 y x2, y
+
+70
+00:02:16,340 --> 00:02:17,270
+agreguemos una variable extra,
+
+71
+00:02:17,790 --> 00:02:18,780
+como de costumbre, que es mi
+
+72
+00:02:19,350 --> 00:02:21,640
+variable interceptor x0, que es igual a 1
+
+73
+00:02:22,680 --> 00:02:23,810
+y así, al unirlas,
+
+74
+00:02:24,700 --> 00:02:26,150
+tendría entonces una variable x(1),
+
+75
+00:02:26,970 --> 00:02:28,420
+el superíndice 1 indica que es
+
+76
+00:02:28,510 --> 00:02:29,430
+el vector de dirección para mi primera
+
+77
+00:02:29,770 --> 00:02:30,720
+película, y este vector de dirección
+
+78
+00:02:30,980 --> 00:02:32,520
+es igual a uno.
+
+79
+00:02:33,190 --> 00:02:34,880
+El primero de ellos es el interceptor,
+
+80
+00:02:35,740 --> 00:02:37,010
+y luego mis dos variables 0.9, 0,
+
+81
+00:02:37,260 --> 00:02:39,330
+de esta manera.
+
+82
+00:02:40,370 --> 00:02:41,360
+De modo que, para Love at last,
+
+83
+00:02:41,550 --> 00:02:43,470
+tendría un vector de dirección x(1)
+
+84
+00:02:44,480 --> 00:02:46,220
+para la película  Romance forever, tenemos
+
+85
+00:02:46,340 --> 00:02:47,510
+un vector de dirección separado
+
+86
+00:02:47,800 --> 00:02:49,310
+x(2), y así sucesivamente, y
+
+87
+00:02:49,380 --> 00:02:50,780
+para Swords vs karate tendría
+
+88
+00:02:51,510 --> 00:02:54,050
+un vector de dirección diferente x superíndice 5.
+
+89
+00:02:56,150 --> 00:02:57,460
+También, consistente con nuestra
+
+90
+00:02:57,680 --> 00:02:59,090
+notación anterior que estábamos
+
+91
+00:02:59,300 --> 00:03:00,220
+utilizando, vamos a establecer n
+
+92
+00:03:00,490 --> 00:03:02,130
+para que sea el número de variables, sin
+
+93
+00:03:02,360 --> 00:03:03,530
+contar este término de la intersección x cero
+
+94
+00:03:03,810 --> 00:03:05,320
+de modo que n  es
+
+95
+00:03:05,420 --> 00:03:06,600
+igual a dos, porque tenemos
+
+96
+00:03:06,790 --> 00:03:08,180
+dos variables
+ x1 y x2
+
+97
+00:03:08,890 --> 00:03:10,140
+que capturan el grado de romance
+
+98
+00:03:10,640 --> 00:03:11,980
+y el grado de acción en cada
+
+99
+00:03:12,630 --> 00:03:14,270
+película. 
+Ahora bien, a fin
+
+100
+00:03:14,560 --> 00:03:17,930
+de hacer las predicciones, aquí está algo que podríamos hacer,
+
+101
+00:03:19,230 --> 00:03:20,980
+y es que podríamos tratar de predecir
+
+102
+00:03:21,160 --> 00:03:22,340
+las calificaciones de cada usuario
+
+103
+00:03:23,250 --> 00:03:26,210
+como un problema de regresión lineal separado. Así es que
+
+104
+00:03:26,440 --> 00:03:27,660
+digamos específicamente que para cada
+
+105
+00:03:27,920 --> 00:03:29,170
+usuario j vamos a
+
+106
+00:03:29,270 --> 00:03:30,860
+conocer un vector de parámetros teta
+
+107
+00:03:31,340 --> 00:03:33,030
+j, que en este caso sería R3,
+
+108
+00:03:33,540 --> 00:03:35,730
+de manera más general teta j estaría en
+
+109
+00:03:35,950 --> 00:03:37,960
+R n+1, en donde n
+
+110
+00:03:38,340 --> 00:03:39,460
+es el número de variables,
+
+111
+00:03:39,700 --> 00:03:42,170
+sin contar el término de intersepción, y vamos
+
+112
+00:03:42,440 --> 00:03:43,880
+a predecir al usuario j como
+
+113
+00:03:44,050 --> 00:03:45,780
+si estuviera calificando la película i, sólo con
+
+114
+00:03:46,000 --> 00:03:47,390
+el producto interno entre los parámetros
+
+115
+00:03:47,860 --> 00:03:50,590
+vector teta y las variables "xii".
+
+116
+00:03:51,830 --> 00:03:53,680
+Así es que vamos a tomar un ejemplo concreto.
+
+117
+00:03:55,130 --> 00:03:56,700
+Tomemos al usuario uno.
+
+118
+00:03:59,600 --> 00:04:01,120
+Esa sería Alice y,
+
+119
+00:04:01,380 --> 00:04:02,700
+asociado con Alice, estaría
+
+120
+00:04:02,830 --> 00:04:03,990
+algún vector de  parámetros,
+
+121
+00:04:04,810 --> 00:04:06,210
+teta 1, y nuestro
+
+122
+00:04:06,520 --> 00:04:07,610
+segundo usuario, Bob, estará
+
+123
+00:04:07,720 --> 00:04:08,600
+asociado con un vector de parámetros diferente,
+
+124
+00:04:08,970 --> 00:04:10,290
+teta 2.
+
+125
+00:04:10,800 --> 00:04:12,190
+Carol se asociará con un
+
+126
+00:04:12,300 --> 00:04:13,360
+vector de parámetros diferente, teta
+
+127
+00:04:13,660 --> 00:04:14,790
+3, y Dave con otro
+
+128
+00:04:15,750 --> 00:04:17,670
+vector de parámetros, teta 4. Así es que
+
+129
+00:04:18,090 --> 00:04:18,990
+digamos que queremos hacer una
+
+130
+00:04:19,320 --> 00:04:21,040
+predicción de lo que Alice pensará
+
+131
+00:04:21,240 --> 00:04:22,450
+de la película, Cute
+
+132
+00:04:22,690 --> 00:04:24,640
+puppies of love. Bueno, esa
+
+133
+00:04:24,810 --> 00:04:25,670
+película va a tener un
+
+134
+00:04:26,810 --> 00:04:29,180
+vector de parámetros x(3), en donde
+
+135
+00:04:29,410 --> 00:04:30,400
+tenemos que X(3) va
+
+136
+00:04:30,430 --> 00:04:32,460
+a ser igual a 1,
+
+137
+00:04:32,650 --> 00:04:34,580
+que es mi término de intersepción, y
+
+138
+00:04:34,800 --> 00:04:37,220
+después 0.99, y después 0.
+
+139
+00:04:38,560 --> 00:04:39,680
+Y digamos que para este
+
+140
+00:04:39,810 --> 00:04:41,040
+ejemplo, digamos que,
+
+141
+00:04:41,190 --> 00:04:42,890
+de alguna manera, ya tenemos
+
+142
+00:04:43,290 --> 00:04:44,600
+un vector de parámetros, teta 1
+
+143
+00:04:44,830 --> 00:04:45,700
+para Alice - más adelante
+
+144
+00:04:45,850 --> 00:04:47,560
+diremos exactamente cómo
+
+145
+00:04:47,800 --> 00:04:48,520
+encontramos este vector de parámetros-
+
+146
+00:04:48,600 --> 00:04:50,530
+pero digamos
+
+147
+00:04:50,710 --> 00:04:52,000
+simplemente por ahora que
+
+148
+00:04:52,150 --> 00:04:53,560
+algún algoritmo de aprendizaje no especificado
+
+149
+00:04:54,040 --> 00:04:55,040
+ha aprendido el vector de parámetros
+
+150
+00:04:55,180 --> 00:04:56,970
+teta 1, y es
+
+151
+00:04:57,120 --> 00:04:59,260
+igual a 0 5 0. De manera que
+
+152
+00:05:00,150 --> 00:05:02,010
+nuestra predicción para esta
+
+153
+00:05:02,270 --> 00:05:04,130
+entrada va a ser
+
+154
+00:05:04,260 --> 00:05:06,930
+igual a teta 1,
+
+155
+00:05:07,440 --> 00:05:08,760
+que es el vector de parámetros de Alice,
+
+156
+00:05:09,620 --> 00:05:11,450
+transponer x3, que es
+
+157
+00:05:11,620 --> 00:05:13,730
+el vector de dirección para
+
+158
+00:05:14,170 --> 00:05:16,050
+la película número 3 Cute Puppies of Love.
+
+159
+00:05:16,250 --> 00:05:17,200
+De modo que el producto interior
+
+160
+00:05:17,470 --> 00:05:18,470
+entre estos dos vectores
+
+161
+00:05:19,910 --> 00:05:21,780
+va a ser 5 x 0.99,
+
+162
+00:05:23,980 --> 00:05:26,340
+que es igual a 4.95.
+
+163
+00:05:27,360 --> 00:05:28,940
+Así que mi predicción para evaluar esto
+
+164
+00:05:29,130 --> 00:05:30,930
+aquí, será 4.95.
+
+165
+00:05:31,970 --> 00:05:33,110
+Y tal vez eso me parece un
+
+166
+00:05:33,230 --> 00:05:34,660
+valor razonable, si es que
+
+167
+00:05:36,130 --> 00:05:37,830
+este es mi vector de parámetros teta 1.
+
+168
+00:05:38,950 --> 00:05:40,290
+Así que todo lo que estamos haciendo aquí es
+
+169
+00:05:40,520 --> 00:05:42,710
+aplicar una copia diferente de la
+
+170
+00:05:42,930 --> 00:05:44,480
+regresión esencialmente lineal para cada
+
+171
+00:05:44,760 --> 00:05:46,020
+usuario, y estamos diciendo
+
+172
+00:05:46,230 --> 00:05:47,610
+que lo que hace Alice, es
+
+173
+00:05:47,820 --> 00:05:48,880
+que Alice tiene algún vector de parámetros
+
+174
+00:05:49,160 --> 00:05:50,400
+teta 1 que ella usa,
+
+175
+00:05:51,410 --> 00:05:52,380
+que utilizamos para predecir
+
+176
+00:05:53,310 --> 00:05:54,770
+sus calificaciones como una
+
+177
+00:05:54,950 --> 00:05:56,190
+función de cuán romántica y cuán
+
+178
+00:05:56,470 --> 00:05:57,540
+llena de acción está la película,
+
+179
+00:05:58,210 --> 00:05:59,600
+y Bob, y Carol, y
+
+180
+00:05:59,740 --> 00:06:01,010
+David tiene, cada uno, una
+
+181
+00:06:01,220 --> 00:06:03,170
+función lineal diferente del
+
+182
+00:06:03,330 --> 00:06:04,700
+romanticismo o la acción, o el grado
+
+183
+00:06:05,220 --> 00:06:06,510
+de romance y el grado de acción
+
+184
+00:06:07,580 --> 00:06:08,030
+en una película,
+
+185
+00:06:08,820 --> 00:06:11,300
+y así es como vamos a predecir sus calificaciones con estrellas.
+
+186
+00:06:14,820 --> 00:06:16,330
+De manera más formal, aquí está
+
+187
+00:06:16,610 --> 00:06:17,920
+cómo podemos escribir el problema.
+
+188
+00:06:19,260 --> 00:06:20,320
+Nuestra notación es que r(i,j)
+
+189
+00:06:20,690 --> 00:06:21,600
+es igual a uno, si
+
+190
+00:06:21,680 --> 00:06:22,910
+el usuario j ha calificado la película i;
+
+191
+00:06:23,380 --> 00:06:24,630
+y(i,j) es la calificación
+
+192
+00:06:25,850 --> 00:06:28,010
+de esa película si existe esa calificación.
+
+193
+00:06:29,540 --> 00:06:30,520
+Esto es, si ese usuario ha calificado en realidad
+
+194
+00:06:31,030 --> 00:06:32,830
+esa película. Y
+
+195
+00:06:33,330 --> 00:06:34,360
+en la diapositiva anterior también
+
+196
+00:06:34,650 --> 00:06:36,540
+definimos teta j, que
+
+197
+00:06:36,740 --> 00:06:38,790
+es un parámetro para el usuario j, x(1)
+
+198
+00:06:39,150 --> 00:06:40,830
+que es un vector de dirección para la película específica,
+
+199
+00:06:41,220 --> 00:06:42,370
+y para cada usuario
+
+200
+00:06:42,850 --> 00:06:43,780
+y cada película podríamos predecir
+
+201
+00:06:44,300 --> 00:06:45,620
+esas calificaciones, de la siguiente manera.
+
+202
+00:06:47,230 --> 00:06:49,560
+Permítanme presentarles,
+
+203
+00:06:49,650 --> 00:06:51,600
+sólo temporalmente, una
+
+204
+00:06:51,860 --> 00:06:53,530
+notación extra, mj; vamos
+
+205
+00:06:53,760 --> 00:06:54,980
+a utilizar mj para indicar el
+
+206
+00:06:55,070 --> 00:06:56,140
+número de usuarios que calificaron por película
+
+207
+00:06:56,400 --> 00:06:57,350
+j, vamos a necesitar esta
+
+208
+00:06:57,580 --> 00:06:59,890
+notación sólo para esta diapositiva. Ahora, a fin de conocer
+
+209
+00:07:00,160 --> 00:07:01,700
+el vector de  parámetros para
+
+210
+00:07:01,760 --> 00:07:03,720
+teta j, bueno, ¿cómo podemos hacerlo?
+
+211
+00:07:04,410 --> 00:07:06,380
+Esto es básicamente un problema de regresión lineal.
+
+212
+00:07:06,930 --> 00:07:07,980
+Así que lo que podemos hacer es
+
+213
+00:07:08,290 --> 00:07:09,810
+simplemente elegir un vector de parámetros, teta j,
+
+214
+00:07:10,520 --> 00:07:12,100
+de manera que el valor predicho
+
+215
+00:07:12,570 --> 00:07:13,620
+aquí esté lo más cerca
+
+216
+00:07:13,980 --> 00:07:15,280
+posible a los valores
+
+217
+00:07:15,800 --> 00:07:18,760
+que observamos en nuestro conjunto de entrenamiento, los valores que observamos en nuestros datos.
+
+218
+00:07:19,900 --> 00:07:21,390
+Así que vamos a escribir eso.
+
+219
+00:07:22,290 --> 00:07:24,320
+A fin de conocer
+
+220
+00:07:24,380 --> 00:07:26,960
+el vector de parámetros teta j, vamos a minimizar sobre
+
+221
+00:07:27,170 --> 00:07:28,510
+mi vector de parámetros, teta j,
+
+222
+00:07:29,400 --> 00:07:30,360
+de la suma -
+
+223
+00:07:31,920 --> 00:07:32,860
+y quiero sumar
+
+224
+00:07:33,290 --> 00:07:34,900
+sobre todas las películas que el usuario
+
+225
+00:07:35,240 --> 00:07:36,930
+j haya calificado - por lo que escribimos esto como suma
+
+226
+00:07:37,270 --> 00:07:38,290
+sobre todos los valores de i,
+
+227
+00:07:39,100 --> 00:07:42,000
+--esto es un signo de dos puntos-- r(i,j) igual a 1.
+
+228
+00:07:43,870 --> 00:07:45,970
+Así que la manera de leer este índice de suma es
+
+229
+00:07:46,370 --> 00:07:48,280
+esta es la suma sobre todos los
+
+230
+00:07:48,470 --> 00:07:49,550
+los valores de i, de manera que
+
+231
+00:07:49,780 --> 00:07:51,180
+r(i,j) es igual a 1.
+
+232
+00:07:51,210 --> 00:07:52,470
+Así que esto se va a sumar sobre todas las
+
+233
+00:07:52,560 --> 00:07:54,670
+películas que el usuario j ha calificado.
+
+234
+00:07:56,230 --> 00:07:57,000
+Y luego voy a
+
+235
+00:07:58,150 --> 00:07:59,910
+calcular teta j
+
+236
+00:08:01,810 --> 00:08:04,450
+transponer xi así que
+
+237
+00:08:04,610 --> 00:08:06,740
+esa es la predicción de
+
+238
+00:08:07,030 --> 00:08:08,390
+la calificación del usuario j sobre la película i,
+
+239
+00:08:09,230 --> 00:08:10,960
+menos y(i,j),
+
+240
+00:08:11,700 --> 00:08:13,700
+así que eso es la calificación real observada, al cuadrado,
+
+241
+00:08:15,190 --> 00:08:16,790
+y luego, voy a dividir
+
+242
+00:08:17,260 --> 00:08:18,650
+entre el número de películas
+
+243
+00:08:19,040 --> 00:08:20,990
+que el usuario j, haya
+
+244
+00:08:21,380 --> 00:08:23,910
+calificado en realidad, así es que sólo se divide entre 1 sobre 2mj.
+
+245
+00:08:24,000 --> 00:08:25,460
+Y entonces esto es
+
+246
+00:08:25,690 --> 00:08:27,620
+como la regresión de mínimos cuadrados,
+
+247
+00:08:28,210 --> 00:08:29,550
+es como una regresión lineal
+
+248
+00:08:30,170 --> 00:08:31,170
+en donde queremos elegir
+
+249
+00:08:31,320 --> 00:08:34,480
+el vector de parámetros  teta j, para minimizar este tipo de término de error al cuadrado.
+
+250
+00:08:34,510 --> 00:08:35,090
+Y si lo desean, pueden
+
+251
+00:08:36,330 --> 00:08:39,580
+añadir también un término de regularización
+
+252
+00:08:39,980 --> 00:08:41,870
+de modo que más «lambda» sobre 2 m, y
+
+253
+00:08:43,780 --> 00:08:44,930
+esto es realmente 2 m(j) porque
+
+254
+00:08:45,420 --> 00:08:47,760
+esto como si tuviéramos ejemplos de m(j) ¿correcto?
+
+255
+00:08:47,920 --> 00:08:49,330
+Porque si el usuario j ha
+
+256
+00:08:49,650 --> 00:08:50,910
+calificado tantas películas, es
+
+257
+00:08:51,050 --> 00:08:53,340
+como si tuviéramos tantos puntos de datos con los cuales ajustar
+
+258
+00:08:53,680 --> 00:08:55,790
+los parámetros teta j, y después
+
+259
+00:08:56,650 --> 00:08:57,390
+permítanme añadir mi habitual
+
+260
+00:08:58,340 --> 00:09:00,260
+término de regularización aquí de
+
+261
+00:09:00,460 --> 00:09:02,530
+teta j, k cuadrada.
+
+262
+00:09:03,110 --> 00:09:04,270
+Como de costumbre, esta suma es de
+
+263
+00:09:04,840 --> 00:09:05,980
+k es igual a 1 hasta n,
+
+264
+00:09:06,330 --> 00:09:08,670
+por lo que aquí teta j va a
+
+265
+00:09:08,880 --> 00:09:10,050
+ser una n más
+
+266
+00:09:10,520 --> 00:09:12,400
+1 vector de dimensiones en donde,
+
+267
+00:09:12,620 --> 00:09:14,630
+en nuestro ejemplo anterior, n era igual a dos,
+
+268
+00:09:15,320 --> 00:09:17,090
+pero de manera más general, n es
+
+269
+00:09:17,260 --> 00:09:20,980
+el número de variables que tenemos por película.
+
+270
+00:09:21,730 --> 00:09:22,270
+Así que, como de costumbre, no regularizamos sobre teta 0.
+
+271
+00:09:22,390 --> 00:09:23,710
+No regularizamos sobre el
+
+272
+00:09:23,910 --> 00:09:24,750
+término de oscilación, porque la suma es
+
+273
+00:09:24,930 --> 00:09:28,590
+de k1 hasta n. Si
+
+274
+00:09:28,760 --> 00:09:30,430
+minimizan esto como
+
+275
+00:09:30,570 --> 00:09:31,780
+una función de teta j  obtienen una
+
+276
+00:09:31,900 --> 00:09:33,010
+buena solución, obtienen un
+
+277
+00:09:33,180 --> 00:09:35,330
+estimado bastante bueno de un vector de parámetros teta j
+
+278
+00:09:36,490 --> 00:09:37,200
+con el que hacer las predicciones
+
+279
+00:09:37,940 --> 00:09:39,460
+para las calificaciones de películas del usuario j.
+
+280
+00:09:40,820 --> 00:09:42,250
+Para los sistemas de recomendación, vamos
+
+281
+00:09:42,520 --> 00:09:44,140
+a cambiar esta notación un
+
+282
+00:09:44,500 --> 00:09:46,130
+poco. Así que para simplificar las matemáticas subsecuentes,
+
+283
+00:09:46,690 --> 00:09:48,440
+de hecho me voy a deshacer de este término mj.
+
+284
+00:09:49,570 --> 00:09:50,720
+Así que eso es sólo una constante,
+
+285
+00:09:50,970 --> 00:09:52,140
+de modo que puedo borrarlo sin cambiar
+
+286
+00:09:53,000 --> 00:09:54,310
+el valor de teta j que
+
+287
+00:09:54,430 --> 00:09:55,840
+obtengo de esta optimización,
+
+288
+00:09:56,010 --> 00:09:57,030
+así que si se imaginan tomando esta
+
+289
+00:09:57,220 --> 00:09:58,850
+ecuación completa, tomando esta
+
+290
+00:09:59,010 --> 00:10:00,290
+expresión completa y multiplicándola por
+
+291
+00:10:00,870 --> 00:10:02,540
+mj y se deshacen de esa constante, y cuando
+
+292
+00:10:02,950 --> 00:10:04,110
+minimizo ésta, todavía debería obtener
+
+293
+00:10:04,200 --> 00:10:06,590
+el mismo valor de teta j como antes.
+
+294
+00:10:06,710 --> 00:10:07,780
+Así, sólo para repetir lo
+
+295
+00:10:08,440 --> 00:10:10,060
+que escribimos en la diapositiva anterior, aquí
+
+296
+00:10:10,340 --> 00:10:12,250
+está nuestro objetivo de optimización. A fin
+
+297
+00:10:12,580 --> 00:10:13,620
+de conocer teta j, que es
+
+298
+00:10:13,990 --> 00:10:15,080
+un parámetro para el usuario j,
+
+299
+00:10:15,790 --> 00:10:17,570
+vamos a minimizar sobre teta j de
+
+300
+00:10:17,770 --> 00:10:19,820
+este objetivo de optimización. Así es que
+
+301
+00:10:20,100 --> 00:10:21,360
+este es nuestro término de error cuadrado habitual
+
+302
+00:10:21,720 --> 00:10:24,830
+y después este es nuestro término de regularización.
+
+303
+00:10:26,050 --> 00:10:27,410
+Por supuesto, cuando estamos construyendo
+
+304
+00:10:27,690 --> 00:10:28,790
+un sistema de recomendación, no sólo
+
+305
+00:10:29,030 --> 00:10:29,800
+deseamos conocer los parámetros
+
+306
+00:10:30,420 --> 00:10:31,500
+para un solo usuario, queremos
+
+307
+00:10:31,650 --> 00:10:33,140
+conocer los parámetros para todos
+
+308
+00:10:33,490 --> 00:10:35,640
+nuestros usuarios; tengo usuarios n subíndice u
+
+309
+00:10:35,760 --> 00:10:36,730
+así que quiero
+
+310
+00:10:36,950 --> 00:10:38,920
+saber todos estos parámetros y
+
+311
+00:10:39,060 --> 00:10:39,830
+lo que voy a hacer
+
+312
+00:10:40,140 --> 00:10:42,320
+es tomar esta minimización, tomar
+
+313
+00:10:42,500 --> 00:10:45,480
+este objetivo de optimización y sólo agregar una suma adicional allí.
+
+314
+00:10:45,800 --> 00:10:47,610
+Así que,  esta expresión aquí
+
+315
+00:10:48,410 --> 00:10:49,200
+con la mitad en la parte superior de nuevo, así
+
+316
+00:10:49,240 --> 00:10:50,510
+que es exactamente lo mismo como lo
+
+317
+00:10:50,780 --> 00:10:52,520
+que tenemos en la parte superior, excepto
+
+318
+00:10:52,950 --> 00:10:53,980
+que ahora, en lugar de sólo
+
+319
+00:10:54,090 --> 00:10:55,670
+hacer esto para un usuario específico teta
+
+320
+00:10:55,960 --> 00:10:57,270
+J, voy a sumar
+
+321
+00:10:57,680 --> 00:10:59,340
+mi objetivo sobre todos
+
+322
+00:10:59,490 --> 00:11:00,940
+mis usuarios y luego voy a minimizar
+
+323
+00:11:01,260 --> 00:11:03,700
+este objetivo de optimización general.
+
+324
+00:11:04,320 --> 00:11:05,570
+Minimizar esta función de costos general.
+
+325
+00:11:06,730 --> 00:11:09,200
+Y cuando minimizo esto
+
+326
+00:11:09,380 --> 00:11:10,560
+como una función de teta 1,
+
+327
+00:11:11,360 --> 00:11:12,400
+teta 2, hasta
+
+328
+00:11:12,600 --> 00:11:14,130
+teta nu, obtendré
+
+329
+00:11:14,270 --> 00:11:15,750
+un vector de parámetros independiente
+
+330
+00:11:16,030 --> 00:11:17,340
+por cada usuario y
+
+331
+00:11:17,450 --> 00:11:18,720
+entonces puedo usar éste
+
+332
+00:11:19,090 --> 00:11:20,460
+para hacer predicciones para todos
+
+333
+00:11:20,530 --> 00:11:21,610
+mis usuarios para todos
+
+334
+00:11:21,720 --> 00:11:23,150
+mis usuarios n subíndice u.
+
+335
+00:11:24,520 --> 00:11:26,560
+Así que al poner todo junto, este
+
+336
+00:11:27,180 --> 00:11:28,730
+fue nuestro objetivo de optimización en
+
+337
+00:11:28,880 --> 00:11:29,940
+la parte superior, y para darle
+
+338
+00:11:30,170 --> 00:11:31,070
+un nombre a esto, voy a llamar a esta
+
+339
+00:11:31,930 --> 00:11:33,480
+j de teta 1,
+
+340
+00:11:33,630 --> 00:11:35,520
+punto, punto, punto teta nu.
+
+341
+00:11:36,050 --> 00:11:37,280
+De manera que, como de costumbre, j es mi
+
+342
+00:11:37,590 --> 00:11:39,830
+objetivo de optimización que estoy tratando de minimizar.
+
+343
+00:11:41,330 --> 00:11:42,500
+A continuación, con el fin de realmente
+
+344
+00:11:42,880 --> 00:11:44,310
+hacer la minimización, si
+
+345
+00:11:44,500 --> 00:11:45,840
+van a derivar las actualizaciones en gradiente
+
+346
+00:11:46,150 --> 00:11:47,410
+descendente, estas son
+
+347
+00:11:47,530 --> 00:11:48,720
+las ecuaciones que obtendrían,
+
+348
+00:11:49,900 --> 00:11:51,300
+así que tomaría teta
+
+349
+00:11:51,750 --> 00:11:53,310
+jk y le restaría
+
+350
+00:11:53,430 --> 00:11:56,190
+«alfa», que es la tasa de aprendizaje multiplicada por estos términos, aquí a la derecha.
+
+351
+00:11:56,280 --> 00:11:57,540
+Así que tenemos casos ligeramente diferentes,
+
+352
+00:11:58,160 --> 00:11:59,660
+de modo que cuando k es igual a 0 y cuando k no es
+
+353
+00:11:59,840 --> 00:12:01,460
+igual a 0, debido a nuestro término de regularización
+
+354
+00:12:01,960 --> 00:12:04,380
+aquí regulariza sólo los
+
+355
+00:12:04,910 --> 00:12:06,430
+valores de teta jk sólo
+
+356
+00:12:06,610 --> 00:12:07,690
+si k no es igual a 0.  Así es que
+
+357
+00:12:07,830 --> 00:12:09,470
+no regularizamos teta 0,
+
+358
+00:12:10,090 --> 00:12:11,610
+de modo que las ligeramente diferentes actualizaciones
+
+359
+00:12:12,270 --> 00:12:13,580
+para k son igual a cero, y k no es igual a 0.
+
+360
+00:12:14,680 --> 00:12:16,080
+Y este término, por
+
+361
+00:12:16,250 --> 00:12:18,090
+aquí, por ejemplo, es sólo una derivada parcial
+
+362
+00:12:18,520 --> 00:12:20,790
+con respecto a su parámetro,
+
+363
+00:12:21,090 --> 00:12:24,300
+el de su
+
+364
+00:12:25,350 --> 00:12:28,270
+objetivo de optimización, ¿correcto?
+
+365
+00:12:28,790 --> 00:12:30,280
+Así es que, esta es sólo
+
+366
+00:12:30,680 --> 00:12:33,000
+una gradiente descendiente y ya he
+
+367
+00:12:33,230 --> 00:12:35,440
+calculado las derivadas y las conecté aquí.
+
+368
+00:12:36,560 --> 00:12:39,580
+Si estas actualizaciones en gradiente
+
+369
+00:12:40,570 --> 00:12:41,810
+descendente son muy parecidas
+
+370
+00:12:41,980 --> 00:12:42,870
+a las que tuvimos para
+
+371
+00:12:43,050 --> 00:12:44,700
+la regresión lineal, esto es debido a que estas
+
+372
+00:12:44,880 --> 00:12:47,250
+son esencialmente las mismas que las de la regresión lineal.
+
+373
+00:12:48,190 --> 00:12:49,510
+La única diferencia menor es que
+
+374
+00:12:49,780 --> 00:12:51,120
+para la regresión lineal tenemos
+
+375
+00:12:51,580 --> 00:12:52,600
+estos 1 sobre los términos m
+
+376
+00:12:52,990 --> 00:12:54,710
+- es realmente 1
+
+377
+00:12:54,810 --> 00:12:56,770
+sobre mj - pero
+
+378
+00:12:57,550 --> 00:12:59,230
+debido a que antes, cuando estábamos
+
+379
+00:12:59,370 --> 00:13:00,780
+derivando el objetivo de optimización
+
+380
+00:13:01,270 --> 00:13:03,540
+nos libramos de esto, es por eso que no tenemos este 1 sobre el término m.
+
+381
+00:13:04,440 --> 00:13:05,880
+Pero por lo demás, es realmente la suma de
+
+382
+00:13:06,080 --> 00:13:08,350
+mis ejemplos de entrenamiento de, ya saben,
+
+383
+00:13:08,530 --> 00:13:09,890
+el error multiplicado por
+
+384
+00:13:10,230 --> 00:13:13,390
+xk más ese término de regularización
+
+385
+00:13:14,900 --> 00:13:16,550
+que contribuye a la derivada.
+
+386
+00:13:18,120 --> 00:13:19,040
+De manera que si están usando
+
+387
+00:13:19,200 --> 00:13:20,360
+el gradiente descendiente, aquí está cómo
+
+388
+00:13:20,680 --> 00:13:22,140
+pueden minimizar la función de costo
+
+389
+00:13:22,440 --> 00:13:23,880
+j, para conocer todos
+
+390
+00:13:24,110 --> 00:13:25,490
+los parámetros y el uso de estas
+
+391
+00:13:25,640 --> 00:13:26,980
+fórmulas para las derivadas, si
+
+392
+00:13:27,090 --> 00:13:28,240
+lo desean, también pueden conectarlas
+
+393
+00:13:28,440 --> 00:13:29,710
+en un algoritmo de optimización más avanzada
+
+394
+00:13:30,290 --> 00:13:31,710
+como un gradiente de clúster o
+
+395
+00:13:31,810 --> 00:13:33,730
+LBFGS o lo que sea, y usar
+
+396
+00:13:33,940 --> 00:13:35,930
+eso para tratar de minimizar la función de costo j también.
+
+397
+00:13:37,360 --> 00:13:38,450
+Así que espero que ahora sepan
+
+398
+00:13:38,750 --> 00:13:40,510
+cómo pueden aplicar esencialmente una
+
+399
+00:13:41,000 --> 00:13:42,820
+variación en la regresión lineal a
+
+400
+00:13:42,950 --> 00:13:45,460
+fin de predecir las diferentes calificaciones de las películas por parte de diferentes usuarios.
+
+401
+00:13:46,350 --> 00:13:47,510
+Este algoritmo particular se llama
+
+402
+00:13:48,030 --> 00:13:49,930
+recomendaciones basadas en el contenido, o
+
+403
+00:13:50,040 --> 00:13:51,980
+enfoque basado en contenidos, ya que
+
+404
+00:13:52,130 --> 00:13:53,200
+suponemos que tenemos disponibles
+
+405
+00:13:53,650 --> 00:13:55,430
+variables para las diferentes películas.
+
+406
+00:13:56,150 --> 00:13:57,330
+De manera que tenemos variables que
+
+407
+00:13:57,490 --> 00:13:58,610
+capturan lo que es el
+
+408
+00:13:58,700 --> 00:14:00,260
+contenido de estas películas. ¿Qué tan romántica es esta película?
+
+409
+00:14:01,280 --> 00:14:03,050
+¿Cuánta acción hay en esta película?
+
+410
+00:14:03,430 --> 00:14:04,690
+Y en realidad estamos usando las variables del
+
+411
+00:14:04,780 --> 00:14:06,910
+contenido de las películas para hacer nuestras predicciones.
+
+412
+00:14:08,350 --> 00:14:09,770
+Pero para muchas películas,
+
+413
+00:14:09,920 --> 00:14:11,300
+no tenemos en realidad dichas variables,
+
+414
+00:14:11,820 --> 00:14:13,630
+o pudiera ser muy difícil conseguir
+
+415
+00:14:13,850 --> 00:14:14,970
+tales variables para todas
+
+416
+00:14:15,050 --> 00:14:16,160
+nuestras películas, para todos
+
+417
+00:14:16,460 --> 00:14:17,800
+los artículos que sea que estemos tratando de vender.
+
+418
+00:14:18,880 --> 00:14:20,430
+De modo que en el siguiente vídeo empezaremos
+
+419
+00:14:20,590 --> 00:14:21,530
+a hablar de un enfoque
+
+420
+00:14:22,010 --> 00:14:23,290
+para los sistemas de recomendación que no
+
+421
+00:14:23,570 --> 00:14:24,710
+se basa en el contenido, y no
+
+422
+00:14:24,980 --> 00:14:26,090
+supone que tenemos disponible
+
+423
+00:14:26,670 --> 00:14:28,420
+a alguien más que nos dé todas estas variables
+
+424
+00:14:28,880 --> 00:14:30,300
+para todas las películas en nuestro conjunto de datos.

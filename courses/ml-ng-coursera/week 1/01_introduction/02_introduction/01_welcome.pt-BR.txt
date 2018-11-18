@@ -1,0 +1,88 @@
+Bem-vindo a este curso online e
+gratuito sobre Aprendizado de Máquina. Aprendizado de Máquina é uma das tecnologias atuais
+mais fascinantes, e nesse curso, você aprenderá sobre o que há de mais avançado,
+e aprenderá a implementar esses algoritmos. Você provavelmente usa algoritmos de 
+aprendizado várias vezes por dia sem saber. Toda vez que você usa 
+um site de busca como "Google" ou "Bing", uma das razões para funcionarem tão bem
+é um algoritmo de aprendizado. Um algoritmo implementado pela "Google" ou "Microsoft"
+aprendeu a classificar páginas web. Toda vez que você usa o aplicativo para "marcar"
+pessoas nas fotos, do "Facebook" ou da  "Apple", e ele reconhece as fotos de seus amigos, isto também
+é Aprendizado de Máquina. Toda vez que o filtro de spam do seu email 
+filtra toneladas de mensagens indesejadas, isto também é um algoritmo de aprendizado.
+Para mim, o que me motiva, é o sonho de que um dia IA construirá 
+máquinas tão inteligentes quanto nós. Estamos longe desta meta,
+mas para muitos pesquisadores de IA, a melhor maneira de atingí-la,
+é através de algoritmos de aprendizado, que tentam imitar como o
+cérebro humano funciona. Neste curso, você aprenderá sobre algoritmos
+estado-da-arte de Aprendizado de Máquina. Entretanto, apenas conhecer os algoritmos
+e a matemática envolvida não é suficiente, se você não souber também como usá-los 
+em problemas de seu interesse. Assim, nós investimos um bom
+tempo desenvolvendo exercícios para você implementar cada um destes
+algoritmos e ver como eles funcionam. Então, por que a aprendizagem de 
+máquina é tão dominante hoje em dia? Máquina de aprendizado surgiu
+do campo de IA - Inteligência Artificial. Queríamos construir máquinas inteligentes.
+Mas existem apenas algumas coisas básicas que podemos programar uma máquina para fazer,
+como encontrar o menor caminho entre A e B. Mas, não sabíamos como escrever programas de IA
+para fazer coisas mais interessantes, como: buscas na web,
+"marcar" fotos, ou detectar spam. Descobriram que a única forma de fazer essas coisas,
+era tendo uma máquina que aprendesse a fazê-las. Então, a Aprendizagem de Máquina foi desenvolvida
+como uma nova ferramenta para os computadores, e hoje em dia, está presente em muitas
+áreas da indústria e ciência. Eu trabalho com Aprendizagem de Máquina,
+e em uma semana típica posso conversar com pilotos de helicóptero, biólogos,
+um monte de gente que trabalha com computadores - como meus colegas da Stanford - e em média,
+duas ou três vezes por semana, recebo emails de empresas interessadas em
+aplicar algoritmos de aprendizagem, aos seus próprios problemas.
+Esse é um indício da gama de problemas que envovem Aprendizagem de Máquina.
+Há vários probemas em biologia computacional, muitas coisas no Vale do Silício
+que a Aprendizagem de Máquina está impactando. Aqui estão mais alguns exemplos de Aprendizagem
+de Máquina: Mineração de dados. Algumas razões para o crescimento da Aprendizagem
+de Máquina são o crescimento da web e da automação. Isso tudo significa que temos conjuntos
+de dados maiores do que nunca. Por exemplo, muitas empresas do Vale do Silício
+estão coletando dados de clicks na web, também chamados dados de "clickstream",
+e estão tentando usar algoritmos para minerar esses dados e,
+entender e servir melhor seus usuários. Isso é um enorme segmento do Vale
+do Silício atualmente. Históricos médicos: com o advento da automação,
+hoje temos históricos eletrônicos, e se conseguirmos transformar históricos médicos
+em conhecimento médico, podemos começar a entender melhor as doenças.
+Biologia computacional: com automação, biólogos estão coletando
+muitos dados sobre sequências de DNA, e algoritmos de aprendizado estão nos dando um
+entendimento melhor do genoma humano, e do que significa ser um "humano".
+E em engenharia também, em todas as as áreas da engenharia,
+temos conjuntos de dados cada vez maiores, que tentamos entender utilizando
+algoritmos de aprendizagem. Outra série de aplicações, são aquelas que
+não podemos programar manualmente. Por exemplo, eu trabalhei com helicópteros autônomos
+por muitos anos. Nós simplesmente não sabíamos como escrever um programa de computador que
+fizesse o helicóptero voar por conta própria. A única coisa que funcionava era ter um computador aprendendo,
+por conta própria, como voar o helicóptero. Reconhecimento de escrita: uma das razões
+porque é tão barato despachar uma carta através de vários países,
+nos EUA e internacionalmente, é que quando você escreve em um envelope
+como este, existe um algoritmo de aprendizagem que aprendeu a ler sua letra de mão.
+Assim ele pode despachar automaticamente o envelope para seu destino.
+Por isso custa apenas alguns centavos para enviar isto a milhares de quilômetros.
+E, na verdade, se você já ouviu falar em Processamento de Linguagem Natural
+ou Visão Computacional, eles são campos de IA, que fingem entender linguagem ou imagens.
+Hoje, a maioria do processamento de linguagem, e de visão computacional,
+são aplicações de Aprendizagem de Máquina. Algoritmos de aprendizagem são
+também utilizados para programas customizados. Toda vez que você vai à "Amazon", "Netflix"
+ou "iTunes Genius", e eles recomendam filmes, produtos, ou músicas para você, isso é um algoritmo
+de aprendizagem. Eles têm milhares de usuários, não existe maneira de escrever um
+milhão de programas, para um milhão de usuários. A única forma de ter um programa dando
+recomendações customizadas, é se ele aprender a customizar de acordo com suas preferências.
+Finalmente, algoritmos de aprendizagem são usados hoje em dia para
+entender o aprendizado humano, e para entender o cérebro. Falaremos sobre como
+pesquisadores estão usando isso para progredir em direção ao grande sonho da IA. Alguns
+meses atrás, um aluno me mostrou um artigo sobre as 12 habilidades mais importantes em TI.
+Habilidades que gerentes de TI não podem dispensar.
+Era um artigo meio antigo, mas no topo da lista das 12 habilidades mais desejáveis,
+estava Aprendizagem de Máquina. Aqui na Stanford, o número de recrutadores que
+me contactam perguntando se conheço algum estudante prestes a se formar em 
+Aprendizagem de Máquina, é muito maior que o número de estudantes que se formam todo ano.
+Então, existe uma vasta demanda, não-preenchida para essa habilidade.
+É um ótimo momento para aprender, e espero ensiná-los bastante sobre
+Aprendizagem de Máquina nesse curso. No próximo vídeo, começaremos a definir
+mais formalmente o que é Aprendizagem de Máquina. E começaremos a falar sobre os
+principais tipos de problemas e algoritmos. Você aprenderá um pouco da
+terminologia de Aprendizagem de Máquina. E começará a ter uma ideia de quais são os
+diferentes algoritmos, e quando usá-los. E começará a ter uma ideia de quais são os
+diferentes algoritmos, e quando usá-los.
+Tradução: Marcel Dall'Agnol | Revisão: Pablo de Morais Andrade

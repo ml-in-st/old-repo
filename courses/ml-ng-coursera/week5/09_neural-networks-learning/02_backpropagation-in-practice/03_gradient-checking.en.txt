@@ -1,0 +1,154 @@
+In the last few videos we talked about
+how to do forward propagation and back propagation in a neural network
+in order to compute derivatives. But back prop as an algorithm
+has a lot of details and can be a little bit tricky to implement. And one unfortunate property
+is that there are many ways to have subtle bugs in back prop. So that if you run it
+with gradient descent or some other optimizational algorithm,
+it could actually look like it's working. And your cost function, J of theta may end up decreasing on
+every iteration of gradient descent. But this could prove true even
+though there might be some bug in your implementation of back prop. So that it looks J of theta is decreasing,
+but you might just wind up with a neural
+network that has a higher level of error than you would with
+a bug free implementation. And you might just not know that there
+was this subtle bug that was giving you worse performance. So, what can we do about this? There's an idea called gradient checking that eliminates almost
+all of these problems. So, today every time I
+implement back propagation or a similar gradient to a [INAUDIBLE]
+on a neural network or any other reasonably complex model,
+I always implement gradient checking. And if you do this, it will help you make
+sure and sort of gain high confidence that your implementation of four prop and
+back prop or whatever is 100% correct. And from what I've seen this pretty much
+eliminates all the problems associated with a sort of a buggy
+implementation as a back prop. And in the previous videos I asked you to
+take on faith that the formulas I gave for computing the deltas and the vs and
+so on, I asked you to take on faith that those actually do compute
+the gradients of the cost function. But once you implement numerical gradient
+checking, which is the topic of this video, you'll be able to absolute verify
+for yourself that the code you're writing does indeed, is indeed computing
+the derivative of the cross function J. So here's the idea,
+consider the following example. Suppose that I have the function J
+of theta and I have some value theta and for this example gonna assume
+that theta is just a real number. And let's say that I want to estimate the
+derivative of this function at this point and so the derivative is equal to
+the slope of that tangent one. Here's how I'm going to numerically
+approximate the derivative, or rather here's a procedure for
+numerically approximating the derivative. I'm going to compute theta plus epsilon,
+so now we move it to the right. And I'm gonna compute theta minus epsilon
+and I'm going to look at those two points, And
+connect them by a straight line And I'm gonna connect these two points
+by a straight line, and I'm gonna use the slope of that little red line as
+my approximation to the derivative. Which is, the true derivative is
+the slope of that blue line over there. So, you know it seems like it would
+be a pretty good approximation. Mathematically, the slope of this
+red line is this vertical height divided by this horizontal width. So this point on top is the J
+of (Theta plus Epsilon). This point here is J
+(Theta minus Epsilon), so this vertical difference is J
+(Theta plus Epsilon) minus J of theta minus epsilon and this
+horizontal distance is just 2 epsilon. So my approximation is going
+to be that the derivative respect of theta of J of theta at this
+value of theta, that that's approximately J of theta plus epsilon minus J of
+theta minus epsilon over 2 epsilon. Usually, I use a pretty small value for epsilon, expect epsilon to be maybe
+on the order of 10 to the minus 4. There's usually a large range of different
+values for epsilon that work just fine. And in fact, if you let epsilon become
+really small, then mathematically this term here, actually mathematically,
+it becomes the derivative. It becomes exactly the slope
+of the function at this point. It's just that we don't want
+to use epsilon that's too, too small, because then you might
+run into numerical problems. So I usually use epsilon
+around ten to the minus four. And by the way some of you may have
+seen an alternative formula for s meeting the derivative
+which is this formula. This one on the right is
+called a one-sided difference, whereas the formula on the left,
+that's called a two-sided difference. The two sided difference gives us
+a slightly more accurate estimate, so I usually use that, rather than
+this one sided difference estimate. So, concretely, when you implement an
+octave, is you implemented the following, you implement call to compute gradApprox, which is going to be our approximation
+derivative as just here this formula, J of theta plus epsilon minus J of theta
+minus epsilon divided by 2 times epsilon. And this will give you a numerical
+estimate of the gradient at that point. And in this example it seems like
+it's a pretty good estimate. Now on the previous slide, we considered the case of when
+theta was a rolled number. Now let's look at a more general case
+of when theta is a vector parameter, so let's say theta is an R n. And it might be an unrolled version of
+the parameters of our neural network. So theta is a vector that has n elements,
+theta 1 up to theta n. We can then use a similar idea to approximate
+all the partial derivative terms. Concretely the partial derivative of
+a cost function with respect to the first parameter, theta one, that can be obtained
+by taking J and increasing theta one. So you have J of theta one
+plus epsilon and so on. Minus J of this theta one minus
+epsilon and divide it by two epsilon. The partial derivative respect to the
+second parameter theta two, is again this thing except that you would take J of here
+you're increasing theta two by epsilon, and here you're decreasing theta two by
+epsilon and so on down to the derivative. With respect of theta n would give
+you increase and decrease theta and by epsilon over there. So, these equations give you a way to
+numerically approximate the partial derivative of J with respect to any
+one of your parameters theta i. Completely, what you implement
+is therefore the following. We implement the following in octave
+to numerically compute the derivatives. We say, for i = 1:n, where n is the dimension
+of our parameter of vector theta. And I usually do this with
+the unrolled version of the parameter. So theta is just a long list of all of
+my parameters in my neural network, say. I'm gonna set thetaPlus = theta, then increase thetaPlus of
+the (i) element by epsilon. And so this is basically thetaPlus
+is equal to theta except for thetaPlus(i) which is now
+incremented by epsilon. Epsilon, so theta plus is equal to,
+write theta 1, theta 2 and so on. Then theta I has epsilon added to it and
+then we go down to theta N. So this is what theta plus is. And similar these two lines set theta
+minus to something similar except that this instead of theta I plus Epsilon,
+this now becomes theta I minus Epsilon. And then finally you implement
+this gradApprox (i) and this would give you your approximation
+to the partial derivative respect of theta i of J of theta. And the way we use this in our
+neural network implementation is, we would implement this four loop to
+compute the top partial derivative of the cost function for respect to
+every parameter in that network, and we can then take the gradient
+that we got from backprop. So DVec was the derivative
+we got from backprop. All right, so backprop, backpropogation, was a relatively efficient way to compute
+a derivative or a partial derivative. Of a cost function with
+respect to all our parameters. And what I usually do is then,
+take my numerically computed derivative that is this gradApprox that
+we just had from up here. And make sure that that is equal or
+approximately equal up to small values of numerical round up,
+that it's pretty close. So the DVec that I got from backprop. And if these two ways of computing
+the derivative give me the same answer, or give me any similar answers,
+up to a few decimal places, then I'm much more confident that my
+implementation of backprop is correct. And when I plug these DVec
+vectors into gradient assent or some advanced optimization algorithm,
+I can then be much more confident that I'm computing the
+derivatives correctly, and therefore that hopefully my code will run correctly and
+do a good job optimizing J of theta. Finally, I wanna put
+everything together and tell you how to implement this
+numerical gradient checking. Here's what I usually do. First thing I do is implement
+back propagation to compute DVec. So there's a procedure we talked
+about in the earlier video to compute DVec which may be our
+unrolled version of these matrices. So then what I do, is implement a numerical gradient
+checking to compute gradApprox. So this is what I described earlier in
+this video and in the previous slide. Then should make sure that DVec and
+gradApprox give similar values, you know let's say up to
+a few decimal places. And finally and this is the important
+step, before you start to use your code for learning, for seriously training
+your network, it's important to turn off gradient checking and to no longer
+compute this gradApprox thing using the numerical derivative formulas that
+we talked about earlier in this video. And the reason for that is the numeric
+code gradient checking code, the stuff we talked about in this video,
+that's a very computationally expensive, that's a very slow way to try
+to approximate the derivative. Whereas In contrast, the back propagation
+algorithm that we talked about earlier, that is the thing we talked
+about earlier for computing. You know, D1, D2, D3 for Dvec. Backprop is much more computationally
+efficient way of computing for derivatives. So once you've verified that your
+implementation of back propagation is correct, you should turn off gradient
+checking and just stop using that. So just to reiterate, you should be sure
+to disable your gradient checking code before running your algorithm for
+many iterations of gradient descent or for many iterations of the advanced
+optimization algorithms, in order to train your classifier. Concretely, if you were to run
+the numerical gradient checking on every single iteration
+of gradient descent. Or if you were in the inner
+loop of your costFunction, then your code would be very slow. Because the numerical gradient
+checking code is much slower than the backpropagation algorithm,
+than the backpropagation method where, you remember, we were computing delta(4),
+delta(3), delta(2), and so on. That was the backpropagation algorithm. That is a much faster way to compute
+derivates than gradient checking. So when you're ready, once you've verified
+the implementation of back propagation is correct, make sure you turn off or
+you disable your gradient checking code while you train your algorithm, or
+else you code could run very slowly. So, that's how you take gradients
+numericaly, and that's how you can verify tha implementation of back
+propagation is correct. Whenever I implement back propagation or
+similar gradient discerning algorithm for a complicated mode,l I always
+use gradient checking and this really helps me make
+sure that my code is correct.

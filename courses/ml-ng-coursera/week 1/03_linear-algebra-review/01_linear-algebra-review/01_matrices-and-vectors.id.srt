@@ -1,0 +1,979 @@
+1
+00:00:00,100 --> 00:00:01,850
+Mari kita mulai mengulang aljabar linier.
+
+2
+00:00:02,880 --> 00:00:03,850
+Di video ini saya ingin
+
+3
+00:00:03,910 --> 00:00:06,210
+memberitahu Anda apa itu
+matriks dan vektor.
+
+4
+00:00:09,280 --> 00:00:10,770
+Matriks adalah
+
+5
+00:00:11,020 --> 00:00:12,590
+susunan angka empat persegi
+
+6
+00:00:13,570 --> 00:00:14,810
+yang ditulis di antara tanda kurung.
+
+7
+00:00:16,070 --> 00:00:17,250
+Sebagai contoh, ini satu
+
+8
+00:00:17,280 --> 00:00:20,180
+matriks, kita tulis buka kurung
+
+9
+00:00:22,000 --> 00:00:24,660
+lalu tulis angka-angka didalamnya.
+
+10
+00:00:27,020 --> 00:00:29,100
+Ini bisa sifat dari
+
+11
+00:00:29,550 --> 00:00:30,660
+persoalan machine learning
+
+12
+00:00:30,800 --> 00:00:33,740
+atau data lainnya, tapi untuk contoh
+
+13
+00:00:35,080 --> 00:00:36,900
+ini nilai-nilai itu tidak penting,
+
+14
+00:00:37,440 --> 00:00:40,470
+lalu tutup kurung.
+
+15
+00:00:40,680 --> 00:00:41,440
+Jadi itu satu matriks.
+
+16
+00:00:41,930 --> 00:00:43,520
+Dan ini contoh lain dari
+
+17
+00:00:44,290 --> 00:00:46,360
+matriks, 1, 2, 3, 4, 5, 6.
+
+18
+00:00:46,810 --> 00:00:48,020
+Matriks hanya cara lain
+
+19
+00:00:48,300 --> 00:00:49,630
+dalam menyebut
+
+20
+00:00:49,690 --> 00:00:51,540
+2D atau susunan 2 dimensi.
+
+21
+00:00:53,260 --> 00:00:54,920
+Dan potongan pengetahuan
+
+22
+00:00:55,260 --> 00:00:56,320
+lain yang kita butuhkan adalah
+
+23
+00:00:56,650 --> 00:00:57,740
+dimensi matriks
+
+24
+00:00:57,810 --> 00:00:58,980
+yang akan
+
+25
+00:00:59,110 --> 00:01:01,070
+ditulis sebagai
+
+26
+00:01:01,170 --> 00:01:04,750
+jumlah baris x jumlah kolom matriks.
+
+27
+00:01:05,480 --> 00:01:07,190
+Konkritnya, contoh
+
+28
+00:01:07,830 --> 00:01:09,700
+di kiri ini
+
+29
+00:01:09,900 --> 00:01:11,000
+punya 1, 2, 3, 4
+
+30
+00:01:11,290 --> 00:01:13,370
+baris dan 2 kolom,
+
+31
+00:01:14,540 --> 00:01:15,950
+sehingga contoh di
+
+32
+00:01:16,110 --> 00:01:17,850
+kiri ini adalah
+
+33
+00:01:18,640 --> 00:01:23,320
+matriks 4 x 2 - jumlah baris x jumlah
+kolom.
+
+34
+00:01:23,600 --> 00:01:24,380
+Jadi, 4 baris, 2 kolom.
+
+35
+00:01:25,290 --> 00:01:27,740
+Matriks di kanan ini punya 2 baris.
+
+36
+00:01:28,330 --> 00:01:29,790
+Itu baris pertamanya,
+
+37
+00:01:30,040 --> 00:01:32,580
+itu baris keduanya, dan punya 3 kolom.
+
+38
+00:01:35,430 --> 00:01:36,890
+Itu kolom pertamanya,
+
+39
+00:01:37,070 --> 00:01:38,350
+itu kolom kedua, dan itu
+
+40
+00:01:38,610 --> 00:01:41,340
+kolom ketiga. Jadi matriks kedua ini
+
+41
+00:01:41,670 --> 00:01:42,800
+adalah
+
+42
+00:01:42,970 --> 00:01:44,660
+matriks 2 x 3.
+
+43
+00:01:45,700 --> 00:01:48,230
+Kita katakan dimensi matriks ini 2 x 3.
+
+44
+00:01:50,460 --> 00:01:51,690
+Terkadang Anda juga melihat ini
+
+45
+00:01:51,850 --> 00:01:53,480
+ditulis, pada kasus
+
+46
+00:01:53,740 --> 00:01:54,510
+di kiri, Anda akan melihat ini
+
+47
+00:01:55,000 --> 00:01:56,360
+ditulis R 4 x 2
+
+48
+00:01:56,460 --> 00:01:58,090
+atau konkritnya, apa yang kadang
+
+49
+00:01:58,470 --> 00:02:00,280
+orang akan katakan matriks ini
+
+50
+00:02:00,930 --> 00:02:02,840
+adalah element dari kumpulan R 4 x 2.
+
+51
+00:02:03,060 --> 00:02:04,270
+Jadi, ini,
+
+52
+00:02:04,410 --> 00:02:05,180
+artinya kumpulan semua
+
+53
+00:02:05,790 --> 00:02:07,020
+matriks dengan dimensi
+
+54
+00:02:07,520 --> 00:02:08,960
+4 x 2 dan ini
+
+55
+00:02:09,100 --> 00:02:10,650
+yang di kanan, kadang
+
+56
+00:02:10,880 --> 00:02:12,800
+ditulis sebagai matriks R 2 x 3.
+
+57
+00:02:13,130 --> 00:02:16,080
+Jadi, jika Anda pernah
+
+58
+00:02:16,560 --> 00:02:17,460
+melihat
+
+59
+00:02:17,570 --> 00:02:18,700
+sesuatu seperti 4 x 2 atau
+
+60
+00:02:18,880 --> 00:02:19,960
+2 x 3,
+
+61
+00:02:20,320 --> 00:02:21,450
+orang hanya menunjukkan
+
+62
+00:02:21,900 --> 00:02:23,830
+matriks dengan dimensi tertentu.
+
+63
+00:02:26,760 --> 00:02:28,240
+Berikut, mari bicara bagaimana
+
+64
+00:02:28,590 --> 00:02:31,370
+menunjuk elemen tertentu
+dalam matriks.
+
+65
+00:02:31,980 --> 00:02:32,850
+Yang saya maksud
+
+66
+00:02:33,020 --> 00:02:34,090
+dengan elemen matriks
+
+67
+00:02:34,360 --> 00:02:35,930
+adalah angka-angka di dalam matriks.
+
+68
+00:02:37,200 --> 00:02:38,270
+Dalam notasi standar,
+
+69
+00:02:38,890 --> 00:02:40,110
+jika A, matriks ini,
+
+70
+00:02:40,290 --> 00:02:41,860
+maka A subskrip
+
+71
+00:02:42,830 --> 00:02:44,050
+ij menunjukkan
+
+72
+00:02:44,420 --> 00:02:46,060
+angka ke i, j
+
+73
+00:02:46,950 --> 00:02:48,490
+yang berarti angka dalam
+
+74
+00:02:48,570 --> 00:02:50,690
+matriks baris ke-i dan kolom ke-j.
+
+75
+00:02:51,880 --> 00:02:54,200
+Sebagai contoh, A11
+
+76
+00:02:54,530 --> 00:02:55,660
+menunjukkan angka
+
+77
+00:02:56,220 --> 00:02:57,510
+pada baris dan
+
+78
+00:02:57,600 --> 00:02:58,900
+kolom pertama.
+
+79
+00:02:58,960 --> 00:02:59,720
+Itu baris dan
+
+80
+00:03:00,090 --> 00:03:02,600
+kolom pertama. Jadi A11
+
+81
+00:03:02,640 --> 00:03:03,920
+sama dengan
+
+82
+00:03:04,240 --> 00:03:05,880
+1402.
+
+83
+00:03:06,420 --> 00:03:07,620
+Contoh lain, A12
+
+84
+00:03:07,780 --> 00:03:10,020
+menunjukkan
+
+85
+00:03:10,160 --> 00:03:11,160
+angka pada baris
+
+86
+00:03:11,660 --> 00:03:13,860
+pertama dan kolom
+
+87
+00:03:14,290 --> 00:03:16,170
+ke-2. Jadi A12
+
+88
+00:03:16,270 --> 00:03:19,000
+sama dengan 191.
+
+89
+00:03:20,430 --> 00:03:21,190
+Contoh lainnya,
+
+90
+00:03:22,430 --> 00:03:24,360
+mari lihat,
+
+91
+00:03:24,530 --> 00:03:26,970
+A32 menunjukkan
+
+92
+00:03:27,350 --> 00:03:29,240
+angka pada baris
+
+93
+00:03:30,040 --> 00:03:32,340
+ke-3 dan kolom ke-2.
+
+94
+00:03:33,750 --> 00:03:35,030
+Jadi,
+
+95
+00:03:35,470 --> 00:03:41,270
+itu sama dengan 1437.
+
+96
+00:03:41,490 --> 00:03:42,480
+Dan terakhir, A41
+
+97
+00:03:43,370 --> 00:03:44,540
+menunjukkan
+
+98
+00:03:45,320 --> 00:03:47,320
+yang satu ini, baris ke-4,
+
+99
+00:03:47,710 --> 00:03:49,220
+kolom pertama sama dengan
+
+100
+00:03:49,520 --> 00:03:53,150
+147. Jika,
+
+101
+00:03:53,770 --> 00:03:54,600
+semoga tidak, tapi jika
+
+102
+00:03:54,660 --> 00:03:55,560
+Anda menulis katakanlah
+
+103
+00:03:55,660 --> 00:03:57,540
+A43,
+
+104
+00:03:57,870 --> 00:03:59,200
+itu menunjukkan
+
+105
+00:03:59,610 --> 00:04:01,130
+baris ke-4 dan
+
+106
+00:04:01,230 --> 00:04:02,730
+kolom ke-3 dimana
+
+107
+00:04:02,850 --> 00:04:03,940
+matriks ini tidak punya
+
+108
+00:04:04,190 --> 00:04:05,420
+kolom ke-3. Jadi ini tidak terdefinisi,
+
+109
+00:04:06,640 --> 00:04:08,280
+atau Anda bisa berpikir ini salah.
+
+110
+00:04:08,830 --> 00:04:10,720
+Tidak ada elemen pada
+
+111
+00:04:10,840 --> 00:04:12,540
+A43. Jadi Anda tidak
+
+112
+00:04:12,950 --> 00:04:14,500
+seharusnya menunjuk pada A43.
+
+113
+00:04:14,620 --> 00:04:17,120
+Jadi, matriks
+
+114
+00:04:17,640 --> 00:04:19,070
+memberi Anda cara
+
+115
+00:04:19,380 --> 00:04:22,280
+mengorganisasi indeks dan 
+mengakses banyak data.
+
+116
+00:04:22,670 --> 00:04:24,200
+Jika saya
+
+117
+00:04:24,320 --> 00:04:25,140
+melontarkan banyak
+
+118
+00:04:25,440 --> 00:04:26,110
+konsep, banyak notasi
+
+119
+00:04:26,570 --> 00:04:27,920
+terlalu cepat, Anda tidak perlu
+
+120
+00:04:28,140 --> 00:04:29,230
+mengingat semua ini, tapi
+
+121
+00:04:29,530 --> 00:04:31,500
+pada website pelajaran ini dimana kita
+
+122
+00:04:31,700 --> 00:04:33,340
+menampilkan catatan kuliah,
+
+123
+00:04:33,700 --> 00:04:35,960
+kita juga telah menulis semua
+definisi ini.
+
+124
+00:04:36,650 --> 00:04:37,740
+Jadi, Anda selalu bisa melihat
+
+125
+00:04:38,160 --> 00:04:39,200
+ke slide ini,
+
+126
+00:04:39,560 --> 00:04:40,950
+mungkin tugas kuliah, atau ke catatan
+
+127
+00:04:41,260 --> 00:04:44,060
+kuliah jika Anda lupa, apa itu A41?
+
+128
+00:04:44,290 --> 00:04:45,320
+Baris dan kolom berapa itu?
+
+129
+00:04:45,650 --> 00:04:47,160
+Jangan mengkhawatirkan untuk mengingat
+semuanya sekarang.
+
+130
+00:04:47,470 --> 00:04:48,960
+Anda selalu bisa melihat kembali
+
+131
+00:04:49,100 --> 00:04:51,590
+materi tertulis pada website pelajaran
+ini & menggunakannya sebagai referensi.
+
+132
+00:04:52,500 --> 00:04:53,740
+Jadi, itulah matriks.
+
+133
+00:04:54,160 --> 00:04:57,000
+Berikutnya, mari bicara tentang
+apa itu vektor.
+
+134
+00:04:57,300 --> 00:04:59,400
+Vektor adalah kasus khusus dari matriks.
+
+135
+00:04:59,890 --> 00:05:01,170
+Vektor adalah matriks
+
+136
+00:05:02,070 --> 00:05:03,590
+yang hanya punya 1 kolom.
+
+137
+00:05:03,740 --> 00:05:04,650
+Jadi, Anda punya matriks
+
+138
+00:05:04,850 --> 00:05:07,330
+N x 1, dan ingat
+
+139
+00:05:07,820 --> 00:05:08,970
+N adalah jumlah
+
+140
+00:05:09,190 --> 00:05:10,750
+baris, dan 1
+
+141
+00:05:10,870 --> 00:05:12,540
+adalah jumlah kolom.
+
+142
+00:05:12,710 --> 00:05:13,760
+Jadi, matriks dengan 1 kolom
+
+143
+00:05:14,720 --> 00:05:15,730
+adalah vektor.
+
+144
+00:05:16,700 --> 00:05:17,950
+Ini satu contoh
+
+145
+00:05:18,310 --> 00:05:19,800
+vektor dengan
+
+146
+00:05:20,120 --> 00:05:22,700
+N sama dengan 4 elemen.
+
+147
+00:05:23,860 --> 00:05:25,090
+Kita sebut juga ini,
+
+148
+00:05:25,370 --> 00:05:26,560
+istilah lainnya
+
+149
+00:05:26,660 --> 00:05:28,300
+adalah vektor 4-dimensi,
+
+150
+00:05:30,130 --> 00:05:31,410
+maksudnya
+
+151
+00:05:32,880 --> 00:05:34,410
+ini vektor dengan 4 elemen,
+
+152
+00:05:34,800 --> 00:05:36,400
+dengan 4 angka didalamnya.
+
+153
+00:05:36,870 --> 00:05:38,130
+Dan, seperti sebelumnya
+
+154
+00:05:38,510 --> 00:05:39,520
+pada matriks, Anda melihat
+
+155
+00:05:39,740 --> 00:05:40,960
+notasi R 3 x 2
+
+156
+00:05:41,120 --> 00:05:42,340
+yang berkenaan dengan
+
+157
+00:05:42,340 --> 00:05:43,770
+matriks 3 x 2, untuk vektor ini
+
+158
+00:05:44,660 --> 00:05:46,340
+kita akan menghubungkan ini
+
+159
+00:05:46,500 --> 00:05:48,270
+sebagai vektor dalam set R4.
+
+160
+00:05:49,640 --> 00:05:50,900
+R4 ini artinya satu
+
+161
+00:05:51,020 --> 00:05:53,480
+set vektor 4-dimensi.
+
+162
+00:05:56,350 --> 00:05:59,230
+Berikutnya, mari bicara bagaimana
+menunjuk pada elemen vektor.
+
+163
+00:06:01,790 --> 00:06:02,970
+Kita akan gunakan notasi
+
+164
+00:06:03,730 --> 00:06:06,030
+yi untuk menunjuk
+
+165
+00:06:06,310 --> 00:06:07,620
+elemen ke-i dari
+
+166
+00:06:07,690 --> 00:06:08,650
+vektor y. Jadi jika y
+
+167
+00:06:08,810 --> 00:06:11,470
+vektor ini, y subskrip i merupakan
+elemen ke-i.
+
+168
+00:06:12,050 --> 00:06:13,080
+Jadi, y1 adalah
+
+169
+00:06:13,450 --> 00:06:16,320
+elemen pertama, 460.
+
+170
+00:06:16,540 --> 00:06:18,670
+y2 adalah elemen ke-2,
+
+171
+00:06:19,690 --> 00:06:21,030
+232. Itu yang pertama.
+
+172
+00:06:21,380 --> 00:06:21,780
+Itu yang kedua.
+
+173
+00:06:22,570 --> 00:06:24,840
+y3 = 315
+
+174
+00:06:24,970 --> 00:06:26,380
+dan seterusnya.
+
+175
+00:06:26,760 --> 00:06:28,240
+Hanya y1 sampai y4
+
+176
+00:06:28,650 --> 00:06:31,600
+yang dinyatakan karena itu
+vektor 4-dimensi.
+
+177
+00:06:32,940 --> 00:06:33,990
+Selain itu,
+
+178
+00:06:34,560 --> 00:06:35,950
+sebenarnya ada 2 ketentuan
+
+179
+00:06:36,320 --> 00:06:37,590
+cara memberi indeks pada
+
+180
+00:06:37,730 --> 00:06:39,250
+vektor dan ini ketentuannya.
+
+181
+00:06:39,560 --> 00:06:41,020
+Kadang, orang akan menggunakan
+
+182
+00:06:41,630 --> 00:06:43,820
+indeks 1 dan kadang indeks 0.
+
+183
+00:06:44,770 --> 00:06:45,620
+Jadi contoh di kiri ini
+
+184
+00:06:46,090 --> 00:06:47,980
+adalah vektor dengan indeks 1
+
+185
+00:06:48,180 --> 00:06:49,240
+dimana elemennya
+
+186
+00:06:49,650 --> 00:06:51,870
+ditulis y1, y2, y3, y4.
+
+187
+00:06:53,540 --> 00:06:54,710
+Dan contoh di kanan ini
+
+188
+00:06:54,870 --> 00:06:56,340
+adalah contoh vektor dengan indeks 0
+
+189
+00:06:56,840 --> 00:06:58,380
+dimana kita mulai
+
+190
+00:06:58,730 --> 00:07:00,460
+indeks elemennya dari 0.
+
+191
+00:07:01,520 --> 00:07:04,620
+Jadi, elemennya dimulai
+dari y0 sampai y3.
+
+192
+00:07:05,450 --> 00:07:07,170
+Dan ini sedikit mirip dengan
+
+193
+00:07:07,380 --> 00:07:08,780
+array pada beberapa bahasa pemrograman,
+
+194
+00:07:09,940 --> 00:07:11,080
+dimana indeks array
+
+195
+00:07:11,440 --> 00:07:12,740
+bisa mulai dari 1,
+
+196
+00:07:13,140 --> 00:07:14,390
+elemen pertama suatu
+
+197
+00:07:14,510 --> 00:07:15,590
+array terkadang y[1],
+
+198
+00:07:16,160 --> 00:07:17,480
+saya pikir ini urutan notasinya,
+
+199
+00:07:17,940 --> 00:07:20,580
+dan terkadang indeksnya 0,
+
+200
+00:07:21,260 --> 00:07:22,860
+tergantung bahasa pemrograman yang
+Anda gunakan.
+
+201
+00:07:23,640 --> 00:07:25,000
+Jadi tampaknya pada
+
+202
+00:07:25,190 --> 00:07:26,680
+sebagian besar ilmu matematika, versi
+
+203
+00:07:27,120 --> 00:07:28,390
+indeks 1
+
+204
+00:07:28,570 --> 00:07:30,150
+lebih umum, tapi untuk banyak
+
+205
+00:07:30,380 --> 00:07:32,640
+aplikasi machine learning, vektor
+
+206
+00:07:33,680 --> 00:07:35,400
+indeks 0, notasi yang lebih nyaman
+buat kita.
+
+207
+00:07:36,810 --> 00:07:37,650
+Jadi apa yang seharusnya Anda lakukan
+
+208
+00:07:37,970 --> 00:07:39,580
+adalah, kecuali ditentukan sebaliknya,
+
+209
+00:07:40,630 --> 00:07:43,070
+Anda harus mengasumsikan kita
+menggunakan vektor indeks 1.
+
+210
+00:07:43,680 --> 00:07:44,750
+Bahkan, di sisa
+
+211
+00:07:44,890 --> 00:07:46,380
+video pengulangan aljabar linier
+
+212
+00:07:46,770 --> 00:07:49,190
+ini, saya akan menggunakan vektor
+dengan indeks 1.
+
+213
+00:07:50,210 --> 00:07:51,170
+Tapi ketahuilah,
+
+214
+00:07:51,280 --> 00:07:52,150
+ketika kita bicara tentang
+aplikasi machine learning,
+
+215
+00:07:52,390 --> 00:07:53,980
+terkadang saya akan
+
+216
+00:07:54,220 --> 00:07:55,340
+dengan jelas mengatakan kapan kita
+
+217
+00:07:55,480 --> 00:07:56,640
+juga perlu
+
+218
+00:07:56,740 --> 00:07:57,760
+menggunakan vektor
+
+219
+00:07:59,020 --> 00:07:59,280
+indeks 0.
+
+220
+00:08:00,240 --> 00:08:02,470
+Terakhir, sesuai ketentuan, biasanya
+
+221
+00:08:02,940 --> 00:08:04,470
+saat menulis matriks dan vektor,
+
+222
+00:08:05,060 --> 00:08:06,710
+sebagian besar orang akan menggunakan
+
+223
+00:08:06,900 --> 00:08:08,450
+huruf besar untuk menunjukkan matriks.
+
+224
+00:08:09,000 --> 00:08:09,750
+Jadi kita akan menggunakan
+
+225
+00:08:09,930 --> 00:08:12,030
+huruf kapital seperti
+
+226
+00:08:12,260 --> 00:08:13,840
+A, B, C,
+
+227
+00:08:14,100 --> 00:08:15,370
+X, untuk menunjukkan matriks,
+
+228
+00:08:16,630 --> 00:08:17,910
+dan biasanya kita akan menggunakan
+huruf kecil,
+
+229
+00:08:18,660 --> 00:08:19,630
+seperti a, b, x, y,
+
+230
+00:08:21,140 --> 00:08:22,460
+untuk menunjukkan angka,
+
+231
+00:08:23,060 --> 00:08:25,400
+atau skalar atau vektor.
+
+232
+00:08:26,150 --> 00:08:27,860
+Ini tidak selalu benar, tapi
+
+233
+00:08:28,110 --> 00:08:29,210
+ini notasi yang lebih
+
+234
+00:08:29,460 --> 00:08:30,610
+umum dimana kita menggunakan
+
+235
+00:08:30,940 --> 00:08:31,870
+huruf kecil y untuk menunjukkan
+
+236
+00:08:32,020 --> 00:08:33,360
+vektor dan menggunakan
+
+237
+00:08:34,150 --> 00:08:35,460
+huruf besar untuk menunjukkan matriks.
+
+238
+00:08:37,200 --> 00:08:39,820
+Jadi sekarang Anda tahu apa itu
+matriks dan vektor.
+
+239
+00:08:40,800 --> 00:08:42,310
+Berikutnya, kita akan bicara beberapa
+
+240
+00:08:42,500 --> 00:08:44,330
+hal yang bisa Anda lakukan dengan
+matriks dan vektor.

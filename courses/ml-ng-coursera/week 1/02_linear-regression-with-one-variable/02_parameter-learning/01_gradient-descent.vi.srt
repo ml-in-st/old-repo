@@ -1,0 +1,557 @@
+1
+00:00:00,000 --> 00:00:04,934
+Chúng tôi trước đây đã xác định chức năng chi phí J. Trong video này, tôi muốn cho bạn biết về
+
+2
+00:00:04,934 --> 00:00:09,634
+một thuật toán gọi là chấm điểm gốc cho việc giảm thiểu các chức năng chi phí J. Nó chỉ
+
+3
+00:00:09,634 --> 00:00:14,275
+ra chấm điểm gốc là một thuật toán tổng quát hơn và được sử dụng không chỉ ở tuyến tính
+
+4
+00:00:14,275 --> 00:00:18,916
+hồi quy. Nó thực sự được sử dụng trên tất cả nơi trong máy học. Và sau đó
+
+5
+00:00:18,916 --> 00:00:23,791
+trong lớp, chúng tôi sẽ sử dụng chấm điểm gốc để giảm thiểu các chức năng khác là tốt, không chỉ
+
+6
+00:00:23,791 --> 00:00:27,845
+chi phí chức J, cho hồi quy tuyến tính. Vì vậy, trong video này, I 'm gonna
+
+7
+00:00:27,845 --> 00:00:32,558
+nói về chấm điểm gốc cho việc giảm thiểu một số chức năng tùy ý J. Và sau đó trong
+
+8
+00:00:32,558 --> 00:00:37,406
+video sau đó, chúng tôi sẽ mất thuật toán và áp dụng cụ thể cho các phong tục
+
+9
+00:00:37,406 --> 00:00:43,332
+trong j mà chúng tôi đã tìm thấy cho hồi quy tuyến tính. [âm thanh]. Vì vậy, đây là vấn đề
+
+10
+00:00:43,332 --> 00:00:48,112
+thiết lập. Chúng ta sẽ thấy rằng chúng tôi có một số chức năng j của theta 0, theta một trong.
+
+11
+00:00:48,112 --> 00:00:52,773
+Có lẽ nó là hàm chi phí từ hồi quy tuyến tính. Có thể nó là một số chức năng khác
+
+12
+00:00:52,773 --> 00:00:56,801
+chúng tôi muốn giảm thiểu. Và chúng tôi muốn đi lên với một thuật toán, bạn đã biết,
+
+13
+00:00:56,801 --> 00:01:01,174
+giảm thiểu mà như là một chức năng của j hoặc theta 0, theta một trong. Cũng giống như một sang một bên,
+
+14
+00:01:01,174 --> 00:01:05,793
+nó chỉ ra rằng. Lớp và gốc thực sự áp dụng cho tổng quát hơn
+
+15
+00:01:05,793 --> 00:01:10,994
+chức năng. Vì vậy hãy tưởng tượng nếu bạn có một chức năng là một chức năng của JS theta
+
+16
+00:01:10,994 --> 00:01:16,194
+Zero, theta một, theta hai, lên đến, nói, [unintelligible] N. Và bạn muốn giảm thiểu,
+
+17
+00:01:16,405 --> 00:01:21,795
+Theta zero, và giảm thiểu hơn theta zero đến theta N. Của này j theta zero lên
+
+18
+00:01:21,795 --> 00:01:26,580
+để theta n. Nó chỉ ra chuyển màu gốc là một thuật toán giải quyết [unintelligible]
+
+19
+00:01:26,580 --> 00:01:31,368
+Tổng quát hơn vấn đề này, nhưng vì lợi ích của các ngắn gọn tôi, tôi cho lợi ích của
+
+20
+00:01:31,368 --> 00:01:35,935
+của bạn chuỗi các ký hiệu, tôi chỉ đi đến nay. Tôi đã chỉ có hai tham số,
+
+21
+00:01:36,113 --> 00:01:41,097
+trong suốt phần còn lại của video này. Đây là ý tưởng cho lớp và dòng máu. Những gì chúng tôi
+
+22
+00:01:41,097 --> 00:01:45,882
+gonna do là chúng tôi đang gonna bắt đầu với một số phỏng đoán ban đầu cho theta zero và
+
+23
+00:01:45,882 --> 00:01:50,788
+Theta một trong. Không quan trọng những gì họ, nhưng một sự lựa chọn phổ biến sẽ nếu chúng tôi
+
+24
+00:01:50,788 --> 00:01:55,452
+Set theta zero-Zero [unintelligible], và thiết lập theta một trong số không. Chỉ cần khởi tạo
+
+25
+00:01:55,452 --> 00:02:00,322
+họ bằng không. Những gì chúng tôi sẽ làm gì trong lớp và gốc là chúng tôi sẽ giữ cho việc thay đổi
+
+26
+00:02:00,322 --> 00:02:05,258
+Theta zero và theta một trong một chút chút để cố gắng giảm bớt j theta số không, theta một trong
+
+27
+00:02:05,258 --> 00:02:10,571
+cho đến khi hy vọng rằng chúng tôi gió lên lúc tối thiểu hoặc có lẽ là một tối thiểu địa phương. Vì vậy, hãy xem những gì,
+
+28
+00:02:10,796 --> 00:02:16,106
+Hãy xem hình ảnh của những gì [unintelligible] nào. Hãy nói rằng tôi cố gắng giảm thiểu điều này
+
+29
+00:02:16,106 --> 00:02:20,849
+chức năng. Vì vậy thông báo các trục. Đây là, theta 0, theta một trong ngày ngang
+
+30
+00:02:20,849 --> 00:02:25,774
+trục, và j là một trục thẳng đứng. Và vì vậy chiều cao của bề mặt cho thấy, J, và chúng tôi
+
+31
+00:02:25,774 --> 00:02:30,582
+bạn muốn giảm thiểu chức năng này. Vì vậy, chúng tôi sẽ bắt đầu với theta 0, theta
+
+32
+00:02:30,582 --> 00:02:35,375
+một tại một số điểm. Vì vậy hãy tưởng tượng chọn một số giá trị cho theta số không, theta một, và đó
+
+33
+00:02:35,375 --> 00:02:39,934
+tương ứng với bắt đầu tại một số điểm trên bề mặt của chức năng này. Ok? Vì vậy
+
+34
+00:02:39,934 --> 00:02:44,201
+bất kỳ giá trị của theta 0, theta một trong sẽ cho bạn một số điểm ở đây. Tôi không
+
+35
+00:02:44,201 --> 00:02:48,819
+khởi tạo chúng đến số không, số không nhưng, bạn đã biết, đôi khi bạn khởi tạo nó khác
+
+36
+00:02:48,819 --> 00:02:53,942
+giá trị là tốt. Bây giờ. Tôi muốn chúng tôi tưởng tượng rằng con số này cho thấy một ngọn đồi. Hãy tưởng tượng
+
+37
+00:02:53,942 --> 00:02:59,178
+đây giống như một cảnh quan của một số công viên cỏ với, bạn biết, hai ngọn đồi như vậy.
+
+38
+00:02:59,178 --> 00:03:04,618
+Và tôi muốn bạn hãy tưởng tượng rằng bạn đang thể chất đứng vào thời điểm đó trên các
+
+39
+00:03:04,618 --> 00:03:09,990
+đồi, bên phải, trên này ngọn đồi đỏ nhỏ trong công viên của bạn. Trong Gradient Descent, những gì chúng tôi
+
+40
+00:03:09,990 --> 00:03:15,770
+sẽ làm là quay 360 độ xung quanh và chỉ cần nhìn tất cả xung quanh chúng ta và hỏi nếu tôi đã
+
+41
+00:03:15,770 --> 00:03:20,423
+để có một em bé nhỏ bước theo một số hướng. Và tôi muốn đi downhill như
+
+42
+00:03:20,423 --> 00:03:25,320
+một cách nhanh chóng nhất có thể. Những gì hướng để mất rằng bước em bé nhỏ nếu tôi muốn
+
+43
+00:03:25,320 --> 00:03:29,686
+đi xuống, nếu tôi loại muốn thể chất đi bộ xuống đồi này nhanh chóng như
+
+44
+00:03:29,686 --> 00:03:34,465
+có thể? Chỉ ra rằng nếu chúng ta đang đứng ở thời điểm đó trên đồi, bạn nhìn tất cả
+
+45
+00:03:34,465 --> 00:03:39,185
+xung quanh, bạn thấy rằng hướng tốt nhất để có một chút, một chút bước xuống dốc
+
+46
+00:03:39,185 --> 00:03:44,035
+là khoảng hướng. Ok. Và bây giờ bạn đang ở thời điểm mới này, trên ngọn đồi của bạn.
+
+47
+00:03:44,035 --> 00:03:49,430
+Bạn gonna đạt được, xem xét tất cả xung quanh, và sau đó nói những gì hướng nên tôi bước theo thứ tự
+
+48
+00:03:49,430 --> 00:03:54,695
+để có một em bé ít bước xuống dốc. Và nếu bạn làm điều đó, và có một bước, bạn
+
+49
+00:03:54,695 --> 00:03:59,700
+phải mất một bước theo hướng đó. Và sau đó bạn tiếp tục đi. Bạn đã biết, từ này mới
+
+50
+00:03:59,700 --> 00:04:04,835
+điểm, bạn nhìn xung quanh, có một, quyết định những gì hướng sẽ đưa bạn hầu hết các downhill
+
+51
+00:04:04,835 --> 00:04:09,775
+một cách nhanh chóng, có một bước, một bước, và như vậy, cho đến khi bạn hội tụ về điều này,
+
+52
+00:04:09,970 --> 00:04:15,059
+địa phương tối thiểu xuống ở đây. Thêm gốc có một tài sản thú vị. Này đầu tiên
+
+53
+00:04:15,059 --> 00:04:19,682
+thời gian chúng tôi chạy gradient descent, chúng tôi đã bắt đầu vào thời điểm này trên đây, phải không?
+
+54
+00:04:19,682 --> 00:04:24,183
+Bắt đầu vào thời điểm đó trên đây. Bây giờ, hãy tưởng tượng, chúng tôi đã có, chúng tôi khởi tạo chuyển màu
+
+55
+00:04:24,183 --> 00:04:29,232
+gốc chỉ là một vài bước ở bên phải.
+Hãy tưởng tượng [unintelligible] gradient descent với
+
+56
+00:04:29,232 --> 00:04:34,159
+đó điểm trên phía trên bên phải. Nếu bạn đã để lặp lại quá trình này, và dừng lại ở các
+
+57
+00:04:34,159 --> 00:04:39,207
+điểm, và xem xét tất cả xung quanh. Phải mất một bước nhỏ hướng steeples gốc.
+
+58
+00:04:39,207 --> 00:04:44,772
+Bạn sẽ làm điều đó. Sau đó nhìn xung quanh, có một bước, và như vậy. Và nếu bạn bắt đầu
+
+59
+00:04:44,772 --> 00:04:50,570
+nó chỉ là một vài bước ở bên phải, gradient descent sẽ có sự bạn để
+
+60
+00:04:50,570 --> 00:04:56,236
+này thứ hai địa phương tối ưu trên bên phải. Vì vậy, nếu bạn đã bắt đầu lúc này đầu tiên
+
+61
+00:04:56,236 --> 00:05:01,602
+điểm, bạn sẽ có lên vết thương ở này tối ưu địa phương. Nhưng nếu bạn bắt đầu chỉ cần một
+
+62
+00:05:01,602 --> 00:05:06,762
+chút chút, một địa điểm hơi khác nhau, bạn sẽ có lên vết thương ở một rất
+
+63
+00:05:06,762 --> 00:05:12,197
+tối ưu địa phương khác nhau. Và đây là một tài sản của lớp và gốc mà chúng tôi sẽ
+
+64
+00:05:12,197 --> 00:05:17,425
+nói một chút chút thêm về sau này. Vì vậy, đó là trực giác trong hình ảnh. Chúng ta hãy
+
+65
+00:05:17,425 --> 00:05:22,929
+nhìn vào bản đồ. Đây là định nghĩa của các thuật toán lớp và dòng máu. Chúng tôi
+
+66
+00:05:22,929 --> 00:05:28,240
+sẽ chỉ liên tục làm điều này. Ngày để hội tụ. Chúng tôi sẽ cập nhật của tôi
+
+67
+00:05:28,240 --> 00:05:33,543
+tham số theta j bởi, bạn đã biết, việc theta j và trừ đi từ nó alpha
+
+68
+00:05:33,543 --> 00:05:39,129
+lần này thuật ngữ trên đây, rồi? Vì vậy, hãy xem. Có rất nhiều chi tiết trong này
+
+69
+00:05:39,129 --> 00:05:45,030
+phương trình, vì vậy hãy để tôi giải nén một số của nó.
+Đầu tiên. Ký hiệu này ở đây, ruột bằng.
+
+70
+00:05:45,030 --> 00:05:51,643
+Gonna sử dụng ruột kết bằng để biểu thị phân công, vì vậy [unintelligible] phân công của bạn
+
+71
+00:05:51,643 --> 00:05:57,790
+nhà điều hành. Cụ thể như vậy, nếu tôi viết A: = sinh
+Điều này có nghĩa là nó có nghĩa là, bạn đã biết, trong,
+
+72
+00:05:57,790 --> 00:06:02,878
+trong, trong một máy tính, điều này có nghĩa có giá trị và, và sử dụng nó để ghi đè lên
+
+73
+00:06:02,878 --> 00:06:08,517
+bất kỳ giá trị của A. Do đó, điều này có nghĩa là chúng tôi sẽ thiết lập a đến được bằng giá trị của sinh
+
+74
+00:06:08,517 --> 00:06:13,674
+Được rồi, của nó chuyển nhượng [unintelligible]. Tôi cũng có thể làm một tràng bằng một + 1. Điều này có nghĩa
+
+75
+00:06:13,674 --> 00:06:18,969
+Lấy a và tăng giá trị của nó bằng một trong.
+Trong khi trái ngược, nếu tôi sử dụng các bằng
+
+76
+00:06:18,969 --> 00:06:26,067
+dấu hiệu và tôi viết A = B, thì đây là một sự thật. Tìm kiếm. Ok? Vì vậy nếu tôi viết A = B,
+
+77
+00:06:26,067 --> 00:06:31,006
+sau đó tôi khẳng định rằng giá trị của A = giá trị của B, phải không? Vì vậy trái tay
+
+78
+00:06:31,006 --> 00:06:36,331
+mặt, mà là một hoạt động máy tính, nơi bạn thiết lập giá trị của a là một giá trị. Các
+
+79
+00:06:36,331 --> 00:06:41,399
+phía bên tay phải, điều này khẳng định, tôi chỉ cần làm một tuyên bố rằng các giá trị của a
+
+80
+00:06:41,399 --> 00:06:46,274
+và b là như nhau. Và vì vậy, trong khi tôi có thể viết A: = A + 1, trong đó có nghĩa là tăng a bởi
+
+81
+00:06:46,274 --> 00:06:50,764
+một trong những. Hy vọng rằng, tôi sẽ không bao giờ viết A = A + 1.
+Bởi vì, bạn đã biết, đó là chỉ sai,
+
+82
+00:06:50,764 --> 00:06:55,704
+quyền? Một và một + 1 không bao giờ có thể được bình đẳng với các giá trị tương tự, được rồi? Vì vậy, đó là lần đầu tiên
+
+83
+00:06:55,704 --> 00:07:05,733
+một phần của định nghĩa. Điều này, alpha ở đây, là một, một số được gọi là các
+
+84
+00:07:05,733 --> 00:07:12,360
+tỷ lệ học tập. Và những gì alpha nào, là, nó về cơ bản kiểm soát như thế nào lớn một bước chúng tôi đi
+
+85
+00:07:12,360 --> 00:07:17,113
+xuống dốc với lớp và dòng máu. Tương ứng như vậy nếu alpha là rất lớn, sau đó mà với
+
+86
+00:07:17,113 --> 00:07:21,925
+để một rất năng nổ lớp và gốc thủ tục, nơi chúng tôi đang cố gắng để có rất lớn
+
+87
+00:07:21,925 --> 00:07:26,322
+bước xuống dốc. Và nếu alpha là rất nhỏ, sau đó chúng tôi đã dành ít, ít
+
+88
+00:07:26,322 --> 00:07:31,194
+em bé bước xuống dốc. Và, tôi sẽ trở lại và nói thêm về điều này sau đó. Về, bạn
+
+89
+00:07:31,194 --> 00:07:35,660
+biết làm thế nào để thiết lập alpha vv. Và cuối cùng, thuật ngữ này ở đây. Rằng các
+
+90
+00:07:35,660 --> 00:07:40,582
+khâu, tôi không muốn nói về nó ngay bây giờ, nhưng tôi sẽ lấy được điều này
+
+91
+00:07:40,582 --> 00:07:45,564
+đạo hàm hạn và cho bạn biết chính xác những gì điều này là dựa trên, okay? Và một số bạn
+
+92
+00:07:45,564 --> 00:07:50,547
+sẽ quen thuộc hơn với giải tích hơn những người khác tốt hơn, ngay cả khi bạn không quen thuộc
+
+93
+00:07:50,547 --> 00:07:55,469
+với tính toán Đừng lo lắng về nó, tôi sẽ cho bạn biết những gì bạn cần biết về việc này
+
+94
+00:07:55,469 --> 00:08:00,580
+hạn ở đây. Bây giờ. Đó là một tinh tế hơn về lớp và gốc, đó là, trong
+
+95
+00:08:00,580 --> 00:08:05,837
+lớp và gốc, chúng tôi đang gonna update, bạn đã biết, theta zero và theta một, ngay? Vì vậy
+
+96
+00:08:05,837 --> 00:08:10,699
+bản cập nhật này diễn ra nơi J = 0, và J = 1. Vì vậy bạn đang gonna Cập Nhật J, theta 0,
+
+97
+00:08:10,699 --> 00:08:15,955
+và cập nhật các theta một trong. Và tinh tế của như thế nào bạn thực hiện cấp và gốc là,
+
+98
+00:08:15,955 --> 00:08:21,562
+Đối với biểu hiện này. Bên phải, phương trình cập nhật này, bạn muốn
+
+99
+00:08:21,562 --> 00:08:31,384
+cùng một lúc. Bản Cập Nhật. Theta zero và theta một trong. Những gì tôi có nghĩa là bởi đó là,
+
+100
+00:08:31,384 --> 00:08:36,432
+bạn đã biết, trong phương trình này, chúng tôi đang gonna Cập Nhật theta 0, [unintelligible] bằng zero
+
+101
+00:08:36,432 --> 00:08:40,975
+trừ đi một cái gì đó, và Cập Nhật theta một [unintelligible] bằng theta một trừ
+
+102
+00:08:40,975 --> 00:08:45,834
+một cái gì đó. Và cách để thực hiện điều này là, bạn nên tính toán tay phải
+
+103
+00:08:45,834 --> 00:08:52,677
+bên. Tính toán rằng sau đó. Theta zero và theta một trong. Sau đó cùng một lúc tại
+
+104
+00:08:52,677 --> 00:08:57,469
+cùng thời gian lên dữ liệu theta zero và theta một trong. Ok? Vì vậy, vì vậy hãy để tôi nói những gì tôi có nghĩa là
+
+105
+00:08:57,469 --> 00:09:02,024
+bằng cách đó. Đây là một thực hiện chính xác của ý nghĩa [unintelligible] đồng thời
+
+106
+00:09:02,024 --> 00:09:06,461
+bản Cập Nhật. I 'm gonna đặt mười, zero bằng rằng đến mười, một trong những bằng đó. Như vậy cơ bản
+
+107
+00:09:06,461 --> 00:09:11,430
+máy tính tay phải bên. Và sau đó có máy tính tay phải bên và được lưu trữ
+
+108
+00:09:11,430 --> 00:09:15,926
+họ cùng nhau [unintelligible] I 'm gonna [unintelligible] Cập Nhật theta zero và theta
+
+109
+00:09:15,926 --> 00:09:20,245
+một trong cùng một lúc. Bởi vì đó là việc thực hiện chính xác. Ngược lại,
+
+110
+00:09:20,245 --> 00:09:25,533
+Đây là một việc thực hiện không đúng mà không làm a. Cập Nhật đồng thời. Vì vậy, trong
+
+111
+00:09:25,533 --> 00:09:31,666
+này thực hiện không đúng, chúng tôi tính toán 10 below. Và sau đó chúng tôi Cập Nhật theta 0
+
+112
+00:09:31,666 --> 00:09:36,644
+và sau đó chúng tôi tính tan một. Sau đó, chúng tôi Cập Nhật Tân một. Và sự khác biệt giữa
+
+113
+00:09:36,644 --> 00:09:41,877
+phía bên tay phải và bên trái tay trong [unintelligible] là nếu chúng ta nhìn xuống
+
+114
+00:09:41,877 --> 00:09:46,791
+ở đây, bạn nhìn vào bước này, nếu lúc này bạn đã đã Cập Nhật theta zero
+
+115
+00:09:46,791 --> 00:09:51,897
+sau đó bạn sẽ sử dụng giá trị mới của theta zero bạn đã biết để tính toán bằng không
+
+116
+00:09:51,897 --> 00:09:57,340
+này ở đây hạn và do đó, điều này sẽ cho bạn một giá trị khác nhau của Tân một trong. Sau đó bên trái
+
+117
+00:09:57,340 --> 00:10:01,565
+bên tay. Phải, bởi vì bây giờ bạn đã cắm vào các giá trị mới của Theta zero
+
+118
+00:10:01,565 --> 00:10:05,852
+vào phương trình này. Và vì vậy đây ở bên tay phải không phải là một việc thực hiện chính xác
+
+119
+00:10:05,852 --> 00:10:09,916
+lớp và dòng máu. Ok? Vì vậy, tôi không muốn nói tại sao bạn cần phải làm việc
+
+120
+00:10:09,916 --> 00:10:14,617
+Cập Nhật đồng thời, nó chỉ ra rằng.
+[unintelligible] các, các cách lớp và dòng máu
+
+121
+00:10:14,617 --> 00:10:18,735
+hiện thường thực, chúng tôi sẽ nói thêm về nó sau này. Nó thực sự chỉ ra
+
+122
+00:10:18,735 --> 00:10:22,496
+tự nhiên hơn để thực hiện Cập Nhật đồng thời. Và khi mọi người nói
+
+123
+00:10:22,496 --> 00:10:26,665
+về lớp và dòng máu, họ luôn luôn có nghĩa là đồng thời Cập Nhật. Nếu bạn thực hiện các
+
+124
+00:10:26,665 --> 00:10:30,630
+không đồng thời Cập Nhật, nó biến ra nó rất có thể sẽ làm việc anyway, nhưng đây là,
+
+125
+00:10:30,630 --> 00:10:34,747
+thuật toán này bên phải là không những gì mọi người chỉ đến như lớp và dòng máu. Và
+
+126
+00:10:34,747 --> 00:10:38,356
+Đây là một số thuật toán khác với đặc tính khác nhau. Và cho nhiều
+
+127
+00:10:38,356 --> 00:10:42,220
+lý do, điều này, điều này thường chạy; Điều này có thể hành xử theo những cách hơi lạ. Và, bạn
+
+128
+00:10:42,220 --> 00:10:46,626
+biết, bạn nên làm gì. Để thực sự thực hiện Cập Nhật đồng thời của
+
+129
+00:10:46,626 --> 00:10:52,313
+[unintelligible]. Vì vậy, đó là dòng o Đại [unintelligible]. Trong video tới,
+
+130
+00:10:52,313 --> 00:10:56,998
+chúng tôi sẽ đi vào chi tiết của khâu, mà tôi đã viết ra nhưng
+
+131
+00:10:56,998 --> 00:11:01,799
+đã không thực sự xác định. Và nếu bạn đã lấy một lớp học tính toán trước khi và nếu bạn
+
+132
+00:11:01,799 --> 00:11:06,367
+quen thuộc với một phần derivatives và dẫn xuất, nó biến ra đó là chính xác
+
+133
+00:11:06,367 --> 00:11:11,425
+những gì mà khâu là. Nhưng trong trường hợp bạn không quen thuộc với giải tích. Không
+
+134
+00:11:11,425 --> 00:11:15,680
+lo lắng về nó. Video tiếp theo sẽ cung cấp cho bạn tất cả những intuitions, và sẽ cho bạn biết
+
+135
+00:11:15,680 --> 00:11:19,883
+tất cả mọi thứ bạn cần biết để tính toán rằng khâu, ngay cả khi bạn chưa
+
+136
+00:11:19,883 --> 00:11:24,296
+nhìn thấy giải tích, hoặc thậm chí nếu bạn không nhìn thấy một phần derivatives trước. Và, với
+
+137
+00:11:24,296 --> 00:11:28,288
+rằng, với video tiếp theo, hy vọng rằng, chúng tôi sẽ có thể cung cấp cho tất cả những intuitions
+
+138
+00:11:28,288 --> 00:11:30,180
+bạn cần phải áp dụng các lớp và dòng máu.

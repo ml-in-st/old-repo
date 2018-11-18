@@ -1,0 +1,94 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Features and Polynomial Regression
+ </h1>
+ <p>
+  We can improve our features and the form of our hypothesis function in a couple different ways.
+ </p>
+ <p hasmath="true">
+  We can
+  <strong>
+   combine
+  </strong>
+  multiple features into one. For example, we can combine $$x_1$$ and $$x_2$$ into a new feature $$x_3$$ by taking $$x_1$$⋅$$x_2$$.
+ </p>
+ <h3 level="3">
+  <strong>
+   Polynomial Regression
+  </strong>
+ </h3>
+ <p>
+  Our hypothesis function need not be linear (a straight line) if that does not fit the data well.
+ </p>
+ <p>
+  We can
+  <strong>
+   change the behavior or curve
+  </strong>
+  of our hypothesis function by making it a quadratic, cubic or square root function (or any other form).
+ </p>
+ <p hasmath="true">
+  For example, if our hypothesis function is $$h_\theta(x) = \theta_0 + \theta_1 x_1$$ then we can create additional features based on $$x_1$$, to get the quadratic function $$h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_1^2$$ or the cubic function $$h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_1^2 + \theta_3 x_1^3$$
+ </p>
+ <p hasmath="true">
+  In the cubic version, we have created new features $$x_2$$ and $$x_3$$ where $$x_2 = x_1^2$$ and $$x_3 = x_1^3$$.
+ </p>
+ <p hasmath="true">
+  To make it a square root function, we could do: $$h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 \sqrt{x_1}$$
+ </p>
+ <p>
+  One important thing to keep in mind is, if you choose your features this way then feature scaling becomes very important.
+ </p>
+ <p hasmath="true">
+  eg. if $$x_1$$ has range 1 - 1000 then range of $$x_1^2$$ becomes 1 - 1000000 and that of $$x_1^3$$ becomes 1 - 1000000000
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

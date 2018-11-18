@@ -1,0 +1,112 @@
+In this video we'll talk about
+matrix-matrix multiplication, or how to multiply two matrices together. When we talk about the method in
+linear regression for how to solve for the parameters theta 0 and
+theta 1 all in one shot, without needing an iterative
+algorithm like gradient descent. When we talk about that algorithm,
+it turns out that matrix-matrix multiplication is one
+of the key steps that you need to know. So let's, as usual, start with an example. Let's say I have two matrices and
+I want to multiply them together. Let me again just run
+through this example and then I'll tell you a little
+bit of what happened. So the first thing I'm gonna do is
+I'm going to pull out the first column of this matrix on the right. And I'm going to take this
+matrix on the left and multiply it by a vector that
+is just this first column. And it turns out, if I do that,
+I'm going to get the vector 11, 9. So this is the same
+matrix-vector multiplication as you saw in the last video. I worked this out in advance,
+so I know it's 11, 9. And then the second thing
+I want to do is I'm going to pull out the second column
+of this matrix on the right. And I'm then going to take
+this matrix on the left, so take that matrix, and multiply it
+by that second column on the right. So again, this is a matrix-vector
+multiplication step which you saw from the previous video. And it turns out that if you multiply this
+matrix and this vector you get 10, 14. And by the way, if you want to practice
+your matrix-vector multiplication, feel free to pause the video and
+check this product yourself. Then I'm just gonna take these two
+results and put them together, and that'll be my answer. So it turns out the outcome of this
+product is gonna be a two by two matrix. And the way I'm gonna fill in this
+matrix is just by taking my elements 11, 9, and plugging them here. And taking 10, 14 and plugging
+them into the second column, okay? So that was the mechanics of how to
+multiply a matrix by another matrix. You basically look at the second
+matrix one column at a time and you assemble the answers. And again, we'll step through this
+much more carefully in a second. But I just want to point out also,
+this first example is a 2x3 matrix. Multiply that by a 3x2 matrix,
+and the outcome of this product turns
+out to be a 2x2 matrix. And again, we'll see in
+a second why this was the case. All right,
+that was the mechanics of the calculation. Let's actually look at the details and
+look at what exactly happened. Here are the details. I have a matrix A and I want to
+multiply that with a matrix B and the result will be some new matrix C. It turns out you can only multiply
+together matrices whose dimensions match. So A is an m x n matrix,
+so m rows, n columns. And we multiply with an n x o matrix. And it turns out this n here
+must match this n here. So the number of columns
+in the first matrix must equal to the number of
+rows in the second matrix. And the result of this product will be
+a m x o matrix, like the matrix C here. And in the previous video everything we
+did corresponded to the special case of o being equal to 1. That was to the case of B being a vector. But now we're gonna deal with the case
+of values of o larger than 1. So here's how you multiply
+together the two matrices. What I'm going to do is I'm going
+to take the first column of B and treat that as a vector, and multiply
+the matrix A by the first column of B. And the result of that will be a n by 1
+vector, and I'm gonna put that over here. Then I'm gonna take the second
+column of B, right? So this is another n by 1 vector. So this column here, this is n by 1. It's an n-dimensional vector. Gonna multiply this matrix
+with this n by 1 vector. The result will be a m-dimensional vector,
+which we'll put there, and so on. And then I'm gonna take the third column,
+multiply it by this matrix. I get a m-dimensional vector. And so on,
+until you get to the last column. The matrix times the last column
+gives you the last column of C. Just to say that again, the ith column of the matrix C is obtained
+by taking the matrix A and multiplying the matrix A with
+the ith column of the matrix B for the values of i = 1, 2, up through o. So this is just a summary of what we did
+up there in order to compute the matrix C. Let's look at just one more example. Let's say I want to multiply
+together these two matrices. So what I'm going to do is first pull out
+the first column of my second matrix. That was my matrix B on
+the previous slide and I therefore have this
+matrix times that vector. And so, oh,
+let's do this calculation quickly. This is going to be equal to the 1, 3 x 0, 3, so that gives 1 x 0 + 3 x 3. And the second element is going to be 2,
+5 x 0, 3, so that's gonna be 2 x 0 + 5 x 3. And that is 9, 15. Oh, actually let me write that in green. So this is 9, 15. And then next I'm going to pull
+out the second column of this and do the corresponding calculations. So that's this matrix times this vector 1,
+2. Let's also do this quickly, so that's 1 x 1 + 3 x 2,
+so that was that row. And let's do the other one. So let's see, that gives me 2 x 1 + 5 x 2 and so that is going to be equal to, lets see, 1 x 1 + 3 x 1 is 7 and 2 x 1 + 5 x 2 is 12. So now I have these two and so my outcome, the product of these two matrices, is going to be this goes here and
+this goes here. So I get 9, 15 and 4, 12.
+[It should be 7,12] And you may notice also that the result of
+multiplying a 2x2 matrix with another 2x2 matrix, the resulting dimension is going
+to be that first 2 times that second 2. So the result is itself also a 2x2 matrix. Finally, let me show you one more neat
+trick that you can do with matrix-matrix multiplication. Let's say, as before, that we have four
+houses whose prices we wanna predict. Only now, we have three competing
+hypotheses shown here on the right. So if you want to apply all three competing hypotheses to all four
+of your houses, it turns out you can do that very efficiently using
+a matrix-matrix multiplication. So here on the left is my usual matrix,
+same as from the last video where these values are my housing prices
+[he means housing sizes]
+and I've put 1s here on the left as well. And what I am going to do is
+construct another matrix where here, the first column is this -40 and 0.25 and the second column is this 200,
+0.1 and so on. And it turns out that if you
+multiply these two matrices, what you find is that this first column,
+I'll draw that in blue. Well, how do you get this first column? Our procedure for matrix-matrix
+multiplication is, the way you get this first column is you take this matrix and
+you multiply it by this first column. And we saw in the previous video that this
+is exactly the predicted housing prices of the first hypothesis, right,
+of this first hypothesis here. And how about the second column? Well, [INAUDIBLE] second column. The way you get the second column is,
+well, you take this matrix and
+you multiply it by this second column. And so the second column turns out to be the predictions of the second
+hypothesis up there, and similarly for the third column. And so
+I didn't step through all the details, but hopefully you can just feel free to pause
+the video and check the math yourself and check that what I just
+claimed really is true. But it turns out that by constructing
+these two matrices, what you can therefore do is very quickly apply all 3
+hypotheses to all 4 house sizes to get all 12 predicted prices output
+by your 3 hypotheses on your 4 houses. So with just one matrix multiplication
+step you managed to make 12 predictions. And even better, it turns out that in
+order to do that matrix multiplication, there are lots of good
+linear algebra libraries in order to do this multiplication step for
+you. And so pretty much any reasonable
+programming language that you might be using. Certainly all the top ten most
+popular programming languages will have great linear algebra libraries. And there'll be good linear algebra
+libraries that are highly optimized in order to do that matrix-matrix
+multiplication very efficiently. Including taking advantage of any sort of
+parallel computation that your computer may be capable of, whether your computer
+has multiple cores or multiple processors. Or within a processor sometimes
+there's parallelism as well called SIMD parallelism that
+your computer can take care of. And there are very good
+free libraries that you can use to do this matrix-matrix
+multiplication very efficiently, so that you can very efficiently make lots
+of predictions with lots of hypotheses.

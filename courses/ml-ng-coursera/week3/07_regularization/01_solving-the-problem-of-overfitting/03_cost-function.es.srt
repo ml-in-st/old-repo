@@ -1,0 +1,1152 @@
+1
+00:00:00,144 --> 00:00:02,011
+En este video, me gustaría
+
+2
+00:00:02,011 --> 00:00:03,990
+trasmitirte las intuiciones principales
+
+3
+00:00:03,990 --> 00:00:05,771
+detrás de cómo funciona la regularización.
+
+4
+00:00:05,771 --> 00:00:07,386
+Y, también escribiremos
+
+5
+00:00:07,386 --> 00:00:11,724
+la función de costos que usaremos, cuando utilicemos la regularización.
+
+6
+00:00:11,780 --> 00:00:13,327
+Con los ejemplos dibujados a mano que
+
+7
+00:00:13,327 --> 00:00:14,916
+tenemos en estas diapositivas,
+
+8
+00:00:14,950 --> 00:00:17,642
+creo que seré capaz de transmitirte parte de la intuición.
+
+9
+00:00:17,700 --> 00:00:19,608
+Pero, incluso una mejor
+
+10
+00:00:19,608 --> 00:00:21,192
+forma de ver tú mismo cómo
+
+11
+00:00:21,192 --> 00:00:22,643
+funciona la regularización, es si
+
+12
+00:00:22,643 --> 00:00:25,869
+la implementas, y ves cómo funciona.
+
+13
+00:00:25,869 --> 00:00:26,888
+Y si haces los
+
+14
+00:00:26,888 --> 00:00:28,603
+ejercicios apropiados después de esto,
+
+15
+00:00:28,603 --> 00:00:30,053
+tendrás la oportunidad
+
+16
+00:00:30,053 --> 00:00:33,927
+de ver tú mismo la regularización en acción.
+
+17
+00:00:33,930 --> 00:00:36,519
+Entonces, aquí está la intuición.
+
+18
+00:00:36,519 --> 00:00:38,233
+En el vídeo anterior, vimos
+
+19
+00:00:38,233 --> 00:00:39,771
+que, ajustar
+
+20
+00:00:39,771 --> 00:00:41,420
+una función cuadrática a estos
+
+21
+00:00:41,420 --> 00:00:44,283
+datos, nos da un buen ajuste a los datos.
+
+22
+00:00:44,283 --> 00:00:45,286
+Considerando que, si fuéramos a
+
+23
+00:00:45,310 --> 00:00:47,175
+ajustar un polinomio de muy alto grado,
+
+24
+00:00:47,210 --> 00:00:48,823
+terminaríamos
+
+25
+00:00:48,850 --> 00:00:50,111
+con una curva que podría ajustarse
+
+26
+00:00:50,111 --> 00:00:51,760
+al conjunto de entrenamiento bastante bien, pero
+
+27
+00:00:51,760 --> 00:00:53,381
+que en realidad no es un,
+
+28
+00:00:53,420 --> 00:00:54,497
+pero que sobreajustará los datos
+
+29
+00:00:54,497 --> 00:00:57,225
+mal, y no generalizará bien.
+
+30
+00:00:57,900 --> 00:01:00,453
+Considera lo siguiente, supongamos que
+
+31
+00:01:00,453 --> 00:01:02,088
+fuéramos a penalizar, y volver
+
+32
+00:01:02,088 --> 00:01:04,753
+los parámetros «theta»3 y «theta»4 muy pequeños.
+
+33
+00:01:04,753 --> 00:01:06,543
+Esto es lo que
+
+34
+00:01:06,543 --> 00:01:09,676
+quiero decir, aquí esta nuestro objetivo de optimización,
+
+35
+00:01:09,690 --> 00:01:10,859
+o aquí está nuestro
+
+36
+00:01:10,870 --> 00:01:12,574
+problema de optimización, en donde minimizamos
+
+37
+00:01:12,580 --> 00:01:15,526
+nuestro error al cuadrado  usual que causa la función.
+
+38
+00:01:15,526 --> 00:01:17,350
+Digamos que tomo este objetivo
+
+39
+00:01:17,370 --> 00:01:19,125
+y lo modifico y le añado,
+
+40
+00:01:19,160 --> 00:01:23,291
++ 1000 «theta»3
+
+41
+00:01:23,291 --> 00:01:28,334
+al cuadrado, + 1000 «theta»4 al cuadrado.
+
+42
+00:01:28,334 --> 00:01:32,354
+Solamente estoy escribiendo 1000 como ejemplo de un número muy grande.
+
+43
+00:01:32,354 --> 00:01:33,538
+Ahora, si fuéramos a
+
+44
+00:01:33,540 --> 00:01:35,127
+minimizar esta función, la
+
+45
+00:01:35,140 --> 00:01:36,688
+única manera de hacer esta
+
+46
+00:01:36,710 --> 00:01:38,620
+nueva función de costos más pequeña es
+
+47
+00:01:38,620 --> 00:01:40,769
+si «theta»3 y «theta»4
+
+48
+00:01:40,769 --> 00:01:42,133
+son pequeñas, ¿correcto?
+
+49
+00:01:42,133 --> 00:01:43,264
+Porque de otra forma, si tienes
+
+50
+00:01:43,264 --> 00:01:44,956
+mil veces «theta»3, esta
+
+51
+00:01:44,970 --> 00:01:48,103
+nueva función de costos va a ser grande.
+
+52
+00:01:48,140 --> 00:01:49,245
+Así que cuando minimizamos esta
+
+53
+00:01:49,245 --> 00:01:50,402
+nueva función vamos a
+
+54
+00:01:50,402 --> 00:01:52,107
+terminar con el valor de «theta»3
+
+55
+00:01:52,110 --> 00:01:53,776
+cercano a 0 y de «theta»4
+
+56
+00:01:53,776 --> 00:01:56,700
+cercano a 0, y como si
+
+57
+00:01:56,700 --> 00:01:59,691
+nos deshiciéramos
+
+58
+00:01:59,691 --> 00:02:03,206
+de estos dos términos de ahí.
+
+59
+00:02:03,710 --> 00:02:05,282
+Y si hacemos eso, entonces,
+
+60
+00:02:05,290 --> 00:02:06,783
+si «theta»3 y «theta»4
+
+61
+00:02:06,783 --> 00:02:07,973
+están cerca de 0 nos
+
+62
+00:02:07,973 --> 00:02:09,643
+estamos quedando con una función cuadrática,
+
+63
+00:02:09,643 --> 00:02:11,089
+y entonces terminamos con
+
+64
+00:02:11,110 --> 00:02:13,343
+un ajuste a los datos, que tiene, como sabes
+
+65
+00:02:13,343 --> 00:02:15,463
+la función cuadrática más tal vez, pequeñas
+
+66
+00:02:15,463 --> 00:02:17,856
+contribuciones de términos pequeños,
+
+67
+00:02:17,860 --> 00:02:20,207
+«theta»3, «theta»4, que pueden estar muy cerca de 0.
+
+68
+00:02:20,207 --> 00:02:27,293
+Y, así, terminamos con
+
+69
+00:02:27,293 --> 00:02:29,386
+en esencia, una función cuadrática, lo que es bueno,
+
+70
+00:02:29,386 --> 00:02:30,544
+debido a que esta es una
+
+71
+00:02:30,544 --> 00:02:34,060
+mucho mejor hipótesis.
+
+72
+00:02:34,104 --> 00:02:36,666
+En este ejemplo particular, analizamos el efecto
+
+73
+00:02:36,700 --> 00:02:39,023
+de penalizar dos de
+
+74
+00:02:39,023 --> 00:02:41,446
+los valores de parámetro más grandes.
+
+75
+00:02:41,446 --> 00:02:46,510
+Más en general, esta es la idea detrás de la regularización.
+
+76
+00:02:46,980 --> 00:02:48,924
+La idea es que, si
+
+77
+00:02:48,924 --> 00:02:50,303
+tenemos valores pequeños para los
+
+78
+00:02:50,303 --> 00:02:53,083
+parámetros, entonces, teniendo
+
+79
+00:02:53,083 --> 00:02:55,250
+valores pequeños para los parámetros,
+
+80
+00:02:55,250 --> 00:02:57,866
+de alguna manera, corresponderá generalmente
+
+81
+00:02:57,866 --> 00:03:00,386
+con tener una hipótesis más simple.
+
+82
+00:03:00,386 --> 00:03:02,279
+Así que, para nuestro último ejemplo,
+
+83
+00:03:02,279 --> 00:03:04,024
+penalizaremos únicamente «theta»3 y
+
+84
+00:03:04,024 --> 00:03:05,666
+«theta»4 y cuando ambos
+
+85
+00:03:05,666 --> 00:03:07,046
+estén cerca de cero,
+
+86
+00:03:07,046 --> 00:03:08,450
+terminaremos con una hipótesis mucho más simple
+
+87
+00:03:08,480 --> 00:03:12,549
+que es esencialmente una función cuadrática.
+
+88
+00:03:12,549 --> 00:03:13,991
+Pero en términos más generales, si penalizamos a todos
+
+89
+00:03:13,991 --> 00:03:15,989
+los parámetros normalmente, nosotros
+
+90
+00:03:15,989 --> 00:03:17,416
+pensaríamos que está tratando
+
+91
+00:03:17,420 --> 00:03:19,076
+de darnos una hipótesis más simple
+
+92
+00:03:19,110 --> 00:03:20,943
+también porque cuando, como
+
+93
+00:03:20,943 --> 00:03:22,380
+sabes, estos parámetros están
+
+94
+00:03:22,410 --> 00:03:23,700
+cerca de 0 en este
+
+95
+00:03:23,700 --> 00:03:26,105
+ejemplo, nos da una función cuadrática.
+
+96
+00:03:26,105 --> 00:03:29,038
+Pero más generalmente, es
+
+97
+00:03:29,038 --> 00:03:30,493
+posible demostrar que al tener
+
+98
+00:03:30,530 --> 00:03:32,536
+valores más pequeños de los parámetros
+
+99
+00:03:32,540 --> 00:03:34,416
+generalmente corresponde a funciones más suaves
+
+100
+00:03:34,416 --> 00:03:36,780
+así como más simples.
+
+101
+00:03:36,780 --> 00:03:41,667
+Y por lo tanto, también, que son menos propensas al sobreajuste.
+
+102
+00:03:41,680 --> 00:03:43,245
+Me doy cuenta de que el razonamiento de
+
+103
+00:03:43,245 --> 00:03:45,441
+por qué todos los parámetros deben ser pequeños
+
+104
+00:03:45,441 --> 00:03:46,944
+corresponde a una hipótesis más simple;
+
+105
+00:03:46,960 --> 00:03:48,916
+me doy cuenta de que ese
+
+106
+00:03:48,916 --> 00:03:51,572
+razonamiento puede no ser totalmente claro para ti ahora.
+
+107
+00:03:51,590 --> 00:03:52,784
+Y es difícil
+
+108
+00:03:52,784 --> 00:03:54,477
+explicarlo a menos de que lo implementes
+
+109
+00:03:54,480 --> 00:03:56,446
+y lo compruebes tú mismo.
+
+110
+00:03:56,470 --> 00:03:58,247
+Pero espero que el ejemplo de
+
+111
+00:03:58,247 --> 00:03:59,610
+reducir «theta»3 y «theta»4
+
+112
+00:03:59,650 --> 00:04:01,230
+y de cómo
+
+113
+00:04:01,230 --> 00:04:02,535
+eso nos da una hipótesis más simple,
+
+114
+00:04:02,540 --> 00:04:04,776
+espero que
+
+115
+00:04:04,800 --> 00:04:06,314
+ayude a explicar por qué, o por lo menos a darte
+
+116
+00:04:06,330 --> 00:04:09,320
+una intuición en cuanto a por qué esto podría ser cierto.
+
+117
+00:04:09,320 --> 00:04:11,476
+Veamos el ejemplo específico.
+
+118
+00:04:12,010 --> 00:04:13,873
+Para la predicción del precio de la vivienda
+
+119
+00:04:13,873 --> 00:04:15,465
+podríamos tener nuestras cien variables
+
+120
+00:04:15,480 --> 00:04:17,223
+de las que hemos hablado antes, en donde
+
+121
+00:04:17,250 --> 00:04:18,756
+x1 es el tamaño, x2
+
+122
+00:04:18,756 --> 00:04:20,096
+es el número de habitaciones, x3
+
+123
+00:04:20,096 --> 00:04:21,963
+es el número de pisos y así sucesivamente.
+
+124
+00:04:21,963 --> 00:04:24,502
+Podríamos tener cien variables.
+
+125
+00:04:24,502 --> 00:04:26,896
+Y a diferencia del ejemplo del polinomio,
+
+126
+00:04:26,920 --> 00:04:28,459
+no sabemos, ¿correcto?,
+
+127
+00:04:28,460 --> 00:04:29,826
+no sabemos que «theta»3,
+
+128
+00:04:29,826 --> 00:04:32,641
+«theta»4, son términos polinomiales de alto grado.
+
+129
+00:04:32,641 --> 00:04:34,515
+Así que, si tenemos sólo una
+
+130
+00:04:34,540 --> 00:04:35,863
+bolsa, si tenemos solo un
+
+131
+00:04:35,863 --> 00:04:38,074
+conjunto de cien variables, es difícil
+
+132
+00:04:38,100 --> 00:04:40,210
+elegir de antemano cuales son
+
+133
+00:04:40,260 --> 00:04:42,729
+las que tienen menos probabilidad de ser relevantes.
+
+134
+00:04:42,729 --> 00:04:45,773
+Así es que tenemos cien o ciento un parámetros.
+
+135
+00:04:45,780 --> 00:04:47,340
+Y no sabemos cuales
+
+136
+00:04:47,340 --> 00:04:48,987
+elegir,
+
+137
+00:04:49,010 --> 00:04:50,445
+no sabemos cuales
+
+138
+00:04:50,450 --> 00:04:54,272
+parámetros elegir, para tratar de reducirlos.
+
+139
+00:04:54,430 --> 00:04:56,237
+Así que, en la regularización, lo que
+
+140
+00:04:56,237 --> 00:04:58,438
+vamos a hacer, es tomar nuestra
+
+141
+00:04:58,438 --> 00:05:01,213
+función de costos, aquí está mi función de costos para la regresión lineal.
+
+142
+00:05:01,213 --> 00:05:02,656
+Después,
+
+143
+00:05:02,660 --> 00:05:04,326
+es, modificar esta función de costos
+
+144
+00:05:04,340 --> 00:05:06,246
+para reducir todos
+
+145
+00:05:06,270 --> 00:05:07,643
+mis parámetros, porque, como sabes,
+
+146
+00:05:07,643 --> 00:05:09,059
+no sé cuáles
+
+147
+00:05:09,059 --> 00:05:10,440
+uno o dos, tratar de reducir.
+
+148
+00:05:10,440 --> 00:05:11,690
+Así que voy a modificar mi
+
+149
+00:05:11,690 --> 00:05:16,732
+función de costos para agregar un término al final.
+
+150
+00:05:17,390 --> 00:05:20,436
+Así, aquí también tenemos corchetes .
+
+151
+00:05:20,440 --> 00:05:22,212
+Cuando agrego un
+
+152
+00:05:22,212 --> 00:05:23,516
+término de regularización extra al
+
+153
+00:05:23,530 --> 00:05:25,510
+final para reducir cada
+
+154
+00:05:25,560 --> 00:05:27,286
+uno de los parámetros y así,
+este
+
+155
+00:05:27,320 --> 00:05:28,745
+término que tiende a reducir
+
+156
+00:05:28,760 --> 00:05:30,747
+todos mis parámetros «theta»1,
+
+157
+00:05:30,747 --> 00:05:32,746
+«theta»2, «theta»3, hasta
+
+158
+00:05:32,746 --> 00:05:35,490
+«theta»100.
+
+159
+00:05:36,790 --> 00:05:39,629
+Por cierto, la conversión de la suma
+
+160
+00:05:39,629 --> 00:05:41,007
+comienza aquí desde uno, así es que
+
+161
+00:05:41,007 --> 00:05:43,341
+no voy a penalizar «theta»0
+
+162
+00:05:43,360 --> 00:05:45,416
+por ser grande.
+
+163
+00:05:45,470 --> 00:05:46,435
+En este tipo de convención,
+
+164
+00:05:46,435 --> 00:05:48,664
+la suma de "i" es igual a 1
+
+165
+00:05:48,664 --> 00:05:50,185
+hasta "n", en lugar de que "i sea igual a 0
+
+166
+00:05:50,190 --> 00:05:51,953
+hasta "n". Pero en la práctica,
+
+167
+00:05:51,960 --> 00:05:53,464
+hace muy poca diferencia y,
+
+168
+00:05:53,490 --> 00:05:54,788
+ya sea que incluyas, como sabes,
+
+169
+00:05:54,788 --> 00:05:56,221
+«theta»0 o no, en la
+
+170
+00:05:56,221 --> 00:05:59,532
+práctica, hace muy poca diferencia en los resultados.
+
+171
+00:05:59,540 --> 00:06:01,804
+Pero por la convención, por lo general, regularizamos
+
+172
+00:06:01,804 --> 00:06:03,356
+únicamente de «theta»1 a
+
+173
+00:06:03,360 --> 00:06:06,084
+«theta»100. Escribiendo
+
+174
+00:06:06,084 --> 00:06:08,978
+nuestro objetivo de optimización regularizado,
+
+175
+00:06:08,978 --> 00:06:10,655
+nuestra función de costos regularizada otra vez.
+
+176
+00:06:10,655 --> 00:06:11,718
+Aquí está. Esta es "J" de
+
+177
+00:06:11,718 --> 00:06:13,903
+«theta» donde, este término
+
+178
+00:06:13,970 --> 00:06:15,863
+a la derecha es un término de regularización
+
+179
+00:06:15,863 --> 00:06:17,548
+y «lambda»
+
+180
+00:06:17,570 --> 00:06:23,950
+aquí es llamada parámetro de regularización y
+
+181
+00:06:23,973 --> 00:06:26,334
+lo que «lambda» hace es
+
+182
+00:06:26,334 --> 00:06:28,480
+controlar el intercambio
+
+183
+00:06:28,510 --> 00:06:30,636
+entre dos diferentes metas.
+
+184
+00:06:30,636 --> 00:06:32,478
+La primer meta, capturada
+
+185
+00:06:32,500 --> 00:06:34,399
+por el primero objetivo de la meta, es
+
+186
+00:06:34,399 --> 00:06:36,081
+que nos gustaría entrenar,
+
+187
+00:06:36,090 --> 00:06:38,350
+es que nos gustaría que los datos del entrenamiento se ajusten bien.
+
+188
+00:06:38,390 --> 00:06:41,083
+Nos gustaría ajustar bien el conjunto de entrenamiento.
+
+189
+00:06:41,083 --> 00:06:42,954
+Y la segunda meta es,
+
+190
+00:06:42,954 --> 00:06:44,474
+que queremos mantener los parámetros
+
+191
+00:06:44,474 --> 00:06:46,053
+pequeños, y eso está capturado por
+
+192
+00:06:46,060 --> 00:06:49,103
+el segundo término, por el objetivo de regularización, y por el término de regularización.
+
+193
+00:06:49,103 --> 00:06:53,583
+Y lo que «lambda», el parámetro de regularización,
+
+194
+00:06:53,583 --> 00:06:55,937
+hace es controlar el intercambio
+
+195
+00:06:55,937 --> 00:06:57,694
+entre estas dos
+
+196
+00:06:57,694 --> 00:06:58,938
+metas, entre la meta de ajustar bien el conjunto de entrenamiento
+
+197
+00:06:58,960 --> 00:07:00,562
+y la
+
+198
+00:07:00,562 --> 00:07:02,043
+meta de mantener el parámetro
+
+199
+00:07:02,080 --> 00:07:05,688
+pequeño y por lo tanto mantener la hipótesis relativamente
+
+200
+00:07:05,688 --> 00:07:09,134
+simple para evitar el sobreajuste.
+
+201
+00:07:09,290 --> 00:07:11,026
+Para nuestro ejemplo de predicción de precios de vivienda,
+
+202
+00:07:11,030 --> 00:07:13,026
+mientras que, anteriormente, si
+
+203
+00:07:13,030 --> 00:07:14,256
+habíamos ajustado un
+
+204
+00:07:14,256 --> 00:07:15,968
+polinomio de alto grado, podríamos
+
+205
+00:07:15,968 --> 00:07:17,461
+haber terminado con una muy,
+
+206
+00:07:17,480 --> 00:07:19,020
+una especie de función curva muy ondulada similar
+
+207
+00:07:19,020 --> 00:07:22,460
+a esta. Si todavía ajustas un polinomio de alto grado
+
+208
+00:07:22,460 --> 00:07:24,120
+con todas las variables polinomiales
+
+209
+00:07:24,120 --> 00:07:26,038
+en él, pero en su lugar,
+
+210
+00:07:26,038 --> 00:07:27,956
+te aseguras de usar
+
+211
+00:07:27,970 --> 00:07:30,798
+este objetivo de regularización, entonces lo que
+
+212
+00:07:30,798 --> 00:07:32,272
+obtienes es,
+
+213
+00:07:32,272 --> 00:07:34,332
+de hecho, una curva que no es
+
+214
+00:07:34,340 --> 00:07:36,465
+una función cuadrática, pero es
+
+215
+00:07:36,490 --> 00:07:38,510
+mucho más suave y mucho más simple
+
+216
+00:07:38,510 --> 00:07:39,870
+y tal vez una curva como la línea magenta,
+
+217
+00:07:39,870 --> 00:07:42,261
+como sabes, te da una
+
+218
+00:07:42,261 --> 00:07:45,445
+hipótesis mucho mejor para estos datos.
+
+219
+00:07:45,445 --> 00:07:46,613
+Una vez más, me doy cuenta
+
+220
+00:07:46,613 --> 00:07:47,919
+que puede ser un poco difícil por qué el fortalecer
+
+221
+00:07:47,919 --> 00:07:50,064
+los parámetros puede tener
+
+222
+00:07:50,064 --> 00:07:51,668
+este efecto, pero si
+
+223
+00:07:51,690 --> 00:07:54,584
+implementas tú mismo la regularización
+
+224
+00:07:54,650 --> 00:07:56,063
+serás capaz de ver
+
+225
+00:07:56,090 --> 00:07:58,859
+este efecto de primera mano.
+
+226
+00:08:00,620 --> 00:08:02,777
+En la regresión lineal regularizada, si
+
+227
+00:08:02,777 --> 00:08:05,748
+el parámetro de regularización «lambda»
+
+228
+00:08:05,748 --> 00:08:07,669
+está establecido para ser muy grande,
+
+229
+00:08:07,669 --> 00:08:09,542
+entonces lo que sucederá es que
+
+230
+00:08:09,542 --> 00:08:11,698
+terminaremos penalizando a los
+
+231
+00:08:11,698 --> 00:08:13,513
+parámetros «theta»1, «theta»2,
+
+232
+00:08:13,520 --> 00:08:15,207
+«theta»3, «theta»4
+
+233
+00:08:15,230 --> 00:08:17,409
+muy bien.
+
+234
+00:08:17,430 --> 00:08:21,916
+Es decir, si nuestra hipótesis es esta de aquí abajo, en la parte inferior.
+
+235
+00:08:21,930 --> 00:08:23,674
+Y si llegamos a penalizar
+
+236
+00:08:23,674 --> 00:08:24,913
+«theta»1, «theta»2, «theta»3,
+
+237
+00:08:24,990 --> 00:08:26,145
+«theta»4 muy fuertemente, entonces
+
+238
+00:08:26,145 --> 00:08:29,463
+terminaremos con todos estos parámetros cercanos a cero ¿cierto?
+
+239
+00:08:29,463 --> 00:08:32,240
+«tetha» 1 será cercana a cero, «theta»2 será cercana a cero.
+
+240
+00:08:32,240 --> 00:08:34,410
+«tehta» 3, «theta»4,
+
+241
+00:08:34,410 --> 00:08:36,646
+terminarán por ser cercanas a cero.
+
+242
+00:08:36,646 --> 00:08:37,810
+Y si hacemos eso, es como
+
+243
+00:08:37,810 --> 00:08:39,143
+si nos deshiciéramos de estos
+
+244
+00:08:39,160 --> 00:08:41,189
+términos en la hipótesis así que
+
+245
+00:08:41,189 --> 00:08:43,597
+nos quedamos solo con la hipótesis
+
+246
+00:08:43,597 --> 00:08:44,224
+que dice esto.
+
+247
+00:08:44,230 --> 00:08:46,020
+Dice que, bueno, los precios de vivienda
+
+248
+00:08:46,020 --> 00:08:48,624
+son iguales a «theta»0,
+
+249
+00:08:48,650 --> 00:08:50,830
+y eso es similar a ajustar
+
+250
+00:08:50,830 --> 00:08:54,679
+una línea recta horizontal plana a los datos.
+
+251
+00:08:54,679 --> 00:08:56,533
+Y este es un
+
+252
+00:08:56,570 --> 00:08:58,773
+ejemplo de subajuste, y
+
+253
+00:08:58,773 --> 00:09:00,926
+en particular esta hipótesis, esta
+
+254
+00:09:00,950 --> 00:09:02,552
+línea recta no puede
+
+255
+00:09:02,570 --> 00:09:04,063
+ajustarse al conjunto de entrenamiento
+
+256
+00:09:04,070 --> 00:09:05,423
+correctamente. Es sólo una línea recta ancha,
+
+257
+00:09:05,423 --> 00:09:07,173
+no va, como sabes, no se acerca.
+
+258
+00:09:07,173 --> 00:09:10,432
+No va a ninguna parte cerca de la mayoría de los ejemplos de entrenamiento.
+
+259
+00:09:10,432 --> 00:09:11,592
+Y otra manera de decir esto
+
+260
+00:09:11,592 --> 00:09:13,697
+es que esta hipótesis
+
+261
+00:09:13,720 --> 00:09:15,410
+tiene una preconcepción demasiado fuerte u
+
+262
+00:09:15,450 --> 00:09:17,091
+oscilaciones demasiado altos de que los precios de la vivienda
+
+263
+00:09:17,120 --> 00:09:18,446
+son iguales
+
+264
+00:09:18,460 --> 00:09:20,183
+a «theta»0, y a pesar
+
+265
+00:09:20,230 --> 00:09:22,123
+de los claros datos sobre lo contrario,
+
+266
+00:09:22,123 --> 00:09:23,207
+como sabes, elige ajustar una especie
+
+267
+00:09:23,207 --> 00:09:25,648
+de, línea plana, solamente
+
+268
+00:09:25,650 --> 00:09:28,230
+una línea horizontal plana. No dibujé muy bien eso.
+
+269
+00:09:28,230 --> 00:09:30,447
+Esto es solamente una línea plana horizontal
+
+270
+00:09:30,447 --> 00:09:33,059
+para los datos. Así que para
+
+271
+00:09:33,060 --> 00:09:35,626
+que la regularización funcione bien, debes
+
+272
+00:09:35,626 --> 00:09:37,835
+tener cierto cuidado,
+
+273
+00:09:37,850 --> 00:09:39,903
+para elegir también una buena opción para
+
+274
+00:09:39,903 --> 00:09:42,991
+el parámetro de regularización «lambda».
+
+275
+00:09:42,991 --> 00:09:44,908
+Y cuando hablemos de selección múltiple
+
+276
+00:09:44,920 --> 00:09:46,717
+más adelante en este curso, vamos a hablar
+
+277
+00:09:46,717 --> 00:09:48,413
+acerca de una manera, una variedad
+
+278
+00:09:48,420 --> 00:09:50,803
+de maneras para también elegir automáticamente
+
+279
+00:09:50,810 --> 00:09:54,833
+el parámetro de regularización «lambda». Así que esa es
+
+280
+00:09:54,833 --> 00:09:56,570
+la idea de la regularización alta
+
+281
+00:09:56,570 --> 00:09:58,254
+y de la función de costos que utilizaremos
+
+282
+00:09:58,254 --> 00:10:00,454
+para poder aplicar la regularización en los
+
+283
+00:10:00,454 --> 00:10:01,885
+dos videos siguientes, vamos a tomar
+
+284
+00:10:01,885 --> 00:10:03,736
+estas ideas y aplicarlas
+
+285
+00:10:03,750 --> 00:10:05,440
+a la regresión lineal y a la
+
+286
+00:10:05,440 --> 00:10:07,111
+regresión logística, entonces
+
+287
+00:10:07,111 --> 00:10:09,020
+podremos sacarlas para
+
+288
+00:10:09,060 --> 00:10:10,982
+evitar problemas de sobreajuste.

@@ -1,0 +1,139 @@
+Sebelumnya kita telah mendefinisikan fungsi
+harga J. Dalam video ini saya ingin mengajari Anda satu algoritma yang disebut gradient descent
+untuk meminimalkan fungsi harga J. Jelas gradient descent adalah algoritma yang lebih
+umum dan digunakan tidak hanya dalam regresi linier. Itu digunakan di seluruh lingkup
+machine learning. Dan nanti di kelas kita akan menggunakan gradient descent
+untuk meminimalkan fungsi lainnya juga, tidak hanya fungsi harga J untuk regresi linier.
+Jadi dalam video ini, saya akan bicara tentang gradient descent untuk meminimalkan
+beberapa fungsi J yang berubah-ubah. Lalu dalam video selanjutnya, kita menggunakan algoritma itu
+dan menerapkannya secara khusus ke fungsi harga J yang telah kita temukan untuk regresi
+linier. Ini aturan persoalannya. Kita akan melihat bahwa kita punya
+beberapa fungsi J (theta0, theta1). Mungkin itu fungsi harga dari regresi
+linier. Mungkin itu beberapa fungsi lain yang kita ingin minimalkan. Dan kita
+ingin menghasilkan algoritma untuk meminimalkan fungsi itu sebagai fungsi
+J(theta0, theta1). Sekedar tambahan, gradient descent sebenarnya
+diterapkan ke fungsi-fungsi yang lebih umum. Jadi bayangkan jika Anda
+punya sebuah fungsi yaitu fungsi J(theta0, theta1, theta2, hingga
+theta n), dan Anda ingin meminimalkan (theta0 hingga theta n)
+pada J(theta0 hingga theta n) ini. Tampaknya gradient descent adalah
+algoritma untuk memecahkan persoalan yang lebih umum ini,
+tapi untuk singkatnya, untuk keringkasan notasi Anda, saya hanya
+akan menampilkan dua parameter di seluruh sisa video ini. Ini
+gagasan untuk gradient descent. Apa yang akan kita lakukan adalah kita akan mulai
+dengan beberapa tebakan awal untuk theta0 dan theta1. Tidak masalah berapa
+nilainya, tapi pilihan yang umum jika kita set theta0 ke 0 dan theta1 ke 0.
+Beri nilai awal mereka 0. Apa yang akan kita lakukan dalam
+gradient descent adalah kita akan terus mengubah sedikit nilai theta0 dan theta1 untuk
+mencoba mengurangi J(theta0 dan theta1) hingga kita mencapai minimum atau
+minimum lokal. Mari lihat gambaran, apa yang dilakukan gradient descent.
+Katakanlah saya coba meminimalkan fungsi ini. Perhatikan sumbunya. Ini,
+(theta0, theta1) pada sumbu horisontal, dan J sumbu vertikalnya. Jadi
+tinggi permukaan menunjukkan J, dan kita ingin meminimalkan fungsi ini. Kita
+akan mulai dengan (theta0, theta1) pada beberapa titik. Jadi bayangkan memilih
+beberapa nilai untuk (theta0, theta1), dan itu sama dengan memulai pada beberapa titik
+permukaan dari fungsi ini. Okey? Jadi berapapun nilai (theta0, theta1)
+memberi Anda beberapa titik di sini. Saya menginisialisasi mereka dengan 0, tapi
+terkadang Anda menginisialisasi dengan nilai lain juga. Sekarang, saya ingin kita membayangkan
+gambar ini menunjukkan sebuah bukit. Bayangkan ini seperti sebuah pemandangan dari beberapa
+taman berumput dengan dua bukit seperti itu. Saya ingin Anda membayangkan Anda sedang
+berdiri pada titik itu di atas bukit pada bukit merah kecil ini di taman Anda.
+Dalam gradient descent, apa yang akan kita lakukan adalah berputar 360 derajat dan melihat
+semua yang ada di sekeliling kita dan bertanya, "Jika saya mengambil langkah bayi kecil dalam
+beberapa arah, dan saya ingin menuruni bukit secepat mungkin, ke arah mana saya
+melangkah seperti itu jika ingin turun, jika saya ingin berjalan
+menuruni bukit ini secepat mungkin?" Ternyata jika kita berdiri
+pada titik ini di atas bukit, Anda melihat sekeliling, Anda menemukan bahwa arah terbaik
+mengambil langkah kecil menuruni bukit kira-kira arah itu. Okey. Dan sekarang
+Anda berada pada titik baru ini di bukit Anda. Lagi, Anda akan melihat sekeliling, lalu
+mengatakan, "Ke arah mana saya harus melangkah mengambil langkah bayi kecil menuruni bukit? Dan
+jika Anda melakukan itu dan mengambil langkah lain, Anda melangkah pada arah itu, dan terus
+melangkah. Dari titik baru ini, Anda lihat sekeliling, memutuskan arah mana
+yang akan membawa Anda menuruni bukit dengan sangat cepat, melangkah dan melangkah lagi, 
+dan seterusnya, hingga Anda bertemu local minimum di bawah sini. Turunan selanjutnya
+punya sifat menarik. Ini pertama kalinya kita mengoperasikan gradient descent, kita
+mulai pada titik ini di sini, kan? Mulai pada titik ini. Sekarang bayangkan,
+kita menginisialisasi gradient descent dua langkah ke kanan. Bayangkan kita
+menginisialisasi gradient descent dengan titik itu di kanan atas. Jika Anda mengulangi
+process ini, dan berhenti pada titik itu, dan melihat sekeliling. Ambil langkah
+kecil pada arah turunan curam. Anda akan melakukan itu. Lalu lihat sekeliling,
+melangkah lagi, dan seterusnya. Dan jika Anda memulainya dua langkah ke kanan,
+gradient descent sudah membawa Anda ke optimum lokal kedua ini di kanan.
+Jadi jika Anda telah mulai pada titik pertama ini, Anda telah sampai pada
+optimum lokal ini. Tapi jika Anda mulai pada lokasi yang sedikit berbeda,
+Anda akan sampai pada optimum lokal yang sangat berbeda. Ini satu sifat
+gradient descent yang akan kita bicarakan sedikit banyak nanti. Jadi,
+itulah gambaran intuisinya. Mari lihat pada peta. Ini definisi algoritma
+gradient descent. Kita akan berulang-ulang melakukan ini, hingga bertemu
+di satu titik. Kita akan membaharui parameter theta J saya dengan cara
+menguranginya dengan alfa dikalikan dengan bagian ini. Mari lihat.
+Ada banyak detil dalam persamaan ini, jadi biar saya jelaskan beberapa di antaranya.
+Pertama, notasi ini, titik dua sama dengan. Kita akan menggunakan := untuk menunjukkan
+penyerahan nilai, jadi itu operator penyerahan nilai. Konkritnya, jika saya menulis
+A := B, dalam komputer ini berarti, ambil nilai dalam B
+dan gunakan itu untuk mengganti nilai yang ada di A. Ini artinya kita akan
+mengatur nilai A sama dengan nilai dari B. Okey, itulah operator pemberian nilai. Saya
+bisa juga menulis A:=A+1. Ini artinya ambil A dan tambahkan nilainya dengan satu.
+Sebaliknya, jika saya menggunakan tanda sama dengan dan menulis A=B, maka ini
+adalah pernyataan. Jadi, jika saya menulis A=B, maka saya menyatakan bahwa nilai A
+sama dengan nilai B. Jadi bagian sebelah kiri, itu adalah operasi komputer, dimana
+Anda menetapkan nilai A menjadi nilai sisi sebelah kanan. Ini adalah pernyataan.
+Saya menyatakan bahwa nilai A dan B sama. Jadi, sementara saya bisa
+menulis A:=A+1, artinya tambah A dengan 1, semoga, saya tidak akan pernah menulis
+A=A+1, karena itu salah. A dan A+1 tidak akan pernah sama
+nilainya. Jadi itu bagian pertama definisi. Alfa ini adalah
+suatu angka yang disebut kecepatan belajar. Yang dilakukan alfa adalah
+mengontrol berapa besar langkah yang kita ambil menuruni bukit dengan gradient descent. Jadi jika
+alfa sangat besar, maka itu dapat disamakan dengan prosedur gradient descent yang sangat agresif,
+dimana kita mencoba mengambil langkah yang sangat besar menuruni bukit. Jika alfa sangat
+kecil, maka kita mengambil langkah yang sangat kecil seperti langkah bayi menuruni bukit. Saya
+akan kembali dan bicara banyak tentang ini nanti. Tentang bagaimana menetapkan alfa dan seterusnya.
+Dan akhirnya, bagian ini. Itu adalah derivatif, saya tidak ingin membicarakannya
+sekarang, tapi saya akan menurunkan derivatif ini dan memberitahu Anda ini tergantung pada
+apa. Beberapa dari Anda lebih akrab dengan kalkulus dibanding
+yang lain, tapi bahkan jika Anda tidak akrab dengan kalkulus jangan khawatirkan itu, saya akan
+beritahu Anda apa yang Anda perlukan untuk tahu bagian ini di sini. Sekarang ada satu lagi
+seluk-beluk gradient descent yaitu, dalam gradient descent, kita akan memperbaharui
+theta0 dan theta1. Jadi pembaruan ini terjadi dimana J=0, dan
+J=1. Anda akan membaharui theta0 dan theta1. Dan seluk-beluk bagaimana
+Anda mengimplementasikan gradient descent, untuk ekspresi ini, untuk persamaan
+pembaharuan ini, Anda ingin secara berurutan membaharui theta0 dan
+theta1. Maksud saya adalah dalam persamaan ini,
+kita akan membaharui theta0:=theta0 - sesuatu, dan 
+theta1:=theta1 - sesuatu. Dan cara mengimplementasikan ini adalah,
+Anda harus menghitung sisi sebelah kanan. Hitung itu untuk theta0
+dan theta1, lalu secara serentak pada waktu bersamaan membaharui theta0 dan
+theta1. Jadi ini maksud saya. Ini implementasi yang benar mengenai pengertian
+pembaharuan serentak gradient descent. Saya akan set temt0 sama dengan
+itu, set temp1 sama dengan itu. Jadi pada dasarnya menghitung sisi kanan.
+Setelah menghitungnya, simpan dalam temp0 dan temp1.
+Saya akan membaharui theta0 dan theta1 secara serempak, karena itu implementasi
+yang benar. Sebaliknya, ini implementasi yang salah yang
+tidak melakukan pembaharuan serempak. Jadi dalam implementasi yang salah, kita
+menghitung temp0 dan membaharui theta0, kemudian kita menghitung temp1, lalu
+membaharui theta1. Dan selisih implementasi antara sisi kanan dan sisi kiri adalah
+jika kita melihat di bawah sini, Anda lihat langkah ini, jika saat ini
+Anda telah membaharui theta0 kemudian Anda akan menggunakan nilai
+baru theta0 itu untuk menghitung bagian derivatif ini sehingga ini memberi Anda
+nilai temp1 yang berbeda daripada sisi kirinya, karena sekarang Anda telah memasukkan
+nilai theta0 yang baru ini ke dalam persamaan ini. Jadi ini pada sisi
+kanan bukan implementasi gradient descent yang benar. Jadi saya tidak ingin
+katakan mengapa Anda perlu melakukan pembaharuan serentak, jelas bahwa
+itu cara gradient descent biasa diimplementasikan. Kita akan bicara
+lebih mengenai hal itu nanti. Sebenarnya tampak lebih natural mengimplementasikan pembaharuan
+serentak. Dan ketika orang bicara tentang gradient descent, maksud mereka selalu
+pembaharuan serentak. Jika Anda mengimplementasikan pembaharuan yang tidak serentak,
+bagaimanapun juga itu akan bekerja, tapi algoritma di kanan ini bukan apa yang orang
+tunjukkan sebagai gradient descent dan ini beberapa algoritma lain dengan
+sifat berbeda. Dan untuk berbagai alasan, ini bisa berperilaku
+sedikit aneh. Dan apa yang harus Anda lakukan adalah
+mengimplementasikan pembaharuan serempak pada gradient descent. Jadi, itu garis besar
+algoritma gradient descent. Pada video berikut, kita akan membahas detil bagian
+derivatif, yang saya tulis tapi belum benar-benar didefinisikan. Jika Anda telah
+ambil kelas kalkulus sebelumnya dan jika Anda tahu derivatif parsial dan
+derivatif, jelas itu persis apa yang derivatif itu maksudkan. Tapi jika Anda
+tidak mahir dengan kalkulus, jangan khawatirkan itu. Video berikutnya akan memberi Anda
+semua intuisi dan memberi tahu Anda segala sesuatu yang Anda perlu tahu untuk
+menghitung derivatif itu, bahkan jika Anda tidak tahu kalkulus, atau bahkan tidak tahu
+derivatif parsial sebelumnya. Dan dengan video berikut, semoga kami
+bisa memberi semua intuisi yang Anda perlukan untuk
+mengimplementasikan gradient descent.

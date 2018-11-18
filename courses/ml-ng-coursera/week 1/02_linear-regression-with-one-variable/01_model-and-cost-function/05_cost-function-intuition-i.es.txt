@@ -1,0 +1,106 @@
+En el video anterior, presentamos
+la definición matemática de la función de costos. En este video veremos algunos
+ejemplos, para comprender qué hace la función de costos y
+y por qué queremos usarla. En resumen, esto es lo que vimos la última vez. Queríamos ajustar una
+línea recta a nuestro datos, así que teníamos esto en forma de una hipótesis con estos
+parámetros de theta cero y theta uno, y con diferentes elecciones de los parámetros
+terminamos con diferentes ajustes de líneas rectas. Así que los datos que se ajustan
+de esa manera, y la función de costos, fue nuestro objetivo de optimización.
+Para este video, con el fin de visualizar mejor la función de costos "J", trabajaré
+con una función de hipótesis simplificada, como la que se muestra a la derecha. Entonces,
+usaré mi hipótesis simplificada, que sólo es "theta uno por X". Podemos,
+si quieres, considerarla como el establecimiento del parámetro de "theta cero igual a 0". Así que
+tengo sólo un parámetro "theta uno" y mi función de costos es similar a la anterior
+excepto que H de X ahora es igual sólo a "theta uno" por X. Y sólo tengo
+un parámetro "theta uno" y, entonces, mi objetivo de optimización es minimizar "J de
+theta uno". Visualmente, lo que significa es que si "theta cero es igual a cero" que
+corresponde a escoger sólo las funciones de hipótesis que pasan por el origen,
+que pasan por el punto (0,0). Con esta definición simplificada de una función de costos
+de la hipótesis, tratemos de entender mejor el concepto de función de costos. Resulta que las
+dos funciones clave que queremos entender. La primera es la función de hipótesis, y
+la segunda es una función de costos. Así que observa que la hipótesis, "h de x". Para un valor
+nominal de "theta uno", esta es una función de x. Entonces, la hipótesis es una
+función de lo que es el tamaño de la casa x. Por el contrario, la función de costos "J",
+es una función del parámetro "theta uno" que controla la pendiente de la
+línea recta. Tracemos estas funciones y tratemos de entenderlas mejor.
+Iniciemos con la hipótesis. A la izquierda, digamos que está mi conjunto de entrenamiento con
+tres puntos en (1, 1), (2, 2) y (3, 3). Escojamos un valor de theta uno, así cuando theta uno
+sea igual a uno, y si esa es mi elección para theta uno, entonces mi hipótesis se
+verá como esta línea recta de aquí. Voy a señalar, cuando trace
+mi función de hipótesis. El eje x, mi eje horizontal tiene el valor asignado de X,
+tiene asignado el tamaño de casa aquí. Ahora, de theta uno igual a uno,
+establecido de forma temporal, lo que quiero hacer es averiguar cuál es "J de theta uno", cuando
+theta uno es igual a uno. Así que sigamos y calculemos cuál es la función de costos
+para el valor uno. Que como de costumbre, mi función de costos se define de la siguiente manera,
+¿cierto? La suma de mi conjunto de entrenamiento del término de error al cuadrado común.
+Y, por lo tanto, es igual a. Y ésta. De theta uno “x” menos “y”, y si
+simplificas, resulta ser cero al cuadrado a cero al cuadrado a cero al cuadrado que,
+por supuesto, es igual a cero. Ahora, dentro de la función de costos. Resulta que cada
+uno de estos términos es igual a cero. Porque para el conjunto de entrenamiento específico
+para mis 3 ejemplos de entrenamiento son (1, 1), (2, 2), (3,3). Si theta uno es igual a uno. Entonces "h de x". "h de x
+i". Es exactamente igual a “y (i)”, deja que lo escriba mejor. ¿Sí? Entonces, "h de x menos
+y", cada uno de estos términos es igual a cero, que es por lo que "J" de uno es igual
+a cero. Entonces, ahora sabemos que "J de uno" es igual a cero. Tracemos eso. Lo que
+haré a la derecha es trazar mi función de costos "J". Y observa que debido a que mi función
+de costos es una función de mi parámetro theta uno, cuando trazo mi función de costos,
+el eje horizontal tiene asignado "theta uno". Entonces, tengo que "J de uno" era cero,
+vamos a trazarlo. Y terminaremos con una X por allá. Ahora veamos
+otros ejemplos. theta uno puede estar en un rango de diferentes valores. ¿Sí? Entonces,
+theta uno puede asumir valores negativos, cero, valores positivos. Y si theta uno
+es igual a 0.5. ¿Entonces qué pasa? Vamos a trazarlo. Ahora estableceré
+"theta 1 igual a 0.5", y en ese caso mi hipótesis se verá así. Como una línea
+con una pendiente igual a 0.5, y calculemos "J", de 0.5. Esto será
+"uno sobre 2m" de mi función de costos usual. Resulta que la función de costos será
+la suma de los valores cuadrados de la altura de esta línea. Más la suma del
+cuadrado de la altura de esa línea, más la suma del cuadrado de la altura de esa
+línea, ¿correcto? Debido a sólo esta distancia vertical, esa es la diferencia entre
+"y(i)" y el valor que se predijo, "h" de x(i)", ¿cierto? Entonces, el primer ejemplo
+será 0.5 menos uno al cuadrado. Ya que mi hipótesis predijo 0.5.
+Mientras que el valor real fue uno. En el segundo ejemplo, obtengo uno menos dos
+al cuadrado, porque mi hipótesis predijo uno, pero el precio real de la casa fue dos.
+Y finalmente, más 1.5 menos 3 al cuadrado. Y eso es igual a uno sobre
+dos por tres. Ya que "m", cuando tiene un tamaño de conjunto de datos, tiene tres
+ejemplos de entrenamiento. En eso es simplificar los paréntesis de 3.5.
+Entonces, es 3.5 sobre seis, que es aproximadamente 0.68. Así que ahora sabemos que "J" de 0.5 es
+aproximadamente 0.68. Vamos a trazarlo. Ah, lo siento, error matemático, en realidad es 0.58. Entonces,
+lo trazaré, que tal vez está por ahí. ¿Ok? Ahora, vamos a hacer uno más. ¿Qué
+tal si "theta uno es igual a cero", a qué es igual J de cero? Resulta que las
+si theta uno es igual a cero, entonces H de X es igual a esta línea plana
+que sólo está de forma horizontal así. Entonces, al medir los errores.
+Tenemos que J de cero es igual a uno sobre dos m por uno al cuadrado más dos
+al cuadrado más tres al cuadrado, que es un sexto por 14 que es aproximadamente 2.3. Entonces,
+vamos a trazar esto también. Así que resultó en un valor de alrededor de 2.3
+y,por supuesto, podemos seguir haciendo esto para otros valores de theta uno. Resulta
+que también puedes tener valores negativos de theta uno, entonces si theta
+uno es negativo, entonces h de x será igual a "menos 0.5 por x”, entonces theta 
+uno es menos 0.5 y eso corresponde con la hipótesis con una
+pendiente negativa de 0.5. Y, de hecho, puedes seguir calculando estos errores.
+Esto resulta ser 0.5, resulta que tiene un error muy alto. Resulta
+ser algo así como 5.25. Y así sucesivamente, y con los diferentes valores de theta
+uno, puedes calcular estas cosas, ¿correcto? Y resulta que tu rango calculado
+de valores es algo como esto. De hecho, al calcular el rango de
+valores, puedes trazar de forma lenta lo que dirá esta función, "J de theta", y
+eso es "J de theta". Para recapitular, para cada valor de theta uno, ¿sí? Cada valor
+de theta uno corresponde a una hipótesis diferente, o a una línea recta
+diferente de la izquierda. Y para cada valor de theta uno, podríamos derivar un
+valor diferente de "J de theta uno". Y para el ejemplo, "theta uno es igual a 1"
+corresponde a la línea recta a través de los datos. Mientras que "theta
+uno es igual a 0.5". Este punto que se muestra en magenta tal vez correspondía a esa línea, y "theta
+uno igual a cero", el cual se muestra en azul, corresponde a la línea horizontal. Entonces, para cada
+valor de theta uno, terminamos con un valor diferente de "J de theta uno" y
+podríamos usarlo para trazar esta gráfica de la derecha. Ahora, recuerda que
+el objetivo de optimización para nuestro algoritmo de aprendizaje es que queremos elegir el valor
+de theta uno que minimiza J de theta uno ¿Sí? Esta era nuestra función objetivo para
+la regresión lineal. Bien, al ver esta curva, el valor que minimiza J de
+theta uno es theta uno igual a uno. De hecho, para mi sorpresa, esta
+es la mejor línea recta posible que se ajusta en nuestros datos, al establecer theta uno
+igual a uno. De hecho, para este conjunto de entrenamiento en especial, terminamos con un
+ajuste perfecto. Y eso por eso que minimizar J de theta uno corresponde a encontrar una
+línea recta que se ajuste bien a los datos. Así que, para resumir. En este vídeo, vimos
+algunas gráficas. Para entender la función de costos. Para ello, simplificamos el
+algoritmo. Para que sólo tuviera un parámetro theta uno. Y establecimos que
+el parámetro theta cero fuera sólo cero. En el siguiente video, regresaremos a la formulación del problema
+original y observaremos algunas visualizaciones que involucran theta cero
+y theta uno. Sin establecer theta cero en cero. Y espero que te de
+una mejor idea de qué hace la función de costos J en la formulación original
+de regresión lineal.

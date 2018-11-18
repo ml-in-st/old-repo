@@ -1,0 +1,410 @@
+1
+00:00:02,338 --> 00:00:04,677
+Algoritam koji ćemo prvi da učimo jeste 
+linearna regresija. U ovome videu videćete
+
+2
+00:00:06,956 --> 00:00:09,234
+kako model izgleda i, još važnije, videćete kako čitav
+
+3
+00:00:09,234 --> 00:00:14,801
+proces nadgledanog učenja izgleda. 
+Hajde da koristimo motivacioni primer predviđanja
+
+4
+00:00:14,801 --> 00:00:20,036
+cena nekretnina. Kao skup podataka 
+koristićemo cene nekretnina u gradu
+
+5
+00:00:20,036 --> 00:00:25,205
+Portlandu u državi Oregon. Kao moj skup 
+podataka ovde ću da unesem određeni broj kuća
+
+6
+00:00:25,205 --> 00:00:30,833
+različitih veličina koje su prodane u 
+određenom rasponu cena. Recimo da
+
+7
+00:00:30,833 --> 00:00:35,872
+za tako zadat skup podataka, imate prijatelja 
+koji pokušava da proda kuću i
+
+8
+00:00:35,872 --> 00:00:41,238
+hajde da vidimo, ako je njegova kuća 
+površine 1250 kvadratnih fita
+
+9
+00:00:41,238 --> 00:00:46,459
+za koliko će novca moći da proda kuću. 
+Dakle, jedna stvar koju biste mogli da napravite jeste
+
+10
+00:00:46,648 --> 00:00:53,039
+odgovarajući model. Možda povući pravu liniju preko
+ podataka. Izgleda kao to i u zavisnosti
+
+11
+00:00:53,039 --> 00:00:59,168
+od toga, možda biste mogli reći svome 
+prijatelju da, recimo, može da proda
+
+12
+00:00:59,168 --> 00:01:03,575
+kuću za otprilike 220,000 dolara. 
+Dakle, ovo je primer
+
+13
+00:01:03,575 --> 00:01:08,834
+algoritma nadgledanog učenja. I to je
+ nadgledano učenje jer nam je dat
+
+14
+00:01:08,834 --> 00:01:14,287
+citiram, "tačan odgovor" za svaki od naših 
+primera. Naime, rečeno nam je koja je bila
+
+15
+00:01:14,287 --> 00:01:19,351
+aktuelna kuća, koja je bila cijena
+ svake od kuća u našem skupu podataka
+
+16
+00:01:19,351 --> 00:01:24,441
+i, šta više, ovo je primer problema regresije gde
+
+17
+00:01:24,441 --> 00:01:29,545
+se pojam regresija odnosi na činjenicu 
+da se predviđa stvarna veličina
+
+18
+00:01:29,545 --> 00:01:34,586
+dakle, cena. Samo da vas podsetim, 
+drugi najčešći tip problema nadgledanog
+
+19
+00:01:34,586 --> 00:01:39,006
+učenja se zove problem 
+klasifikacije gde predviđamo
+
+20
+00:01:39,006 --> 00:01:45,202
+diskretne izlaze kao što je odluka da li je tumor
+
+21
+00:01:45,202 --> 00:01:52,032
+zloćudan ili dobroćudan. Dakle, 
+to je diskretan izlaz iz skupa 0-1.
+
+22
+00:01:52,032 --> 00:01:57,087
+Još formalnije, kod nadgledanog učenja,
+ imamo skup podataka i njega zovemo
+
+23
+00:01:57,087 --> 00:02:02,018
+trening skup. Dakle, u primeru 
+cena nekretnina, imamo trening skup
+
+24
+00:02:02,018 --> 00:02:07,386
+različitih cena nekretnina i naš zadatak 
+je da učimo iz tog skupa kako da predvidimo cene
+
+25
+00:02:07,386 --> 00:02:11,907
+kuća. Hajde da definišemo obeležja
+ koja koristimo kroz ovaj kurs.
+
+26
+00:02:11,907 --> 00:02:16,100
+Definisaćemo prilično mnogo oznaka. 
+U redu je ako ih ne budete zapamtili
+
+27
+00:02:16,100 --> 00:02:20,075
+odmah ali kako kurs bude odmicao, biće korisno da ih znate.
+
+28
+00:02:20,075 --> 00:02:24,267
+Dakle, koristiću malo slovo
+ m u ovome kursu da bih
+
+29
+00:02:24,267 --> 00:02:28,897
+označio broj primera za trening. U ovome skupu podataka, ako imam,
+
+30
+00:02:28,897 --> 00:02:34,366
+recimo, 47 redova u tabeli, tada imam 
+47 primera za vežbu i m je jednako 47.
+
+31
+00:02:34,366 --> 00:02:39,497
+Koristiću malo slovo x da bih označio 
+ulazne promenjive, koje se često zovu i
+
+32
+00:02:39,497 --> 00:02:44,290
+osobine. Ovo ovde x bi bila 
+ulazna osobina. I, ja ću
+
+33
+00:02:44,290 --> 00:02:49,556
+da koristim y da označim moje izlazne promenjive ili ciljnu promenjivu koju ću da
+
+34
+00:02:49,556 --> 00:02:54,552
+predvidim i to je druga 
+kolona ovde. Koristiću
+
+35
+00:02:54,552 --> 00:03:05,749
+(x, y) da bih označio pojedinačni trening primer. Dakle, jedan red u ovoj
+
+36
+00:03:05,749 --> 00:03:12,068
+tabeli odgovara jednom trening 
+primeru a da bih označio određeni
+
+37
+00:03:12,068 --> 00:03:19,708
+trening primer, koristiću sledeću 
+oznaku: x(i) zarez y(i). I to ćemo
+
+38
+00:03:25,322 --> 00:03:30,935
+da koristimo da bismo označili i - ti trening primer. 
+Znači, taj superskript (i)
+
+39
+00:03:30,935 --> 00:03:37,864
+ovde nije eksponent, u redu? 
+U ovom izrazu (x(i), y(i)), superskript (i)
+
+40
+00:03:37,864 --> 00:03:44,873
+u zagradama je samo indeks u mom trening skupu
+ i odnosi se na i - ti red u
+
+41
+00:03:44,873 --> 00:03:51,629
+ovoj tabeli, u redu? Dakle, to nije x na i - ti stepen, y na i - ti stepen. Umesto toga
+
+42
+00:03:51,629 --> 00:03:58,216
+(x(i), y(i)) se odnosi na i - ti red u ovoj tabeli. 
+Na primer, x(1) se odnosi na
+
+43
+00:03:58,216 --> 00:04:04,972
+ulaznu vrednost prvog reda trening primera, 
+dakle, to je 2104. To je ovo x u prvom
+
+44
+00:04:04,972 --> 00:04:11,685
+redu. x(2) bi bilo jednako 1416
+, je li tako? To je drugo x
+
+45
+00:04:11,685 --> 00:04:17,385
+a y(1) bi bilo jednako 460. Prva y vrednost moga
+
+46
+00:04:17,385 --> 00:04:24,526
+trening primera, na to se odnosi ono (1). 
+Kao što je već spomenuto, povremeno ću da vam postavim
+
+47
+00:04:24,526 --> 00:04:28,345
+pitanje da biste proverili vaše razumevanje 
+i za par sekundi u ovome
+
+48
+00:04:28,345 --> 00:04:34,044
+video pitanje sa višestrukim izborom 
+će da iskoči. Kada se to desi
+
+49
+00:04:34,044 --> 00:04:40,362
+molim vas da koristeći svoj miš i odaberete odgovor koji mislite da je tačan. Šta je definisano
+
+50
+00:04:40,362 --> 00:04:45,124
+trening skupom? A ovde je kako ovaj algoritam nadgledanog učenja radi.
+
+51
+00:04:45,124 --> 00:04:50,513
+Videli smo da smo trening 
+setom kao što je naš nahranili
+
+52
+00:04:50,513 --> 00:04:55,715
+algoritam učenja. Da li je onda posao 
+algoritma učenja da pronađe
+
+53
+00:04:55,715 --> 00:05:00,101
+funkciju koja se po konvenciji obično 
+označava malim slovom h, a h
+
+54
+00:05:00,101 --> 00:05:06,574
+znači hipoteza. I šta je posao 
+hipoteze, da li funkcija koja
+
+55
+00:05:06,574 --> 00:05:12,471
+uzima kao ulaz veličinu kuće, kao što je,
+ recimo, veličina kuće vašeg prijatelja
+
+56
+00:05:12,471 --> 00:05:18,368
+koju pokušava da proda, uzima vrednost x i pokušava da pronađe procenjenu
+
+57
+00:05:18,368 --> 00:05:31,630
+vrednost y za odgovarajuću kuću. 
+Dakle, h je funkcija koja pridružuje vrednosti x - a
+
+58
+00:05:31,630 --> 00:05:37,729
+y - u. Ljudi me često pitaju, 
+znate, zašto se ta funkcija zove
+
+59
+00:05:37,729 --> 00:05:42,121
+hipoteza. Neki od vas znaju značenje pojma hipoteza,
+
+60
+00:05:42,121 --> 00:05:46,744
+iz rečnika ili iz nauke ili odakle god. 
+Umesto toga, u mašinskom učenju, to ime se
+
+61
+00:05:46,744 --> 00:05:51,310
+koristilo od samih početaka ove oblasti i od tad kao da se zaglavilo.
+
+62
+00:05:51,310 --> 00:05:55,239
+Možda nije baš sjajno ime za tu vrstu funkcija, 
+za pridruživanje veličina
+
+63
+00:05:55,239 --> 00:05:59,978
+kuća predviđanjima cena, znate već ... 
+Mislim da pojam hipoteza možda nije
+
+64
+00:05:59,978 --> 00:06:04,543
+najbolji moguće ime za ovo, ali to je 
+standardna terminologija koju ljudi koriste u
+
+65
+00:06:04,543 --> 00:06:09,362
+mašinskom učenju. Zato, ne brinite mnogo 
+oko toga zašto je ljudi zovu tako. Dizajnirajući
+
+66
+00:06:09,362 --> 00:06:14,332
+algoritam učenja, sledeća stvar koju treba da odlučimo je kako da
+
+67
+00:06:14,332 --> 00:06:20,540
+predstavimo tu hipotezu. U ovom i sledećih par videa, odabraću
+
+68
+00:06:20,540 --> 00:06:26,978
+naš početni izbor, za predstavljanje hipoteze 
+će da bude sledeće: predstavićemo h
+
+69
+00:06:26,978 --> 00:06:33,009
+kao što sledi. I pisaćemo ovo kao 
+h <u>teta(x) je jednako teta <u>0</u></u>
+
+70
+00:06:33,009 --> 00:06:39,254
+plus teta<u>1 od x. Ukratko, ponekad 
+umesto pisanja, znate</u>
+
+71
+00:06:39,254 --> 00:06:45,441
+postoji prečica za h sabskript teta od x
+, samo ću da pišem h od x.
+
+72
+00:06:45,441 --> 00:06:51,627
+Ali mnogo češće ću da pišem kao 
+tamo sabskript teta. Stavljajući
+
+73
+00:06:51,627 --> 00:06:58,210
+to na sliku, sve to znači da ovo y 
+što ćemo da predvidimo je linearna
+
+74
+00:06:58,210 --> 00:07:04,634
+funkcija od x. U redu, dakle šta je 
+skup podataka i šta ova funkcija radi
+
+75
+00:07:04,634 --> 00:07:11,698
+jeste predviđanje da je y neka prava linija
+ funkcije od x. h od x je jednako teta 0
+
+76
+00:07:11,698 --> 00:07:18,450
+plus teta 1 x, u redu? I zašto linearna funkcija? 
+Pa, ponekad ćemo hteti da
+
+77
+00:07:18,450 --> 00:07:23,405
+isto tako podesimo komplikovaniju,
+ možda nelinearnu funkciju. Pošto je ovaj naš
+
+78
+00:07:23,405 --> 00:07:28,298
+slučaj jednostavan, počećemo prvo podešavanjem
+
+79
+00:07:28,298 --> 00:07:32,943
+linearnih funkcija, i nastavićemo sa komplikovanijim
+
+80
+00:07:32,943 --> 00:07:37,403
+modelima i komplikovanijim algoritmima učenja. Hajde da ovom
+
+81
+00:07:37,403 --> 00:07:42,628
+određenom modelu damo ime. 
+Ovaj model se zove linearna regresija ili,
+
+82
+00:07:42,628 --> 00:07:48,271
+u stvari, linearna regresija sa 
+jednom promenjivom, gde je promenjiva x.
+
+83
+00:07:48,271 --> 00:07:53,914
+Predviđanje svih cena kao funkcija jedne
+ promenjive X. A drugi naziv za
+
+84
+00:07:53,914 --> 00:07:58,852
+ovaj model je jednovarijantna linearna regresija.
+ Jednovarijantna je samo
+
+85
+00:07:58,852 --> 00:08:04,400
+fensi naziv za jednu promenjivu. 
+Dakle, to je linearna regresija. U sledećem
+
+86
+00:08:04,400 --> 00:08:09,760
+videu počećemo da pričamo 
+kako da primenimo ovaj model.

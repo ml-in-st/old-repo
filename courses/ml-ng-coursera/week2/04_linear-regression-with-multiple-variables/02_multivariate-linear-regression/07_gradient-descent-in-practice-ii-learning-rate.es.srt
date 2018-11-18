@@ -1,0 +1,539 @@
+1
+00:00:00,450 --> 00:00:03,210
+En este video, quiero darte más consejos
+
+2
+00:00:03,210 --> 00:00:05,070
+prácticos para conseguir que el gradiente de descenso funcione.
+
+3
+00:00:05,070 --> 00:00:08,650
+Las ideas en este vídeo se
+
+4
+00:00:09,860 --> 00:00:13,180
+centran alrededor del índice de aprendizaje «alfa».
+
+5
+00:00:13,180 --> 00:00:16,270
+Específicamente, aquí está la regla de
+
+6
+00:00:16,270 --> 00:00:19,050
+actualización del gradiente de descenso y lo
+
+7
+00:00:19,050 --> 00:00:22,390
+que quiero hacer en este video
+
+8
+00:00:22,390 --> 00:00:26,480
+es hablarte acerca de lo que
+
+9
+00:00:26,480 --> 00:00:29,250
+pienso de la depuración y algunos
+
+10
+00:00:29,250 --> 00:00:32,770
+consejos para asegurarte que funciona
+
+11
+00:00:32,770 --> 00:00:34,150
+correctamente el gradiente de descenso
+
+12
+00:00:34,150 --> 00:00:38,219
+y en segundo lugar, quiero hablarte sobre
+
+13
+00:00:38,219 --> 00:00:42,553
+cómo elegir los índices de aprendizaje
+
+14
+00:00:42,553 --> 00:00:47,483
+hacia afuera, y esta es la
+
+15
+00:00:47,483 --> 00:00:49,750
+forma para elegirlos.
+
+16
+00:00:49,750 --> 00:00:53,515
+Aquí hay algo que hago a menudo para asegurarme de que
+
+17
+00:00:53,515 --> 00:00:58,659
+el gradiente de descenso está funcionando correctamente.
+
+18
+00:00:59,720 --> 00:01:02,960
+El trabajo del gradiente de descenso es
+
+19
+00:01:02,960 --> 00:01:07,795
+que te encuentre el valor de
+
+20
+00:01:07,795 --> 00:01:13,107
+«theta», que como sabes,
+
+21
+00:01:13,107 --> 00:01:15,767
+esperamos minimice la función de costo "J" de «theta».
+
+22
+00:01:15,767 --> 00:01:20,570
+Por tanto, lo que hago a menudo es
+
+23
+00:01:20,570 --> 00:01:25,240
+arrancar la función de costo de "J"
+
+24
+00:01:25,240 --> 00:01:28,770
+de «theta» conforme se ejecuta el gradiente de descenso.
+
+25
+00:01:28,770 --> 00:01:32,630
+Así es que, el eje x aquí es
+
+26
+00:01:32,630 --> 00:01:35,630
+el número de iteración del gradiente
+
+27
+00:01:35,630 --> 00:01:39,760
+de descenso y conforme el gradiente de descenso
+
+28
+00:01:39,760 --> 00:01:43,630
+se ejecuta, espero que obtengas una
+
+29
+00:01:43,630 --> 00:01:49,620
+gráfica que tal vez se parece a esto.
+
+30
+00:01:49,620 --> 00:01:53,810
+Observa que el eje x es
+
+31
+00:01:55,230 --> 00:01:59,353
+el número de iteraciones que previamente
+
+32
+00:01:59,353 --> 00:02:02,020
+estábamos buscando en gráficas de
+
+33
+00:02:02,020 --> 00:02:07,392
+"J" de «theta» donde el
+
+34
+00:02:07,392 --> 00:02:11,671
+eje x, donde el eje horizontal, era el vector
+
+35
+00:02:17,058 --> 00:02:21,774
+del parámetro «theta», pero esto no es en donde este está.
+
+36
+00:02:21,774 --> 00:02:26,783
+Específicamente, lo que este punto
+
+37
+00:02:26,783 --> 00:02:31,350
+es, voy a clasificar el gradiente
+
+38
+00:02:31,350 --> 00:02:35,720
+de descenso para cien iteraciones.
+
+39
+00:02:35,720 --> 00:02:38,540
+Y cualquiera que sea el valor que obtenga
+
+40
+00:02:38,540 --> 00:02:41,520
+para «theta» después de un centenar
+
+41
+00:02:41,520 --> 00:02:46,090
+de iteraciones y obtener,
+
+42
+00:02:46,090 --> 00:02:50,510
+como sabes, algún valor de «theta»
+
+43
+00:02:50,510 --> 00:02:53,800
+después de cien iteraciones y voy
+
+44
+00:02:53,800 --> 00:02:55,829
+a evaluar la función
+
+45
+00:02:57,580 --> 00:03:01,630
+coseno "J" de «theta» para
+
+46
+00:03:01,630 --> 00:03:04,850
+el valor de «theta» que obtengo
+
+47
+00:03:04,850 --> 00:03:09,220
+después de cien iteraciones y esta
+
+48
+00:03:09,220 --> 00:03:15,110
+altura vertical es el
+
+49
+00:03:15,110 --> 00:03:20,110
+valor de "J" de «theta» para
+
+50
+00:03:20,110 --> 00:03:24,048
+el valor de «theta» que obtengo
+
+51
+00:03:24,048 --> 00:03:25,476
+después de un centenar de iteraciones del
+
+52
+00:03:25,476 --> 00:03:30,026
+gradiente de descenso y este
+
+53
+00:03:30,026 --> 00:03:34,430
+punto de aquí, que corresponde
+
+54
+00:03:34,430 --> 00:03:37,725
+al valor de "J" de
+
+55
+00:03:37,725 --> 00:03:42,430
+«theta» para «theta»
+
+56
+00:03:42,430 --> 00:03:47,560
+que obtengo después de haber
+
+57
+00:03:47,560 --> 00:03:52,310
+ejecutado el gradiente de descenso para doscientas iteraciones.
+
+58
+00:03:52,310 --> 00:03:57,100
+Así que lo que esta gráfica está mostrando,
+
+59
+00:03:57,100 --> 00:04:01,220
+está mostrando el valor de tu función de costo
+
+60
+00:04:01,220 --> 00:04:05,340
+después de cada iteración del gradiente de descenso.
+
+61
+00:04:05,340 --> 00:04:10,460
+Y, si el gradiente de descenso está
+
+62
+00:04:10,460 --> 00:04:13,840
+funcionando correctamente, entonces "J"
+
+63
+00:04:13,840 --> 00:04:18,110
+de «theta» debe disminuir
+
+64
+00:04:18,110 --> 00:04:21,740
+después de cada iteración.
+
+65
+00:04:21,740 --> 00:04:25,370
+Y una cosa útil
+
+66
+00:04:25,370 --> 00:04:28,730
+que este tipo de gráfica puede
+
+67
+00:04:28,730 --> 00:04:33,600
+decirte también es que
+
+68
+00:04:33,600 --> 00:04:38,280
+si te fijas en la figura específica
+
+69
+00:04:38,280 --> 00:04:43,110
+que he dibujado, parece que
+
+70
+00:04:43,110 --> 00:04:47,250
+para el momento en que has llegado
+
+71
+00:04:48,320 --> 00:04:52,885
+a trescientas iteraciones,
+
+72
+00:04:52,885 --> 00:04:58,370
+entre trescientas y cuatrocientas
+
+73
+00:04:59,380 --> 00:05:02,545
+iteraciones, en este segmento,
+
+74
+00:05:02,545 --> 00:05:06,090
+parece que "J" de «theta» disminuye mucho más.
+
+75
+00:05:06,090 --> 00:05:07,450
+Así que para cuando alcances
+
+76
+00:05:07,450 --> 00:05:11,525
+cuatrocientos iteraciones, parecerá
+
+77
+00:05:11,525 --> 00:05:15,075
+que esta curva se ha aplanado hasta aquí.
+
+78
+00:05:15,075 --> 00:05:17,975
+Y así, aquí
+
+79
+00:05:17,975 --> 00:05:20,096
+en las cuatrocientas iteraciones,
+
+80
+00:05:20,096 --> 00:05:24,284
+parece que el gradiente de descenso ha,
+
+81
+00:05:24,284 --> 00:05:26,617
+más o menos convergido porque tu
+
+82
+00:05:26,617 --> 00:05:30,690
+función de costo no bajará mucho más.
+
+83
+00:05:30,690 --> 00:05:34,140
+Así que observar esta figura puede
+
+84
+00:05:34,140 --> 00:05:38,660
+además ayudarte a juzgar
+
+85
+00:05:38,660 --> 00:05:41,820
+si el gradiente de descenso converge o no.
+
+86
+00:05:41,820 --> 00:05:46,700
+Por cierto, el número de
+
+87
+00:05:49,020 --> 00:05:53,090
+iteraciones que el gradiente de descenso toma
+
+88
+00:05:53,090 --> 00:05:56,890
+para converger en una aplicación física
+
+89
+00:05:56,890 --> 00:05:58,850
+puede variar mucho.
+
+90
+00:05:58,850 --> 00:06:03,130
+Así que tal vez, para una aplicación de gradiente
+
+91
+00:06:04,150 --> 00:06:05,400
+de descenso puede converger después de solamente
+
+92
+00:06:05,400 --> 00:06:09,560
+treinta iteraciones, y para una
+
+93
+00:06:09,560 --> 00:06:14,180
+aplicación de gradiente de descenso diferente
+
+94
+00:06:14,180 --> 00:06:19,030
+puede hacerlo a las 3,000 iteraciones.
+
+95
+00:06:19,030 --> 00:06:21,979
+Para otro algoritmo de aprendizaje
+
+96
+00:06:21,979 --> 00:06:23,810
+puede tardar tres millones de iteraciones.
+
+97
+00:06:23,810 --> 00:06:26,430
+Resulta ser
+
+98
+00:06:26,430 --> 00:06:30,830
+muy difícil saber de
+
+99
+00:06:31,930 --> 00:06:36,760
+antemano cuantas iteraciones necesita
+
+100
+00:06:36,760 --> 00:06:40,930
+el gradiente descendente para converger, y se logra
+
+101
+00:06:40,930 --> 00:06:47,100
+por lo general tranzando este tipo de gráfica.
+
+102
+00:06:47,100 --> 00:06:50,990
+Trazando la función de costo a medida que aumentamos el número de iteraciones.
+
+103
+00:06:50,990 --> 00:06:52,360
+Por lo general al examinar estas
+
+104
+00:06:52,360 --> 00:06:55,510
+gráficas intento saber
+
+105
+00:06:55,510 --> 00:06:59,845
+si converge el gradiente de descenso.
+
+106
+00:06:59,845 --> 00:07:05,640
+También es posible saber
+
+107
+00:07:05,640 --> 00:07:11,490
+con la prueba automática de convergencia; es decir
+
+108
+00:07:11,490 --> 00:07:15,220
+tener un algoritmo para intentar
+
+109
+00:07:15,220 --> 00:07:19,040
+saber si el gradiente de descenso
+
+110
+00:07:19,040 --> 00:07:23,810
+ha convergido y aquí está tal vez
+
+111
+00:07:23,810 --> 00:07:27,810
+un ejemplo bastante típico de una
+
+112
+00:07:27,810 --> 00:07:31,620
+prueba automática de convergencia,
+
+113
+00:07:31,620 --> 00:07:33,500
+así, pruebas la clara convergencia
+
+114
+00:07:33,500 --> 00:07:36,460
+si tu función de costo de "J" de «theta»
+
+115
+00:07:36,460 --> 00:07:38,670
+disminuye en menos de
+
+116
+00:07:38,670 --> 00:07:41,550
+un pequeño valor de «épsilon», algún
+
+117
+00:07:41,550 --> 00:07:45,250
+pequeño valor de 10 a la
+
+118
+00:07:45,250 --> 00:07:47,290
+-3 en una iteración,
+
+119
+00:07:47,290 --> 00:07:54,160
+pero me parece que por lo general
+
+120
+00:07:54,160 --> 00:07:57,180
+es bastante difícil elegir cual es este umbral.
+
+121
+00:07:57,180 --> 00:08:00,970
+Así que, con el fin de comprobar
+
+122
+00:08:00,970 --> 00:08:03,679
+que tu gradiente de descenso ha convergido,
+
+123
+00:08:06,827 --> 00:08:09,985
+por lo general observo
+
+124
+00:08:09,985 --> 00:08:13,613
+las gráficas como esta
+
+125
+00:08:13,613 --> 00:08:15,232
+figura de la derecha en lugar de
+
+126
+00:08:15,232 --> 00:08:20,627
+confiar en una prueba de convergencia automática.
+
+127
+00:08:20,627 --> 00:08:25,512
+Observar esta clase de
+
+128
+00:08:25,512 --> 00:08:30,640
+figura también puede decirte o
+
+129
+00:08:30,640 --> 00:08:33,316
+darte una advertencia por adelantado si tal vez
+
+130
+00:08:33,316 --> 00:08:37,078
+el gradiente de descenso no está funcionando correctamente.
+
+131
+00:08:37,078 --> 00:08:40,966
+Específicamente, si aplicas
+
+132
+00:08:40,966 --> 00:08:45,943
+"J" de «theta» como una función
+
+133
+00:08:45,943 --> 00:08:51,780
+de un número de iteraciones, entonces, si
+
+134
+00:08:51,780 --> 00:08:55,910
+ves una figura como esta,
+
+135
+00:08:55,910 --> 00:08:58,010
+en donde "J" de «theta» está en realidad

@@ -1,0 +1,126 @@
+1
+00:00:00,370 --> 00:00:01,740
+Machine Learning (Máy học) là gì?
+
+2
+00:00:01,740 --> 00:00:05,090
+Chắc chắn bạn sử dụng nó cả tá lần mỗi ngày 
+mà không hề biết.
+
+3
+00:00:05,090 --> 00:00:08,790
+Mỗi khi bạn tìm kiếm web trên Google hoặc
+ Bing, chúng đều tìm kiếm rất hiệu quả
+
+4
+00:00:08,790 --> 00:00:12,340
+vì phần mềm học máy của chúng 
+biết làm thế nào để xếp hạng những trang web nào,
+
+5
+00:00:12,340 --> 00:00:17,230
+Khi ứng dụng ảnh của Facebook hay Apple nhận 
+ra được bạn bè của bạn trong các bức hình,
+
+6
+00:00:17,230 --> 00:00:18,850
+đó cũng là học máy.
+
+7
+00:00:18,850 --> 00:00:20,370
+Mỗi khi bạn đọc email
+
+8
+00:00:20,370 --> 00:00:24,490
+có một bộ lọc thư rác giúp bạn khỏi phải 
+đọc qua cả tấn thư rác, một lần nữa,
+
+9
+00:00:24,490 --> 00:00:29,390
+là do máy tính của bạn đã học cách 
+phân biệt thư rác với thư bình thường.
+
+10
+00:00:29,390 --> 00:00:31,240
+Vậy, đó là học máy.
+
+11
+00:00:31,240 --> 00:00:35,260
+Có một ngành khoa học về việc khiến máy tính học không thông qua lập trình hoàn toàn bởi con người
+
+12
+00:00:35,260 --> 00:00:38,660
+Một trong những dự án nghiên cứu mà tôi 
+đang thực hiện là làm cho rô bốt dọn dẹp
+
+13
+00:00:38,660 --> 00:00:39,780
+ngôi nhà.
+
+14
+00:00:39,780 --> 00:00:41,010
+Bạn sẽ làm việc đó như thế nào?
+
+15
+00:00:41,010 --> 00:00:44,860
+Ồ điều bạn có thể làm là để con rô bốt 
+xem bạn mô tả công việc này và
+
+16
+00:00:44,860 --> 00:00:46,000
+học từ đó
+
+17
+00:00:46,000 --> 00:00:49,690
+Sau đó con rô bốt có thể xem bạn nhặt lên 
+những vật gì và để chúng ở đâu và
+
+18
+00:00:49,690 --> 00:00:52,000
+thử làm điều tương tự 
+mỗi khi bạn không có ở đó.
+
+19
+00:00:52,000 --> 00:00:55,460
+Với tôi, một trong những lí do
+ khiến tôi thích dự án này là AI, hay
+
+20
+00:00:55,460 --> 00:00:57,530
+bài toán trí tuệ nhân tạo.
+
+21
+00:00:57,530 --> 00:00:59,209
+Xây dựng những bộ máy thật sự thông minh,
+
+22
+00:00:59,209 --> 00:01:01,680
+chúng ta có thể làm những điều 
+mà bạn hay tôi có thể làm được.
+
+23
+00:01:01,680 --> 00:01:04,920
+Nhiều nhà khoa học nghĩ rằng cách tốt nhất để làm cho tiến bộ về điều này là thông qua thuật toán học tập
+
+24
+00:01:04,920 --> 00:01:09,630
+gọi là mạng nơ-ron (neural networks), là những 
+thuật toán mà bắt chước cách làm việc của bộ não con người, và 
+
+25
+00:01:09,630 --> 00:01:11,030
+tôi cũng sẽ dạy các bạn về những thuật toán đó.
+
+26
+00:01:11,030 --> 00:01:13,170
+Trong lớp học này,
+bạn sẽ được học về học máy và
+
+27
+00:01:13,170 --> 00:01:14,390
+phải tự thực hiện chúng.
+
+28
+00:01:14,390 --> 00:01:16,920
+Tôi hi vọng bạn sẽ đăng kí trên website 
+và tham gia cùng chúng tôi.

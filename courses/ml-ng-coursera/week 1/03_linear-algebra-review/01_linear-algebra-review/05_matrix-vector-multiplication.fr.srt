@@ -1,0 +1,1462 @@
+1
+00:00:00,230 --> 00:00:01,364
+Dans cette video, j'aimerais
+
+2
+00:00:01,364 --> 00:00:02,699
+parler de comment
+
+3
+00:00:02,699 --> 00:00:05,020
+multiplier deux matrices ensemble.
+
+4
+00:00:05,020 --> 00:00:06,618
+Nous commencerons par un cas particulier:
+
+5
+00:00:06,618 --> 00:00:08,347
+celui de la multiplication matrice-vecteur,
+
+6
+00:00:08,350 --> 00:00:12,530
+de la multipliation d'une matrice par un vecteur.
+
+7
+00:00:12,530 --> 00:00:13,975
+Commençons par un exemple.
+
+8
+00:00:13,975 --> 00:00:15,722
+Voici une matrice
+
+9
+00:00:15,722 --> 00:00:17,283
+et voici un vecteur.
+
+10
+00:00:17,283 --> 00:00:18,351
+Nous voulons
+
+11
+00:00:18,351 --> 00:00:21,281
+multiplier cette matrice
+
+12
+00:00:21,281 --> 00:00:24,202
+et ce vecteur. Quel est le résultat?
+
+13
+00:00:24,202 --> 00:00:25,209
+Laissez-moi traiter
+
+14
+00:00:25,210 --> 00:00:27,058
+cet exemple puis nous
+
+15
+00:00:27,058 --> 00:00:29,886
+le referons étape par étape.
+
+16
+00:00:29,886 --> 00:00:31,104
+Le résultat de cette
+
+17
+00:00:31,104 --> 00:00:32,912
+multiplication sera
+
+18
+00:00:32,912 --> 00:00:34,554
+lui-même un vecteur.
+
+19
+00:00:34,560 --> 00:00:35,931
+Je vais traiter cet exemple
+
+20
+00:00:35,931 --> 00:00:37,108
+puis nous reviendrons
+
+21
+00:00:37,108 --> 00:00:39,650
+en arrière pour voir ce que j'ai fait.
+
+22
+00:00:39,652 --> 00:00:41,228
+Pour obtenir le premier élément de
+
+23
+00:00:41,228 --> 00:00:42,445
+ce vecteur, je vais prendre
+
+24
+00:00:42,445 --> 00:00:44,840
+ces deux nombres et
+
+25
+00:00:44,849 --> 00:00:47,682
+les multiplier avec
+
+26
+00:00:47,682 --> 00:00:49,463
+la première ligne de la
+
+27
+00:00:49,463 --> 00:00:51,884
+matrice et faire la somme de ces deux résultats.
+
+28
+00:00:51,884 --> 00:00:54,223
+Prenez 1 multiplié par
+
+29
+00:00:54,223 --> 00:00:57,430
+1, et prenez
+
+30
+00:00:57,430 --> 00:00:58,616
+3 et multiplier par
+
+31
+00:00:58,616 --> 00:01:01,557
+5 et ensuite
+
+32
+00:01:01,580 --> 00:01:04,542
+ce 1 + 15 donne 16.
+
+33
+00:01:04,542 --> 00:01:06,879
+J'écris 16 ici.
+
+34
+00:01:06,880 --> 00:01:09,926
+Pour la deuxième ligne,
+
+35
+00:01:09,926 --> 00:01:12,555
+le deuxième élément, je vais
+
+36
+00:01:12,555 --> 00:01:14,022
+prendre la deuxième ligne
+
+37
+00:01:14,022 --> 00:01:15,255
+et la multiplier par ce vecteur.
+
+38
+00:01:15,255 --> 00:01:17,762
+Donc j'ai 4 fois
+
+39
+00:01:17,800 --> 00:01:20,554
+1, plus 0
+
+40
+00:01:20,554 --> 00:01:21,894
+fois 5, ce qui
+
+41
+00:01:21,894 --> 00:01:25,625
+fait 4. J'ai 4 ici.
+
+42
+00:01:25,625 --> 00:01:28,168
+Enfin, pour le dernier terme,
+
+43
+00:01:28,168 --> 00:01:30,015
+j'ai 2 et 1 fois
+
+44
+00:01:30,015 --> 00:01:31,540
+1 et 5, donc
+
+45
+00:01:31,540 --> 00:01:33,791
+2 * 1, plus
+
+46
+00:01:33,791 --> 00:01:36,361
+1 * 5, ce qui
+
+47
+00:01:36,361 --> 00:01:39,422
+fait 7 et
+
+48
+00:01:39,422 --> 00:01:43,145
+j'ai donc un 7 ici.
+
+49
+00:01:43,810 --> 00:01:45,464
+Il se trouve que le
+
+50
+00:01:45,464 --> 00:01:48,102
+résultat de la mutliplication
+
+51
+00:01:48,102 --> 00:01:50,750
+d'une matrice 3x2 par
+
+52
+00:01:51,030 --> 00:01:53,498
+une matrice 2x1 est aussi
+
+53
+00:01:53,498 --> 00:01:55,504
+un vecteur à 2 dimensions.
+
+54
+00:01:55,504 --> 00:01:57,034
+Le résultat de cette opération
+
+55
+00:01:57,040 --> 00:02:01,975
+sera une matrice 3x1.
+
+56
+00:02:01,980 --> 00:02:03,945
+Donc, j'ai une matrice 3x1
+
+57
+00:02:03,960 --> 00:02:05,737
+et, pour le dire autrement,
+
+58
+00:02:05,750 --> 00:02:07,534
+une matrice 3x1
+
+59
+00:02:07,550 --> 00:02:13,141
+est un vecteur à 3 dimensions.
+
+60
+00:02:13,170 --> 00:02:14,359
+Je vois bien que
+
+61
+00:02:14,359 --> 00:02:16,072
+j'ai fait ça très vite et
+
+62
+00:02:16,072 --> 00:02:17,078
+que vous n'êtes pas sûr de pouvoir
+
+63
+00:02:17,078 --> 00:02:18,530
+reproduire cette démarche vous-même.
+
+64
+00:02:18,530 --> 00:02:20,196
+Voyons plus en détail
+
+65
+00:02:20,196 --> 00:02:22,019
+ce qui vient de se faire et
+
+66
+00:02:22,020 --> 00:02:26,618
+en quoi consiste la multiplication d'une matrice par un vecteur.
+
+67
+00:02:26,618 --> 00:02:28,478
+Voic les détails de la
+
+68
+00:02:28,478 --> 00:02:30,532
+multiplication d'une matrice par un vecteur.
+
+69
+00:02:30,540 --> 00:02:32,014
+Disons que j'ai une matrice A
+
+70
+00:02:32,014 --> 00:02:33,355
+et que je veux la multiplier par
+
+71
+00:02:33,355 --> 00:02:35,637
+un vecteur x. Le
+
+72
+00:02:35,637 --> 00:02:37,220
+résultat sera un vecteur y. Donc,
+
+73
+00:02:37,220 --> 00:02:39,569
+la matrice A est une
+
+74
+00:02:39,569 --> 00:02:41,334
+matrice m x n,
+
+75
+00:02:41,334 --> 00:02:43,388
+qui possède donc
+
+76
+00:02:43,388 --> 00:02:45,062
+m lignes et n colonnes et
+
+77
+00:02:45,062 --> 00:02:46,570
+nous allons la multiplier par
+
+78
+00:02:46,570 --> 00:02:49,651
+une matrice n x 1, soit un vecteur à n dimensions.
+
+79
+00:02:49,651 --> 00:02:51,203
+Il se trouve que
+
+80
+00:02:51,203 --> 00:02:54,694
+ce "n" -ci doit être égal à ce "n" -là.
+
+81
+00:02:54,694 --> 00:02:55,933
+En d'autres termes, le nombre de
+
+82
+00:02:55,933 --> 00:02:58,560
+colonnes dans cette matrice
+
+83
+00:02:58,580 --> 00:03:01,821
+est n.
+
+84
+00:03:01,821 --> 00:03:03,457
+Le nombre de colonnes ici doit
+
+85
+00:03:03,457 --> 00:03:06,442
+être égal au nombre de lignes, là.
+
+86
+00:03:06,442 --> 00:03:09,274
+Il doit correspondre à la dimension du vecteur.
+
+87
+00:03:09,280 --> 00:03:10,645
+Et le résultat de ce produit
+
+88
+00:03:10,645 --> 00:03:15,681
+sera ce vecteur y
+
+89
+00:03:15,761 --> 00:03:19,858
+à n dimensions. Voici les lignes.
+
+90
+00:03:19,858 --> 00:03:23,009
+"m" sera
+
+91
+00:03:23,010 --> 00:03:24,972
+égal au nombre
+
+92
+00:03:24,972 --> 00:03:28,237
+de lignes dans la matrice A.
+
+93
+00:03:28,250 --> 00:03:31,082
+Comment calcule-t-on le vecteur y?
+
+94
+00:03:31,082 --> 00:03:32,110
+La démarche pour calculer
+
+95
+00:03:32,110 --> 00:03:34,280
+ce vecteur y  consiste à
+
+96
+00:03:34,280 --> 00:03:36,860
+calculer les termes yi, à multiplier
+
+97
+00:03:37,200 --> 00:03:38,799
+la i ème ligne de A par
+
+98
+00:03:38,799 --> 00:03:40,218
+les éléments du vecteur x
+
+99
+00:03:40,218 --> 00:03:41,623
+et à faire la somme de ces produits.
+
+100
+00:03:41,625 --> 00:03:42,464
+Voici ce que je veux dire :
+
+101
+00:03:42,470 --> 00:03:45,035
+Pour calculer le
+
+102
+00:03:45,060 --> 00:03:47,847
+premier élément de y,
+
+103
+00:03:47,847 --> 00:03:49,980
+ce premier nombre, quel qu'il
+
+104
+00:03:49,980 --> 00:03:51,424
+soit, nous prendrons
+
+105
+00:03:51,424 --> 00:03:53,012
+la première ligne de la
+
+106
+00:03:53,020 --> 00:03:55,486
+matrice A et nous multiplions
+
+107
+00:03:55,486 --> 00:03:57,680
+les termes un par un
+
+108
+00:03:57,680 --> 00:03:59,842
+avec les éléments du vecteur x.
+
+109
+00:03:59,842 --> 00:04:01,755
+Donc je multiplie ce premier
+
+110
+00:04:01,760 --> 00:04:03,912
+nombre par ce premier nombre.
+
+111
+00:04:03,912 --> 00:04:07,331
+Ensuite je prends ce deuxième nombre
+et je le multiplie par ce deuxième nombre.
+
+112
+00:04:07,331 --> 00:04:09,264
+Prenez ce troisième nombre quel
+
+113
+00:04:09,264 --> 00:04:10,603
+qu'il soit, multipliez le par le troisième nombre
+
+114
+00:04:10,603 --> 00:04:12,871
+et ainsi de suite jusqu'à la fine.
+
+115
+00:04:13,320 --> 00:04:14,578
+Je fais la somme
+
+116
+00:04:14,578 --> 00:04:16,289
+de tous ces produits et le
+
+117
+00:04:16,300 --> 00:04:19,918
+résultat de tout ceci nous donne
+le premier élément de y.
+
+118
+00:04:19,922 --> 00:04:21,690
+Calculons maintenant
+
+119
+00:04:21,690 --> 00:04:25,334
+le deuxième élément de y, celui-ci.
+
+120
+00:04:25,340 --> 00:04:26,735
+Pour ce faire, nous
+
+121
+00:04:26,735 --> 00:04:28,688
+prenons la deuxième ligne de
+
+122
+00:04:28,688 --> 00:04:30,078
+A et nous refaisons le processus.
+
+123
+00:04:30,078 --> 00:04:31,265
+Alors nous prenons la deuxième ligne
+
+124
+00:04:31,265 --> 00:04:32,994
+de A et nous la multiplions
+
+125
+00:04:32,994 --> 00:04:34,407
+élément par élément, avec
+
+126
+00:04:34,407 --> 00:04:35,814
+les éléments de x
+
+127
+00:04:35,830 --> 00:04:37,460
+et additionnons les résultats de ces produits.
+
+128
+00:04:37,460 --> 00:04:38,402
+Ca me donne le
+
+129
+00:04:38,402 --> 00:04:40,107
+deuxième élément de y. Et
+
+130
+00:04:40,107 --> 00:04:41,598
+pour continuer, nous
+
+131
+00:04:41,600 --> 00:04:42,839
+prenons la troisième ligne
+
+132
+00:04:42,850 --> 00:04:44,720
+de A, multiplions ses éléments
+
+133
+00:04:44,720 --> 00:04:47,558
+avec le vecteur x,
+
+134
+00:04:47,560 --> 00:04:48,682
+ajoutons les résultats et alors
+
+135
+00:04:48,682 --> 00:04:50,246
+nous obtenons le troisième élément et
+
+136
+00:04:50,260 --> 00:04:51,600
+ainsi de suite jusqu'à
+
+137
+00:04:51,600 --> 00:04:55,139
+la dernière ligne. Ok?
+
+138
+00:04:55,676 --> 00:04:57,930
+Voilà la procédure.
+
+139
+00:04:58,340 --> 00:05:00,685
+Faisons un autre exemple.
+
+140
+00:05:00,685 --> 00:05:05,240
+Le voici. Regardons les dimensions.
+
+141
+00:05:05,240 --> 00:05:08,428
+Ceci est une matrice de
+
+142
+00:05:08,428 --> 00:05:11,086
+dimension 3 x 4.
+
+143
+00:05:11,086 --> 00:05:13,280
+Ceci est un vecteur à 4 dimensions,
+
+144
+00:05:13,280 --> 00:05:15,292
+ou une matrice 4x1, et
+
+145
+00:05:15,292 --> 00:05:16,825
+le résultat de ceci, le
+
+146
+00:05:16,825 --> 00:05:18,210
+résultat de ce produit sera
+
+147
+00:05:18,220 --> 00:05:20,881
+un vecteur à 3 dimensions.
+
+148
+00:05:20,890 --> 00:05:23,169
+Ecrivons le vecteur en laissant
+
+149
+00:05:23,180 --> 00:05:26,531
+de la place pour trois éléments.
+
+150
+00:05:26,531 --> 00:05:30,256
+Faisons les produits.
+
+151
+00:05:30,256 --> 00:05:32,915
+Pour le premier élément, je
+
+152
+00:05:32,915 --> 00:05:35,068
+prends ces quatre nombres
+
+153
+00:05:35,068 --> 00:05:36,272
+et je les multiplie avec le
+
+154
+00:05:36,272 --> 00:05:38,873
+vecteur x. Donc, j'ai
+
+155
+00:05:38,873 --> 00:05:42,227
+1 x 1 + 2 x 3
+
+156
+00:05:42,568 --> 00:05:47,301
++ 1 x 2 + 5 x 1 ce qui
+
+157
+00:05:47,301 --> 00:05:49,994
+est égal à
+
+158
+00:05:50,050 --> 00:05:55,602
+1 + 6 + 2 + 5, soit 14.
+
+159
+00:05:55,630 --> 00:05:58,156
+Et maintenant pour le
+
+160
+00:05:58,156 --> 00:05:59,754
+deuxième élément, je vais
+
+161
+00:05:59,754 --> 00:06:01,422
+prendre cette ligne et
+
+162
+00:06:01,422 --> 00:06:04,604
+la multiplier avec ce vecteur.
+
+163
+00:06:04,604 --> 00:06:06,196
+Donc,
+
+164
+00:06:06,243 --> 00:06:12,764
+0 x 1 + 3 x 3 +
+
+165
+00:06:12,764 --> 00:06:19,958
+0 x 2 + 4 x ,
+
+166
+00:06:20,840 --> 00:06:22,974
+ce qui est égal à
+
+167
+00:06:22,974 --> 00:06:26,105
+ceci fait 9 + 4, soit 13.
+
+168
+00:06:26,105 --> 00:06:28,093
+Enfin, pour le dernier
+
+169
+00:06:28,093 --> 00:06:29,455
+élément, je vais prendre
+
+170
+00:06:29,455 --> 00:06:30,847
+cette dernière ligne, donc
+
+171
+00:06:30,847 --> 00:06:33,978
+(-1) x (-1)
+
+172
+00:06:34,110 --> 00:06:38,068
+(-2) x 3
+
+173
+00:06:38,080 --> 00:06:40,656
++ 0 x 2
+
+174
+00:06:40,656 --> 00:06:42,441
++ 0 x 1
+
+175
+00:06:42,441 --> 00:06:44,047
+ce qui fait
+
+176
+00:06:44,047 --> 00:06:45,496
+( -1 ) - 6,
+
+177
+00:06:45,496 --> 00:06:46,474
+et j'obtiens donc
+
+178
+00:06:46,474 --> 00:06:49,636
+7 que je mest dans le vecteur.
+
+179
+00:06:49,636 --> 00:06:50,136
+D'accord ?
+
+180
+00:06:50,136 --> 00:06:51,097
+Donc ma réponse est
+
+181
+00:06:51,097 --> 00:06:54,033
+le vecteur 14,
+
+182
+00:06:54,033 --> 00:06:56,117
+écrivons le avec des couleurs différentes, 14
+
+183
+00:06:56,117 --> 00:06:59,843
+13 et -7.
+
+184
+00:07:01,190 --> 00:07:03,567
+Comme promis,
+
+185
+00:07:03,567 --> 00:07:07,775
+le résultat est une matrice 3 x 1.
+
+186
+00:07:07,775 --> 00:07:11,147
+Voici comment multiplier une matrice et un vecteur.
+
+187
+00:07:11,170 --> 00:07:12,309
+je sais bien que cet slide
+
+188
+00:07:12,309 --> 00:07:13,710
+contient beaucoup d'info, donc
+
+189
+00:07:13,710 --> 00:07:14,662
+si vous n'êtes pas sûr d'où
+
+190
+00:07:14,680 --> 00:07:16,228
+viennent tous ces nombres,
+
+191
+00:07:16,228 --> 00:07:17,260
+mettez la video sur pause
+
+192
+00:07:17,280 --> 00:07:18,345
+et prenez le temps de
+
+193
+00:07:18,345 --> 00:07:19,980
+revoir attentivement tous les
+
+194
+00:07:19,980 --> 00:07:21,195
+calculs que nous venons de
+
+195
+00:07:21,195 --> 00:07:22,318
+faire et vérifiez que
+
+196
+00:07:22,318 --> 00:07:23,755
+vous avez compris les étapes
+
+197
+00:07:23,760 --> 00:07:25,144
+que nous avons parcourues pour arriver
+
+198
+00:07:25,144 --> 00:07:29,570
+à ces nombres 14, 13 et -7.
+
+199
+00:07:29,650 --> 00:07:31,959
+Enfin, je vais vous montrer une petite astuce.
+
+200
+00:07:31,959 --> 00:07:33,939
+Disons que nous avons un
+
+201
+00:07:33,940 --> 00:07:36,462
+ensemble de 4 maisons,
+
+202
+00:07:36,462 --> 00:07:38,650
+4 maisons avec 4 surfaces comme celles-ci.
+
+203
+00:07:38,650 --> 00:07:39,908
+Disons que j'ai une
+
+204
+00:07:39,908 --> 00:07:41,418
+hypothèse pour prédire quel est
+
+205
+00:07:41,420 --> 00:07:43,885
+le prix d'une maison et
+
+206
+00:07:43,890 --> 00:07:45,861
+que je veux calculer
+
+207
+00:07:45,861 --> 00:07:49,347
+H(x) pour chacune des mes 4 maisons.
+
+208
+00:07:49,347 --> 00:07:51,039
+Il y a une façon propre de
+
+209
+00:07:51,039 --> 00:07:52,979
+présenter ce problème et d'appliquer cette
+
+210
+00:07:52,980 --> 00:07:56,780
+hypothèse à toutyes mes maisons en même temps.
+
+211
+00:07:56,780 --> 00:07:57,795
+Une présentation propre
+
+212
+00:07:57,795 --> 00:07:59,509
+de cette hypothèse est une
+
+213
+00:07:59,509 --> 00:08:01,798
+multiplication matrice vecteur.
+
+214
+00:08:02,240 --> 00:08:03,672
+Voici comment faire.
+
+215
+00:08:03,672 --> 00:08:06,717
+Je construis une matrice de la façon suivante:
+
+216
+00:08:06,717 --> 00:08:08,122
+Ma matrice sera
+
+217
+00:08:08,122 --> 00:08:11,892
+1 1 1 1 et
+
+218
+00:08:11,892 --> 00:08:15,495
+j'écris les tailles
+
+219
+00:08:15,510 --> 00:08:19,935
+des 4 maisons ici et
+
+220
+00:08:19,935 --> 00:08:21,249
+je construis un vecteur
+
+221
+00:08:21,249 --> 00:08:23,354
+de la même façon. Et mon
+
+222
+00:08:23,354 --> 00:08:25,609
+vecteur sera
+
+223
+00:08:25,609 --> 00:08:30,072
+aura ces deux éléments:
+
+224
+00:08:30,072 --> 00:08:32,182
+-40 et 0.25
+
+225
+00:08:32,182 --> 00:08:34,607
+Ce sont ces deux coefficients:
+
+226
+00:08:34,607 --> 00:08:35,432
+theta 1 et theta 2.
+
+227
+00:08:35,432 --> 00:08:36,835
+Et je vais
+
+228
+00:08:36,835 --> 00:08:38,048
+prendre cette matrice
+
+229
+00:08:38,060 --> 00:08:39,708
+et ce vecteur et les multiplier
+
+230
+00:08:39,708 --> 00:08:42,465
+ensemble. Ce x est le siymbole de multiplication.
+
+231
+00:08:42,465 --> 00:08:43,288
+Qu'est-ce que j'obtiens?
+
+232
+00:08:43,288 --> 00:08:46,412
+Ceci est une
+
+233
+00:08:46,420 --> 00:08:48,228
+matrice 4x2.
+
+234
+00:08:48,228 --> 00:08:52,005
+Celà est une matrice 2x1.
+
+235
+00:08:52,005 --> 00:08:53,952
+Le résultat sera
+
+236
+00:08:53,952 --> 00:08:55,355
+un vecteur 4x1,
+
+237
+00:08:55,355 --> 00:08:59,506
+bien sûr.
+
+238
+00:08:59,520 --> 00:09:02,860
+Donc, voyons,
+
+239
+00:09:02,870 --> 00:09:05,334
+ceci nous
+
+240
+00:09:05,334 --> 00:09:06,188
+donnera pour résultat
+
+241
+00:09:06,188 --> 00:09:06,957
+une matrice 4 x 1,
+
+242
+00:09:06,957 --> 00:09:10,035
+un vecteur à 4 dimensions.
+
+243
+00:09:10,035 --> 00:09:11,562
+Je vais écrire
+
+244
+00:09:11,562 --> 00:09:15,991
+mes quatre éléments ici.
+
+245
+00:09:16,010 --> 00:09:17,202
+Ce seront quatre nombre réels.
+
+246
+00:09:17,202 --> 00:09:18,952
+Le premier élément de
+
+247
+00:09:18,952 --> 00:09:20,497
+ce résultat est...
+
+248
+00:09:20,497 --> 00:09:21,505
+Pour le calculer,
+
+249
+00:09:21,505 --> 00:09:25,526
+je vais multiplier cette ligne par le vecteur.
+
+250
+00:09:25,526 --> 00:09:29,381
+Ca va me faire
+
+251
+00:09:29,381 --> 00:09:33,053
+-40 x 1
+
+252
+00:09:33,053 --> 00:09:37,645
++0.25 x 2104.
+
+253
+00:09:37,645 --> 00:09:38,998
+Au fait, dans
+
+254
+00:09:38,998 --> 00:09:40,915
+les slides précédents, j'ai
+
+255
+00:09:40,915 --> 00:09:42,257
+écrit 1 x (-40) et
+
+256
+00:09:42,260 --> 00:09:44,405
+2104 x 0.25, mais
+
+257
+00:09:44,405 --> 00:09:46,570
+l'ordre n'importe pas, OK?
+
+258
+00:09:46,580 --> 00:09:49,637
+(-40) x 1 est égal à 1 x (-40).
+
+259
+00:09:49,637 --> 00:09:52,115
+Ce premier élément, bien sûr,
+
+260
+00:09:52,115 --> 00:09:55,288
+est H appliqué à 2104.
+
+261
+00:09:55,288 --> 00:09:57,395
+Il s'agit du
+
+262
+00:09:57,395 --> 00:09:59,969
+prix prédit pour ma première maison.
+
+263
+00:09:59,969 --> 00:10:02,351
+Qu'en est-il du deuxième élément?
+
+264
+00:10:02,390 --> 00:10:04,089
+J'espère que vous devinez
+
+265
+00:10:04,089 --> 00:10:07,912
+ce que je vais faire pour le deuxième élément.
+
+266
+00:10:07,912 --> 00:10:08,750
+Vrai?
+
+267
+00:10:08,750 --> 00:10:11,052
+Je vais prendre cette ligne et la multiplier par mon vecteur.
+
+268
+00:10:11,052 --> 00:10:13,154
+Ca va me donner
+
+269
+00:10:13,180 --> 00:10:15,038
+-40 x 1 + 0.25 x 1416.
+
+270
+00:10:15,038 --> 00:10:23,037
+Soit H ( 1416 ).
+
+271
+00:10:23,110 --> 00:10:23,110
+Vrai?
+
+272
+00:10:25,810 --> 00:10:27,024
+Et ainsi de suite pour
+
+273
+00:10:27,024 --> 00:10:30,720
+les éléments trois et
+
+274
+00:10:30,760 --> 00:10:33,797
+quatre de ce vecteur 4x1.
+
+275
+00:10:33,800 --> 00:10:37,142
+Et ce terme-ci,
+
+276
+00:10:37,142 --> 00:10:39,239
+Ce terme autour duquel j'ai
+
+277
+00:10:39,239 --> 00:10:41,131
+tracé le cadre vert,
+
+278
+00:10:41,131 --> 00:10:42,752
+est un nombre réel, OK?
+
+279
+00:10:42,752 --> 00:10:44,169
+C'est un nombre réel,
+
+280
+00:10:44,180 --> 00:10:45,673
+et ce terme-là,
+
+281
+00:10:45,680 --> 00:10:47,812
+encadré en magenta,
+
+282
+00:10:47,812 --> 00:10:49,826
+dans ce rectangle violet,
+
+283
+00:10:49,850 --> 00:10:50,908
+est un nombre réel.
+
+284
+00:10:50,920 --> 00:10:52,683
+Et donc cette chose
+
+285
+00:10:52,683 --> 00:10:54,104
+sur la droite,
+
+286
+00:10:54,104 --> 00:10:55,200
+cet ensemble sur la droite
+
+287
+00:10:55,220 --> 00:10:59,288
+est une matrice 4x1, un vecteur
+à 4 dimensions.
+
+288
+00:10:59,288 --> 00:11:00,728
+L'intérêt de cette représentation
+
+289
+00:11:00,728 --> 00:11:02,128
+est que quand vous
+
+290
+00:11:02,130 --> 00:11:04,613
+l'implémentez dans le logiciel,
+
+291
+00:11:04,613 --> 00:11:06,344
+pour vos quatre maisons et
+
+292
+00:11:06,350 --> 00:11:08,525
+et pour appliquer votre hypothèse,
+
+293
+00:11:08,525 --> 00:11:12,308
+dans le but de prédire le prix y
+
+294
+00:11:12,308 --> 00:11:13,553
+de toutes vos maisons,
+
+295
+00:11:13,553 --> 00:11:16,130
+vous l'écrivez en une seule ligne de code.
+
+296
+00:11:16,140 --> 00:11:17,878
+Quand nous parlerons d'Octave
+
+297
+00:11:17,878 --> 00:11:19,782
+et de langage de programmation,
+
+298
+00:11:19,790 --> 00:11:22,120
+vous pourrez l'écrire en une seule ligne de code.
+
+299
+00:11:22,120 --> 00:11:24,879
+Vous écrirez que la prévision est égale
+
+300
+00:11:24,879 --> 00:11:29,697
+à la matrice de données multipliée
+
+301
+00:11:30,582 --> 00:11:33,888
+par les paramètres.
+
+302
+00:11:33,890 --> 00:11:36,994
+Si la matrice des données est
+
+303
+00:11:36,994 --> 00:11:38,661
+ceci et si les paramètres
+
+304
+00:11:38,661 --> 00:11:40,447
+sont là, ceci foix cela
+
+305
+00:11:40,447 --> 00:11:44,138
+est une multiplication matrice vecteur.
+
+306
+00:11:44,138 --> 00:11:45,834
+Et si vous considérez
+
+307
+00:11:45,834 --> 00:11:47,579
+cette variable prediction, désolé
+
+308
+00:11:47,579 --> 00:11:49,270
+pour ma mauvaise écriture,
+
+309
+00:11:49,270 --> 00:11:50,942
+il suffit d'implementer cette
+
+310
+00:11:50,942 --> 00:11:52,357
+ligne de code en supposant que
+
+311
+00:11:52,357 --> 00:11:55,328
+vous avez une bonne library pour faire les multiplications matrice vecteur.
+
+312
+00:11:55,328 --> 00:11:56,518
+En faisant cela,
+
+313
+00:11:56,518 --> 00:11:58,965
+prediction devient ce
+
+314
+00:11:58,965 --> 00:12:00,714
+vecteur de dimension 4,
+
+315
+00:12:00,714 --> 00:12:04,655
+à droite, qui vous donne les prix prédits.
+
+316
+00:12:04,655 --> 00:12:07,163
+L'alternative à la
+
+317
+00:12:07,163 --> 00:12:09,286
+multiplication matrice vecteur
+
+318
+00:12:09,310 --> 00:12:11,241
+serait d'écrire une boucle
+
+319
+00:12:11,241 --> 00:12:13,542
+" for i = 1 to 4 ".
+
+320
+00:12:13,542 --> 00:12:15,150
+Pour un millier de maisons,
+
+321
+00:12:15,160 --> 00:12:17,451
+on aurait " for i = 1 to 1000".
+
+322
+00:12:17,451 --> 00:12:18,772
+Vous devez écrire une
+
+323
+00:12:18,772 --> 00:12:21,898
+prediction comme "si i est égal..."
+
+324
+00:12:21,910 --> 00:12:23,123
+et faire alors beaucoup
+
+325
+00:12:23,130 --> 00:12:25,645
+plus de travail ici.
+
+326
+00:12:25,645 --> 00:12:27,188
+Il se trouve que
+
+327
+00:12:27,188 --> 00:12:28,549
+pour un nombre très important de maisons,
+
+328
+00:12:28,549 --> 00:12:29,928
+lorsque vous cherchez à prédire le prix
+
+329
+00:12:29,930 --> 00:12:31,033
+de non pas quatre maisons mais
+
+330
+00:12:31,033 --> 00:12:33,230
+de milliers de maisons,
+
+331
+00:12:33,410 --> 00:12:35,175
+il est plus intéressant
+
+332
+00:12:35,175 --> 00:12:36,118
+d'implémenter ceci dans votre
+
+333
+00:12:36,118 --> 00:12:40,087
+ordinateur, et ce pour de nombreux langages.
+
+334
+00:12:40,087 --> 00:12:41,535
+C'est vriament non seulement pour
+
+335
+00:12:41,535 --> 00:12:43,022
+Octave, mais aussi pour Supra Server,
+
+336
+00:12:43,030 --> 00:12:46,252
+Java, Python et d'autres langages de haut niveau.
+
+337
+00:12:46,252 --> 00:12:48,045
+En écrivant le
+
+338
+00:12:48,045 --> 00:12:49,811
+code selon le style de
+
+339
+00:12:49,811 --> 00:12:51,552
+gauche, vous
+
+340
+00:12:51,552 --> 00:12:53,283
+simplifierez non seulement le
+
+341
+00:12:53,283 --> 00:12:54,677
+code car il s'écrit
+
+342
+00:12:54,677 --> 00:12:55,857
+en seulement une ligne
+
+343
+00:12:55,870 --> 00:12:58,427
+au lieu d'un paquet d'instructions.
+
+344
+00:12:58,450 --> 00:12:59,727
+Pour des raisons plus subtiles que
+
+345
+00:12:59,730 --> 00:13:01,398
+nous verrons plus tard,
+
+346
+00:13:01,400 --> 00:13:03,392
+le calcul sera beaucoup plus
+
+347
+00:13:03,392 --> 00:13:05,617
+efficace pour faire des prédictions
+
+348
+00:13:05,617 --> 00:13:06,583
+sur le prix de
+
+349
+00:13:06,583 --> 00:13:08,348
+toutes vos maisons, en utilisant
+
+350
+00:13:08,360 --> 00:13:09,693
+la méthode de gauche plutôt que
+
+351
+00:13:09,693 --> 00:13:13,334
+celle de droite où vous devez écrire vos propres formules.
+
+352
+00:13:13,334 --> 00:13:14,596
+Je détaillerai cela plus
+
+353
+00:13:14,596 --> 00:13:15,978
+tard quand nous parlerons
+
+354
+00:13:15,978 --> 00:13:17,684
+de la vectorisation, mais,
+
+355
+00:13:17,684 --> 00:13:19,145
+en formulant la prédiction de cette façon, vous
+
+356
+00:13:19,145 --> 00:13:20,511
+aurez une écriture de code
+
+357
+00:13:20,511 --> 00:13:23,200
+plus simple et aussi plus efficace.
+
+358
+00:13:23,200 --> 00:13:25,151
+Nous en avons fini
+
+359
+00:13:25,151 --> 00:13:27,063
+de la multiplication vecteur matrice et nous
+
+360
+00:13:27,063 --> 00:13:28,432
+utiliserons ce type
+
+361
+00:13:28,432 --> 00:13:30,352
+d'opération quand nous étudierons
+
+362
+00:13:30,370 --> 00:13:32,888
+la régression dynamique.
+
+363
+00:13:32,910 --> 00:13:34,259
+Dans la prochaine video, nous
+
+364
+00:13:34,259 --> 00:13:36,150
+généraliserons la multiplication
+
+365
+00:13:36,150 --> 00:13:39,527
+à la multipication matrice matrice.

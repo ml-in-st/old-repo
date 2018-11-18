@@ -1,0 +1,995 @@
+1
+00:00:00,160 --> 00:00:01,480
+Para la regresión logística, hablamos
+
+2
+00:00:02,110 --> 00:00:04,730
+anteriormente de dos tipos de algoritmos de optimización.
+
+3
+00:00:05,190 --> 00:00:06,190
+Hablamos sobre cómo usar
+
+4
+00:00:06,560 --> 00:00:09,210
+gradiente de descenso para optimizar como función de costo J de «theta».
+
+5
+00:00:09,690 --> 00:00:10,770
+Y también hablamos sobre
+
+6
+00:00:11,120 --> 00:00:12,730
+métodos avanzados de optimización.
+
+7
+00:00:13,520 --> 00:00:14,670
+Unas que requieren que tú
+
+8
+00:00:14,790 --> 00:00:16,300
+proporciones una manera de calcular
+
+9
+00:00:16,940 --> 00:00:18,160
+tu función de costo J de
+
+10
+00:00:18,420 --> 00:00:20,920
+«theta», y que proporciones una forma de calcular las derivadas.
+
+11
+00:00:22,450 --> 00:00:23,920
+En este video, te mostraré cómo
+
+12
+00:00:24,190 --> 00:00:25,420
+puedes adaptar ambas
+
+13
+00:00:25,500 --> 00:00:27,570
+técnicas, gradiente de descenso y
+
+14
+00:00:27,720 --> 00:00:29,350
+las técnicas de optimización más avanzadas
+
+15
+00:00:30,280 --> 00:00:31,770
+para ponerlas a
+
+16
+00:00:31,950 --> 00:00:33,550
+trabajar para la regresión logística regularizada.
+
+17
+00:00:35,430 --> 00:00:36,670
+Entonces, esta es la idea.
+
+18
+00:00:37,260 --> 00:00:38,770
+Vimos anteriormente que la regresión
+
+19
+00:00:39,190 --> 00:00:40,490
+logística también es propensa a
+
+20
+00:00:40,850 --> 00:00:42,540
+ser sobreajustada, si la ajustas
+
+21
+00:00:42,810 --> 00:00:44,090
+con variables polinomiales de
+
+22
+00:00:44,290 --> 00:00:45,890
+alto orden como éstas.
+
+23
+00:00:46,470 --> 00:00:48,250
+En donde G es la
+
+24
+00:00:48,480 --> 00:00:49,970
+función sigmoidea y, particularmente,
+
+25
+00:00:50,030 --> 00:00:51,330
+terminas con
+
+26
+00:00:51,530 --> 00:00:53,020
+una hipótesis, ya sabes,
+
+27
+00:00:53,150 --> 00:00:54,120
+cuyo límite de decisión es
+
+28
+00:00:54,360 --> 00:00:55,930
+una especie de función demasiado compleja
+
+29
+00:00:56,620 --> 00:00:58,600
+y extremadamente contortiva que
+
+30
+00:00:58,820 --> 00:00:59,680
+realmente no es una
+
+31
+00:00:59,790 --> 00:01:01,000
+hipótesis tan buena para este conjunto
+
+32
+00:01:01,350 --> 00:01:02,990
+de capacitación y, más generalmente, si tienes
+
+33
+00:01:03,120 --> 00:01:04,890
+una regresión logística con muchas variables.
+
+34
+00:01:05,150 --> 00:01:06,630
+No necesariamente polinomiales, pero
+
+35
+00:01:06,790 --> 00:01:07,510
+con una gran cantidad de
+
+36
+00:01:07,670 --> 00:01:09,720
+variables, puedes terminar con un sobreajuste.
+
+37
+00:01:11,620 --> 00:01:14,010
+Esta fue nuestra función de costo para la regresión logística.
+
+38
+00:01:14,810 --> 00:01:16,210
+y si queremos modificarla
+
+39
+00:01:16,740 --> 00:01:18,820
+para usar regularización, todo lo que
+
+40
+00:01:18,950 --> 00:01:20,630
+tenemos que hacer es sumarle
+
+41
+00:01:20,820 --> 00:01:22,290
+el siguiente término
+
+42
+00:01:22,650 --> 00:01:24,860
+lambda positiva sobre 2m, sumatoria
+
+43
+00:01:25,110 --> 00:01:26,580
+desde J es igual a 1 y,
+
+44
+00:01:26,730 --> 00:01:29,670
+como siempre, la suma de J es igual a 1.
+
+45
+00:01:29,800 --> 00:01:31,000
+En lugar de la suma de J
+
+46
+00:01:31,550 --> 00:01:33,670
+igual a 0, de «theta» J al cuadrado.
+
+47
+00:01:34,330 --> 00:01:35,470
+Y esto tiene el efecto de
+
+48
+00:01:35,750 --> 00:01:36,960
+penalizar
+
+49
+00:01:37,650 --> 00:01:39,140
+los parámetros «theta» 1 «theta»
+
+50
+00:01:39,570 --> 00:01:42,600
+2 y así sucesivamente hasta «theta» N para evitar que sea demasiado grande.
+
+51
+00:01:43,610 --> 00:01:44,720
+Y si haces esto,
+
+52
+00:01:45,720 --> 00:01:46,450
+entonces tendrá el
+
+53
+00:01:46,750 --> 00:01:48,870
+efecto de que, a pesar de que estás ajustando
+
+54
+00:01:49,250 --> 00:01:51,500
+un polinomio de orden muy elevado con muchos parámetros,
+
+55
+00:01:52,210 --> 00:01:53,240
+siempre que apliques regularización
+
+56
+00:01:53,910 --> 00:01:55,090
+y mantengas los parámetros pequeños,
+
+57
+00:01:55,850 --> 00:01:57,580
+es más probable que obtengas un límite de decisión.
+
+58
+00:01:58,830 --> 00:02:00,040
+Ya sabes, que tal vez se parezca más a esto.
+
+59
+00:02:00,320 --> 00:02:01,460
+Se ve más razonable para separar los
+
+60
+00:02:02,500 --> 00:02:03,740
+ejemplos positivos y negativos.
+
+61
+00:02:05,300 --> 00:02:06,970
+Entonces, al usar regularización
+
+62
+00:02:08,140 --> 00:02:09,080
+incluso cuando tienes muchas
+
+63
+00:02:09,220 --> 00:02:11,110
+variables, la regularización puede
+
+64
+00:02:11,620 --> 00:02:13,500
+ayudar a resolver el problema del sobreajuste.
+
+65
+00:02:14,740 --> 00:02:15,790
+¿Cómo implementamos esto?
+
+66
+00:02:16,720 --> 00:02:18,280
+Bien, para el algoritmo original del
+
+67
+00:02:18,710 --> 00:02:20,380
+gradiente de descenso, esta era la actualización que teníamos.
+
+68
+00:02:20,670 --> 00:02:22,300
+Haremos repetidamente la siguiente
+
+69
+00:02:22,750 --> 00:02:24,610
+actualización a «theta» J. Este
+
+70
+00:02:24,740 --> 00:02:26,940
+lado se ve muy parecido al anterior para la regresión lineal.
+
+71
+00:02:27,510 --> 00:02:28,460
+Pero lo que voy a hacer es
+
+72
+00:02:29,210 --> 00:02:31,390
+escribir la actualización para «theta» 0 por separado.
+
+73
+00:02:31,670 --> 00:02:32,930
+Entonces, la primera línea es
+
+74
+00:02:33,060 --> 00:02:34,110
+la actualización para «theta» 0 y
+
+75
+00:02:34,230 --> 00:02:35,470
+una segunda línea es ahora
+
+76
+00:02:35,590 --> 00:02:36,730
+mi actualización para «theta» 1
+
+77
+00:02:36,880 --> 00:02:38,470
+hasta «theta» N,
+
+78
+00:02:38,900 --> 00:02:40,740
+porque yo voy a tratar «theta» 0 por separado.
+
+79
+00:02:41,700 --> 00:02:43,140
+Y con el fin de
+
+80
+00:02:43,700 --> 00:02:45,370
+modificar este algoritmo para usar
+
+81
+00:02:46,770 --> 00:02:48,480
+una función de costo regularizada,
+
+82
+00:02:49,100 --> 00:02:50,510
+todo lo que necesito hacer es
+
+83
+00:02:50,950 --> 00:02:51,810
+muy parecido a lo que
+
+84
+00:02:51,930 --> 00:02:53,700
+hicimos para la regresión lineal que,
+
+85
+00:02:53,870 --> 00:02:55,620
+de hecho, sólo es modificar esta
+
+86
+00:02:55,890 --> 00:02:57,480
+segunda regla de actualización de la siguiente manera.
+
+87
+00:02:58,510 --> 00:02:59,800
+Y, nuevamente, esto,
+
+88
+00:03:00,380 --> 00:03:02,080
+se ve cosméticamente igual a
+
+89
+00:03:02,230 --> 00:03:03,720
+lo que teníamos para la regresión lineal.
+
+90
+00:03:04,580 --> 00:03:05,580
+Pero, desde luego, no es el
+
+91
+00:03:05,660 --> 00:03:06,590
+mismo algoritmo que teníamos,
+
+92
+00:03:06,890 --> 00:03:08,370
+porque ahora la hipótesis
+
+93
+00:03:08,780 --> 00:03:10,420
+se define usando esto.
+
+94
+00:03:10,860 --> 00:03:12,550
+Entonces, no es el mismo algoritmo
+
+95
+00:03:13,130 --> 00:03:14,390
+que el de la regresión lineal regularizada.
+
+96
+00:03:14,830 --> 00:03:16,340
+Debido a que la hipótesis es diferente,
+
+97
+00:03:16,940 --> 00:03:18,360
+incluso a pesar de que la actualización que escribí,
+
+98
+00:03:18,630 --> 00:03:20,160
+de hecho, se ve cosméticamente igual
+
+99
+00:03:20,350 --> 00:03:22,130
+a la que teníamos anteriormente.
+
+100
+00:03:22,480 --> 00:03:25,310
+Estamos trabajando la gradiente de descenso para la regresión lineal regularizada.
+
+101
+00:03:26,690 --> 00:03:27,720
+Y, desde luego, sólo para resumir
+
+102
+00:03:27,830 --> 00:03:29,360
+la discusión, este término
+
+103
+00:03:29,560 --> 00:03:30,860
+aquí entre
+
+104
+00:03:31,130 --> 00:03:32,330
+corchetes,
+
+105
+00:03:32,670 --> 00:03:35,120
+este término es,
+
+106
+00:03:35,410 --> 00:03:36,750
+desde luego, la nueva derivada parcial
+
+107
+00:03:37,210 --> 00:03:38,590
+con respecto a
+
+108
+00:03:38,660 --> 00:03:41,420
+«theta» J de la nueva función de costo J de «theta».
+
+109
+00:03:42,300 --> 00:03:43,480
+Donde J de «theta» aquí es
+
+110
+00:03:43,700 --> 00:03:44,980
+la función de costo que definimos en una
+
+111
+00:03:45,180 --> 00:03:48,100
+diapositiva anterior y que usa la regularización.
+
+112
+00:03:49,770 --> 00:03:52,060
+Entonces, este es el gradiente de descenso para la regresión lineal regularizada.
+
+113
+00:03:55,200 --> 00:03:56,430
+Hablemos sobre cómo hacer
+
+114
+00:03:56,580 --> 00:03:58,290
+que trabaje la regresión lineal
+
+115
+00:03:58,950 --> 00:04:00,010
+usando los más avanzados
+
+116
+00:04:00,360 --> 00:04:02,070
+métodos avanzados de optimización.
+
+117
+00:04:03,180 --> 00:04:05,590
+Y sólo para recordarte, lo que
+
+118
+00:04:05,840 --> 00:04:06,800
+necesitábamos hacer para estos métodos
+
+119
+00:04:07,080 --> 00:04:08,390
+era definir la
+
+120
+00:04:08,450 --> 00:04:09,460
+función denominada función de
+
+121
+00:04:09,640 --> 00:04:11,160
+costo, lo que requiere que
+
+122
+00:04:11,280 --> 00:04:13,660
+introduzcamos el vector del parámetro «theta» y,
+
+123
+00:04:13,790 --> 00:04:16,180
+nuevamente, en las ecuaciones
+
+124
+00:04:16,770 --> 00:04:19,030
+que hemos estado escribiendo aquí hemos usado vectores con índice 0.
+
+125
+00:04:19,510 --> 00:04:20,690
+Así que teníamos «theta» 0 hasta
+
+126
+00:04:21,180 --> 00:04:22,810
+«theta» N. Pero,
+
+127
+00:04:23,020 --> 00:04:25,920
+porque Octave indexa los vectores a partir de1.
+
+128
+00:04:26,820 --> 00:04:28,240
+«theta» 0 se escribe
+
+129
+00:04:28,560 --> 00:04:29,990
+como «theta» 1 en Octave.
+
+130
+00:04:30,120 --> 00:04:31,630
+«theta» 1 se escribe
+
+131
+00:04:31,860 --> 00:04:32,930
+en Octave como «theta» 2, y
+
+132
+00:04:33,280 --> 00:04:35,070
+así hasta «theta»
+
+133
+00:04:36,270 --> 00:04:36,650
+N más 1.
+
+134
+00:04:36,740 --> 00:04:38,450
+Y lo que necesitábamos hacer era
+
+135
+00:04:38,600 --> 00:04:40,240
+proporcionar una función.
+
+136
+00:04:41,170 --> 00:04:42,370
+Vamos a proporcionar una función llamada
+
+137
+00:04:42,780 --> 00:04:44,140
+función de costo que después haremos pasar
+
+138
+00:04:44,360 --> 00:04:46,920
+por lo que tenemos, lo que hemos visto antes.
+
+139
+00:04:47,300 --> 00:04:48,490
+Vamos a utilizar el fminunc
+
+140
+00:04:49,060 --> 00:04:50,310
+y luego,
+
+141
+00:04:50,540 --> 00:04:52,160
+ya sabes, en la función de costo,
+
+142
+00:04:54,830 --> 00:04:55,430
+y así sucesivamente.
+
+143
+00:04:55,600 --> 00:04:56,870
+Pero el fminunc
+
+144
+00:04:57,030 --> 00:04:58,060
+fue el f min
+
+145
+00:04:58,280 --> 00:04:59,310
+sin restricciones y esto
+
+146
+00:04:59,650 --> 00:05:01,230
+trabajará con fminunc,
+
+147
+00:05:01,310 --> 00:05:02,300
+lo que tomará la
+
+148
+00:05:02,540 --> 00:05:04,340
+función de costo y la minimizará para nosotros.
+
+149
+00:05:05,950 --> 00:05:07,050
+Así que, las dos cosas principales que
+
+150
+00:05:07,170 --> 00:05:08,600
+la función de costo necesitaba para
+
+151
+00:05:08,700 --> 00:05:10,620
+regresar, primero era J-val.
+
+152
+00:05:11,280 --> 00:05:12,400
+Y, para esto, tenemos que
+
+153
+00:05:12,720 --> 00:05:13,950
+escribir el código para
+
+154
+00:05:14,020 --> 00:05:15,710
+calcular la función de costo J de «theta».
+
+155
+00:05:17,130 --> 00:05:19,030
+Ahora, cuando usamos la regresión logística
+
+156
+00:05:19,450 --> 00:05:20,920
+regularizada, desde luego, la
+
+157
+00:05:20,990 --> 00:05:21,960
+función de costo j de «theta»
+
+158
+00:05:22,280 --> 00:05:23,450
+cambia y, particularmente,
+
+159
+00:05:24,480 --> 00:05:25,760
+ahora la función de costo debe
+
+160
+00:05:25,870 --> 00:05:29,580
+incluir este término de regularización adicional al final también.
+
+161
+00:05:29,850 --> 00:05:30,930
+Entonces, cuando calcules j de
+
+162
+00:05:31,030 --> 00:05:33,410
+«theta», asegúrate de incluir ese término al final.
+
+163
+00:05:34,590 --> 00:05:35,520
+Y después, la otra cosa que
+
+164
+00:05:36,050 --> 00:05:37,240
+esta función de costo
+
+165
+00:05:37,690 --> 00:05:39,010
+necesita para derivar con un gradiente.
+
+166
+00:05:39,530 --> 00:05:41,170
+Entonces, la gradiente uno debe
+
+167
+00:05:41,400 --> 00:05:42,570
+establecerse como la
+
+168
+00:05:42,660 --> 00:05:44,080
+derivada parcial de J
+
+169
+00:05:44,240 --> 00:05:45,520
+de «theta» con respecto a «theta»
+
+170
+00:05:45,690 --> 00:05:47,170
+cero; la gradiente dos debe
+
+171
+00:05:47,580 --> 00:05:49,520
+establecerse como eso, y así sucesivamente.
+
+172
+00:05:49,780 --> 00:05:50,900
+Una vez más, el índice está desplazado por uno.
+
+173
+00:05:51,220 --> 00:05:52,850
+Así es, debido a la indexación desde
+
+174
+00:05:53,110 --> 00:05:54,450
+uno que utiliza Octave.
+
+175
+00:05:55,940 --> 00:05:56,780
+Y, viendo estos términos.
+
+176
+00:05:57,850 --> 00:05:58,680
+Este término aquí.
+
+177
+00:05:59,410 --> 00:06:00,640
+En realidad trabajamos esto
+
+178
+00:06:00,720 --> 00:06:02,840
+en una diapositiva anterior y, en realidad, es igual a éste.
+
+179
+00:06:03,230 --> 00:06:03,640
+No cambia.
+
+180
+00:06:04,120 --> 00:06:07,250
+Debido a que la derivada para «theta» cero no cambia.
+
+181
+00:06:07,650 --> 00:06:09,540
+En comparación con la versión sin regularización.
+
+182
+00:06:10,960 --> 00:06:13,210
+Y los otros términos sí cambian.
+
+183
+00:06:13,840 --> 00:06:16,340
+Y, en particular, la derivada con respecto a «theta» uno.
+
+184
+00:06:17,010 --> 00:06:18,830
+Esto también lo trabajamos en una diapositiva anterior.
+
+185
+00:06:19,110 --> 00:06:20,670
+Es igual a, ya sabes,
+
+186
+00:06:20,890 --> 00:06:22,560
+el término original y después menos
+
+187
+00:06:23,450 --> 00:06:24,870
+lambda M veces «theta» 1.
+
+188
+00:06:25,310 --> 00:06:27,140
+Sólo para asegurarnos de que hemos pasado esto correctamente.
+
+189
+00:06:27,800 --> 00:06:29,370
+Y podemos añadir paréntesis aquí.
+
+190
+00:06:29,830 --> 00:06:30,980
+Bien, así la sumatoria no se extiende.
+
+191
+00:06:31,570 --> 00:06:33,160
+Y, del mismo modo, ya sabe,
+
+192
+00:06:33,380 --> 00:06:34,800
+este otro término aquí se ve
+
+193
+00:06:35,130 --> 00:06:36,180
+como éste, con este término
+
+194
+00:06:37,070 --> 00:06:37,950
+adicional que teníamos en
+
+195
+00:06:38,030 --> 00:06:39,770
+la diapositiva anterior, que corresponde a
+
+196
+00:06:39,950 --> 00:06:41,450
+la gradiente de su objetivo de regularización.
+
+197
+00:06:42,230 --> 00:06:43,650
+Entonces, si implementas esta
+
+198
+00:06:43,820 --> 00:06:45,140
+función de costo y pasas
+
+199
+00:06:45,720 --> 00:06:47,370
+esto a fminunc
+
+200
+00:06:48,190 --> 00:06:49,160
+o a una de las técnicas de optimización
+
+201
+00:06:50,050 --> 00:06:51,940
+avanzadas, se minimizará
+
+202
+00:06:52,540 --> 00:06:55,990
+la nueva función de costo regularizada J de «theta».
+
+203
+00:06:56,990 --> 00:06:58,220
+Y los parámetros que obtendrás
+
+204
+00:06:59,530 --> 00:07:00,740
+serán los que correspondan a
+
+205
+00:07:01,450 --> 00:07:02,940
+la regresión logística con regularización.
+
+206
+00:07:04,410 --> 00:07:05,540
+Así es que ahora sabes
+
+207
+00:07:05,780 --> 00:07:08,210
+cómo implementar la regresión logística regularizada.
+
+208
+00:07:09,780 --> 00:07:10,920
+Cuando me paseo por Silicon Valley,
+
+209
+00:07:11,380 --> 00:07:12,900
+Yo vivo aquí en Silicon Valley, hay
+
+210
+00:07:13,100 --> 00:07:14,900
+muchos ingenieros que, francamente, están ganando
+
+211
+00:07:15,420 --> 00:07:16,490
+un montón de dinero para sus
+
+212
+00:07:16,610 --> 00:07:18,090
+compañías usando algoritmos de aprendizaje automático.
+
+213
+00:07:19,180 --> 00:07:20,390
+Y, sé que sólo
+
+214
+00:07:20,600 --> 00:07:22,860
+hemos, ya sabes, estudiado esto por un corto tiempo.
+
+215
+00:07:23,620 --> 00:07:25,410
+Pero si comprendes la regresión
+
+216
+00:07:26,510 --> 00:07:28,360
+lineal, los algoritmos avanzados de
+
+217
+00:07:29,210 --> 00:07:30,710
+optimización y la regularización, por
+
+218
+00:07:30,950 --> 00:07:32,520
+ahora, francamente, probablemente sabes
+
+219
+00:07:32,950 --> 00:07:34,270
+mucho más sobre aprendizaje automático
+
+220
+00:07:35,010 --> 00:07:36,290
+de lo que muchos saben ahora,
+
+221
+00:07:36,750 --> 00:07:38,050
+pero probablemente sabes bastante
+
+222
+00:07:38,180 --> 00:07:39,580
+más sobre aprendizaje automático ahora
+
+223
+00:07:40,240 --> 00:07:41,670
+que, francamente, muchos de los
+
+224
+00:07:41,820 --> 00:07:44,760
+Los ingenieros de Silicon Valley que tienen carreras muy exitosas.
+
+225
+00:07:45,300 --> 00:07:46,420
+Ya sabes, que están ganando toneladas de dinero para las compañías.
+
+226
+00:07:47,050 --> 00:07:49,250
+O construyendo productos usando algoritmos de aprendizaje automático.
+
+227
+00:07:50,370 --> 00:07:50,960
+Así que, felicitaciones.
+
+228
+00:07:52,080 --> 00:07:53,120
+Realmente has llegado muy lejos.
+
+229
+00:07:53,490 --> 00:07:54,550
+Y, de hecho, ahora
+
+230
+00:07:54,780 --> 00:07:55,990
+sabes suficiente para
+
+231
+00:07:56,310 --> 00:07:58,210
+aplicar estas cosas y ponerte a trabajar para resolver muchos problemas.
+
+232
+00:07:59,260 --> 00:08:00,580
+Así que, felicitaciones por eso.
+
+233
+00:08:00,780 --> 00:08:01,880
+Pero, desde luego, hay
+
+234
+00:08:02,350 --> 00:08:03,280
+mucho más que queremos
+
+235
+00:08:03,400 --> 00:08:05,180
+enseñarte y, en
+
+236
+00:08:05,380 --> 00:08:06,540
+la siguiente serie de videos,
+
+237
+00:08:06,560 --> 00:08:07,850
+comenzaremos a hablar
+
+238
+00:08:08,030 --> 00:08:10,890
+sobre un clasificador no lineal muy poderoso.
+
+239
+00:08:11,680 --> 00:08:13,350
+Entonces, con la regresión lineal y la regresión
+
+240
+00:08:13,690 --> 00:08:14,940
+logística, ya sabes, puedes
+
+241
+00:08:15,080 --> 00:08:17,310
+formar términos polinomiales, pero
+
+242
+00:08:17,460 --> 00:08:18,350
+resulta que hay cuantificadores no
+
+243
+00:08:18,510 --> 00:08:21,150
+lineales mucho más potentes que
+
+244
+00:08:21,460 --> 00:08:23,650
+pueden clasificar la regresión polinomial.
+
+245
+00:08:24,640 --> 00:08:25,780
+Y en la siguiente serie
+
+246
+00:08:25,810 --> 00:08:28,280
+de videos, voy empezar a hablarte sobre éstos.
+
+247
+00:08:28,510 --> 00:08:29,560
+Para que tengas algoritmos de
+
+248
+00:08:29,760 --> 00:08:30,440
+aprendizaje aún más poderosos de los que tienes
+
+249
+00:08:31,380 --> 00:08:32,870
+ahora para aplicarlos a diferentes problemas.

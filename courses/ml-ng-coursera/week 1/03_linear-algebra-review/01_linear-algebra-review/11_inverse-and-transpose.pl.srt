@@ -1,0 +1,1298 @@
+1
+00:00:00,310 --> 00:00:01,540
+W tym nagraniu chcę
+
+2
+00:00:01,590 --> 00:00:02,885
+opowiedzieć Ci o paru specjalnych
+
+3
+00:00:02,885 --> 00:00:04,848
+operacjach macierzowych, zwanych
+
+4
+00:00:04,848 --> 00:00:07,430
+odwracaniem i transpozycją macierzy.
+
+5
+00:00:08,740 --> 00:00:10,312
+Zacznijmy od odwracania macierzy --
+
+6
+00:00:10,312 --> 00:00:12,928
+jak zwykle
+
+7
+00:00:12,940 --> 00:00:14,516
+zaczniemy od tego,
+
+8
+00:00:14,516 --> 00:00:17,248
+jak ma się ona do liczb rzeczywistych.
+
+9
+00:00:17,280 --> 00:00:18,803
+W ostatnim nagraniu powiedziałem,
+
+10
+00:00:18,803 --> 00:00:20,625
+że liczba 1 odgrywa rolę
+
+11
+00:00:20,625 --> 00:00:24,570
+elementu neutralnego
+
+12
+00:00:24,590 --> 00:00:26,059
+w przestrzeni liczb rzeczywistych, bo
+
+13
+00:00:26,070 --> 00:00:28,851
+dowolna liczba przemnożona przez 1
+nie zmieni wartości.
+
+14
+00:00:28,860 --> 00:00:30,270
+Okazuje się, że liczby rzeczywiste
+
+15
+00:00:30,270 --> 00:00:31,642
+mają tę własność, że
+
+16
+00:00:31,642 --> 00:00:33,093
+każda z nich
+
+17
+00:00:33,120 --> 00:00:34,635
+posiada wartość odwrotną,
+
+18
+00:00:34,635 --> 00:00:36,637
+np. dla liczby 3
+
+19
+00:00:36,660 --> 00:00:38,552
+istnieje pewna liczba,
+
+20
+00:00:38,552 --> 00:00:40,132
+która jest
+
+21
+00:00:40,132 --> 00:00:41,544
+odwrotnością trzech tak,
+
+22
+00:00:41,544 --> 00:00:43,798
+że jeśli pomnożymy odwrotność przez 3,
+
+23
+00:00:43,798 --> 00:00:46,458
+uzyskamy element neutralny -- 1.
+
+24
+00:00:46,480 --> 00:00:50,727
+W tym wypadku odwrotnością jest
+oczywiście 1/3.
+
+25
+00:00:50,727 --> 00:00:53,236
+Mając jakąś inną liczbę,
+
+26
+00:00:53,236 --> 00:00:55,360
+np. 12,
+
+27
+00:00:55,360 --> 00:00:57,312
+możemy znaleźć liczbę,
+
+28
+00:00:57,340 --> 00:00:59,464
+która będzie odwrotnością 12,
+
+29
+00:00:59,464 --> 00:01:01,600
+co zapiszemy jako 12^(-1),
+
+30
+00:01:01,600 --> 00:01:03,582
+lub po prostu 1/12.
+
+31
+00:01:03,582 --> 00:01:07,092
+Tak więc jeśli pomnożymy przez siebie
+te dwie rzeczy,
+
+32
+00:01:07,092 --> 00:01:09,292
+ich iloczyn jest
+
+33
+00:01:09,292 --> 00:01:12,367
+równy elementowi neutralnemu -- jedynce.
+
+34
+00:01:12,370 --> 00:01:13,838
+Okazuje się teraz, że
+
+35
+00:01:13,860 --> 00:01:17,154
+w przestrzeni liczb rzeczywistych nie każda
+liczba posiada odwrotność.
+
+36
+00:01:17,154 --> 00:01:19,148
+Np. liczba 0
+
+37
+00:01:19,160 --> 00:01:20,981
+nie ma odwrotności, prawda?
+
+38
+00:01:20,981 --> 00:01:25,410
+ponieważ 1/0 jest wartością nieokreśloną.
+
+39
+00:01:25,460 --> 00:01:29,862
+Tak jak tutaj: 1/0 jest niezdefiniowane.
+
+40
+00:01:30,100 --> 00:01:31,419
+Teraz, przez
+
+41
+00:01:31,450 --> 00:01:32,453
+resztę tego slajdu,
+
+42
+00:01:32,453 --> 00:01:33,835
+będziemy się zastanawiać,
+
+43
+00:01:33,835 --> 00:01:38,341
+co to znaczy obliczyć odwrotność macierzy.
+
+44
+00:01:39,253 --> 00:01:41,718
+Idea jest taka: jeśli
+
+45
+00:01:41,750 --> 00:01:43,198
+A jest macierzą n x n,
+
+46
+00:01:43,200 --> 00:01:45,078
+i posiada odwrotność
+
+47
+00:01:45,078 --> 00:01:46,320
+-- opowiem o tym trochę
+
+48
+00:01:46,350 --> 00:01:48,487
+więcej później --
+
+49
+00:01:48,487 --> 00:01:49,927
+to odwrotność
+
+50
+00:01:49,927 --> 00:01:51,668
+zapisujemy jako A^(-1),
+
+51
+00:01:51,668 --> 00:01:54,186
+natomiast A*A^(-1),
+
+52
+00:01:54,186 --> 00:01:55,798
+razy odwrotność,
+
+53
+00:01:55,798 --> 00:01:57,045
+będzie się równać
+
+54
+00:01:57,050 --> 00:01:59,395
+A^(-1)*A,
+
+55
+00:01:59,395 --> 00:02:00,741
+co da nam
+
+56
+00:02:00,741 --> 00:02:04,088
+macierz jednostkową (neutralną).
+
+57
+00:02:04,088 --> 00:02:04,958
+Ok?
+
+58
+00:02:04,960 --> 00:02:07,037
+Tylko macierze
+
+59
+00:02:07,060 --> 00:02:09,848
+m x m posiadają odwrotność.
+
+60
+00:02:09,870 --> 00:02:11,692
+Taka macierz
+
+61
+00:02:11,692 --> 00:02:13,010
+m x m jest także
+
+62
+00:02:13,040 --> 00:02:16,055
+nazywana macierzą kwadratową --
+
+63
+00:02:16,055 --> 00:02:18,222
+kwadratową, bo
+
+64
+00:02:18,222 --> 00:02:24,852
+liczba wierszy jest równa liczbie kolumn.
+
+65
+00:02:24,852 --> 00:02:26,516
+Okazuje się, że
+
+66
+00:02:26,530 --> 00:02:29,518
+tylko macierze kwadratowe
+posiadają odwrotność
+
+67
+00:02:29,520 --> 00:02:31,148
+Tak więc A
+
+68
+00:02:31,148 --> 00:02:32,973
+jest macierzą m x m,
+
+69
+00:02:33,020 --> 00:02:37,198
+a jej odwrotność spełnia to równanie.
+
+70
+00:02:37,340 --> 00:02:39,568
+Spójrzmy na konkretny przykład:
+
+71
+00:02:39,568 --> 00:02:41,530
+powiedzmy, że
+
+72
+00:02:41,580 --> 00:02:45,090
+mam macierz: 3, 4
+
+73
+00:02:45,120 --> 00:02:48,080
+2, 16;
+
+74
+00:02:48,080 --> 00:02:49,535
+jest to więc
+
+75
+00:02:49,535 --> 00:02:51,788
+macierz 2 x 2,
+
+76
+00:02:51,810 --> 00:02:53,159
+a więc macierz kwadratowa,
+
+77
+00:02:53,160 --> 00:02:55,442
+a więc posiadająca odwrotność.
+
+78
+00:02:55,480 --> 00:02:57,733
+Okazuje się, że
+
+79
+00:02:57,750 --> 00:02:59,308
+wiem, że odwrotność
+
+80
+00:02:59,310 --> 00:03:00,810
+tej macierzy jest równa
+
+81
+00:03:00,840 --> 00:03:02,675
+0,4, - 0,1,
+
+82
+00:03:02,675 --> 00:03:04,485
+-0,05 ,
+
+83
+00:03:04,520 --> 00:03:08,687
+0,075.
+
+84
+00:03:08,750 --> 00:03:10,267
+Jeśli wezmę te dwie macierze
+
+85
+00:03:10,267 --> 00:03:12,273
+i przemnożę przez siebie,
+
+86
+00:03:12,273 --> 00:03:13,598
+okazuje się,
+
+87
+00:03:13,620 --> 00:03:15,595
+że otrzymam
+
+88
+00:03:15,595 --> 00:03:18,324
+macierz jednostkową 2 x 2 -- I.
+
+89
+00:03:18,350 --> 00:03:20,542
+To jest I 2 x 2.
+
+90
+00:03:20,558 --> 00:03:21,365
+Ok?
+
+91
+00:03:21,365 --> 00:03:22,308
+Tak więc na tym slajdzie
+
+92
+00:03:22,308 --> 00:03:24,416
+tu mamy macierz A,
+
+93
+00:03:24,416 --> 00:03:27,199
+a tutaj odwrotność macierzy A.
+
+94
+00:03:27,199 --> 00:03:28,622
+I okazuje się,
+
+95
+00:03:28,622 --> 00:03:29,835
+że jeśli obliczymy
+
+96
+00:03:29,835 --> 00:03:31,385
+A*A^(-1), okazuje się,
+
+97
+00:03:31,410 --> 00:03:32,742
+że otrzymamy również
+
+98
+00:03:32,750 --> 00:03:36,821
+macierz jednostkową.
+
+99
+00:03:36,852 --> 00:03:38,640
+Jak więc znalazłem
+
+100
+00:03:38,640 --> 00:03:39,760
+tę odwrotność,
+
+101
+00:03:39,920 --> 00:03:42,698
+albo skąd wziąłem tę odwrotność?
+
+102
+00:03:42,730 --> 00:03:45,048
+Okazuje się, że czasem
+
+103
+00:03:45,060 --> 00:03:46,731
+możesz obliczyć odwrotność samodzielnie,
+
+104
+00:03:46,760 --> 00:03:48,745
+ale dziś już prawie nikt tego nie robi.
+
+105
+00:03:48,780 --> 00:03:49,888
+Okazuje się, że dostępne jest
+
+106
+00:03:49,888 --> 00:03:52,198
+bardzo dobre oprogramowanie numeryczne
+
+107
+00:03:52,240 --> 00:03:55,447
+do obliczania odwrotności macierzy.
+
+108
+00:03:55,447 --> 00:03:56,369
+Jest to kolejne zagadnienie,
+
+109
+00:03:56,369 --> 00:03:57,310
+dla którego mamy dostępnych
+
+110
+00:03:57,310 --> 00:03:59,450
+wiele bibliotek o otwartym kodzie źródłowym,
+
+111
+00:03:59,450 --> 00:04:00,748
+które można linkować
+
+112
+00:04:00,748 --> 00:04:04,973
+z poziomu dowolnego popularnego
+języka programowania.
+
+113
+00:04:04,990 --> 00:04:06,892
+Pozwól, że pokażę szybki przykład,
+
+114
+00:04:06,900 --> 00:04:08,935
+jak obliczyłem tę odwrotność
+
+115
+00:04:08,940 --> 00:04:13,132
+za pomocą oprogramowania o nazwie Octave.
+
+116
+00:04:13,170 --> 00:04:14,437
+Pozwól, że je odpalę...
+
+117
+00:04:14,437 --> 00:04:17,186
+Później będziemy sporo korzystać z Octave'a.
+
+118
+00:04:17,186 --> 00:04:18,903
+Pokażę Ci szybko przykład.
+
+119
+00:04:18,910 --> 00:04:21,078
+Stworzę macierz A,
+
+120
+00:04:21,078 --> 00:04:22,274
+równą tej macierzy
+
+121
+00:04:22,274 --> 00:04:24,456
+po lewej; wpiszę: 3, 4,
+
+122
+00:04:24,456 --> 00:04:28,080
+2, 16 -- to jest moja macierz A.
+
+123
+00:04:28,080 --> 00:04:29,882
+To jest macierz [3 4 2 16],
+
+124
+00:04:29,882 --> 00:04:31,141
+którą zapisałem tutaj, na dole,
+
+125
+00:04:31,160 --> 00:04:32,773
+po lewej.
+
+126
+00:04:32,773 --> 00:04:34,543
+Oprogramowanie pozwala mi obliczyć
+
+127
+00:04:34,543 --> 00:04:36,243
+odwrotność A bardzo łatwo.
+
+128
+00:04:36,250 --> 00:04:39,110
+Wpiszę po prostu: pinv(A).
+
+129
+00:04:39,170 --> 00:04:40,765
+Tak więc
+
+130
+00:04:40,765 --> 00:04:41,935
+ta macierz tutaj: 0,4 ,
+
+131
+00:04:41,935 --> 00:04:43,715
+-0,1 i tak dalej...
+
+132
+00:04:43,715 --> 00:04:45,308
+Jest to rozwiązanie numeryczne,
+
+133
+00:04:45,350 --> 00:04:46,794
+będące odwrotnością
+
+134
+00:04:46,794 --> 00:04:48,350
+A. Pozwól, że o
+
+135
+00:04:48,350 --> 00:04:50,538
+tylko zapiszę: inverseOfA
+
+136
+00:04:50,540 --> 00:04:52,558
+jest równe pinv(A).
+
+137
+00:04:52,580 --> 00:04:55,232
+Tak więc ustawiłem
+
+138
+00:04:55,232 --> 00:04:57,200
+wartość inverseOfA; teraz mogę
+
+139
+00:04:57,200 --> 00:04:58,597
+zweryfikować, że A*A(-1)
+
+140
+00:04:58,597 --> 00:05:00,644
+jest równe
+
+141
+00:05:00,644 --> 00:05:03,390
+macierzy jednostkowej.
+
+142
+00:05:03,420 --> 00:05:04,740
+Tak więc
+
+143
+00:05:04,750 --> 00:05:06,513
+otrzymałem macierz
+
+144
+00:05:06,513 --> 00:05:08,708
+która ma jedynki po przekątnej,
+
+145
+00:05:08,740 --> 00:05:10,453
+a reszta elementów to np. 10^(-17),
+
+146
+00:05:10,453 --> 00:05:11,582
+10^(-16),
+
+147
+00:05:11,582 --> 00:05:13,324
+a więc z dokładnością
+
+148
+00:05:13,324 --> 00:05:14,961
+do precyzji numerycznej,
+
+149
+00:05:14,961 --> 00:05:16,012
+z uwzględnieniem małego
+
+150
+00:05:16,012 --> 00:05:17,562
+błędu, który popełnia mój komputer,
+
+151
+00:05:17,562 --> 00:05:21,123
+mnożąc te macierze,
+
+152
+00:05:21,123 --> 00:05:22,623
+te elementy poza
+
+153
+00:05:22,623 --> 00:05:24,948
+przekątnymi są właściwie równe 0,
+
+154
+00:05:24,970 --> 00:05:29,078
+więc A razy odwrotność A równa się
+macierzy jednostkowej.
+
+155
+00:05:29,100 --> 00:05:30,907
+Możemy też sprawdzić, że
+
+156
+00:05:30,907 --> 00:05:33,215
+A^(-1)*A także
+
+157
+00:05:33,215 --> 00:05:35,795
+daje macierz jednostkową --
+
+158
+00:05:35,795 --> 00:05:38,183
+jedynki po przekątnej, a pozostałe
+
+159
+00:05:38,183 --> 00:05:39,938
+wartości zbliżone do zera,
+
+160
+00:05:39,938 --> 00:05:40,856
+nie licząc małych błędów
+
+161
+00:05:40,856 --> 00:05:44,752
+zaokrągleń poza przekątnymi.
+
+162
+00:05:45,780 --> 00:05:47,428
+W definicji odwrotności
+
+163
+00:05:47,428 --> 00:05:48,636
+macierzy podałem
+
+164
+00:05:48,636 --> 00:05:50,333
+pewien szkopuł: po pierwsze,
+
+165
+00:05:50,333 --> 00:05:52,367
+macierz musi być kwadratowa;
+
+166
+00:05:52,410 --> 00:05:54,219
+napisałem też: "JEŚLI istnieje ...
+
+167
+00:05:54,219 --> 00:05:57,237
+... odwrotność A"; kiedy dokładnie
+
+168
+00:05:57,237 --> 00:05:58,855
+macierze posiadają odwrotność --
+
+169
+00:05:58,855 --> 00:06:00,176
+jest to poza zakresem naszej
+
+170
+00:06:00,200 --> 00:06:02,056
+powtórki z algebry liniowej,
+
+171
+00:06:02,056 --> 00:06:03,942
+ale intuicyjnie możesz skojarzyć,
+
+172
+00:06:03,942 --> 00:06:05,245
+że tak jak 0
+
+173
+00:06:05,260 --> 00:06:06,588
+nie ma
+
+174
+00:06:06,588 --> 00:06:08,429
+odwrotności, tak i np.
+
+175
+00:06:08,440 --> 00:06:10,188
+macierz A, jeśli ma
+
+176
+00:06:10,188 --> 00:06:13,457
+same zera, wtedy
+
+177
+00:06:13,457 --> 00:06:14,791
+również nie posiada
+
+178
+00:06:14,791 --> 00:06:16,432
+odwrotności, bo
+
+179
+00:06:16,432 --> 00:06:18,033
+nie ma takiej macierzy,
+
+180
+00:06:18,040 --> 00:06:19,821
+która po pomnożeniu
+
+181
+00:06:19,821 --> 00:06:21,174
+przez macierz samych zer
+
+182
+00:06:21,174 --> 00:06:22,225
+dałaby nam
+
+183
+00:06:22,225 --> 00:06:23,778
+macierz jednostkową, tak więc
+
+184
+00:06:23,778 --> 00:06:25,322
+macierz samych zer,
+
+185
+00:06:25,322 --> 00:06:27,660
+a także parę innych macierzy
+o podobnych właściwościach,
+
+186
+00:06:27,660 --> 00:06:30,843
+nie posiada odwrotności.
+
+187
+00:06:30,843 --> 00:06:32,492
+W ramach tej
+
+188
+00:06:32,492 --> 00:06:33,600
+powtórki nie chcę jednak
+
+189
+00:06:33,600 --> 00:06:35,436
+wchodzić w to, co to znaczy,
+
+190
+00:06:35,436 --> 00:06:37,108
+że macierz posiada
+
+191
+00:06:37,108 --> 00:06:38,765
+odwrotność -- okazuje się,
+
+192
+00:06:38,765 --> 00:06:40,006
+że w przypadku zastosowań
+
+193
+00:06:40,006 --> 00:06:41,807
+uczenia maszynowego nie powinno
+
+194
+00:06:41,830 --> 00:06:44,260
+to być problemem. W przypadku
+
+195
+00:06:44,280 --> 00:06:46,389
+algorytmów uczących się,
+
+196
+00:06:46,389 --> 00:06:47,943
+gdzie może to być
+
+197
+00:06:47,970 --> 00:06:49,252
+problem, wytłumaczę, co to
+
+198
+00:06:49,252 --> 00:06:50,968
+znaczy dla algorytmu,
+
+199
+00:06:50,968 --> 00:06:51,952
+że macierze nie ma odwrotności,
+
+200
+00:06:51,952 --> 00:06:53,690
+oraz pokażę,
+
+201
+00:06:53,760 --> 00:06:54,850
+jak sobie
+
+202
+00:06:55,150 --> 00:06:56,572
+z takim przypadkiem radzić,
+
+203
+00:06:56,572 --> 00:06:59,200
+czyli jak pracować z macierzami,
+
+204
+00:06:59,200 --> 00:07:00,458
+które nie mają odwrotności.
+
+205
+00:07:00,458 --> 00:07:02,680
+Intuicja jest jednak taka:
+
+206
+00:07:02,711 --> 00:07:04,275
+możesz myśleć
+
+207
+00:07:04,275 --> 00:07:05,808
+o macierzach, które
+
+208
+00:07:05,808 --> 00:07:07,242
+nie posiadają odwrotności, że są
+
+209
+00:07:07,242 --> 00:07:10,331
+w pewnym sensie zbyt bliskie zeru.
+
+210
+00:07:10,353 --> 00:07:12,602
+Podsumowując terminologię:
+
+211
+00:07:12,670 --> 00:07:14,900
+macierze nieposiadająca
+
+212
+00:07:14,900 --> 00:07:16,938
+odwrotności jest czasem nazywana
+
+213
+00:07:16,940 --> 00:07:18,835
+macierzą osobliwą lub
+zdegenerowaną,
+
+214
+00:07:18,835 --> 00:07:20,960
+a więc ta macierz
+
+215
+00:07:20,970 --> 00:07:22,560
+tutaj jest
+
+216
+00:07:22,630 --> 00:07:24,701
+przykładem macierzy [0 0 0 0] --
+
+217
+00:07:24,701 --> 00:07:29,491
+czyli przykładem macierzy
+osobliwej, zdegenerowanej.
+
+218
+00:07:29,537 --> 00:07:31,348
+Wreszcie, ostatnią,
+
+219
+00:07:31,370 --> 00:07:32,652
+specjalną operacją macierzową,
+
+220
+00:07:32,652 --> 00:07:34,520
+o której chcę opowiedzieć, jest
+transpozycja macierzy.
+
+221
+00:07:34,530 --> 00:07:36,369
+Powiedzmy, że mam
+
+222
+00:07:36,400 --> 00:07:38,160
+macierz A -- jeśli obliczę
+
+223
+00:07:38,210 --> 00:07:41,220
+jej transpozycję, otrzymam coś takiego
+po prawej.
+
+224
+00:07:41,232 --> 00:07:43,156
+Jest to transpozycja, co
+
+225
+00:07:43,156 --> 00:07:46,275
+zapisujemy A indeks górny T.
+
+226
+00:07:46,278 --> 00:07:47,363
+Transpozycję macierzy
+
+227
+00:07:47,410 --> 00:07:49,531
+wyznacza się w sposób następujący:
+
+228
+00:07:49,531 --> 00:07:50,628
+bierzemy
+
+229
+00:07:50,628 --> 00:07:52,276
+pierwszy wiersz
+
+230
+00:07:52,300 --> 00:07:55,079
+macierzy A: [1 2 0];
+
+231
+00:07:55,080 --> 00:07:58,791
+staje się on pierwszą kolumną transpozycji.
+
+232
+00:07:58,840 --> 00:07:59,762
+Teraz biorę
+
+233
+00:07:59,762 --> 00:08:01,050
+drugi wiersz A:
+
+234
+00:08:01,050 --> 00:08:04,610
+[3 5 9], który staje się drugą kolumną
+
+235
+00:08:04,610 --> 00:08:06,838
+transpozycji macierzy A.
+
+236
+00:08:06,850 --> 00:08:08,131
+Transpozycję można
+
+237
+00:08:08,131 --> 00:08:10,296
+wyobrażać też sobie jako
+
+238
+00:08:10,296 --> 00:08:11,569
+lustrzane odbicie
+
+239
+00:08:11,570 --> 00:08:14,671
+wszystkich elementów
+
+240
+00:08:14,671 --> 00:08:16,349
+macierzy względem
+
+241
+00:08:16,349 --> 00:08:21,698
+osi biegnącej przez środek macierzy, 
+ustawionej pod kątem 45 stopni.
+
+242
+00:08:21,698 --> 00:08:23,488
+A teraz bardziej formalna
+
+243
+00:08:23,500 --> 00:08:26,522
+definicja transpozycji macierzy:
+
+244
+00:08:26,522 --> 00:08:30,688
+powiedzmy, że A jest macierzą m x n.
+
+245
+00:08:31,300 --> 00:08:32,727
+Powiedzmy też, że B
+
+246
+00:08:32,727 --> 00:08:36,371
+jest transpozycją macierzy A.
+
+247
+00:08:36,386 --> 00:08:37,563
+Oznacza to, że B
+
+248
+00:08:37,563 --> 00:08:39,637
+jest macierzą n x m
+
+249
+00:08:39,637 --> 00:08:42,752
+o odwróconych wymiarach, tzn.
+
+250
+00:08:42,830 --> 00:08:46,308
+jeśli mamy tutaj macierz 2 x 3,
+
+251
+00:08:46,370 --> 00:08:48,050
+transpozycją jest
+
+252
+00:08:48,190 --> 00:08:51,196
+macierz 3 x 2. Co więcej:
+
+253
+00:08:51,210 --> 00:08:54,585
+Bij = Aji,
+
+254
+00:08:54,610 --> 00:08:56,030
+więc element ij macierzy
+
+255
+00:08:56,220 --> 00:08:57,390
+B będzie równy
+
+256
+00:08:57,530 --> 00:08:59,913
+elementowi ji
+
+257
+00:08:59,913 --> 00:09:02,310
+macierzy A.
+
+258
+00:09:02,310 --> 00:09:04,212
+Np. B12
+
+259
+00:09:04,212 --> 00:09:06,997
+będzie równe
+
+260
+00:09:06,997 --> 00:09:08,756
+(spójrz na tę macierz)
+
+261
+00:09:08,756 --> 00:09:10,537
+B12 będzie równe
+
+262
+00:09:10,537 --> 00:09:13,775
+temu elementowi: 1. wiersz, 2. kolumna,
+
+263
+00:09:13,800 --> 00:09:16,008
+czyli jest równe
+
+264
+00:09:16,010 --> 00:09:18,199
+elementowi A21
+
+265
+00:09:18,220 --> 00:09:21,412
+-- 2. wiersz, 1. kolumna,
+
+266
+00:09:21,420 --> 00:09:23,421
+o wartości 2. Kolejny
+
+267
+00:09:23,440 --> 00:09:25,860
+przykład: B32 --
+
+268
+00:09:25,860 --> 00:09:28,561
+jak widać,
+
+269
+00:09:28,561 --> 00:09:30,922
+jest to element równy 9,
+
+270
+00:09:30,930 --> 00:09:33,282
+i jest on równy
+
+271
+00:09:33,282 --> 00:09:35,525
+A23 --
+
+272
+00:09:35,525 --> 00:09:38,963
+temu elementowi tutaj -- 9.
+
+273
+00:09:38,963 --> 00:09:40,433
+To podsumowuje więc
+
+274
+00:09:40,433 --> 00:09:41,893
+definicję mówiąc,
+
+275
+00:09:41,893 --> 00:09:43,468
+co to znaczy transponować
+
+276
+00:09:43,510 --> 00:09:44,991
+macierz;
+
+277
+00:09:44,991 --> 00:09:49,323
+właściwie podsumowuje też naszą
+powtórkę z algebry liniowej.
+
+278
+00:09:49,323 --> 00:09:50,754
+Na tym etapie mam nadzieję,
+że wiesz już,
+
+279
+00:09:50,754 --> 00:09:52,205
+jak dodawać i odejmować
+
+280
+00:09:52,205 --> 00:09:53,701
+macierze, a także
+
+281
+00:09:53,701 --> 00:09:55,325
+jak je mnożyć, a
+
+282
+00:09:55,325 --> 00:09:57,185
+także wiesz, czym
+
+283
+00:09:57,185 --> 00:09:58,942
+jest inwersja (tzn. odwracanie)
+
+284
+00:09:58,942 --> 00:10:01,457
+oraz transpozycja macierzy --
+
+285
+00:10:01,457 --> 00:10:02,934
+są to najważniejsze operacje
+
+286
+00:10:02,934 --> 00:10:05,152
+algebry liniowej, wykorzystywane
+
+287
+00:10:05,152 --> 00:10:06,172
+w trakcie naszych zajęć.
+
+288
+00:10:06,172 --> 00:10:09,043
+Jeśli widzisz ten materiał po raz pierwszy --
+
+289
+00:10:09,043 --> 00:10:10,798
+wiem, że pokazałem
+
+290
+00:10:10,798 --> 00:10:13,032
+dużo materiału z algebry liniowej
+
+291
+00:10:13,032 --> 00:10:14,512
+w bardzo krótkim czasie, i
+
+292
+00:10:14,520 --> 00:10:16,581
+jest tu dużo do przetrawienia,
+
+293
+00:10:16,581 --> 00:10:18,102
+jednak nie ma potrzeby
+
+294
+00:10:18,102 --> 00:10:20,045
+zapamiętywania wszystkich definicji,
+
+295
+00:10:20,045 --> 00:10:21,718
+które właśnie przerobiliśmy; jeśli
+
+296
+00:10:21,718 --> 00:10:23,451
+ściągniesz kopię któregoś
+
+297
+00:10:23,451 --> 00:10:24,520
+ze slajdów lub
+
+298
+00:10:24,540 --> 00:10:28,353
+notatki do wykładu, zamieszczone
+na stronie kursu,
+
+299
+00:10:28,370 --> 00:10:29,645
+i będziesz korzystać ze slajdów czy
+
+300
+00:10:29,645 --> 00:10:31,478
+notatek jako odniesienia,
+
+301
+00:10:31,490 --> 00:10:32,886
+zawsze możesz na bieżąco sprawdzać
+
+302
+00:10:32,900 --> 00:10:34,178
+definicje i przyswajać sobie,
+
+303
+00:10:34,178 --> 00:10:35,615
+czym są mnożenie
+
+304
+00:10:35,615 --> 00:10:39,111
+macierzowe, transpozycje itp. definicje.
+
+305
+00:10:39,140 --> 00:10:40,697
+Notatki do wykładów zamieszczone
+na stronie kursu
+
+306
+00:10:40,697 --> 00:10:42,421
+odsyłają też do dodatkowych
+
+307
+00:10:42,450 --> 00:10:44,675
+materiałów z algebry liniowej,
+
+308
+00:10:44,675 --> 00:10:47,445
+z których możesz korzystać, aby samodzielnie
+dowiedzieć się więcej o algebrze liniowej.
+
+309
+00:10:48,861 --> 00:10:53,445
+Teraz, uzbrojeni w nowe narzędzia,
+
+310
+00:10:53,540 --> 00:10:55,153
+w trakcie następnych nagrań
+
+311
+00:10:55,153 --> 00:10:57,035
+będziemy w stanie rozwinąć
+
+312
+00:10:57,035 --> 00:10:58,758
+potężniejsze formy regresji liniowej, które
+
+313
+00:10:58,758 --> 00:10:59,854
+mogą przetworzyć o wiele
+
+314
+00:10:59,854 --> 00:11:00,809
+więcej danych, o wiele więcej
+
+315
+00:11:00,809 --> 00:11:02,226
+cech,  wiele więcej
+
+316
+00:11:02,226 --> 00:11:04,367
+przykładów treningowych;
+
+317
+00:11:04,400 --> 00:11:06,114
+nawet po tym, jak skończymy przerabiać
+regresję liniową,
+
+318
+00:11:06,114 --> 00:11:07,832
+będziemy dalej korzystać z tych
+
+319
+00:11:07,832 --> 00:11:10,016
+narzędzi algebry liniowej, aby uzyskać
+
+320
+00:11:10,016 --> 00:11:13,242
+także potężniejsze algorytmy uczące.

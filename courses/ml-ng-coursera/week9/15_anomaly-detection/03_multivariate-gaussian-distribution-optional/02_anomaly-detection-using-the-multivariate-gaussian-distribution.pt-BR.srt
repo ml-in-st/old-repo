@@ -1,0 +1,1452 @@
+1
+00:00:00,330 --> 00:00:01,420
+No último vídeo,
+
+2
+00:00:01,750 --> 00:00:03,510
+falamos sobre a Distribuição Gaussiana
+
+3
+00:00:04,720 --> 00:00:06,990
+Multivariada, e vimos alguns exemplos
+
+4
+00:00:07,230 --> 00:00:08,830
+de distribuições que podemos modelar,
+
+5
+00:00:08,960 --> 00:00:10,880
+variando os parâmetros Mu (μ) e Sigma (Σ).
+
+6
+00:00:11,830 --> 00:00:13,190
+Neste vídeo, vamos usar essas ideias
+
+7
+00:00:13,420 --> 00:00:14,690
+e aplicá-las para desenvolver
+
+8
+00:00:14,890 --> 00:00:17,550
+outro algoritmo de Detecção de Anomalias.
+
+9
+00:00:19,880 --> 00:00:21,890
+Relembrando, a distribuição Gaussiana Multivariada,
+
+10
+00:00:22,270 --> 00:00:23,080
+ou Normal Multivariada,
+
+11
+00:00:23,770 --> 00:00:26,640
+tem dois parâmetros, "μ" e "Σ".
+
+12
+00:00:27,210 --> 00:00:28,850
+Onde, "μ" é um vector n-dimensional,
+
+13
+00:00:28,990 --> 00:00:31,110
+e "Σ", a matriz
+
+14
+00:00:32,110 --> 00:00:34,430
+de covariância,
+
+15
+00:00:34,810 --> 00:00:36,110
+uma matriz n x n.
+
+16
+00:00:37,330 --> 00:00:38,710
+Aqui está a fórmula para
+
+17
+00:00:38,740 --> 00:00:39,780
+a probabilidade de "x",
+
+18
+00:00:40,480 --> 00:00:41,870
+parametrizada por "μ" e "Σ".
+
+19
+00:00:42,240 --> 00:00:43,770
+E, à medida que variamos
+
+20
+00:00:43,890 --> 00:00:45,010
+"μ" e "Σ",
+
+21
+00:00:45,100 --> 00:00:45,830
+obtemos uma série de
+
+22
+00:00:46,240 --> 00:00:47,700
+diferentes distribuições.
+
+23
+00:00:47,760 --> 00:00:48,990
+Aqui estão 3 exemplos
+
+24
+00:00:49,060 --> 00:00:50,660
+que vimos no vídeo anterior.
+
+25
+00:00:51,800 --> 00:00:53,100
+Então, vamos falar sobre
+
+26
+00:00:53,260 --> 00:00:54,600
+o ajuste dos parâmetros,
+
+27
+00:00:54,670 --> 00:00:56,260
+ou a estimação dos parâmetros.
+
+28
+00:00:56,800 --> 00:00:58,480
+A questão, como de costume, é:
+
+29
+00:00:58,610 --> 00:00:59,890
+tendo um conjunto de exemplos
+
+30
+00:01:00,500 --> 00:01:02,140
+x⁽¹⁾ até x⁽ᵐ⁾, onde cada um
+
+31
+00:01:02,410 --> 00:01:03,750
+é um vector n-dimensional.
+
+32
+00:01:04,420 --> 00:01:05,820
+E, acredito que meus exemplos
+
+33
+00:01:06,000 --> 00:01:08,280
+vêm de uma distribuição Gaussiana multivariada,
+
+34
+00:01:09,470 --> 00:01:12,450
+como podemos estimar os parâmetros "μ" e "Σ"?
+
+35
+00:01:13,440 --> 00:01:15,070
+A fórmula usual para estimá-los,
+
+36
+00:01:15,270 --> 00:01:17,170
+é definir "μ" como
+
+37
+00:01:17,330 --> 00:01:18,270
+a média
+
+38
+00:01:18,580 --> 00:01:19,960
+dos exemplos de treinamento,
+
+39
+00:01:21,010 --> 00:01:22,770
+e "Σ" igual a essa fórmula.
+
+40
+00:01:23,130 --> 00:01:24,120
+Na verdade isto é
+
+41
+00:01:24,250 --> 00:01:25,200
+igual ao "Σ"
+
+42
+00:01:25,490 --> 00:01:26,860
+que escrevemos quando
+
+43
+00:01:27,150 --> 00:01:28,740
+usamos o PCA, ou o algoritmo
+
+44
+00:01:28,850 --> 00:01:30,750
+de Análise dos Componentes Principais.
+
+45
+00:01:31,820 --> 00:01:32,730
+Plugamos os valores
+
+46
+00:01:32,850 --> 00:01:34,290
+nas duas fórmulas, e o resultado
+
+47
+00:01:34,570 --> 00:01:36,720
+será a estimativa para os parâmetros
+
+48
+00:01:37,160 --> 00:01:39,440
+"μ" e "Σ".
+
+49
+00:01:41,580 --> 00:01:43,860
+É assim que se estima "μ" e "Σ" a partir de
+
+50
+00:01:44,270 --> 00:01:45,350
+um conjunto de dados.
+
+51
+00:01:46,020 --> 00:01:47,410
+Vamos plugar esse método em um
+
+52
+00:01:47,610 --> 00:01:49,130
+algoritmo de Detecção de Anomalias.
+
+53
+00:01:50,050 --> 00:01:51,020
+Então, como juntamos
+
+54
+00:01:51,080 --> 00:01:52,200
+tudo isto para desenvolver
+
+55
+00:01:52,420 --> 00:01:54,160
+um algoritmo de Detecção de Anomalias?
+
+56
+00:01:54,640 --> 00:01:55,780
+Fazemos assim:
+
+57
+00:01:56,580 --> 00:01:57,480
+Primeiro tomamos o
+
+58
+00:01:57,960 --> 00:01:59,110
+conjunto de treino,
+
+59
+00:01:59,170 --> 00:02:00,210
+e calibramos o modelo,
+
+60
+00:02:00,390 --> 00:02:01,640
+ajustando p(x), ajustando
+
+61
+00:02:02,100 --> 00:02:02,720
+"μ" e "Σ",
+
+62
+00:02:03,780 --> 00:02:05,410
+como no slide anterior.
+
+63
+00:02:07,370 --> 00:02:08,510
+Depois, quando temos
+
+64
+00:02:08,720 --> 00:02:10,170
+um novo exemplo "x".
+
+65
+00:02:10,510 --> 00:02:11,430
+Vamos tomar
+
+66
+00:02:12,450 --> 00:02:15,240
+esse exemplo de teste, em verde, aqui em cima.
+
+67
+00:02:15,880 --> 00:02:16,790
+Um exemplo de teste.
+
+68
+00:02:18,220 --> 00:02:19,670
+Dado o novo exemplo "x",
+
+69
+00:02:19,810 --> 00:02:21,220
+nós vamos computar "p(x)",
+
+70
+00:02:21,770 --> 00:02:23,420
+usando essa fórmula
+
+71
+00:02:23,690 --> 00:02:26,250
+para a distribuição Gaussiana multivariada.
+
+72
+00:02:27,720 --> 00:02:29,220
+E, se "p(x)" for muito pequena,
+
+73
+00:02:29,470 --> 00:02:30,840
+marcamos como uma anomalia.
+
+74
+00:02:30,950 --> 00:02:31,800
+Caso contrário,
+
+75
+00:02:32,440 --> 00:02:33,570
+se "p(x)" for maior
+
+76
+00:02:33,750 --> 00:02:35,520
+que um parâmetro "ε",
+
+77
+00:02:35,670 --> 00:02:39,190
+não marcamos como uma anomalia.
+
+78
+00:02:39,400 --> 00:02:42,240
+Ajustando uma distribuição Gaussiana multivariada a esses dados,
+
+79
+00:02:42,560 --> 00:02:44,220
+ou seja, usando os pontos em vermelho,
+
+80
+00:02:45,190 --> 00:02:46,100
+teremos uma
+
+81
+00:02:46,300 --> 00:02:48,080
+distribuição Gaussiana com
+
+82
+00:02:48,350 --> 00:02:49,690
+alta probabilidade
+
+83
+00:02:49,910 --> 00:02:51,840
+na região central, com probabilidade
+
+84
+00:02:52,440 --> 00:02:53,360
+nos afastamos do centro.
+
+85
+00:02:54,110 --> 00:02:55,010
+nos afastamos do centro.
+
+86
+00:02:56,020 --> 00:02:59,280
+Tendo probabilidade muito baixa nesse ponto verde.
+
+87
+00:03:01,260 --> 00:03:02,350
+Então, se utilizarmos
+
+88
+00:03:02,840 --> 00:03:04,730
+a distribuição Gaussiana multivariada
+
+89
+00:03:04,920 --> 00:03:06,530
+para esses dados, esse exemplo,
+
+90
+00:03:06,930 --> 00:03:08,610
+em verde, será corretamente rotulado
+
+91
+00:03:09,520 --> 00:03:09,920
+como anomalia.
+
+92
+00:03:16,860 --> 00:03:18,080
+Finalmente, vale a pena
+
+93
+00:03:18,430 --> 00:03:19,640
+dizer algumas palavras
+
+94
+00:03:19,760 --> 00:03:21,900
+sobre a relação entre o modelo
+
+95
+00:03:21,950 --> 00:03:23,810
+de distribuição Gaussiana multivariada,
+
+96
+00:03:24,030 --> 00:03:25,440
+e o modelo original,
+
+97
+00:03:25,500 --> 00:03:26,870
+onde modelamos "p(x)"
+
+98
+00:03:26,940 --> 00:03:28,000
+como esse produto de
+
+99
+00:03:28,110 --> 00:03:28,890
+   p(x₁), p(x₂), até p(xn).
+
+100
+00:03:29,150 --> 00:03:31,420
+p(x₁), p(x₂), até p(xn).
+
+101
+00:03:32,750 --> 00:03:33,890
+Acontece que você pode
+
+102
+00:03:34,090 --> 00:03:35,310
+provar matematicamente,
+
+103
+00:03:35,590 --> 00:03:36,470
+eu não vou provar,
+
+104
+00:03:36,540 --> 00:03:38,120
+mas você pode provar matematicamente
+
+105
+00:03:38,300 --> 00:03:40,610
+que essa é a relação entre o modelo
+
+106
+00:03:40,650 --> 00:03:42,240
+de Gaussiana multivariada e
+
+107
+00:03:42,400 --> 00:03:44,030
+e o modelo original.
+
+108
+00:03:44,110 --> 00:03:45,420
+E, o modelo original corresponde
+
+109
+00:03:45,660 --> 00:03:47,500
+ao modelo de Gaussiana multivariada,
+
+110
+00:03:48,440 --> 00:03:50,330
+onde as curvas de contorno
+
+111
+00:03:50,660 --> 00:03:51,980
+da Gaussiana estão
+
+112
+00:03:52,040 --> 00:03:54,060
+sempre alinhadas aos eixos.
+
+113
+00:03:55,410 --> 00:03:57,350
+Então, esses são três
+
+114
+00:03:57,470 --> 00:03:59,390
+exemplos de distribuição
+
+115
+00:03:59,510 --> 00:04:01,300
+Gaussiana que você pode ajustar
+
+116
+00:04:01,480 --> 00:04:02,930
+usando o modelo original.
+
+117
+00:04:03,190 --> 00:04:04,090
+Portanto, eles são
+
+118
+00:04:05,040 --> 00:04:06,920
+casos especiais da distribuição
+
+119
+00:04:07,300 --> 00:04:09,830
+Gaussiana Multivariada, onde as
+
+120
+00:04:10,730 --> 00:04:13,600
+curvas de contorno são alinhas aos eixos.
+
+121
+00:04:13,800 --> 00:04:15,190
+Esse modelo, na verdade,
+
+122
+00:04:15,470 --> 00:04:17,030
+corresponde a um caso especial
+
+123
+00:04:17,490 --> 00:04:19,160
+da distribuição Gaussiana multivariada.
+
+124
+00:04:19,740 --> 00:04:21,110
+E esse caso especial
+
+125
+00:04:21,410 --> 00:04:22,930
+é definido restringindo
+
+126
+00:04:24,460 --> 00:04:25,710
+a distribuição "p(x)",
+
+127
+00:04:25,880 --> 00:04:27,110
+a distribuição Gaussiana
+
+128
+00:04:27,270 --> 00:04:28,070
+multivariada de "p(x)",
+
+129
+00:04:28,980 --> 00:04:30,740
+tal que, as curvas de contorno
+
+130
+00:04:30,920 --> 00:04:32,340
+da função de densidade de
+
+131
+00:04:32,440 --> 00:04:35,010
+probabilidade são alinhados aos eixos.
+
+132
+00:04:35,700 --> 00:04:37,400
+E então, você pode ter
+
+133
+00:04:37,940 --> 00:04:39,550
+uma "p(x)" que é uma
+
+134
+00:04:39,860 --> 00:04:41,430
+distribuição Gaussiana multivariada
+
+135
+00:04:41,630 --> 00:04:43,850
+que pareça com esta, essa, ou aquela.
+
+136
+00:04:44,050 --> 00:04:44,990
+E note que
+
+137
+00:04:45,210 --> 00:04:47,820
+nesses 3 exemplos, essas elipses
+
+138
+00:04:48,740 --> 00:04:50,490
+que estou desenhando,
+
+139
+00:04:50,690 --> 00:04:53,190
+têm seus eixos alinhados com os eixos x₁ e x₂.
+
+140
+00:04:54,260 --> 00:04:55,920
+E o que nós NÃO temos,
+
+141
+00:04:56,200 --> 00:04:57,310
+são contornos
+
+142
+00:04:58,050 --> 00:05:00,450
+em ângulo, ou inclinados.
+
+143
+00:05:00,790 --> 00:05:02,620
+E isso corresponde a exemplos
+
+144
+00:05:02,790 --> 00:05:06,780
+onde há elementos não-zero
+
+145
+00:05:06,840 --> 00:05:08,790
+fora da diagonal principal,
+
+146
+00:05:09,070 --> 00:05:10,780
+por exemplo, Σ=[1 0.8; 0.8 1]
+
+147
+00:05:11,180 --> 00:05:11,970
+É possível mostrar matematicamente que   
+
+148
+00:05:12,380 --> 00:05:13,980
+É possível mostrar matematicamente que
+
+149
+00:05:14,260 --> 00:05:16,400
+esse modelo é, na verdade,
+
+150
+00:05:16,480 --> 00:05:18,300
+o mesmo que uma distribuição Gaussiana
+
+151
+00:05:18,750 --> 00:05:20,570
+Multivariada, mas com uma limitação.
+
+152
+00:05:21,250 --> 00:05:24,400
+E essa limitação é que a matriz
+
+153
+00:05:24,480 --> 00:05:26,710
+de covariância, Σ, precisa ter 0's como
+
+154
+00:05:27,240 --> 00:05:28,900
+elementos fora da diagonal.
+
+155
+00:05:29,360 --> 00:05:30,830
+Então, a matriz de covariância, Σ,
+
+156
+00:05:31,240 --> 00:05:32,450
+terá na diagonal
+
+157
+00:05:32,550 --> 00:05:33,940
+os valores:
+
+158
+00:05:34,190 --> 00:05:36,050
+σ₁², σ₂², até σ²n.
+
+159
+00:05:36,350 --> 00:05:38,660
+E, fora da diagonal,
+
+160
+00:05:39,530 --> 00:05:40,550
+todos os elementos,
+
+161
+00:05:41,020 --> 00:05:42,210
+acima e abaixo
+
+162
+00:05:43,640 --> 00:05:45,110
+da diagonal principal,
+
+163
+00:05:45,640 --> 00:05:46,850
+serão todos zero (0).
+
+164
+00:05:47,900 --> 00:05:49,380
+E, na verdade,
+
+165
+00:05:49,680 --> 00:05:50,980
+se você tomar esses valores,
+
+166
+00:05:51,330 --> 00:05:52,280
+do modelo original:
+
+167
+00:05:52,320 --> 00:05:53,380
+σ₁², σ₂², até σ²n,
+
+168
+00:05:53,930 --> 00:05:56,370
+e plugar aqui,
+
+169
+00:05:56,690 --> 00:05:57,640
+na diagonal
+
+170
+00:05:57,760 --> 00:05:59,580
+da matriz covariância, os dois
+
+171
+00:05:59,990 --> 00:06:01,130
+modelos serão idênticos.
+
+172
+00:06:01,630 --> 00:06:02,560
+Isso é, o novo modelo,
+
+173
+00:06:06,210 --> 00:06:07,530
+usando a distribuição Gaussiana
+
+174
+00:06:08,820 --> 00:06:10,340
+Multivariada, corresponde exatamente
+
+175
+00:06:10,400 --> 00:06:11,510
+ao modelo antigo, se a matriz
+
+176
+00:06:12,040 --> 00:06:13,700
+de covariância, Σ, tiver todos os elementos
+
+177
+00:06:14,230 --> 00:06:15,490
+fora da diagonal iguais a 0.
+
+178
+00:06:15,580 --> 00:06:17,700
+E isso corresponde, graficamente,
+
+179
+00:06:18,180 --> 00:06:19,570
+a ter uma distribuição Gaussiana,
+
+180
+00:06:20,720 --> 00:06:22,260
+onde os contornos dessa
+
+181
+00:06:22,950 --> 00:06:25,620
+função de distribuição são alinhadas aos eixos.
+
+182
+00:06:25,940 --> 00:06:28,500
+Então, você não pode modelar a correlação entre as variáveis.
+
+183
+00:06:30,990 --> 00:06:32,520
+Nesse sentido, o modelo original é
+
+184
+00:06:33,030 --> 00:06:35,840
+um caso especial do modelo de Gaussiana Multivariada.
+
+185
+00:06:38,370 --> 00:06:40,370
+Então, quando você usaria cada um desses modelos?
+
+186
+00:06:40,830 --> 00:06:41,750
+Quando você usaria
+
+187
+00:06:42,070 --> 00:06:42,880
+o modelo original?
+
+188
+00:06:43,040 --> 00:06:45,170
+Quando você usaria o modelo de Gaussiana Multivariada?
+
+189
+00:06:52,110 --> 00:06:53,670
+O modelo original é, provavelmente,
+
+190
+00:06:54,240 --> 00:06:55,840
+usado mais frequentemente,
+
+191
+00:06:58,800 --> 00:07:03,160
+e o modelo com distribuição Gaussiana Multivariada
+
+192
+00:07:03,160 --> 00:07:04,470
+é usado com menos frequência,
+
+193
+00:07:04,800 --> 00:07:06,670
+mas tem a vantagem de poder capturar
+
+194
+00:07:07,000 --> 00:07:08,290
+a correlação entre as variáveis.
+
+195
+00:07:10,490 --> 00:07:11,600
+Suponha que você queira
+
+196
+00:07:11,770 --> 00:07:13,100
+capturar anomalias, onde há
+
+197
+00:07:13,210 --> 00:07:14,430
+diferentes variáveis,
+
+198
+00:07:14,640 --> 00:07:16,560
+digamos x₁ e x₂,
+
+199
+00:07:16,790 --> 00:07:19,760
+que tomam combinações incomuns de valores.
+
+200
+00:07:20,070 --> 00:07:21,320
+No exemplo anterior,
+
+201
+00:07:21,730 --> 00:07:27,320
+tínhamos anomalias onde a carga da CPU, e uso de memória, tinham uma combinação incomum de valores.
+
+202
+00:07:30,240 --> 00:07:31,220
+Se você quiser
+
+203
+00:07:31,490 --> 00:07:33,500
+usar o modelo original para capturar isso,
+
+204
+00:07:33,650 --> 00:07:34,650
+você precisa criar
+
+205
+00:07:34,790 --> 00:07:36,780
+novas variáveis,
+
+206
+00:07:37,020 --> 00:07:40,710
+por exemplo, "x₃=x₁/x₂":
+
+207
+00:07:40,860 --> 00:07:46,480
+carga da CPU por uso de memória.
+
+208
+00:07:47,910 --> 00:07:49,030
+Você precisará criar
+
+209
+00:07:49,550 --> 00:07:51,440
+novas variáveis, se as variáveis x₁ e x₂
+
+210
+00:07:51,540 --> 00:07:52,930
+tiverem uma combinação
+
+211
+00:07:53,220 --> 00:07:54,900
+incomum de valores, embora
+
+212
+00:07:55,000 --> 00:07:56,360
+os valores de x₁, sozinho,
+
+213
+00:07:56,530 --> 00:07:58,610
+e de x₂, sozinho, sejam perfeitamente normais.
+
+214
+00:07:59,850 --> 00:08:03,530
+Mas, se você estiver disposto a gastar tempo criando variáveis extras,
+
+215
+00:08:04,030 --> 00:08:05,240
+como essa x₃,
+
+216
+00:08:05,920 --> 00:08:07,670
+o modelo original funcionará bem.
+
+217
+00:08:07,890 --> 00:08:14,170
+Ao contrário, o modelo de Gaussiana Multivariada pode capturar automaticamente
+
+218
+00:08:14,780 --> 00:08:23,360
+a correlação entre as diferentes variáveis. Mas, o modelo original tem outras vantagens.
+
+219
+00:08:23,740 --> 00:08:24,990
+Uma vantagem do modelo original
+
+220
+00:08:28,200 --> 00:08:29,400
+é ser computacionalmente
+
+221
+00:08:29,650 --> 00:08:31,170
+mais barato. Assim, ele funcionará
+
+222
+00:08:31,290 --> 00:08:32,720
+para valores muito grandes de "n",
+
+223
+00:08:32,800 --> 00:08:34,270
+onde "n" é o número de variáveis.
+
+224
+00:08:34,460 --> 00:08:36,260
+Mesmo que "n" seja igual a 1,000,
+
+225
+00:08:36,510 --> 00:08:38,090
+ou "n=10,000" variáveis,
+
+226
+00:08:39,470 --> 00:08:40,350
+ou até mesmo
+
+227
+00:08:40,990 --> 00:08:42,600
+para "n=100,000" variáveis,
+
+228
+00:08:42,820 --> 00:08:47,120
+o modelo original funcionará bem. Em contraste, para a modelo de Gaussiana Multivariada,
+
+229
+00:08:47,940 --> 00:08:48,930
+note que,
+
+230
+00:08:49,070 --> 00:08:49,940
+por exemplo,
+
+231
+00:08:50,440 --> 00:08:51,730
+precisamos calcular (Σ ⁻¹),
+
+232
+00:08:52,110 --> 00:08:53,760
+o inverso da matriz Σ, onde Σ
+
+233
+00:08:54,100 --> 00:08:55,230
+é uma matriz "n x n".
+
+234
+00:08:56,300 --> 00:08:57,830
+E, calcular o inverso de Σ,
+
+235
+00:08:58,160 --> 00:08:59,950
+se Σ for, por exemplo, uma matriz
+
+236
+00:09:00,190 --> 00:09:02,910
+100,000 x 100,000; será computacionalmente muito caro.
+
+237
+00:09:03,440 --> 00:09:04,650
+Então, o modelo de Gaussiana
+
+238
+00:09:05,350 --> 00:09:06,900
+Multivariada não escalona tão bem,
+
+239
+00:09:07,180 --> 00:09:09,210
+para altos valores de "n".
+
+240
+00:09:09,490 --> 00:09:11,030
+Finalmente, o modelo original
+
+241
+00:09:11,250 --> 00:09:12,630
+funciona bem, mesmo que você
+
+242
+00:09:12,770 --> 00:09:13,850
+tenha um conjunto
+
+243
+00:09:14,090 --> 00:09:15,520
+de treinamento pequeno.
+
+244
+00:09:15,960 --> 00:09:17,010
+Aqui está um conjunto
+
+245
+00:09:17,410 --> 00:09:19,130
+pequeno de exemplos não-rotulados,
+
+246
+00:09:20,410 --> 00:09:21,600
+usado para modelar "p(x)",
+
+247
+00:09:21,720 --> 00:09:23,400
+e funciona bem, mesmo para "m" igual a
+
+248
+00:09:24,530 --> 00:09:25,150
+50 ou 100.
+
+249
+00:09:25,860 --> 00:09:27,740
+Já para a Gaussiana Multivariada,
+
+250
+00:09:27,890 --> 00:09:29,340
+um tipo de propriedade Matemática
+
+251
+00:09:29,980 --> 00:09:31,230
+do algoritmo é que você precisa
+
+252
+00:09:32,100 --> 00:09:38,810
+ter "m>n",  ou seja, o número de exemplos tem que ser maior que o número de variáveis.
+
+253
+00:09:41,840 --> 00:09:43,850
+E se isso não for verdade,  se "m≤n",
+
+254
+00:09:44,730 --> 00:09:51,610
+essa matriz Σ não será nem invertível. Essa matriz será singular, e você não poderá nem usar
+
+255
+00:09:51,810 --> 00:09:53,230
+o modelo de Gaussiana Multivariada.
+
+256
+00:09:54,630 --> 00:09:55,820
+A regra que eu sigo é:
+
+257
+00:09:56,030 --> 00:09:58,760
+eu uso o modelo de Gaussiana Multivariada
+
+258
+00:09:58,860 --> 00:10:00,500
+apenas de "m" for muito maior que "n".
+
+259
+00:10:04,050 --> 00:10:05,750
+O requisito matemático é "m>n",
+
+260
+00:10:05,900 --> 00:10:07,300
+mas na prática, eu usaria
+
+261
+00:10:07,480 --> 00:10:08,910
+o modelo de Gaussiana Multivariada
+
+262
+00:10:09,280 --> 00:10:10,420
+apenas se "m"
+
+263
+00:10:10,750 --> 00:10:11,870
+for bem maior que "n".
+
+264
+00:10:12,040 --> 00:10:13,320
+Se "m" for maior ou
+
+265
+00:10:13,470 --> 00:10:14,780
+igual a 10 vezes "n",
+
+266
+00:10:14,990 --> 00:10:16,460
+seria uma regra razoável.
+
+267
+00:10:18,970 --> 00:10:20,890
+E se isso não for satisfeito,
+
+268
+00:10:21,300 --> 00:10:23,320
+o modelo de Gaussiana Multivariada
+
+269
+00:10:23,700 --> 00:10:25,850
+terá muitos parâmetros, já que
+
+270
+00:10:26,510 --> 00:10:27,590
+a matriz de covariância Σ
+
+271
+00:10:27,820 --> 00:10:31,230
+é "n x n", tendo aproximadamente "n²" parâmetros.
+
+272
+00:10:31,710 --> 00:10:33,040
+Por ser simétrica, na verdade,
+
+273
+00:10:33,430 --> 00:10:35,230
+está mais próximo de "n²/2" parâmetros,
+
+274
+00:10:35,670 --> 00:10:37,220
+mas ainda são muitos parâmetros.
+
+275
+00:10:37,600 --> 00:10:38,720
+Você precisa garantir
+
+276
+00:10:38,930 --> 00:10:48,350
+que tem um valor alto de "m", garantir que você tem dados o suficiente para ajustar todos esses parâmetros.
+
+277
+00:10:49,010 --> 00:10:52,220
+E, "m≥10*n" está razoável para estimar a matriz de covariância Σ.
+
+278
+00:10:55,090 --> 00:10:56,240
+Então, na prática,
+
+279
+00:10:56,750 --> 00:10:58,940
+o modelo original, à esquerda, é mais utilizado.
+
+280
+00:10:59,520 --> 00:11:00,840
+E se você suspeitar
+
+281
+00:11:01,060 --> 00:11:02,680
+que precisa capturar a correlação
+
+282
+00:11:03,450 --> 00:11:08,150
+entre as varáveis, você pode criar, manualmente, variáveis extras, para capturar
+
+283
+00:11:08,780 --> 00:11:13,020
+combinações incomuns de valores específicas. Mas, em problemas onde
+
+284
+00:11:13,120 --> 00:11:15,310
+você tiver um conjunto de treinamento grande,
+
+285
+00:11:17,700 --> 00:11:20,160
+com "m" muito grande, e "n" não muito grande, vale a pena
+
+286
+00:11:20,520 --> 00:11:21,720
+considerar o modelo
+
+287
+00:11:24,360 --> 00:11:25,960
+de Gaussiana Multivariada.
+
+288
+00:11:26,070 --> 00:11:27,400
+E você não precisa
+
+289
+00:11:28,070 --> 00:11:30,350
+criar variáveis extras, manualmente,
+
+290
+00:11:31,380 --> 00:11:33,520
+caso as anomalias sejam capturadas por combinações
+
+291
+00:11:34,040 --> 00:11:35,790
+incomuns de valores das variáveis.
+
+292
+00:11:37,430 --> 00:11:38,330
+Finalmente, eu só quero
+
+293
+00:11:38,600 --> 00:11:40,220
+mencionar uma propriedade técnica:
+
+294
+00:11:40,770 --> 00:11:42,200
+Se você estiver ajustando um modelo
+
+295
+00:11:42,370 --> 00:11:43,210
+de Gaussiana Multivariada,
+
+296
+00:11:43,690 --> 00:11:44,590
+e encontrar que
+
+297
+00:11:44,910 --> 00:11:46,340
+a matriz de covariância Σ
+
+298
+00:11:47,150 --> 00:11:48,160
+é singular,
+
+299
+00:11:48,340 --> 00:11:51,340
+ou não-invertível, normalmente você está em um de 2 casos.
+
+300
+00:11:51,680 --> 00:11:52,990
+O primeiro é que a condição
+
+301
+00:11:53,100 --> 00:11:54,270
+"m>n"
+
+302
+00:11:54,640 --> 00:11:56,200
+não é satisfeita,
+
+303
+00:11:56,570 --> 00:11:58,970
+e o segundo é que você tem variáveis redundantes.
+
+304
+00:11:59,570 --> 00:12:00,980
+"Variáveis redundantes"
+
+305
+00:12:01,520 --> 00:12:02,760
+quer dizer: 2 variáveis iguais.
+
+306
+00:12:02,980 --> 00:12:04,700
+De alguma forma, você acidentalmente
+
+307
+00:12:04,830 --> 00:12:11,220
+fez 2 cópias da mesma variável, por exemplo, "x₁=x₂". Variáveis redundantes pode ser também
+
+308
+00:12:12,860 --> 00:12:14,920
+algo como: a variável "x₃" é igual a "x₄+x₅".
+
+309
+00:12:15,870 --> 00:12:16,960
+Então, se você tiver
+
+310
+00:12:17,250 --> 00:12:18,500
+variáveis muito redundantes,
+
+311
+00:12:18,680 --> 00:12:20,110
+como essas.
+
+312
+00:12:20,380 --> 00:12:21,840
+Porque, se "x₃=x₄+x₅",
+
+313
+00:12:22,350 --> 00:12:24,420
+"x₃" não tem nenhuma informação extra.
+
+314
+00:12:24,590 --> 00:12:26,460
+Você apenas somou duas outras variáveis.
+
+315
+00:12:27,590 --> 00:12:28,900
+E se você tiver esse tipo
+
+316
+00:12:29,030 --> 00:12:30,960
+de variáveis redundantes, variáveis duplicadas,
+
+317
+00:12:31,520 --> 00:12:34,030
+ou esse tipo de variáveis, então Σ pode ser não-invertível.
+
+318
+00:12:35,060 --> 00:12:37,000
+Esse tipo de problema é muito raro,
+
+319
+00:12:37,340 --> 00:12:38,270
+você provavelmente
+
+320
+00:12:38,750 --> 00:12:40,190
+não encontrará
+
+321
+00:12:40,250 --> 00:12:42,780
+esse tipo de situação.
+
+322
+00:12:42,940 --> 00:12:44,480
+Mas, se você implementar um modelo
+
+323
+00:12:44,780 --> 00:12:46,850
+de Gaussiana Multivariada, e encontrar
+
+324
+00:12:48,240 --> 00:12:49,350
+que "Σ" é não-invertível,
+
+325
+00:12:49,880 --> 00:12:51,300
+primeiro garanta que
+
+326
+00:12:51,540 --> 00:12:53,520
+"m" é bem maior que "n".
+
+327
+00:12:53,670 --> 00:12:54,640
+E, segundo,
+
+328
+00:12:54,760 --> 00:12:56,560
+veja se há variáveis redundantes.
+
+329
+00:12:57,360 --> 00:12:58,070
+Se você tiver
+
+330
+00:12:58,150 --> 00:12:59,360
+2 variáveis iguais,
+
+331
+00:12:59,480 --> 00:13:00,590
+elimine uma delas.
+
+332
+00:13:00,970 --> 00:13:02,580
+Ou, se você tiver variáveis redundantes,
+
+333
+00:13:02,880 --> 00:13:04,100
+como essa: "x₃=x₄+x₅",
+
+334
+00:13:04,490 --> 00:13:05,160
+    elimine a variável redundante, 
+
+335
+00:13:05,720 --> 00:13:08,650
+e o modelo deve funcionar.
+
+336
+00:13:08,840 --> 00:13:09,610
+Para aqueles
+
+337
+00:13:09,840 --> 00:13:11,210
+que conhecem Álgebra Linear,
+
+338
+00:13:11,810 --> 00:13:13,280
+por "variáveis redundantes",
+
+339
+00:13:13,410 --> 00:13:14,970
+o que quero dizer é:
+
+340
+00:13:15,300 --> 00:13:17,680
+"variáveis linearmente dependentes".
+
+341
+00:13:18,460 --> 00:13:19,180
+Mas, na prática,
+
+342
+00:13:19,620 --> 00:13:21,710
+isso significa que, se você garantir
+
+343
+00:13:22,040 --> 00:13:24,130
+que suas variáveis são não-redundantes,
+
+344
+00:13:24,790 --> 00:13:26,390
+isso deve resolver o problema
+
+345
+00:13:26,720 --> 00:13:29,100
+de "Σ" ser não-invertível. Mas, novamente,
+
+346
+00:13:29,530 --> 00:13:30,630
+as chances de encontrar
+
+347
+00:13:30,850 --> 00:13:32,190
+um problema como esse são
+
+348
+00:13:32,540 --> 00:13:33,800
+muito pequenas, então,
+
+349
+00:13:34,130 --> 00:13:35,460
+você pode aplicar o modelo
+
+350
+00:13:35,990 --> 00:13:37,240
+de Gaussiana Multivariada,
+
+351
+00:13:37,450 --> 00:13:39,150
+sem se preocupar se "Σ" é não-invertível,
+
+352
+00:13:40,090 --> 00:13:41,180
+desde que "m"
+
+353
+00:13:41,470 --> 00:13:42,780
+seja maior ou igual a "n".
+
+354
+00:13:43,200 --> 00:13:45,180
+Então, é isso, para Detecção de Anomalia com
+
+355
+00:13:45,810 --> 00:13:47,230
+distribuição Gaussiana Multivariada.
+
+356
+00:13:48,220 --> 00:13:49,240
+E, se você aplicar
+
+357
+00:13:49,950 --> 00:13:51,160
+esse método, você terá
+
+358
+00:13:51,310 --> 00:13:53,250
+um algoritmo de Detecção de Anomalias
+
+359
+00:13:54,010 --> 00:13:55,430
+que automaticamente captura
+
+360
+00:13:55,610 --> 00:13:56,690
+correlações entre
+
+361
+00:13:57,030 --> 00:13:58,520
+as variáveis, e marca uma anomalia,
+
+362
+00:13:59,450 --> 00:14:00,820
+caso haja uma combinação incomum
+
+363
+00:14:01,630 --> 00:14:02,770
+de valores das variáveis.
+Tradução: Pablo de Morais Andrade

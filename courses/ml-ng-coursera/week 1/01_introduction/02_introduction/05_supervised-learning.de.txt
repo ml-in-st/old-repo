@@ -1,0 +1,150 @@
+In diesem Video werde ich definieren, 
+was wohl die am weitesten verbreitete Art 
+von Maschinellem Lernen ist, nämlich überwachtes Lernen. Ich werde überwachtes Lernen später formal definieren, aber es ist
+ wahrscheinlich am besten es anhand eines Beispiels
+ zu erklären und damit zu beginnen, was es ist. Wir geben dann die formale Definition später. 
+Stellen wir uns vor, Sie wollen Hauspreise vorhersagen.
+ Vor einiger Zeit hat ein Student Datensätze der Stadt Portland in Oregon gesammelt. 
+Nehmen wir an, Sie plotten einen Datensatz 
+und er sieht so wie hier aus. Hier auf der horizontalen Achse ist 
+die Größe verschiedener Häuser in Quadratfuß und auf der vertikalen Achse ist der Preis der 
+verschiedenen Häuser in Tausend Dollar aufgetragen. Mit diesen Daten - stellen wir uns einmal vor,
+ Sie haben einen Freund, der ein Haus besitzt, 
+das, sagen wir mal, 750 Quadratfuß hat, und der hofft das Haus verkaufen zu können. 
+Er möchte dann wissen mit wie viel er rechnen kann für das Haus. Wie kann der Lernalgorithmus 
+Ihnen dabei helfen? Eine Sache, die der Lernalgorithmus möglicherweise tun kann, ist eine gerade Linie
+ durch die Datenpunkte zu ziehen 
+oder eine Gerade an die Datenpunkte anzupassen. Dann sieht es wohl so aus als ob das Haus für ungefähr 150.000$ verkauft werden kann. 
+Aber das ist sicherlich nicht der einzige Lernalgorithmus, 
+den man benutzen kann. Möglicherweise gibt es einen besseren. Zum Beispiel anstatt eine Gerade an die Datenpunkte anzupassen, könnten wir 
+meinen, dass es besser ist, eine quadratische Funktion oder ein Polynom zweiter Ordnung an die Daten anzupassen. 
+Und wenn man das macht und dann hier eine Vorhersage trifft, dann sieht es so aus, als ob wir das Haus eher 
+für 200.000$ verkaufen können. Eines der Dinge über die wir nachher sprechen werden ist,
+ wie man auswählt und wie man entscheidet: Möchte ich eine Gerade an die Daten anpassen oder möchte ich eine quadratische Funktion an die Daten anpassen? 
+Es gibt da keine korrekte Wahl, je nachdem was Ihrem Freund das bessere Haus zum Verkaufen gibt. Jedes dieser Beispiele
+ wäre ein gutes Beispiel für einen Lernalgorithmus. Dies ist ein Beispiel für 
+einen Algorithmus des überwachten Lernens. Der Ausdruck überwachtes Lernen bezieht sich auf die Tatsache, 
+dass wir dem Algorithmus einen Datensatz gegeben haben, in denen die "richtigen Antworten" gegeben waren. 
+Das bedeutet, wir haben ihm
+ einen Datensatz zu Häusern gegeben und zu jedem Exemplar in diesem Datensatz 
+ haben wir ihm gesagt, was der richtige Preis ist, was der tatsächliche Preis ist, zu dem dieses Haus verkauft 
+wurde. Und der Mehrwert, den der Algorithmus geliefert hat, war lediglich mehr dieser richtigen Antworten zu produzieren, 
+wie eben für dieses neue Haus, das Ihr Freund vielleicht versucht zu verkaufen. 
+Um es mit einer genaueren Terminologie abzugrenzen, wird dies auch Regressionsproblem genannt.
+ Mit Regressionsproblem meine ich, dass wir versuchen einen kontinuierlichen Wert
+ als Ergebnis vorherzusagen, nämlich den Preis. Technisch gesehen, denke ich,
+ können Preise zum nächsten Cent auf oder abgerundet werden. So kann man vielleicht sagen, dass Preise eigentlich 
+diskrete Werte sind, aber normalerweise 
+denken wir bei dem Preis für ein Haus an eine reelle Zahl, an einen Skalar, 
+an einen kontinuierlichen Zahlenwert. Der Ausdruck Regression bezieht sich auf die Eigenschaft,
+ dass wir versuchen einen kontinuierlichen Wert vorherzusagen. Hier ist ein weiteres Beispiel für überwachtes Lernen. Einige Freunde und ich haben daran tatsächlich 
+früher einmal gearbeitet. Stellen Sie sich vor, Sie möchten sich 
+medizinische Aufzeichnungen anschauen und versuchen 
+vorherzusagen, ob ein Brustkrebs bösartig oder gutartig ist. Wenn jemand einen Brusttumor entdeckt, einen Knoten 
+in seiner Brust, dann ist ein bösartiger Tumor einer, der gesundheitsschädlich und gefährlich ist 
+und ein gutartiger Tumor ist einer, der harmlos ist. Wie man sich denken kann, wird das für sehr wichtig gehalten.
+ Schauen wir uns das mal an einem gesammelten Datensatz an. Nehmen wir an, wir haben auf der horizontalen Achse 
+die Größe des Tumors und auf der vertikalen Achse, werde ich Eins oder Null
+ einzeichnen, Ja oder Nein, je nachdem ob oder ob nicht, diese Exemplare von Tumoren, die wie wir vorher 
+gesehen haben, bösartig sind - was als Eins dargestellt wird -
+ oder als Null, falls nicht bösartig also gutartig. Stellen wir uns also vor, dass unser Datensatz wie folgt aussieht:
+ Wir haben einen Tumor mit dieser Größe hier gesehen, der sich als gutartig herausgestellt hat. 
+Einen mit dieser Größe, einen mit dieser Größe, und so weiter. Außerdem haben wir leider auch einige bösartige Tumore 
+gesehen, einen mit dieser Größe, einen mit jener Größe, und so weiter. Dann habe ich hier fünf Beispiele für gutartige Tumore hier unten und fünf Beispiele für bösartige
+ Tumore, die einen vertikalen Achsenwert von Eins haben. Nehmen wir an, dass wir eine Freundin haben,
+ die tragischerweise einen Brusttumor hat und nehmen wir außerdem an, dass die Größe ihres 
+Brusttumors etwa um diesen Wert hier herum liegt. Die Maschinelle Lernfragestellung ist dann: 
+Können Sie die Wahrscheinlichkeit abschätzen, dass dieser Tumor bösartig oder gutartig ist?
+ Um etwas mehr Terminologie einzuführen: Dies ist ein Beispiel für ein Klassifikationsproblem. Der Ausdruck Klassifikation bezieht sich auf die Tatsache, 
+dass wir hier versuchen einen diskreten Wert als Ergebnis vorherzusagen: 
+Null oder Eins, bösartig oder gutartig. Wie sich herausstellt, kann man bei einem Klassifikationsproblem
+ auch mehr als zwei mögliche Werte als Ergebnis haben. Nehmen wir als ein konkretes Beispiel mal an, es gibt drei Arten von Brustkrebs, sodass man dann versuchen würde,
+ die diskreten Werte Null, Eins, Zwei oder Drei vorherzusagen, wobei Null gutartig bedeutet - gutartiger Tumor also kein Krebs -
+ und Eins bedeutet dann vielleicht Typ 1 Krebs, wenn man halt drei Arten von Krebs hat,
+ was auch immer Typ 1 bedeuten mag. Zwei bedeutet dann Typ 2 Krebs und Drei bedeutet Typ 3 Krebs. Aber das wäre dann ebenfalls ein Klassifikationsproblem, weil die Menge der Ergebnisse diskrete Werte sind: 
+kein Krebs, Typ 1 Krebs, Typ 2 Krebs, oder Typ 3 Krebs. In Klassifikationsproblemen gibt es eine weitere Methode, die Datenpunkte zu plotten.
+ Lassen Sie mich Ihnen zeigen, was ich meine. 
+Ich verwende dafür eine etwas andere Menge an Symbolen, um diese Daten zu plotten.
+ Falls Tumorgröße diejenige Eigenschaft ist, die ich verwende, um Bösartigkeit oder Gutartigkeit 
+vorherzusagen, dann kann ich meine Daten 
+auch wie folgt einzeichnen. Ich werde verschiedene Symbole benutzen,
+ um meine gutartigen und bösartigen - meine negativen und positiven - Beispiele 
+zu kennzeichnen. Anstelle also X'e zu zeichnen, werde ich nun O's für gutartige Tumore einzeichnen. 
+So etwa. Ich werde weiterhin X'e verwenden, um meine bösartigen Tumore zu kennzeichnen.
+ Ist das klar? Ich hoffe dies fängt an Sinn zu ergeben. Was ich hier lediglich getan habe, ist diese
+ meine Datenpunkte von oben zu nehmen und sie einfach nach unten auf die reelle Zahlengerade - so hier - 
+abzubilden, mit verschiedenen Symbolen, Kreisen und Kreuzen, um bösartige und 
+gutartige Beispiele zu kennzeichnen. In diesem Beispiel verwenden wir nur eine Eigenschaft,
+ ein "Feature": die Tumorgröße, um vorherzusagen, ob der Tumor bös- oder gutartig ist.
+ In anderen Maschinellen Lernproblemstellungen können wir mehr als eine Eigenschaft,
+ mehr als ein Feature haben. Hier ist ein Beispiel. Sagen wir, anstatt dass wir lediglich 
+die Tumorgröße kennen, kennen wir sowohl das Alter des Patienten als auch die Tumorgröße.
+ In diesem Fall könnte Ihr Datensatz so aussehen, wo ich eine Menge an Patienten habe, 
+die soundso alt sind und deren Tumorgröße soundso ist. So etwa. Und dann habe ich noch eine weiter Menge 
+an Patienten, die etwas anders aussehen, deren Tumore sich als bösartig herausstellen, 
+was wir mit Kreuzen kennzeichnen. Sagen wir, Sie haben einen Freund, der tragischerweise
+ einen Tumor hat und dessen Tumorgröße und Alter befindet sich ungefähr da. Mit einem Datensatz 
+wie diesem würde der Lernalgorithmus dann folgendes tun. Er würde eine Gerade durch die Datenpunkte finden 
+und versuchen die bösartigen Tumore von den gutartigen zu trennen. 
+Der Lernalgorithmus könnte dann entscheiden die Gerade so hier einzupassen, 
+um die zwei Klassen von Tumoren zu trennen. Damit können wir dann hoffentlich entscheiden,
+ dass der Tumor Ihres Freundes eher dort drüben ist. Also dass Ihr Lernalgorithmus eher sagen wird, dass der Tumor Ihres Freundes 
+eher auf der gutartigen Seite ist und daher mit höherer Wahrscheinlichkeit gutartig und nicht bösartig ist. 
+In diesem Beispiel haben wir zwei Features, nämlich das Alter des Patienten und die Größe des Tumors.
+ In anderen Problemen von Maschinellem Lernen werden wir öfters mehr Features haben. 
+Meine Freunde, die an diesem Problem arbeiten, verwenden in der Tat andere Features wie diese,
+ wie Klumpendicke des Brusttumors, Gleichmäßigkeit der Zellgröße des Tumors, 
+Gleichförmigkeit der Zellstruktur des Tumors, und so weiter, und noch weiter Features. 
+Wie sich herausstellen wird, ist einer der wohl interessantesten Lernalgorithmen, den wir in diesem Kurs
+ kennenlernen werden, ein Lernalgorithmus, der nicht nur mit zwei oder drei oder vier Features 
+umgehen kann, sondern mit 
+einer unendlichen Anzahl an Features. Auf dieser Folie habe ich insgesamt
+ fünf verschiedene Features aufgelistet, zwei stehen an den Achsen und drei weitere hier oben.
+ Aber wie sich herausstellt, will man nicht etwa drei oder fünf Features verwenden, sondern man möchte eine unendliche Anzahl an Features, 
+eine unendliche Anzahl an Eigenschaften verwenden, sodass der Lernalgorithmus viele Eigenschaften 
+oder Features oder Hinweise verwendet, um seine Vorhersagen zu machen. 
+Wie kann man aber eine unendliche Anzahl von Features verarbeiten? 
+Wie soll man überhaupt eine unendliche Anzahl an Dingen im Computer speichern, 
+wenn der Speicher im Computer doch irgendwann alle ist. Wie sich herausstellt, gibt es 
+- wenn man an den Algorithmus denkt, 
+der Support Vector Machine genannt wird - einen netten mathematischen Trick, der dem Computer erlaubt eine unendliche Anzahl an Features zu verarbeiten.
+ Stellen Sie sich vor, dass ich nicht nur zwei Features hier und drei Features auf der rechten Seite aufgeschrieben habe, 
+sondern stellen Sie sich vor,
+ dass ich eine unendlich lange Liste aufgeschrieben habe. Ich habe einfach immer mehr Features dazugeschrieben 
+- wie eine unendlich lange Liste von Features. Es wird sich zeigen, dass wir einen Algorithmus finden werden,
+ der damit umgehen kann. Also, nur um mal zusammenzufassen:
+ in diesem Kurs werden wir über überwachtes Lernen sprechen. Die Idee dabei ist,
+ dass uns in überwachtem Lernen zu jedem Beispiel in unserem Datensatz gegeben ist, 
+was die "richtige Antwort" ist,
+ von der wir doch wollen würden, dass der Algorithmus diese zu diesem Beispiel 
+vorhergesagt hätte. Wie etwa den Preis des Hauses oder ob ein Tumor bös- oder gutartig ist. 
+Wir haben außerdem über das Regressionsproblem gesprochen. 
+Und mit Regression meinen wir, dass es unser Ziel ist, einen kontinuierlichen Wert als Ergebnis vorherzusagen. 
+Und wir haben auch über das Klassifikationsproblem gesprochen, wo es das Ziel ist, einen diskreten Wert als Ergebnis
+ vorherzusagen. Hier ist mal eine kleine Verständnisfrage: Nehmen wir mal an, dass Sie ein Unternehmen führen 
+und Sie wollen einen Lernalgorithmus entwickeln, um jedes der zwei folgenden Probleme zu adressieren. 
+Beim ersten Problem haben Sie ein großes Inventar an identischen Artikeln. Stellen Sie sich also vor, 
+Sie haben Tausende identische Kopien
+ eines Artikels zu verkaufen und Sie wollen vorhersagen, wie viele dieser Artikel 
+Sie in den nächsten drei Monaten verkaufen werden. Beim zweiten Problem - Problem Nummer 2 - 
+haben Sie viele Nutzer und Sie möchten eine Software schreiben, 
+um jedes einzelne Konto ihrer Nutzer zu untersuchen, also jedes einzelne Nutzerkonto, um zu entscheiden, ob ein jeweiliges Konto 
+gehackt oder kompromittiert wurde oder eben nicht. Entscheiden Sie für jedes Problem, ob es als 
+ein Klassifikationsproblem oder ein Regressionsproblem 
+betrachtet werden sollte. Wenn das Video anhält, 
+verwenden Sie bitte Ihre Maus, um auszuwählen von welcher dieser vier Optionen auf der linken Seite
+ Sie glauben, dass es die richtige Antwort ist. Ich hoffe, Sie haben verstanden, dass das hier die Antwort ist.
+ Problem eins würde ich als ein Regressionsproblem behandeln, 
+weil wenn ich Tausende Artikel habe, dann würde ich dies einfach als einen reellen Wert,
+ als einen kontinuierlichen Wert ansehen und deswegen die Anzahl der Artikel, die ich verkaufe, 
+als einen kontinuierlichen Wert ansehen. Das zweite Problem würde ich
+ als ein Klassifikationsproblem betrachten, weil ich sagen könnte, ich möchte beim Vorhersagen
+ ein Konto mit der Null markieren, wenn es nicht gehackt wurde und mit dem Wert Eins markiere ich ein Konto, 
+dass gehackt wurde. Eben genau so wie bei Brustkrebs 
+Null gutartig bedeutet hatte und Eins bösartig, so könnte ich die Werte Null und Eins vergeben,
+ je nachdem ob es gehackt wurde oder nicht. Der Algorithmus soll dann einen
+ dieser beiden diskreten Werte vorhersagen. Und weil es sich um eine kleine Anzahl 
+an diskreten Werten handelt, 
+würde ich es als ein Klassifikationsproblem behandeln. Das war es zu überwachten Lernen 
+und im nächsten Video werde ich über unüberwachtes Lernen sprechen, 
+was die andere wichtige Untergruppe von Lernalgorithmen ist.

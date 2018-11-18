@@ -1,0 +1,86 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Advanced Optimization
+ </h1>
+ <p>
+  <strong>
+   Note:
+  </strong>
+  [7:35 - '100' should be 100 instead. The value provided should be an integer and not a character string.]
+ </p>
+ <p>
+  "Conjugate gradient", "BFGS", and "L-BFGS" are more sophisticated, faster ways to optimize θ that can be used instead of gradient descent. We suggest that you should not write these more sophisticated algorithms yourself (unless you are an expert in numerical computing) but use the libraries instead, as they're already tested and highly optimized. Octave provides them.
+ </p>
+ <p>
+  We first need to provide a function that evaluates the following two functions for a given input value θ:
+ </p>
+ <p hasmath="true">
+  $$\begin{align*} &amp; J(\theta) \newline &amp; \dfrac{\partial}{\partial \theta_j}J(\theta)\end{align*}$$
+ </p>
+ <p>
+  We can write a single function that returns both of these:
+ </p>
+ <pre>function [jVal, gradient] = costFunction(theta)
+  jVal = [...code to compute J(theta)...];
+  gradient = [...code to compute derivative of J(theta)...];
+end</pre>
+ <p>
+  Then we can use octave's "fminunc()" optimization algorithm along with the "optimset()" function that creates an object containing the options we want to send to "fminunc()". (Note: the value for MaxIter should be an integer, not a character string - errata in the video at 7:30)
+ </p>
+ <pre>options = optimset('GradObj', 'on', 'MaxIter', 100);
+initialTheta = zeros(2,1);
+   [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);
+</pre>
+ <p>
+  We give to the function "fminunc()" our cost function, our initial vector of theta values, and the "options" object that we created beforehand.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

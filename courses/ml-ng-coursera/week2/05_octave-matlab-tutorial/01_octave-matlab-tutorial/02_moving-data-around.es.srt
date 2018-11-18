@@ -1,0 +1,1708 @@
+1
+00:00:00,111 --> 00:00:02,628
+En este segundo video tutorial sobre
+
+2
+00:00:02,630 --> 00:00:03,904
+Octave, me gustaría comenzar
+
+3
+00:00:03,930 --> 00:00:07,322
+a decirte cómo mover los datos en Octave.
+
+4
+00:00:07,340 --> 00:00:08,783
+Si tienes datos para
+
+5
+00:00:08,783 --> 00:00:12,125
+un problema de aprendizaje automático, ¿Cómo cargas esos datos en Octave?
+
+6
+00:00:12,125 --> 00:00:13,693
+¿Cómo puedes ponerlos en la matriz?
+
+7
+00:00:13,693 --> 00:00:15,284
+¿Cómo puedes manipular estas matrices?
+
+8
+00:00:15,290 --> 00:00:16,982
+¿Cómo puedes guardar los resultados?
+
+9
+00:00:17,000 --> 00:00:22,185
+¿Cómo puedes mover los datos y operar con los datos?
+
+10
+00:00:22,900 --> 00:00:25,044
+Aquí está mi ventana de Octave, como
+
+11
+00:00:25,044 --> 00:00:29,256
+antes, con los datos desde donde nos quedamos en el último video.
+
+12
+00:00:29,290 --> 00:00:31,132
+Si escribimos A, que es
+
+13
+00:00:31,140 --> 00:00:32,258
+la matriz que generamos, ¿correcto?,
+
+14
+00:00:32,258 --> 00:00:35,197
+con este comando igual a 1, 2,
+
+15
+00:00:35,197 --> 00:00:38,152
+3, 4, 5, 6, y
+
+16
+00:00:38,190 --> 00:00:40,696
+esta es una matriz de 3x2.
+
+17
+00:00:40,710 --> 00:00:42,415
+El comando size en Octave,
+
+18
+00:00:42,430 --> 00:00:46,361
+te dice cuál es el tamaño de una matriz.
+
+19
+00:00:46,361 --> 00:00:48,207
+Así que size(A) te devuelve 3, 2.
+
+20
+00:00:48,207 --> 00:00:50,160
+Resulta que los algoritmos de agrupamiento
+
+21
+00:00:50,180 --> 00:00:52,155
+este comando size por sí solo
+
+22
+00:00:52,155 --> 00:00:54,591
+te devuelve una matriz de 1x2.
+
+23
+00:00:54,591 --> 00:00:56,598
+Así que en realidad puedes establecer a sz igual
+
+24
+00:00:56,598 --> 00:00:58,370
+a size(A) y sz
+
+25
+00:00:58,380 --> 00:00:59,597
+ahora es una matriz de 1x2
+
+26
+00:00:59,597 --> 00:01:01,627
+en la que el primer elemento
+
+27
+00:01:01,640 --> 00:01:04,689
+de esta es 3, y el segundo elemento de esta es 2.
+
+28
+00:01:04,700 --> 00:01:07,494
+Por lo tanto, si acabas de teclear size(sz), hace sz
+
+29
+00:01:07,494 --> 00:01:08,898
+una matriz de uno
+
+30
+00:01:08,898 --> 00:01:10,862
+por dos cuyos dos elementos
+
+31
+00:01:10,862 --> 00:01:13,721
+contienen las dimensiones de la
+
+32
+00:01:13,721 --> 00:01:15,279
+matriz A. También puedes
+
+33
+00:01:15,279 --> 00:01:17,787
+teclear size(A,1),
+
+34
+00:01:17,787 --> 00:01:19,505
+para que te dé como resultado la primera
+
+35
+00:01:19,510 --> 00:01:21,542
+dimensión de A, el tamaño
+
+36
+00:01:21,542 --> 00:01:22,662
+de la primera dimensión de A.
+
+37
+00:01:22,680 --> 00:01:24,108
+Así que ese es el número
+
+38
+00:01:24,110 --> 00:01:26,307
+de filas y size(A,2)
+
+39
+00:01:26,320 --> 00:01:28,361
+que te devuelva 2, que
+
+40
+00:01:28,361 --> 00:01:29,598
+es el número de columnas en
+
+41
+00:01:29,598 --> 00:01:31,942
+la matriz A. 
+Si tienes
+
+42
+00:01:31,950 --> 00:01:34,034
+un vector V,
+
+43
+00:01:34,034 --> 00:01:36,016
+digamos que V es igual a 1, 2,
+
+44
+00:01:36,030 --> 00:01:38,089
+3, 4, y
+
+45
+00:01:38,089 --> 00:01:40,830
+tecleas length(v). Lo que
+
+46
+00:01:40,830 --> 00:01:42,097
+hace esto, es que te da
+
+47
+00:01:42,097 --> 00:01:44,123
+el tamaño de la dimensión más larga.
+
+48
+00:01:44,170 --> 00:01:45,609
+Así también puedes teclear
+
+49
+00:01:45,609 --> 00:01:48,487
+length(A) y porque
+
+50
+00:01:48,500 --> 00:01:49,856
+A es una matriz de tres por
+
+51
+00:01:49,860 --> 00:01:52,305
+dos, la dimensión más larga
+
+52
+00:01:52,330 --> 00:01:53,825
+es del tamaño de
+
+53
+00:01:53,825 --> 00:01:56,145
+tres, por lo que este debe imprimir 3.
+
+54
+00:01:56,145 --> 00:01:58,805
+Pero por lo general aplicamos length sólo a los vectores.
+
+55
+00:01:58,810 --> 00:02:00,194
+Así que ya sabes length([1;2;
+
+56
+00:02:00,200 --> 00:02:02,222
+3;4;5]) en lugar de
+
+57
+00:02:02,230 --> 00:02:04,010
+aplicar length a las matrices,
+
+58
+00:02:04,010 --> 00:02:07,205
+porque eso es un poco más confuso.
+
+59
+00:02:07,620 --> 00:02:10,122
+Ahora, veamos
+
+60
+00:02:10,122 --> 00:02:11,843
+la forma de cargar los datos y
+
+61
+00:02:11,860 --> 00:02:13,732
+encontrar los datos en los archivos del sistema.
+
+62
+00:02:13,732 --> 00:02:15,254
+Cuando iniciamos Octave
+
+63
+00:02:15,254 --> 00:02:16,882
+estamos por lo general en
+
+64
+00:02:16,920 --> 00:02:19,098
+una ruta que
+
+65
+00:02:19,098 --> 00:02:21,738
+es, como sabes, la ruta de la ubicación donde está Octave.
+
+66
+00:02:21,750 --> 00:02:24,042
+Así que el de comando pwd muestra
+
+67
+00:02:24,060 --> 00:02:25,619
+el directorio actual, o la
+
+68
+00:02:25,640 --> 00:02:28,738
+ruta actual donde se encuentra Octave.
+
+69
+00:02:28,738 --> 00:02:31,932
+Así que, ahora nos encontramos en una especie de escala del directorio.
+
+70
+00:02:31,932 --> 00:02:33,999
+El comando cd se pone
+
+71
+00:02:34,000 --> 00:02:35,322
+para cambiar el directorio, por lo que
+
+72
+00:02:35,330 --> 00:02:40,681
+se puede ir a C:/Users/Ang/Desktop,
+
+73
+00:02:40,681 --> 00:02:43,657
+ahora ya estoy, como sabes, en mi Escritorio,
+
+74
+00:02:43,657 --> 00:02:45,925
+y si tecleo ls,
+
+75
+00:02:45,925 --> 00:02:49,447
+ls es un comando de Unix o Linux.
+
+76
+00:02:49,447 --> 00:02:50,648
+Pero, ls enumerará
+
+77
+00:02:50,648 --> 00:02:52,435
+los directorios de mi escritorio, y
+
+78
+00:02:52,435 --> 00:02:54,137
+estos son los archivos
+
+79
+00:02:54,140 --> 00:02:58,184
+que hay en mi escritorio en este momento.
+
+80
+00:03:15,850 --> 00:03:17,838
+De hecho, en mi escritorio hay
+
+81
+00:03:17,838 --> 00:03:19,920
+dos archivos: featuresX y
+
+82
+00:03:19,920 --> 00:03:21,689
+priceY que tal vez
+
+83
+00:03:21,689 --> 00:03:23,596
+vienen de un problema de aprendizaje automático que quiero resolver.
+
+84
+00:03:23,620 --> 00:03:25,830
+Así pues, aquí está mi escritorio.
+
+85
+00:03:25,830 --> 00:03:29,144
+Aquí esta featuresX, y
+
+86
+00:03:29,144 --> 00:03:31,598
+featuresX es esta ventana,
+
+87
+00:03:31,630 --> 00:03:34,492
+perdón, es este archivo con dos columnas de datos.
+
+88
+00:03:34,492 --> 00:03:36,702
+Estos son en realidad mis datos de precios de casas.
+
+89
+00:03:36,750 --> 00:03:38,374
+Así que pienso que, como sabes,
+
+90
+00:03:38,374 --> 00:03:40,652
+creo que tengo cuarenta y siete filas en este conjunto de datos.
+
+91
+00:03:40,652 --> 00:03:42,344
+La primera casa
+
+92
+00:03:42,350 --> 00:03:43,966
+tiene el tamaño de dos mil ciento cuatro
+
+93
+00:03:43,970 --> 00:03:46,172
+pies cuadrados y cuenta con tres dormitorios; la segunda
+
+94
+00:03:46,190 --> 00:03:47,367
+casa tiene mil seiscientos pies cuadrados,
+
+95
+00:03:47,367 --> 00:03:49,862
+tiene tres dormitorios; y así sucesivamente.
+
+96
+00:03:49,880 --> 00:03:52,302
+Y priceY, es este
+
+97
+00:03:52,302 --> 00:03:55,020
+archivo, tiene
+
+98
+00:03:55,040 --> 00:03:57,575
+los precios de los datos de mi conjunto de entrenamiento.
+
+99
+00:03:57,575 --> 00:03:59,735
+Así que featuresX y
+
+100
+00:03:59,735 --> 00:04:03,061
+priceY son solo archivos de texto con mis datos.
+
+101
+00:04:03,061 --> 00:04:04,770
+¿Cómo puedo cargar estos datos en Octave?
+
+102
+00:04:04,770 --> 00:04:06,050
+Bueno, sólo tecleo
+
+103
+00:04:06,090 --> 00:04:08,163
+el comando load featuresX.dat
+
+104
+00:04:08,163 --> 00:04:10,069
+y si hago
+
+105
+00:04:10,069 --> 00:04:11,991
+eso, puedo cargar featuresX
+
+106
+00:04:11,991 --> 00:04:15,772
+y también puedo cargar, load priceY.dat Y
+
+107
+00:04:15,772 --> 00:04:17,323
+por cierto, hay varias maneras de hacer esto.
+
+108
+00:04:17,323 --> 00:04:19,245
+En este comando pones
+
+109
+00:04:19,245 --> 00:04:20,916
+load('featuresX.dat')
+
+110
+00:04:20,916 --> 00:04:22,533
+en forma de cadena y cargarlo.
+
+111
+00:04:22,550 --> 00:04:25,477
+Esto es un error ahí.
+
+112
+00:04:25,490 --> 00:04:27,317
+Este es un comando equivalente.
+
+113
+00:04:27,317 --> 00:04:29,334
+Así que puedes, de esta
+
+114
+00:04:29,360 --> 00:04:31,985
+manera, sólo estoy poniendo el nombre del archivo de la cadena
+
+115
+00:04:32,000 --> 00:04:34,148
+en el principio de la
+
+116
+00:04:34,148 --> 00:04:35,716
+cadena y en
+
+117
+00:04:35,716 --> 00:04:38,902
+Octave estoy utilizado unas comillas simples
+
+118
+00:04:38,930 --> 00:04:41,876
+para representar las cadenas, de esta manera.
+
+119
+00:04:41,910 --> 00:04:42,837
+Así que eso es una cadena, y
+
+120
+00:04:42,860 --> 00:04:45,517
+podemos cargar el archivo
+
+121
+00:04:45,517 --> 00:04:48,324
+cuyo nombre viene dado por esa cadena.
+
+122
+00:04:48,324 --> 00:04:50,919
+Ahora el comando who
+
+123
+00:04:50,960 --> 00:04:52,538
+muestra qué variables
+
+124
+00:04:52,538 --> 00:04:54,605
+tengo en mi espacio de trabajo de Octave.
+
+125
+00:04:54,605 --> 00:04:56,310
+Entonces, who me muestra
+
+126
+00:04:56,330 --> 00:04:59,952
+las variables que Octave tiene en la memoria actualmente.
+
+127
+00:04:59,952 --> 00:05:01,367
+featuresX y priceY
+
+128
+00:05:01,370 --> 00:05:02,991
+están entre ellas, así como
+
+129
+00:05:02,991 --> 00:05:04,120
+las variables que, como sabes,
+
+130
+00:05:04,170 --> 00:05:06,311
+hemos creado anteriormente en esta sesión.
+
+131
+00:05:06,311 --> 00:05:09,198
+Así que puedo escribir featuresX
+
+132
+00:05:09,198 --> 00:05:11,062
+para mostrar featuresX. Y
+
+133
+00:05:11,062 --> 00:05:14,164
+ahí están mis datos.
+
+134
+00:05:14,200 --> 00:05:16,419
+Puedo escribir size(featuresX)
+
+135
+00:05:16,419 --> 00:05:18,022
+y esa es mi
+
+136
+00:05:18,022 --> 00:05:20,519
+matriz de 47x2.
+
+137
+00:05:20,519 --> 00:05:22,307
+Y algunas de estas dimensiones,
+
+138
+00:05:22,320 --> 00:05:23,729
+priceY, me regresa
+
+139
+00:05:23,729 --> 00:05:26,753
+mi vector de 47x1.
+
+140
+00:05:26,753 --> 00:05:30,125
+Este es un vector de 47 dimensiones.
+
+141
+00:05:30,125 --> 00:05:32,080
+Esto es un vector común
+
+142
+00:05:32,080 --> 00:05:35,231
+que tiene todos los datos de priceY en mi conjunto de entrenamiento.
+
+143
+00:05:35,240 --> 00:05:37,584
+Ahora, la función who te muestra
+
+144
+00:05:37,600 --> 00:05:40,086
+una de las variables que están actualmente en el espacio de trabajo.
+
+145
+00:05:40,086 --> 00:05:42,195
+También está la variable whos
+
+146
+00:05:42,195 --> 00:05:45,369
+que te da una vista detallada.
+
+147
+00:05:45,369 --> 00:05:47,252
+Esta variable, con
+
+148
+00:05:47,270 --> 00:05:48,574
+una S al final también
+
+149
+00:05:48,574 --> 00:05:49,979
+enumera mis variables, con la diferencia de que
+
+150
+00:05:49,979 --> 00:05:51,782
+también enlista sus tamaños.
+
+151
+00:05:51,790 --> 00:05:52,759
+Así que A es una matriz
+
+152
+00:05:52,759 --> 00:05:54,764
+de 3x2 y featuresX
+
+153
+00:05:54,764 --> 00:05:56,545
+es una matriz de 47x2.
+
+154
+00:05:56,545 --> 00:05:59,327
+priceY es una matriz de 47x1,
+
+155
+00:05:59,327 --> 00:06:01,098
+diciéndonos que es sólo un vector.
+
+156
+00:06:01,130 --> 00:06:03,438
+Esto muestra, como sabes, cuántos bytes de memoria está ocupando.
+
+157
+00:06:03,438 --> 00:06:06,020
+Así como que tipo de datos son.
+
+158
+00:06:06,020 --> 00:06:07,765
+Doble significa una posición doble punto flotante
+
+159
+00:06:07,765 --> 00:06:08,915
+que significa justamente que
+
+160
+00:06:08,915 --> 00:06:13,148
+estos son los valores reales, los números de punto flotante.
+
+161
+00:06:13,148 --> 00:06:14,190
+Ahora, si quieres
+
+162
+00:06:14,190 --> 00:06:17,316
+borrar una variable, puedes utilizar el comando clear.
+
+163
+00:06:17,340 --> 00:06:21,124
+Escribe clear featuresX y whos nuevamente,
+
+164
+00:06:21,130 --> 00:06:23,448
+puedes notar que la variable featuresX
+
+165
+00:06:23,448 --> 00:06:26,465
+ha desaparecido.
+
+166
+00:06:27,270 --> 00:06:28,567
+¿Cómo guardamos los datos?
+
+167
+00:06:28,567 --> 00:06:29,221
+Veamos,
+
+168
+00:06:29,221 --> 00:06:30,411
+Vamos a tomar la variable v
+
+169
+00:06:30,411 --> 00:06:33,075
+y escribir priceY(1:10).
+
+170
+00:06:33,075 --> 00:06:34,826
+Esto establece a V como
+
+171
+00:06:34,826 --> 00:06:38,574
+los primeros 10 elementos del
+
+172
+00:06:38,860 --> 00:06:43,215
+vector Y, y escribir who o whos
+
+173
+00:06:43,220 --> 00:06:46,612
+considerando que Y era un vector de 47x1.
+
+174
+00:06:46,612 --> 00:06:48,474
+v es ahora de 10x1.
+
+175
+00:06:48,474 --> 00:06:50,809
+Porque v = priceY(1:10),
+
+176
+00:06:50,809 --> 00:06:52,451
+lo que lo establece
+
+177
+00:06:52,451 --> 00:06:53,520
+en los primeros 10
+
+178
+00:06:53,520 --> 00:06:55,705
+elementos de Y. Digamos que
+
+179
+00:06:55,705 --> 00:06:57,398
+quiero guardar esto actualizado en el disco,
+
+180
+00:06:57,398 --> 00:07:00,129
+utilizaremos el comando save hello.mat
+
+181
+00:07:00,129 --> 00:07:02,302
+v. Esto
+
+182
+00:07:02,310 --> 00:07:04,357
+guardara la variable v en
+
+183
+00:07:04,370 --> 00:07:05,690
+un archivo llamado hello.mat.
+
+184
+00:07:05,720 --> 00:07:08,490
+Así que vamos a hacerlo.
+
+185
+00:07:08,640 --> 00:07:10,965
+Ahora un archivo
+
+186
+00:07:11,030 --> 00:07:13,181
+ha aparecido en mi escritorio
+
+187
+00:07:13,181 --> 00:07:15,066
+llamado hello.mat.
+
+188
+00:07:15,066 --> 00:07:16,509
+Tengo MATLAB instalado
+
+189
+00:07:16,530 --> 00:07:17,962
+en este Windows, esa es la razón,
+
+190
+00:07:17,962 --> 00:07:19,711
+como sabes, por la cual este icono se ve
+
+191
+00:07:19,711 --> 00:07:21,621
+así, ya que Windows lo reconoce
+
+192
+00:07:21,621 --> 00:07:23,559
+como un archivo de MATLAB, pero no
+
+193
+00:07:23,559 --> 00:07:24,882
+te preocupes si este archivo
+
+194
+00:07:24,890 --> 00:07:26,051
+te parece así o con un icono diferente
+
+195
+00:07:26,051 --> 00:07:28,778
+en tu computadora, y
+
+196
+00:07:28,778 --> 00:07:31,017
+digamos que borre todas mis variables,
+
+197
+00:07:31,020 --> 00:07:32,602
+si escribes clear sin
+
+198
+00:07:32,602 --> 00:07:36,061
+algo más, este borra todas las variables en el espacio de trabajo.
+
+199
+00:07:36,080 --> 00:07:39,078
+Así que ahora no hay nada a la izquierda en el espacio de trabajo.
+
+200
+00:07:39,078 --> 00:07:41,856
+Si cargo hello.mat,
+
+201
+00:07:41,856 --> 00:07:44,388
+ahora puedo cargar mi
+
+202
+00:07:44,388 --> 00:07:46,054
+variable v, que son
+
+203
+00:07:46,054 --> 00:07:47,830
+los datos que
+
+204
+00:07:47,830 --> 00:07:51,035
+previamente he guardado en el archivo hello.mat.
+
+205
+00:07:51,035 --> 00:07:54,636
+Así que, hello.mat, ¿Que hicimos al guardar el archivo hello.mat?,
+
+206
+00:07:54,636 --> 00:07:55,877
+esto guarda los
+
+207
+00:07:55,877 --> 00:07:57,811
+datos en un formato binario,
+
+208
+00:07:57,850 --> 00:07:59,702
+una especia de formato binario más comprimido.
+
+209
+00:07:59,702 --> 00:08:01,077
+Ya que v es una gran
+
+210
+00:08:01,077 --> 00:08:03,899
+cantidad de datos, este lo guardara un poco más comprimido
+
+211
+00:08:03,899 --> 00:08:05,645
+y ocupara menos espacio.
+
+212
+00:08:05,650 --> 00:08:06,784
+Si quieres guardar los
+
+213
+00:08:06,784 --> 00:08:08,959
+datos en un formato legible para humanos
+
+214
+00:08:08,959 --> 00:08:11,870
+escribe save hello.txt
+
+215
+00:08:11,870 --> 00:08:14,055
+la variable v y luego -ascii,
+
+216
+00:08:14,110 --> 00:08:16,083
+esto lo guardará
+
+217
+00:08:16,083 --> 00:08:18,787
+como texto
+
+218
+00:08:18,840 --> 00:08:21,352
+o como formato de texto ASCII.
+
+219
+00:08:21,352 --> 00:08:22,802
+Ahora, una vez que lo he hecho,
+
+220
+00:08:22,802 --> 00:08:24,973
+tengo este archivo
+
+221
+00:08:24,973 --> 00:08:26,115
+hello.text que acaba
+
+222
+00:08:26,130 --> 00:08:28,463
+de aparecer en mi escritorio, y
+
+223
+00:08:28,463 --> 00:08:29,951
+si lo abro,
+
+224
+00:08:29,951 --> 00:08:31,016
+vemos que se trata de un texto
+
+225
+00:08:31,016 --> 00:08:33,958
+que contiene mis datos guardados.
+
+226
+00:08:33,958 --> 00:08:36,698
+Esta es la forma en que se cargan y guardan los datos.
+
+227
+00:08:36,698 --> 00:08:38,832
+Ahora vamos a hablar un poco sobre la forma de manipular los datos.
+
+228
+00:08:38,832 --> 00:08:40,526
+Vamos a igualar a la
+
+229
+00:08:40,526 --> 00:08:44,910
+matriz nuevamente, aquí tenemos una matriz 3x2.
+
+230
+00:08:45,710 --> 00:08:46,778
+Así como la indexación.
+
+231
+00:08:46,778 --> 00:08:48,493
+Así que si escribo A(3,2),
+
+232
+00:08:48,493 --> 00:08:51,219
+esto nos lleva a
+
+233
+00:08:51,219 --> 00:08:52,917
+los elementos 3,2 de
+
+234
+00:08:52,917 --> 00:08:54,308
+la matriz A. Entonces, esto
+
+235
+00:08:54,370 --> 00:08:56,320
+es lo que, como sabes,
+
+236
+00:08:56,400 --> 00:08:57,488
+normalmente, escribimos como
+
+237
+00:08:57,510 --> 00:09:00,421
+"A" subíndice 3, 2,
+
+238
+00:09:00,430 --> 00:09:02,280
+o "A" subíndice,
+
+239
+00:09:03,570 --> 00:09:05,320
+como sabes, 3,2
+
+240
+00:09:05,380 --> 00:09:07,028
+y este es el elemento,
+
+241
+00:09:07,028 --> 00:09:08,664
+la tercera fila y la segunda columna
+
+242
+00:09:08,664 --> 00:09:11,539
+de A de la cuales el elemento igual a 6.
+
+243
+00:09:11,590 --> 00:09:13,820
+También puedo escribir A(2,:)
+
+244
+00:09:14,550 --> 00:09:16,770
+para sacar
+
+245
+00:09:16,770 --> 00:09:18,851
+todo de la segunda fila.
+
+246
+00:09:18,851 --> 00:09:22,806
+Así que, los dos puntos significan todo
+
+247
+00:09:22,810 --> 00:09:27,381
+elemento en esa fila o columna.
+
+248
+00:09:27,420 --> 00:09:29,274
+Así que A con un (2,:)
+
+249
+00:09:29,274 --> 00:09:32,425
+es la segunda fila de A. ¿Correcto?
+
+250
+00:09:32,470 --> 00:09:35,662
+De manera similar, si pongo A(:,2),
+
+251
+00:09:35,680 --> 00:09:38,262
+esto significa obtener todo en
+
+252
+00:09:38,262 --> 00:09:41,328
+la segunda columna de A. Por lo tanto, esto da 2 4 6.
+
+253
+00:09:41,328 --> 00:09:42,921
+Esto significa
+
+254
+00:09:42,930 --> 00:09:45,467
+A, todo, segunda columna.
+
+255
+00:09:45,500 --> 00:09:46,967
+Por lo tanto, esta es mi segunda
+
+256
+00:09:46,970 --> 00:09:49,636
+columna de A, que es 2 4 6.
+
+257
+00:09:49,650 --> 00:09:51,267
+Ahora, también
+
+258
+00:09:51,280 --> 00:09:54,148
+puedes usar algunas operaciones un poco más sofisticadas del índice.
+
+259
+00:09:54,148 --> 00:09:56,575
+Así que, hagamos un ejemplo.
+
+260
+00:09:56,575 --> 00:09:58,537
+Harás esto cada vez con menos frecuencia,
+
+261
+00:09:58,550 --> 00:10:02,231
+pondré A([1 3], :).
+
+262
+00:10:02,231 --> 00:10:03,471
+Esto significa obtener todos
+
+263
+00:10:03,500 --> 00:10:07,444
+los elementos de A los cuales indexan 1 o 3,
+
+264
+00:10:07,450 --> 00:10:08,765
+lo que significa obtener todo de
+
+265
+00:10:08,765 --> 00:10:10,588
+la primera y tercera fila de
+
+266
+00:10:10,603 --> 00:10:12,780
+A y de todas las
+
+267
+00:10:13,240 --> 00:10:13,240
+columnas.
+
+268
+00:10:14,163 --> 00:10:16,430
+Por lo tanto, esta era la
+
+269
+00:10:16,800 --> 00:10:18,260
+matriz A y así A([1 3],:)
+
+270
+00:10:18,440 --> 00:10:21,872
+significa obtener
+
+271
+00:10:21,900 --> 00:10:23,222
+todo de la primera fila
+
+272
+00:10:23,250 --> 00:10:25,023
+y de la segunda fila y
+
+273
+00:10:25,023 --> 00:10:27,172
+de la tercera fila y los
+
+274
+00:10:27,172 --> 00:10:28,313
+dos puntos significan, como sabes, ambos
+
+275
+00:10:28,313 --> 00:10:29,585
+de la primera y segunda
+
+276
+00:10:29,585 --> 00:10:31,045
+columna, lo que
+
+277
+00:10:31,045 --> 00:10:32,842
+regresa 1, 2, 5, 6.
+
+278
+00:10:32,842 --> 00:10:34,353
+A pesar de que ahora utilices la fuente
+
+279
+00:10:34,353 --> 00:10:37,182
+de operaciones de índice
+
+280
+00:10:37,182 --> 00:10:39,819
+con subíndice, esto se volverá algo raro.
+
+281
+00:10:40,210 --> 00:10:41,453
+Para mostrarte que podamos hacer.
+
+282
+00:10:41,453 --> 00:10:43,617
+Esta es la matriz A(:,2)
+
+283
+00:10:43,617 --> 00:10:47,276
+que me da la segunda columna.
+
+284
+00:10:47,276 --> 00:10:49,773
+También puedes usar esto para hacer tareas.
+
+285
+00:10:49,773 --> 00:10:51,178
+Así que puedo tomar la segunda columna de
+
+286
+00:10:51,190 --> 00:10:52,949
+A y asignarla a
+
+287
+00:10:52,950 --> 00:10:55,605
+10; 11; 12, y
+
+288
+00:10:55,670 --> 00:10:58,084
+al hacer eso, como
+
+289
+00:10:58,120 --> 00:10:59,220
+sabes, tomo la segunda columna
+
+290
+00:10:59,290 --> 00:11:02,768
+y le asigno al vector columna 10, 11 , 12.
+
+291
+00:11:02,768 --> 00:11:05,440
+Por lo tanto, ahora es una matriz que tiene 1, 3, 5
+
+292
+00:11:05,480 --> 00:11:08,760
+y la segunda columna ha sido reemplazado por 10, 11, 12.
+
+293
+00:11:08,760 --> 00:11:14,513
+Aquí hay otra operación.
+
+294
+00:11:14,680 --> 00:11:15,917
+Vamos a establecer que A =
+
+295
+00:11:15,917 --> 00:11:17,738
+[A, [100, 101,
+
+296
+00:11:17,750 --> 00:11:21,605
+102]], lo que
+
+297
+00:11:21,605 --> 00:11:24,109
+esto va a hacer
+
+298
+00:11:24,120 --> 00:11:28,025
+depende del vector columna
+
+299
+00:11:28,047 --> 00:11:29,855
+a la derecha.
+
+300
+00:11:29,890 --> 00:11:33,230
+Así que, ahora, ¡ups!
+
+301
+00:11:33,260 --> 00:11:36,798
+Creo que he cometido un pequeño error.
+
+302
+00:11:36,800 --> 00:11:41,065
+Debería de haber puesto puntos y comas allí
+
+303
+00:11:41,700 --> 00:11:43,910
+y ahora A es igual a esto.
+
+304
+00:11:43,910 --> 00:11:44,564
+¿Bien?
+
+305
+00:11:44,564 --> 00:11:45,479
+Espero que eso tenga sentido.
+
+306
+00:11:45,479 --> 00:11:46,480
+Así que 100, 101, 102.
+
+307
+00:11:46,480 --> 00:11:48,804
+Este es un vector columna
+
+308
+00:11:48,820 --> 00:11:51,668
+y lo que hicimos
+
+309
+00:11:51,668 --> 00:11:53,386
+fue establecer A, tomamos
+
+310
+00:11:53,386 --> 00:11:56,156
+A y establecimos a la definición original
+
+311
+00:11:56,156 --> 00:11:57,368
+y después pusimos el vector columna
+
+312
+00:11:57,380 --> 00:11:59,192
+a la derecha,
+
+313
+00:11:59,192 --> 00:12:00,217
+así que terminamos teniendo
+
+314
+00:12:00,217 --> 00:12:04,288
+la matriz A la cual tenía
+
+315
+00:12:04,288 --> 00:12:05,405
+estos seis elementos en la izquierda.
+
+316
+00:12:05,405 --> 00:12:06,785
+Así que tomamos la matriz
+
+317
+00:12:06,810 --> 00:12:08,564
+A y adjuntamos otro
+
+318
+00:12:08,564 --> 00:12:09,793
+vector columna a la derecha.
+
+319
+00:12:09,793 --> 00:12:11,814
+Por lo que ahora A es
+
+320
+00:12:11,814 --> 00:12:16,083
+una matriz de 3x3 y así se ve.
+
+321
+00:12:16,200 --> 00:12:18,005
+Y, por último, un buen
+
+322
+00:12:18,010 --> 00:12:19,802
+truco que a veces uso,
+
+323
+00:12:19,810 --> 00:12:22,022
+si sólo pones A(:) como tal.
+
+324
+00:12:22,022 --> 00:12:25,585
+Esta es una sintaxis de un caso un tanto especial.
+
+325
+00:12:25,590 --> 00:12:28,695
+Lo que significa esto es que pone todos los elementos de A en
+
+326
+00:12:28,695 --> 00:12:30,751
+un único vector columna
+
+327
+00:12:30,850 --> 00:12:34,513
+y esto me da un vector de 9 por 1.
+
+328
+00:12:34,513 --> 00:12:38,584
+Solo ajusta los otros que están combinados entre sí.
+
+329
+00:12:39,700 --> 00:12:45,258
+Solo un par de ejemplos. Vamos a ver. Vamos a
+
+330
+00:12:45,300 --> 00:12:52,073
+decir que puse A = [1 2; 3 4; 5 6]; ¿de acuerdo?,
+
+331
+00:12:52,181 --> 00:12:54,035
+y vamos a decir
+
+332
+00:12:54,060 --> 00:12:55,674
+que puse un B
+
+333
+00:12:55,680 --> 00:12:58,984
+= [111 12; 13 14; 15 16]
+
+334
+00:12:58,984 --> 00:13:00,346
+Puedo crear una nueva
+
+335
+00:13:00,346 --> 00:13:03,161
+matriz C como A B.
+
+336
+00:13:03,200 --> 00:13:05,010
+Esto sólo significa que mi
+
+337
+00:13:05,080 --> 00:13:06,666
+matriz A. Aquí está mi matriz
+
+338
+00:13:06,666 --> 00:13:08,426
+B y he establecido que C
+
+339
+00:13:08,426 --> 00:13:11,053
+sea igual a AB.
+
+340
+00:13:11,070 --> 00:13:12,225
+Lo que estoy haciendo es que estoy tomando
+
+341
+00:13:12,225 --> 00:13:15,438
+estas dos matrices y simplemente concatenándolas la una con la otra.
+
+342
+00:13:15,438 --> 00:13:18,408
+Así que tengo la matriz A a la izquierda
+
+343
+00:13:18,420 --> 00:13:20,786
+y la matriz B a la derecha,
+
+344
+00:13:20,800 --> 00:13:23,738
+así es como formé
+
+345
+00:13:23,830 --> 00:13:27,145
+esta matriz C, al unirlas.
+
+346
+00:13:27,145 --> 00:13:28,927
+También puedo hacer a C =
+
+347
+00:13:28,927 --> 00:13:31,975
+[A:B], la notación punto
+
+348
+00:13:32,000 --> 00:13:35,552
+y coma significa que
+
+349
+00:13:35,552 --> 00:13:38,881
+puse la siguiente cosa en la parte inferior.
+
+350
+00:13:38,881 --> 00:13:39,880
+Por lo tanto, voy a hacer que
+
+351
+00:13:39,910 --> 00:13:41,169
+el punto y coma sea igual a B. También
+
+352
+00:13:41,170 --> 00:13:42,408
+une las matrices A
+
+353
+00:13:42,460 --> 00:13:44,048
+y B, excepto que
+
+354
+00:13:44,048 --> 00:13:46,408
+ahora las pone en la parte superior la una de la otra,
+
+355
+00:13:46,408 --> 00:13:49,675
+así que ahora tengo A en la parte superior y B en la parte inferior y C, aquí
+
+356
+00:13:49,675 --> 00:13:52,038
+está ahora la matriz 6x2.
+
+357
+00:13:52,038 --> 00:13:54,263
+Entonces, simplemente digamos que el punto y como
+
+358
+00:13:54,270 --> 00:13:56,705
+generalmente significa, ve a la siguiente línea.
+
+359
+00:13:56,705 --> 00:13:58,463
+Así, C está compuesto por A
+
+360
+00:13:58,463 --> 00:13:59,598
+y luego va a la parte inferior
+
+361
+00:13:59,598 --> 00:14:00,610
+de eso y pone a B
+
+362
+00:14:00,690 --> 00:14:02,320
+en la parte inferior, por
+
+363
+00:14:02,390 --> 00:14:04,225
+cierto, este AB es
+
+364
+00:14:04,225 --> 00:14:05,734
+igual que A, B y
+
+365
+00:14:05,750 --> 00:14:09,106
+por lo que, cualquiera de éstos te da el mismo resultado.
+
+366
+00:14:10,310 --> 00:14:11,916
+Con todo esto, espero que
+
+367
+00:14:11,916 --> 00:14:14,256
+ahora ya sepas cómo construir
+
+368
+00:14:14,260 --> 00:14:17,207
+matrices y con suerte comenzar
+
+369
+00:14:17,207 --> 00:14:18,223
+a mostrarte algunos de los
+
+370
+00:14:18,223 --> 00:14:19,822
+comandos que se utilizan
+
+371
+00:14:19,850 --> 00:14:21,913
+para poner rápidamente en conjunto a las matrices,
+
+372
+00:14:21,940 --> 00:14:23,390
+tomar las matrices y, como sabes,
+
+373
+00:14:23,390 --> 00:14:24,984
+unirlas para formar
+
+374
+00:14:25,000 --> 00:14:27,009
+matrices más grandes, con sólo
+
+375
+00:14:27,009 --> 00:14:28,962
+unas pocas líneas de código; Octave
+
+376
+00:14:28,962 --> 00:14:30,770
+es muy conveniente en términos
+
+377
+00:14:30,770 --> 00:14:32,683
+de la rapidez con que podemos montar
+
+378
+00:14:32,683 --> 00:14:36,033
+matrices complejas y mover los datos.
+
+379
+00:14:36,050 --> 00:14:38,027
+Así que esto es mover los datos.
+
+380
+00:14:38,027 --> 00:14:39,347
+En el siguiente vídeo empezaremos
+
+381
+00:14:39,347 --> 00:14:40,783
+a hablar acerca de cómo
+
+382
+00:14:40,860 --> 00:14:46,232
+cálculos complejos en esto y en nuestros datos.
+
+383
+00:14:46,830 --> 00:14:48,256
+Ojalá esto te de un
+
+384
+00:14:48,256 --> 00:14:49,961
+una idea de cómo, con
+
+385
+00:14:49,961 --> 00:14:51,049
+sólo unos pocos comandos, puedes
+
+386
+00:14:51,049 --> 00:14:54,573
+rápidamente mover los datos en torno a Octave.
+
+387
+00:14:54,590 --> 00:14:56,164
+Sabes, cargar y guardar los vectores
+
+388
+00:14:56,180 --> 00:14:58,059
+y matrices, cargar y guardar datos,
+
+389
+00:14:58,090 --> 00:15:00,201
+unir matrices para crear
+
+390
+00:15:00,201 --> 00:15:02,990
+matrices más grandes dentro de un índice o seleccionar
+
+391
+00:15:02,990 --> 00:15:05,021
+elementos específicos de las matrices.
+
+392
+00:15:05,021 --> 00:15:06,015
+Sé que pasé por un montón
+
+393
+00:15:06,015 --> 00:15:06,944
+de comandos, así que creo
+
+394
+00:15:06,980 --> 00:15:08,244
+que lo mejor que puedes hacer es
+
+395
+00:15:08,244 --> 00:15:09,741
+después de todo, revisar la
+
+396
+00:15:09,741 --> 00:15:12,248
+transcripción de las cosas que estaba escribiendo.
+
+397
+00:15:12,248 --> 00:15:13,286
+Ya sabes, echarles un vistazo.
+
+398
+00:15:13,286 --> 00:15:14,661
+Entra al sitio de los cursos y descarga
+
+399
+00:15:14,661 --> 00:15:15,927
+la transcripción de la sesión
+
+400
+00:15:15,950 --> 00:15:17,479
+de allí, revisa la
+
+401
+00:15:17,479 --> 00:15:18,820
+transcripción y escribe
+
+402
+00:15:18,820 --> 00:15:21,942
+tú mismo algunos de esos comandos en Octave,
+
+403
+00:15:21,942 --> 00:15:24,752
+comienza a jugar con estos comandos y consigue que funcionen.
+
+404
+00:15:24,752 --> 00:15:28,113
+Y, obviamente, ya sabes, no tiene sentido en absoluto el tratar de memorizar todos estos comandos.
+
+405
+00:15:28,113 --> 00:15:30,030
+Es justo, pero lo que
+
+406
+00:15:30,030 --> 00:15:31,852
+debes hacer es, con suerte
+
+407
+00:15:31,852 --> 00:15:32,910
+has aprendido en este vídeo,
+
+408
+00:15:32,910 --> 00:15:35,065
+un poco de la clase de cosas que puedes hacer.
+
+409
+00:15:35,100 --> 00:15:36,519
+Así que más adelante, cuando
+
+410
+00:15:36,520 --> 00:15:37,902
+estés tratando de programar un algoritmos de aprendizaje
+
+411
+00:15:37,902 --> 00:15:39,630
+tu solo, si estás
+
+412
+00:15:39,630 --> 00:15:40,921
+tratando de encontrar un comando específico
+
+413
+00:15:40,930 --> 00:15:42,455
+que tal vez piensas que
+
+414
+00:15:42,455 --> 00:15:43,878
+Octave puede ejecutar o porque piensas que
+
+415
+00:15:43,878 --> 00:15:45,325
+puede ser que lo hayas visto aquí,
+
+416
+00:15:45,325 --> 00:15:47,300
+debes consultar la transcripción
+
+417
+00:15:47,300 --> 00:15:48,545
+de la sesión y revisarla
+
+418
+00:15:48,560 --> 00:15:51,693
+con el fin de encontrar los comandos que quieras usar.
+
+419
+00:15:51,693 --> 00:15:53,069
+automático según
+
+420
+00:15:53,069 --> 00:15:54,841
+mover datos, en el
+
+421
+00:15:54,841 --> 00:15:56,060
+siguiente video lo que me gustaría
+
+422
+00:15:56,120 --> 00:15:57,699
+hacer es empezar a decir
+
+423
+00:15:57,740 --> 00:15:59,257
+cómo hacer en realidad
+
+424
+00:15:59,257 --> 00:16:01,404
+cálculos complejos sobre nuestros
+
+425
+00:16:01,410 --> 00:16:03,548
+datos, la forma de
+
+426
+00:16:03,550 --> 00:16:04,866
+calcular los datos y
+
+427
+00:16:04,866 --> 00:16:06,560
+realmente empezar a aplicar los algoritmos de aprendizaje.

@@ -1,0 +1,1550 @@
+1
+00:00:00,090 --> 00:00:02,346
+Sekarang Anda tahu banyak tentang
+machine learning.
+
+2
+00:00:02,390 --> 00:00:03,635
+Di video ini, saya ingin
+
+3
+00:00:03,635 --> 00:00:05,448
+mengajari Anda satu bahasa pemrograman,
+
+4
+00:00:05,470 --> 00:00:06,718
+Octave, yang akan membuat Anda
+
+5
+00:00:06,760 --> 00:00:08,878
+mengimplementasikan dengan sangat cepat
+
+6
+00:00:08,890 --> 00:00:10,259
+algoritma belajar yang telah kita
+
+7
+00:00:10,259 --> 00:00:11,770
+pelajari sebelumnya, dan algoritma
+
+8
+00:00:11,770 --> 00:00:14,872
+belajar yang akan kita pelajari nanti.
+
+9
+00:00:14,900 --> 00:00:16,381
+Di masa yang lalu, saya telah coba
+mengajar machine learning
+
+10
+00:00:16,381 --> 00:00:19,497
+menggunakan banyak bahasa pemrograman
+yang berbeda
+
+11
+00:00:19,500 --> 00:00:22,046
+termasuk C++, Java,
+
+12
+00:00:22,825 --> 00:00:25,379
+Python, NumPy, R, dan juga
+
+13
+00:00:25,379 --> 00:00:27,128
+Octave, dan yang saya
+
+14
+00:00:27,160 --> 00:00:28,783
+dapati adalah siswa bisa
+
+15
+00:00:28,790 --> 00:00:30,535
+belajar dengan sangat
+
+16
+00:00:30,570 --> 00:00:32,497
+cepat dan produktif,
+
+17
+00:00:32,497 --> 00:00:33,780
+juga membuat purwa-rupa
+
+18
+00:00:33,780 --> 00:00:35,569
+algoritma dengan sangat cepat
+menggunakan
+
+19
+00:00:35,569 --> 00:00:38,262
+bahasa tingkat tinggi seperti Octave.
+
+20
+00:00:38,290 --> 00:00:39,798
+Bahkan, yang sering saya
+
+21
+00:00:39,798 --> 00:00:41,516
+lihat di Silicon Valley adalah
+
+22
+00:00:41,520 --> 00:00:43,655
+jika Anda ingin membuat
+
+23
+00:00:43,655 --> 00:00:44,714
+dan menguji dalam
+
+24
+00:00:44,740 --> 00:00:46,548
+skala besar suatu algoritma belajar,
+
+25
+00:00:46,610 --> 00:00:48,242
+yang orang-orang sering lakukan
+
+26
+00:00:48,242 --> 00:00:50,637
+adalah membuat purwa-rupa menggunakan
+Octave,
+
+27
+00:00:50,660 --> 00:00:52,200
+yang merupakan bahasa pembuat purwa-rupa
+yang sangat bagus.
+
+28
+00:00:52,210 --> 00:00:55,264
+Anda bisa dengan sangat cepat membuat
+algoritma belajar Anda bekerja.
+
+29
+00:00:55,270 --> 00:00:56,629
+Dan sesudah itu,
+
+30
+00:00:56,629 --> 00:00:58,459
+Anda bisa
+
+31
+00:00:58,480 --> 00:01:00,362
+menghabiskan waktu Anda
+
+32
+00:01:00,362 --> 00:01:03,059
+mengimplementasikan kembali algoritma
+itu
+
+33
+00:01:03,059 --> 00:01:05,150
+menggunakan C++, Java, atau beberapa
+bahasa seperti itu.
+
+34
+00:01:05,160 --> 00:01:06,273
+Karena semua pelajaran yang telah kita
+pelajari
+
+35
+00:01:06,300 --> 00:01:08,679
+mengenai memprogram waktu atau
+menghemat waktu,
+
+36
+00:01:08,710 --> 00:01:09,848
+yaitu waktu Anda.
+
+37
+00:01:09,870 --> 00:01:13,309
+Investasi waktu dalam machine learning
+sangat berharga.
+
+38
+00:01:13,320 --> 00:01:15,101
+Jika Anda bisa
+
+39
+00:01:15,101 --> 00:01:17,898
+membuat algoritma Anda bekerja
+secepatnya menggunakan Octave,
+
+40
+00:01:17,898 --> 00:01:18,932
+maka Anda
+
+41
+00:01:18,932 --> 00:01:20,697
+menghemat banyak waktu dengan
+mengembangkan
+
+42
+00:01:20,720 --> 00:01:22,143
+algoritma itu pertama kali dalam
+
+43
+00:01:22,150 --> 00:01:23,971
+Octave, dan kemudian
+
+44
+00:01:23,971 --> 00:01:28,145
+mengimplementasikannya di C++, Java,
+setelah algoritmanya berhasil.
+
+45
+00:01:28,160 --> 00:01:30,238
+Bahasa pembuat purwa-rupa paling umum
+yang saya
+
+46
+00:01:30,238 --> 00:01:31,538
+lihat orang gunakan untuk
+
+47
+00:01:31,560 --> 00:01:34,058
+machine learning adalah Octave, MATLAB,
+
+48
+00:01:34,070 --> 00:01:37,230
+Python, NumPy, and R.
+
+49
+00:01:38,150 --> 00:01:40,032
+Octave bagus karena gratis.
+
+50
+00:01:40,032 --> 00:01:42,660
+MATLAB bagus juga,
+
+51
+00:01:42,670 --> 00:01:44,656
+tapi itu mahal bagi
+
+52
+00:01:44,656 --> 00:01:45,956
+banyak orang.
+
+53
+00:01:45,960 --> 00:01:47,972
+Tapi jika Anda punya MATLAB,
+
+54
+00:01:47,988 --> 00:01:50,095
+Anda bisa menggunakannya di kelas ini.
+
+55
+00:01:50,110 --> 00:01:52,037
+Jika Anda tahu Python, NumPy,
+
+56
+00:01:52,037 --> 00:01:54,853
+atau R, saya lihat beberapa orang
+menggunakan itu.
+
+57
+00:01:54,870 --> 00:01:56,353
+Tapi, yang saya amati
+
+58
+00:01:56,360 --> 00:01:57,739
+mereka biasanya
+
+59
+00:01:57,760 --> 00:02:00,041
+mengerjakannya lebih lambat,
+
+60
+00:02:00,050 --> 00:02:02,121
+karena
+
+61
+00:02:02,121 --> 00:02:04,048
+sintaks Python, NumPy
+
+62
+00:02:04,048 --> 00:02:08,391
+sedikit lebih kaku dari Octave.
+
+63
+00:02:08,410 --> 00:02:09,704
+Karena itu, dan
+
+64
+00:02:09,704 --> 00:02:11,372
+karena kita mengeluarkan kode
+
+65
+00:02:11,380 --> 00:02:13,039
+pembuka dalam Octave,
+
+66
+00:02:13,039 --> 00:02:14,363
+saya sangat merekomendasikan
+
+67
+00:02:14,363 --> 00:02:18,321
+Anda tidak coba membuat latihan di kelas
+ini menggunakan NumPy dan R.
+
+68
+00:02:18,330 --> 00:02:19,805
+Sebaliknya, saya merekomendasikan
+
+69
+00:02:19,805 --> 00:02:21,498
+Anda mengerjakan latihan pemrograman
+
+70
+00:02:21,520 --> 00:02:24,292
+untuk kelas ini menggunakan Octave.
+
+71
+00:02:24,330 --> 00:02:25,428
+Yang akan saya lakukan di
+
+72
+00:02:25,428 --> 00:02:26,708
+video ini adalah melihat
+
+73
+00:02:26,708 --> 00:02:28,667
+daftar perintah-perintah
+
+74
+00:02:28,667 --> 00:02:29,879
+dengan sangat cepat, untuk
+
+75
+00:02:29,879 --> 00:02:31,073
+menunjukkan pada Anda
+
+76
+00:02:31,080 --> 00:02:34,807
+perintah-perintah dan hal-hal yang bisa
+Anda lakukan di Octave.
+
+77
+00:02:34,807 --> 00:02:36,493
+Website mata kuliah ini punya
+
+78
+00:02:36,520 --> 00:02:38,965
+transkrip semua yang saya
+
+79
+00:02:38,965 --> 00:02:42,095
+kerjakan. Jadi, sesudah
+
+80
+00:02:42,095 --> 00:02:43,185
+menonton video ini Anda
+
+81
+00:02:43,185 --> 00:02:44,905
+bisa melihat transkrip
+
+82
+00:02:44,905 --> 00:02:46,635
+yang ditampilkan di website mata kuliah
+ini
+
+83
+00:02:46,635 --> 00:02:48,247
+saat Anda ingin melihat suatu perintah.
+
+84
+00:02:48,247 --> 00:02:50,226
+Konkritnya, yang saya rekomendasikan
+
+85
+00:02:50,226 --> 00:02:53,225
+untuk Anda lakukan adalah menonton video
+tutorial terlebih dulu.
+
+86
+00:02:53,230 --> 00:02:55,118
+Setelah menontonnya hingga
+
+87
+00:02:55,120 --> 00:02:58,728
+selesai, barulah instal Octave di
+komputer Anda.
+
+88
+00:02:58,728 --> 00:02:59,738
+Kemudian,
+
+89
+00:02:59,738 --> 00:03:01,769
+unduh transkrip
+
+90
+00:03:01,770 --> 00:03:02,983
+hal-hal yang Anda lihat di
+
+91
+00:03:02,983 --> 00:03:04,915
+tiap sesi, dan ketik
+
+92
+00:03:04,930 --> 00:03:07,162
+perintah manapun yang menarik
+
+93
+00:03:07,200 --> 00:03:09,132
+bagi Anda di Octave, agar
+
+94
+00:03:09,132 --> 00:03:10,602
+dijalankan di komputer Anda, supaya
+
+95
+00:03:10,602 --> 00:03:12,962
+Anda lihat cara kerjanya sendiri.
+
+96
+00:03:12,970 --> 00:03:15,535
+Jadi, mari kita mulai.
+
+97
+00:03:15,920 --> 00:03:19,363
+Ini layar Windows saya, dan saya akan
+menjalankan Octave,
+
+98
+00:03:19,370 --> 00:03:20,977
+sekarang saya sudah di Octave.
+
+99
+00:03:20,977 --> 00:03:22,522
+Itu tampilan Octave saya.
+
+100
+00:03:22,522 --> 00:03:24,475
+Biar saya tunjukkan operasi
+
+101
+00:03:24,475 --> 00:03:27,291
+dasar yang dapat Anda lakukan
+di Octave.
+
+102
+00:03:27,330 --> 00:03:28,505
+Anda ketik 5 + 6.
+
+103
+00:03:28,505 --> 00:03:30,493
+Hasilnya 11.
+
+104
+00:03:30,493 --> 00:03:31,516
+3 - 2
+
+105
+00:03:31,540 --> 00:03:33,710
+5 x 8, 1/2, 2^6
+
+106
+00:03:35,733 --> 00:03:37,747
+64.
+
+107
+00:03:37,810 --> 00:03:42,361
+Itu operasi matematika dasar.
+
+108
+00:03:42,390 --> 00:03:44,495
+Anda juga dapat mengerjakan operasi
+logika.
+
+109
+00:03:44,550 --> 00:03:45,929
+1 sama dengan 2.
+
+110
+00:03:45,929 --> 00:03:47,722
+Hasilnya salah.
+
+111
+00:03:47,722 --> 00:03:51,658
+Perintah % adalah sebuah komentar.
+
+112
+00:03:51,658 --> 00:03:53,861
+Jadi, 1 == 2, hasilnya salah,
+
+113
+00:03:53,861 --> 00:03:55,622
+yang dinyatakan dengan 0.
+
+114
+00:03:55,650 --> 00:03:58,028
+1 tidak sama dengan 2.
+
+115
+00:03:58,028 --> 00:03:59,312
+Ini benar.
+
+116
+00:03:59,312 --> 00:04:00,718
+Jadi hasilnya 1.
+
+117
+00:04:00,718 --> 00:04:02,146
+Perhatikan, tanda tidak sama dengan
+
+118
+00:04:02,146 --> 00:04:05,478
+simbolnya ~=
+
+119
+00:04:05,550 --> 00:04:07,336
+dan bukan !=
+
+120
+00:04:07,336 --> 00:04:09,267
+seperti yang digunakan bahasa
+
+121
+00:04:09,267 --> 00:04:10,878
+pemrograman lain.
+
+122
+00:04:10,910 --> 00:04:13,616
+Operasi logika 1 && 0
+
+123
+00:04:13,616 --> 00:04:15,545
+menggunakan tanda && untuk
+
+124
+00:04:15,545 --> 00:04:17,340
+logika AND.
+
+125
+00:04:18,120 --> 00:04:20,188
+Dan itu hasilnya false.
+
+126
+00:04:20,188 --> 00:04:23,886
+1 || 0 adalah operasi logika OR.
+
+127
+00:04:23,900 --> 00:04:25,736
+Hasilnya true.
+
+128
+00:04:25,736 --> 00:04:27,131
+xor(1,0)
+
+129
+00:04:27,131 --> 00:04:30,333
+hasilnya 1.
+
+130
+00:04:30,333 --> 00:04:32,928
+Octave-3.2.4.exe:11 di kiri ini
+
+131
+00:04:32,928 --> 00:04:35,683
+adalah prompt Octave default.
+
+132
+00:04:35,700 --> 00:04:37,513
+Itu menunjukkan
+
+133
+00:04:37,520 --> 00:04:39,150
+versi Octave, dsb.
+
+134
+00:04:39,150 --> 00:04:40,423
+Jika Anda tidak ingin melihatnya,
+
+135
+00:04:40,450 --> 00:04:43,025
+ada perintah
+
+136
+00:04:43,025 --> 00:04:44,670
+PS('>> ')
+
+137
+00:04:44,670 --> 00:04:46,602
+yang
+
+138
+00:04:46,602 --> 00:04:48,800
+bisa Anda gunakan untuk merubah
+prompt-nya.
+
+139
+00:04:48,810 --> 00:04:51,272
+Dan karakter di tengah
+
+140
+00:04:51,272 --> 00:04:53,362
+tanda petik, >> spasi,
+
+141
+00:04:53,400 --> 00:04:55,592
+itu adalah tampilan prompt Octave yang
+saya suka.
+
+142
+00:04:55,592 --> 00:04:57,722
+Jadi bila saya enter,
+
+143
+00:04:57,920 --> 00:04:59,763
+uups, maaf.
+
+144
+00:04:59,763 --> 00:05:00,786
+Seperti itu.
+
+145
+00:05:00,786 --> 00:05:02,622
+PS1 seperti itu.
+
+146
+00:05:02,622 --> 00:05:05,420
+Sekarang, prompt Octave saya berubah
+jadi tanda >>.
+
+147
+00:05:05,500 --> 00:05:09,263
+Dimana, kelihatan sedikit lebih bagus.
+
+148
+00:05:09,710 --> 00:05:12,384
+Berikutnya, kita bicara tentang
+variabel Octave.
+
+149
+00:05:12,384 --> 00:05:13,865
+Saya bisa menggunakan variabel
+
+150
+00:05:13,865 --> 00:05:16,165
+a dan menyimpan angka 3 di situ.
+
+151
+00:05:16,165 --> 00:05:18,421
+Tekan enter.
+
+152
+00:05:18,440 --> 00:05:20,043
+Sekarang a sama dengan 3.
+
+153
+00:05:20,070 --> 00:05:22,861
+Anda ingin menyimpan sesuatu di variabel
+tapi tidak ingin menampilkan hasilnya.
+
+154
+00:05:22,861 --> 00:05:26,758
+Jika Anda tambahkan tanda ";",
+
+155
+00:05:26,920 --> 00:05:30,824
+hasilnya tidak ditampilkan.
+
+156
+00:05:30,824 --> 00:05:33,160
+Tekan Enter, tidak ada yang ditampilkan.
+
+157
+00:05:33,160 --> 00:05:35,399
+Sebaliknya, a = 3
+
+158
+00:05:35,420 --> 00:05:36,719
+menampilkannya.
+
+159
+00:05:36,719 --> 00:05:39,845
+a = 3; tidak menampilkan apa-apa.
+
+160
+00:05:39,850 --> 00:05:41,845
+Saya bisa menyimpan string.
+
+161
+00:05:41,845 --> 00:05:43,473
+b = 'hi';
+
+162
+00:05:43,520 --> 00:05:45,047
+Sekarang, jika saya enter b
+
+163
+00:05:45,047 --> 00:05:46,072
+isi
+
+164
+00:05:46,072 --> 00:05:48,338
+variabel b ditampilkan.
+Jadi, b adalah string 'hi'
+
+165
+00:05:48,370 --> 00:05:51,118
+c = (3 >= 1);
+
+166
+00:05:51,130 --> 00:05:54,538
+Hasil c adalah true.
+
+167
+00:05:55,710 --> 00:05:57,999
+Jika Anda ingin mencetak
+
+168
+00:05:58,030 --> 00:06:00,832
+atau menampilkan isi variabel,
+begini caranya.
+
+169
+00:06:00,832 --> 00:06:03,725
+Set a=pi;
+
+170
+00:06:03,760 --> 00:06:04,985
+Jika saya ingin menampilkan
+
+171
+00:06:04,985 --> 00:06:08,545
+isi a, cukup ketik a seperti itu, dan
+hasilnya ditampilkan.
+
+172
+00:06:08,545 --> 00:06:10,344
+Untuk pencetakkan yang lebih kompleks
+
+173
+00:06:10,344 --> 00:06:13,674
+ada juga perintah "disp" singkatan untuk
+"display".
+
+174
+00:06:13,710 --> 00:06:15,858
+disp(a) menampilkan isi a seperti itu.
+
+175
+00:06:15,890 --> 00:06:18,337
+Anda juga bisa menampilkan string.
+
+176
+00:06:18,350 --> 00:06:21,392
+disp(sprintf('2
+
+177
+00:06:21,460 --> 00:06:24,990
+decimals: %0.2
+
+178
+00:06:25,260 --> 00:06:28,273
+f', a)). Seperti itu.
+
+179
+00:06:28,273 --> 00:06:29,863
+Ini akan menampilkan string-nya.
+
+180
+00:06:29,863 --> 00:06:31,722
+2 decimals: 3.14.
+
+181
+00:06:31,722 --> 00:06:33,651
+Ini
+
+182
+00:06:33,670 --> 00:06:35,993
+sintaks C gaya lama.
+
+183
+00:06:35,993 --> 00:06:37,404
+Bagi Anda yang
+
+184
+00:06:37,420 --> 00:06:39,073
+telah menulis progam menggunakan C
+sebelumnya, ini
+
+185
+00:06:39,073 --> 00:06:41,378
+sintaks yang Anda gunakan untuk mencetak
+di layar.
+
+186
+00:06:41,380 --> 00:06:44,498
+Jadi, sprintf menghasilkan
+
+187
+00:06:44,510 --> 00:06:46,021
+string
+
+188
+00:06:46,021 --> 00:06:48,274
+2 decimals: 3.14.
+
+189
+00:06:48,290 --> 00:06:50,644
+%0.2f ini berarti
+
+190
+00:06:50,644 --> 00:06:52,475
+masukkan nilai a ke sini,
+
+191
+00:06:52,475 --> 00:06:55,926
+tampilkan 2 digit dibelakang koma.
+
+192
+00:06:55,926 --> 00:06:58,104
+Kemudian disp mengambil string itu
+
+193
+00:06:58,130 --> 00:07:00,691
+melalui perintah
+
+194
+00:07:00,691 --> 00:07:01,683
+sprintf.
+
+195
+00:07:01,683 --> 00:07:03,091
+Perintah sprintf.
+
+196
+00:07:03,091 --> 00:07:05,835
+Dan disp menampilkan string-nya.
+
+197
+00:07:05,870 --> 00:07:07,020
+Contoh lainnya,
+
+198
+00:07:07,020 --> 00:07:11,360
+disp(sprintf('6 decimals:
+
+199
+00:07:11,361 --> 00:07:14,551
+%0.6f, a)).
+
+200
+00:07:14,930 --> 00:07:17,075
+Ini harusnya mencetak nilai pi
+
+201
+00:07:17,090 --> 00:07:21,100
+dengan 6 angka dibelakang koma.
+
+202
+00:07:22,060 --> 00:07:25,728
+Saya baru saja menampilkan a seperti
+itu.
+
+203
+00:07:25,740 --> 00:07:28,633
+Ada shortcut berguna yaitu format long.
+
+204
+00:07:28,633 --> 00:07:31,759
+Itu menyebabkan string
+
+205
+00:07:31,760 --> 00:07:33,748
+ditampilkan dengan jumlah angka desimal
+yang lebih banyak.
+
+206
+00:07:33,748 --> 00:07:35,593
+Dan format short adalah
+
+207
+00:07:35,593 --> 00:07:37,095
+perintah yang
+
+208
+00:07:37,120 --> 00:07:40,113
+hanya mencetak sedikit angka
+
+209
+00:07:40,600 --> 00:07:43,934
+Okey, begitulah bekerja dengan variabel.
+
+210
+00:07:43,934 --> 00:07:47,047
+Sekarang, mari lihat vektor dan matriks.
+
+211
+00:07:47,070 --> 00:07:49,274
+Katakanlah saya ingin menyimpan matriks
+ke variabel A.
+
+212
+00:07:49,280 --> 00:07:50,974
+Contohnya: [1 2;
+
+213
+00:07:50,980 --> 00:07:54,593
+3 4; 5 6]
+
+214
+00:07:54,600 --> 00:07:56,235
+Ini menghasilkan matriks A
+
+215
+00:07:56,240 --> 00:07:58,572
+3 x 2, yang baris
+
+216
+00:07:58,580 --> 00:07:59,818
+pertamanya, 1 2. Baris kedua
+
+217
+00:07:59,820 --> 00:08:02,030
+3 4. Baris ketiga 5 6.
+
+218
+00:08:02,030 --> 00:08:04,385
+Fungsi tanda ';'
+
+219
+00:08:04,390 --> 00:08:05,818
+pada dasarnya mengatakan, pergi ke
+
+220
+00:08:05,820 --> 00:08:07,915
+baris matriks berikutnya.
+
+221
+00:08:07,915 --> 00:08:09,016
+Ada cara lain untuk mengetik ini.
+
+222
+00:08:09,016 --> 00:08:11,536
+Ketik A = [1 2;
+
+223
+00:08:11,536 --> 00:08:15,046
+3 4; 5 6; seperti itu.
+
+224
+00:08:15,046 --> 00:08:17,038
+Itu cara lain
+
+225
+00:08:17,038 --> 00:08:18,576
+menyimpan nilai
+
+226
+00:08:18,576 --> 00:08:22,183
+matriks 3 x 2 ini ke A.
+
+227
+00:08:22,200 --> 00:08:23,568
+Anda juga bisa menyimpan vektor.
+
+228
+00:08:23,568 --> 00:08:25,532
+v = [1 2 3]
+
+229
+00:08:25,560 --> 00:08:27,359
+Ini adalah vektor baris,
+
+230
+00:08:27,359 --> 00:08:29,915
+atau ini vektor 3 x 1.
+
+231
+00:08:29,940 --> 00:08:32,016
+Dimana itu,
+
+232
+00:08:32,030 --> 00:08:34,375
+maaf, ini
+
+233
+00:08:34,380 --> 00:08:37,998
+matriks 1 x 3.
+
+234
+00:08:37,998 --> 00:08:39,256
+Bukan 3 x 1.
+
+235
+00:08:39,256 --> 00:08:41,015
+Jika saya ingin menyimpan
+
+236
+00:08:41,015 --> 00:08:43,975
+vektor kolom,
+
+237
+00:08:43,975 --> 00:08:48,778
+yang harus saya lakukan adalah ketik
+v = [1;2;3].
+
+238
+00:08:48,830 --> 00:08:50,030
+Ini akan menghasilkan vektor 3 x 1
+
+239
+00:08:50,100 --> 00:08:51,797
+sebagai ganti vektor 1 x 3.
+
+240
+00:08:51,797 --> 00:08:55,892
+Jadi ini akan menjadi sebuah vektor
+kolom.
+
+241
+00:08:56,250 --> 00:08:57,968
+Ini beberapa lagi notasi yang berguna.
+
+242
+00:08:57,968 --> 00:09:02,343
+v = 1:0.1:2
+
+243
+00:09:02,343 --> 00:09:03,598
+Ini maksudnya
+
+244
+00:09:03,620 --> 00:09:05,716
+memberikan v sejumlah
+
+245
+00:09:05,716 --> 00:09:08,714
+elemen yang mulai dari 1
+
+246
+00:09:08,714 --> 00:09:10,392
+dan bertambah kelipatan 0.1
+
+247
+00:09:10,410 --> 00:09:13,657
+hingga mencapai angka 2.
+
+248
+00:09:13,660 --> 00:09:19,168
+Jadi, bila saya lakukan ini, v akan
+jadi vektor baris ini.
+
+249
+00:09:19,168 --> 00:09:23,022
+Ini matriks 1 x 11.
+
+250
+00:09:23,022 --> 00:09:23,739
+Itu 1, 1.1, 1.2, 1.3, dan
+
+251
+00:09:23,739 --> 00:09:26,921
+seterusnya hingga
+
+252
+00:09:27,630 --> 00:09:30,141
+mencapai 2.
+
+253
+00:09:31,440 --> 00:09:33,269
+Saya juga bisa
+
+254
+00:09:33,269 --> 00:09:35,049
+set v = 1:6
+
+255
+00:09:35,060 --> 00:09:38,270
+Itu menjadikan v berisi nilai-nilai ini.
+
+256
+00:09:38,270 --> 00:09:41,291
+1 sampai 6, okey.
+
+257
+00:09:41,620 --> 00:09:44,254
+Ini beberapa cara lain untuk
+membentuk matriks.
+
+258
+00:09:44,254 --> 00:09:47,426
+ones(2,3) adalah perintah
+
+259
+00:09:47,426 --> 00:09:49,134
+yang menghasilkan matriks
+
+260
+00:09:49,140 --> 00:09:50,790
+2 x 3
+
+261
+00:09:50,790 --> 00:09:52,712
+yaitu matriks yang isinya semua 1.
+
+262
+00:09:52,712 --> 00:09:53,991
+Jadi, jika saya set
+
+263
+00:09:54,000 --> 00:09:56,845
+c = 2*ones(2,3)
+
+264
+00:09:56,845 --> 00:09:59,798
+ini menghasilkan
+
+265
+00:09:59,798 --> 00:10:03,061
+matriks 2 x 3 yang semua nilainya 2.
+
+266
+00:10:03,080 --> 00:10:04,258
+Anda bisa berpikir ini sebagai
+
+267
+00:10:04,258 --> 00:10:05,513
+cara tersingkat untuk menulis
+
+268
+00:10:05,550 --> 00:10:06,943
+c = [2 2 2;
+
+269
+00:10:06,943 --> 00:10:10,951
+2 2 2] yang juga akan memberi Anda
+hasil yang sama.
+
+270
+00:10:11,450 --> 00:10:13,910
+Katakanlah w = ones(1,3),
+
+271
+00:10:13,920 --> 00:10:15,485
+ini
+
+272
+00:10:15,485 --> 00:10:17,937
+akan jadi vektor baris
+
+273
+00:10:17,940 --> 00:10:20,998
+atau baris dari
+
+274
+00:10:20,998 --> 00:10:23,853
+tiga angka 1, dan selain itu
+
+275
+00:10:23,853 --> 00:10:25,463
+bisa juga
+
+276
+00:10:25,463 --> 00:10:27,469
+w = zeros(1,3),
+
+277
+00:10:27,469 --> 00:10:30,209
+ini menghasilkan matriks
+
+278
+00:10:30,220 --> 00:10:34,732
+1 x 3 yang semua nilainya 0.
+
+279
+00:10:34,732 --> 00:10:36,910
+Beberapa cara lagi membentuk matriks.
+
+280
+00:10:36,930 --> 00:10:39,175
+Jika saya buat
+
+281
+00:10:39,175 --> 00:10:41,512
+w = rand(1,3)
+
+282
+00:10:41,520 --> 00:10:43,050
+ini menghasilkan
+
+283
+00:10:43,050 --> 00:10:45,370
+matriks 1 x 3 yang semua nilainya acak.
+
+284
+00:10:45,372 --> 00:10:47,118
+Jika saya buat
+
+285
+00:10:47,215 --> 00:10:49,008
+rand(3,3),
+
+286
+00:10:49,050 --> 00:10:50,417
+ini menghasilkan matriks
+
+287
+00:10:50,417 --> 00:10:51,918
+3 x 3 yang semua
+
+288
+00:10:51,930 --> 00:10:54,009
+nilainya acak diambil dari
+
+289
+00:10:54,009 --> 00:10:55,830
+distribusi seragam antara 0 dan 1.
+
+290
+00:10:55,830 --> 00:10:56,937
+Jadi, setiap kali saya melakukan
+
+291
+00:10:56,937 --> 00:10:58,608
+ini, saya mendapatkan set
+
+292
+00:10:58,608 --> 00:11:00,510
+angka acak berbeda yang didapat
+
+293
+00:11:00,540 --> 00:11:02,573
+secara seragam antara 0 dan 1.
+
+294
+00:11:02,573 --> 00:11:03,718
+Bagi Anda yang
+
+295
+00:11:03,718 --> 00:11:05,375
+tahu variabel acak Gaussian
+
+296
+00:11:05,410 --> 00:11:06,275
+atau bagi Anda yang
+
+297
+00:11:06,275 --> 00:11:07,659
+tahu variabel acak normal,
+
+298
+00:11:07,660 --> 00:11:09,112
+Anda bisa juga set
+
+299
+00:11:09,112 --> 00:11:11,956
+w = randn(1,3)
+
+300
+00:11:11,990 --> 00:11:13,565
+Dan ini akan menghasilkan
+
+301
+00:11:13,570 --> 00:11:15,435
+tiga nilai yang diambil dari
+
+302
+00:11:15,435 --> 00:11:17,798
+distribusi Gaussian dengan nilai tengah
+
+303
+00:11:17,798 --> 00:11:19,266
+0 dan varians atau
+
+304
+00:11:19,266 --> 00:11:21,642
+standar deviasi sama dengan 1.
+
+305
+00:11:21,642 --> 00:11:23,148
+Anda dapat membuat hal yang
+
+306
+00:11:23,150 --> 00:11:24,698
+lebih kompleks seperti
+
+307
+00:11:24,698 --> 00:11:26,194
+w = -6 + sqrt(10)*
+
+308
+00:11:26,210 --> 00:11:28,656
+katakanlah
+
+309
+00:11:28,660 --> 00:11:31,978
+(randn(1,10000)).
+
+310
+00:11:31,978 --> 00:11:33,106
+Saya akan mengakhirinya dengan ';'
+
+311
+00:11:33,106 --> 00:11:35,623
+karena saya tidak ingin hasilnya
+dicetak.
+
+312
+00:11:35,623 --> 00:11:37,599
+Apakah hasilnya?
+
+313
+00:11:37,599 --> 00:11:38,905
+Hasilnya adalah
+
+314
+00:11:38,910 --> 00:11:40,582
+sebuah vektor dengan
+
+315
+00:11:40,610 --> 00:11:44,481
+jumlah elemen 10000.
+
+316
+00:11:44,490 --> 00:11:47,596
+Jadi,
+
+317
+00:11:47,596 --> 00:11:48,373
+mari kita tampilkan hasilnya.
+
+318
+00:11:48,373 --> 00:11:51,570
+Jadi, ini akan menghasilkan matriks
+seperti ini.
+
+319
+00:11:51,570 --> 00:11:52,408
+Betul?
+
+320
+00:11:52,408 --> 00:11:53,978
+Dengan 10000 elemen.
+
+321
+00:11:53,978 --> 00:11:55,835
+Itulah isi variabel w.
+
+322
+00:11:55,835 --> 00:11:57,392
+Dan jika saya
+
+323
+00:11:57,392 --> 00:11:59,442
+plot histogram dari w
+
+324
+00:11:59,442 --> 00:12:01,818
+dengan perintah 'hist'
+
+325
+00:12:01,820 --> 00:12:04,752
+sekarang,
+
+326
+00:12:04,752 --> 00:12:06,130
+butuh beberapa detik untuk
+
+327
+00:12:06,130 --> 00:12:07,297
+mendapatkan hasil ini,
+
+328
+00:12:07,297 --> 00:12:08,965
+tapi ini adalah histogram dari
+
+329
+00:12:08,970 --> 00:12:10,646
+variabel acak saya, untuk
+
+330
+00:12:10,650 --> 00:12:12,732
+w = -6 + sqrt(10)*
+
+331
+00:12:12,732 --> 00:12:15,537
+variabel acak Gaussian ini.
+
+332
+00:12:15,537 --> 00:12:17,537
+Saya bisa memplot histogram dengan
+
+333
+00:12:17,560 --> 00:12:21,032
+lebih banyak balok, katakanlah,
+50 balok.
+
+334
+00:12:21,032 --> 00:12:22,578
+Dan ini histogram
+
+335
+00:12:22,578 --> 00:12:25,735
+Gaussian saya dengan nilai tengah -6.
+
+336
+00:12:25,735 --> 00:12:27,285
+Karena saya punya -6
+
+337
+00:12:27,285 --> 00:12:29,208
+di sana ditambah sqrt(10) dikali ini.
+
+338
+00:12:29,230 --> 00:12:32,952
+Jadi, varians dari
+
+339
+00:12:32,952 --> 00:12:34,961
+variabel acak Gaussian ini
+
+340
+00:12:34,961 --> 00:12:36,696
+adalah 10 atau standar deviasinya
+
+341
+00:12:36,700 --> 00:12:38,935
+sqrt(10), yaitu sekitar
+
+342
+00:12:38,950 --> 00:12:41,063
+3.1.
+
+343
+00:12:41,780 --> 00:12:43,857
+Terakhir, 1 perintah khusus
+
+344
+00:12:43,857 --> 00:12:46,208
+untuk membuat matriks, yaitu perintah
+'eye'.
+
+345
+00:12:46,208 --> 00:12:48,394
+Jadi, 'eye'
+
+346
+00:12:48,394 --> 00:12:51,028
+mungkin permainan kata dari kata
+'identity'.
+
+347
+00:12:51,050 --> 00:12:52,650
+Set eye(4).
+
+348
+00:12:52,720 --> 00:12:56,004
+Ini matriks identitas 4 x 4.
+
+349
+00:12:56,004 --> 00:12:57,681
+Jadi, I = eye(4)
+
+350
+00:12:57,681 --> 00:13:00,458
+Ini menghasilkan matriks identitas
+4 x 4.
+
+351
+00:13:00,458 --> 00:13:04,475
+I = eye(6)
+
+352
+00:13:04,475 --> 00:13:05,611
+menghasilkan matriks
+
+353
+00:13:05,611 --> 00:13:08,089
+identitas 6 x 6, eye(3)
+
+354
+00:13:08,120 --> 00:13:09,134
+adalah matriks identitas 3 x 3.
+
+355
+00:13:09,134 --> 00:13:12,064
+Akhirnya, untuk
+
+356
+00:13:12,064 --> 00:13:14,263
+mengakhiri video ini, ada 1 lagi
+perintah yang berguna,
+
+357
+00:13:14,280 --> 00:13:15,479
+yaitu perintah 'help'.
+
+358
+00:13:15,479 --> 00:13:17,454
+Jadi, Anda bisa mengetik 'help eye' dan
+
+359
+00:13:17,454 --> 00:13:21,181
+ini akan menampilkan fungsi help untuk
+matriks identitas.
+
+360
+00:13:21,190 --> 00:13:22,803
+Tekan q untuk berhenti.
+
+361
+00:13:22,803 --> 00:13:25,375
+Anda juga bisa mengetik 'help rand'.
+
+362
+00:13:25,380 --> 00:13:27,793
+Menampilkan dokumentasi untuk rand atau
+
+363
+00:13:27,793 --> 00:13:29,734
+fungsi pembuatan angka acak.
+
+364
+00:13:29,734 --> 00:13:31,898
+Atau bahkan 'help help', yang
+
+365
+00:13:31,900 --> 00:13:35,615
+menampilkan bantuan dari fungsi help.
+
+366
+00:13:36,455 --> 00:13:39,022
+Jadi, itu semua adalah
+
+367
+00:13:39,022 --> 00:13:41,612
+operasi dasar dalam Octave.
+
+368
+00:13:41,612 --> 00:13:42,699
+Dan dengan ini Anda seharusnya
+
+369
+00:13:42,699 --> 00:13:47,131
+bisa membuat beberapa matriks,
+mengalikan, menambahkan elemen-elemen,
+
+370
+00:13:47,131 --> 00:13:50,553
+dan menggunakan operasi dasar dalam
+Octave.
+
+371
+00:13:50,560 --> 00:13:51,893
+Pada video berikut, saya ingin
+
+372
+00:13:51,920 --> 00:13:53,818
+mulai bicara tentang perintah yang
+
+373
+00:13:53,818 --> 00:13:55,700
+lebih canggih dan bagaimana
+
+374
+00:13:55,750 --> 00:13:59,180
+menggunakan dan memproses data
+dengan Octave.

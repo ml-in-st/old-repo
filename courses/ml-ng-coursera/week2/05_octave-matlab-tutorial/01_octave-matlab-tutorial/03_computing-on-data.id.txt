@@ -1,0 +1,132 @@
+Sekarang Anda tahu bagaimana cara untuk memuat dan 
+menyimpan data di Octave memasukkan data Anda ke dalam matriks dan sebagainya. Dalam video ini, saya ingin menunjukkan kepada Anda bagaimana 
+untuk melakukan operasi komputerisasi pada data. Dan nanti, kita akan menggunakan source 
+dari operasi komputasi ini untuk melaksanakan algoritma pembelajaran kita. Mari kita mulai. Ini jendela Octave saya. Izinkan saya cepat menginisialisasi beberapa 
+variabel yang akan digunakan untuk contoh kita. Jadi atur A menjadi maktriks 3x2,
+dan atur B menjadi matriks 3x2, dan mari kita atur C menjadi matriks 
+2x2 seperti itu. Sekarang katakanlah saya ingin 
+mengalikan dua buah matriks saya. Jadi katakanlah saya ingin menghitung A * C, saya hanya
+ mengetik A * C, sehingga ia menjadi matriks 3x2 Pengalian sebuah matriks 2x2, 
+ini memberikan saya ini matriks 3x2 Anda juga dapat melakukan operasi elemen per elemen (element-wise operation)
+dengan melakukan A. * B dan apa yang akan dilakukan adalah itu akan mengambil setiap elemen dari A dan mengalikannya
+dengan unsur-unsur yang sesuai yang ada pada B, jadi itu A, itu B, itu A. * B. Jadi misalnya, elemen pertama
+memberikan 1 kali 11, yang menghasilkan 11. Elemen kedua memberikan 2 kali
+12 Yang menghasilkan 24, dan seterusnya. Jadi ini adalah perkalian elemen per elemen (element-wise multiplication) dua matriks. Dan secara umum, masa itu cenderung, biasanya digunakan untuk menunjukkan
+operasi cara-dasar dalam Oktave. Jadi, ini adalah matriks A, dan jika saya melakukan A. ^ 2, ini memberi saya unsur
+cerdas mengkuadratkan A. Jadi 1 kuadrat adalah 1, 
+2 kuadrat adalah 4, dan seterusnya. Mari kita menetapkan v sebagai vektor. Mari kita menetapkan v jadi satu, dua, 
+tiga sebagai vektor kolom. Anda juga dapat melakukan satu titik lebih dari v untuk melakukan 
+timbal balik elemen per elemen (element-wise reciprocal) dari v, jadi ini memberi saya satu kali satu, satu kali 
+dua, dan satu kali tiga, dan ini adalah di mana Saya melakukan matriks itu, sehingga 1 . A memberi saya 
+inverse elemen per elemen (element-wise inverse) dari A. Dan sekali lagi, periode ini memberi kita petunjuk bahwa ini 
+sebuah operasi elemen per elemen (element-wise operation) Kami juga dapat melakukan hal-hal seperti log (v), 
+ini adalah logaritma elemen per elemen (element-wise logarithm) dari v E untuk V adalah dasar E eksponensial dari unsur-unsur ini, jadi ini adalah E, ini adalah E kuadrat EQ, 
+karena ini adalah V, dan Saya juga dapat melakukan abs V untuk mengambil 
+nilai absolut elemen per elemen (element-wise absolute) V. Jadi di sini, V adalah nilai positif kita, abs, minus satu, dua minus 3, nilai absolut elemen-wise memberi 
+saya kembali nilai-nilai yang non-negatif. Dan v negatif memberi saya minus v. Ini adalah sama dengan -1 kali v,
+tapi biasanya Anda hanya menulis -v bukan -1 * v. Dan apa lagi yang bisa Anda lakukan? Ini trik cantik lainnya. Jadi, Mari kita lihat. Katakanlah saya ingin mengambil v kenaikan 
+masing-masing elemen dengan 1. Nah salah satu cara untuk melakukannya adalah 
+dengan membangun tiga dengan 1 vektor semuanya dan 
+tambahkan itu ke v. Jadi jika saya melakukan itu, ini akan menambahkan 
+v  dari 1, 2, 3 menjadi 2, 3, 4. Cara saya lakukan itu adalah, lenght(v) = 3, jadi ones(lenght(v),1),
+ini adalah semua dari 3 dengan 1, jadi itu adalah ones(3,1) di bagian kanan dan
+apa yang saya lakukan adalah v+ones v dengan 1 yang mana menambahkan vektor ini kepada ones kita
+ke v, dan jadinya menambakan v dengan 1, dan cara sederhana lain yang dapat dilakukan 
+adalah dengan mengetik v+1. Jadi dia memilki v, dan v+1 juga berarti menambahkan 1 elemen 
+dasar kepada setiap elemen v saya. Sekarang, mari bicara operasi lainnya. Jadi, inilah matriks A saya, jika Anda ingin 
+melakukan A transpose (T), cara untuk melakukan itu adalah menulis A' , itulah simbol tanda kutip, 
+itu kutipan kiri, jadi pada keyboard Anda,
+Anda memiliki kutipan kiri dan kutipan kanan. Jadi ini sebenarnya 
+tanda kutip standar. Ketik A transpos, ini memberi 
+saya transpos dari matriks A saya. dan, tentunya, A transpos, Jika saya mentransposnya lagi, 
+maka Saya harusnya mendapatkan matriks A saya kembali. beberapa fungsi yang lebih berguna. Katakanlah kasus yang lebih sederhana A adalah 1 15 2 0.5,
+jadi itu adalah matriks 1x4. katakanlah val = max (a) ini 
+memberikan nilai maksimum dari A yang mana pada kasus ini adalah 15 dan 
+Saya dapat melakukan val, ind max(a) dan ini memunculkan nilai val dan ind yang mana akan menjadi nilai maksimum dari A yaitu 15, sama halnya indeks. Jadi itu adalah unsur nomor dua dari A yang
+sebelumnya adalah 15 jadi ind adalah indeks saya dalam sini. Hanya sebagai peringatan, jika Anda melakukan max (A), 
+dimana A adalah sebuah matriks, apa yang dilakukan adalah ini sebenarnya 
+melakukan maksimum per elemen kolom. Tetapi bicarakan sedikit lebih banyak 
+tentang hal ini sejenak. Tetap menggunakan contoh ini sebagai 
+kasus sederhana dari A. Jika saya melakukan a<3,
+ini melakukan operasi elemen per elemen (element-wise operation). perbandingan elemen per elemen (element-wise comparison),
+jadi unsur pertama  dari A adalah kurang dari 3 jadi yang ini satu. elemen ke dua dari A tidak kurang dari 3
+maka nilainya menunjukkan 0 karena itu salah atau tidak memenuhi. elemen ke 3 dan 4 dari 
+A kurang dari 3, jadi itu adalah 1 1 Jadi itulah perbandingan elemen per elemen (element-wise comparison) 
+dari 4 elemen dari variabel a<3. Dan ia menganggap benar atau salah tergantung pada 
+apakah atau tidak disana kurang dari tiga. Sekarang, jika saya melakukan find(a<3), ini akan
+memberitahu saya yang mana elemen-elemen dari A, variabel a, yang kurang dari 3, dan pada kasus ini, elemen pertama, ke-3, dan 
+ke-4 adalah kurang dari 3. Untuk contoh kita selanjutnya,
+izikan saya men-set A = magic(3). fungsi magic menunjukkan, 
+mari mengetik help magic. fungsi magic menghasilkan 
+matriks yang disebut magic square. Mereka memiliki ini, Anda tahu, properti matematika 
+yang semua barisnya dan kolom dan diagonalnya menghasilkan penjumlahan yang sama. Jadi, Anda tahu, ini sebenarnya tidak digunakan untuk 
+mesin learning sejauh yang saya tahu, tapi Saya hanya menggunakan ini sebagai cara mudah 
+untuk mendapatkan matriks 3x3. Dan magic square tersebut mempunyai
+properti dimana setiap baris, kolom, dan diagonalnya semua menghasilkan jumlah yang sama, jadi itu semacam konstruksi matematika. Saya menggunakan fungsi magic ini hanya ketika saya
+melakukan demo atau mengajarkan octave seperti tadi, Saya sebenarnya tidak menggunakannya untuk
+kegunaan apapun pada aplikasi mesin learning. Tapi mari kita lihat,
+jika saya mengetik RC=find(A>7) ini mencari semua elemen A yang
+lebih besar dari 7, dan r, c singkatan row dan column atau baris dan colom. Jadi elemen 1,1 lebih besar dari 7,
+elemen 3,2 lebih besar dari 7, dan elemen 2,3 lebih besar dari 7. Jadi mari kita lihat elemen 2,3, contohnya, adalah A(2,3). 7 adalah termasuk elemen disini, dan itu memang lebih besar dari 7 dari pada sama dengan 7. Oh ya, Saya sendiri sebenarnya tidak ingat
+apa yang fungsi find tersebut lakukan dan apa saja yang dilakukan oleh mereka. dan kapanpun saya menggunakan fungsi find,
+kadang-kadang saya lupa sendiri apa sebenarnya hal tersebut lakukan, dan sekarang saya akan menulis help 
+find untuk melihat dokumen tentang itu oke, tinggal 2 hal lagi
+saya akan secara cepat menunjukkan pada Anda salah satunya adalah fungsi sum, jadi
+disini A saya, dan kemudian tulis sum(a). ini menambahkan semua elemen A, dan
+jika saya ingin mengkalikan mereka bersama, saya menulis prod(a) prod mengirim hasil tersebut, dan menunjukkan hasil dari 
+ke empat elemen A. Floor(a) membulatkan ke bawah elemen-elemen dari A,
+sehingga 0.5 dibulatkan kebawah menjadi 0. dan ceil, atau ceilling(A) akan 
+dibulatkan ke bilangan bulat terdekat, Jadi 0.5 dibulatkan keatas menjadi 1. Anda juga dapat, mari kita lihat. Izinkan saya mengetik rand(3), 
+ini menghasilkan sebuah matrix 3x3. jika saya menulis max(rand(3), rand(3)),
+apa yang dilakukan adalah ia mengambil maksimum elemen per elemen (element-wise maximum) dari sembarang 3 matriks 3x3 Jadi Anda lihat semua angka-angka ini cenderung sedikit di sisi besar karena setiap mereka adalah sebenarnya
+nilai maksimum dari setiap elemen cerdas maksimum dari 2 secara acak 
+menghasilkan matriks. Ini angka magis saya. Ini kotak magis saya, A 3x3. Katakanlah saya mengetik max A, dan 
+kemudian ini akan menjadi a [], 1, apa yang dilakukan adalah ini 
+akan mengirimkan nilai maksimum per elemen kolom. jadi nilai maksimum dari kolom pertama adalah 8,
+nilai maksimum kolom ke-2 adalah 9, nilai maksimum kolom ke-3 adalah 7. Nilia 1 ini berarti untuk mengambil nilai maksimum
+diantara dimensi pertama dari 8. sebaliknya, jika saya menulis max A,
+ini notasi yang lucu, dua, kemudian mengambil nilai maksimum per baris. jadi nilai maksimum baris pertama adalah 8, nilai maksimum
+baris ke-2 adalah 7, nilai maksimum baris ke-3 adalah 9, dan ini mengizinkan anda untuk
+mengambil nilai-nilai maksimum apakan per bari atau per kolom. dan ingat defaultnya adalah
+untuk elemen sebuah kolom jadi jika anda ingin menemukan nilai elemen maksimum
+dari semua matriks A, Anda dapat menulis max(max(A)) seperti itu,
+yang mana adalah 9. atau anda dapat mengubah A menjadi sebuah vektor dan
+menulis max(A(:)) seperti itu dan ini memperlakukan ini sebagai sebuah vektor dan
+mengambil nilai elemen maksimum dari vektor tersebut. Akhirnya mari men-set A menjadi
+sebuah matriks kotak 9x9. Jadi ingat matriks magis kotak mempunyai
+ciri dimana setiap kolom dan baru memiliki penjumlahan yang sama,
+dan begitupun diagonalnya, sehingga hanyalah sebuah matriks kotak 9x9. Jadi izinkan saya melakukan sum(A,1). Jadi ini melakukan sebuah penjumlahan setiap kolom, sehingga
+kita akan mengambil setaip kolom dari A dan menjumlahkan mereka dan
+ini membuktikan bahwa memang untuk sebuah matriks kotak 9x9, setiap kolom
+dijumlahkan menjadi 369, penjumlahan menghasilkan hal yang sama. Sekarang mari kita melakukan penjumlahan baris sederhana Jadi sum(A,2), dan ini menjumlahkan setiap baris A, dan
+tentunya setiap baris dari A juga dijumlahkan menjadi 369. Sekarang, mari kita menjumlahkan 
+elemen diagonal dari A dan pastikan bahwa penjumlahan 
+menghasilkan nilai yang sama. Jadi apa yang saya akan lakukan adalah mengkintruksi sebuah
+matriks identitas 9x9, ini adalah eye 9. dan perkenankan saya mengambil A dan konstruksi, perkalian wise elemen 
+A, jadi ini matriks A saya. saya akan melakukan A.^eye(9). apa yang akan dilakukan adalah pengambilan 
+hasil elemen per elemen (element-wise product) dari dua matriks, dan sehingga ini akan mengosongkan segala sesuatu di A,
+kecuali untuk nilai-nilai diagonal. dan sekarang,
+saya akan melakukan penjumlahan sum A darinya dan ini memberi saya penjumlahan dari elemen diagonal
+dan jelas itu adalah 369. Anda dapat menjumlahkan diagonal 
+lainnya juga. jadi ini kiri atas hingga kiri bawah, anda dapat menjumlahkan diagonal sebaliknya
+dari kiri bawah hingga kanan atas. perintah untuk
+ini agak sedikit samar, Anda tidak perlu mengetahui ini. Saya baru saja memperlihatkan pada anda hal ini 
+barangkali ada diantara anda yang penasaran tapi mari kita lihat. flipud singkatan dari flip up down. Tapi jika Anda melakukan itu, ini menghasilkan
+penjumlahan elemen sebaliknya. jadi diagram lainnya,
+yang juga menjumlahkan menjadi 369. Disini, izinkan saya menunjukkan pada Anda. meskipun eye(9) adalah matriks ini. filpup(eye(9)), mengambil matriks identitas, dan membalikkannya secara vertikal, jadi
+berakhir dengan, permisi, flip UD, menghasilkan 1 pada
+diagonal sebaliknya. Hanya satu perintah terakhir dan kemudian ini dia,
+dan kemudian itu akan ada pada video ini. Mari men-set A menjadi 
+permainan magic square atau kota magic 3x3. jika anda ingin membalikkan sebuah matriks, 
+anda mengetik pinv(A). ini biasanya disebut
+psuedo-inverse, tapi itu tak masalah. anggap saja  sederhananya bahwa itu invers 
+dari A, dan itu adalah invers A. dan jadi saya dapat men-set temp=pinv(A) dan
+temp*A, ini sesungguhnya matriks identitas, dimana
+itu sebenarnya angka satu di seluruh diagonalnya, dan nol pada selain diagonal, 
+hingga menjadi sebuah bilangan numerik yang dibulatkan. Jadi itu saja untuk Bagaimana untuk melakukan operasi komputerisasi yang berbeda
+pada data dan matriks. dan setalah menjalankan sebuah algoritma learning,
+sering salah satu yang paling utama atau berguna adalah untuk dapat melihat hasilnya, jadi
+untuk merencanakan atau memvisualisasikan hasilnya. dan pada video selanjutnya, saya akan sangat
+cepat menunjukkan kembali satu atau dua line dari kode menggunakan Octave. Anda dapat secara cepat memvisualisasikan data Anda atau
+memplot data Anda dan menggunakannya untuk pemahaman yang lebih baik terhadap
+apa yang dilakukan oleh algoritma learning Anda.

@@ -1,0 +1,573 @@
+1
+00:00:00,090 --> 00:00:01,100
+En este video, me gustaría
+
+2
+00:00:01,200 --> 00:00:02,840
+mostrarte un ejemplo divertido e históricamente
+
+3
+00:00:03,390 --> 00:00:05,820
+importante de aprendizaje de Red neuronal.
+
+4
+00:00:06,720 --> 00:00:09,300
+Usando una red neuronal para la conducción autónoma
+
+5
+00:00:09,870 --> 00:00:12,430
+esto es, hacer que un auto aprenda a manejarse solo.
+
+6
+00:00:13,810 --> 00:00:14,980
+El video que
+
+7
+00:00:15,130 --> 00:00:16,450
+les mostraré en un minuto es algo
+
+8
+00:00:16,820 --> 00:00:18,290
+que obtuve de Dean Pomilieu,
+
+9
+00:00:18,470 --> 00:00:20,000
+quien es un colega que trabaja
+
+10
+00:00:20,260 --> 00:00:22,000
+en la Universidad Carnegie Mellon en
+
+11
+00:00:22,140 --> 00:00:23,440
+la costa este de los Estados Unidos,
+
+12
+00:00:24,460 --> 00:00:25,310
+y, en parte del
+
+13
+00:00:25,350 --> 00:00:27,980
+video, verás visualizaciones como
+
+14
+00:00:28,230 --> 00:00:29,930
+estas, y te diré cómo se ven las visualizaciones
+
+15
+00:00:30,080 --> 00:00:31,170
+antes de comenzar el
+
+16
+00:00:31,260 --> 00:00:32,830
+video.
+Aquí abajo,
+
+17
+00:00:33,170 --> 00:00:34,860
+en la parte inferior de la izquierda está
+
+18
+00:00:35,100 --> 00:00:36,150
+la vista que tiene el auto
+
+19
+00:00:36,750 --> 00:00:37,580
+de lo que tiene enfrente
+
+20
+00:00:37,840 --> 00:00:38,980
+y aquí podrás ver
+
+21
+00:00:39,130 --> 00:00:40,250
+un camino que
+
+22
+00:00:40,450 --> 00:00:41,390
+quizás va un poco hacia
+
+23
+00:00:41,470 --> 00:00:42,100
+la izquierda y un poco hacia
+
+24
+00:00:42,670 --> 00:00:45,060
+la derecha, y aquí arriba
+
+25
+00:00:45,250 --> 00:00:47,230
+en la parte superior, esta
+
+26
+00:00:47,820 --> 00:00:49,820
+primera barra horizontal muestra la
+
+27
+00:00:49,940 --> 00:00:51,510
+dirección seleccionada por el
+
+28
+00:00:51,750 --> 00:00:53,110
+conductor humano y es la
+
+29
+00:00:53,580 --> 00:00:54,630
+ubicación de esta banda color
+
+30
+00:00:55,180 --> 00:00:56,830
+blanco brillante la que muestra la
+
+31
+00:00:57,100 --> 00:00:58,490
+dirección seleccionada por el
+
+32
+00:00:58,690 --> 00:01:00,450
+conductor humano, donde,
+
+33
+00:01:00,680 --> 00:01:01,780
+aquí, el extremo izquierdo
+
+34
+00:01:02,150 --> 00:01:03,280
+corresponde a girar a la extrema izquierda;
+
+35
+00:01:03,910 --> 00:01:05,180
+aquí corresponde a girar
+
+36
+00:01:05,450 --> 00:01:06,830
+a la extrema derecha; de modo que
+
+37
+00:01:06,980 --> 00:01:08,280
+esta ubicación, que está un
+
+38
+00:01:08,500 --> 00:01:09,390
+poco a la izquierda,
+
+39
+00:01:09,720 --> 00:01:10,730
+un poco a la izquierda del
+
+40
+00:01:10,890 --> 00:01:12,120
+centro, significa que el conductor
+
+41
+00:01:12,280 --> 00:01:13,350
+humano, en este punto, estaba
+
+42
+00:01:13,520 --> 00:01:14,600
+girando ligeramente hacia la izquierda. 
+Y
+
+43
+00:01:16,020 --> 00:01:17,340
+la segunda parte aquí
+
+44
+00:01:17,880 --> 00:01:18,800
+corresponde a la dirección
+
+45
+00:01:19,140 --> 00:01:20,720
+dirección seleccionada por el
+
+46
+00:01:20,870 --> 00:01:22,020
+algoritmo de aprendizaje y, nuevamente, la
+
+47
+00:01:22,110 --> 00:01:23,060
+ubicación de este tipo
+
+48
+00:01:23,310 --> 00:01:24,790
+de banda blanca, significa que la
+
+49
+00:01:24,850 --> 00:01:26,560
+red neuronal estuvo aquí, seleccionando
+
+50
+00:01:27,040 --> 00:01:28,300
+una dirección sólo ligeramente a
+
+51
+00:01:28,380 --> 00:01:29,440
+la izquierda y, de hecho,
+
+52
+00:01:29,970 --> 00:01:30,980
+antes de que la red neuronal comience a
+
+53
+00:01:31,390 --> 00:01:33,020
+aprender inicialmente,
+
+54
+00:01:33,170 --> 00:01:34,990
+verás que la red muestra una
+
+55
+00:01:35,170 --> 00:01:36,410
+banda gris; una especie de
+
+56
+00:01:36,580 --> 00:01:38,500
+banda color gris uniforme en
+
+57
+00:01:38,890 --> 00:01:40,260
+esta región, y el color gris
+
+58
+00:01:40,740 --> 00:01:42,210
+difuso corresponde a la
+
+59
+00:01:42,330 --> 00:01:43,880
+red neuronal que se ha iniciado
+
+60
+00:01:44,450 --> 00:01:46,180
+de forma aleatoria y que inicialmente
+
+61
+00:01:46,510 --> 00:01:47,960
+no sabe cómo
+
+62
+00:01:48,020 --> 00:01:49,650
+conducir el auto, o inicialmente no
+
+63
+00:01:50,050 --> 00:01:52,500
+sabe hacia qué dirección girar.
+
+64
+00:01:52,590 --> 00:01:53,640
+Y sólo después de haber aprendido
+
+65
+00:01:53,860 --> 00:01:55,290
+durante un tiempo, comenzará a
+
+66
+00:01:55,700 --> 00:01:57,520
+mostrar una banda de color blanco
+
+67
+00:01:57,770 --> 00:01:58,640
+sólido en sólo una pequeña
+
+68
+00:01:58,800 --> 00:02:00,260
+parte de la región que corresponde
+
+69
+00:02:00,700 --> 00:02:01,870
+a elegir una dirección de giro particular.
+
+70
+00:02:02,960 --> 00:02:04,710
+Y que corresponde a cuando una red neuronal
+
+71
+00:02:05,340 --> 00:02:06,890
+adquiere más seguridad para seleccionar
+
+72
+00:02:08,080 --> 00:02:09,250
+una banda en una ubicación
+
+73
+00:02:10,220 --> 00:02:11,560
+de la curva en lugar de mostrar
+
+74
+00:02:11,920 --> 00:02:13,110
+una especie color gris
+
+75
+00:02:13,300 --> 00:02:14,570
+difuso, pero en lugar de esto está mostrando
+
+76
+00:02:14,970 --> 00:02:17,010
+una banda color blanco que muestra
+
+77
+00:02:17,410 --> 00:02:19,220
+más confianza al seleccionar una dirección de giro.
+
+78
+00:02:21,340 --> 00:02:21,880
+Alban es un sistema
+
+79
+00:02:22,340 --> 00:02:24,850
+de redes neuronales artificiales, que aprende a conducir
+
+80
+00:02:25,280 --> 00:02:26,400
+viendo a una persona conducir. Alban
+
+81
+00:02:27,590 --> 00:02:29,550
+está diseñado para controlar el Navlab
+
+82
+00:02:29,670 --> 00:02:31,310
+dos, un Humvee modificado por el
+
+83
+00:02:31,920 --> 00:02:32,840
+ejército al que se le pueden colocar
+
+84
+00:02:33,020 --> 00:02:35,200
+sensores, computadoras y activadores
+
+85
+00:02:36,160 --> 00:02:37,800
+para realizar experimentos de navegación autónoma.
+
+86
+00:02:41,190 --> 00:02:42,480
+El paso inicial para
+
+87
+00:02:42,750 --> 00:02:44,730
+configurar Alban es entrenar a la red justo aquí.
+
+88
+00:02:46,770 --> 00:02:48,160
+Durante el entrenamiento, una persona conduce
+
+89
+00:02:48,580 --> 00:02:50,640
+el vehículo mientras Alban observa.
+
+90
+00:02:55,810 --> 00:02:58,420
+Una vez cada dos segundos Alban
+
+91
+00:02:58,690 --> 00:02:59,800
+digitaliza una imagen de video
+
+92
+00:03:00,320 --> 00:03:03,260
+del camino y registra la dirección de giro del conductor.
+
+93
+00:03:11,790 --> 00:03:13,140
+Se reduce la resolución de esta imagen
+
+94
+00:03:13,560 --> 00:03:15,260
+de entrenamiento a 30 por
+
+95
+00:03:15,470 --> 00:03:16,980
+32 pixeles y se introduce
+
+96
+00:03:17,590 --> 00:03:19,100
+como entrada en la red de tres capas
+
+97
+00:03:21,920 --> 00:03:21,920
+de Alban.
+
+98
+00:03:22,460 --> 00:03:25,330
+Usando el algoritmo de aprendizaje de retropropagación; Alban
+
+99
+00:03:25,370 --> 00:03:26,590
+está entrenando para indicar la misma
+
+100
+00:03:26,940 --> 00:03:28,450
+dirección de giro que el
+
+101
+00:03:28,530 --> 00:03:29,970
+conductor humano para esa imagen.
+
+102
+00:03:33,450 --> 00:03:35,970
+Inicialmente, la respuesta de dirección de la red es aleatoria.
+
+103
+00:03:43,930 --> 00:03:45,010
+Después de aproximadamente dos minutos de
+
+104
+00:03:45,100 --> 00:03:46,760
+entrenamiento, la red aprende
+
+105
+00:03:47,080 --> 00:03:48,730
+a imitar con precisión las reacciones de
+
+106
+00:03:49,110 --> 00:03:56,430
+giro del
+
+107
+00:03:58,670 --> 00:04:03,440
+conductor humano. Este mismo
+
+108
+00:04:03,710 --> 00:04:06,440
+procedimiento de entrenamiento se repite para otros tipos de vías.
+
+109
+00:04:09,940 --> 00:04:11,680
+Después de que las redes se han entrenado, el
+
+110
+00:04:11,770 --> 00:04:12,900
+operador presiona el interruptor de
+
+111
+00:04:13,200 --> 00:04:14,650
+operación (run) y Alban comienza a
+
+112
+00:04:15,050 --> 00:04:20,380
+conducir. 12 veces
+
+113
+00:04:20,870 --> 00:04:23,010
+por segundo, Alban digitaliza una
+
+114
+00:04:23,090 --> 00:04:25,130
+imagen y la alimenta a sus redes neuronales.
+
+115
+00:04:33,210 --> 00:04:34,980
+Cada red, operando en paralelo,
+
+116
+00:04:35,930 --> 00:04:38,140
+produce una dirección de giro y mide la
+
+117
+00:04:40,050 --> 00:04:40,050
+confianza en su respuesta.
+
+118
+00:04:46,610 --> 00:04:49,480
+La dirección de giro de
+
+119
+00:04:50,140 --> 00:04:51,120
+la red de más confianza,
+
+120
+00:04:52,340 --> 00:04:53,650
+en este caso, la red entrenada
+
+121
+00:04:54,000 --> 00:04:56,640
+para el camino de un solo carril, se utiliza para controlar el vehículo.
+
+122
+00:05:04,750 --> 00:05:07,840
+De repente, aparece una intersección adelante
+
+123
+00:05:08,310 --> 00:05:09,350
+del vehículo.
+
+124
+00:05:23,090 --> 00:05:24,450
+A medida que el vehículo se aproxima a la intersección,
+
+125
+00:05:25,680 --> 00:05:27,740
+disminuye la confianza de la red de un solo carril.
+
+126
+00:05:38,070 --> 00:05:40,030
+Cuando cruza la intersección y
+
+127
+00:05:40,130 --> 00:05:41,160
+el camino de dos carriles de adelante
+
+128
+00:05:41,440 --> 00:05:44,610
+aparece a la vista, la confianza de la red de dos carriles aumenta.
+
+129
+00:05:51,260 --> 00:05:53,000
+Cuando su confianza aumenta, la red de
+
+130
+00:05:53,420 --> 00:05:54,630
+dos carriles se selecciona para conducir,
+
+131
+00:05:55,050 --> 00:05:56,780
+guiando el vehículo de forma segura
+
+132
+00:05:57,380 --> 00:05:59,030
+en su carril, en el camino de dos carriles.
+
+133
+00:06:05,400 --> 00:06:06,670
+Eso fue la conducción
+
+134
+00:06:07,010 --> 00:06:09,790
+autónoma utilizando una red neuronal. Por supuesto, se han hecho
+
+135
+00:06:10,150 --> 00:06:11,070
+intentos más recientes
+
+136
+00:06:11,910 --> 00:06:14,000
+para lograr la conducción autónoma con pocas propiedades, en
+
+137
+00:06:14,180 --> 00:06:15,730
+los EE.UU., en Europa, y así sucesivamente.
+
+138
+00:06:16,270 --> 00:06:18,040
+Están proporcionando controladores de
+
+139
+00:06:18,400 --> 00:06:19,760
+conducción más robustos que éste, pero
+
+140
+00:06:20,080 --> 00:06:21,910
+creo que aún así es bastante notable y
+
+141
+00:06:22,040 --> 00:06:23,190
+muy asombroso cómo una simple
+
+142
+00:06:23,690 --> 00:06:25,440
+red neuronal entrenada con retropropagación
+
+143
+00:06:26,140 --> 00:06:28,990
+puede aprender a conducir un auto bastante bien.

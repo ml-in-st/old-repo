@@ -1,0 +1,37 @@
+En este video, quiero llevarte rápidamente
+a través de la logística de cómo trabajar en las tareas en esta clase y cómo usar el
+sistema de envío que te permitirá comprobar enseguida que tienes la respuesta correcta de
+tu ejercicio de programación de aprendizaje automático Aquí está mi ventana de Octave y
+primero vamos a ir a mi escritorio. Guardé los archivos para mi primer ejercicio,
+algunos de los archivos en mi escritorio: en este directorio, "ml-class-ex1". Te proporcionamos algunos archivos
+y te pedimos editar algunos de ellos. Así que el primer archivo debe cumplir con los detalles en
+el archivo PDF para este ejercicio de programación. Uno de los archivos que te pedimos que edites es
+este archivo llamado «warmUpExercise.m», donde el ejercicio es sólo para asegurar que
+estás familiarizado con el sistema de envío. Y todo lo que tiene que hacer es
+devolver la matriz de identidad 5x5. Así que la solución a este ejercicio que acabo de
+mostrarte es escribir A = eye(5). Así que modifica esta función para
+generar la matriz de identidad 5x5. Esta función «warmUpExercise()»
+ahora devuelve la matriz de identidad 5x5. Sólo voy a guardarlo. Así que he hecho la primera parte de esta tarea.
+Volviendo a mi ventana de Octave, ahora vamos a ir a mi directorio,
+"C:\Users\ang\Desktop\ml-class-ex1". Y si quiero asegurarme de que he implementado
+esto, escribo "warmUpExercise()" como tal. Y sí, devuelve la matriz de identidad 5x5
+del código que acabamos de escribir para crearla. Y ahora puedo enviar el código de la siguiente manera.
+Voy a escribir "submit()" en este directorio y estoy listo para enviar la parte 1
+así que voy a introducir la opción "1". Me pide mi dirección de correo electrónico.
+Me dirijo al sitio web del curso. Este es un sitio de pruebas internas, por lo que tu versión
+del sitio web puede verse un poco diferente. Pero esa es mi dirección de correo electrónico y esta es mi
+contraseña para el envío, voy a escribirlas aquí. Así que tengo «ang@cs.stanford.edu» y
+mi contraseña de envío es «9yC75USsGf». Voy a presionar «enter»; se conecta con el servidor
+y lo envía, y de inmediato te dice "¡Felicidades! has completado
+con éxito la tarea 1 parte 1". Y esto te da una verificación
+de que tienes correcta esta parte. Si no envías la respuesta correcta,
+entonces te dará un mensaje que indica que no lo has conseguido completamente bien todavía. Puedes utilizar esta contraseña de envío y
+puedes generar nuevas contraseñas; no importa. Pero también puedes utilizar tu
+contraseña del sitio web, ya que esta contraseña está escrita en texto claro en tu monitor,
+te dimos esta contraseña de envío adicional en caso de que no desees escribir tu
+contraseña normal para el sitio web en una ventana que, dependiendo de tu sistema operativo,
+puede o no puede aparecer en forma de texto al escribirla en el script de envío de Octave. Así es como se envían las
+tareas después de que las has hecho. Buena suerte, y cuando trabajes en las
+tareas, espero que obtengas todas como correctas. Y, por último, en el próximo y último
+video tutorial de Octave, quiero contarles acerca de la vectorización, que es una manera de lograr que
+tu código Octave se ejecute mucho más eficientemente.

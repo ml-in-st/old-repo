@@ -1,0 +1,495 @@
+1
+00:00:00,500 --> 00:00:04,650
+In acesta si urmatoarele cateva filme,
+
+2
+00:00:04,650 --> 00:00:09,510
+vreau sa
+
+3
+00:00:09,510 --> 00:00:12,651
+incep sa vorbesc despre probleme de clasificare
+
+4
+00:00:12,651 --> 00:00:16,931
+unde variabila y pe care
+
+5
+00:00:19,473 --> 00:00:23,270
+vrem sa o predictam este
+
+6
+00:00:23,270 --> 00:00:26,530
+discreta. Vom dezvolta un algoritm
+
+7
+00:00:26,530 --> 00:00:29,390
+numit 'Regresie logistica'
+
+8
+00:00:29,390 --> 00:00:33,110
+care este unul dintre
+
+9
+00:00:33,110 --> 00:00:35,540
+cei mai populari si mai utilizati algoritmi de invatare utilizati astazi.
+
+10
+00:00:35,540 --> 00:00:39,390
+Iata cateva exemple de probleme de clasificare.
+
+11
+00:00:39,390 --> 00:00:44,590
+Mai devreme am vorbit despre e-mail-uri,
+
+12
+00:00:44,590 --> 00:00:46,830
+clasificarea mesajelor de spam, ca un
+
+13
+00:00:46,830 --> 00:00:50,840
+exemplu de problema de clasificare
+
+14
+00:00:50,840 --> 00:00:53,960
+Un alt exemplu este clasificarea tranzactiilor online
+
+15
+00:00:55,120 --> 00:00:59,450
+Deci, daca avem un website
+
+16
+00:00:59,450 --> 00:01:04,160
+care vinde diverse lucruri si vrem
+
+17
+00:01:04,160 --> 00:01:09,080
+sa stim daca o tranzactie
+
+18
+00:01:10,500 --> 00:01:15,670
+este frauduloasa
+
+19
+00:01:15,670 --> 00:01:20,020
+sau nu, stiti,
+
+20
+00:01:20,020 --> 00:01:23,930
+cineva foloseste o carte de credit furata,
+
+21
+00:01:23,930 --> 00:01:27,110
+sau a furat parola unui alt utilizator.
+
+22
+00:01:27,110 --> 00:01:31,370
+Aceasta este o alta problema de clasificare
+
+23
+00:01:31,370 --> 00:01:35,120
+si mai devreme am vorbit si despre
+
+24
+00:01:35,120 --> 00:01:37,290
+exemplu de clasificare a tumorilor
+
+25
+00:01:37,290 --> 00:01:42,220
+in canceroase sau maligne, si tumori benigne.
+
+26
+00:01:42,220 --> 00:01:46,590
+In toate aceste probleme,
+
+27
+00:01:46,590 --> 00:01:51,460
+variabila pe care
+
+28
+00:01:51,460 --> 00:01:55,170
+incercam sa o predictam este o variabila
+
+29
+00:01:55,170 --> 00:01:58,790
+Y pe care o putem imagina
+
+30
+00:02:00,150 --> 00:02:03,080
+ca luand doua valori,
+
+31
+00:02:03,080 --> 00:02:05,510
+fie zero (0) fie unu (1) :
+
+32
+00:02:05,510 --> 00:02:09,320
+spam, sau not spam, fraudulos sau
+
+33
+00:02:09,320 --> 00:02:14,250
+non-fraudulos, malign sau benign.
+
+34
+00:02:14,250 --> 00:02:17,720
+Un alt nume pentru clasa
+
+35
+00:02:17,720 --> 00:02:22,140
+pe care o etichetam cu 0 (zero)
+
+36
+00:02:22,140 --> 00:02:25,978
+este clasa negativa, iar un alt
+
+37
+00:02:25,978 --> 00:02:30,580
+nume pentru clasa pe care o
+
+38
+00:02:30,580 --> 00:02:34,770
+etichetam cu 1 (unu) este clasa pozitiva.
+
+39
+00:02:34,770 --> 00:02:37,410
+Deci zero poate determina
+
+40
+00:02:37,410 --> 00:02:44,570
+o tumoare benigna, iar unu
+
+41
+00:02:44,570 --> 00:02:47,520
+(clasa pozitiva) poate determina o tumoare maligna.
+
+42
+00:02:47,520 --> 00:02:50,309
+Asignarea celor doua clase,
+
+43
+00:02:51,410 --> 00:02:53,410
+spam si non-spam,
+
+44
+00:02:53,410 --> 00:02:56,320
+si asa mai departe,
+
+45
+00:02:56,320 --> 00:02:59,840
+asignarea celor doua
+
+46
+00:02:59,840 --> 00:03:03,730
+clase in pozitiv si negativ,
+
+47
+00:03:03,730 --> 00:03:05,695
+zero, sau unu, este intrucatva
+
+48
+00:03:05,695 --> 00:03:09,100
+arbitrara si nu conteaza prea mult.
+
+49
+00:03:09,100 --> 00:03:14,650
+Insa, de cele mai multe ori,
+
+50
+00:03:14,650 --> 00:03:19,165
+este intuitiv ca o clasa negativa
+
+51
+00:03:19,165 --> 00:03:23,985
+sa indice
+
+52
+00:03:23,985 --> 00:03:27,235
+absenta a ceva, de exemplu absenta
+
+53
+00:03:27,235 --> 00:03:29,955
+unei tumori maligne, in timp ce,
+
+54
+00:03:29,955 --> 00:03:32,775
+o clasa pozitiva, sa indice
+
+55
+00:03:32,775 --> 00:03:36,359
+prezenta a ceva, ceva ce ne dorim sa identificam.
+
+56
+00:03:36,359 --> 00:03:39,990
+Dar definitia a ceea ce
+
+57
+00:03:39,990 --> 00:03:43,520
+este negativ si ceea ce este pozitiv
+
+58
+00:03:43,520 --> 00:03:44,710
+este oarecum arbitrara si nu are prea multa importanta.
+
+59
+00:03:44,710 --> 00:03:50,360
+Pentru moment, vom incepe
+
+60
+00:03:50,360 --> 00:03:54,629
+cu probleme de clasificare cu
+
+61
+00:03:55,720 --> 00:03:57,620
+doar doua clase - zero si unu.
+
+62
+00:03:57,620 --> 00:04:01,630
+Mai tarziu, vom vorbi de asemenea
+
+63
+00:04:01,630 --> 00:04:05,420
+despre probleme cu clase multiple,
+
+64
+00:04:05,420 --> 00:04:08,120
+unde variabila Y poate lua, sa zicem,
+
+65
+00:04:08,120 --> 00:04:11,530
+patru valori distincte - zero, unu, doi, trei
+
+66
+00:04:11,530 --> 00:04:15,263
+Aceasta este o problema de clasificare cu clase multiple,
+
+67
+00:04:15,263 --> 00:04:18,900
+dar pentru urmatoarele cateva videoclipuri,
+
+68
+00:04:18,900 --> 00:04:21,960
+vom incepe cu doua clase,
+
+69
+00:04:21,960 --> 00:04:26,200
+sau probleme de clasificare binare,
+
+70
+00:04:26,200 --> 00:04:28,970
+si ne vom ocupa de cazul cu clase multiple mai tarziu.
+
+71
+00:04:28,970 --> 00:04:31,010
+Deci, cum dezvoltam un algoritm de clasificare?
+
+72
+00:04:31,010 --> 00:04:34,930
+Iata un exemplu de
+
+73
+00:04:34,930 --> 00:04:39,620
+set de antrenare pentru
+
+74
+00:04:39,620 --> 00:04:44,210
+a clasifica o tumoare
+
+75
+00:04:44,210 --> 00:04:44,820
+ca maligna sau benigna -
+
+76
+00:04:46,200 --> 00:04:50,730
+obsevati ca aceasta proprietate poate
+
+77
+00:04:50,730 --> 00:04:54,480
+lua numai doua valori,
+
+78
+00:04:54,480 --> 00:04:56,090
+zero - sau nu este maligna, sau unu - este maligna.
+
+79
+00:04:57,600 --> 00:05:02,890
+Deci, ceea ce putem face
+
+80
+00:05:02,890 --> 00:05:06,350
+dat fiind acest set de antrenare
+
+81
+00:05:06,350 --> 00:05:09,750
+este sa aplicam algoritmul
+
+82
+00:05:09,750 --> 00:05:12,070
+pe care il stim deja - regresia liniara - pe acest set
+
+83
+00:05:14,590 --> 00:05:18,820
+si sa incercam sa interpolam datele cu o dreapta.
+
+84
+00:05:18,820 --> 00:05:23,110
+Daca luam acest set de antrenare si
+
+85
+00:05:23,110 --> 00:05:28,090
+interpolam cu o dreapta
+
+86
+00:05:28,090 --> 00:05:31,260
+vom obtine probabil
+
+87
+00:05:31,260 --> 00:05:34,300
+o functie ipoteza care arata asa.
+
+88
+00:05:34,300 --> 00:05:37,050
+OK, deci asta e ipoteza mea h(x)=Theta transpus ori x
+
+89
+00:05:37,050 --> 00:05:40,260
+h(x)=Theta transpus ori x
+
+90
+00:05:40,260 --> 00:05:45,210
+Daca vreti
+
+91
+00:05:45,210 --> 00:05:50,880
+sa faceti predictii,
+
+92
+00:05:50,880 --> 00:05:55,670
+puteti incerca sa impuneti o
+
+93
+00:05:56,900 --> 00:06:01,120
+limita pentru iesirea clasificatorului la 0.5
+
+94
+00:06:01,120 --> 00:06:04,470
+Adica la valoarea pe care o atinge pe verticala de 0.5
+
+95
+00:06:04,470 --> 00:06:09,870
+Iar daca ipoteza h ia o valoare
+
+96
+00:06:09,870 --> 00:06:14,760
+care este mai mare decat
+
+97
+00:06:14,760 --> 00:06:19,940
+sau egala cu 0.5, veti predicta y=1.
+
+98
+00:06:19,940 --> 00:06:24,760
+Daca este mai mica de 0.5, veti predicta y=0.
+
+99
+00:06:24,760 --> 00:06:28,350
+Hai sa vedem ce se intampla daca facem asta.
+
+100
+00:06:29,700 --> 00:06:33,830
+Sa luam 0.5 si
+
+101
+00:06:33,830 --> 00:06:36,740
+impunem aici pragul.
+
+102
+00:06:36,740 --> 00:06:40,630
+Folosim regresia liniara in acest fel.
+
+103
+00:06:40,630 --> 00:06:44,250
+Tot ce este in dreapta
+
+104
+00:06:44,250 --> 00:06:48,380
+acestui punct, va predicta
+
+105
+00:06:48,380 --> 00:06:52,570
+clasa pozitiva,
+
+106
+00:06:53,920 --> 00:06:56,739
+pentru ca valorile functiei h
+
+107
+00:06:56,739 --> 00:07:00,786
+sunt mai mari ca 0.5
+
+108
+00:07:00,786 --> 00:07:05,661
+pe axa verticala,
+
+109
+00:07:09,135 --> 00:07:13,795
+iar tot ce este in stanga
+
+110
+00:07:13,795 --> 00:07:17,044
+acelui punct, va
+
+111
+00:07:17,044 --> 00:07:21,635
+predicta clasa negativa.
+
+112
+00:07:21,635 --> 00:07:25,114
+In acest exemplu,
+
+113
+00:07:26,250 --> 00:07:29,260
+se pare ca regresia liniara
+
+114
+00:07:29,260 --> 00:07:33,370
+da rezultate rezonabile, chiar daca
+
+115
+00:07:33,370 --> 00:07:38,230
+sarcina care ne intereseaza este de fapt una
+
+116
+00:07:38,230 --> 00:07:42,150
+de clasificare.
+
+117
+00:07:42,150 --> 00:07:44,720
+Dar hai sa schimbam  putin problema.
+
+118
+00:07:44,720 --> 00:07:49,210
+Sa zicem ca extind axa
+
+119
+00:07:49,210 --> 00:07:54,542
+orizontala si consider
+
+120
+00:07:54,542 --> 00:07:56,610
+inca un punct de antrenare
+
+121
+00:07:56,610 --> 00:08:01,000
+mai departe, in dreapta.
+
+122
+00:08:01,000 --> 00:08:03,640
+Observati ca noul exemplu de
+
+123
+00:08:03,640 --> 00:08:04,500
+antrenare, acesta de
+
+124
+00:08:04,500 --> 00:08:08,080
+aici, nu schimba lucrurile cu nimic, nu-i asa?

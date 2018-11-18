@@ -1,0 +1,157 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Matrices and Vectors
+ </h1>
+ <p>
+  Matrices are 2-dimensional arrays:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix} a &amp; b &amp; c \newline d &amp; e &amp; f \newline g &amp; h &amp; i \newline j &amp; k &amp; l\end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  The above matrix has four rows and three columns, so it is a 4 x 3 matrix.
+ </p>
+ <p>
+  A vector is a matrix with one column and many rows:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix} w \newline x \newline y \newline z \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  So vectors are a subset of matrices. The above vector is a 4 x 1 matrix.
+ </p>
+ <p>
+  <strong>
+   Notation and terms
+  </strong>
+  :
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    $$A_{ij}$$ refers to the element in the ith row and jth column of matrix A.
+   </p>
+  </li>
+  <li>
+   <p>
+    A vector with 'n' rows is referred to as an 'n'-dimensional vector.
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    $$v_i$$ refers to the element in the ith row of the vector.
+   </p>
+  </li>
+  <li>
+   <p>
+    In general, all our vectors and matrices will be 1-indexed. Note that for some programming languages, the arrays are 0-indexed.
+   </p>
+  </li>
+  <li>
+   <p>
+    Matrices are usually denoted by uppercase names while vectors are lowercase.
+   </p>
+  </li>
+  <li>
+   <p>
+    "Scalar" means that an object is a single value, not a vector or matrix.
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    $$\mathbb{R}$$ refers to the set of scalar real numbers.
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    $$\mathbb{R^n}$$ refers to the set of n-dimensional vectors of real numbers.
+   </p>
+  </li>
+ </ul>
+ <p>
+  Run the cell below to get familiar with the commands in Octave/Matlab. Feel free to create matrices and vectors and try out different things.
+ </p>
+ <pre evaluatorid="UmgnsK4cRemoJ7CuHNXpDw@2" language="matlab">% The ; denotes we are going back to a new row.
+A = [1, 2, 3; 4, 5, 6; 7, 8, 9; 10, 11, 12]
+
+% Initialize a vector 
+v = [1;2;3] 
+
+% Get the dimension of the matrix A where m = rows and n = columns
+[m,n] = size(A)
+
+% You could also store it this way
+dim_A = size(A)
+
+% Get the dimension of the vector v 
+dim_v = size(v)
+
+% Now let's index into the 2nd row 3rd column of matrix A
+A_23 = A(2,3)
+</pre>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

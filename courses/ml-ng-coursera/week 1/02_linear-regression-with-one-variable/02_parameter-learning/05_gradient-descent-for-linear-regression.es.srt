@@ -1,0 +1,1079 @@
+1
+00:00:00,454 --> 00:00:02,208
+En el video anterior, hablamos
+
+2
+00:00:02,238 --> 00:00:04,581
+del algoritmo de gradiente de descenso
+
+3
+00:00:04,581 --> 00:00:06,005
+y del modelo de regresión
+
+4
+00:00:06,005 --> 00:00:09,071
+lineal y la función de costos de error al cuadrado.
+
+5
+00:00:09,071 --> 00:00:10,822
+En este vídeo, vamos
+
+6
+00:00:10,822 --> 00:00:12,695
+a unir el gradiente de descenso con
+
+7
+00:00:12,695 --> 00:00:14,672
+nuestra función de costos, y eso
+
+8
+00:00:14,672 --> 00:00:16,652
+nos dará un algoritmo para
+
+9
+00:00:16,652 --> 00:00:19,431
+la regresión lineal para ajustar una línea recta a nuestro datos.
+
+10
+00:00:21,001 --> 00:00:22,743
+Esto es en
+
+11
+00:00:22,743 --> 00:00:25,077
+lo que trabajamos en los videos anteriores.
+
+12
+00:00:25,077 --> 00:00:27,095
+Ese es nuestro algoritmo de gradiente de descenso, con
+
+13
+00:00:27,095 --> 00:00:29,197
+el que ya debes estar familiarizado, y
+
+14
+00:00:29,197 --> 00:00:31,199
+verás el modelo de regresión lineal
+
+15
+00:00:31,199 --> 00:00:36,461
+con nuestra hipótesis lineal y nuestra función de costos de error al cuadrado.
+
+16
+00:00:36,461 --> 00:00:38,612
+Lo que haremos es aplicar el
+
+17
+00:00:38,612 --> 00:00:42,288
+gradiente de descenso para minimizar
+
+18
+00:00:44,519 --> 00:00:47,537
+nuestra función de costos del error al cuadrado.
+
+19
+00:00:47,891 --> 00:00:49,381
+Ahora, para aplicar
+
+20
+00:00:49,381 --> 00:00:50,896
+el gradiente de descenso, para
+
+21
+00:00:50,896 --> 00:00:52,695
+escribir este fragmento de
+
+22
+00:00:52,695 --> 00:00:54,191
+código, el término clave
+
+23
+00:00:54,191 --> 00:00:58,384
+que necesitamos es el término derivado de aquí.
+
+24
+00:00:59,692 --> 00:01:00,798
+Entonces, necesitamos descubrir
+
+25
+00:01:00,798 --> 00:01:02,830
+cuál es el término de derivada parcial,
+
+26
+00:01:02,830 --> 00:01:04,478
+y relacionar la
+
+27
+00:01:04,478 --> 00:01:06,249
+definición de la función
+
+28
+00:01:06,249 --> 00:01:08,418
+de costos J, esto resulta
+
+29
+00:01:08,418 --> 00:01:11,074
+ser
+
+30
+00:01:12,613 --> 00:01:15,156
+igual a suma 1 a través de m de
+
+31
+00:01:15,156 --> 00:01:18,856
+este término de la
+
+32
+00:01:20,456 --> 00:01:22,023
+función de costos del error al cuadrado,
+
+33
+00:01:22,023 --> 00:01:23,794
+y lo que hice fue
+
+34
+00:01:23,794 --> 00:01:25,538
+relacionar la definición de la función
+
+35
+00:01:25,538 --> 00:01:28,275
+de costos y simplificar un poco
+
+36
+00:01:28,275 --> 00:01:30,563
+más, lo que resultó
+
+37
+00:01:30,563 --> 00:01:34,136
+ser igual a
+
+38
+00:01:34,136 --> 00:01:36,983
+Suma es igual a 1 a través de m
+
+39
+00:01:36,983 --> 00:01:40,609
+de tetha cero más tetha uno, x(i)
+
+40
+00:01:41,163 --> 00:01:43,427
+menos y(i) al cuadrado.
+
+41
+00:01:43,427 --> 00:01:44,777
+Y todo lo que hice fue tomar
+
+42
+00:01:44,777 --> 00:01:46,983
+la definición para mi hipótesis
+
+43
+00:01:46,983 --> 00:01:49,376
+y relacionarla ahí.
+
+44
+00:01:49,622 --> 00:01:51,669
+Y resulta que necesitamos
+
+45
+00:01:51,669 --> 00:01:52,523
+descubrir cuál es la
+
+46
+00:01:52,523 --> 00:01:54,011
+derivada parcial de dos
+
+47
+00:01:54,011 --> 00:01:55,284
+casos para J igual a
+
+48
+00:01:55,284 --> 00:01:57,006
+0 y para J igual a 1, por lo que
+
+49
+00:01:57,006 --> 00:01:58,547
+queremos averiguar cuál es la
+
+50
+00:01:58,547 --> 00:02:00,767
+derivada parcial del
+
+51
+00:02:00,767 --> 00:02:04,115
+caso tetha 0 y el caso tetha 1.
+
+52
+00:02:04,115 --> 00:02:07,012
+Sólo voy a escribir las respuestas.
+
+53
+00:02:07,012 --> 00:02:10,996
+Resulta que este primer término se
+
+54
+00:02:10,996 --> 00:02:14,218
+simplifica a 1/M, suma sobre
+
+55
+00:02:14,218 --> 00:02:16,446
+mi conjunto de entrenamiento de sólo
+
+56
+00:02:16,446 --> 00:02:21,146
+ese, x(i)-y(i).
+
+57
+00:02:21,146 --> 00:02:23,951
+Y para este término, la derivada parcial
+
+58
+00:02:23,951 --> 00:02:26,186
+con respecto a tetha1, resulta
+
+59
+00:02:26,186 --> 00:02:34,954
+que obtengo este término: x(i)-y(i) por x(i)</i>
+
+60
+00:02:35,031 --> 00:02:36,187
+Ok.
+
+61
+00:02:36,402 --> 00:02:38,690
+Y el cálculo de estas derivadas
+
+62
+00:02:38,690 --> 00:02:40,761
+parciales, que van desde
+
+63
+00:02:40,761 --> 00:02:43,406
+esta ecuación a cualquiera
+
+64
+00:02:43,406 --> 00:02:46,414
+de estas ecuaciones de abajo, el cálculo
+
+65
+00:02:46,414 --> 00:02:51,090
+de estos términos de derivadas parciales requiere cálculos multivariados.
+
+66
+00:02:51,090 --> 00:02:53,118
+Si sabes de cálculo, no dudes
+
+67
+00:02:53,118 --> 00:02:54,825
+en trabajar con las derivaciones por ti mismo,
+
+68
+00:02:54,825 --> 00:02:57,060
+y comprueba, si tomas las derivadas
+
+69
+00:02:57,060 --> 00:02:59,853
+realmente obtienes las respuesta que tengo.
+
+70
+00:02:59,853 --> 00:03:00,855
+Pero si no estás
+
+71
+00:03:00,855 --> 00:03:02,611
+tan familiarizado con cálculo,
+
+72
+00:03:02,611 --> 00:03:04,235
+no te preocupes, está
+
+73
+00:03:04,235 --> 00:03:06,260
+bien sólo tomar estas ecuaciones
+
+74
+00:03:06,260 --> 00:03:08,025
+que se manejan, y
+
+75
+00:03:08,025 --> 00:03:09,462
+no debes saber cálculo o
+
+76
+00:03:09,462 --> 00:03:10,340
+algo como eso para hacer
+
+77
+00:03:10,340 --> 00:03:14,551
+la tarea, para implementar la gradiente de descenso que tendrías que trabajar.
+
+78
+00:03:14,551 --> 00:03:16,520
+Pero después de estas definiciones
+
+79
+00:03:16,520 --> 00:03:18,156
+o después de lo que hemos visto que
+
+80
+00:03:18,156 --> 00:03:19,993
+son las derivadas, que
+
+81
+00:03:19,993 --> 00:03:21,316
+realmente es sólo la pendiente de la
+
+82
+00:03:21,316 --> 00:03:22,889
+función de costos J,
+
+83
+00:03:22,889 --> 00:03:24,724
+ahora podemos relacionarlas con
+
+84
+00:03:24,724 --> 00:03:27,157
+nuestro algoritmo de gradiente de descenso.
+
+85
+00:03:27,157 --> 00:03:28,794
+Entonces, este es el gradiente de descenso
+
+86
+00:03:28,794 --> 00:03:30,309
+para la regresión lineal, que se
+
+87
+00:03:30,309 --> 00:03:32,971
+repetirá hasta la convergencia, tetha 0
+
+88
+00:03:32,971 --> 00:03:35,552
+y tetha uno se actualizan como
+
+89
+00:03:35,552 --> 00:03:37,163
+el mismo menos alfa
+
+90
+00:03:37,163 --> 00:03:39,591
+veces el término de derivada.
+
+91
+00:03:39,591 --> 00:03:43,202
+Bien, el término de aquí.
+
+92
+00:03:43,202 --> 00:03:46,854
+Este es nuestro algoritmo de regresión lineal.
+
+93
+00:03:46,854 --> 00:03:52,696
+El primer término de aquí
+
+94
+00:03:52,696 --> 00:03:54,495
+es, por supuesto, sólo
+
+95
+00:03:54,495 --> 00:03:56,071
+la derivada parcial de la respectiva
+
+96
+00:03:56,071 --> 00:03:59,995
+tetha cero con la que trabajamos en la diapositiva anterior.
+
+97
+00:03:59,995 --> 00:04:03,454
+Y el segundo término de aquí
+
+98
+00:04:03,454 --> 00:04:04,199
+es sólo
+
+99
+00:04:04,199 --> 00:04:05,947
+una derivada parcial con respecto a
+
+100
+00:04:05,947 --> 00:04:11,188
+tetha uno con la que trabajamos en la línea anterior.
+
+101
+00:04:11,188 --> 00:04:13,582
+Sólo como breve recordatorio,
+
+102
+00:04:13,582 --> 00:04:15,485
+al utilizar el gradiente de descenso,
+
+103
+00:04:15,485 --> 00:04:17,067
+realmente existe un detalle que
+
+104
+00:04:17,067 --> 00:04:19,248
+debes implementar para la
+
+105
+00:04:19,248 --> 00:04:24,452
+actualización de tetha cero y tetha uno de forma simultánea.
+
+106
+00:04:24,452 --> 00:04:28,270
+Veamos cómo funciona el gradiente de descenso.
+
+107
+00:04:28,270 --> 00:04:29,447
+Uno de los problemas que resolvimos
+
+108
+00:04:29,447 --> 00:04:32,839
+del gradiente de descenso es que puede ser susceptible al óptimo local.
+
+109
+00:04:32,839 --> 00:04:34,433
+Cuando expliqué por primera vez
+
+110
+00:04:34,449 --> 00:04:36,136
+el gradiente de descenso, te mostré
+
+111
+00:04:36,136 --> 00:04:37,724
+una imagen que iba en descenso
+
+112
+00:04:37,724 --> 00:04:38,788
+en la superficie y vimos
+
+113
+00:04:38,788 --> 00:04:40,120
+cómo, dependiendo de dónde
+
+114
+00:04:40,120 --> 00:04:42,872
+inicies, puedes terminas con un óptimo local diferente.
+
+115
+00:04:42,872 --> 00:04:44,846
+Puedes terminar aquí o aquí.
+
+116
+00:04:44,846 --> 00:04:46,958
+Pero resulta que la
+
+117
+00:04:46,958 --> 00:04:49,025
+función de costos para la función
+
+118
+00:04:49,025 --> 00:04:50,791
+de costo-gradientes para la regresión lineal
+
+119
+00:04:50,791 --> 00:04:52,754
+siempre será una
+
+120
+00:04:52,754 --> 00:04:55,305
+función en forma de arco como esta.
+
+121
+00:04:55,305 --> 00:04:57,573
+El término técnico para esto
+
+122
+00:04:57,573 --> 00:05:01,163
+es función convexa.
+
+123
+00:05:02,825 --> 00:05:04,920
+No daré la
+
+124
+00:05:04,920 --> 00:05:06,561
+definición formal de qué es
+
+125
+00:05:06,561 --> 00:05:09,557
+una función convexa, c-o-n-v-e-x-a,
+
+126
+00:05:09,557 --> 00:05:11,310
+pero de forma informal una función convexa
+
+127
+00:05:11,310 --> 00:05:14,793
+significa una función con forma curva, como una forma de arco.
+
+128
+00:05:14,793 --> 00:05:18,006
+Y entonces, esta función no
+
+129
+00:05:18,006 --> 00:05:19,738
+tiene un óptimo local, excepto
+
+130
+00:05:19,738 --> 00:05:22,433
+por el óptimo global.
+
+131
+00:05:22,433 --> 00:05:24,265
+Y también el gradiente de descenso en
+
+132
+00:05:24,265 --> 00:05:25,590
+este tipo de función de costos que
+
+133
+00:05:25,590 --> 00:05:27,695
+obtienes siempre que usas la regresión
+
+134
+00:05:27,695 --> 00:05:29,201
+lineal, siempre se convierte
+
+135
+00:05:29,201 --> 00:05:33,623
+a óptimo global debido a que no hay otro óptimo local que no sea el óptimo global.
+
+136
+00:05:33,623 --> 00:05:37,272
+Ahora veamos este algoritmo en acción.
+
+137
+00:05:38,026 --> 00:05:40,085
+Como de costumbre, aquí están las gráficas
+
+138
+00:05:40,085 --> 00:05:42,182
+de la función de hipótesis y de
+
+139
+00:05:42,182 --> 00:05:45,024
+mi función de costos J.
+
+140
+00:05:45,763 --> 00:05:47,011
+Veamos cómo
+
+141
+00:05:47,011 --> 00:05:49,687
+iniciar mis parámetros con este valor.
+
+142
+00:05:49,687 --> 00:05:51,652
+Digamos, que generalmente
+
+143
+00:05:51,652 --> 00:05:53,590
+inicias tus parámetros con cero,
+
+144
+00:05:53,590 --> 00:05:56,287
+cero, tetha cero y tetha igual a cero.
+
+145
+00:05:56,287 --> 00:05:58,331
+Para ilustrar en esta
+
+146
+00:05:58,331 --> 00:05:59,948
+aplicación específica del gradiente de descenso,
+
+147
+00:05:59,948 --> 00:06:02,615
+inicié tetha cero con
+
+148
+00:06:02,615 --> 00:06:06,831
+aproximadamente 900, y tetha uno con aproximadamente menos 0.1, ¿ok?
+
+149
+00:06:06,831 --> 00:06:09,791
+Así que esta corresponde con h
+
+150
+00:06:09,791 --> 00:06:12,022
+sobre x, igual a
+
+151
+00:06:12,022 --> 00:06:15,859
+menos 900, menos 0.1 x
+
+152
+00:06:15,859 --> 00:06:19,341
+es esta línea, fuera de aquí en la función de costos.
+
+153
+00:06:19,341 --> 00:06:20,491
+Ahora, si tomamos un
+
+154
+00:06:20,491 --> 00:06:22,163
+paso de gradiente de descenso,
+
+155
+00:06:22,163 --> 00:06:24,298
+terminamos yendo desde este punto
+
+156
+00:06:24,298 --> 00:06:27,065
+de aquí, un poco
+
+157
+00:06:27,065 --> 00:06:29,564
+a la izquierda inferior
+
+158
+00:06:29,564 --> 00:06:31,732
+hasta el segundo punto de allá.
+
+159
+00:06:31,732 --> 00:06:35,279
+Y puedes darte cuenta que mi línea cambió un poco.
+
+160
+00:06:35,279 --> 00:06:36,547
+Y si tomo otro paso
+
+161
+00:06:36,547 --> 00:06:41,425
+en el gradiente de descenso, mi línea de la izquierda cambiará.
+
+162
+00:06:41,425 --> 00:06:42,376
+¿Correcto?
+
+163
+00:06:42,376 --> 00:06:43,804
+Y también me moví
+
+164
+00:06:43,804 --> 00:06:47,544
+a otro punto nuevo de mi función de costos.
+
+165
+00:06:47,544 --> 00:06:48,745
+Y si tomo otros pasos
+
+166
+00:06:48,745 --> 00:06:50,697
+en el gradiente de descenso,
+
+167
+00:06:50,697 --> 00:06:53,058
+reduciré los costos, entonces
+
+168
+00:06:53,058 --> 00:06:55,079
+mi parámetro sigue
+
+169
+00:06:55,079 --> 00:06:58,062
+esta trayectoria y, si
+
+170
+00:06:58,062 --> 00:07:00,368
+veo a la izquierda, esto corresponde
+
+171
+00:07:00,368 --> 00:07:04,025
+con la hipótesis que parece
+
+172
+00:07:04,025 --> 00:07:04,912
+estar mejor
+
+173
+00:07:04,912 --> 00:07:06,429
+y ajustarse mejor a
+
+174
+00:07:06,429 --> 00:07:09,987
+los datos, hasta que finalmente
+
+175
+00:07:09,987 --> 00:07:12,663
+cierro con el mínimo global.
+
+176
+00:07:12,663 --> 00:07:16,189
+Y este mínimo global corresponde con
+
+177
+00:07:16,189 --> 00:07:20,506
+la hipótesis, que me da una buena opción para los datos.
+
+178
+00:07:20,922 --> 00:07:23,605
+Y eso es el gradiente de
+
+179
+00:07:23,605 --> 00:07:24,969
+descenso, acabamos de realizarlo
+
+180
+00:07:24,969 --> 00:07:27,302
+y obtuvimos una buena opción
+
+181
+00:07:27,302 --> 00:07:31,359
+para mi conjunto de datos de precios de casas.
+
+182
+00:07:31,359 --> 00:07:34,108
+Ahora puedes usarlo para predecir.
+
+183
+00:07:34,108 --> 00:07:35,284
+Si tu amigo tiene una
+
+184
+00:07:35,284 --> 00:07:36,452
+casa con un tamaño
+
+185
+00:07:36,452 --> 00:07:39,116
+de 1250 pies cuadrados,
+
+186
+00:07:39,116 --> 00:07:40,684
+ahora puedes visualizar el valor
+
+187
+00:07:40,684 --> 00:07:42,090
+y decirle que, tal vez,
+
+188
+00:07:42,090 --> 00:07:43,188
+podría obtener
+
+189
+00:07:43,188 --> 00:07:47,159
+$350,000 por su casa.
+
+190
+00:07:48,606 --> 00:07:49,982
+Finalmente, sólo para
+
+191
+00:07:49,982 --> 00:07:51,930
+darle otro nombre, resulta
+
+192
+00:07:51,930 --> 00:07:52,991
+que el algoritmo que
+
+193
+00:07:52,991 --> 00:07:55,030
+obtuvimos, a veces
+
+194
+00:07:55,030 --> 00:07:57,074
+se llama gradiente de descenso por lotes.
+
+195
+00:07:57,074 --> 00:07:58,781
+Y resulta que en el aprendizaje
+
+196
+00:07:58,781 --> 00:08:00,203
+electrónico, siento que, nosotros
+
+197
+00:08:00,203 --> 00:08:02,050
+la gente del aprendizaje automático, no
+
+198
+00:08:02,050 --> 00:08:04,381
+siempre somos buenos dando nombres a los algoritmos.
+
+199
+00:08:04,381 --> 00:08:06,634
+Pero el término gradiente de descenso por lotes
+
+200
+00:08:06,634 --> 00:08:08,212
+se refiere al hecho de
+
+201
+00:08:08,212 --> 00:08:09,551
+que en cada paso
+
+202
+00:08:09,551 --> 00:08:11,164
+del gradiente de descenso, vemos
+
+203
+00:08:11,164 --> 00:08:13,649
+todos los ejemplos de entrenamiento.
+
+204
+00:08:13,649 --> 00:08:15,783
+Entonces, en el gradiente de descenso,
+
+205
+00:08:15,783 --> 00:08:18,875
+al calcular las derivadas, estamos calculando
+
+206
+00:08:18,875 --> 00:08:21,307
+estas sumas.
+
+207
+00:08:21,307 --> 00:08:22,210
+En cada gradiente de descenso
+
+208
+00:08:22,210 --> 00:08:23,510
+separado, terminamos
+
+209
+00:08:23,510 --> 00:08:25,278
+calculando algo como esto, que
+
+210
+00:08:25,278 --> 00:08:28,434
+suma sobre nuestros ejemplos de entrenamiento de m.
+
+211
+00:08:28,434 --> 00:08:29,835
+Entonces, el término gradiente de descenso
+
+212
+00:08:29,835 --> 00:08:31,195
+por lotes se refiere al hecho de
+
+213
+00:08:31,195 --> 00:08:33,193
+que vemos todo el lote de los ejemplos
+
+214
+00:08:33,193 --> 00:08:34,559
+de entrenamiento y, una vez más,
+
+215
+00:08:34,559 --> 00:08:35,742
+realmente no es
+
+216
+00:08:35,742 --> 00:08:36,915
+un buen nombre, pero esto
+
+217
+00:08:36,915 --> 00:08:39,444
+es como lo llama la gente de aprendizaje automático.
+
+218
+00:08:39,444 --> 00:08:40,958
+Y resulta que, a veces,
+
+219
+00:08:40,958 --> 00:08:42,665
+otras versiones de
+
+220
+00:08:42,665 --> 00:08:43,918
+gradiente de descenso que no son
+
+221
+00:08:43,918 --> 00:08:45,969
+versiones por lotes, y no ven
+
+222
+00:08:45,969 --> 00:08:47,752
+todo el conjunto de entrenamiento
+
+223
+00:08:47,752 --> 00:08:49,722
+pero sí los pequeños subconjuntos
+
+224
+00:08:49,722 --> 00:08:51,529
+de los conjuntos entrenamiento en el momento.
+
+225
+00:08:51,529 --> 00:08:54,874
+Más adelante también hablaremos sobre estas versiones.
+
+226
+00:08:54,874 --> 00:08:56,195
+Pero por ahora, con el algoritmo que
+
+227
+00:08:56,195 --> 00:08:57,410
+acabas de aprender, ahora que usamos
+
+228
+00:08:57,410 --> 00:08:58,759
+un gradiente de descenso por lotes,
+
+229
+00:08:58,759 --> 00:09:01,159
+sabrás cómo aplicar el
+
+230
+00:09:01,159 --> 00:09:04,149
+gradiente de descenso o la regresión lineal.
+
+231
+00:09:05,856 --> 00:09:08,672
+Eso es la regresión lineal con gradiente de descenso.
+
+232
+00:09:09,349 --> 00:09:11,747
+Si ya has visto álgebra lineal avanzada,
+
+233
+00:09:11,747 --> 00:09:12,672
+es posible que hayas
+
+234
+00:09:12,672 --> 00:09:14,206
+tomado una clase de álgebra
+
+235
+00:09:14,206 --> 00:09:16,279
+lineal avanzada, es posible
+
+236
+00:09:16,295 --> 00:09:17,678
+que sepas que existe una solución
+
+237
+00:09:17,678 --> 00:09:19,754
+para resolver de forma numérica
+
+238
+00:09:19,754 --> 00:09:20,914
+el mínimo de la función de costos
+
+239
+00:09:20,914 --> 00:09:22,561
+J, sin necesidad de
+
+240
+00:09:22,561 --> 00:09:25,604
+usar un algoritmo iterativo como el gradiente de descenso.
+
+241
+00:09:25,604 --> 00:09:27,154
+Más adelante en este curso también
+
+242
+00:09:27,154 --> 00:09:28,098
+hablaremos sobre ese método
+
+243
+00:09:28,098 --> 00:09:29,753
+que sólo despeja la
+
+244
+00:09:29,753 --> 00:09:31,076
+función de costos J del mínimo sin
+
+245
+00:09:31,076 --> 00:09:33,791
+necesidad de múltiples pasos de gradiente de descenso.
+
+246
+00:09:33,791 --> 00:09:37,656
+El otro método se llama método de ecuaciones normales.
+
+247
+00:09:37,656 --> 00:09:39,167
+Y en caso de que
+
+248
+00:09:39,167 --> 00:09:40,141
+hayas escuchado sobre ese método,
+
+249
+00:09:40,141 --> 00:09:41,622
+resulta que el gradiente de descenso
+
+250
+00:09:41,622 --> 00:09:43,774
+es mejor para los conjuntos de datos
+
+251
+00:09:43,774 --> 00:09:45,008
+más grandes que con el método de
+
+252
+00:09:45,008 --> 00:09:47,315
+ecuaciones normales y, ahora que
+
+253
+00:09:47,315 --> 00:09:48,756
+sabemos sobre el gradiente de descenso,
+
+254
+00:09:48,756 --> 00:09:49,922
+podremos usarlo en
+
+255
+00:09:49,922 --> 00:09:51,387
+muchos contextos diferentes, y también
+
+256
+00:09:51,387 --> 00:09:54,849
+lo usaremos en muchos problemas de aprendizaje automático.
+
+257
+00:09:54,849 --> 00:09:57,138
+Así que felicidades por aprender
+
+258
+00:09:57,138 --> 00:10:00,317
+tu primer algoritmo de aprendizaje automático.
+
+259
+00:10:00,317 --> 00:10:02,508
+Más adelante tendremos ejercicios
+
+260
+00:10:02,508 --> 00:10:03,659
+en los que te pediré que
+
+261
+00:10:03,659 --> 00:10:05,068
+apliques el gradiente de descenso
+
+262
+00:10:05,068 --> 00:10:07,071
+y espero que estos algoritmos sean útiles.
+
+263
+00:10:07,071 --> 00:10:08,955
+Pero primero
+
+264
+00:10:08,955 --> 00:10:10,587
+quiero decirte que en
+
+265
+00:10:10,587 --> 00:10:11,919
+en la siguiente serie de videos, en
+
+266
+00:10:11,919 --> 00:10:13,223
+el primero quiero hablarte sobre
+
+267
+00:10:13,223 --> 00:10:15,724
+una generalización del algoritmo de
+
+268
+00:10:15,724 --> 00:10:16,935
+gradiente de descenso que la hará
+
+269
+00:10:16,935 --> 00:10:18,403
+mucho más potente.
+
+270
+00:10:18,403 --> 99:59:59,000
+Supongo que te hablaré de eso en el siguiente video.

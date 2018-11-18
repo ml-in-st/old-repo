@@ -1,0 +1,175 @@
+In the last video, we talked about
+the recommender systems problem where for example you might have a set of movies and
+you may have a set of users, each who have rated some
+subset of the movies. They've rated the movies one to
+five stars or zero to five stars. And what we would like to do
+is look at these users and predict how they would have rated other
+movies that they have not yet rated. In this video I'd like to talk about
+our first approach to building a recommender system. This approach is called
+content based recommendations. Here's our data set from before and
+just to remind you of a bit of notation, I was using nu to denote the number
+of users and so that's equal to 4, and nm to denote the number of movies,
+I have 5 movies. So, how do I predict what
+these missing values would be? Let's suppose that for each of these
+movies I have a set of features for them. In particular, let's say that for each of the movies have two features
+which I'm going to denote x1 and x2. Where x1 measures the degree to which
+a movie is a romantic movie and x2 measures the degree to which
+a movie is an action movie. So, if you take a movie, Love at last, you
+know it's 0.9 rating on the romance scale. This is a highly romantic movie,
+but zero on the action scale. So, almost no action in that movie. Romance forever is a 1.0,
+lot of romance and 0.01 action. I don't know, maybe there's a minor
+car crash in that movie or something. So there's a little bit of action. Skipping one, let's do Swords vs karate,
+maybe that has a 0 romance rating and no romance at all in that but
+plenty of action. And Nonstop car chases, maybe again there's a tiny bit of
+romance in that movie but mainly action. And Cute puppies of love mainly
+a romance movie with no action at all. So if we have features like these, then each movie can be represented
+with a feature vector. Let's take movie one. So let's call these movies 1,
+2, 3, 4, and 5. But my first movie, Love at last,
+I have my two features, 0.9 and 0. And so these are features x1 and x2. And let's add an extra feature as usual,
+which is my interceptor feature x0 = 1. And so putting these together I
+would then have a feature x1. The superscript 1 denotes it's the feature
+vector for my first movie, and this feature vector is equal to 1. The first 1 there is this interceptor. And then my two feature is 0.90 like so. So for Love at last I would
+have a feature vector x1, for the movie Romance forever I may have a
+software feature of vector x2, and so on, and for Swords vs karate I would have a
+different feature vector x superscript 5. Also, consistence with our earlier
+node notation that we were using, we're going to set n to be the number of
+features not counting this x0 interceptor. So n is equal to 2 because it's
+we have two features x1 and x2 capturing the degree of romance and
+the degree of action in each movie. Now in order to make predictions here's
+one thing that we do which is that we could treat predicting
+the ratings of each user as a separate linear regression problem. So specifically, let's say that for
+each user j, we're going to learn the parameter vector theta j,
+which would be an R3 in this case. More generally,
+theta (j) would be an R (n+1), where n is the number of features
+not counting the set term. And we're going to predict user j as
+rating movie i with just the inner product between parameters vectors
+theta and the features xi. So let's take a specific example. Let's take user 1, so that would be Alice. And associated with Alice would
+be some parameter vector theta 1. And our second user, Bob, will be associated a different
+parameter vector theta 2. Carol will be associated with
+a different parameter vector theta 3 and Dave a different parameter vector theta 4. So let's say you want to
+make a prediction for what Alice will think of
+the movie Cute puppies of love. Well that movie is going to
+have some parameter vector x3 where we have that x3 is
+going to be equal to 1, which is my intercept term and
+then 0.99 and then 0. And let's say, for this example, let's
+say that we've somehow already gotten a parameter vector theta 1 for Alice. We'll say it later exactly how we
+come up with this parameter vector. But let's just say for now that
+some unspecified learning algorithm has learned the parameter vector
+theta 1 and is equal to this 0,5,0. So our prediction for
+this entry is going to be equal to theta 1, that is Alice's parameter vector,
+transpose x3, that is the feature vector for
+the Cute puppies of love movie, number 3. And so the inner product between these
+two vectors is gonna be 5 times 0.99, which is equal to 4.95. And so my prediction for
+this value over here is going to be 4.95. And maybe that seems like a reasonable
+value if indeed this is my parameter vector theta 1. So, all we're doing here is we're
+applying a different copy of this linear regression for each user, and
+we're saying that what Alice does is Alice has some parameter vector theta 1 that
+she uses, that we use to predict her ratings as a function of how romantic and
+how action packed a movie is. And Bob and Carol and Dave, each of
+them have a different linear function of the romanticness and actionness, or degree
+of romance and degree of action in a movie and that that's how we're gonna
+predict that their star ratings. More formally,
+here's how we can write down the problem. Our notation is that r(i,j) is equal
+to 1 if user j has rated movie i and y(i,j) is the rating of that movie,
+if that rating exists. That is, if that user has
+actually rated that movie. And, on the previous slide we also defined
+these, theta j, which is a parameter for the user xi, which is a feature vector for
+a specific movie. And for each user and each movie,
+we predict that rating as follows. So let me introduce just temporarily
+introduce one extra bit of notation mj. We're gonna use mj to denote
+the number of users rated by movie j. We don't need this notation only for
+this line. Now in order to learn the parameter
+vector for theta j, well how do we do so. This is basically a linear
+regression problem. So what we can do is just choose
+a parameter vector theta j so that the predicted values here are as
+close as possible to the values that we observed in our training sets and
+the values we observed in our data. So let's write that down. In order to learn
+the parameter vector theta j, let's minimize over the parameter
+vector theta j of sum, and I want to sum over all
+movies that user j has rated. So we write it as sum
+over all values of i. That's a :r(i,j) equals 1. So the way to read this summation
+syntax is this is summation over all the values of i, so
+the r(i.j) is equal to 1. So you'll be summing over all
+the movies that user j has rated. And then I'm going to compute theta j,
+transpose x i. So that's the prediction of using
+j's rating on movie i,- y (i,j). So that's the actual
+observed rating squared. And then, let me just divide by the number
+of movies that user j has actually rated. So let's just divide by 1 over 2m j. And so this is just like
+the least squares regressions. It's just like linear regression, where
+we want to choose the parameter vector theta j to minimize this
+type of squared error term. And if you want, you can also add in
+irregularization terms so plus lambda over 2m and this is really 2mj
+because we have mj examples. User j has rated that many movies,
+it's not like we have that many data points with which to fit
+the parameters of theta j. And then let me add in my
+usual regularization term here of theta j k squared. As usual, this sum is from k equals 1
+through n, so here, theta j is going to be an n plus 1 dimensional vector, where
+in our early example n was equal to 2. But more broadly, more generally n is
+the number of features we have per movie. And so
+as usual we don't regularize over theta 0. We don't regularize over the bias terms. The sum is from k equals 1 through n. So if you minimize this as a function
+of theta j you get a good solution, you get a pretty good estimate
+of a parameter vector theta j with which to make predictions for
+user j's movie ratings. For recommender systems, I'm gonna
+change this notation a little bit. So to simplify the subsequent math,
+I with to get rid of this term mj. So that's just a constant, right? So I can delete it without changing
+the value of theta j that I get out of this optimization. So if you imagine taking this whole
+equation, taking this whole expression and multiplying it by mj,
+get rid of that constant. And when I minimize this, I should still
+get the same value of theta j as before. So just to repeat what we
+wrote on the previous slide, here's our optimization objective. In order to learn theta j
+which is the parameter for user j, we're going to minimize over
+theta j of this optimization objectives. So this is our usual squared error term
+and then this is our regularizations term. Now of course in building
+a recommender system, we don't just want to learn parameters for
+a single user. We want to learn parameters for
+all of our users. I have n subscript u users, so
+I want to learn all of these parameters. And so, what I'm going to do is take
+this optimization objective and just add the mixture summation there. So this expression here with the one
+half on top of this is exactly the same as what we had on top. Except that now instead of just doing
+this for a specific user theta j, I'm going to sum my objective
+over all of my users and then minimize this overall optimization
+objective, minimize this overall cost on. And when I minimize this as
+a function of theta 1, theta 2, up to theta nu, I will get a separate
+parameter vector for each user. And I can then use that to make
+predictions for all of my users, for all of my n subscript users. So putting everything together, this
+was our optimization objective on top. And to give this thing a name, I'll
+just call this J(theta1, ..., theta nu). So j as usual is my optimization
+objective, which I'm trying to minimize. Next, in order to actually do
+the minimization, if you were to derive the gradient descent update, these
+are the equations that you would get. So you take theta j, k, and
+subtract from an alpha, which is the learning rate,
+times these terms over here on the right. So there's slightly different cases when
+k equals 0 and when k does not equal 0. Because our regularization term here
+regularizes only the values of theta jk for k not equal to 0, so
+we don't regularize theta 0, so with slightly different updates when
+k equals 0 and k is not equal to 0. And this term over here, for example, is just the partial derivative
+with respect to your parameter, that of your optimization objective. Right and so
+this is just gradient descent and I've already computed the derivatives and
+plugged them into here. And if this gradient descent update
+look a lot like what we have here for linear regression. That's because these are essentially
+the same as linear regression. The only minor difference is that for
+linear regression we have these 1 over m terms,
+this really would've been 1 over mj. But because earlier when we are deriving
+the optimization objective, we got rid of this, that's why we
+don't have this 1 over m term. But otherwise, it's really some of
+my training examples of the ever times xk plus that regularization term, plus that term of regularization
+contributes to the derivative. And so if you're using gradient
+descent here's how you can minimize the cost function j
+to learn all the parameters. And using these formulas for
+the derivative if you want, you can also plug them into a more
+advanced optimization algorithm, like conjugate gradient or
+LBFGS or what have you. And use that to try to minimize
+the cost function j as well. So hopefully you now know how you can
+apply essentially a deviation on linear regression in order to predict different
+movie ratings by different users. This particular algorithm is called
+a content based recommendations, or a content based approach, because we assume that we have available
+to us features for the different movies. And so where features that capture
+what is the content of these movies, of how romantic is this movie,
+how much action is in this movie. And we're really using features
+of a content of the movies to make our predictions. But for many movies,
+we don't actually have such features. Or maybe very difficult
+to get such features for all of our movies, for all of
+whatever items we're trying to sell. And so, in the next video, we'll start
+to talk about an approach to recommender systems that isn't content based and
+does not assume that we have someone else giving us all of these features for
+all of the movies in our data set.

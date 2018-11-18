@@ -1,0 +1,631 @@
+1
+00:00:00,290 --> 00:00:03,747
+En este video hablaremos sobre
+
+2
+00:00:03,747 --> 00:00:06,630
+la multiplicación de matriz por matriz
+
+3
+00:00:06,630 --> 00:00:10,170
+o de cómo multiplicar dos matrices juntas.
+
+4
+00:00:10,170 --> 00:00:13,123
+Cuando hablemos sobre el método
+
+5
+00:00:13,123 --> 00:00:16,270
+en la regresión lineal de cómo
+
+6
+00:00:16,270 --> 00:00:18,810
+despejar los parámetros,
+
+7
+00:00:18,810 --> 00:00:22,840
+«theta» cero y «theta» uno, en una sola vez.
+
+8
+00:00:24,090 --> 00:00:27,440
+Sin necesidad de un algoritmo iterativo como el gradiente de descenso.
+
+9
+00:00:28,840 --> 00:00:32,610
+Cuando hablamos sobre ese algoritmo,
+
+10
+00:00:32,610 --> 00:00:34,805
+resulta que la multiplicación de la
+
+11
+00:00:34,805 --> 00:00:38,060
+matriz es uno de los pasos clave que debes saber.
+
+12
+00:00:38,060 --> 00:00:43,460
+Así que, como de costumbre, iniciemos con un ejemplo.
+
+13
+00:00:43,460 --> 00:00:46,480
+Digamos que tenemos dos matrices
+
+14
+00:00:46,480 --> 00:00:49,240
+y quiero multiplicarlas juntas.
+
+15
+00:00:49,240 --> 00:00:53,790
+Una vez más haré referencia a
+
+16
+00:00:55,180 --> 00:00:59,770
+este ejemplo y luego te explicaré un poco lo que pasó.
+
+17
+00:00:59,770 --> 00:01:03,370
+Entonces, lo primero
+
+18
+00:01:03,370 --> 00:01:04,790
+que haré es
+
+19
+00:01:06,070 --> 00:01:08,570
+extraer la primera
+
+20
+00:01:08,570 --> 00:01:12,620
+columna de la matriz de la derecha.
+
+21
+00:01:12,620 --> 00:01:16,550
+Y tomaré esta
+
+22
+00:01:16,550 --> 00:01:20,430
+matriz de la izquierda y
+
+23
+00:01:20,430 --> 00:01:24,960
+la multiplicaré por un vector.
+
+24
+00:01:24,960 --> 00:01:28,840
+Eso es sólo la primera columna, ¿ok?
+
+25
+00:01:28,840 --> 00:01:30,580
+Y resulta que si
+
+26
+00:01:30,580 --> 00:01:35,540
+hago eso, obtendré un vector 11,9.
+
+27
+00:01:35,540 --> 00:01:39,650
+Así que esta es la misma
+
+28
+00:01:39,650 --> 00:01:42,159
+multiplicación de matriz por vector que viste en los últimos videos.
+
+29
+00:01:43,260 --> 00:01:46,880
+Ya trabajé con esto, así que sé que es 11,9.
+
+30
+00:01:46,880 --> 00:01:48,470
+Y, después, lo segundo
+
+31
+00:01:48,470 --> 00:01:53,060
+que haré es
+
+32
+00:01:53,060 --> 00:01:58,005
+extraer la segunda columna,
+
+33
+00:01:58,005 --> 00:01:59,950
+esta matriz de la derecha y
+
+34
+00:01:59,950 --> 00:02:07,510
+después tomaré
+
+35
+00:02:07,510 --> 00:02:12,350
+esta matriz de la izquierda,
+
+36
+00:02:12,350 --> 00:02:15,810
+entonces, será esa matriz,
+
+37
+00:02:15,810 --> 00:02:17,550
+y multiplicarlo por
+
+38
+00:02:17,550 --> 00:02:20,252
+esa segunda columna de la derecha.
+
+39
+00:02:20,252 --> 00:02:25,494
+Así que esto es un conjunto
+
+40
+00:02:25,494 --> 00:02:31,270
+de multiplicación de matriz por vector,
+
+41
+00:02:31,270 --> 00:02:36,520
+que vimos en el video anterior, y
+
+42
+00:02:36,520 --> 00:02:39,744
+resulta que si
+
+43
+00:02:39,744 --> 00:02:42,730
+multiplicas esta matriz y este
+
+44
+00:02:42,730 --> 00:02:46,540
+vector, obtienes 10,
+
+45
+00:02:46,540 --> 00:02:47,480
+14. Por cierto,
+
+46
+00:02:47,480 --> 00:02:52,550
+si quieres practicar tu multiplicación
+
+47
+00:02:52,550 --> 00:02:54,540
+de matriz por vector, no dudes
+
+48
+00:02:55,720 --> 00:03:00,300
+en ponerle pausa al video y comprobar el producto tú mismo.
+
+49
+00:03:00,300 --> 00:03:04,630
+Entonce, sólo
+
+50
+00:03:04,630 --> 00:03:07,000
+tomaré estos dos resultados y
+
+51
+00:03:07,000 --> 00:03:10,680
+los juntaré, y esa será mi respuesta.
+
+52
+00:03:10,680 --> 00:03:13,340
+Lo que sucede es que
+
+53
+00:03:13,340 --> 00:03:16,830
+el resultado de este producto será
+
+54
+00:03:16,830 --> 00:03:25,470
+una matriz 2 por 2, y la manera
+
+55
+00:03:25,470 --> 00:03:30,220
+en que completaré
+
+56
+00:03:30,220 --> 00:03:32,400
+esta matriz es sólo al
+
+57
+00:03:32,400 --> 00:03:35,540
+tomar mis elementos 11,
+
+58
+00:03:35,540 --> 00:03:40,930
+9 y colocarlos aquí, y
+
+59
+00:03:40,930 --> 00:03:46,690
+al tomar 10, 14 y colocarlos
+
+60
+00:03:46,690 --> 00:03:51,712
+en la segunda columna.
+
+61
+00:03:51,712 --> 00:03:57,960
+¿Ok?
+
+62
+00:03:57,960 --> 00:04:03,980
+Así que esa fue la mecánica de
+
+63
+00:04:05,220 --> 00:04:11,880
+cómo multiplicar una matriz por
+
+64
+00:04:11,880 --> 00:04:14,820
+otra matriz.
+
+65
+00:04:14,820 --> 00:04:17,130
+Básicamente, ves
+
+66
+00:04:17,130 --> 00:04:18,810
+en la segunda matriz una columna a la vez, y juntas las respuestas.
+
+67
+00:04:18,810 --> 00:04:22,460
+Y, de nuevo, veremos
+
+68
+00:04:22,460 --> 00:04:28,600
+esto con mucho más cuidado en
+
+69
+00:04:29,750 --> 00:04:34,860
+un momento, pero también
+
+70
+00:04:34,860 --> 00:04:37,530
+quiero señalar que este
+
+71
+00:04:37,530 --> 00:04:41,200
+primer ejemplo es una matriz de 2 por 3.
+
+72
+00:04:41,200 --> 00:04:45,230
+Al multiplicarla por una
+
+73
+00:04:46,510 --> 00:04:50,198
+matriz de 3 por 2, y el resultado
+
+74
+00:04:50,198 --> 00:04:55,154
+de este producto, resulta
+
+75
+00:04:55,154 --> 00:05:01,149
+que es una matriz de
+
+76
+00:05:01,149 --> 00:05:05,080
+2 por 2.
+
+77
+00:05:05,080 --> 00:05:10,190
+Y, otra vez, veremos en un momento por qué fue el caso.
+
+78
+00:05:11,530 --> 00:05:13,660
+Bueno,
+
+79
+00:05:13,660 --> 00:05:17,300
+esa fue la mecánica del cálculo.
+
+80
+00:05:17,300 --> 00:05:24,230
+Veamos realmente los
+
+81
+00:05:24,230 --> 00:05:29,670
+detalles y lo qué
+
+82
+00:05:29,670 --> 00:05:32,670
+sucedió con exactitud.
+
+83
+00:05:32,670 --> 00:05:35,340
+Estos son los detalles.
+
+84
+00:05:35,340 --> 00:05:41,332
+Tengo una matriz A y
+
+85
+00:05:41,332 --> 00:05:46,168
+y quiero multiplicarla
+
+86
+00:05:46,168 --> 00:05:51,255
+con una matriz B, y el resultado
+
+87
+00:05:51,255 --> 00:05:55,488
+será una nueva matriz C. Y
+
+88
+00:05:55,488 --> 00:06:00,748
+resulta que sólo puedes
+
+89
+00:06:00,748 --> 00:06:03,158
+multiplicar juntas las matrices que
+
+90
+00:06:03,158 --> 00:06:07,948
+tienen dimensiones que coinciden,
+
+91
+00:06:07,948 --> 00:06:13,552
+entonces A es una matriz m por n,
+
+92
+00:06:13,552 --> 00:06:16,948
+m columnas y n columnas, y
+
+93
+00:06:16,948 --> 00:06:21,608
+voy a multiplicar eso
+
+94
+00:06:21,608 --> 00:06:24,731
+con una n por o, y
+
+95
+00:06:24,731 --> 00:06:30,150
+resulta que esta n debe
+
+96
+00:06:30,150 --> 00:06:31,168
+coincidir con esta n de
+
+97
+00:06:31,168 --> 00:06:33,972
+aquí, de modo que el número de
+
+98
+00:06:33,972 --> 00:06:39,577
+columnas en la primera matriz debe ser igual al número de filas en la segunda matriz.
+
+99
+00:06:39,577 --> 00:06:45,184
+Y el resultado de este
+
+100
+00:06:45,184 --> 00:06:51,219
+producto será una matriz
+
+101
+00:06:51,219 --> 00:06:55,570
+m por o, como la matriz C de aquí.
+
+102
+00:06:55,570 --> 00:06:59,896
+Y, en el video anterior,
+
+103
+00:06:59,896 --> 00:07:03,715
+todo lo que hicimos correspondió
+
+104
+00:07:03,715 --> 00:07:08,820
+con el caso especial de “oB”
+
+105
+00:07:08,820 --> 00:07:13,937
+igual a 1.
+
+106
+00:07:13,937 --> 00:07:16,950
+¿Ok?
+
+107
+00:07:16,950 --> 00:07:22,547
+Eso fue en caso de que B fuera un vector.
+
+108
+00:07:22,547 --> 00:07:27,930
+Pero ahora, veremos
+
+109
+00:07:27,930 --> 00:07:31,950
+el caso de los valores de O mayor a 1.
+
+110
+00:07:34,900 --> 00:07:39,839
+Así que esto es cómo
+
+111
+00:07:39,839 --> 00:07:41,040
+multiplicas juntas las dos matrices.
+
+112
+00:07:41,040 --> 00:07:47,019
+Con el fin de obtener, lo
+
+113
+00:07:48,470 --> 00:07:53,780
+que haré es
+
+114
+00:07:53,780 --> 00:07:56,380
+Voy a tomar
+
+115
+00:07:56,380 --> 00:07:59,480
+columna de B y
+
+116
+00:07:59,480 --> 00:08:04,030
+la trataré como un vector,
+
+117
+00:08:04,030 --> 00:08:09,050
+y multiplicaré la matriz A
+
+118
+00:08:09,050 --> 00:08:15,620
+con la primera columna de B,
+
+119
+00:08:15,620 --> 00:08:22,486
+y el resultado de eso
+
+120
+00:08:22,486 --> 00:08:27,572
+será un vector m por 1,
+
+121
+00:08:27,572 --> 00:08:33,189
+y lo pondremos aquí.
+
+122
+00:08:33,189 --> 00:08:37,930
+Después, tomaré
+
+123
+00:08:37,930 --> 00:08:44,560
+la segunda columna
+
+124
+00:08:44,560 --> 00:08:46,160
+de B, de modo que
+
+125
+00:08:47,430 --> 00:08:51,080
+este es otro vector
+
+126
+00:08:51,080 --> 00:08:56,330
+n por 1. Entonces esta
+
+127
+00:08:56,330 --> 00:09:01,970
+columna de aquí, esta es
+
+128
+00:09:01,970 --> 00:09:07,540
+n por 1, eso es un vector
+
+129
+00:09:08,790 --> 00:09:10,810
+n dimensional. Voy a multiplicar
+
+130
+00:09:10,810 --> 00:09:13,040
+esta matriz con este vector n por 1.
+
+131
+00:09:13,040 --> 00:09:15,050
+El resultado será
+
+132
+00:09:15,050 --> 00:09:19,340
+un vector m dimensional,
+
+133
+00:09:19,340 --> 00:09:23,541
+que pondremos aquí,
+
+134
+00:09:23,541 --> 00:09:29,319
+y así sucesivamente.
+
+135
+00:09:29,319 --> 00:09:33,400
+¿Ok?
+
+136
+00:09:34,450 --> 00:09:36,890
+Y, ya sabes, después
+
+137
+00:09:36,890 --> 00:09:41,600
+voy a tomar la tercera
+
+138
+00:09:41,600 --> 00:09:44,120
+columna, la multiplicaré por
+
+139
+00:09:44,120 --> 00:09:48,290
+esta matriz, obtengo un vector m dimensional.
+
+140
+00:09:48,290 --> 00:09:54,000
+Y así sucesivamente, hasta que
+
+141
+00:09:54,000 --> 00:09:59,860
+llegues a la multiplicación de la última columna,
+
+142
+00:10:00,930 --> 00:10:05,902
+la matriz por la
+
+143
+00:10:05,902 --> 00:10:10,760
+última columna te da
+
+144
+00:10:10,760 --> 00:10:13,852
+la última columna de C.
+
+145
+00:10:13,852 --> 00:10:16,742
+Sólo para repetirlo.
+
+146
+00:10:16,742 --> 00:10:21,518
+La columna i de la
+
+147
+00:10:21,518 --> 00:10:22,072
+matriz C se obtiene
+
+148
+00:10:22,072 --> 00:10:25,436
+al tomar la matriz A y
+
+149
+00:10:25,436 --> 00:10:27,935
+multiplicar la matriz A con
+
+150
+00:10:27,935 --> 00:10:31,295
+la columna i de la matriz
+
+151
+00:10:31,295 --> 00:10:35,840
+B para los valores
+
+152
+00:10:35,840 --> 00:10:41,333
+de i igual a 1, 2
+
+153
+00:10:41,333 --> 00:10:47,070
+hasta 0, ¿ok?
+
+154
+00:10:47,070 --> 00:10:51,685
+Bien, esto es sólo un resumen
+
+155
+00:10:51,685 --> 00:10:56,310
+de lo que hice ahí
+
+156
+00:10:56,310 --> 00:10:59,410
+para calcular la matriz
+
+157
+00:10:59,410 --> 00:11:03,720
+C.  Veamos sólo un ejemplo más.
+
+158
+00:11:03,720 --> 00:11:08,440
+Digamos que quiero multiplicar juntas estas dos matrices.

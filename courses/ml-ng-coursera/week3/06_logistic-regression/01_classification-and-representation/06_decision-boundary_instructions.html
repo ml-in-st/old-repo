@@ -1,0 +1,144 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Decision Boundary
+ </h1>
+ <p>
+  In order to get our discrete 0 or 1 classification, we can translate the output of the hypothesis function as follows:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; h_\theta(x) \geq 0.5 \rightarrow y = 1 \newline&amp; h_\theta(x) &lt; 0.5 \rightarrow y = 0 \newline\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  The way our logistic function g behaves is that when its input is greater than or equal to zero, its output is greater than or equal to 0.5:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; g(z) \geq 0.5 \newline&amp; when \; z \geq 0\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  Remember.
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}z=0, e^{0}=1 \Rightarrow g(z)=1/2\newline z \to \infty, e^{-\infty} \to 0 \Rightarrow g(z)=1 \newline z \to -\infty, e^{\infty}\to \infty \Rightarrow g(z)=0 \end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  So if our input to g is $$\theta^T X$$, then that means:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; h_\theta(x) = g(\theta^T x) \geq 0.5 \newline&amp; when \; \theta^T x \geq 0\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  From these statements we can now say:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; \theta^T x \geq 0 \Rightarrow y = 1 \newline&amp; \theta^T x &lt; 0 \Rightarrow y = 0 \newline\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  The
+  <strong>
+   decision boundary
+  </strong>
+  is the line that separates the area where y = 0 and where y = 1. It is created by our hypothesis function.
+ </p>
+ <p>
+  <strong>
+   Example
+  </strong>
+  :
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; \theta = \begin{bmatrix}5 \newline -1 \newline 0\end{bmatrix} \newline &amp; y = 1 \; if \; 5 + (-1) x_1 + 0 x_2 \geq 0 \newline &amp; 5 - x_1 \geq 0 \newline &amp; - x_1 \geq -5 \newline&amp; x_1 \leq 5 \newline \end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  In this case, our decision boundary is a straight vertical line placed on the graph where $$x_1 = 5$$, and everything to the left of that denotes y = 1, while everything to the right denotes y = 0.
+ </p>
+ <p hasmath="true">
+  Again, the input to the sigmoid function g(z) (e.g. $$\theta^T X$$) doesn't need to be linear, and could be a function that describes a circle (e.g. $$z = \theta_0 + \theta_1 x_1^2 +\theta_2 x_2^2$$) or any shape to fit our data.
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

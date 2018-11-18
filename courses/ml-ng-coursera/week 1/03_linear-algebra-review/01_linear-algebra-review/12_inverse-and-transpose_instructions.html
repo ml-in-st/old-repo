@@ -1,0 +1,126 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Inverse and Transpose
+ </h1>
+ <p hasmath="true">
+  The
+  <strong>
+   inverse
+  </strong>
+  of a matrix A is denoted $$A^{-1}$$. Multiplying by the inverse results in the identity matrix.
+ </p>
+ <p hasmath="true">
+  A non square matrix does not have an inverse matrix. We can compute inverses of matrices in octave with the $$pinv(A)$$ function and in Matlab with the $$inv(A)$$ function. Matrices that don't have an inverse are
+  <em>
+   singular
+  </em>
+  or
+  <em>
+   degenerate
+  </em>
+  .
+ </p>
+ <p>
+  The
+  <strong>
+   transposition
+  </strong>
+  of a matrix is like rotating the matrix 90
+  <strong>
+   °
+  </strong>
+  in clockwise direction and then reversing it. We can compute transposition of matrices in matlab with the transpose(A) function or A':
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$A = \begin{bmatrix} a &amp; b \newline c &amp; d \newline e &amp; f \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$A^T = \begin{bmatrix} a &amp; c &amp; e \newline b &amp; d &amp; f \newline \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  In other words:
+ </p>
+ <p hasmath="true">
+  $$A_{ij} = A^T_{ji}$$
+ </p>
+ <pre evaluatorid="zx33eOHKTvid93jhyo74zQ@2" language="matlab">% Initialize matrix A 
+A = [1,2,0;0,5,6;7,0,9]
+
+% Transpose A 
+A_trans = A' 
+
+% Take the inverse of A 
+A_inv = inv(A)
+
+% What is A^(-1)*A? 
+A_invA = inv(A)*A
+
+</pre>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

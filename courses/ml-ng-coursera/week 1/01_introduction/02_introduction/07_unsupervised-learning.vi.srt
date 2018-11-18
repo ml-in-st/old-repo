@@ -1,0 +1,1643 @@
+1
+00:00:00,380 --> 00:00:01,550
+Trong video này, chúng tôi sẽ nói về
+
+2
+00:00:01,670 --> 00:00:02,690
+loại lớn thứ hai của máy
+
+3
+00:00:03,010 --> 00:00:05,030
+học vấn đề, được gọi là việc học không có giám sát.
+
+4
+00:00:06,300 --> 00:00:08,500
+Trong video cuối cùng, chúng tôi nói chuyện về giám sát việc học tập.
+
+5
+00:00:09,250 --> 00:00:10,700
+Quay lại sau đó, gọi lại bộ dữ liệu
+
+6
+00:00:11,020 --> 00:00:12,670
+đó như thế này, nơi mỗi
+
+7
+00:00:12,890 --> 00:00:15,150
+Ví dụ đã được dán nhãn hoặc
+
+8
+00:00:15,610 --> 00:00:16,900
+như là một ví dụ tích cực hay tiêu cực,
+
+9
+00:00:17,530 --> 00:00:19,800
+cho dù đó là lành tính một hoặc một khối u ác tính.
+
+10
+00:00:20,850 --> 00:00:21,920
+Như vậy đối với mỗi ví dụ trong Supervised
+
+11
+00:00:22,410 --> 00:00:24,270
+Học tập, chúng tôi đã nói rõ ràng những gì
+
+12
+00:00:24,440 --> 00:00:25,760
+là câu trả lời đúng như vậy gọi là,
+
+13
+00:00:26,490 --> 00:00:27,580
+cho dù đó là lành tính hoặc ác tính.
+
+14
+00:00:28,550 --> 00:00:30,210
+Trong việc học không có giám sát, chúng tôi đang đưa ra
+
+15
+00:00:30,540 --> 00:00:31,720
+dữ liệu có vẻ khác nhau
+
+16
+00:00:31,950 --> 00:00:32,910
+so với dữ liệu mà trông giống như
+
+17
+00:00:33,190 --> 00:00:34,600
+Điều này mà không có
+
+18
+00:00:34,720 --> 00:00:35,920
+bất kỳ nhãn hoặc đó là tất cả
+
+19
+00:00:36,130 --> 00:00:37,460
+có cùng một nhãn hoặc thực sự không có nhãn.
+
+20
+00:00:39,680 --> 00:00:40,740
+Vì vậy, chúng tôi đang đưa ra tập dữ liệu và
+
+21
+00:00:40,980 --> 00:00:42,460
+chúng tôi đang không biết những gì để
+
+22
+00:00:42,560 --> 00:00:43,290
+làm gì với nó và chúng tôi không
+
+23
+00:00:43,640 --> 00:00:44,800
+nói với những gì mỗi điểm dữ liệu.
+
+24
+00:00:45,290 --> 00:00:47,190
+Thay vào đó chúng tôi đang chỉ nói với, đây là một tập dữ liệu.
+
+25
+00:00:47,870 --> 00:00:49,650
+Bạn có thể tìm thấy một số cấu trúc trong dữ liệu?
+
+26
+00:00:50,480 --> 00:00:51,670
+Đưa ra dữ liệu này thiết lập, một
+
+27
+00:00:52,350 --> 00:00:53,940
+Thuật toán học không có giám sát có thể quyết định rằng
+
+28
+00:00:54,060 --> 00:00:56,090
+dữ liệu sống ở hai cụm khác nhau.
+
+29
+00:00:56,800 --> 00:00:57,960
+Và do đó, một trong những cụm sao
+
+30
+00:00:59,120 --> 00:00:59,910
+và có một nhóm khác nhau.
+
+31
+00:01:01,110 --> 00:01:02,710
+Và có, có thể giám sát học thuật toán
+
+32
+00:01:03,040 --> 00:01:05,070
+phá vỡ những dữ liệu thành các cụm riêng biệt hai.
+
+33
+00:01:06,410 --> 00:01:08,000
+Do đó, điều này được gọi là một thuật toán cụm.
+
+34
+00:01:08,860 --> 00:01:10,310
+Và điều này chỉ ra sẽ được sử dụng ở nhiều nơi.
+
+35
+00:01:11,930 --> 00:01:13,310
+Một ví dụ nơi clustering
+
+36
+00:01:13,530 --> 00:01:14,860
+được sử dụng trong Google
+
+37
+00:01:15,060 --> 00:01:16,160
+Tin tức và nếu bạn đã không
+
+38
+00:01:16,360 --> 00:01:17,320
+thấy điều này trước khi, bạn có thể thực sự
+
+39
+00:01:18,210 --> 00:01:19,040
+đi đến này news.google.com URL
+
+40
+00:01:19,830 --> 00:01:20,460
+Hãy xem.
+
+41
+00:01:21,280 --> 00:01:22,970
+Những gì Google News là hàng ngày
+
+42
+00:01:23,480 --> 00:01:24,220
+nó đi vào hình tại hàng chục
+
+43
+00:01:24,470 --> 00:01:25,430
+hàng ngàn hoặc hàng trăm
+
+44
+00:01:25,720 --> 00:01:26,740
+hàng ngàn những câu chuyện mới về các
+
+45
+00:01:26,800 --> 00:01:29,410
+web và nó nhóm chúng thành những câu chuyện mới cố kết.
+
+46
+00:01:30,730 --> 00:01:31,690
+Ví dụ, hãy xem ở đây.
+
+47
+00:01:33,380 --> 00:01:35,370
+Các URL ở đây liên kết
+
+48
+00:01:35,910 --> 00:01:37,260
+để câu chuyện mới khác nhau
+
+49
+00:01:38,010 --> 00:01:40,110
+về câu chuyện BP dầu tốt.
+
+50
+00:01:41,300 --> 00:01:42,160
+Vì vậy, hãy có một nhấp chuột
+
+51
+00:01:42,260 --> 00:01:43,090
+một trong các URL và chúng tôi sẽ
+
+52
+00:01:43,550 --> 00:01:44,780
+Click vào một trong các URL.
+
+53
+00:01:45,100 --> 00:01:46,970
+Những gì tôi sẽ nhận được là một trang web như thế này.
+
+54
+00:01:47,210 --> 00:01:48,390
+Đây là một Wall Street
+
+55
+00:01:48,590 --> 00:01:50,180
+Tạp chí viết về, bạn đã biết, BP
+
+56
+00:01:51,110 --> 00:01:52,530
+Giếng tràn câu chuyện của
+
+57
+00:01:52,920 --> 00:01:54,350
+BP chi phí của một chung cư,
+
+58
+00:01:54,590 --> 00:01:55,700
+đó là một tên của các
+
+59
+00:01:55,980 --> 00:01:57,960
+tràn và nếu bạn
+
+60
+00:01:58,020 --> 00:01:59,360
+bấm vào một URL khác nhau
+
+61
+00:02:00,690 --> 00:02:02,500
+từ nhóm đó sau đó bạn có thể nhận được những câu chuyện khác nhau.
+
+62
+00:02:02,950 --> 00:02:04,760
+Đây là câu chuyện CNN về một
+
+63
+00:02:04,820 --> 00:02:06,090
+trò chơi, BP dầu tràn
+
+64
+00:02:07,090 --> 00:02:08,180
+và nếu bạn bấm vào được
+
+65
+00:02:08,740 --> 00:02:10,990
+một phần ba liên kết, sau đó bạn có thể nhận được một câu chuyện khác nhau.
+
+66
+00:02:11,440 --> 00:02:13,380
+Đây là câu chuyện UK Guardian
+
+67
+00:02:13,940 --> 00:02:15,510
+về BP dầu tràn.
+
+68
+00:02:16,530 --> 00:02:17,790
+Do đó, Google sử dụng trên.
+
+69
+00:02:17,990 --> 00:02:19,440
+Trang web này, hàng chục ngàn
+
+70
+00:02:19,490 --> 00:02:22,170
+những câu chuyện mới và tự động chi phí cho họ với nhau.
+
+71
+00:02:23,030 --> 00:02:24,660
+Vì vậy, những câu chuyện mới có tất cả các
+
+72
+00:02:25,080 --> 00:02:27,010
+về chủ đề này cùng một lúc để hiển thị cùng nhau.
+
+73
+00:02:27,210 --> 00:02:29,170
+Nó chỉ ra rằng
+
+74
+00:02:29,380 --> 00:02:31,020
+cụm các thuật toán và việc học không có giám sát
+
+75
+00:02:31,530 --> 00:02:33,550
+các thuật toán, được sử dụng trong nhiều vấn đề khác.
+
+76
+00:02:35,320 --> 00:02:36,690
+Đây là một trong trên sự hiểu biết genomics.
+
+77
+00:02:38,270 --> 00:02:40,510
+Đây là một ví dụ về dữ liệu vi-ray DNA.
+
+78
+00:02:40,990 --> 00:02:42,230
+Ý tưởng đặt
+
+79
+00:02:42,430 --> 00:02:44,360
+một nhóm các cá nhân khác nhau và
+
+80
+00:02:44,510 --> 00:02:45,590
+Đối với mỗi người trong số họ, bạn đo lường ngày
+
+81
+00:02:46,100 --> 00:02:48,580
+bao nhiêu họ làm hoặc không có một gen nào đó.
+
+82
+00:02:49,050 --> 00:02:51,640
+Về mặt kỹ thuật bạn đo lường bao nhiêu một số gen được thể hiện.
+
+83
+00:02:52,000 --> 00:02:54,190
+Vì vậy các màu sắc, màu đỏ, xanh,
+
+84
+00:02:54,930 --> 00:02:56,210
+màu xám và như vậy trên, họ
+
+85
+00:02:56,340 --> 00:02:57,500
+hiển thị mức độ mà
+
+86
+00:02:57,780 --> 00:02:59,440
+các cá nhân khác nhau làm hoặc
+
+87
+00:02:59,510 --> 00:03:01,270
+không có một gen cụ thể.
+
+88
+00:03:02,500 --> 00:03:03,400
+Và những gì bạn có thể làm là sau đó
+
+89
+00:03:03,610 --> 00:03:05,070
+chạy một thuật toán cụm nhóm
+
+90
+00:03:05,380 --> 00:03:07,140
+cá nhân vào thể loại khác nhau
+
+91
+00:03:07,780 --> 00:03:08,810
+hoặc vào các loại khác nhau của người dân.
+
+92
+00:03:10,230 --> 00:03:11,660
+Vì vậy, đây là việc học không có giám sát bởi vì
+
+93
+00:03:11,930 --> 00:03:14,010
+chúng tôi đang không nói cho các thuật toán,
+
+94
+00:03:14,590 --> 00:03:15,690
+Đây là loại 1 người,
+
+95
+00:03:16,130 --> 00:03:17,420
+đó là những loại 2 người, những
+
+96
+00:03:17,560 --> 00:03:18,650
+đang gõ 3 người và do đó
+
+97
+00:03:19,610 --> 00:03:22,390
+ngày và thay vào đó những gì đã nói là yeah và đây là một bó của dữ liệu.
+
+98
+00:03:23,110 --> 00:03:24,030
+Tôi không biết những gì là trong dữ liệu này.
+
+99
+00:03:24,750 --> 00:03:25,870
+Tôi không biết những người đã và loại.
+
+100
+00:03:26,150 --> 00:03:26,940
+Tôi thậm chí không biết những gì khác nhau
+
+101
+00:03:27,260 --> 00:03:28,480
+loại người có, nhưng có thể
+
+102
+00:03:28,610 --> 00:03:30,210
+bạn sẽ tự động tìm thấy cấu trúc trong
+
+103
+00:03:30,360 --> 00:03:31,260
+các dữ liệu từ các bạn tự động
+
+104
+00:03:32,180 --> 00:03:33,620
+gây ra các cá nhân vào các loại
+
+105
+00:03:33,870 --> 00:03:35,490
+Tôi không biết trước
+
+106
+00:03:35,890 --> 00:03:37,610
+bởi vì chúng tôi không đưa ra các thuật toán,
+
+107
+00:03:38,160 --> 00:03:40,140
+bên phải họ trả lời cho các
+
+108
+00:03:40,370 --> 00:03:41,270
+Ví dụ trong dữ liệu của tôi
+
+109
+00:03:41,590 --> 00:03:43,090
+thiết lập, đây là việc học không có giám sát.
+
+110
+00:03:44,290 --> 00:03:47,040
+Không có giám sát học tập hoặc cụm được sử dụng cho một bó các ứng dụng khác.
+
+111
+00:03:48,340 --> 00:03:50,340
+Nó được sử dụng để tổ chức các cụm máy tính lớn.
+
+112
+00:03:51,390 --> 00:03:52,530
+Tôi đã có một số người bạn nhìn
+
+113
+00:03:52,680 --> 00:03:53,970
+các trung tâm dữ liệu lớn, đó là
+
+114
+00:03:54,180 --> 00:03:55,970
+các cụm máy tính lớn và cố gắng
+
+115
+00:03:56,230 --> 00:03:57,470
+để tìm ra những máy này có xu hướng
+
+116
+00:03:57,590 --> 00:03:59,130
+làm việc với nhau và nếu
+
+117
+00:03:59,200 --> 00:04:00,270
+bạn có thể đặt những máy móc cùng,
+
+118
+00:04:01,100 --> 00:04:03,220
+bạn có thể làm cho Trung tâm dữ liệu của bạn làm việc hiệu quả hơn.
+
+119
+00:04:04,810 --> 00:04:06,820
+Thứ hai ứng dụng trên mạng xã hội phân tích.
+
+120
+00:04:07,890 --> 00:04:09,230
+Vì vậy cho kiến thức về những người bạn
+
+121
+00:04:09,630 --> 00:04:10,840
+bạn gửi email cho tối đa hoặc
+
+122
+00:04:10,880 --> 00:04:12,150
+cho bạn bè Facebook của bạn hoặc
+
+123
+00:04:12,180 --> 00:04:14,150
+các vòng tròn của bạn của Google Plus, có thể
+
+124
+00:04:14,290 --> 00:04:16,380
+chúng tôi sẽ tự động xác định đó là
+
+125
+00:04:16,450 --> 00:04:17,950
+các nhóm cố kết bạn bè,
+
+126
+00:04:18,460 --> 00:04:19,420
+cũng là các nhóm người
+
+127
+00:04:20,230 --> 00:04:21,010
+rằng ta đã biết nhau?
+
+128
+00:04:22,540 --> 00:04:22,880
+Phân khúc thị trường.
+
+129
+00:04:24,680 --> 00:04:26,780
+Nhiều công ty có cơ sở dữ liệu khổng lồ của thông tin khách hàng.
+
+130
+00:04:27,700 --> 00:04:28,410
+Vì vậy, bạn có thể xem xét này
+
+131
+00:04:28,510 --> 00:04:30,000
+dữ liệu khách hàng thiết lập và tự động
+
+132
+00:04:30,740 --> 00:04:32,340
+khám phá các phân đoạn thị trường và tự động
+
+133
+00:04:33,340 --> 00:04:35,290
+nhóm khách hàng của bạn thành khác nhau
+
+134
+00:04:35,820 --> 00:04:37,400
+các phân đoạn thị trường để
+
+135
+00:04:37,710 --> 00:04:39,490
+bạn có thể tự động và nhiều hơn nữa
+
+136
+00:04:39,650 --> 00:04:41,580
+hiệu quả bán hoặc thị trường
+
+137
+00:04:41,890 --> 00:04:43,250
+của bạn phân đoạn thị trường khác nhau với nhau?
+
+138
+00:04:44,260 --> 00:04:45,580
+Một lần nữa, không có giám sát học tập
+
+139
+00:04:45,820 --> 00:04:46,720
+bởi vì chúng tôi có tất cả điều này
+
+140
+00:04:46,900 --> 00:04:48,340
+dữ liệu khách hàng, nhưng chúng tôi không
+
+141
+00:04:48,590 --> 00:04:49,710
+biết trước những gì đang có những
+
+142
+00:04:49,790 --> 00:04:51,270
+các phân đoạn thị trường và cho
+
+143
+00:04:51,440 --> 00:04:52,570
+các khách hàng trong dữ liệu của chúng tôi
+
+144
+00:04:52,660 --> 00:04:53,590
+thiết lập, bạn đã biết, chúng tôi không biết trong
+
+145
+00:04:53,690 --> 00:04:54,700
+trước người trong
+
+146
+00:04:54,800 --> 00:04:55,840
+thị trường phân đoạn một, những người là
+
+147
+00:04:55,940 --> 00:04:57,800
+thị trường phân đoạn hai, và như vậy.
+
+148
+00:04:57,930 --> 00:05:00,630
+Nhưng chúng ta phải để cho các thuật toán khám phá tất cả những điều này chỉ là từ các dữ liệu.
+
+149
+00:05:01,970 --> 00:05:03,140
+Cuối cùng, nó chỉ ra rằng Unsupervised
+
+150
+00:05:03,690 --> 00:05:05,620
+Học tập cũng được sử dụng cho
+
+151
+00:05:06,090 --> 00:05:08,060
+phân tích dữ liệu đáng ngạc nhiên thiên văn
+
+152
+00:05:08,890 --> 00:05:10,390
+và các chi phí này trong các thuật toán cho
+
+153
+00:05:10,580 --> 00:05:12,440
+đáng ngạc nhiên thú vị lý thuyết hữu ích
+
+154
+00:05:12,900 --> 00:05:15,610
+làm thế nào các Thiên Hà được sinh ra.
+
+155
+00:05:15,880 --> 00:05:17,620
+Tất cả đây là những ví dụ về cụm,
+
+156
+00:05:18,400 --> 00:05:20,550
+đó là chỉ có một loại học không có giám sát.
+
+157
+00:05:21,530 --> 00:05:22,470
+Hãy để tôi cho bạn biết về một số khác.
+
+158
+00:05:23,200 --> 00:05:25,020
+Gonna nói cho bạn về các vấn đề tiệc cocktail.
+
+159
+00:05:26,310 --> 00:05:28,270
+Vì vậy, bạn đã cho cocktail bên trước khi, phải không?
+
+160
+00:05:28,440 --> 00:05:30,080
+Vâng, bạn có thể tưởng tượng có một
+
+161
+00:05:30,300 --> 00:05:31,690
+bên, phòng đầy đủ của người dân, tất cả các
+
+162
+00:05:31,870 --> 00:05:32,930
+ngồi xung quanh, tất cả nói chuyện tại các
+
+163
+00:05:32,970 --> 00:05:34,390
+cùng một lúc và có
+
+164
+00:05:34,480 --> 00:05:36,230
+tất cả những sự chồng lấn tiếng nói bởi vì tất cả mọi người
+
+165
+00:05:36,590 --> 00:05:37,920
+nói chuyện cùng một lúc, và
+
+166
+00:05:38,070 --> 00:05:39,730
+nó gần như khó khăn để nghe những người ở phía trước của bạn.
+
+167
+00:05:40,690 --> 00:05:41,970
+Vì vậy có lẽ lúc một
+
+168
+00:05:42,020 --> 00:05:43,990
+tiệc cocktail với hai người,
+
+169
+00:05:45,690 --> 00:05:46,670
+hai người nói cùng một
+
+170
+00:05:46,770 --> 00:05:48,090
+thời gian, và đó là một phần nào
+
+171
+00:05:48,740 --> 00:05:49,710
+nhỏ tiệc cocktail.
+
+172
+00:05:50,690 --> 00:05:51,630
+Và chúng tôi sẽ đặt hai
+
+173
+00:05:51,890 --> 00:05:53,080
+Micro trong phòng để
+
+174
+00:05:54,060 --> 00:05:55,640
+không có micro, và bởi vì
+
+175
+00:05:56,050 --> 00:05:57,430
+các Micro là ở hai
+
+176
+00:05:57,560 --> 00:05:58,900
+khoảng cách khác nhau từ các
+
+177
+00:05:58,990 --> 00:06:01,250
+loa, mỗi hồ sơ Micro
+
+178
+00:06:01,830 --> 00:06:04,720
+một sự kết hợp khác nhau của những tiếng nói hai loa.
+
+179
+00:06:05,810 --> 00:06:06,970
+Có lẽ người nói một trong những là một
+
+180
+00:06:07,120 --> 00:06:08,320
+ít to hơn trong Micro một trong
+
+181
+00:06:09,120 --> 00:06:10,680
+và có lẽ người nói hai là một
+
+182
+00:06:10,800 --> 00:06:12,350
+chút chút to hơn vào micro 2
+
+183
+00:06:12,560 --> 00:06:14,040
+bởi vì 2 Micro là
+
+184
+00:06:14,230 --> 00:06:15,950
+tại các vị trí khác nhau liên quan đến
+
+185
+00:06:16,400 --> 00:06:19,020
+2 loa, nhưng mỗi
+
+186
+00:06:19,250 --> 00:06:20,390
+Micro gây ra một chồng chéo
+
+187
+00:06:20,970 --> 00:06:22,590
+sự kết hợp của cả hai người nói tiếng nói.
+
+188
+00:06:23,960 --> 00:06:25,500
+Vì vậy, đây là một thực tế ghi
+
+189
+00:06:26,520 --> 00:06:29,280
+hai người nói được ghi bởi một nhà nghiên cứu.
+
+190
+00:06:29,740 --> 00:06:30,950
+Hãy để tôi chơi cho bạn các
+
+191
+00:06:31,060 --> 00:06:32,760
+trước tiên, những âm thanh Micro đầu tiên các như.
+
+192
+00:06:33,560 --> 00:06:34,800
+Một trong những (uno), hai (dos),
+
+193
+00:06:35,070 --> 00:06:36,590
+ba (tres), bốn (cuatro), năm
+
+194
+00:06:37,060 --> 00:06:38,550
+(cinco), 6 (sais), 7 (siete),
+
+195
+00:06:38,990 --> 00:06:40,610
+tám (ocho), 9 (nueve), mười (chết).
+
+196
+00:06:41,610 --> 00:06:42,650
+Tất cả các quyền, có lẽ không phải là các loại cocktail thú vị nhất
+
+197
+00:06:43,000 --> 00:06:44,270
+Đảng, đó là hai người
+
+198
+00:06:44,620 --> 00:06:45,670
+đếm từ một đến mười
+
+199
+00:06:46,010 --> 00:06:47,880
+trong hai ngôn ngữ nhưng bạn biết.
+
+200
+00:06:48,870 --> 00:06:49,760
+Những gì bạn chỉ nghe nói đã các
+
+201
+00:06:49,820 --> 00:06:52,500
+đầu tiên Micro ghi âm, đây là ghi âm thứ hai.
+
+202
+00:06:57,440 --> 00:06:58,040
+Uno (một), dos (hai), tres (ba), cuatro
+
+203
+00:06:58,060 --> 00:06:58,730
+(4), cinco (năm), sais sáu (), siete (7),
+
+204
+00:06:59,160 --> 00:07:00,900
+Ocho (tám), nueve (chín) y chết (mười).
+
+205
+00:07:01,860 --> 00:07:02,850
+Vì vậy, chúng tôi có thể làm, là mất
+
+206
+00:07:03,380 --> 00:07:04,660
+hai Micro ghi âm và đưa ra những
+
+207
+00:07:04,980 --> 00:07:06,480
+họ đến một thuật toán học không có giám sát
+
+208
+00:07:07,010 --> 00:07:08,560
+được gọi là thuật toán tiệc cocktail,
+
+209
+00:07:08,780 --> 00:07:09,910
+và cho biết các thuật toán
+
+210
+00:07:10,450 --> 00:07:12,140
+-tìm thấy cấu trúc trong dữ liệu này cho bạn.
+
+211
+00:07:12,250 --> 00:07:14,010
+Và những gì các thuật toán sẽ làm
+
+212
+00:07:14,410 --> 00:07:15,730
+Nghe đây
+
+213
+00:07:15,980 --> 00:07:17,990
+ghi âm và nói, bạn
+
+214
+00:07:18,140 --> 00:07:19,020
+biết nghe có vẻ như các
+
+215
+00:07:19,360 --> 00:07:20,950
+hai ghi âm đang
+
+216
+00:07:21,240 --> 00:07:22,450
+thêm cùng nhau hay mà có người
+
+217
+00:07:22,670 --> 00:07:25,220
+Tổng hợp với nhau để sản xuất các bản ghi âm mà chúng tôi đã có.
+
+218
+00:07:25,990 --> 00:07:27,330
+Hơn nữa, những gì tiệc cocktail
+
+219
+00:07:27,710 --> 00:07:29,210
+thuật toán sẽ làm là riêng biệt
+
+220
+00:07:29,570 --> 00:07:30,810
+trong các nguồn âm thanh 2
+
+221
+00:07:31,480 --> 00:07:32,700
+đó đã ra có
+
+222
+00:07:33,000 --> 00:07:34,240
+một số với nhau để tạo khác
+
+223
+00:07:34,410 --> 00:07:35,600
+cordons và, trên thực tế,
+
+224
+00:07:36,200 --> 00:07:38,630
+Đây là đầu ra đầu tiên của thuật toán tiệc cocktail.
+
+225
+00:07:39,790 --> 00:07:41,910
+Một, hai, ba, bốn,
+
+226
+00:07:42,590 --> 00:07:46,270
+năm, sáu, bảy, tám, chín, mười.
+
+227
+00:07:47,630 --> 00:07:48,780
+Vì vậy, tôi đã tách ra tiếng Anh
+
+228
+00:07:49,240 --> 00:07:51,220
+tiếng nói trong một trong các bản thu âm.
+
+229
+00:07:52,460 --> 00:07:53,300
+Và đây là lần thứ hai của nó.
+
+230
+00:07:53,380 --> 00:07:55,280
+Uno, dos, tres, quatro, cinco,
+
+231
+00:07:55,980 --> 00:07:59,830
+Seis, siete, ocho, nueve y chết.
+
+232
+00:08:00,270 --> 00:08:01,180
+Không quá xấu, cung cấp cho bạn
+
+233
+00:08:03,810 --> 00:08:05,270
+một ví dụ khác, dưới đây là một
+
+234
+00:08:05,600 --> 00:08:07,370
+ghi âm của một tình huống tương tự,
+
+235
+00:08:08,060 --> 00:08:09,790
+Đây là Micro đầu tiên: một,
+
+236
+00:08:10,470 --> 00:08:12,430
+hai, ba, bốn, năm, sáu,
+
+237
+00:08:13,370 --> 00:08:15,710
+Bảy, tám, chín, mười.
+
+238
+00:08:16,980 --> 00:08:17,920
+OK, do đó chàng người nghèo đi
+
+239
+00:08:18,180 --> 00:08:19,350
+về nhà từ tiệc cocktail và
+
+240
+00:08:19,420 --> 00:08:21,880
+ông bây giờ là ngồi trong một căn phòng của mình nói chuyện với đài phát thanh của mình.
+
+241
+00:08:23,090 --> 00:08:24,130
+Dưới đây là ghi âm micro thứ hai.
+
+242
+00:08:28,810 --> 00:08:31,800
+Một, hai, ba, bốn, năm, sáu, bảy, tám, chín, mười.
+
+243
+00:08:33,310 --> 00:08:34,160
+Khi bạn cung cấp cho hai Micro
+
+244
+00:08:34,610 --> 00:08:35,530
+bản ghi âm cho các thuật toán tương tự,
+
+245
+00:08:36,360 --> 00:08:37,790
+những gì nó, là một lần nữa nói,
+
+246
+00:08:38,380 --> 00:08:39,470
+bạn đã biết, nó có vẻ có
+
+247
+00:08:39,690 --> 00:08:41,370
+hai nguồn âm thanh, và hơn nữa,
+
+248
+00:08:42,410 --> 00:08:43,820
+album của ông, đây là
+
+249
+00:08:44,070 --> 00:08:46,010
+việc đầu tiên của các nguồn âm thanh tôi tìm thấy.
+
+250
+00:08:47,480 --> 00:08:49,300
+Một, hai, ba, bốn,
+
+251
+00:08:49,730 --> 00:08:53,430
+năm, sáu, bảy, tám, chín, mười.
+
+252
+00:08:54,650 --> 00:08:56,110
+Vì vậy, đó không phải là hoàn hảo, nó
+
+253
+00:08:56,340 --> 00:08:57,360
+có tiếng nói, nhưng nó
+
+254
+00:08:57,570 --> 00:08:59,070
+cũng có một chút của âm nhạc ở đó.
+
+255
+00:08:59,890 --> 00:09:01,360
+Sau đó, ở đây là đầu ra thứ hai cho các thuật toán.
+
+256
+00:09:10,020 --> 00:09:11,310
+Không quá xấu, trong đó lần thứ hai
+
+257
+00:09:11,540 --> 00:09:13,300
+đầu ra nó quản lý để thoát khỏi những tiếng nói hoàn toàn.
+
+258
+00:09:13,760 --> 00:09:14,850
+Và chỉ cần, bạn đã biết,
+
+259
+00:09:15,020 --> 00:09:17,380
+làm sạch lên âm nhạc, đã thoát khỏi đếm từ một đến mười.
+
+260
+00:09:18,840 --> 00:09:20,090
+Vì vậy, bạn có thể xem xét
+
+261
+00:09:20,180 --> 00:09:21,750
+một thuật toán học không có giám sát như
+
+262
+00:09:21,950 --> 00:09:23,050
+Điều này và cũng thấy như thế nào
+
+263
+00:09:23,250 --> 00:09:25,110
+phức tạp này là để thực hiện điều này, phải không?
+
+264
+00:09:25,330 --> 00:09:26,560
+Nó có vẻ như để,
+
+265
+00:09:26,970 --> 00:09:28,870
+bạn đã biết, xây dựng ứng dụng này, có vẻ như
+
+266
+00:09:28,930 --> 00:09:30,550
+thích làm này âm thanh chế biến bạn
+
+267
+00:09:30,670 --> 00:09:31,430
+cần phải viết một tấn mã
+
+268
+00:09:32,240 --> 00:09:33,580
+hoặc có lẽ liên kết vào như một
+
+269
+00:09:33,690 --> 00:09:35,380
+bó của thư viện tổng hợp Java mà
+
+270
+00:09:35,470 --> 00:09:37,150
+xử lý âm thanh, có vẻ như
+
+271
+00:09:37,240 --> 00:09:38,880
+một chương trình phức tạp thực sự, làm
+
+272
+00:09:39,060 --> 00:09:41,040
+âm thanh này, tách ra âm thanh vv.
+
+273
+00:09:42,460 --> 00:09:43,860
+Nó chỉ ra các thuật toán,
+
+274
+00:09:44,070 --> 00:09:45,640
+làm những gì bạn chỉ nghe nói, rằng
+
+275
+00:09:45,900 --> 00:09:47,280
+có thể được thực hiện với một dòng
+
+276
+00:09:47,530 --> 00:09:49,270
+mã - được hiển thị ngay tại đây.
+
+277
+00:09:50,640 --> 00:09:52,350
+Nếu nó có các nhà nghiên cứu một chặng đường dài
+
+278
+00:09:52,610 --> 00:09:54,060
+thời gian để đi lên với dòng này của mã.
+
+279
+00:09:54,490 --> 00:09:56,090
+Tôi không nói rằng đây là một vấn đề dễ dàng.
+
+280
+00:09:57,080 --> 00:09:57,980
+Nó chỉ ra rằng khi bạn
+
+281
+00:09:58,180 --> 00:10:00,330
+sử dụng môi trường lập trình đúng, nhiều học tập
+
+282
+00:10:00,670 --> 00:10:02,060
+các thuật toán có thể là các chương trình thực sự ngắn.
+
+283
+00:10:03,510 --> 00:10:04,700
+Vì vậy, đây cũng là lý do tại sao trong
+
+284
+00:10:04,840 --> 00:10:05,890
+lớp học này chúng ta sẽ
+
+285
+00:10:06,010 --> 00:10:07,430
+sử dụng môi trường lập trình Octave.
+
+286
+00:10:08,550 --> 00:10:09,910
+Octave, là mã nguồn mở miễn phí
+
+287
+00:10:10,120 --> 00:10:11,620
+phần mềm, và bằng cách sử dụng một
+
+288
+00:10:11,670 --> 00:10:13,130
+công cụ như Octave hoặc Matlab,
+
+289
+00:10:14,000 --> 00:10:15,400
+nhiều các thuật toán học trở thành chỉ
+
+290
+00:10:15,690 --> 00:10:17,910
+một vài dòng mã có thể thực hiện.
+
+291
+00:10:18,380 --> 00:10:19,400
+Sau này trong lớp này, tôi sẽ chỉ dạy
+
+292
+00:10:19,620 --> 00:10:20,570
+bạn một chút ít về làm thế nào để
+
+293
+00:10:20,720 --> 00:10:21,920
+sử dụng Octave và bạn sẽ
+
+294
+00:10:22,050 --> 00:10:24,590
+thực hiện một số trong những thuật toán trong Octave.
+
+295
+00:10:24,980 --> 00:10:26,050
+Hoặc nếu bạn có Matlab bạn có thể sử dụng mà quá.
+
+296
+00:10:27,120 --> 00:10:28,500
+Nó chỉ ra thung lũng Silicon, cho
+
+297
+00:10:28,620 --> 00:10:29,470
+rất nhiều machine learning algorithms,
+
+298
+00:10:30,290 --> 00:10:31,310
+những gì chúng tôi làm là nguyên mẫu đầu tiên
+
+299
+00:10:32,040 --> 00:10:33,900
+phần mềm của chúng tôi trong Octave vì phần mềm
+
+300
+00:10:34,330 --> 00:10:35,250
+trong Octave làm cho nó vô cùng nhanh
+
+301
+00:10:35,540 --> 00:10:36,920
+để thực hiện những việc học các thuật toán.
+
+302
+00:10:38,230 --> 00:10:39,110
+Ở đây mỗi của các chức năng
+
+303
+00:10:39,720 --> 00:10:41,460
+như ví dụ SVD
+
+304
+00:10:41,680 --> 00:10:42,920
+chức năng đó là viết tắt của jeg
+
+305
+00:10:43,240 --> 00:10:44,520
+giá trị phân huỷ; nhưng đó chỉ
+
+306
+00:10:44,640 --> 00:10:45,690
+ra để một
+
+307
+00:10:45,820 --> 00:10:48,420
+đại số tuyến tính thói quen, mà chỉ được xây dựng vào Octave.
+
+308
+00:10:49,500 --> 00:10:50,390
+Nếu bạn đã cố gắng để làm điều này
+
+309
+00:10:50,460 --> 00:10:51,490
+trong c cộng cộng hay Java,
+
+310
+00:10:51,780 --> 00:10:53,040
+Điều này sẽ là dòng nhiều nhiều
+
+311
+00:10:53,180 --> 00:10:55,680
+Mã liên kết phức c cộng cộng hoặc thư viện Java.
+
+312
+00:10:56,440 --> 00:10:57,490
+Vì vậy, bạn có thể thực hiện công cụ này là
+
+313
+00:10:57,680 --> 00:10:58,690
+C cộng cộng hay Java
+
+314
+00:10:59,050 --> 00:11:00,090
+hay Python là nhiều
+
+315
+00:11:00,290 --> 00:11:02,090
+phức tạp hơn để làm như vậy bằng những ngôn ngữ.
+
+316
+00:11:03,750 --> 00:11:05,060
+Những gì tôi đã nhìn thấy sau khi có dạy
+
+317
+00:11:05,300 --> 00:11:06,980
+máy học tập cho gần như một
+
+318
+00:11:07,210 --> 00:11:08,680
+thập kỷ nay, là, bạn
+
+319
+00:11:08,890 --> 00:11:10,340
+tìm hiểu nhiều nhanh hơn nếu bạn
+
+320
+00:11:10,480 --> 00:11:11,700
+sử dụng Octave như của bạn
+
+321
+00:11:11,790 --> 00:11:14,070
+môi trường lập trình, và nếu
+
+322
+00:11:14,250 --> 00:11:15,570
+bạn sử dụng Octave như của bạn
+
+323
+00:11:16,260 --> 00:11:17,110
+học tập công cụ và như của bạn
+
+324
+00:11:17,240 --> 00:11:18,640
+công cụ prototyping hoặc để cho
+
+325
+00:11:19,000 --> 00:11:21,280
+bạn tìm hiểu và mẫu học thuật toán nhanh hơn.
+
+326
+00:11:22,640 --> 00:11:23,850
+Và trên thực tế những gì nhiều người sẽ
+
+327
+00:11:23,990 --> 00:11:25,390
+làm để lớn silic
+
+328
+00:11:25,730 --> 00:11:27,360
+Thung lũng công ty là trong thực tế, sử dụng
+
+329
+00:11:27,560 --> 00:11:29,020
+một thuật toán như Octave đầu tiên
+
+330
+00:11:29,370 --> 00:11:31,110
+mẫu thử nghiệm các thuật toán học, và
+
+331
+00:11:31,510 --> 00:11:32,780
+chỉ sau khi bạn đã nhận nó
+
+332
+00:11:32,860 --> 00:11:33,820
+để làm việc sẽ sau đó bạn di chuyển
+
+333
+00:11:34,390 --> 00:11:35,910
+nó C++ hay Java hoặc bất cứ điều gì.
+
+334
+00:11:36,890 --> 00:11:37,960
+Nó chỉ ra rằng bằng cách làm
+
+335
+00:11:38,220 --> 00:11:39,070
+những thứ theo cách này, bạn có thể thường xuyên
+
+336
+00:11:39,400 --> 00:11:40,440
+nhận thuật toán của bạn để làm việc nhiều
+
+337
+00:11:41,300 --> 00:11:43,050
+nhanh hơn nếu bạn đã bắt đầu trong C++.
+
+338
+00:11:44,440 --> 00:11:46,010
+Vì vậy, tôi biết rằng, cũng như một
+
+339
+00:11:46,100 --> 00:11:47,490
+hướng dẫn, tôi nhận được để
+
+340
+00:11:47,570 --> 00:11:48,580
+nói rằng tôi tin tưởng vào
+
+341
+00:11:48,730 --> 00:11:49,790
+Điều này chỉ là một hữu hạn
+
+342
+00:11:50,030 --> 00:11:51,420
+Số lần, nhưng cho
+
+343
+00:11:51,560 --> 00:11:52,720
+những người bạn của những người đã không bao giờ sử dụng chúng
+
+344
+00:11:53,330 --> 00:11:54,880
+Octave loại lập trình môi trường trước khi,
+
+345
+00:11:55,240 --> 00:11:56,070
+Tôi sẽ yêu cầu bạn
+
+346
+00:11:56,130 --> 00:11:56,970
+để tôi tin tưởng vào điều này,
+
+347
+00:11:57,570 --> 00:11:58,950
+và nói rằng bạn, bạn sẽ,
+
+348
+00:11:59,700 --> 00:12:01,180
+Tôi nghĩ rằng thời gian của bạn, phát triển của bạn
+
+349
+00:12:01,700 --> 00:12:03,100
+thời gian là một trong các nguồn tài nguyên có giá trị nhất.
+
+350
+00:12:04,210 --> 00:12:05,570
+Và có nhìn thấy rất nhiều
+
+351
+00:12:05,800 --> 00:12:06,850
+người làm điều này, tôi nghĩ rằng
+
+352
+00:12:07,190 --> 00:12:08,460
+bạn là một máy học
+
+353
+00:12:08,850 --> 00:12:09,990
+nhà nghiên cứu, hoặc máy phát triển học tập
+
+354
+00:12:10,830 --> 00:12:12,080
+sẽ có nhiều năng suất hơn nếu
+
+355
+00:12:12,220 --> 00:12:13,010
+bạn tìm hiểu để bắt đầu trong mẫu thử nghiệm,
+
+356
+00:12:13,580 --> 00:12:15,250
+để bắt đầu ở Octave, trong một số ngôn ngữ khác.
+
+357
+00:12:17,570 --> 00:12:19,790
+Cuối cùng, để bọc
+
+358
+00:12:20,090 --> 00:12:22,890
+lên video này, tôi có một câu hỏi nhanh chóng xem xét lại cho bạn.
+
+359
+00:12:24,400 --> 00:12:26,400
+Chúng tôi nói chuyện về việc học không có giám sát, mà
+
+360
+00:12:26,700 --> 00:12:27,670
+là một học tập cách thiết lập nơi bạn
+
+361
+00:12:27,760 --> 00:12:28,730
+cung cấp cho các thuật toán một tấn
+
+362
+00:12:28,840 --> 00:12:30,120
+dữ liệu và chỉ yêu cầu nó
+
+363
+00:12:30,240 --> 00:12:32,900
+để tìm cấu trúc trong dữ liệu cho chúng tôi.
+
+364
+00:12:33,160 --> 00:12:35,170
+Bốn ví dụ sau đây, mà
+
+365
+00:12:35,490 --> 00:12:36,410
+những người, mà những 4
+
+366
+00:12:36,870 --> 00:12:37,630
+bạn có nghĩ rằng sẽ sẽ là
+
+367
+00:12:37,720 --> 00:12:39,520
+một thuật toán học không có giám sát như
+
+368
+00:12:40,220 --> 00:12:41,950
+trái ngược với giám sát học vấn đề.
+
+369
+00:12:42,730 --> 00:12:43,590
+Đối với mỗi bốn
+
+370
+00:12:43,860 --> 00:12:44,850
+hộp kiểm ở bên trái,
+
+371
+00:12:45,640 --> 00:12:46,900
+kiểm tra những cái mà
+
+372
+00:12:47,210 --> 00:12:49,400
+bạn nghĩ rằng việc học không có giám sát
+
+373
+00:12:49,700 --> 00:12:51,300
+thuật toán sẽ là thích hợp và
+
+374
+00:12:51,440 --> 00:12:53,930
+sau đó nhấp vào phía dưới bên phải để kiểm tra câu trả lời của bạn.
+
+375
+00:12:54,690 --> 00:12:57,030
+Do đó, khi video tạm dừng, hãy
+
+376
+00:12:57,370 --> 00:12:58,750
+trả lời các câu hỏi trên nắp trượt.
+
+377
+00:13:01,860 --> 00:13:03,950
+Vì vậy, hy vọng rằng, bạn đã nhớ lại thư mục thư rác.
+
+378
+00:13:04,710 --> 00:13:06,310
+Nếu bạn đã dán nhãn dữ liệu, bạn
+
+379
+00:13:06,450 --> 00:13:07,680
+biết, với thư rác và
+
+380
+00:13:07,800 --> 00:13:10,470
+không phải thư rác e-mail, chúng tôi sẽ coi đây như là một vấn đề giám sát học tập.
+
+381
+00:13:11,620 --> 00:13:13,870
+Ví dụ câu chuyện tin tức, đó là
+
+382
+00:13:14,100 --> 00:13:15,370
+chính xác là tin tức Google ví dụ
+
+383
+00:13:15,910 --> 00:13:16,600
+chúng tôi đã thấy trong video này,
+
+384
+00:13:17,090 --> 00:13:17,950
+chúng tôi đã thấy làm thế nào bạn có thể sử dụng
+
+385
+00:13:18,080 --> 00:13:19,460
+một thuật toán cụm đến cụm
+
+386
+00:13:19,880 --> 00:13:21,980
+những bài viết này với nhau, do đó, đó là việc học không có giám sát.
+
+387
+00:13:23,250 --> 00:13:25,440
+Ví dụ phân khúc thị trường tôi
+
+388
+00:13:25,510 --> 00:13:27,120
+nói chuyện một chút trước đó, bạn
+
+389
+00:13:27,220 --> 00:13:29,110
+có thể làm điều đó như là một vấn đề học tập
+
+390
+00:13:29,970 --> 00:13:30,860
+bởi vì tôi chỉ gonna
+
+391
+00:13:30,930 --> 00:13:32,340
+nhận được dữ liệu thuật toán của tôi và yêu cầu
+
+392
+00:13:32,500 --> 00:13:34,340
+Nó khám phá thị trường các phân đoạn tự động.
+
+393
+00:13:35,610 --> 00:13:37,930
+Và ví dụ cuối cùng, tiểu đường, tốt,
+
+394
+00:13:38,070 --> 00:13:39,080
+đó là thực sự giống như của chúng tôi
+
+395
+00:13:39,350 --> 00:13:41,480
+Ví dụ ung thư vú từ cuối video.
+
+396
+00:13:42,190 --> 00:13:43,320
+Chỉ thay vì của, bạn đã biết,
+
+397
+00:13:43,600 --> 00:13:45,280
+khối u ung thư tốt và xấu hoặc
+
+398
+00:13:45,550 --> 00:13:47,390
+khối u lành tính hoặc ác tính chúng tôi
+
+399
+00:13:47,550 --> 00:13:49,270
+Thay vào đó có bệnh tiểu đường hoặc
+
+400
+00:13:49,330 --> 00:13:50,440
+không và do đó, chúng tôi sẽ
+
+401
+00:13:50,700 --> 00:13:51,830
+sử dụng đó như là một giám sát,
+
+402
+00:13:52,370 --> 00:13:53,740
+chúng tôi sẽ giải quyết rằng, cũng như
+
+403
+00:13:53,870 --> 00:13:54,670
+một vấn đề giám sát học tập cũng giống như
+
+404
+00:13:54,730 --> 00:13:56,450
+chúng tôi đã làm cho dữ liệu khối u vú.
+
+405
+00:13:58,270 --> 00:13:59,400
+Vì vậy, that's it for Unsupervised
+
+406
+00:14:00,100 --> 00:14:01,580
+Học tập và trong các
+
+407
+00:14:01,650 --> 00:14:02,940
+video tiếp theo, chúng tôi sẽ nghiên cứu nhiều hơn nữa
+
+408
+00:14:03,270 --> 00:14:04,600
+trong để học tập cụ thể các thuật toán
+
+409
+00:14:05,550 --> 00:14:06,590
+và bắt đầu nói về
+
+410
+00:14:07,220 --> 00:14:08,750
+chỉ cần làm thế nào các thuật toán làm việc và
+
+411
+00:14:08,920 --> 00:14:11,270
+làm thế nào chúng tôi có, làm thế nào bạn có thể đi về việc thực hiện chúng.

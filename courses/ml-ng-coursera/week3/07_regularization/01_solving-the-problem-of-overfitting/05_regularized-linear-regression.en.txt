@@ -1,0 +1,130 @@
+For linear regression, we have previously
+worked out two learning algorithms. One based on gradient descent and
+one based on the normal equation. In this video,
+we'll take those two algorithms and generalize them to the case of
+regularized linear regression. Here's the optimization objective
+that we came up with last time for regularized linear regression. This first part is our usual objective for
+linear regression. And we now have this additional
+regularization term, where lambda is our regularization parameter, and
+we like to find parameters theta that minimizes this cost function, this
+regularized cost function, J of theta. Previously, we were using
+gradient descent for the original cost function
+without the regularization term. And we had the following algorithm,
+for regular linear regression, without regularization, we would repeatedly update
+the parameters theta J as follows for J equals 0, 1, 2, up through n. Let me take this and just write
+the case for theta 0 separately. So I'm just going to write the update for
+theta 0 separately than for the update for the parameters 1,
+2, 3, and so on up to n. And so this is,
+I haven't changed anything yet, right. This is just writing the update for theta
+0 separately from the updates for theta 1, theta 2, theta 3, up to theta n. And the reason I want to do this
+is you may remember that for our regularized linear regression, we
+penalize the parameters theta 1, theta 2, and so on up to theta n. But we don't penalize theta 0. So, when we modify this algorithm for
+regularized linear regression, we're going to end up treating
+theta zero slightly differently. Concretely, if we want to
+take this algorithm and modify it to use
+the regular rise objective, all we need to do is take this term at
+the bottom and modify it as follows. We'll take this term and add minus lambda over m times theta j. And if you implement this,
+then you have gradient descent for trying to minimize the regularized
+cost function, j of theta. And concretely, I'm not gonna
+do the calculus to prove it, but concretely if you look at this term, this
+term hat I've written in square brackets, if you know calculus it's
+possible to prove that that term is the partial derivative
+with respect to J of theta using the new definition of J of
+theta with the regularization term. And similarly, this term up on top
+which I'm drawing the cyan box, that's still the partial derivative
+respect of theta zero of J of theta. If you look at the update for theta j, it's possible to show
+something very interesting. Concretely, theta j gets updated
+as theta j minus alpha times, and then you have this other term
+here that depends on theta J. So if you group all the terms
+together that depend on theta j, you can show that this update can
+be written equivalently as follows. And all I did was add theta j here is,
+so theta j times 1. And this term is, right, lambda over m,
+there's also an alpha here, so you end up with alpha lambda
+over m multiplied into theta j. And this term here, 1 minus alpha times
+lambda m, is a pretty interesting term. It has a pretty interesting effect. Concretely this term,
+1 minus alpha times lambda over m, is going to be a number that is
+usually a little bit less than one, because alpha times lambda over m is
+going to be positive, and usually if your learning rate is small and if m
+is large, this is usually pretty small. So this term here is gonna be a number
+that's usually a little bit less than 1, so think of it as a number like 0.99,
+let's say. And so
+the effect of our update to theta j is, we're going to say that theta j gets
+replaced by theta j times 0.99, right? So theta j times 0.99 has the effect of shrinking theta j a little
+bit towards zero. So this makes theta j a bit smaller. And more formally, this makes the square
+norm of theta j a little bit smaller. And then after that,
+the second term here, that's actually exactly the same as the original
+gradient descent update that we had, before we added all this
+regularization stuff. So, hopefully this gradient descent,
+hopefully this update makes sense. When we're using a regularized
+linear regression and what we're doing is on every iteration
+we're multiplying theta j by a number that's a little bit less then one, so its
+shrinking the parameter a little bit, and then we're performing
+a similar update as before. Of course that's just the intuition behind
+what this particular update is doing. Mathematically what it's doing
+is it's exactly gradient descent on the cost function J of theta that we
+defined on the previous slide that uses the regularization term. Gradient descent was just one
+of our two algorithms for fitting a linear regression model. The second algorithm was the one
+based on the normal equation, where what we did was we created
+the design matrix X where each row corresponded to
+a separate training example. And we created a vector y, so this is
+a vector, that's an m dimensional vector. And that contained the labels
+from my training set. So whereas X is an m by (n+1) dimensional
+matrix, y is an m dimensional vector. And in order to minimize the cost
+function J, we found that one way to do so
+is to set theta to be equal to this. Right, you have X transpose X,
+inverse, X transpose Y. I'm leaving room here to
+fill in stuff of course. And what this value for theta does is this minimizes the cost function J of theta,
+when we were not using regularization. Now that we are using regularization,
+if you were to derive what the minimum is, and just to give you a sense of how to
+derive the minimum, the way you derive it is you take partial derivatives
+with respect to each parameter. Set this to zero, and
+then do a bunch of math and you can then show that it's a formula like
+this that minimizes the cost function. And concretely,
+if you are using regularization, then this formula changes as follows. Inside this parenthesis,
+you end up with a matrix like this. 0, 1, 1, 1, and so on,
+1, until the bottom. So this thing over here is a matrix
+whose upper left-most entry is 0. There are ones on the diagonals, and
+then zeros everywhere else in this matrix. Because I'm drawing this rather sloppily. But as a example, if n = 2, then this matrix is going to
+be a three by three matrix. More generally, this matrix is
+an (n+1) by (n+1) dimensional matrix. So if n = 2, then that matrix becomes
+something that looks like this. It would be 0, and
+then 1s on the diagonals, and then 0s on the rest of the diagonals. And once again, I'm not going to show this
+derivation, which is frankly somewhat long and involved, but it is possible to prove
+that if you are using the new definition of J of theta, with the regularization
+objective, then this new formula for theta is the one that we give you,
+the global minimum of J of theta. So finally I want to just quickly
+describe the issue of non-invertibility. This is relatively advanced material,
+so you should consider this as optional. And feel free to skip it,
+or if you listen to it and positive it doesn't really make sense,
+don't worry about it either. But earlier when I talked about
+the normal equation method, we also had an optional video
+on the non-invertibility issue. So this is another optional part to this, sort of an add-on to that earlier
+optional video on non-invertibility. Now, consider a setting where m,
+the number of examples, is less than or equal to n, the number of features. If you have fewer examples than features,
+than this matrix, X transpose X will be non-invertible,
+or singular. Or the other term for
+this is the matrix will be degenerate. And if you implement this in
+Octave anyway and you use the pinv function to take the pseudo inverse,
+it will kind of do the right thing, but it's not clear that it would give you
+a very good hypothesis, even though numerically the Octave pinv function will
+give you a result that kinda makes sense. But if you were doing this
+in a different language, and if you were taking just the regular
+inverse, which in Octave denoted with the function inv, we're trying to take
+the regular inverse of X transpose X. Then in this setting,
+you find that X transpose X is singular, is non-invertible, and if you're doing
+this in different program language and using some linear algebra library to
+try to take the inverse of this matrix, it just might not work because that
+matrix is non-invertible or singular. Fortunately, regularization
+also takes care of this for us. And concretely, so long as
+the regularization parameter lambda is strictly greater than 0, it is actually
+possible to prove that this matrix, X transpose X plus lambda times this funny
+matrix here, it is possible to prove that this matrix will not be singular and
+that this matrix will be invertible. So using regularization also takes
+care of any non-invertibility issues of the X transpose
+X matrix as well. So you now know how to implement
+regularized linear regression. Using this you'll be
+able to avoid overfitting even if you have lots of features
+in a relatively small training set. And this should let you get linear
+regression to work much better for many problems. In the next video we'll take
+this regularization idea and apply it to logistic regression. So that you'd be able to get logistic
+regression to avoid overfitting and perform much better as well.

@@ -1,0 +1,723 @@
+1
+00:00:00,090 --> 00:00:01,140
+nei precedenti video, Ho
+
+2
+00:00:01,260 --> 00:00:02,510
+precisato più volte che, quando
+
+3
+00:00:02,650 --> 00:00:03,980
+sviluppate sistemi di machine learning,
+
+4
+00:00:04,770 --> 00:00:06,630
+una delle più preziose risorse è
+
+5
+00:00:06,810 --> 00:00:08,050
+il vostro tempo, in qualità di sviluppatori,
+
+6
+00:00:08,490 --> 00:00:09,820
+nel selezionare i
+
+7
+00:00:09,950 --> 00:00:11,520
+passi successivi.
+
+8
+00:00:11,950 --> 00:00:12,710
+Oppure se avete un team di sviluppatori
+
+9
+00:00:13,300 --> 00:00:14,610
+o un team di ingegneri che lavorano in concerto
+
+10
+00:00:15,090 --> 00:00:16,620
+ad un sistema di autoapprendimento,
+
+11
+00:00:16,930 --> 00:00:18,420
+una delle risorse più importanti è ancora
+
+12
+00:00:18,990 --> 00:00:20,790
+rappresentata dal tempo che gli ingegneri e gli sviluppatori dedicano al progetto.
+
+13
+00:00:22,420 --> 00:00:23,340
+Ciò che veramente dovrete
+
+14
+00:00:23,430 --> 00:00:25,340
+evitare è che voi oppure
+
+15
+00:00:25,360 --> 00:00:26,410
+i vostri colleghi od amici, spendiate
+
+16
+00:00:26,680 --> 00:00:27,560
+parecchio tempo lavorando su
+
+17
+00:00:27,970 --> 00:00:29,510
+un particolare componente, per realizzare
+
+18
+00:00:30,470 --> 00:00:31,540
+solo dopo settimane o mesi
+
+19
+00:00:31,620 --> 00:00:33,070
+che tutto quel lavoro,
+
+20
+00:00:33,310 --> 00:00:35,090
+per qualche motivo, non
+
+21
+00:00:35,380 --> 00:00:38,120
+ha apportato un gran miglioramento nelle performances del sistema.
+
+22
+00:00:39,350 --> 00:00:40,430
+In questo video, ciò che
+
+23
+00:00:40,550 --> 00:00:42,960
+mi impegno a fare, è parlare di un concetto chiamato ceiling analysis.
+
+24
+00:00:44,510 --> 00:00:45,760
+Quando voi o il vostro team
+
+25
+00:00:46,280 --> 00:00:47,270
+state lavorando ad un pipeline
+
+26
+00:00:47,520 --> 00:00:48,860
+machine learning system, questo sistema può
+
+27
+00:00:49,020 --> 00:00:50,380
+in qualche occasione, darvi un segnale
+
+28
+00:00:50,630 --> 00:00:51,650
+forte o una guida
+
+29
+00:00:52,340 --> 00:00:53,730
+su quale parte
+
+30
+00:00:54,150 --> 00:00:56,550
+della pipeline sarà più proficuo investire il vostro tempo.
+
+31
+00:00:59,740 --> 00:01:01,700
+Per illustrare la ceiling analysis,
+
+32
+00:01:01,860 --> 00:01:03,140
+continuerò ad usare
+
+33
+00:01:03,690 --> 00:01:04,910
+l'esempio della photo
+
+34
+00:01:05,640 --> 00:01:06,870
+OCR pipeline e come già detto
+
+35
+00:01:07,170 --> 00:01:08,270
+in precedenza, ognuno di questi
+
+36
+00:01:08,480 --> 00:01:09,900
+riquadri: text detection (rilevamento testi), character
+
+37
+00:01:10,200 --> 00:01:12,140
+segmentation (isolamento caratteri), character recognition (riconoscimento caratteri)
+
+38
+00:01:12,310 --> 00:01:13,730
+ognuno di questi elementi, può avere
+
+39
+00:01:14,100 --> 00:01:15,550
+un piccolo team di ingegneri che
+
+40
+00:01:15,920 --> 00:01:17,370
+ci lavora, oppure
+
+41
+00:01:17,690 --> 00:01:18,640
+l'intero sistema potrebbe essere gestito
+
+42
+00:01:18,800 --> 00:01:19,700
+da voi ma, in ogni caso,
+
+43
+00:01:19,960 --> 00:01:22,340
+la questione sarà relativa a come allocare le risorse.
+
+44
+00:01:22,730 --> 00:01:24,250
+Quali di questi elementi merita
+
+45
+00:01:24,430 --> 00:01:26,630
+di aggiudicarsi il vostro maggior sforzo, nel
+
+46
+00:01:26,920 --> 00:01:28,260
+tentativo di aumentarne le prestazioni?
+
+47
+00:01:29,070 --> 00:01:30,350
+Per spiegare il concetto
+
+48
+00:01:30,840 --> 00:01:32,560
+della ceiling analysis, utilizzerò
+
+49
+00:01:32,730 --> 00:01:35,690
+sempre l'esempio della nostra photo OCR pipeline.
+
+50
+00:01:37,000 --> 00:01:38,320
+Come menzionato precedentemente, ogni
+
+51
+00:01:38,430 --> 00:01:39,630
+elemento qui rappresentato, ciascuno
+
+52
+00:01:39,850 --> 00:01:41,860
+di questi componenti potyrebbe rappresentare
+
+53
+00:01:42,170 --> 00:01:43,270
+il lavoro di un
+
+54
+00:01:43,470 --> 00:01:44,720
+piccolo team di ingegneri, oppure
+
+55
+00:01:45,280 --> 00:01:48,110
+l'intero sistema potrebbe essere gestito da una sola persona.
+
+56
+00:01:48,780 --> 00:01:49,920
+La domanda è, dove dovrò
+
+57
+00:01:50,100 --> 00:01:51,990
+allocare le maggiori, seppure scarse, risorse?
+
+58
+00:01:52,130 --> 00:01:53,200
+Su quali di questi
+
+59
+00:01:53,690 --> 00:01:54,860
+componenti, o su quale, se uno solo
+
+60
+00:01:54,950 --> 00:01:56,250
+oppure su due o su tutti e tre i componenti
+
+61
+00:01:57,080 --> 00:01:58,540
+è più proficuo investire il proprio tempo
+
+62
+00:01:59,200 --> 00:02:01,060
+nel tentativo di aumentare le prestazioni dell'intero sistema?
+
+63
+00:02:01,660 --> 00:02:02,810
+Ecco a cosa ci servirà la ceiling analysis.
+
+64
+00:02:04,140 --> 00:02:05,520
+Come nel processo di sviluppo per
+
+65
+00:02:05,890 --> 00:02:07,170
+altri sistemi di machine learning,
+
+66
+00:02:07,340 --> 00:02:08,490
+con l'intento di prendere
+
+67
+00:02:08,670 --> 00:02:09,740
+decisioni su cosa fare
+
+68
+00:02:09,970 --> 00:02:11,150
+per sviluppare il sistema,
+
+69
+00:02:11,710 --> 00:02:12,770
+è sicuramente
+
+70
+00:02:12,900 --> 00:02:14,070
+molto utile avere un sistema univoco
+
+71
+00:02:14,580 --> 00:02:17,650
+di valutazione per questo sistema di autoapprendimento.
+
+72
+00:02:18,450 --> 00:02:19,390
+Decidiamo di basarci sul livello di accuratezza dei caratteri.
+
+73
+00:02:19,530 --> 00:02:21,140
+Così, scelto un arbitrario
+
+74
+00:02:21,570 --> 00:02:22,840
+test set di immagini, otterremo
+
+75
+00:02:22,860 --> 00:02:24,710
+che solo una frazione dell'alfabeto
+
+76
+00:02:25,060 --> 00:02:26,570
+dei caratteri nell'immagine testata
+
+77
+00:02:28,980 --> 00:02:29,390
+sarà riconosciuto correttamente.
+
+78
+00:02:29,550 --> 00:02:30,830
+Potete anche utilizzare il numero di parole singole
+
+79
+00:02:31,030 --> 00:02:32,270
+riconosciute come metrica di valutazione, se
+
+80
+00:02:32,370 --> 00:02:33,740
+volete ma diciamo che
+
+81
+00:02:34,040 --> 00:02:35,820
+qualunque metrica valutativa avrete
+
+82
+00:02:35,920 --> 00:02:37,680
+scelto, otterremo che
+
+83
+00:02:37,880 --> 00:02:40,090
+l'accuratezza del sistema risulta essere del 72%.
+
+84
+00:02:40,350 --> 00:02:42,210
+In altre parole,
+
+85
+00:02:42,350 --> 00:02:43,380
+abbiamo alcuni gruppi di
+
+86
+00:02:43,520 --> 00:02:44,960
+immagini campione e
+
+87
+00:02:45,180 --> 00:02:46,460
+ogni set di immagini, lo facciamo
+
+88
+00:02:46,640 --> 00:02:47,850
+passare attraverso la text section, poi
+
+89
+00:02:47,980 --> 00:02:49,280
+character segmentation ed infine character
+
+90
+00:02:49,560 --> 00:02:50,680
+recognition, ottenendo che
+
+91
+00:02:51,010 --> 00:02:52,240
+per il nostro set di test,
+
+92
+00:02:52,370 --> 00:02:53,570
+l'accuratezza globale dello
+
+93
+00:02:53,800 --> 00:02:56,220
+intero sistema risulta del 72%, in base alla metrica scelta.
+
+94
+00:02:58,120 --> 00:02:59,700
+Ora, l'idea alla base
+
+95
+00:03:00,070 --> 00:03:01,610
+della ceiling analysis è che
+
+96
+00:03:01,910 --> 00:03:03,530
+adesso noi andremo a
+
+97
+00:03:03,670 --> 00:03:05,100
+considerare il primo modulo della
+
+98
+00:03:05,400 --> 00:03:06,810
+pipeline: text detection
+
+99
+00:03:07,270 --> 00:03:08,400
+e ciò che andremo
+
+100
+00:03:08,420 --> 00:03:09,170
+a fare sarà di
+
+101
+00:03:09,270 --> 00:03:11,310
+"giocare" con il set di test.
+
+102
+00:03:11,980 --> 00:03:12,920
+Noi altereremo il
+
+103
+00:03:12,990 --> 00:03:14,270
+test set e per ogni campione di esempio
+
+104
+00:03:14,830 --> 00:03:16,170
+noi forniremo al passo Text detection
+
+105
+00:03:16,380 --> 00:03:18,230
+il corretto risultato.
+
+106
+00:03:19,210 --> 00:03:20,300
+In altre parole, altereremo
+
+107
+00:03:20,560 --> 00:03:21,760
+il test set manualmente
+
+108
+00:03:21,960 --> 00:03:23,340
+dicendo noi all'algoritmo
+
+109
+00:03:24,350 --> 00:03:26,210
+esattamente dove è presente testo
+
+110
+00:03:26,780 --> 00:03:27,940
+in ognuno degli esempi di test.
+
+111
+00:03:28,950 --> 00:03:29,960
+Così, in altre parole,
+
+112
+00:03:30,030 --> 00:03:31,510
+simuleremo cosa accadrebbe
+
+113
+00:03:32,030 --> 00:03:33,640
+se avessimo un algoritmo di text detection
+
+114
+00:03:33,890 --> 00:03:35,350
+funzionante con il 100%
+
+115
+00:03:35,610 --> 00:03:37,180
+di accuratezza, per il compito
+
+116
+00:03:38,300 --> 00:03:40,410
+di rilevare la presenza di testo in un'immagine.
+
+117
+00:03:42,050 --> 00:03:43,070
+E il modo in cui lo faremo
+
+118
+00:03:43,110 --> 00:03:44,210
+è molto semplice, al posto
+
+119
+00:03:44,620 --> 00:03:45,840
+di permettere al vostro algoritmo di apprendimento
+
+120
+00:03:46,340 --> 00:03:47,630
+di individuare il testo all'interno delle immagini,
+
+121
+00:03:48,180 --> 00:03:49,110
+voi accederete alle immagini
+
+122
+00:03:49,340 --> 00:03:51,230
+e manualmente etichetterete quale
+
+123
+00:03:51,540 --> 00:03:53,620
+è la posizione del testo nel set di test.
+
+124
+00:03:54,200 --> 00:03:55,040
+In seguito aggiornerete
+
+125
+00:03:55,530 --> 00:03:56,620
+con questi dati corretti,
+
+126
+00:03:56,990 --> 00:03:58,370
+queste etichette contenenti
+
+127
+00:03:58,560 --> 00:04:00,010
+la corretta posizione del testo,
+
+128
+00:04:00,090 --> 00:04:01,330
+il vostro set di test e userete questi
+
+129
+00:04:01,580 --> 00:04:02,990
+dati che avete fornito
+
+130
+00:04:03,110 --> 00:04:04,200
+per passarli al prossimo
+
+131
+00:04:04,470 --> 00:04:07,550
+stadio della pipeline, character segmentation pipeline.
+
+132
+00:04:07,710 --> 00:04:09,250
+Così, diciamolo ancora, mettendo
+
+133
+00:04:09,680 --> 00:04:10,790
+la spunta in questo punto,
+
+134
+00:04:11,500 --> 00:04:12,590
+ciò che intendo è che
+
+135
+00:04:12,750 --> 00:04:13,750
+prendo il mio set di test e
+
+136
+00:04:13,860 --> 00:04:14,970
+lo aggiorno inserendo informazioni corrette,
+
+137
+00:04:15,480 --> 00:04:16,520
+dando le corrette etichette per
+
+138
+00:04:16,650 --> 00:04:18,250
+l'algoritmo di text detection della pipeline.
+
+139
+00:04:19,240 --> 00:04:20,280
+Così come se simulassi
+
+140
+00:04:20,410 --> 00:04:21,700
+un perfetto sistema di riconoscimento del testo
+
+141
+00:04:22,370 --> 00:04:24,270
+sul mio set di test. una volta
+
+142
+00:04:24,460 --> 00:04:26,570
+fatto girare questi dati
+
+143
+00:04:27,190 --> 00:04:28,150
+attraverso il resto della pipeline
+
+144
+00:04:28,530 --> 00:04:29,860
+Character segmentation e Character recognition.
+
+145
+00:04:30,680 --> 00:04:31,930
+In seguito utilizzerò la stessa
+
+146
+00:04:32,300 --> 00:04:33,310
+metrica di prima,
+
+147
+00:04:34,000 --> 00:04:35,240
+per misurare l'accuratezza
+
+148
+00:04:35,450 --> 00:04:36,900
+globale dell'intero sistema.
+
+149
+00:04:37,790 --> 00:04:39,890
+E con un miglior text detection, le prestazioni aumenteranno.
+
+150
+00:04:40,330 --> 00:04:41,870
+Diciamo che
+
+151
+00:04:41,930 --> 00:04:44,550
+aumentano all'89%.
+
+152
+00:04:44,680 --> 00:04:45,830
+Cosa faremo dopo?
+
+153
+00:04:46,090 --> 00:04:47,120
+Ci sposteremo alla prossima sezione
+
+154
+00:04:47,330 --> 00:04:50,230
+della pipeline, Character segmentation e questa volta
+
+155
+00:04:50,540 --> 00:04:52,300
+andremo ad assegnare
+
+156
+00:04:52,390 --> 00:04:54,140
+ai valori corretti del test set per il text detection
+
+157
+00:04:54,900 --> 00:04:55,970
+anche i valori corretti del
+
+158
+00:04:56,490 --> 00:04:58,220
+character segmentation e
+
+159
+00:04:59,400 --> 00:05:00,780
+manuamente etichetteremo nel test set
+
+160
+00:05:01,330 --> 00:05:03,710
+i segmenti di carattere del testo in caratteri individuali
+
+161
+00:05:04,730 --> 00:05:05,560
+Per verificare quanto questo migliori il sistema.
+
+162
+00:05:05,810 --> 00:05:06,670
+E diciamo che questo aumenta le prestazioni
+
+163
+00:05:06,800 --> 00:05:09,140
+globali del sistema al 90%.
+
+164
+00:05:10,070 --> 00:05:11,060
+Come sempre l'accuratezza è
+
+165
+00:05:11,340 --> 00:05:13,420
+l'accuratezza globale del sistema.
+
+166
+00:05:14,120 --> 00:05:15,460
+Così che qualsiasi sia l'output
+
+167
+00:05:15,830 --> 00:05:17,450
+del sistema di riconoscimento dei caratteri,
+
+168
+00:05:17,560 --> 00:05:18,870
+qualsiasi sia l'output finale
+
+169
+00:05:19,040 --> 00:05:19,660
+dell'intera pipeline, noi
+
+170
+00:05:19,930 --> 00:05:22,400
+misureremo l'accuratezza di quello.
+
+171
+00:05:22,520 --> 00:05:23,720
+infine ci sposteremo al sistema di
+
+172
+00:05:24,170 --> 00:05:26,170
+riconoscimento caratteri e forniremo manualmente le corrette
+
+173
+00:05:26,780 --> 00:05:29,270
+etichette e, facendo questo, non ci stupiremo di rilevare un 100% di acuratezza globale.
+
+174
+00:05:31,270 --> 00:05:32,530
+Ora, la cosa interessante che si evince
+
+175
+00:05:32,850 --> 00:05:34,340
+dopo l'analisi appena fatta è che
+
+176
+00:05:34,450 --> 00:05:36,080
+possiamo ora comprendere quale vantaggio
+
+177
+00:05:36,700 --> 00:05:40,250
+comporterebbe il miglioramento di ogni singolo componente.
+
+178
+00:05:41,390 --> 00:05:44,180
+Così abbiamo rilevato che con un perfetto text detection
+
+179
+00:05:44,950 --> 00:05:46,360
+la nostra performance è aumentata dal
+
+180
+00:05:46,710 --> 00:05:48,080
+72 al 89 per cento,
+
+181
+00:05:48,420 --> 00:05:50,670
+un 17% di guadagno in prestazioni.

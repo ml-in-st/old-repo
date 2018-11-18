@@ -1,0 +1,1079 @@
+1
+00:00:00,454 --> 00:00:02,208
+Trong video trước đó, chúng tôi nói chuyện
+
+2
+00:00:02,238 --> 00:00:04,581
+về các thuật toán gradient descent
+
+3
+00:00:04,581 --> 00:00:06,005
+và nói chuyện về các tuyến tính
+
+4
+00:00:06,005 --> 00:00:09,071
+hồi quy mô hình và chức năng bình phương lỗi chi phí.
+
+5
+00:00:09,071 --> 00:00:10,822
+Trong video này, chúng tôi sẽ
+
+6
+00:00:10,822 --> 00:00:12,695
+đặt cùng gradient descent với
+
+7
+00:00:12,695 --> 00:00:14,672
+chức năng chi phí của chúng tôi, và rằng
+
+8
+00:00:14,672 --> 00:00:16,652
+sẽ cung cấp cho chúng tôi một thuật toán
+
+9
+00:00:16,652 --> 00:00:19,431
+hồi quy tuyến tính cho lắp một đường thẳng vào dữ liệu của chúng tôi.
+
+10
+00:00:21,001 --> 00:00:22,743
+Vì vậy, đây là
+
+11
+00:00:22,743 --> 00:00:25,077
+những gì chúng tôi làm ra trong các video trước đó.
+
+12
+00:00:25,077 --> 00:00:27,095
+Đó là thuật toán gradient descent của chúng tôi, mà
+
+13
+00:00:27,095 --> 00:00:29,197
+nên quen thuộc, và bạn
+
+14
+00:00:29,197 --> 00:00:31,199
+xem các mô hình tuyến tính hồi qui tuyến tính
+
+15
+00:00:31,199 --> 00:00:36,461
+với giả thuyết tuyến tính của chúng tôi và chức năng bình phương lỗi chi phí của chúng tôi.
+
+16
+00:00:36,461 --> 00:00:38,612
+Những gì chúng tôi sẽ làm là áp dụng
+
+17
+00:00:38,612 --> 00:00:42,288
+Gradient descent để giảm thiểu
+
+18
+00:00:44,519 --> 00:00:47,537
+lỗi bình phương của chúng tôi chi phí chức năng.
+
+19
+00:00:47,891 --> 00:00:49,381
+Bây giờ, để áp dụng
+
+20
+00:00:49,381 --> 00:00:50,896
+Gradient descent, theo thứ tự
+
+21
+00:00:50,896 --> 00:00:52,695
+để viết này mảnh
+
+22
+00:00:52,695 --> 00:00:54,191
+Mã, thuật ngữ quan trọng
+
+23
+00:00:54,191 --> 00:00:58,384
+chúng ta cần là khâu này trên đây.
+
+24
+00:00:59,692 --> 00:01:00,798
+Vì vậy, chúng ta cần phải tìm ra
+
+25
+00:01:00,798 --> 00:01:02,830
+những gì là thuật ngữ bắt nguồn từ phần này,
+
+26
+00:01:02,830 --> 00:01:04,478
+và cắm vào các
+
+27
+00:01:04,478 --> 00:01:06,249
+định nghĩa của chi phí
+
+28
+00:01:06,249 --> 00:01:08,418
+chức năng J, biến này
+
+29
+00:01:08,418 --> 00:01:11,074
+ra được điều này "unintelligible"
+
+30
+00:01:12,613 --> 00:01:15,156
+bằng 1-3 M
+
+31
+00:01:15,156 --> 00:01:18,856
+Sửa lỗi bình phương
+
+32
+00:01:20,456 --> 00:01:22,023
+thuật ngữ hàm chi phí, và tất cả
+
+33
+00:01:22,023 --> 00:01:23,794
+Tôi đã làm ở đây là tôi chỉ
+
+34
+00:01:23,794 --> 00:01:25,538
+bạn biết cắm vào định nghĩa của
+
+35
+00:01:25,538 --> 00:01:28,275
+chức năng chi phí ở đó, và simplifying
+
+36
+00:01:28,275 --> 00:01:30,563
+chút nhiều hơn nữa, điều này sẽ chuyển thành
+
+37
+00:01:30,563 --> 00:01:34,136
+ra phải tương đương, điều này
+
+38
+00:01:34,136 --> 00:01:36,983
+"unintelligible" bằng 1-3 M
+
+39
+00:01:36,983 --> 00:01:40,609
+tất nhiên là một trong hai XI một,
+
+40
+00:01:41,163 --> 00:01:43,427
+trừ YI bình phương.
+
+41
+00:01:43,427 --> 00:01:44,777
+Và tất cả tôi đã có được lấy
+
+42
+00:01:44,777 --> 00:01:46,983
+định nghĩa cho giả thuyết của tôi
+
+43
+00:01:46,983 --> 00:01:49,376
+và cắm đó ở đó.
+
+44
+00:01:49,622 --> 00:01:51,669
+Và nó chỉ ra chúng tôi cần
+
+45
+00:01:51,669 --> 00:01:52,523
+để tìm hiểu những gì là
+
+46
+00:01:52,523 --> 00:01:54,011
+các phái sinh một phần 2
+
+47
+00:01:54,011 --> 00:01:55,284
+trường hợp cho j bằng
+
+48
+00:01:55,284 --> 00:01:57,006
+0 và cho j bằng 1 muốn
+
+49
+00:01:57,006 --> 00:01:58,547
+để tìm hiểu những gì là điều này
+
+50
+00:01:58,547 --> 00:02:00,767
+Partial derivative cho cả các
+
+51
+00:02:00,767 --> 00:02:04,115
+trường hợp Theta(0) và theta(1) case.
+
+52
+00:02:04,115 --> 00:02:07,012
+Và tôi chỉ cần đi để viết ra những câu trả lời.
+
+53
+00:02:07,012 --> 00:02:10,996
+Nó chỉ ra firstterm này đơn giản hoá
+
+54
+00:02:10,996 --> 00:02:14,218
+-1/M, số tiền hơn
+
+55
+00:02:14,218 --> 00:02:16,446
+đào tạo của tôi đặt của chỉ
+
+56
+00:02:16,446 --> 00:02:21,146
+đó, X(i)-Y(i).
+
+57
+00:02:21,146 --> 00:02:23,951
+Và cho thuật ngữ này, partial derivative
+
+58
+00:02:23,951 --> 00:02:26,186
+Đối với theta(1), nó chỉ
+
+59
+00:02:26,186 --> 00:02:34,954
+trong tôi nhận được từ này:-Y(i)<i>X(i).</i>
+
+60
+00:02:35,031 --> 00:02:36,187
+Ok.
+
+61
+00:02:36,402 --> 00:02:38,690
+Andcomputing phần
+
+62
+00:02:38,690 --> 00:02:40,761
+phái sinh, do đó đi từ
+
+63
+00:02:40,761 --> 00:02:43,406
+phương trình này cho một trong hai
+
+64
+00:02:43,406 --> 00:02:46,414
+của các phương trình xuống đó, máy tính
+
+65
+00:02:46,414 --> 00:02:51,090
+những thuật ngữ partial derivative đòi hỏi một số giải tích đa biến.
+
+66
+00:02:51,090 --> 00:02:53,118
+Nếu bạn biết tính toán, cảm thấy tự do
+
+67
+00:02:53,118 --> 00:02:54,825
+làm việc thông qua các từ tiếng Anh cho mình
+
+68
+00:02:54,825 --> 00:02:57,060
+và kiểm tra tận các dẫn xuất
+
+69
+00:02:57,060 --> 00:02:59,853
+bạn thực sự có được câu trả lời tôi nhận.
+
+70
+00:02:59,853 --> 00:03:00,855
+Nhưng nếu bạn có ít
+
+71
+00:03:00,855 --> 00:03:02,611
+bạn không quen thuộc với giải tích
+
+72
+00:03:02,611 --> 00:03:04,235
+lo lắng về nó, và nó
+
+73
+00:03:04,235 --> 00:03:06,260
+là tốt để có những phương trình
+
+74
+00:03:06,260 --> 00:03:08,025
+đã làm việc ra, và bạn
+
+75
+00:03:08,025 --> 00:03:09,462
+sẽ không cần phải biết tính toán hoặc
+
+76
+00:03:09,462 --> 00:03:10,340
+bất cứ điều gì tương tự như để
+
+77
+00:03:10,340 --> 00:03:14,551
+làm bài tập ở nhà, do đó, để thực hiện gradient descent, bạn sẽ phải làm việc.
+
+78
+00:03:14,551 --> 00:03:16,520
+Nhưng như vậy, sau khi các định nghĩa này,
+
+79
+00:03:16,520 --> 00:03:18,156
+hoặc sau những gì chúng tôi đã làm việc
+
+80
+00:03:18,156 --> 00:03:19,993
+ra để là các dẫn xuất, mà
+
+81
+00:03:19,993 --> 00:03:21,316
+là thực sự chỉ có độ dốc của
+
+82
+00:03:21,316 --> 00:03:22,889
+cos hoạt j.  Chúng tôi
+
+83
+00:03:22,889 --> 00:03:24,724
+bây giờ có thể cắm chúng trở lại
+
+84
+00:03:24,724 --> 00:03:27,157
+thuật toán gradient descent của chúng tôi.
+
+85
+00:03:27,157 --> 00:03:28,794
+Vì vậy, ở đây là gradient descent, hoặc
+
+86
+00:03:28,794 --> 00:03:30,309
+hồi qui sẽ
+
+87
+00:03:30,309 --> 00:03:32,971
+lặp lại cho đến khi hội tụ, theta 0
+
+88
+00:03:32,971 --> 00:03:35,552
+và theta ai nhận được Cập Nhật như,
+
+89
+00:03:35,552 --> 00:03:37,163
+bạn đã biết, giống trừ alpha
+
+90
+00:03:37,163 --> 00:03:39,591
+lần khâu.
+
+91
+00:03:39,591 --> 00:03:43,202
+Vì vậy, điều này hạn ở đây.
+
+92
+00:03:43,202 --> 00:03:46,854
+Vì vậy, đây là thuật toán hồi quy tuyến tính của chúng tôi.
+
+93
+00:03:46,854 --> 00:03:52,696
+Điều này lần đầu tiên hạn ở đây mà
+
+94
+00:03:52,696 --> 00:03:54,495
+thuật ngữ là, tất nhiên, chỉ cần
+
+95
+00:03:54,495 --> 00:03:56,071
+bắt nguồn posh từ tương ứng
+
+96
+00:03:56,071 --> 00:03:59,995
+Theta 0, mà chúng tôi làm việc trên trong trình bày trước đó.
+
+97
+00:03:59,995 --> 00:04:03,454
+Và nhiệm kỳ thứ hai này ở đây,
+
+98
+00:04:03,454 --> 00:04:04,199
+cụm từ đó là chỉ
+
+99
+00:04:04,199 --> 00:04:05,947
+bắt nguồn từ một phần với
+
+100
+00:04:05,947 --> 00:04:11,188
+Theta một mà chúng tôi đã làm việc ra vào trước dòng.
+
+101
+00:04:11,188 --> 00:04:13,582
+Và chỉ cần như một lời nhắc nhở nhanh chóng,
+
+102
+00:04:13,582 --> 00:04:15,485
+bạn phải, khi thực hiện gradient descent,
+
+103
+00:04:15,485 --> 00:04:17,067
+có thực sự có là chi tiết, bạn
+
+104
+00:04:17,067 --> 00:04:19,248
+biết, bạn nên thực hiện
+
+105
+00:04:19,248 --> 00:04:24,452
+nó để Cập Nhật theta zero và theta một trong cùng một lúc.
+
+106
+00:04:24,452 --> 00:04:28,270
+Vì vậy, hãy xem làm thế nào gradient descent hoạt động.
+
+107
+00:04:28,270 --> 00:04:29,447
+Một trong những vấn đề chúng tôi giải quyết
+
+108
+00:04:29,447 --> 00:04:32,839
+Gradient descent là nó có thể được dễ bị địa phương optima.
+
+109
+00:04:32,839 --> 00:04:34,433
+Vì vậy, khi tôi lần đầu tiên giải thích chuyển màu
+
+110
+00:04:34,449 --> 00:04:36,136
+gốc, tôi cho thấy bạn ảnh này
+
+111
+00:04:36,136 --> 00:04:37,724
+của nó, bạn đã biết, đi xuống dốc
+
+112
+00:04:37,724 --> 00:04:38,788
+trên bề mặt và chúng tôi
+
+113
+00:04:38,788 --> 00:04:40,120
+thấy như thế nào, tùy thuộc vào nơi
+
+114
+00:04:40,120 --> 00:04:42,872
+bạn đang khởi tạo, bạn có thể kết thúc với optima địa phương khác nhau.
+
+115
+00:04:42,872 --> 00:04:44,846
+Bạn đã biết, bạn có thể sẽ chỉ ở đây hoặc ở đây.
+
+116
+00:04:44,846 --> 00:04:46,958
+Tuy nhiên, nó chỉ ra rằng
+
+117
+00:04:46,958 --> 00:04:49,025
+chức năng chi phí cho chuyển màu
+
+118
+00:04:49,025 --> 00:04:50,791
+chức năng chi phí cho hồi quy tuyến tính
+
+119
+00:04:50,791 --> 00:04:52,754
+luôn luôn có
+
+120
+00:04:52,754 --> 00:04:55,305
+một hàm mũi có hình dạng như thế này.
+
+121
+00:04:55,305 --> 00:04:57,573
+Thuật ngữ này
+
+122
+00:04:57,573 --> 00:05:01,163
+là rằng điều này được gọi là một chức năng lồi.
+
+123
+00:05:02,825 --> 00:05:04,920
+Và tôi sẽ không
+
+124
+00:05:04,920 --> 00:05:06,561
+để cung cấp cho các định nghĩa chính thức cho những gì
+
+125
+00:05:06,561 --> 00:05:09,557
+một chức năng lồi, c-o-n-v-e-x, nhưng
+
+126
+00:05:09,557 --> 00:05:11,310
+không chính thức là một chức năng lồi
+
+127
+00:05:11,310 --> 00:05:14,793
+có nghĩa là mũi có hình dạng hàm, bạn đã biết, loại giống như một cánh cung hình.
+
+128
+00:05:14,793 --> 00:05:18,006
+Và như vậy, chức năng này không
+
+129
+00:05:18,006 --> 00:05:19,738
+có bất kỳ optima địa phương, ngoại trừ
+
+130
+00:05:19,738 --> 00:05:22,433
+cho một tối ưu toàn cầu.
+
+131
+00:05:22,433 --> 00:05:24,265
+Và làm gradient descent ngày
+
+132
+00:05:24,265 --> 00:05:25,590
+loại chi phí hoạt động mà
+
+133
+00:05:25,590 --> 00:05:27,695
+bạn nhận được bất cứ khi nào bạn đang sử dụng tuyến tính
+
+134
+00:05:27,695 --> 00:05:29,201
+hồi qui, nó sẽ luôn luôn chuyển đổi
+
+135
+00:05:29,201 --> 00:05:33,623
+để tối ưu toàn cầu, vì không có không có khác optima địa phương khác hơn tối ưu toàn cầu.
+
+136
+00:05:33,623 --> 00:05:37,272
+Vì vậy bây giờ, hãy xem thuật toán này trong hành động.
+
+137
+00:05:38,026 --> 00:05:40,085
+Là bình thường, zero cộng với của
+
+138
+00:05:40,085 --> 00:05:42,182
+chức năng giả thuyết và của
+
+139
+00:05:42,182 --> 00:05:45,024
+chức năng của tôi chi phí J.
+
+140
+00:05:45,763 --> 00:05:47,011
+Và như vậy, hãy xem như thế nào
+
+141
+00:05:47,011 --> 00:05:49,687
+khởi tạo các tham số của tôi lúc giá trị này.
+
+142
+00:05:49,687 --> 00:05:51,652
+Bạn đã biết, chúng ta hãy nói, thường bạn
+
+143
+00:05:51,652 --> 00:05:53,590
+khởi tạo các tham số của bạn tại số không
+
+144
+00:05:53,590 --> 00:05:56,287
+cho zero, theta zero và zero.
+
+145
+00:05:56,287 --> 00:05:58,331
+Để minh hoạ này
+
+146
+00:05:58,331 --> 00:05:59,948
+trình bày cụ thể, tôi có
+
+147
+00:05:59,948 --> 00:06:02,615
+initialised theta zero lúc
+
+148
+00:06:02,615 --> 00:06:06,831
+khoảng 900, và theta một lúc về trừ 0.1, rồi?
+
+149
+00:06:06,831 --> 00:06:09,791
+Và vì vậy, điều này tương ứng với h
+
+150
+00:06:09,791 --> 00:06:12,022
+trên X, bằng, bạn đã biết,
+
+151
+00:06:12,022 --> 00:06:15,859
+trừ 900 trừ 0,1 x
+
+152
+00:06:15,859 --> 00:06:19,341
+Đây có phải là dòng, rất ra ở đây vào chức năng chi phí.
+
+153
+00:06:19,341 --> 00:06:20,491
+Bây giờ nếu chúng tôi lấy một
+
+154
+00:06:20,491 --> 00:06:22,163
+bước của gradient descent, chúng tôi sẽ
+
+155
+00:06:22,163 --> 00:06:24,298
+lên đi từ thời điểm này
+
+156
+00:06:24,298 --> 00:06:27,065
+ra ở đây, một chút
+
+157
+00:06:27,065 --> 00:06:29,564
+chút xuống bên trái
+
+158
+00:06:29,564 --> 00:06:31,732
+đến thời điểm thứ hai trên đó.
+
+159
+00:06:31,732 --> 00:06:35,279
+Và, bạn nhận thấy rằng dây chuyền của tôi thay đổi một chút.
+
+160
+00:06:35,279 --> 00:06:36,547
+Và, như tôi có một bước
+
+161
+00:06:36,547 --> 00:06:41,425
+tại gradient descent, dòng của tôi ở bên trái sẽ thay đổi.
+
+162
+00:06:41,425 --> 00:06:42,376
+Bên phải.
+
+163
+00:06:42,376 --> 00:06:43,804
+Và tôi cũng đã
+
+164
+00:06:43,804 --> 00:06:47,544
+chuyển đến một điểm mới chức năng chi phí của tôi.
+
+165
+00:06:47,544 --> 00:06:48,745
+Và như tôi nghĩ thêm bước
+
+166
+00:06:48,745 --> 00:06:50,697
+là gradient descent, tôi sẽ
+
+167
+00:06:50,697 --> 00:06:53,058
+xuống trong chi phí, bên phải, như vậy
+
+168
+00:06:53,058 --> 00:06:55,079
+tham số của tôi là sau
+
+169
+00:06:55,079 --> 00:06:58,062
+quỹ đạo này, và nếu
+
+170
+00:06:58,062 --> 00:07:00,368
+bạn nhìn vào bên trái, điều này tương ứng
+
+171
+00:07:00,368 --> 00:07:04,025
+để giả thuyết có vẻ
+
+172
+00:07:04,025 --> 00:07:04,912
+để nhận
+
+173
+00:07:04,912 --> 00:07:06,429
+tốt hơn và tốt hơn phù hợp cho các
+
+174
+00:07:06,429 --> 00:07:09,987
+dữ liệu cho đến khi cuối cùng,
+
+175
+00:07:09,987 --> 00:07:12,663
+Tôi có bây giờ lên vết thương ở mức tối thiểu toàn cầu.
+
+176
+00:07:12,663 --> 00:07:16,189
+Và tối thiểu toàn cầu này tương ứng với
+
+177
+00:07:16,189 --> 00:07:20,506
+giả thuyết này, mà mang lại cho tôi thích hợp để các dữ liệu.
+
+178
+00:07:20,922 --> 00:07:23,605
+Và vì thế đó là chuyển sắc
+
+179
+00:07:23,605 --> 00:07:24,969
+gốc, và chúng tôi đã chỉ cần chạy
+
+180
+00:07:24,969 --> 00:07:27,302
+nó và nhận được một tốt
+
+181
+00:07:27,302 --> 00:07:31,359
+để thiết lập dữ liệu của tôi của nhà ở giá cả phù hợp.
+
+182
+00:07:31,359 --> 00:07:34,108
+Và bạn có thể bây giờ sử dụng nó để dự đoán.
+
+183
+00:07:34,108 --> 00:07:35,284
+Bạn đã biết, nếu bạn bè của bạn có một
+
+184
+00:07:35,284 --> 00:07:36,452
+nhà với một
+
+185
+00:07:36,452 --> 00:07:39,116
+Kích cỡ nhà 1250 feet vuông, bạn
+
+186
+00:07:39,116 --> 00:07:40,684
+bây giờ có thể đọc ra giá trị
+
+187
+00:07:40,684 --> 00:07:42,090
+và nói với họ rằng, tôi không
+
+188
+00:07:42,090 --> 00:07:43,188
+biết, có lẽ họ có thể nhận được
+
+189
+00:07:43,188 --> 00:07:47,159
+$350,000 cho căn nhà của họ.
+
+190
+00:07:48,606 --> 00:07:49,982
+Cuối cùng, chỉ để cung cấp cho
+
+191
+00:07:49,982 --> 00:07:51,930
+Sửa tên khác, nó chỉ ra
+
+192
+00:07:51,930 --> 00:07:52,991
+mà các thuật toán mà chúng tôi
+
+193
+00:07:52,991 --> 00:07:55,030
+chỉ cần đi qua là đôi khi
+
+194
+00:07:55,030 --> 00:07:57,074
+gọi là lô gradient descent.
+
+195
+00:07:57,074 --> 00:07:58,781
+Và nó chỉ ra trong máy
+
+196
+00:07:58,781 --> 00:08:00,203
+học tập, tôi cảm thấy như chúng tôi máy
+
+197
+00:08:00,203 --> 00:08:02,050
+học tập con người, chúng tôi không phải luôn luôn
+
+198
+00:08:02,050 --> 00:08:04,381
+tạo đã cho tôi một số thuật toán.
+
+199
+00:08:04,381 --> 00:08:06,634
+Nhưng thuật ngữ lô gradient descent
+
+200
+00:08:06,634 --> 00:08:08,212
+có nghĩa là đề cập đến các
+
+201
+00:08:08,212 --> 00:08:09,551
+thực tế rằng, trong mỗi bước
+
+202
+00:08:09,551 --> 00:08:11,164
+của gradient descent, chúng tôi đang tìm
+
+203
+00:08:11,164 --> 00:08:13,649
+ở tất cả các ví dụ huấn luyện.
+
+204
+00:08:13,649 --> 00:08:15,783
+Vì vậy, trong gradient descent, bạn
+
+205
+00:08:15,783 --> 00:08:18,875
+biết, khi tính toán cụ phái sinh, chúng tôi đang tính toán
+
+206
+00:08:18,875 --> 00:08:21,307
+những khoản tiền, số tiền này của.
+
+207
+00:08:21,307 --> 00:08:22,210
+Vì vậy, trong mỗi riêng biệt
+
+208
+00:08:22,210 --> 00:08:23,510
+Gradient descent, chúng tôi sẽ chỉ
+
+209
+00:08:23,510 --> 00:08:25,278
+tính toán một cái gì đó như thế này, mà
+
+210
+00:08:25,278 --> 00:08:28,434
+khoản tiền trong ví dụ m đào tạo của chúng tôi.
+
+211
+00:08:28,434 --> 00:08:29,835
+Và vì vậy các thuật ngữ hàng loạt chuyển màu
+
+212
+00:08:29,835 --> 00:08:31,195
+gốc đề cập đến thực tế
+
+213
+00:08:31,195 --> 00:08:33,193
+khi nhìn vào toàn bộ lô
+
+214
+00:08:33,193 --> 00:08:34,559
+Ví dụ, đào tạo và một lần nữa,
+
+215
+00:08:34,559 --> 00:08:35,742
+Điều này là thực sự, thực sự không
+
+216
+00:08:35,742 --> 00:08:36,915
+một cái tên lớn, nhưng đây là
+
+217
+00:08:36,915 --> 00:08:39,444
+những gì mọi người học nhiệm vụ gọi nó.
+
+218
+00:08:39,444 --> 00:08:40,958
+Và nó chỉ ra có
+
+219
+00:08:40,958 --> 00:08:42,665
+đôi khi các phiên bản
+
+220
+00:08:42,665 --> 00:08:43,918
+Gradient descent không
+
+221
+00:08:43,918 --> 00:08:45,969
+Quay lại các phiên bản, nhưng thay vào đó làm
+
+222
+00:08:45,969 --> 00:08:47,752
+không xem xét toàn bộ thương mại
+
+223
+00:08:47,752 --> 00:08:49,722
+nhưng xem xét tập con nhỏ
+
+224
+00:08:49,722 --> 00:08:51,529
+bộ đào tạo lúc đó,
+
+225
+00:08:51,529 --> 00:08:54,874
+và chúng tôi sẽ nói về những phiên bản sau này trong khóa học này là tốt.
+
+226
+00:08:54,874 --> 00:08:56,195
+Nhưng bây giờ, bằng cách sử dụng các thuật toán
+
+227
+00:08:56,195 --> 00:08:57,410
+bạn chỉ biết được, bây giờ chúng tôi
+
+228
+00:08:57,410 --> 00:08:58,759
+sử dụng lô gradient descent, bạn
+
+229
+00:08:58,759 --> 00:09:01,159
+bây giờ biết làm thế nào để thực hiện
+
+230
+00:09:01,159 --> 00:09:04,149
+Gradient descent, hay hồi quy tuyến tính.
+
+231
+00:09:05,856 --> 00:09:08,672
+Vì vậy, đó là hồi quy tuyến tính với gradient descent.
+
+232
+00:09:09,349 --> 00:09:11,747
+Nếu bạn đã nhìn thấy tiên tiến đại số tuyến tính
+
+233
+00:09:11,747 --> 00:09:12,672
+trước khi vì vậy một số bạn có thể
+
+234
+00:09:12,672 --> 00:09:14,206
+đã lấy một lớp học với nâng cao
+
+235
+00:09:14,206 --> 00:09:16,279
+đại số tuyến tính, bạn có thể
+
+236
+00:09:16,295 --> 00:09:17,678
+biết rằng có tồn tại một giải pháp
+
+237
+00:09:17,678 --> 00:09:19,754
+để tính giải quyết cho các
+
+238
+00:09:19,754 --> 00:09:20,914
+tối thiểu của hàm chi phí
+
+239
+00:09:20,914 --> 00:09:22,561
+J, mà không cần phải
+
+240
+00:09:22,561 --> 00:09:25,604
+sử dụng và thuật toán lặp như gradient descent.
+
+241
+00:09:25,604 --> 00:09:27,154
+Sau đó trong khóa học này, chúng tôi sẽ
+
+242
+00:09:27,154 --> 00:09:28,098
+nói về phương pháp đó là
+
+243
+00:09:28,098 --> 00:09:29,753
+Vâng đó chỉ giải quyết cho các
+
+244
+00:09:29,753 --> 00:09:31,076
+chức năng của chi phí tối thiểu, J, mà không có
+
+245
+00:09:31,076 --> 00:09:33,791
+cần sửa nhiều bước của gradient descent.
+
+246
+00:09:33,791 --> 00:09:37,656
+Phương pháp khác được gọi là phương pháp phương trình bình thường.
+
+247
+00:09:37,656 --> 00:09:39,167
+Và, nhưng trong trường hợp bạn
+
+248
+00:09:39,167 --> 00:09:40,141
+có nghe nói về phương pháp đó, nó chỉ
+
+249
+00:09:40,141 --> 00:09:41,622
+trong gradient descent sẽ
+
+250
+00:09:41,622 --> 00:09:43,774
+quy mô tốt hơn cho dữ liệu lớn hơn
+
+251
+00:09:43,774 --> 00:09:45,008
+bộ hơn đó bằng bình thường
+
+252
+00:09:45,008 --> 00:09:47,315
+phương pháp và bây giờ mà
+
+253
+00:09:47,315 --> 00:09:48,756
+chúng tôi biết về gradient descent, chúng tôi sẽ
+
+254
+00:09:48,756 --> 00:09:49,922
+có thể sử dụng nó trong
+
+255
+00:09:49,922 --> 00:09:51,387
+rất nhiều bối cảnh khác nhau, và chúng tôi sẽ
+
+256
+00:09:51,387 --> 00:09:54,849
+sử dụng nó trong rất nhiều vấn đề học tập nhiệm vụ khác nhau là tốt.
+
+257
+00:09:54,849 --> 00:09:57,138
+Vì vậy, congrats về việc học
+
+258
+00:09:57,138 --> 00:10:00,317
+về thuật toán học nhiệm vụ đầu tiên của bạn.
+
+259
+00:10:00,317 --> 00:10:02,508
+Chúng tôi sau đó sẽ có các bài tập trong
+
+260
+00:10:02,508 --> 00:10:03,659
+mà chúng tôi sẽ yêu cầu bạn
+
+261
+00:10:03,659 --> 00:10:05,068
+thực hiện các gradient descent và
+
+262
+00:10:05,068 --> 00:10:07,071
+hy vọng rằng xem những thuật toán làm việc cho mình.
+
+263
+00:10:07,071 --> 00:10:08,955
+Nhưng trước khi đó tôi đầu tiên
+
+264
+00:10:08,955 --> 00:10:10,587
+muốn nói với bạn trong
+
+265
+00:10:10,587 --> 00:10:11,919
+tập tiếp theo của video, các
+
+266
+00:10:11,919 --> 00:10:13,223
+trước tiên, muốn cho bạn biết về
+
+267
+00:10:13,223 --> 00:10:15,724
+một tổng quát của gradient descent
+
+268
+00:10:15,724 --> 00:10:16,935
+thuật toán mà sẽ làm cho
+
+269
+00:10:16,935 --> 00:10:18,403
+nó mạnh hơn nhiều và tôi
+
+270
+00:10:18,403 --> 99:59:59,000
+đoán tôi sẽ cho bạn biết về điều đó trong video tiếp theo.

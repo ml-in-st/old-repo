@@ -1,0 +1,96 @@
+Dalam video ini, mari kita pelajari lebih dalam
+dan mendapat intuisi yang lebih baik tentang apa yang dikerjakan fungsi harga. Video ini mengasumsi bahwa
+Anda tahu tentang plot kontur. Jika Anda tidak tahu tentang plot kontur atau
+gambar kontur beberapa ilustrasi dalam video ini bisa atau bisa tidak masuk akal bagi
+Anda, tapi tidak mengapa dan jika Anda akhirnya melewati video ini atau beberapa bagian video yang benar-benar
+tidak masuk akal karena Anda belum pernah melihat plot kontur sebelumnya, itu tidak mengapa, Anda masih
+akan mengerti sisa dari mata pelajaran ini tanpa bagian-bagian itu. Ini perumusan
+persoalan kita seperti biasa, dengan parameter hipotesis, fungsi harga, dan
+tujuan pengoptimalan kita. Tidak seperti sebelumnya, tidak seperti video terakhir, saya
+akan mempertahankan kedua parameter saya, theta nol dan theta satu, sambil kita membuat
+visualisasi untuk fungsi harga. Jadi, sama seperti waktu lalu, kita ingin memahami
+hipotesis h dan fungsi harga J. Jadi, ini set latihan harga perumahan saya
+dan mari buat beberapa hipotesis. Anda tahu, seperti satu itu, itu bukan hipotesis
+yang bagus. Namun, jika saya set theta nol = 50 dan theta satu = 0.06, maka saya
+mendapatkan hipotesis dibawah ini dan itu dapat disamakan dengan garis lurus itu. Sekarang,
+dengan nilai theta nol dan theta satu ini, kita ingin memplot fungsi harga yang
+sesuai di sebelah kanan. Ini yang kita lakukan terakhir kali, saat kita hanya punya
+theta satu. Dengan kata lain, menggambar plot seperti ini sebagai fungsi theta satu.
+Tapi sekarang kita punya dua parameter, theta nol dan theta satu, jadi plotnya
+jadi lebih sedikit rumit. Jelas bahwa saat kita hanya punya satu parameter,
+bagian yang kita gambar punya fungsi berbentuk bungkuk sejenis ini. Sekarang, saat kita
+punya dua parameter, jelas fungsi harga juga punya bentuk bungkuk sejenis yang sama.
+Dan bahkan, tergantung pada set latihan Anda, Anda mungkin mendapat fungsi harga yang
+mungkin tampak seperti ini. Jadi, ini adalah plot permukaan 3-D, dimana sumbunya
+dinamai theta nol dan theta satu. Jadi, sambil Anda mengubah-ubah theta nol dan theta satu,
+kedua parameter itu, Anda memperoleh nilai berbeda untuk fungsi harga J (theta nol, theta satu)
+dan ketinggian permukaan ini di atas titik tertentu dari theta nol, theta satu.
+Itu sumbu vertikal. Ketinggian permukaan titik itu
+menunjukkan nilai J dari theta nol, J dari theta satu. Dan bisa Anda lihat bentuknya
+membungkuk seperti ini. Biar saya tunjukkan pada Anda plot yang sama dalam 3D. Jadi ini gambar
+yang sama dalam 3D, sumbu horisontal theta satu dan sumbu vertikal J(theta nol, theta satu),
+dan jika saya merotasi plot ini keliling, saya harap Anda mendapat pemahaman dari permukaan
+berbentuk mangkok ini sebagai bentuk dari fungsi harga J. Sekarang demi
+ilustrasi di sisa video ini saya tidak akan menggunakan permukaan 3D
+sejenis ini untuk menunjukkan pada Anda fungsi harga J, gantinya saya akan menggunakan
+plot kontur, atau apa yang saya sebut juga gambar kontur. Saya pikir keduanya sama,
+untuk menunjukkan pada Anda permukaan ini. Jadi, ini contoh gambar kontur, ditunjukkan di kanan,
+dimana sumbunya theta nol dan theta satu. Dan apa yang diperlihatkan oleh setiap bentuk
+oval, elips ini adalah satu set titik yang mengambil nilai yang sama untuk
+J(theta nol, theta satu). Jadi secara konkrit, contohnya ini, Anda akan mengambil
+titik itu dan titik itu dan titik itu. Semua ketiga titik ini yang saya gambar dengan
+warna magenta, mereka punya nilai yang sama untuk J(theta nol, theta satu). Okey.
+Dimana ini, ini adalah sumbu theta nol, theta satu, tapi ketiganya punya
+nilai J(theta nol, theta satu) yang sama dan jika Anda belum banyak melihat plot
+kontur sebelumnya, bayangkanlah jika Anda akan melihatnya, fungsi berbentuk melengkung
+akan tampil di layar saya. Jadi itu minimumnya, bagian bawah dari lengkungannya titik ini tepat
+disana, oke? Bagian tengah ini, bagian tengah dari elips konsentris ini. Dan bayangkan
+bentuk melengkung sejenis itu keluar dari layar saya seperti ini, sehingga setiap elips
+ini, Anda tahu, punya ketinggian yang sama pada layar saya. Dan titik minimum
+lengkungan, tepat di bawah sana. Jadi gambar kontur adalah suatu cara untuk,
+mungkin cara yang lebih nyaman untuk, menggambarkan fungsi J saya. Jadi, mari
+lihat beberapa contoh. Di sini, saya punya titik khusus, oke? Dan jadi ini, dengan,
+Anda tahu, theta nol sama dengan mungkin sekitar 800, dan theta satu sama dengan
+mungkin -0.15. Jadi titik ini, titik merah ini dapat disamakan dengan satu set
+dari sepasang nilai theta nol, theta satu dan mereka cocok dengan hipotesis
+itu, theta nol adalah sekitar 800, yakni, dimana itu memotong
+sumbu vertikal di sekitar 800, dan kemiringan ini sekitar -0.15. Sekarang garis ini
+tidak benar-benar pas pada data, kan? Hipotesis h(x) ini, dengan nilai theta nol, theta satu ini, benar-benar tidak pas
+di data. Jadi Anda dapati bahwa, harganya adalah nilai di luar sini, bidang
+ini sangat jauh dari minimumnya itu sangat jauh, ini harganya sangat tinggi
+karena ini tidak begitu bagus dan cocok ke data. Mari lihat beberapa contoh
+lagi. Sekarang ini hipotesis lainnya itu masih tidak begitu pas ke data
+tapi mungkin sedikit lebih baik. Jadi ini titik saya, itu parameter
+theta nol theta satu saya, jadi nilai theta nol saya, sekitar
+360 dan nilai theta satu saya sama dengan nol. Jadi, mari kita pecahkan
+itu. Mari ambil theta nol sama dengan 360 theta satu sama dengan nol. Dan sepasang
+parameter ini dapat disamakan dengan hipotesis itu, disamakan dengan garis mendatar,
+yaitu, h(x) sama dengan 360 ditambah nol dikali x. Jadi itu hipotesisnya. Dan
+hipotesis ini punya beberapa harga, dan harganya, Anda tahu, diplot sebagai
+ketinggian dari fungsi J pada titik itu. Mari kita lihat dua contoh.
+Ini satu lagi, Anda tahu, pada nilai theta nol ini dan pada nilai theta satu
+itu, kita mendapatkan hipotesis ini, h(x) dan lagi, tidak pas betul ke data,
+dan lebih jauh dari minimumnya. Contoh terakhir, ini tidak benar-benar pada minimumnya, tapi
+ini sangat dekat dengan minimumnya. Jadi ini lumayan pas ke data, dimana,
+untuk suatu nilai tertentu theta nol, yang mana, salah satunya punya nilai, seperti
+suatu nilai tertentu theta satu, kita dapatkan h(x) tertentu. Dan ini tidak
+benar-benar pada minimumnya, tapi ini sangat dekat. Jadi penjumlahan ketidak-telitian
+kwadrat adalah penjumlahan jarak kwadrat antara sampel latihan dan hipotesis saya.
+Sungguh, itu penjumlahan jarak kwadrat, dari semua ketidak-telitian ini. Ini
+sangat dekat ke minimumnya meskipun benar-benar bukan minimumnya. Jadi dengan gambar
+ini, saya harap, itu memberi Anda pengertian yang lebih baik tentang berapa nilai fungsi
+harga J, bagaimana mereka dan bagaimana itu dikaitkan dengan hipotesis berbeda dan juga
+sebagaimana baik hipotesis dikaitkan ke titik yang lebih dekat dengan minimum dari fungsi
+harga J ini. Sekarang, apa yang kita benar-benar inginkan adalah algoritma yang efisien,
+suatu software yang efisien untuk secara otomatis menemukan nilai theta
+nol dan theta satu yang memperkecil fungsi harga J. Dan apa yang kita
+tidak ingin lakukan adalah bagaimana menulis software, untuk memplot titik ini,
+dan kemudian mencoba membaca secara manual angka-angkanya. Ini bukan cara yang baik untuk
+melakukannya. Kita akan lihat nanti, bahwa saat kita melihat contoh yang lebih rumit,
+kita akan mendapat gambar berdimensi tinggi dengan banyak parameter, itu jelasnya,
+akan kita lihat nanti di pelajaran ini, contoh-contoh dimana gambar ini,
+benar-benar tidak dapat diplot, dan ini menjadi jauh lebih sulit untuk digambarkan.
+Jadi, apa yang kita inginkan adalah punya software untuk menemukan nilai theta nol, theta satu
+yang memperkecil fungsi ini dan pada video berikut, kita mulai bicara tentang
+algoritma untuk menemukan secara otomatis nilai theta nol dan theta satu yang
+memperkecil fungsi harga J.

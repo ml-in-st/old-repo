@@ -1,0 +1,1288 @@
+1
+00:00:00,780 --> 00:00:01,870
+En este video quiero
+
+2
+00:00:02,070 --> 00:00:03,210
+comenzar hablando sobre cómo
+
+3
+00:00:03,470 --> 00:00:04,970
+representamos las redes neuronales,
+
+4
+00:00:05,520 --> 00:00:06,690
+en otras palabras, cómo representamos
+
+5
+00:00:07,050 --> 00:00:08,130
+nuestras hipótesis o cómo
+
+6
+00:00:08,350 --> 00:00:11,270
+representamos nuestro modelo cuando utilizamos  redes neuronales.
+
+7
+00:00:12,050 --> 00:00:13,750
+Las redes neuronales fueron desarrolladas como
+
+8
+00:00:14,320 --> 00:00:17,650
+simulación de las neuronas o de las redes de neuronas en el cerebro.
+
+9
+00:00:18,540 --> 00:00:19,830
+Así que, para explicar la
+
+10
+00:00:20,400 --> 00:00:22,330
+representación de la hipótesis, vamos a empezar por
+
+11
+00:00:22,580 --> 00:00:23,590
+observar cómo se ve una sola
+
+12
+00:00:24,050 --> 00:00:25,250
+neurona en el cerebro.
+
+13
+00:00:26,390 --> 00:00:27,630
+Tú cerebro y el mío están saturados
+
+14
+00:00:28,160 --> 00:00:29,610
+de neuronas como estas
+
+15
+00:00:30,170 --> 00:00:31,300
+y las neuronas son células
+
+16
+00:00:31,380 --> 00:00:32,740
+en el cerebro, y las dos
+
+17
+00:00:33,000 --> 00:00:34,740
+cosas que llaman la atención son
+
+18
+00:00:34,970 --> 00:00:36,590
+primero que la
+
+19
+00:00:36,780 --> 00:00:37,820
+neurona tiene un cuerpo celular
+
+20
+00:00:38,360 --> 00:00:40,320
+como este y por otra parte, que la
+
+21
+00:00:40,500 --> 00:00:41,480
+neurona tiene un número de
+
+22
+00:00:41,680 --> 00:00:43,060
+cables de entrada
+
+23
+00:00:43,260 --> 00:00:44,360
+llamados dendritas, que son
+
+24
+00:00:44,670 --> 00:00:47,370
+como cabes de entrada y
+
+25
+00:00:48,180 --> 00:00:49,500
+reciben entradas de otras
+
+26
+00:00:49,660 --> 00:00:51,330
+ubicaciones, y la neurona
+
+27
+00:00:51,600 --> 00:00:54,270
+también tiene un cable de salida llamado axón.
+
+28
+00:00:55,140 --> 00:00:56,710
+Este cable de salida
+
+29
+00:00:57,290 --> 00:00:58,910
+es lo que utiliza para enviar
+
+30
+00:00:59,140 --> 00:01:00,690
+señales a otras neuronas
+
+31
+00:01:01,290 --> 00:01:04,130
+o para enviar mensajes a otras neuronas.
+
+32
+00:01:05,280 --> 00:01:07,220
+Así, en un nivel simple,
+
+33
+00:01:07,410 --> 00:01:08,740
+una neurona es una unidad computacional
+
+34
+00:01:09,430 --> 00:01:10,470
+que tiene un número
+
+35
+00:01:10,650 --> 00:01:13,220
+de entradas a través de sus cables de entrada, y realiza algunos cálculos,
+
+36
+00:01:14,430 --> 00:01:15,700
+y luego envía resultados, mediante su
+
+37
+00:01:15,830 --> 00:01:17,640
+axón a otros nodos
+
+38
+00:01:18,150 --> 00:01:19,540
+o a otras neuronas en el cerebro.
+
+39
+00:01:20,460 --> 00:01:23,370
+Aquí hay una ilustración de un grupo de neuronas.
+
+40
+00:01:24,260 --> 00:01:25,350
+La forma en que las neuronas se comunican
+
+41
+00:01:26,120 --> 00:01:28,410
+unas con otras es con pequeñas pulsaciones eléctricas.
+
+42
+00:01:29,230 --> 00:01:31,820
+También se llaman picos, pero se refieren a pequeños pulsos de electricidad.
+
+43
+00:01:33,140 --> 00:01:35,000
+Así que, aquí está una neurona y lo
+
+44
+00:01:35,680 --> 00:01:37,060
+que hace si
+
+45
+00:01:37,190 --> 00:01:38,260
+quiere mandar un mensaje,
+
+46
+00:01:38,500 --> 00:01:39,280
+es mandar
+
+47
+00:01:39,710 --> 00:01:41,190
+un pequeño pulso de electricidad a través de su
+
+48
+00:01:41,820 --> 00:01:44,110
+axón a diferentes
+
+49
+00:01:44,970 --> 00:01:46,610
+neuronas y aquí a este axón.
+
+50
+00:01:47,250 --> 00:01:48,310
+Tiene este cable abierto,
+
+51
+00:01:49,190 --> 00:01:50,840
+que se conecta al cable de entrada o
+
+52
+00:01:51,030 --> 00:01:52,270
+se conecta a la dendrita de esta
+
+53
+00:01:52,550 --> 00:01:54,300
+segunda neurona por aquí, la cual
+
+54
+00:01:54,560 --> 00:01:55,860
+entonces acepta este mensaje entrante,
+
+55
+00:01:56,830 --> 00:01:58,510
+hace algunos cálculos y puede
+
+56
+00:01:58,720 --> 00:01:59,710
+a su vez decidir enviar
+
+57
+00:02:00,030 --> 00:02:01,450
+su mensajes o en su
+
+58
+00:02:02,020 --> 00:02:04,090
+axón a otras neuronas.
+
+59
+00:02:04,400 --> 00:02:05,740
+Y este es el proceso por
+
+60
+00:02:05,940 --> 00:02:07,570
+el cual todo pensamiento humano
+
+61
+00:02:08,060 --> 00:02:09,540
+ocurre mientras estas neuronas hacen
+
+62
+00:02:09,730 --> 00:02:11,150
+cálculos y pasan mensajes
+
+63
+00:02:11,630 --> 00:02:13,120
+a otras neuronas como
+
+64
+00:02:13,380 --> 00:02:15,560
+resultado de lo que reciben en otras entradas.
+
+65
+00:02:16,530 --> 00:02:17,560
+Y por cierto, así es cómo
+
+66
+00:02:18,340 --> 00:02:21,030
+nuestros sentidos y nuestros músculos trabajan también.
+
+67
+00:02:21,680 --> 00:02:23,340
+Si deseas mover uno
+
+68
+00:02:23,500 --> 00:02:24,460
+de tus músculos, esto
+
+69
+00:02:24,760 --> 00:02:26,110
+funciona gracias a que la neurona
+
+70
+00:02:26,240 --> 00:02:27,370
+envía estas pulsaciones eléctricas
+
+71
+00:02:28,470 --> 00:02:29,590
+a tus músculos y hace que
+
+72
+00:02:30,160 --> 00:02:32,440
+tus músculos se contraigan y tus
+
+73
+00:02:32,710 --> 00:02:34,030
+ojos, si algunos
+
+74
+00:02:34,330 --> 00:02:35,510
+sensores como tus ojos
+
+75
+00:02:35,650 --> 00:02:36,710
+quieren enviar un mensaje a
+
+76
+00:02:36,950 --> 00:02:37,810
+tu cerebro, lo que hacen
+
+77
+00:02:38,360 --> 00:02:39,900
+es mandar pulsaciones de
+
+78
+00:02:40,670 --> 00:02:42,670
+electricidad a una neurona en tu cerebro.
+
+79
+00:02:43,460 --> 00:02:45,490
+En una red neuronal, o
+
+80
+00:02:46,040 --> 00:02:47,700
+en una red neuronal artificial
+
+81
+00:02:48,040 --> 00:02:49,250
+que implementemos en
+
+82
+00:02:49,290 --> 00:02:50,980
+una computadora, vamos a
+
+83
+00:02:51,200 --> 00:02:52,560
+utiliza un modelo muy simple
+
+84
+00:02:53,160 --> 00:02:54,380
+de lo que una neurona hace.
+
+85
+00:02:54,510 --> 00:02:57,720
+Vamos a modelar una neurona como una unidad logística.
+
+86
+00:02:58,590 --> 00:02:59,480
+Así que cuando yo dibujo un círculo amarillo
+
+87
+00:02:59,770 --> 00:03:01,130
+como este, deberías pensar que
+
+88
+00:03:01,240 --> 00:03:03,130
+es como jugar una
+
+89
+00:03:03,280 --> 00:03:04,710
+función análoga, tal vez el
+
+90
+00:03:04,870 --> 00:03:06,480
+cuerpo de una neurona, y
+
+91
+00:03:07,210 --> 00:03:08,840
+cuando se alimenta la neurona con
+
+92
+00:03:09,670 --> 00:03:11,670
+pocas entradas mediante sus dendritas o
+
+93
+00:03:11,910 --> 00:03:16,150
+sus cables de entrada, la neurona hace algunos cálculos
+
+94
+00:03:17,390 --> 00:03:19,050
+y da como resultado algún valor con
+
+95
+00:03:19,200 --> 00:03:21,260
+su cable de salida o en
+
+96
+00:03:21,820 --> 00:03:23,400
+una neurona biológica esa especie
+
+97
+00:03:23,530 --> 00:03:25,160
+de axón y cada vez que
+
+98
+00:03:25,310 --> 00:03:26,660
+dibujo un diagrama como este, lo que
+
+99
+00:03:26,830 --> 00:03:28,020
+significa, lo que representa
+
+100
+00:03:28,550 --> 00:03:30,040
+es un cálculo de, como sabes, h de x = 1
+
+101
+00:03:32,780 --> 00:03:34,290
+sobre 1 + e a la
+
+102
+00:03:35,290 --> 00:03:37,590
+«theta» negativa transpuesta de x donde, como
+
+103
+00:03:37,930 --> 00:03:39,330
+siempre, x y «theta»
+
+104
+00:03:39,650 --> 00:03:42,610
+son nuestros vectores de parámetros.
+
+105
+00:03:42,920 --> 00:03:44,410
+Así que esto es un muy simple, o un enormemente
+
+106
+00:03:44,780 --> 00:03:46,490
+simplificado modelo de
+
+107
+00:03:46,670 --> 00:03:48,050
+los cálculos que una neurona
+
+108
+00:03:48,320 --> 00:03:49,200
+hace, donde obtiene el
+
+109
+00:03:49,260 --> 00:03:50,790
+número de salidas, x1, x2,
+
+110
+00:03:51,650 --> 00:03:54,150
+x3 y da como resultado algunos valores calculados así.
+
+111
+00:03:59,960 --> 00:04:01,250
+Cuando dibujo una red neuronal,
+
+112
+00:04:01,900 --> 00:04:03,430
+generalmente sólo dibujo los
+
+113
+00:04:03,720 --> 00:04:04,770
+nodos de salida x1, x2, x3,
+
+114
+00:04:06,330 --> 00:04:07,740
+a veces cuando es útil hacerlo.
+
+115
+00:04:08,170 --> 00:04:09,780
+Dibujo un nodo extra para x0.
+
+116
+00:04:11,050 --> 00:04:12,200
+Este nodo x0 es
+
+117
+00:04:12,370 --> 00:04:13,960
+llamado en ocasiones unidad de oscilación
+
+118
+00:04:14,960 --> 00:04:17,970
+o la neurona de oscilación porque
+
+119
+00:04:18,500 --> 00:04:21,350
+x0 es igual a 1.
+
+120
+00:04:21,530 --> 00:04:22,320
+A veces, dibujo el sesgo, a veces
+
+121
+00:04:22,820 --> 00:04:24,280
+no, dependiendo de si
+
+122
+00:04:24,800 --> 00:04:27,560
+es más conveniente en teoría para ese ejemplo
+
+123
+00:04:28,080 --> 00:04:32,810
+Finalmente, un
+
+124
+00:04:33,270 --> 00:04:34,800
+poco de terminología, cuando
+
+125
+00:04:34,900 --> 00:04:36,690
+hablamos acerca de redes neuronales, a veces
+
+126
+00:04:36,810 --> 00:04:38,500
+diremos que esta
+
+127
+00:04:38,790 --> 00:04:40,330
+es una neurona, una
+
+128
+00:04:40,440 --> 00:04:42,720
+neurona artificial con una función de activación
+
+129
+00:04:43,090 --> 00:04:44,250
+sigmoidea o logística.
+
+130
+00:04:44,760 --> 00:04:48,030
+Así que esta función de activación en la terminología de las redes neuronales
+
+131
+00:04:48,140 --> 00:04:49,200
+es tan solo
+
+132
+00:04:49,540 --> 00:04:51,210
+otro término para esa
+
+133
+00:04:51,560 --> 00:04:53,190
+función, para esa no linealidad g
+
+134
+00:04:53,430 --> 00:04:55,170
+de z = 1
+
+135
+00:04:55,260 --> 00:04:56,020
+sobre 1 + e elevado a z negativa.
+
+136
+00:04:56,660 --> 00:04:58,410
+Y considerando que hasta ahora
+
+137
+00:04:58,930 --> 00:05:00,090
+he estado llamando «theta» a los parámetros
+
+138
+00:05:00,600 --> 00:05:02,500
+del modelo, continuaré
+
+139
+00:05:02,940 --> 00:05:04,790
+usando esa terminología para conjugar
+
+140
+00:05:05,480 --> 00:05:06,480
+a los parámetros, pero en las redes neuronales.
+
+141
+00:05:07,680 --> 00:05:08,960
+En la literatura de las redes neuronales y
+
+142
+00:05:09,400 --> 00:05:10,290
+a veces pueden escuchar a la gente
+
+143
+00:05:10,620 --> 00:05:12,160
+hablar de los pesos de un
+
+144
+00:05:12,400 --> 00:05:13,760
+modelo y pesos significa
+
+145
+00:05:13,950 --> 00:05:15,490
+exactamente lo mismo que
+
+146
+00:05:15,750 --> 00:05:17,470
+parámetros del modelo.
+
+147
+00:05:17,830 --> 00:05:18,890
+Utilizamos el término
+
+148
+00:05:19,900 --> 00:05:21,010
+parámetros en estos videos, pero
+
+149
+00:05:21,620 --> 00:05:24,180
+a veces puedes oír a otros utilizan el término pesos.
+
+150
+00:05:27,890 --> 00:05:29,290
+Entonces, este pequeño
+
+151
+00:05:29,430 --> 00:05:31,340
+diagrama representa una sola neurona.
+
+152
+00:05:34,470 --> 00:05:35,790
+Lo que una red neuronal,
+
+153
+00:05:36,560 --> 00:05:38,590
+simplemente es, una prueba de
+
+154
+00:05:38,780 --> 00:05:40,500
+estas diferentes neuronas unidas juntas.
+
+155
+00:05:41,630 --> 00:05:42,770
+Específicamente, aquí tenemos
+
+156
+00:05:43,530 --> 00:05:45,070
+unidades de entrada x1, x2 y x3,
+
+157
+00:05:45,410 --> 00:05:47,170
+y una vez más,
+
+158
+00:05:47,540 --> 00:05:49,070
+a veces puedo dibujar este
+
+159
+00:05:49,370 --> 00:05:50,760
+nodo extra x0 y a veces
+
+160
+00:05:51,340 --> 00:05:52,490
+no. Entonces, sólo lo dibujo aquí.
+
+161
+00:05:53,620 --> 00:05:54,950
+Y aquí tenemos
+
+162
+00:05:55,300 --> 00:05:56,800
+tres neuronas, que
+
+163
+00:05:56,930 --> 00:05:58,890
+he escrito como, sabes, a(2)1, a(2)2 y
+
+164
+00:05:59,060 --> 00:06:00,250
+a(2)3 alrededor de mejores índices
+
+165
+00:06:00,700 --> 00:06:02,140
+una vez más y más tarde,
+
+166
+00:06:02,730 --> 00:06:03,790
+podemos si lo deseamos,
+
+167
+00:06:04,500 --> 00:06:05,440
+añadir a esto a0 y
+
+168
+00:06:05,620 --> 00:06:08,840
+agregar una unidad adicional de oscilación.
+
+169
+00:06:10,240 --> 00:06:12,030
+Siempre da como resultado el valor de 1.
+
+170
+00:06:12,390 --> 00:06:13,680
+Entonces finalmente tenemos este
+
+171
+00:06:13,880 --> 00:06:15,450
+tercer nodo en la capa final,
+
+172
+00:06:15,710 --> 00:06:16,800
+y es este
+
+173
+00:06:16,990 --> 00:06:18,600
+tercer nodo el que abre el valor
+
+174
+00:06:19,210 --> 00:06:21,020
+que la hipótesis h de x calcula.
+
+175
+00:06:22,330 --> 00:06:23,480
+Para introducir un poco
+
+176
+00:06:23,610 --> 00:06:25,250
+más de terminología en una red neuronal,
+
+177
+00:06:25,530 --> 00:06:27,340
+la primer capa,
+
+178
+00:06:27,480 --> 00:06:28,610
+también es llamada capa de entrada
+
+179
+00:06:29,040 --> 00:06:30,160
+porque aquí es donde
+
+180
+00:06:30,400 --> 00:06:33,510
+introducimos nuestras variables x1, x2, x3.
+
+181
+00:06:33,770 --> 00:06:35,560
+La capa final también
+
+182
+00:06:35,850 --> 00:06:37,190
+es llamada capa de salida
+
+183
+00:06:37,640 --> 00:06:39,550
+porque esa capa tiene
+
+184
+00:06:39,840 --> 00:06:41,010
+las neuronas - esta de
+
+185
+00:06:41,150 --> 00:06:42,340
+aquí - que dan como resultado
+
+186
+00:06:42,400 --> 00:06:43,980
+el valor final calculado por una
+
+187
+00:06:44,370 --> 00:06:46,180
+hipótesis y luego la capa
+
+188
+00:06:46,420 --> 00:06:48,900
+dos en el medio, es llamada la capa oculta.
+
+189
+00:06:49,830 --> 00:06:51,300
+El término capa oculta no es
+
+190
+00:06:51,450 --> 00:06:53,290
+un término genial, pero la
+
+191
+00:06:54,160 --> 00:06:55,680
+intuición indica que, como sabes, en
+
+192
+00:06:56,020 --> 00:06:57,450
+el aprendizaje supervisado donde
+
+193
+00:06:57,530 --> 00:06:59,820
+puedes ver las entradas, y podrás ver los resultados correctos.
+
+194
+00:07:00,640 --> 00:07:02,530
+Considerando que la capa oculta tienen valores que
+
+195
+00:07:02,660 --> 00:07:04,260
+no se logran observar en el conjunto de entrenamiento.
+
+196
+00:07:04,520 --> 00:07:07,280
+No es X y no es Y, por lo que les llamamos ocultas.
+
+197
+00:07:08,170 --> 00:07:09,860
+Y más adelante veremos redes neuronales
+
+198
+00:07:10,050 --> 00:07:11,260
+con más de
+
+199
+00:07:11,370 --> 00:07:12,690
+una capa oculta, pero en
+
+200
+00:07:13,020 --> 00:07:14,290
+este ejemplo tenemos una
+
+201
+00:07:14,480 --> 00:07:16,010
+capa de entrada, la capa 1; una capa oculta,
+
+202
+00:07:16,260 --> 00:07:18,900
+la capa 2; y una capa de salida, la capa 3.
+
+203
+00:07:19,390 --> 00:07:20,530
+Pero básicamente cualquier cosa que no sea
+
+204
+00:07:20,990 --> 00:07:22,260
+una capa de entrada y que no sea
+
+205
+00:07:22,410 --> 00:07:24,480
+una capa de salida será llamada capa oculta.
+
+206
+00:07:26,710 --> 00:07:29,620
+Así es que
+
+207
+00:07:29,710 --> 00:07:30,610
+quiero ser muy claro
+
+208
+00:07:31,090 --> 00:07:33,130
+acerca de lo que esta red neuronal está haciendo.
+
+209
+00:07:33,970 --> 00:07:34,840
+Retrocedamos a través de los pasos computacionales
+
+210
+00:07:35,760 --> 00:07:37,600
+que están incorporados
+
+211
+00:07:38,050 --> 00:07:40,410
+por esto, representados en este diagrama.
+
+212
+00:07:41,560 --> 00:07:42,800
+Para explicar los cálculos específicos
+
+213
+00:07:43,660 --> 00:07:44,960
+representados por una red neuronal,
+
+214
+00:07:45,580 --> 00:07:46,910
+aquí está un poco más de notación.
+
+215
+00:07:47,270 --> 00:07:48,400
+Voy a usar "a" superíndice
+
+216
+00:07:48,950 --> 00:07:50,520
+"j" subíndice "i" para denotar
+
+217
+00:07:51,090 --> 00:07:53,640
+la activación de la neurona "i"
+
+218
+00:07:54,060 --> 00:07:55,390
+o de la unidad "i" en la capa
+
+219
+00:07:55,720 --> 00:07:58,290
+"j".  Entonces, en concreto, esta
+
+220
+00:07:59,390 --> 00:08:01,280
+"a" superíndice 2 subíndice 1
+
+221
+00:08:01,380 --> 00:08:03,930
+hace la activación de la
+
+222
+00:08:04,010 --> 00:08:05,320
+primera unidad en la capa 2,
+
+223
+00:08:05,450 --> 00:08:07,140
+en nuestra capa oculta.
+
+224
+00:08:07,280 --> 00:08:08,640
+Y por activación, me refiero,
+
+225
+00:08:08,970 --> 00:08:10,360
+como sabes, al valor que es calculado
+
+226
+00:08:10,710 --> 00:08:12,530
+por y que es dado como resultado específicamente.
+
+227
+00:08:13,200 --> 00:08:14,320
+Además, nuestra red neuronal
+
+228
+00:08:14,850 --> 00:08:17,050
+es parametrizada por estas matrices,
+
+229
+00:08:17,470 --> 00:08:19,520
+«theta» superíndice "j" donde
+
+230
+00:08:19,690 --> 00:08:20,600
+nuestra «theta» "j" va a ser
+
+231
+00:08:20,820 --> 00:08:21,820
+una matriz de onda
+
+232
+00:08:22,140 --> 00:08:23,770
+controlando el mapeo de la función de
+
+233
+00:08:24,130 --> 00:08:25,780
+una capa, tal vez de la primera
+
+234
+00:08:25,990 --> 00:08:28,360
+capa a la segunda capa o de la segunda capa a la tercer capa.
+
+235
+00:08:29,580 --> 00:08:32,990
+Así que, aquí están los cálculos que son representados por este diagrama.
+
+236
+00:08:34,520 --> 00:08:35,770
+Esta primera unidad oculta aquí,
+
+237
+00:08:37,060 --> 00:08:38,600
+tiene su valor calculado como
+
+238
+00:08:38,840 --> 00:08:40,020
+sigue: es a(2)1
+
+239
+00:08:40,260 --> 00:08:41,980
+igual a la función sigmoidal
+
+240
+00:08:42,400 --> 00:08:44,240
+o la función de activación sigmoidal
+
+241
+00:08:45,210 --> 00:08:46,550
+también se llama función de activación logística,
+
+242
+00:08:47,760 --> 00:08:49,730
+aplicada a esta clase
+
+243
+00:08:49,990 --> 00:08:52,360
+de combinación lineal de sus entradas.
+
+244
+00:08:53,840 --> 00:08:56,560
+Y después esta segunda unidad oculta
+
+245
+00:08:56,820 --> 00:08:58,330
+tiene este valor de activación
+
+246
+00:08:59,010 --> 00:09:01,400
+calculado como sigmoidal de este.
+
+247
+00:09:02,470 --> 00:09:04,110
+Y del mismo modo, para esta
+
+248
+00:09:04,260 --> 00:09:07,010
+tercera unidad oculta, está calculada mediante la fórmula.
+
+249
+00:09:08,330 --> 00:09:10,060
+Así que aquí tenemos tres
+
+250
+00:09:10,780 --> 00:09:13,960
+unidades de entrada y tres unidades ocultas.
+
+251
+00:09:16,830 --> 00:09:18,840
+Y también la dimensión
+
+252
+00:09:19,590 --> 00:09:21,530
+de «theta»1 la cual va a
+
+253
+00:09:22,060 --> 00:09:23,590
+la matriz de parámetros que rigen nuestro
+
+254
+00:09:23,740 --> 00:09:24,870
+mapeo desde las tres unidades de entrada,
+
+255
+00:09:25,170 --> 00:09:26,530
+sobre tres unidades ocultas
+
+256
+00:09:27,080 --> 00:09:28,210
+«theta»1 va a
+
+257
+00:09:29,880 --> 00:09:35,390
+ser un 3,
+
+258
+00:09:35,640 --> 00:09:36,870
+«theta»1 va a
+
+259
+00:09:38,130 --> 00:09:39,640
+ser una matriz de 3x4 dimensiones
+
+260
+00:09:40,650 --> 00:09:42,620
+y más en general,
+
+261
+00:09:43,870 --> 00:09:45,440
+si una red tiene unidades Sj
+
+262
+00:09:45,710 --> 00:09:46,710
+y su j
+
+263
+00:09:47,210 --> 00:09:48,440
+y sus unidades Sj + 1
+
+264
+00:09:48,650 --> 00:09:49,980
+en su j + 1 entonces
+
+265
+00:09:50,310 --> 00:09:51,700
+la matriz «theta» j que
+
+266
+00:09:52,010 --> 00:09:53,560
+rige el mapeo de la función de
+
+267
+00:09:53,780 --> 00:09:55,390
+la capa j a la capa j+1
+
+268
+00:09:55,640 --> 00:09:56,660
+que vamos a tener dimensión
+
+269
+00:09:57,280 --> 00:10:00,160
+Sj + 1 por Sj + 1.
+
+270
+00:10:00,580 --> 00:10:02,390
+Solo para aclarar esta notación, ¿correcto?
+
+271
+00:10:02,580 --> 00:10:04,440
+esto es S subíndice j
+
+272
+00:10:04,440 --> 00:10:05,810
++ 1 y eso es S
+
+273
+00:10:06,100 --> 00:10:07,260
+subíndice j y luego
+
+274
+00:10:07,380 --> 00:10:09,060
+todo esto, + 1.
+
+275
+00:10:09,430 --> 00:10:11,860
+De todo esto, eso es j + 1, ¿de acuerdo?
+
+276
+00:10:12,260 --> 00:10:13,730
+Así que eso es S subíndice j + 1,
+
+277
+00:10:14,080 --> 00:10:22,400
+por tanto,
+
+278
+00:10:22,560 --> 00:10:24,090
+eso es S subíndice j + 1
+
+279
+00:10:24,400 --> 00:10:26,230
+multiplicado por Sj + 1
+
+280
+00:10:27,220 --> 00:10:30,460
+donde + 1 no es parte del subíndice.
+
+281
+00:10:32,400 --> 00:10:33,520
+Así es que, hemos hablado de
+
+282
+00:10:33,690 --> 00:10:36,120
+lo que las tres unidades ocultas hacen para calcular sus valores.
+
+283
+00:10:37,180 --> 00:10:41,240
+Finalmente, este último, el espinal en capa óptima,
+
+284
+00:10:41,370 --> 00:10:42,280
+tenemos una unidad más
+
+285
+00:10:42,540 --> 00:10:44,270
+que calcula h de x
+
+286
+00:10:44,350 --> 00:10:46,090
+que es igual, y
+
+287
+00:10:46,230 --> 00:10:47,210
+puede escribirse también como a(3)1
+
+288
+00:10:47,270 --> 00:10:50,830
+y es igual a esto.
+
+289
+00:10:52,030 --> 00:10:53,110
+Y te das cuenta que tengo
+
+290
+00:10:53,290 --> 00:10:54,480
+escrito esto con un superíndice
+
+291
+00:10:54,670 --> 00:10:56,380
+2 aquí porque «theta» superíndice
+
+292
+00:10:57,130 --> 00:10:58,340
+2 es la matriz de parámetros,
+
+293
+00:10:59,080 --> 00:11:01,170
+o la matriz de pesos que
+
+294
+00:11:01,380 --> 00:11:02,830
+controla la función que mapea
+
+295
+00:11:03,240 --> 00:11:05,090
+las unidades ocultas, que
+
+296
+00:11:05,600 --> 00:11:06,850
+son las unidades de la capa 2,
+
+297
+00:11:07,720 --> 00:11:09,230
+a la unidad de la capa 3
+
+298
+00:11:09,590 --> 00:11:10,840
+que es la
+
+299
+00:11:12,360 --> 00:11:12,360
+unidad de salida.
+
+300
+00:11:12,550 --> 00:11:13,460
+Para resumir, lo que hemos hecho
+
+301
+00:11:13,830 --> 00:11:14,900
+es mostrar como una imagen
+
+302
+00:11:15,230 --> 00:11:16,670
+como esta de aquí define
+
+303
+00:11:17,350 --> 00:11:20,280
+una red neuronal artificial que define
+
+304
+00:11:20,920 --> 00:11:22,160
+una función h que mapea
+
+305
+00:11:23,090 --> 00:11:24,880
+tus valores de entrada x que con suerte
+
+306
+00:11:25,140 --> 00:11:26,650
+en algunos espacios y disposiciones y.
+
+307
+00:11:27,500 --> 00:11:29,430
+Y estas hipótesis después parametrizadas
+
+308
+00:11:30,190 --> 00:11:31,600
+por parámetros que
+
+309
+00:11:31,690 --> 00:11:33,070
+estoy denotando con «theta» mayúscula
+
+310
+00:11:33,460 --> 00:11:35,020
+así como
+
+311
+00:11:35,170 --> 00:11:36,920
+vamos a variar «theta» para obtener diferentes hipótesis.
+
+312
+00:11:37,650 --> 00:11:38,930
+Así es que llegamos a diferentes funciones de mapeo
+
+313
+00:11:39,490 --> 00:11:42,490
+digamos de x a y.  
+Entonces,
+
+314
+00:11:42,940 --> 00:11:44,000
+esto nos da una definición matemática
+
+315
+00:11:44,790 --> 00:11:45,980
+de cómo
+
+316
+00:11:46,140 --> 00:11:48,400
+representar la hipótesis en la red neuronal.
+
+317
+00:11:49,430 --> 00:11:50,750
+En algunos de los siguientes videos, lo que
+
+318
+00:11:50,780 --> 00:11:51,930
+me gustaría hacer es darte
+
+319
+00:11:52,090 --> 00:11:53,580
+un mejor entendimiento sobre lo que
+
+320
+00:11:53,760 --> 00:11:56,280
+estas representaciones de hipótesis hacen, y
+
+321
+00:11:56,410 --> 00:11:57,290
+también hablar de
+
+322
+00:11:57,370 --> 00:12:00,280
+algunos ejemplos y de cómo calcularlos eficientemente.

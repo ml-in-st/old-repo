@@ -1,0 +1,477 @@
+1
+00:00:00,960 --> 00:00:05,684
+En este video vamos a profundizar y
+a entender mejor qué hace
+
+2
+00:00:05,684 --> 00:00:10,523
+la función de costos. En este video asumimos que
+estás familiarizado con las gráficas de superficie Si
+
+3
+00:00:10,523 --> 00:00:15,189
+no estás familiarizado con las gráficas de superficie
+o las figuras de contorno, puede ser que entiendas
+
+4
+00:00:15,189 --> 00:00:20,144
+o no algunas ilustraciones en este video,
+pero está bien, y si terminas saltándote
+
+5
+00:00:20,144 --> 00:00:24,522
+este video o no entiendes parte de éste
+debido a que no has visto antes
+
+6
+00:00:24,522 --> 00:00:29,246
+las gráficas de superficie. Está bien y aun
+así entenderás el resto de este curso
+
+7
+00:00:29,246 --> 00:00:34,935
+sin las partes de este video. Aquí está nuestro
+planteamiento del problema
+
+8
+00:00:34,935 --> 00:00:39,882
+con los parámetros de la hipótesis, función de costos
+y nuestro objetivo de optimización. A diferencia
+
+9
+00:00:39,882 --> 00:00:45,163
+de antes, del último video, voy a
+mantener ambos parámetros, theta
+
+10
+00:00:45,163 --> 00:00:50,573
+cero y theta uno, mientras generamos
+nuestras visualizaciones para la función de costos. Así como
+
+11
+00:00:50,573 --> 00:00:57,204
+la última vez, queremos entender la
+hipótesis h y la función de costos J.
+
+12
+00:00:57,204 --> 00:01:04,167
+Aquí está mi conjunto de entrenamiento de precios de viviendas
+y hagamos algunas hipótesis. Como esta
+
+13
+00:01:04,167 --> 00:01:10,219
+que no es una hipótesis
+particularmente buena. Pero si establezco theta
+
+14
+00:01:10,219 --> 00:01:16,270
+cero=50 y theta uno=0.06, entonces termino
+con esta hipótesis de abajo que
+
+15
+00:01:16,270 --> 00:01:22,190
+corresponde a la línea recta. Ahora, con
+estos valores de theta cero y theta uno,
+
+16
+00:01:22,190 --> 00:01:27,511
+queremos trazar la función de costos
+correspondientes a la derecha. Lo que
+
+17
+00:01:27,511 --> 00:01:33,150
+hicimos la última vez, cuando sólo teníamos
+theta uno. En otras palabras, dibujar gráficas
+
+18
+00:01:33,150 --> 00:01:37,814
+que se vean así como una función de theta
+uno. Pero ahora tenemos dos parámetros, theta
+
+19
+00:01:37,814 --> 00:01:42,340
+cero y theta uno, y la gráfica
+se complica un poco. Resulta
+
+20
+00:01:42,340 --> 00:01:47,699
+que cuando sólo tenemos sólo un parámetro, 
+las partes que dibujamos tienen un tipo
+
+21
+00:01:47,699 --> 00:01:52,925
+de función con forma de arco. Entonces, cuando tenemos dos
+parámetros, resulta que la función de costos
+
+22
+00:01:52,925 --> 00:01:58,218
+también tiene una forma similar de arco. Y,
+de hecho, dependiendo de tu conjunto de entrenamiento
+
+23
+00:01:58,218 --> 00:02:03,511
+puedes obtener una función de costos
+que se vea parecida a esta. Así que esto es una
+
+24
+00:02:03,511 --> 00:02:09,404
+gráfica de superficie 3D, donde los ejes
+tienen asignado el valor de theta cero y theta uno. Entonces,
+
+25
+00:02:09,404 --> 00:02:15,326
+mientras theta cero y theta uno varían, los dos
+parámetros, obtendrás valores diferentes de la
+
+26
+00:02:15,326 --> 00:02:20,964
+función de costos J (theta cero, theta uno)
+y la altura de esta superficie por encima
+
+27
+00:02:20,964 --> 00:02:26,347
+de un punto particular de theta cero, theta uno.
+Bien, ese es el eje vertical. La
+
+28
+00:02:26,347 --> 00:02:31,200
+altura de la superficie de estos puntos
+indica el valor de J de theta cero, J
+
+29
+00:02:31,200 --> 00:02:36,471
+de theta uno. Y podrás ver que tiene
+un tipo de forma de arco. Déjame mostrarte
+
+30
+00:02:36,471 --> 00:02:46,351
+la misma gráfica en 3D. Esta es la misma
+figura en 3D, eje horizontal theta uno y
+
+31
+00:02:46,351 --> 00:02:52,122
+eje vertical J (theta cero, theta uno) y si giras
+esta gráfica. Puede que
+
+32
+00:02:52,122 --> 00:02:57,608
+tengas una idea, espero, de que esta superficie
+en forma de arco es como se ve la
+
+33
+00:02:57,608 --> 00:03:03,592
+la función de costos J. Ahora para los fines
+de la ilustración en el resto del video,
+
+34
+00:03:03,592 --> 00:03:09,077
+no usaré este tipo de
+superficies 3D para mostrar la función
+
+35
+00:03:09,077 --> 00:03:16,475
+de costos J, en lugar de eso utilizaré
+gráficas de superficie. O lo que también llamo figuras
+
+36
+00:03:16,475 --> 00:03:24,748
+de contorno. Supongo que significan lo mismo.
+Para mostrar estas superficies, aquí está un
+
+37
+00:03:24,748 --> 00:03:31,135
+ejemplo de figura de contorno, se muestra
+a la derecha, donde los ejes son theta cero y
+
+38
+00:03:31,135 --> 00:03:37,602
+theta uno. Y lo que muestran estos óvalos,
+lo que muestra cada elipses es un conjunto
+
+39
+00:03:37,602 --> 00:03:43,757
+de puntos que tiene el mismo valor para
+J (theta cero, theta uno). Entonces,
+
+40
+00:03:43,757 --> 00:03:50,514
+en concreto, para ejemplificarlo, tomarás
+ese punto, ese punto y ese punto.
+
+41
+00:03:50,514 --> 00:03:55,583
+Estos tres punto, que acabo de
+dibujar con magenta, tienen el mismo valor
+
+42
+00:03:55,583 --> 00:03:59,730
+para J (theta cero, theta uno). Ok.
+Cuando estos son los ejes theta cero
+
+43
+00:03:59,730 --> 00:04:04,774
+y theta uno pero esos tres tienen
+el mismo valor para J (theta cero, theta
+
+44
+00:04:04,774 --> 00:04:10,218
+uno) y si no has visto muchas
+gráficas de superficie antes,
+
+45
+00:04:10,218 --> 00:04:14,992
+imagina Una función en forma de arco que sale
+de mi pantalla. Así que el mínimo, la
+
+46
+00:04:14,992 --> 00:04:19,668
+parte inferior de este arco es el punto
+de aquí, ¿correcto? Este medio, el medio de
+
+47
+00:04:19,668 --> 00:04:24,285
+estas elipses concéntricas. Imagina una
+forma de arco que pareciera salir
+
+48
+00:04:24,285 --> 00:04:28,786
+de mi pantalla así, de modo que cada
+elipse tiene la misma altura
+
+49
+00:04:28,786 --> 00:04:33,345
+por encima de mi pantalla. Y el mínimo con el
+arco está ahí abajo. De manera que,
+
+50
+00:04:33,345 --> 00:04:37,787
+las figuras de contorno son una forma
+tal vez más conveniente para
+
+51
+00:04:37,787 --> 00:04:45,185
+visualizar mi función J. Entonces,
+veamos algunos ejemplos. Aquí tengo un
+
+52
+00:04:45,185 --> 00:04:53,275
+punto particular, ¿cierto? Y entonces esto es
+theta cero igual a, tal vez,
+
+53
+00:04:53,275 --> 00:05:01,964
+aproximadamente 800, y theta uno igual a quizás
+-0.15. Y, entonces, este punto
+
+54
+00:05:01,964 --> 00:05:07,322
+con rojo corresponde a un
+par en especial de valores de theta cero, theta uno
+
+55
+00:05:07,322 --> 00:05:12,092
+y, de hecho, corresponden a la
+hipótesis de que theta cero es
+
+56
+00:05:12,092 --> 00:05:17,189
+aproximadamente 800; es decir, donde
+se cruza con el eje vertical es alrededor de 800,
+
+57
+00:05:17,189 --> 00:05:21,763
+y esto es la pendiente de aproximadamente -0.15. Ahora bien, esta línea
+en realidad no es una buena opción
+
+58
+00:05:21,763 --> 00:05:26,859
+para los datos, ¿cierto? Esta hipótesis, h(x), con estos valores de theta cero,
+
+59
+00:05:26,859 --> 00:05:32,283
+theta uno, no es realmente una buena opción
+para los datos. Y por ello encuentras que, su
+
+60
+00:05:32,283 --> 00:05:37,531
+costo es un valor que está fuera por aquí,
+muy lejos del mínimo, está muy
+
+61
+00:05:37,531 --> 00:05:42,901
+lejos, es un costo muy alto,
+simplemente porque no es una buena opción
+
+62
+00:05:42,901 --> 00:05:47,247
+para los datos. Veamos otros
+ejemplos. Aquí está una hipótesis
+
+63
+00:05:47,247 --> 00:05:52,489
+diferente que, como sabes, aún no es
+una gran opción para los datos pero puede ser
+
+64
+00:05:52,489 --> 00:05:57,986
+ligeramente mejor, ese es mi punto, que
+estos son mis parámetros theta cero, theta
+
+65
+00:05:57,986 --> 00:06:07,387
+uno y, por ello, mi valor de theta cero. ¿Cierto?
+Que es aproximadamente 360 y mi valor para theta
+
+66
+00:06:07,387 --> 00:06:14,047
+uno. es igual a cero. Bien, vamos a
+desglosarlo. Tomemos theta cero igual a
+
+67
+00:06:14,047 --> 00:06:20,063
+360, theta uno igual a cero. Y este par
+de parámetros corresponden a la
+
+68
+00:06:20,063 --> 00:06:26,161
+hipótesis, corresponden a la línea plana; es decir h(x) igual a 360 más cero
+
+69
+00:06:26,161 --> 00:06:32,421
+por x. Así que eso es la hipótesis. Y
+una vez más, esta hipótesis tiene un costo,
+
+70
+00:06:32,421 --> 00:06:38,600
+y ese costo se grafica como la 
+altura de la función J en ese punto.
+
+71
+00:06:38,791 --> 00:06:44,886
+Veamos unos cuantos ejemplos.
+Aquí hay uno más con este valor
+
+72
+00:06:44,886 --> 00:06:52,231
+de theta cero, y con el valor de theta
+uno, terminamos con esta hipótesis h(x) y,
+
+73
+00:06:52,231 --> 00:06:58,599
+una vez más, no es una gran opción para los datos,
+de hecho está muy lejos del mínimo. El último ejemplo,
+
+74
+00:06:58,599 --> 00:07:03,450
+en realidad no está del todo en
+el mínimo, pero está muy cerca. Así que este
+
+75
+00:07:03,450 --> 00:07:08,486
+no es tan mala opción para los datos,
+para un valor en especial de theta
+
+76
+00:07:08,486 --> 00:07:13,337
+cero. Donde uno de ellos tiene un valor, como en
+el valor en especial para theta uno. Obtenemos
+
+77
+00:07:13,337 --> 00:07:18,004
+un h(x) particular. Y no está
+del todo cerca del mínimo, pero sí
+
+78
+00:07:18,004 --> 00:07:23,039
+muy cerca. Y, entonces, la suma de los errores
+cuadrados, la suma de las distancias cuadradas entre
+
+79
+00:07:23,039 --> 00:07:28,259
+mis ejemplos de entrenamiento y mi hipótesis.
+En realidad es la suma de las distancias cuadradas,
+
+80
+00:07:28,259 --> 00:07:32,548
+¿cierto? De todos estos errores. Está
+muy cerca del mínimo, aunque
+
+81
+00:07:32,548 --> 00:07:37,096
+no es realmente el mínimo. Entonces, espero
+que con estas figuras tengas una mejor
+
+82
+00:07:37,096 --> 00:07:41,869
+comprensión de cuáles son los valores de la
+función de costos J, cómo son y cómo
+
+83
+00:07:41,869 --> 00:07:47,324
+corresponden a las diferentes hipótesis y
+cómo pueden corresponder a mejores hipótesis con
+
+84
+00:07:47,324 --> 00:07:52,983
+los puntos más cercanos al mínimo de esta
+función de costos J. En realidad lo que
+
+85
+00:07:52,983 --> 00:07:57,619
+queremos es un algoritmo eficiente, un
+software eficiente para encontrar
+
+86
+00:07:57,619 --> 00:08:02,218
+de forma automática el valor de theta
+cero y theta uno, que minimice la
+
+87
+00:08:02,218 --> 00:08:06,566
+función de costos J, ¿verdad? Y lo que no queremos
+hacer es saber cómo escribir un
+
+88
+00:08:06,566 --> 00:08:10,697
+software, para graficar este punto
+y, después, tratar de leer de forma manual
+
+89
+00:08:10,697 --> 00:08:15,263
+los número, esa no es una buena forma
+de hacerlo. Y, de hecho, lo veremos después.
+
+90
+00:08:15,426 --> 00:08:19,938
+Cuando veamos ejemplos más complicados,
+tendremos figuras dimensionales elevadas
+
+91
+00:08:19,938 --> 00:08:23,906
+con más parámetros, y resulta que
+las veremos pronto, las veremos después
+
+92
+00:08:23,906 --> 00:08:28,091
+en este curso, los ejemplos con esta figura
+no pueden trazarse y
+
+93
+00:08:28,091 --> 00:08:33,664
+se vuelve más difícil de visualizar. Y
+lo que queremos es que el software
+
+94
+00:08:33,664 --> 00:08:37,729
+encuentre el valor de theta cero, theta uno
+que minimice esta función y
+
+95
+00:08:37,916 --> 00:08:42,914
+en el siguiente video empezaremos a hablar
+de un algoritmo para encontrar automáticamente
+
+96
+00:08:42,914 --> 00:08:47,600
+el valor de theta cero y theta uno
+que minimice la función de costos J.

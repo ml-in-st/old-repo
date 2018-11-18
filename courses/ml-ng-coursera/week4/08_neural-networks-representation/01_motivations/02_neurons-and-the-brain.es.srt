@@ -1,0 +1,955 @@
+1
+00:00:00,170 --> 00:00:01,720
+Las redes neuronales son un algoritmo
+
+2
+00:00:02,070 --> 00:00:03,950
+bastante viejo que fue originalmente motivado
+
+3
+00:00:05,030 --> 00:00:07,330
+por el objetivo de hacer máquinas que pudieran simular el cerebro.
+
+4
+00:00:08,260 --> 00:00:09,330
+Ahora, en esta clase, por supuesto,
+
+5
+00:00:09,620 --> 00:00:11,000
+voy a enseñarles sobre las redes neuronales
+
+6
+00:00:11,170 --> 00:00:12,170
+porque funcionan muy bien
+
+7
+00:00:12,460 --> 00:00:14,070
+para diferentes problemas de aprendizaje automático y no,
+
+8
+00:00:14,260 --> 00:00:16,910
+ciertamente no, porque estén lógicamente motivados.
+
+9
+00:00:18,050 --> 00:00:19,260
+En este video me gustaría
+
+10
+00:00:19,440 --> 00:00:21,640
+darles algunos de los antecedentes de las redes neuronales.
+
+11
+00:00:22,510 --> 00:00:25,430
+Para que tengas una idea de lo que podemos esperar que hagan.
+
+12
+00:00:26,200 --> 00:00:27,170
+Tanto en el sentido de
+
+13
+00:00:27,330 --> 00:00:28,320
+aplicarlas a problemas de maquinaria
+
+14
+00:00:28,440 --> 00:00:30,470
+actuales, así como para
+
+15
+00:00:30,650 --> 00:00:32,000
+aquellos que te puedan
+
+16
+00:00:32,190 --> 00:00:33,870
+interesar, quizás, el
+
+17
+00:00:34,000 --> 00:00:35,130
+gran sueño de la IA de algún día
+
+18
+00:00:35,710 --> 00:00:36,680
+construir máquinas verdaderamente inteligentes.
+
+19
+00:00:37,790 --> 00:00:40,650
+Además, cómo las redes neuronales pueden pertenecer a eso.
+
+20
+00:00:42,400 --> 00:00:44,260
+El origen de las redes neuronales fueron
+
+21
+00:00:44,900 --> 00:00:46,320
+algoritmos que intentaban
+
+22
+00:00:46,600 --> 00:00:47,880
+imitar al cerebro y
+
+23
+00:00:47,900 --> 00:00:49,020
+de ahí viene el sentido de que, si
+
+24
+00:00:49,140 --> 00:00:50,750
+queremos construir sistemas de aprendizaje,
+
+25
+00:00:51,310 --> 00:00:53,110
+por qué no imitar la que es, quizás, la
+
+26
+00:00:53,180 --> 00:00:54,960
+máquina de aprendizaje más asombrosa que
+
+27
+00:00:55,080 --> 00:00:56,070
+conocemos, que posiblemente es el
+
+28
+00:00:56,840 --> 00:00:58,710
+cerebro. Las redes neuronales se
+
+29
+00:00:58,820 --> 00:01:00,720
+utilizaron ampliamente en los
+
+30
+00:01:00,960 --> 00:01:03,260
+1980’s y 1990’s y,
+
+31
+00:01:03,750 --> 00:01:04,840
+por diversas razones, su popularidad
+
+32
+00:01:05,640 --> 00:01:06,680
+disminuyó a finales de los
+
+33
+00:01:06,890 --> 00:01:08,410
+de los 90’s. Pero, más recientemente,
+
+34
+00:01:09,170 --> 00:01:10,520
+las redes neuronales han tenido un
+
+35
+00:01:10,770 --> 00:01:12,060
+importante resurgimiento.
+
+36
+00:01:13,350 --> 00:01:14,530
+Una de las razones de este
+
+37
+00:01:14,770 --> 00:01:16,640
+resurgimiento es que las redes neuronales
+
+38
+00:01:17,540 --> 00:01:19,010
+son, computacionalmente, algunos de los
+
+39
+00:01:19,130 --> 00:01:20,590
+algoritmos más costosos y,
+
+40
+00:01:20,960 --> 00:01:22,110
+por lo tanto, ya sabes,
+
+41
+00:01:22,290 --> 00:01:23,830
+quizás fue más recientemente que las
+
+42
+00:01:24,440 --> 00:01:26,190
+computadoras se volvieron lo suficientemente rápidas
+
+43
+00:01:26,510 --> 00:01:27,540
+para realmente operar redes neuronales
+
+44
+00:01:27,900 --> 00:01:29,610
+de gran escala y, por esto,
+
+45
+00:01:29,690 --> 00:01:30,950
+así como por otras
+
+46
+00:01:30,980 --> 00:01:32,940
+razones técnicas de las que
+
+47
+00:01:33,080 --> 00:01:34,840
+hablaremos después, las redes
+
+48
+00:01:35,110 --> 00:01:36,390
+neuronales modernas son la técnica
+
+49
+00:01:36,620 --> 00:01:38,620
+más vanguardista para muchas aplicaciones.
+
+50
+00:01:39,820 --> 00:01:41,000
+Así que, cuando pensamos en imitar
+
+51
+00:01:41,440 --> 00:01:42,600
+el cerebro, mientras que el
+
+52
+00:01:42,630 --> 00:01:44,860
+cerebro humano puede hacer muchas cosas asombrosas, ¿cierto?
+
+53
+00:01:45,030 --> 00:01:46,660
+El cerebro puede aprender a
+
+54
+00:01:46,750 --> 00:01:48,170
+ver, procesar imágenes, y
+
+55
+00:01:48,400 --> 00:01:50,330
+a escuchar, aprender a procesar el sentido del tacto.
+
+56
+00:01:50,570 --> 00:01:51,360
+Podemos, ya sabes, aprender a
+
+57
+00:01:51,520 --> 00:01:52,380
+hacer operaciones matemáticas, aprender a hacer
+
+58
+00:01:52,710 --> 00:01:53,970
+cálculos, y el cerebro
+
+59
+00:01:54,110 --> 00:01:55,560
+hace muchas cosas diferentes y sorprendentes.
+
+60
+00:01:55,930 --> 00:01:56,730
+Parece que si quieres
+
+61
+00:01:57,000 --> 00:01:58,280
+imitar al cerebro, pareciera que
+
+62
+00:01:58,410 --> 00:01:59,630
+debes escribir muchas partes diferentes
+
+63
+00:01:59,960 --> 00:02:01,350
+de software para imitar
+
+64
+00:02:01,620 --> 00:02:03,540
+todas estas cosas fascinantes y asombrosas
+
+65
+00:02:03,820 --> 00:02:05,580
+que el cerebro hace, pero existe
+
+66
+00:02:05,820 --> 00:02:07,780
+esta fascinante hipótesis de que la
+
+67
+00:02:08,090 --> 00:02:09,100
+forma en la que el cerebro hace todas
+
+68
+00:02:09,170 --> 00:02:10,410
+estas cosas diferentes no
+
+69
+00:02:10,780 --> 00:02:12,080
+requiere miles de programas diferentes,
+
+70
+00:02:13,070 --> 00:02:14,810
+sino que, en cambio, la forma en la que el
+
+71
+00:02:14,940 --> 00:02:16,020
+cerebro lo hace requiere
+
+72
+00:02:16,440 --> 00:02:18,890
+sólo un único algoritmo de aprendizaje.
+
+73
+00:02:19,310 --> 00:02:20,840
+Esta es sólo una hipótesis pero
+
+74
+00:02:21,080 --> 00:02:22,240
+déjame compartirte
+
+75
+00:02:22,660 --> 00:02:24,440
+algunas evidencias de esto.
+
+76
+00:02:24,750 --> 00:02:25,840
+Esta parte del cerebro, esta pequeña
+
+77
+00:02:26,060 --> 00:02:27,270
+parte roja del cerebro, es
+
+78
+00:02:27,520 --> 00:02:29,150
+tu corteza auditiva y
+
+79
+00:02:29,240 --> 00:02:30,620
+la forma en la que estás comprendiendo mi voz
+
+80
+00:02:30,990 --> 00:02:33,340
+ahora es que tu oído está
+
+81
+00:02:33,500 --> 00:02:34,940
+captando la señal auditiva y enrutando
+
+82
+00:02:35,230 --> 00:02:36,940
+la señal auditiva a tu corteza
+
+83
+00:02:36,980 --> 00:02:38,180
+auditiva, y eso es lo que te
+
+84
+00:02:38,430 --> 00:02:40,100
+permite entender mis palabras.
+
+85
+00:02:41,330 --> 00:02:42,590
+Los neurocientíficos han hecho los
+
+86
+00:02:42,750 --> 00:02:44,560
+siguientes experimentos fascinantes en los que
+
+87
+00:02:44,790 --> 00:02:46,300
+se corta la conexión desde
+
+88
+00:02:46,510 --> 00:02:47,440
+los oídos a la corteza
+
+89
+00:02:47,630 --> 00:02:49,100
+auditiva, y se vuelve a conectar, en
+
+90
+00:02:50,140 --> 00:02:52,010
+este caso, en el cerebro de un animal, de forma que
+
+91
+00:02:52,200 --> 00:02:53,310
+la señal desde los ojos
+
+92
+00:02:53,620 --> 00:02:56,890
+hacia el nervio óptico eventualmente se enrute hacia la corteza auditiva.
+
+93
+00:02:58,040 --> 00:02:59,140
+Si haces esto, resulta que
+
+94
+00:02:59,350 --> 00:03:00,620
+la corteza auditiva aprenderá
+
+95
+00:03:02,130 --> 00:03:02,400
+a ver.
+
+96
+00:03:02,730 --> 00:03:04,000
+Y esto es, en toda la extensión de la
+
+97
+00:03:04,430 --> 00:03:06,270
+palabra, ver tal y como lo conocemos.
+
+98
+00:03:06,390 --> 00:03:07,470
+Entonces, si le haces esto a los animales,
+
+99
+00:03:07,770 --> 00:03:09,790
+los animales pueden efectuar una tarea de discriminación
+
+100
+00:03:10,310 --> 00:03:12,260
+visual, y entonces pueden
+
+101
+00:03:12,460 --> 00:03:13,570
+ver imágenes y tomar decisiones
+
+102
+00:03:14,100 --> 00:03:15,190
+apropiadas con base en las
+
+103
+00:03:15,460 --> 00:03:16,460
+imágenes, y lo están haciendo
+
+104
+00:03:16,780 --> 00:03:18,300
+con ese pedazo de tejido cerebral.
+
+105
+00:03:19,590 --> 00:03:20,150
+Aquí hay otro ejemplo.
+
+106
+00:03:21,270 --> 00:03:23,430
+Ese pedazo rojo de tejido cerebral es tu corteza somatosensorial.
+
+107
+00:03:24,070 --> 00:03:26,680
+Ahí es donde procesas tu sentido del tacto.
+
+108
+00:03:27,440 --> 00:03:29,020
+Si haces un proceso de reconexión similar
+
+109
+00:03:30,070 --> 00:03:32,740
+entonces la corteza somatosensorial aprenderá a ver.
+
+110
+00:03:33,370 --> 00:03:34,710
+Debido a éste y a otros
+
+111
+00:03:35,150 --> 00:03:36,670
+experimentos similares, se les
+
+112
+00:03:36,760 --> 00:03:38,200
+llama experimentos de recableado neuronal.
+
+113
+00:03:39,470 --> 00:03:40,550
+Existe esta sensación de que, si
+
+114
+00:03:40,670 --> 00:03:41,670
+la misma parte física de
+
+115
+00:03:42,180 --> 00:03:44,020
+tejido cerebral puede procesar la vista
+
+116
+00:03:44,500 --> 00:03:45,970
+o el sonido o el tacto, entonces
+
+117
+00:03:46,190 --> 00:03:47,480
+quizás haya un algoritmo de
+
+118
+00:03:47,780 --> 00:03:48,870
+aprendizaje que pueda procesar
+
+119
+00:03:49,280 --> 00:03:50,520
+la vista o el sonido o el tacto.
+
+120
+00:03:51,450 --> 00:03:52,660
+Y, en lugar de que sea necesario
+
+121
+00:03:52,840 --> 00:03:54,530
+implementar un millar de programas diferentes
+
+122
+00:03:55,120 --> 00:03:56,520
+o un millar de algoritmos diferentes para hacer,
+
+123
+00:03:56,660 --> 00:03:58,430
+ya sabes, las miles de cosas maravillosas
+
+124
+00:03:58,780 --> 00:04:00,510
+que hace el cerebro, quizás lo que
+
+125
+00:04:00,670 --> 00:04:01,980
+necesitamos es encontrar
+
+126
+00:04:02,220 --> 00:04:04,900
+una aproximación a cualquiera que sea
+
+127
+00:04:05,160 --> 00:04:07,220
+el algoritmo de aprendizaje del cerebro e
+
+128
+00:04:07,340 --> 00:04:08,470
+implementarlo, y que el cerebro aprenda
+
+129
+00:04:08,690 --> 00:04:10,130
+por sí mismo cómo
+
+130
+00:04:10,240 --> 00:04:11,860
+procesar estos diferentes tipos de datos.
+
+131
+00:04:13,000 --> 00:04:14,180
+En gran medida, sorprendentemente,
+
+132
+00:04:14,640 --> 00:04:15,730
+pareciera que podemos
+
+133
+00:04:16,270 --> 00:04:17,440
+conectar casi cualquier sensor
+
+134
+00:04:17,890 --> 00:04:19,020
+a casi cualquier parte del
+
+135
+00:04:19,080 --> 00:04:21,030
+cerebro y, dentro de lo
+
+136
+00:04:21,100 --> 00:04:22,990
+razonable, el cerebro aprenderá a manejarlo.
+
+137
+00:04:25,730 --> 00:04:26,470
+Aquí hay algunos ejemplos más:
+
+138
+00:04:26,660 --> 00:04:28,680
+En la parte superior izquierda hay
+
+139
+00:04:29,010 --> 00:04:31,220
+un ejemplo de aprendizaje pare ver con tu lengua.
+
+140
+00:04:32,100 --> 00:04:33,630
+El modo de funcionamiento es -- esto es,
+
+141
+00:04:33,830 --> 00:04:35,700
+de hecho, un sistema llamado BrainPort que está siendo sometido a
+
+142
+00:04:36,500 --> 00:04:37,700
+actualmente a pruebas de la FDA para ayudar
+
+143
+00:04:37,870 --> 00:04:39,380
+a ver a las personas ciegas--pero
+
+144
+00:04:39,470 --> 00:04:41,300
+funciona con una cámara
+
+145
+00:04:42,080 --> 00:04:43,360
+en escala de grises atada a tu
+
+146
+00:04:43,580 --> 00:04:45,320
+frente, viendo hacia delante, que toma
+
+147
+00:04:45,620 --> 00:04:47,680
+una imagen en escala de grises de baja resolución
+
+148
+00:04:48,120 --> 00:04:49,230
+de lo que está frente a ti
+
+149
+00:04:49,530 --> 00:04:50,630
+y, a continuación, se conecta un cable a
+
+150
+00:04:51,750 --> 00:04:52,710
+una matriz de electrodos
+
+151
+00:04:53,420 --> 00:04:54,540
+que colocas en tu lengua
+
+152
+00:04:55,090 --> 00:04:56,370
+para que cada pixel sea mapeado
+
+153
+00:04:56,730 --> 00:04:58,720
+en una ubicación en tu
+
+154
+00:04:58,830 --> 00:05:00,300
+lengua, donde tal vez un
+
+155
+00:05:00,430 --> 00:05:01,850
+alto voltaje corresponde a un
+
+156
+00:05:02,020 --> 00:05:03,620
+pixel oscuro y un voltaje bajo
+
+157
+00:05:04,160 --> 00:05:05,780
+corresponde a un pixel
+
+158
+00:05:06,140 --> 00:05:08,320
+brillante y, a pesar de la forma
+
+159
+00:05:08,480 --> 00:05:09,580
+en la que lo hace actualmente, con este tipo
+
+160
+00:05:09,880 --> 00:05:10,840
+de sistemas tú y yo podremos
+
+161
+00:05:10,900 --> 00:05:12,240
+aprender a ver, ya sabes,
+
+162
+00:05:12,490 --> 00:05:15,120
+en unos cuantos minutos con nuestras lenguas.
+
+163
+00:05:15,270 --> 00:05:16,790
+He aquí un segundo ejemplo de ecolocación
+
+164
+00:05:17,210 --> 00:05:18,600
+humana, o de sonar humano.
+
+165
+00:05:19,790 --> 00:05:20,990
+Entonces, hay dos formas en las que puedes hacer esto.
+
+166
+00:05:21,330 --> 00:05:22,810
+Puedes chasquear los dedos
+
+167
+00:05:24,490 --> 00:05:27,600
+o chasquear la lengua.
+
+168
+00:05:28,120 --> 00:05:28,570
+Yo no puedo hacerlo muy bien.
+
+169
+00:05:29,430 --> 00:05:30,480
+Pero hay personas ciegas
+
+170
+00:05:30,760 --> 00:05:31,970
+actualmente a las que se les está
+
+171
+00:05:32,140 --> 00:05:33,420
+enseñando en las escuelas a hacer esto
+
+172
+00:05:33,910 --> 00:05:35,600
+y a aprender a interpretar el patrón
+
+173
+00:05:36,040 --> 00:05:38,380
+de sonidos que rebotan en su entorno - eso es un sonar.
+
+174
+00:05:39,190 --> 00:05:39,860
+Así que, si después buscas en
+
+175
+00:05:39,940 --> 00:05:42,310
+en YouTube, hay
+
+176
+00:05:42,420 --> 00:05:44,040
+videos de este asombroso niño al que,
+
+177
+00:05:44,320 --> 00:05:45,770
+trágicamente, debido al cáncer,
+
+178
+00:05:46,410 --> 00:05:49,020
+fue necesario retirarle los globos oculares, así que este es un niño sin ojos.
+
+179
+00:05:49,890 --> 00:05:51,740
+Pero, chasqueando los dedos,
+
+180
+00:05:51,890 --> 00:05:53,660
+puede desplazarse sin chocar nunca con nada.
+
+181
+00:05:54,440 --> 00:05:55,390
+Puede andar en patineta.
+
+182
+00:05:56,320 --> 00:05:57,480
+Puede lanzar una pelota de baloncesto
+
+183
+00:05:57,550 --> 00:05:59,360
+hacia el aro, y este es un niño sin globos oculares.
+
+184
+00:06:00,510 --> 00:06:02,120
+Tercer ejemplo es el
+
+185
+00:06:02,370 --> 00:06:05,000
+cinturón háptico, con el que, con
+
+186
+00:06:05,240 --> 00:06:07,250
+una banda
+
+187
+00:06:07,510 --> 00:06:08,900
+alrededor de su cintura, suenan
+
+188
+00:06:09,060 --> 00:06:11,710
+zumbadores y siempre zumban para indicar la posición más al norte.
+
+189
+00:06:12,090 --> 00:06:13,450
+Le puede dar a un humano un
+
+190
+00:06:13,560 --> 00:06:14,780
+sentido de dirección similar al
+
+191
+00:06:15,240 --> 00:06:18,760
+que quizás tienen las aves, ya sabes, el sentido de dónde está el norte.
+
+192
+00:06:19,570 --> 00:06:21,530
+Y, algunos son ejemplos bizarros, pero
+
+193
+00:06:21,680 --> 00:06:22,820
+si le conectas un tercer ojo
+
+194
+00:06:23,110 --> 00:06:24,080
+a una rana, la rana
+
+195
+00:06:24,460 --> 00:06:25,830
+aprenderá a usar ese ojo también.
+
+196
+00:06:27,410 --> 00:06:29,220
+Entonces, es bastante increíble
+
+197
+00:06:29,440 --> 00:06:31,300
+hasta qué medida
+
+198
+00:06:31,360 --> 00:06:32,640
+es posible conectar casi cualquier sensor
+
+199
+00:06:32,830 --> 00:06:34,150
+al cerebro y el algoritmo de
+
+200
+00:06:34,570 --> 00:06:35,940
+aprendizaje del cerebro encontrará
+
+201
+00:06:36,170 --> 00:06:37,520
+la forma de aprender a partir de
+
+202
+00:06:37,710 --> 00:06:39,170
+esos datos y de manejar esos datos.
+
+203
+00:06:40,290 --> 00:06:41,280
+Y de ahí viene la idea de que,
+
+204
+00:06:41,560 --> 00:06:42,840
+si podemos descubrir cuál es
+
+205
+00:06:43,060 --> 00:06:45,360
+el algoritmo de aprendizaje del cerebro e
+
+206
+00:06:45,510 --> 00:06:46,780
+implementarlo o implementar alguna aproximación
+
+207
+00:06:47,550 --> 00:06:49,400
+a ese algoritmo en una computadora, quizás
+
+208
+00:06:49,700 --> 00:06:50,760
+esa sería nuestra mejor oportunidad para
+
+209
+00:06:51,190 --> 00:06:52,060
+hacer un progreso real
+
+210
+00:06:52,680 --> 00:06:54,320
+hacia la IA, el
+
+211
+00:06:54,380 --> 00:06:55,920
+sueño de la inteligencia artificial de
+
+212
+00:06:55,990 --> 00:06:58,060
+algún día construir máquinas verdaderamente inteligentes.
+
+213
+00:06:59,370 --> 00:07:00,410
+Ahora, desde luego, no enseño
+
+214
+00:07:00,830 --> 00:07:02,310
+sobre redes neuronales, ya sabes,
+
+215
+00:07:02,410 --> 00:07:03,590
+sólo porque puedan darnos una
+
+216
+00:07:03,710 --> 00:07:04,740
+ventana hacia este lejano
+
+217
+00:07:05,200 --> 00:07:06,180
+sueño de la IA, incluso a pesar de que,
+
+218
+00:07:06,290 --> 00:07:07,500
+personalmente, es es una de las cosas
+
+219
+00:07:07,760 --> 00:07:09,890
+en las que trabajo personalmente en mi vida de investigación.
+
+220
+00:07:10,650 --> 00:07:11,680
+Pero la razón principal por la que estoy
+
+221
+00:07:11,840 --> 00:07:12,890
+enseñando sobre redes neuronales en esta
+
+222
+00:07:13,140 --> 00:07:14,520
+clase, es porque son un realmente
+
+223
+00:07:14,670 --> 00:07:15,830
+una técnica vanguardista y muy
+
+224
+00:07:16,050 --> 00:07:18,340
+efectiva para las aplicaciones actuales de aprendizaje automático.
+
+225
+00:07:18,990 --> 00:07:20,340
+Entonces, en los siguientes
+
+226
+00:07:20,630 --> 00:07:22,160
+videos, comenzaremos a abordar
+
+227
+00:07:22,460 --> 00:07:23,830
+los detalles técnicos de las redes
+
+228
+00:07:24,130 --> 00:07:25,280
+neuronales, de forma que puedas
+
+229
+00:07:25,460 --> 00:07:26,460
+aplicarlas a aplicaciones
+
+230
+00:07:26,490 --> 00:07:28,570
+actuales de aprendizaje automático y hacerlas
+
+231
+00:07:28,730 --> 00:07:30,860
+funcionar bien en los problemas.
+
+232
+00:07:31,160 --> 00:07:32,180
+Pero para mí, ya sabes, una
+
+233
+00:07:32,430 --> 00:07:33,720
+de las razones que más me emocionan es que,
+
+234
+00:07:33,850 --> 00:07:35,450
+quizás, nos den
+
+235
+00:07:35,550 --> 00:07:37,000
+esta ventana hacia
+
+236
+00:07:37,550 --> 00:07:38,660
+lo que podríamos hacer si
+
+237
+00:07:38,890 --> 00:07:41,700
+también pensamos en
+
+238
+00:07:41,920 --> 00:07:43,600
+qué algoritmos algún día podrían
+
+239
+00:07:43,730 --> 00:07:46,000
+ser capaces de aprender de una forma similar a la del ser humano.

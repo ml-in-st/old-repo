@@ -1,0 +1,348 @@
+1
+00:00:00,000 --> 00:00:04,262
+Chào mừng đến lớp này trực tuyến miễn phí về Máy học (Machine Learning - ML). Máy học là một trong những
+
+2
+00:00:04,262 --> 00:00:08,579
+các công nghệ thú vị nhất gần đây.
+Và trong lớp học này, bạn tìm hiểu về các
+
+3
+00:00:08,579 --> 00:00:13,115
+nét tinh túy nhất và cũng có thể tự mình
+
+4
+00:00:13,115 --> 00:00:17,487
+thực hành và triển khai thuật toán này. Bạn có thể đã sử dụng một thuật toán hàng học tập chục lần một ngày mà không có
+
+5
+00:00:17,487 --> 00:00:21,422
+hiểu biết nó. Mỗi khi bạn sử dụng một công cụ tìm kiếm web như Google hoặc băng để
+
+6
+00:00:21,422 --> 00:00:25,794
+tìm kiếm trên internet, một trong những lý do mà nó hoạt động rất tốt là vì
+
+7
+00:00:25,794 --> 00:00:30,002
+thuật toán học tập, triển khai bởi Google hoặc Microsoft, đã học được cách để xếp hạng trang web
+
+8
+00:00:30,002 --> 00:00:35,144
+Mỗi khi bạn sử dụng ứng dụng chèn chữ vào ảnh của Facebook hay của Apple
+
+9
+00:00:35,144 --> 00:00:40,595
+phần mềm nhận diện ra hình ảnh bạn bè, đó cũng là máy học. Mỗi khi bạn đọc
+
+10
+00:00:40,595 --> 00:00:46,054
+email và bộ lọc thư rác hoạt động giúp bạn tiết kiệm từ việc phải lội qua tấn thư rác
+
+11
+00:00:46,054 --> 00:00:50,980
+thư điện tử, đó cũng là một thuật toán học tập.
+Đối với tôi, một trong những lý do tôi hào hứng là vì
+
+12
+00:00:50,980 --> 00:00:55,643
+giấc mơ AI của một ngày nào đó xây dựng được máy thông minh như bạn hoặc tôi.
+
+13
+00:00:55,643 --> 00:01:00,076
+Đó cả là một quãng đường dài, nhưng nhiều nhà nghiên cứu AI tin rằng cách tốt nhất để
+
+14
+00:01:00,076 --> 00:01:04,567
+hướng tới mục tiêu đó là thông qua các thuật toán học tập cố gắng bắt chước cách thức não con người học.
+
+15
+00:01:04,567 --> 00:01:08,994
+Tôi sẽ cho bạn biết một chút về điều đó quá, trong lớp này.
+
+16
+00:01:08,994 --> 00:01:13,542
+Trong khóa này bạn học về những nét tinh túy của thuật toán học tập.
+
+17
+00:01:13,542 --> 00:01:17,919
+Tuy nhiên, chỉ cần biết các thuật toán và hiểu biết toán học không làm bạn trở nên tốt nếu
+
+18
+00:01:17,919 --> 00:01:22,466
+bạn không biết cách thật sự ứng dụng những điều học được vào các vấn đề mà
+
+19
+00:01:22,466 --> 00:01:26,844
+bạn quan tâm. Vì vậy, chúng tôi cũng đã dành rất nhiều thời gian phát triển bài tập để bạn có thể
+
+20
+00:01:26,844 --> 00:01:32,088
+thực hiện các thuật toán và tự mình xem cách chúng làm việc như thế nào.
+
+21
+00:01:32,088 --> 00:01:37,075
+Tại sao ML phổ biến ngày nay? Nó chỉ ra rằng máy học là một
+
+22
+00:01:37,075 --> 00:01:41,713
+lĩnh vực mà đã phát triển từ lĩnh vực AI hay là trí tuệ nhân tạo. Chúng ta muốn
+
+23
+00:01:41,713 --> 00:01:46,642
+xây dựng máy thông minh và phát hiện ra rằng có một vài cách cơ bản mà
+
+24
+00:01:46,642 --> 00:01:51,454
+chúng ta có thể chương trình máy làm điều đó như là làm thế nào để tìm đường đi ngắn nhất từ A đến B.
+
+25
+00:01:51,454 --> 00:01:56,267
+Nhưng đối với hầu hết các phần khác chúng ta không biết làm thế nào để tự viết chương trình để AI làm thêm.
+
+26
+00:01:56,267 --> 00:02:00,905
+Điều thú vị như tìm kiếm web hoặc gắn thẻ ảnh hoặc gửi lọc thư rác.
+
+27
+00:02:00,905 --> 00:02:05,718
+Và nhận ra rằng cách duy nhất để làm những điều này là có một máy học
+
+28
+00:02:05,718 --> 00:02:11,237
+để làm điều này bởi chính nó. Vì vậy, máy ML đã được phát triển như là một khả năng mới cho
+
+29
+00:02:11,237 --> 00:02:16,950
+máy vi tính và ngày nay nó chạm đến nhiều phần của ngành công nghiệp và khoa học cơ bản.
+
+30
+00:02:16,950 --> 00:02:21,496
+Đối với tôi, tôi làm việc về máy học và trong một tuần điển hình tôi đã nói chuyện với
+
+31
+00:02:21,496 --> 00:02:25,698
+phi công máy bay trực thăng, nhà sinh học, nhiều người làm về hệ thống máy tính (cũng như
+
+32
+00:02:25,698 --> 00:02:30,590
+các đồng nghiệp ở đây tại Stanford) và trung bình hai hoặc ba lần một tuần tôi nhận được email từ
+
+33
+00:02:30,590 --> 00:02:35,021
+người trong ngành công nghiệp từ thung lũng Silicon liên hệ với tôi có quan tâm
+
+34
+00:02:35,021 --> 00:02:39,741
+việc áp dụng các thuật toán học cho các vấn đề riêng của họ. Đây là một dấu hiệu của phạm vi của
+
+35
+00:02:39,741 --> 00:02:44,000
+vấn đề là máy học chạm tới.
+Đó là robot tự động, sinh học vi tính
+
+36
+00:02:44,000 --> 00:02:48,777
+rất nhiều điều tại thung lũng Silicon là máy học có tác động lên.
+
+37
+00:02:48,777 --> 00:02:55,320
+Dưới đây là một số ví dụ khác của máy học. Khai phá dữ liệu/ Đào dữ liệu (Database Mining)
+
+38
+00:02:55,320 --> 00:03:00,063
+Một trong những lý do máy học phát tiển mạnh mẽ như vậy là sự phát triển của các trang web và các
+
+39
+00:03:00,063 --> 00:03:04,751
+sự phát triển của tự động hóa, tất cả điều này có nghĩa rằng chúng ta có nhiều tập dữ liệu lớn hơn hơn bao giờ hết
+
+40
+00:03:04,751 --> 00:03:09,272
+Ví dụ nhiều công ty ở silicone valley hôm nay thu thập dữ liệu nhấp chuột
+
+41
+00:03:09,272 --> 00:03:13,737
+cũng gọi là dữ liệu đường dẫn nhấp chuột, và đang cố gắng sử dụng thuật toán máy học
+
+42
+00:03:13,737 --> 00:03:18,481
+để khái phá dữ liệu này để hiểu người dùng và phục vụ người dùng tốt hơn
+
+43
+00:03:18,481 --> 00:03:22,327
+đó là một phân khúc lớn của Silicone Valley ngay bây giờ.
+
+44
+00:03:22,327 --> 00:03:27,483
+Hồ sơ y tế. Với sự ra đời của tự động hóa, chúng ta có hồ sơ y tế điện tử , vì vậy nếu
+
+45
+00:03:27,483 --> 00:03:32,640
+chúng ta có thể chuyển hồ sơ y tế thành kiến thức y khoa, sau đó chúng tôi có thể bắt đầu để hiểu
+
+46
+00:03:32,640 --> 00:03:37,238
+bệnh tốt hơn. Sinh học vi tính.
+Với tự động hóa một, nhà sinh học đang
+
+47
+00:03:37,238 --> 00:03:41,774
+thu thập nhiều dữ liệu về trình tự gen, trình tự ADN, và như vậy, và
+
+48
+00:03:41,774 --> 00:03:46,931
+máy chạy các thuật toán cho chúng ta hiểu nhiều rõ hơn về con người
+
+49
+00:03:46,931 --> 00:03:51,376
+bộ gen, và những gì nó có ý nghĩa với con người. Và cũng như trong kỹ thuật. Tất cả các lĩnh vực của
+
+50
+00:03:51,376 --> 00:03:55,034
+kỹ thuật, chúng tôi có tập dữ liệu lớn hơn và lớn hơn và lớn hơn và lớn hơn, mà
+
+51
+00:03:55,034 --> 00:03:59,249
+chúng tôi đang cố gắng để hiểu cách sử dụng bằng các thuật toán học tập. Ứng dụng thứ hai trong
+
+52
+00:03:59,249 --> 00:04:03,440
+ML là những thứ mà chúng ta không thể tự lập trình. Ví dụ, tôi đã
+
+53
+00:04:03,440 --> 00:04:08,328
+làm việc về máy bay trực thăng tự động trong nhiều năm. Chúng tôi không biết làm thế nào để viết một
+
+54
+00:04:08,328 --> 00:04:18,023
+chương trình máy tính để làm máy bay tự bay. Điều duy nhất có thể làm là có mộc chiếc máy tính tự học làm sao để làm trực thăng bay.
+
+55
+00:04:18,023 --> 00:04:35,580
+[Âm thanh trực thăng]
+
+56
+00:04:37,120 --> 00:04:42,880
+Nhận dạng chữ viết. Một trong những lý do ngày nay ít tốn kém khi
+
+57
+00:04:42,880 --> 00:04:47,330
+gửi thư đi khắp nơi trên quốc gia, ở Mỹ và quốc tế,
+
+58
+00:04:47,330 --> 00:04:51,899
+là rằng khi bạn viết một phong bì như thế này, có một thuật toán học tập
+
+59
+00:04:51,899 --> 00:04:56,943
+đã học hiểu chữ viết tay của bạn vì vậy mà nó có thể tự động
+
+60
+00:04:56,943 --> 00:05:01,749
+phân phong bì đi đúng tuyến đường, và vì vậy, chi phí cho chúng ta chỉ một vài xu để gửi hàng ngàn dặm.
+
+61
+00:05:01,749 --> 00:05:06,318
+Và trong thực tế, nếu bạn đã nhìn thấy các lĩnh vực Xử lí ngôn ngữ tự nhiên NLP
+
+62
+00:05:06,318 --> 00:05:10,531
+hay thị giác máy tính (CV), đây là những lĩnh vực AI liên quan đến
+
+63
+00:05:10,531 --> 00:05:15,321
+sự hiểu biết ngôn ngữ hoặc sự hiểu biết hình ảnh. Hầu hết NLP
+
+64
+00:05:15,321 --> 00:05:20,689
+CV, được áp dụng máy học.
+
+65
+00:05:20,689 --> 00:05:25,576
+Các thuật toán học tập cũng rộng rãi được sử dụng cho tự tùy biến các chương trình. Mỗi khi bạn lướt
+
+66
+00:05:25,576 --> 00:05:30,286
+Amazon hoặc Netflix hoặc iTunes Genius, và nó đề nghị phim hoặc các sản phẩm và
+
+67
+00:05:30,286 --> 00:05:35,073
+âm nhạc cho bạn, đó là một thuật toán học.
+Nếu bạn nghĩ về nó, họ có triệu
+
+68
+00:05:35,073 --> 00:05:39,999
+người dùng, không có cách nào để viết chương trình khác nhau một triệu cho triệu người sử dụng.
+
+69
+00:05:39,999 --> 00:05:44,807
+Cách duy nhất để cung cấp cho các khuyến nghị tùy biến là có thể
+
+70
+00:05:44,807 --> 00:05:49,258
+tự học để tùy biến theo sở thích của bạn. Cuối cùng
+
+71
+00:05:49,258 --> 00:05:53,294
+các thuật toán học tập đang được sử dụng ngày nay để hiểu cách con người học và đến
+
+72
+00:05:53,294 --> 00:05:58,042
+hiểu não người. Chúng tôi sẽ nói về cách các nhà nghiên cứu sử dụng điều này để
+
+73
+00:05:58,042 --> 00:06:03,182
+hướng tới giấc mơ AI. Một vài tháng trước đây, một học sinh cho tôi xem một bài viết
+
+74
+00:06:03,182 --> 00:06:07,996
+về 12 kỹ năng IT hàng đầu. Những kỹ năng mà nhà tuyển dụng IT
+
+75
+00:06:07,996 --> 00:06:13,006
+không thể không tìm kiếm. Đó là một bài viết cũ một chút, nhưng ở trên cùng của
+
+76
+00:06:13,006 --> 00:06:17,988
+12 kỹ năng IT hàng đầu hấp dẫn nhất, là máy học. Tại
+
+77
+00:06:17,988 --> 00:06:21,793
+Stanford, số lượng các nhà tuyển dụng liên hệ với tôi hỏi về
+
+78
+00:06:21,793 --> 00:06:25,920
+sinh viên tốt nghiệp học về ML đến nay lớn hơn
+
+79
+00:06:25,920 --> 00:06:30,047
+số sinh viên tốt nghiệp hàng năm. Vì vậy, tôi nghĩ rằng có một nhu cầu lớn, chưa được lấp đầy
+
+80
+00:06:30,047 --> 00:06:34,280
+về kĩ năng này và đây là một thời gian tuyệt vời để học về ML, và tôi
+
+81
+00:06:34,280 --> 00:06:38,454
+hy vọng sẽ dạy cho bạn rất nhiều về máy học trong lớp này. Trong video tới,
+
+82
+00:06:38,454 --> 00:06:42,123
+chúng tôi sẽ bắt đầu cung cấp định nghĩa chính thức hơn về những gì là máy học.
+
+83
+00:06:42,123 --> 00:06:46,044
+Và chúng tôi sẽ bắt đầu nói về các vấn đề chính của ML và
+
+84
+00:06:46,044 --> 00:06:49,864
+các thuật toán. Bạn sẽ chọn một vài thuật ngữ ML chính, và
+
+85
+00:06:49,864 --> 00:06:53,684
+bắt đầu hiểu về các thuật toán khác nhau, và
+
+86
+00:06:53,684 --> 00:06:54,740
+khi nào thích hợp sử dụng.

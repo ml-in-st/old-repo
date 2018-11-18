@@ -1,0 +1,351 @@
+1
+00:00:00,000 --> 00:00:05,399
+Trong video này chúng tôi sẽ xác định một cái gì đó gọi là hàm chi phí. Này sẽ cho chúng tôi
+
+2
+00:00:05,399 --> 00:00:10,688
+tìm hiểu làm thế nào để phù hợp với đoạn tốt nhất có thể thẳng vào dữ liệu của chúng tôi. Trong tuyến tính
+
+3
+00:00:10,688 --> 00:00:16,758
+hồi quy hiện có một huấn luyện đặt tương tự như được hiển thị ở đây. Hãy nhớ ngày ký hiệu m
+
+4
+00:00:16,758 --> 00:00:21,972
+là số lượng các ví dụ huấn luyện. Vì vậy có lẽ M = 47. Và hình thức của các
+
+5
+00:00:21,972 --> 00:00:27,731
+giả thuyết, mà chúng tôi sử dụng để làm cho dự đoán, là điều này, chức năng tuyến tính. Để
+
+6
+00:00:27,731 --> 00:00:33,723
+giới thiệu thuật ngữ một ít hơn, các theta zero và theta một, bên phải,
+
+7
+00:00:33,723 --> 00:00:39,759
+các [unintelligible] là những gì tôi gọi là các thông số của mô hình. Và, những gì chúng tôi
+
+8
+00:00:39,759 --> 00:00:44,578
+sẽ làm trong video này là thảo luận về cách đi về cách chọn những hai
+
+9
+00:00:44,578 --> 00:00:49,654
+giá trị tham số theta zero và theta một trong. Với sự lựa chọn khác nhau của các tham số
+
+10
+00:00:49,654 --> 00:00:54,408
+Theta zero và theta một trong chúng ta có được khác nhau giả thuyết, giả thuyết khác nhau
+
+11
+00:00:54,408 --> 00:00:59,355
+chức năng. Tôi biết một số bạn có lẽ sẽ đã quen thuộc với những gì tôi đang
+
+12
+00:00:59,355 --> 00:01:04,367
+đi để làm điều này trượt, nhưng chỉ để xem lại ở đây là một số ví dụ. Nếu theta
+
+13
+00:01:04,367 --> 00:01:09,378
+Zero là 1.5 và theta ai là zero, sau đó chức năng giả thuyết sẽ như thế
+
+14
+00:01:09,378 --> 00:01:15,701
+Điều này. Phải, bởi vì chức năng giả thuyết của bạn sẽ là H X bằng 1,5 plus
+
+15
+00:01:15,701 --> 00:01:22,645
+số không lần x đó là hàm liên tục giá trị này, đây là [unintelligible] tại 1.5. Nếu
+
+16
+00:01:22,645 --> 00:01:29,332
+Theta zero bằng zero và theta một bằng 0.5. Sau đó các giả thuyết sẽ xem xét
+
+17
+00:01:29,332 --> 00:01:35,536
+Thích cái này. Và nó nên đi qua thời điểm này hai một, nói rằng bây giờ bạn có H X hoặc
+
+18
+00:01:35,536 --> 00:01:40,666
+thực sự một số theta thẳng của x nhưng đôi khi tôi chỉ sẽ bỏ qua theta cho
+
+19
+00:01:40,666 --> 00:01:46,518
+ngắn gọn. Vì vậy, H X sẽ tương đương với chỉ 0,5 lần x trông như thế. Và
+
+20
+00:01:46,518 --> 00:01:52,443
+cuối cùng nếu theta zero bằng một trong và theta một bằng 0.5 sau đó chúng tôi sẽ chỉ với các
+
+21
+00:01:52,443 --> 00:01:58,598
+giả thuyết rằng trông như thế này. Hãy xem, nó nên đi qua. Hai, hai
+
+22
+00:01:58,598 --> 00:02:04,468
+điểm như vậy. Và điều này là của tôi h mới X, my theta subscript h mới của X. Một cách thứ ba
+
+23
+00:02:04,468 --> 00:02:09,980
+nhớ tôi đã nói rằng, đây là h subscript theta của X, nhưng như là một viết tắt
+
+24
+00:02:09,980 --> 00:02:16,584
+đôi khi tôi chỉ cần viết này khi H X. Trong hồi quy tuyến tính, chúng tôi đã đào tạo một thiết lập,
+
+25
+00:02:16,584 --> 00:02:22,439
+như có lẽ là một trong những tôi đã âm mưu ở đây. Những gì chúng tôi muốn làm đưa ra giá trị cho
+
+26
+00:02:22,439 --> 00:02:28,295
+[unintelligible] theta zero và theta một trong.
+Do đó với đường thẳng, chúng tôi nhận được tất cả
+
+27
+00:02:28,295 --> 00:02:33,799
+số này Corresponds để một đường thẳng bằng cách nào đó phù hợp với dữ liệu tốt. Giống như
+
+28
+00:02:33,799 --> 00:02:39,756
+có lẽ đó là dòng ngay tại đó. Vậy làm thế nào để chúng tôi tìm ra giá trị theta 0, theta một trong
+
+29
+00:02:39,756 --> 00:02:45,350
+mà tương ứng với một thích hợp để các dữ liệu? Ý tưởng là chúng ta sẽ chọn
+
+30
+00:02:45,350 --> 00:02:51,162
+của chúng tôi tham số theta 0, theta một vì vậy mà h của X, có nghĩa là giá trị chúng tôi dự đoán
+
+31
+00:02:51,162 --> 00:02:56,330
+trên đầu vào X, điều này ít gần với giá trị ví dụ Y. bốn mươi năm của chúng tôi
+
+32
+00:02:56,330 --> 00:03:01,133
+huấn luyện tập, cho ví dụ đào tạo của chúng tôi.
+Vì vậy, trong đào tạo của chúng tôi đặt chúng tôi đã đưa ra một
+
+33
+00:03:01,133 --> 00:03:06,505
+số lượng các ví dụ về nơi mà chúng tôi biết x quyết nhà và chúng tôi biết giá thực tế của
+
+34
+00:03:06,505 --> 00:03:11,796
+những gì nó được bán cho. Vì vậy, hãy thử để lựa chọn. Các giá trị cho các tham số vì vậy mà
+
+35
+00:03:11,796 --> 00:03:17,302
+ít trong huấn luyện tập, đưa ra các x trong bộ đào tạo, chúng tôi thực hiện
+
+36
+00:03:17,302 --> 00:03:23,507
+dự đoán hợp lý chính xác cho các giá trị Y. Chúng ta hãy chính thức hóa này. Vì vậy tuyến tính
+
+37
+00:03:23,507 --> 00:03:29,401
+hồi qui những gì chúng tôi đang đi làm, tôi sẽ muốn giải quyết một giảm thiểu
+
+38
+00:03:29,401 --> 00:03:38,787
+vấn đề. Gonna viết giảm thiểu hơn theta 0, theta một trong. Và, tôi muốn này
+
+39
+00:03:38,787 --> 00:03:44,379
+nhỏ, bên phải, tôi muốn sự khác biệt giữa H X và y là nhỏ. Và một trong những
+
+40
+00:03:44,379 --> 00:03:50,493
+điều tôi đang gonna làm là cố gắng giảm thiểu sự khác biệt vuông giữa đầu ra của
+
+41
+00:03:50,493 --> 00:03:56,159
+các giả thuyết và giá thực tế của ngôi nhà. Ok? Vì vậy, hãy điền vào một số
+
+42
+00:03:56,159 --> 00:04:01,379
+thông tin chi tiết. Hãy nhớ rằng tôi đã sử dụng ký hiệu XI, YI để đại diện cho các
+
+43
+00:04:01,379 --> 00:04:07,418
+đào tạo [unintelligible] Ví dụ. Vì vậy, những gì tôi muốn thực sự là, tổng qua đào tạo của tôi
+
+44
+00:04:07,418 --> 00:04:13,202
+thiết lập. Số tiền từ tôi bằng một đến M. [unintelligible] sự khác biệt vuông giữa,
+
+45
+00:04:13,202 --> 00:04:18,896
+Đây là dự đoán của giả thuyết của tôi khi nó là đầu vào kích thước của số nhà
+
+46
+00:04:18,896 --> 00:04:24,380
+tôi, bên phải, trừ đi giá thực tế số nhà tôi sẽ bán cho và tôi muốn
+
+47
+00:04:24,380 --> 00:04:29,588
+giảm thiểu tổng đặt đào tạo của tôi số tiền từ tôi bằng một thông qua m của các
+
+48
+00:04:29,588 --> 00:04:35,281
+sự khác biệt [unintelligible] quảng trường bình phương lỗi này có sự khác biệt giữa các dự đoán
+
+49
+00:04:35,281 --> 00:04:41,091
+giá của các nhà và các, và các mức giá mà nó thực sự sẽ bán cho. Và chỉ
+
+50
+00:04:41,091 --> 00:04:47,723
+nhắc nhở bạn của bạn ký hiệu m ở đây đã là các, các kích thước của thiết lập đào tạo tôi, bên phải,
+
+51
+00:04:47,723 --> 00:04:53,347
+Vì vậy, có m là số của tôi ví dụ huấn luyện. Quyền? Rằng dấu băm là các
+
+52
+00:04:53,347 --> 00:04:59,045
+tên viết tắt cho số lượng các ví dụ huấn luyện. Ok? Và để làm cho một số của chúng tôi,
+
+53
+00:04:59,045 --> 00:05:04,888
+làm như toán học một chút dễ dàng hơn, tôi sẽ thực sự xem xét, bạn đã biết, một trong những
+
+54
+00:05:04,888 --> 00:05:09,578
+hơn M. thời gian đó. Vì vậy, chúng tôi sẽ cố gắng giảm thiểu của tôi bình [unintelligible], chúng tôi
+
+55
+00:05:09,578 --> 00:05:13,926
+sẽ giảm thiểu một nhưng hai M. Các, đặt hai liên tục một nửa trong
+
+56
+00:05:13,926 --> 00:05:18,386
+phía trước nó chỉ làm cho một số các môn toán một chút dễ dàng hơn. Vì vậy việc giảm thiểu một nửa của
+
+57
+00:05:18,386 --> 00:05:23,073
+một cái gì đó, đúng, nên cung cấp cho bạn cùng các giá trị của tham số theta số không, theta
+
+58
+00:05:23,073 --> 00:05:27,647
+một là giảm thiểu chức năng đó. Và chỉ cần đảm bảo rằng phương trình này, này, này là
+
+59
+00:05:27,647 --> 00:05:35,569
+Chance of Rain, phải không? Biểu hiện này tại đây. H subscript theta của X. Điều này là của tôi, điều này là
+
+60
+00:05:35,569 --> 00:05:44,880
+của chúng tôi thường, phải không? Đó là tương đương với điều này.
+Cộng với theta một trong XI. Và, cách ký hiệu này.
+
+61
+00:05:44,880 --> 00:05:49,814
+Giảm thiểu theta zero và theta một trong.
+Điều này có nghĩa là tìm thấy tôi các giá trị của theta
+
+62
+00:05:49,814 --> 00:05:54,369
+Zero và theta một trong những nguyên nhân này biểu hiện sẽ được giảm thiểu. Và điều này
+
+63
+00:05:54,369 --> 00:05:59,557
+biểu hiện phụ thuộc vào theta zero và theta một trong. Ok? Vì vậy, chỉ để recap, chúng tôi đang đặt ra
+
+64
+00:05:59,557 --> 00:06:04,382
+vấn đề này như tìm thấy tôi các giá trị theta zero và theta một trong để các,
+
+65
+00:06:04,575 --> 00:06:09,292
+bình đã một trong hơn hai m lần tổng vuông lỗi giữa của tôi
+
+66
+00:06:09,292 --> 00:06:14,590
+dự báo ngày đào tạo thiết trừ đi các giá trị thực tế của [unintelligible] trên các
+
+67
+00:06:14,590 --> 00:06:19,694
+đào tạo tập được tối thiểu hoá. Vì vậy điều này có là hàm mục tiêu tổng thể của tôi
+
+68
+00:06:19,694 --> 00:06:25,127
+cho, hồi qui tuyến tính. Và chỉ để bạn biết viết lại này ra một chút chút thêm
+
+69
+00:06:25,127 --> 00:06:30,580
+sạch những gì tôi sẽ làm theo quy ước là chúng ta thường xác định hàm chi phí.
+
+70
+00:06:30,860 --> 00:06:38,965
+Đó là có là chính xác này. Mà công thức tôi đã lên ở đây. Và những gì tôi
+
+71
+00:06:38,965 --> 00:06:48,388
+muốn làm là Minimize theta zero và theta một chức năng của tôi j của theta zero
+
+72
+00:06:48,388 --> 00:06:57,428
+dấu phẩy theta một trong. Nơi chỉ lây lan này ra, đây là hàm chi phí của tôi. Vì vậy, điều này
+
+73
+00:06:57,428 --> 00:07:06,943
+chi phí chức năng gọi là chức năng bình phương lỗi hoặc đôi khi được gọi là các
+
+74
+00:07:06,943 --> 00:07:14,461
+bình phương lỗi chi phí chức năng và nó quay ra rằng tại sao, tại sao làm chúng tôi, bạn đã biết, mất
+
+75
+00:07:14,461 --> 00:07:19,006
+các hình vuông của các lỗi? Nó chỉ ra rằng các lỗi bình phương chi phí chức năng là một
+
+76
+00:07:19,006 --> 00:07:23,214
+sự lựa chọn hợp lý và sẽ làm việc tốt cho hầu hết các vấn đề, cho hầu hết hồi qui
+
+77
+00:07:23,214 --> 00:07:27,815
+vấn đề. Có những chức năng khác chi phí sẽ làm việc khá tốt, nhưng quảng trường
+
+78
+00:07:27,815 --> 00:07:32,473
+lỗi chi phí chức năng có thể là một thông dụng nhất cho vấn đề hồi quy.
+
+79
+00:07:32,473 --> 00:07:36,793
+[unintelligible] cũng thảo luận về chi phí thay thế hoạt là tốt, nhưng điều này, điều này
+
+80
+00:07:36,793 --> 00:07:41,282
+sự lựa chọn mà chúng tôi chỉ có, nên là một pret –, điều khá hợp lý để thử cho
+
+81
+00:07:41,282 --> 00:07:45,706
+vấn đề hồi quy tuyến tính nhất. Ok. Vì vậy, đó là hàm chi phí. Cho đến nay chúng tôi đã
+
+82
+00:07:45,706 --> 00:07:50,899
+chỉ cần nhìn thấy một định nghĩa toán học bạn biết điều này chi phí cho chức năng và trong trường hợp này
+
+83
+00:07:50,899 --> 00:07:55,973
+chức năng j theta zero theta một trong trong trường hợp chức năng này có vẻ như một chút trừu tượng
+
+84
+00:07:55,973 --> 00:08:00,808
+và bạn vẫn không có một cảm giác tốt về những gì của nó làm trong video tiếp theo, trong các
+
+85
+00:08:00,808 --> 00:08:05,882
+tiếp theo vài video chúng tôi thực sự sẽ đi một chút sâu hơn vào những gì các chi phí
+
+86
+00:08:05,882 --> 00:08:10,776
+chức năng j là làm và cố gắng để cung cấp cho bạn trực giác tốt hơn về những gì các máy tính
+
+87
+00:08:10,776 --> 00:08:12,329
+và tại sao chúng tôi muốn sử dụng nó.

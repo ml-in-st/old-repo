@@ -1,0 +1,343 @@
+1
+00:00:02,338 --> 00:00:04,677
+Naszym pierwszym algorytmem uczącym się będzie regresja liniowa. W tym filmie zobaczysz,
+
+2
+00:00:06,956 --> 00:00:09,234
+jak wygląda model, i, co ważniejsze, jak wygląda
+
+3
+00:00:09,234 --> 00:00:14,801
+ogólny proces uczenia z nadzorem. Odwołajmy się do motywującego przykładu prognozowania
+
+4
+00:00:14,801 --> 00:00:20,036
+cen domów. Użyjemy zbioru danych cen domów z miasta Portland
+
+5
+00:00:20,036 --> 00:00:25,205
+w stanie Oregon. Narysuję teraz na wykresie dane kilku domów
+
+6
+00:00:25,205 --> 00:00:30,833
+różnej wielkości, które zostały sprzedane po różnych cenach. Powiedzmy,
+
+7
+00:00:30,833 --> 00:00:35,872
+że masz ten zbiór danych, Twój znajomy próbuje sprzedać dom
+
+8
+00:00:35,872 --> 00:00:41,238
+o powierzchni 1250 stóp kwadratowych, i chcesz mu powiedzieć,
+
+9
+00:00:41,238 --> 00:00:46,459
+za ile może go sprzedać. Jedną z rzeczy, które można zrobić, jest
+
+10
+00:00:46,648 --> 00:00:53,039
+dopasowanie modelu, np. prostej linii, do danych. Wygląda to tak, i być może, na
+
+11
+00:00:53,039 --> 00:00:59,168
+tej podstawie, możesz powiedzieć znajomemu, że może sprzedać dom np.
+
+12
+00:00:59,168 --> 00:01:03,575
+za ok. 220 tys. dolarów. Jest to więc przykład
+
+13
+00:01:03,575 --> 00:01:08,834
+algorytmu uczenia z nadzorem. Jest to uczenie z nadzorem, bo mamy podaną
+
+14
+00:01:08,834 --> 00:01:14,287
+"właściwą" odpowiedź dla każdego przypadku. Mianowicie powiedziano nam,
+
+15
+00:01:14,287 --> 00:01:19,351
+jaka była rzeczywista cena każdego z domów w naszym zbiorze
+
+16
+00:01:19,351 --> 00:01:24,441
+danych. Co więcej, jest to przykład regresji, gdzie
+
+17
+00:01:24,441 --> 00:01:29,545
+pojęcie "regresja" odnosi się do faktu, że przewidujemy na wyjściu liczbę rzeczywistą,
+
+18
+00:01:29,545 --> 00:01:34,586
+a dokładniej cenę. Dla przypomnienia: drugim najpopularniejszym typem uczenia z nadzorem
+
+19
+00:01:34,586 --> 00:01:39,006
+jest tzw. zagadnienie klasyfikacji, gdzie przewidujemy
+
+20
+00:01:39,006 --> 00:01:45,202
+na wyjściu wartości dyskretne, np. patrząc na nowotwory i starając się
+
+21
+00:01:45,202 --> 00:01:52,032
+określić, czy są one złośliwe lub nie. Tak więc jest to wartość dyskretna "0" lub "1" na wyjściu. Bardziej
+
+22
+00:01:52,032 --> 00:01:57,087
+formalnie, przy uczeniu z nadzorem, mamy zbiór danych, zwany
+
+23
+00:01:57,087 --> 00:02:02,018
+zbiorem uczącym. Tak więc, w przypadku cen domów, mamy zbiór uczący
+
+24
+00:02:02,018 --> 00:02:07,386
+różnych cen domów, a naszym zadaniem jest nauczyć się, jak przewidzieć ceny
+
+25
+00:02:07,386 --> 00:02:11,907
+domów. Zdefiniujmy parę konwencji, które będziemy stosować w trakcie kursu.
+
+26
+00:02:11,907 --> 00:02:16,100
+Zdefiniujemy sporo symboli. Będzie OK, jeśli nie zapamiętasz
+
+27
+00:02:16,100 --> 00:02:20,075
+ich wszystkich teraz, jednak w dalszej części kursu dobrze będzie
+
+28
+00:02:20,075 --> 00:02:24,267
+znać tę notację. A więc w trakcie kursu będę używać małej litery "m", aby
+
+29
+00:02:24,267 --> 00:02:28,897
+oznaczyć liczbę elementów zbioru uczącego. Tzn. jeśli w tym zbiorze danych mam
+
+30
+00:02:28,897 --> 00:02:34,366
+np. 47 wierszy tabeli - mam 47 elementów zbioru uczącego, i m = 47.
+
+31
+00:02:34,366 --> 00:02:39,497
+Małą literą "x" oznaczać będę zmienne wejściowe, zwane często
+
+32
+00:02:39,497 --> 00:02:44,290
+cechami. Tutaj byłby to ten "x", byłyby to cechy wejściowe. Będę też
+
+33
+00:02:44,290 --> 00:02:49,556
+używał "y", aby oznaczyć zmienne wyjściowe czy też docelowe, które chcę
+
+34
+00:02:49,556 --> 00:02:54,552
+przewidzieć - jest to ta druga kolumna tutaj. Kolejne oznaczenie:
+
+35
+00:02:54,552 --> 00:03:05,749
+poprzez (x, y) oznaczać będę pojedynczy element uczący. Tzn. pojedynczy wiersz
+
+36
+00:03:05,749 --> 00:03:12,068
+tej tabeli odpowiada pojedynczemu elementowi, danemu
+
+37
+00:03:12,068 --> 00:03:19,708
+przypadkowi. Będę używał notacji (x(i), y(i))
+
+38
+00:03:25,322 --> 00:03:30,935
+do oznaczenia i-tego elementu uczącego. Ten indeks górny
+
+39
+00:03:30,935 --> 00:03:37,864
+nie jest potęgą, ok? W notacji (x(i), y(i)), indeks górny
+
+40
+00:03:37,864 --> 00:03:44,873
+w nawiasie oznacza indeks mojego zbioru uczącego, odnosi się do i-tego wiersza
+
+41
+00:03:44,873 --> 00:03:51,629
+tej tabeli, ok? Tak więc nie jest to x do potęgi i, ani y do potęgi i. Zamiast tego,
+
+42
+00:03:51,629 --> 00:03:58,216
+(x(i), y(i)) odnosi się do i-tego wiersza tej tabeli. Np. x(1) odnosi się do
+
+43
+00:03:58,216 --> 00:04:04,972
+wartości wejściowej pierwszego elementu uczącego, tzn. do 2104. Jest to "x" w pierwszym
+
+44
+00:04:04,972 --> 00:04:11,685
+wierszu. x(2) będzie równe 1416, prawda? Jest to drugi "x",
+
+45
+00:04:11,685 --> 00:04:17,385
+a y(1) będzie równe 460. Ta jedynka przy y
+
+46
+00:04:17,385 --> 00:04:24,526
+oznacza pierwszy przykład, element uczący. Jak wspomniałem, czasami zadam pytanie
+
+47
+00:04:24,526 --> 00:04:28,345
+sprawdzające Twoje zrozumienie; za parę sekund
+
+48
+00:04:28,345 --> 00:04:34,044
+pojawi się pytanie wielokrotnego wyboru.
+
+49
+00:04:34,044 --> 00:04:40,362
+Za pomocą myszy wybierz wtedy odpowiedź, którą uważasz za właściwą. Zdefiniowaliśmy
+
+50
+00:04:40,362 --> 00:04:45,124
+zbiór uczący. A oto, jak działa algorytm uczenia z nadzorem.
+
+51
+00:04:45,124 --> 00:04:50,513
+Widzieliśmy zbiór danych, np. nasz zbiór uczący cen domów, i dajemy
+
+52
+00:04:50,513 --> 00:04:55,715
+go naszemu algorytmowi. Jego zadaniem jest wskazanie na wyjściu funkcji,
+
+53
+00:04:55,715 --> 00:05:00,101
+zwykle oznaczanej małą literą "h" od słowa
+
+54
+00:05:00,101 --> 00:05:06,574
+"hipoteza". Zadanie hipotezy jest takie: jest to funkcja
+
+55
+00:05:06,574 --> 00:05:12,471
+której parametrem jest wielkość domu, np. tego, który próbuje sprzedać
+
+56
+00:05:12,471 --> 00:05:18,368
+Twój znajomy, a więc wartość x, i która próbuje na wyjściu oszacować
+
+57
+00:05:18,368 --> 00:05:31,630
+wartość y, odpowiadającą cenie domu. h jest więc funkcją mapującą iksy
+
+58
+00:05:31,630 --> 00:05:37,729
+do igreków. Ludzie często pytają mnie, czemu tę funkcję nazywa się
+
+59
+00:05:37,729 --> 00:05:42,121
+hipotezą. Niektórzy z Was mogą znać znaczenie tego słowa ze
+
+60
+00:05:42,121 --> 00:05:46,744
+słownika, nauk ścisłych czy skądinąd. Okazuje się, że w uczeniu maszynowym jest
+
+61
+00:05:46,744 --> 00:05:51,310
+to nazwa, której używano, gdy powstawała ta dziedzina, i tak już zostało.
+
+62
+00:05:51,310 --> 00:05:55,239
+Może nie jest to najlepsza nazwa dla funkcji tego rodzaju, mapującej wymiary
+
+63
+00:05:55,239 --> 00:05:59,978
+domów na ceny, ale cóż... Myślę, że pojęcie "hipoteza" nie jest może
+
+64
+00:05:59,978 --> 00:06:04,543
+najlepszą nazwą, ale jest to standardowa terminologia, którą stosują ludzie
+
+65
+00:06:04,543 --> 00:06:09,362
+w uczeniu maszynowym. Nie zaprzątaj sobie więc głowy, czemu ludzie używają tej nazwy.
+
+66
+00:06:09,362 --> 00:06:14,332
+Projektując algorytm uczący się, musimy teraz zdecydować, jak
+
+67
+00:06:14,332 --> 00:06:20,540
+przedstawić tę hipotezę h. W tym i paru kolejnych filmach, nasz wstępny
+
+68
+00:06:20,540 --> 00:06:26,978
+wybór reprezentujący hipotezę będzie następujący:
+
+69
+00:06:26,978 --> 00:06:33,009
+napiszemy, że h<u>theta(x) równa się theta<u>0</u></u>
+
+70
+00:06:33,009 --> 00:06:39,254
+plus theta<u>1 od x. Czasami też, żeby było krócej, zamiast pisać</u>
+
+71
+00:06:39,254 --> 00:06:45,441
+h indeks dolny theta od x, czasami napiszę po prostu h od x.
+
+72
+00:06:45,441 --> 00:06:51,627
+Ale najczęściej będę pisał indeks dolny theta, tak jak tu. Jeśli pokażemy
+
+73
+00:06:51,627 --> 00:06:58,210
+to na rysunku, wszystko to oznacza, że chcemy przewidzieć, że y jest liniową
+
+74
+00:06:58,210 --> 00:07:04,634
+funkcją x. Czyli mamy tu zbiór danych, a funkcja
+
+75
+00:07:04,634 --> 00:07:11,698
+przewiduje, że y jest jakąś liniową funkcją x. To znaczy, że h od x równa się theta 0
+
+76
+00:07:11,698 --> 00:07:18,450
+plus theta 1 razy x, ok? A dlaczego funkcja liniowa? Cóż, czasem będziemy chcieli
+
+77
+00:07:18,450 --> 00:07:23,405
+dopasować też bardziej skomplikowane, być może nieliniowe funkcje. Jednak ponieważ
+
+78
+00:07:23,405 --> 00:07:28,298
+przykład liniowy jest prosty, zaczniemy od dopasowania
+
+79
+00:07:28,298 --> 00:07:32,943
+funkcji liniowych, i budując na nich przejdziemy do bardziej złożonych
+
+80
+00:07:32,943 --> 00:07:37,403
+modeli oraz bardziej złożonych algorytmów uczących. Pozwolisz, że nazwę
+
+81
+00:07:37,403 --> 00:07:42,628
+ten konkretny model. Model ten zwany jest regresją liniową, a to
+
+82
+00:07:42,628 --> 00:07:48,271
+jest przykład regresji liniowej z jedną zmienną, którą jest
+
+83
+00:07:48,271 --> 00:07:53,914
+x. Przewidujemy ceny wszystkich domów jako funkcję jednej zmiennej x. Inną nazwą
+
+84
+00:07:53,914 --> 00:07:58,852
+tego modelu jest regresja liniowa prosta. "Prosta" znaczy tyle,
+
+85
+00:07:58,852 --> 00:08:04,400
+że mamy jedną zmienną. To tyle, jeśli chodzi o regresję liniową. W następnym
+
+86
+00:08:04,400 --> 00:08:09,760
+filmie zaczniemy rozmawiać o tym, jak zaimplementować ten model.

@@ -1,0 +1,844 @@
+1
+00:00:00,210 --> 00:00:02,931
+Vamos a empezar hablando sobre la regresión logística.
+
+2
+00:00:02,950 --> 00:00:04,315
+En este video, me gustaría
+
+3
+00:00:04,315 --> 00:00:07,210
+enseñarte la representación de la hipótesis, que
+
+4
+00:00:07,210 --> 00:00:08,805
+es, la función
+
+5
+00:00:08,810 --> 00:00:10,266
+que vamos a utilizar para representar
+
+6
+00:00:10,300 --> 00:00:15,446
+nuestra hipótesis en la que tenemos un problema de clasificación.
+
+7
+00:00:15,450 --> 00:00:16,969
+Anteriormente, dijimos que
+
+8
+00:00:16,969 --> 00:00:20,426
+nos gustaría que nuestro clasificador
+
+9
+00:00:20,426 --> 00:00:21,956
+genere valores que se encuentren entre
+
+10
+00:00:21,956 --> 00:00:23,250
+cero y uno. Por lo tanto, nos
+
+11
+00:00:23,270 --> 00:00:24,566
+gustaría proponer una
+
+12
+00:00:24,566 --> 00:00:26,385
+hipótesis que satisface esta
+
+13
+00:00:26,385 --> 00:00:30,396
+propiedad, que estas predicciones tal vez están entre cero y uno.
+
+14
+00:00:30,396 --> 00:00:32,764
+Cuando estábamos usando regresión lineal,
+
+15
+00:00:32,764 --> 00:00:34,262
+esta era la forma de una
+
+16
+00:00:34,262 --> 00:00:35,604
+hipótesis, donde "h" de "x"
+
+17
+00:00:35,604 --> 00:00:38,319
+es «theta» transpuesta x. Para
+
+18
+00:00:38,330 --> 00:00:39,831
+la regresión logística, voy a
+
+19
+00:00:39,831 --> 00:00:41,075
+modificar esto un poco
+
+20
+00:00:41,075 --> 00:00:43,352
+y hacer la hipótesis
+
+21
+00:00:43,360 --> 00:00:46,218
+"g" de «theta» transpuesta x,
+
+22
+00:00:46,218 --> 00:00:47,711
+donde voy a definir
+
+23
+00:00:47,711 --> 00:00:50,693
+la función "g" de la siguiente manera:
+
+24
+00:00:50,693 --> 00:00:51,926
+"g" de "z" si "z"
+
+25
+00:00:51,926 --> 00:00:53,633
+es un número real que es igual
+
+26
+00:00:53,640 --> 00:00:55,640
+a uno sobre uno más
+
+27
+00:00:55,640 --> 00:00:58,480
+"e" a la "z" negativa. Esta
+
+28
+00:00:58,490 --> 00:01:01,716
+se llama función sigmoidea
+
+29
+00:01:01,720 --> 00:01:04,843
+o función logística.
+
+30
+00:01:04,843 --> 00:01:07,089
+Y el término función logística,
+
+31
+00:01:07,120 --> 00:01:11,103
+es lo que da lugar al nombre de progresión logística.
+
+32
+00:01:11,103 --> 00:01:12,781
+Y, por cierto, los términos
+
+33
+00:01:12,781 --> 00:01:14,551
+función sigmoidea y función logística
+
+34
+00:01:14,551 --> 00:01:16,996
+son básicamente sinónimos
+
+35
+00:01:16,996 --> 00:01:18,362
+y significan lo mismo.
+
+36
+00:01:18,362 --> 00:01:19,756
+Así que los dos términos son
+
+37
+00:01:19,756 --> 00:01:21,893
+básicamente intercambiables y cualquier
+
+38
+00:01:21,893 --> 00:01:23,160
+término puede ser utilizado para
+
+39
+00:01:23,160 --> 00:01:24,620
+referirse a esta función
+
+40
+00:01:24,620 --> 00:01:26,283
+"g".
+Y si
+
+41
+00:01:26,283 --> 00:01:27,734
+tomamos estas dos ecuaciones y,
+
+42
+00:01:27,734 --> 00:01:30,089
+las ponemos juntas, entonces aquí
+
+43
+00:01:30,089 --> 00:01:32,354
+tenemos simplemente una manera alternativa de
+
+44
+00:01:32,354 --> 00:01:34,843
+escribir la formulación de mi hipótesis.
+
+45
+00:01:34,843 --> 00:01:36,533
+Estoy diciendo que "h" de "x"
+
+46
+00:01:36,540 --> 00:01:38,933
+es uno sobre uno más
+
+47
+00:01:38,933 --> 00:01:41,765
+"e" elevado a «theta» transpuesta x negativa,
+
+48
+00:01:41,765 --> 00:01:43,106
+y todo lo que he hecho es
+
+49
+00:01:43,106 --> 00:01:45,353
+que he tomado la variable
+
+50
+00:01:45,353 --> 00:01:46,700
+"z", "z" aquí es un
+
+51
+00:01:46,760 --> 00:01:48,173
+número real y lo colocamos dentro
+
+52
+00:01:48,173 --> 00:01:50,201
+de «theta» transpuesta x, así
+
+53
+00:01:50,201 --> 00:01:52,560
+es que termino con, como sabes, «theta» transpuesta x,
+
+54
+00:01:52,560 --> 00:01:54,933
+en lugar de "z" ahí.
+
+55
+00:01:54,940 --> 00:01:57,949
+Por último, permíteme mostrarte como se ve la función sigmoidea.
+
+56
+00:01:57,949 --> 00:02:00,296
+Vamos a trazarla en esta figura de aquí.
+
+57
+00:02:00,296 --> 00:02:02,022
+La función sigmoidea, "g" de
+
+58
+00:02:02,022 --> 00:02:04,652
+"z", también llamada la función logística, se ve así.
+
+59
+00:02:04,652 --> 00:02:07,078
+Comienza cerca de cero y
+
+60
+00:02:07,078 --> 00:02:09,366
+luego se eleva hasta que se procesa
+
+61
+00:02:09,366 --> 00:02:13,473
+0.5 en el origen y luego se aplana de nuevo.
+
+62
+00:02:13,500 --> 00:02:16,051
+Así se ve la función sigmoidea.
+
+63
+00:02:16,051 --> 00:02:17,898
+Y te das cuenta de que la
+
+64
+00:02:17,898 --> 00:02:19,725
+función sigmoidea, bueno,
+
+65
+00:02:19,740 --> 00:02:21,894
+su asíntota a uno, y
+
+66
+00:02:21,894 --> 00:02:24,256
+asíntota a cero mientras
+
+67
+00:02:24,256 --> 00:02:26,388
+"z" contra el eje horizontal
+
+68
+00:02:26,388 --> 00:02:27,659
+es "z". Mientras "z" va hacia
+
+69
+00:02:27,659 --> 00:02:29,304
+menos infinito, "g" de
+
+70
+00:02:29,304 --> 00:02:31,396
+"z" se aproxima a cero y mientras
+
+71
+00:02:31,396 --> 00:02:33,816
+"g" de "z" tiende a infinito, "g"
+
+72
+00:02:33,816 --> 00:02:35,864
+de "z" se aproxima a 1, y
+
+73
+00:02:35,880 --> 00:02:37,252
+así porque "g" de
+
+74
+00:02:37,252 --> 00:02:39,408
+"z" ofrece valores que están
+
+75
+00:02:39,408 --> 00:02:41,696
+entre 0 y 1 y
+
+76
+00:02:41,730 --> 00:02:44,592
+también tenemos que "h" de
+
+77
+00:02:44,610 --> 00:02:47,141
+"x" debe estar entre 0 y 1.
+
+78
+00:02:47,141 --> 00:02:50,029
+Por último, dada esta representación
+
+79
+00:02:50,040 --> 00:02:52,123
+de la hipótesis, lo que
+
+80
+00:02:52,123 --> 00:02:53,740
+necesitamos hacer, como antes,
+
+81
+00:02:53,740 --> 00:02:58,841
+es ajustar los parámetros «theta» a nuestros datos.
+
+82
+00:02:58,841 --> 00:03:00,490
+Así que dado un conjunto de capacitación,
+
+83
+00:03:00,490 --> 00:03:01,743
+necesitamos elegir un valor para
+
+84
+00:03:01,743 --> 00:03:03,773
+los parámetros «theta» y esta
+
+85
+00:03:03,773 --> 00:03:06,981
+hipótesis nos permitirá entonces hacer predicciones.
+
+86
+00:03:06,981 --> 00:03:08,534
+Vamos a hablar de un algoritmo de aprendizaje
+
+87
+00:03:08,534 --> 00:03:11,828
+más tarde para el ajuste de los parámetros «theta».
+
+88
+00:03:11,828 --> 00:03:13,506
+Pero primero vamos a hablar un
+
+89
+00:03:13,506 --> 00:03:17,379
+poco acerca de la interpretación de este modelo.
+
+90
+00:03:17,640 --> 00:03:19,612
+Así es como voy a
+
+91
+00:03:19,620 --> 00:03:21,660
+a interpretar el resultado de
+
+92
+00:03:21,660 --> 00:03:23,637
+mi hipótesis "h" de
+
+93
+00:03:23,637 --> 00:03:26,387
+"x".  Cuando mi hipótesis
+
+94
+00:03:26,400 --> 00:03:28,238
+da como resultado algún número, voy
+
+95
+00:03:28,240 --> 00:03:30,126
+a tratar a ese número como
+
+96
+00:03:30,126 --> 00:03:33,400
+la probabilidad estimada de que "y"
+
+97
+00:03:33,400 --> 00:03:35,170
+es igual a 1 en un
+
+98
+00:03:35,170 --> 00:03:38,266
+nuevo ejemplo de entrada "x". Esto es lo que quiero decir.
+
+99
+00:03:38,266 --> 00:03:40,324
+Aquí hay un ejemplo.
+
+100
+00:03:40,324 --> 00:03:43,932
+Digamos que estamos utilizando como ejemplo la clasificación de tumores.
+
+101
+00:03:43,932 --> 00:03:45,234
+Así es que podemos tener un
+
+102
+00:03:45,234 --> 00:03:47,945
+vector de variables "x", que es este x0=1
+
+103
+00:03:47,945 --> 00:03:49,860
+como siempre y entonces nuestra
+
+104
+00:03:49,860 --> 00:03:52,836
+única variable es el tamaño del tumor.
+
+105
+00:03:52,836 --> 00:03:54,045
+Supongamos que tengo un paciente que
+
+106
+00:03:54,045 --> 00:03:55,459
+viene y, sabes que tiene algún
+
+107
+00:03:55,459 --> 00:03:57,183
+tamaño de tumor e
+
+108
+00:03:57,183 --> 00:03:58,759
+introduzco su vector de variables "x"
+
+109
+00:03:58,759 --> 00:04:00,963
+en mi hipótesis y supongamos
+
+110
+00:04:00,970 --> 00:04:03,760
+que mi hipótesis da como resultado el número 0.7.
+
+111
+00:04:03,760 --> 00:04:05,758
+Voy a interpretar
+
+112
+00:04:05,758 --> 00:04:07,298
+mi hipótesis de la siguiente manera.
+
+113
+00:04:07,298 --> 00:04:08,790
+Voy a decir que esta
+
+114
+00:04:08,790 --> 00:04:10,235
+hipótesis me está diciendo
+
+115
+00:04:10,235 --> 00:04:12,143
+que para un paciente con
+
+116
+00:04:12,143 --> 00:04:14,490
+"x" variables, la probabilidad
+
+117
+00:04:14,520 --> 00:04:16,772
+de que "y" sea igual a 1 es de 0.7.
+
+118
+00:04:16,772 --> 00:04:18,703
+En otras palabras, le voy
+
+119
+00:04:18,720 --> 00:04:21,106
+a decir a mi paciente que el
+
+120
+00:04:21,106 --> 00:04:23,320
+tumor, por desgracia, tiene
+
+121
+00:04:23,320 --> 00:04:27,836
+un 70% de probabilidad o una probabilidad de 0.7 de ser maligno.
+
+122
+00:04:27,860 --> 00:04:29,420
+Para escribir este resultado un poco más
+
+123
+00:04:29,420 --> 00:04:30,473
+formal o para escribir este
+
+124
+00:04:30,480 --> 00:04:31,763
+resultado matemáticamente, voy a
+
+125
+00:04:31,763 --> 00:04:34,803
+interpretar el resultado de mi hipótesis
+
+126
+00:04:34,820 --> 00:04:37,144
+como "p" de "y"
+
+127
+00:04:37,150 --> 00:04:39,913
+que es igual a 1, dado que "x"
+
+128
+00:04:39,913 --> 00:04:41,813
+está parametrizada por «theta».
+
+129
+00:04:41,830 --> 00:04:43,389
+Por lo tanto, para aquellos que estén
+
+130
+00:04:43,389 --> 00:04:45,320
+familiarizados con la probabilidad, esta ecuación
+
+131
+00:04:45,320 --> 00:04:46,766
+podría tener sentido, si estás un poco menos familiarizado
+
+132
+00:04:46,766 --> 00:04:48,673
+con la probabilidad, como sabes, aquí está
+
+133
+00:04:48,673 --> 00:04:51,564
+la forma en que he leído esta expresión, esta
+
+134
+00:04:51,580 --> 00:04:53,215
+es la probabilidad de que "y" es
+
+135
+00:04:53,215 --> 00:04:54,988
+igual a uno, dado que "x"
+
+136
+00:04:54,988 --> 00:04:56,493
+en vez de que, dado que mi paciente
+
+137
+00:04:56,493 --> 00:04:58,027
+tiene, como sabes, variables "x".
+
+138
+00:04:58,040 --> 00:04:59,860
+Ya que mi paciente tiene un particular
+
+139
+00:04:59,860 --> 00:05:01,575
+tamaño de tumor representado por mis
+
+140
+00:05:01,575 --> 00:05:03,156
+variables "x", y esta
+
+141
+00:05:03,156 --> 00:05:06,956
+probabilidad está parametrizada por «theta».
+
+142
+00:05:07,130 --> 00:05:09,166
+Así que básicamente voy a contar
+
+143
+00:05:09,166 --> 00:05:11,009
+con que mi hipótesis me dará
+
+144
+00:05:11,009 --> 00:05:13,332
+las estimaciones de la probabilidad
+
+145
+00:05:13,332 --> 00:05:15,349
+de que "y" es igual a 1.
+
+146
+00:05:15,349 --> 00:05:16,523
+Ahora ya que esta es una
+
+147
+00:05:16,523 --> 00:05:18,629
+tarea de clasificación, sabemos
+
+148
+00:05:18,640 --> 00:05:21,497
+que "y" debe ser cero o uno, ¿verdad?
+
+149
+00:05:21,497 --> 00:05:23,373
+Esos son los dos únicos valores
+
+150
+00:05:23,390 --> 00:05:25,466
+que "y" podría asumir,
+
+151
+00:05:25,466 --> 00:05:26,654
+tanto en el conjunto de capacitación o
+
+152
+00:05:26,654 --> 00:05:28,077
+para los nuevos pacientes que puedan
+
+153
+00:05:28,077 --> 00:05:32,014
+entrar a mi oficina o en el consultorio médico en el futuro.
+
+154
+00:05:32,014 --> 00:05:33,529
+Entonces, dado que "h" de "x",
+
+155
+00:05:33,550 --> 00:05:36,153
+podemos entonces calcular la probabilidad
+
+156
+00:05:36,153 --> 00:05:39,116
+de que "y" es igual a cero también.
+
+157
+00:05:39,116 --> 00:05:41,209
+Específicamente, porque "y" debe
+
+158
+00:05:41,250 --> 00:05:43,065
+ser cero o uno,
+
+159
+00:05:43,070 --> 00:05:45,141
+sabemos que la probabilidad
+
+160
+00:05:45,141 --> 00:05:46,329
+de que "y" es igual a cero, más la
+
+161
+00:05:46,329 --> 00:05:47,512
+probabilidad de que "y" es igual
+
+162
+00:05:47,550 --> 00:05:50,173
+a uno, deben sumar uno.
+
+163
+00:05:50,173 --> 00:05:51,483
+Esta primera ecuación se ve un
+
+164
+00:05:51,483 --> 00:05:52,828
+poco más complicada pero está
+
+165
+00:05:52,828 --> 00:05:54,603
+diciendo básicamente que la probabilidad de que
+
+166
+00:05:54,610 --> 00:05:56,287
+"y" es igual a cero para un
+
+167
+00:05:56,320 --> 00:05:58,319
+paciente en particular con variables "x", y
+
+168
+00:05:58,360 --> 00:06:01,002
+como sabes, dado que «theta» de nuestro parámetro, más la
+
+169
+00:06:01,010 --> 00:06:02,305
+probabilidad de que "y" sea igual a uno para
+
+170
+00:06:02,305 --> 00:06:04,470
+el mismo paciente con variables "x" y
+
+171
+00:06:04,471 --> 00:06:06,334
+«theta» de tus parámetros deben sumar
+
+172
+00:06:06,360 --> 00:06:08,260
+uno, si esta ecuación
+
+173
+00:06:08,260 --> 00:06:10,171
+parece un poco complicada no dudes
+
+174
+00:06:10,200 --> 00:06:14,049
+en imaginarla sin esa "x" y «theta».
+
+175
+00:06:14,049 --> 00:06:15,476
+Y esto es sólo decir que
+
+176
+00:06:15,480 --> 00:06:16,993
+la probabilidad de que "y" es igual a 0, más
+
+177
+00:06:16,993 --> 00:06:19,272
+la probabilidad de que "y" es igual a 1 debe ser igual a uno.
+
+178
+00:06:19,280 --> 00:06:20,365
+Y sabemos que esto es
+
+179
+00:06:20,365 --> 00:06:23,120
+verdad porque "y" tiene que ser cero o uno.
+
+180
+00:06:23,120 --> 00:06:24,240
+Así es que la probabilidad de que "y"
+
+181
+00:06:24,240 --> 00:06:25,918
+es cero más la probabilidad de
+
+182
+00:06:25,930 --> 00:06:29,547
+que "y" es uno, como sabes, deben sumar uno,
+
+183
+00:06:29,547 --> 00:06:31,387
+Y si solamente
+
+184
+00:06:31,440 --> 00:06:33,780
+tomas este término y lo mueves
+
+185
+00:06:33,780 --> 00:06:35,409
+al lado derecho, entonces
+
+186
+00:06:35,409 --> 00:06:37,327
+terminarás con esta ecuación
+
+187
+00:06:37,327 --> 00:06:38,995
+que dice que la probabilidad de que "y" es igual a cero
+
+188
+00:06:38,995 --> 00:06:40,502
+es 1 menos la probabilidad de que "y" es igual a 1
+
+189
+00:06:40,530 --> 00:06:43,548
+y por lo tanto si nuestra
+
+190
+00:06:43,560 --> 00:06:46,009
+hipótesis es "h" de "x"
+
+191
+00:06:46,009 --> 00:06:47,775
+nos da ese término con el que puedes
+
+192
+00:06:47,790 --> 00:06:49,948
+entonces simplemente calcular la
+
+193
+00:06:49,948 --> 00:06:51,508
+probabilidad, o calcular la
+
+194
+00:06:51,510 --> 00:06:53,282
+probabilidad estimada de que "y"
+
+195
+00:06:53,282 --> 00:06:55,411
+es igual a cero también.
+
+196
+00:06:55,411 --> 00:06:56,720
+Así que ahora sabemos lo que
+
+197
+00:06:56,720 --> 00:06:59,779
+la representación de la hipótesis es para
+
+198
+00:06:59,790 --> 00:07:01,576
+la regresión logística y estamos viendo
+
+199
+00:07:01,580 --> 00:07:03,534
+como la fórmula matemática está
+
+200
+00:07:03,534 --> 00:07:06,701
+definiendo la hipótesis de regresión logística.
+
+201
+00:07:06,701 --> 00:07:07,880
+En el siguiente video, me gustaría
+
+202
+00:07:07,880 --> 00:07:09,018
+tratar de darte
+
+203
+00:07:09,040 --> 00:07:11,091
+una mejor intuición de como
+
+204
+00:07:11,091 --> 00:07:12,518
+se ve la función de hipótesis.
+
+205
+00:07:12,518 --> 00:07:13,606
+Y quiero hablarte de
+
+206
+00:07:13,620 --> 00:07:15,294
+algo llamado el límite
+
+207
+00:07:15,294 --> 00:07:16,700
+de decisión y veremos
+
+208
+00:07:16,700 --> 00:07:18,846
+juntos algunas visualizaciones para
+
+209
+00:07:18,846 --> 00:07:20,186
+tratar de obtener una mejor idea
+
+210
+00:07:20,186 --> 00:07:22,370
+de cómo esta función de la hipótesis
+
+211
+00:07:22,370 --> 00:07:24,697
+de la regresión logística se ve realmente.

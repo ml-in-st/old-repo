@@ -1,0 +1,919 @@
+1
+00:00:00,170 --> 00:00:01,340
+Di video ini, saya ingin
+
+2
+00:00:01,450 --> 00:00:03,230
+menjelaskan mengenai bagaimana memulai
+
+3
+00:00:04,580 --> 00:00:05,970
+K-means dan lebih penting lagi, hal ini akan
+
+4
+00:00:06,170 --> 00:00:07,240
+mengarah kepada diskusi tentang
+
+5
+00:00:07,550 --> 00:00:10,210
+bagaimana untuk membuat K-means menghindari local optima dengan baik
+
+6
+00:00:10,740 --> 00:00:12,390
+berikut adalah algoritma pengelompokan K-means
+
+7
+00:00:12,950 --> 00:00:14,420
+yang telah kita bahas sebelumnya
+
+8
+00:00:15,760 --> 00:00:16,760
+Satu tahap yang kita belum pernah benar-benar
+
+9
+00:00:17,260 --> 00:00:18,350
+membahasnya cukup banyak adalah tentang tahap ini
+
+10
+00:00:18,820 --> 00:00:21,560
+tentang bagaimana secara random anda menginisialisasi pusat-pusat kluster
+
+11
+00:00:22,390 --> 00:00:23,490
+Ada beberapa macam cara berbeda yang
+
+12
+00:00:23,710 --> 00:00:25,350
+dapat dibayangkan untuk secara random
+
+13
+00:00:25,960 --> 00:00:26,860
+menginisialisasi pusat-pusat kluster
+
+14
+00:00:27,510 --> 00:00:28,580
+Tapi, jelas bahwa
+
+15
+00:00:28,720 --> 00:00:29,820
+terdapat satu cara yang
+
+16
+00:00:30,050 --> 00:00:31,700
+sangat direkomendasikan daripada sebagian besar
+
+17
+00:00:32,080 --> 00:00:33,830
+pilihan lainnya yang mungkin terpikirkan
+
+18
+00:00:34,400 --> 00:00:35,250
+oleh karena itu, biarkan saya jelaskan kepada anda tentang
+
+19
+00:00:35,590 --> 00:00:38,160
+pilihan tersebut karena  dirasa yang terbaik
+
+20
+00:00:39,550 --> 00:00:42,210
+Berikut adalah bagaimana saya biasanya memulai pusat-pusat kluster saya
+
+21
+00:00:43,300 --> 00:00:44,710
+ketika menjalankan K-means, anda seharusnya mempunyai
+
+22
+00:00:45,140 --> 00:00:47,160
+jumlah dari pusat-pusat kluster, K,
+
+23
+00:00:47,430 --> 00:00:48,520
+Ditetapkan agar kurang dari
+
+24
+00:00:48,590 --> 00:00:50,090
+jumlah contoh latihan M. Hal ini
+
+25
+00:00:50,170 --> 00:00:51,210
+akan sangat aneh untuk menjalankan
+
+26
+00:00:51,430 --> 00:00:52,600
+K-means dengan jumlah
+
+27
+00:00:52,870 --> 00:00:54,270
+pusat-pusat kluster yang, anda tahu,
+
+28
+00:00:54,520 --> 00:00:55,790
+sama atau lebih besar dari jumlah contoh yang anda miliki, kan?
+
+29
+00:00:58,080 --> 00:00:59,010
+Oleh karena itu, cara 
+
+30
+00:00:59,150 --> 00:01:00,510
+yang biasa saya gunakan untuk menginisialisasi K-means, adalah
+
+31
+00:01:00,770 --> 00:01:02,510
+Saya secara random akan mengambil K
+
+32
+00:01:02,990 --> 00:01:05,170
+contoh latihan. Sehingga, apa yang
+
+33
+00:01:05,610 --> 00:01:06,730
+Saya lakukan kemudian adalah mengatur Mu1
+
+34
+00:01:06,850 --> 00:01:09,320
+hingga MuK sama dengan K contoh ini 
+
+35
+00:01:10,610 --> 00:01:11,470
+Saya akan menunjukkan contoh konkritnya
+
+36
+00:01:12,560 --> 00:01:14,190
+Andaikan k
+
+37
+00:01:14,470 --> 00:01:16,600
+sama dengan 2 dan
+
+38
+00:01:17,070 --> 00:01:19,520
+pada contoh berikut di sebelah kanan saya ingin menemuan 2 buah kluster
+
+39
+00:01:21,170 --> 00:01:22,060
+Yang akan saya
+
+40
+00:01:22,200 --> 00:01:23,350
+lakukan untuk menginisialisasi
+
+41
+00:01:23,770 --> 00:01:25,340
+klaster centroid saya adalah, saya
+
+42
+00:01:25,470 --> 00:01:27,320
+akan secara acak mengambil dua buah contoh.
+
+43
+00:01:27,760 --> 00:01:28,960
+dan katakanlah, saya mengambil
+
+44
+00:01:29,230 --> 00:01:31,060
+yang ini dan yang itu.
+
+45
+00:01:31,230 --> 00:01:32,320
+dan cara saya untuk
+
+46
+00:01:32,380 --> 00:01:34,100
+menginisialisasi klaster cendroid saya
+
+47
+00:01:34,310 --> 00:01:35,190
+adalah, saya akan menginisialisasi
+
+48
+00:01:36,200 --> 00:01:38,930
+klaster cendroid saya berada tepat diatas contoh-contoh tersebut.
+
+49
+00:01:39,530 --> 00:01:40,430
+Jadi itulah klaster cendroid pertama saya
+
+50
+00:01:41,410 --> 00:01:43,230
+dan ini adalah klaster cendroid ke-2 saya, dan
+
+51
+00:01:43,390 --> 00:01:45,770
+itulah salah satu initialisasi random dari K-means.
+
+52
+00:01:48,540 --> 00:01:50,480
+yang saya gambar terlihat seperti yang terbaik.
+
+53
+00:01:50,890 --> 00:01:51,810
+dan terkadang saya mungkin saja kurang
+
+54
+00:01:52,040 --> 00:01:53,370
+beruntung dan mungkin akan berakhir
+
+55
+00:01:53,510 --> 00:01:54,900
+memilih itu sebagai 
+
+56
+00:01:55,330 --> 00:01:58,420
+contoh initialisasi random pertama saya, dan itu sebagai contoh ke-2.
+
+57
+00:01:59,050 --> 00:02:01,380
+dan disini saya memilih dua contoh karena k = 2.
+
+58
+00:02:01,590 --> 00:02:03,590
+kita telah memilih secara acak dua
+
+59
+00:02:03,890 --> 00:02:05,030
+contoh latihan dan jika
+
+60
+00:02:05,100 --> 00:02:06,660
+saya memilih dua contoh tersebut kemudian saya akan
+
+61
+00:02:06,830 --> 00:02:08,040
+berakhir pada, kemungkinan
+
+62
+00:02:08,250 --> 00:02:09,200
+ini sebagai klaster pertama
+
+63
+00:02:09,510 --> 00:02:10,980
+cendroid saya dan itu sebagai
+
+64
+00:02:11,140 --> 00:02:13,560
+lokasi inisialisasi ke-2 dari klaster cendroid.
+
+65
+00:02:14,150 --> 00:02:15,690
+jadi, begitulah cara Anda dapat secara acak
+
+66
+00:02:16,070 --> 00:02:17,560
+menginisialisasi pusat-pusat kluster
+
+67
+00:02:17,810 --> 00:02:19,670
+jadi pada inisialisasi,
+
+68
+00:02:19,860 --> 00:02:21,110
+Kluster cendroid pertama Anda Mu1 akan
+
+69
+00:02:21,270 --> 00:02:23,350
+sama dengan x(i) untuk
+
+70
+00:02:23,520 --> 00:02:25,870
+beberapa nilai acak dari I dan
+
+71
+00:02:26,980 --> 00:02:27,660
+Mu2 akan sama dengan x(j)
+
+72
+00:02:29,240 --> 00:02:30,980
+untuk perbedaan beberapa nilai yang dipilih secara acak 
+
+73
+00:02:31,380 --> 00:02:32,830
+dari j dan seterusnya,
+
+74
+00:02:32,910 --> 00:02:34,440
+jika Anda memiliki lebih banyak lagi kluster cendroid.
+
+75
+00:02:35,680 --> 00:02:37,540
+dan menyortir dari bagian yang umum.
+
+76
+00:02:38,110 --> 00:02:39,240
+Saya harus mengatakan bahwa pada
+
+77
+00:02:39,320 --> 00:02:40,840
+awal-awal video dimana saya pertama-tama
+
+78
+00:02:41,150 --> 00:02:43,030
+mengilustrasikan K-means dengan animasi.
+
+79
+00:02:44,310 --> 00:02:45,070
+Pada set slide tersebut.
+
+80
+00:02:45,900 --> 00:02:46,890
+Hanya untuk tujuan ilustrasi.
+
+81
+00:02:47,590 --> 00:02:48,690
+Saya sebenarnya menggunakan 
+
+82
+00:02:49,240 --> 00:02:51,750
+metode yang berbeda untuk menginisialisasikan kluster cendroid saya.
+
+83
+00:02:52,460 --> 00:02:53,790
+Namun metode yang dijelaskan pada
+
+84
+00:02:53,900 --> 00:02:55,940
+slide ini, adalah cara yang paling direkomendasikan.
+
+85
+00:02:56,430 --> 00:02:58,850
+dan cara yang seharusnya digunakan, ketika Anda mengimplementasikan K-means.
+
+86
+00:03:00,090 --> 00:03:01,560
+Jadi, sebagai saran mungkin
+
+87
+00:03:02,070 --> 00:03:04,090
+dengan kedua ilustrasi di kanan ini.
+
+88
+00:03:04,930 --> 00:03:06,050
+Anda mungkin benar-benar menebak bahwa K-means
+
+89
+00:03:06,530 --> 00:03:08,130
+dapat berakhir memusat pada 
+
+90
+00:03:08,260 --> 00:03:10,150
+solusi yang berbeda tergantung pada
+
+91
+00:03:10,860 --> 00:03:12,470
+ketepatan bagaimana solusi kluster
+
+92
+00:03:12,990 --> 00:03:15,170
+di inisialisasikan, dan juga, tergantung pada inisialisasi secara acak.
+
+93
+00:03:16,280 --> 00:03:18,180
+K-means dapat berakhir pada solusi yang berbeda.
+
+94
+00:03:18,930 --> 00:03:22,560
+dan, tentunya, K-means sebenarnya dapat berakhir pada optima lokal.
+
+95
+00:03:23,650 --> 00:03:24,920
+Jika kamu memberikan penjualan data seperti ini.
+
+96
+00:03:25,400 --> 00:03:26,370
+sebenarnya, itu terlihat seperti, yah tahu lah, disana
+
+97
+00:03:26,660 --> 00:03:28,340
+terdapat 3 kluster, 
+
+98
+00:03:28,780 --> 00:03:30,090
+jika Anda menjalankan K-means dan jika
+
+99
+00:03:30,150 --> 00:03:31,380
+ia berakhir pada sebuah 
+
+100
+00:03:31,820 --> 00:03:32,910
+optima lokal yang baik ini kemungkinan
+
+101
+00:03:33,040 --> 00:03:35,830
+optima global, Anda mungkin berakhir pada cincin kluster.
+
+102
+00:03:36,820 --> 00:03:38,440
+Namun jika Anda memiliki sebuah
+
+103
+00:03:39,110 --> 00:03:41,630
+ketidakberuntungan, inisialisasi random, K-means
+
+104
+00:03:42,100 --> 00:03:43,660
+dapat juga dapat terpikat pada 
+
+105
+00:03:44,180 --> 00:03:45,740
+optima lokal yang berbeda. Jadi, pada
+
+106
+00:03:45,850 --> 00:03:47,330
+contoh yang kiri ini
+
+107
+00:03:47,620 --> 00:03:48,700
+terlihat seperti kluster biru ini telah menangkap
+
+108
+00:03:49,470 --> 00:03:51,700
+banyak point dibagian kiri dan kemudian berada pada kluster hijau
+
+109
+00:03:52,050 --> 00:03:54,810
+masing-masing diberi keterangan pada jumlah poin yang relatif kecil.
+
+110
+00:03:55,020 --> 00:03:56,480
+dan seterusnya, ini bersesuaian dengan
+
+111
+00:03:56,640 --> 00:03:58,470
+sebuah optima lokal yang buruk karena ia
+
+112
+00:03:58,530 --> 00:04:00,060
+pada dasarnya telah mengambil kedua
+
+113
+00:04:00,470 --> 00:04:01,560
+kluster dan menggunakan mereka dalam
+
+114
+00:04:01,780 --> 00:04:03,440
+1 dan selain itu, telah
+
+115
+00:04:04,150 --> 00:04:06,070
+memisahkan kluster ke-2 menjadi
+
+116
+00:04:06,580 --> 00:04:09,170
+dua sub-cluster yang terpisah seperti
+
+117
+00:04:09,380 --> 00:04:10,270
+itu, dan ia juga telah 
+
+118
+00:04:10,720 --> 00:04:12,280
+mengambil kluster ke-2 dan
+
+119
+00:04:12,540 --> 00:04:14,220
+memisahkannya menjadi dua
+
+120
+00:04:14,460 --> 00:04:16,630
+sub-kluster yang terpisah seperti itu, dan
+
+121
+00:04:16,760 --> 00:04:17,880
+kemudian, kedua 
+
+122
+00:04:18,000 --> 00:04:18,970
+contoh pada bagian bawah
+
+123
+00:04:19,220 --> 00:04:20,890
+kanan bersesuaian dengan 
+
+124
+00:04:21,250 --> 00:04:22,440
+optima lokak yang berbeda dari K-means dan faktanya,
+
+125
+00:04:22,890 --> 00:04:24,440
+pada contoh ini,
+
+126
+00:04:25,070 --> 00:04:26,150
+kluster, kluster merah
+
+127
+00:04:26,550 --> 00:04:27,870
+telah menangkan hanya 1 contoh optima tunggal.
+
+128
+00:04:28,380 --> 00:04:29,810
+dan masa 
+
+129
+00:04:30,200 --> 00:04:31,000
+optima lokal, sebenatnya, mengarah
+
+130
+00:04:31,490 --> 00:04:32,930
+pada optima lokal dari
+
+131
+00:04:33,190 --> 00:04:35,940
+fungsi distorsi J ini, dan
+
+132
+00:04:36,320 --> 00:04:38,380
+Apa solusi yang ada pada 
+
+133
+00:04:38,590 --> 00:04:39,830
+bagian kiri bawah, apa yang
+
+134
+00:04:40,120 --> 00:04:41,420
+optima lokal sesuaikan adalah
+
+135
+00:04:41,530 --> 00:04:42,880
+sesungguhnya solusi dimana K-means
+
+136
+00:04:43,330 --> 00:04:44,050
+telah tinggal pada lokal
+
+137
+00:04:44,600 --> 00:04:45,940
+opyima dan ia tidak melakukan
+
+138
+00:04:46,170 --> 00:04:47,940
+sebuah pekerjaan yang sangat bagus dalam meminimalisasi
+
+139
+00:04:48,110 --> 00:04:50,030
+fungsi distrorsi J. Jadi,
+
+140
+00:04:50,540 --> 00:04:52,250
+Jika Anda khawatir mengenai K-means 
+
+141
+00:04:52,540 --> 00:04:53,810
+tertinggal di optima lokal, jika
+
+142
+00:04:53,970 --> 00:04:55,110
+Anda ingin meningkatkan peluang
+
+143
+00:04:55,330 --> 00:04:56,950
+K-means menemukan 
+
+144
+00:04:57,230 --> 00:04:58,480
+kemungkinan kluster terbaik, seperti yang terlihat
+
+145
+00:04:58,730 --> 00:05:00,290
+di bagian atas sini, apa yang kita
+
+146
+00:05:00,350 --> 00:05:02,820
+dapat lakukan, adalah mencoba beberapa, inisialisasi secara acak.
+
+147
+00:05:03,580 --> 00:05:04,820
+jadi, tidak hanya menginisialisai K-means
+
+148
+00:05:05,430 --> 00:05:06,460
+sekali dan berharap itu
+
+149
+00:05:06,670 --> 00:05:07,680
+bekerja, apa yang dapat kita lakukan
+
+150
+00:05:08,040 --> 00:05:10,020
+adalah, menginisialisasi K-means berkali-
+
+151
+00:05:10,130 --> 00:05:10,990
+kali dan menjalankan K-means berkali-
+
+152
+00:05:11,890 --> 00:05:12,870
+kali, dan gunakan ia untuk
+
+153
+00:05:12,950 --> 00:05:13,840
+mencoba untuk memastikan kita mendapatkan
+
+154
+00:05:14,110 --> 00:05:15,640
+solusi sebaik mungkin, 
+
+155
+00:05:15,800 --> 00:05:18,380
+sebaik optima lokal ataupun optima global yang memungkinkan
+
+156
+00:05:19,480 --> 00:05:22,460
+Secara konkrit, disini bagaimana Anda dapat mengetahui cara melakukannya.
+
+157
+00:05:22,720 --> 00:05:23,500
+Katakanlah, Saya memutuskan untuk menjalankan
+
+158
+00:05:23,700 --> 00:05:24,800
+K-means 1000 kali
+
+159
+00:05:25,160 --> 00:05:26,790
+Jadi saya akan menjalankan loop 
+
+160
+00:05:27,060 --> 00:05:28,900
+sebanyak 1000 kali dan ia adalah
+
+161
+00:05:29,330 --> 00:05:30,830
+sejenis jumlah yang cukup khas dari
+
+162
+00:05:30,920 --> 00:05:31,910
+waktu ketika sampai akan menjadi
+
+163
+00:05:32,160 --> 00:05:33,670
+sesuatu dari 50 hingga mungkin mencapai 1000.
+
+164
+00:05:35,090 --> 00:05:36,730
+Jadi, katakanlah Anda menutuskan bahwa K-means 100 kali.
+
+165
+00:05:38,220 --> 00:05:39,100
+jadi apa yang terjadi adalah
+
+166
+00:05:39,170 --> 00:05:41,490
+kita akan menginisialisasi K-means secara acak.
+
+167
+00:05:42,350 --> 00:05:43,250
+dan untuk masing-masing dari
+
+168
+00:05:43,340 --> 00:05:44,710
+100 inisialisasi random
+
+169
+00:05:45,370 --> 00:05:47,040
+kita akan menjalankan K-means dan 
+
+170
+00:05:47,220 --> 00:05:48,200
+itu akan memberikan kita satu set
+
+171
+00:05:48,430 --> 00:05:50,270
+Ring kluster, dan satu set kluster
+
+172
+00:05:50,590 --> 00:05:51,940
+cendroid, dan kemudian kita
+
+173
+00:05:52,040 --> 00:05:53,760
+akan menghitung distorsi J,
+
+174
+00:05:54,500 --> 00:05:55,600
+itu adalah perhitungan fungsi cost pada
+
+175
+00:05:56,910 --> 00:05:58,260
+penugasan set kluster
+
+176
+00:05:58,720 --> 00:05:59,910
+dan cendroid kluster yang kita dapatkan.
+
+177
+00:06:01,000 --> 00:06:03,470
+Akhirnya, selesai lah seluruh prosedur 100 kali.
+
+178
+00:06:04,450 --> 00:06:06,330
+Anda akan mendapatkan 100 cara berbeda
+
+179
+00:06:06,710 --> 00:06:08,990
+untuk meng-kluster data dan kemudian
+
+180
+00:06:09,240 --> 00:06:10,310
+akhirnya apa yang Anda lakukan 
+
+181
+00:06:10,590 --> 00:06:11,510
+adalah semua 100
+
+182
+00:06:11,820 --> 00:06:13,210
+cara Anda temukan untuk meng-klaster data,
+
+183
+00:06:13,800 --> 00:06:16,050
+ambil satu saja, yang memberikan biaya terendah.
+
+184
+00:06:16,400 --> 00:06:18,480
+yang memebrikan kita distorsi yang paling sedikit atau terendah.
+
+185
+00:06:18,960 --> 00:06:20,610
+dan kenyataannya bahwa
+
+186
+00:06:21,170 --> 00:06:22,490
+Jika Anda menjalankan K-means dengan
+
+187
+00:06:22,670 --> 00:06:24,520
+sebuah jumlah kecil
+
+188
+00:06:24,630 --> 00:06:25,260
+kluster, maka Anda akan mengetahui jika jumlah
+
+189
+00:06:25,520 --> 00:06:26,700
+dari kluster dimana-mana dari
+
+190
+00:06:26,760 --> 00:06:28,180
+2 hingga mungkin 10 -
+
+191
+00:06:28,980 --> 00:06:30,650
+lalu lakukan beberapa inisialisasi random 
+
+192
+00:06:31,460 --> 00:06:32,880
+bisa sering, bisa kadang-kadang 
+
+193
+00:06:32,990 --> 00:06:34,430
+pastikan bahwa anda menemukan optima lokal yang lebih baik.
+
+194
+00:06:34,690 --> 00:06:37,680
+pastikan Anda menemukan data kluster yang lebih baik
+
+195
+00:06:37,870 --> 00:06:38,930
+Namun jika K sangat besar, maka, jika
+
+196
+00:06:39,080 --> 00:06:40,000
+K lebih besar dari 10
+
+197
+00:06:40,160 --> 00:06:41,010
+tentu saja jika K, Anda
+
+198
+00:06:41,080 --> 00:06:42,340
+tahu, jika Anda mencoba untuk
+
+199
+00:06:42,400 --> 00:06:44,050
+menemukan ratusan kluster, kemudian, 
+
+200
+00:06:45,840 --> 00:06:47,310
+mempunyai beberapa inisialisasi random adalah
+
+201
+00:06:47,940 --> 00:06:49,220
+setidaknya membuat sebuah perbedaan besar
+
+202
+00:06:49,360 --> 00:06:50,400
+dan terdapat banyak
+
+203
+00:06:50,590 --> 00:06:51,910
+kesempatan lebih tinggi bahwa 
+
+204
+00:06:52,320 --> 00:06:53,610
+inisialisasi random pertama anda akan memberikan
+
+205
+00:06:53,730 --> 00:06:55,380
+Anda sebuah solusi yang cukup baik
+
+206
+00:06:56,590 --> 00:06:58,070
+dan lakukan lagi beberapa random
+
+207
+00:06:58,680 --> 00:07:00,060
+inisialisasi kemungkinananya akan memberikan
+
+208
+00:07:00,260 --> 00:07:02,500
+Anda solusi yang sedikit lebih baik, tapi mungkin tidak terlalu banyak.
+
+209
+00:07:02,780 --> 00:07:04,230
+Namun itu benar-benar pada daerah dimana
+
+210
+00:07:04,540 --> 00:07:05,810
+Anda memiliki jumlah yang relatif kecil
+
+211
+00:07:06,090 --> 00:07:07,740
+dari kluster, khususnya jika Anda
+
+212
+00:07:08,040 --> 00:07:09,080
+memiliki, mungkin 2 atau 3
+
+213
+00:07:09,150 --> 00:07:10,550
+atau 4 kluster yang mana random
+
+214
+00:07:11,140 --> 00:07:13,790
+inisialiasasinya dapat membuat perbedaan besar dalam hal
+
+215
+00:07:14,190 --> 00:07:15,090
+memastikan Anda melakukan 
+
+216
+00:07:15,170 --> 00:07:16,920
+pekerjaan yang baik meminimalisir distorsi
+
+217
+00:07:17,560 --> 00:07:18,730
+fungsi dan memberikan Anda peng-kluster-an yang baik.
+
+218
+00:07:21,390 --> 00:07:22,560
+Jadi, K-means itu
+
+219
+00:07:22,640 --> 00:07:23,300
+tanpa random inisialisasi.
+
+220
+00:07:24,350 --> 00:07:25,570
+jika Anda sedang mencoba untuk mempelajari
+
+221
+00:07:25,710 --> 00:07:26,950
+peng-kluster-an dengan relatif
+
+222
+00:07:27,310 --> 00:07:28,250
+jumlah kluster yang kecil, 2,3,
+
+223
+00:07:28,400 --> 00:07:30,540
+4,5,mungkin,6,7, menggunakan
+
+224
+00:07:31,660 --> 00:07:34,040
+beberapa random inisialisasi dapat
+
+225
+00:07:34,380 --> 00:07:36,830
+terkadang, membantu Anda menemukan kluster data yang lebih baik.
+
+226
+00:07:37,680 --> 00:07:39,650
+namun, meskipun jika Anda sedang belajar jumlah kluster yang banyak atau besar, inisialisasi, random
+
+227
+00:07:40,350 --> 00:07:43,280
+inisialisasi metode yang di jelaskan disini.
+
+228
+00:07:43,520 --> 00:07:45,110
+Itu seharusnya memberikan K-means
+
+229
+00:07:45,370 --> 00:07:46,680
+titik awal yang wajar untuk dimulai
+
+230
+00:07:47,030 --> 00:07:48,580
+dari untuk mencari set kluster yang bagus.

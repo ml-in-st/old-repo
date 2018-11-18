@@ -1,0 +1,1559 @@
+1
+00:00:00,300 --> 00:00:01,680
+En el último vídeo hablamos
+
+2
+00:00:01,990 --> 00:00:03,920
+sobre el gradiente de descenso para minimizar
+
+3
+00:00:04,440 --> 00:00:06,700
+la función de costo J de «theta» para la regresión logística.
+
+4
+00:00:07,800 --> 00:00:08,930
+En este video, me gustaría
+
+5
+00:00:09,020 --> 00:00:10,250
+hablarte sobre algunos algoritmos
+
+6
+00:00:10,850 --> 00:00:12,340
+avanzados de optimización y sobre algunos conceptos
+
+7
+00:00:12,670 --> 00:00:14,060
+avanzados de optimización.
+
+8
+00:00:15,180 --> 00:00:16,480
+Usando alguna de estas ideas, vamos a
+
+9
+00:00:16,630 --> 00:00:17,930
+poder hacer que la regresión logística
+
+10
+00:00:19,010 --> 00:00:20,220
+se ejecute mucho más rápido de
+
+11
+00:00:20,350 --> 00:00:21,970
+lo que es posible con el gradiente de descenso.
+
+12
+00:00:22,880 --> 00:00:24,190
+Y esto también permitirá que
+
+13
+00:00:24,320 --> 00:00:26,060
+los algoritmos se escalen mucho mejor
+
+14
+00:00:26,670 --> 00:00:28,030
+a problemas muy largos de aprendizaje automático,
+
+15
+00:00:28,660 --> 00:00:30,950
+como si tuviéramos un gran número de variables.
+
+16
+00:00:31,850 --> 00:00:33,360
+Aquí está una visión alternativa de
+
+17
+00:00:33,750 --> 00:00:34,910
+lo que el gradiente de descenso está haciendo.
+
+18
+00:00:35,590 --> 00:00:38,030
+Tenemos una función de costo J y queremos minimizarla.
+
+19
+00:00:38,950 --> 00:00:39,980
+Lo que tenemos que hacer es
+
+20
+00:00:40,340 --> 00:00:41,080
+escribir el
+
+21
+00:00:41,330 --> 00:00:42,640
+código que puede tomar
+
+22
+00:00:42,850 --> 00:00:44,980
+como entrada los parámetros «theta» y
+
+23
+00:00:45,200 --> 00:00:46,470
+que pueda calcular dos cosas: J
+
+24
+00:00:46,700 --> 00:00:48,190
+de «theta» y y estos términos
+
+25
+00:00:48,620 --> 00:00:50,280
+derivados parciales para, ya sabes,
+
+26
+00:00:50,530 --> 00:00:51,820
+J es igual a 0, 1
+
+27
+00:00:51,890 --> 00:00:53,700
+hasta N.  El código
+
+28
+00:00:53,830 --> 00:00:54,980
+que pueda hacer estas cosas, qué
+
+29
+00:00:55,160 --> 00:00:56,710
+gradiente de descenso
+
+30
+00:00:56,790 --> 00:00:58,620
+realiza de forma repetida la siguiente actualización,
+
+31
+00:00:59,100 --> 00:00:59,100
+¿Correcto?
+
+32
+00:00:59,280 --> 00:01:00,500
+Entonces, dado el código que
+
+33
+00:01:00,670 --> 00:01:01,750
+escribimos para calcular estas
+
+34
+00:01:02,090 --> 00:01:03,800
+derivadas parciales, el gradiente de descenso se inserta
+
+35
+00:01:04,480 --> 00:01:07,330
+aquí y que se utiliza para actualizar nuestros parámetros «theta».
+
+36
+00:01:08,650 --> 00:01:09,590
+Entonces, otra forma de pensar
+
+37
+00:01:09,910 --> 00:01:11,070
+en los gradientes de descenso, es que
+
+38
+00:01:11,350 --> 00:01:12,670
+necesitamos suministrar código para
+
+39
+00:01:12,810 --> 00:01:14,050
+calcular J de «theta» y
+
+40
+00:01:14,230 --> 00:01:15,700
+estas derivadas, y luego
+
+41
+00:01:15,900 --> 00:01:16,930
+éstos se insertan en gradientes de
+
+42
+00:01:17,370 --> 00:01:20,110
+descenso, que pueden intentar minimizar la función para nosotros.
+
+43
+00:01:20,970 --> 00:01:21,970
+Para el gradiente de descenso, creo que
+
+44
+00:01:22,480 --> 00:01:23,790
+técnicamente, en realidad, no necesitas código
+
+45
+00:01:24,170 --> 00:01:26,520
+calcular la función de costo J de «theta».
+
+46
+00:01:26,940 --> 00:01:28,980
+Sólo necesitas código para calcular los términos derivados.
+
+47
+00:01:29,740 --> 00:01:30,480
+Pero si consideras que tu código
+
+48
+00:01:30,590 --> 00:01:32,300
+también monitorea la convergencia
+
+49
+00:01:33,000 --> 00:01:34,060
+de algo así,
+
+50
+00:01:34,190 --> 00:01:35,440
+pensaremos que sólo
+
+51
+00:01:35,530 --> 00:01:37,380
+estamos proveyendo código para
+
+52
+00:01:37,510 --> 00:01:38,530
+calcular la función de
+
+53
+00:01:38,890 --> 00:01:40,250
+costo y los términos derivados.
+
+54
+00:01:42,700 --> 00:01:44,130
+Así que, después de haber escrito código para
+
+55
+00:01:44,280 --> 00:01:45,860
+calcular estas dos cosas, un
+
+56
+00:01:46,090 --> 00:01:47,820
+algoritmo que podemos usar es el gradiente de descenso.
+
+57
+00:01:48,910 --> 00:01:51,590
+Pero el gradiente de descenso no es el único algoritmo que podemos usar.
+
+58
+00:01:52,280 --> 00:01:53,690
+Y hay otros algoritmos
+
+59
+00:01:54,330 --> 00:01:55,930
+más avanzados y más sofisticados que,
+
+60
+00:01:56,720 --> 00:01:57,880
+si sólo les proporcionamos
+
+61
+00:01:58,400 --> 00:01:59,520
+una forma para calcular
+
+62
+00:01:59,960 --> 00:02:01,550
+estas dos cosas, entonces estos
+
+63
+00:02:01,760 --> 00:02:03,040
+son enfoques distintos para optimizar
+
+64
+00:02:03,490 --> 00:02:04,790
+la función de costo para nosotros.
+
+65
+00:02:05,110 --> 00:02:07,910
+Entonces, el gradiente conjugado BFGS y
+
+66
+00:02:08,110 --> 00:02:09,240
+L-BFGS son ejemplos de algoritmos
+
+67
+00:02:09,460 --> 00:02:11,490
+de optimización más sofisticados que
+
+68
+00:02:11,640 --> 00:02:12,610
+requieren de una forma para calcular J
+
+69
+00:02:12,810 --> 00:02:13,670
+de «theta», y que requieren una forma
+
+70
+00:02:13,750 --> 00:02:15,430
+para calcular las derivadas, y entonces pueden
+
+71
+00:02:15,670 --> 00:02:16,940
+usar estrategias más
+
+72
+00:02:17,620 --> 00:02:19,880
+sofisticadas que el gradiente de descenso para minimizar la función de costo.
+
+73
+00:02:21,260 --> 00:02:22,560
+Los detalles de lo que son
+
+74
+00:02:22,780 --> 00:02:25,920
+estos tres algoritmos exactamente está más allá del alcance de este curso.
+
+75
+00:02:26,490 --> 00:02:28,200
+Y, de hecho, con frecuencia uno
+
+76
+00:02:28,650 --> 00:02:30,570
+termina invirtiendo, ya sabes, muchos días
+
+77
+00:02:31,060 --> 00:02:32,670
+o algunas semanas estudiando estos algoritmos.
+
+78
+00:02:33,240 --> 00:02:35,840
+Si tomas una clase y avanzas el cálculo numérico por computadora.
+
+79
+00:02:36,920 --> 00:02:38,200
+Pero voy a hablar sobre algunas de sus propiedades.
+
+80
+00:02:40,080 --> 00:02:42,150
+Estos tres algoritmos tienen varias ventajas.
+
+81
+00:02:42,900 --> 00:02:44,070
+Una es que, con cualquiera
+
+82
+00:02:44,290 --> 00:02:45,850
+de estos algoritmos generalmente no
+
+83
+00:02:46,000 --> 00:02:48,970
+necesitas seleccionar manualmente el «alfa» de la tasa de aprendizaje.
+
+84
+00:02:50,670 --> 00:02:51,450
+Entonces, una forma de considerar
+
+85
+00:02:51,650 --> 00:02:53,630
+estos algoritmos es que es la forma
+
+86
+00:02:54,230 --> 00:02:56,900
+dada para calcular la derivada y la función de costo.
+
+87
+00:02:57,320 --> 00:02:59,740
+Puedes pensar en estos algoritmos como en tener un ciclo for inteligente.
+
+88
+00:03:00,060 --> 00:03:00,680
+Y, de hecho, tienen un ciclo for
+
+89
+00:03:01,810 --> 00:03:03,780
+inteligente llamado algoritmo de búsqueda
+
+90
+00:03:04,200 --> 00:03:05,840
+de línea que automáticamente prueba
+
+91
+00:03:06,520 --> 00:03:08,010
+distintos valores para
+
+92
+00:03:08,080 --> 00:03:09,360
+el «alfa» de la tasa de aprendizaje y, automáticamente
+
+93
+00:03:10,010 --> 00:03:11,090
+selecciona un buen «alfa» de la tasa de aprendizaje
+
+94
+00:03:12,030 --> 00:03:12,900
+de forma que incluso puede seleccionar
+
+95
+00:03:13,130 --> 00:03:14,570
+una tasa de aprendizaje diferente para cada iteración.
+
+96
+00:03:15,490 --> 00:03:18,230
+Y entonces no tienes que elegirlo tú mismo.
+
+97
+00:03:21,430 --> 00:03:22,770
+Estos algoritmos, de hecho, hacen
+
+98
+00:03:22,910 --> 00:03:24,260
+cosas más sofisticadas que sólo
+
+99
+00:03:24,470 --> 00:03:25,640
+elegir un buen «alfa» de la tasa de aprendizaje, y
+
+100
+00:03:25,800 --> 00:03:27,300
+por lo tanto, con frecuencia terminan
+
+101
+00:03:27,490 --> 00:03:30,320
+convergiendo mucho más rápido que el gradiente de descenso.
+
+102
+00:03:32,470 --> 00:03:33,740
+Estos algoritmos, de hecho, hacen
+
+103
+00:03:33,980 --> 00:03:35,160
+cosas más sofisticadas que sólo
+
+104
+00:03:35,360 --> 00:03:36,740
+elegir un buen «alfa» de la tasa de aprendizaje, y
+
+105
+00:03:36,880 --> 00:03:38,770
+a menudo terminan convergiendo mucho
+
+106
+00:03:39,020 --> 00:03:40,840
+más rápido que el gradiente de descenso, pero
+
+107
+00:03:41,040 --> 00:03:42,230
+una descripción detallada de lo que hacen
+
+108
+00:03:42,710 --> 00:03:44,420
+exactamente está más allá del alcance de este curso.
+
+109
+00:03:45,580 --> 00:03:47,060
+De hecho, yo
+
+110
+00:03:47,570 --> 00:03:49,020
+utilicé estos algoritmos por
+
+111
+00:03:49,170 --> 00:03:50,170
+mucho tiempo, quizás por más de
+
+112
+00:03:50,470 --> 00:03:53,070
+una década, con frecuencia y
+
+113
+00:03:53,290 --> 00:03:54,410
+sólo fue, ya sabes, hace
+
+114
+00:03:54,510 --> 00:03:55,460
+algunos años que yo, de hecho,
+
+115
+00:03:56,150 --> 00:03:57,200
+descubrí por mí mismo los detalles
+
+116
+00:03:57,780 --> 00:04:00,220
+de lo que hacen el gradiente conjugado BFGS y O-BFGS
+
+117
+00:04:00,980 --> 00:04:02,740
+Así que es enteramente posible
+
+118
+00:04:03,560 --> 00:04:05,380
+usar estos algoritmos con éxito y
+
+119
+00:04:05,480 --> 00:04:06,530
+aplicarlos a muchos problemas de aprendizaje
+
+120
+00:04:06,780 --> 00:04:08,490
+diferentes sin realmente comprender
+
+121
+00:04:09,460 --> 00:04:11,140
+el ciclo for entrelazado de lo que hacen estos algoritmos.
+
+122
+00:04:12,270 --> 00:04:13,630
+Si estos algoritmos tienen una desventaja,
+
+123
+00:04:14,200 --> 00:04:15,350
+yo diría que la principal
+
+124
+00:04:15,610 --> 00:04:16,970
+desventaja es que son
+
+125
+00:04:17,110 --> 00:04:19,390
+mucho más complejos que el gradiente de descenso.
+
+126
+00:04:20,180 --> 00:04:21,700
+Y, en particular, probablemente no
+
+127
+00:04:21,970 --> 00:04:23,290
+deberías implementar estos algoritmos
+
+128
+00:04:23,850 --> 00:04:26,060
+- gradiente conjugado, L-BGFS, BFGS -
+
+129
+00:04:26,360 --> 00:04:29,520
+tú mismo a menos que seas experto en cálculo numérico por computadora.
+
+130
+00:04:30,720 --> 00:04:32,320
+En cambio, así como yo
+
+131
+00:04:32,420 --> 00:04:33,640
+no te recomendaría que escribas tu
+
+132
+00:04:33,850 --> 00:04:35,240
+propio código para calcular raíces
+
+133
+00:04:35,590 --> 00:04:36,660
+cuadradas de números o para
+
+134
+00:04:36,770 --> 00:04:39,010
+calcular matrices inversas, para
+
+135
+00:04:39,140 --> 00:04:40,600
+estos algoritmos, lo que también
+
+136
+00:04:40,710 --> 00:04:42,530
+te recomendaría es sólo usar una librería de software.
+
+137
+00:04:43,030 --> 00:04:43,770
+Así que ya sabes, para sacar una raíz
+
+138
+00:04:44,120 --> 00:04:44,940
+cuadrada, lo que todos hacemos
+
+139
+00:04:45,150 --> 00:04:46,440
+es usar alguna función
+
+140
+00:04:47,080 --> 00:04:48,310
+que alguien más ha
+
+141
+00:04:48,530 --> 00:04:50,200
+escrito para calcular las raíces cuadradas de los números.
+
+142
+00:04:51,330 --> 00:04:53,530
+Y, afortunadamente, Octave y
+
+143
+00:04:53,760 --> 00:04:55,070
+el lenguaje estrechamente relacionado MATLAB
+
+144
+00:04:55,430 --> 00:04:57,110
+-Usaremos eso-
+
+145
+00:04:57,140 --> 00:04:58,370
+Octave tiene una muy buena, una muy razonable
+
+146
+00:04:58,530 --> 00:05:02,410
+librería que implementa algunos de estos algoritmos de optimización avanzados.
+
+147
+00:05:03,380 --> 00:05:04,350
+Y si sólo usas
+
+148
+00:05:04,600 --> 00:05:06,800
+la librería integrada, ya sabes, tendrás muy buenos resultados.
+
+149
+00:05:08,010 --> 00:05:08,880
+Debo decir que hay
+
+150
+00:05:09,370 --> 00:05:10,880
+diferencias entre buenas
+
+151
+00:05:11,230 --> 00:05:12,740
+y malas implementaciones de estos algoritmos.
+
+152
+00:05:13,690 --> 00:05:15,010
+Entonces, si estás utilizando un
+
+153
+00:05:15,120 --> 00:05:16,270
+lenguaje diferente para tu aplicación
+
+154
+00:05:16,470 --> 00:05:17,560
+de aprendizaje automático, si estás usando
+
+155
+00:05:18,190 --> 00:05:20,090
+C, C++, Java, y
+
+156
+00:05:20,250 --> 00:05:24,060
+así, puedes
+
+157
+00:05:24,210 --> 00:05:24,710
+querer probar un par
+
+158
+00:05:24,730 --> 00:05:25,660
+de librerías diferentes para asegurarte de encontrar
+
+159
+00:05:25,740 --> 00:05:27,790
+una buena librería para implementar estos algoritmos.
+
+160
+00:05:28,250 --> 00:05:29,410
+Porque hay una diferencia de
+
+161
+00:05:29,480 --> 00:05:30,740
+desempeño entre una buena y una mala implementación de,
+
+162
+00:05:31,680 --> 00:05:33,150
+ya sabes, un gradiente de contorno o
+
+163
+00:05:33,530 --> 00:05:35,150
+LPFGS contra una implementación
+
+164
+00:05:35,350 --> 00:05:37,680
+menos buena de un gradiente de contorno o LPFGS.
+
+165
+00:05:43,060 --> 00:05:44,310
+Entonces, ahora voy a explicar cómo
+
+166
+00:05:44,580 --> 00:05:47,080
+usar estos algoritmos, y voy a hacerlo con un ejemplo.
+
+167
+00:05:48,970 --> 00:05:50,220
+Digamos que tienes un
+
+168
+00:05:50,370 --> 00:05:51,620
+problema con dos parámetros
+
+169
+00:05:53,380 --> 00:05:55,580
+iguales a «theta» cero y «theta» uno.
+
+170
+00:05:56,410 --> 00:05:57,450
+Y digamos que tu función de costo
+
+171
+00:05:57,970 --> 00:05:59,210
+es J de «theta» igual a «theta»
+
+172
+00:05:59,430 --> 00:06:01,540
+uno menos cinco al cuadrado, más teta dos menos cinco al cuadrado.
+
+173
+00:06:02,630 --> 00:06:04,080
+Entonces, con esta función de costo,
+
+174
+00:06:04,590 --> 00:06:06,960
+conoces el valor de «theta» 1 y «theta» 2.
+
+175
+00:06:07,080 --> 00:06:09,590
+Si quieres minimizar J de «theta» como una función de «theta»,
+
+176
+00:06:09,940 --> 00:06:10,910
+el valor que la minimiza será
+
+177
+00:06:11,030 --> 00:06:12,040
+«theta» 1
+
+178
+00:06:12,420 --> 00:06:14,220
+igual a 5, «theta» 2 igual a 5.
+
+179
+00:06:15,230 --> 00:06:16,620
+Ahora, nuevamente, conozco algunos,
+
+180
+00:06:16,950 --> 00:06:18,320
+ya sabes, cálculos más que otras personas,
+
+181
+00:06:19,010 --> 00:06:20,770
+pero las derivadas de la
+
+182
+00:06:20,850 --> 00:06:23,420
+función de costo de J resultan ser estas dos expresiones.
+
+183
+00:06:24,270 --> 00:06:25,060
+Ya hice los cálculos.
+
+184
+00:06:26,260 --> 00:06:27,250
+Entonces, si quieres aplicar
+
+185
+00:06:27,480 --> 00:06:29,220
+uno de los algoritmos avanzados de optimización
+
+186
+00:06:29,810 --> 00:06:31,380
+para minimizar la función de costo J,
+
+187
+00:06:31,660 --> 00:06:32,630
+entonces, ya sabes, si no
+
+188
+00:06:32,880 --> 00:06:34,680
+supiéramos que el mínimo está en
+
+189
+00:06:34,780 --> 00:06:36,140
+5, 5, pero si quisieras tener
+
+190
+00:06:36,240 --> 00:06:37,550
+una función de costo 5, el mínimo
+
+191
+00:06:37,970 --> 00:06:39,840
+numérico, usando algo como
+
+192
+00:06:40,040 --> 00:06:41,560
+el gradiente descenso, pero preferiblemente más
+
+193
+00:06:41,730 --> 00:06:43,430
+más avanzado que el gradiente de descenso, lo que
+
+194
+00:06:43,550 --> 00:06:45,010
+harías sería implementar una función de Octave
+
+195
+00:06:45,570 --> 00:06:46,690
+como ésta, entonces, implementamos
+
+196
+00:06:46,860 --> 00:06:48,190
+una función de costo;
+
+197
+00:06:49,210 --> 00:06:51,180
+función de costo de la función de «theta» como esa,
+
+198
+00:06:52,180 --> 00:06:53,250
+Y lo que esto hace es
+
+199
+00:06:53,380 --> 00:06:55,660
+devolver dos argumentos, el
+
+200
+00:06:55,760 --> 00:06:57,780
+primer J-val es como
+
+201
+00:06:58,910 --> 00:07:00,020
+nosotros calcularíamos la función de costo
+
+202
+00:07:00,680 --> 00:07:01,780
+J. Y entonces, esto dice que J-val
+
+203
+00:07:02,080 --> 00:07:03,210
+es igual a, ya sabes, «theta»
+
+204
+00:07:03,440 --> 00:07:04,630
+uno menos cinco al cuadrado más «theta»
+
+205
+00:07:05,330 --> 00:07:06,230
+dos menos cinco al cuadrado.
+
+206
+00:07:06,540 --> 00:07:09,140
+Entonces, sólo se trata de calcular la función de costo de aquí.
+
+207
+00:07:10,540 --> 00:07:12,040
+Y el segundo argumento que
+
+208
+00:07:12,260 --> 00:07:14,190
+devuelve esta función es un gradiente.
+
+209
+00:07:14,840 --> 00:07:16,030
+Entonces, el gradiente va a ser
+
+210
+00:07:16,160 --> 00:07:17,320
+un vector de dos por uno,
+
+211
+00:07:18,870 --> 00:07:20,050
+y los dos elementos del
+
+212
+00:07:20,120 --> 00:07:22,100
+vector gradiente corresponden a
+
+213
+00:07:22,800 --> 00:07:24,670
+los dos términos de la derivada parcial de aquí.
+
+214
+00:07:27,150 --> 00:07:28,570
+Después de haber implementado esta función de costo,
+
+215
+00:07:29,580 --> 00:07:30,390
+podrías, puedes entonces
+
+216
+00:07:31,510 --> 00:07:33,010
+llamar la función de optimización
+
+217
+00:07:34,270 --> 00:07:35,720
+avanzada llamada fminunc
+
+218
+00:07:35,950 --> 00:07:36,900
+- se refiere a la minimización sin restricciones
+
+219
+00:07:37,610 --> 00:07:39,360
+de la función en Octave
+
+220
+00:07:40,300 --> 00:07:41,520
+- y la forma de llamarla es la siguiente.
+
+221
+00:07:41,790 --> 00:07:42,350
+Configuras algunas opciones.
+
+222
+00:07:43,230 --> 00:07:43,580
+Estas son opciones
+
+223
+00:07:44,330 --> 00:07:46,680
+como una estructura de datos que almacena las opciones que quieras.
+
+224
+00:07:47,320 --> 00:07:48,960
+Entonces,
+
+225
+00:07:49,160 --> 00:07:52,100
+esto enciende el parámetro del objetivo de gradiente.
+
+226
+00:07:52,270 --> 00:07:55,180
+Esto sólo significa que, de hecho, vas a proporcionar un gradiente a este algoritmo.
+
+227
+00:07:56,150 --> 00:07:57,550
+Voy a definir el número máximo
+
+228
+00:07:57,840 --> 00:07:59,280
+de iteraciones a, digamos, cien.
+
+229
+00:07:59,580 --> 00:08:02,230
+Voy a darle una suposición inicial de «theta».
+
+230
+00:08:02,720 --> 00:08:03,680
+Ahí hay un vector de 2 por 1.
+
+231
+00:08:04,440 --> 00:08:06,860
+Y luego este comando llama a fminunc.
+
+232
+00:08:07,530 --> 00:08:10,290
+Este símbolo de arroba presenta un
+
+233
+00:08:10,420 --> 00:08:11,810
+indicador hacia la función de costo
+
+234
+00:08:13,010 --> 00:08:14,320
+que acabamos de definir arriba.
+
+235
+00:08:15,060 --> 00:08:16,020
+Y si llamas esto,
+
+236
+00:08:16,270 --> 00:08:18,290
+ésto se calculará, ya sabes, usará
+
+237
+00:08:18,620 --> 00:08:20,490
+uno de los algoritmos de optimización más avanzados.
+
+238
+00:08:21,110 --> 00:08:23,350
+Y si quieres, puedes considerarlo sólo como un gradiente de descenso.
+
+239
+00:08:23,690 --> 00:08:25,170
+Pero que elige automáticamente el
+
+240
+00:08:25,500 --> 00:08:27,290
+«alfa» de la tasa de aprendizaje para que no tengas que hacerlo tú mismo.
+
+241
+00:08:28,210 --> 00:08:29,880
+Pero luego intentará
+
+242
+00:08:30,160 --> 00:08:32,000
+usar el tipo de algoritmos de optimización avanzados,
+
+243
+00:08:32,640 --> 00:08:33,770
+como el gradiente de descenso con esteroides,
+
+244
+00:08:34,400 --> 00:08:36,490
+para tratar de encontrar el valor óptimo de «theta» para usted.
+
+245
+00:08:37,180 --> 00:08:39,040
+Déjame mostrarte cómo se ve esto en Octave.
+
+246
+00:08:40,690 --> 00:08:42,460
+Entonces, escribí esta función de costo
+
+247
+00:08:42,900 --> 00:08:46,440
+de la función de «theta» exactamente como la teníamos en la línea anterior.
+
+248
+00:08:46,650 --> 00:08:49,070
+Calcula el J-val, que es la función de costo..
+
+249
+00:08:49,920 --> 00:08:51,810
+Y computa el gradiente con
+
+250
+00:08:52,040 --> 00:08:53,050
+los dos elementos que son las derivadas
+
+251
+00:08:53,450 --> 00:08:54,430
+parciales de la función de costo
+
+252
+00:08:55,220 --> 00:08:56,200
+con respecto a, ya sabes,
+
+253
+00:08:56,360 --> 00:08:57,910
+los dos parámetros, «theta» 1 y «theta» 2.
+
+254
+00:08:59,040 --> 00:09:00,360
+Ahora, pasemos a mi ventana de Octave.
+
+255
+00:09:00,710 --> 00:09:02,900
+Voy a ingresar los comandos que tenía ahora.
+
+256
+00:09:03,470 --> 00:09:05,850
+Entonces, las opciones son iguales a optimset. Esta es
+
+257
+00:09:06,630 --> 00:09:08,510
+la notación para establecer mis
+
+258
+00:09:09,670 --> 00:09:11,190
+parámetros en mis opciones,
+
+259
+00:09:11,710 --> 00:09:13,850
+para mi algoritmo de optmización. Opción Grant encendida, maxIter, 100
+
+260
+00:09:14,130 --> 00:09:17,600
+para que diga 100
+
+261
+00:09:18,310 --> 00:09:19,610
+iteraciones, y voy a
+
+262
+00:09:19,730 --> 00:09:22,090
+proporcionar el gradiente a mi algoritmo.
+
+263
+00:09:23,490 --> 00:09:27,190
+Digamos que la «theta» inicial es igual al dos por uno de cero.
+
+264
+00:09:27,980 --> 00:09:29,280
+Entonces, esa es mi suposición inicial para «theta».
+
+265
+00:09:30,500 --> 00:09:31,390
+Y ahora tengo de «theta»,
+
+266
+00:09:32,620 --> 00:09:35,100
+función val exit flag
+
+267
+00:09:37,610 --> 00:09:39,430
+igual a la restricción de fminunc.
+
+268
+00:09:40,570 --> 00:09:41,600
+Un indicador hacia la función de costo.
+
+269
+00:09:43,010 --> 00:09:44,700
+Y proporciona mi suposición inicial.
+
+270
+00:09:46,090 --> 00:09:49,060
+Al igual que las otras opciones.
+
+271
+00:09:49,820 --> 00:09:52,760
+Y si presiono Enter, esto ejecutará el algoritmo de optimización.
+
+272
+00:09:53,940 --> 00:09:54,810
+Y regresa muy rápido.
+
+273
+00:09:55,790 --> 00:09:57,040
+Este formato gracioso se debe a
+
+274
+00:09:57,430 --> 00:09:58,430
+mi línea, ya sabes, mi
+
+275
+00:09:59,700 --> 00:10:00,290
+código resumido.
+
+276
+00:10:00,680 --> 00:10:02,540
+Entonces, esta cosa graciosa
+
+277
+00:10:02,760 --> 00:10:04,890
+se debe sólo a que mi línea de comando se envolvió.
+
+278
+00:10:05,490 --> 00:10:06,290
+Pero lo que esto significa es que
+
+279
+00:10:06,550 --> 00:10:08,500
+numéricamente expresa, ya sabes, considéralo
+
+280
+00:10:08,670 --> 00:10:10,400
+un gradiente de descenso
+
+281
+00:10:10,440 --> 00:10:11,620
+con esteroides, que encontró el valor óptimo para
+
+282
+00:10:11,760 --> 00:10:13,150
+A «theta» es «theta» 1
+
+283
+00:10:13,400 --> 00:10:15,670
+igual a 5, «theta» 2 es igual a 5,  exactamente como lo esperábamos.
+
+284
+00:10:16,520 --> 00:10:18,760
+El valor de la función en el
+
+285
+00:10:18,840 --> 00:10:21,430
+óptimo es esencialmente 10 a la menos 30.
+
+286
+00:10:21,670 --> 00:10:23,160
+Entonces, eso es esencialmente cero, que
+
+287
+00:10:23,370 --> 00:10:24,760
+también es lo que estábamos esperando.
+
+288
+00:10:24,840 --> 00:10:27,060
+Y la bandera de salida es
+
+289
+00:10:27,240 --> 00:10:29,080
+1 y esto muestra
+
+290
+00:10:29,730 --> 00:10:31,400
+cuál es el estado de convergencia de esto.
+
+291
+00:10:31,800 --> 00:10:33,010
+Y si quieres, puedes ingresar
+
+292
+00:10:33,150 --> 00:10:35,020
+help fminunc para
+
+293
+00:10:35,130 --> 00:10:36,480
+leer la documentación para saber cómo
+
+294
+00:10:36,680 --> 00:10:38,650
+interpretar la bandera de salida.
+
+295
+00:10:38,760 --> 00:10:41,600
+Pero la bandera de salida te permite verificar si este algoritmo ha convergido.
+
+296
+00:10:43,960 --> 00:10:46,450
+Así es cómo se ejecutan estos algoritmos en Octave.
+
+297
+00:10:47,480 --> 00:10:48,920
+Debo mencionar, por cierto,
+
+298
+00:10:48,940 --> 00:10:51,020
+que para la implementación en Octave, este valor
+
+299
+00:10:51,640 --> 00:10:53,010
+de «theta», tu vector parámetro
+
+300
+00:10:53,370 --> 00:10:54,940
+de «theta», debe estar en
+
+301
+00:10:55,280 --> 00:10:58,210
+rd para d mayor que o igual a 2.
+
+302
+00:10:58,450 --> 00:11:00,330
+Entonces, si «theta» sólo es un número real.
+
+303
+00:11:00,770 --> 00:11:02,040
+Y, si no lo es, al menos
+
+304
+00:11:02,160 --> 00:11:03,160
+un vector de dos dimensiones
+
+305
+00:11:03,800 --> 00:11:04,860
+o un poco superior al vector bidimensional,
+
+306
+00:11:05,160 --> 00:11:06,840
+este fminunc
+
+307
+00:11:07,560 --> 00:11:08,760
+podría no funcionar, entonces, y en el
+
+308
+00:11:09,140 --> 00:11:10,310
+caso de que tengas una
+
+309
+00:11:10,590 --> 00:11:11,590
+función unidimensional que utilizas
+
+310
+00:11:11,830 --> 00:11:12,930
+para optimizar, puedes consultar
+
+311
+00:11:13,100 --> 00:11:14,680
+la documentación de Octave sobre fminunc
+
+312
+00:11:14,950 --> 00:11:16,230
+para obtener más detalles.
+
+313
+00:11:18,230 --> 00:11:19,360
+Entonces, así es cómo optimizamos
+
+314
+00:11:19,620 --> 00:11:21,640
+nuestro ejemplo prueba de esta
+
+315
+00:11:22,190 --> 00:11:23,810
+simple función de costo de conducción rápida.
+
+316
+00:11:24,440 --> 00:11:26,520
+Sin embargo, aplicamos esto a, digamos, la progresión
+
+317
+00:11:27,720 --> 00:11:29,270
+logística en la que tenemos
+
+318
+00:11:29,520 --> 00:11:31,290
+un vector de parámetro «theta», y
+
+319
+00:11:31,430 --> 00:11:32,210
+voy a usar una mezcla de
+
+320
+00:11:32,620 --> 00:11:34,880
+notación de Octave y un tipo de notación matemática.
+
+321
+00:11:35,300 --> 00:11:36,400
+Pero espero que esta explicación
+
+322
+00:11:36,870 --> 00:11:38,050
+será clara, pero nuestro vector
+
+323
+00:11:38,520 --> 00:11:40,360
+de parámetro «theta» comprende estos
+
+324
+00:11:40,540 --> 00:11:41,780
+parámetros «theta» 0 hasta «theta»
+
+325
+00:11:42,210 --> 00:11:44,230
+n, porque los índices de Octave,
+
+326
+00:11:46,090 --> 00:11:48,040
+vectores usando la indexación de
+
+327
+00:11:48,460 --> 00:11:49,640
+1, sabes, «theta» 0,
+
+328
+00:11:49,710 --> 00:11:51,190
+realmente, se escribe «theta» 1
+
+329
+00:11:51,330 --> 00:11:53,290
+en Octave, «theta» 1 se va a escribir
+
+330
+00:11:53,930 --> 00:11:54,690
+como «theta» 2 en Octave,
+
+331
+00:11:55,280 --> 00:11:56,180
+y esto se va a escribir
+
+332
+00:11:56,780 --> 00:11:58,430
+«theta» n + 1, ¿cierto?
+
+333
+00:11:58,610 --> 00:12:00,650
+Y esto se debe a que Octave indexa
+
+334
+00:12:01,320 --> 00:12:03,070
+los vectores a partir del índice
+
+335
+00:12:03,430 --> 00:12:05,200
+de 1 como el índice de 0.
+
+336
+00:12:06,920 --> 00:12:07,950
+Entonces, lo que debemos
+
+337
+00:12:08,160 --> 00:12:09,670
+hacer es escribir una
+
+338
+00:12:09,880 --> 00:12:12,070
+función de costo que capture
+
+339
+00:12:12,710 --> 00:12:14,210
+la función de costo para la regresión logística.
+
+340
+00:12:15,170 --> 00:12:16,450
+Concretamente, la función de costo
+
+341
+00:12:16,880 --> 00:12:18,310
+debe devolver J-val, que es, ya sabes, J-val
+
+342
+00:12:18,940 --> 00:12:20,430
+dado que necesitas algunos códigos para
+
+343
+00:12:20,640 --> 00:12:22,440
+calcular J de «theta» y
+
+344
+00:12:22,710 --> 00:12:24,010
+también necesitamos darle el gradiente.
+
+345
+00:12:24,540 --> 00:12:25,460
+Entonces, el gradiente 1 va a
+
+346
+00:12:25,920 --> 00:12:27,080
+ser algún código para calcular
+
+347
+00:12:27,280 --> 00:12:29,100
+la derivada parcial respecto a
+
+348
+00:12:29,390 --> 00:12:31,250
+«theta» 0, la siguiente derivada parcial
+
+349
+00:12:31,600 --> 00:12:34,300
+respecto a «theta» 1 y así sucesivamente.
+
+350
+00:12:34,770 --> 00:12:36,260
+Una vez más, estos son el gradiente
+
+351
+00:12:37,500 --> 00:12:38,390
+1, el gradiente 2 y así sucesivamente,
+
+352
+00:12:39,030 --> 00:12:40,330
+en lugar de gradiente 0, gradiente
+
+353
+00:12:40,500 --> 00:12:42,730
+1, porque los índices de Octave
+
+354
+00:12:43,460 --> 00:12:46,200
+son vectores que comienzan desde uno en lugar de desde cero.
+
+355
+00:12:47,440 --> 00:12:48,460
+Pero el concepto principal que espero que
+
+356
+00:12:48,690 --> 00:12:49,540
+comprendas de esta diapositiva
+
+357
+00:12:49,900 --> 00:12:50,870
+es que, lo que tienes que hacer,
+
+358
+00:12:51,070 --> 00:12:54,370
+es escribir una función que devuelva
+
+359
+00:12:55,500 --> 00:12:56,930
+la función de costo y devuelva el gradiente.
+
+360
+00:12:58,410 --> 00:12:59,750
+Así, para aplicar esto
+
+361
+00:12:59,960 --> 00:13:01,410
+a la regresión logística o,
+
+362
+00:13:02,100 --> 00:13:03,430
+incluso a la regresión lineal, s
+
+363
+00:13:03,560 --> 00:13:06,230
+quieres usar estos algoritmos de optimización para la regresión lineal.
+
+364
+00:13:07,340 --> 00:13:08,350
+Lo que tienes que hacer es insertar
+
+365
+00:13:08,500 --> 00:13:09,960
+el código apropiado para calcular
+
+366
+00:13:10,820 --> 00:13:12,280
+las cosas de aquí.
+
+367
+00:13:15,100 --> 00:13:17,910
+Entonces, ahora sabes cómo usar estos algoritmos avanzados de optimización.
+
+368
+00:13:19,030 --> 00:13:21,170
+Porque, para estos algoritmos
+
+369
+00:13:21,320 --> 00:13:22,660
+estás usando una
+
+370
+00:13:22,870 --> 00:13:25,190
+librería de optimización sofisticada, que lo
+
+371
+00:13:25,690 --> 00:13:26,710
+hace un poco
+
+372
+00:13:26,940 --> 00:13:28,510
+más opaco y, entonces,
+
+373
+00:13:28,740 --> 00:13:30,390
+quizás un poco más difícil de depurar.
+
+374
+00:13:31,290 --> 00:13:32,660
+Pero como estos algoritmos suelen
+
+375
+00:13:33,010 --> 00:13:34,370
+ejecutarse mucho más rápido que el gradiente de descenso,
+
+376
+00:13:35,010 --> 00:13:36,760
+a menudo muy típicamente cuando
+
+377
+00:13:37,060 --> 00:13:38,180
+tengo un problema de aprendizaje automático muy
+
+378
+00:13:38,410 --> 00:13:39,500
+grande, usaré
+
+379
+00:13:39,760 --> 00:13:42,110
+estos algoritmos en lugar de usar el gradiente de descenso.
+
+380
+00:13:43,900 --> 00:13:45,070
+Y, con estas ideas, espero
+
+381
+00:13:45,450 --> 00:13:46,710
+que puedas poner a trabajar la progresión logística
+
+382
+00:13:47,350 --> 00:13:48,780
+y también la regresión lineal
+
+383
+00:13:49,100 --> 00:13:51,410
+en problemas mucho más grande.
+
+384
+00:13:51,830 --> 00:13:53,820
+Entonces, eso es todo en cuanto a los conceptos de optimización.
+
+385
+00:13:55,120 --> 00:13:56,170
+Y en el siguiente y último
+
+386
+00:13:56,320 --> 00:13:57,720
+video sobre regresión logística,
+
+387
+00:13:58,550 --> 00:13:59,470
+quiero contarles sobre cómo
+
+388
+00:13:59,600 --> 00:14:00,990
+tomar el algoritmo de regresión logística
+
+389
+00:14:01,520 --> 00:14:02,790
+que ya conoces y hacerla trabajar
+
+390
+00:14:02,990 --> 00:14:05,420
+en problemas de clasificación multiclase.

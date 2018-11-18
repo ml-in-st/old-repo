@@ -1,0 +1,426 @@
+1
+00:00:00,220 --> 00:00:05,060
+Di video ini, saya ingin bicara tentang
+persamaan normal
+
+2
+00:00:05,060 --> 00:00:07,640
+dan non-inversibilitas.
+
+3
+00:00:07,640 --> 00:00:09,890
+Ini suatu konsep yang lebih maju,
+
+4
+00:00:09,890 --> 00:00:12,490
+tapi saya sering ditanyai mengenai
+hal ini.
+
+5
+00:00:12,490 --> 00:00:14,400
+Jadi saya ingin membicarakannya di sini.
+
+6
+00:00:14,400 --> 00:00:17,550
+Tapi konsep ini sudah lebih maju,
+
+7
+00:00:18,600 --> 00:00:23,210
+jadi silahkan mempertimbangkan ini
+sebagai materi pilihan.
+
+8
+00:00:23,210 --> 00:00:26,890
+Ada satu fenomena yang mungkin akan
+Anda hadapi,
+
+9
+00:00:26,890 --> 00:00:29,610
+mungkin bagi beberapa dari Anda
+berguna bila dipahami.
+
+10
+00:00:31,340 --> 00:00:32,030
+Tapi, bahkan jika Anda tidak mengerti,
+
+11
+00:00:33,470 --> 00:00:37,450
+persamaan normal dan regresi linier,
+
+12
+00:00:37,450 --> 00:00:39,520
+Anda bisa membuatnya bekerja.
+
+13
+00:00:39,520 --> 00:00:45,610
+Ini persoalannya:
+
+14
+00:00:45,610 --> 00:00:49,580
+Bagi mereka yang
+
+15
+00:00:49,580 --> 00:00:52,400
+lebih familiar dengan aljabar linier,
+
+16
+00:00:52,400 --> 00:00:56,060
+apa yang beberapa siswa tanyakan pada
+saya adalah,
+
+17
+00:00:56,060 --> 00:01:00,680
+saat menghitung ini
+
+18
+00:01:00,680 --> 00:01:04,220
+theta = (X'X)^-1 * X'y
+
+19
+00:01:04,220 --> 00:01:05,120
+bagaimana jika matriks X'X tidak dapat
+diinversi?
+
+20
+00:01:05,120 --> 00:01:10,978
+Jadi, bagi mereka yang tahu sedikit
+banyak aljabar linier
+
+21
+00:01:10,978 --> 00:01:15,720
+Anda mungkin tahu bahwa hanya beberapa
+matriks
+
+22
+00:01:15,720 --> 00:01:20,260
+yang dapat diinvers, dan beberapa
+matriks tidak punya invers
+
+23
+00:01:20,260 --> 00:01:23,910
+kita menyebut matriks non-inversibel
+itu,
+
+24
+00:01:23,910 --> 00:01:27,850
+matriks tunggal atau degenerasi.
+
+25
+00:01:27,850 --> 00:01:31,370
+Soal X'X menjadi non-inversibel
+
+26
+00:01:31,370 --> 00:01:35,090
+sangat jarang terjadi.
+
+27
+00:01:35,090 --> 00:01:37,930
+Di Octave, jika Anda menggunakan ini
+untuk menghitung theta,
+
+28
+00:01:37,930 --> 00:01:40,490
+Anda akan mendapatkan hasil yang benar.
+
+29
+00:01:40,490 --> 00:01:45,430
+Sekarang saya bicara sedikit teknis dan
+tidak ingin merincinya,
+
+30
+00:01:45,430 --> 00:01:51,000
+tapi Octave punya 2 fungsi untuk
+menginversi matriks:
+
+31
+00:01:51,000 --> 00:01:52,720
+pinv() dan inv().
+
+32
+00:01:52,720 --> 00:01:54,450
+Perbedaan keduanya bersifat teknis.
+
+33
+00:01:54,450 --> 00:01:55,690
+Yang satu disebut pseudo-invers,
+satunya lagi disebut invers.
+
+34
+00:01:55,690 --> 00:01:59,090
+Anda bisa menunjukkan matematisnya, jadi
+sepanjang Anda menggunakan fungsi pinv(),
+
+35
+00:01:59,090 --> 00:02:00,740
+maka ini akan menghitung nilai theta
+yang Anda inginkan,
+
+36
+00:02:00,740 --> 00:02:05,220
+bahkan jika X'X non-inversibel.
+
+37
+00:02:05,220 --> 00:02:08,982
+Detil khusus perbedaan antara
+
+38
+00:02:08,982 --> 00:02:13,140
+pinv() dan inv()
+
+39
+00:02:13,140 --> 00:02:18,400
+adalah konsep perhitungan numerik yang
+maju
+
+40
+00:02:18,400 --> 00:02:22,160
+yang tidak ingin saya bahas.
+
+41
+00:02:22,160 --> 00:02:26,560
+Tapi, saya pikir di video
+
+42
+00:02:26,560 --> 00:02:27,710
+pilihan ini, saya coba berikan sedikit
+intuisi
+
+43
+00:02:27,710 --> 00:02:32,140
+tentang apa maksudnya X'X menjadi
+non-inversibel,
+
+44
+00:02:32,140 --> 00:02:37,940
+bagi Anda yang tahu sedikit banyak
+aljabar linier
+
+45
+00:02:37,940 --> 00:02:46,060
+dan mungkin tertarik.
+
+46
+00:02:46,060 --> 00:02:49,720
+Saya tidak akan membuktikan secara
+matematis,
+
+47
+00:02:49,720 --> 00:02:54,650
+tapi jika X'X non-inversibel,
+
+48
+00:02:54,650 --> 00:02:58,730
+biasanya ada 2 penyebab yg paling umum:
+
+49
+00:02:58,730 --> 00:03:02,753
+Pertama, jika dalam soal belajar Anda,
+
+50
+00:03:02,753 --> 00:03:05,470
+Anda punya fitur ganda,
+
+51
+00:03:05,470 --> 00:03:08,770
+konkritnya, jika Anda coba memprediksi
+harga rumah
+
+52
+00:03:08,770 --> 00:03:13,430
+dan x1 adalah ukuran rumah dalam
+kaki persegi,
+
+53
+00:03:13,430 --> 00:03:18,350
+dan x2 adalah ukuran rumah dalam
+meter persegi,
+
+54
+00:03:18,350 --> 00:03:22,520
+maka, Anda tahu, 1 meter = 3.28 kaki,
+
+55
+00:03:22,520 --> 00:03:27,850
+jadi kedua fitur Anda akan selalu
+memenuhi batasan
+
+56
+00:03:27,850 --> 00:03:32,770
+bahwa x1 = 3.28 * x2.
+
+57
+00:03:32,770 --> 00:03:37,280
+Anda bisa perlihatkan,
+
+58
+00:03:37,280 --> 00:03:38,350
+jika Anda ahli dalam aljabar linier,
+
+59
+00:03:38,350 --> 00:03:42,550
+bahwa jika kedua fitur Anda terhubung
+lewat persamaan linier seperti ini,
+
+60
+00:03:44,100 --> 00:03:48,490
+maka matriks X'X akan jadi
+non-inversibel.
+
+61
+00:03:48,490 --> 00:03:53,210
+Hal kedua yang membuat matriks X'X
+non-inversibel
+
+62
+00:03:53,210 --> 00:03:58,060
+adalah jika Anda coba menjalankan
+algoritma belajar
+
+63
+00:03:58,060 --> 00:04:02,300
+dengan banyak fitur.
+
+64
+00:04:02,300 --> 00:04:03,990
+Konkritnya, jika m <= n.
+
+65
+00:04:03,990 --> 00:04:07,780
+Contohnya, jika Anda punya m = 10
+contoh latihan
+
+66
+00:04:07,780 --> 00:04:11,260
+dan Anda punya n = 100 fitur, maka
+Anda sedang mencoba
+
+67
+00:04:11,260 --> 00:04:15,450
+mencocokkan vektor parameter theta,
+yang berdimensi (n+1),
+
+68
+00:04:15,450 --> 00:04:20,420
+jadi itu berdimensi 101
+
+69
+00:04:20,420 --> 00:04:23,660
+Anda coba mencocokkan 101 parameter dari
+10 contoh latihan.
+
+70
+00:04:23,660 --> 00:04:27,380
+Kadang ini bekerja,
+
+71
+00:04:27,380 --> 00:04:32,625
+tapi tidak selalu jadi ide yang bagus.
+
+72
+00:04:32,625 --> 00:04:37,930
+Karena Anda mungkin tidak punya cukup
+data
+
+73
+00:04:37,930 --> 00:04:43,400
+jika Anda cuma punya 10 contoh untuk
+dicocokkan pada 100 atau 101 parameter.
+
+74
+00:04:43,400 --> 00:04:47,300
+Kita akan lihat nanti, mengapa datanya
+mungkin terlalu sedikit
+
+75
+00:04:47,300 --> 00:04:51,290
+untuk dicocokkan dengan parameter
+sebanyak ini.
+
+76
+00:04:51,290 --> 00:04:53,050
+Tapi umumnya, yang kita lakukan jika
+m < n,
+
+77
+00:04:53,050 --> 00:04:55,330
+adalah melihat jika kita dapat menghapus
+beberapa fitur atau menggunakan 1 teknik
+
+78
+00:04:55,330 --> 00:04:58,790
+yang disebut regularisasi,
+
+79
+00:04:58,790 --> 00:05:02,430
+yang akan kita bahas nanti.
+
+80
+00:05:02,430 --> 00:05:05,770
+Teknik ini membuat bisa Anda mencocokkan
+parameter menggunakan banyak fitur
+
+81
+00:05:05,770 --> 00:05:07,190
+bahkan jika Anda set latihan yang
+relatif kecil.
+
+82
+00:05:07,190 --> 00:05:09,220
+Tapi topik regularisasi ini akan
+dibahas nanti.
+
+83
+00:05:09,220 --> 00:05:11,640
+Tapi untuk merangkum, jika Anda
+mendapati X'X bersifat tunggal
+
+84
+00:05:11,640 --> 00:05:16,050
+atau non-inversibel,
+
+85
+00:05:16,050 --> 00:05:20,390
+saya sarankan Anda
+
+86
+00:05:20,390 --> 00:05:22,570
+pertama: lihat fitur Anda jika ada fitur
+ganda
+
+87
+00:05:24,050 --> 00:05:26,690
+seperti x1 dan x2 ini
+
+88
+00:05:26,690 --> 00:05:31,640
+yang jadi fungsi linier satu sama lain,
+seperti itu
+
+89
+00:05:31,640 --> 00:05:35,700
+dan jika Anda punya fitur ganda
+
+90
+00:05:35,700 --> 00:05:38,490
+jika Anda hapus salah satunya,
+
+91
+00:05:38,490 --> 00:05:42,410
+Anda tidak perlu kedua fitur ini,
+
+92
+00:05:42,410 --> 00:05:46,100
+jadi jika Anda hapus salah satu fitur
+ini,
+
+93
+00:05:46,100 --> 00:05:49,180
+itu akan menyelesaikan masalah Anda.
+
+94
+00:05:49,180 --> 00:05:52,420
+Jadi, pertama pikir jika ada fitur ganda
+
+95
+00:05:52,420 --> 00:05:58,450
+dan jika ada, hapus fitur yang ganda

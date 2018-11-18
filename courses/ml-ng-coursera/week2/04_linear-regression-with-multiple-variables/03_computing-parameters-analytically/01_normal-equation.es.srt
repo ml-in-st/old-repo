@@ -1,0 +1,1815 @@
+1
+00:00:00,302 --> 00:00:01,883
+En este video hablaremos acerca del
+
+2
+00:00:01,883 --> 00:00:03,948
+la ecuación normal, la que para
+
+3
+00:00:03,948 --> 00:00:05,660
+algunos problemas de regresión lineal
+
+4
+00:00:05,660 --> 00:00:06,981
+nos dará una mejor manera
+
+5
+00:00:06,981 --> 00:00:09,115
+de resolver para el valor óptimo
+
+6
+00:00:09,115 --> 00:00:10,879
+de los parámetros «theta».
+
+7
+00:00:10,879 --> 00:00:13,096
+En concreto, el algoritmo que
+
+8
+00:00:13,096 --> 00:00:14,399
+hasta ahora hemos usado
+
+9
+00:00:14,399 --> 00:00:16,042
+para la regresión lineal es el gradiente
+
+10
+00:00:16,042 --> 00:00:17,823
+de descenso para
+
+11
+00:00:17,823 --> 00:00:19,410
+minimizar la función de costos
+
+12
+00:00:19,410 --> 00:00:21,354
+J de «theta», usaríamos
+
+13
+00:00:21,354 --> 00:00:23,792
+este algoritmo iterativo que requiere
+
+14
+00:00:23,792 --> 00:00:26,410
+muchos pasos, múltiples iteraciones del
+
+15
+00:00:26,410 --> 00:00:28,259
+de gradiente de descenso para converger
+
+16
+00:00:28,259 --> 00:00:30,396
+con el mínimo global.
+
+17
+00:00:30,396 --> 00:00:32,563
+En contraste, la ecuación normal
+
+18
+00:00:32,563 --> 00:00:34,413
+nos daría un método para
+
+19
+00:00:34,413 --> 00:00:36,986
+despejar «theta» de forma analítica para que
+
+20
+00:00:36,986 --> 00:00:38,761
+en vez de tener que utilizar
+
+21
+00:00:38,761 --> 00:00:40,594
+este algoritmo iterativo, podamos
+
+22
+00:00:40,594 --> 00:00:41,365
+en cambio despejar el
+
+23
+00:00:41,365 --> 00:00:42,791
+valor óptimo de «theta»
+
+24
+00:00:42,791 --> 00:00:44,403
+de una sola vez, para que en
+
+25
+00:00:44,403 --> 00:00:46,096
+prácticamente un paso obtengas
+
+26
+00:00:46,096 --> 00:00:48,136
+el valor óptimo ahí mismo.
+
+27
+00:00:49,136 --> 00:00:51,947
+Resulta que la ecuación normal
+
+28
+00:00:52,209 --> 00:00:54,442
+tiene algunas ventajas y
+
+29
+00:00:54,442 --> 00:00:56,024
+algunas desventajas, pero antes
+
+30
+00:00:56,024 --> 00:00:57,817
+de llegar a ellas y de hablar sobre
+
+31
+00:00:57,903 --> 00:00:59,426
+cuándo deberías usarlas, vamos
+
+32
+00:00:59,426 --> 00:01:02,539
+a obtener un poco de intuición sobre lo que hace este modelo.
+
+33
+00:01:02,539 --> 00:01:04,633
+Para el ejemplo planetario de esta semana,
+
+34
+00:01:04,633 --> 00:01:06,120
+imaginemos, tomemos
+
+35
+00:01:06,120 --> 00:01:07,505
+una muy simplificada función de costos
+
+36
+00:01:07,505 --> 00:01:09,291
+J de «theta», que es
+
+37
+00:01:09,291 --> 00:01:11,958
+la función de un número real «theta».
+
+38
+00:01:11,958 --> 00:01:13,642
+Por ahora imaginemos que «theta»
+
+39
+00:01:13,842 --> 00:01:16,615
+es solo un valor escalar o que «theta» es solo un valor de fila.
+
+40
+00:01:16,769 --> 00:01:18,918
+Es solo un número, en lugar de un vector.
+
+41
+00:01:19,171 --> 00:01:24,595
+Imagina que tenemos una función de costo J
+que es una función cuadrática de este valor real
+
+42
+00:01:25,028 --> 00:01:27,420
+que es parámetro de «theta», de tal forma que J de «theta»
+se ve así.
+
+43
+00:01:27,851 --> 00:01:30,336
+Bueno, ¿cómo minimizas
+una función cuadrática?
+
+44
+00:01:30,720 --> 00:01:32,745
+Para aquellos de ustedes que saben
+un poco de cálculo,
+
+45
+00:01:32,858 --> 00:01:34,965
+sabrán que la forma de
+
+46
+00:01:34,965 --> 00:01:36,628
+minimizar una función es
+
+47
+00:01:36,628 --> 00:01:38,991
+tomando las derivadas e
+
+48
+00:01:38,991 --> 00:01:41,707
+igualar las derivadas a cero.
+
+49
+00:01:41,707 --> 00:01:44,721
+Así que sacas la derivada de J
+con respecto al parámetro de «theta».
+
+50
+00:01:44,797 --> 00:01:46,847
+Obtienes una fórmula
+que no voy a derivar,
+
+51
+00:01:46,847 --> 00:01:49,161
+igualas la derivada
+
+52
+00:01:49,161 --> 00:01:50,782
+a cero, y esto
+
+53
+00:01:50,782 --> 00:01:53,503
+te permite despejar
+
+54
+00:01:53,503 --> 00:01:57,866
+el valor de «theta» que
+minimiza J de «theta».
+
+55
+00:01:57,866 --> 00:01:59,096
+Ese era un caso más sencillo
+
+56
+00:01:59,096 --> 00:02:01,716
+en el que los datos eran solo números reales.
+
+57
+00:02:01,716 --> 00:02:04,272
+En el problema que nos
+interesa, «theta» ya
+
+58
+00:02:04,929 --> 00:02:06,559
+no es solamente un mero número real,
+
+59
+00:02:06,559 --> 00:02:07,847
+sino que es este
+
+60
+00:02:07,847 --> 00:02:11,986
+vector de parámetros de n+1 dimensiones y
+
+61
+00:02:11,986 --> 00:02:13,809
+una función de costos J es
+
+62
+00:02:13,809 --> 00:02:15,742
+una función de este valor del vector
+
+63
+00:02:15,742 --> 00:02:17,501
+o de «theta»0 hasta
+
+64
+00:02:17,501 --> 00:02:18,924
+«theta» m. Y, una
+
+65
+00:02:18,924 --> 00:02:21,957
+función de costos se ve así,
+como alguna función de costos cuadrática a la derecha.
+
+66
+00:02:22,373 --> 00:02:25,712
+¿Cómo minimizamos la función de costos J?
+
+67
+00:02:25,712 --> 00:02:27,163
+El cálculo nos dice
+
+68
+00:02:27,163 --> 00:02:29,377
+que, si tú, que
+
+69
+00:02:29,377 --> 00:02:30,709
+una forma de hacerlo es
+
+70
+00:02:30,709 --> 00:02:38,604
+tomando la derivada parcial de J con respecto a cada uno de los parámetros de «theta» J, y entonces
+
+71
+00:02:38,604 --> 00:02:40,271
+igualarlos todos a 0.
+
+72
+00:02:40,271 --> 00:02:41,394
+Si haces eso y
+
+73
+00:02:41,394 --> 00:02:42,718
+resuelves para los valores de
+
+74
+00:02:42,718 --> 00:02:44,000
+«theta»0, «theta»1,
+
+75
+00:02:44,000 --> 00:02:45,973
+hasta «theta» n, entonces,
+
+76
+00:02:45,973 --> 00:02:47,217
+tendrías los valores
+
+77
+00:02:47,217 --> 00:02:48,765
+de «theta» para minimizar el costo
+
+78
+00:02:48,765 --> 00:02:50,878
+de la función J. En cambio,
+
+79
+00:02:50,878 --> 00:02:52,176
+si de verdad haces
+
+80
+00:02:52,176 --> 00:02:53,597
+el cálculo para hallar
+
+81
+00:02:53,597 --> 00:02:55,194
+la solución de los parámetros
+
+82
+00:02:55,194 --> 00:02:57,316
+«theta»0 hasta «theta» n,
+
+83
+00:02:57,316 --> 00:03:00,520
+la derivación se torna un tanto tediosa.
+
+84
+00:03:00,520 --> 00:03:01,625
+Y, lo que voy a hacer
+
+85
+00:03:01,625 --> 00:03:03,113
+en este video,
+
+86
+00:03:03,113 --> 00:03:04,852
+en realidad es no pasar
+
+87
+00:03:04,852 --> 00:03:06,297
+por la derivación, que es un poco
+
+88
+00:03:06,297 --> 00:03:07,657
+larga y un poco tediosa, pero
+
+89
+00:03:07,657 --> 00:03:08,962
+lo que quiero hacer solamente
+
+90
+00:03:08,962 --> 00:03:10,545
+decirte lo que tienes que saber
+
+91
+00:03:10,545 --> 00:03:12,619
+para que puedas implementar este proceso
+
+92
+00:03:12,619 --> 00:03:14,138
+y puedas despejar
+
+93
+00:03:14,138 --> 00:03:15,511
+los valores de «theta» que
+
+94
+00:03:15,511 --> 00:03:16,892
+correspondan a los lugares
+
+95
+00:03:16,892 --> 00:03:19,273
+en que las derivadas parciales sean igual a cero.
+
+96
+00:03:19,273 --> 00:03:21,733
+O lo que equivale o en otras palabras,
+
+97
+00:03:21,733 --> 00:03:23,357
+los valores de «theta» que
+
+98
+00:03:23,357 --> 00:03:25,901
+minimizan la función de costos J de «theta».
+
+99
+00:03:25,901 --> 00:03:27,283
+Soy consciente de que
+
+100
+00:03:27,283 --> 00:03:28,846
+algunos de los comentarios que hice
+
+101
+00:03:28,846 --> 00:03:29,914
+tienen sentido solo para aquellos
+
+102
+00:03:29,914 --> 00:03:31,896
+de ustedes que tienen una noción de cálculo.
+
+103
+00:03:31,896 --> 00:03:33,065
+Si no sabes,
+
+104
+00:03:33,065 --> 00:03:34,487
+estás menos familiarizado
+
+105
+00:03:34,487 --> 00:03:36,354
+con el cálculo, no te preocupes.
+
+106
+00:03:36,354 --> 00:03:37,404
+Solo te voy a decir
+
+107
+00:03:37,404 --> 00:03:38,374
+lo que necesitas para
+
+108
+00:03:38,374 --> 00:03:41,358
+implementar este algoritmo y hacerlo funcionar.
+
+109
+00:03:41,358 --> 00:03:42,585
+Para el ejemplo
+
+110
+00:03:42,585 --> 00:03:43,737
+que quiero usar como
+
+111
+00:03:43,737 --> 00:03:46,339
+ejemplo de funcionamiento digamos que
+
+112
+00:03:46,339 --> 00:03:49,056
+tengo m= 4 ejemplos de entrenamiento.
+
+113
+00:03:50,409 --> 00:03:52,881
+Para implementar esta
+
+114
+00:03:52,881 --> 00:03:56,515
+ecuación normal a gran escala, haré
+lo siguiente.
+
+115
+00:03:56,515 --> 00:03:57,640
+Voy a tomar mi
+
+116
+00:03:57,640 --> 00:04:00,375
+conjunto de datos, así que aquí están mis cuatro ejemplos de entrenamiento.
+
+117
+00:04:00,375 --> 00:04:01,844
+En este caso supongamos que,
+
+118
+00:04:01,844 --> 00:04:06,073
+como sabes, estos cuatro ejemplos son todos los datos que tengo.
+
+119
+00:04:06,073 --> 00:04:07,890
+Lo que haré es tomar
+
+120
+00:04:07,890 --> 00:04:09,007
+mi conjunto de datos y añadir
+
+121
+00:04:09,007 --> 00:04:11,289
+una columna adicional que corresponde
+
+122
+00:04:11,289 --> 00:04:14,579
+a mi variable adicional, x0,
+
+123
+00:04:14,579 --> 00:04:15,967
+que siempre
+
+124
+00:04:15,967 --> 00:04:17,527
+toma el valor de 1.
+
+125
+00:04:17,527 --> 00:04:18,681
+Lo que haré es
+
+126
+00:04:18,681 --> 00:04:19,943
+voy hacer es construir
+
+127
+00:04:19,943 --> 00:04:22,638
+una matriz que se llame "X" que es
+
+128
+00:04:22,638 --> 00:04:24,632
+una matriz que, básicamente, contiene todas
+
+129
+00:04:24,632 --> 00:04:26,100
+las variables de mis
+
+130
+00:04:26,100 --> 00:04:28,140
+datos de entrenamiento.
+
+131
+00:04:28,140 --> 00:04:31,528
+Aquí está mi, aquí están
+
+132
+00:04:31,528 --> 00:04:33,743
+todas mis variables y
+
+133
+00:04:33,743 --> 00:04:34,797
+vamos a tomar todos esos números y
+
+134
+00:04:34,797 --> 00:04:37,777
+vamos a ponerlos en esta matriz "X", ¿de acuerdo?
+
+135
+00:04:37,777 --> 00:04:39,179
+Como sabes, simplemente copio
+
+136
+00:04:39,179 --> 00:04:41,233
+los datos una columna
+
+137
+00:04:41,233 --> 00:04:45,962
+a la vez y luego le hago
+algo parecido a las "y".
+
+138
+00:04:45,962 --> 00:04:47,087
+Voy a tomar
+
+139
+00:04:47,087 --> 00:04:47,952
+los valores que estoy tratando de
+
+140
+00:04:47,952 --> 00:04:49,360
+predecir y construyo
+
+141
+00:04:49,360 --> 00:04:52,894
+un vector así y
+
+142
+00:04:52,894 --> 00:04:55,440
+lo llamo vector "y".
+
+143
+00:04:55,440 --> 00:04:58,038
+Así que "X" va a ser un
+
+144
+00:04:59,653 --> 00:05:05,688
+matriz de dimensiones m multiplicado por (n+1).
+
+145
+00:05:05,688 --> 00:05:07,490
+Y será
+
+146
+00:05:07,490 --> 00:05:14,421
+un vector de m dimensiones
+
+147
+00:05:14,421 --> 00:05:16,624
+donde m es la cantidad de
+ejemplos de entrenamiento
+
+148
+00:05:16,984 --> 00:05:18,688
+y n es, n es
+
+149
+00:05:18,688 --> 00:05:20,713
+la cantidad de variables, n+1, a causa
+
+150
+00:05:20,713 --> 00:05:24,825
+de la variable adicional x0 que tengo.
+
+151
+00:05:24,825 --> 00:05:26,350
+Por último, si tomas
+
+152
+00:05:26,350 --> 00:05:27,489
+tu matriz "X" y tomas
+
+153
+00:05:27,489 --> 00:05:28,595
+tu vector "y",
+
+154
+00:05:28,595 --> 00:05:31,065
+y si calculas esto y estableces
+
+155
+00:05:31,065 --> 00:05:32,419
+que «theta» es igual a
+
+156
+00:05:32,419 --> 00:05:34,440
+X transpuesta X inversa multiplicada por
+
+157
+00:05:34,440 --> 00:05:36,516
+X transpuesta Y, esto
+
+158
+00:05:36,516 --> 00:05:38,583
+te daría el valor de «theta»
+
+159
+00:05:38,583 --> 00:05:42,559
+que minimiza tu función de costos.
+
+160
+00:05:42,559 --> 00:05:43,436
+Esto es mucha
+
+161
+00:05:43,436 --> 00:05:44,416
+información en la diapositiva y
+
+162
+00:05:44,416 --> 00:05:47,514
+trabajé a través de ella usando
+un ejemplo específico de un conjunto de datos.
+
+163
+00:05:47,514 --> 00:05:49,241
+Permíteme escribirlo
+
+164
+00:05:49,333 --> 00:05:50,770
+de una manera más general
+
+165
+00:05:50,955 --> 00:05:53,418
+y luego, tan solo,
+y más adelante en
+
+166
+00:05:53,621 --> 00:05:56,531
+este video explicaré
+esta ecuación con un poco más de detalle.
+
+167
+00:05:57,581 --> 00:06:00,687
+Aún no queda totalmente claro cómo es que se hace esto.
+
+168
+00:06:00,687 --> 00:06:02,129
+En un caso general, digamos
+
+169
+00:06:02,129 --> 00:06:04,124
+que tenemos "m" ejemplos de entrenamiento
+
+170
+00:06:04,124 --> 00:06:05,697
+por lo que x1, y1 hasta
+
+171
+00:06:05,697 --> 00:06:09,319
+x n,y n y "n" variables.
+
+172
+00:06:09,319 --> 00:06:10,811
+Cada uno de los ejemplos de entrenamiento
+
+173
+00:06:10,811 --> 00:06:12,926
+x(i) parecerán vectores
+
+174
+00:06:12,926 --> 00:06:16,297
+así, que es un vector de variables de n+1 dimensiones.
+
+175
+00:06:16,943 --> 00:06:18,350
+La manera en que construiré
+
+176
+00:06:18,350 --> 00:06:20,674
+la matriz "X", esto también
+
+177
+00:06:20,674 --> 00:06:24,827
+es conocido como una matriz de diseño,
+
+178
+00:06:24,827 --> 00:06:26,712
+es como sigue.
+
+179
+00:06:26,712 --> 00:06:28,640
+Cada ejemplo de entrenamiento me da
+
+180
+00:06:28,640 --> 00:06:30,549
+un vector de variables como este,
+
+181
+00:06:30,549 --> 00:06:34,491
+una especie de vector de n+1 dimensiones.
+
+182
+00:06:34,491 --> 00:06:36,190
+La manera en que voy a construir mi
+
+183
+00:06:36,359 --> 00:06:39,734
+matriz de diseño "X" es simplemente construyéndola así.
+
+184
+00:06:39,734 --> 00:06:40,834
+Lo que voy a hacer
+
+185
+00:06:40,834 --> 00:06:42,109
+es tomar el primer
+
+186
+00:06:42,109 --> 00:06:43,711
+ejemplo de entrenamiento, eso es
+
+187
+00:06:43,711 --> 00:06:46,350
+un vector, tomar su transpuesta
+
+188
+00:06:46,350 --> 00:06:48,692
+para que quede así,
+
+189
+00:06:48,692 --> 00:06:50,250
+como sabes, una cosa larga y plana y
+
+190
+00:06:50,250 --> 00:06:55,153
+hacer de x1 transpuesta la primera fila de mi matriz de diseño.
+
+191
+00:06:55,153 --> 00:06:56,225
+Después tomaré mi
+
+192
+00:06:56,225 --> 00:06:58,682
+segundo ejemplo de entrenamiento, x2,
+
+193
+00:06:58,682 --> 00:07:00,437
+la transpuesta de eso y
+
+194
+00:07:00,437 --> 00:07:01,838
+lo pongo como la segunda fila
+
+195
+00:07:01,838 --> 00:07:04,068
+de "x" y así sigo
+
+196
+00:07:04,068 --> 00:07:07,206
+hasta llegar al último de mis ejemplos de entrenamiento.
+
+197
+00:07:07,206 --> 00:07:09,279
+Tomo la transpuesta de eso,
+
+198
+00:07:09,279 --> 00:07:10,850
+y esa es la última fila de
+
+199
+00:07:10,850 --> 00:07:12,665
+mi matriz "X". Y por eso
+
+200
+00:07:12,665 --> 00:07:14,418
+tomo mi matriz "X", una
+
+201
+00:07:14,418 --> 00:07:17,129
+matriz de m multiplicado por n+1
+
+202
+00:07:17,129 --> 00:07:19,836
+dimensiones.
+
+203
+00:07:19,836 --> 00:07:21,953
+Para ver un ejemplo concreto,
+
+204
+00:07:21,953 --> 00:07:23,505
+digamos que tengo una sola
+
+205
+00:07:23,505 --> 00:07:24,670
+variable, de verdad, solo una
+
+206
+00:07:24,670 --> 00:07:26,631
+variable además de x0,
+
+207
+00:07:26,631 --> 00:07:28,165
+que siempre es igual a 1.
+
+208
+00:07:28,165 --> 00:07:30,376
+Así que si mis vectores de variables
+
+209
+00:07:30,376 --> 00:07:32,186
+xi son iguales a este 1,
+
+210
+00:07:32,186 --> 00:07:33,878
+que es x0, entonces
+
+211
+00:07:33,878 --> 00:07:35,912
+alguna variable real, como quizás sea
+
+212
+00:07:35,912 --> 00:07:37,662
+el tamaño de la casa, entonces
+
+213
+00:07:37,662 --> 00:07:40,947
+mi matriz de diseño "X", sería igual a eso.
+
+214
+00:07:40,947 --> 00:07:42,589
+Para la primera fila, básicamente
+
+215
+00:07:42,589 --> 00:07:46,071
+voy a tomar esto y su transpuesta.
+
+216
+00:07:46,071 --> 00:07:51,644
+Así que me quedará 1 y luego X-1-1.
+
+217
+00:07:51,644 --> 00:07:53,309
+Para la segunda fila, nos quedará 1
+
+218
+00:07:53,309 --> 00:07:56,077
+y luego
+
+219
+00:07:56,077 --> 00:07:58,046
+X-1-2 y así
+
+220
+00:07:58,046 --> 00:07:59,046
+bajando hasta 1 y
+
+221
+00:07:59,046 --> 00:08:01,420
+X-1-m.
+
+222
+00:08:01,420 --> 00:08:03,084
+Por lo que está será
+
+223
+00:08:03,084 --> 00:08:07,776
+una matriz de m por 2 dimensiones.
+
+224
+00:08:07,776 --> 00:08:08,821
+Así es como se construye
+
+225
+00:08:08,821 --> 00:08:11,251
+la matriz "X". Y, el
+
+226
+00:08:11,251 --> 00:08:13,886
+vector "y", a veces
+
+227
+00:08:13,886 --> 00:08:15,487
+le dibujo una flecha en la parte superior
+
+228
+00:08:15,487 --> 00:08:16,541
+para denotar que es un vector,
+
+229
+00:08:16,541 --> 00:08:19,871
+pero muy a menudo escribo solo "y", da igual.
+
+230
+00:08:19,871 --> 00:08:21,182
+El vector "y" se obtiene al
+
+231
+00:08:21,182 --> 00:08:23,275
+tomar todos los valores,
+
+232
+00:08:23,275 --> 00:08:25,098
+todos los precios correctos
+
+233
+00:08:25,098 --> 00:08:27,076
+de las casas en mi conjunto de entrenamiento, y
+
+234
+00:08:27,076 --> 00:08:28,963
+ponerlas unas sobre otras en
+
+235
+00:08:28,963 --> 00:08:32,011
+un vector de m dimensiones, y eso
+
+236
+00:08:32,011 --> 00:08:34,511
+es "y". Por fin, después de
+
+237
+00:08:34,511 --> 00:08:36,724
+haber construido la matriz "X"
+
+238
+00:08:36,724 --> 00:08:38,184
+y el vector "y",
+
+239
+00:08:38,184 --> 00:08:40,887
+calculamos «theta» como 1/(X’X) * X’Y.
+
+240
+00:08:40,887 --> 00:08:47,243
+Solo
+
+241
+00:08:47,243 --> 00:08:49,356
+quiero,
+
+242
+00:08:49,356 --> 00:08:51,348
+solo quiero asegurarme de que
+esta ecuación te hace sentido
+
+243
+00:08:51,348 --> 00:08:52,242
+y de que sepas cómo implementarla.
+
+244
+00:08:52,242 --> 00:08:55,221
+Bueno, pero ¿qué es esta 1/(X’X) * X’Y en concreto?
+
+245
+00:08:55,221 --> 00:08:57,903
+Bien, 1/(X’X) es
+
+246
+00:08:57,903 --> 00:09:02,101
+la inversa de la matriz X’X.
+
+247
+00:09:02,101 --> 00:09:04,498
+Específicamente, si fueran
+
+248
+00:09:04,498 --> 00:09:08,055
+que el conjunto A es
+
+249
+00:09:08,055 --> 00:09:11,120
+igual a X’X,
+
+250
+00:09:11,120 --> 00:09:12,542
+X’ es
+
+251
+00:09:12,542 --> 00:09:14,063
+una matriz,
+
+252
+00:09:14,063 --> 00:09:15,305
+X’X es otra matriz y
+
+253
+00:09:15,305 --> 00:09:17,560
+la llamamos matriz "A". Luego, ya
+
+254
+00:09:17,560 --> 00:09:19,968
+sabes, 1/(X’X) es solo
+
+255
+00:09:19,968 --> 00:09:22,352
+tomar esta matriz "A" e invertirla, ¿correcto?.
+
+256
+00:09:23,245 --> 00:09:24,417
+Esto produce 1/A.
+
+257
+00:09:26,025 --> 00:09:28,919
+Y así es como se calcula esto.
+
+258
+00:09:28,919 --> 00:09:31,451
+Calculas X’X y luego calculas la inversa.
+
+259
+00:09:31,451 --> 00:09:34,296
+Aun no hemos hablado de Octave.
+
+260
+00:09:34,296 --> 00:09:35,941
+Lo haremos en los videos
+
+261
+00:09:35,941 --> 00:09:37,211
+posteriores, sin embargo en
+
+262
+00:09:37,211 --> 00:09:39,073
+el lenguaje de programación de Octave o en una
+
+263
+00:09:39,073 --> 00:09:40,652
+vista parecida, también en
+
+264
+00:09:40,652 --> 00:09:42,957
+el lenguaje de programación Matlab es muy parecido.
+
+265
+00:09:42,957 --> 00:09:46,937
+El comando para calcular esta cantidad,
+
+266
+00:09:47,384 --> 00:09:50,326
+X transpuesta X inversa multiplicada por
+
+267
+00:09:50,326 --> 00:09:52,537
+X transpuesta Y, es así.
+
+268
+00:09:52,537 --> 00:09:54,903
+En Octave, X prima es
+
+269
+00:09:54,903 --> 00:09:58,354
+la notación que utilizas para denotar X transpuesta.
+
+270
+00:09:58,354 --> 00:10:00,737
+Y bien, la expresión que está
+
+271
+00:10:00,737 --> 00:10:03,588
+en la caja roja, calcula
+
+272
+00:10:03,588 --> 00:10:06,633
+X transpuesta multiplicada por X.
+
+273
+00:10:06,633 --> 00:10:08,551
+pinv es una función para
+
+274
+00:10:08,551 --> 00:10:09,701
+calcular la inversa de
+
+275
+00:10:09,701 --> 00:10:11,818
+una matriz, así que esto calcula
+
+276
+00:10:11,818 --> 00:10:14,656
+X transpuesta X inversa,
+
+277
+00:10:14,656 --> 00:10:16,453
+y después multiplicas eso por
+
+278
+00:10:16,453 --> 00:10:18,267
+X transpuesta y multiplicas eso
+
+279
+00:10:18,267 --> 00:10:19,712
+por "y". Y terminas
+
+280
+00:10:19,712 --> 00:10:22,325
+calculando la fórmula
+
+281
+00:10:22,325 --> 00:10:24,369
+que no demostré,
+
+282
+00:10:24,369 --> 00:10:25,994
+pero que sí es posible
+
+283
+00:10:25,994 --> 00:10:27,382
+probar matemáticamente, aunque
+
+284
+00:10:27,382 --> 00:10:28,537
+no lo voy a hacer aquí,
+
+285
+00:10:28,537 --> 00:10:31,071
+que esta fórmula te da
+
+286
+00:10:31,071 --> 00:10:32,316
+el valor óptimo de «theta»
+
+287
+00:10:32,316 --> 00:10:34,865
+en el sentido de que si igualas «theta»
+
+288
+00:10:34,865 --> 00:10:36,512
+a esto, ese es el valor
+
+289
+00:10:36,512 --> 00:10:38,000
+de «theta» que minimiza
+
+290
+00:10:38,000 --> 00:10:40,169
+la función de costo J de «theta»
+
+291
+00:10:40,169 --> 00:10:41,993
+para la nueva regresión.
+
+292
+00:10:41,993 --> 00:10:44,530
+Un último detalle del video anterior.
+
+293
+00:10:44,530 --> 00:10:46,131
+Hablé de la habilidad
+
+294
+00:10:46,131 --> 00:10:47,061
+de variables y de la idea de
+
+295
+00:10:47,061 --> 00:10:48,878
+hacer que las variables estén
+
+296
+00:10:48,878 --> 00:10:50,726
+dentro de rangos similares
+
+297
+00:10:50,726 --> 00:10:54,900
+de escalas, de rangos similares de valores parecidos entre sí.
+
+298
+00:10:54,900 --> 00:10:56,872
+Si usas este método
+
+299
+00:10:56,872 --> 00:10:59,843
+de la ecuación normal, entonces el escalamiento
+
+300
+00:10:59,843 --> 00:11:02,315
+de variables no es del todo necesario
+
+301
+00:11:02,315 --> 00:11:04,361
+y, de hecho, está bien si,
+
+302
+00:11:04,361 --> 00:11:06,094
+digamos, alguna variable x1
+
+303
+00:11:06,094 --> 00:11:07,552
+está entre 0 y 1,
+
+304
+00:11:07,552 --> 00:11:08,846
+y otra variable x2 está
+
+305
+00:11:08,846 --> 00:11:10,550
+entre 0 y
+
+306
+00:11:10,550 --> 00:11:12,019
+1000 y otra variable
+
+307
+00:11:12,019 --> 00:11:14,159
+x3 está entre 0
+
+308
+00:11:14,159 --> 00:11:15,822
+y 10 a la
+
+309
+00:11:15,822 --> 00:11:17,263
+menos 5 y si
+
+310
+00:11:17,263 --> 00:11:18,321
+usas el método de la ecuación normal
+
+311
+00:11:18,321 --> 00:11:20,296
+esto está bien y no hay
+
+312
+00:11:20,296 --> 00:11:21,550
+necesidad de aplicar el escalamiento
+
+313
+00:11:21,550 --> 00:11:22,740
+de variables, aunque, por supuesto,
+
+314
+00:11:22,740 --> 00:11:25,667
+si estas usando el gradiente de descenso,
+
+315
+00:11:25,667 --> 00:11:27,814
+entonces, el ajuste de las escalas sigue siendo importante.
+
+316
+00:11:28,030 --> 00:11:31,020
+Por último, dónde deberías usar el gradiente de descenso
+
+317
+00:11:31,020 --> 00:11:33,273
+y dónde el método de la ecuación normal.
+
+318
+00:11:33,273 --> 00:11:35,800
+Aquí presento algunas de sus ventajas y desventajas.
+
+319
+00:11:35,800 --> 00:11:38,305
+Digamos que tienes "m" ejemplos de entrenamiento
+
+320
+00:11:38,305 --> 00:11:40,918
+y "n" variables.
+
+321
+00:11:40,918 --> 00:11:42,854
+Una desventaja del gradiente de descenso
+
+322
+00:11:42,854 --> 00:11:46,015
+es que necesitas escoger la tasa de aprendizaje «alfa».
+
+323
+00:11:46,015 --> 00:11:47,374
+Y, con frecuencia, esto significa tener que ejecutarlo
+
+324
+00:11:47,374 --> 00:11:49,128
+varias veces con diferentes
+
+325
+00:11:49,128 --> 00:11:51,154
+tasas de aprendizaje «alfa» para ver cuál funciona mejor.
+
+326
+00:11:51,154 --> 00:11:54,274
+Y eso es trabajo adicional y más complicaciones.
+
+327
+00:11:54,274 --> 00:11:55,976
+Otra desventaja del gradiente de descenso
+
+328
+00:11:55,976 --> 00:11:57,841
+es que requiere muchas más iteraciones.
+
+329
+00:11:57,841 --> 00:11:59,346
+Por lo que, depende de los detalles,
+
+330
+00:11:59,346 --> 00:12:00,839
+podría hacerlo más lento, aunque ese
+
+331
+00:12:00,839 --> 00:12:04,391
+no es el fin de la historia como veremos en un momento.
+
+332
+00:12:04,391 --> 00:12:07,544
+En cuanto a la ecuación normal, no tienes que
+escoger ninguna tasa de aprendizaje «alfa».
+
+333
+00:12:07,821 --> 00:12:11,208
+Por eso, como ves, es muy conveniente,
+hace que sea fácil de implementar.
+
+334
+00:12:11,208 --> 00:12:13,888
+Simplemente la usas y por lo general funciona.
+
+335
+00:12:13,888 --> 00:12:15,061
+Y no tienes que
+
+336
+00:12:15,061 --> 00:12:16,129
+iterar, así que no tienes que
+
+337
+00:12:16,129 --> 00:12:17,456
+trazar J de «theta» o
+
+338
+00:12:17,456 --> 00:12:20,497
+revisar la convergencia ni realizar esos pasos adicionales
+
+339
+00:12:20,497 --> 00:12:21,931
+Hasta aquí, todo parece favorecer
+
+340
+00:12:21,931 --> 00:12:23,846
+la ecuación normal.
+
+341
+00:12:24,826 --> 00:12:27,085
+Ahora presento algunas desventajas
+
+342
+00:12:27,612 --> 00:12:29,435
+de la ecuación normal y algunas ventajas del gradiente de descenso.
+
+343
+00:12:29,681 --> 00:12:31,447
+El gradiente de descenso funciona bastante bien,
+
+344
+00:12:31,928 --> 00:12:34,698
+aun cuando tengas una gran cantidad de variables.
+
+345
+00:12:34,698 --> 00:12:36,168
+Aunque tengas
+
+346
+00:12:36,168 --> 00:12:37,812
+millones de variables
+
+347
+00:12:37,812 --> 00:12:40,865
+puedes usar el gradiente de descenso y será razonablemente eficiente.
+
+348
+00:12:40,865 --> 00:12:43,381
+Hará algo razonable.
+
+349
+00:12:43,381 --> 00:12:46,566
+En contraste con la ecuación normal que
+
+350
+00:12:46,566 --> 00:12:48,014
+para despejar los datos de los parámetros
+
+351
+00:12:48,014 --> 00:12:50,394
+tenemos que despejar este término.
+
+352
+00:12:50,394 --> 00:12:53,058
+Tenemos que calcular este término 1/(X’X).
+
+353
+00:12:53,058 --> 00:12:56,328
+Esta matriz X transpuesta X.
+
+354
+00:12:56,328 --> 00:13:00,206
+Esa es una matriz n por n
+si tienes "n" variables
+
+355
+00:13:00,770 --> 00:13:02,947
+porque si miras
+
+356
+00:13:02,947 --> 00:13:03,917
+las dimensiones de
+
+357
+00:13:03,917 --> 00:13:05,529
+X transpuesta y las dimensiones de X,
+
+358
+00:13:05,529 --> 00:13:07,024
+multiplicas y averiguas
+
+359
+00:13:07,024 --> 00:13:08,749
+cuáles son las dimensiones del producto.
+
+360
+00:13:08,749 --> 00:13:10,983
+La matriz X transpuesta X
+
+361
+00:13:10,983 --> 00:13:13,727
+es una matriz n por n
+
+362
+00:13:13,727 --> 00:13:15,853
+donde "n" es la cantidad de variables y
+
+363
+00:13:15,853 --> 00:13:18,641
+en la mayoría de las implementaciones
+
+364
+00:13:18,641 --> 00:13:20,990
+el costo de invertir
+
+365
+00:13:20,990 --> 00:13:23,087
+la matriz, aumentó aproximadamente
+
+366
+00:13:23,087 --> 00:13:25,707
+como el cubo de la dimensión de la matriz.
+
+367
+00:13:25,707 --> 00:13:28,180
+Pues bien, calcular esta inversa tiene un costo
+
+368
+00:13:28,180 --> 00:13:29,964
+de orden y tiempo cúbicos.
+
+369
+00:13:29,964 --> 00:13:31,213
+A veces es más rápido que
+
+370
+00:13:31,213 --> 00:13:35,050
+"n" al cubo pero, es un buen aproximado
+para nuestros propósitos.
+
+371
+00:13:35,489 --> 00:13:36,605
+Luego si "n", el número de variables,
+es muy grande
+
+372
+00:13:37,643 --> 00:13:39,025
+calcular esta
+
+373
+00:13:39,025 --> 00:13:40,570
+cifra puede ser lento y
+
+374
+00:13:40,570 --> 00:13:44,289
+el método de la ecuación normal puede resultar mucho más lento.
+
+375
+00:13:44,289 --> 00:13:45,491
+Pues si "n" es
+
+376
+00:13:45,491 --> 00:13:47,622
+grande, entonces yo utilizaría
+
+377
+00:13:47,622 --> 00:13:49,490
+el gradiente de descenso porque
+
+378
+00:13:49,490 --> 00:13:51,872
+no queremos pagar todo esto en tiempo "q".
+
+379
+00:13:51,872 --> 00:13:53,525
+Pero, si "n" es relativamente pequeña,
+
+380
+00:13:53,525 --> 00:13:57,395
+entonces la ecuación normal pudiera darte una mejor manera de resolver los parámetros.
+
+381
+00:13:57,395 --> 00:13:59,080
+¿Qué es pequeño y qué es grande?
+
+382
+00:13:59,080 --> 00:14:00,741
+Bueno, si "n" es
+
+383
+00:14:00,741 --> 00:14:02,130
+del orden de cien, entonces
+
+384
+00:14:02,130 --> 00:14:03,822
+invertir una matriz cien por cien no es problema
+
+385
+00:14:03,822 --> 00:14:06,539
+para los estándares computacionales modernos.
+
+386
+00:14:06,539 --> 00:14:10,966
+Si "n" es mil, yo todavía utilizaría
+el método de la ecuación normal.
+
+387
+00:14:10,966 --> 00:14:12,583
+Invertir una matriz mil por mil es
+
+388
+00:14:12,583 --> 00:14:15,408
+en realidad muy rápido en una computadora moderna.
+
+389
+00:14:15,408 --> 00:14:18,406
+Si "n" es diez mil, lo pensaría.
+
+390
+00:14:18,406 --> 00:14:20,618
+Invertir una matriz diez mil por diez mil
+
+391
+00:14:20,618 --> 00:14:22,208
+ya empieza a ser un tanto lento
+
+392
+00:14:22,208 --> 00:14:23,471
+y quizás comience a inclinarme
+
+393
+00:14:23,471 --> 00:14:25,007
+hacia el
+
+394
+00:14:25,007 --> 00:14:27,007
+gradiente de descenso, pero quizás no del todo.
+
+395
+00:14:27,114 --> 00:14:28,672
+Si "n" es diez mil, tu puedes más o menos
+
+396
+00:14:28,672 --> 00:14:31,148
+convertir una matriz diez mil por diez mil.
+
+397
+00:14:31,148 --> 00:14:34,345
+Pero si es mucho más grande que eso, entonces,
+es probable que use el gradiente de descenso.
+
+398
+00:14:34,345 --> 00:14:35,834
+Así que si "n" es igual a
+
+399
+00:14:35,834 --> 00:14:36,920
+diez elevado a la seis con un millón
+
+400
+00:14:36,920 --> 00:14:38,963
+de variables, entonces invertir una matriz
+
+401
+00:14:38,963 --> 00:14:41,565
+de un millón por un millón será
+
+402
+00:14:41,565 --> 00:14:42,631
+muy costoso y
+
+403
+00:14:42,631 --> 00:14:46,163
+de seguro yo favorecería el gradiente de descenso si tienes esa cantidad de variables.
+
+404
+00:14:46,163 --> 00:14:47,859
+Exactamente cuán grande tiene que ser
+
+405
+00:14:47,859 --> 00:14:49,282
+un conjunto de variables
+
+406
+00:14:49,282 --> 00:14:52,655
+para convertirlo a gradiente de descenso.
+Es difícil dar un número exacto.
+
+407
+00:14:52,655 --> 00:14:53,855
+Pero, para mí suele ser
+
+408
+00:14:53,855 --> 00:14:55,501
+alrededor de diez mil cuando
+
+409
+00:14:55,501 --> 00:14:58,258
+comienzo a considerar el cambio
+
+410
+00:14:58,335 --> 00:15:00,663
+a gradientes de descenso o quizás,
+
+411
+00:15:00,663 --> 00:15:04,324
+a otros de los algoritmos que veremos después en esta clase.
+
+412
+00:15:04,324 --> 00:15:05,765
+En resumen, siempre y cuando
+
+413
+00:15:05,765 --> 00:15:06,999
+la cantidad de variables
+
+414
+00:15:06,999 --> 00:15:08,475
+no sea demasiado grande, la ecuación normal
+
+415
+00:15:08,475 --> 00:15:12,229
+nos da un método alternativo
+para resolver para los parámetros de «theta».
+
+416
+00:15:12,583 --> 00:15:13,983
+En concreto, siempre y cuando
+
+417
+00:15:13,983 --> 00:15:15,749
+el número de variables sea menor
+
+418
+00:15:15,749 --> 00:15:17,472
+que 1000, bien, yo usaría,
+
+419
+00:15:17,472 --> 00:15:18,881
+se suele usar
+
+420
+00:15:18,881 --> 00:15:21,955
+el método de la ecuación normal en lugar del gradiente de descenso.
+
+421
+00:15:21,955 --> 00:15:23,549
+Para adelantar algunas ideas que
+
+422
+00:15:23,549 --> 00:15:24,493
+veremos más adelante en el curso
+
+423
+00:15:24,493 --> 00:15:26,235
+a medida que lleguemos
+
+424
+00:15:26,235 --> 00:15:27,912
+al algoritmo de aprendizaje más complejo,
+
+425
+00:15:27,912 --> 00:15:29,617
+cuando hablemos, por ejemplo, de
+
+426
+00:15:29,617 --> 00:15:32,188
+un algoritmo de clasificación, como un algoritmo de regresión logística.
+
+427
+00:15:32,834 --> 00:15:34,319
+Veremos que esos algoritmos
+
+428
+00:15:34,319 --> 00:15:35,467
+en realidad…
+
+429
+00:15:35,467 --> 00:15:37,592
+El método de la ecuación normal
+en realidad no funciona
+
+430
+00:15:37,592 --> 00:15:39,388
+para esos algoritmos de aprendizaje
+
+431
+00:15:39,388 --> 00:15:41,190
+más sofisticados y
+
+432
+00:15:41,190 --> 00:15:43,916
+tendremos que recurrir al gradiente de descenso
+para esos algoritmos.
+
+433
+00:15:43,916 --> 00:15:46,682
+Es útil conocer el algoritmo del gradiente de descenso.
+
+434
+00:15:46,682 --> 00:15:48,859
+Tanto para la regresión lineal donde tenemos
+
+435
+00:15:48,982 --> 00:15:50,017
+una gran cantidad de variables y
+
+436
+00:15:50,017 --> 00:15:52,373
+como para algunos de los otros algoritmos
+
+437
+00:15:52,373 --> 00:15:53,893
+que veremos en este curso
+
+438
+00:15:53,893 --> 00:15:55,438
+porque el método de la ecuación normal
+
+439
+00:15:55,438 --> 00:15:58,747
+simplemente no les aplica o no funciona.
+
+440
+00:15:58,747 --> 00:16:00,537
+Pero para este modelo específico
+
+441
+00:16:00,537 --> 00:16:02,904
+de regresión lineal la ecuación normal
+
+442
+00:16:02,904 --> 00:16:05,827
+puede darte una alternativa que puede ser
+
+443
+00:16:07,219 --> 00:16:08,612
+mucho más rápida que el gradiente descendiente.
+
+444
+00:16:09,604 --> 00:16:11,920
+Entonces, depende de tu algoritmo,
+
+445
+00:16:12,007 --> 00:16:14,164
+depende de los detalles de los problemas y
+
+446
+00:16:14,164 --> 00:16:15,550
+de cuántas variables tengas.
+
+447
+00:16:15,550 --> 00:16:19,550
+Vale la pena conocer
+estos dos algoritmos.

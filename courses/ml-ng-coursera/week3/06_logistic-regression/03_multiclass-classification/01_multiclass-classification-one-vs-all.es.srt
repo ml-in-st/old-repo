@@ -1,0 +1,728 @@
+1
+00:00:00,200 --> 00:00:01,596
+En este video definiré cuál
+es posible que sea el problema más común
+
+2
+00:00:01,620 --> 00:00:03,659
+cómo lograr que la regresión logística
+
+3
+00:00:03,659 --> 00:00:06,089
+funcione para problemas de clasificación multiclase,
+
+4
+00:00:06,089 --> 00:00:07,526
+y de manera particular quiero
+
+5
+00:00:07,526 --> 00:00:12,070
+hablarte sobre un algoritmo llamado clasificación uno-contra-todos.
+
+6
+00:00:12,150 --> 00:00:14,316
+¿Qué es un problema de clasificación multiclase?
+
+7
+00:00:14,316 --> 00:00:15,945
+He aquí algunos ejemplos.
+
+8
+00:00:15,945 --> 00:00:17,318
+Supongamos que quieres que un
+
+9
+00:00:17,320 --> 00:00:19,691
+algoritmo de aprendizaje coloque automáticamente tu
+
+10
+00:00:19,710 --> 00:00:21,076
+correo electrónico en carpetas diferentes o
+
+11
+00:00:21,076 --> 00:00:23,398
+etiquete automáticamente tus correos electrónicos.
+
+12
+00:00:23,398 --> 00:00:24,749
+Entonces, posiblemente tendrás diferentes carpetas
+
+13
+00:00:24,790 --> 00:00:27,052
+o diferentes etiquetas para el correo electrónico del trabajo,
+
+14
+00:00:27,060 --> 00:00:28,236
+correo electrónico de tus amigos,
+
+15
+00:00:28,236 --> 00:00:31,561
+correo electrónico de tu familia y correos sobre tu pasatiempo.
+
+16
+00:00:31,590 --> 00:00:33,145
+Así pues, aquí tenemos
+
+17
+00:00:33,145 --> 00:00:34,856
+un problema de clasificación con 4
+
+18
+00:00:34,900 --> 00:00:36,164
+clases, a las que podríamos
+
+19
+00:00:36,180 --> 00:00:38,129
+asignar los números, las clases
+
+20
+00:00:38,129 --> 00:00:41,326
+y=1, y=2, y=3 y
+
+21
+00:00:41,326 --> 00:00:43,530
+y=4 también. Otro
+
+22
+00:00:44,490 --> 00:00:45,790
+ejemplo, para un diagnostico
+
+23
+00:00:46,000 --> 00:00:47,260
+médico: si un paciente
+
+24
+00:00:47,800 --> 00:00:48,910
+llega a tu oficina con
+
+25
+00:00:48,930 --> 00:00:51,395
+tal vez la nariz congestionada, los posibles
+
+26
+00:00:51,395 --> 00:00:52,762
+diagnósticos podrían ser que
+
+27
+00:00:52,762 --> 00:00:54,140
+no está enfermo, tal vez eso es
+
+28
+00:00:54,140 --> 00:00:55,474
+y=1; o que tiene
+
+29
+00:00:55,490 --> 00:00:59,026
+un resfriado, 2; o que tiene gripe.
+
+30
+00:00:59,026 --> 00:01:00,541
+Y el tercer y último ejemplo,
+
+31
+00:01:00,541 --> 00:01:02,056
+si estás utilizando el aprendizaje automático
+
+32
+00:01:02,090 --> 00:01:03,906
+para clasificar el clima, ya sabes,
+
+33
+00:01:03,910 --> 00:01:05,299
+tal vez quieres decidir si
+
+34
+00:01:05,299 --> 00:01:07,937
+el clima es soleado, nublado, lluvioso
+
+35
+00:01:07,950 --> 00:01:10,211
+o con nieve, o si va a nevar.
+
+36
+00:01:10,230 --> 00:01:11,165
+Y así, en todos esos
+
+37
+00:01:11,165 --> 00:01:12,808
+ejemplos, "y" puede tomar
+
+38
+00:01:12,808 --> 00:01:14,300
+un número reducido de
+
+39
+00:01:14,300 --> 00:01:16,498
+valores discretos, tal vez 1, 2
+
+40
+00:01:16,498 --> 00:01:17,810
+3, de 1 a 4 y así sucesivamente, y
+
+41
+00:01:17,890 --> 00:01:20,659
+estos son problemas de clasificación multiclase.
+
+42
+00:01:20,659 --> 00:01:21,904
+Por cierto, en realidad no
+
+43
+00:01:21,904 --> 00:01:23,632
+importa si indexamos ya sea como
+
+44
+00:01:23,632 --> 00:01:27,063
+0 1 2 3 o como 1 2 3 4,
+
+45
+00:01:27,090 --> 00:01:29,138
+tiendo a indexar mis clases
+
+46
+00:01:29,138 --> 00:01:31,569
+a partir del 1 en lugar de empezar desde 0.
+
+47
+00:01:31,569 --> 00:01:33,756
+Pero de cualquier manera, a menudo, realmente no importa.
+
+48
+00:01:33,756 --> 00:01:35,243
+Mientras que anteriormente, para un problema de clasificación
+
+49
+00:01:35,243 --> 00:01:39,375
+binaria, nuestro conjunto de datos se veía así,
+
+50
+00:01:39,375 --> 00:01:41,617
+para un problema de clasificación multiclase, nuestro
+
+51
+00:01:41,617 --> 00:01:42,792
+conjunto de datos puede verse
+
+52
+00:01:42,792 --> 00:01:44,362
+así, donde estoy usando
+
+53
+00:01:44,362 --> 00:01:48,399
+tres símbolos diferentes para representar nuestras tres clases.
+
+54
+00:01:48,410 --> 00:01:49,858
+Entonces, la pregunta es: Dado un conjunto de datos
+
+55
+00:01:49,858 --> 00:01:51,613
+con tres clases
+
+56
+00:01:51,613 --> 00:01:53,193
+en donde este es el
+
+57
+00:01:53,193 --> 00:01:54,651
+ejemplo de una clase, este
+
+58
+00:01:54,651 --> 00:01:55,768
+es el ejemplo de una clase diferente,
+
+59
+00:01:55,790 --> 00:01:58,389
+y, este es el ejemplo de la tercera clase.
+
+60
+00:01:58,410 --> 00:02:01,421
+¿Cómo obtenemos un algoritmo de aprendizaje que trabaje para este escenario?
+
+61
+00:02:01,421 --> 00:02:02,598
+Ya sabemos cómo
+
+62
+00:02:02,598 --> 00:02:05,096
+hacer la clasificación binaria, utilizando la
+
+63
+00:02:05,096 --> 00:02:06,594
+regresión logística, sabemos cómo,
+
+64
+00:02:06,594 --> 00:02:07,736
+ya sabes, tal vez, por la línea recta,
+
+65
+00:02:07,736 --> 00:02:10,613
+para separar las positivas y negativas.
+
+66
+00:02:10,613 --> 00:02:12,116
+Usando una idea llamada
+
+67
+00:02:12,116 --> 00:02:14,399
+clasificación uno contra todos, podemos
+
+68
+00:02:14,400 --> 00:02:15,730
+entonces tomar esto, y, hacerlo
+
+69
+00:02:15,730 --> 00:02:18,646
+funcionar para la clasificación multiclase también.
+
+70
+00:02:18,650 --> 00:02:21,617
+Así es como funciona la clasificación uno contra todos.
+
+71
+00:02:21,620 --> 00:02:25,777
+Y, esto es también llamado a veces "uno contra el resto."
+
+72
+00:02:25,777 --> 00:02:26,941
+Digamos que tenemos un conjunto
+
+73
+00:02:26,941 --> 00:02:28,138
+de entrenamiento, como se muestra a la
+
+74
+00:02:28,150 --> 00:02:30,456
+izquierda, donde tenemos 3 clases.
+
+75
+00:02:30,470 --> 00:02:32,310
+Así que, si y=1, denotamos eso
+
+76
+00:02:32,310 --> 00:02:34,405
+con un triángulo, si y=2 con unl
+
+77
+00:02:34,405 --> 00:02:37,970
+cuadrado, si y=3 entonces, la cruz.
+
+78
+00:02:37,980 --> 00:02:39,460
+Lo que vamos a hacer es,
+
+79
+00:02:39,480 --> 00:02:41,350
+tomar un conjunto de entrenamiento, y convertir
+
+80
+00:02:41,350 --> 00:02:44,816
+esto en tres problemas de clasificación binaria separados.
+
+81
+00:02:44,816 --> 00:02:46,719
+Entonces, voy a convertir esto en tres
+
+82
+00:02:46,750 --> 00:02:49,450
+problemas separados de clasificación de dos clases.
+
+83
+00:02:49,450 --> 00:02:51,660
+Vamos a empezar con la clase 1, que es un triángulo.
+
+84
+00:02:51,660 --> 00:02:52,990
+Vamos a crear esencialmente un
+
+85
+00:02:53,050 --> 00:02:55,418
+nuevo conjunto de entrenamiento falso,
+
+86
+00:02:55,440 --> 00:02:56,913
+en donde las clases 2 y 3
+
+87
+00:02:56,920 --> 00:02:58,151
+quedan asignadas a la
+
+88
+00:02:58,151 --> 00:02:59,873
+clase negativa y la clase 1
+
+89
+00:02:59,873 --> 00:03:01,134
+queda asignada a la clase positiva.
+
+90
+00:03:01,134 --> 00:03:02,352
+Cuando creamos un nuevo conjunto
+
+91
+00:03:02,380 --> 00:03:03,700
+de entrenamiento, como el que se muestra
+
+92
+00:03:03,700 --> 00:03:05,508
+a la derecha, vamos a
+
+93
+00:03:05,508 --> 00:03:07,573
+ajustar un clasificador, que voy
+
+94
+00:03:07,573 --> 00:03:10,200
+a llamar "h" subíndice «theta»
+
+95
+00:03:10,220 --> 00:03:12,626
+superíndice 1 de "x"
+
+96
+00:03:12,640 --> 00:03:15,659
+en donde aquí, los triángulos
+
+97
+00:03:15,659 --> 00:03:19,008
+son los ejemplos positivos y los círculos son los ejemplos negativos.
+
+98
+00:03:19,008 --> 00:03:20,649
+Por lo tanto, piensa que a los triángulos
+
+99
+00:03:20,649 --> 00:03:21,800
+se les ha asignado el valor 1
+
+100
+00:03:21,800 --> 00:03:25,291
+y a los círculos la suma, el valor de cero.
+
+101
+00:03:25,300 --> 00:03:26,723
+Y sólo vamos a intentar
+
+102
+00:03:26,723 --> 00:03:29,556
+un fuego cruzado de regresión logística estándar
+
+103
+00:03:29,556 --> 00:03:34,173
+y tal vez eso nos dará una posición delimitada.
+
+104
+00:03:34,173 --> 00:03:34,173
+¿De acuerdo?
+
+105
+00:03:34,890 --> 00:03:37,693
+El superíndice 1 de aquí es la clase uno.
+
+106
+00:03:37,693 --> 00:03:40,777
+Por lo tanto, estamos haciendo esto para la primera clase del triángulo.
+
+107
+00:03:40,800 --> 00:03:42,302
+A continuación, hacemos lo mismo que para la clase 2.
+
+108
+00:03:42,302 --> 00:03:44,013
+Vamos a tomar los cuadrados y
+
+109
+00:03:44,020 --> 00:03:45,456
+vamos a asignar los cuadrados a la
+
+110
+00:03:45,470 --> 00:03:47,001
+clase positiva y asignamos
+
+111
+00:03:47,001 --> 00:03:50,213
+todo lo demás, los triángulos y las cruces, a la clase negativa.
+
+112
+00:03:50,220 --> 00:03:54,173
+Y después ajustamos un segundo clasificador de regresión logística.
+
+113
+00:03:54,173 --> 00:03:56,410
+Voy a llamar a este "h" de "x"
+
+114
+00:03:56,420 --> 00:03:58,352
+superíndice 2, en el que el
+
+115
+00:03:58,352 --> 00:04:00,029
+el superíndice 2 indica que
+
+116
+00:04:00,029 --> 00:04:01,860
+ahora estamos haciendo esto: tratando a
+
+117
+00:04:01,870 --> 00:04:03,310
+la clase del cuadrado como clase positiva
+
+118
+00:04:03,350 --> 00:04:07,518
+y tal vez podemos obtener el clasificador así.
+
+119
+00:04:07,518 --> 00:04:08,854
+Y por último, hacemos lo
+
+120
+00:04:08,854 --> 00:04:10,143
+mismo para la tercera
+
+121
+00:04:10,143 --> 00:04:11,598
+clase y ajustamos un tercer
+
+122
+00:04:11,610 --> 00:04:14,632
+clasificador "h" superíndice 3
+
+123
+00:04:14,632 --> 00:04:16,424
+de "x" y tal vez esto
+
+124
+00:04:16,440 --> 00:04:18,106
+nos dará una decisión delímitadora
+
+125
+00:04:18,106 --> 00:04:19,749
+o nos dará un clasificador que separe
+
+126
+00:04:19,750 --> 00:04:22,863
+los ejemplos positivos y negativos así.
+
+127
+00:04:22,870 --> 00:04:24,353
+Así que, para resumir, lo que hemos
+
+128
+00:04:24,353 --> 00:04:27,872
+hecho es ajustar 3 clasificadores.
+
+129
+00:04:27,890 --> 00:04:29,403
+Para i = 1,
+
+130
+00:04:29,403 --> 00:04:31,836
+2, 3. Ajustamos un clasificador
+
+131
+00:04:31,880 --> 00:04:33,855
+"h" superíndice "i" subíndice «theta»
+
+132
+00:04:33,855 --> 00:04:35,193
+de "x", tratando así de
+
+133
+00:04:35,220 --> 00:04:36,446
+calcular cual es la
+
+134
+00:04:36,450 --> 00:04:38,208
+probabilidad de que "y" es
+
+135
+00:04:38,208 --> 00:04:41,834
+igual a la clase "i" dado que "x" está parametrizada por «theta».
+
+136
+00:04:41,834 --> 00:04:41,834
+¿Correcto?
+
+137
+00:04:41,834 --> 00:04:43,229
+Así, en la primera
+
+138
+00:04:43,230 --> 00:04:44,903
+instancia, para esta primera
+
+139
+00:04:44,910 --> 00:04:47,277
+aquí arriba, este clasificador
+
+140
+00:04:47,280 --> 00:04:49,364
+va aprendiendo a identificar los triángulos.
+
+141
+00:04:49,364 --> 00:04:52,037
+Así es que piensa en los triángulos como una clase positiva.
+
+142
+00:04:52,060 --> 00:04:53,840
+Por lo que "h" superíndice 1 está
+
+143
+00:04:53,840 --> 00:04:55,163
+esencialmente tratando de calcular cuál es
+
+144
+00:04:55,170 --> 00:04:57,343
+la probabilidad de que "y"
+
+145
+00:04:57,350 --> 00:04:59,083
+es igual a 1, dado que
+
+146
+00:04:59,083 --> 00:05:02,037
+"x" está parametrizada por «theta».
+
+147
+00:05:02,037 --> 00:05:04,475
+Y de manera similar, este está tratando,
+
+148
+00:05:04,480 --> 00:05:05,859
+como sabes, la clase de los cuadrados como
+
+149
+00:05:05,859 --> 00:05:07,400
+una clase positiva por lo que está
+
+150
+00:05:07,400 --> 00:05:10,748
+tratando de calcular la probabilidad de que y=2 y así sucesivamente.
+
+151
+00:05:10,750 --> 00:05:13,300
+Así que ahora tenemos 3 clasificadores, cada
+
+152
+00:05:13,310 --> 00:05:16,649
+uno de los cuales fue entrenado para identificar una de las tres clases.
+
+153
+00:05:16,670 --> 00:05:17,859
+Sólo para resumir, lo que hemos
+
+154
+00:05:17,860 --> 00:05:19,685
+hecho es que, queremos
+
+155
+00:05:19,700 --> 00:05:21,280
+entrenar a un clasificador de regresión logística,
+
+156
+00:05:21,300 --> 00:05:23,560
+"h" superíndice "i"
+
+157
+00:05:23,560 --> 00:05:24,947
+de "x", para cada clase
+
+158
+00:05:24,950 --> 00:05:26,183
+"i" para predecir la probabilidad de que
+
+159
+00:05:26,183 --> 00:05:28,550
+y=i. Por último, para
+
+160
+00:05:28,570 --> 00:05:29,740
+hacer una predicción cuando hemos
+
+161
+00:05:29,820 --> 00:05:31,772
+agregado una nueva entrada "x" y
+
+162
+00:05:31,772 --> 00:05:33,326
+queremos hacer una predicción,
+
+163
+00:05:33,340 --> 00:05:34,729
+lo que hacemos es simplemente
+
+164
+00:05:34,730 --> 00:05:36,706
+ejecutar, digamos 3,
+
+165
+00:05:36,706 --> 00:05:38,557
+ejecutamos 3 de nuestros
+
+166
+00:05:38,557 --> 00:05:40,010
+clasificadores en la entrada
+
+167
+00:05:40,010 --> 00:05:41,535
+"x" y después
+
+168
+00:05:41,535 --> 00:05:44,068
+tomamos la clase "i" que maximiza a los 3.
+
+169
+00:05:44,068 --> 00:05:45,387
+Así que, como sabes, básicamente
+
+170
+00:05:45,387 --> 00:05:47,180
+elegimos el clasificador, elegimos cualquiera
+
+171
+00:05:47,180 --> 00:05:49,163
+de los tres clasificadores que sea
+
+172
+00:05:49,210 --> 00:05:52,178
+más confiable, o que de forma más entusiasta
+
+173
+00:05:52,178 --> 00:05:54,352
+diga que piensa que tiene una clase correcta.
+
+174
+00:05:54,352 --> 00:05:56,153
+Cualquier valor de "i"
+
+175
+00:05:56,190 --> 00:05:58,069
+que nos de la mayor probabilidad,
+
+176
+00:05:58,069 --> 00:06:01,056
+entonces predecimos que "y" tendrá ese valor.
+
+177
+00:06:02,660 --> 00:06:04,453
+Eso es todo sobre la clasificación multiclase
+
+178
+00:06:04,470 --> 00:06:07,677
+y el método uno contra todos.
+
+179
+00:06:07,677 --> 00:06:09,120
+Y con este pequeño método
+
+180
+00:06:09,120 --> 00:06:10,521
+ahora puedes tomar el clasificador
+
+181
+00:06:10,521 --> 00:06:12,033
+de regresión logística y hacerlo
+
+182
+00:06:12,033 --> 00:06:15,051
+funcionar también para los problemas de clasificación multiclase.

@@ -1,0 +1,916 @@
+1
+00:00:00,120 --> 00:00:01,220
+Si ejecutas el algoritmo de aprendizaje y
+
+2
+00:00:01,710 --> 00:00:02,640
+no resulta tan bien
+
+3
+00:00:02,840 --> 00:00:04,520
+como esperabas, la mayoría de las
+
+4
+00:00:04,740 --> 00:00:05,670
+veces será porque
+
+5
+00:00:06,100 --> 00:00:07,650
+existe ya sea un problema de sesgo alto
+
+6
+00:00:08,010 --> 00:00:09,530
+o de varianza alta.
+
+7
+00:00:09,860 --> 00:00:10,940
+En otras palabras, un problema
+
+8
+00:00:11,130 --> 00:00:13,140
+de sobreajuste o de subajuste.
+
+9
+00:00:14,260 --> 00:00:15,090
+En este caso es muy
+
+10
+00:00:15,350 --> 00:00:16,580
+importante entender
+
+11
+00:00:16,790 --> 00:00:17,970
+cual de estos dos problemas tenemos:
+
+12
+00:00:18,280 --> 00:00:19,500
+de sesgo o varianza, o un poco de
+
+13
+00:00:20,210 --> 00:00:20,430
+ambos.
+
+14
+00:00:21,050 --> 00:00:21,980
+Ya que saber cuál de ellos
+
+15
+00:00:22,440 --> 00:00:23,890
+sucede nos daría
+
+16
+00:00:24,060 --> 00:00:25,940
+un indicador certero de
+
+17
+00:00:26,180 --> 00:00:27,490
+de las maneras útiles y prometedoras
+
+18
+00:00:27,770 --> 00:00:29,030
+para mejorar tu algoritmo.
+
+19
+00:00:30,230 --> 00:00:31,270
+En este video, me gustaría
+
+20
+00:00:31,380 --> 00:00:33,030
+desarrollar más
+
+21
+00:00:33,220 --> 00:00:34,850
+el asunto de sesgo y varianza
+
+22
+00:00:35,180 --> 00:00:36,530
+para entenderlos mejor y para
+
+23
+00:00:36,790 --> 00:00:38,470
+encontrar la manera de
+
+24
+00:00:38,610 --> 00:00:42,910
+ver un algoritmo de entrenamiento y evaluar o diagnosticar si tenemos, o no, un problema de varianza o de sesgo.
+
+25
+00:00:43,030 --> 00:00:45,750
+Esto es crítico para
+
+26
+00:00:45,900 --> 00:00:48,180
+entender cómo mejorar el desempeño del algoritmo de aprendizaje que intentas implementar.
+
+27
+00:00:48,640 --> 00:00:52,270
+Ya has visto esta
+
+28
+00:00:52,680 --> 00:00:53,690
+figura varias veces.
+
+29
+00:00:54,190 --> 00:00:55,230
+En ella puedes aplicar
+
+30
+00:00:55,710 --> 00:00:57,900
+una hipótesis simple que resulta en una línea recta que subajusta los datos.
+
+31
+00:00:59,660 --> 00:01:00,720
+Si aplicas una hipótesis
+
+32
+00:01:01,250 --> 00:01:02,870
+compleja, entonces quizá se
+
+33
+00:01:03,400 --> 00:01:05,050
+ajustará al conjunto de entrenamiento perfectamente, pero
+
+34
+00:01:05,270 --> 00:01:06,810
+sobreajustará los datos y esta
+
+35
+00:01:06,930 --> 00:01:09,000
+puede ser una hipótesis de complejidad
+
+36
+00:01:09,340 --> 00:01:11,000
+media con polinomios de
+
+37
+00:01:11,810 --> 00:01:13,120
+segundo grado; es decir, de un grado
+
+38
+00:01:13,390 --> 00:01:15,770
+no muy alto y no muy bajo, sino
+
+39
+00:01:16,560 --> 00:01:17,340
+justo.
+
+40
+00:01:17,560 --> 00:01:18,480
+Lo que resulta en un
+
+41
+00:01:19,100 --> 00:01:20,740
+error de generalización de estas opciones.
+
+42
+00:01:21,770 --> 00:01:22,960
+Ahora que tenemos el
+
+43
+00:01:23,030 --> 00:01:25,130
+conocimiento de entrenamiento y validación
+
+44
+00:01:26,100 --> 00:01:27,550
+en los conjuntos de prueba, podemos entender
+
+45
+00:01:28,290 --> 00:01:30,530
+los conceptos de sesgo y varianza un poco mejor.
+
+46
+00:01:31,310 --> 00:01:33,140
+Definamos nuestro
+
+47
+00:01:33,370 --> 00:01:34,920
+error de entrenamiento y
+
+48
+00:01:35,050 --> 00:01:36,620
+error de validación como
+
+49
+00:01:36,850 --> 00:01:38,440
+en los videos anteriores.
+
+50
+00:01:38,680 --> 00:01:40,110
+Es decir, el error cuadrático
+
+51
+00:01:40,450 --> 00:01:41,420
+o el error cuadrático promedio como se calculó en
+
+52
+00:01:41,830 --> 00:01:42,810
+el conjunto de entrenamiento o
+
+53
+00:01:42,930 --> 00:01:44,710
+en el conjunto de validación cruzada.
+
+54
+00:01:46,560 --> 00:01:47,690
+Ahora, tracemos la siguiente figura.
+
+55
+00:01:48,470 --> 00:01:49,930
+En el eje horizontal
+
+56
+00:01:50,010 --> 00:01:52,000
+trazaré el grado del polinomio.
+
+57
+00:01:52,400 --> 00:01:53,380
+Conforme me acerque a la derecha
+
+58
+00:01:54,810 --> 00:01:57,050
+ajustaré polinomios de un orden cada vez más grande.
+
+59
+00:01:58,590 --> 00:01:59,630
+Haremos esto con esta
+
+60
+00:01:59,810 --> 00:02:01,100
+figura donde “d” es quizá igual a 1 y
+
+61
+00:02:01,720 --> 00:02:02,770
+ajustaremos
+
+62
+00:02:03,690 --> 00:02:05,600
+funciones muy simples, mientras que
+
+63
+00:02:05,740 --> 00:02:06,680
+a la derecha del
+
+64
+00:02:07,150 --> 00:02:08,950
+esto podría ser,
+
+65
+00:02:09,740 --> 00:02:11,550
+d es igual a 4 o podría
+
+66
+00:02:11,650 --> 00:02:13,400
+ser un número aún mayor. Ajustaré
+
+67
+00:02:14,120 --> 00:02:17,020
+órdenes de polinomios muy complejos que
+
+68
+00:02:17,420 --> 00:02:19,980
+podrían ajustarse al conjunto de entrenamiento con variables mucho más complejas
+
+69
+00:02:23,550 --> 00:02:26,430
+mientras que estamos
+
+70
+00:02:26,890 --> 00:02:27,980
+en el extremo derecho del
+
+71
+00:02:28,160 --> 00:02:31,250
+eje horizontal tendremos valores de “d” mayores
+
+72
+00:02:31,730 --> 00:02:34,350
+o polinomios de grado más alto.
+
+73
+00:02:34,460 --> 00:02:35,560
+Y esto corresponderá al
+
+74
+00:02:35,600 --> 00:02:37,490
+ajuste de funciones
+
+75
+00:02:37,760 --> 00:02:39,820
+más complejas a tu
+
+76
+00:02:40,110 --> 00:02:41,920
+conjunto de entrenamiento.
+Ahora veamos el
+
+77
+00:02:42,010 --> 00:02:44,060
+error de entrenamiento y el error de validación cruzada y
+
+78
+00:02:44,400 --> 00:02:45,610
+tracémoslo en esta figura.
+
+79
+00:02:46,570 --> 00:02:49,080
+Empecemos con el error de entrenamiento.
+
+80
+00:02:49,820 --> 00:02:50,570
+A medida que aumenta el grado del
+
+81
+00:02:50,680 --> 00:02:52,220
+polinomio, podremos ajustar
+
+82
+00:02:53,260 --> 00:02:55,630
+el conjunto de entrenamiento cada vez mejor. Si “d” es igual a 1
+
+83
+00:02:57,320 --> 00:02:58,300
+tendremos un error de entrenamiento relativamente alto.
+
+84
+00:02:58,430 --> 00:02:59,190
+Mientras que si tenemos un polinomio
+
+85
+00:02:59,200 --> 00:03:00,410
+de grado alto
+
+86
+00:03:00,810 --> 00:03:02,580
+nuestro error de entrenamiento será realmente bajo.
+
+87
+00:03:02,840 --> 00:03:05,230
+Quizá incluso sea cero porque se ajustará muy bien al conjunto de entrenamiento.
+
+88
+00:03:05,850 --> 00:03:06,910
+Entonces, mientras aumentamos
+
+89
+00:03:07,390 --> 00:03:08,750
+el grado del polinomio encontramos
+
+90
+00:03:09,130 --> 00:03:10,150
+típicamente que el error
+
+91
+00:03:10,550 --> 00:03:11,830
+de entrenamiento disminuye. Escribiré
+
+92
+00:03:11,960 --> 00:03:15,210
+aquí “J” subíndice
+
+93
+00:03:15,980 --> 00:03:17,920
+“entrenamiento” de theta, porque
+
+94
+00:03:18,210 --> 00:03:19,620
+nuestro error de entrenamiento tiende a
+
+95
+00:03:19,750 --> 00:03:22,380
+disminuir con el grado
+
+96
+00:03:22,790 --> 00:03:25,180
+del polinomio que ajustamos a los datos.
+
+97
+00:03:25,410 --> 00:03:28,240
+A continuación veremos el error de validación cruzada. O, para el caso, si
+
+98
+00:03:28,300 --> 00:03:30,680
+vemos al error del conjunto de prueba
+
+99
+00:03:31,480 --> 00:03:32,940
+obtendremos un resultado muy similar
+
+100
+00:03:33,510 --> 00:03:34,720
+como si trazáramos el
+
+101
+00:03:36,710 --> 00:03:39,790
+error de validación cruzada. Sabemos que si “d” es igual a 1, estaremos ajustando
+
+102
+00:03:40,620 --> 00:03:42,160
+una función muy simple y
+
+103
+00:03:42,340 --> 00:03:44,400
+quizá subajustaremos
+
+104
+00:03:44,540 --> 00:03:45,620
+el conjunto de entrenamiento y
+
+105
+00:03:45,710 --> 00:03:47,250
+tendremos un error de validación muy alto.
+
+106
+00:03:47,390 --> 00:03:49,620
+Si ajustamos un
+
+107
+00:03:49,680 --> 00:03:52,020
+polinomio de grado intermedio,
+
+108
+00:03:52,110 --> 00:03:53,620
+de un polinomio de grado intermedio como “d” igual a 2 que presentamos en
+
+109
+00:03:54,090 --> 00:03:55,010
+el ejemplo de la diapositiva anterior,
+
+110
+00:03:55,390 --> 00:03:56,100
+tendremos un
+
+111
+00:03:56,250 --> 00:03:57,440
+error de validación cruzada mucho menor porque
+
+112
+00:03:57,570 --> 00:03:59,460
+estamos encontrando un valor más adecuado para los datos.
+
+113
+00:03:59,860 --> 00:04:01,050
+un ajuste mucho mejor para los datos.
+
+114
+00:04:02,170 --> 00:04:03,230
+Por el contrario, si “d”
+
+115
+00:04:03,350 --> 00:04:04,310
+fuera muy alta, con un
+
+116
+00:04:04,540 --> 00:04:05,990
+valor de
+
+117
+00:04:06,290 --> 00:04:07,320
+cuatro, entonces estaremos
+
+118
+00:04:07,730 --> 00:04:08,800
+sobreajustando de nuevo y
+
+119
+00:04:08,950 --> 00:04:11,030
+acabaremos con un valor alto de error de validación cruzada.
+
+120
+00:04:12,280 --> 00:04:13,560
+Si se mantuviera una variación
+
+121
+00:04:13,900 --> 00:04:15,180
+uniforme y se trazara
+
+122
+00:04:15,390 --> 00:04:16,390
+la curva, obtendríamos una
+
+123
+00:04:17,040 --> 00:04:18,580
+curva como esta, donde
+
+124
+00:04:19,210 --> 00:04:21,220
+esta sería “Jcv” de theta.
+
+125
+00:04:21,680 --> 00:04:23,240
+Y, de nuevo, si trazamos “J”
+
+126
+00:04:23,460 --> 00:04:25,810
+“prueba” de theta obtendríamos algo muy similar.
+
+127
+00:04:27,130 --> 00:04:28,220
+Este tipo de
+
+128
+00:04:28,530 --> 00:04:30,110
+trazos nos ayudan a
+
+129
+00:04:30,530 --> 00:04:32,000
+entender mejor las nociones de
+
+130
+00:04:32,560 --> 00:04:34,760
+sesgo y varianza.
+
+131
+00:04:35,670 --> 00:04:37,000
+supongamos que tienes un algoritmo de aprendizaje que
+
+132
+00:04:37,240 --> 00:04:38,830
+no funciona tan bien como
+
+133
+00:04:39,060 --> 00:04:40,660
+quisieramos que lo hiciera, ¿cómo
+
+134
+00:04:41,060 --> 00:04:43,420
+saber si tu algoritmo de aprendizaje tiene problemas?
+
+135
+00:04:44,920 --> 00:04:46,550
+Ahora, supongamos que has aplicado un
+
+136
+00:04:46,780 --> 00:04:48,120
+algoritmo de aprendizaje que
+
+137
+00:04:48,250 --> 00:04:49,640
+no funciona tan bien como
+
+138
+00:04:49,930 --> 00:04:52,010
+quieres porque ya sea el
+
+139
+00:04:52,240 --> 00:04:54,940
+error del conjunto de validación o el error del conjunto de prueba son muy altos.
+
+140
+00:04:55,960 --> 00:04:56,910
+¿Cómo podemos averiguar si
+
+141
+00:04:56,950 --> 00:04:58,250
+el algoritmo de aprendizaje sufre de
+
+142
+00:04:58,580 --> 00:05:01,070
+un sesgo alto o de una varianza alta?
+
+143
+00:05:02,580 --> 00:05:03,260
+La determinación de un error de validación
+
+144
+00:05:04,140 --> 00:05:06,330
+alto corresponde a, ya sea
+
+145
+00:05:07,150 --> 00:05:09,120
+este régimen o este otro régimen.
+
+146
+00:05:10,470 --> 00:05:11,560
+Este régimen de la
+
+147
+00:05:11,710 --> 00:05:13,550
+izquierda corresponde a un
+
+148
+00:05:13,750 --> 00:05:15,190
+problema de sesgo alto; es decir,
+
+149
+00:05:15,680 --> 00:05:17,040
+cuando se ajusta un polinomio de
+
+150
+00:05:17,560 --> 00:05:19,210
+orden muy bajo, como “d”
+
+151
+00:05:19,280 --> 00:05:21,010
+igual a 1, en donde en realidad
+
+152
+00:05:21,170 --> 00:05:23,750
+se necesita un polinomio de orden más alto para ajustar los datos.
+
+153
+00:05:24,710 --> 00:05:26,380
+Por el contrario, este régimen
+
+154
+00:05:26,850 --> 00:05:28,950
+corresponde a un problema de varianza alta.
+
+155
+00:05:29,840 --> 00:05:31,280
+Es decir, si “d”, el grado del polinomio, fuera
+
+156
+00:05:32,820 --> 00:05:35,070
+muy grande para nuestro conjunto de datos.
+
+157
+00:05:35,990 --> 00:05:37,250
+Esta figura nos da una
+
+158
+00:05:37,740 --> 00:05:39,990
+pista para distinguir entre los dos casos.
+
+159
+00:05:41,280 --> 00:05:42,730
+De forma concreta, para el caso
+
+160
+00:05:43,140 --> 00:05:45,560
+de sesgo alto, es decir, el
+
+161
+00:05:45,970 --> 00:05:47,470
+caso de subajuste, lo que
+
+162
+00:05:47,760 --> 00:05:49,170
+encontramos es que tanto el
+
+163
+00:05:50,230 --> 00:05:51,840
+error de validación cruzada como el
+
+164
+00:05:52,210 --> 00:05:54,220
+error de entrenamiento serán altos.
+
+165
+00:05:54,990 --> 00:05:55,760
+Por lo tanto, si tu algoritmo
+
+166
+00:05:56,220 --> 00:05:57,410
+sufre de un problema de sesgo,
+
+167
+00:05:59,550 --> 00:06:01,450
+el error del conjunto de entrenamiento
+
+168
+00:06:03,080 --> 00:06:05,970
+sería alto y se podrá ver que el
+
+169
+00:06:06,070 --> 00:06:07,520
+error de
+
+170
+00:06:07,870 --> 00:06:11,150
+validación cruzada también sería alto y
+
+171
+00:06:11,680 --> 00:06:14,460
+cercano o quizá un poco más alto que
+
+172
+00:06:14,700 --> 00:06:16,250
+el error de entrenamiento.
+
+173
+00:06:17,100 --> 00:06:18,000
+Y, si observas esta combinación tienes
+
+174
+00:06:19,240 --> 00:06:20,510
+un signo de que tu algoritmo
+
+175
+00:06:21,000 --> 00:06:22,190
+quizá sufra de un sesgo alto.
+
+176
+00:06:23,410 --> 00:06:25,760
+Por el contrario, en el caso de que tu
+
+177
+00:06:25,850 --> 00:06:26,930
+algoritmo sufra de una
+
+178
+00:06:27,210 --> 00:06:29,720
+varianza alta, si miramos aquí
+
+179
+00:06:30,710 --> 00:06:33,500
+nos daremos cuenta de que
+
+180
+00:06:33,730 --> 00:06:34,790
+“J” subíndice “entrenamiento”; que es el error
+
+181
+00:06:35,320 --> 00:06:37,220
+de entrenamiento, será bajo.
+
+182
+00:06:39,480 --> 00:06:41,820
+Esto indica que estás ajustando bien el conjunto de entrenamiento.
+
+183
+00:06:43,210 --> 00:06:47,540
+En cambio, en el error de validación cruzada,
+
+184
+00:06:48,280 --> 00:06:49,540
+asumiendo que es un error cuadrático que
+
+185
+00:06:50,290 --> 00:06:51,320
+intentamos minimizar,
+
+186
+00:06:51,660 --> 00:06:53,790
+Este, el error en
+
+187
+00:06:53,990 --> 00:06:54,940
+el conjunto de validación cruzada
+
+188
+00:06:55,640 --> 00:06:56,850
+o la función de costo del
+
+189
+00:06:57,120 --> 00:06:58,600
+conjunto de validación cruzada, será
+
+190
+00:06:58,750 --> 00:07:01,410
+mayor que el error del conjunto de entrenamiento.
+
+191
+00:07:02,860 --> 00:07:03,910
+Este signo doble de mayor es el
+
+192
+00:07:04,680 --> 00:07:06,840
+símbolo matemático para “mucho mayor que”,
+
+193
+00:07:10,480 --> 00:07:11,830
+Así que esto es un doble mayor
+
+194
+00:07:12,110 --> 00:07:13,120
+que el signo, que es el símbolo
+
+195
+00:07:13,270 --> 00:07:14,600
+matemático para mucho mayor
+
+196
+00:07:14,910 --> 00:07:16,980
+y se denota con dos símbolos de “mayor que”.
+
+197
+00:07:18,500 --> 00:07:19,400
+Si observas
+
+198
+00:07:19,580 --> 00:07:21,400
+esta combinación, es lo que
+
+199
+00:07:21,550 --> 00:07:29,340
+Así que, verás que esta combinación de valores
+
+200
+00:07:29,580 --> 00:07:31,180
+es una pista de que
+
+201
+00:07:31,400 --> 00:07:32,930
+tu algoritmo de aprendizaje sufre
+
+202
+00:07:33,360 --> 00:07:35,180
+de una varianza alta y puede estar sobreajustado.
+
+203
+00:07:36,380 --> 00:07:37,910
+Y la clave para distinguir estos dos
+
+204
+00:07:38,070 --> 00:07:39,320
+casos es el hecho de que, si tienes un problema
+
+205
+00:07:39,410 --> 00:07:41,390
+de sesgo alto, el error
+
+206
+00:07:41,530 --> 00:07:42,750
+de tu conjunto de entrenamiento también
+
+207
+00:07:42,960 --> 00:07:43,870
+será alto dado que la
+
+208
+00:07:44,050 --> 00:07:45,820
+hipótesis no se está ajustando bien al conjunto de entrenamiento.
+
+209
+00:07:46,940 --> 00:07:47,820
+Y si tienes un problema de varianza
+
+210
+00:07:47,940 --> 00:07:49,360
+alta, tu error del conjunto de
+
+211
+00:07:49,780 --> 00:07:51,080
+entrenamiento será generalmente bajo; es decir,
+
+212
+00:07:51,360 --> 00:07:53,730
+mucho más bajo que el error de validación cruzada.
+
+213
+00:07:55,780 --> 00:07:57,000
+Ojalá esto te de un
+
+214
+00:07:57,100 --> 00:07:58,840
+mejor entendimiento de
+
+215
+00:07:58,910 --> 00:08:00,400
+los problemas de varianza y sesgo.
+
+216
+00:08:01,280 --> 00:08:02,190
+Aún te tengo más información
+
+217
+00:08:02,360 --> 00:08:04,630
+del sesgo y la varianza en los siguientes videos.
+
+218
+00:08:05,410 --> 00:08:06,590
+Pero lo que veremos después es
+
+219
+00:08:06,840 --> 00:08:08,460
+que, al diagnosticar, veremos si un algoritmo
+
+220
+00:08:08,520 --> 00:08:11,010
+de aprendizaje sufre de una varianza o un sesgo alto.
+
+221
+00:08:11,900 --> 00:08:14,710
+Les mostraré más detalles de cómo hacer esto en los videos siguientes.
+
+222
+00:08:15,600 --> 00:08:16,880
+Veremos que al encontrar si
+
+223
+00:08:17,160 --> 00:08:18,570
+un algoritmo de aprendizaje sufre de
+
+224
+00:08:18,740 --> 00:08:20,280
+un sesgo alto o una varianza alta o
+
+225
+00:08:20,760 --> 00:08:22,370
+una combinación de ambos, tendremos
+
+226
+00:08:22,530 --> 00:08:23,340
+una mejor guía de
+
+227
+00:08:23,520 --> 00:08:24,670
+cuáles son las cosas más prometedoras que podemos
+
+228
+00:08:24,790 --> 00:08:25,930
+intentar
+
+229
+00:08:26,130 --> 00:08:28,190
+para mejorar el desempeño de un algoritmo de aprendizaje.

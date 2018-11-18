@@ -1,0 +1,948 @@
+1
+00:00:00,280 --> 00:00:04,180
+No vídeo anterior, falamos sobre o algoritmo de retropropagação.
+
+2
+00:00:04,180 --> 00:00:06,470
+Para muitas pessoas que estiverem vendo isso
+pela primeira vez,
+
+3
+00:00:06,470 --> 00:00:11,390
+a impressão delas é sempre: "uau
+isso é um algoritmo realmente complicado",
+
+4
+00:00:11,390 --> 00:00:14,700
+e há todos estes passos distintos,
+não estou certo de como eles se encaixarão.
+
+5
+00:00:14,700 --> 00:00:17,940
+E isso é um tipo de caixa preta
+que contém todos esses passos.
+
+6
+00:00:17,940 --> 00:00:21,973
+Se este for o seu caso em relação ao
+retro propagação, tudo bem.
+
+7
+00:00:21,973 --> 00:00:26,950
+Retro propagação pode ser, infelizmente,
+matematicamente pouco menos limpo,
+
+8
+00:00:26,950 --> 00:00:28,900
+menos simples matematicamente 
+
+9
+00:00:28,900 --> 00:00:32,550
+comparado com a regressão linear ou regressão logística.
+
+10
+00:00:32,550 --> 00:00:36,770
+Eu venho usando a retropropagação com sucesso há
+
+11
+00:00:36,770 --> 00:00:37,330
+muitos anos.
+
+12
+00:00:37,330 --> 00:00:41,800
+E mesmo hoje em dia ainda não me sinto, em certos momentos,
+que tenho um bom entendimento do
+
+13
+00:00:41,800 --> 00:00:45,620
+que está sendo feito, ou a visão do
+que retro propagação está fazendo.
+
+14
+00:00:45,620 --> 00:00:49,780
+Se, para vocês que estiverem fazendo
+os exercícios de programação,
+
+15
+00:00:49,780 --> 00:00:52,850
+eles irão ao menos
+mecanicamente conduzir seus passos através
+
+16
+00:00:52,850 --> 00:00:55,240
+dos distintos passos de como
+implementar retro propagação.
+
+17
+00:00:55,240 --> 00:00:57,880
+Então, vocês serão capazes de fazê-los funcionar
+por si mesmos.
+
+18
+00:00:57,880 --> 00:01:02,670
+E o que pretendo neste vídeo é
+analisar um pouco mais os passos mecânicos
+
+19
+00:01:02,670 --> 00:01:07,230
+da retro propagação, e tentar dar-lhes
+uma visão mais ampla do quê 
+
+20
+00:01:07,230 --> 00:01:11,160
+os passos mecânicos na retropropagação
+estão fazendo para, assim espero, convencê-los que,
+
+21
+00:01:11,160 --> 00:01:12,910
+você sabe, 
+ele é ao menos, um algoritmo razoável.
+
+22
+00:01:13,940 --> 00:01:19,960
+No caso de, mesmo após este vídeo, a retro
+propagação ainda parecer meio caixa preta e
+
+23
+00:01:19,960 --> 00:01:22,390
+de certa forma ainda com muitos passos complicados
+
+24
+00:01:22,390 --> 00:01:25,540
+como se fosse um passe de mágica, tudo bem.
+
+25
+00:01:25,540 --> 00:01:30,283
+E mesmo eu que venho usando retro propagação por
+muitos anos, certos momentos é um pouco difícil 
+
+26
+00:01:30,283 --> 00:01:34,697
+de entender o algoritmo dele, mas, por sorte,
+este vídeo lhes auxiliará um pouco mais.
+
+27
+00:01:34,697 --> 00:01:37,896
+De modo a entender melhor
+a retro propagação,
+
+28
+00:01:37,896 --> 00:01:42,544
+vamos olhar mais de perto o
+que a propagação progressiva está fazendo.
+
+29
+00:01:42,544 --> 00:01:47,938
+Temos aqui uma rede neural com duas unidades de entrada
+sem contar a unidade de viés,
+
+30
+00:01:47,938 --> 00:01:53,310
+e duas unidades ocultas nesta camada, e
+duas unidades ocultas na camada seguinte.
+
+31
+00:01:53,310 --> 00:01:55,630
+E depois, finalmente, uma unidade de saída.
+
+32
+00:01:55,630 --> 00:02:01,650
+De novo, contamos duas, duas, duas, 
+não contamos as unidades de viés (no topo). 
+
+33
+00:02:01,650 --> 00:02:04,360
+Visando ilustrar
+propagação progressiva
+
+34
+00:02:04,360 --> 00:02:06,640
+desenharei esta rede 
+um pouquinho diferente.
+
+35
+00:02:08,030 --> 00:02:11,780
+E em particular, desenharei
+esta rede neural com os desenhos dos nós
+
+36
+00:02:11,780 --> 00:02:15,870
+como sendo estas elipses bem achatadas,
+assim, posso escrever dentro delas.
+
+37
+00:02:15,870 --> 00:02:19,750
+Quando realizando a propagação progressiva,
+a gente pode pegar um exemplo em particular.
+
+38
+00:02:19,750 --> 00:02:22,660
+Digamos x sobrescrito de i vírgula y sobrescrito de i.
+
+39
+00:02:22,660 --> 00:02:27,140
+E será este x i que nós
+alimentaremos na camada de entrada.
+
+40
+00:02:27,140 --> 00:02:33,046
+Então estes devem ser x (i) 1 e x (i) 2
+que são os valores que nós estabelecemos na camada de entrada.
+
+41
+00:02:33,046 --> 00:02:37,833
+E quando fizermos a propagação progressiva
+para a primeira camada oculta aqui,
+
+42
+00:02:37,833 --> 00:02:41,460
+o que fazemos é calcular z (2) 1 e z (2) 2.
+
+43
+00:02:41,460 --> 00:02:46,780
+Eles são a soma ponderada
+das entradas das unidades de entrada.
+
+44
+00:02:46,780 --> 00:02:50,380
+Daí, aplicamos o sigmóide
+da função logística,
+
+45
+00:02:50,380 --> 00:02:55,490
+e a função de ativação sigmóide
+aplicada ao valor z.
+
+46
+00:02:55,490 --> 00:02:57,850
+Estes são os valores de ativação.
+
+47
+00:02:57,850 --> 00:03:00,970
+Então isso nos dá a (2) 1 e a (2) 2. 
+
+48
+00:03:00,970 --> 00:03:05,640
+E então progressivamente propagamos
+de novo para obtermos aqui z (3) 1.
+
+49
+00:03:05,640 --> 00:03:08,490
+Aplicar o sigmóide da
+função logística,
+
+50
+00:03:08,490 --> 00:03:11,720
+a função de ativação 
+para nos dar a (3) 1.
+
+51
+00:03:11,720 --> 00:03:17,910
+E, analogamente, desta forma
+até obtermos o z (4) 1.
+
+52
+00:03:17,910 --> 00:03:19,210
+Aplicar a função de ativação.
+
+53
+00:03:19,210 --> 00:03:23,710
+Isso nos dará a (4) 1, que é o valor 
+final de saída da rede neural.
+
+54
+00:03:24,910 --> 00:03:27,800
+Vamos apagar esta seta para
+me dar um pouco mais de espaço aqui.
+
+55
+00:03:27,800 --> 00:03:32,320
+E se você analisar o que esta
+computação está realmente fazendo,
+
+56
+00:03:32,320 --> 00:03:35,500
+focando nesta camada oculta, digamos.
+
+57
+00:03:35,500 --> 00:03:37,550
+Temos que adicionar este peso.
+
+58
+00:03:37,550 --> 00:03:44,780
+Exibidos em magenta, estão os pesos Θ 
+(2) 1 0, a indexação não é relevante.
+
+59
+00:03:44,780 --> 00:03:49,290
+E desta forma aqui,
+a qual está realçada em vermelho,
+
+60
+00:03:49,290 --> 00:03:53,840
+ela é Θ (2) 1 1 e
+este peso aqui,
+
+61
+00:03:53,840 --> 00:03:59,118
+o qual desenho em azul claro,
+é Θ  (2) 1 2.
+
+62
+00:03:59,118 --> 00:04:04,532
+Logo, a forma de calcular este valor,
+z (3) 1 é,
+
+63
+00:04:04,532 --> 00:04:11,620
+z (3) 1 é igual a este
+peso magenta multiplicado por este valor.
+
+64
+00:04:11,620 --> 00:04:15,530
+Então, isso é Θ (2) 1 0 x 1. 
+
+65
+00:04:15,530 --> 00:04:20,500
+E então, somados a este peso
+vermelho multiplicado por este valor,
+
+66
+00:04:20,500 --> 00:04:25,740
+nos dá Θ  (2) 1 1 vezes a (2) 1. 
+
+67
+00:04:25,740 --> 00:04:30,680
+E finalmente este peso azul claro
+multiplicado por este valor,
+
+68
+00:04:30,680 --> 00:04:39,320
+o qual é portanto somado
+a Θ  (2) 12 multiplicado por a (2) 1.
+
+69
+00:04:39,320 --> 00:04:41,084
+E isso é a propagação progressiva.
+
+70
+00:04:41,084 --> 00:04:44,839
+E isso acaba sendo o que nós 
+veremos mais adiante neste vídeo,
+
+71
+00:04:44,839 --> 00:04:49,840
+o que a retro propagação faz é
+um processo muito semelhante a este.
+
+72
+00:04:49,840 --> 00:04:54,330
+Exceto que ao invés do fluxo computacional
+ser da esquerda para a direita desta
+
+73
+00:04:54,330 --> 00:04:59,610
+rede, a computação segue seu fluxo
+da direita para a esquerda da rede.
+
+74
+00:04:59,610 --> 00:05:02,460
+E usa cálculos muito semelhantes
+a estes.
+
+75
+00:05:02,460 --> 00:05:06,560
+E vou lhes mostrar em duas telas
+exatamente o que quero dizer com isso.
+
+76
+00:05:06,560 --> 00:05:10,630
+Para entendermos melhor a retro propagação,
+vejamos a função de custo.
+
+77
+00:05:10,630 --> 00:05:15,410
+É apenas a função de custo que vimos
+quando tínhamos apenas uma unidade resultante.
+
+78
+00:05:15,410 --> 00:05:17,320
+Se tivermos mais de uma unidade resultante,
+
+79
+00:05:17,320 --> 00:05:21,670
+temos apenas um somatório sobre 
+as unidades resultantes indexadas por k, bem ali.
+
+80
+00:05:21,670 --> 00:05:25,200
+Se tivermos apenas uma unidade resultante
+então esta é a função de custo.
+
+81
+00:05:25,200 --> 00:05:30,410
+E fazemos a propagação progressiva e a
+retro propagação em uma amostra por vez.
+
+82
+00:05:30,410 --> 00:05:35,010
+Então, vamos focar nesta amostra única,
+x (i) y (i)  e
+
+83
+00:05:35,010 --> 00:05:37,210
+focar no caso de
+termos uma unidade resultante.
+
+84
+00:05:37,210 --> 00:05:40,400
+Então, y (i) aqui é apenas um número real.
+
+85
+00:05:40,400 --> 00:05:43,420
+Ignoremos a regularização,
+logo, lambda fica igual a zero.
+
+86
+00:05:43,420 --> 00:05:47,360
+E esse termo final,
+esse de regularização, cai fora.
+
+87
+00:05:47,360 --> 00:05:49,667
+Agora, se você olhar para a somatória,
+
+88
+00:05:49,667 --> 00:05:54,208
+verá que o termo de custo
+associado à amostra de treinamento.
+
+89
+00:05:54,208 --> 00:05:58,627
+isso é o custo associado à 
+amostra de treinamento x (i), y (i). 
+
+90
+00:05:58,627 --> 00:06:01,690
+E nos será dado 
+por esta expressão.
+
+91
+00:06:01,690 --> 00:06:06,729
+Então, o custo de ficar sem a 
+amostra i é dado assim:
+
+92
+00:06:06,729 --> 00:06:11,230
+E o que esta função de custo faz é
+seguir a regra tal como a do erro ao quadrado.
+
+93
+00:06:11,230 --> 00:06:14,010
+Então, ao invés de analisar esta
+expressão complicada,
+
+94
+00:06:14,010 --> 00:06:18,040
+se você quiser pode pensar no custo 
+de i sendo aproximadamente a diferença
+
+95
+00:06:18,040 --> 00:06:22,750
+elevada ao quadrado entre o resultado da rede neural,
+versus o seu real valor.
+
+96
+00:06:22,750 --> 00:06:25,830
+Tal como em regressão logística,
+na verdade, preferimos usar uma um pouco mais
+
+97
+00:06:25,830 --> 00:06:28,330
+complicada versão da função de 
+custo usando logaritmo.
+
+98
+00:06:28,330 --> 00:06:32,060
+Mas no intuito de proporcionar uma melhor visão,
+sinta-se à vontade para pensar na função de custo
+
+99
+00:06:32,060 --> 00:06:34,880
+como sendo um tipo de função de custo de erro ao quadrado.
+
+100
+00:06:34,880 --> 00:06:38,820
+Assim, este custo (i) mede a precisão desta rede neural
+
+101
+00:06:38,820 --> 00:06:40,820
+ao prever corretamente o valor da amostra i.
+
+102
+00:06:40,820 --> 00:06:45,630
+Quão perto está o resultado da rede
+em relação ao valor real observado na variável y (i)? 
+
+103
+00:06:45,630 --> 00:06:48,510
+Agora vejamos o que a
+retro propagação está fazendo.
+
+104
+00:06:48,510 --> 00:06:53,640
+Uma ideia útil é a de que 
+retro propagação está computando estes
+
+105
+00:06:53,640 --> 00:06:56,690
+termos δ sobrescritos L índices j.
+
+106
+00:06:56,690 --> 00:07:02,080
+Podemos imaginá-los como sendo uma cota de
+erro do valor de ativação
+
+107
+00:07:02,080 --> 00:07:05,969
+que temos para a unidade j na camada L,
+na L-ésima camada.
+
+108
+00:07:07,120 --> 00:07:10,060
+Mais formalmente, para, e
+apenas para
+
+109
+00:07:10,060 --> 00:07:12,690
+os que estiverem mais familiarizados com Cálculo.
+
+110
+00:07:12,690 --> 00:07:15,950
+Mais formalmente,
+o que os termos δ de fato são,
+
+111
+00:07:15,950 --> 00:07:19,050
+eles são as derivadas parciais
+relacionadas ao z (L) j,
+
+112
+00:07:19,050 --> 00:07:23,440
+que são a soma ponderada das entradas
+que confundiam estes termos z.
+
+113
+00:07:23,440 --> 00:07:25,929
+Derivadas parciais relativas a
+estas coisas da função de custo.
+
+114
+00:07:27,000 --> 00:07:31,230
+Então, de fato, a função de custo
+é uma função da variável y e
+
+115
+00:07:31,230 --> 00:07:34,958
+do valor,
+este valor resultante h de x da rede neural.
+
+116
+00:07:34,958 --> 00:07:37,800
+E se pudéssemos entrar na
+rede neural e
+
+117
+00:07:37,800 --> 00:07:41,480
+apenas alterar z (L)
+j um pouquinho,
+
+118
+00:07:41,480 --> 00:07:45,610
+então isso afetaria estes valores
+que a rede neural está gerando.
+
+119
+00:07:45,610 --> 00:07:49,080
+E isso acabaria 
+alterando a função de custo.
+
+120
+00:07:49,080 --> 00:07:53,030
+E, novamente, de verdade, isso é só para
+os que já conhecem bem a matéria de Cálculo diferencial e integral.
+
+121
+00:07:53,030 --> 00:07:56,560
+Se você se sente bem
+com derivadas parciais,
+
+122
+00:07:56,560 --> 00:08:00,830
+o que estes termos δ são é que eles
+acabam se tornando as derivadas parciais da
+
+123
+00:08:00,830 --> 00:08:04,529
+função de custo, em relação aos termos
+intermediários meio confusos.
+
+124
+00:08:06,000 --> 00:08:10,430
+Portanto, eles são uma medida do quanto 
+gostaríamos de altear os pesos das redes neurais
+
+125
+00:08:10,430 --> 00:08:15,870
+de modo a afetar estes valores
+intermediários dos cálculos.
+
+126
+00:08:15,870 --> 00:08:19,190
+De modo a afetar o resultado final
+da rede neural h(x) e
+
+127
+00:08:19,190 --> 00:08:21,570
+e como consequência, afetar o custo total.
+
+128
+00:08:21,570 --> 00:08:25,190
+Caso ainda restem dúvidas sobre
+esta ideia de derivada parcial,
+
+129
+00:08:25,190 --> 00:08:26,780
+caso ela ainda não faça sentido,
+
+130
+00:08:26,780 --> 00:08:28,540
+não se preocupe, o restante desta aula
+
+131
+00:08:28,540 --> 00:08:32,350
+concluiremos sem falar
+sobre derivadas parciais.
+
+132
+00:08:32,350 --> 00:08:35,950
+Mas, vejamos mais detalhadamente o que a
+retro propagação está fazendo.
+
+133
+00:08:35,950 --> 00:08:40,366
+Para a camada resultante, 
+o primeiro passo é calcular o termo δ,
+
+134
+00:08:40,366 --> 00:08:45,610
+δ (4) 1, como sendo y (i) como se
+estivéssemos fazendo a propagação progressiva e
+
+135
+00:08:45,610 --> 00:08:49,880
+retro propagar dele nesta
+amostra de treinamento i.
+
+136
+00:08:49,880 --> 00:08:52,750
+Quer dizer, y(i) menos a(4)1.
+
+137
+00:08:52,750 --> 00:08:54,440
+Logo, isso é o erro real, certo?
+
+138
+00:08:54,440 --> 00:08:57,640
+É a diferença entre
+o valor real de y menos o que foi
+
+139
+00:08:57,640 --> 00:09:01,910
+obtido no valor previsto, e então,
+vamos calcular o δ (4)1 desse jeito.
+
+140
+00:09:01,910 --> 00:09:06,920
+Depois, vamos retro propagar
+estes valores.
+
+141
+00:09:06,920 --> 00:09:10,360
+Explico logo adiante, e
+finalizamos os cálculos dos termos δ da
+
+142
+00:09:10,360 --> 00:09:11,040
+camada anterior.
+
+143
+00:09:11,040 --> 00:09:13,020
+Vamos calcular δ (3) 1.
+
+144
+00:09:13,020 --> 00:09:14,520
+δ (3) 2.
+
+145
+00:09:14,520 --> 00:09:19,982
+Só então vamos retro 
+propagar ainda mais,
+
+146
+00:09:19,982 --> 00:09:25,464
+e calcular δ (2) 1 e
+δ (2) 2. 
+
+147
+00:09:25,464 --> 00:09:29,680
+Agora o cálculo da retro 
+propagação está bem parecido com
+
+148
+00:09:29,680 --> 00:09:33,290
+a execução do algoritmo da propagação progressiva
+mas, só que na direção contrária.
+
+149
+00:09:33,290 --> 00:09:34,230
+Então, veja o que eu quero dizer.
+
+150
+00:09:34,230 --> 00:09:37,490
+Vejamos como obtivemos
+este valor de δ (2) 2.
+
+151
+00:09:37,490 --> 00:09:40,442
+Temos δ (2) 2.
+
+152
+00:09:40,442 --> 00:09:45,060
+E, semelhante à propagação progressiva,
+vamos marcar alguns pesos.
+
+153
+00:09:45,060 --> 00:09:47,590
+Então, este peso, 
+o qual vou desenhar em magenta.
+
+154
+00:09:47,590 --> 00:09:54,040
+Digamos que ele é o Θ (2) 12.
+
+155
+00:09:54,040 --> 00:09:57,280
+e este outro aqui embaixo
+vamos marcá-lo em vermelho.
+
+156
+00:09:57,280 --> 00:10:02,990
+Ele será o
+digamos, Θ (2) de 2 2.
+
+157
+00:10:02,990 --> 00:10:06,690
+Então, se olharmos como δ (2) 2
+
+158
+00:10:06,690 --> 00:10:09,440
+é calculado,
+como é calculado com esta notação.
+
+159
+00:10:09,440 --> 00:10:12,040
+Ocorre que de fato o que vamos fazer é,
+vamos pegar este valor e
+
+160
+00:10:12,040 --> 00:10:19,080
+multiplicá-lo por este peso, e adicioná-lo
+a este valor multiplicado por aquele peso.
+
+161
+00:10:19,080 --> 00:10:23,450
+Então é realmente uma soma ponderada
+destes valores δ,
+
+162
+00:10:23,450 --> 00:10:25,590
+ponderados pelas forças das arestas correspondentes.
+
+163
+00:10:25,590 --> 00:10:31,351
+Completando, vamos levar esse valor,
+este δ (2) 2 que será igual a
+
+164
+00:10:31,351 --> 00:10:38,100
+Θ (2) 1 2, na cor magenta,
+multiplicada por δ (3) 1.
+
+165
+00:10:38,100 --> 00:10:41,533
+Somados ao que temos em vermelho,
+
+166
+00:10:41,533 --> 00:10:46,700
+que é o Θ (2) 2 multiplicado pelo δ (3) 2.
+
+167
+00:10:46,700 --> 00:10:50,440
+Portanto, é exatamente este
+peso vermelho multiplicado por este valor,
+
+168
+00:10:50,440 --> 00:10:53,530
+somados a este peso em magenta multiplicado por este valor.
+
+169
+00:10:53,530 --> 00:10:56,880
+E assim encerramos 
+o valor de δ .
+
+170
+00:10:56,880 --> 00:10:59,980
+E apenas como outro exemplo,
+vejamos este valor aqui.
+
+171
+00:10:59,980 --> 00:11:01,300
+Como chegamos a ele?
+
+172
+00:11:01,300 --> 00:11:03,531
+Bem, é um processo bem parecido.
+
+173
+00:11:03,531 --> 00:11:08,224
+Se este peso
+que estou marcando em verde,
+
+174
+00:11:08,224 --> 00:11:12,826
+se este peso for igual a,
+digamos, Teta (3) 1 2
+
+175
+00:11:12,826 --> 00:11:20,282
+Então, obtemos o δ (3) 2 que será
+igual ao peso verde,
+
+176
+00:11:20,282 --> 00:11:24,515
+Θ (3) 1 2 multiplicado por δ (4) 1.
+
+177
+00:11:24,515 --> 00:11:28,950
+E, a propósito, para os demais
+eu anotei os valores de delta apenas para
+
+178
+00:11:28,950 --> 00:11:33,640
+as unidades ocultas, mas
+excluindo-se as unidades de viés.
+
+179
+00:11:33,640 --> 00:11:36,660
+Dependendo de como definimos o
+algoritmo de retro propagação, ou
+
+180
+00:11:36,660 --> 00:11:40,500
+dependendo de como o implementamos,
+você sabe, podemos acabar implementando
+
+181
+00:11:40,500 --> 00:11:44,980
+algo que calcule os valores delta para
+estas unidades de viés também.
+
+182
+00:11:44,980 --> 00:11:48,700
+As unidades de viés sempre resultam no valor igual a 
+um positivo (+ 1), e elas são apenas o que são,
+
+183
+00:11:48,700 --> 00:11:51,190
+e não há uma forma de
+alterarmos seus valores.
+
+184
+00:11:51,190 --> 00:11:53,790
+Assim, dependendo da 
+implementação de retro  propagação,
+
+185
+00:11:53,790 --> 00:11:55,380
+a forma como eu geralmente a implemento
+
+186
+00:11:55,380 --> 00:11:57,710
+é que termino calculando estes valores de delta,
+mas
+
+187
+00:11:57,710 --> 00:11:59,760
+simplesmente os descarto, não os usamos.
+
+188
+00:11:59,760 --> 00:12:03,910
+Porque eles, não são
+parte do cálculo necessário para
+
+189
+00:12:03,910 --> 00:12:05,710
+calcular as derivadas.
+
+190
+00:12:05,710 --> 00:12:08,790
+Espero que isso dê
+uma ideia melhor
+
+191
+00:12:08,790 --> 00:12:12,500
+sobre o que a retro propagação faz.
+
+192
+00:12:12,500 --> 00:12:14,760
+Se por acaso isso tudo ainda
+parece mágica,
+
+193
+00:12:14,760 --> 00:12:19,658
+um tipo de caixa preta, mais adiante, 
+no vídeo "juntando tudo", tentarei
+
+194
+00:12:19,658 --> 00:12:23,290
+dar mais uma noção
+sobre o que faz a retro propagação.
+
+195
+00:12:23,290 --> 00:12:27,690
+Mas, infelizmente, ele é um algoritmo 
+difícil de ser visualizado e
+
+196
+00:12:27,690 --> 00:12:29,540
+de compreender o que realmente ele faz.
+
+197
+00:12:29,540 --> 00:12:31,260
+Mas, por sorte, eu o tenho usado,
+
+198
+00:12:31,260 --> 00:12:35,480
+eu acho que muita gente o tem usado
+com êxito há vários anos.
+
+199
+00:12:35,480 --> 00:12:40,130
+E se você implementá-lo, poderá
+ter um algoritmo de aprendizagem bem efetivo.
+
+200
+00:12:40,130 --> 00:12:43,580
+Ainda que em internamente  o trabalho dele,
+como ele funciona, seja difícil de visualizar.

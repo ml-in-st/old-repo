@@ -1,0 +1,146 @@
+En este video definiré cuál
+es posible que sea el problema más común del aprendizaje automático, que es el 
+aprendizaje supervisado. Después definiré de manera más formal el aprendizaje supervisado; quizá
+es mejor explicar o iniciar con un ejemplo de qué es y después veremos la definición
+formal. Supongamos que quieres predecir precios de casas. Hace tiempo, un
+estudiante recolectó conjuntos de datos del Instituto de Portland, Oregón. Y digamos
+que trazas un conjunto de datos y se ve así. Tenemos en el eje horizontal,
+el tamaño de distintas casas en pies cuadrados, y en el eje vertical, el precio de
+distintas casas en miles de dólares. Entonces, con estos datos, digamos que tienes un
+amigo que tiene una casa de 750 pies cuadrados y desea venderla
+y quiere saber cuánto dinero puede obtener por ella. Entonces, ¿cómo puede ayudarte
+un algoritmo de aprendizaje? Algo que podría hacer el algoritmo de aprendizaje es trazar
+una línea recta a través de los datos o insertar una línea recta en los datos y, con base
+en eso, resulta que tal vez la casa pueda venderse en aproximadamente $150,000. Pero tal vez este
+no es el único algoritmo de aprendizaje que puedes usar. Puede haber uno mejor. Por
+ejemplo, en lugar de trazar una línea recta en los datos, podríamos decidir que
+es mejor insertar una función cuadrática o un polinomio de segundo grado
+a estos datos. Y si haces eso y haces una predicción aquí, entonces resulta que
+tal vez puede vender la casa en casi $200,000. Algo de lo que hablaré
+más adelante es de cómo elegir y decidir si quieres insertar una línea recta
+a los datos o si quieres insertar la función cuadrática a los datos y no hay
+una selección justa de cualquier opción que le de a tu amigo una mejor casa para vender. Pero cualquiera
+de estos sería un buen ejemplo de un algoritmo de aprendizaje. Así que este es un ejemplo
+de algoritmo de aprendizaje supervisado. Y el término aprendizaje supervisado se refiere al
+hecho de que le dimos al algoritmo un conjunto de datos donde se daban las “respuestas
+correctas”. Es decir, le dimos un conjunto de datos de casas en los que para cada ejemplo del
+conjunto de datos, se dijo cuál era el precio correcto, el precio real al que
+se vendió esa casa y la tarea del algoritmo sólo fue generar más
+«respuestas correctas» como para esta casa nueva que tu amigo está
+queriendo vender. Para definir un poco más la terminología, esto también se denomina
+un problema de regresión y con esto quiero decir que queremos predecir un
+resultado de valor continuo. Es decir, el precio. Así que, técnicamente, creo que puede
+redondearse el precio al centavo más cercano. Tal vez los precios en realidad son valores discretos, pero
+en general pensamos en el precio de una casa como un número real, un valor escalar,
+un número de valor continuo, y el término regresión se refiere al hecho de que
+tratamos de predecir el tipo de atributo valuado de forma continua. Este es otro
+ejemplo de aprendizaje supervisado. Algunos amigos y yo estábamos trabajando en esto
+antes. Digamos que quieres revisar expediente médicos y tratar de predecir
+cáncer de mama como maligno o benigno. Si alguien descubre un tumor mamario, un bulto
+en su seno... Un tumor maligno es un tumor dañino y peligroso y un
+tumor benigno es un tumor inofensivo. Obviamente, la gente se preocupa mucho por esto.
+Veamos un conjunto de datos recolectados y supongamos que en estos datos, en el eje
+horizontal tienes el tamaño del tumor y en el vertical trazaré uno
+o cero, sí o no, si son o no ejemplos de tumores que ya vimos que son
+malignos, que es el uno, o el cero si no es maligno o es benigno. Supongamos que nuestro conjunto de datos
+se ve así donde vemos un tumor de este tamaño que resultó ser benigno. Uno de
+este tamaño, uno de este tamaño. Y así sucesivamente. Por desgracia, también vemos unos
+tumores malignos, uno de este tamaño y uno de este, uno de este tamaño... Y así sucesivamente. Así que en este
+ejemplo... Tengo cinco ejemplos de tumores benignos que se muestran abajo y cinco
+de tumores malignos que se muestran con un valor del eje vertical de uno. Y digamos que tenemos
+una amiga que lamentablemente tiene un tumor mamario y supongamos que su tamaño
+es de aproximadamente este valor. La pregunta de aprendizaje automático es:
+¿puedes calcular cuál es la probabilidad, de que un tumor sea maligno
+versus benigno? Para mostrar un poco de terminología, este es un ejemplo de un
+problema de clasificación. El término «clasificación» se refiere al hecho de que
+intentamos predecir un resultado de valor discreto: cero o uno, maligno o
+benigno. Y resulta que algunas veces en problemas de clasificación, puedes
+tener más de dos valores para dos posibles valores para el resultado. Como
+ejemplo concreto tal vez haya tres tipos de cáncer de mama, por lo que puedes
+intentar predecir el valor discreto de cero, uno, dos o tres, en el que cero es benigno.
+Tumor benigno, es decir sin cáncer. Y uno puede significar un tipo de cáncer, si tienes
+tres tipos de cáncer, lo que sea que signifique el tipo uno. Y dos puede significar un segundo tipo de
+cáncer y tres pude ser un tercer tipo de cáncer. Pero esto también sería un
+problema de clasificación, debido al otro conjunto de resultados del valor discreto que
+corresponde a: sin cáncer o cáncer tipo uno, tipo dos, o cáncer tipo
+tres. Existe otra forma de trazar estos datos en los problemas de clasificación. Déjame mostrarte
+lo qué quiero decir. Utilizaré un conjunto de símbolos ligeramente diferente para trazar estos
+datos. Así que si el tamaño del tumor será el atributo que usaré para predecir
+si es maligno o benigno, también puedo dibujar mis datos así. Usaré distintos
+símbolos para denotar mis ejemplos de maligno y benigno, o negativo y
+positivo. En lugar de dibujar cruces, dibujaré círculos para los tumores
+benignos. De esta manera. Y seguiré usando X para denotar los tumores malignos.
+¿Ok? Espero que esto empiece a tener sentido. Todo lo que hice fue tomar, ya saben,
+esto, mi conjunto de datos de arriba y los trace abajo hacia esta línea real.
+Y empecé a usar distintos símbolos, círculos y cruces para denotar los ejemplos
+de malignos contra benignos. Ahora, en este ejemplo sólo usamos una característica o un
+atributo, principalmente, el tamaño del tumor para predecir si el tumor es maligno
+o es benigno. En otros problemas de aprendizaje electrónico, cuando tenemos más de una
+característica, más de un atributo. Aquí va un ejemplo. Digamos que en lugar de sólo
+saber el tamaño del tumor, también conocemos la edad y el tamaño de tumor de los pacientes. En
+ese caso, tal vez tu conjunto de datos se verá así y tenemos un conjunto de pacientes
+con edades y tamaños de tumor y se ven así. Y un conjunto de pacientes
+distinto, que se ve un poco diferente, cuyos tumores resultaron malignos,
+como lo indican las cruces. Así que digamos que tienes un amigo que por desgracia tiene un
+tumor. Y tal vez, el tamaño del tumor y la edad están más o menos aquí. Con un conjunto de datos
+como este, lo que puede hacer el algoritmo de aprendizaje es trazar la línea recta
+en los datos para tratar de separar los tumores malignos de los benignos
+y entonces el algoritmo de aprendizaje puede decidir trazar la línea recta así para
+separar las dos clases de tumores. Y con esto, es posible que puedas
+decidir que es más probable que si el tumor de tu amigo está en esta parte,
+el algoritmo de aprendizaje nos dirá si el tumor está del lado
+benigno y que, por lo tanto, es más probable que sea benigno y no maligno. En
+este ejemplo, tuvimos dos características, la edad del paciente y el tamaño del
+tumor. En otros problemas de aprendizaje automático con frecuencia tendremos más características y
+mis amigos que trabajan con este problema realmente usan otras características como
+el grosor de acúmulo del tumor mamario, uniformidad del tamaño celular
+del tumor, uniformidad de la forma celular del tumor, etc., así como
+otras características. Y resulta que uno de los algoritmos de aprendizaje más interesantes que
+veremos en esta clase es un algoritmo de aprendizaje que puede tratar, no sólo con dos
+o tres o cinco características, sino con un número infinito de características. En esta diapositiva
+presento un total de 5 características distintas. Dos en los ejes y tres más aquí arriba.
+Pero resulta que para algunos problemas de aprendizaje, lo que realmente no quieres es
+usar tres o cinco características, sino usar un número infinito
+de características, un número infinito de atributos, de manera que tu algoritmo
+de aprendizaje tenga muchos atributos o características o señales para hacer las
+predicciones. Entonces, ¿cómo manejas un número infinito de características? ¿Cómo
+almacenas un número infinito de cosas en la computadora cuando
+sabes que se va a llenar la memoria? Resulta que cuando nos referimos a un
+algoritmo llamado Máquina de Soporte Vectorial, habrá un truco matemático
+genial que permitirá que la computadora maneje un número infinito de características. Imagina
+que acabo de escribir dos características aquí y tres características a la derecha. Pero imagina que
+escribí una lista infinitamente larga, y sigo escribiendo más y más y más
+características. Una lista infinitamente larga de características. Resulta que podremos crear
+un algoritmo que pueda manejar todo eso. Entonces, sólo para recapitular. En esta
+clase, hablaremos del aprendizaje supervisado. Y la idea es que, en
+el aprendizaje supervisado, cada ejemplo de nuestro conjunto de datos, nos dice que la
+“respuesta correcta” que nos habría gustado, la predijeron los algoritmos
+en ese ejemplo. Como el precio de la casa o si el tumor es maligno o
+benigno. También hablamos sobre el problema de regresión. Y regresión
+significa que nuestro objetivo es predecir un resultado de valor continuo. Y hablamos
+sobre el problema de clasificación, donde el objetivo es predecir el resultado de
+valor discreto. Solo una pregunta para recapitular: Supongamos que diriges una empresa y
+quieres desarrollar algoritmos de aprendizaje para enfrentar los dos problemas. En el primer
+problema, tienes un gran inventario de artículos idénticos. Entonces, imagina que tienes
+miles de copias de algunos artículos idénticos para vender y quieres saber cuántos
+de estos artículos venderás en los próximos tres meses. En el segundo problema,
+el problema dos, tendrás muchos usuarios y querrás diseñar un software 
+para analizar cada una de las cuentas individuales de tus clientes, cada una
+de las cuentas de tus clientes; y para cada cuenta decidirás sin la cuenta fue o no 
+hackeada o estuvo en peligro. Entonces, ¿cada uno de estos problemas debe tratarse como 
+un problema de clasificación o como un problema de regresión? Cuando se ponga en pausa el video,
+por favor usa tu mouse para seleccionar cuál de estas cuatro opciones a la izquierda
+consideras que es la respuesta correcta. Espero que tu resultado haya sido esta respuesta. Por
+problema uno lo trataría como un problema de regresión, ya que si tuviera
+miles de artículos, bueno, probablemente lo trataría como un valor real,
+como un valor continuo. Y por lo tanto, trataría el número de artículos que vendo
+como un valor continuo. Y para el segundo problema, lo trataría como un
+problema de clasificación, ya que podría establecer el valor que quiero predecir
+con cero para denotar que no se hackeo la cuenta. Y establecer el valor en uno para denotar una
+cuenta que sí fue hackeada. Así como para el cáncer de mama
+cero es benigno y uno es maligno. Por ello podría establecerlo en cero o uno dependiendo de
+si se hackeó y hacer que un algoritmo trate de predecir cada uno de estos
+dos valores discretos. Y debido a que existe un número reducido de valores discretos,
+entonces lo manejaría como un problema de clasificación. Esto es todo sobre aprendizaje
+supervisado y en el siguiente video hablaré sobre el aprendizaje no supervisado, que es la
+otra categoría principal de algoritmos principales.

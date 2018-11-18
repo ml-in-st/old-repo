@@ -1,0 +1,689 @@
+1
+00:00:00,000 --> 00:00:04,934
+Sebelumnya kita telah mendefinisikan fungsi
+harga J. Dalam video ini saya ingin mengajari
+
+2
+00:00:04,934 --> 00:00:09,634
+Anda satu algoritma yang disebut gradient descent
+untuk meminimalkan fungsi harga J. Jelas
+
+3
+00:00:09,634 --> 00:00:14,275
+gradient descent adalah algoritma yang lebih
+umum dan digunakan tidak hanya dalam regresi
+
+4
+00:00:14,275 --> 00:00:18,916
+linier. Itu digunakan di seluruh lingkup
+machine learning. Dan nanti
+
+5
+00:00:18,916 --> 00:00:23,791
+di kelas kita akan menggunakan gradient descent
+untuk meminimalkan fungsi lainnya juga, tidak
+
+6
+00:00:23,791 --> 00:00:27,845
+hanya fungsi harga J untuk regresi linier.
+Jadi dalam video ini, saya akan
+
+7
+00:00:27,845 --> 00:00:32,558
+bicara tentang gradient descent untuk meminimalkan
+beberapa fungsi J yang berubah-ubah. Lalu dalam
+
+8
+00:00:32,558 --> 00:00:37,406
+video selanjutnya, kita menggunakan algoritma itu
+dan menerapkannya secara khusus ke fungsi harga J
+
+9
+00:00:37,406 --> 00:00:43,332
+yang telah kita temukan untuk regresi
+linier. Ini aturan persoalannya.
+
+10
+00:00:43,332 --> 00:00:48,112
+Kita akan melihat bahwa kita punya
+beberapa fungsi J (theta0, theta1).
+
+11
+00:00:48,112 --> 00:00:52,773
+Mungkin itu fungsi harga dari regresi
+linier. Mungkin itu beberapa fungsi lain
+
+12
+00:00:52,773 --> 00:00:56,801
+yang kita ingin minimalkan. Dan kita
+ingin menghasilkan algoritma untuk
+
+13
+00:00:56,801 --> 00:01:01,174
+meminimalkan fungsi itu sebagai fungsi
+J(theta0, theta1). Sekedar tambahan,
+
+14
+00:01:01,174 --> 00:01:05,793
+gradient descent sebenarnya
+diterapkan ke fungsi-fungsi yang
+
+15
+00:01:05,793 --> 00:01:10,994
+lebih umum. Jadi bayangkan jika Anda
+punya sebuah fungsi yaitu fungsi
+
+16
+00:01:10,994 --> 00:01:16,194
+J(theta0, theta1, theta2, hingga
+theta n), dan Anda ingin
+
+17
+00:01:16,405 --> 00:01:21,795
+meminimalkan (theta0 hingga theta n)
+pada J(theta0 hingga theta n) ini.
+
+18
+00:01:21,795 --> 00:01:26,580
+Tampaknya gradient descent adalah
+algoritma untuk memecahkan
+
+19
+00:01:26,580 --> 00:01:31,368
+persoalan yang lebih umum ini,
+tapi untuk singkatnya, untuk
+
+20
+00:01:31,368 --> 00:01:35,935
+keringkasan notasi Anda, saya hanya
+akan menampilkan dua parameter
+
+21
+00:01:36,113 --> 00:01:41,097
+di seluruh sisa video ini. Ini
+gagasan untuk gradient descent. Apa yang
+
+22
+00:01:41,097 --> 00:01:45,882
+akan kita lakukan adalah kita akan mulai
+dengan beberapa tebakan awal untuk theta0
+
+23
+00:01:45,882 --> 00:01:50,788
+dan theta1. Tidak masalah berapa
+nilainya, tapi pilihan yang umum jika kita
+
+24
+00:01:50,788 --> 00:01:55,452
+set theta0 ke 0 dan theta1 ke 0.
+Beri nilai awal mereka 0.
+
+25
+00:01:55,452 --> 00:02:00,322
+Apa yang akan kita lakukan dalam
+gradient descent adalah kita akan terus
+
+26
+00:02:00,322 --> 00:02:05,258
+mengubah sedikit nilai theta0 dan theta1 untuk
+mencoba mengurangi J(theta0 dan theta1)
+
+27
+00:02:05,258 --> 00:02:10,571
+hingga kita mencapai minimum atau
+minimum lokal. Mari lihat
+
+28
+00:02:10,796 --> 00:02:16,106
+gambaran, apa yang dilakukan gradient descent.
+Katakanlah saya coba meminimalkan fungsi ini.
+
+29
+00:02:16,106 --> 00:02:20,849
+Perhatikan sumbunya. Ini,
+(theta0, theta1) pada sumbu horisontal,
+
+30
+00:02:20,849 --> 00:02:25,774
+dan J sumbu vertikalnya. Jadi
+tinggi permukaan menunjukkan J, dan kita
+
+31
+00:02:25,774 --> 00:02:30,582
+ingin meminimalkan fungsi ini. Kita
+akan mulai dengan (theta0, theta1)
+
+32
+00:02:30,582 --> 00:02:35,375
+pada beberapa titik. Jadi bayangkan memilih
+beberapa nilai untuk (theta0, theta1), dan itu
+
+33
+00:02:35,375 --> 00:02:39,934
+sama dengan memulai pada beberapa titik
+permukaan dari fungsi ini. Okey?
+
+34
+00:02:39,934 --> 00:02:44,201
+Jadi berapapun nilai (theta0, theta1)
+memberi Anda beberapa titik di sini.
+
+35
+00:02:44,201 --> 00:02:48,819
+Saya menginisialisasi mereka dengan 0, tapi
+terkadang Anda menginisialisasi dengan nilai
+
+36
+00:02:48,819 --> 00:02:53,942
+lain juga. Sekarang, saya ingin kita membayangkan
+gambar ini menunjukkan sebuah bukit. Bayangkan
+
+37
+00:02:53,942 --> 00:02:59,178
+ini seperti sebuah pemandangan dari beberapa
+taman berumput dengan dua bukit seperti itu.
+
+38
+00:02:59,178 --> 00:03:04,618
+Saya ingin Anda membayangkan Anda sedang
+berdiri pada titik itu di atas
+
+39
+00:03:04,618 --> 00:03:09,990
+bukit pada bukit merah kecil ini di taman Anda.
+Dalam gradient descent, apa yang akan kita
+
+40
+00:03:09,990 --> 00:03:15,770
+lakukan adalah berputar 360 derajat dan melihat
+semua yang ada di sekeliling kita dan bertanya,
+
+41
+00:03:15,770 --> 00:03:20,423
+"Jika saya mengambil langkah bayi kecil dalam
+beberapa arah, dan saya ingin menuruni bukit
+
+42
+00:03:20,423 --> 00:03:25,320
+secepat mungkin, ke arah mana saya
+melangkah seperti itu jika ingin
+
+43
+00:03:25,320 --> 00:03:29,686
+turun, jika saya ingin berjalan
+menuruni bukit ini secepat
+
+44
+00:03:29,686 --> 00:03:34,465
+mungkin?" Ternyata jika kita berdiri
+pada titik ini di atas bukit, Anda melihat
+
+45
+00:03:34,465 --> 00:03:39,185
+sekeliling, Anda menemukan bahwa arah terbaik
+mengambil langkah kecil menuruni bukit
+
+46
+00:03:39,185 --> 00:03:44,035
+kira-kira arah itu. Okey. Dan sekarang
+Anda berada pada titik baru ini di bukit Anda.
+
+47
+00:03:44,035 --> 00:03:49,430
+Lagi, Anda akan melihat sekeliling, lalu
+mengatakan, "Ke arah mana saya harus melangkah
+
+48
+00:03:49,430 --> 00:03:54,695
+mengambil langkah bayi kecil menuruni bukit? Dan
+jika Anda melakukan itu dan mengambil langkah lain,
+
+49
+00:03:54,695 --> 00:03:59,700
+Anda melangkah pada arah itu, dan terus
+melangkah. Dari titik baru ini,
+
+50
+00:03:59,700 --> 00:04:04,835
+Anda lihat sekeliling, memutuskan arah mana
+yang akan membawa Anda menuruni bukit dengan
+
+51
+00:04:04,835 --> 00:04:09,775
+sangat cepat, melangkah dan melangkah lagi, 
+dan seterusnya, hingga Anda bertemu
+
+52
+00:04:09,970 --> 00:04:15,059
+local minimum di bawah sini. Turunan selanjutnya
+punya sifat menarik. Ini pertama kalinya
+
+53
+00:04:15,059 --> 00:04:19,682
+kita mengoperasikan gradient descent, kita
+mulai pada titik ini di sini, kan?
+
+54
+00:04:19,682 --> 00:04:24,183
+Mulai pada titik ini. Sekarang bayangkan,
+kita menginisialisasi gradient descent
+
+55
+00:04:24,183 --> 00:04:29,232
+dua langkah ke kanan. Bayangkan kita
+menginisialisasi gradient descent dengan
+
+56
+00:04:29,232 --> 00:04:34,159
+titik itu di kanan atas. Jika Anda mengulangi
+process ini, dan berhenti pada
+
+57
+00:04:34,159 --> 00:04:39,207
+titik itu, dan melihat sekeliling. Ambil langkah
+kecil pada arah turunan curam.
+
+58
+00:04:39,207 --> 00:04:44,772
+Anda akan melakukan itu. Lalu lihat sekeliling,
+melangkah lagi, dan seterusnya. Dan jika Anda
+
+59
+00:04:44,772 --> 00:04:50,570
+memulainya dua langkah ke kanan,
+gradient descent sudah membawa Anda
+
+60
+00:04:50,570 --> 00:04:56,236
+ke optimum lokal kedua ini di kanan.
+Jadi jika Anda telah mulai pada titik
+
+61
+00:04:56,236 --> 00:05:01,602
+pertama ini, Anda telah sampai pada
+optimum lokal ini. Tapi jika Anda mulai
+
+62
+00:05:01,602 --> 00:05:06,762
+pada lokasi yang sedikit berbeda,
+Anda akan sampai pada optimum lokal
+
+63
+00:05:06,762 --> 00:05:12,197
+yang sangat berbeda. Ini satu sifat
+gradient descent yang akan kita
+
+64
+00:05:12,197 --> 00:05:17,425
+bicarakan sedikit banyak nanti. Jadi,
+itulah gambaran intuisinya. Mari
+
+65
+00:05:17,425 --> 00:05:22,929
+lihat pada peta. Ini definisi algoritma
+gradient descent. Kita akan
+
+66
+00:05:22,929 --> 00:05:28,240
+berulang-ulang melakukan ini, hingga bertemu
+di satu titik. Kita akan membaharui parameter
+
+67
+00:05:28,240 --> 00:05:33,543
+theta J saya dengan cara
+menguranginya dengan alfa
+
+68
+00:05:33,543 --> 00:05:39,129
+dikalikan dengan bagian ini. Mari lihat.
+Ada banyak detil dalam persamaan ini,
+
+69
+00:05:39,129 --> 00:05:45,030
+jadi biar saya jelaskan beberapa di antaranya.
+Pertama, notasi ini, titik dua sama dengan.
+
+70
+00:05:45,030 --> 00:05:51,643
+Kita akan menggunakan := untuk menunjukkan
+penyerahan nilai, jadi itu operator penyerahan
+
+71
+00:05:51,643 --> 00:05:57,790
+nilai. Konkritnya, jika saya menulis
+A := B, dalam komputer
+
+72
+00:05:57,790 --> 00:06:02,878
+ini berarti, ambil nilai dalam B
+dan gunakan itu untuk mengganti
+
+73
+00:06:02,878 --> 00:06:08,517
+nilai yang ada di A. Ini artinya kita akan
+mengatur nilai A sama dengan nilai dari B.
+
+74
+00:06:08,517 --> 00:06:13,674
+Okey, itulah operator pemberian nilai. Saya
+bisa juga menulis A:=A+1. Ini artinya
+
+75
+00:06:13,674 --> 00:06:18,969
+ambil A dan tambahkan nilainya dengan satu.
+Sebaliknya, jika saya menggunakan tanda
+
+76
+00:06:18,969 --> 00:06:26,067
+sama dengan dan menulis A=B, maka ini
+adalah pernyataan. Jadi, jika saya menulis A=B,
+
+77
+00:06:26,067 --> 00:06:31,006
+maka saya menyatakan bahwa nilai A
+sama dengan nilai B. Jadi bagian sebelah
+
+78
+00:06:31,006 --> 00:06:36,331
+kiri, itu adalah operasi komputer, dimana
+Anda menetapkan nilai A menjadi nilai
+
+79
+00:06:36,331 --> 00:06:41,399
+sisi sebelah kanan. Ini adalah pernyataan.
+Saya menyatakan bahwa nilai A
+
+80
+00:06:41,399 --> 00:06:46,274
+dan B sama. Jadi, sementara saya bisa
+menulis A:=A+1, artinya tambah A dengan 1,
+
+81
+00:06:46,274 --> 00:06:50,764
+semoga, saya tidak akan pernah menulis
+A=A+1, karena itu salah.
+
+82
+00:06:50,764 --> 00:06:55,704
+A dan A+1 tidak akan pernah sama
+nilainya. Jadi itu bagian pertama
+
+83
+00:06:55,704 --> 00:07:05,733
+definisi. Alfa ini adalah
+suatu angka yang disebut
+
+84
+00:07:05,733 --> 00:07:12,360
+kecepatan belajar. Yang dilakukan alfa adalah
+mengontrol berapa besar langkah yang kita ambil
+
+85
+00:07:12,360 --> 00:07:17,113
+menuruni bukit dengan gradient descent. Jadi jika
+alfa sangat besar, maka itu dapat disamakan dengan
+
+86
+00:07:17,113 --> 00:07:21,925
+prosedur gradient descent yang sangat agresif,
+dimana kita mencoba mengambil langkah yang
+
+87
+00:07:21,925 --> 00:07:26,322
+sangat besar menuruni bukit. Jika alfa sangat
+kecil, maka kita mengambil langkah yang sangat
+
+88
+00:07:26,322 --> 00:07:31,194
+kecil seperti langkah bayi menuruni bukit. Saya
+akan kembali dan bicara banyak tentang ini nanti.
+
+89
+00:07:31,194 --> 00:07:35,660
+Tentang bagaimana menetapkan alfa dan seterusnya.
+Dan akhirnya, bagian ini. Itu adalah
+
+90
+00:07:35,660 --> 00:07:40,582
+derivatif, saya tidak ingin membicarakannya
+sekarang, tapi saya akan menurunkan derivatif
+
+91
+00:07:40,582 --> 00:07:45,564
+ini dan memberitahu Anda ini tergantung pada
+apa. Beberapa dari Anda
+
+92
+00:07:45,564 --> 00:07:50,547
+lebih akrab dengan kalkulus dibanding
+yang lain, tapi bahkan jika Anda tidak akrab
+
+93
+00:07:50,547 --> 00:07:55,469
+dengan kalkulus jangan khawatirkan itu, saya akan
+beritahu Anda apa yang Anda perlukan untuk tahu
+
+94
+00:07:55,469 --> 00:08:00,580
+bagian ini di sini. Sekarang ada satu lagi
+seluk-beluk gradient descent yaitu, dalam
+
+95
+00:08:00,580 --> 00:08:05,837
+gradient descent, kita akan memperbaharui
+theta0 dan theta1. Jadi
+
+96
+00:08:05,837 --> 00:08:10,699
+pembaruan ini terjadi dimana J=0, dan
+J=1. Anda akan membaharui theta0
+
+97
+00:08:10,699 --> 00:08:15,955
+dan theta1. Dan seluk-beluk bagaimana
+Anda mengimplementasikan gradient descent,
+
+98
+00:08:15,955 --> 00:08:21,562
+untuk ekspresi ini, untuk persamaan
+pembaharuan ini, Anda ingin
+
+99
+00:08:21,562 --> 00:08:31,384
+secara berurutan membaharui theta0 dan
+theta1. Maksud saya adalah
+
+100
+00:08:31,384 --> 00:08:36,432
+dalam persamaan ini,
+kita akan membaharui
+
+101
+00:08:36,432 --> 00:08:40,975
+theta0:=theta0 - sesuatu, dan 
+theta1:=theta1 - sesuatu.
+
+102
+00:08:40,975 --> 00:08:45,834
+Dan cara mengimplementasikan ini adalah,
+Anda harus menghitung sisi sebelah
+
+103
+00:08:45,834 --> 00:08:52,677
+kanan. Hitung itu untuk theta0
+dan theta1, lalu secara serentak pada
+
+104
+00:08:52,677 --> 00:08:57,469
+waktu bersamaan membaharui theta0 dan
+theta1. Jadi ini maksud saya.
+
+105
+00:08:57,469 --> 00:09:02,024
+Ini implementasi yang benar mengenai pengertian
+pembaharuan serentak gradient descent.
+
+106
+00:09:02,024 --> 00:09:06,461
+Saya akan set temt0 sama dengan
+itu, set temp1 sama dengan itu. Jadi
+
+107
+00:09:06,461 --> 00:09:11,430
+pada dasarnya menghitung sisi kanan.
+Setelah menghitungnya, simpan
+
+108
+00:09:11,430 --> 00:09:15,926
+dalam temp0 dan temp1.
+Saya akan membaharui theta0 dan theta1
+
+109
+00:09:15,926 --> 00:09:20,245
+secara serempak, karena itu implementasi
+yang benar. Sebaliknya,
+
+110
+00:09:20,245 --> 00:09:25,533
+ini implementasi yang salah yang
+tidak melakukan pembaharuan serempak.
+
+111
+00:09:25,533 --> 00:09:31,666
+Jadi dalam implementasi yang salah, kita
+menghitung temp0 dan membaharui theta0,
+
+112
+00:09:31,666 --> 00:09:36,644
+kemudian kita menghitung temp1, lalu
+membaharui theta1. Dan selisih implementasi
+
+113
+00:09:36,644 --> 00:09:41,877
+antara sisi kanan dan sisi kiri adalah
+jika kita melihat di bawah sini,
+
+114
+00:09:41,877 --> 00:09:46,791
+Anda lihat langkah ini, jika saat ini
+Anda telah membaharui theta0
+
+115
+00:09:46,791 --> 00:09:51,897
+kemudian Anda akan menggunakan nilai
+baru theta0 itu untuk menghitung bagian
+
+116
+00:09:51,897 --> 00:09:57,340
+derivatif ini sehingga ini memberi Anda
+nilai temp1 yang berbeda daripada sisi kirinya,
+
+117
+00:09:57,340 --> 00:10:01,565
+karena sekarang Anda telah memasukkan
+nilai theta0 yang baru ini
+
+118
+00:10:01,565 --> 00:10:05,852
+ke dalam persamaan ini. Jadi ini pada sisi
+kanan bukan implementasi gradient descent
+
+119
+00:10:05,852 --> 00:10:09,916
+yang benar. Jadi saya tidak ingin
+katakan mengapa Anda perlu melakukan
+
+120
+00:10:09,916 --> 00:10:14,617
+pembaharuan serentak, jelas bahwa
+itu cara gradient descent
+
+121
+00:10:14,617 --> 00:10:18,735
+biasa diimplementasikan. Kita akan bicara
+lebih mengenai hal itu nanti. Sebenarnya tampak
+
+122
+00:10:18,735 --> 00:10:22,496
+lebih natural mengimplementasikan pembaharuan
+serentak. Dan ketika orang bicara tentang
+
+123
+00:10:22,496 --> 00:10:26,665
+gradient descent, maksud mereka selalu
+pembaharuan serentak. Jika Anda mengimplementasikan
+
+124
+00:10:26,665 --> 00:10:30,630
+pembaharuan yang tidak serentak,
+bagaimanapun juga itu akan bekerja, tapi
+
+125
+00:10:30,630 --> 00:10:34,747
+algoritma di kanan ini bukan apa yang orang
+tunjukkan sebagai gradient descent dan
+
+126
+00:10:34,747 --> 00:10:38,356
+ini beberapa algoritma lain dengan
+sifat berbeda. Dan untuk berbagai
+
+127
+00:10:38,356 --> 00:10:42,220
+alasan, ini bisa berperilaku
+sedikit aneh. Dan
+
+128
+00:10:42,220 --> 00:10:46,626
+apa yang harus Anda lakukan adalah
+mengimplementasikan pembaharuan serempak
+
+129
+00:10:46,626 --> 00:10:52,313
+pada gradient descent. Jadi, itu garis besar
+algoritma gradient descent. Pada video berikut,
+
+130
+00:10:52,313 --> 00:10:56,998
+kita akan membahas detil bagian
+derivatif, yang saya tulis tapi
+
+131
+00:10:56,998 --> 00:11:01,799
+belum benar-benar didefinisikan. Jika Anda telah
+ambil kelas kalkulus sebelumnya dan jika Anda
+
+132
+00:11:01,799 --> 00:11:06,367
+tahu derivatif parsial dan
+derivatif, jelas itu persis
+
+133
+00:11:06,367 --> 00:11:11,425
+apa yang derivatif itu maksudkan. Tapi jika Anda
+tidak mahir dengan kalkulus, jangan khawatirkan
+
+134
+00:11:11,425 --> 00:11:15,680
+itu. Video berikutnya akan memberi Anda
+semua intuisi dan memberi tahu Anda
+
+135
+00:11:15,680 --> 00:11:19,883
+segala sesuatu yang Anda perlu tahu untuk
+menghitung derivatif itu, bahkan jika Anda
+
+136
+00:11:19,883 --> 00:11:24,296
+tidak tahu kalkulus, atau bahkan tidak tahu
+derivatif parsial sebelumnya. Dan dengan
+
+137
+00:11:24,296 --> 00:11:28,288
+video berikut, semoga kami
+bisa memberi semua intuisi
+
+138
+00:11:28,288 --> 00:11:30,180
+yang Anda perlukan untuk
+mengimplementasikan gradient descent.

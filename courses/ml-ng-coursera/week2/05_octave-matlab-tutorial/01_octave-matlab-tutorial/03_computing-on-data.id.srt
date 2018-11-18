@@ -1,0 +1,882 @@
+1
+00:00:00,280 --> 00:00:02,820
+Sekarang Anda tahu bagaimana cara untuk memuat dan 
+menyimpan data di Octave
+
+2
+00:00:02,820 --> 00:00:05,100
+memasukkan data Anda ke dalam matriks dan sebagainya.
+
+3
+00:00:05,100 --> 00:00:10,028
+Dalam video ini, saya ingin menunjukkan kepada Anda bagaimana 
+untuk melakukan operasi komputerisasi pada data.
+
+4
+00:00:10,028 --> 00:00:14,880
+Dan nanti, kita akan menggunakan source 
+dari operasi komputasi ini untuk melaksanakan
+
+5
+00:00:14,880 --> 00:00:15,870
+algoritma pembelajaran kita.
+
+6
+00:00:17,130 --> 00:00:17,810
+Mari kita mulai.
+
+7
+00:00:19,650 --> 00:00:21,040
+Ini jendela Octave saya.
+
+8
+00:00:21,040 --> 00:00:25,900
+Izinkan saya cepat menginisialisasi beberapa 
+variabel yang akan digunakan untuk contoh kita.
+
+9
+00:00:25,900 --> 00:00:33,470
+Jadi atur A menjadi maktriks 3x2,
+dan atur B menjadi matriks 3x2,
+
+10
+00:00:33,470 --> 00:00:37,855
+dan mari kita atur C menjadi matriks 
+2x2 seperti itu.
+
+11
+00:00:39,195 --> 00:00:42,235
+Sekarang katakanlah saya ingin 
+mengalikan dua buah matriks saya.
+
+12
+00:00:42,235 --> 00:00:47,195
+Jadi katakanlah saya ingin menghitung A * C, saya hanya
+ mengetik A * C, sehingga ia menjadi matriks 3x2
+
+13
+00:00:47,195 --> 00:00:52,215
+Pengalian sebuah matriks 2x2, 
+ini memberikan saya ini matriks 3x2
+
+14
+00:00:52,215 --> 00:00:57,145
+Anda juga dapat melakukan operasi elemen per elemen (element-wise operation)
+dengan melakukan A. * B dan apa yang akan dilakukan adalah
+
+15
+00:00:57,145 --> 00:01:02,580
+itu akan mengambil setiap elemen dari A dan mengalikannya
+dengan unsur-unsur yang sesuai yang ada pada B,
+
+16
+00:01:02,580 --> 00:01:06,208
+jadi itu A, itu B, itu A. * B.
+
+17
+00:01:06,208 --> 00:01:11,230
+Jadi misalnya, elemen pertama
+memberikan 1 kali 11, yang menghasilkan 11.
+
+18
+00:01:11,230 --> 00:01:17,140
+Elemen kedua memberikan 2 kali
+12 Yang menghasilkan 24, dan seterusnya.
+
+19
+00:01:17,140 --> 00:01:20,840
+Jadi ini adalah perkalian elemen per elemen (element-wise multiplication) dua matriks.
+
+20
+00:01:20,840 --> 00:01:23,200
+Dan secara umum, masa itu cenderung,
+
+21
+00:01:23,200 --> 00:01:27,440
+biasanya digunakan untuk menunjukkan
+operasi cara-dasar dalam Oktave.
+
+22
+00:01:27,440 --> 00:01:31,494
+Jadi, ini adalah matriks A, dan jika saya melakukan A. ^ 2,
+
+23
+00:01:31,494 --> 00:01:36,500
+ini memberi saya unsur
+cerdas mengkuadratkan A.
+
+24
+00:01:36,500 --> 00:01:39,440
+Jadi 1 kuadrat adalah 1, 
+2 kuadrat adalah 4, dan seterusnya.
+
+25
+00:01:41,100 --> 00:01:42,560
+Mari kita menetapkan v sebagai vektor.
+
+26
+00:01:42,560 --> 00:01:46,230
+Mari kita menetapkan v jadi satu, dua, 
+tiga sebagai vektor kolom.
+
+27
+00:01:46,230 --> 00:01:52,010
+Anda juga dapat melakukan satu titik lebih dari v untuk melakukan 
+timbal balik elemen per elemen (element-wise reciprocal) dari v,
+
+28
+00:01:52,010 --> 00:01:56,040
+jadi ini memberi saya satu kali satu, satu kali 
+dua, dan satu kali tiga, dan ini adalah di mana
+
+29
+00:01:56,040 --> 00:02:00,610
+Saya melakukan matriks itu, sehingga 1 . A memberi saya 
+inverse elemen per elemen (element-wise inverse) dari A.
+
+30
+00:02:02,760 --> 00:02:08,173
+Dan sekali lagi, periode ini memberi kita petunjuk bahwa ini 
+sebuah operasi elemen per elemen (element-wise operation)
+
+31
+00:02:08,173 --> 00:02:15,080
+Kami juga dapat melakukan hal-hal seperti log (v), 
+ini adalah logaritma elemen per elemen (element-wise logarithm) dari v
+
+32
+00:02:15,080 --> 00:02:20,300
+E untuk V adalah dasar E eksponensial dari unsur-unsur ini,
+
+33
+00:02:20,300 --> 00:02:25,600
+jadi ini adalah E, ini adalah E kuadrat EQ, 
+karena ini adalah V, dan
+
+34
+00:02:25,600 --> 00:02:31,040
+Saya juga dapat melakukan abs V untuk mengambil 
+nilai absolut elemen per elemen (element-wise absolute) V.
+
+35
+00:02:31,040 --> 00:02:36,660
+Jadi di sini, V adalah nilai positif kita, abs, minus satu, dua minus 3,
+
+36
+00:02:36,660 --> 00:02:42,973
+nilai absolut elemen-wise memberi 
+saya kembali nilai-nilai yang non-negatif.
+
+37
+00:02:42,973 --> 00:02:45,930
+Dan v negatif memberi saya minus v.
+
+38
+00:02:45,930 --> 00:02:48,720
+Ini adalah sama dengan -1 kali v,
+tapi
+
+39
+00:02:48,720 --> 00:02:54,024
+biasanya Anda hanya menulis -v bukan -1 * v.
+
+40
+00:02:54,024 --> 00:02:56,050
+Dan apa lagi yang bisa Anda lakukan?
+
+41
+00:02:56,050 --> 00:02:57,240
+Ini trik cantik lainnya.
+
+42
+00:02:57,240 --> 00:02:58,360
+Jadi, Mari kita lihat.
+
+43
+00:02:58,360 --> 00:03:01,700
+Katakanlah saya ingin mengambil v kenaikan 
+masing-masing elemen dengan 1.
+
+44
+00:03:01,700 --> 00:03:06,590
+Nah salah satu cara untuk melakukannya adalah 
+dengan membangun tiga
+
+45
+00:03:06,590 --> 00:03:11,430
+dengan 1 vektor semuanya dan 
+tambahkan itu ke v.
+
+46
+00:03:11,430 --> 00:03:14,590
+Jadi jika saya melakukan itu, ini akan menambahkan 
+v  dari 1, 2, 3 menjadi 2, 3, 4.
+
+47
+00:03:14,590 --> 00:03:21,520
+Cara saya lakukan itu adalah, lenght(v) = 3,
+
+48
+00:03:21,520 --> 00:03:27,260
+jadi ones(lenght(v),1),
+ini adalah semua dari 3 dengan 1, jadi
+
+49
+00:03:27,260 --> 00:03:33,620
+itu adalah ones(3,1) di bagian kanan dan
+apa yang saya lakukan adalah v+ones v dengan 1
+
+50
+00:03:33,620 --> 00:03:38,950
+yang mana menambahkan vektor ini kepada ones kita
+ke v, dan jadinya menambakan v dengan 1,
+
+51
+00:03:40,000 --> 00:03:44,190
+dan cara sederhana lain yang dapat dilakukan 
+adalah dengan mengetik v+1.
+
+52
+00:03:44,190 --> 00:03:45,450
+Jadi dia memilki v, dan
+
+53
+00:03:45,450 --> 00:03:50,840
+v+1 juga berarti menambahkan 1 elemen 
+dasar kepada setiap elemen v saya.
+
+54
+00:03:52,470 --> 00:03:55,490
+Sekarang, mari bicara operasi lainnya.
+
+55
+00:03:55,490 --> 00:03:59,520
+Jadi, inilah matriks A saya, jika Anda ingin 
+melakukan A transpose (T), cara untuk melakukan itu
+
+56
+00:03:59,520 --> 00:04:03,720
+adalah menulis A' , itulah simbol tanda kutip, 
+itu kutipan kiri,
+
+57
+00:04:03,720 --> 00:04:08,350
+jadi pada keyboard Anda,
+Anda memiliki kutipan kiri dan kutipan kanan.
+
+58
+00:04:08,350 --> 00:04:11,260
+Jadi ini sebenarnya 
+tanda kutip standar.
+
+59
+00:04:11,260 --> 00:04:18,330
+Ketik A transpos, ini memberi 
+saya transpos dari matriks A saya.
+
+60
+00:04:18,330 --> 00:04:19,700
+dan, tentunya, A transpos,
+
+61
+00:04:19,700 --> 00:04:22,970
+Jika saya mentransposnya lagi, 
+maka Saya harusnya mendapatkan matriks A saya kembali.
+
+62
+00:04:25,160 --> 00:04:27,570
+beberapa fungsi yang lebih berguna.
+
+63
+00:04:27,570 --> 00:04:34,300
+Katakanlah kasus yang lebih sederhana A adalah 1 15 2 0.5,
+jadi itu adalah matriks 1x4.
+
+64
+00:04:34,300 --> 00:04:38,880
+katakanlah val = max (a) ini 
+memberikan nilai maksimum dari
+
+65
+00:04:38,880 --> 00:04:42,970
+A yang mana pada kasus ini adalah 15 dan 
+Saya dapat melakukan val,
+
+66
+00:04:42,970 --> 00:04:48,430
+ind max(a) dan ini memunculkan nilai val dan ind
+
+67
+00:04:48,430 --> 00:04:52,940
+yang mana akan menjadi nilai maksimum dari A yaitu 15, sama halnya indeks.
+
+68
+00:04:52,940 --> 00:04:58,790
+Jadi itu adalah unsur nomor dua dari A yang
+sebelumnya adalah 15 jadi ind adalah indeks saya dalam sini.
+
+69
+00:04:58,790 --> 00:05:03,230
+Hanya sebagai peringatan, jika Anda melakukan max (A), 
+dimana A adalah sebuah matriks,
+
+70
+00:05:03,230 --> 00:05:07,920
+apa yang dilakukan adalah ini sebenarnya 
+melakukan maksimum per elemen kolom.
+
+71
+00:05:07,920 --> 00:05:09,860
+Tetapi bicarakan sedikit lebih banyak 
+tentang hal ini sejenak.
+
+72
+00:05:11,610 --> 00:05:14,760
+Tetap menggunakan contoh ini sebagai 
+kasus sederhana dari A.
+
+73
+00:05:14,760 --> 00:05:19,630
+Jika saya melakukan a<3,
+ini melakukan operasi elemen per elemen (element-wise operation).
+
+74
+00:05:19,630 --> 00:05:24,030
+perbandingan elemen per elemen (element-wise comparison),
+jadi unsur pertama  dari A adalah kurang dari 3 jadi
+
+75
+00:05:24,030 --> 00:05:24,970
+yang ini satu.
+
+76
+00:05:24,970 --> 00:05:29,970
+elemen ke dua dari A tidak kurang dari 3
+maka nilainya menunjukkan 0 karena itu salah atau tidak memenuhi.
+
+77
+00:05:29,970 --> 00:05:36,590
+elemen ke 3 dan 4 dari 
+A kurang dari 3, jadi itu adalah 1 1
+
+78
+00:05:36,590 --> 00:05:42,970
+Jadi itulah perbandingan elemen per elemen (element-wise comparison) 
+dari 4 elemen dari variabel a<3.
+
+79
+00:05:42,970 --> 00:05:47,440
+Dan ia menganggap benar atau salah tergantung pada 
+apakah atau tidak disana kurang dari tiga.
+
+80
+00:05:47,440 --> 00:05:53,615
+Sekarang, jika saya melakukan find(a<3), ini akan
+memberitahu saya yang mana elemen-elemen dari A,
+
+81
+00:05:53,615 --> 00:05:55,235
+variabel a, yang kurang dari 3,
+
+82
+00:05:55,235 --> 00:05:59,545
+dan pada kasus ini, elemen pertama, ke-3, dan 
+ke-4 adalah kurang dari 3.
+
+83
+00:05:59,545 --> 00:06:05,205
+Untuk contoh kita selanjutnya,
+izikan saya men-set A = magic(3).
+
+84
+00:06:05,205 --> 00:06:08,985
+fungsi magic menunjukkan, 
+mari mengetik help magic.
+
+85
+00:06:08,985 --> 00:06:15,370
+fungsi magic menghasilkan 
+matriks yang disebut magic square.
+
+86
+00:06:15,370 --> 00:06:20,830
+Mereka memiliki ini, Anda tahu, properti matematika 
+yang semua barisnya dan
+
+87
+00:06:20,830 --> 00:06:23,690
+kolom dan diagonalnya menghasilkan penjumlahan yang sama.
+
+88
+00:06:23,690 --> 00:06:28,830
+Jadi, Anda tahu, ini sebenarnya tidak digunakan untuk 
+mesin learning sejauh yang saya tahu, tapi
+
+89
+00:06:28,830 --> 00:06:34,450
+Saya hanya menggunakan ini sebagai cara mudah 
+untuk mendapatkan matriks 3x3.
+
+90
+00:06:34,450 --> 00:06:38,788
+Dan magic square tersebut mempunyai
+properti dimana setiap baris, kolom,
+
+91
+00:06:38,788 --> 00:06:41,751
+dan diagonalnya semua menghasilkan jumlah yang sama, jadi
+
+92
+00:06:41,751 --> 00:06:44,300
+itu semacam konstruksi matematika.
+
+93
+00:06:44,300 --> 00:06:48,820
+Saya menggunakan fungsi magic ini hanya ketika saya
+melakukan demo atau mengajarkan octave
+
+94
+00:06:48,820 --> 00:06:53,760
+seperti tadi, Saya sebenarnya tidak menggunakannya untuk
+kegunaan apapun pada aplikasi mesin learning.
+
+95
+00:06:53,760 --> 00:06:58,886
+Tapi mari kita lihat,
+jika saya mengetik RC=find(A>7) ini mencari
+
+96
+00:06:58,886 --> 00:07:04,231
+semua elemen A yang
+lebih besar dari 7,
+
+97
+00:07:04,231 --> 00:07:07,740
+dan r, c singkatan row dan column atau baris dan colom.
+
+98
+00:07:07,740 --> 00:07:11,750
+Jadi elemen 1,1 lebih besar dari 7,
+elemen 3,2 lebih besar dari 7, dan
+
+99
+00:07:11,750 --> 00:07:13,270
+elemen 2,3 lebih besar dari 7.
+
+100
+00:07:13,270 --> 00:07:14,360
+Jadi mari kita lihat
+
+101
+00:07:14,360 --> 00:07:17,740
+elemen 2,3, contohnya, adalah A(2,3).
+
+102
+00:07:17,740 --> 00:07:24,270
+7 adalah termasuk elemen disini, dan itu memang lebih besar dari 7 dari pada sama dengan 7.
+
+103
+00:07:24,270 --> 00:07:28,820
+Oh ya, Saya sendiri sebenarnya tidak ingat
+apa yang fungsi find tersebut lakukan dan
+
+104
+00:07:28,820 --> 00:07:30,220
+apa saja yang dilakukan oleh mereka.
+
+105
+00:07:30,220 --> 00:07:34,180
+dan kapanpun saya menggunakan fungsi find,
+kadang-kadang saya lupa sendiri apa sebenarnya hal tersebut
+
+106
+00:07:34,180 --> 00:07:38,020
+lakukan, dan sekarang saya akan menulis help 
+find untuk melihat dokumen tentang itu
+
+107
+00:07:38,020 --> 00:07:40,130
+oke, tinggal 2 hal lagi
+saya akan secara cepat menunjukkan pada Anda
+
+108
+00:07:40,130 --> 00:07:44,270
+salah satunya adalah fungsi sum, jadi
+disini A saya, dan kemudian tulis sum(a).
+
+109
+00:07:44,270 --> 00:07:48,140
+ini menambahkan semua elemen A, dan
+jika saya ingin mengkalikan mereka bersama,
+
+110
+00:07:48,140 --> 00:07:50,940
+saya menulis prod(a) prod mengirim hasil tersebut, dan
+
+111
+00:07:50,940 --> 00:07:54,225
+menunjukkan hasil dari 
+ke empat elemen A.
+
+112
+00:07:54,225 --> 00:08:01,630
+Floor(a) membulatkan ke bawah elemen-elemen dari A,
+sehingga 0.5 dibulatkan kebawah menjadi 0.
+
+113
+00:08:01,630 --> 00:08:06,600
+dan ceil, atau ceilling(A) akan 
+dibulatkan ke bilangan bulat terdekat,
+
+114
+00:08:06,600 --> 00:08:10,900
+Jadi 0.5 dibulatkan keatas menjadi 1.
+
+115
+00:08:10,900 --> 00:08:13,330
+Anda juga dapat, mari kita lihat.
+
+116
+00:08:13,330 --> 00:08:16,720
+Izinkan saya mengetik rand(3), 
+ini menghasilkan sebuah matrix 3x3.
+
+117
+00:08:16,720 --> 00:08:21,790
+jika saya menulis max(rand(3), rand(3)),
+apa yang dilakukan adalah ia mengambil
+
+118
+00:08:21,790 --> 00:08:27,000
+maksimum elemen per elemen (element-wise maximum) dari sembarang 3 matriks 3x3
+
+119
+00:08:27,000 --> 00:08:30,680
+Jadi Anda lihat semua angka-angka ini cenderung sedikit di sisi besar karena
+
+120
+00:08:30,680 --> 00:08:33,150
+setiap mereka adalah sebenarnya
+nilai maksimum dari setiap elemen
+
+121
+00:08:34,490 --> 00:08:37,515
+cerdas maksimum dari 2 secara acak 
+menghasilkan matriks.
+
+122
+00:08:37,515 --> 00:08:38,280
+Ini angka magis saya.
+
+123
+00:08:38,280 --> 00:08:43,050
+Ini kotak magis saya, A 3x3.
+
+124
+00:08:43,050 --> 00:08:48,270
+Katakanlah saya mengetik max A, dan 
+kemudian ini akan menjadi a [],
+
+125
+00:08:48,270 --> 00:08:53,580
+1, apa yang dilakukan adalah ini 
+akan mengirimkan nilai maksimum per elemen kolom.
+
+126
+00:08:53,580 --> 00:08:58,260
+jadi nilai maksimum dari kolom pertama adalah 8,
+nilai maksimum kolom ke-2 adalah 9,
+
+127
+00:08:58,260 --> 00:08:59,960
+nilai maksimum kolom ke-3 adalah 7.
+
+128
+00:08:59,960 --> 00:09:04,194
+Nilia 1 ini berarti untuk mengambil nilai maksimum
+diantara dimensi pertama dari 8.
+
+129
+00:09:05,200 --> 00:09:08,780
+sebaliknya, jika saya menulis max A,
+ini notasi yang lucu,
+
+130
+00:09:08,780 --> 00:09:12,480
+dua, kemudian mengambil nilai maksimum per baris.
+
+131
+00:09:12,480 --> 00:09:17,210
+jadi nilai maksimum baris pertama adalah 8, nilai maksimum
+baris ke-2 adalah 7, nilai maksimum baris ke-3
+
+132
+00:09:17,210 --> 00:09:23,570
+adalah 9, dan ini mengizinkan anda untuk
+mengambil nilai-nilai maksimum apakan per bari atau per kolom.
+
+133
+00:09:24,760 --> 00:09:30,050
+dan ingat defaultnya adalah
+untuk elemen sebuah kolom
+
+134
+00:09:30,050 --> 00:09:34,880
+jadi jika anda ingin menemukan nilai elemen maksimum
+dari semua matriks A,
+
+135
+00:09:34,880 --> 00:09:39,660
+Anda dapat menulis max(max(A)) seperti itu,
+yang mana adalah 9.
+
+136
+00:09:39,660 --> 00:09:45,130
+atau anda dapat mengubah A menjadi sebuah vektor dan
+menulis max(A(:)) seperti itu dan
+
+137
+00:09:45,130 --> 00:09:50,160
+ini memperlakukan ini sebagai sebuah vektor dan
+mengambil nilai elemen maksimum dari vektor tersebut.
+
+138
+00:09:52,130 --> 00:09:56,220
+Akhirnya mari men-set A menjadi
+sebuah matriks kotak 9x9.
+
+139
+00:09:56,220 --> 00:10:00,700
+Jadi ingat matriks magis kotak mempunyai
+ciri dimana setiap kolom dan
+
+140
+00:10:00,700 --> 00:10:03,650
+baru memiliki penjumlahan yang sama,
+dan begitupun diagonalnya, sehingga
+
+141
+00:10:03,650 --> 00:10:06,280
+hanyalah sebuah matriks kotak 9x9.
+
+142
+00:10:06,280 --> 00:10:07,470
+Jadi izinkan saya melakukan sum(A,1).
+
+143
+00:10:07,470 --> 00:10:12,050
+Jadi ini melakukan sebuah penjumlahan setiap kolom, sehingga
+kita akan mengambil setaip kolom dari A dan
+
+144
+00:10:12,050 --> 00:10:15,550
+menjumlahkan mereka dan
+ini membuktikan bahwa memang untuk
+
+145
+00:10:15,550 --> 00:10:20,150
+sebuah matriks kotak 9x9, setiap kolom
+dijumlahkan menjadi 369, penjumlahan menghasilkan hal yang sama.
+
+146
+00:10:20,150 --> 00:10:21,978
+Sekarang mari kita melakukan penjumlahan baris sederhana
+
+147
+00:10:21,978 --> 00:10:26,870
+Jadi sum(A,2), dan
+
+148
+00:10:26,870 --> 00:10:32,950
+ini menjumlahkan setiap baris A, dan
+tentunya setiap baris dari A juga dijumlahkan menjadi 369.
+
+149
+00:10:32,950 --> 00:10:36,110
+Sekarang, mari kita menjumlahkan 
+elemen diagonal dari A dan
+
+150
+00:10:36,110 --> 00:10:39,800
+pastikan bahwa penjumlahan 
+menghasilkan nilai yang sama.
+
+151
+00:10:39,800 --> 00:10:45,558
+Jadi apa yang saya akan lakukan adalah mengkintruksi sebuah
+matriks identitas 9x9, ini adalah eye 9.
+
+152
+00:10:45,558 --> 00:10:52,330
+dan perkenankan saya mengambil A dan konstruksi, perkalian wise elemen 
+A, jadi ini matriks A saya.
+
+153
+00:10:52,330 --> 00:10:56,290
+saya akan melakukan A.^eye(9).
+
+154
+00:10:56,290 --> 00:11:00,970
+apa yang akan dilakukan adalah pengambilan 
+hasil elemen per elemen (element-wise product) dari dua matriks, dan sehingga
+
+155
+00:11:00,970 --> 00:11:05,820
+ini akan mengosongkan segala sesuatu di A,
+kecuali untuk nilai-nilai diagonal.
+
+156
+00:11:05,820 --> 00:11:11,130
+dan sekarang,
+saya akan melakukan penjumlahan sum A darinya dan
+
+157
+00:11:11,130 --> 00:11:17,830
+ini memberi saya penjumlahan dari elemen diagonal
+dan jelas itu adalah 369.
+
+158
+00:11:17,830 --> 00:11:20,260
+Anda dapat menjumlahkan diagonal 
+lainnya juga.
+
+159
+00:11:20,260 --> 00:11:22,340
+jadi ini kiri atas hingga kiri bawah,
+
+160
+00:11:22,340 --> 00:11:27,410
+anda dapat menjumlahkan diagonal sebaliknya
+dari kiri bawah hingga kanan atas.
+
+161
+00:11:27,410 --> 00:11:29,791
+perintah untuk
+ini agak sedikit samar,
+
+162
+00:11:29,791 --> 00:11:31,600
+Anda tidak perlu mengetahui ini.
+
+163
+00:11:31,600 --> 00:11:34,790
+Saya baru saja memperlihatkan pada anda hal ini 
+barangkali ada diantara anda yang penasaran
+
+164
+00:11:34,790 --> 00:11:38,390
+tapi mari kita lihat.
+
+165
+00:11:38,390 --> 00:11:40,685
+flipud singkatan dari flip up down.
+
+166
+00:11:40,685 --> 00:11:45,760
+Tapi jika Anda melakukan itu, ini menghasilkan
+penjumlahan elemen sebaliknya.
+
+167
+00:11:45,760 --> 00:11:50,090
+jadi diagram lainnya,
+yang juga menjumlahkan menjadi 369.
+
+168
+00:11:50,090 --> 00:11:52,020
+Disini, izinkan saya menunjukkan pada Anda.
+
+169
+00:11:52,020 --> 00:11:54,262
+meskipun eye(9) adalah matriks ini.
+
+170
+00:11:54,262 --> 00:11:59,470
+filpup(eye(9)), mengambil matriks identitas,
+
+171
+00:11:59,470 --> 00:12:02,890
+dan membalikkannya secara vertikal, jadi
+berakhir dengan, permisi,
+
+172
+00:12:02,890 --> 00:12:06,480
+flip UD, menghasilkan 1 pada
+diagonal sebaliknya.
+
+173
+00:12:08,780 --> 00:12:12,750
+Hanya satu perintah terakhir dan kemudian ini dia,
+dan kemudian itu akan ada pada video ini.
+
+174
+00:12:12,750 --> 00:12:16,820
+Mari men-set A menjadi 
+permainan magic square atau kota magic 3x3.
+
+175
+00:12:16,820 --> 00:12:20,340
+jika anda ingin membalikkan sebuah matriks, 
+anda mengetik pinv(A).
+
+176
+00:12:20,340 --> 00:12:23,120
+ini biasanya disebut
+psuedo-inverse, tapi itu tak masalah.
+
+177
+00:12:23,120 --> 00:12:27,830
+anggap saja  sederhananya bahwa itu invers 
+dari A, dan itu adalah invers A.
+
+178
+00:12:27,830 --> 00:12:34,130
+dan jadi saya dapat men-set temp=pinv(A) dan
+temp*A,
+
+179
+00:12:34,130 --> 00:12:38,110
+ini sesungguhnya matriks identitas, dimana
+itu sebenarnya angka satu di seluruh diagonalnya,
+
+180
+00:12:38,110 --> 00:12:41,650
+dan nol pada selain diagonal, 
+hingga menjadi sebuah bilangan numerik yang dibulatkan.
+
+181
+00:12:44,210 --> 00:12:45,596
+Jadi itu saja untuk
+
+182
+00:12:45,596 --> 00:12:50,630
+Bagaimana untuk melakukan operasi komputerisasi yang berbeda
+pada data dan matriks.
+
+183
+00:12:50,630 --> 00:12:55,548
+dan setalah menjalankan sebuah algoritma learning,
+sering salah satu yang paling utama atau berguna adalah untuk
+
+184
+00:12:55,548 --> 00:12:59,760
+dapat melihat hasilnya, jadi
+untuk merencanakan atau memvisualisasikan hasilnya.
+
+185
+00:12:59,760 --> 00:13:04,342
+dan pada video selanjutnya, saya akan sangat
+cepat menunjukkan kembali satu atau
+
+186
+00:13:04,342 --> 00:13:06,260
+dua line dari kode menggunakan Octave.
+
+187
+00:13:06,260 --> 00:13:09,255
+Anda dapat secara cepat memvisualisasikan data Anda atau
+memplot data Anda dan
+
+188
+00:13:09,255 --> 00:13:13,340
+menggunakannya untuk pemahaman yang lebih baik terhadap
+apa yang dilakukan oleh algoritma learning Anda.

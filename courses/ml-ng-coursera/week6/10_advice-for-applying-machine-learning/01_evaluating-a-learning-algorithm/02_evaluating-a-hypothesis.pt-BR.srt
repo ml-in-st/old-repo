@@ -1,0 +1,568 @@
+1
+00:00:00,146 --> 00:00:02,515
+Nesse vídeo, eu gostaria
+
+2
+00:00:02,523 --> 00:00:06,662
+de conversar sobre como avaliar a hipótese treinada pelo seu algoritmo.
+
+3
+00:00:06,685 --> 00:00:09,200
+Mais à frente, vamos nos basear nisso
+
+4
+00:00:09,231 --> 00:00:11,846
+para discutir sobre como prevenir tanto problemas
+
+5
+00:00:11,869 --> 00:00:14,908
+com sobreajuste quanto com subajuste.
+
+6
+00:00:15,615 --> 00:00:19,023
+Quando ajustamos os parâmetros do nosso algoritmo de aprendizagem
+
+7
+00:00:19,038 --> 00:00:23,154
+nós pensamos em como ajustar nossos parâmetros para minimizar o erro de treinamento.
+
+8
+00:00:23,169 --> 00:00:26,077
+Pode-se pensar que conseguir um valor muito baixo
+
+9
+00:00:26,100 --> 00:00:28,108
+para o erro de treino é algo bom,
+
+10
+00:00:28,108 --> 00:00:29,562
+mas nós vimos que
+
+11
+00:00:29,562 --> 00:00:32,400
+só por que a hipótese tem um erro de treino baixo,
+
+12
+00:00:32,400 --> 00:00:35,254
+não implica necessariamente que seja uma boa hipótese.
+
+13
+00:00:35,254 --> 00:00:40,223
+E nós já vimos o exemplo onde a hipótese faz sobreajuste,
+
+14
+00:00:40,415 --> 00:00:45,785
+falhando em generalizar para novos exemplos fora do conjunto de treino.
+
+15
+00:00:45,962 --> 00:00:50,000
+Então, como discernir se a hipótese está sofrendo de sobreajuste?
+
+16
+00:00:50,015 --> 00:00:54,346
+Nesse exemplo simples, poderíamos traçar a hipótese "h(x)"
+
+17
+00:00:54,365 --> 00:00:56,338
+e ver o que está acontecendo.
+
+18
+00:00:56,346 --> 00:01:00,538
+Mas em geral para problemas com mais variáveis do que apenas uma,
+
+19
+00:01:00,554 --> 00:01:03,531
+para problemas com um número grande de variáveis como esse,
+
+20
+00:01:03,546 --> 00:01:06,692
+pode ficar difícil ou mesmo impossível
+
+21
+00:01:06,708 --> 00:01:09,515
+traçar o formato da hipótese.
+
+22
+00:01:09,531 --> 00:01:13,046
+Assim, precisamos de outra maneira de avaliar nossa hipótese.
+
+23
+00:01:13,062 --> 00:01:17,315
+A forma padrão de avaliar uma hipótese treinada é a seguinte.
+
+24
+00:01:17,331 --> 00:01:19,308
+Suponha que tenhamos um conjunto de dados como esse.
+
+25
+00:01:19,323 --> 00:01:21,977
+Aqui eu mostrei apenas 10 exemplos de treino,
+
+26
+00:01:21,992 --> 00:01:23,969
+mas é claro que teremos talvez
+
+27
+00:01:23,985 --> 00:01:27,254
+dezenas, milhares ou centenas de milhares de exemplos de treino.
+
+28
+00:01:27,269 --> 00:01:30,246
+Para ter certeza de que poderemos avaliar nossa hipótese,
+
+29
+00:01:30,262 --> 00:01:32,808
+o que faremos é dividir
+
+30
+00:01:32,823 --> 00:01:35,554
+os dados em duas partes.
+
+31
+00:01:35,569 --> 00:01:40,723
+A primeira parte será nosso conjunto de treinamento
+
+32
+00:01:42,638 --> 00:01:47,446
+e a segunda parte será nosso conjunto de teste.
+
+33
+00:01:47,462 --> 00:01:50,398
+Uma divisão bem comum é dividir
+
+34
+00:01:50,413 --> 00:01:53,482
+todos os dados que temos entre treino e teste
+
+35
+00:01:53,498 --> 00:01:57,936
+seguindo uma proporção de mais ou menos 70% e 30%,
+
+36
+00:01:57,952 --> 00:02:00,052
+Com mais dados indo para o conjunto de treino
+
+37
+00:02:00,067 --> 00:02:02,367
+e relativamente menos para o conjunto de teste.
+
+38
+00:02:02,382 --> 00:02:05,782
+E agora, se tivermos um conjunto de dados,
+
+39
+00:02:05,790 --> 00:02:08,459
+nós iremos utilizar apenas 70%
+
+40
+00:02:08,475 --> 00:02:11,529
+dos dados como conjunto de treino onde "m",
+
+41
+00:02:11,544 --> 00:02:14,336
+como antes, é o nosso número de exemplos de treino
+
+42
+00:02:14,352 --> 00:02:16,913
+e o resto dos dados
+
+43
+00:02:16,929 --> 00:02:19,310
+será atribuído ao conjunto de teste.
+
+44
+00:02:19,325 --> 00:02:23,410
+Aqui, eu vou usar a notação "m_test"
+
+45
+00:02:23,425 --> 00:02:27,187
+para me referir ao número de exemplos de teste.
+
+46
+00:02:27,202 --> 00:02:32,225
+E em geral, esse "_test" irá indicar
+
+47
+00:02:32,241 --> 00:02:34,987
+exemplos provindos do conjunto de treino, de forma que
+
+48
+00:02:35,002 --> 00:02:40,810
+"(x₁_test, y₁_test)" é meu primeiro
+
+49
+00:02:40,825 --> 00:02:43,648
+exemplo de teste, que neste caso
+
+50
+00:02:43,664 --> 00:02:45,656
+seria esse exemplo aqui.
+
+51
+00:02:45,671 --> 00:02:47,495
+Um último detalhe,
+
+52
+00:02:47,510 --> 00:02:50,795
+apesar de eu dividir a tabela com os primeiros 70%
+
+53
+00:02:50,810 --> 00:02:54,479
+no conjunto de treino e os últimos 30% no conjunto de teste,
+
+54
+00:02:54,495 --> 00:02:57,518
+caso houvesse algum tipo de ordenação nos dados.
+
+55
+00:02:57,533 --> 00:03:01,048
+seria melhor escolher aleatoriamente os 70%
+
+56
+00:03:01,048 --> 00:03:02,948
+dos dados que vão para o conjunto de treino e
+
+57
+00:03:02,964 --> 00:03:05,556
+os 30% para o de teste.
+
+58
+00:03:05,571 --> 00:03:08,579
+Assim, se os seus dados fossem ordenados aleatoriamente,
+
+59
+00:03:08,595 --> 00:03:12,110
+você poderia simplesmente pegar os primeiros 70% e os últimos 30%,
+
+60
+00:03:12,125 --> 00:03:14,718
+mas se os seus dados não estiverem ordenados aleatoriamente
+
+61
+00:03:14,733 --> 00:03:16,756
+seria melhor misturá-los,
+
+62
+00:03:16,771 --> 00:03:19,718
+reordená-los
+
+63
+00:03:19,733 --> 00:03:23,310
+antes de enviar os primeiros 70% para o conjunto de treino
+
+64
+00:03:23,325 --> 00:03:26,669
+e os 30% finais para o de teste.
+
+65
+00:03:27,054 --> 00:03:30,169
+Aqui está um procedimento bem típico para
+
+66
+00:03:30,185 --> 00:03:32,008
+treinar e testar
+
+67
+00:03:32,023 --> 00:03:34,492
+o algoritmo de aprendizagem, talvez regressão linear.
+
+68
+00:03:34,508 --> 00:03:38,115
+Primeiro, você aprende os parâmetros "θ" do conjunto de treino,
+
+69
+00:03:38,131 --> 00:03:41,798
+minimizando a função de custo "J(θ)",
+
+70
+00:03:41,813 --> 00:03:44,713
+onde "J(θ)" foi definida usando
+
+71
+00:03:44,729 --> 00:03:47,059
+aqueles 70% dos dados que você tem.
+
+72
+00:03:47,075 --> 00:03:49,759
+usamos apenas o conjunto de treino.
+
+73
+00:03:49,882 --> 00:03:52,167
+E então você iria calcular o erro no conjunto de teste.
+
+74
+00:03:52,182 --> 00:03:56,298
+Vou indicar o erro de teste como "J_test".
+
+75
+00:03:56,313 --> 00:03:59,229
+O que fazemos é pegar o parâmetro "θ"
+
+76
+00:03:59,259 --> 00:04:02,190
+que você aprendeu através do conjunto de treino, e colocá-lo
+
+77
+00:04:02,205 --> 00:04:04,875
+aqui e calcular o erro no conjunto de teste,
+
+78
+00:04:04,890 --> 00:04:08,529
+que vou escrever aqui.
+
+79
+00:04:08,698 --> 00:04:11,275
+Isso é basicamente
+
+80
+00:04:11,290 --> 00:04:15,244
+o erro médio quadrático
+
+81
+00:04:15,269 --> 00:04:18,154
+medido no seu conjunto de teste,
+
+82
+00:04:18,169 --> 00:04:19,915
+minha hipótese ajustada, o modelo
+
+83
+00:04:19,931 --> 00:04:23,415
+e usaremos todos os exemplos de teste na hipótese
+
+84
+00:04:23,431 --> 00:04:28,008
+com parâmetro "θ" e mediremos o erro quadrático
+
+85
+00:04:28,023 --> 00:04:33,338
+que sua hipótese gera para os exemplos "m_test".
+
+86
+00:04:33,354 --> 00:04:37,054
+Essa é a definição
+
+87
+00:04:37,069 --> 00:04:40,815
+do erro de teste, se você estiver usando regressão linear
+
+88
+00:04:40,831 --> 00:04:44,362
+e a métrica do erro quadrático.
+
+89
+00:04:44,377 --> 00:04:47,477
+E se estivéssemos resolvendo um problema de classificação
+
+90
+00:04:47,492 --> 00:04:50,654
+e usando regressão logística?
+
+91
+00:04:50,669 --> 00:04:53,877
+Nesse caso, o procedimento para treinamento
+
+92
+00:04:53,892 --> 00:04:57,085
+e teste é bem parecido.
+
+93
+00:04:57,100 --> 00:04:59,985
+Primeiramente, geramos os parâmetros a partir do conjunto de treinamento,
+
+94
+00:05:00,000 --> 00:05:02,331
+os primeiros 70% dos dados.
+
+95
+00:05:02,346 --> 00:05:05,115
+E calculamos o erro de teste da seguinte maneira.
+
+96
+00:05:05,131 --> 00:05:07,015
+É a mesma função objetivo
+
+97
+00:05:07,031 --> 00:05:09,592
+que sempre usamos para regressão logística,
+
+98
+00:05:09,608 --> 00:05:11,569
+exceto que agora nós a
+
+99
+00:05:11,585 --> 00:05:15,115
+definimos usando nossos "m_test" exemplos de teste.
+
+100
+00:05:15,131 --> 00:05:17,600
+Enquanto essa definição de erro de teste
+
+101
+00:05:17,631 --> 00:05:20,238
+"J_test" é perfeitamente razoável,
+
+102
+00:05:20,254 --> 00:05:22,231
+às vezes existe uma métrica
+
+103
+00:05:22,246 --> 00:05:25,469
+alternativa mais fácil de interpretar,
+
+104
+00:05:25,485 --> 00:05:27,877
+o erro de classificações incorretas.
+
+105
+00:05:27,892 --> 00:05:30,792
+Chamamos também de erro de classificação "0/1",
+
+106
+00:05:30,808 --> 00:05:32,692
+onde 0 indica que
+
+107
+00:05:32,708 --> 00:05:36,146
+você acertou no exemplo e 1 indica que você errou.
+
+108
+00:05:36,162 --> 00:05:37,910
+O que eu quero dizer é
+
+109
+00:05:37,925 --> 00:05:41,795
+Vamos definir o erro de uma estimativa
+
+110
+00:05:41,825 --> 00:05:44,202
+"h(x)",
+
+111
+00:05:44,218 --> 00:05:47,518
+dada a classificação correta "y" como
+
+112
+00:05:47,533 --> 00:05:51,848
+igual a 1, se minha hipótese
+
+113
+00:05:51,864 --> 00:05:54,633
+retornar um valor maior ou igual a "0.5"
+
+114
+00:05:54,641 --> 00:05:57,510
+e "y = 0",
+
+115
+00:05:57,525 --> 00:06:03,718
+ou se minha hipótese retornar um valor menor ou igual a "0.5"
+
+116
+00:06:03,733 --> 00:06:05,402
+e "y = 1",
+
+117
+00:06:05,418 --> 00:06:08,118
+ambos esses casos correspondem a
+
+118
+00:06:08,133 --> 00:06:11,833
+sua hipótese ter rotulado o exemplo incorretamente,
+
+119
+00:06:11,833 --> 00:06:14,518
+assumindo que você separou no "0.5".
+
+120
+00:06:14,533 --> 00:06:18,171
+Ou pensou que o exemplo era 1 quando era 0, ou
+
+121
+00:06:18,187 --> 00:06:20,733
+achou que era mais provável que
+
+122
+00:06:20,748 --> 00:06:23,556
+fosse 0 quando na realidade era 1.
+
+123
+00:06:23,571 --> 00:06:28,471
+E, caso contrário, essa função de erro será 0
+
+124
+00:06:28,487 --> 00:06:34,841
+se nossa hipótese classificar o exemplo "y" corretamente.
+
+125
+00:06:34,864 --> 00:06:38,841
+Nós podemos então definir o erro de teste
+
+126
+00:06:38,856 --> 00:06:42,371
+usando erro de classificações incorretas como
+
+127
+00:06:42,387 --> 00:06:46,779
+"1 / m_test" vezes a somatória,
+
+128
+00:06:46,795 --> 00:06:49,941
+de "i = 1" até "i  = m_test",
+
+129
+00:06:49,956 --> 00:06:55,164
+de "err(h(x_test⁽ⁱ⁾), y⁽ⁱ⁾)".
+
+130
+00:06:55,179 --> 00:06:57,971
+de "err(h(x_test⁽ⁱ⁾), y⁽ⁱ⁾)".
+
+131
+00:06:57,987 --> 00:07:02,010
+E essa é a minha forma de escrever a
+
+132
+00:07:02,025 --> 00:07:05,587
+fração exata de exemplos de teste
+
+133
+00:07:05,602 --> 00:07:08,864
+que foram classificados de forma errada pela minha hipótese.
+
+134
+00:07:08,871 --> 00:07:10,602
+E essa é a definição do
+
+135
+00:07:10,618 --> 00:07:13,687
+erro de teste usando o erro de classificações incorretas,
+
+136
+00:07:13,718 --> 00:07:16,948
+com a métrica de erro de classificação "0/1".
+
+137
+00:07:16,971 --> 00:07:19,995
+Essa é a maneira padrão para avaliar
+
+138
+00:07:20,010 --> 00:07:22,833
+o quão boa é uma hipótese treinada.
+
+139
+00:07:22,848 --> 00:07:25,579
+No próximo vídeo, nós adaptaremos essas ideias
+
+140
+00:07:25,595 --> 00:07:28,525
+para nos ajudar a fazer coisas como escolher quais variáveis,
+
+141
+00:07:28,541 --> 00:07:31,641
+como o grau do polinômio, que devemos usar no nosso algoritmo de aprendizagem.
+
+142
+00:07:31,656 --> 00:07:34,964
+ou escolher o parâmetro de regularização a ser usado.
+Tradução: Eduardo Bonet | Revisão: Marcel de Sena Dall'Agnol

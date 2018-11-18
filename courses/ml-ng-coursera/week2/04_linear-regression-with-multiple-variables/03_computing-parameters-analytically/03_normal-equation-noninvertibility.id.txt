@@ -1,0 +1,48 @@
+Di video ini, saya ingin bicara tentang
+persamaan normal dan non-inversibilitas. Ini suatu konsep yang lebih maju, tapi saya sering ditanyai mengenai
+hal ini. Jadi saya ingin membicarakannya di sini. Tapi konsep ini sudah lebih maju, jadi silahkan mempertimbangkan ini
+sebagai materi pilihan. Ada satu fenomena yang mungkin akan
+Anda hadapi, mungkin bagi beberapa dari Anda
+berguna bila dipahami. Tapi, bahkan jika Anda tidak mengerti, persamaan normal dan regresi linier, Anda bisa membuatnya bekerja. Ini persoalannya: Bagi mereka yang lebih familiar dengan aljabar linier, apa yang beberapa siswa tanyakan pada
+saya adalah, saat menghitung ini theta = (X'X)^-1 * X'y bagaimana jika matriks X'X tidak dapat
+diinversi? Jadi, bagi mereka yang tahu sedikit
+banyak aljabar linier Anda mungkin tahu bahwa hanya beberapa
+matriks yang dapat diinvers, dan beberapa
+matriks tidak punya invers kita menyebut matriks non-inversibel
+itu, matriks tunggal atau degenerasi. Soal X'X menjadi non-inversibel sangat jarang terjadi. Di Octave, jika Anda menggunakan ini
+untuk menghitung theta, Anda akan mendapatkan hasil yang benar. Sekarang saya bicara sedikit teknis dan
+tidak ingin merincinya, tapi Octave punya 2 fungsi untuk
+menginversi matriks: pinv() dan inv(). Perbedaan keduanya bersifat teknis. Yang satu disebut pseudo-invers,
+satunya lagi disebut invers. Anda bisa menunjukkan matematisnya, jadi
+sepanjang Anda menggunakan fungsi pinv(), maka ini akan menghitung nilai theta
+yang Anda inginkan, bahkan jika X'X non-inversibel. Detil khusus perbedaan antara pinv() dan inv() adalah konsep perhitungan numerik yang
+maju yang tidak ingin saya bahas. Tapi, saya pikir di video pilihan ini, saya coba berikan sedikit
+intuisi tentang apa maksudnya X'X menjadi
+non-inversibel, bagi Anda yang tahu sedikit banyak
+aljabar linier dan mungkin tertarik. Saya tidak akan membuktikan secara
+matematis, tapi jika X'X non-inversibel, biasanya ada 2 penyebab yg paling umum: Pertama, jika dalam soal belajar Anda, Anda punya fitur ganda, konkritnya, jika Anda coba memprediksi
+harga rumah dan x1 adalah ukuran rumah dalam
+kaki persegi, dan x2 adalah ukuran rumah dalam
+meter persegi, maka, Anda tahu, 1 meter = 3.28 kaki, jadi kedua fitur Anda akan selalu
+memenuhi batasan bahwa x1 = 3.28 * x2. Anda bisa perlihatkan, jika Anda ahli dalam aljabar linier, bahwa jika kedua fitur Anda terhubung
+lewat persamaan linier seperti ini, maka matriks X'X akan jadi
+non-inversibel. Hal kedua yang membuat matriks X'X
+non-inversibel adalah jika Anda coba menjalankan
+algoritma belajar dengan banyak fitur. Konkritnya, jika m <= n. Contohnya, jika Anda punya m = 10
+contoh latihan dan Anda punya n = 100 fitur, maka
+Anda sedang mencoba mencocokkan vektor parameter theta,
+yang berdimensi (n+1), jadi itu berdimensi 101 Anda coba mencocokkan 101 parameter dari
+10 contoh latihan. Kadang ini bekerja, tapi tidak selalu jadi ide yang bagus. Karena Anda mungkin tidak punya cukup
+data jika Anda cuma punya 10 contoh untuk
+dicocokkan pada 100 atau 101 parameter. Kita akan lihat nanti, mengapa datanya
+mungkin terlalu sedikit untuk dicocokkan dengan parameter
+sebanyak ini. Tapi umumnya, yang kita lakukan jika
+m < n, adalah melihat jika kita dapat menghapus
+beberapa fitur atau menggunakan 1 teknik yang disebut regularisasi, yang akan kita bahas nanti. Teknik ini membuat bisa Anda mencocokkan
+parameter menggunakan banyak fitur bahkan jika Anda set latihan yang
+relatif kecil. Tapi topik regularisasi ini akan
+dibahas nanti. Tapi untuk merangkum, jika Anda
+mendapati X'X bersifat tunggal atau non-inversibel, saya sarankan Anda pertama: lihat fitur Anda jika ada fitur
+ganda seperti x1 dan x2 ini yang jadi fungsi linier satu sama lain,
+seperti itu dan jika Anda punya fitur ganda jika Anda hapus salah satunya, Anda tidak perlu kedua fitur ini, jadi jika Anda hapus salah satu fitur
+ini, itu akan menyelesaikan masalah Anda. Jadi, pertama pikir jika ada fitur ganda dan jika ada, hapus fitur yang ganda

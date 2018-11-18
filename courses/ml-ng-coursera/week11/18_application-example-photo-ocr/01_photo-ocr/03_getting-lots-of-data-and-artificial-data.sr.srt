@@ -1,0 +1,2058 @@
+1
+00:00:00,090 --> 00:00:01,270
+Uvek se potvrdi kao tačno to
+
+2
+00:00:01,570 --> 00:00:03,160
+da, najpouzdaniji način da
+
+3
+00:00:03,300 --> 00:00:04,800
+dobijete jako kvalitetan sistem mašinskog učenja
+
+4
+00:00:05,040 --> 00:00:06,170
+je da uzmete
+
+5
+00:00:06,550 --> 00:00:07,860
+algoritam učenja sa malim pretpostavkama
+
+6
+00:00:08,750 --> 00:00:10,220
+i da ga trenirate na velikom skupu podataka.
+
+7
+00:00:11,230 --> 00:00:12,830
+Ali gde da nabavite tako veliki skup podataka?
+
+8
+00:00:13,510 --> 00:00:14,440
+Ispostavilo se da u mašinskom učenju
+
+9
+00:00:14,820 --> 00:00:16,520
+postoji ideja koja se zove veštačka
+
+10
+00:00:17,220 --> 00:00:19,000
+sinteza podataka, ne primenjuje se
+
+11
+00:00:19,370 --> 00:00:20,740
+na svaki pojedinačni problem, i,
+
+12
+00:00:20,980 --> 00:00:22,120
+da bi se primenio na određeni
+
+13
+00:00:22,360 --> 00:00:25,060
+problem, često je potrebna neka misao, inovacija ili shvatanje.
+
+14
+00:00:25,780 --> 00:00:27,170
+Ali ako ova ideja može da se primeni
+
+15
+00:00:27,580 --> 00:00:29,120
+na vaš problem mašinskog učenja, to
+
+16
+00:00:29,230 --> 00:00:30,270
+ponekad može da bude
+
+17
+00:00:30,510 --> 00:00:31,600
+lak način da dobijete
+
+18
+00:00:31,680 --> 00:00:33,470
+ogroman skup trening podataka za vaš algoritam učenja.
+
+19
+00:00:33,900 --> 00:00:35,520
+Ideja sinteze veštačkih
+
+20
+00:00:36,230 --> 00:00:38,410
+podataka obuhvata dve
+
+21
+00:00:38,590 --> 00:00:40,210
+varijacije, prva i glavna
+
+22
+00:00:40,650 --> 00:00:41,940
+je ako u suštini kreiramo
+
+23
+00:00:42,520 --> 00:00:44,940
+podatke iz [xx], kreiramo ih iz početka.
+
+24
+00:00:45,380 --> 00:00:46,700
+A drugi je da, ako
+
+25
+00:00:46,930 --> 00:00:48,350
+već imamo mali
+
+26
+00:00:48,590 --> 00:00:49,970
+skup podataka natpisa i
+
+27
+00:00:50,210 --> 00:00:51,490
+nekako ga proširimo
+
+28
+00:00:51,840 --> 00:00:52,680
+ili koristimo mali skup trening
+
+29
+00:00:52,980 --> 00:00:54,390
+podataka da bismo ga umetnuli u
+
+30
+00:00:54,660 --> 00:00:56,290
+u veći skup trening podataka a u
+
+31
+00:00:56,450 --> 00:00:58,120
+ovom videu preći ćemo obe ideje.
+
+32
+00:01:00,350 --> 00:01:02,220
+Da bismo pričali o ideji sinteze
+
+33
+00:01:02,440 --> 00:01:04,030
+veštačkih podataka, koristićemo
+
+34
+00:01:04,330 --> 00:01:06,930
+skup znakova
+
+35
+00:01:07,090 --> 00:01:08,470
+OCR foto kanala,
+
+36
+00:01:08,690 --> 00:01:09,710
+želimo da uzmemo ulaznu sliku
+
+37
+00:01:10,060 --> 00:01:11,370
+i prepoznamo koji je to znak.
+
+38
+00:01:13,330 --> 00:01:14,690
+Ako idemo dalje i prikupimo
+
+39
+00:01:14,880 --> 00:01:16,270
+veliki skup podataka natpisa
+
+40
+00:01:16,890 --> 00:01:17,980
+evo šta je to i kako izgleda.
+
+41
+00:01:18,580 --> 00:01:21,770
+Za ovaj konkretan primer, 
+odabrao sam kvadratnu razmeru,
+
+42
+00:01:22,130 --> 00:01:23,250
+Dakle, uzimamo kvadratne zakrpe od slika.
+
+43
+00:01:24,180 --> 00:01:25,110
+Cilj je da uzmemo
+
+44
+00:01:25,770 --> 00:01:27,420
+sliku i prepoznamo
+
+45
+00:01:27,530 --> 00:01:29,270
+znak u sredini te slike.
+
+46
+00:01:31,090 --> 00:01:31,990
+Zbog jednostavnosti
+
+47
+00:01:32,660 --> 00:01:33,740
+smatraću te slike
+
+48
+00:01:34,240 --> 00:01:36,380
+kao slike u sivom tonu, a ne kao slike u boji.
+
+49
+00:01:36,870 --> 00:01:38,550
+Ispostavilo se da korištenje
+
+50
+00:01:38,930 --> 00:01:41,180
+boje ne pomaže mnogo za ovaj konkretan problem.
+
+51
+00:01:42,190 --> 00:01:43,530
+Za datu sliku, hteli
+
+52
+00:01:43,660 --> 00:01:44,890
+bismo da prepoznamo da je to
+
+53
+00:01:45,010 --> 00:01:46,230
+T. Za ovu sliku,
+
+54
+00:01:46,550 --> 00:01:47,920
+hteli bismo da prepoznamo da je to S.
+
+55
+00:01:49,540 --> 00:01:50,740
+Za datu sliku
+
+56
+00:01:50,850 --> 00:01:52,950
+hteli bismo da prepoznamo to kao 'I' i tako dalje.
+
+57
+00:01:54,110 --> 00:01:55,310
+Sve to su naši
+
+58
+00:01:55,450 --> 00:01:57,240
+primeri slika u redovima, kako
+
+59
+00:01:57,380 --> 00:01:59,460
+bismo izašli na kraj sa mnogo većim trening skupom?
+
+60
+00:02:00,000 --> 00:02:01,580
+Savremeni računari često imaju
+
+61
+00:02:01,640 --> 00:02:03,700
+ogromnu biblioteku fontova i
+
+62
+00:02:03,890 --> 00:02:05,330
+ako koristite program za obradu reči,
+
+63
+00:02:05,950 --> 00:02:07,090
+u zavisnosti od toga koju reč
+
+64
+00:02:07,240 --> 00:02:08,580
+procesor koristi, mogli biste
+
+65
+00:02:08,800 --> 00:02:09,980
+imati sve te fontove i
+
+66
+00:02:10,120 --> 00:02:12,490
+mnogo, mnogo više već sačuvanih.
+
+67
+00:02:12,950 --> 00:02:14,350
+U stvari, ako posećujete različite veb sajtove,
+
+68
+00:02:14,680 --> 00:02:16,280
+tamo opet imamo ogromne biblioteke
+
+69
+00:02:16,690 --> 00:02:18,200
+besplatnih fontova i sa interneta
+
+70
+00:02:18,370 --> 00:02:19,960
+možemo da skinemo mnogo, mnogo različitih
+
+71
+00:02:20,250 --> 00:02:22,580
+tipova fontova, stotine 
+i možda hiljade različitih fontova.
+
+72
+00:02:23,960 --> 00:02:25,180
+Dakle, ako želite više
+
+73
+00:02:25,570 --> 00:02:27,020
+trening primera, ono što
+
+74
+00:02:27,100 --> 00:02:28,340
+možete da uradite jeste da samo uzmete
+
+75
+00:02:28,870 --> 00:02:30,220
+znakove različitih fontova
+
+76
+00:02:31,240 --> 00:02:32,870
+i zalepite ih preko
+
+77
+00:02:33,290 --> 00:02:35,890
+različitih, slučajno odabranih pozadina.
+
+78
+00:02:36,730 --> 00:02:39,500
+Znači, mogli biste uzeti ovo 
+i zalepiti to c preko neke pozadine.
+
+79
+00:02:40,680 --> 00:02:41,640
+Ako to uradite, imaćete
+
+80
+00:02:42,060 --> 00:02:43,830
+trening skup od jedne
+
+81
+00:02:44,080 --> 00:02:45,260
+slike znaka C.
+
+82
+00:02:46,360 --> 00:02:47,500
+Dakle, nakon malo
+
+83
+00:02:47,570 --> 00:02:48,920
+rada, znate ovo,
+
+84
+00:02:48,980 --> 00:02:49,710
+to je malo posla
+
+85
+00:02:49,830 --> 00:02:51,760
+da biste spojili podatke stvarnog izgleda.
+
+86
+00:02:52,180 --> 00:02:53,080
+Ali nakon malo rada,
+
+87
+00:02:53,700 --> 00:02:56,130
+možete da dobijete vještački 
+trening skup podataka kao taj.
+
+88
+00:02:57,180 --> 00:02:59,910
+Svaka slika na desnoj strani je u stvari veštačka.
+
+89
+00:03:00,360 --> 00:03:02,080
+Možete da uzmete font,
+
+90
+00:03:02,810 --> 00:03:04,240
+možda slučajan font skinut sa
+
+91
+00:03:04,400 --> 00:03:05,680
+veba i zalepite
+
+92
+00:03:06,160 --> 00:03:07,320
+sliku jednog znaka
+
+93
+00:03:07,800 --> 00:03:08,870
+ili nekoliko znakova tog fonta
+
+94
+00:03:09,570 --> 00:03:11,440
+preko ove slučajno odabrane slike.
+
+95
+00:03:12,140 --> 00:03:12,840
+I tad možda da uradite malo
+
+96
+00:03:13,540 --> 00:03:15,160
+operacija zamagljivanja, malo
+
+97
+00:03:15,680 --> 00:03:17,380
+pretrage, izvrtanja
+
+98
+00:03:17,620 --> 00:03:18,650
+znači samo deljenje
+
+99
+00:03:19,350 --> 00:03:20,740
+i promene veličine i malo operacija
+
+100
+00:03:21,000 --> 00:03:22,260
+rotacije i ako
+
+101
+00:03:22,370 --> 00:03:23,330
+uradite sve to dobićete veštački
+
+102
+00:03:23,580 --> 00:03:25,520
+trening skup, kao ovaj prikazani.
+
+103
+00:03:26,510 --> 00:03:28,050
+I to je posao
+
+104
+00:03:28,530 --> 00:03:29,640
+razvrstavanje, to zahteva
+
+105
+00:03:29,970 --> 00:03:31,460
+razmišljanje na poslu, da bi se
+
+106
+00:03:31,700 --> 00:03:33,250
+postiglo da veštački podaci izgledaju stvrano,
+
+107
+00:03:34,020 --> 00:03:34,710
+i ako budete nemarni
+
+108
+00:03:35,120 --> 00:03:36,200
+kada budete
+
+109
+00:03:36,250 --> 00:03:38,910
+kreirali veštačke podatke, 
+sistem vam neće raditi kako treba.
+
+110
+00:03:39,620 --> 00:03:40,600
+Ali ako pogledate,
+
+111
+00:03:40,790 --> 00:03:43,940
+veštački podaci izgledaju 
+izuzetno slično stvarnim podacima.
+
+112
+00:03:45,120 --> 00:03:46,850
+Dakle, korištenjem veštačkih podataka
+
+113
+00:03:47,340 --> 00:03:48,550
+vi u suštini imate neograničenu
+
+114
+00:03:48,990 --> 00:03:50,970
+nabavku trening primera za
+
+115
+00:03:51,310 --> 00:03:53,060
+veštačku sintezu podataka.
+
+116
+00:03:53,150 --> 00:03:54,110
+i tako, ako koristite ovaj
+
+117
+00:03:54,330 --> 00:03:55,820
+izvor veštačkih podataka, imate
+
+118
+00:03:56,150 --> 00:03:58,100
+suštinski neprekidnu snabdevenost
+
+119
+00:03:58,560 --> 00:04:00,000
+primerima da biste kreirali
+
+120
+00:04:00,140 --> 00:04:01,610
+improvizovani algoritam učenja
+
+121
+00:04:02,300 --> 00:04:03,990
+za problem prepoznavanja znakova.
+
+122
+00:04:05,120 --> 00:04:06,540
+Dakle, ovo je primer
+
+123
+00:04:07,000 --> 00:04:08,500
+sinteze veštačkih podataka gde
+
+124
+00:04:09,040 --> 00:04:10,870
+u osnovi kreirate nove podatke iz
+
+125
+00:04:11,080 --> 00:04:13,780
+početka, vi samo generišete 
+potpuno nove slike iz početka.
+
+126
+00:04:14,880 --> 00:04:16,450
+Drugi glavni pritsup sintezi
+
+127
+00:04:16,710 --> 00:04:18,210
+veštačkih podataka je da
+
+128
+00:04:18,370 --> 00:04:19,610
+uzmete primere koje
+
+129
+00:04:19,740 --> 00:04:20,780
+već imate, uzmete
+
+130
+00:04:21,020 --> 00:04:22,430
+stvaran primer, možda sa
+
+131
+00:04:22,700 --> 00:04:24,130
+stvarne slike, i kreirate
+
+132
+00:04:24,770 --> 00:04:26,130
+dodatne podatke, da biste
+
+133
+00:04:26,380 --> 00:04:27,900
+obogatili vaš skup trening podataka.
+
+134
+00:04:28,070 --> 00:04:28,810
+Dakle, ovde je slika u poređenju
+
+135
+00:04:28,910 --> 00:04:30,490
+sa jednom stvarnom slikom,
+
+136
+00:04:31,410 --> 00:04:32,550
+nesintetizovanom, i
+
+137
+00:04:32,630 --> 00:04:33,790
+prekrio sam to
+
+138
+00:04:33,880 --> 00:04:35,750
+linijama mreže radi ilustracije.
+
+139
+00:04:36,430 --> 00:04:36,880
+U stvari imate ovo.
+
+140
+00:04:36,970 --> 00:04:39,030
+Šta možete da
+
+141
+00:04:39,100 --> 00:04:40,110
+uradite jeste da uzmete ovaj
+
+142
+00:04:40,480 --> 00:04:41,500
+alfabet ovde, uzmete ovu sliku
+
+143
+00:04:42,240 --> 00:04:43,760
+i uvedete veštački poremećaj
+
+144
+00:04:44,290 --> 00:04:45,810
+ili veštačko izobličenje na
+
+145
+00:04:46,040 --> 00:04:47,030
+slici tako da može da
+
+146
+00:04:47,220 --> 00:04:48,240
+se uzme slika i umetne
+
+147
+00:04:48,430 --> 00:04:50,060
+u 16 novih primera.
+
+148
+00:04:51,110 --> 00:04:52,000
+Znači da na ovaj način možete
+
+149
+00:04:52,450 --> 00:04:53,740
+da uzmete mali označeni trening skup
+
+150
+00:04:54,090 --> 00:04:55,360
+i obogatite vaš trening skup
+
+151
+00:04:56,180 --> 00:04:57,190
+i uskoro imate mnogo
+
+152
+00:04:57,300 --> 00:05:00,020
+više primera, sve njih.
+
+153
+00:05:01,210 --> 00:05:02,360
+Još jednom, da biste uradili
+
+154
+00:05:02,560 --> 00:05:03,940
+ovo za aplikaciju, treba
+
+155
+00:05:04,120 --> 00:05:05,060
+da se razmisli i
+
+156
+00:05:05,140 --> 00:05:06,270
+treba da se shvati
+
+157
+00:05:06,430 --> 00:05:07,840
+šta su razumni skupovi
+
+158
+00:05:08,420 --> 00:05:09,460
+poremećaja, ili da li su
+
+159
+00:05:09,720 --> 00:05:11,000
+pravi načini da biste obogatili i umnožili
+
+160
+00:05:11,470 --> 00:05:12,760
+vaš trening skup, i za
+
+161
+00:05:13,070 --> 00:05:15,130
+specifičan primer
+
+162
+00:05:15,260 --> 00:05:17,170
+prepoznavanja znakova, uvođenje ovog
+
+163
+00:05:17,480 --> 00:05:18,310
+poremećaja se čini kao prirodan
+
+164
+00:05:18,780 --> 00:05:19,910
+izbor, ali za
+
+165
+00:05:20,090 --> 00:05:21,970
+različite aplikacije mašinskog učenja, mogu da
+
+166
+00:05:22,080 --> 00:05:24,180
+budu različita izobličavanja koja imaju više smisla.
+
+167
+00:05:24,860 --> 00:05:25,600
+Dozvolite mi da vam pokažem jedan primer
+
+168
+00:05:26,180 --> 00:05:28,750
+iz potpuno drugačijeg domena prepoznavanja govora.
+
+169
+00:05:30,230 --> 00:05:31,480
+Dakle, prepoznavanje govora, recimo
+
+170
+00:05:31,580 --> 00:05:33,450
+imate audio klipove i
+
+171
+00:05:33,600 --> 00:05:35,010
+želite da učite iz audio
+
+172
+00:05:35,350 --> 00:05:37,240
+klipa da biste prepoznali koje su
+
+173
+00:05:37,460 --> 00:05:38,780
+reči izgovorene u tom klipu.
+
+174
+00:05:39,510 --> 00:05:41,340
+Dakle, hajde da vidimo jedan označeni trening primer.
+
+175
+00:05:42,290 --> 00:05:43,190
+Recimo da imate jedan
+
+176
+00:05:43,400 --> 00:05:45,000
+označeni trening primer, neko
+
+177
+00:05:45,330 --> 00:05:46,660
+kaže par određenih reči.
+
+178
+00:05:46,860 --> 00:05:48,720
+Hajde da pokrenemo taj klip ovde.
+
+179
+00:05:49,150 --> 00:05:51,230
+0-1-2-3-4-5.
+
+180
+00:05:51,570 --> 00:05:53,810
+U redu, znači neko
+
+181
+00:05:54,220 --> 00:05:55,110
+broji od 0 do 5,
+
+182
+00:05:55,450 --> 00:05:57,180
+znači, želite da
+
+183
+00:05:57,290 --> 00:05:58,460
+pokušate da primenite algoritam učenja
+
+184
+00:05:59,380 --> 00:06:01,320
+da biste prepoznali rečene reči.
+
+185
+00:06:02,040 --> 00:06:04,030
+Kako da obogatimo skup podataka?
+
+186
+00:06:04,390 --> 00:06:05,340
+Dakle, ono šta radimo je
+
+187
+00:06:06,020 --> 00:06:09,180
+da uvodimo dodatna udio 
+izobličenja u skup podataka.
+
+188
+00:06:09,970 --> 00:06:10,960
+Evo ovde ću da
+
+189
+00:06:11,640 --> 00:06:14,700
+dodam pozadinske zvukove da 
+bih simulirao lošu telefonsku vezu.
+
+190
+00:06:15,360 --> 00:06:16,800
+Kad budete čuli bip zvukove, to je
+
+191
+00:06:16,980 --> 00:06:17,710
+u stvari dio audio
+
+192
+00:06:17,740 --> 00:06:20,350
+trake, zvučnici su u redu, pustiću to sad.
+
+193
+00:06:20,580 --> 00:06:20,580
+0-1-2-3-4-5.
+
+194
+00:06:21,380 --> 00:06:22,260
+U redu, znači možete da slušate
+
+195
+00:06:22,640 --> 00:06:24,890
+tu vrstu audio klipa i
+
+196
+00:06:25,720 --> 00:06:28,600
+možete prepoznati zvukove,
+
+197
+00:06:28,960 --> 00:06:30,800
+čini se kao još jedan koristan trening
+
+198
+00:06:31,370 --> 00:06:33,230
+primer, ovo je još jedan primer, bučna pozadina.
+
+199
+00:06:34,890 --> 00:06:36,870
+Nula, jedan, dva, tri
+
+200
+00:06:37,560 --> 00:06:39,060
+četiri, pet znate
+
+201
+00:06:39,090 --> 00:06:40,280
+auta koji prolaze, ljudi koji hodaju
+
+202
+00:06:40,580 --> 00:06:42,200
+u pozadini, ovde je još jedan,
+
+203
+00:06:42,450 --> 00:06:43,880
+tako da, uzimajući originalni
+
+204
+00:06:44,430 --> 00:06:45,980
+neizmenjeni audio klip, znači
+
+205
+00:06:46,090 --> 00:06:47,810
+uzimajući čist audio nekog
+
+206
+00:06:47,990 --> 00:06:48,960
+ko govori 0 1 2 3
+
+207
+00:06:49,090 --> 00:06:50,490
+4 5 možemo tad automatski
+
+208
+00:06:51,790 --> 00:06:54,090
+da sintetišemo dodatne trening
+
+209
+00:06:54,470 --> 00:06:55,850
+primere i tako obogatimo
+
+210
+00:06:56,410 --> 00:06:57,860
+jednim trening primerom možda 
+i četiri trening primera.
+
+211
+00:07:00,110 --> 00:07:00,940
+Hajde da pustim ovaj konačni
+
+212
+00:07:01,300 --> 00:07:03,180
+primer.
+
+213
+00:07:03,340 --> 00:07:07,180
+0-1-2-3-4-5. Znači,
+
+214
+00:07:07,530 --> 00:07:08,510
+uzimajući samo jedan označen primer,
+
+215
+00:07:09,000 --> 00:07:10,260
+moramo da uložimo napor
+
+216
+00:07:10,360 --> 00:07:11,760
+da bi se pribavio samo jedan označen primer
+
+217
+00:07:11,950 --> 00:07:13,270
+sačinjen od 01205, i
+
+218
+00:07:14,140 --> 00:07:16,520
+uvodeći dodatna izobličenja,
+
+219
+00:07:17,290 --> 00:07:18,560
+uvodeći različite pozadinske zvukove,
+
+220
+00:07:19,000 --> 00:07:20,240
+umnožili smo ovaj jedan
+
+221
+00:07:20,370 --> 00:07:21,810
+primer u mnogo više.
+
+222
+00:07:23,420 --> 00:07:24,480
+Veliki posao, a samo smo automatski
+
+223
+00:07:25,270 --> 00:07:27,090
+dodali različite pozadinske zvukove
+
+224
+00:07:27,680 --> 00:07:30,510
+na čist audio. Samo
+
+225
+00:07:30,740 --> 00:07:31,980
+još jedna reč upozorenja u vezi sa sintezom
+
+226
+00:07:33,190 --> 00:07:35,220
+podataka pomoću izobličenja: ako
+
+227
+00:07:35,310 --> 00:07:36,630
+to radite za
+
+228
+00:07:36,810 --> 00:07:38,580
+sebe, izobličenja koja
+
+229
+00:07:39,020 --> 00:07:40,300
+uvodite bi trebala da budu pogodan izvor
+
+230
+00:07:40,660 --> 00:07:42,010
+buke, ili izobličenja, koja
+
+231
+00:07:42,110 --> 00:07:43,680
+biste mogli da vidite u testnom skupu.
+
+232
+00:07:44,010 --> 00:07:45,350
+Dakle, za primer prepoznavanja znakova,
+
+233
+00:07:45,930 --> 00:07:47,230
+znate, sve ovi pojmovi
+
+234
+00:07:47,440 --> 00:07:48,620
+koje smo uveli su nekako
+
+235
+00:07:48,770 --> 00:07:49,980
+sa razlogom, jer slika
+
+236
+00:07:50,340 --> 00:07:51,510
+koja izgleda kao ta
+
+237
+00:07:52,000 --> 00:07:53,020
+bi mogla da bude slika koju
+
+238
+00:07:53,210 --> 00:07:55,170
+bismo mogli da vidimo u testnom skupu,
+ odražava
+
+239
+00:07:55,370 --> 00:07:57,180
+stvarnost. Znate, ta
+
+240
+00:07:57,380 --> 00:08:00,200
+slika gore-desno, to
+
+241
+00:08:00,350 --> 00:08:01,800
+bi mogla da bude slika 
+koju bismo mogli da zamislimo.
+
+242
+00:08:03,280 --> 00:08:04,570
+A za audio, dakle, želimo
+
+243
+00:08:04,740 --> 00:08:06,560
+da prepoznamo govor, uprkos
+
+244
+00:08:06,970 --> 00:08:07,990
+lošoj internoj vezi, uprkos
+
+245
+00:08:08,480 --> 00:08:09,440
+različitim tipovima pozadinske buke, i
+
+246
+00:08:09,590 --> 00:08:10,920
+za audio, ponovo
+
+247
+00:08:11,230 --> 00:08:12,800
+pravimo primere koji su u stvari
+
+248
+00:08:13,530 --> 00:08:14,770
+reprezentativne vrste
+
+249
+00:08:14,850 --> 00:08:15,830
+primera koje želimo da
+
+250
+00:08:15,990 --> 00:08:17,360
+klasifikujemo, koje želimo tačno da prepoznamo.
+
+251
+00:08:18,770 --> 00:08:20,660
+Suprotno tome, obično
+
+252
+00:08:20,770 --> 00:08:21,940
+vam možda ne pomaže
+
+253
+00:08:22,170 --> 00:08:23,760
+značenje kao što je buka vašim podacima.
+
+254
+00:08:24,420 --> 00:08:25,170
+Nisam siguran da možete da vidite
+
+255
+00:08:25,440 --> 00:08:26,400
+ovo, ono što smo uradili
+
+256
+00:08:26,620 --> 00:08:28,050
+ovde je da smo uzeli sliku, i
+
+257
+00:08:28,210 --> 00:08:29,540
+za svaku tačku, u svakoj
+
+258
+00:08:29,720 --> 00:08:30,710
+od ove 4 slike, je samo
+
+259
+00:08:30,990 --> 00:08:32,970
+dodat neki slučajan Gausov šum svakoj tački.
+
+260
+00:08:33,240 --> 00:08:34,690
+Svakoj tački, na
+
+261
+00:08:35,060 --> 00:08:36,370
+osvetljenost tačke,
+
+262
+00:08:36,500 --> 00:08:38,880
+se dodaje neki, znate, možda 
+slučajan Gausov šum.
+
+263
+00:08:39,360 --> 00:08:40,940
+Dakle, to je potpuno besmislen šum, u redu?
+
+264
+00:08:41,650 --> 00:08:43,280
+I, ukoliko ne očekujete
+
+265
+00:08:43,800 --> 00:08:45,510
+da vidite ove vrste šuma
+
+266
+00:08:45,910 --> 00:08:46,830
+na tačkama u vašem testnom
+
+267
+00:08:46,910 --> 00:08:48,190
+skupu, ova vrsta
+
+268
+00:08:48,660 --> 00:08:51,540
+potpuno slučajnog besmislenog 
+šuma je verovatno beskorisna.
+
+269
+00:08:52,880 --> 00:08:53,750
+Ali proces sinteze
+
+270
+00:08:54,250 --> 00:08:55,570
+veštačkih podataka je,
+
+271
+00:08:55,640 --> 00:08:56,660
+znate, pomalo
+
+272
+00:08:56,710 --> 00:08:57,850
+i umetnost i ponekad
+
+273
+00:08:58,140 --> 00:09:00,250
+samo treba da je probate i vidite da li radi.
+
+274
+00:09:01,280 --> 00:09:02,060
+Ali ako pokušavate da
+
+275
+00:09:02,140 --> 00:09:03,170
+odlučite koju vrstu izobličenja
+
+276
+00:09:03,870 --> 00:09:04,720
+da dodate, znate,
+
+277
+00:09:04,820 --> 00:09:06,260
+razmislite koja još smislena
+
+278
+00:09:06,670 --> 00:09:08,180
+izobličenja biste mogli da dodate
+
+279
+00:09:08,660 --> 00:09:09,720
+da biste generisali dodatne
+
+280
+00:09:10,110 --> 00:09:11,370
+trening primere koji su
+
+281
+00:09:11,880 --> 00:09:13,410
+barem neka reprezentativna
+
+282
+00:09:13,480 --> 00:09:15,830
+vrsta slika koje očekujete u svom testnom skupu.
+
+283
+00:09:18,100 --> 00:09:19,000
+Konačno, da završimo ovaj
+
+284
+00:09:19,150 --> 00:09:19,920
+video, samo želim da kažem
+
+285
+00:09:20,140 --> 00:09:21,420
+par reči, više o
+
+286
+00:09:21,790 --> 00:09:23,360
+ovoj ideji dobijanja izgubljenih
+
+287
+00:09:23,600 --> 00:09:25,610
+podataka putem sinteze veštačkih podataka.
+
+288
+00:09:26,920 --> 00:09:28,780
+Kao i uvek, pre nego uložite mnogo
+
+289
+00:09:29,170 --> 00:09:30,280
+napora, znate, da shvatite
+
+290
+00:09:30,450 --> 00:09:32,020
+kako da kreirate veštačke trening
+
+291
+00:09:33,060 --> 00:09:34,140
+podatke, često je dobra
+
+292
+00:09:34,220 --> 00:09:35,310
+praksa da se uverite
+
+293
+00:09:35,650 --> 00:09:36,540
+da stvarno niste pristrasni,
+
+294
+00:09:36,920 --> 00:09:38,350
+i da će mnogo
+
+295
+00:09:38,460 --> 00:09:40,320
+trening podataka da bude od pomoći.
+
+296
+00:09:41,010 --> 00:09:41,840
+Standardan način da to uradite
+
+297
+00:09:41,970 --> 00:09:42,810
+jeste da unesete krive
+
+298
+00:09:43,030 --> 00:09:43,970
+učenja, i da budete sigurni da
+
+299
+00:09:44,130 --> 00:09:44,920
+jedino imate nisko,
+
+300
+00:09:45,000 --> 00:09:47,470
+kao i visoko srednje kvadratno odstupanje.
+
+301
+00:09:47,760 --> 00:09:48,650
+Ili ako nemate nisku
+
+302
+00:09:48,720 --> 00:09:50,090
+srednju kvadratnu devijaciju, znate,
+
+303
+00:09:50,160 --> 00:09:51,040
+još jedna stvar koju vredi da probate
+
+304
+00:09:51,450 --> 00:09:53,270
+je da nastavite da povećavate broj
+
+305
+00:09:53,540 --> 00:09:54,440
+karakteristika koje ima vaš klasifikator
+
+306
+00:09:54,600 --> 00:09:55,650
+povećavajući broj
+
+307
+00:09:55,740 --> 00:09:56,710
+sakrivenih jedinica u vašoj mreži,
+
+308
+00:09:57,180 --> 00:09:58,470
+recimo, dok god ne dobijete
+
+309
+00:09:58,540 --> 00:10:00,000
+nisku srednju kvadratnu devijaciju, i samo
+
+310
+00:10:00,310 --> 00:10:01,820
+tad, treba da uložite
+
+311
+00:10:02,040 --> 00:10:04,020
+napor da biste kreirali
+
+312
+00:10:04,260 --> 00:10:05,760
+veliki skup veštačkih podataka, dakle,
+
+313
+00:10:05,860 --> 00:10:06,660
+šta u stvari želite da izbegnete
+
+314
+00:10:06,870 --> 00:10:07,930
+je da, znate, potrošite
+
+315
+00:10:08,110 --> 00:10:08,890
+celu sedmicu ili par
+
+316
+00:10:09,090 --> 00:10:10,370
+meseci otkrivajući kako
+
+317
+00:10:10,540 --> 00:10:11,720
+da dobijete sjajno sintetizovan
+
+318
+00:10:12,450 --> 00:10:13,260
+skup veštačkih podataka.
+
+319
+00:10:13,820 --> 00:10:15,520
+Samo da zaključimo,
+
+320
+00:10:15,760 --> 00:10:17,410
+znate, vaš algoritam učenja, performanse
+
+321
+00:10:18,030 --> 00:10:20,730
+se neće poboljšati toliko mnogo, 
+iako imate ogroman trening skup.
+
+322
+00:10:22,190 --> 00:10:23,060
+Dakle, to je moj uobičajeni savet
+
+323
+00:10:23,420 --> 00:10:24,690
+o testiranju da
+
+324
+00:10:25,030 --> 00:10:26,290
+budete sigurni da 
+stvarno možete da koristite
+
+325
+00:10:26,530 --> 00:10:27,760
+veliki trening skup pre nego
+
+326
+00:10:28,080 --> 00:10:30,530
+uložite mnogo truda da biste 
+dobili taj trening skup.
+
+327
+00:10:31,960 --> 00:10:33,280
+Drugo, kada rešavam
+
+328
+00:10:33,590 --> 00:10:35,250
+probleme mašinskog učenja, jedno pitanje
+
+329
+00:10:35,690 --> 00:10:37,520
+koje često pitam tim
+
+330
+00:10:37,880 --> 00:10:39,210
+sa kojim radim, često pitam svoje
+
+331
+00:10:39,430 --> 00:10:40,550
+studente, jeste koliko posla
+
+332
+00:10:40,620 --> 00:10:42,810
+bi trebalo da se uradi da se dobije
+ 10 puta više podataka od onoga što imamo sad.
+
+333
+00:10:46,720 --> 00:10:47,850
+Kada se sretnem sa novom aplikacijom
+
+334
+00:10:48,200 --> 00:10:49,760
+mašinskog učenja, veoma često
+
+335
+00:10:49,980 --> 00:10:50,940
+sednem sa timom
+
+336
+00:10:51,210 --> 00:10:52,440
+i pitam upravo to pitanje,
+
+337
+00:10:52,920 --> 00:10:53,870
+postavljam to pitanje opet i
+
+338
+00:10:53,970 --> 00:10:55,870
+opet i opet i budem
+
+339
+00:10:56,000 --> 00:10:57,540
+veoma iznenađen koliko često
+
+340
+00:10:58,390 --> 00:10:59,660
+ovaj odgovor bude.
+
+341
+00:11:00,010 --> 00:11:01,070
+Znate, stvarno nije tako teško,
+
+342
+00:11:01,680 --> 00:11:02,670
+možda dva dana posla
+
+343
+00:11:02,930 --> 00:11:03,930
+uglavnom, da dobijete deset puta
+
+344
+00:11:04,250 --> 00:11:05,300
+više podataka od onoga što sada
+
+345
+00:11:05,450 --> 00:11:06,650
+imamo za aplikaciju
+
+346
+00:11:06,810 --> 00:11:08,820
+mašinskog učenja i veoma
+
+347
+00:11:09,080 --> 00:11:09,830
+često ako možete da dobijete
+
+348
+00:11:09,950 --> 00:11:11,030
+deset puta više podataka, postojaće
+
+349
+00:11:11,270 --> 00:11:13,680
+način da mnogo poboljšate vaš algoritam.
+
+350
+00:11:14,060 --> 00:11:15,040
+Dakle, ako se
+
+351
+00:11:15,260 --> 00:11:16,510
+ikada pridružite timu
+
+352
+00:11:17,820 --> 00:11:18,880
+koji radi na nekoj aplikaciji
+
+353
+00:11:19,110 --> 00:11:20,430
+mašinskog učenja, ovo je
+
+354
+00:11:20,550 --> 00:11:21,710
+veoma dobro pitanje da sebi postavite,
+
+355
+00:11:22,290 --> 00:11:23,500
+ako pitate tim, nemojte biti
+
+356
+00:11:23,650 --> 00:11:25,120
+previše iznenađeni ako posle
+
+357
+00:11:25,240 --> 00:11:26,530
+par minuta mozganja vaš
+
+358
+00:11:26,650 --> 00:11:27,520
+tim se pojavi sa
+
+359
+00:11:27,660 --> 00:11:28,950
+načinom da dobije deset
+
+360
+00:11:29,200 --> 00:11:30,250
+puta više podataka, u
+
+361
+00:11:30,380 --> 00:11:31,320
+tom slučaju biste
+
+362
+00:11:31,430 --> 00:11:32,330
+bili heroj za taj tim,
+
+363
+00:11:32,940 --> 00:11:34,000
+jer sa deset puta većim
+
+364
+00:11:34,240 --> 00:11:35,360
+skupom podataka, mislim da biste stvarno
+
+365
+00:11:35,450 --> 00:11:38,460
+dobili mnogo bolje performanse,
+ zbog učenja iz tako velikog skupa.
+
+366
+00:11:39,650 --> 00:11:44,500
+Dakle, postoji nekoliko načina
+
+367
+00:11:47,450 --> 00:11:48,510
+koji dele ideje
+
+368
+00:11:48,970 --> 00:11:50,440
+generisanja podataka iz
+
+369
+00:11:50,640 --> 00:11:53,050
+početka koristeći slučajne fontove i tako dalje.
+
+370
+00:11:53,570 --> 00:11:54,430
+Kao i druga ideja
+
+371
+00:11:54,840 --> 00:11:56,600
+uzimanja postojećeg primera i
+
+372
+00:11:56,670 --> 00:11:58,100
+upotreba izobličavanja koja povećavaju
+
+373
+00:11:58,280 --> 00:12:00,910
+trening skup, par
+
+374
+00:12:01,090 --> 00:12:02,150
+drugih načina
+
+375
+00:12:02,280 --> 00:12:03,130
+da se dobije više
+
+376
+00:12:03,270 --> 00:12:04,610
+podataka su prikupljanje
+
+377
+00:12:04,670 --> 00:12:06,600
+podataka ili obeležavanje.
+
+378
+00:12:07,600 --> 00:12:09,090
+Jedan koristan proračun koji
+
+379
+00:12:09,210 --> 00:12:11,580
+često pravim jeste, znate,
+
+380
+00:12:11,780 --> 00:12:13,320
+koliko minuta, koliko
+
+381
+00:12:13,520 --> 00:12:15,140
+sati traje prikupljanje
+
+382
+00:12:15,350 --> 00:12:16,420
+određenog broja
+
+383
+00:12:16,610 --> 00:12:17,780
+primera, dakle, sedite i
+
+384
+00:12:17,900 --> 00:12:19,410
+shvatite, znate, pretpostavimo da
+
+385
+00:12:19,550 --> 00:12:21,830
+traje deset sekundi da
+
+386
+00:12:22,060 --> 00:12:23,990
+označite jedan primer
+
+387
+00:12:24,120 --> 00:12:25,820
+i, pretpostavimo da, za
+
+388
+00:12:26,190 --> 00:12:29,050
+našu aplikaciju, trenutno
+
+389
+00:12:29,190 --> 00:12:31,500
+imamo 1000 obeleženih primera
+
+390
+00:12:31,620 --> 00:12:32,730
+pa bi deset puta
+
+391
+00:12:32,860 --> 00:12:34,090
+više od toga bilo
+
+392
+00:12:34,200 --> 00:12:35,940
+da je n jednako deset hiljada.
+
+393
+00:12:37,440 --> 00:12:40,260
+Drugi način da
+
+394
+00:12:40,400 --> 00:12:41,530
+dobijete mnogo podataka je
+
+395
+00:12:41,800 --> 00:12:43,540
+da samo prikupite podatke i obeležite ih.
+
+396
+00:12:44,510 --> 00:12:45,380
+Dakle, šta mislim ovim je
+
+397
+00:12:45,690 --> 00:12:46,970
+da bih često seo i
+
+398
+00:12:47,240 --> 00:12:48,570
+pravio proračun da
+
+399
+00:12:48,950 --> 00:12:50,190
+shvatim koliko vremena,
+
+400
+00:12:50,350 --> 00:12:51,140
+znate, kao koliko sati
+
+401
+00:12:52,640 --> 00:12:54,000
+će da traje, koliko
+
+402
+00:12:54,200 --> 00:12:55,130
+sati ili koliko dana će
+
+403
+00:12:55,230 --> 00:12:56,890
+da traje za mene ili
+
+404
+00:12:57,020 --> 00:12:58,400
+za nekoga drugoga
+
+405
+00:12:58,640 --> 00:12:59,870
+da prikupi deset puta
+
+406
+00:13:00,190 --> 00:13:01,490
+više podataka, nego što imamo
+
+407
+00:13:01,800 --> 00:13:03,560
+trenutno, prikupljanjem i obeležavanjem ručno.
+
+408
+00:13:05,260 --> 00:13:06,550
+Na primer, za
+
+409
+00:13:06,630 --> 00:13:08,200
+našu aplikaciju mašinskog učenja, trenutno
+
+410
+00:13:08,690 --> 00:13:10,180
+imamo 1000 primera, dakle M 1,000.
+
+411
+00:13:12,010 --> 00:13:12,750
+Šta mi uradimo je da sednemo
+
+412
+00:13:12,870 --> 00:13:14,500
+i zapitamo se, koliko će nam
+
+413
+00:13:14,720 --> 00:13:16,930
+trebati vremena da sakupimo i obeležimo jedan primer.
+
+414
+00:13:17,340 --> 00:13:18,480
+Ponekad će možda
+
+415
+00:13:18,600 --> 00:13:19,510
+trebati, znate, desed
+
+416
+00:13:19,790 --> 00:13:22,100
+sekundi za označavanje
+
+417
+00:13:23,310 --> 00:13:25,120
+jednog novog primera, i tako
+
+418
+00:13:25,520 --> 00:13:27,720
+ako želim 10 x veći primer, pravim proračun.
+
+419
+00:13:28,360 --> 00:13:30,400
+Ako mi za jedan trening primer treba 10 sekundi,
+
+420
+00:13:31,370 --> 00:13:32,340
+ako želim da dobijem 10
+
+421
+00:13:32,580 --> 00:13:35,320
+puta više podataka, trebaće mi 10,000 primera.
+
+422
+00:13:35,830 --> 00:13:38,470
+Dakle, pravim proračun, koliko
+
+423
+00:13:38,770 --> 00:13:40,380
+će mi trebati vremena
+
+424
+00:13:40,840 --> 00:13:42,640
+da ručno obeležim 10,000 primera,
+
+425
+00:13:43,340 --> 00:13:45,280
+ako mi treba 10 sekundi da obeležim jedan primer.
+
+426
+00:13:47,070 --> 00:13:47,940
+Kada napravite taj proračun,
+
+427
+00:13:48,840 --> 00:13:49,920
+često vidim da su mnogi
+
+428
+00:13:50,390 --> 00:13:51,780
+od vas iznenađeni, znate,
+
+429
+00:13:51,870 --> 00:13:53,140
+koliko malo, ponekad
+
+430
+00:13:53,240 --> 00:13:54,730
+par dana posla, ponekad
+
+431
+00:13:54,880 --> 00:13:55,560
+mali broj dana posla,
+
+432
+00:13:55,780 --> 00:13:57,180
+dakle, viđao sam mnoge timove koji
+
+433
+00:13:57,500 --> 00:13:59,160
+su iznenađeni koliko je to
+
+434
+00:13:59,340 --> 00:14:00,280
+malo posla
+
+435
+00:14:00,410 --> 00:14:01,200
+da dobijete mnogo više
+
+436
+00:14:01,370 --> 00:14:02,510
+podataka, i neka to bude
+
+437
+00:14:02,580 --> 00:14:03,470
+način da vaša aplikacija učenja
+
+438
+00:14:03,580 --> 00:14:04,310
+ima mnogo bolje
+
+439
+00:14:04,640 --> 00:14:06,350
+performanse, i obavezno, znate,
+
+440
+00:14:06,450 --> 00:14:07,550
+ponekad kad trebate da
+
+441
+00:14:07,790 --> 00:14:08,900
+uradite to,
+
+442
+00:14:09,190 --> 00:14:10,780
+bićete junak,
+
+443
+00:14:11,360 --> 00:14:12,520
+bez obzira u kom timu radite,
+
+444
+00:14:12,910 --> 00:14:14,150
+jer ovo može da
+
+445
+00:14:14,320 --> 00:14:15,760
+bude sjajan način da dobijete mnogo bolje performanse.
+
+446
+00:14:17,650 --> 00:14:19,490
+Treće i poslednje, ponekad je
+
+447
+00:14:20,020 --> 00:14:21,230
+dobar način da dobijete
+
+448
+00:14:21,450 --> 00:14:22,650
+mnogo podataka da koristite
+
+449
+00:14:23,080 --> 00:14:24,350
+ono što sad zovemo izvor gomile.
+
+450
+00:14:25,280 --> 00:14:26,350
+Dakle danas postoji
+
+451
+00:14:26,520 --> 00:14:27,270
+par veb sajtova ili par
+
+452
+00:14:27,460 --> 00:14:29,520
+servisa koji vam omogućavaju
+
+453
+00:14:29,920 --> 00:14:32,210
+da zaposlite ljude na
+
+454
+00:14:32,350 --> 00:14:33,410
+vebu da, znate, prilično
+
+455
+00:14:33,730 --> 00:14:36,140
+jeftino obeležite veliki trening skup.
+
+456
+00:14:36,810 --> 00:14:37,870
+Dakle, ova ideja izvora
+
+457
+00:14:38,190 --> 00:14:39,460
+gomile, ili obeležavanje podataka
+
+458
+00:14:39,950 --> 00:14:41,390
+od gomile, je nešto,
+
+459
+00:14:41,810 --> 00:14:43,180
+očigledno, kao
+
+460
+00:14:43,340 --> 00:14:45,200
+potpuna akademska literatura,
+
+461
+00:14:45,660 --> 00:14:47,040
+ima svoje komplikacije i
+
+462
+00:14:47,210 --> 00:14:49,390
+tako dalje, čuvajući pouzdanost obeleživača.
+
+463
+00:14:50,440 --> 00:14:51,470
+Možda, znate, stotine hiljada
+
+464
+00:14:51,860 --> 00:14:53,420
+obeleživača celog
+
+465
+00:14:53,580 --> 00:14:55,530
+sveta radi prilično jeftino da
+
+466
+00:14:55,630 --> 00:14:56,810
+bi pomoglo da se podaci obeleže,
+
+467
+00:14:57,030 --> 00:14:58,580
+i to sam upravo spomenuo,
+
+468
+00:14:58,930 --> 00:15:00,120
+ovo je takođe jedna od alternativa.
+
+469
+00:15:00,390 --> 00:15:02,170
+I Amazon Mehanikal Turk
+
+470
+00:15:02,510 --> 00:15:03,750
+sistem je verovatno
+
+471
+00:15:03,900 --> 00:15:05,860
+najpopularnija opcija izvora gomile sistema.
+
+472
+00:15:06,860 --> 00:15:08,070
+To je često
+
+473
+00:15:08,220 --> 00:15:10,040
+popriličan posao,
+
+474
+00:15:10,190 --> 00:15:10,940
+popriličan posao, ako želite
+
+475
+00:15:11,150 --> 00:15:12,520
+da dobijete veoma kvalitetna obeležja,
+
+476
+00:15:12,780 --> 00:15:14,160
+ali je ponekad
+
+477
+00:15:14,240 --> 00:15:15,760
+opcija vredna razmatranja.
+
+478
+00:15:17,330 --> 00:15:18,870
+Ako želite da pokušate da
+
+479
+00:15:19,320 --> 00:15:21,000
+zaposlite mnogo ljudi, prilično jeftino,
+
+480
+00:15:21,810 --> 00:15:24,220
+naši obeleživači lansiraju milione podataka za vas.
+
+481
+00:15:26,320 --> 00:15:27,570
+Dakle, u ovom videu
+
+482
+00:15:27,660 --> 00:15:28,840
+govorili smo o ideji
+
+483
+00:15:29,100 --> 00:15:30,870
+sinteze veštačke inteligencije
+
+484
+00:15:31,120 --> 00:15:32,440
+putem kreiranja podataka
+
+485
+00:15:32,750 --> 00:15:34,400
+od početka, gledajući, koristeći
+
+486
+00:15:34,640 --> 00:15:35,400
+skinute fontove na primer,
+
+487
+00:15:35,830 --> 00:15:37,710
+ili obogaćujući
+
+488
+00:15:37,790 --> 00:15:38,980
+postojeći trening skup, uzimajući
+
+489
+00:15:39,420 --> 00:15:41,340
+postojeće obeležene primere i
+
+490
+00:15:41,560 --> 00:15:42,980
+primenjujući izobličavanja nad njima,
+
+491
+00:15:43,240 --> 00:15:44,880
+da biste kreirali dodatne obeležene primere.
+
+492
+00:15:46,010 --> 00:15:47,450
+I konačno, nadam se
+
+493
+00:15:47,630 --> 00:15:48,810
+da ste zapamtili jednu stvar iz ovog
+
+494
+00:15:49,120 --> 00:15:49,970
+videa, ako se
+
+495
+00:15:50,540 --> 00:15:51,540
+susretnete sa problemom mašinskog
+
+496
+00:15:51,830 --> 00:15:54,350
+učenja, često vredi da se urade dve stvari.
+
+497
+00:15:54,660 --> 00:15:55,830
+Jedna je provera,
+
+498
+00:15:56,160 --> 00:15:58,600
+sa krivom učenja, da li bi pomoglo da imate još podataka.
+
+499
+00:15:59,520 --> 00:16:00,340
+I drugo, pretpostavimo da je to slučaj,
+
+500
+00:16:00,730 --> 00:16:01,780
+ja bih često seo i
+
+501
+00:16:01,850 --> 00:16:03,670
+ozbiljno se zapitao: koliko bi
+
+502
+00:16:04,050 --> 00:16:05,150
+trebalo vremena da se dobiju deset
+
+503
+00:16:05,260 --> 00:16:06,510
+puta kreativniji podaci nego što
+
+504
+00:16:06,630 --> 00:16:08,450
+trenutno imate, i ne uvek,
+
+505
+00:16:08,960 --> 00:16:10,440
+već ponekad, možda ćete biti
+
+506
+00:16:10,640 --> 00:16:12,310
+iznenađeni time kako to može
+
+507
+00:16:12,580 --> 00:16:13,990
+da bude lako, možda
+
+508
+00:16:14,060 --> 00:16:15,020
+par dana, par sedmica
+
+509
+00:16:15,150 --> 00:16:16,160
+posla, i to bi mogao da bude
+
+510
+00:16:16,260 --> 00:16:18,700
+sjajan način da svom algoritmu učenja poboljšate performanse.

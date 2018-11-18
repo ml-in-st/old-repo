@@ -1,0 +1,1007 @@
+1
+00:00:00,190 --> 00:00:01,270
+En este video y en
+
+2
+00:00:01,440 --> 00:00:02,720
+el video que sigue después,
+
+3
+00:00:02,850 --> 00:00:04,040
+quiero hablarte sobre algunos trucos prácticos
+
+4
+00:00:04,180 --> 00:00:06,940
+para lograr que el gradiente de descenso funcione bien.
+
+5
+00:00:07,680 --> 00:00:10,250
+En este video, quiero hablarte acerca de una idea llamada escalamiento de características.
+
+6
+00:00:11,770 --> 00:00:12,210
+tenemos un ciclo for para la sumatoria
+
+7
+00:00:13,030 --> 00:00:14,080
+Cuando tienes un problema en
+
+8
+00:00:14,180 --> 00:00:15,880
+donde hay múltiples características, si te
+
+9
+00:00:16,320 --> 00:00:17,410
+aseguras de que las características
+
+10
+00:00:18,050 --> 00:00:19,440
+están en una escala similar,
+
+11
+00:00:19,570 --> 00:00:20,480
+y me refiero a que te asegures que
+
+12
+00:00:20,650 --> 00:00:22,130
+las diferentes características toman
+
+13
+00:00:22,300 --> 00:00:23,390
+rangos de valores similares, entonces
+
+14
+00:00:24,420 --> 00:00:26,490
+los gradientes de descenso pueden converger más rápidamente.
+
+15
+00:00:27,510 --> 00:00:28,680
+Específicamente, digamos que
+
+16
+00:00:28,820 --> 00:00:29,860
+tienes un problema con dos características
+
+17
+00:00:30,380 --> 00:00:31,680
+en donde x1 es el tamaño
+
+18
+00:00:31,950 --> 00:00:32,860
+de la casa y toma valores
+
+19
+00:00:33,530 --> 00:00:34,540
+entre, digamos,  0 y 2,000
+
+20
+00:00:35,490 --> 00:00:36,270
+y x2 es el número
+
+21
+00:00:36,520 --> 00:00:37,570
+de dormitorios, que tal vez toma
+
+22
+00:00:37,820 --> 00:00:39,250
+valores entre 1 y 5.
+
+23
+00:00:40,100 --> 00:00:41,690
+Si trazas el contorno de
+
+24
+00:00:41,800 --> 00:00:43,000
+la función de coseno "J" de theta,
+
+25
+00:00:44,810 --> 00:00:46,540
+entonces el contorno puede
+
+26
+00:00:46,750 --> 00:00:49,010
+verse así, en donde, vamos a ver,
+
+27
+00:00:49,230 --> 00:00:50,570
+"J" de theta es una función
+
+28
+00:00:50,910 --> 00:00:53,590
+de parámetros theta 0, theta 1 y theta 2.
+
+29
+00:00:54,300 --> 00:00:55,400
+Voy a ignorar theta 0,
+
+30
+00:00:56,020 --> 00:00:57,230
+así que vamos a olvidarnos de theta 0
+
+31
+00:00:57,480 --> 00:00:58,730
+y pretender que es una función
+
+32
+00:00:58,840 --> 00:01:01,080
+de sólo theta 1 y theta 2,
+
+33
+00:01:01,510 --> 00:01:02,810
+pero si x1 puede tomar
+
+34
+00:01:02,940 --> 00:01:04,110
+como sabes, un rango mucho más amplio
+
+35
+00:01:04,370 --> 00:01:05,790
+de valores y x2, resulta
+
+36
+00:01:06,120 --> 00:01:07,270
+que el contorno de la
+
+37
+00:01:07,340 --> 00:01:08,320
+función de coseno "J" de theta
+
+38
+00:01:09,420 --> 00:01:11,400
+puede tomar esta forma
+
+39
+00:01:11,690 --> 00:01:14,720
+elíptica muy pero muy sesgada, salvo
+
+40
+00:01:15,070 --> 00:01:16,620
+que con el rango de 2,000
+
+41
+00:01:16,770 --> 00:01:18,470
+a 5, puede ser aún más sesgado.
+
+42
+00:01:18,800 --> 00:01:20,190
+Por lo tanto, estas elipses, muy altas
+
+43
+00:01:20,560 --> 00:01:23,070
+y delgadas, o estos
+
+44
+00:01:23,320 --> 00:01:24,950
+óvalos muy altos y delgados, pueden formar
+
+45
+00:01:25,310 --> 00:01:27,940
+los contornos de la función de coseno "J" de theta.
+
+46
+00:01:29,420 --> 00:01:30,860
+Y si ejecutas los gradientes de descenso
+
+47
+00:01:30,930 --> 00:01:34,290
+en esta función de coseno, tus
+
+48
+00:01:34,830 --> 00:01:36,480
+gradientes pueden terminar
+
+49
+00:01:36,970 --> 00:01:38,660
+tomando mucho tiempo y
+
+50
+00:01:39,080 --> 00:01:40,360
+pueden oscilar de ida y vuelta
+
+51
+00:01:41,100 --> 00:01:43,130
+y tardar mucho antes de que finalmente puedan
+
+52
+00:01:43,190 --> 00:01:46,120
+encontrar su camino hacia el mínimo global.
+
+53
+00:01:47,470 --> 00:01:48,720
+De hecho, puedes imaginar que estos
+
+54
+00:01:48,890 --> 00:01:50,400
+contornos son incluso más exagerados
+
+55
+00:01:50,580 --> 00:01:51,970
+cuando dibujas contornos increíblemente
+
+56
+00:01:52,480 --> 00:01:54,300
+delgados,contornos altos y delgados,
+
+57
+00:01:56,230 --> 00:01:57,030
+y pueden ser incluso más extremos
+
+58
+00:01:57,380 --> 00:01:59,060
+entonces, para el gradiente de descenso
+
+59
+00:01:59,790 --> 00:02:02,310
+simplemente es más
+
+60
+00:02:02,630 --> 00:02:04,280
+difícil encontrar la ruta,
+
+61
+00:02:04,690 --> 00:02:06,030
+serpenteando alrededor, y puede tomar
+
+62
+00:02:06,120 --> 00:02:08,270
+mucho tiempo encontrar el camino hacia el mínimo global.
+
+63
+00:02:12,130 --> 00:02:14,370
+En esta configuración, una cosa útil
+
+64
+00:02:14,780 --> 00:02:16,280
+es escalar las características.
+
+65
+00:02:17,380 --> 00:02:18,760
+Específicamente, si por el contrario
+
+66
+00:02:19,200 --> 00:02:20,370
+defines que la característica x1
+
+67
+00:02:20,570 --> 00:02:21,770
+sea el tamaño de
+
+68
+00:02:21,870 --> 00:02:23,070
+la casa dividido entre 2,000,
+
+69
+00:02:24,040 --> 00:02:25,140
+y defines que x2 sea
+
+70
+00:02:25,270 --> 00:02:26,520
+el número de habitaciones dividido
+
+71
+00:02:26,940 --> 00:02:29,010
+entre cinco, entonces los
+
+72
+00:02:29,170 --> 00:02:30,020
+contornos de la
+
+73
+00:02:30,090 --> 00:02:31,840
+función coseno "J" puede ser
+
+74
+00:02:32,900 --> 00:02:34,430
+mucho más, mucho menos
+
+75
+00:02:34,840 --> 00:02:36,990
+sesgada por lo que los contornos pueden parecer más circulares.
+
+76
+00:02:38,210 --> 00:02:39,180
+Y si ejecutas el gradiente
+
+77
+00:02:39,520 --> 00:02:40,540
+descendente en una función coseno como
+
+78
+00:02:40,750 --> 00:02:42,120
+esta, entonces el gradiente de descenso,
+
+79
+00:02:44,110 --> 00:02:45,630
+puede mostrarse matemáticamente, puedes
+
+80
+00:02:45,860 --> 00:02:47,430
+encontrar una ruta más directa
+
+81
+00:02:47,540 --> 00:02:48,830
+al mínimo global en lugar de tomar
+
+82
+00:02:49,390 --> 00:02:51,200
+un camino mucho más complicado
+
+83
+00:02:51,530 --> 00:02:52,530
+en donde estás tratando de
+
+84
+00:02:52,620 --> 00:02:53,520
+seguir una trayectoria mucho más complicada
+
+85
+00:02:54,310 --> 00:02:55,910
+para llegar al mínimo global.
+
+86
+00:02:57,300 --> 00:02:58,710
+Así que, al escalar las características
+
+87
+00:02:58,950 --> 00:03:01,000
+que existen, los rangos de valores del consumidor .
+
+88
+00:03:01,620 --> 00:03:02,810
+En este ejemplo, terminamos
+
+89
+00:03:02,970 --> 00:03:04,150
+con ambas características, x1
+
+90
+00:03:04,300 --> 00:03:06,960
+y x2, entre 0 y 1.
+
+91
+00:03:09,580 --> 00:03:12,290
+Puedes concluir con una implementación de gradiente de descenso.
+
+92
+00:03:12,690 --> 00:03:13,810
+Se pueden convertir mucho más rápido.
+
+93
+00:03:18,120 --> 00:03:19,640
+De manera más general, cuando estamos realizando
+
+94
+00:03:20,160 --> 00:03:21,240
+el escalamiento de características, lo que a menudo
+
+95
+00:03:21,530 --> 00:03:22,480
+queremos es lograr que cada
+
+96
+00:03:22,750 --> 00:03:25,670
+característica tenga un rango aproximado de -1
+
+97
+00:03:25,780 --> 00:03:28,170
+a +1 y que específicamente,
+
+98
+00:03:28,960 --> 00:03:31,710
+tu característica x0 sea siempre igual a 1.
+
+99
+00:03:31,760 --> 00:03:32,810
+Así, que ya está en ese rango,
+
+100
+00:03:34,110 --> 00:03:35,150
+pero puedes terminar dividiendo
+
+101
+00:03:35,630 --> 00:03:36,950
+otras características entre diferentes números
+
+102
+00:03:37,330 --> 00:03:39,150
+para llevarlos a ese rango.
+
+103
+00:03:39,510 --> 00:03:41,520
+Los números -1 y +1 no son muy importantes.
+
+104
+00:03:42,270 --> 00:03:42,900
+Por lo que si tienes una característica,
+
+105
+00:03:44,150 --> 00:03:45,340
+x1 que termina
+
+106
+00:03:45,510 --> 00:03:48,000
+estando entre 0 y 3, no será un problema.
+
+107
+00:03:48,400 --> 00:03:49,410
+Si terminas con una característica diferente
+
+108
+00:03:49,600 --> 00:03:51,190
+que serpentea estando
+
+109
+00:03:52,140 --> 00:03:54,020
+entre -2 y +0.5 de nuevo,
+
+110
+00:03:54,300 --> 00:03:55,710
+está suficientemente cerca
+
+111
+00:03:56,070 --> 00:03:57,070
+de -1 y +1
+
+112
+00:03:57,320 --> 00:03:59,160
+lo que, como sabes, está bien, y esto está bien.
+
+113
+00:04:00,310 --> 00:04:01,260
+Es sólo que si tienes una
+
+114
+00:04:01,340 --> 00:04:02,580
+característica diferente, digamos x3
+
+115
+00:04:02,820 --> 00:04:04,780
+que está entre, esos
+
+116
+00:04:05,840 --> 00:04:09,070
+rangos de -100 a +100,
+
+117
+00:04:09,330 --> 00:04:10,850
+entonces, estos son
+
+118
+00:04:11,090 --> 00:04:13,570
+valores muy diferentes a -1 y +1.
+
+119
+00:04:13,860 --> 00:04:15,020
+Por lo tanto, esta podría ser una característica
+
+120
+00:04:15,230 --> 00:04:17,480
+no tan bien escalada y del mismo modo
+
+121
+00:04:17,970 --> 00:04:19,340
+si tus características toman
+
+122
+00:04:19,420 --> 00:04:20,680
+un rango muy pero muy pequeño de
+
+123
+00:04:20,950 --> 00:04:22,060
+valores, por lo que x4
+
+124
+00:04:22,340 --> 00:04:25,530
+toma los valores entre
+
+125
+00:04:25,740 --> 00:04:28,290
+-0.0001 y +0.0001, entonces
+
+126
+00:04:29,720 --> 00:04:30,780
+de nuevo esto toma un
+
+127
+00:04:30,910 --> 00:04:31,960
+rango de valores mucho menor
+
+128
+00:04:32,460 --> 00:04:33,760
+que el rango de -1 a +1.
+
+129
+00:04:34,040 --> 00:04:36,630
+Y de nuevo, yo consideraría esta característica muy mal escalada.
+
+130
+00:04:37,850 --> 00:04:39,150
+Así es que queremos que el rango de
+
+131
+00:04:39,430 --> 00:04:40,350
+valores, como sabes, pueda ser
+
+132
+00:04:41,070 --> 00:04:42,010
+mayor que +1 o menor
+
+133
+00:04:42,370 --> 00:04:43,840
+que +1, pero no
+
+134
+00:04:44,040 --> 00:04:45,170
+mucho mayor,  +100 como
+
+135
+00:04:45,610 --> 00:04:47,470
+aquí, y no
+
+136
+00:04:47,650 --> 00:04:49,990
+mucho menor como el 0.001 de allá.
+
+137
+00:04:50,770 --> 00:04:52,530
+Diferentes personas tienen diferentes reglas de oro.
+
+138
+00:04:52,870 --> 00:04:53,910
+Pero la que yo utilizo es
+
+139
+00:04:54,070 --> 00:04:55,440
+que si una función toma
+
+140
+00:04:55,670 --> 00:04:56,750
+el rango de valores de
+
+141
+00:04:56,980 --> 00:04:58,590
+digamos, -3 a +3
+
+142
+00:04:58,840 --> 00:05:00,120
+podrías pensar que debe
+
+143
+00:05:00,170 --> 00:05:01,690
+estar bien, pero quizá
+
+144
+00:05:02,000 --> 00:05:03,050
+tome valores mucho mayores
+
+145
+00:05:03,440 --> 00:05:04,360
+que +3 o -3
+
+146
+00:05:04,530 --> 00:05:06,400
+a no ser que no haya de que preocuparse y si
+
+147
+00:05:06,700 --> 00:05:09,660
+toma valores, por ejemplo, de menos un tercio a un tercio.
+
+148
+00:05:10,920 --> 00:05:12,020
+Como sabes, creo que también está bien
+
+149
+00:05:12,270 --> 00:05:14,880
+o de 0 a un tercio o de menos un tercio a 0.
+
+150
+00:05:14,910 --> 00:05:17,890
+Pienso que es un rango típico de valores sector 0, OK.
+
+151
+00:05:18,560 --> 00:05:19,310
+Pero si toma un
+
+152
+00:05:19,450 --> 00:05:20,640
+rango de valores mucho más pequeño
+
+153
+00:05:20,900 --> 00:05:23,220
+como x4 de aquí, entonces no hay de qué preocuparse.
+
+154
+00:05:23,790 --> 00:05:25,060
+Así que, el mensaje para llevar a casa
+
+155
+00:05:25,500 --> 00:05:26,780
+es que no debes preocuparte si tus
+
+156
+00:05:27,000 --> 00:05:28,550
+características no están exactamente
+
+157
+00:05:28,700 --> 00:05:30,920
+en la misma escala o exactamente en el mismo rango de valores.
+
+158
+00:05:31,170 --> 00:05:31,930
+Pero mientras que todas estén lo suficientemente cerca
+
+159
+00:05:32,090 --> 00:05:35,060
+a este gradiente de descenso debería funcionar bien.
+
+160
+00:05:35,930 --> 00:05:37,530
+Además dividiendo así
+
+161
+00:05:37,930 --> 00:05:39,960
+entre el máximo valor cuando
+
+162
+00:05:40,220 --> 00:05:42,080
+se realiza el escalamiento de características a veces
+
+163
+00:05:42,730 --> 00:05:45,070
+la gente también realiza lo que se conoce como normalización media.
+
+164
+00:05:45,330 --> 00:05:47,150
+Y a lo que me refiero con
+
+165
+00:05:47,320 --> 00:05:48,130
+eso, es que quieres
+
+166
+00:05:48,350 --> 00:05:49,810
+tomar una característica xi y remplazarla
+
+167
+00:05:50,230 --> 00:05:51,850
+con xi - «Mu» i para hacer que
+
+168
+00:05:52,870 --> 00:05:55,260
+tus características tengan una media aproximada de 0.
+
+169
+00:05:56,530 --> 00:05:57,730
+Y, obviamente, queremos
+
+170
+00:05:57,890 --> 00:05:59,260
+aplicar esto a una futura
+
+171
+00:05:59,650 --> 00:06:00,750
+x0, porque la futura
+
+172
+00:06:00,940 --> 00:06:02,260
+x0 es siempre igual a
+
+173
+00:06:02,360 --> 00:06:03,600
+1, por lo que no puede tener un
+
+174
+00:06:03,810 --> 00:06:05,100
+valor promedio de 0.
+
+175
+00:06:06,370 --> 00:06:07,760
+Pero específicamente para otras
+
+176
+00:06:07,950 --> 00:06:09,320
+características si el rango
+
+177
+00:06:09,600 --> 00:06:10,320
+de tamaños de la casa
+
+178
+00:06:10,960 --> 00:06:14,170
+toma valores de entre 0
+
+179
+00:06:14,310 --> 00:06:15,080
+y 2,000 y si sabes que
+
+180
+00:06:15,230 --> 00:06:16,230
+el tamaño promedio de una
+
+181
+00:06:16,470 --> 00:06:18,340
+casa es igual a
+
+182
+00:06:18,500 --> 00:06:20,080
+1,000 entonces es posible que
+
+183
+00:06:21,470 --> 00:06:21,950
+debas usar esta fórmula.
+
+184
+00:06:23,940 --> 00:06:24,970
+El tamaño establece la característica
+
+185
+00:06:25,250 --> 00:06:26,270
+x1 al tamaño menos
+
+186
+00:06:26,590 --> 00:06:28,010
+el valor promedio dividido entre 2,000
+
+187
+00:06:28,630 --> 00:06:31,820
+y de manera similar, en promedio
+
+188
+00:06:32,530 --> 00:06:34,010
+si tus casas tienen
+
+189
+00:06:34,520 --> 00:06:37,630
+de uno a cinco dormitorios y
+
+190
+00:06:39,240 --> 00:06:40,460
+si las casas promedio tienen
+
+191
+00:06:40,890 --> 00:06:41,920
+dos dormitorios, entonces podrías
+
+192
+00:06:42,110 --> 00:06:44,750
+usar esta fórmula para normalizar
+
+193
+00:06:45,080 --> 00:06:47,460
+la media de tu segunda característica x2.
+
+194
+00:06:49,340 --> 00:06:50,720
+En ambos casos, terminarás
+
+195
+00:06:50,840 --> 00:06:52,730
+por lo tanto con características x1 y x2.
+
+196
+00:06:52,930 --> 00:06:54,490
+Pueden tomar valores más o menos
+
+197
+00:06:54,880 --> 00:06:56,580
+de entre -.5 y +.5.
+
+198
+00:06:57,130 --> 00:06:57,880
+No es exacto ya que -x2 puede en realidad ser
+
+199
+00:06:58,210 --> 00:07:00,920
+ligeramente mayor que .5, pero estar lo suficientemente cerca.
+
+200
+00:07:01,800 --> 00:07:03,140
+Y la regla más general es
+
+201
+00:07:03,530 --> 00:07:04,860
+que puedes tomar una
+
+202
+00:07:04,900 --> 00:07:06,390
+característica x1 y remplazarla
+
+203
+00:07:08,060 --> 00:07:10,110
+con x1 - «Mu» 1
+
+204
+00:07:10,940 --> 00:07:13,410
+sobre s1 en donde para
+
+205
+00:07:13,550 --> 00:07:15,890
+definir estos términos, «Mu» 1 es
+
+206
+00:07:16,200 --> 00:07:18,290
+el valor promedio de x1
+
+207
+00:07:19,960 --> 00:07:21,310
+en los conjuntos de entrenamiento
+
+208
+00:07:22,320 --> 00:07:24,190
+y s1 es el
+
+209
+00:07:24,350 --> 00:07:27,420
+rango de valores de esa
+
+210
+00:07:27,820 --> 00:07:28,940
+característica y por rango,
+
+211
+00:07:29,040 --> 00:07:30,110
+quiero decir, el  valor máximo
+
+212
+00:07:30,630 --> 00:07:31,900
+menos el valor mínimo
+
+213
+00:07:32,290 --> 00:07:33,350
+o para aquellos
+
+214
+00:07:33,590 --> 00:07:35,360
+de ustedes que entienden la desviación
+
+215
+00:07:35,850 --> 00:07:37,390
+de la variable es establecer que s1
+
+216
+00:07:37,760 --> 00:07:40,790
+sea la desviación estándar de la variable estaría bien también.
+
+217
+00:07:41,020 --> 00:07:43,240
+Tomar, como sabes, este máximo menos el mínimo estaría bien.
+
+218
+00:07:44,330 --> 00:07:45,170
+Y de manera similar para la segunda
+
+219
+00:07:45,610 --> 00:07:47,380
+característica, x2, reemplazas
+
+220
+00:07:47,840 --> 00:07:49,740
+x2 con este tipo de
+
+221
+00:07:51,040 --> 00:07:52,220
+resta, la media de la característica
+
+222
+00:07:52,800 --> 00:07:54,110
+y la divides entre el rango
+
+223
+00:07:54,380 --> 00:07:55,980
+de valores refiriéndonos al máximo menos el mínimo.
+
+224
+00:07:56,880 --> 00:07:57,910
+Y este tipo de fórmula
+
+225
+00:07:58,370 --> 00:07:59,630
+hará que tus características, como sabes,
+
+226
+00:07:59,850 --> 00:08:01,020
+no exactamente, pero más o menos
+
+227
+00:08:01,920 --> 00:08:03,320
+estén dentro de este tipo de
+
+228
+00:08:03,490 --> 00:08:04,820
+rangos, y por cierto
+
+229
+00:08:04,890 --> 00:08:05,700
+para aquellos de ustedes
+
+230
+00:08:05,940 --> 00:08:07,570
+que están siendo muy cuidadosos técnicamente si
+
+231
+00:08:07,710 --> 00:08:09,300
+estamos tomando el rango como máximo
+
+232
+00:08:09,610 --> 00:08:12,410
+menos mínimo este 5 de aquí en realidad se convertirá en un 4.
+
+233
+00:08:13,140 --> 00:08:14,390
+Así es que si el máximo es 5
+
+234
+00:08:14,600 --> 00:08:15,830
+menos 1 entonces el rango de
+
+235
+00:08:16,320 --> 00:08:17,160
+sus propios valores es en realidad
+
+236
+00:08:17,860 --> 00:08:18,530
+igual a 4, pero todos estos
+
+237
+00:08:18,690 --> 00:08:20,380
+son aproximados y cualquier valor
+
+238
+00:08:20,830 --> 00:08:22,010
+que hace que las características sean
+
+239
+00:08:22,450 --> 00:08:24,750
+cercanas a cualquiera de estos rangos estará bien.
+
+240
+00:08:25,200 --> 00:08:27,220
+Y el escalamiento de características
+
+241
+00:08:27,660 --> 00:08:28,520
+no tiene que ser demasiado exacto,
+
+242
+00:08:29,050 --> 00:08:30,390
+con el fin de lograr que el gradiente
+
+243
+00:08:30,790 --> 00:08:32,290
+descendente se ejecute mucho más rápido.
+
+244
+00:08:34,610 --> 00:08:35,840
+Así es que ahora sabes
+
+245
+00:08:36,020 --> 00:08:37,420
+sobre el escalamiento de características y que si
+
+246
+00:08:37,530 --> 00:08:39,040
+aplicas este simple truco,
+
+247
+00:08:39,250 --> 00:08:40,650
+lograrás que el gradiente de descenso funcione
+
+248
+00:08:40,870 --> 00:08:43,680
+mucho más rápido y converja en muchas menos otras iteraciones.
+
+249
+00:08:44,990 --> 00:08:45,540
+Eso fue el escalamiento de características.
+
+250
+00:08:46,080 --> 00:08:47,190
+En el siguiente video, te diré
+
+251
+00:08:47,350 --> 00:08:49,410
+otro truco para hacer que
+
+252
+00:08:49,710 --> 00:08:50,970
+el gradiente de descenso funcione bien en la práctica.

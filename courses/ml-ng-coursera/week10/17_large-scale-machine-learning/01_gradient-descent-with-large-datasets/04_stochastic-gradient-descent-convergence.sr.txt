@@ -1,0 +1,108 @@
+Sada znate za algoritam 
+stohastičkog opadanja gradijenta. Ali kada pokrećete algoritam, kako ste sigurni da 
+je potpuno bez grešaka i da konvergira kako treba? Isti tako važno, kako podešavate stopu 
+učenja sa stohastičkim opadanjem gradijenta? U ovome videu govorićemo o tehnikama koje rade
+ to, da konvergira i da kupi stopu učenja alfa. Kada smo koristili opadajući 
+gradijent, standardan način da opadajući gradijent konvergira je da iscrtamo 
+funkciju koštanja kao funkciju broja iteracija. To je bila funkcija koštanja i sigurni smo 
+da ona opada u svakoj iteraciji. Kada je trening skup mali, to možemo da uradimo 
+jer možemo da izračunamo sumu prilično lako. Kada imate veliki trening skup, ne želite 
+da pauzirate vaš algoritam periodično. Ne želite da pauzirate stohastički opadajući gradijent
+ periodično da biste dobili funkciju koštanja jer zahteva sumu veličina 
+vašeg celog trening skupa. Poenta stohastičkog opadajućeg 
+gradijenta je da želite napredak nakon samo jednog primera bez potrebe
+ za skeniranjem celog trening skupa u sredini algoritma, samo da bi se 
+izračunala funkcija koštanja celog trening skupa. Kod stohastičkog opadajućeg gradijenta, da bismo 
+proverili da li algoritam konvergira, evo šta radimo. Hajde da uzmemo definiciju 
+cene koju smo imali prethodno. Cena parametara teta u jednom trening primeru
+ je polovina kvadrata greške na tom primeru. Dok stohastički opadajući gradijent uči, tačno 
+pre nego što treniramo na određenom primeru. U stohastičkom opadajućem gradijentu 
+gledamo u primerima xi, yi po redu, i radimo male izmene u odnosu na taj primer. A onda idemo na sledeći primer, x(i+1), y(i+1), u redu? To radi stohastički opadajući gradijent. Dok algoritam gleda primer xi, yi, 
+pre nego što izmeni parametre teta koristeći taj primer, hajde da izračunamo cenu tog primera. Reći ću ponovo istu stvar, koristeći druge reči. Stohastički opadajući gradijent skenira trening skup i pre nego što izmenimo teta koristeći x(i), y(i) hajde da izračunamo kako tačno naša 
+hipoteza radi na tom trening primeru. To želimo da uradimo pre izmene teta 
+jer ako izmenimo teta koristeći primer, to bi moglo da bude bolje na tom 
+primeru nego što bi izgledalo. Konačno, da bismo proverili konvergenciju stohastičkog
+ opadajućeg gradijenta, svakih hiljadu iteracija možemo da iscrtamo te cene koje smo 
+izračunali u prethodnom koraku. Možemo da iscrtamo srednje cene preko poslednjih
+ hiljadu primera procesuiranih u algoritmu. Radeći to dobićete neku vrstu 
+procene koliko dobro algoritam radi na, recimo, poslednjih 1000 trening 
+primera koje je vaš algoritam video. Suprotno računanju J <u>periodično gde 
+je potrebno skenirati čitav trening skup.</u> Ovom drugom procedurom, kao deo 
+stohastičkog opadajućeg gradijenta, ne košta mnogo da se izračunaju te cene tačno pre izmene parametara teta. I šta radimo je svakih 1000 iteracija je da usrednjimo 
+poslednjih 1000 cena koje smo izračunali i iscrtamo ih. Posmatranjem tih crta će nam omogućiti da 
+proverimo da li stohastički gradijent konvergira. Evo nekoliko primera kako ta
+ iscrtavanja mogu da izgledaju. Recimo da ste iscrtali srednju 
+cenu u poslednjih 1000 primera, jer su te usrednjene od samo 
+1000 primera, imaće malo šuma, možda neće da opada u 
+svakoj pojedinačnoj iteraciji. Ako dobijete figuru koja izgleda
+ ovako, crtež ima šum jer je usrednjavanje na malom podskupu, 
+recimo hiljadu trening primera. Ako dobijete oblik kao ovaj, bilo bi 
+prilično pristojno pokrenuti sa algoritmom, gde cena izgleda da opada i ovaj plato koji 
+izgleda zaravnjen, počinje negde blizu tačke. Izgleda kao da vaš 
+algoritam učenja konvergira. Ako želite da pokušate sa manjom 
+stopom učenja, mogli biste da vidite da algoritam u početku uči sporije 
+tako da cena ide dole sporije. Ali manja stopa učenja mogla bi da 
+dovede da algoritam ima bolje rešenje. Crvena linija predstavlja stohastički opadajući 
+gradijent koji koristi sporiju i manju stopu učenja. Razlog za ovo je to što stohastički opadajući 
+gradijent ne konvergira globalnom minimumu, ono što radi je da parametri osciluju 
+malo oko globalnog minimuma. Koristeći manju stopu učenja, 
+dobijate manje oscilacije. Ponekad ta sitna razlika
+ može da bude zanemariva a ponekad možete da dobijete 
+malo bolju vrednost za parametre. Ovo su neke druge stvari 
+koje bi se mogle dogoditi. Recimo, pokrećete stohastički opadajući gradijent
+ i usrednjavate na 1000 primera kada iscrtavate. Ovde bi mogao da bude rezultat 
+drugačiji od ovog crteža. I opet, izgleda da konvergira. Ako uzmete ovo 1000 i povećate 
+usrednjavanje na 5000 primera, moguće je da dobijete glatkiju 
+krivu koja izgleda više ovako. Usrednjavanjem na 5000 primera umesto na 1000
+ mogli biste da dobijete glatkiju krivu kao ova. Dakle, to je efekat povećanja broja 
+primera na kom usrednjavate. Nedostatak ovoga je da vi imate samo 
+jednu tačku na svakih 5000 primera. I povratna vrednost toga kako obučavate 
+algoritam učenja je odložena jer dobijate jednu tačku svakih 
+5000 primera a ne svakih 1000. Slično tome, ponekad možete da pokrenete 
+opadajući gradijent i da crtež izgleda ovako. Sa crtežom kao što je ovaj, 
+izgleda da cena uopšte ne opada. Izgleda da algoritam ne uči. Izgleda da ova kriva linija 
+i cena se ne smanjuju. Još jednom ako povećate broj 
+primera na kojem usrednjavate, moguće je da dobijete nešto kao ova crvena linija izgleda da cena opada, kao da plava linija 
+ide ka srednjoj vrednosti na 2, 3 primera, plava linija ima previše šuma pa 
+ne možete da vidite da cena opada pa moguće usrednjavanje na 5000 
+primera umesto na 1000 može da pomogne. Naravno, usrednjavamo na većem broju 
+primera nego što smo ovde na 5000. Samo koristim drugu boju, takođe je moguće 
+da vidite da kriva učenja izgleda ovako. Još uvek je ravna iako 
+usrednjavate na većem broju primera. Ako dobijete to, tad je to možda čvrst dokaz da nažalost algoritam ne uči 
+mnogo iz bilo kog razloga. Tad treba da promenite stopu učenja ili 
+osobine ili nešto drugo u algoritmu. Konačno, poslednje što biste mogli 
+da vidite je ako iscrtate ove krive i vidite da kriva izgleda 
+ovako, kao da se povećava. Ako je to slučaj, to je znak da algoritam divergira. Šta biste trebali da uradite je da koristite 
+manju vrednost stope učenja alfa. Nadam se da ste stekli osećaj o opsegu 
+fenomena koje biste mogli da vidite kada iscrtate ove srednje cene 
+na nekom opsegu primera kao i sugestijama šta biste mogli 
+da uradite kao odgovor na to. Ako crte izgledaju sa previše šuma, ili ako 
+previše idu gore dole, pokušajte da povećate broj primera na kom usrednjavate 
+da biste bolje videli trend krive. Ako vidite da se greške povećavaju, cene se 
+povećavaju, pokušajte sa manjom vrednošću alfa. Konačno, vredi ispitati stopu učenja još malo. Kada pokrenemo stohastički opadajući gradijent, algoritam 
+će da počne ovde i meandriraće prema minimumu. A onda neće stvarno da konvergira, 
+on će da luta oko minimuma večno. Dobijate parametre koji su blizu globalnog 
+minimuma ali nisu u globalnom minimumu. U većini implementacija stohastičkog opadajućeg
+ gradijenta, stopa učenja je tipično konstantna. I ono što dobijemo je upravo ovo. Ako želite da stohastički opadajući gradijent konvergira ka globalnom minimumu, postoji jedna stvar koju možete da uradite a to je
+ da polako smanjujete stopu učenja alfa u vremenu. Tipičan način da to uradite je da alfa bude konstanta1
+ podeljeno sa brojem iteracija plus konstanta2. iterationNumber je broj iteracija na kom ste
+ pokrenuli stohastički opadajući gradijent. tako da je to u stvari broj 
+trening primera koje ste videli. A const1 i const2 su dodatni parametri algoritma koje ćete morati da pokrenete da
+ biste dobili dobre performanse. Jedan od razloga zašto ljudi izbegavaju 
+ovo je što treba da potroše vreme uvodeći ova dodatna dva parametra, const1 
+i const2, a to algoritam čini komplikovanijim. Još više parametara u proračunu 
+da bi algoritam radio dobro. Ako dobro podešavate parametre, 
+možete da dobijete da algoritam meandrira prema 
+minimumu, ali primičući se meandri će biti sve manji 
+jer ste smanjili stopu učenja sve dok se prilično ne približi globalnom 
+minimumu. Nadam se da ovo ima smisla. Razlog za to je što kad broj iteracija 
+postaje veći, alfa će da postaje manja, i tako uzimate sve manje korake dok 
+algoritam ne konvergira u globalni minimum. Ako sporo umanjujete alfa do nule, možete da dobijete nešto bolju hipotezu. Ali, pošto je potreban dodatan rad da bi 
+se ubacile konstante i zato što smo srećni bilo kojom vrednošću parametara koje su blizu globalnog minimuma. Tipično, proces umanjenja alfa 
+se ne vrši i drži se konstantnim i to je uobičajen stohastički opadajući gradijent
+ iako ćete videti da se obe verzije koriste. Da sumiramo, u ovome videu smo 
+govorili o načinu da aproksimativno pratite kako radi stohastički opadajući gradijent 
+u cilju optimizacije funkcije cena. To je metod koji ne prolazi kroz čitav trening 
+skup periodično da bi izračunao funkciju cena. Umesto toga gleda, recimo, 
+poslednjih 1000 primera. Možete da ga koristite da budete sigurni 
+da je stohastički opadajući gradijent u redu i da konvergira ili da ga koristite da poboljšate stopu učenja alfa.

@@ -1,0 +1,108 @@
+W poprzednim nagraniu podałem matematyczną definicję
+gradientu prostego. Zanurzmy się w tym temacie głębiej i nabierzmy
+lepszej intuicji odnośnie tego, co robi ten algorytm oraz czemu poszczególne
+etapy algorytmu gradientu prostego mają sens. Oto algorytm gradientu prostego, który
+widzieliśmy w poprzednim nagraniu. Dla przypomnienia: ten parametr alfa nazywamy 
+współczynnikiem uczenia. Określa on, jak duży krok wykonujemy,
+aktualizując parametr thetaJ. Z kolei to wyrażenie jest związane z pochodną. W tym nagraniu chcę wyrobić Ci intuicję,
+co znaczą te dwa wyrażenia oraz dlaczego,
+gdy zastosujemy je jednocześnie,
+aktualizacja parametrów ma sens. Celem wyrobienia intuicji użyję nieco
+prostszego przykładu, w którym chcemy minimalizować funkcję
+jednego parametru. Powiedzmy zatem, że mamy funkcję kosztu J 
+jednego parametru - theta1, tak samo, jak kilka nagrań temu - gdzie theta1
+jest liczbą rzeczywistą. Dzięki temu będziemy rozpatrywać wykresy 1D,
+które trochę łatwiej zrozumieć. Spróbujmy zrozumieć, co gradient prosty zrobi
+z taką funkcją. Powiedzmy, że mam tutaj funkcję J(theta1). Właśnie tak. I theta1 jest liczbą rzeczywistą. Jasne? Teraz powiedzmy, że zainicjowałem gradient 
+prosty w tym miejscu, wybierając theta1. Wyobraź sobie, że zaczynamy z tego punktu
+mojej funkcji. Gradient prosty zaktualizuje theta1, odejmując od niego alfa razy (d/d(theta1)) J(theta1) - ok? Na marginesie: jeśli zastanawiasz się, czemu zmieniłem symbole pochodnej cząstkowej
+w wyrażeniu na pochodną, jeśli nie wiesz, jaka jest różnica między tymi
+symbolami pochodnej cząstkowej, a symbolem d/d(theta) - nie przejmuj się tym. Technicznie rzecz biorąc, w matematyce
+nazywamy to pochodną cząstkową, a to pochodną, w zależności od liczby
+parametrów funkcji J. Ale to tylko szczegóły techniczne. Tak więc, na potrzeby tego wykładu, traktuj myślowo symbole pochodnej cząstkowej
+oraz d/d(theta1) jako dokładnie tę samą rzecz. I nie przejmuje się tym, jaka jest rzeczywista
+różnica. Będę używał notacji, która jest matematycznie
+poprawna, ale na nasze potrzeby te dwie notacje oznaczają 
+dokładnie to samo. Zobaczmy więc, co zrobi to równanie. Obliczymy teraz pochodną. Nie wiem, czy znasz
+pochodne i rachunek różniczkowy, ale pochodna w tym
+kontekście oznacza mniej więcej tyle: wykreślmy styczną w tym punkcie 
+(czerwona linia) i spójrzmy na nachylenie czerwonej linii. To właśnie jest pochodna. Mówi ona o nachyleniu prostej - stycznej do
+ funkcji w jakimś punkcie. Nachylenie jest po prostu równe wysokości 
+dzielonej przez ten poziomy odcinek. Prosta ta ma nachylenie dodatnie, więc i pochodna jest dodatnia. Tak więc moja aktualizacja theta1 będzie taka: 
+`theta1 aktualizuje się do
+theta1 - alfa*jakaś_dodatnia_liczba Okay. Afla, czyli współczynnik uczenia, jest zawsze 
+dodatnie. Tak więc theta1 staje się theta1 - cośtam. W związku z tym, przesunę teraz theta1 w lewo. Zmniejszę wartość theta1, i widzimy,
+że to słuszny krok bo chcemy przesunąć się w tym kierunku. Dzięki temu będziemy bliżej minimum, które 
+mamy tutaj Tak więc gradient prosty jak na razie mówi nam,
+że idziemy w dobrym kierunku. Zobaczmy kolejny przykład. Weźmy tę samą funkcję J i narysujmy ją: J(theta1) Teraz powiedzmy, że zainicjowałem mój parametr
+tutaj, z lewej strony. Tak więc theta1 jest tutaj. Zaznaczę jeszcze punkt na wykresie... Teraz moja pochodna (d/d(theta1) J 
+w tym punkcie, a więc nachylenie prostej, będzie takie. Pochodna określa nachylenie tej prostej. Jednak ta linia idzie w dół, więc nachylenie jest
+ujemne Prawda? Innymi słowy: funkcja ta ma w tym punkcie
+ujemną pochodną, co oznacza ujemne nachylenie w tym punkcie. Jest to mniejsze/równe 0, więc po aktualizacji
+theta1 mamy theta1 - alfa*ujemna_liczba. Odejmuję więc od theta1 liczbę ujemną, co
+w praktyce oznacza, że wartość theta1 się zwiększy, bo odejmujemy
+ujemną wartość, co jest równoznaczne dodawaniu. W związku z tym wartość theta1 będzie rosnąć. Tak więc zaczynamy tutaj, zwiększamy theta1,
+i wygląda na to, że właśnie to chcieliśmy zrobić, bo zbliżyliśmy się do minimum funkcji. Mam nadzieję, że dało Ci to pewną intuicję,
+co robi pochodna. Teraz przyjrzymy się, co robi
+współczynnik uczenia alfa. Tutaj mamy zasadę aktualizację gradientu 
+prostego - to równanie tutaj. Zobaczmy, co się stanie, jeśli alfa będzie
+zbyt małe lub zbyt duże. Pierwszy przypadek: co, jeśli alfa jest zbyt małe? Mamy funkcję J(theta1). Zaczynamy tutaj. Jeśli alfa jest zbyt małe, to przy aktualizacji będę mnożył przez bardzo małą liczbę, co
+skutkować będzie malutkim krokiem,
+takim jak ten. Ok, mamy jeden krok. Teraz z tego nowego punktu muszę wykonać
+kolejny krok. Jeśli alfa jest zbyt małe, wykonam kolejny
+maleńki krok. Tak więc, jeśli alfa jest zbyt małe, będę robił takie malutkie kroczki, próbując dostać
+się do minimum. I będę potrzebował wielu takich małych kroków,
+żeby osiągnąć minimum. Jeśli alfa jest zbyt małe, gradient prosty będzie
+działać wolno, ponieważ będzie wykonywać małe kroczki i będzie potrzebować ich wiele, zanim znajdzie
+się w pobliżu globalnego minimum. A co, jeśli alfa jest zbyt duże? Mamy tutaj funkcję J(theta). Jeśli alfa jest
+zbyt duże, gradient prosty może "nie trafić" w minimum,
+może się nie zbiec, lub nawet "rozjechać". Już tłumaczę: Powiedzmy, że jesteśmy tutaj, całkiem blisko
+minimum. Tak więc pochodna przesuwa nas w prawo,
+jednak jeśli alfa jest zbyt duże, wykonam wielki krok. Wykonam wielki krok, taki jak ten. W rezultacie moja funkcja kosztu się pogorszyła, bo zaczęła od tej wartości, a teraz przyjęła
+gorszą wartość. Teraz moja pochodna przesuwa mnie w lewo -
+mówi, że powinienem zmniejszyć wartość theta. Jednak jeśli wsp. uczenia jest zbyt duży, znowu wykonam wielki krok i wyląduję tutaj. Wylądowaliśmy więc tutaj, prawda? I jeśli współczynnik uczenia jest zbyt duży, 
+możemy zrobić kolejny wielki krok w następnej 
+iteracji, przestrzelić minimum, przestrzelić raz jeszcze,
+i tak dalej, aż zorientujemy się, że z każdym krokiem oddalamy się od minimum. Tak więc, jeśli alfa jest zbyt duże, możemy nie
+uzyskać zbieżności - funkcja może się nawet
+"rozjechać". Mam teraz do Ciebie kolejne pytanie; jest podchwytliwe i gdy uczyłem się tego
+materiału po raz pierwszy, zajęło mi dużo czasu, żeby to zrozumieć. Co jeśli nasz parametr theta1 jest już 
+w minimum lokalnym? Jak myślisz, co zrobi pojedyncza iteracja
+gradientu prostego? Załóżmy, że zainicjowaliśmy theta1
+w minimum lokalnym. Załóżmy, że mamy tutaj naszą wstępną wartość
+theta1 i jest ona w optimum lokalnym czy
+minimum lokalnym. Okazuje się, że w optimum lokalnym nasza
+pochodna będzie równa 0. Tak więc nachylenie stycznej - tej linii - będzie równe 0, w związku z czym pochodna
+też będzie równa 0. W takim razie przy aktualizacji gradientu prostego mamy: theta1 - alfa*0. Oznacza to, że jeśli jesteśmy już
+w optimum lokalnym, theta1 się nie zmieni, bo otrzymujemy:
+theta1 := theta1. Tak więc jeśli nasze parametry są już
+w minimum lokalnym, pojedynczy krok gradientu prostego nie zrobi
+absolutnie nic z parametrem. Właśnie tego chcemy, bo dzięki temu
+pozostajemy w optimum lokalnym. To także wyjaśnia, jak gradient prosty może
+osiągnąć minimum lokalne nawet, gdy współczynnik uczenia - alfa - jest stały. Oto, co mam na myśli: spójrzmy na ten przykład. Mamy tu funkcję kosztu J(theta), którą chcemy minimalizować. Powiedzmy,
+że inicjujemy nasz algorytm, algorytm gradientu prostego, w tym punkcie
+oznaczonym magentą. Jeśli wykonam jeden krok gradientu prostego,
+mogę wylądować tutaj, bo moja pochodna jest w tym punkcie
+dość stroma. Zgadza się? Jestem teraz w tym zielonym punkcie, i jeśli
+zrobię kolejny krok gradientu prostego, to zauważ, że moja pochodna, tzn. nachylenie,
+jest łagodniejsze w zielonym punkcie w porównaniu do punktu
+oznaczonego magentą w tym miejscu. Ponieważ wraz ze zbliżaniem się do minimum
+moja pochodna będzie coraz bliższa zeru, gdy będę zbliżał się do minimum. A więc po wykonaniu jednego kroku, moja
+pochodna będzie trochę mniejsza. Chcę teraz wykonać kolejny krok
+gradientu prostego. Teraz wykonam krok z tego zielonego punktu
+- będzie nieco mniejszy, niż z tego punktu oznaczonego magentą. Teraz, będąc w czerwonym punkcie, jestem
+jeszcze bliżej globalnego minimum, więc pochodna będzie jeszcze mniejsza, niż
+w zielonym punkcie. Robię więc kolejny krok gradientu prostego. Teraz moja pochodna jest jeszcze mniejsza,
+więc wartość aktualizująca theta1 jest jeszcze mniejsza,
+więc robię mały krok, taki jak ten. Dlatego wraz z postępem algorytmu nasze kroki będą stawać się coraz mniejsze, aż w końcu staną się bardzo małe, i ostatecznie osiągniemy minimum lokalne. Podsumujmy więc: w przypadku
+gradientu prostego, gdy zbliżamy się do
+lokalnego minimum, gradient prosty będzie automatycznie robił
+coraz mniejsze kroki, a to dlatego, że z definicji w minimum lokalnym pochodna jest równa 0. Wraz ze zbliżaniem się do minimum lokalnego, 
+ten człon pochodnej automatycznie będzie malał, a więc gradient prosty będzie
+wykonywać mniejsze kroki. Tak więc tak wygląda gradient prosty, i dlatego
+nie trzeba z czasem zmniejszać parametru alfa. To tyle, jeśli chodzi o algorytm gradientu
+prostego; możesz go stosować, aby minimalizować dowolną funkcję kosztu J, nie tylko funkcję kosztu
+J, którą zdefiniowaliśmy dla regresji liniowej. W następnym nagraniu weźmiemy funkcję J i podstawimy za nią dokładnie funkcję kosztu 
+regresji liniowej, czyli kwadratową funkcję kosztu, którą
+sformułowaliśmy wcześniej. Złożenie ze sobą gradientu prostego oraz tej
+kwadratowej funkcji kosztu da nam nasz pierwszy uczący się algorytm. Da nam to algorytm regresji liniowej.

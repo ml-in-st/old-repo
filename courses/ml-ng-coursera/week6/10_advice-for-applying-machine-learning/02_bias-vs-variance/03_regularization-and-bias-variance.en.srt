@@ -1,0 +1,752 @@
+1
+00:00:00,430 --> 00:00:04,460
+You've seen how regularization
+can help prevent over-fitting.
+
+2
+00:00:04,460 --> 00:00:08,680
+But how does it affect the bias and
+variances of a learning algorithm?
+
+3
+00:00:08,680 --> 00:00:12,308
+In this video I'd like to go
+deeper into the issue of bias and
+
+4
+00:00:12,308 --> 00:00:15,358
+variances and
+talk about how it interacts with and
+
+5
+00:00:15,358 --> 00:00:19,297
+is affected by the regularization
+of your learning algorithm.
+
+6
+00:00:22,154 --> 00:00:26,364
+Suppose we're fitting a high auto
+polynomial, like that showed here, but
+
+7
+00:00:26,364 --> 00:00:30,730
+to prevent over fitting we need to use
+regularization, like that shown here.
+
+8
+00:00:30,730 --> 00:00:36,270
+So we have this regularization term to try
+to keep the values of the prem to small.
+
+9
+00:00:36,270 --> 00:00:41,467
+And as usual, the regularizations comes
+from J = 1 to m, rather than j = 0 to m.
+
+10
+00:00:41,467 --> 00:00:44,281
+Let's consider three cases.
+
+11
+00:00:44,281 --> 00:00:48,973
+The first is the case of the very large
+value of the regularization parameter
+
+12
+00:00:48,973 --> 00:00:52,430
+lambda, such as if lambda
+were equal to 10,000.
+
+13
+00:00:52,430 --> 00:00:53,340
+Some huge value.
+
+14
+00:00:54,450 --> 00:00:58,660
+In this case, all of these parameters,
+theta 1, theta 2, theta 3, and so
+
+15
+00:00:58,660 --> 00:01:00,970
+on would be heavily penalized and
+
+16
+00:01:00,970 --> 00:01:06,360
+so we end up with most of these
+parameter values being closer to zero.
+
+17
+00:01:06,360 --> 00:01:08,960
+And the hypothesis will be roughly h of x,
+
+18
+00:01:08,960 --> 00:01:11,860
+just equal or
+approximately equal to theta zero.
+
+19
+00:01:11,860 --> 00:01:15,840
+So we end up with a hypothesis that
+more or less looks like that, more or
+
+20
+00:01:15,840 --> 00:01:18,720
+less a flat, constant straight line.
+
+21
+00:01:18,720 --> 00:01:23,690
+And so this hypothesis has high bias and
+it badly under fits this data set,
+
+22
+00:01:23,690 --> 00:01:28,440
+so the horizontal straight line is just
+not a very good model for this data set.
+
+23
+00:01:28,440 --> 00:01:32,690
+At the other extreme is if we have
+a very small value of lambda,
+
+24
+00:01:32,690 --> 00:01:36,240
+such as if lambda were equal to zero.
+
+25
+00:01:36,240 --> 00:01:39,750
+In that case, given that we're
+fitting a high order polynomial,
+
+26
+00:01:39,750 --> 00:01:43,320
+this is a usual over-fitting setting.
+
+27
+00:01:43,320 --> 00:01:47,150
+In that case, given that we're fitting
+a high-order polynomial, basically,
+
+28
+00:01:47,150 --> 00:01:50,630
+without regularization or
+with very minimal regularization,
+
+29
+00:01:50,630 --> 00:01:53,570
+we end up with our usual high-variance,
+over fitting setting.
+
+30
+00:01:53,570 --> 00:01:57,304
+This is basically if lambda is equal
+to zero, we're just fitting with
+
+31
+00:01:57,304 --> 00:02:01,200
+our regularization, so
+that over fits the hypothesis.
+
+32
+00:02:01,200 --> 00:02:05,030
+And it's only if we have some
+intermediate value of longer that is
+
+33
+00:02:05,030 --> 00:02:08,660
+neither too large nor
+too small that we end up with
+
+34
+00:02:08,660 --> 00:02:13,470
+parameters data that give us
+a reasonable fit to this data.
+
+35
+00:02:13,470 --> 00:02:18,660
+So, how can we automatically choose a good
+value for the regularization parameter?
+
+36
+00:02:19,660 --> 00:02:24,250
+Just to reiterate, here's our model, and
+here's our learning algorithm's objective.
+
+37
+00:02:24,250 --> 00:02:27,080
+For the setting where we're
+using regularization,
+
+38
+00:02:27,080 --> 00:02:30,990
+let me define J train(theta)
+to be something different,
+
+39
+00:02:30,990 --> 00:02:36,110
+to be the optimization objective,
+but without the regularization term.
+
+40
+00:02:36,110 --> 00:02:41,630
+Previously, in an earlier video, when we
+were not using regularization I define J
+
+41
+00:02:41,630 --> 00:02:47,650
+train of data to be the same as J of theta
+as the cause function but when we're using
+
+42
+00:02:47,650 --> 00:02:52,180
+regularization when the six well under
+term we're going to define J train my
+
+43
+00:02:52,180 --> 00:02:57,040
+training set to be just my sum of squared
+errors on the training set or my average
+
+44
+00:02:57,040 --> 00:03:01,610
+squared error on the training set without
+taking into account that regularization.
+
+45
+00:03:01,610 --> 00:03:07,077
+And similarly I'm then also going to
+define the cross validation sets error and
+
+46
+00:03:07,077 --> 00:03:12,380
+to test that error as before to be the
+average sum of squared errors on the cross
+
+47
+00:03:12,380 --> 00:03:17,600
+validation in the test sets so just to
+summarize my definitions of J train J CU
+
+48
+00:03:17,600 --> 00:03:22,904
+and J test are just the average square
+there one half of the other square record
+
+49
+00:03:22,904 --> 00:03:28,644
+on the training validation of the test set
+without the extra regularization term.
+
+50
+00:03:28,644 --> 00:03:32,981
+So, this is how we can automatically
+choose the regularization
+
+51
+00:03:32,981 --> 00:03:34,356
+parameter lambda.
+
+52
+00:03:34,356 --> 00:03:38,700
+So what I usually do is maybe have some
+range of values of lambda I want to
+
+53
+00:03:38,700 --> 00:03:39,360
+try out.
+
+54
+00:03:39,360 --> 00:03:43,555
+So I might be considering not using
+regularization or here are a few values I
+
+55
+00:03:43,555 --> 00:03:48,360
+might try lambda considering lambda
+= 0.01, 0.02, 0.04, and so on.
+
+56
+00:03:48,360 --> 00:03:54,395
+And I usually set these up in multiples
+of two, until some maybe larger value
+
+57
+00:03:54,395 --> 00:03:59,784
+if I were to do these in multiples
+of 2 I'd end up with a 10.24.
+
+58
+00:03:59,784 --> 00:04:02,663
+It's 10 exactly, but this is close enough.
+
+59
+00:04:02,663 --> 00:04:07,880
+And the three to four decimal places
+won't effect your result that much.
+
+60
+00:04:07,880 --> 00:04:11,920
+So, this gives me maybe
+12 different models.
+
+61
+00:04:11,920 --> 00:04:16,040
+And I'm trying to select a month
+corresponding to 12 different values
+
+62
+00:04:16,040 --> 00:04:19,000
+of the regularization of
+the parameter lambda.
+
+63
+00:04:19,000 --> 00:04:22,820
+And of course you can also go
+to values less than 0.01 or
+
+64
+00:04:22,820 --> 00:04:27,450
+values larger than 10 but I've just
+truncated it here for convenience.
+
+65
+00:04:27,450 --> 00:04:31,830
+Given the issue of these 12 models,
+what we can do is then the following,
+
+66
+00:04:31,830 --> 00:04:36,980
+we can take this first model with
+lambda equals zero and minimize
+
+67
+00:04:36,980 --> 00:04:41,880
+my cost function J of data and this will
+give me some parameter of active data.
+
+68
+00:04:41,880 --> 00:04:43,200
+And similar to the earlier video,
+
+69
+00:04:43,200 --> 00:04:47,900
+let me just denote this as
+theta super script one.
+
+70
+00:04:49,570 --> 00:04:54,184
+And then I can take my second
+model with lambda set to 0.01 and
+
+71
+00:04:54,184 --> 00:04:59,328
+minimize my cost function now using
+lambda equals 0.01 of course.
+
+72
+00:04:59,328 --> 00:05:01,532
+To get some different
+parameter vector theta.
+
+73
+00:05:01,532 --> 00:05:03,227
+Let me denote that theta(2).
+
+74
+00:05:03,227 --> 00:05:05,295
+And for that I end up with theta(3).
+
+75
+00:05:05,295 --> 00:05:07,476
+So if part for my third model.
+
+76
+00:05:07,476 --> 00:05:13,249
+And so on until for
+my final model with lambda set to 10 or
+
+77
+00:05:13,249 --> 00:05:18,250
+10.24, I end up with this theta(12).
+
+78
+00:05:18,250 --> 00:05:22,920
+Next, I can talk all of these hypotheses,
+all of these parameters and
+
+79
+00:05:22,920 --> 00:05:26,090
+use my cross validation
+set to validate them so
+
+80
+00:05:26,090 --> 00:05:30,380
+I can look at my first model,
+my second model,
+
+81
+00:05:30,380 --> 00:05:34,490
+fit to these different values of
+the regularization parameter, and
+
+82
+00:05:34,490 --> 00:05:39,660
+evaluate them with my cross validation set
+based in measure the average square error
+
+83
+00:05:39,660 --> 00:05:44,650
+of each of these square vector parameters
+theta on my cross validation sets.
+
+84
+00:05:44,650 --> 00:05:49,910
+And I would then pick whichever one of
+these 12 models gives me the lowest error
+
+85
+00:05:49,910 --> 00:05:52,070
+on the trans validation set.
+
+86
+00:05:52,070 --> 00:05:57,200
+And let's say, for the sake of this
+example, that I end up picking theta 5,
+
+87
+00:05:57,200 --> 00:06:03,060
+the 5th order polynomial, because that
+has the lowest cause validation error.
+
+88
+00:06:03,060 --> 00:06:08,450
+Having done that, finally what I would do
+if I wanted to report each test set error,
+
+89
+00:06:08,450 --> 00:06:13,350
+is to take the parameter theta
+5 that I've selected, and
+
+90
+00:06:13,350 --> 00:06:15,720
+look at how well it does on my test set.
+
+91
+00:06:15,720 --> 00:06:19,738
+So once again, here is as if
+we've fit this parameter, theta,
+
+92
+00:06:19,738 --> 00:06:24,880
+to my cross-validation set,
+which is why I'm setting aside
+
+93
+00:06:24,880 --> 00:06:29,770
+a separate test set that I'm going to
+use to get a better estimate of how
+
+94
+00:06:29,770 --> 00:06:35,140
+well my parameter vector, theta, will
+generalize to previously unseen examples.
+
+95
+00:06:35,140 --> 00:06:38,280
+So that's model selection
+applied to selecting
+
+96
+00:06:38,280 --> 00:06:40,990
+the regularization parameter lambda.
+
+97
+00:06:40,990 --> 00:06:45,430
+The last thing I'd like to do in this
+video is get a better understanding
+
+98
+00:06:45,430 --> 00:06:47,830
+of how cross validation and
+
+99
+00:06:47,830 --> 00:06:52,750
+training error vary as we vary
+the regularization parameter lambda.
+
+100
+00:06:52,750 --> 00:06:56,870
+And so just a reminder right,
+that was our original cost on j of theta.
+
+101
+00:06:56,870 --> 00:06:59,480
+But for this purpose we're going to define
+
+102
+00:06:59,480 --> 00:07:02,940
+training error without using
+a regularization parameter, and
+
+103
+00:07:02,940 --> 00:07:06,340
+cross validation error without
+using the regularization parameter.
+
+104
+00:07:07,560 --> 00:07:12,790
+And what I'd like to do is plot
+this Jtrain and plot this Jcv,
+
+105
+00:07:12,790 --> 00:07:18,590
+meaning just how well does my
+hypothesis do on the training set and
+
+106
+00:07:18,590 --> 00:07:22,000
+how does my hypothesis do when
+it cross validation sets.
+
+107
+00:07:22,000 --> 00:07:25,140
+As I vary my regularization
+parameter lambda.
+
+108
+00:07:27,820 --> 00:07:34,680
+So as we saw earlier if lambda is small
+then we're not using much regularization
+
+109
+00:07:35,680 --> 00:07:40,740
+and we run a larger risk of
+over fitting whereas if lambda
+
+110
+00:07:40,740 --> 00:07:46,910
+is large that is if we were on the right
+part of this horizontal axis then,
+
+111
+00:07:46,910 --> 00:07:52,500
+with a large value of lambda, we run the
+higher risk of having a biased problem, so
+
+112
+00:07:52,500 --> 00:07:59,720
+if you plot J train and J cv, what you
+find is that, for small values of lambda,
+
+113
+00:07:59,720 --> 00:08:04,570
+you can fit the trading set relatively
+way cuz you're not regularizing.
+
+114
+00:08:04,570 --> 00:08:08,754
+So, for small values of lambda, the
+regularization term basically goes away,
+
+115
+00:08:08,754 --> 00:08:11,844
+and you're just minimizing
+pretty much just gray arrows.
+
+116
+00:08:11,844 --> 00:08:15,489
+So when lambda is small,
+you end up with a small value for Jtrain,
+
+117
+00:08:15,489 --> 00:08:19,201
+whereas if lambda is large,
+then you have a high bias problem, and
+
+118
+00:08:19,201 --> 00:08:23,475
+you might not feel your training that
+well, so you end up the value up there.
+
+119
+00:08:23,475 --> 00:08:28,254
+So Jtrain of theta will tend to
+increase when lambda increases,
+
+120
+00:08:28,254 --> 00:08:33,119
+because a large value of lambda
+corresponds to high bias where you
+
+121
+00:08:33,119 --> 00:08:36,481
+might not even fit your
+trainings that well,
+
+122
+00:08:36,481 --> 00:08:40,108
+whereas a small value of
+lambda corresponds to,
+
+123
+00:08:40,108 --> 00:08:46,270
+if you can really fit a very high degree
+polynomial to your data, let's say.
+
+124
+00:08:46,270 --> 00:08:50,370
+After the cost validation error we
+end up with a figure like this,
+
+125
+00:08:51,470 --> 00:08:56,450
+where over here on the right,
+if we have a large value of lambda,
+
+126
+00:08:56,450 --> 00:09:03,080
+we may end up under fitting,
+and so this is the bias regime.
+
+127
+00:09:03,080 --> 00:09:07,518
+And so
+the cross validation error will be high.
+
+128
+00:09:07,518 --> 00:09:12,666
+Let me just leave all of that to this
+Jcv (theta) because so, with high bias,
+
+129
+00:09:12,666 --> 00:09:17,424
+we won't be fitting, we won't be
+doing well in cross validation sets,
+
+130
+00:09:17,424 --> 00:09:21,948
+whereas here on the left,
+this is the high variance regime, where we
+
+131
+00:09:21,948 --> 00:09:26,802
+have two smaller value with longer,
+then we may be over fitting the data.
+
+132
+00:09:26,802 --> 00:09:32,690
+And so by over fitting the data, then the
+cross validation error will also be high.
+
+133
+00:09:32,690 --> 00:09:38,670
+And so, this is what the cross validation
+error and what the trading error
+
+134
+00:09:38,670 --> 00:09:43,790
+may look like on a trading stance as we
+vary the regularization parameter lambda.
+
+135
+00:09:43,790 --> 00:09:50,180
+And so once again, it will often be some
+intermediate value of lambda that is
+
+136
+00:09:50,180 --> 00:09:54,850
+just right or that works best In terms of
+having a small cross validation error or
+
+137
+00:09:54,850 --> 00:09:56,540
+a small test theta.
+
+138
+00:09:56,540 --> 00:09:59,970
+And whereas the curves I've drawn
+here are somewhat cartoonish and
+
+139
+00:09:59,970 --> 00:10:04,730
+somewhat idealized so on the real data
+set the curves you get may end up
+
+140
+00:10:04,730 --> 00:10:08,350
+looking a little bit more messy and
+just a little bit more noisy then this.
+
+141
+00:10:08,350 --> 00:10:13,230
+For some data sets you will really
+see these for sorts of trends and
+
+142
+00:10:13,230 --> 00:10:19,240
+by looking at a plot of the hold-out cross
+validation error you can either manual,
+
+143
+00:10:19,240 --> 00:10:25,610
+automatically try to select a point that
+minimizes the cross validation error and
+
+144
+00:10:25,610 --> 00:10:30,380
+select the value of lambda corresponding
+to low cross validation error.
+
+145
+00:10:30,380 --> 00:10:35,590
+When I'm trying to pick the regularization
+parameter lambda for learning algorithm,
+
+146
+00:10:35,590 --> 00:10:40,640
+often I find that plotting a figure like
+this one shown here helps me understand
+
+147
+00:10:40,640 --> 00:10:45,760
+better what's going on and helps me verify
+that I am indeed picking a good value for
+
+148
+00:10:45,760 --> 00:10:48,350
+the regularization parameter monitor.
+
+149
+00:10:48,350 --> 00:10:52,630
+So hopefully that gives you more
+insight into regularization and
+
+150
+00:10:52,630 --> 00:10:56,810
+it's effects on the bias and
+variance of a learning algorithm.
+
+151
+00:10:56,810 --> 00:11:01,290
+By now you've seen bias and variance
+from a lot of different perspectives.
+
+152
+00:11:01,290 --> 00:11:05,540
+And what we like to do in the next video
+is take all the insights we've gone
+
+153
+00:11:05,540 --> 00:11:10,890
+through and build on them to put together
+a diagnostic that's called learning
+
+154
+00:11:10,890 --> 00:11:16,170
+curves, which is a tool that I often use
+to diagnose if the learning algorithm
+
+155
+00:11:16,170 --> 00:11:19,900
+may be suffering from a bias problem or a
+variance problem, or a little bit of both.

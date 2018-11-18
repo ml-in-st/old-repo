@@ -1,0 +1,65 @@
+Di video ini, kita akan bicara tentang persamaan normal, dimana untuk beberapa persoalan regresi linier, akan memberi kita cara yang jauh lebih baik untuk mendapatkan nilai optimal bagi parameter theta. Konkritnya, sejauh ini algoritma yang telah kita gunakan untuk regresi linier adalah gradient descent, dimana untuk meminimalkan fungsi harga J theta, kita akan memakai algoritma iterasi ini yang mengambil banyak langkah, banyak iterasi gradient descent agar konvergen ke minimum global. Di samping itu, persamaan normal akan memberi kita metode untuk memecahkan theta secara analitik, agar daripada menjalankan algoritma iteratif ini, kita bisa memecahkan nilai optimal theta hanya dalam sekali jalan, jadi dalam satu langkah Anda sampai ke nilai optimal di sana. Persamaan normal punya beberapa keuntungan dan kerugian, tapi sebelum kita membahasnya dan bicara tentang kapan Anda harus menggunakannya, mari pelajari beberapa intuisi akan apa yang
+dilakukan metode ini. Contohnya, bayangkan, kita ambil fungsi harga J theta yang sangat sederhana, berupa fungsi theta dengan angka riil. Jadi, bayangkan theta bernilai skalar atau riil. Theta hanyalah sebuah angka, bukan
+vektor. Bayangkan kita punya fungsi harga J
+berupa fungsi kwadrat dari parameter theta yang bernilai riil ini, sehingga
+J theta tampak seperti itu. Bagaimana Anda meminimalkan fungsi
+kwadrat? Untuk Anda yang tahu kalkulus, Anda mungkin tahu cara untuk meminimalkan suatu fungsi adalah dengan mengambil derivatifnya dan set derivatif itu sama dengan nol. Jadi, ambil derivatif dari J theta. Anda dapatkan rumusnya, set derivatif itu sama dengan nol, dan ini membuat Anda mendapatkan nilai theta yang meminimalkan J theta. Itu kasus yang lebih sederhana ketika data hanyalah angka riil. Persoalan yang kita minati, theta tidak lagi hanya sebuah angka riil, tapi, sebagai gantinya, vektor parameter berdimensi n+1 ini,
+dan fungsi harga J adalah fungsi dari nilai vektor ini atau theta0 - theta m. Dan fungsi harganya tampak seperti ini, fungsi
+harga kwadrat di kanan ini. Bagaimana kita meminimalkan
+fungsi harga J ini? Kalkulus mengajari kita caranya, yaitu dengan mengambil derivatif parsial dari J, pada
+setiap parameter theta J, lalu set semua ini ke 0. Jika Anda lakukan itu, dan Anda mendapatkan hasil dari theta 0, theta 1, hingga theta n, maka Anda akan mendapatkan nilai theta yang meminimalkan fungsi harga J. Jika Anda benar-benar mengerjakan kalkulusnya hingga mendapatkan solusi bagi parameter theta 0 hingga theta n, derivasinya akan sangat ruwet. Dan di video ini, saya tidak akan mengerjakan derivasinya, karena panjang dan ruwet, tapi yang ingin saya lakukan hanyalah mengatakan pada Anda apa yang
+perlu Anda tahu untuk mengimplementasikan proses ini supaya Anda mendapatkan nilai theta yang derivatif parsialnya sama dengan nol. Atau alternatifnya, nilai theta yang meminimalkan fungsi harga J theta. Saya sadar beberapa perkataan saya lebih masuk akal bagi mereka yang familiar dengan kalkulus. Tapi jika Anda tidak tahu atau kurang familiar dengan kalkulus, jangan khawatir. Saya hanya akan mengatakan pada Anda apa yang Anda perlu tahu untuk mengimplementasikan algoritma ini agar
+bekerja. Contoh yang saya ingin gunakan, katakanlah saya punya contoh latihan m = 4. Untuk mengimplementasikan metode persamaan normal ini, ini yang akan
+saya lakukan. Saya akan mengambil set data saya, 4 contoh latihan ini. Asumsinya, 4 contoh ini adalah seluruh data yang
+saya punya. Yang akan saya lakukan adalah mengambil set data saya dan menambahkan 1 kolom ekstra yang merupakan fitur tambahan, x0, yang selalu bernilai 1. Lalu, saya akan membuat sebuah matriks, X, yang berisi semua fitur dari data latihan saya, jadi jelasnya ini adalah semua fitur saya, dan kita akan memasukkan semua angka itu ke dalam matriks X. Jadi, salin datanya per kolom, lalu saya akan melakukan hal yang
+sama untuk y. Saya akan mengambil nilai yang akan saya coba prediksi dan membuat sebuah vektor, seperti itu dan menamakannya vektor y. Jadi, X akan menjadi matriks berdimensi m x (n+1), dan y akan jadi vektor berdimensi m dimana m adalah jumlah contoh latihan, dan n adalah jumlah fitur, n+1, karena tambahan fitur x0 ini. Terakhir, jika Anda mengambil matriks X dan vektor y, dan menghitung ini, dan set theta sama dengan X transpos X invers kali X transpos y, ini akan menghasilkan nilai theta yang meminimalkan fungsi harga Anda. Ada banyak yang terjadi di slide dan saya mengerjakannya menggunakan
+1 contoh khusus dari 1 set data. Biar saya tulis ini dalam bentuk yang lebih umum, dan nanti di video ini biar saya jelaskan sedikit persamaan
+ini. Masih belum sepenuhnya jelas
+bagaimana mengerjakan ini. Secara umum, katakanlah kita punya m contoh latihan x1, y1 hingga xm, ym dan n fitur. Jadi, setiap contoh latihan x(i) tampak seperti vektor ini, yaitu vektor fitur berdimensi n+1. Caranya saya membuat matriks X, ini juga dinamakan "design matrix", seperti berikut. Setiap contoh latihan memberi saya vektor fitur seperti ini. Sejenis vektor berdimensi n+1. Cara saya membuat "design matrix" X saya, hanya dengan
+menyusun matriksnya seperti ini. Dan yang akan saya lakukan adalah mengambil contoh latihan pertama, vektor itu, mentransposnya sehingga menjadi 1 baris dan menempatkannya di baris pertama pada
+matriks saya. Lalu saya akan mengambil contoh latihan kedua, x2, mentransposnya dan menempatkannya pada baris ke-2 matriks X, dan seterusnya, hingga contoh latihan terakhir saya. Mentransposnya, dan itu adalah baris terakhir dari matriks X saya. Dan, itulah matriks X saya, matriks berdimensi m x (n+1). Sebagai contoh konkrit, katakanlah saya hanya punya 1 fitur, selain x0 yang selalu bernilai 1. Jadi, jika vektor fitur x(i) saya sama dengan 1, yakni x0, lalu beberapa fitur riil, mungkin seperti ukuran rumah, maka "design matrix", X, akan sama dengan
+ini. Untuk baris pertama, saya akan ambil ini dan mentransposnya. Jadinya 1 x(1)1. Untuk baris ke-2, 1 x(1)2 dan seterusnya hingga 1 x(1)m. Dan akhirnya, ini akan jadi matriks berdimensi m x 2. Jadi, demikianlah cara membuat matriks X. Dan, vektor y, kadang saya akan menulis tanda panah diatasnya untuk menunjukkan bahwa ini sebuah vektor, tapi lebih sering saya hanya menulis y. Vektor y diperoleh dengan mengambil semua harga rumah dari contoh latihan saya, dan menyusunnya menjadi vektor berdimensi m, dan itulah y. Sesudah membentuk matriks X dan vektor y, kita hitung theta sebagai X transpos X invers kali X transpos y. Saya hanya ingin memastikan Anda mengerti persamaan ini dan tahu menggunakannya. Jadi, apa ini X transpos X invers? X transpos X invers adalah invers dari matriks X transpos X. Konkritnya, jika Anda katakanlah, set A sama dengan X transpos X, X transpos adalah sebuah matriks, X transpos kali X menghasilkan matriks lain, kita sebut matriks A. Lalu, X transpos X invers adalah invers dari matriks A ini. Ini sama dengan A invers. Begitulah Anda menghitung ini. Anda menghitung X transpos X lalu
+menghitung inversnya. Kita belum bicara tentang Octave. Kita akan membicarakannya pada set video berikutnya, tapi bahasa pemrograman Octave, dan juga matlab sangatlah mirip. Perintah untuk menghitung kuantitas ini, X transpos X invers kali X transpos y, sebagai berikut. Dalam Octave, X' adalah notasi yang Anda gunakan untuk
+menunjukkan X transpos. Jadi, ekspresi di kotak merah itu, menghitung X transpos kali X. pinv adalah fungsi untuk menghitung invers sebuah matriks. Jadi, ini menghitung X transpos X invers, dan Anda kalikan itu dengan X transpos, dan kalikan dengan y. Jadi, Anda akhiri dengan menghitung rumus itu yang tidak saya buktikan, tapi itu mungkin diperlihatkan dengan matematika
+meskipun saya tidak melakukannya di sini, bahwa rumus ini memberi Anda nilai optimal theta jika Anda set theta sama dengan ini, itulah nilai theta yang meminimalkan fungsi harga J theta untuk regresi linier. Satu hal terakhir, pada video
+sebelumnya, saya bicara tentang mengskala fitur, suatu gagasan membuat fitur-fitur memiliki jarak skala atau jarak nilai yang sama
+satu sama lain. Jika Anda menggunakan metode persamaan normal ini, maka tidak perlu mengskala fitur, dan jika, katakanlah, fitur x1 antara 0 dan 1, dan fitur x2 antara 0 dan 1000, lalu fitur x3 antara 0 hingga 10 pangkat -5, jika Anda menggunakan metode persamaan normal, ini okey dan tidak perlu mengskala fitur, meskipun demikian jika Anda menggunakan gradient descent, maka penting untuk mengskala fitur. Terakhir, kapan Anda harus menggunakan
+gradient descent dan kapan Anda harus menggunakan metode
+persamaan normal. Ini beberapa keuntungan dan kerugiannya. Katakanlah Anda punya m contoh latihan dan n fitur. 1 kerugian dari gradient descent adalah Anda harus memilih kecepatan
+belajar alfa. Ini berarti menjalankannya beberapa kali dengan kecepatan belajar alfa yang berbeda, lalu melihat mana
+yang terbaik. Jadi, itu kerjanya ekstra. Kerugian lain gradient descent, itu memerlukan banyak iterasi. Jadi, tergantung pada detilnya, itu bisa membuat lebih lambat, meskipun ada keuntungannya yang akan kita
+lihat sebentar lagi. Pada persamaan normal, Anda tidak perlu
+memilih kecepatan belajar alfa. Jadi itu membuat lebih nyaman dan
+sederhana untuk diimplementasikan. Anda tinggal jalankan, dan biasanya
+itu bekerja. Dan Anda tidak perlu mengiterasi, sehingga tidak perlu memplot J theta atau mengecek konvergensi atau melakukan semua
+langkah ekstra itu. Sejauh ini, persamaan normal lebih diuntungkan. Ini beberapa kerugian persamaan normal, dan beberapa keuntungan gradient
+descent. Gradient descent bekerja sangat baik, bahkan ketika Anda memiliki banyak
+sekali fitur. Jadi, jika Anda punya jutaan fitur, Anda bisa menjalankan gradient descent dan
+itu akan lebih efisien. Itu lebih masuk akal. Bertolak belakang dengan persamaan
+normal, untuk mencari solusi parameter theta, kita perlu menghitung ini. Kita perlu menghitung X transpos X
+invers. Matriks X transpos X ini, adalah matriks n x n,
+jika Anda punya n fitur. Karena, jika Anda lihat dimensi dari X transpos, dan dimensi X, kalikan keduanya, dimensi hasil perkaliannya, matriks X transpos X berdimensi n x n dimana n adalah jumlah fitur, dan pada semua implementasi perhitungan, waktu menginversi matriks, bertambah kira-kira pangkat tiga dari dimensi matriks. Jadi, menghitung invers ini makan waktu kira-kira n^3. Terkadang, lebih cepat dari n^3, tapi mendekati itu. Jadi, jika jumlah fitur n sangat besar, maka menghitungnya bisa lambat dan menggunakan metode persamaan normal
+bisa jadi sangat lambat. Jadi jika n besar maka saya biasanya menggunakan gradient descent
+karena kita tidak ingin menghabiskan waktu n^3
+untuk itu. Tapi, jika n relatif kecil, maka persamaan normal memberi Anda cara 
+yg lebih baik untuk mencari jawabannya. Berapa yang dimaksudkan kecil dan besar? Jika n pada kisaran 100, maka menginversi matriks 100 x 100 bukan masalah pada standar perhitungan
+modern. Jika n = 1000, saya masih akan
+menggunakan metode persamaan normal. Menginversi matriks 1000 x 1000 sebenarnya sangat cepat pada komputer
+modern. Jika n = 10000, maka saya mungkin akan
+mulai berpikir. Menginversi matriks 10000 x 10000 mulai menjadi lambat, dan saya mungkin mulai condong beralih ke gradient descent, tapi mungkin
+tidak juga. n = 10000, Anda bisa mengkonversi matriks 10000 x 10000. Tapi jika n jauh lebih besar dari itu,
+saya akan menggunakan gradient descent. Jadi, jika n = 10^6 dengan sejuta fitur, maka menginversi matriks 10^6 x 10^6 akan mulai sangat mahal, dan saya tentu saja lebih suka gradient
+descent jika fiturnya sebanyak itu. Jadi tepatnya berapa besar harusnya jumlah fitur sebelum Anda beralih ke gradient descent,
+sulit untuk memberi angka pastinya. Tapi bagi saya, biasanya sekitar 10000, maka saya akan mulai mempertimbangkan beralih ke gradient descent, atau mungkin beralih ke algoritma lain yang akan
+kita bahas nanti. Untuk merangkum, sepanjang jumlah fitur tidak terlalu besar, persamaan normal merupakan metode alternatif yang sangat
+bagus untuk mencari parameter theta. Konkritnya, sepanjang jumlah fitur kurang dari 1000, saya akan menggunakan metode persamaan normal daripada
+gradient descent. Untuk meninjau beberapa gagasan yang akan kita bahas nanti di pelajaran ini, begitu kita
+sampai pada algoritma belajar yang lebih kompleks, contohnya, saat kita membahas tentang algoritma klasifikasi, seperti algoritma
+regresi logistik, kita akan lihat algoritma itu sebenarnya... metode persamaan normal tidak bekerja pada algoritm belajar yang lebih pintar seperti itu, dan
+kita akan harus menggunakan gradient descent
+untuk algoritma itu. Jadi, untuk diketahui, gradient descent
+adalah algoritma yang sangat berguna. Regresi linier akan punya sejumlah besar fitur dan untuk beberapa algoritma lain yang akan kita lihat di pelajaran ini, pada algoritma itu,
+metode persamaan normal tidak bekerja. Tapi untuk regresi linier model begini, persamaan normal bisa memberi Anda alternatif yang bisa jauh lebih cepat dari
+gradient descent. Jadi, bergantung pada detil algoritma
+Anda, bergantung pada detil masalahnya, dan berapa banyak fitur yang Anda punya, kedua algoritma ini layak untuk
+diketahui.

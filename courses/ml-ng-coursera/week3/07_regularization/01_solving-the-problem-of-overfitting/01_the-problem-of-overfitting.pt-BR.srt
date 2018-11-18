@@ -1,0 +1,1092 @@
+1
+00:00:00,360 --> 00:00:01,753
+Até agora, você viu
+
+2
+00:00:01,760 --> 00:00:04,097
+alguns algoritmos de aprendizagem diferentes,
+
+3
+00:00:04,097 --> 00:00:06,504
+regressão linear e regressão logística.
+
+4
+00:00:06,510 --> 00:00:08,583
+Eles funcionam bem para muitos problemas,
+
+5
+00:00:08,583 --> 00:00:09,684
+mas quando usados em
+
+6
+00:00:09,684 --> 00:00:11,903
+a certas aplicações de aprendizado de máquina,
+
+7
+00:00:11,903 --> 00:00:13,889
+eles podem esbarrar em um problema chamado sobreajuste,
+
+8
+00:00:13,900 --> 00:00:18,052
+que pode levá-los a ter uma performance muito ruim.
+
+9
+00:00:18,052 --> 00:00:18,866
+O que eu gostaria de fazer
+
+10
+00:00:18,866 --> 00:00:20,393
+neste vídeo é explicar
+
+11
+00:00:20,393 --> 00:00:22,400
+o que é esse
+
+12
+00:00:22,400 --> 00:00:24,083
+problema de sobreajuste,
+
+13
+00:00:24,083 --> 00:00:25,861
+e mais além
+
+14
+00:00:25,861 --> 00:00:27,759
+falaremos sobre uma técnica
+
+15
+00:00:27,760 --> 00:00:29,787
+chamada regularização,
+
+16
+00:00:29,787 --> 00:00:31,529
+que nos permitirá melhorar
+
+17
+00:00:31,529 --> 00:00:33,607
+ou reduzir o sobreajuste
+
+18
+00:00:33,607 --> 00:00:36,844
+e fazer com que esses algoritmos funcionem talvez muito melhor.
+
+19
+00:00:36,860 --> 00:00:39,607
+Então o que é sobreajuste?
+
+20
+00:00:39,607 --> 00:00:41,616
+Vamos continuar usando nosso exemplo atual
+
+21
+00:00:41,620 --> 00:00:44,030
+de predição de preços de casa
+
+22
+00:00:44,050 --> 00:00:46,146
+com regressão linear
+
+23
+00:00:46,146 --> 00:00:47,123
+em que queremos prever
+
+24
+00:00:47,123 --> 00:00:50,730
+o preço em função do tamanho da casa.
+
+25
+00:00:50,730 --> 00:00:51,870
+Uma coisa que poderíamos fazer
+
+26
+00:00:51,910 --> 00:00:53,620
+é ajustar uma função linear
+
+27
+00:00:53,620 --> 00:00:54,892
+a esses dados,
+
+28
+00:00:54,892 --> 00:00:56,296
+e se fizermos isso, talvez obtenhamos
+
+29
+00:00:56,296 --> 00:00:58,913
+uma linha reta dessa forma.
+
+30
+00:00:58,913 --> 00:01:01,012
+Mas esse não é um modelo muito bom.
+
+31
+00:01:01,012 --> 00:01:02,543
+Olhando para os dados,
+
+32
+00:01:02,560 --> 00:01:04,100
+parece claro que
+
+33
+00:01:04,100 --> 00:01:06,274
+conforme o tamanho da casa aumenta,
+
+34
+00:01:06,274 --> 00:01:08,268
+os preços estabilizam,
+
+35
+00:01:08,270 --> 00:01:11,721
+ou se achatam conforme vamos para a direita,
+
+36
+00:01:11,740 --> 00:01:14,020
+então esse algoritmo
+
+37
+00:01:14,020 --> 00:01:15,898
+não se ajusta ao treino
+
+38
+00:01:15,898 --> 00:01:19,166
+e chamamos esse problema de sub-ajuste,
+
+39
+00:01:19,180 --> 00:01:20,494
+e outro termo para isso
+
+40
+00:01:20,500 --> 00:01:24,666
+é que esse algoritmo tem alto viés ("bias").
+
+41
+00:01:25,140 --> 00:01:26,841
+Ambos os termos significam que o algoritmo
+
+42
+00:01:26,890 --> 00:01:30,760
+não está se ajustando muito bem aos dados.
+
+43
+00:01:30,760 --> 00:01:32,328
+O termo é um tanto
+
+44
+00:01:32,328 --> 00:01:34,515
+histórico ou técnico,
+
+45
+00:01:34,515 --> 00:01:36,109
+mas a ideia é que
+
+46
+00:01:36,110 --> 00:01:37,303
+se ajustarmos uma linha reta
+
+47
+00:01:37,303 --> 00:01:38,909
+aos dados, é como se
+
+48
+00:01:38,920 --> 00:01:40,290
+o algoritmo tivesse uma
+
+49
+00:01:40,330 --> 00:01:42,638
+preconcepção muito forte,
+
+50
+00:01:42,638 --> 00:01:44,633
+ou um viés muito forte de que
+
+51
+00:01:44,650 --> 00:01:46,339
+preços de casas irão variar
+
+52
+00:01:46,339 --> 00:01:49,988
+linearmente com seu tamanho apesar dos dados dizerem o contrário.
+
+53
+00:01:50,000 --> 00:01:51,281
+Apesar da evidência do contrário,
+
+54
+00:01:51,290 --> 00:01:54,174
+a preconcepção ainda é viesada,
+
+55
+00:01:54,174 --> 00:01:55,413
+ainda leva a ajustar
+
+56
+00:01:55,440 --> 00:01:56,974
+uma linha reta
+
+57
+00:01:56,974 --> 00:02:00,638
+e acaba sendo um ajuste ruim.
+
+58
+00:02:00,638 --> 00:02:02,173
+Agora, no meio, poderíamos
+
+59
+00:02:02,210 --> 00:02:04,626
+ajustar funções quadráticas e,
+
+60
+00:02:04,626 --> 00:02:06,222
+com esse conjunto de dados,
+
+61
+00:02:06,222 --> 00:02:07,793
+se ajustarmos uma função quadrática,
+
+62
+00:02:07,810 --> 00:02:10,211
+talvez obtenhamos esse tipo de curva,
+
+63
+00:02:10,211 --> 00:02:14,361
+e funciona muito bem.
+
+64
+00:02:14,361 --> 00:02:17,543
+E, no outro extremo, seria se ajustássemos, digamos, um polinômio de quarta ordem aos dados.
+
+65
+00:02:17,550 --> 00:02:19,442
+Então, aqui temos cinco parâmetros,
+
+66
+00:02:19,470 --> 00:02:23,196
+teta zero a teta quatro,
+
+67
+00:02:23,210 --> 00:02:23,926
+e, com isso, podemos ajustar uma curva que passe
+
+68
+00:02:23,926 --> 00:02:26,727
+por todos os cinco pontos de nossos exemplos de treinamento
+
+69
+00:02:26,727 --> 00:02:29,507
+Você poderia obter uma curva como essa,
+
+70
+00:02:31,260 --> 00:02:32,454
+que, por um lado
+
+71
+00:02:32,460 --> 00:02:33,791
+parece fazer 
+
+72
+00:02:33,791 --> 00:02:35,052
+um ótimo trabalho ajustando 
+
+73
+00:02:35,052 --> 00:02:36,291
+o conjunto de treinamento, 
+
+74
+00:02:36,291 --> 00:02:38,269
+e pelo menos passa por todos os pontos.
+
+75
+00:02:38,270 --> 00:02:40,284
+Mas, essa ainda é uma curva muito sinuosa, certo?
+
+76
+00:02:40,300 --> 00:02:41,660
+Então, ela vai para cima e para baixo,
+
+77
+00:02:41,660 --> 00:02:43,430
+e não parece ser
+
+78
+00:02:43,430 --> 00:02:46,996
+um bom modelo para predição de preços de casas.
+
+79
+00:02:47,000 --> 00:02:48,924
+Então, chamamos esse problema
+
+80
+00:02:48,924 --> 00:02:51,967
+de sobreajuste, e,
+
+81
+00:02:51,970 --> 00:02:53,165
+outro termo para isso
+
+82
+00:02:53,170 --> 00:02:57,304
+é que esse algoritmo tem alta variância.
+
+83
+00:02:57,890 --> 00:02:59,951
+O termo alta variância é outro
+
+84
+00:02:59,951 --> 00:03:02,110
+termo histórico ou técnico.
+
+85
+00:03:02,130 --> 00:03:03,797
+Mas a intuição diz que
+
+86
+00:03:03,800 --> 00:03:05,080
+se estamos ajustando
+
+87
+00:03:05,080 --> 00:03:07,326
+um polinômio de tão alta ordem,
+
+88
+00:03:07,330 --> 00:03:08,603
+a hipótese pode se ajustar
+
+89
+00:03:08,620 --> 00:03:09,584
+a quase 
+
+90
+00:03:09,584 --> 00:03:11,995
+qualquer função e
+
+91
+00:03:11,995 --> 00:03:14,159
+o número de hipóteses possíveis
+
+92
+00:03:14,159 --> 00:03:16,601
+é muito grande, muito variável.
+
+93
+00:03:16,610 --> 00:03:18,052
+Não temos dados suficientes
+
+94
+00:03:18,052 --> 00:03:19,279
+para levá-los a nos dar
+
+95
+00:03:19,279 --> 00:03:22,714
+uma boa hipótese então isso é chamado de sobreajuste.
+
+96
+00:03:22,740 --> 00:03:24,340
+E no meio, não há exatamente
+
+97
+00:03:24,350 --> 00:03:26,990
+um nome, mas vou apenas escrever "certo".
+
+98
+00:03:26,990 --> 00:03:29,911
+Onde uma função polinomial de segunda ordem, quadrática
+
+99
+00:03:29,911 --> 00:03:32,559
+parece ser a correta para ajustar a esse dado.
+
+100
+00:03:32,559 --> 00:03:34,684
+Para recapitular um pouco,
+
+101
+00:03:34,690 --> 00:03:37,042
+o problema de sobreajuste
+
+102
+00:03:37,042 --> 00:03:38,258
+acontece quando temos
+
+103
+00:03:38,258 --> 00:03:40,729
+parâmetros demais, então
+
+104
+00:03:40,729 --> 00:03:43,881
+a hipótese aprendida pode se ajustar ao conjunto de treino bem demais.
+
+105
+00:03:43,881 --> 00:03:46,023
+Então, sua função de custo
+
+106
+00:03:46,023 --> 00:03:47,344
+deve ser muito próxima
+
+107
+00:03:47,344 --> 00:03:48,446
+de zero ou pode ser
+
+108
+00:03:48,446 --> 00:03:50,750
+até mesmo exatamente zero,
+
+109
+00:03:50,750 --> 00:03:52,063
+ mas você acaba com uma
+
+110
+00:03:52,063 --> 00:03:53,950
+curva como essa, 
+
+111
+00:03:53,950 --> 00:03:55,314
+que tenta se ajustar bem demais
+
+112
+00:03:55,314 --> 00:03:57,103
+ao conjunto de treino, de forma que
+
+113
+00:03:57,110 --> 00:03:59,233
+falha ao generalizar para
+
+114
+00:03:59,250 --> 00:04:01,117
+novos exemplos e falha
+
+115
+00:04:01,120 --> 00:04:03,018
+para predizer preços
+
+116
+00:04:03,050 --> 00:04:04,337
+em novos exemplos também,
+
+117
+00:04:04,350 --> 00:04:06,853
+e aqui o termo generalizar se refere
+
+118
+00:04:06,853 --> 00:04:10,868
+a quão bem uma hipótese se aplica a novos exemplos,
+
+119
+00:04:10,868 --> 00:04:12,274
+isto é, para dados
+
+120
+00:04:12,320 --> 00:04:16,467
+sobre casas que não foram vistos no conjunto de treino.
+
+121
+00:04:16,600 --> 00:04:17,910
+Nesse slide, vimos o sobreajuste
+
+122
+00:04:17,910 --> 00:04:20,802
+para o caso de regressão linear.
+
+123
+00:04:20,810 --> 00:04:24,182
+Algo similar pode ser aplicado também a regressão logística.
+
+124
+00:04:24,190 --> 00:04:26,090
+Aqui está um exemplo de regressão logística
+
+125
+00:04:26,090 --> 00:04:28,871
+com dois parâmetros X1 e X2.
+
+126
+00:04:28,910 --> 00:04:30,136
+Algo que poderíamos fazer
+
+127
+00:04:30,140 --> 00:04:31,522
+é ajustarmos regressão logística
+
+128
+00:04:31,522 --> 00:04:34,518
+com uma hipótese simples como essa,
+
+129
+00:04:34,530 --> 00:04:38,076
+onde, como sempre, G é uma função sigmóide.
+
+130
+00:04:38,120 --> 00:04:39,334
+E se você fizer isso, acabará
+
+131
+00:04:39,334 --> 00:04:41,593
+com uma hipótese,
+
+132
+00:04:41,600 --> 00:04:42,923
+tentando usar apenas uma linha reta
+
+133
+00:04:42,923 --> 00:04:45,713
+para separar os exemplos positivos e negativos.
+
+134
+00:04:45,713 --> 00:04:49,071
+Isso não parece um bom ajuste para a hipótese.
+
+135
+00:04:49,100 --> 00:04:50,659
+Então, novamente,
+
+136
+00:04:50,659 --> 00:04:52,577
+esse é um exemplo de sub-ajuste
+
+137
+00:04:52,577 --> 00:04:56,040
+ou de hipótese com alto viés ("bias").
+
+138
+00:04:56,210 --> 00:04:57,504
+Em contraste, se você fosse
+
+139
+00:04:57,504 --> 00:04:59,146
+adicionar aos seus parâmetros
+
+140
+00:04:59,170 --> 00:05:01,032
+esses termos quadráticos, então,
+
+141
+00:05:01,032 --> 00:05:02,613
+você poderia obter uma superfície de decisão
+
+142
+00:05:02,613 --> 00:05:05,620
+que se pareceria mais com isso.
+
+143
+00:05:05,620 --> 00:05:07,784
+E, você sabe, esse é um ajuste muito bom aos dados.
+
+144
+00:05:07,784 --> 00:05:10,838
+Provavelmente, o melhor
+
+145
+00:05:10,860 --> 00:05:13,991
+que poderíamos ter nesse conjunto de treinamento.
+
+146
+00:05:14,010 --> 00:05:15,157
+E, finalmente, no outro extremo,
+
+147
+00:05:15,170 --> 00:05:16,169
+se você fosse ajustar
+
+148
+00:05:16,169 --> 00:05:18,207
+um polinômio de alta ordem,
+
+149
+00:05:18,207 --> 00:05:20,036
+se você fosse gerar muitos
+
+150
+00:05:20,036 --> 00:05:22,461
+termos de polinômios de alta ordem,
+
+151
+00:05:22,490 --> 00:05:24,730
+então, a regressão logística pode se contorcer,
+
+152
+00:05:24,750 --> 00:05:26,551
+pode tentar muito
+
+153
+00:05:26,560 --> 00:05:28,233
+fortemente encontrar
+
+154
+00:05:28,233 --> 00:05:31,742
+uma superfície de contorno que se ajuste
+
+155
+00:05:31,742 --> 00:05:33,013
+aos dados de treinamento,
+
+156
+00:05:33,030 --> 00:05:35,006
+ou se estender por grandes distâncias e se contorcer
+
+157
+00:05:35,006 --> 00:05:37,689
+para ajustar todos os pontos de exemplo bem.
+
+158
+00:05:37,700 --> 00:05:38,757
+E, você sabe, se
+
+159
+00:05:38,757 --> 00:05:39,547
+os parâmetros X1 e
+
+160
+00:05:39,550 --> 00:05:41,435
+X2  predizem, digamos,
+
+161
+00:05:41,435 --> 00:05:43,350
+câncer, 
+
+162
+00:05:43,390 --> 00:05:46,448
+como tumores de mama malignos ou benignos.
+
+163
+00:05:46,448 --> 00:05:47,988
+Isso realmente não
+
+164
+00:05:47,988 --> 00:05:51,893
+parece uma hipótese muito boa para fazer predições.
+
+165
+00:05:51,930 --> 00:05:53,463
+Então, novamente, esse
+
+166
+00:05:53,463 --> 00:05:55,432
+é um exemplo de sobreajuste
+
+167
+00:05:55,432 --> 00:05:57,128
+e, de uma hipótese com
+
+168
+00:05:57,128 --> 00:05:59,403
+alta variância e com pouca
+
+169
+00:05:59,403 --> 00:06:04,243
+probabilidade de generalizar bem para novos exemplos.
+
+170
+00:06:04,560 --> 00:06:06,158
+Mais tarde, neste curso, quando nós
+
+171
+00:06:06,158 --> 00:06:08,453
+falarmos sobre depuração e diagnóstico
+
+172
+00:06:08,460 --> 00:06:09,794
+de coisas que podem dar errado com 
+
+173
+00:06:09,810 --> 00:06:11,490
+algoritmos de aprendizagem, nós lhe daremos
+
+174
+00:06:11,490 --> 00:06:13,297
+ferramentas específicas para reconhecer
+
+175
+00:06:13,297 --> 00:06:14,953
+a ocorrência
+
+176
+00:06:14,953 --> 00:06:17,503
+sobreajuste ou sub-ajuste.
+
+177
+00:06:17,503 --> 00:06:18,775
+Mas, agora, vamos falar sobre
+
+178
+00:06:18,780 --> 00:06:20,342
+o problema de, 
+
+179
+00:06:20,360 --> 00:06:22,206
+se estiver acontecendo sobreajuste,
+
+180
+00:06:22,250 --> 00:06:24,864
+o que podemos fazer para corrigir?
+
+181
+00:06:24,864 --> 00:06:26,640
+Nos exemplos anteriores, nós tivemos
+
+182
+00:06:26,660 --> 00:06:28,701
+um ou dois dados dimensionais, 
+
+183
+00:06:28,701 --> 00:06:31,335
+então poderíamos simplesmente plotar a hipótese e ver o que estava
+
+184
+00:06:31,335 --> 00:06:34,612
+acontecendo e selecionar o polinômio de grau apropriado.
+
+185
+00:06:34,620 --> 00:06:36,836
+Então, para os os exemplos anteriores de
+
+186
+00:06:36,836 --> 00:06:38,405
+preços de casa, poderíamos simplesmente
+
+187
+00:06:38,410 --> 00:06:40,597
+plotar a hipótese e,
+
+188
+00:06:40,600 --> 00:06:41,628
+talvez ver que estava
+
+189
+00:06:41,628 --> 00:06:42,830
+ajustando o tipo de
+
+190
+00:06:42,830 --> 00:06:46,339
+função sinuosa que vai para todo lado para prever preços de casas.
+
+191
+00:06:46,339 --> 00:06:47,701
+E nós poderíamos então usar figuras
+
+192
+00:06:47,740 --> 00:06:50,667
+como essas para selecionar um polinômio de grau apropriado.
+
+193
+00:06:50,680 --> 00:06:54,166
+Plotar a hipótese poderia
+
+194
+00:06:54,166 --> 00:06:55,728
+ser uma maneira de tentar
+
+195
+00:06:55,750 --> 00:06:58,160
+decidir que grau de polinômio usar.
+
+196
+00:06:58,160 --> 00:07:00,163
+Mas isso não funciona sempre.
+
+197
+00:07:00,180 --> 00:07:02,019
+E, de fato, é mais frequente
+
+198
+00:07:02,019 --> 00:07:06,075
+termos problemas de aprendizagem onde temos um monte de parâmetros.
+
+199
+00:07:06,075 --> 00:07:07,563
+E não é
+
+200
+00:07:07,563 --> 00:07:10,599
+apenas caso de selecionar o grau do polinômio.
+
+201
+00:07:10,630 --> 00:07:12,147
+Quando
+
+202
+00:07:12,170 --> 00:07:13,779
+temos tantos parâmetros, também
+
+203
+00:07:13,779 --> 00:07:15,593
+fica muito mais difícil plotar
+
+204
+00:07:15,630 --> 00:07:17,698
+os dados e fica
+
+205
+00:07:17,710 --> 00:07:19,211
+muito mais difícil visualizá-los 
+
+206
+00:07:19,211 --> 00:07:22,396
+para decidir quais parâmetros manter ou não.
+
+207
+00:07:22,420 --> 00:07:24,142
+Na prática, quando estamos tentando
+
+208
+00:07:24,160 --> 00:07:27,849
+predizer preços de casas, às vezes podemos ter muitos parâmetros diferentes.
+
+209
+00:07:27,880 --> 00:07:31,373
+E todos esses parâmetros parecem ser úteis.
+
+210
+00:07:31,373 --> 00:07:32,609
+Mas, se tivermos
+
+211
+00:07:32,609 --> 00:07:34,123
+muitos parâmetros e muito poucos
+
+212
+00:07:34,123 --> 00:07:35,820
+dados de treinamento, 
+
+213
+00:07:35,840 --> 00:07:37,776
+o sobreajuste pode se tornar um problema.
+
+214
+00:07:37,776 --> 00:07:39,180
+Para corrigir o 
+
+215
+00:07:39,180 --> 00:07:40,651
+sobreajuste, há duas
+
+216
+00:07:40,651 --> 00:07:43,780
+alternativas principais de coisas que podemos fazer.
+
+217
+00:07:43,780 --> 00:07:45,759
+A primeira opção é
+
+218
+00:07:45,770 --> 00:07:47,976
+tentar reduzir o número de parâmetros.
+
+219
+00:07:47,990 --> 00:07:49,337
+Na verdade, algo que nós
+
+220
+00:07:49,337 --> 00:07:51,383
+poderíamos fazer é verificar manualmente
+
+221
+00:07:51,383 --> 00:07:53,236
+a lista de parâmetros e
+
+222
+00:07:53,236 --> 00:07:54,894
+usar isso para decidir quais
+
+223
+00:07:54,894 --> 00:07:57,256
+são os parâmetros mais importantes, 
+
+224
+00:07:57,256 --> 00:07:58,476
+o quais deveríamos
+
+225
+00:07:58,476 --> 00:08:01,844
+manter, e quais deveríamos descartar.
+
+226
+00:08:01,844 --> 00:08:03,401
+Mais tarde neste curso, também vamos
+
+227
+00:08:03,401 --> 00:08:06,018
+falar sobre algoritmos de seleção de modelos,
+
+228
+00:08:06,040 --> 00:08:08,361
+que são algoritmos para decidir
+
+229
+00:08:08,361 --> 00:08:09,788
+automaticamente quais parâmetros
+
+230
+00:08:09,800 --> 00:08:12,500
+manter, e quais parâmetros descartar.
+
+231
+00:08:12,500 --> 00:08:13,987
+A ideia de reduzir
+
+232
+00:08:13,987 --> 00:08:15,562
+o número de parâmetros pode
+
+233
+00:08:15,562 --> 00:08:17,853
+funcionar bem, e pode reduzir o sobreajuste.
+
+234
+00:08:17,853 --> 00:08:19,383
+Quando falarmos sobre seleção
+
+235
+00:08:19,383 --> 00:08:22,534
+de modelos, vamos detalhar isso com maior profundidade.
+
+236
+00:08:22,534 --> 00:08:24,386
+Mas, a desvantagem é que
+
+237
+00:08:24,386 --> 00:08:25,603
+descartar alguns dos
+
+238
+00:08:25,603 --> 00:08:27,010
+parâmetros também é descartar
+
+239
+00:08:27,370 --> 00:08:30,615
+parte da informação que temos sobre o problema.
+
+240
+00:08:30,650 --> 00:08:31,942
+Por exemplo, talvez todos
+
+241
+00:08:31,942 --> 00:08:33,760
+aqueles parâmetros sejam realmente úteis
+
+242
+00:08:33,780 --> 00:08:35,050
+para predizer o preço de uma
+
+243
+00:08:35,070 --> 00:08:36,636
+casa, então não 
+
+244
+00:08:36,640 --> 00:08:37,687
+iráimos querer descartar nenhuma
+
+245
+00:08:37,687 --> 00:08:40,990
+informação ou nenhum dos parâmetros.
+
+246
+00:08:41,540 --> 00:08:44,515
+A segunda opção, sobre a qual
+
+247
+00:08:44,515 --> 00:08:45,995
+falaremos nos
+
+248
+00:08:46,010 --> 00:08:49,268
+próximos vídeos, é a regularização.
+
+249
+00:08:49,268 --> 00:08:50,390
+Aqui, vamos manter
+
+250
+00:08:50,390 --> 00:08:52,579
+todos os parâmetros, mas vamos
+
+251
+00:08:52,579 --> 00:08:55,063
+reduzir a magnitude
+
+252
+00:08:55,063 --> 00:08:56,506
+ou os valores dos parâmetros
+
+253
+00:08:56,520 --> 00:08:58,745
+ teta J. E esse
+
+254
+00:08:58,750 --> 00:09:00,690
+método funciona bem
+
+255
+00:09:00,690 --> 00:09:01,925
+quando temos muitos parâmetros,
+
+256
+00:09:01,925 --> 00:09:03,822
+onde cada um dos quais contribui
+
+257
+00:09:03,822 --> 00:09:05,502
+um pouco para predizer
+
+258
+00:09:05,502 --> 00:09:07,723
+o valor de Y, como
+
+259
+00:09:07,740 --> 00:09:10,283
+vimos no exemplo de predição de casas,
+
+260
+00:09:10,283 --> 00:09:11,413
+em que poderíamos ter muitos 
+
+261
+00:09:11,413 --> 00:09:12,720
+parâmetros, onde todos
+
+262
+00:09:12,750 --> 00:09:16,902
+são úteis, então não queremos descartá-los.
+
+263
+00:09:16,930 --> 00:09:19,247
+Isso descreve a
+
+264
+00:09:19,250 --> 00:09:22,790
+ideia de regularização em um alto nível.
+
+265
+00:09:22,790 --> 00:09:24,354
+E, percebo que
+
+266
+00:09:24,360 --> 00:09:26,763
+todos esses detalhes provavelmente ainda não fazem sentido para você.
+
+267
+00:09:26,763 --> 00:09:28,316
+Mas, no próximo vídeo, vamos
+
+268
+00:09:28,316 --> 00:09:30,960
+começar a formular exatamente como
+
+269
+00:09:30,960 --> 00:09:35,117
+aplicar a regularização e o que ela significa.
+
+270
+00:09:35,140 --> 00:09:36,810
+E vamos começar a 
+
+271
+00:09:36,810 --> 00:09:38,310
+descobrir como usar isso
+
+272
+00:09:38,310 --> 00:09:40,412
+para fazer algoritmos de aprendizagem funcionarem bem
+
+273
+00:09:40,412 --> 00:09:42,460
+e evitar o sobreajuste.
+Tradução: Paulo R. Ormenese | Revisão: Eduardo Bonet

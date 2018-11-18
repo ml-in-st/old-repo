@@ -1,0 +1,100 @@
+Definimos anteriormente a função de custo J. Neste vídeo gostaria de falar sobre um algoritmo 
+denominado Gradiente Descendente (ou Descida de Gradiente) para minimizar a função de custo J. O fato é que o Gradiente Descendente 
+é um algoritmo mais amplo e não é usado apenas a regressão linear. Ele também é utilizado onde quer
+ que haja aprendizagem de máquina Mais adiante, nesta aula, 
+usaremos Gradiente Descendente para minimizar não apenas a função de custo J 
+para regressão linear, como outras funções também. Neste vídeo falaremos sobre Gradiente Descendente
+ para minimizar uma função J arbitrária e então, 
+nos vídeos subsequentes, falaremos sobre este algoritmo e o aplicaremos especificamente à função
+ de custo J que definimos. Regressão Linear. Eis o problema: Vamos assumir que temos 
+uma função J(theta0, theta1) como função de custo
+ para uma regressão linear e que talvez haja alguma outra função
+ que queiramos minimizar. Além disso, queremos um algoritmo para minimizar isso como uma função 
+de J(theta0, theta1). Apenas a título de informação, observa-se 
+que o Gradiente Descendente é aplicado a funções mais gerais. Imagine portanto, uma função 
+que é uma função de J e os parâmetros theta0, theta1, theta2, até theta n, e queira minimizar theta0. Você minimiza θ0 ...até θn 
+desta função J(θ0, ... até o θn). De fato, o Gradiente Descendente é um algoritmo para resolver este problema mais amplo. Por questões de brevidade e concisão da notação, farei 
+de conta que tenho apenas dois parâmetros ao longo 
+do restante deste vídeo. Aqui está a ideia do Gradiente Descendente. O que faremos a seguir é atribuir
+ estimativas iniciais para os valores de theta0 e theta1. Não importa realmente o que são esses parâmetros,
+ mas uma escolha comum seria estabelecermos theta0 = 0 e theta1 = 0. Apenas os inicializamos com 0. O que nós vamos fazer no Gradiente Descendente 
+é que mudaremos os valores de theta0 e theta1 um pouco para tentar reduzir
+ J(theta0, theta1) até que, com sorte, cheguemos a um valor mínimo 
+ou talvez a um valor mínimo local. Vejamos então nas figuras o que o 
+Gradiente Descendente faz. Digamos que você esteja tentando 
+minimizar esta função. Observe os eixos, este é theta0, theta1 no eixo horizontal
+ e J no eixo vertical, e a altura da superfície mostra J e 
+queremos minimizar esta função. Vamos iniciar com theta0, 
+theta1 em algum ponto. Imagine escolher algum valor para theta0 e theta1 que corresponda ao ponto inicial do algoritmo 
+em algum lugar na superfície desta função. Portanto, suponha um valor de theta0, 
+theta1 que resulte em algum ponto aqui. Eu os inicializei com 0, mas às vezes, pode-se inicializá-los
+ com outros valores também. Imagine agora que esta 
+figura mostre um buraco. Imagine isto como a paisagem de 
+um parque gramado com dois montes assim, e imagine 
+que você esteja fisicamente situado neste ponto no monte, 
+neste pequeno monte vermelho no parque. No Gradiente Descendente, o que
+ vamos fazer é girar 360 graus ao redor, apenas para olhar ao nosso redor,
+ e perguntar, se eu fosse dar um pequeno passo em alguma direção, e eu quero ir para o ponto 
+mais baixo o mais rapidamente possível, qual direção eu devo tomar em relação 
+a este pequeno passo? Se eu quero ir para baixo, então eu quero andar fisicamente para baixo 
+deste monte o mais rapidamente possível. Acontece que, se você estiver neste ponto do monte,
+ você olha ao redor e descobre que a melhor direção é dar 
+um pequeno passo ladeira abaixo mais ou menos nesta direção. Ok, e agora você está neste
+ novo ponto no monte. Você vai, novamente, olhar ao redor dizer: qual direção devo tomar para dar um
+ pequeno passo ladeira abaixo? E se você fizer isto e der outro passo,
+ você dá um passo nesta direção. E então continua. A partir deste novo ponto você olha ao redor, decide qual direção tomar 
+ladeira abaixo mais rapidamente. Dá outro passo, outro passo, e então vai até convergir neste
+ mínimo local bem aqui. O Gradiente Descendente possui 
+uma propriedade interessante. A primeira vez que rodamos o Gradiente Descendente 
+nós estávamos iniciando neste ponto aqui, certo? Começamos naquele ponto ali. Imagine agora que inicializamos o Gradiente
+ Descendente apenas a alguns passos à direita. Imagine que tínhamos iniciado o Gradiente
+ Descendente neste ponto à direita, um pouco mais acima. Se você repetir o processo, iniciando deste ponto, 
+olhando ao redor, dando um pequeno passo nesta direção 
+de descida mais íngreme, você faria isso. Então, olhando ao redor, dando outro pequeno passo, e assim em diante. E se você iniciasse apenas a alguns passos à direita, o Gradiente Descendente teria levado você a este segundo local ótimo do lado direito. Então, se você tivesse iniciado neste ponto,
+ você teria chegado a este local ótimo, mas se você iniciou em um local um pouco diferente, você teria chegado a um local
+ ótimo muito diferente. E esta é a propriedade do Gradiente 
+Descendente que nós iremos abordar um pouco posteriormente. Isso é a explicação baseada nas imagens. Vejamos a matemática. Esta é a definição do algoritmo
+ Gradiente Descendente. Devemos realizar isto repetidamente
+ até a convergência, iremos atualizar meu parâmetro
+ theta j pegando theta j e subtraindo seu valor de alfa vezes 
+este termo aqui, ok? Então vejamos, há uma série de detalhes 
+nesta equação, então deixe-me destrinchar alguns deles. Em primeiro lugar, esta notação aqui, 
+:=, usa-se := para denotar atribuição, este é 
+o operador de atribuição. Resumidamente, se eu escrever a := b, 
+o que isso significa é que, em um computador, ele pega o valor em b e usa-o para sobrepor
+ o valor que estiver em a. Isso significa que define-se um valor em a igual
+ ao valor contido em b, que é a atribuição. E eu também posso fazer a := a + 1. Isso significa que eu pego a e incremento 
+seu valor em uma unidade. Em contrapartida, se eu usar o sinal de igual eu escrevo a igual a b, 
+então isso é uma assertiva. Ok? Então se eu escrever a igual a b, então estarei afirmando que o valor de a 
+é igual ao valor de b, correto? Portanto, aqui do lado esquerdo, temos a operação do computador onde definimos um novo valor para a. E isso aqui, do lado direito, é uma assertiva, estou afirmando que os valores de a e b são os mesmos, e desta forma você pode escrever a := a + 1, que significa o incremento de a por 1, porém, jamais escreva a = a + 1 porque isso é errado, 'a' e 'a + 1' nunca serão iguais, não são mesmos valores. OK? Portanto, esta é a primeira parte da definição. Este alfa aqui é um número conhecido como taxa de aprendizagem. E o que alfa faz é basicamente controlar o quão grande será o passo tomado 
+ladeira abaixo no Gradiente Descendente. Se alfa for muito grande, então isso 
+corresponde a uma descida de gradiente muito agressiva, onde nós tentaremos realizar passos muito grandes ladeira abaixo e, se alfa for muito pequeno, então nós tentaremos
+ passos extremamente pequenos ladeira abaixo. Voltarei a falar mais sobre isso posteriormente,
+ sobre como estabelecer alfa entre outras coisas. E finalmente, este termo aqui, é uma derivada. Não quero falar sobre isso agora, mas 
+ farei o cálculo deste termo derivado e direi a você exatamente o que é posteriormente, ok? Alguns de vocês estão mais familiarizados com Cálculo do que outros, mas até mesmo se você não tiver muita familiaridade
+ com Cálculo, não se preocupe. Eu direi o que você precisa saber
+ sobre esse termo aqui. Agora, há mais uma sutileza sobre o Gradiente Descendente que está nos valores de gradiente que iremos atualizar, você sabe, theta0 e theta1, certo? Essa atualização acontece para j = 0 e j = 1, então você atualizará theta0 e theta1. E a sutileza de como você implementa o Gradiente Descendente nesta expressão, nesta equação de atualização, você precisa atualizar simultaneamente theta0 e theta1. O que eu quero dizer com isso é que 
+nesta equação iremos atualizar theta0 := theta0 menos algo, e atualizar 
+theta1 := theta1 menos alguma coisa. E a maneira de implementar é que você deve calcular o lado direito, correto? Calcular aquele termo para theta0 e 
+theta1 e então simultaneamente, ou seja, ao mesmo tempo, 
+atualizar theta0 e theta1, ok? Então, deixe-me falar o que isso significa. Esta é uma implementação correta do Gradiente Descendente de maneira simultânea. simultânea. Então eu vou definir temp0 igual a isso,
+ definir temp1 igual a isso, realizar os cálculos básicos do lado direito e, 
+ter o lado direito calculado e armazenado nas variáveis temp0 e temp1, e irei atualizar theta0 e theta1 simultaneamente porque 
+é a implementação correta. Em contraste,Em contraste, Aqui está uma implementação incorreta 
+que não realiza uma atualização simultânea. Portanto, nesta implementação incorreta,
+ calculamos temp0, atualizamos theta0, calculamos temp1, e então atualizamos temp1. A diferença entre as implementações 
+do lado direito e do lado esquerdo é que, se você 
+olhar aqui embaixo, observando este passo, se neste momento 
+você já tiver atualizado theta0, então você estaria utilizando o novo valor de theta0 para calcular este termo derivado. E isso lhe dará um valor diferente de temp1 
+em relação ao procedimento do lado esquerdo, certo? Porque agora você conectou o novo valor de theta0 a esta equação. E assim, este procedimento do lado direito
+ não é uma implementação correta do Gradiente Descendente, ok? Não quero dizer o motivo da necessidade
+ em fazer as atualizações simultâneas. Acontece que essa é a forma como o Gradiente Descendente é normalmente implementado, eu falarei mais sobre isso posteriormente ele realmente torna-se mais natural
+ implementando atualizações simultâneas. E quando as pessoas falam sobre Gradiente Descendente, eles sempre referem-se à atualização simultânea. Se você implementar a atualização não-simultânea ele ainda assim provavelmente deverá funcionar. Mas esse algoritmo não estava correto. E não é o que as pessoas referem-se ao Gradiente Descendente, e esse é algum outro algoritmo
+ com propriedades diferentes. E por várias razões isso pode se comportar 
+de formas ligeiramente estranhas, e portanto o que você deve fazer é realmente implementar a atualização simultânea do Gradiente Descendente. Então, esse é o perfil do 
+algoritmo Gradiente Descendente. No próximo vídeo, entraremos nos detalhes do termo derivado, que eu escrevi acima, mas realmente não o defini. Se você teve aulas de Cálculo antes e está familiarizado com derivadas e derivadas parciais, observará o 
+que é esse termo derivado mas no caso de você não estar familiarizado 
+com cálculo, não se preocupe. No próximo vídeo darei todos os esclarecimentos e direi tudo o que você precisa saber
+ para calcular o termo derivado, até mesmo se você nunca viu cálculo, ou se ainda
+ não viu derivadas parciais antes. E com isso, no nosso próximo vídeo, espero que tenhamos condições de dar a você todas 
+as observações necessárias para aplicar o Gradiente Descendente.

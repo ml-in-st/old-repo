@@ -1,0 +1,43 @@
+Što se tiče logističke
+ regresije, prethodno smo govorili o dva tipa 
+algoritama za optimizaciju. Govorili smo kako da koristimo opadajući gradijent da bismo 
+optimizovali funkciju koštanja J od teta. Takođe smo govorili o naprednim metodama optimizacije. One koje zahtevaju da im obezbedite način da računate vašu funkciju cena J od teta i da obezbedite način da računate izvode. U ovome videu, videćemo kako možete da prilagodite obe tehnike, oba opadajuća gradijenta i i naprednije tehnike optimizacije da biste postigli da rade na regularizovanim 
+logističkim regresijama. Dakle, ovo je ideja. Ranije smo videli da logistička regresija takođe može da bude sklona prekomernosti ako joj dodelite osobine sa polinomom visokog stepena, kao što je ova. Gde je g sigmoid funkcija i obavezno dobijete hipotezu, znate, čija odluka je vezana za neku vrstu preterano složene i krajnje iskrivljenu funkciju koja stvarno nije sjajna hipoteza za ovaj trening skup, i uopšte, ako imate logističku regresiju sa mnogo osobina. Ne obavezno one polinomijalne, već samo sa mnogo osobina sa kojima možete
+da dobijete prekomernost. Ovo je bila naša funkcija 
+cena za logističku regresiju. I ako želimo da je izmenimo da bismo koristili regularizaciju, sve što treba da uradimo je da je dodamo u sledeći pojam plus lambda kroz 2m, suma od j = 1, i kao i obično suma od j = 1. Bolje nego suma od j = 0 od teta j na kvadrat. A ovo ima efekat, dakle, kažnjavanja parametara teta1, teta2, i tako dalje do tetan 
+zato što su preveliki. A ako uradite ovo, tad će to da ima efekat da vam ipak odgovara polinom visokog stepena 
+sa mnogo parametara. Dokle god primenjujete regularizaciju i držite parametre malim veća je verovatnoće da 
+dobijete granicu odluke. Znate, to izgleda više ovako. Izgleda više razumno za razdvajanje pozitivnih i negativnih primera. Dakle, kada koristite regularizaciju čak kada imate mnogo osobina, regularizacija može da pomogne oko 
+problema prekomernosti. Kako u stvari primenjujemo ovo? Za originalni algoritam opadajućeg gradijenta, ovo je 
+dodatak koji smo imali. Ponavljaćemo izvršenje sledećeg dodatka na teta j. Ovaj slajd izgleda kao onaj 
+za linearnu regresiju. A ono šta ću da uradim je da ću da napišem 
+dodatak za teta0 odvojeno. Dakle, prva linija je za dodatak za teta0 a druga je sada moj dodatak za teta1 sve do tetan. Zato što ću da 
+tretiram teta0 odvojeno. Da bih modifikovao ovaj algoritam za regularizaciju funkcije cena, sve što treba fa uradim jeste dosta slično onome šta smo uradili kod linearne regresije, samo treba da se modifikuje ovo drugo pravilo dodatka
+ kao što sledi. Još jednom, ovo je kozmetički identično onome što smo imali kod linearne regresije. Ali naravno nije isti algoritam kao što smo imali, jer je sad hipoteza definisana pomoću ovoga. Dakle, ovo nije isti algoritam kao regularizovana
+ linearna regresija. Zato što je hipoteza drugačija. Čak i ovaj dodatak 
+koji sam dole napisao. On kozmetički izgleda isto kao što smo imali ranije. Razrađujemo opadajući gradijent za 
+regularizovanu linearnu regresiju. I da zaokružimo ovu diskusiju, ovaj pojam ovde u uglastim zagradama, ovaj pojam ovde, to je naravno, novi parcijalni izvod u odnosu na tetaj nove funkcije cena J od teta. Ovo J od teta ovde je funkcija cena definisana u prethodnom slajdu koja koristi regularizaciju. Dakle, to je opadajući gradijent za
+ regularizovanu linearnu regresiju. Sada ćemo da govorimo o tome kako da koristimo regularizovanu linearnu regresiju koristeći se više naprednim metodama optimizacije. Samo da vas podsetim na te metode, ono šta smo trebali da uradimo je da definišemo funkciju zvanu funkcija koštanja, ona uzima vektor ulaznih podataka teta i još jednom u jednačini koju smo napisali ovde, 
+koristili smo 0 indeks vektor. Dakle, imamo teta0 do tetan. Ali oktava indeksi vektora počinju od 1 teta0 je u oktavi napisan kao teta1. Teta1 je napisan u oktavi kao teta2, i tako dalje do tetan plus 1. Šta smo trebali da uradimo je da obezbedimo funkciju. Napravićemo funkciju koja se zove funkcija cena koju ćemo da prosledimo u ono 
+što smo videli ranije. Koristićemo fminfunc i tada znate, u funkciji cena, i tako dalje, u redu. A fminunc znači fmin unconstrained (bez ograničenja) i ono šta radi fminunc je da uzme funkciju koštanja i minimizuje je. Dakle, dve glavne stvari koje funkcija koštanja treba da vrati su, kao prvo, jVal, a za to treba da napišemo kod da bi računao funkciju 
+koštanja J od teta. Sada kada koristimo 
+regularizovanu logističku regresiju, naravno, funkcija J od teta se menja i pojedinačno funkcija cena treba da uključi ovaj dodatni 
+pojam regularizacije na kraju. Kada računate J od teta uverite se da ste uključili taj deo na kraju. A onda, druga stvar koju ova funkcija koštanja treba da izvede je gradijent. Dakle, gradijent 1 treba da bude postavljen na parcijalni izvod funkcije J od teta uzimajući u obzir teta0, gradijent dva treba da bude postavljen 
+na to, i tako dalje. Još jednom, indeks 
+se razlikuje za jedan. U redu, zbog indeksiranja od jedinice koje oktava koristi. Pogledajte ove pojmove. Ovaj pojam ovde. Ovo smo u stvari radili na prethodnom slajdu 
+i jednak je ovome. Nije se promenio. Jer se izvod za teta0 ne menja. U poređenju sa 
+verzijom bez regularizacije. A ostali pojmovi se menjaju. I pojedinačno izvod po teta1, ovo smo takođe radili na prethodnom slajdu, je jednak, znate, originalni pojam minus lambda kroz m puta teta1. Da budemo sigurni da 
+smo ovo prešli kako treba. Ovde možemo da dodamo zagrade. U redu, sumiranje se neće širiti. Slično tome, znate, ovaj ovde pojam izgleda kao ovo, sa ovim dodatnim pojmom koji smo imali na prethodnom slajdu, on odgovara gradijentu objekta regularizacije. Dakle, ako implementirate ovu funkciju koštanja i prosledite ovo u fminunc ili u neku od tih naprednih tehnika optimizacije, to će da umanji novu regularizovanu 
+funkciju cena J od teta. A parametri koje dobijete su oni koji odgovaraju logističkoj regresiji sa regularizacijom. Dakle, sada znate kako da implementirate 
+regularizovanu logističku regresiju. Kada obilazim Silikonsku dolinu, ja živim ovde u 
+Silikonskoj dolini, postoji mnogo inženjera koji, 
+iskreno, zarađuju mnogo novca svojim kompanijama koristeći 
+algoritme mašinskog učenja. A znam da smo, znate, studirali ovo malo duže. Ali ako razumete linearnu regresiju, napredne algoritme optimizacije i regularizaciju, za sada, iskreno, verovatno znate mnogo više o mašinskom učenju od mnogih, zasigurno, ali verovatno znate mnogo više o mašinskom učenju baš sada od, iskreno, mnogih inženjera Silikonske doline koji tamo 
+negde imaju veoma uspešne karijere. Znate, koji zarađuju mnogo 
+novca svojim kompanijama. Ili izgrađujući sjajne proizvode koristeći 
+algoritme mašinskog učenja. Dakle, čestitam. U stvari ste prešli dugačak put. I u stvari možete, znate dovoljno da biste primenili ovu stvar i 
+rešili mnoge probleme. Pa, čestitam za to. Ali naravno, ima još uvek mnogo stvari kojima želim da vas naučim, i u sledećem nizu videa posle ovog, počećemo govoriti o veoma moćnom
+ nelinearnom klasifikatoru. Dakle, gde su linearna regresija, logistička regresija, znate, možete da napravite polinomske pojmove, ali ispada da postoje mnogo moćniji nelinearni klasifikatori koji mogu da sortiraju polinomsku regresiju. A u sledećem nizu videa posle ovoga, počeću 
+da govorim o njima. Tako da ćete da imate čak moćnije algoritme 
+učenja od onih koje ste do sada primenjivali 
+na različite probleme.

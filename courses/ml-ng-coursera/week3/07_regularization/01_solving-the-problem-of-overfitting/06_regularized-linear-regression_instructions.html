@@ -1,0 +1,113 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Regularized Linear Regression
+ </h1>
+ <p hasmath="true">
+  <strong>
+   Note:
+  </strong>
+  [8:43 - It is said that X is non-invertible if m $$\leq$$ n. The correct statement should be that X is non-invertible if m &lt; n, and may be non-invertible if m = n.
+ </p>
+ <p>
+  We can apply regularization to both linear regression and logistic regression. We will approach linear regression first.
+ </p>
+ <h3 level="3">
+  Gradient Descent
+ </h3>
+ <p hasmath="true">
+  We will modify our gradient descent function to separate out $$\theta_0$$ from the rest of the parameters because we do not want to penalize $$\theta_0$$.
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*} &amp; \text{Repeat}\ \lbrace \newline &amp; \ \ \ \ \theta_0 := \theta_0 - \alpha\ \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)} \newline &amp; \ \ \ \ \theta_j := \theta_j - \alpha\ \left[ \left( \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} \right) + \frac{\lambda}{m}\theta_j \right] &amp;\ \ \ \ \ \ \ \ \ \ j \in \lbrace 1,2...n\rbrace\newline &amp; \rbrace \end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  The term $$\frac{\lambda}{m}\theta_j$$ performs our regularization. With some manipulation our update rule can also be represented as:
+ </p>
+ <p hasmath="true">
+  $$\theta_j := \theta_j(1 - \alpha\frac{\lambda}{m}) - \alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}$$
+ </p>
+ <p hasmath="true">
+  The first term in the above equation, $$1 - \alpha\frac{\lambda}{m}$$ will always be less than 1. Intuitively you can see it as reducing the value of $$\theta_j$$ by some amount on every update. Notice that the second term is now exactly the same as it was before.
+ </p>
+ <h3 level="3">
+  <strong>
+   Normal Equation
+  </strong>
+ </h3>
+ <p>
+  Now let's approach regularization using the alternate method of the non-iterative normal equation.
+ </p>
+ <p>
+  To add in regularization, the equation is the same as our original, except that we add another term inside the parentheses:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; \theta = \left( X^TX + \lambda \cdot L \right)^{-1} X^Ty \newline&amp; \text{where}\ \ L = \begin{bmatrix} 0 &amp; &amp; &amp; &amp; \newline &amp; 1 &amp; &amp; &amp; \newline &amp; &amp; 1 &amp; &amp; \newline &amp; &amp; &amp; \ddots &amp; \newline &amp; &amp; &amp; &amp; 1 \newline\end{bmatrix}\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  L is a matrix with 0 at the top left and 1's down the diagonal, with 0's everywhere else. It should have dimension (n+1)×(n+1). Intuitively, this is the identity matrix (though we are not including $$x_0$$), multiplied with a single real number λ.
+ </p>
+ <p hasmath="true">
+  Recall that if m &lt; n, then $$X^TX$$ is non-invertible. However, when we add the term λ⋅L, then $$X^TX$$ + λ⋅L becomes invertible.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

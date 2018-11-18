@@ -1,0 +1,102 @@
+Matrix multiplication is really useful,
+since you can pack a lot of computation into just one matrix
+multiplication operation. But you should be careful
+of how you use them. In this video, I wanna tell you about
+a few properties of matrix multiplication. When working with just real numbers or when working with scalars,
+multiplication is commutative. And what I mean by that is
+that if you take 3 times 5, that is equal to 5 times 3. And the ordering of this
+multiplication doesn't matter. And this is called
+the commutative property of multiplication of real numbers. It turns out this property, they can reverse the order in
+which you multiply things. This is not true for
+matrix multiplication. So concretely, if A and B are matrices. Then in general,
+A times B is not equal to B times A. So, just be careful of that. Its not okay to arbitrarily reverse
+the order in which you multiply matrices. Matrix multiplication in not commutative,
+is the fancy way of saying it. As a concrete example,
+here are two matrices. This matrix 1 1 0 0 times 0 0 2 0 and if you multiply these two matrices
+you get this result on the right. Now let's swap around the order
+of these two matrices. So I'm gonna take this two matrices and
+just reverse them. It turns out if you multiply
+these two matrices, you get the second answer on the right. And well clearly, right, these two
+matrices are not equal to each other. So, in fact, in general if you have
+a matrix operation like A times B, if A is an m by n matrix, and B is an n by m matrix,
+just as an example. Then, it turns out that
+the matrix A times B, right, is going to be an m by m matrix. Whereas the matrix B times A is
+going to be an n by n matrix. So the dimensions don't even match, right? So if A x B and
+B x A may not even be the same dimension. In the example on the left,
+I have all two by two matrices. So the dimensions were the same, but
+in general, reversing the order of the matrices can even change
+the dimension of the outcome. So, matrix multiplication
+is not commutative. Here's the next property
+I want to talk about. So, when talking about real numbers or
+scalars, let's say I have 3 x 5 x 2. I can either multiply 5 x 2 first. Then I can compute this as 3 x 10. Or, I can multiply 3 x 5 first,
+and I can compute this as 15 x 2. And both of these give you
+the same answer, right? Both of these is equal to 30. So it doesn't matter whether
+I multiply 5 x 2 first or whether I multiply 3 x 5 first,
+because sort of, well, 3 x (5 x 2) = (3 x 5) x 2. And this is called the associative
+property of real number multiplication. It turns out that matrix
+multiplication is associative. So concretely, let's say I have
+a product of three matrices A x B x C. Then, I can compute this
+either as A x (B x C) or I can computer this as (A x B) x C, and these will actually
+give me the same answer. I'm not gonna prove this but
+you can just take my word for it I guess. So just be clear,
+what I mean by these two cases. Let's look at the first one, right. This first case. What I mean by that is if you
+actually wanna compute A x B x C. What you can do is you
+can first compute B x C. So that D = B x C then compute A x D. And so
+this here is really computing A x B x C. Or, for this second case,
+you can compute this as, you can set E = A x B,
+then compute E times C. And this is then the same as A x B x C,
+and it turns out that both of these options will give you this
+guarantee to give you the same answer. And so we say that matrix multiplication
+thus enjoy the associative property. Okay? And don't worry about the terminology
+associative and commutative. That's what it's called, but I'm not
+really going to use this terminology later in this class, so
+don't worry about memorizing those terms. Finally, I want to tell you
+about the Identity Matrix, which is a special matrix. So let's again make the analogy
+to what we know of real numbers. When dealing with real numbers or
+scalar numbers, the number 1, you can think of it as
+the identity of multiplication. And what I mean by that is that for any number z, 1 x z = z x 1. And that's just equal to the number z for
+any real number z. So 1 is the identity operation and
+so it satisfies this equation. So it turns out,
+that this in the space of matrices there's an identity matrix as well and
+it's usually denoted I or sometimes we write it as I of n x n if we
+want to make it explicit to dimensions. So I subscript n x n is
+the n x n identity matrix. And so that's a different identity
+matrix for each dimension n. And here are few examples. Here's the 2 x 2 identity matrix,
+here's the 3 x 3 identity matrix, here's the 4 x 4 matrix. So the identity matrix has the property
+that it has ones along the diagonals. All right, and so on. And 0 everywhere else. And so, by the way, the 1 x 1
+identity matrix is just a number 1, and so the 1 x 1 matrix with just 1 in it. So it's not a very
+interesting identity matrix. And informally, when I or
+others are being sloppy, very often we'll write the identity
+matrices in fine notation. We'll draw square brackets, just write
+one one one dot dot dot dot one, and then we'll maybe somewhat sloppily
+write a bunch of zeros there. And these zeroes on the,
+this big zero and this big zero, that's meant to denote that this matrix is
+zero everywhere except for the diagonal. So this is just how I might swap
+you the right D identity matrix. And it turns out that the identity
+matrix has its property that for any matrix A, A times identity
+equals I times A equals A so that's a lot like this
+equation that we have up here. Right? So 1 times z equals z
+times 1 equals z itself. So I times A equals A times I equals A. Just to make sure we have
+the dimensions right. So if A is an m by n matrix, then this identity matrix here,
+that's an n by n identity matrix. And if is and by then,
+then this identity matrix, right? For matrix multiplication to make sense,
+that has to be an m by m matrix. Because this m has the match up that m,
+and in either case, the outcome of this process is you get
+back the matrix A which is m by n. So whenever we write
+the identity matrix I, you know, very often the dimension Mention, right,
+will be implicit from the content. So these two I's, they're actually
+different dimension matrices. One may be n by n, the other is n by m. But when we want to make the dimension
+of the matrix explicit, then sometimes we'll write to this I subscript
+n by n, kind of like we had up here. But very often,
+the dimension will be implicit. Finally, I just wanna
+point out that earlier I said that AB is not,
+in general, equal to BA. Right? For most matrices A and
+B, this is not true. But when B is the identity matrix,
+this does hold true, that A times the identity matrix
+does indeed equal to identity times A is just that you know this is not
+true for other matrices B in general. So, that's it for the properties
+of matrix multiplication and special matrices like the identity
+matrix I want to tell you about. In the next and
+final video on our linear algebra review, I'm going to quickly tell you about
+a couple of special matrix operations and after that everything you need to know
+about linear algebra for this class.

@@ -1,0 +1,78 @@
+Willkommen zu dem kostenlosen Kurs in
+maschinellem Lernen. Maschinelles Lernen ist eine der spannendsten neuen Technologien.
+Und in diesem Kurs werden Sie über den letzen Stand der Technik lernen und Erfahrungen
+in der Implementierung erhalten, um diese Algorithmen selbst anzuwenden. Sie haben höchstwahrscheinlich bereits einen
+Lern Algorithmus zig Mal pro Tag benutzt ohne es zu wissen. Jedes mal wenn sie eine Suchmaschine
+wie Google oder Bing benutzen um im Internet zu suchen, ist einer der Gründe
+warum dies so gut funktioniert ein Lern Algorithmus der von Google oder Microsoft implementiert wurde
+und gelernt hat Webseiten zu ranken. Jedes Mal wenn Sie Facebook oder
+Apples Fotomarkierungs Anwendung benutzen und es die Fotos ihrer Freunde erkennt, dann 
+ist dies auch maschinelles Lernen. Jedes mal wenn Sie E-Mails lesen und Ihr Spam-Filter Sie davor bewahrt sich
+durch Unmengen von Spam-E-Mails durchzukämpfen dann ist dies auch maschinellem Lernen zu verdanken.
+Für mich ist eine der Gründe warum ich so begeistert bin ist der alte Traum in der künstlichen Intelligent eines Tages Maschinen zu bilden, 
+die genauso intelligent sind wie du und ich. Wir sind noch weit weg von diesem Ziel, aber viele Forscher in der KI glauben,
+dass der beste Weg, dieses Ziel zu erreichen die Verwendung von Lernalgorithmen ist, 
+die versuchen, die Art wie das menschliche Gehrin lernt zu imitieren. Ich werde dir auch darüber etwas in diesem Kurs erzählen.
+Hier du den Status-quo der maschinellen Lernalgorithmen. Aber es stellt sich heraus, dass es nicht genügt, nur die Algorithmen zu kennen und
+alle Mathematik nicht hilft, wenn man nicht gleichzeitig in der Lage ist, 
+dieses Wissen auf Probleme anzuwenden, die einen interessieren. Also haben wir viel Zeit darauf verwendet, 
+Aufgaben zu entwickeln, die diese Algorithmen implementieren und zu sehen,
+wie diese für dich funktionieren. Aber was ist der Grund, dass maschinelles Lernen so wichtig ist in der heutigen Zeit?
+Es stellt sich heraus, dass es sich hierbei um ein Feld handelt, dass aus dem KI-Umfeld herausgewachsen ist.
+Wir wollten intelligente Maschinen entwickeln, aber es stellt sich heraus, dass wir einige Basics programmieren konnten, wie beispielsweise den kürzesten Pfad von A nach B zu finden. Aber eigentlich wissen wir einfach nicht,
+wie man KI-Programme schreibt, die interessante Sachen macht wie beispielsweise das Internet zu durchsuchen, Foto zu taggen oder Anti-Spam. Es gab die Vermutung, dass der einzige Weg, dies zu tun , es ein maschinelles Programm lernen zu lassen. Maschinelles Lernen wurde als ein neue Funktion für Computer entwickelt und heutzutage betrifft es viele Bereiche der Industrie und der Grundlagenforschung. Ich persönlich arbeite im Bereich des Maschinelles Lernens
+und in einer typischen Woche ergeben sich Gespräche mit Hubschrauberpiloten, Biologen, einem Haufen
+Informatiker (also meine Kollegen hier in Stanford) und durchscnittlich zwei- 
+bis dreimal pro Woche bekomme ich eine e-mail von Leuten aus der Privatwirtschaft in Silicon Valley,
+die mich kontaktieren weil sie daran interessiert sind Lernalgorithmen auf ihre Problemstellungen 
+anzuwenden. Das ist bezeichnend für die große Bandbreite an Problemen, die mit Maschinellem Lernen
+in Zusammenhang gebracht werden können. Es gibt autonome Robotik, rechnergestützte Biologie und eine
+Menge anderer Dinge in Silicon Valley, die von Maschinellem Lernen geprägt werden. Hier sind noch ein paar Beispiele
+für Maschinelles Lernen. Es gibt Database Mining. Einer der Gründe warum Maschinelles Lernen so viel
+an Einfluss gewonnen hat ist der Wachstum des Webs und der Automation. All das bedeutet, dass wir heute mit
+viel größeren Datensets zu tun haben als je zuvor. So sammeln zum Beispiel viele Silicon Valley Firmen heutzutage Web Click Daten, sogenannte click stream Daten,
+und sie verwenden Algorithmen aus dem Maschinellen Lernen um diese Daten auszuwerten und um die
+Nutzer besser zu verstehen und um besser auf sie einzugehen. Das ist ein riesiger Bereich des Silicon Valley im Moment. Medizinisch daten. Mit der Einführung der Automatisierung
+haben wir jetzt elektronische Patientendaten, also können wir Patientendaten in 
+Wissen umwandeln, damit können wir Krankheiten besser verstehen.
+Wieder mit Automatisierung, sammeln Biologen sehr viele Daten über Gensequenzen,
+DNA-Sequenzen, und so weiter, und Algorithmen ausfürhende Maschinen verhelfen uns
+zu einem sehr viel besseren Verständnis des menschlichen Genoms, und dessen was es heißt, ein Mensch zu sein.
+Und auch in allen Feldern der Ingenieurwissenschaften haben wir größere und größere,
+und immer größere Datensätze, welche wir mithilfe lernender Algorithmen zu verstehen versuchen.
+Eine zweite Reihe and maschinellen Anwendungen ist eine die wir nicht
+von Hand programmieren können. Zum Beispiel habe ich viele Jahre lang an autonomen Hubschraubern gearbeitet.
+Wir wussten jedoch einfach nicht, wie wir ein Programm schreiben konnten, das den Hubschrauber von selbst fliegen ließ.
+Die einzig funktionierende Sache war, den Computer selbst lernen zu lassen,
+wie man diesen Hubschrauber fliegt. [Hubschrauber rattert] Erkennung von Handschrift. Es stellt sich heraus, dass
+einer der Gründe weshalb es heutzutage so teuer ist, Post quer durch das Land zu schicken,
+sowohl in den USA als auch international, die Handschrift auf dem Umschlag ist. Es stellt sich heraus,
+dass es einen lernenden Algorithmus gibt, der gelernt hat, eine Handschrift zu
+lesen, so dass er den Umschlag automatisch auf den Weg schicken kann.
+So kostet es uns nur wenige Cent, dieses Ding tausende von Meilen weit zu verschicken. Und tatsächlich,
+wenn man die Bereiche der Spracherkennung oder Computer Vision gesehen hat:
+Dies sind die Gebiete der K.I., welche uns helfen, Sprache und Bilder besser zu verstehen.
+Der größte Teil der Spracherkennung und der Computer Vision sind heute
+angewandtes maschinelles Lernen. Lernende Alogrithmen werden auch oftmals bei sich selbst verbessernden
+Programmen eingesetzt. Jedes Mal wenn man Amazon oder Netflix oder iTunes Genius benutzt,
+und man Vorschläge für Filme, Produkte und Musik erhält, dann war das ein lernender Algorithmus.
+Wenn man bedenkt, dass diese Diente von Millionen genutzt werden; es ist unmöglich, für alle diese Nutzer
+Millionen von Programmen zu schreiben. Der einzige Weg, damit Software diese angepassten
+Empfehlungen machen kann, besteht darin, sie selbst lernend zu machen. So passt sie sich an
+die Vorlieben der Nutzer an. Schließlich werden lernende Algorithmen heutzutage auch dazu genutzt,
+menschliches Lernen und das Gehirn zu verstehen. Wir werden darüber sprechen,
+wie Forscher diese Erkenntnisse nutzen, um dem großen Traum der vollumfänglichen künstlichen Intelligenz
+näher zu kommen.
+Vor einigen Monaten zeigte mir ein Student einen Artikel über die 12 wichtigsten IT-Kenntnisse. Die Fähigkeiten,
+zu denen kein Manager, der jemanden in diesem Bereich einstellen möchte, nein sagen kann. Der Artikel war schon
+ein wenig älter, aber an der Spitze der Liste der beliebtesten 12 IT-Fähigkeiten
+war maschinelles Lernen. Hier in Stanford, die Zahl der Personalanwerber,
+die bei mir anfragen, ob ich irgendwelche Absolventen in diesem Bereich kenne,
+ist wesentlich größer als die Zahl der Studenten in diesem Bereich jedes Jahr.
+Daher glaube ich, dass es eine riesige, unerfüllte Nachfrage nach diesen Fähigkeiten gibt.
+Und es ist eine tolle Zeit, über maschinelles Lernen zu lernen. Und ich hoffe, dass ich euch viel über maschinelles Lernen
+in diesem Kurs beinbringen kann. Im nächsten Video werden wir mit einer formelleren Definition
+des maschinellen Lernens einsteigen. Und wir werden anfangen über die Haupt-Typen von
+Problemen und Algortihmen in diesem Bereich zu sprechen. Ihr werdet einige der wichtigsten Begriffe
+des maschinellen Lernens aufgreifen und anfangen, ein Gefühl die verschiedenen Algorithmen
+zu bekommen, und welcher wann angemessen sein könnte.

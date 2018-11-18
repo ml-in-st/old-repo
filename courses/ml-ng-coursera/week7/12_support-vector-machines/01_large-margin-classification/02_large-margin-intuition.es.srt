@@ -1,0 +1,1231 @@
+1
+00:00:00,750 --> 00:00:02,160
+A veces, la gente habla de las
+
+2
+00:00:02,520 --> 00:00:04,380
+máquinas de soporte vectorial como
+
+3
+00:00:04,990 --> 00:00:06,950
+clasificadores de márgenes amplios. En este
+
+4
+00:00:07,080 --> 00:00:08,030
+video les explicaré qué significa esto
+
+5
+00:00:08,410 --> 00:00:09,500
+y les daré
+
+6
+00:00:09,780 --> 00:00:10,520
+un panorama
+
+7
+00:00:11,030 --> 00:00:12,780
+útil de cómo se ve una
+
+8
+00:00:13,020 --> 00:00:17,460
+hipótesis de una SVM.
+
+9
+00:00:18,070 --> 00:00:19,290
+Aquí tengo mi función de costos para la máquina de soporte vectorial
+
+10
+00:00:21,310 --> 00:00:22,290
+donde a la izquierda
+
+11
+00:00:22,790 --> 00:00:24,300
+tracé mi función
+
+12
+00:00:24,560 --> 00:00:28,100
+costo 1 de “z” que utilizo en ejemplos positivos, y a la derecha tracé la
+
+13
+00:00:30,080 --> 00:00:31,510
+variable 0 de “z”, donde tengo
+
+14
+00:00:31,950 --> 00:00:33,850
+“z” en el ej horizontal.
+
+15
+00:00:34,380 --> 00:00:35,520
+Ahora, pensemos qué hace
+
+16
+00:00:35,650 --> 00:00:38,380
+falta para hacer estas funciones de costo más pequeñas.
+
+17
+00:00:39,660 --> 00:00:40,970
+Si tienes un ejemplo positivo,
+
+18
+00:00:41,950 --> 00:00:43,170
+si “y” es igual a
+
+19
+00:00:43,490 --> 00:00:45,060
+1, entonces costo 1 de
+
+20
+00:00:45,200 --> 00:00:46,750
+“z” será 0 sólo cuando
+
+21
+00:00:47,700 --> 00:00:50,070
+“z” sea igual o mayor que 1.
+
+22
+00:00:50,180 --> 00:00:51,370
+En otras palabras,
+
+23
+00:00:51,510 --> 00:00:52,860
+si tienes un ejemplo positivo, queremos
+
+24
+00:00:53,110 --> 00:00:54,550
+que teta transpuesta de “x” sea más grande
+
+25
+00:00:54,870 --> 00:00:55,760
+o igual a 1.
+
+26
+00:00:56,450 --> 00:00:58,030
+Y a la inversa, si “y”
+
+27
+00:00:58,150 --> 00:00:59,300
+es igual a 0, como en esta
+
+28
+00:00:59,510 --> 00:01:00,490
+función costo 0 de “z”, entonces
+
+29
+00:01:01,560 --> 00:01:03,000
+sólo en esta región,
+
+30
+00:01:03,200 --> 00:01:04,310
+donde “z” es
+
+31
+00:01:04,460 --> 00:01:05,810
+menor o igual a 1
+
+32
+00:01:06,150 --> 00:01:07,320
+que tendremos un costo de 0
+
+33
+00:01:07,610 --> 00:01:10,150
+si “z” es igual a 0.
+
+34
+00:01:10,640 --> 00:01:12,270
+Una propiedad interesante de las máquinas de
+
+35
+00:01:12,560 --> 00:01:13,630
+soporte vectorial es que,
+
+36
+00:01:13,800 --> 00:01:15,060
+si tienes un ejemplo positivo, o sea, si
+
+37
+00:01:15,440 --> 00:01:17,650
+“y” es igual a 1,
+
+38
+00:01:18,370 --> 00:01:19,250
+entonces necesitamos que
+
+39
+00:01:19,550 --> 00:01:21,950
+teta transpuesta de “x” sea mayor que cero.
+
+40
+00:01:22,970 --> 00:01:25,270
+Esto significaría que estaríamos realizando una clasificación correcta
+
+41
+00:01:25,860 --> 00:01:26,950
+porque si teta transpuesta de “x” es mayor que 0,
+
+42
+00:01:27,510 --> 00:01:28,980
+nuestra hipótesis hará una predicción de 0.
+
+43
+00:01:29,840 --> 00:01:30,710
+De manera similar, si
+
+44
+00:01:31,340 --> 00:01:34,090
+tienes un ejemplo negativo, lo que queremos es que teta transpuesta de “x”
+
+45
+00:01:34,850 --> 00:01:37,290
+sea menor que cero. Esto nos asegurará que tenemos el ejemplo correcto.
+
+46
+00:01:37,670 --> 00:01:40,230
+Pero la máquina de soporte vectorial quiere un poco más que esto.
+
+47
+00:01:40,580 --> 00:01:43,360
+No sólo quiere que obtengas el ejemplo correcto,
+
+48
+00:01:44,320 --> 00:01:45,990
+no queremos
+
+49
+00:01:46,240 --> 00:01:47,580
+que sea sólo un poco mayor que cero. Lo que en
+
+50
+00:01:47,890 --> 00:01:48,870
+realidad quiero es que
+
+51
+00:01:49,060 --> 00:01:50,370
+sea mucho mayor a cero; quizá
+
+52
+00:01:50,490 --> 00:01:51,430
+hasta mayor o igual
+
+53
+00:01:51,680 --> 00:01:52,530
+a 1.
+
+54
+00:01:52,870 --> 00:01:54,400
+Y quiero que esto de abajo sea mucho menor a cero.
+
+55
+00:01:54,800 --> 00:01:55,970
+Quizá
+
+56
+00:01:56,230 --> 00:01:58,140
+menor o igual a - 1.
+
+57
+00:01:58,830 --> 00:02:00,000
+Esto construye
+
+58
+00:02:00,120 --> 00:02:01,660
+un factor de seguridad adicional o un factor
+
+59
+00:02:02,070 --> 00:02:03,630
+de margen de seguridad en la máquina de vector de soporte.
+
+60
+00:02:04,030 --> 00:02:05,700
+La regresión logística
+
+61
+00:02:06,340 --> 00:02:07,620
+hace algo similar,
+
+62
+00:02:07,820 --> 00:02:08,900
+pero veamos qué
+
+63
+00:02:09,110 --> 00:02:10,350
+pasa o
+
+64
+00:02:10,460 --> 00:02:11,290
+cuáles son las consecuencias de
+
+65
+00:02:11,360 --> 00:02:13,180
+esto en el contexto de máquinas de soporte vectorial.
+
+66
+00:02:14,830 --> 00:02:15,740
+Lo que me gustaría hacer a continuación
+
+67
+00:02:16,010 --> 00:02:17,760
+es considerar un caso
+
+68
+00:02:17,900 --> 00:02:19,130
+en el que determinamos que esta
+
+69
+00:02:19,460 --> 00:02:21,240
+constante “C” es
+
+70
+00:02:21,400 --> 00:02:23,340
+un valor muy grande.
+
+71
+00:02:23,530 --> 00:02:24,700
+Imaginemos que le damos a “C”
+
+72
+00:02:24,820 --> 00:02:28,080
+un valor muy grande; quizá cien mil o un número enorme.
+
+73
+00:02:29,370 --> 00:02:31,290
+Veamos que hace la máquina de soporte vectorial.
+
+74
+00:02:31,580 --> 00:02:33,510
+Si “C” es muy,
+
+75
+00:02:33,820 --> 00:02:35,340
+muy grande, entonces, cuando minimicemos
+
+76
+00:02:36,350 --> 00:02:38,080
+el objetivo de optimización
+
+77
+00:02:38,300 --> 00:02:39,640
+estaremos más inclinados a elegir un valor
+
+78
+00:02:39,950 --> 00:02:41,240
+para que este primer
+
+79
+00:02:41,380 --> 00:02:43,180
+término sea igual a 0.
+
+80
+00:02:44,810 --> 00:02:46,250
+Intentemos
+
+81
+00:02:46,670 --> 00:02:48,320
+entender el problema de optimización
+
+82
+00:02:48,430 --> 00:02:49,820
+en el contexto de qué
+
+83
+00:02:50,050 --> 00:02:51,520
+se necesitaría para hacer que el
+
+84
+00:02:51,880 --> 00:02:53,060
+primer término en el objetivo sea igual
+
+85
+00:02:53,470 --> 00:02:54,890
+a cero porque,
+
+86
+00:02:55,000 --> 00:02:56,100
+quizá “C” tenga una
+
+87
+00:02:56,250 --> 00:02:59,420
+constante enorme. Esto, con suerte,
+
+88
+00:02:59,590 --> 00:03:00,780
+nos dará
+
+89
+00:03:01,300 --> 00:03:02,920
+una intuición adicional
+
+90
+00:03:03,110 --> 00:03:05,520
+de las hipótesis que aprenderá la máquina de vector de soporte.
+
+91
+00:03:06,440 --> 00:03:07,720
+Ya vimos que cuando tenemos
+
+92
+00:03:08,140 --> 00:03:09,260
+un ejemplo de entrenamiento
+
+93
+00:03:09,480 --> 00:03:11,350
+con un valor asignado de
+
+94
+00:03:11,690 --> 00:03:13,850
+“y” igual a 1, si
+
+95
+00:03:13,950 --> 00:03:15,050
+queremos que el primer término
+
+96
+00:03:15,240 --> 00:03:16,280
+sea 0, necesitamos
+
+97
+00:03:16,450 --> 00:03:17,680
+encontrar el valor de teta para que
+
+98
+00:03:17,990 --> 00:03:20,380
+teta transpuesta de “x” sea
+
+99
+00:03:20,690 --> 00:03:22,800
+mayor o igual a 1.
+
+100
+00:03:23,220 --> 00:03:24,250
+De manera similar, cuando tenemos un ejemplo cuyo valor
+
+101
+00:03:24,960 --> 00:03:26,910
+asignado es 0, para asegurarnos
+
+102
+00:03:27,240 --> 00:03:28,060
+de que el costo
+
+103
+00:03:29,000 --> 00:03:30,520
+0 de “z”
+
+104
+00:03:30,610 --> 00:03:31,530
+sea
+
+105
+00:03:31,790 --> 00:03:33,250
+0, necesitamos que teta transpuesta
+
+106
+00:03:33,810 --> 00:03:36,180
+de “x(i)” sea menor
+
+107
+00:03:37,900 --> 00:03:38,740
+menor o igual a - 1.
+
+108
+00:03:39,510 --> 00:03:40,770
+Ahora, si pensamos en
+
+109
+00:03:41,050 --> 00:03:43,030
+nuestro parámetro como ahora,
+
+110
+00:03:43,360 --> 00:03:45,000
+elegir los parámetros
+
+111
+00:03:45,710 --> 00:03:46,750
+nos aseguran que este
+
+112
+00:03:47,020 --> 00:03:48,170
+primer término es igual a cero
+
+113
+00:03:49,130 --> 00:03:50,230
+y nos quedamos
+
+114
+00:03:50,330 --> 00:03:51,670
+con el siguiente problema de optimización.
+
+115
+00:03:52,050 --> 00:03:53,720
+Minimizaremos el primer
+
+116
+00:03:53,980 --> 00:03:55,360
+término 0; es decir, “C”
+
+117
+00:03:55,590 --> 00:03:56,710
+por 0, porque
+
+118
+00:03:56,870 --> 00:03:58,040
+elegiremos los parámetros para
+
+119
+00:03:58,150 --> 00:03:59,710
+que sea igual a 0, más un medio.
+
+120
+00:04:00,330 --> 00:04:01,330
+Después, el
+
+121
+00:04:01,460 --> 00:04:05,440
+segundo término. Este
+
+122
+00:04:05,620 --> 00:04:06,880
+primer término es “C” igual a cero así que
+
+123
+00:04:07,160 --> 00:04:08,020
+lo eliminaremos porque
+
+124
+00:04:08,130 --> 00:04:11,210
+sabemos de antemano que será 0.
+
+125
+00:04:11,380 --> 00:04:12,570
+Esto estará sujeto a la condición
+
+126
+00:04:13,400 --> 00:04:15,410
+de que teta transpuesta de “x(i)”
+
+127
+00:04:16,390 --> 00:04:17,560
+es mayor o igual a
+
+128
+00:04:18,700 --> 00:04:20,930
+1, si “y(i)”
+
+129
+00:04:22,180 --> 00:04:24,150
+es igual a 1 y teta
+
+130
+00:04:24,940 --> 00:04:26,560
+transpuesta de “x(i)” es menor
+
+131
+00:04:26,690 --> 00:04:28,060
+o igual a menos 1
+
+132
+00:04:29,030 --> 00:04:31,680
+cuando tenemos un
+
+133
+00:04:32,110 --> 00:04:34,460
+ejemplo negativo.
+
+134
+00:04:34,540 --> 00:04:35,520
+Resulta que
+
+135
+00:04:35,660 --> 00:04:37,930
+cuando resolvemos este problema de optimización,
+
+136
+00:04:38,070 --> 00:04:39,440
+y minimizamos esto como una variable del parámetro teta,
+
+137
+00:04:40,710 --> 00:04:42,090
+obtenemos una barrera de
+
+138
+00:04:42,590 --> 00:04:44,870
+decisión interesante. Si
+
+139
+00:04:45,010 --> 00:04:46,470
+observas un conjunto de datos
+
+140
+00:04:46,750 --> 00:04:49,660
+con ejemplos positivos y negativos como estos, los
+
+141
+00:04:50,920 --> 00:04:52,430
+datos son separables linealmente. Con
+
+142
+00:04:52,710 --> 00:04:54,960
+esto me refiero a que existe una línea recta, o
+
+143
+00:04:55,530 --> 00:04:56,830
+muchas líneas rectas distintas,
+
+144
+00:04:56,920 --> 00:04:57,810
+pueden separar perfectamente
+
+145
+00:04:58,720 --> 00:05:01,060
+los ejemplos negativos y los positivos.
+
+146
+00:05:01,560 --> 00:05:02,710
+Por ejemplo, aquí hay una barrera de decisión
+
+147
+00:05:04,270 --> 00:05:05,430
+que separa los ejemplos positivos y negativos,
+
+148
+00:05:05,570 --> 00:05:06,840
+pero por alguna
+
+149
+00:05:07,030 --> 00:05:07,810
+razón no se ve muy
+
+150
+00:05:07,900 --> 00:05:09,680
+natura, ¿cierto? O podemos
+
+151
+00:05:09,810 --> 00:05:11,050
+trazar
+
+152
+00:05:11,230 --> 00:05:13,540
+otra barrera de decisión que apenas
+
+153
+00:05:13,710 --> 00:05:14,830
+separe los ejemplos positivos
+
+154
+00:05:14,900 --> 00:05:15,960
+y negativos.
+
+155
+00:05:16,120 --> 00:05:18,530
+Pero ninguna de estas líneas parecen opciones muy buenas.
+
+156
+00:05:20,420 --> 00:05:22,880
+La máquina de vector de soporte elegirá
+
+157
+00:05:23,140 --> 00:05:26,450
+esta barrera de decisión que estoy dibujando en negro.
+
+158
+00:05:29,010 --> 00:05:30,030
+Esta parece ser una mejor barrera de decisión que
+
+159
+00:05:30,760 --> 00:05:32,310
+las que dibujé
+
+160
+00:05:32,420 --> 00:05:34,450
+en magenta o en verde.
+
+161
+00:05:34,750 --> 00:05:35,790
+La línea negra parece ser
+
+162
+00:05:36,050 --> 00:05:37,840
+un separador más sólido. Hace un
+
+163
+00:05:38,610 --> 00:05:39,710
+mejor trabajo separando los ejemplos positivos y los negativos.
+
+164
+00:05:39,800 --> 00:05:42,830
+Matemáticamente, lo que hace esta
+
+165
+00:05:43,530 --> 00:05:45,680
+barrera de decisiones negra es tener una distancia mayor.
+
+166
+00:05:49,160 --> 00:05:50,580
+La distancia es lo que llamamos margen. Si
+
+167
+00:05:50,760 --> 00:05:51,790
+la comparamos con estas
+
+168
+00:05:52,380 --> 00:05:54,320
+dos líneas azules adicionales
+
+169
+00:05:54,540 --> 00:05:56,010
+podemos notar que la barrera de decisiones
+
+170
+00:05:56,240 --> 00:05:59,990
+negra tiene una distancia mínima mayor entre los ejemplos de entrenamiento,
+
+171
+00:06:00,120 --> 00:06:01,350
+mientras que las líneas magenta y verde
+
+172
+00:06:01,580 --> 00:06:02,600
+se acercan mucho a los ejemplos de entrenamiento y
+
+173
+00:06:04,640 --> 00:06:06,100
+hacen un trabajo menos efectivo
+
+174
+00:06:06,500 --> 00:06:08,910
+separando los ejemplos positivos y negativos que la línea negra.
+
+175
+00:06:09,850 --> 00:06:11,500
+Por lo tanto, esta
+
+176
+00:06:11,800 --> 00:06:13,600
+distancia se llama
+
+177
+00:06:13,960 --> 00:06:16,500
+margen de la
+
+178
+00:06:16,600 --> 00:06:21,300
+máquina de soporte vectorial y
+
+179
+00:06:21,500 --> 00:06:22,480
+le da a la SVM cierta
+
+180
+00:06:22,940 --> 00:06:24,010
+solidez, porque
+
+181
+00:06:24,360 --> 00:06:25,530
+intenta separar los datos con
+
+182
+00:06:25,700 --> 00:06:27,440
+el mayor margen posible.
+
+183
+00:06:29,210 --> 00:06:30,250
+La máquina de vector de soporte
+
+184
+00:06:30,380 --> 00:06:31,650
+también se llama
+
+185
+00:06:31,830 --> 00:06:33,930
+clasificador de margen amplio. Esta es una consecuencia
+
+186
+00:06:34,170 --> 00:06:36,180
+del problema de optimización que
+
+187
+00:06:36,430 --> 00:06:39,370
+escribimos en la diapositiva anterior.
+
+188
+00:06:40,140 --> 00:06:40,950
+Sé que se preguntan
+
+189
+00:06:41,100 --> 00:06:42,250
+cómo funciona el
+
+190
+00:06:42,400 --> 00:06:43,900
+problema de optimización que
+
+191
+00:06:44,070 --> 00:06:45,080
+escribí en la diapositiva anterior y cómo
+
+192
+00:06:45,280 --> 00:06:47,270
+nos lleva a este clasificador de margen amplio.
+
+193
+00:06:48,350 --> 00:06:49,700
+Sé que no lo he explicado aún.
+
+194
+00:06:50,520 --> 00:06:51,570
+En el siguiente video
+
+195
+00:06:51,810 --> 00:06:53,340
+presentaré
+
+196
+00:06:53,500 --> 00:06:55,180
+un poco del concepto de porqué
+
+197
+00:06:55,430 --> 00:06:57,080
+el problema de optimización nos da un
+
+198
+00:06:57,570 --> 00:06:59,630
+clasificador de margen amplio.  Esta es una
+
+199
+00:06:59,790 --> 00:07:00,860
+variable útil
+
+200
+00:07:00,970 --> 00:07:01,780
+cuando
+
+201
+00:07:01,920 --> 00:07:03,150
+intentas entender los tipos de hipótesis
+
+202
+00:07:03,290 --> 00:07:05,600
+que elegirá la SVM,
+
+203
+00:07:06,140 --> 00:07:07,200
+es decir, cuando intentas separar los
+
+204
+00:07:07,270 --> 00:07:10,310
+ejemplos positivos y negativos con el mayor margen posible.
+
+205
+00:07:12,890 --> 00:07:13,950
+Quiero decir una última cosa
+
+206
+00:07:14,180 --> 00:07:15,930
+acerca de los clasificadores de márgenes amplios en
+
+207
+00:07:16,070 --> 00:07:17,900
+este contexto.
+
+208
+00:07:18,030 --> 00:07:19,340
+Escribimos esta configuración de
+
+209
+00:07:20,010 --> 00:07:21,040
+clasificación de márgenes amplios
+
+210
+00:07:21,420 --> 00:07:23,640
+donde “C”, el concepto de regularización,
+
+211
+00:07:24,160 --> 00:07:25,190
+era muy amplio. Creo que lo
+
+212
+00:07:25,390 --> 00:07:27,750
+determinamos como cien mil o algo similar.
+
+213
+00:07:28,310 --> 00:07:29,760
+Con un conjunto de datos como este, elegiremos
+
+214
+00:07:30,110 --> 00:07:31,630
+la barrera de decisión que
+
+215
+00:07:32,110 --> 00:07:34,000
+separe los
+
+216
+00:07:34,140 --> 00:07:36,210
+ejemplos positivos y negativos por un margen amplio.
+
+217
+00:07:37,370 --> 00:07:39,020
+Ahora, el SVM es, de hecho, un
+
+218
+00:07:39,370 --> 00:07:41,120
+poco más sofisticada de lo que
+
+219
+00:07:41,440 --> 00:07:42,920
+sugiere este margen.
+
+220
+00:07:43,630 --> 00:07:45,130
+En particular,
+
+221
+00:07:45,310 --> 00:07:46,490
+si lo que estamos haciendo es utilizar
+
+222
+00:07:46,680 --> 00:07:48,850
+un clasificador de margen amplio, el
+
+223
+00:07:49,020 --> 00:07:50,270
+algoritmo será
+
+224
+00:07:50,920 --> 00:07:52,260
+sensible a valores atípicos. Entonces,
+
+225
+00:07:52,450 --> 00:07:53,990
+añadamos el ejemplo positivo
+
+226
+00:07:54,520 --> 00:07:56,540
+adicional que se muestra en la pantalla.
+
+227
+00:07:57,230 --> 00:07:58,830
+Si añadimos este ejemplo, parece que
+
+228
+00:07:58,950 --> 00:08:00,060
+para separar
+
+229
+00:08:00,300 --> 00:08:01,410
+los datos con un margen amplio
+
+230
+00:08:02,680 --> 00:08:04,300
+tendremos una
+
+231
+00:08:05,270 --> 00:08:07,260
+barrera de decisión como esta, ¿cierto?
+
+232
+00:08:07,540 --> 00:08:09,130
+como esta línea magenta. No
+
+233
+00:08:09,180 --> 00:08:10,210
+parece ser muy natural cambiar
+
+234
+00:08:10,440 --> 00:08:11,950
+mi barrera de
+
+235
+00:08:12,180 --> 00:08:13,560
+decisiones de
+
+236
+00:08:13,790 --> 00:08:14,720
+la línea negra
+
+237
+00:08:14,890 --> 00:08:16,460
+a la línea magenta
+
+238
+00:08:17,060 --> 00:08:17,980
+con base en ese
+
+239
+00:08:18,290 --> 00:08:19,960
+único ejemplo.
+
+240
+00:08:20,980 --> 00:08:23,430
+De manera que si
+
+241
+00:08:23,640 --> 00:08:25,740
+el parámetro de regularización “C” fuera
+
+242
+00:08:25,970 --> 00:08:27,110
+muy alto, entonces
+
+243
+00:08:27,300 --> 00:08:28,130
+nuestra SVM será adecuada y
+
+244
+00:08:28,360 --> 00:08:29,820
+cambiará la barrera de
+
+245
+00:08:30,270 --> 00:08:31,530
+decisión de la línea negra a la
+
+246
+00:08:31,650 --> 00:08:33,650
+magenta. Pero si
+
+247
+00:08:33,810 --> 00:08:35,390
+“C” fuera razonablemente baja; es decir, si
+
+248
+00:08:35,550 --> 00:08:36,720
+utilizaras “C” con un valor no muy alto
+
+249
+00:08:37,320 --> 00:08:39,090
+entonces conservarías
+
+250
+00:08:39,260 --> 00:08:40,400
+esta barrera de
+
+251
+00:08:40,610 --> 00:08:44,500
+decisión negra.
+
+252
+00:08:44,830 --> 00:08:46,880
+Por supuesto, si los datos no fueran separables linealmente y tuvieras
+
+253
+00:08:47,250 --> 00:08:48,790
+ejemplos positivos ahí, o tuvieras
+
+254
+00:08:49,170 --> 00:08:50,440
+ejemplos negativos
+
+255
+00:08:50,980 --> 00:08:52,300
+acá, la SVM
+
+256
+00:08:52,570 --> 00:08:53,830
+también hará lo correcto.
+
+257
+00:08:54,260 --> 00:08:55,710
+Esta imagen de
+
+258
+00:08:56,060 --> 00:08:57,770
+un clasificador de márgenes amplios es
+
+259
+00:08:58,090 --> 00:08:59,410
+la imagen que nos
+
+260
+00:08:59,530 --> 00:09:01,720
+da el mejor entendimiento
+
+261
+00:09:01,970 --> 00:09:03,440
+para el caso en el que
+
+262
+00:09:03,560 --> 00:09:05,050
+el parámetro de regularización “C”
+
+263
+00:09:05,190 --> 00:09:07,170
+es muy alto. Como
+
+264
+00:09:07,420 --> 00:09:08,810
+recordatorio, “C” juega un
+
+265
+00:09:09,650 --> 00:09:11,300
+papel similar a
+
+266
+00:09:11,850 --> 00:09:13,600
+1 sobre «lambda», donde «lambda»
+
+267
+00:09:13,930 --> 00:09:15,950
+es el parámetro de regularización
+
+268
+00:09:16,110 --> 00:09:17,970
+que utilizamos anteriormente. Será sólo si
+
+269
+00:09:18,080 --> 00:09:18,880
+1 sobre «lambda» es mayor o
+
+270
+00:09:19,080 --> 00:09:21,060
+si «lambda» es muy
+
+271
+00:09:21,280 --> 00:09:23,110
+pequeño que
+
+272
+00:09:23,560 --> 00:09:24,640
+obtendremos barreras
+
+273
+00:09:24,850 --> 00:09:27,600
+de decisión como esta magenta. Pero,
+
+274
+00:09:28,870 --> 00:09:29,560
+en la práctica, cuando aplicamos máquinas de vector de soporte
+
+275
+00:09:30,190 --> 00:09:31,620
+y “C” no es muy alta,
+
+276
+00:09:31,910 --> 00:09:33,180
+podemos
+
+277
+00:09:34,840 --> 00:09:36,390
+hacer un mejor trabajo ignorando
+
+278
+00:09:36,980 --> 00:09:38,590
+valores atípicos como estos  y
+
+279
+00:09:39,150 --> 00:09:40,320
+aplicando cosas razonables,
+
+280
+00:09:40,620 --> 00:09:44,400
+aún si los datos no son separables linealmente.
+
+281
+00:09:44,690 --> 00:09:46,810
+Más delante, cuando hablemos de oscilación y varianza en el contexto de máquinas
+
+282
+00:09:46,980 --> 00:09:47,990
+de soporte vectorial, las
+
+283
+00:09:48,170 --> 00:09:50,170
+compensaciones que involucran el
+
+284
+00:09:50,410 --> 00:09:51,990
+parámetro de regularización
+
+285
+00:09:52,410 --> 00:09:53,710
+quedarán más claras.
+
+286
+00:09:53,830 --> 00:09:55,280
+Espero que esto te
+
+287
+00:09:55,580 --> 00:09:57,290
+de un mejor entendimiento
+
+288
+00:09:57,600 --> 00:09:59,680
+de las funciones de la máquina de vector de soporte como
+
+289
+00:09:59,850 --> 00:10:01,810
+clasificadores de márgenes amplios que
+
+290
+00:10:01,950 --> 00:10:03,040
+intentan separar los datos con el mayor
+
+291
+00:10:03,610 --> 00:10:05,210
+margen posible. Técnicamente,
+
+292
+00:10:06,140 --> 00:10:07,160
+esta imagen sólo es verdadera
+
+293
+00:10:07,460 --> 00:10:08,710
+cuando el parámetro “C” es muy alto y es
+
+294
+00:10:10,230 --> 00:10:11,720
+una manera útil de visualizar una máquina de vector de soporte.
+
+295
+00:10:13,120 --> 00:10:14,450
+En este video nos
+
+296
+00:10:14,560 --> 00:10:15,990
+falto mencionar
+
+297
+00:10:16,110 --> 00:10:17,670
+cómo nos lleva el problema
+
+298
+00:10:17,770 --> 00:10:18,770
+de optimización que escribimos en
+
+299
+00:10:19,040 --> 00:10:19,930
+estas diapositivas a
+
+300
+00:10:20,740 --> 00:10:22,490
+un clasificador de márgenes amplios. No
+
+301
+00:10:22,600 --> 00:10:23,520
+lo expliqué
+
+302
+00:10:23,930 --> 00:10:25,830
+en este video, pero en el
+
+303
+00:10:25,870 --> 00:10:26,940
+siguiente presentaré
+
+304
+00:10:27,120 --> 00:10:28,370
+rápidamente las matemáticas que están
+
+305
+00:10:28,750 --> 00:10:29,750
+detrás de esto para explicar
+
+306
+00:10:29,850 --> 00:10:31,660
+un razonamiento independiente de
+
+307
+00:10:31,930 --> 00:10:33,410
+cómo nos lleva el problema de optimización
+
+308
+00:10:33,840 --> 00:10:34,990
+que escribimos al clasificador de margen amplio.

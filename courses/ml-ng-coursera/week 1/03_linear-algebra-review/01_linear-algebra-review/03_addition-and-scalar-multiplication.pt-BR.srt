@@ -1,0 +1,708 @@
+1
+00:00:00,250 --> 00:00:01,612
+Neste vídeo, falaremos sobre
+
+2
+00:00:01,612 --> 00:00:03,503
+adição e subtração de matrizes,
+
+3
+00:00:03,503 --> 00:00:04,950
+e também sobre como
+
+4
+00:00:04,950 --> 00:00:06,582
+multiplicar uma matriz por um
+
+5
+00:00:06,582 --> 00:00:09,292
+número, também chamada multiplicação escalar.
+
+6
+00:00:09,292 --> 00:00:11,825
+Vamos começar com um exemplo,
+
+7
+00:00:11,825 --> 00:00:14,725
+Temos duas matrizes como estas,
+
+8
+00:00:14,725 --> 00:00:16,735
+e digamos que eu quero adicionar uma à outra.
+
+9
+00:00:16,735 --> 00:00:18,038
+Como faço isso?
+
+10
+00:00:18,038 --> 00:00:20,538
+O que significa adição de matrizes?
+
+11
+00:00:20,538 --> 00:00:21,632
+Acontece que se você
+
+12
+00:00:21,632 --> 00:00:24,312
+quer adicionar duas matrizes,
+
+13
+00:00:24,312 --> 00:00:25,762
+basta adicionar os elementos
+
+14
+00:00:25,762 --> 00:00:28,076
+dessas matrizes um de cada vez.
+
+15
+00:00:28,076 --> 00:00:30,363
+Assim, o resultado de adicionar
+
+16
+00:00:30,363 --> 00:00:31,480
+duas matrizes será
+
+17
+00:00:31,480 --> 00:00:33,415
+outra matriz, e
+
+18
+00:00:33,415 --> 00:00:34,972
+o primeiro elemento é obtido
+
+19
+00:00:34,972 --> 00:00:36,732
+adicionando um e quatro,
+
+20
+00:00:36,732 --> 00:00:39,470
+então temos cinco.
+
+21
+00:00:39,470 --> 00:00:41,578
+O segundo elemento encontro
+
+22
+00:00:41,578 --> 00:00:43,092
+pegando dois e dois
+
+23
+00:00:43,092 --> 00:00:44,169
+e adicionando, e encontamos
+
+24
+00:00:44,169 --> 00:00:47,240
+quatro; três mais três
+
+25
+00:00:47,255 --> 00:00:49,568
+mais zero é três, a assim vai.
+
+26
+00:00:49,570 --> 00:00:51,442
+Acho que vou parar de mudar de cores.
+
+27
+00:00:51,442 --> 00:00:52,768
+E na direita temos 0.5
+
+28
+00:00:52,768 --> 00:00:54,820
+10 e 2.
+
+29
+00:00:56,140 --> 00:00:57,182
+E acontece que pode-se
+
+30
+00:00:57,182 --> 00:01:00,408
+apenas adicionar matrizes que possuam a mesma dimensão.
+
+31
+00:01:00,408 --> 00:01:02,789
+Esse exemplo é
+
+32
+00:01:02,789 --> 00:01:05,595
+uma matriz 3 por 2,
+
+33
+00:01:07,120 --> 00:01:09,029
+Por que ela tem 3
+
+34
+00:01:09,029 --> 00:01:11,917
+linhas e 2 colunas, então é 3 por 2.
+
+35
+00:01:11,917 --> 00:01:13,451
+Esta também é uma
+
+36
+00:01:13,451 --> 00:01:15,113
+matriz 3 por 2,
+
+37
+00:01:15,113 --> 00:01:16,202
+e o resultado da adição das duas
+
+38
+00:01:16,202 --> 00:01:19,415
+é novamente uma matriz 3 por 2.
+
+39
+00:01:19,415 --> 00:01:20,468
+Então pode-se apenas adicionar
+
+40
+00:01:20,470 --> 00:01:21,837
+matrizes da mesma
+
+41
+00:01:21,837 --> 00:01:23,533
+dimensão, e o resultado
+
+42
+00:01:23,550 --> 00:01:24,959
+vai ser outra matriz
+
+43
+00:01:24,959 --> 00:01:28,057
+com a mesma dimensão das duas que você acabou de adicionar.
+
+44
+00:01:29,180 --> 00:01:30,785
+Onde ao contrário, se você
+
+45
+00:01:30,785 --> 00:01:31,803
+pegasse essas duas matrizes, essa
+
+46
+00:01:31,803 --> 00:01:32,894
+aqui é 3 por 2,
+
+47
+00:01:32,894 --> 00:01:36,208
+certo, 3 linhas, 2 colunas.
+
+48
+00:01:36,230 --> 00:01:38,659
+Essa é uma matriz 2 por 2.
+
+49
+00:01:39,190 --> 00:01:41,190
+E como essas duas matrizes
+
+50
+00:01:41,200 --> 00:01:42,837
+não possuem a mesma dimensão,
+
+51
+00:01:43,160 --> 00:01:44,635
+isso é um erro,
+
+52
+00:01:44,635 --> 00:01:46,400
+então você não pode adicionar essas
+
+53
+00:01:46,430 --> 00:01:48,508
+duas matrizes,
+
+54
+00:01:48,508 --> 00:01:52,184
+a soma delas não é definida.
+
+55
+00:01:52,642 --> 00:01:54,561
+Essa é adição matricial.
+
+56
+00:01:54,561 --> 00:01:58,382
+Agora, vamos falar sobre multiplicar matrizes por um número escalar.
+
+57
+00:01:58,382 --> 00:02:00,069
+E o escalar é somente um
+
+58
+00:02:00,069 --> 00:02:02,028
+termo muito extravagante
+
+59
+00:02:02,028 --> 00:02:04,342
+para um número real.
+
+60
+00:02:04,760 --> 00:02:07,075
+Isso representa um número real.
+
+61
+00:02:07,076 --> 00:02:10,280
+Então vamos pegar o número 3 e multiplicar por essa matriz.
+
+62
+00:02:10,280 --> 00:02:13,182
+E se você fizer isso, o resultado e basicamente o que você esperaria.
+
+63
+00:02:13,182 --> 00:02:14,926
+Simplesmente pega-se os elementos
+
+64
+00:02:14,926 --> 00:02:16,184
+da matriz e multiplica-se
+
+65
+00:02:16,184 --> 00:02:18,114
+eles por 3, um de cada vez.
+
+66
+00:02:18,114 --> 00:02:19,428
+Então um
+
+67
+00:02:19,428 --> 00:02:21,708
+vezes três é três
+
+68
+00:02:21,708 --> 00:02:24,011
+Dois vezes três é 6
+
+69
+00:02:24,011 --> 00:02:25,988
+3 vezes 3 é 9,
+
+70
+00:02:25,988 --> 00:02:28,181
+e, vejamos, eu vou
+
+71
+00:02:28,181 --> 00:02:30,152
+parar de trocar de cores de novo.
+
+72
+00:02:30,157 --> 00:02:31,654
+0 vezes 3 é zero.
+
+73
+00:02:31,654 --> 00:02:35,992
+três vezes 5 é 15, e 3 vezes 1 é três.
+
+74
+00:02:35,992 --> 00:02:37,849
+E assim essa matriz é o
+
+75
+00:02:37,849 --> 00:02:40,702
+resultado da multiplicação da matriz da esquerda por 3
+
+76
+00:02:40,702 --> 00:02:42,173
+E você vai notar, novamente,
+
+77
+00:02:42,173 --> 00:02:43,443
+ela é uma matriz 3 por 2
+
+78
+00:02:43,443 --> 00:02:44,903
+e o resultado é
+
+79
+00:02:44,903 --> 00:02:47,505
+uma matriz de mesma dimensão.
+
+80
+00:02:47,505 --> 00:02:48,634
+Essa é uma 3 por
+
+81
+00:02:48,634 --> 00:02:49,920
+2, ambas são
+
+82
+00:02:49,920 --> 00:02:52,607
+matrizes de dimensão 3 por 2.
+
+83
+00:02:52,634 --> 00:02:54,334
+Falando nisso,
+
+84
+00:02:54,334 --> 00:02:57,050
+pode-se escrever a multiplicação de qualquer forma.
+
+85
+00:02:57,050 --> 00:02:59,491
+Então, eu tenho três vezes essa matriz
+
+86
+00:02:59,491 --> 00:03:01,468
+E poderia ter escrito essa
+
+87
+00:03:01,470 --> 00:03:05,256
+matriz e 0, 2, 5, 3, 1,
+
+88
+00:03:05,256 --> 00:03:07,672
+eu simplesmente copiei a matriz para a direita.
+
+89
+00:03:07,672 --> 00:03:11,228
+Eu também posso pegar essa matriz e multiplicá-la por 3.
+
+90
+00:03:11,228 --> 00:03:12,040
+Então quer seja 3
+
+91
+00:03:12,060 --> 00:03:13,388
+vezes a matriz ou
+
+92
+00:03:13,388 --> 00:03:14,983
+a matriz vezes três
+
+93
+00:03:14,983 --> 00:03:18,771
+o resultado é o mesmo e é essa matriz no meio.
+
+94
+00:03:19,380 --> 00:03:22,869
+Você também pode pegar uma matriz e dividir por um número.
+
+95
+00:03:22,869 --> 00:03:24,275
+Então, pegar
+
+96
+00:03:24,275 --> 00:03:25,716
+a matriz e dividir por quatro
+
+97
+00:03:25,716 --> 00:03:27,140
+é na verdade
+
+98
+00:03:27,172 --> 00:03:29,055
+a mesma coisa que pegar o número
+
+99
+00:03:29,055 --> 00:03:32,819
+um quarto, e multiplicá-lo pela matriz.
+
+100
+00:03:32,819 --> 00:03:35,318
+4, 0, 6, 3 e
+
+101
+00:03:35,318 --> 00:03:36,803
+então, você consegue descobrir
+
+102
+00:03:36,820 --> 00:03:38,593
+a resposta, o resultado desse
+
+103
+00:03:38,593 --> 00:03:40,365
+produto é, um quarto
+
+104
+00:03:40,365 --> 00:03:43,274
+vezes 4 é um, um quarto vezes 0 é zero.
+
+105
+00:03:43,282 --> 00:03:46,570
+Um quarto vezes seis é,
+
+106
+00:03:46,590 --> 00:03:49,353
+o que, três meios, já que seis sobre
+
+107
+00:03:49,353 --> 00:03:50,369
+quatro é três meios,
+
+108
+00:03:50,369 --> 00:03:53,862
+e um quarto vezes três é três quartos.
+
+109
+00:03:54,410 --> 00:03:55,880
+E então esse é o resultado
+
+110
+00:03:55,920 --> 00:03:59,207
+do cálculo da divisão da matriz por quatro.
+
+111
+00:03:59,207 --> 00:04:01,677
+Vetores dão o resultado.
+
+112
+00:04:01,697 --> 00:04:03,805
+Finalmente, para um exemplo
+
+113
+00:04:03,805 --> 00:04:05,714
+um pouco mais complicado, você pode
+
+114
+00:04:05,714 --> 00:04:09,460
+também pegar essas operações e combiná-las.
+
+115
+00:04:09,513 --> 00:04:11,448
+Então nessa expressão, eu
+
+116
+00:04:11,448 --> 00:04:12,801
+tenho três vezes um vetor
+
+117
+00:04:12,801 --> 00:04:16,370
+mais um vetor menos outro vetor divido por três.
+
+118
+00:04:16,370 --> 00:04:18,344
+Então apenas tenha certeza de que sabemos onde eles estão.
+
+119
+00:04:18,344 --> 00:04:20,031
+Essa multiplicação.
+
+120
+00:04:20,031 --> 00:04:23,648
+Esse é um exemplo
+
+121
+00:04:23,680 --> 00:04:27,986
+de multiplicação escalar por que eu estou pegando e multiplicando por três.
+
+122
+00:04:27,986 --> 00:04:30,240
+E isso é outra
+
+123
+00:04:30,240 --> 00:04:32,067
+multiplicação escalar.
+
+124
+00:04:32,067 --> 00:04:34,182
+Ou mais como uma divisão por escalar.
+
+125
+00:04:34,182 --> 00:04:36,503
+Isso significa simplesmente um zero vezes isso.
+
+126
+00:04:36,503 --> 00:04:39,445
+E então se calcularmos
+
+127
+00:04:39,509 --> 00:04:43,044
+essas duas operações primeiro
+
+128
+00:04:43,044 --> 00:04:44,612
+teremos que isso
+
+129
+00:04:44,612 --> 00:04:47,127
+é igual a
+
+130
+00:04:47,127 --> 00:04:49,902
+três vezes aquele vetor é três
+
+131
+00:04:49,912 --> 00:04:53,200
+12, 6, mais
+
+132
+00:04:53,200 --> 00:04:55,088
+meu vetor do meio que
+
+133
+00:04:55,088 --> 00:04:58,552
+é 0 0 5 menos
+
+134
+00:04:59,850 --> 00:05:03,733
+um, zero, dois terços, certo?
+
+135
+00:05:03,740 --> 00:05:05,318
+então, apenas tenha
+
+136
+00:05:05,318 --> 00:05:07,064
+certeza que estamos entendendo o que está acontecendo,
+
+137
+00:05:07,064 --> 00:05:11,504
+esse símbolo de adição, que é
+
+138
+00:05:11,520 --> 00:05:15,690
+adição matricial.
+
+139
+00:05:15,690 --> 00:05:16,973
+Como esses são vetores,
+
+140
+00:05:16,973 --> 00:05:20,204
+eles são casos especiais de matrizes.
+
+141
+00:05:20,204 --> 00:05:21,538
+Você também pode chamar isso de
+
+142
+00:05:21,538 --> 00:05:25,106
+adição vetorial. Esse
+
+143
+00:05:25,110 --> 00:05:27,148
+sinal de subtração aqui é
+
+144
+00:05:27,160 --> 00:05:30,162
+uma subtração matricial,
+
+145
+00:05:30,162 --> 00:05:32,249
+mas como isso é um
+
+146
+00:05:32,249 --> 00:05:33,432
+n por 1, na realidade uma matriz
+
+147
+00:05:33,432 --> 00:05:35,547
+3 por 1, isso é
+
+148
+00:05:35,547 --> 00:05:36,494
+na verdade um vetor,
+
+149
+00:05:36,494 --> 00:05:39,822
+essa coluna também é um vetor.
+
+150
+00:05:39,850 --> 00:05:43,677
+Nós também chamamos isso de subtração vetorial.
+
+151
+00:05:43,677 --> 00:05:44,392
+OK?
+
+152
+00:05:44,392 --> 00:05:46,073
+E finalmente para finalizar.
+
+153
+00:05:46,110 --> 00:05:48,103
+Isso resulta em
+
+154
+00:05:48,118 --> 00:05:49,952
+um vetor, cujo primeiro elemento
+
+155
+00:05:49,952 --> 00:05:53,632
+será 3 +0 -1
+
+156
+00:05:53,632 --> 00:05:56,150
+que é 3-1, ou 2.
+
+157
+00:05:56,150 --> 00:06:01,204
+O segundo elemento é 12+0-0, que é 12.
+
+158
+00:06:01,214 --> 00:06:03,970
+e o terceiro elemento
+
+159
+00:06:03,970 --> 00:06:07,222
+disso é 6+5-(2/3),
+
+160
+00:06:07,222 --> 00:06:10,678
+que é 11-(2/3), então
+
+161
+00:06:10,678 --> 00:06:14,021
+isso é 10 e um terço,
+
+162
+00:06:14,021 --> 00:06:16,029
+e veja, fecha-se o colchetes da direita
+
+163
+00:06:16,029 --> 00:06:17,983
+Então isso me dá
+
+164
+00:06:17,983 --> 00:06:21,671
+uma matriz 3 por 1, que é
+
+165
+00:06:21,671 --> 00:06:23,901
+também chamado um vetor de 3
+
+166
+00:06:23,901 --> 00:06:29,005
+dimensões, que
+
+167
+00:06:29,030 --> 00:06:32,847
+é o resultado desse cálculo.
+
+168
+00:06:32,847 --> 00:06:34,984
+Então, é dessa maneira que se
+
+169
+00:06:34,984 --> 00:06:36,698
+adiciona e subtrai matrizes e
+
+170
+00:06:36,698 --> 00:06:41,488
+vetores e multiplica-se eles por escalares ou por números.
+
+171
+00:06:41,488 --> 00:06:42,767
+Até agora eu falei apenas
+
+172
+00:06:42,767 --> 00:06:44,718
+sobre como multiplicar matrizes e
+
+173
+00:06:44,718 --> 00:06:46,994
+vetores por escalares, por números em linha.
+
+174
+00:06:46,994 --> 00:06:48,128
+No próximos vídeo falaremos
+
+175
+00:06:48,128 --> 00:06:49,418
+sobre um passo
+
+176
+00:06:49,418 --> 00:06:51,035
+muito mais interessante, sobre pegar
+
+177
+00:06:51,035 --> 00:06:54,112
+2 matrizes e multiplicá-las uma pela outra.
+Revisor: Eduardo Bonet | Tradutores: Eduardo Bonet, Marcel Dall'Agnol

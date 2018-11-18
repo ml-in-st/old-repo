@@ -1,0 +1,2111 @@
+1
+00:00:00,680 --> 00:00:01,740
+En este video, me gustaría
+
+2
+00:00:01,900 --> 00:00:02,960
+contarles un poco acerca
+
+3
+00:00:03,210 --> 00:00:04,680
+de las matemáticas que están detrás de una clasificación de margen amplio.
+
+4
+00:00:05,960 --> 00:00:08,390
+Este video es opcional así que siéntete libre de saltártelo; sin embargo
+
+5
+00:00:09,260 --> 00:00:10,380
+te podrá dar un mejor
+
+6
+00:00:10,650 --> 00:00:11,980
+entendimiento acerca de
+
+7
+00:00:12,460 --> 00:00:13,830
+cómo nos lleva el problema de optimización de la
+
+8
+00:00:13,940 --> 00:00:15,540
+máquina de vector de soporte a
+
+9
+00:00:15,860 --> 00:00:17,150
+un clasificador de márgenes amplios.
+
+10
+00:00:21,180 --> 00:00:22,530
+Para iniciar, permítanme
+
+11
+00:00:22,600 --> 00:00:23,730
+recordarles algunas
+
+12
+00:00:23,970 --> 00:00:26,490
+propiedades de cómo se verían los productos internos de un vector.
+
+13
+00:00:28,310 --> 00:00:29,280
+Digamos que tenemos dos vectores “U”
+
+14
+00:00:29,900 --> 00:00:32,180
+y “V” que se ven así y
+
+15
+00:00:32,950 --> 00:00:34,180
+ambos son vectores bidimensionales.
+
+16
+00:00:35,460 --> 00:00:36,940
+Observemos cómo se ve “U”
+
+17
+00:00:37,440 --> 00:00:39,550
+transpuesto de “V”.
+
+18
+00:00:40,160 --> 00:00:42,180
+“U” transpuesto de “V”
+
+19
+00:00:42,300 --> 00:00:43,720
+también es llamado productos internos
+
+20
+00:00:44,490 --> 00:00:45,880
+entre los vectores “U” y “V”.
+
+21
+00:00:48,360 --> 00:00:49,960
+Utilizaré un vector bidimensional para
+
+22
+00:00:50,380 --> 00:00:51,940
+trazarlo en esta figura.
+
+23
+00:00:52,760 --> 00:00:53,860
+Digamos que
+
+24
+00:00:54,040 --> 00:00:55,850
+este es el vector “U”.
+
+25
+00:00:55,960 --> 00:00:56,930
+A lo que me refiero con esto es que
+
+26
+00:00:57,110 --> 00:00:59,160
+en el eje horizontal,
+
+27
+00:00:59,360 --> 00:01:00,820
+el trazo toma el valor que
+
+28
+00:01:01,560 --> 00:01:03,280
+tenga u1 y en el eje vertical
+
+29
+00:01:03,350 --> 00:01:04,820
+la altura del trazo será el valor que
+
+30
+00:01:05,100 --> 00:01:06,360
+tenga u2, que es el
+
+31
+00:01:07,340 --> 00:01:08,530
+segundo componente
+
+32
+00:01:08,990 --> 00:01:12,580
+del vector “U”.
+
+33
+00:01:12,860 --> 00:01:13,760
+Una cantidad que
+
+34
+00:01:14,040 --> 00:01:15,430
+nos sería útil es la norma
+
+35
+00:01:16,500 --> 00:01:17,540
+del vector “U”.
+
+36
+00:01:17,860 --> 00:01:19,390
+Estas de la derecha y la izquierda son
+
+37
+00:01:19,540 --> 00:01:20,380
+barras dobles que denotan
+
+38
+00:01:20,800 --> 00:01:22,610
+la norma o longitud del
+
+39
+00:01:22,730 --> 00:01:23,930
+vector “U”; es decir, la
+
+40
+00:01:24,200 --> 00:01:27,330
+distancia euclidiana
+
+41
+00:01:27,410 --> 00:01:30,800
+del vector “U”. Este
+
+42
+00:01:31,350 --> 00:01:33,600
+teorema de Pitágoras
+
+43
+00:01:33,940 --> 00:01:35,420
+es igual a la raíz cuadrada de
+
+44
+00:01:35,620 --> 00:01:37,300
+“U”1 cuadrada más
+
+45
+00:01:37,530 --> 00:01:40,190
+“U”2 cuadrada. ¿Sí?
+
+46
+00:01:40,300 --> 00:01:42,780
+Esta es la longitud del vector “U” expresada como número real.
+
+47
+00:01:43,730 --> 00:01:44,750
+¿Cuál es la longitud
+
+48
+00:01:45,080 --> 00:01:46,120
+de esta línea o la
+
+49
+00:01:46,220 --> 00:01:48,900
+longitud de este vector de aquí?
+
+50
+00:01:49,680 --> 00:01:50,490
+¿Cuál es la longitud
+
+51
+00:01:50,760 --> 00:01:52,990
+de esta flecha que dibujé para ilustrar la norma de “U”?
+
+52
+00:01:56,020 --> 00:01:57,300
+Ahora, regresemos un poco y
+
+53
+00:01:57,450 --> 00:01:59,660
+veamos el vector “V” porque queremos calcular el producto interno.
+
+54
+00:02:00,430 --> 00:02:01,380
+“V” es otro vector
+
+55
+00:02:01,520 --> 00:02:03,150
+con los
+
+56
+00:02:03,310 --> 00:02:06,900
+valores “V”1 y “V”2
+
+57
+00:02:08,340 --> 00:02:10,490
+y “V” se verá
+
+58
+00:02:10,880 --> 00:02:15,050
+así.
+
+59
+00:02:16,920 --> 00:02:18,260
+Ahora, regresemos
+
+60
+00:02:18,640 --> 00:02:19,880
+para ver cómo calcular
+
+61
+00:02:20,400 --> 00:02:21,610
+el producto interno entre
+
+62
+00:02:21,860 --> 00:02:23,320
+“U” y “V”. A continuación les diré cómo hacerlo.
+
+63
+00:02:24,010 --> 00:02:25,780
+Tomaremos el vector “V” y
+
+64
+00:02:26,200 --> 00:02:28,440
+lo proyectaremos al vector “U”. Tomaré
+
+65
+00:02:28,550 --> 00:02:29,700
+la proyección ortogonal o
+
+66
+00:02:29,930 --> 00:02:31,900
+de 90 grados y la proyectaré
+
+67
+00:02:31,970 --> 00:02:33,700
+en “U” así.
+
+68
+00:02:33,920 --> 00:02:35,490
+Bajaré una línea aquí.
+
+69
+00:02:36,650 --> 00:02:37,410
+Después,
+
+70
+00:02:38,130 --> 00:02:39,480
+mediremos la longitud de esta
+
+71
+00:02:40,210 --> 00:02:41,520
+línea roja que dibujé aquí.
+
+72
+00:02:41,720 --> 00:02:42,620
+Designaré con una “P” la longitud
+
+73
+00:02:42,730 --> 00:02:44,670
+de esta línea roja. “P”, entonces,
+
+74
+00:02:45,530 --> 00:02:46,830
+es la longitud o la
+
+75
+00:02:46,890 --> 00:02:48,230
+magnitud de la proyección
+
+76
+00:02:49,670 --> 00:02:51,670
+del vector “V” en el
+
+77
+00:02:51,790 --> 00:02:54,380
+vector “U”. Lo voy a escribir aquí.
+
+78
+00:02:54,560 --> 00:02:55,600
+Entonces, “P” es la longitud
+
+79
+00:02:57,500 --> 00:03:02,150
+de la proyección del
+
+80
+00:03:02,260 --> 00:03:05,800
+vector “V” en el
+
+81
+00:03:05,920 --> 00:03:08,210
+vector “U”. Es posible
+
+82
+00:03:08,430 --> 00:03:10,510
+que el producto interno
+
+83
+00:03:10,790 --> 00:03:12,710
+“U” transpuesta de “V” sea
+
+84
+00:03:12,870 --> 00:03:13,540
+igual a
+
+85
+00:03:13,840 --> 00:03:16,330
+“P” multiplicado por la norma
+
+86
+00:03:16,430 --> 00:03:18,020
+o la longitud del vector
+
+87
+00:03:18,110 --> 00:03:21,130
+“U”.
+
+88
+00:03:21,460 --> 00:03:23,400
+Esta es una manera de calcular el producto interno.
+
+89
+00:03:24,070 --> 00:03:25,590
+Si desarrollas la geometría
+
+90
+00:03:25,780 --> 00:03:27,160
+y resuelves cuál es
+
+91
+00:03:27,330 --> 00:03:29,280
+“P” y cuál es la norma de “U”,
+
+92
+00:03:29,900 --> 00:03:30,690
+podrás obtener el mismo
+
+93
+00:03:31,050 --> 00:03:32,330
+resultado
+
+94
+00:03:32,680 --> 00:03:33,840
+que con la otra manera de calcular el producto interno que
+
+95
+00:03:34,860 --> 00:03:34,860
+¿Correcto?
+
+96
+00:03:35,070 --> 00:03:36,140
+en tomar “U” transpuesta de
+
+97
+00:03:36,280 --> 00:03:38,150
+“V” y trasponer “V” como
+
+98
+00:03:39,000 --> 00:03:40,930
+“U1” y “U2”; es decir,
+
+99
+00:03:41,090 --> 00:03:42,650
+como una matriz de uno por dos, por 1 por V.
+
+100
+00:03:43,220 --> 00:03:45,250
+Esto debería
+
+101
+00:03:45,620 --> 00:03:46,930
+darte como resultado
+
+102
+00:03:47,490 --> 00:03:50,630
+“U”1, “V”1 más “U”2, “V”2.
+
+103
+00:03:51,700 --> 00:03:53,140
+El hecho de que
+
+104
+00:03:53,310 --> 00:03:55,010
+estas dos fórmulas arrojen los mismos
+
+105
+00:03:55,180 --> 00:03:56,880
+resultados es un
+
+106
+00:03:57,890 --> 00:03:58,720
+teorema algebraico.
+
+107
+00:03:59,290 --> 00:04:01,010
+Por cierto “U” transpuesta de “V” es
+
+108
+00:04:01,320 --> 00:04:03,490
+igual a “V” transpuesta de “U” de
+
+109
+00:04:03,650 --> 00:04:04,510
+manera que el proceso es el mismo,
+
+110
+00:04:05,050 --> 00:04:06,860
+pero al revés. En vez de proyectar
+
+111
+00:04:07,120 --> 00:04:08,130
+“V” en “U”, puedes proyectar
+
+112
+00:04:08,520 --> 00:04:09,940
+“U” en “V” y seguir
+
+113
+00:04:10,160 --> 00:04:12,410
+con el mismo proceso pero con las columnas de “U” y “V” invertidas.
+
+114
+00:04:13,170 --> 00:04:14,390
+Deberías poder
+
+115
+00:04:14,710 --> 00:04:16,900
+obtener el mismo número, cual sea, para ambas.
+
+116
+00:04:17,540 --> 00:04:18,790
+Aclararé lo que está
+
+117
+00:04:18,990 --> 00:04:20,850
+pasando en esta ecuación:
+
+118
+00:04:21,030 --> 00:04:21,920
+la norma de “U” es un número
+
+119
+00:04:22,100 --> 00:04:25,260
+real al igual que “P”.
+
+120
+00:04:25,760 --> 00:04:28,720
+“U” transpuesta de “V”
+
+121
+00:04:29,410 --> 00:04:32,350
+es la multiplicación regular de dos números reales:
+
+122
+00:04:33,040 --> 00:04:34,440
+la longitud de “P” por la norma de “V”.
+
+123
+00:04:35,580 --> 00:04:36,960
+Un último detalle:
+
+124
+00:04:37,190 --> 00:04:38,240
+si observas la norma de “P”,
+
+125
+00:04:38,330 --> 00:04:40,250
+“P” está firmado y
+
+126
+00:04:41,350 --> 00:04:43,240
+puede ser positivo o negativo.
+
+127
+00:04:44,350 --> 00:04:45,530
+Explicaré esto.
+
+128
+00:04:45,650 --> 00:04:46,740
+Si “U” es
+
+129
+00:04:47,170 --> 00:04:49,360
+un vector que se ve
+
+130
+00:04:49,640 --> 00:04:51,360
+así y “V” es un vector que se ve así y
+
+131
+00:04:52,380 --> 00:04:53,890
+si el ángulo entre “U” y
+
+132
+00:04:54,130 --> 00:04:55,770
+“V” es mayor a 90 grados,
+
+133
+00:04:56,620 --> 00:04:57,960
+entonces, lo que obtendré
+
+134
+00:04:58,270 --> 00:05:00,220
+si proyecto “U” en “V” es
+
+135
+00:05:00,420 --> 00:05:01,590
+una proyección con
+
+136
+00:05:01,720 --> 00:05:03,860
+este aspecto.
+
+137
+00:05:04,110 --> 00:05:05,490
+Esta es la longitud de “P”. Y, en este
+
+138
+00:05:05,670 --> 00:05:06,900
+caso, de nuevo tendré que
+
+139
+00:05:07,670 --> 00:05:09,510
+“U” transpuesta de “V” es
+
+140
+00:05:09,660 --> 00:05:11,720
+igual a “P” por
+
+141
+00:05:11,800 --> 00:05:14,070
+la norma de “U”, excepto por que en
+
+142
+00:05:14,200 --> 00:05:16,600
+este ejemplo “P” será negativa.
+
+143
+00:05:19,150 --> 00:05:20,990
+Así que los productos internos,
+
+144
+00:05:21,320 --> 00:05:22,540
+si el ángulo entre “U” y “V” es
+
+145
+00:05:22,790 --> 00:05:23,820
+menor a 90 grados, entonces “P”
+
+146
+00:05:24,100 --> 00:05:26,480
+es la longitud positiva de esta línea roja,
+
+147
+00:05:27,130 --> 00:05:28,420
+mientras que si este ángulo
+
+148
+00:05:28,720 --> 00:05:29,640
+es mayor a
+
+149
+00:05:30,000 --> 00:05:31,890
+90 grados, “P”
+
+150
+00:05:32,130 --> 00:05:33,880
+será la longitud
+
+151
+00:05:34,130 --> 00:05:37,260
+negativa de estos segmentos de línea.
+
+152
+00:05:37,650 --> 00:05:38,750
+Por lo tanto, el producto interno
+
+153
+00:05:38,900 --> 00:05:40,130
+entre dos vectores puede ser negativo cuando
+
+154
+00:05:40,820 --> 00:05:42,900
+el ángulo entre ellos es mayor a 90 grados.
+
+155
+00:05:43,770 --> 00:05:45,100
+Así es como funcionan los productos
+
+156
+00:05:45,310 --> 00:05:46,490
+internos de los vectores. Utilizaremos las propiedades
+
+157
+00:05:46,930 --> 00:05:47,960
+del producto interno de los vectores
+
+158
+00:05:48,280 --> 00:05:49,610
+para intentar
+
+159
+00:05:49,840 --> 00:05:51,880
+entender el objetivo de optimización
+
+160
+00:05:52,400 --> 00:05:54,490
+de la máquina de vector de soporte. Aquí
+
+161
+00:05:54,630 --> 00:05:58,620
+tenemos el objetivo de optimización
+
+162
+00:05:58,650 --> 00:06:00,900
+para la máquina de vector de soporte que utilizamos antes. En esta diapositiva, haré
+
+163
+00:06:01,100 --> 00:06:02,070
+una simplificación
+
+164
+00:06:02,120 --> 00:06:04,520
+sólo para facilitar
+
+165
+00:06:04,910 --> 00:06:08,220
+el análisis del objetivo. Lo que haré es
+
+166
+00:06:08,670 --> 00:06:10,110
+ignorar los
+
+167
+00:06:10,270 --> 00:06:14,160
+términos de intersección. Ignoraremos «theta» 0 y la igualaremos a 0. Para facilitar
+
+168
+00:06:16,510 --> 00:06:22,950
+el trazo, pondré “N”, el número de variables, igual a 2. Por lo tanto, tenemos sólo dos variables,
+
+169
+00:06:23,980 --> 00:06:24,710
+“X”1 y “X”2.
+
+170
+00:06:26,510 --> 00:06:27,980
+Ahora, veamos la función objetiva
+
+171
+00:06:28,470 --> 00:06:29,910
+o el objetivo de optimización de
+
+172
+00:06:30,160 --> 00:06:32,130
+la SVM. Aquí tenemos sólo dos variables
+
+173
+00:06:32,630 --> 00:06:33,710
+donde “N” es igual a 2.
+
+174
+00:06:34,170 --> 00:06:35,340
+Esto se puede expresar como
+
+175
+00:06:36,130 --> 00:06:37,900
+un medio de
+
+176
+00:06:38,040 --> 00:06:40,080
+«theta» 1 cuadrada más «theta» 2 cuadrada
+
+177
+00:06:40,620 --> 00:06:42,870
+porque sólo tenemos dos parámetros: «theta» 1 y «theta» 2.
+
+178
+00:06:45,240 --> 00:06:46,730
+Lo que haré a continuación es volver a escribir esto.
+
+179
+00:06:46,940 --> 00:06:47,900
+Lo escribiré como un
+
+180
+00:06:48,090 --> 00:06:49,980
+medio por
+
+181
+00:06:50,190 --> 00:06:51,860
+el cuadrado de la raíz cuadrada de
+
+182
+00:06:52,050 --> 00:06:54,160
+«theta» 1 más «theta» 2.
+
+183
+00:06:54,820 --> 00:06:55,760
+La razón por la cual puedo hacer esto
+
+184
+00:06:56,100 --> 00:06:58,990
+es porque para cualquier número, el
+
+185
+00:07:00,830 --> 00:07:02,480
+cuadrado de la raíz cuadrada
+
+186
+00:07:02,570 --> 00:07:03,930
+de “W” es igual a “W”. La
+
+187
+00:07:04,080 --> 00:07:05,650
+raíz cuadrada al
+
+188
+00:07:05,840 --> 00:07:07,250
+cuadrado debe darte el mismo resultado.
+
+189
+00:07:08,600 --> 00:07:09,500
+Puedes darte cuenta de que este
+
+190
+00:07:09,730 --> 00:07:11,870
+término de adentro del paréntesis
+
+191
+00:07:12,290 --> 00:07:13,450
+es igual a la norma
+
+192
+00:07:14,530 --> 00:07:16,460
+o la longitud del
+
+193
+00:07:16,690 --> 00:07:18,250
+vector «theta». A lo que me
+
+194
+00:07:18,430 --> 00:07:20,020
+refiero con esto es a que
+
+195
+00:07:20,200 --> 00:07:21,640
+si escribo el vector «theta»
+
+196
+00:07:21,700 --> 00:07:22,590
+como «theta» 1,
+
+197
+00:07:23,080 --> 00:07:24,320
+«theta» 2, entones el término
+
+198
+00:07:25,260 --> 00:07:26,260
+que subrayé en
+
+199
+00:07:26,690 --> 00:07:28,230
+rojo es exactamente la
+
+200
+00:07:28,640 --> 00:07:30,480
+longitud o la norma del vector «theta»,
+
+201
+00:07:30,900 --> 00:07:32,180
+relativa a la definición de la
+
+202
+00:07:32,950 --> 00:07:35,050
+norma del vector que teníamos en la diapositiva anterior.
+
+203
+00:07:36,140 --> 00:07:37,040
+De hecho, esto es igual
+
+204
+00:07:37,400 --> 00:07:38,320
+a la longitud del
+
+205
+00:07:38,370 --> 00:07:39,760
+vector «theta» sin importar si lo
+
+206
+00:07:40,020 --> 00:07:41,620
+escribes como «theta» 0, «theta» 1, «theta», 2, etc; si
+
+207
+00:07:42,280 --> 00:07:45,230
+«theta» 0 igual a 0, como asumimos anteriormente
+
+208
+00:07:45,860 --> 00:07:46,770
+o como la longitud de «theta» 1,
+
+209
+00:07:46,900 --> 00:07:48,680
+«theta» 2. Para
+
+210
+00:07:48,830 --> 00:07:50,450
+esta diapositiva ignoraremos «theta» 0.
+
+211
+00:07:50,940 --> 00:07:52,710
+Entonces, trataremos
+
+212
+00:07:53,150 --> 00:07:54,730
+«theta» o escribiremos
+
+213
+00:07:54,960 --> 00:07:56,360
+la «theta» normal solamente
+
+214
+00:07:56,720 --> 00:07:58,480
+con «theta» 1 y «theta» 2.
+
+215
+00:07:58,620 --> 00:08:00,180
+Los
+
+216
+00:08:00,260 --> 00:08:01,220
+cálculos resultan correctos de cualquier manera ya sea
+
+217
+00:08:01,460 --> 00:08:03,790
+si incluimos «theta» 0 o si no.
+
+218
+00:08:03,970 --> 00:08:05,870
+Esto no importará para el resto de nuestra derivada.
+
+219
+00:08:07,630 --> 00:08:09,120
+Finalmente, esto indica que
+
+220
+00:08:09,390 --> 00:08:11,440
+mi objetivo de optimización es
+
+221
+00:08:11,750 --> 00:08:13,100
+igual a un medio de la
+
+222
+00:08:13,190 --> 00:08:14,610
+norma de «theta» cuadrada.
+
+223
+00:08:16,190 --> 00:08:17,230
+Lo que está haciendo la máquina de vector de soporte
+
+224
+00:08:17,530 --> 00:08:19,010
+en el objetivo de optimización es
+
+225
+00:08:19,910 --> 00:08:21,500
+minimizar la norma cuadrada
+
+226
+00:08:21,590 --> 00:08:23,100
+o la longitud
+
+227
+00:08:23,470 --> 00:08:24,840
+cuadrada del parámetro vector «theta».
+
+228
+00:08:28,330 --> 00:08:29,160
+Ahora, me gustaría mirar
+
+229
+00:08:29,370 --> 00:08:30,790
+estos términos, «theta» transpuesta
+
+230
+00:08:31,090 --> 00:08:33,670
+de “x” y entender mejor lo que hacen.
+
+231
+00:08:34,230 --> 00:08:36,600
+Con un parámetro vector «theta» dado y
+
+232
+00:08:36,930 --> 00:08:39,880
+un ejemplo “X” dado, ¿cuál es el resultado?
+
+233
+00:08:40,820 --> 00:08:42,120
+En la diapositiva anterior
+
+234
+00:08:42,230 --> 00:08:44,070
+nos dimos cuenta de cómo se ve “U” transpuesta de
+
+235
+00:08:44,870 --> 00:08:45,850
+“V” con diferentes
+
+236
+00:08:46,110 --> 00:08:47,880
+vectores “U” y “V”.
+
+237
+00:08:48,130 --> 00:08:50,340
+Ahora tomaremos esas definiciones en donde
+
+238
+00:08:50,980 --> 00:08:52,300
+«theta» y “X(i)” jugarán el papel de
+
+239
+00:08:52,410 --> 00:08:53,310
+“U” y “V” y
+
+240
+00:08:54,400 --> 00:08:57,430
+veremos cómo se ve nuestro trazo.
+
+241
+00:08:57,860 --> 00:08:59,160
+Digamos que sólo tomo en cuenta
+
+242
+00:08:59,430 --> 00:09:01,130
+un ejemplo de entrenamiento o que sólo
+
+243
+00:09:01,230 --> 00:09:03,360
+tengo un ejemplo positivo expresado
+
+244
+00:09:03,720 --> 00:09:05,050
+con esta cruz roja y
+
+245
+00:09:05,800 --> 00:09:09,310
+denominado “X(i)”. Lo que
+
+246
+00:09:09,500 --> 00:09:10,970
+significa esto es que tracé
+
+247
+00:09:12,100 --> 00:09:13,510
+en el eje horizontal un valor
+
+248
+00:09:14,450 --> 00:09:16,210
+“X(i)1”
+
+249
+00:09:17,140 --> 00:09:19,620
+y en el eje vertical
+
+250
+00:09:21,240 --> 00:09:22,290
+“X(i)2”.
+
+251
+00:09:22,650 --> 00:09:24,070
+Así es como trazo mis ejemplos de entrenamiento.
+
+252
+00:09:25,400 --> 00:09:27,160
+Aunque no hemos estado pensando en
+
+253
+00:09:27,320 --> 00:09:28,310
+esto como un vector,
+
+254
+00:09:28,570 --> 00:09:29,600
+realmente es un vector desde
+
+255
+00:09:29,650 --> 00:09:30,910
+el origen, (0,0)
+
+256
+00:09:31,610 --> 00:09:33,520
+hasta la
+
+257
+00:09:34,560 --> 00:09:36,210
+ubicación de este ejemplo de entrenamiento.
+
+258
+00:09:37,830 --> 00:09:39,460
+Ahora digamos que tenemos
+
+259
+00:09:39,980 --> 00:09:41,850
+un parámetro vector «theta» y que lo
+
+260
+00:09:42,080 --> 00:09:43,620
+trazaremos
+
+261
+00:09:43,800 --> 00:09:45,720
+también como vector.
+
+262
+00:09:46,390 --> 00:09:48,410
+Si trazo «theta» 1 y
+
+263
+00:09:49,100 --> 00:09:53,530
+«theta» 2
+
+264
+00:09:56,230 --> 00:09:57,050
+¿cuál es el producto interno de «theta»
+
+265
+00:09:57,290 --> 00:09:58,940
+transpuesta de “X(i)”?
+
+266
+00:09:59,220 --> 00:10:01,240
+Con el método anterior,
+
+267
+00:10:01,990 --> 00:10:03,360
+podemos calcular esto
+
+268
+00:10:04,310 --> 00:10:06,170
+tomando el ejemplo y
+
+269
+00:10:06,320 --> 00:10:08,710
+proyectándolo en mi parámetro vector «theta».
+
+270
+00:10:09,830 --> 00:10:10,700
+Luego veré
+
+271
+00:10:10,950 --> 00:10:13,070
+la longitud de este segmento
+
+272
+00:10:13,680 --> 00:10:14,660
+que estoy marcando con rojo y
+
+273
+00:10:15,090 --> 00:10:16,500
+al que llamaré
+
+274
+00:10:16,670 --> 00:10:19,480
+“P” superíndice “i”
+
+275
+00:10:20,330 --> 00:10:21,330
+para denotar que
+
+276
+00:10:21,610 --> 00:10:22,920
+es la proyección del ejemplo de
+
+277
+00:10:24,860 --> 00:10:25,540
+aprendizaje en el parámetro vector «theta».
+
+278
+00:10:26,900 --> 00:10:28,140
+Lo que tenemos
+
+279
+00:10:28,350 --> 00:10:30,790
+que es «theta» transpuesta de “X(i)” es
+
+280
+00:10:30,920 --> 00:10:32,830
+igual a lo que teníamos
+
+281
+00:10:32,960 --> 00:10:34,210
+en la diapositiva anterior; es decir,
+
+282
+00:10:34,430 --> 00:10:35,350
+será igual a
+
+283
+00:10:36,560 --> 00:10:40,000
+por la
+
+284
+00:10:40,090 --> 00:10:42,090
+longitud o la norma del vector «theta».
+
+285
+00:10:43,410 --> 00:10:44,690
+Esto es igual a
+
+286
+00:10:44,750 --> 00:10:46,660
+«theta» 1 “x” 1
+
+287
+00:10:47,920 --> 00:10:50,610
+más «theta» 2 “x” 2. Cada uno de estos métodos
+
+288
+00:10:50,810 --> 00:10:52,360
+es igualmente válido para
+
+289
+00:10:52,680 --> 00:10:54,080
+calcular el producto
+
+290
+00:10:54,180 --> 00:10:56,160
+interno entre «theta» y “X(i)”.
+
+291
+00:10:57,780 --> 00:10:57,780
+Ok.
+
+292
+00:10:58,140 --> 00:10:59,040
+¿En dónde nos deja esto?
+
+293
+00:10:59,280 --> 00:11:00,770
+Lo que significa esto es
+
+294
+00:11:01,020 --> 00:11:02,890
+que estas limitaciones; es «theta» transpuesta de “X(i)”
+
+295
+00:11:03,130 --> 00:11:05,330
+sea más grande o igual a 1 o menor que 1,
+
+296
+00:11:06,110 --> 00:11:06,860
+es que puede
+
+297
+00:11:06,970 --> 00:11:07,830
+remplazar el uso de las limitaciones para
+
+298
+00:11:08,610 --> 00:11:12,000
+que “P(i)” por “X”
+
+299
+00:11:12,320 --> 00:11:13,500
+sea mayor o igual a 1.
+
+300
+00:11:13,680 --> 00:11:16,280
+Porque «theta» transpuesta de “X(i)” es
+
+301
+00:11:16,400 --> 00:11:19,470
+igual a “P(i)” por la norma de «theta».
+
+302
+00:11:21,250 --> 00:11:23,080
+Lo que obtenemos cuando escribimos esto en nuestro
+
+303
+00:11:23,910 --> 00:11:24,870
+objetivo de optimización
+
+304
+00:11:25,130 --> 00:11:26,290
+es, en vez de
+
+305
+00:11:27,090 --> 00:11:28,400
+«theta» transpuesta de “X(i)”,
+
+306
+00:11:28,620 --> 00:11:30,920
+tengo “P(i)” por la norma de «theta».
+
+307
+00:11:31,970 --> 00:11:32,970
+Como recordatorio,
+
+308
+00:11:33,090 --> 00:11:34,240
+mencionamos antes que
+
+309
+00:11:34,460 --> 00:11:36,310
+este objetivo de optimización puede
+
+310
+00:11:36,510 --> 00:11:38,130
+escribirse como un media veces
+
+311
+00:11:38,500 --> 00:11:39,910
+la norma de «theta» al cuadrado.
+
+312
+00:11:41,730 --> 00:11:43,490
+Ahora, consideremos el ejemplo de
+
+313
+00:11:44,210 --> 00:11:45,550
+entrenamiento que está
+
+314
+00:11:45,700 --> 00:11:47,100
+abajo y
+
+315
+00:11:47,450 --> 00:11:49,620
+continuemos utilizando la simplificación de
+
+316
+00:11:50,180 --> 00:11:51,340
+«theta» 0 igual a 0.
+
+317
+00:11:52,030 --> 00:11:54,810
+Veamos qué barrera de decisiones elige la máquina de vector de soporte.
+
+318
+00:11:55,860 --> 00:11:57,710
+Aquí hay una opción: digamos que
+
+319
+00:11:57,870 --> 00:11:59,190
+la máquina de vector de soporte
+
+320
+00:11:59,340 --> 00:12:01,750
+eligiera esta barrera de decisión.
+
+321
+00:12:02,690 --> 00:12:05,110
+No es una buena decisión porque tiene márgenes muy pequeños; por lo
+
+322
+00:12:05,530 --> 00:12:08,210
+tanto, la barrera de decisión pasa muy cerca de los ejemplos de entrenamiento.
+
+323
+00:12:09,810 --> 00:12:12,360
+Veamos por qué la máquina de vector de soporte no hace esto.
+
+324
+00:12:14,130 --> 00:12:15,420
+Para esta elección de parámetros
+
+325
+00:12:16,410 --> 00:12:18,280
+es posible mostrar que
+
+326
+00:12:19,030 --> 00:12:21,250
+el parámetro vector «theta», en realidad,
+
+327
+00:12:21,760 --> 00:12:23,350
+cruza a 90 grados con la barrera de decisión.
+
+328
+00:12:24,060 --> 00:12:25,440
+Entonces, la barrera de decisión
+
+329
+00:12:26,250 --> 00:12:27,550
+verde corresponde al parámetro vector
+
+330
+00:12:27,920 --> 00:12:29,650
+«theta» que apunta en esa dirección.
+
+331
+00:12:30,730 --> 00:12:32,280
+Por cierto, la simplificación de que
+
+332
+00:12:32,510 --> 00:12:34,120
+«theta» 0 es igual a 0
+
+333
+00:12:34,300 --> 00:12:35,410
+sólo significa que la barrera de decisión
+
+334
+00:12:35,910 --> 00:12:37,960
+debe pasar por el origen (0,0).
+
+335
+00:12:38,330 --> 00:12:40,350
+Ahora,
+
+336
+00:12:40,690 --> 00:12:41,780
+veamos qué implica esto
+
+337
+00:12:41,840 --> 00:12:43,590
+en el objetivo de optimización.
+
+338
+00:12:45,260 --> 00:12:46,420
+Tomemos este ejemplo
+
+339
+00:12:47,460 --> 00:12:48,560
+y digamos que es mi primer ejemplo
+
+340
+00:12:50,480 --> 00:12:50,650
+“X”1.
+
+341
+00:12:51,690 --> 00:12:52,630
+Aquí está la proyección
+
+342
+00:12:53,320 --> 00:12:54,870
+de este ejemplo en el parámetro «theta»,
+
+343
+00:12:56,180 --> 00:12:56,520
+Esta es la proyección.
+
+344
+00:12:57,660 --> 00:12:59,230
+Este segmento de línea roja.
+
+345
+00:13:00,450 --> 00:13:01,720
+es igual a “P”1.
+
+346
+00:13:02,380 --> 00:13:04,650
+Esto tendrá un resultado pequeño, ¿cierto?
+
+347
+00:13:05,860 --> 00:13:08,590
+De manera similar, tomaré este ejemplo
+
+348
+00:13:09,610 --> 00:13:10,710
+de aquí es
+
+349
+00:13:11,170 --> 00:13:12,620
+“X”2 o mi segundo ejemplo.
+
+350
+00:13:13,880 --> 00:13:16,620
+Observaré la proyección de este ejemplo en «theta».
+
+351
+00:13:18,080 --> 00:13:18,170
+Entonces,
+
+352
+00:13:18,440 --> 00:13:20,460
+permítanme dibujarlo en magenta.
+
+353
+00:13:21,600 --> 00:13:23,690
+Este pequeño segmento de línea magenta
+
+354
+00:13:24,000 --> 00:13:25,820
+será “P”2. Es decir, la
+
+355
+00:13:26,070 --> 00:13:27,370
+proyección del segundo
+
+356
+00:13:27,770 --> 00:13:28,870
+ejemplo en la dirección
+
+357
+00:13:30,100 --> 00:13:32,650
+del parámetro vector «theta» que se extiende así.
+
+358
+00:13:33,870 --> 00:13:34,250
+Este pequeño
+
+359
+00:13:35,270 --> 00:13:35,270
+segmento de línea proyectada se vuelve muy pequeño.
+
+360
+00:13:36,850 --> 00:13:38,420
+“P”2, de hecho, será un número negativo porque
+
+361
+00:13:38,560 --> 00:13:42,490
+va en la dirección opuesta.
+
+362
+00:13:43,710 --> 00:13:45,250
+Este vector tiene un
+
+363
+00:13:45,560 --> 00:13:47,130
+ángulo mayor a 90 grados y
+
+364
+00:13:47,270 --> 00:13:48,980
+con el parámetro vector «theta» será menor a 0.
+
+365
+00:13:50,280 --> 00:13:51,580
+A lo que llegamos es a que
+
+366
+00:13:51,850 --> 00:13:54,880
+estos términos “P(i)” serán
+
+367
+00:13:55,200 --> 00:13:57,230
+números muy pequeños.
+
+368
+00:13:58,210 --> 00:13:59,080
+Si miramos al objetivo de
+
+369
+00:13:59,110 --> 00:14:01,650
+optimización veremos que para los ejemplos positivos
+
+370
+00:14:02,490 --> 00:14:04,860
+necesitamos que “P(i)” por
+
+371
+00:14:05,220 --> 00:14:07,590
+la norma de «theta» sea mayor que cualquiera de las dos,
+
+372
+00:14:08,670 --> 00:14:10,640
+pero si “P(i)”
+
+373
+00:14:10,860 --> 00:14:12,140
+o “P”1 es muy
+
+374
+00:14:12,770 --> 00:14:14,160
+pequeño, significa
+
+375
+00:14:14,410 --> 00:14:15,580
+que necesitamos que la
+
+376
+00:14:15,650 --> 00:14:18,420
+norma de «theta» sea grande ¿cierto? Si
+
+377
+00:14:19,830 --> 00:14:20,840
+“P”1 de «theta» es pequeña, pero
+
+378
+00:14:21,790 --> 00:14:23,110
+queremos que “P”1 por
+
+379
+00:14:23,410 --> 00:14:24,600
+la norma de «theta»
+
+380
+00:14:24,920 --> 00:14:25,890
+sea mayor a 1, la única
+
+381
+00:14:26,400 --> 00:14:27,300
+manera de lograrlo,
+
+382
+00:14:27,510 --> 00:14:28,440
+la única manera de
+
+383
+00:14:28,650 --> 00:14:29,750
+obtener una ganancia alta para estos dos números
+
+384
+00:14:30,020 --> 00:14:31,120
+si “P”1 es pequeña, es ajustar
+
+385
+00:14:31,240 --> 00:14:32,980
+la norma de «theta» con un valor alto.
+
+386
+00:14:34,150 --> 00:14:36,450
+De manera similar, para nuestros
+
+387
+00:14:36,650 --> 00:14:38,560
+ejemplos negativos
+
+388
+00:14:39,750 --> 00:14:41,070
+necesitamos que “P” 2 por
+
+389
+00:14:41,350 --> 00:14:44,990
+la norma de «theta»
+
+390
+00:14:45,160 --> 00:14:46,910
+sea menor o igual a menos 1.
+
+391
+00:14:47,760 --> 00:14:48,540
+Ya vimos en este
+
+392
+00:14:48,710 --> 00:14:50,200
+ejemplo que “P”2
+
+393
+00:14:50,260 --> 00:14:51,520
+será un número negativo pequeño.
+
+394
+00:14:52,040 --> 00:14:53,290
+La única manera de obtener este número
+
+395
+00:14:53,420 --> 00:14:54,490
+es si la norma de
+
+396
+00:14:54,530 --> 00:14:56,730
+«theta» es
+
+397
+00:14:57,010 --> 00:14:59,630
+alta. Lo que estamos
+
+398
+00:14:59,790 --> 00:15:00,900
+haciendo en el objetivo de
+
+399
+00:15:01,290 --> 00:15:02,400
+optimización es intentar encontrar una
+
+400
+00:15:02,540 --> 00:15:03,840
+configuración de los
+
+401
+00:15:04,170 --> 00:15:05,320
+parámetros en la que la norma
+
+402
+00:15:05,550 --> 00:15:07,100
+de «theta» sea pequeña. Esto
+
+403
+00:15:07,830 --> 00:15:09,040
+no parece ser una
+
+404
+00:15:09,330 --> 00:15:10,070
+buena dirección para el parámetro
+
+405
+00:15:10,610 --> 00:15:14,160
+vector «theta».
+
+406
+00:15:14,450 --> 00:15:15,510
+En contraste, veamos una barrera de decisión diferente.
+
+407
+00:15:17,040 --> 00:15:19,500
+Digamos que la SVM elige
+
+408
+00:15:20,510 --> 00:15:21,280
+esta barrera de decisión.
+
+409
+00:15:22,870 --> 00:15:23,980
+El panorama será muy diferente.
+
+410
+00:15:24,420 --> 00:15:25,890
+Si esta es la barrera de decisión,
+
+411
+00:15:26,190 --> 00:15:27,380
+esta es la
+
+412
+00:15:27,450 --> 00:15:28,770
+dirección correspondiente de «theta».
+
+413
+00:15:29,210 --> 00:15:30,920
+La barrera de
+
+414
+00:15:31,000 --> 00:15:32,110
+decisión es
+
+415
+00:15:32,300 --> 00:15:33,560
+esta línea vertical y es posible
+
+416
+00:15:34,470 --> 00:15:35,960
+mostrar, utilizando
+
+417
+00:15:36,190 --> 00:15:37,880
+álgebra lineal, que la manera de
+
+418
+00:15:38,070 --> 00:15:39,140
+obtener esta barrera de decisión
+
+419
+00:15:39,460 --> 00:15:41,190
+verde es tener el vector «theta»
+
+420
+00:15:41,390 --> 00:15:42,620
+a 90 grados con respecto a ella.
+
+421
+00:15:43,610 --> 00:15:44,470
+Ahora, veamos la
+
+422
+00:15:44,560 --> 00:15:45,570
+proyección de estos
+
+423
+00:15:45,710 --> 00:15:47,540
+datos en el vector
+
+424
+00:15:48,800 --> 00:15:50,010
+“x”. Digamos que,
+
+425
+00:15:50,010 --> 00:15:52,620
+igual que antes, este ejemplo será “X”1. Cuando proyecto
+
+426
+00:15:52,890 --> 00:15:54,600
+esto en x o en
+
+427
+00:15:55,410 --> 00:15:59,110
+«theta», lo que encontraré es “P”1.
+
+428
+00:16:00,650 --> 00:16:02,410
+Esta longitud es “P”1.
+
+429
+00:16:03,750 --> 00:16:05,820
+El otro ejemplo es
+
+430
+00:16:06,260 --> 00:16:08,620
+“X”2. Si
+
+431
+00:16:08,840 --> 00:16:11,300
+hago la misma proyección en “X”2
+
+432
+00:16:11,410 --> 00:16:12,580
+me encuentro con que esta
+
+433
+00:16:12,780 --> 00:16:14,680
+longitud,
+
+434
+00:16:15,610 --> 00:16:17,880
+“P”2, es menor a 0.
+
+435
+00:16:18,830 --> 00:16:19,940
+Puedes darte cuenta ahora
+
+436
+00:16:20,480 --> 00:16:22,490
+de que las longitudes proyecciones “P”1 y “P”2
+
+437
+00:16:23,810 --> 00:16:24,740
+serán mucho mayores. Si
+
+438
+00:16:24,780 --> 00:16:26,800
+aún necesitamos
+
+439
+00:16:27,440 --> 00:16:28,460
+aplicar estas
+
+440
+00:16:28,890 --> 00:16:30,700
+limitaciones, que “P”1 de
+
+441
+00:16:30,800 --> 00:16:33,040
+la norma de «theta» sea
+
+442
+00:16:33,230 --> 00:16:35,670
+igual o mayor que 1, la norma de «theta» podrá ser menor,
+
+443
+00:16:36,580 --> 00:16:39,110
+porque “P”1 es mucho mayor ahora.
+
+444
+00:16:41,960 --> 00:16:43,090
+Lo que significa esto es que
+
+445
+00:16:43,210 --> 00:16:44,320
+al elegir la barrera de decisión
+
+446
+00:16:44,730 --> 00:16:45,760
+que se muestra a la
+
+447
+00:16:46,010 --> 00:16:47,610
+derecha en vez de la de la izquierda,
+
+448
+00:16:47,850 --> 00:16:49,000
+la SVM puede hacer que
+
+449
+00:16:49,080 --> 00:16:50,560
+la norma del parámetro «theta»
+
+450
+00:16:50,840 --> 00:16:52,420
+sea mucho menor. Así que
+
+451
+00:16:52,550 --> 00:16:54,080
+la norma de «theta» será menor y, por
+
+452
+00:16:54,260 --> 00:16:55,140
+lo tanto, la norma cuadrada de «theta» también será
+
+453
+00:16:55,590 --> 00:16:57,080
+menor. Por esto, la SVM
+
+454
+00:16:57,210 --> 00:16:58,130
+elegiría
+
+455
+00:16:58,710 --> 00:17:00,920
+esta hipótesis de la derecha.
+
+456
+00:17:02,800 --> 00:17:04,260
+Así es como
+
+457
+00:17:05,580 --> 00:17:07,160
+la SVM origina
+
+458
+00:17:07,500 --> 00:17:09,550
+este efecto de clasificación de márgenes amplios.
+
+459
+00:17:10,700 --> 00:17:11,620
+Tomando como referencia esta
+
+460
+00:17:11,820 --> 00:17:13,250
+línea verde o esta hipótesis
+
+461
+00:17:13,490 --> 00:17:14,990
+verde, queremos que la
+
+462
+00:17:15,070 --> 00:17:16,250
+proyección de los ejemplos
+
+463
+00:17:17,190 --> 00:17:18,780
+positivos y negativos en «theta» sea grande. La única manera de
+
+464
+00:17:19,200 --> 00:17:20,360
+lograrlo es si, alrededor
+
+465
+00:17:20,710 --> 00:17:23,490
+de esta línea verde hay un margen amplio
+
+466
+00:17:24,950 --> 00:17:27,710
+o un espacio grande que separa
+
+467
+00:17:27,880 --> 00:17:31,460
+los ejemplos
+
+468
+00:17:33,970 --> 00:17:37,240
+negativos de los positivos.
+
+469
+00:17:38,020 --> 00:17:40,740
+La magnitud de
+
+470
+00:17:41,080 --> 00:17:42,050
+este margen
+
+471
+00:17:43,040 --> 00:17:44,900
+es exactamente
+
+472
+00:17:45,060 --> 00:17:47,730
+los valores de “P”1, “P”2, “P”3, etc.
+
+473
+00:17:47,890 --> 00:17:48,970
+y al hacer que este margen sea mayor,
+
+474
+00:17:49,480 --> 00:17:51,270
+la SVM
+
+475
+00:17:51,470 --> 00:17:53,650
+puede
+
+476
+00:17:53,830 --> 00:17:55,520
+terminar con un
+
+477
+00:17:55,670 --> 00:17:56,860
+valor más pequeño de
+
+478
+00:17:56,960 --> 00:17:59,450
+«theta» y es justo lo que queremos hacer en el objetivo.
+
+479
+00:18:00,250 --> 00:18:01,290
+La razón por la
+
+480
+00:18:01,960 --> 00:18:03,300
+cual la máquina termina con
+
+481
+00:18:03,790 --> 00:18:05,510
+clasificadores de márgenes amplios es
+
+482
+00:18:05,640 --> 00:18:07,570
+porque intenta maximizar la norma
+
+483
+00:18:07,720 --> 00:18:08,910
+de estos valores P(i), que son la
+
+484
+00:18:09,060 --> 00:18:10,450
+distancia de los ejemplo de entrenamiento a la barrera de decisión.
+
+485
+00:18:14,360 --> 00:18:16,450
+Finalmente, hicimos toda
+
+486
+00:18:17,200 --> 00:18:18,590
+esta derivada utilizando la simplificación
+
+487
+00:18:18,750 --> 00:18:21,150
+de «theta» 0 igual a 0.
+
+488
+00:18:21,860 --> 00:18:23,440
+El efecto de esto, como
+
+489
+00:18:23,560 --> 00:18:25,380
+mencioné antes, es que si
+
+490
+00:18:25,540 --> 00:18:26,560
+«theta» 0 es igual a
+
+491
+00:18:26,830 --> 00:18:28,280
+0, estaremos
+
+492
+00:18:28,460 --> 00:18:29,770
+generando barreras de decisión
+
+493
+00:18:30,200 --> 00:18:31,510
+que pasan por el origen.
+
+494
+00:18:31,750 --> 00:18:33,640
+Las barreras de decisión pasarán, así,
+
+495
+00:18:33,800 --> 00:18:35,510
+por el origen. Si permites
+
+496
+00:18:35,710 --> 00:18:37,980
+que «theta» 0 sea mayor que 0,
+
+497
+00:18:38,080 --> 00:18:39,540
+lo que
+
+498
+00:18:39,870 --> 00:18:41,190
+obtendremos serán
+
+499
+00:18:41,380 --> 00:18:43,120
+barreras de decisión que
+
+500
+00:18:43,390 --> 00:18:45,730
+no pasan por el origen, como esta que acabo de dibujar.
+
+501
+00:18:46,380 --> 00:18:47,940
+No haré la
+
+502
+00:18:48,010 --> 00:18:49,540
+derivada completa para esto; sin embargo, resulta que
+
+503
+00:18:49,650 --> 00:18:50,600
+la misma
+
+504
+00:18:51,060 --> 00:18:52,720
+prueba de márgenes amplios funciona
+
+505
+00:18:52,780 --> 00:18:54,240
+del mismo modo.
+
+506
+00:18:54,390 --> 00:18:56,100
+Hay una generalización de este
+
+507
+00:18:56,850 --> 00:18:57,830
+argumento que planteamos hace un momento que
+
+508
+00:18:58,030 --> 00:18:59,400
+nos dice que aún
+
+509
+00:18:59,870 --> 00:19:01,540
+cuando «theta»
+
+510
+00:19:01,840 --> 00:19:03,690
+0 no es 0,
+
+511
+00:19:03,960 --> 00:19:06,940
+lo que intenta hacer la SVM cuando tienes este objetivo de optimización,
+
+512
+00:19:08,200 --> 00:19:09,620
+que corresponde al caso de
+
+513
+00:19:09,720 --> 00:19:11,570
+cuando C es muy grande....
+
+514
+00:19:14,010 --> 00:19:15,110
+Es posible mostrar que
+
+515
+00:19:15,290 --> 00:19:16,510
+cuando «theta» 0 no es
+
+516
+00:19:16,810 --> 00:19:18,420
+igual a 0, esta máquina de
+
+517
+00:19:18,620 --> 00:19:19,750
+soporte vectorial
+
+518
+00:19:20,100 --> 00:19:21,360
+aún intenta
+
+519
+00:19:21,640 --> 00:19:22,650
+encontrar un separador
+
+520
+00:19:23,040 --> 00:19:24,060
+de márgenes amplios entre los ejemplos
+
+521
+00:19:24,630 --> 00:19:28,200
+positivos y negativos. Esto explica la
+
+522
+00:19:28,420 --> 00:19:31,060
+función de esta máquina de vector de soporte como clasificador de márgenes amplios.
+
+523
+00:19:32,920 --> 00:19:34,020
+En el siguiente video empezaremos
+
+524
+00:19:34,190 --> 00:19:35,080
+a hablar de cómo tomar algunas
+
+525
+00:19:35,400 --> 00:19:36,480
+de estas ideas de
+
+526
+00:19:36,710 --> 00:19:37,980
+SVM y aplicarlas
+
+527
+00:19:38,190 --> 00:19:39,200
+para construir
+
+528
+00:19:39,900 --> 00:19:41,370
+clasificadores no lineales.

@@ -1,0 +1,996 @@
+1
+00:00:00,160 --> 00:00:01,480
+Em regressão logística, nós previamente
+
+2
+00:00:02,110 --> 00:00:04,730
+conversamos sobre dois tipos de algoritmo de otimização.
+
+3
+00:00:05,190 --> 00:00:06,190
+Nós discutimos sobre como
+
+4
+00:00:06,560 --> 00:00:09,210
+usar descida de gradiente para otimizar a função de custo "J(θ)".
+
+5
+00:00:09,690 --> 00:00:10,770
+E nós também conversamos sobre
+
+6
+00:00:11,120 --> 00:00:12,730
+métodos de otimização avançados.
+
+7
+00:00:13,520 --> 00:00:14,670
+Métodos que requerem que você
+
+8
+00:00:14,790 --> 00:00:16,300
+forneça uma maneira de calcular
+
+9
+00:00:16,940 --> 00:00:18,160
+a sua função de custo "J(θ)"
+
+10
+00:00:18,420 --> 00:00:20,920
+e sua derivadas parciais.
+
+11
+00:00:22,450 --> 00:00:23,920
+Nesse vídeo, nós iremos mostrar
+
+12
+00:00:24,190 --> 00:00:25,420
+adaptar ambas as
+
+13
+00:00:25,500 --> 00:00:27,570
+técnicas, tanto descida de gradiente quanto
+
+14
+00:00:27,720 --> 00:00:29,350
+as técnicas mais avançadas,
+
+15
+00:00:30,280 --> 00:00:31,770
+de forma a fazê-los funcionar
+
+16
+00:00:31,950 --> 00:00:33,550
+com regressão logística regularizada.
+
+17
+00:00:35,430 --> 00:00:36,670
+O conceito é o seguinte:
+
+18
+00:00:37,260 --> 00:00:38,770
+Nós vimos antes que Regessão
+
+19
+00:00:39,190 --> 00:00:40,490
+Logística também está propensa
+
+20
+00:00:40,850 --> 00:00:42,540
+a sobreajuste caso você
+
+21
+00:00:42,810 --> 00:00:44,090
+utilize um polinônimo
+
+22
+00:00:44,290 --> 00:00:45,890
+de atributos de grau muito alto, como esse,
+
+23
+00:00:46,470 --> 00:00:48,250
+onde G é a
+
+24
+00:00:48,480 --> 00:00:49,970
+função sigmóide,
+
+25
+00:00:50,030 --> 00:00:51,330
+e nesse caso, você acabaria com
+
+26
+00:00:51,530 --> 00:00:53,020
+uma hipótese,
+
+27
+00:00:53,150 --> 00:00:54,120
+cuja fronteira de decisão é
+
+28
+00:00:54,360 --> 00:00:55,930
+uma função muito complexa
+
+29
+00:00:56,620 --> 00:00:58,600
+e extremamente contorcida que
+
+30
+00:00:58,820 --> 00:00:59,680
+não é na verdade uma boa
+
+31
+00:00:59,790 --> 00:01:01,000
+hipótese para esse conjunto de treino.
+
+32
+00:01:01,350 --> 00:01:02,990
+Em geral, se você tiver
+
+33
+00:01:03,120 --> 00:01:04,890
+regressão logística com muitas variáveis,
+
+34
+00:01:05,150 --> 00:01:06,630
+não necessariamente polinomiais, mas
+
+35
+00:01:06,790 --> 00:01:07,510
+apenas muitas
+
+36
+00:01:07,670 --> 00:01:09,720
+variáveis, você pode acabar com sobreajuste.
+
+37
+00:01:11,620 --> 00:01:14,010
+Aqui está a nossa função custo para a regressão logística.
+
+38
+00:01:14,810 --> 00:01:16,210
+E se quisermos modificar
+
+39
+00:01:16,740 --> 00:01:18,820
+e usar regularização, tudo o que
+
+40
+00:01:18,950 --> 00:01:20,630
+precisamos fazer é
+
+41
+00:01:20,820 --> 00:01:22,290
+adicionar o seguinte termo:
+
+42
+00:01:22,650 --> 00:01:24,860
+"λ / (2 · m)" vezes a somatória
+
+43
+00:01:25,110 --> 00:01:26,580
+indo, como sempre,
+
+44
+00:01:26,730 --> 00:01:29,670
+de "j = 1",
+
+45
+00:01:29,800 --> 00:01:31,000
+em vez de "j = 0",
+
+46
+00:01:31,550 --> 00:01:33,670
+a "n", de "θj²".
+
+47
+00:01:34,330 --> 00:01:35,470
+E isso gera o
+
+48
+00:01:35,750 --> 00:01:36,960
+efeito, então, de penalizar
+
+49
+00:01:37,650 --> 00:01:39,140
+os parâmetros "θ₁", "θ₂",
+
+50
+00:01:39,570 --> 00:01:42,600
+até "θn", para que não sejam muito grandes.
+
+51
+00:01:43,610 --> 00:01:44,720
+E se você fizer isso,
+
+52
+00:01:45,720 --> 00:01:46,450
+então você verá que
+
+53
+00:01:46,750 --> 00:01:48,870
+apesar de estar treinando
+
+54
+00:01:49,250 --> 00:01:51,500
+um polinômio de grau muito alto com vários parâmetros,
+
+55
+00:01:52,210 --> 00:01:53,240
+desde que você aplique regularização
+
+56
+00:01:53,910 --> 00:01:55,090
+e mantenha os parâmetros pequenos,
+
+57
+00:01:55,850 --> 00:01:57,580
+você terá mais chances de ter uma fronteira de decisão
+
+58
+00:01:58,830 --> 00:02:00,040
+que se pareça com essa.
+
+59
+00:02:00,320 --> 00:02:01,460
+Ela parece mais sensata para separar
+
+60
+00:02:02,500 --> 00:02:03,740
+os exemplares positivos e negativos.
+
+61
+00:02:05,300 --> 00:02:06,970
+Então, ao usar regularização,
+
+62
+00:02:08,140 --> 00:02:09,080
+mesmo quando tendo muitos
+
+63
+00:02:09,220 --> 00:02:11,110
+atributos, a regularização consegue
+
+64
+00:02:11,620 --> 00:02:13,500
+ajudar a cuidar do problema de sobreajuste.
+
+65
+00:02:14,740 --> 00:02:15,790
+Como implementamos isso?
+
+66
+00:02:16,720 --> 00:02:18,280
+Para o algoritmo original de descida de
+
+67
+00:02:18,710 --> 00:02:20,380
+gradiente, esta é a expressão para a atualização.
+
+68
+00:02:20,670 --> 00:02:22,300
+Nós vamos efetuar repetidamente a seguinte
+
+69
+00:02:22,750 --> 00:02:24,610
+atualização sobre "θj".
+
+70
+00:02:24,740 --> 00:02:26,940
+Esse slide se parece muito com o anterior de regressão linear.
+
+71
+00:02:27,510 --> 00:02:28,460
+Mas o que eu vou fazer é
+
+72
+00:02:29,210 --> 00:02:31,390
+escrever "θ₀" separadamente.
+
+73
+00:02:31,670 --> 00:02:32,930
+Então, a primeira linha
+
+74
+00:02:33,060 --> 00:02:34,110
+é a expressão para "θ₀" e
+
+75
+00:02:34,230 --> 00:02:35,470
+a segunda linha é
+
+76
+00:02:35,590 --> 00:02:36,730
+a expressão de "θ₁" até
+
+77
+00:02:36,880 --> 00:02:38,470
+"θn",
+
+78
+00:02:38,900 --> 00:02:40,740
+já que eu vou tratar "θ₀" separadamente.
+
+79
+00:02:41,700 --> 00:02:43,140
+Para chegar
+
+80
+00:02:43,700 --> 00:02:45,370
+modificar esse algoritmo para
+
+81
+00:02:46,770 --> 00:02:48,480
+usar a função de custo regularizada,
+
+82
+00:02:49,100 --> 00:02:50,510
+o que precisamos fazer é
+
+83
+00:02:50,950 --> 00:02:51,810
+muito parecido com o que
+
+84
+00:02:51,930 --> 00:02:53,700
+fizemos para regressão linear,
+
+85
+00:02:53,870 --> 00:02:55,620
+é só modificar essa
+
+86
+00:02:55,890 --> 00:02:57,480
+segunda expressão de atualização da seguinte forma
+
+87
+00:02:58,510 --> 00:02:59,800
+E, novamente, isso
+
+88
+00:03:00,380 --> 00:03:02,080
+é aparentemente igual
+
+89
+00:03:02,230 --> 00:03:03,720
+ao que tínhamos para regressão linear.
+
+90
+00:03:04,580 --> 00:03:05,580
+Mas claro que esse não é
+
+91
+00:03:05,660 --> 00:03:06,590
+o mesmo algoritmo do anterior,
+
+92
+00:03:06,890 --> 00:03:08,370
+por que agora a hipótese é
+
+93
+00:03:08,780 --> 00:03:10,420
+definida usando isso.
+
+94
+00:03:10,860 --> 00:03:12,550
+Então, esse não é o mesmo algoritmo
+
+95
+00:03:13,130 --> 00:03:14,390
+que regressão linear regularizada,
+
+96
+00:03:14,830 --> 00:03:16,340
+já que a hipótese é diferente,
+
+97
+00:03:16,940 --> 00:03:18,360
+mesmo que essa atualização que eu escrevi
+
+98
+00:03:18,630 --> 00:03:20,160
+realmente se pareça com a
+
+99
+00:03:20,350 --> 00:03:22,130
+que tínhamos antes,
+
+100
+00:03:22,480 --> 00:03:25,310
+nós estamos desenvolvendo a descida de gradiente para regressão linear regularizada.
+
+101
+00:03:26,690 --> 00:03:27,720
+E é claro que, só para
+
+102
+00:03:27,830 --> 00:03:29,360
+terminar essa discussão, esse
+
+103
+00:03:29,560 --> 00:03:30,860
+termo dentro dos colchetes,
+
+104
+00:03:31,130 --> 00:03:32,330
+esse termo aqui,
+
+105
+00:03:32,670 --> 00:03:35,120
+esse termo é
+
+106
+00:03:35,410 --> 00:03:36,750
+a nova derivada parcial
+
+107
+00:03:37,210 --> 00:03:38,590
+com relação a
+
+108
+00:03:38,660 --> 00:03:41,420
+"θj" da nova função de custo "J(θ)",
+
+109
+00:03:42,300 --> 00:03:43,480
+onde "J(θ)" é
+
+110
+00:03:43,700 --> 00:03:44,980
+a função de custo que definimos
+
+111
+00:03:45,180 --> 00:03:48,100
+num slide anterior que usa regularização.
+
+112
+00:03:49,770 --> 00:03:52,060
+Então, isso é a descida de gradiente para regressão linear regularizada.
+
+113
+00:03:55,200 --> 00:03:56,430
+Agora vamos discutir sobre como
+
+114
+00:03:56,580 --> 00:03:58,290
+fazer a regressão linear regularizada
+
+115
+00:03:58,950 --> 00:04:00,010
+funcionar usando
+
+116
+00:04:00,360 --> 00:04:02,070
+métodos de otimização avançados.
+
+117
+00:04:03,180 --> 00:04:05,590
+E só para lembrar, o que
+
+118
+00:04:05,840 --> 00:04:06,800
+precisávamos para esses métodos era
+
+119
+00:04:07,080 --> 00:04:08,390
+definir a função
+
+120
+00:04:08,450 --> 00:04:09,460
+chamada função de custo,
+
+121
+00:04:09,640 --> 00:04:11,160
+que recebe como
+
+122
+00:04:11,280 --> 00:04:13,660
+entrada o vetor de parâmetros "θ" e
+
+123
+00:04:13,790 --> 00:04:16,180
+nas equações
+
+124
+00:04:16,770 --> 00:04:19,030
+nós indexamos vetores a partir de 0.
+
+125
+00:04:19,510 --> 00:04:20,690
+Então temos "θ₀" até
+
+126
+00:04:21,180 --> 00:04:22,810
+"θn".
+
+127
+00:04:23,020 --> 00:04:25,920
+Mas como Octave indexa vetores começando por 1,
+
+128
+00:04:26,820 --> 00:04:28,240
+"θ₀" em Octave é
+
+129
+00:04:28,560 --> 00:04:29,990
+escrito como "θ₁".
+
+130
+00:04:30,120 --> 00:04:31,630
+"θ₁" é escrito em Octave
+
+131
+00:04:31,860 --> 00:04:32,930
+em Octave como "θ₂" e
+
+132
+00:04:33,280 --> 00:04:35,070
+assim por diante até
+
+133
+00:04:36,270 --> 00:04:36,650
+"θn₊₁".
+
+134
+00:04:36,740 --> 00:04:38,450
+E o que faremos é fornecer
+
+135
+00:04:38,600 --> 00:04:40,240
+uma função,
+
+136
+00:04:41,170 --> 00:04:42,370
+vamos fornecer uma função chamada
+
+137
+00:04:42,780 --> 00:04:44,140
+"costFunction" que iríamos
+
+138
+00:04:44,360 --> 00:04:46,920
+passar para o que vimos anteriormente.
+
+139
+00:04:47,300 --> 00:04:48,490
+Usaremos a função "fminunc"
+
+140
+00:04:49,060 --> 00:04:50,310
+com o argumento
+
+141
+00:04:50,540 --> 00:04:52,160
+"@costFunction"
+
+142
+00:04:54,830 --> 00:04:55,430
+e assim por diante.
+
+143
+00:04:55,600 --> 00:04:56,870
+Mas a função "fminunc"
+
+144
+00:04:57,030 --> 00:04:58,060
+era "fmin"
+
+145
+00:04:58,280 --> 00:04:59,310
+sem restrição, e isso irá
+
+146
+00:04:59,650 --> 00:05:01,230
+usar "fminunc"
+
+147
+00:05:01,310 --> 00:05:02,300
+para minimizar
+
+148
+00:05:02,540 --> 00:05:04,340
+a função de custo para nós.
+
+149
+00:05:05,950 --> 00:05:07,050
+Então, as duas coisas principais que
+
+150
+00:05:07,170 --> 00:05:08,600
+a função de custo precisava retornar
+
+151
+00:05:08,700 --> 00:05:10,620
+eram, primeiramente, "jVal",
+
+152
+00:05:11,280 --> 00:05:12,400
+e para isso nós precisávamos
+
+153
+00:05:12,720 --> 00:05:13,950
+criar uma método para
+
+154
+00:05:14,020 --> 00:05:15,710
+calcular a função de custo "J(θ)".
+
+155
+00:05:17,130 --> 00:05:19,030
+Agora, quando usarmos regressão logística
+
+156
+00:05:19,450 --> 00:05:20,920
+regularizada, é claro que
+
+157
+00:05:20,990 --> 00:05:21,960
+a função de custo J(θ)
+
+158
+00:05:22,280 --> 00:05:23,450
+muda e, particularmente,
+
+159
+00:05:24,480 --> 00:05:25,760
+agora a função de custo precisa
+
+160
+00:05:25,870 --> 00:05:29,580
+incluir esse termo adicional de regularização no final.
+
+161
+00:05:29,850 --> 00:05:30,930
+Então, quando você calcular "J(θ)"
+
+162
+00:05:31,030 --> 00:05:33,410
+confira se incluiu esse termo no final.
+
+163
+00:05:34,590 --> 00:05:35,520
+E a outra coisa
+
+164
+00:05:36,050 --> 00:05:37,240
+que essa função de custo
+
+165
+00:05:37,690 --> 00:05:39,010
+precisa calcular é o gradiente.
+
+166
+00:05:39,530 --> 00:05:41,170
+Então, a "gradient(1)"
+
+167
+00:05:41,400 --> 00:05:42,570
+é atribuído o valor da
+
+168
+00:05:42,660 --> 00:05:44,080
+derivada parcial de "J(θ)"
+
+169
+00:05:44,240 --> 00:05:45,520
+com relação a "θ₀",
+
+170
+00:05:45,690 --> 00:05:47,170
+a "gradient(2)" será
+
+171
+00:05:47,580 --> 00:05:49,520
+atribuído isso, e assim por diante.
+
+172
+00:05:49,780 --> 00:05:50,900
+Novamente, o índice é sempre 1 a mais,
+
+173
+00:05:51,220 --> 00:05:52,850
+por que a indexação do
+
+174
+00:05:53,110 --> 00:05:54,450
+Octave começa em 1.
+
+175
+00:05:55,940 --> 00:05:56,780
+E olhando para esses termos,
+
+176
+00:05:57,850 --> 00:05:58,680
+esse termo aqui,
+
+177
+00:05:59,410 --> 00:06:00,640
+nós calculamos
+
+178
+00:06:00,720 --> 00:06:02,840
+em um slide anterior que é igual a isso.
+
+179
+00:06:03,230 --> 00:06:03,640
+O termo não muda,
+
+180
+00:06:04,120 --> 00:06:07,250
+por que a derivada com relação a "θ₀" não muda
+
+181
+00:06:07,650 --> 00:06:09,540
+quando comparada à versão sem regularização.
+
+182
+00:06:10,960 --> 00:06:13,210
+Mas os outros termos mudam.
+
+183
+00:06:13,840 --> 00:06:16,340
+Em particular a derivada com respeito a "θ₁",
+
+184
+00:06:17,010 --> 00:06:18,830
+nós calculamos no slide anterior também.
+
+185
+00:06:19,110 --> 00:06:20,670
+Ela é igual ao
+
+186
+00:06:20,890 --> 00:06:22,560
+termo original mais
+
+187
+00:06:23,450 --> 00:06:24,870
+"λ/m · θ₁".
+
+188
+00:06:25,310 --> 00:06:27,140
+Só para ter entender isso corretamente.
+
+189
+00:06:27,800 --> 00:06:29,370
+Podemos adicionar parênteses aqui,
+
+190
+00:06:29,830 --> 00:06:30,980
+para que a soma não inclua o último termo.
+
+191
+00:06:31,570 --> 00:06:33,160
+Similarmente,
+
+192
+00:06:33,380 --> 00:06:34,800
+esse outro termo aqui é
+
+193
+00:06:35,130 --> 00:06:36,180
+isto, esse termo
+
+194
+00:06:37,070 --> 00:06:37,950
+adicional que tínhamos no
+
+195
+00:06:38,030 --> 00:06:39,770
+slide anterior, que corresponde ao
+
+196
+00:06:39,950 --> 00:06:41,450
+gradiente do termo de regularização.
+
+197
+00:06:42,230 --> 00:06:43,650
+Se você implementar essa
+
+198
+00:06:43,820 --> 00:06:45,140
+função de custo e passar
+
+199
+00:06:45,720 --> 00:06:47,370
+para a "fminunc"
+
+200
+00:06:48,190 --> 00:06:49,160
+ou para alguma daquelas técnicas de otimização
+
+201
+00:06:50,050 --> 00:06:51,940
+avançadas, a nova função
+
+202
+00:06:52,540 --> 00:06:55,990
+de custo "J(θ)" regularizada será minimizada.
+
+203
+00:06:56,990 --> 00:06:58,220
+E os parâmetros que você receber de volta
+
+204
+00:06:59,530 --> 00:07:00,740
+serão os que correspondem
+
+205
+00:07:01,450 --> 00:07:02,940
+à regressão logística com regularização.
+
+206
+00:07:04,410 --> 00:07:05,540
+Agora você sabe
+
+207
+00:07:05,780 --> 00:07:08,210
+como implementar regressão logística regularizada.
+
+208
+00:07:09,780 --> 00:07:10,920
+Quando eu dou uma volta pelo Vale do Silício,
+
+209
+00:07:11,380 --> 00:07:12,900
+eu moro aqui no Vale do Silício, existem
+
+210
+00:07:13,100 --> 00:07:14,900
+muitos engenheiros ganhando
+
+211
+00:07:15,420 --> 00:07:16,490
+muito dinheiro com suas
+
+212
+00:07:16,610 --> 00:07:18,090
+empresas usando algoritmos de aprendizado de máquina.
+
+213
+00:07:19,180 --> 00:07:20,390
+E eu sei que nós só estamos estudando
+
+214
+00:07:20,600 --> 00:07:22,860
+isso faz pouco tempo,
+
+215
+00:07:23,620 --> 00:07:25,410
+mas se você entender regressão linear,
+
+216
+00:07:26,510 --> 00:07:28,360
+regressão logística, os algoritmos avançados
+
+217
+00:07:29,210 --> 00:07:30,710
+de otimização e regularização,
+
+218
+00:07:30,950 --> 00:07:32,520
+honestamente nesse momento você já sabe
+
+219
+00:07:32,950 --> 00:07:34,270
+mais sobre aprendizado de máquina que
+
+220
+00:07:35,010 --> 00:07:36,290
+muitos, não todos
+
+221
+00:07:36,750 --> 00:07:38,050
+mas você provavelmente sabe muito
+
+222
+00:07:38,180 --> 00:07:39,580
+mais de aprendizado de máquina agora
+
+223
+00:07:40,240 --> 00:07:41,670
+do que muitos dos
+
+224
+00:07:41,820 --> 00:07:44,760
+engenheiros do Vale do Silício com carreiras bem sucedidas,
+
+225
+00:07:45,300 --> 00:07:46,420
+Dando muito dinheiro para as empresas,
+
+226
+00:07:47,050 --> 00:07:49,250
+ou construindo produtos usando algoritmos de aprendizado de máquina
+
+227
+00:07:50,370 --> 00:07:50,960
+Então parabéns,
+
+228
+00:07:52,080 --> 00:07:53,120
+você já avançou um bom tanto,
+
+229
+00:07:53,490 --> 00:07:54,550
+e você já sabe
+
+230
+00:07:54,780 --> 00:07:55,990
+o suficiente para aplicar
+
+231
+00:07:56,310 --> 00:07:58,210
+isso e fazer funcionar em vários problemas.
+
+232
+00:07:59,260 --> 00:08:00,580
+Então parabéns por isso.
+
+233
+00:08:00,780 --> 00:08:01,880
+Mas certamente existe
+
+234
+00:08:02,350 --> 00:08:03,280
+muito mais que nós
+
+235
+00:08:03,400 --> 00:08:05,180
+queremos te ensinar,
+
+236
+00:08:05,380 --> 00:08:06,540
+e nos próximos vídeos
+
+237
+00:08:06,560 --> 00:08:07,850
+nós começaremos a conversar
+
+238
+00:08:08,030 --> 00:08:10,890
+sobre uma classe muito poderosa de classificador não-linear.
+
+239
+00:08:11,680 --> 00:08:13,350
+Então com enquanto regressão linear e regressão
+
+240
+00:08:13,690 --> 00:08:14,940
+logística você consegue
+
+241
+00:08:15,080 --> 00:08:17,310
+usar termos polinomiais,
+
+242
+00:08:17,460 --> 00:08:18,350
+existem classificadores
+
+243
+00:08:18,510 --> 00:08:21,150
+não lineares muito mais poderosos do
+
+244
+00:08:21,460 --> 00:08:23,650
+que esse tipo de regressão polinomial.
+
+245
+00:08:24,640 --> 00:08:25,780
+E no próximo conjunto
+
+246
+00:08:25,810 --> 00:08:28,280
+de vídeos eu vou começar a falar sobre eles.
+
+247
+00:08:28,510 --> 00:08:29,560
+Para que você tenha
+
+248
+00:08:29,760 --> 00:08:30,440
+algoritmos de aprendizagem
+
+249
+00:08:31,380 --> 00:08:32,870
+ainda mais poderosos para aplicar a diferentes problemas.
+Tradução: Eduardo Bonet | Revisão: Marcel Dall'Agnol

@@ -1,0 +1,1347 @@
+1
+00:00:00,390 --> 00:00:03,570
+En el video anterior hablamos de las métricas de evaluación.
+
+2
+00:00:04,730 --> 00:00:05,840
+En este video me gustaría
+
+3
+00:00:06,080 --> 00:00:07,230
+desviarme un poco del curso y
+
+4
+00:00:07,480 --> 00:00:08,900
+tocar otro aspecto importante que se
+
+5
+00:00:09,570 --> 00:00:10,990
+presenta seguido en el
+
+6
+00:00:11,800 --> 00:00:13,290
+diseño de sistemas de aprendizaje automático.
+
+7
+00:00:13,470 --> 00:00:14,990
+Se trata de la cuestión de
+
+8
+00:00:15,270 --> 00:00:17,110
+cuántos datos necesito para entrenar.
+
+9
+00:00:17,310 --> 00:00:18,440
+En videos anteriores
+
+10
+00:00:18,620 --> 00:00:20,320
+les advertí acerca de invertir
+
+11
+00:00:20,690 --> 00:00:21,660
+ciegamente nuestro
+
+12
+00:00:21,980 --> 00:00:23,300
+tiempo recolectando muchos datos
+
+13
+00:00:23,420 --> 00:00:24,730
+pensando que es
+
+14
+00:00:25,040 --> 00:00:26,360
+lo único que nos puede ayudar,
+
+15
+00:00:27,510 --> 00:00:28,580
+pero resulta que bajo ciertas
+
+16
+00:00:28,820 --> 00:00:30,270
+circunstancias, en este
+
+17
+00:00:30,550 --> 00:00:31,580
+video hablaré de esas circunstancias,
+
+18
+00:00:31,770 --> 00:00:33,590
+recolectar datos
+
+19
+00:00:33,820 --> 00:00:35,440
+y entrenar con un cierto tipo
+
+20
+00:00:35,730 --> 00:00:36,730
+de algoritmo de
+
+21
+00:00:37,010 --> 00:00:38,160
+aprendizaje puede ser
+
+22
+00:00:38,240 --> 00:00:39,470
+una manera efectiva de
+
+23
+00:00:39,770 --> 00:00:41,320
+mejorar considerablemente el desempeño de un algoritmo de aprendizaje.
+
+24
+00:00:42,810 --> 00:00:44,280
+Esto sucede con frecuencia.
+
+25
+00:00:44,710 --> 00:00:45,930
+Si las circunstancias pueden aplicarse
+
+26
+00:00:46,310 --> 00:00:47,850
+a tu problema y si puedes
+
+27
+00:00:47,970 --> 00:00:48,770
+recolectar muchos datos,
+
+28
+00:00:48,980 --> 00:00:50,070
+esta solución puede ser
+
+29
+00:00:50,210 --> 00:00:51,330
+muy efectiva para
+
+30
+00:00:51,560 --> 00:00:52,970
+obtener un algoritmo de aprendizaje con un excelente desempeño.
+
+31
+00:00:53,990 --> 00:00:55,620
+En este video
+
+32
+00:00:56,320 --> 00:00:58,960
+hablaremos más de ello.
+
+33
+00:00:59,110 --> 00:00:59,820
+Empezaré con una historia:
+
+34
+00:01:01,080 --> 00:01:02,620
+Hace muchos años, dos investigadores
+
+35
+00:01:03,400 --> 00:01:05,380
+que conozco, Michelle Banko y
+
+36
+00:01:05,520 --> 00:01:08,110
+Eric Broule llevaron a cabo un estudio fascinante.
+
+37
+00:01:09,820 --> 00:01:11,290
+Estaban interesados en estudiar
+
+38
+00:01:11,550 --> 00:01:12,910
+los efectos de utilizar algoritmos
+
+39
+00:01:13,290 --> 00:01:15,210
+de aprendizaje distintos en comparación con los efectos de probarlos
+
+40
+00:01:15,380 --> 00:01:17,420
+en conjuntos de entrenamiento de diferentes tamaños.
+
+41
+00:01:18,020 --> 00:01:19,550
+Estaban considerando el problema
+
+42
+00:01:20,170 --> 00:01:22,120
+de la clasificación de palabras confusas.
+
+43
+00:01:22,550 --> 00:01:23,610
+Por ejemplo, en el enunciado
+
+44
+00:01:24,410 --> 00:01:26,990
+“for breakfast I ate” ¿deberá ser “to, two” o “too”?
+
+45
+00:01:27,940 --> 00:01:28,890
+En este ejemplo será
+
+46
+00:01:29,450 --> 00:01:32,390
+“for breakfast I ate (two) (2) eggs”.
+
+47
+00:01:33,510 --> 00:01:34,530
+Para este ejemplo tenemos
+
+48
+00:01:35,320 --> 00:01:37,800
+este conjunto de palabras confusas y este es otro conjunto.
+
+49
+00:01:38,240 --> 00:01:39,650
+Ellos tomaron problemas de
+
+50
+00:01:39,950 --> 00:01:41,580
+aprendizaje automático como estos; es decir, problemas
+
+51
+00:01:41,780 --> 00:01:43,190
+de aprendizaje supervisado para
+
+52
+00:01:43,970 --> 00:01:45,210
+intentar categorizar cuál es
+
+53
+00:01:45,400 --> 00:01:46,560
+la palabra correcta en una posición
+
+54
+00:01:47,540 --> 00:01:48,140
+dada en un enunciado en Inglés.
+
+55
+00:01:51,010 --> 00:01:52,110
+Tomaron diferentes algoritmos
+
+56
+00:01:52,340 --> 00:01:53,520
+de aprendizaje que se consideraban
+
+57
+00:01:53,730 --> 00:01:55,210
+de última
+
+58
+00:01:55,310 --> 00:01:56,110
+generación en ese entonces,
+
+59
+00:01:56,410 --> 00:01:57,670
+cuando realizaron el estudio, en 2001.
+
+60
+00:01:57,730 --> 00:01:59,220
+Tomaron la
+
+61
+00:01:59,750 --> 00:02:01,140
+varianza
+
+62
+00:02:01,630 --> 00:02:03,180
+de una regresión logística y la llamaron Perceptron.
+
+63
+00:02:03,760 --> 00:02:05,160
+También tomaron algunos de
+
+64
+00:02:05,250 --> 00:02:06,700
+los algoritmos que
+
+65
+00:02:07,090 --> 00:02:08,620
+eran muy modernos entonces y
+
+66
+00:02:08,830 --> 00:02:10,600
+ahora son menos usados como el algoritmo Winnow,
+
+67
+00:02:10,750 --> 00:02:11,980
+que también es muy
+
+68
+00:02:12,380 --> 00:02:13,410
+similar a la regresión logística,
+
+69
+00:02:13,660 --> 00:02:15,580
+pero diferente en algunos aspectos. Era muy utilizado
+
+70
+00:02:16,140 --> 00:02:18,220
+y ahora no lo es
+
+71
+00:02:18,480 --> 00:02:19,380
+tanto.
+
+72
+00:02:20,180 --> 00:02:21,180
+Tomaron también un algoritmo
+
+73
+00:02:21,430 --> 00:02:23,240
+de aprendizaje basado en memoria que también se utiliza menos actualmente.
+
+74
+00:02:23,610 --> 00:02:25,940
+Hablaré más de eso adelante.
+
+75
+00:02:26,230 --> 00:02:27,230
+Por último, utilizaron un
+
+76
+00:02:27,690 --> 00:02:29,240
+algoritmo Naïve Bayes, que es de
+
+77
+00:02:29,410 --> 00:02:32,380
+lo que hablaremos en este curso.
+
+78
+00:02:32,690 --> 00:02:34,400
+Los algoritmos exactos de estos detalles no son importantes.
+
+79
+00:02:35,040 --> 00:02:36,080
+Piensa en esto como sólo elegir
+
+80
+00:02:36,430 --> 00:02:40,380
+cuatro algoritmos de clasificaciones diferentes; los algoritmos exactos no son importantes.
+
+81
+00:02:41,980 --> 00:02:42,990
+Lo que hicieron con esto fue
+
+82
+00:02:43,140 --> 00:02:44,160
+variar el tamaño del conjunto de entrenamiento
+
+83
+00:02:44,500 --> 00:02:45,390
+y aplicar estos algoritmos
+
+84
+00:02:45,450 --> 00:02:47,070
+de aprendizaje en la variedad de
+
+85
+00:02:47,210 --> 00:02:49,640
+tamaños de conjuntos de entrenamiento. Este es el resultado que obtuvieron.
+
+86
+00:02:50,300 --> 00:02:51,310
+Las tendencias son muy
+
+87
+00:02:51,470 --> 00:02:53,170
+claras ¿cierto? Primero, la mayoría
+
+88
+00:02:53,290 --> 00:02:55,470
+de estos algoritmos arrojan desempeños muy similares
+
+89
+00:02:56,200 --> 00:02:57,760
+y segundo, a medida que incrementa el
+
+90
+00:02:58,150 --> 00:02:59,760
+conjunto de aprendizaje en el
+
+91
+00:02:59,860 --> 00:03:00,970
+eje horizontal, que es el
+
+92
+00:03:01,280 --> 00:03:02,510
+tamaño del conjunto de entrenamiento en millones,
+
+93
+00:03:04,070 --> 00:03:05,360
+sube de
+
+94
+00:03:05,420 --> 00:03:07,440
+cien mil a
+
+95
+00:03:07,720 --> 00:03:09,060
+mil millones; es decir,
+
+96
+00:03:09,330 --> 00:03:10,980
+un billón de ejemplos de entrenamiento. El
+
+97
+00:03:11,090 --> 00:03:11,860
+desempeño de los algoritmos
+
+98
+00:03:12,870 --> 00:03:15,360
+aumentó monótonamente.
+
+99
+00:03:15,740 --> 00:03:16,610
+De hecho, si
+
+100
+00:03:16,650 --> 00:03:18,600
+eliges cualquier algoritmo, quizá
+
+101
+00:03:19,000 --> 00:03:21,320
+un algoritmo inferior, pero
+
+102
+00:03:21,490 --> 00:03:22,650
+le das más datos,
+
+103
+00:03:23,190 --> 00:03:26,150
+entonces, con base en
+
+104
+00:03:26,390 --> 00:03:27,570
+estos ejemplos, parece que
+
+105
+00:03:27,670 --> 00:03:30,330
+será un algoritmo superior.
+
+106
+00:03:32,200 --> 00:03:33,270
+A partir de este estudio original, que
+
+107
+00:03:33,720 --> 00:03:35,850
+tuvo mucha influencia, han habido una
+
+108
+00:03:36,360 --> 00:03:37,500
+serie de estudios diferentes
+
+109
+00:03:37,830 --> 00:03:39,020
+que muestran resultados similares
+
+110
+00:03:39,550 --> 00:03:40,840
+que indican que muchos algoritmos
+
+111
+00:03:41,150 --> 00:03:42,270
+de aprendizaje diferentes
+
+112
+00:03:42,630 --> 00:03:44,290
+tienden a dar rangos de
+
+113
+00:03:44,460 --> 00:03:46,060
+desempeño muy similares, dependiendo
+
+114
+00:03:46,490 --> 00:03:48,320
+de los detalles. Lo que
+
+115
+00:03:48,520 --> 00:03:51,570
+impulsa el algoritmo es contar con muchos datos de entrenamiento.
+
+116
+00:03:53,190 --> 00:03:54,640
+Resultados como estos
+
+117
+00:03:55,010 --> 00:03:56,030
+han llevado a pensar que
+
+118
+00:03:56,130 --> 00:03:57,360
+en el aprendizaje automático no
+
+119
+00:03:57,510 --> 00:03:58,920
+gana quien
+
+120
+00:03:59,180 --> 00:04:00,460
+tiene el mejor algoritmo,
+
+121
+00:04:00,600 --> 00:04:01,720
+sino quien tiene
+
+122
+00:04:02,810 --> 00:04:04,260
+más datos. Pero, ¿cuando es cierto
+
+123
+00:04:04,460 --> 00:04:06,240
+y cuándo no?
+
+124
+00:04:06,560 --> 00:04:07,710
+Porque tenemos algoritmos
+
+125
+00:04:07,850 --> 00:04:09,000
+de aprendizaje para los cuales
+
+126
+00:04:09,150 --> 00:04:10,590
+es verdad; recolectar
+
+127
+00:04:10,820 --> 00:04:11,970
+muchos datos a veces es
+
+128
+00:04:12,620 --> 00:04:13,830
+la mejor manera de asegurarnos
+
+129
+00:04:14,180 --> 00:04:15,700
+de que tenemos un algoritmo de aprendizaje
+
+130
+00:04:15,900 --> 00:04:17,360
+con un desempeño alto en vez de
+
+131
+00:04:17,520 --> 00:04:20,080
+debatir sobre si vale la pena preocuparse por cuál de estos algoritmos se debe usar.
+
+132
+00:04:21,710 --> 00:04:23,200
+Vamos a tratar de diseñar un
+
+133
+00:04:23,330 --> 00:04:25,130
+conjunto de supuestos bajo los cuales
+
+134
+00:04:25,660 --> 00:04:28,230
+tener un conjunto de entrenamiento masivo sería de ayuda.
+
+135
+00:04:29,780 --> 00:04:31,310
+Supongamos que en nuestro
+
+136
+00:04:31,410 --> 00:04:33,210
+problema de aprendizaje automático,
+
+137
+00:04:34,080 --> 00:04:36,560
+las funciones “x” tienen suficiente información para
+
+138
+00:04:36,830 --> 00:04:38,600
+predecir “y” con precisión.
+
+139
+00:04:40,380 --> 00:04:41,490
+Por ejemplo, si tomamos
+
+140
+00:04:41,790 --> 00:04:44,860
+el problema de palabras confusas que teníamos en la diapositiva anterior,
+
+141
+00:04:45,740 --> 00:04:47,040
+digamos que las funciones “x”
+
+142
+00:04:47,520 --> 00:04:48,360
+capturan las palabras que
+
+143
+00:04:49,090 --> 00:04:51,620
+rodean el espacio en blanco que intentamos llenar;
+
+144
+00:04:51,840 --> 00:04:53,630
+es decir, estas funciones capturan el enunciado
+
+145
+00:04:54,220 --> 00:04:56,440
+“For breakfast I ate _____ eggs”.
+
+146
+00:04:57,350 --> 00:04:58,220
+Esta es información
+
+147
+00:04:58,480 --> 00:04:59,970
+suficiente para decirme que
+
+148
+00:05:00,170 --> 00:05:01,050
+la palabra que falta es
+
+149
+00:05:01,420 --> 00:05:03,640
+“two” y que no es
+
+150
+00:05:03,850 --> 00:05:06,640
+“to” ni “too”. Las funciones
+
+151
+00:05:09,650 --> 00:05:11,270
+capturan las palabras
+
+152
+00:05:11,620 --> 00:05:13,390
+que rodean el espacio
+
+153
+00:05:13,560 --> 00:05:15,360
+y eso me da información suficiente para
+
+154
+00:05:15,790 --> 00:05:17,640
+decidir de manera inequívoca cuál es el
+
+155
+00:05:17,780 --> 00:05:18,830
+valor asignado a “y” o,en otras
+
+156
+00:05:19,300 --> 00:05:20,190
+palabras, cuál es la palabra
+
+157
+00:05:20,750 --> 00:05:21,760
+que debo usar para llenar
+
+158
+00:05:22,100 --> 00:05:23,520
+el espacio de un conjunto
+
+159
+00:05:23,930 --> 00:05:25,610
+de tres palabras posibles.
+
+160
+00:05:27,110 --> 00:05:28,320
+Este es un ejemplo
+
+161
+00:05:28,460 --> 00:05:29,840
+si las funciones “X” tienen suficiente
+
+162
+00:05:30,410 --> 00:05:32,270
+información para especificar “y”. Para ilustrar un ejemplo
+
+163
+00:05:32,470 --> 00:05:33,240
+contrario a este,
+
+164
+00:05:34,690 --> 00:05:36,010
+considera un problema en el que
+
+165
+00:05:36,470 --> 00:05:38,090
+debemos predecir el precio de una casa
+
+166
+00:05:38,340 --> 00:05:39,330
+sólo por el tamaño de
+
+167
+00:05:39,390 --> 00:05:40,350
+la casa, sin tomar en cuenta
+
+168
+00:05:42,060 --> 00:05:42,060
+variables. Las funciones
+
+169
+00:05:42,820 --> 00:05:43,890
+te digo que la
+
+170
+00:05:44,150 --> 00:05:45,270
+casa es de
+
+171
+00:05:45,370 --> 00:05:48,100
+500 pies cuadrados pero no te doy ninguna otra función.
+
+172
+00:05:48,530 --> 00:05:49,520
+No te digo si
+
+173
+00:05:49,590 --> 00:05:51,990
+está en una zona cara de la ciudad ni
+
+174
+00:05:52,590 --> 00:05:53,710
+el número
+
+175
+00:05:53,840 --> 00:05:55,290
+de habitaciones de la
+
+176
+00:05:55,500 --> 00:05:57,030
+casa o cuál es la
+
+177
+00:05:57,180 --> 00:05:58,400
+calidad de los muebles ni
+
+178
+00:05:58,790 --> 00:06:00,540
+si la casa e vieja o nueva.
+
+179
+00:06:01,090 --> 00:06:02,290
+No te digo nada más que
+
+180
+00:06:02,540 --> 00:06:03,360
+es una casa de
+
+181
+00:06:03,520 --> 00:06:05,440
+500 pies cuadrados. Pero
+
+182
+00:06:05,720 --> 00:06:07,160
+hay tantos factores que pudieran
+
+183
+00:06:07,340 --> 00:06:08,280
+afectar el precio de una casa
+
+184
+00:06:08,470 --> 00:06:09,940
+aparte del tamaño que,
+
+185
+00:06:10,320 --> 00:06:11,330
+si todo lo que sabes de
+
+186
+00:06:11,440 --> 00:06:12,910
+la casa es el tamaño, será
+
+187
+00:06:13,050 --> 00:06:14,610
+muy difícil predecir su precio con precisión.
+
+188
+00:06:16,220 --> 00:06:16,860
+Este sería un ejemplo
+
+189
+00:06:17,280 --> 00:06:18,230
+contrario al supuesto de
+
+190
+00:06:18,880 --> 00:06:20,300
+que las funciones tienen información
+
+191
+00:06:20,800 --> 00:06:23,260
+suficiente para predecir el precio con el nivel deseado de precisión.
+
+192
+00:06:24,090 --> 00:06:25,180
+Cuando pienso en
+
+193
+00:06:25,540 --> 00:06:26,730
+probar este supuesto, una
+
+194
+00:06:26,940 --> 00:06:29,160
+manera de hacerlo es preguntarme qué pasaría
+
+195
+00:06:30,260 --> 00:06:31,660
+si consultáramos a un humano experto en este campo,
+
+196
+00:06:32,180 --> 00:06:33,320
+y le diéramos las funciones “x” de entrada,
+
+197
+00:06:33,380 --> 00:06:35,440
+es decir, la misma información disponible
+
+198
+00:06:36,510 --> 00:06:38,690
+para un algoritmo de aprendizaje.
+
+199
+00:06:39,680 --> 00:06:41,570
+¿Podría predecir un experto humano
+
+200
+00:06:41,720 --> 00:06:43,160
+con certeza el
+
+201
+00:06:43,490 --> 00:06:45,390
+valor de “y? Para
+
+202
+00:06:45,630 --> 00:06:46,730
+este ejemplo supongamos que
+
+203
+00:06:46,980 --> 00:06:49,420
+vamos con un experto en el idioma inglés,
+
+204
+00:06:49,810 --> 00:06:51,260
+alguien que habla muy
+
+205
+00:06:51,390 --> 00:06:53,740
+bien el inglés; es decir,
+
+206
+00:06:53,940 --> 00:06:55,230
+la mayoría de
+
+207
+00:06:55,940 --> 00:06:57,260
+las personas como tú y
+
+208
+00:06:57,450 --> 00:06:59,730
+yo. Probablemente seríamos
+
+209
+00:07:00,160 --> 00:07:01,080
+capaces de
+
+210
+00:07:01,170 --> 00:07:02,370
+predecir qué palabra
+
+211
+00:07:02,620 --> 00:07:03,960
+corresponde al espacio? Quien
+
+212
+00:07:04,290 --> 00:07:05,550
+habla inglés puede predecir esto.
+
+213
+00:07:05,850 --> 00:07:06,710
+Esto me da la certeza de que
+
+214
+00:07:07,470 --> 00:07:08,640
+“x” nos permite
+
+215
+00:07:08,810 --> 00:07:10,550
+predecir “y” con precisión. Pero si
+
+216
+00:07:11,240 --> 00:07:13,550
+por el contrario consultamos a un experto en precios,
+
+217
+00:07:14,040 --> 00:07:16,390
+como un experto en bienes raíces o alguien
+
+218
+00:07:16,950 --> 00:07:18,090
+que se dedique a vender casas,
+
+219
+00:07:18,610 --> 00:07:19,450
+les damos
+
+220
+00:07:19,550 --> 00:07:20,440
+el tamaño de la casa y
+
+221
+00:07:20,530 --> 00:07:21,860
+les preguntamos cuál es el precio,
+
+222
+00:07:22,240 --> 00:07:23,410
+ni siquiera ellos, expertos
+
+223
+00:07:23,600 --> 00:07:25,210
+en precios y en ventas de
+
+224
+00:07:25,600 --> 00:07:26,520
+casas, serían capaces de
+
+225
+00:07:26,550 --> 00:07:28,280
+decirme. Entonces,
+
+226
+00:07:29,000 --> 00:07:31,060
+para el ejemplo del precio de casas,
+
+227
+00:07:31,600 --> 00:07:33,300
+saber solamente el precio no
+
+228
+00:07:33,460 --> 00:07:34,960
+me da información suficiente para predecir
+
+229
+00:07:35,920 --> 00:07:36,870
+el precio de la casa.
+
+230
+00:07:37,690 --> 00:07:39,890
+Digamos que este supuesto nos ayuda;
+
+231
+00:07:41,200 --> 00:07:42,650
+veamos en qué casos nos puede
+
+232
+00:07:43,040 --> 00:07:44,230
+ayudar tener muchos datos.
+
+233
+00:07:45,020 --> 00:07:46,370
+Supongamos que las funciones
+
+234
+00:07:46,650 --> 00:07:47,870
+tienen información suficiente para predecir
+
+235
+00:07:48,050 --> 00:07:49,380
+el valor de “y”,
+
+236
+00:07:49,540 --> 00:07:50,750
+y supongamos que vamos a utilizar
+
+237
+00:07:50,960 --> 00:07:52,380
+un algoritmo de aprendizaje con
+
+238
+00:07:52,600 --> 00:07:54,430
+un número mayor de parámetros. Quizá
+
+239
+00:07:54,580 --> 00:07:56,020
+la regresión logística o la regresión
+
+240
+00:07:56,280 --> 00:07:58,090
+lineal con un gran número de funciones.
+
+241
+00:07:58,550 --> 00:07:59,490
+Otra cosa que también
+
+242
+00:07:59,950 --> 00:08:00,740
+hago a veces es
+
+243
+00:08:00,960 --> 00:08:03,300
+utilizar una red neuronal con muchas unidades ocultas.
+
+244
+00:08:03,860 --> 00:08:05,230
+Esa sería otra manera de tener un
+
+245
+00:08:05,500 --> 00:08:07,420
+algoritmo de aprendizaje con muchos parámetros.
+
+246
+00:08:08,470 --> 00:08:10,280
+Todos estos son algoritmos efectivos
+
+247
+00:08:10,350 --> 00:08:12,350
+de aprendizaje con muchos parámetros
+
+248
+00:08:13,040 --> 00:08:14,810
+que pueden ajustar funciones muy complejas.
+
+249
+00:08:16,750 --> 00:08:17,550
+Pensaré en
+
+250
+00:08:18,630 --> 00:08:19,720
+estos como algoritmos de
+
+251
+00:08:20,510 --> 00:08:21,970
+baja oscilación  porque
+
+252
+00:08:22,140 --> 00:08:23,540
+podemos ajustar funciones muy complejas.
+
+253
+00:08:25,480 --> 00:08:26,740
+Debido a que tenemos algoritmos de
+
+254
+00:08:27,260 --> 00:08:28,920
+aprendizaje efectivos que pueden
+
+255
+00:08:29,380 --> 00:08:30,590
+ajustar funciones complejas,
+
+256
+00:08:31,680 --> 00:08:33,470
+las probabilidades apuntan a que, si
+
+257
+00:08:34,070 --> 00:08:35,790
+aplicamos estos algoritmos a
+
+258
+00:08:35,940 --> 00:08:37,250
+conjuntos de datos, seremos capaces de
+
+259
+00:08:37,430 --> 00:08:38,770
+ajustar bien el conjunto de
+
+260
+00:08:39,200 --> 00:08:40,680
+entrenamiento y, con suerte,
+
+261
+00:08:40,940 --> 00:08:43,230
+el error de entrenamiento será bajo.
+
+262
+00:08:44,520 --> 00:08:45,520
+Ahora digamos que utilizamos un
+
+263
+00:08:46,020 --> 00:08:47,790
+conjunto de entrenamiento masivo.
+
+264
+00:08:48,190 --> 00:08:49,370
+En ese caso, si tenemos un conjunto de
+
+265
+00:08:49,430 --> 00:08:51,460
+entrenamiento masivo, entonces, aunque
+
+266
+00:08:51,630 --> 00:08:53,490
+tengamos muchos parámetros, siempre y
+
+267
+00:08:53,760 --> 00:08:56,080
+cuando el conjunto de entrenamiento
+
+268
+00:08:56,360 --> 00:08:57,450
+sea más grande que
+
+269
+00:08:57,840 --> 00:08:59,450
+el número de parámetros, no será
+
+270
+00:08:59,640 --> 00:09:01,490
+probable que estos algoritmos causen sobreajuste.
+
+271
+00:09:02,590 --> 00:09:03,660
+Justo porque tenemos un conjunto
+
+272
+00:09:03,710 --> 00:09:05,680
+de aprendizaje muy grande. Cuando digo
+
+273
+00:09:06,070 --> 00:09:07,870
+que no es probable que cause sobreajuste
+
+274
+00:09:08,070 --> 00:09:09,090
+me refiero a que el error de
+
+275
+00:09:09,390 --> 00:09:10,860
+entrenamiento será, con suerte,
+
+276
+00:09:11,050 --> 00:09:13,270
+cercano al error de prueba.
+
+277
+00:09:13,960 --> 00:09:15,160
+Por último, si vemos al error de
+
+278
+00:09:15,350 --> 00:09:16,770
+prueba y de aprendizaje juntos, si el
+
+279
+00:09:16,990 --> 00:09:18,590
+error del conjunto de entrenamiento es bajo y el
+
+280
+00:09:18,700 --> 00:09:19,870
+error del conjunto de prueba es cercano
+
+281
+00:09:20,360 --> 00:09:22,290
+al error de entrenamiento, lo que
+
+282
+00:09:22,460 --> 00:09:24,510
+significa es que
+
+283
+00:09:24,710 --> 00:09:26,630
+el error del conjunto de prueba
+
+284
+00:09:27,780 --> 00:09:28,450
+también será bajo.
+
+285
+00:09:30,000 --> 00:09:32,610
+Otra manera de pensar
+
+286
+00:09:32,720 --> 00:09:33,930
+en esto es que,
+
+287
+00:09:34,700 --> 00:09:35,740
+para tener un
+
+288
+00:09:35,880 --> 00:09:37,630
+desempeño alto, el algoritmo de aprendizaje que queremos
+
+289
+00:09:37,930 --> 00:09:40,470
+no debe tener un alta oscilación  ni una varianza alta.
+
+290
+00:09:42,060 --> 00:09:43,270
+Vamos a tratar el problema de
+
+291
+00:09:43,350 --> 00:09:44,700
+sesgo asegurándonos de
+
+292
+00:09:44,880 --> 00:09:45,910
+tener un algoritmo de aprendizaje con
+
+293
+00:09:46,170 --> 00:09:47,670
+muchos parámetros. Esto genera
+
+294
+00:09:47,840 --> 00:09:48,930
+un algoritmo de baja oscilación.
+
+295
+00:09:50,110 --> 00:09:51,460
+Y para asegurarnos de evitar un
+
+296
+00:09:51,610 --> 00:09:53,240
+problema de varianza, podemos
+
+297
+00:09:53,760 --> 00:09:55,590
+utilizar un conjunto de entrenamiento muy grande.
+
+298
+00:09:55,840 --> 00:09:57,280
+Así, nuestro algoritmo tendrá
+
+299
+00:09:57,430 --> 00:09:59,100
+una varianza baja.
+
+300
+00:09:59,340 --> 00:10:00,940
+Cuando ponemos estos dos elementos juntos,
+
+301
+00:10:01,870 --> 00:10:02,830
+obtenemos un algoritmo de
+
+302
+00:10:02,900 --> 00:10:03,990
+oscilación y varianza bajos y esto nos
+
+303
+00:10:04,990 --> 00:10:06,920
+permite tener
+
+304
+00:10:07,140 --> 00:10:08,300
+un buen desempeño en el
+
+305
+00:10:08,710 --> 00:10:10,150
+conjunto de prueba.
+
+306
+00:10:10,430 --> 00:10:12,140
+Además, los ingredientes clave
+
+307
+00:10:13,020 --> 00:10:14,560
+que nos garantizan que las funciones
+
+308
+00:10:14,940 --> 00:10:16,750
+tienen información suficiente
+
+309
+00:10:16,900 --> 00:10:17,960
+y tienen una clase rica en funciones
+
+310
+00:10:18,400 --> 00:10:19,580
+es lo que garantiza el baja oscilación,
+
+311
+00:10:20,760 --> 00:10:21,750
+y por tanto tiene un conjunto de
+
+312
+00:10:22,110 --> 00:10:25,010
+entrenamiento masivo que garantiza más varianza.
+
+313
+00:10:27,150 --> 00:10:28,310
+Esto nos da un
+
+314
+00:10:28,410 --> 00:10:29,820
+conjunto de condiciones y
+
+315
+00:10:30,090 --> 00:10:31,610
+un entendimiento de los tipos
+
+316
+00:10:31,870 --> 00:10:33,730
+de problemas que podemos resolver
+
+317
+00:10:33,860 --> 00:10:34,790
+cuando tenemos muchos datos y
+
+318
+00:10:34,960 --> 00:10:36,150
+entrenamos un algoritmo de aprendizaje
+
+319
+00:10:36,380 --> 00:10:38,930
+con muchos parámetros que podrían
+
+320
+00:10:39,120 --> 00:10:39,870
+mejorar el desempeño
+
+321
+00:10:40,060 --> 00:10:42,490
+de nuestro algoritmo de aprendizaje.
+
+322
+00:10:43,480 --> 00:10:44,140
+Y, creo que las pruebas clave que
+
+323
+00:10:44,230 --> 00:10:45,520
+me pregunto generalmente
+
+324
+00:10:45,820 --> 00:10:47,100
+son ¿puede un experto
+
+325
+00:10:47,200 --> 00:10:48,360
+humano tomar las funciones “x”
+
+326
+00:10:48,880 --> 00:10:49,890
+y predecir con certeza
+
+327
+00:10:50,030 --> 00:10:51,080
+el valor de “y”? Esta sería una
+
+328
+00:10:51,210 --> 00:10:53,050
+confirmación de que “y” puede
+
+329
+00:10:53,320 --> 00:10:55,040
+ser predicha con certeza a partir de
+
+330
+00:10:55,140 --> 00:10:57,010
+las funciones “x”. Y la segunda
+
+331
+00:10:57,510 --> 00:10:58,630
+prueba clave es, ¿podemos obtener un
+
+332
+00:10:58,820 --> 00:11:00,150
+conjunto de entrenamiento grande, y
+
+333
+00:11:00,350 --> 00:11:01,470
+entrenar el algoritmo de aprendizaje con
+
+334
+00:11:01,540 --> 00:11:03,290
+muchos parámetros en el conjunto
+
+335
+00:11:03,520 --> 00:11:04,420
+de aprendizaje? Si puedes
+
+336
+00:11:04,870 --> 00:11:06,300
+realizar ambas pruebas,
+
+337
+00:11:06,460 --> 00:11:08,570
+obtendrás un algoritmo de aprendizaje con un buen desempeño.

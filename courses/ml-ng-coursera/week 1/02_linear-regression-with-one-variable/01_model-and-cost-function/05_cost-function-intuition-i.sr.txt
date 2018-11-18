@@ -1,0 +1,76 @@
+U prethodnom videu smo dali matematičku definiciju funkcije koštanja. U ovome videu 
+pogledajmo neke primere da osetimo šta radi funkcija koštanja i zašto 
+nam treba. Da se podsetimo, evo šta smo imali prošli put. Želimo da našim 
+podacima pridružimo pravu liniju da bismo imali formiranu hipotezu sa ovim parametrima teta0 i teta1, a različitim izborima parametara 
+dobijamo različite prave linije. Dakle podaci koji padaju ovako,
+ a ovo je funkcija koštanja a to je cilj optimizacije. U 
+ovome videu, da bismo bolje sagledali funkciju koštanja J, radiću 
+sa pojednostavljenom hipotezom kao što je prikazano desno. Dakle, 
+koristiću moju pojednostavljenu hipotezu a to je samo teta1 * x. Ako želite 
+možemo o ovome da mislimo kao da je teta0 = 0. Dakle, imam 
+samo jedan parametar teta1 a moja funkcija koštanja je slična kao
+ i pre osim što je h(x) = teta1*x. I sada imam samo jedan 
+parametar teta1 i tako cilj moje optimizacije je da minimizujem 
+J(teta1). Sa slike to znači da ako je teta0 = 0 to odgovara samo izboru hipoteze koja prolazi kroz koordinatni početak, kroz tačku (0, 0). Koristeći ovu pojednostavljenu definiciju 
+funkcije koštanja, pokušajmo da razumemo malo bolje koncept funkcije koštanja. Ispada 
+da želimo da razumemo dve funkcije. Prva je hipoteza a druga funkcija koštanja. Dakle hipoteza h(x). Za fiksnu vrednost teta1 ovo je funkcija od x. Dakle, hipoteza je funkcija 
+od, onoga što je veličina kuće, x. Suprotno tome, funkcija koštanja
+ J je funkcija parametra teta1 što kontroliše nagib prave linije. Iscrtajmo ove funkcije i pokušajmo da razumemo malo bolje. 
+Počnimo sa hipotezom. Na levoj strani recimo da je ovo moj trening skup 
+sa tri tačke (1, 1), (2, 2) i (3, 3). Hajde da pokupimo teta1, pa kada 
+je teta1 = 1 i ako je to moj izbor za teta1, tada moja prava linija 
+izgleda kao ova linija ovde. Pokazaću vam, kada iscrtavam hipotezu, x osa, moja horizontalna osa je označena 
+kao x, to su veličine kuća. Teta1 je postavljeno na 1, 
+ono što želim da uradim je da shvatim šta je sa J(teta1) 
+kada je teta1 = 1. Dakle krenimo sa računanjem šta je funkcija 
+koštanja za teta1 = 1. Kao i obično, moja funkcija koštanja je definisana kao 
+što sledi, u redu? Nešto iz mog trening skupa, ovo je kao i obično 
+kvadrat greške. A ovo je jednako ovome. Od teta1 x(i) minus y(i) i ako 
+uprostimo ovo dobijamo to. Nula na kvadrat nula na kvadrat nula 
+na kvadrat što je naravno jednako 0. Unutar funkcije koštanja svi ovi članovi su jednaki 0. Jer za ovaj trening skup od 3 primera, (1, 1), (2, 2), (3, 3). Ako je teta1 = 1 tada je h(x) = y, napisaću ovo bolje. U redu? I tako, h(x) - y, svaki od ovih članova je 0 i zato je J(1) = 0. Dakle, znamo da je J(1) = 0. Iscrtajmo to. Ono što ću da uradim 
+je da na desnoj strani iscrtam funkciju koštanja J. Primetite da je 
+funkcija koštanja funkcija parametra teta1, kada iscrtam funkciju koštanja, 
+horizontalna osa je označena kao teta1. Tako imam J(1) = 0 pa iscrtajmo ovo. Ovo je x. Pogledajmo neke druge 
+primere. Teta1 može da uzme vrednost iz celog opsega. U redu? Tako 
+teta1 može da bude negativna vrednost, nula ili pozitivna vrednost. Šta ako 
+je teta1 = 0.5? Šta se tada dešava? Hajde da to iscrtamo. Sada ću da 
+stavim teta1 = 0.5, u tom slučaju moja hipoteza izgleda ovako. 
+Kao linija sa nagibom od 0.5 hajde da izračunamo J(0.5). To će da 
+bude 1/2m, uobičajena funkcija koštanja. Funkcija koštanja će da 
+bude zbir kvadrata vrednosti visine ove linije plus suma kvadrata ove linije plus suma kvadrata ove linije, u redu? Jer ovo vertikalno rastojanje je rastojanje između, znate, 
+y(i) i predviđene vrednosti, h(x(i)) u redu? Dakle, prvi primer 
+će da bude 0.5 - 1 na kvadrat. Jer moja hipoteza predviđa 
+0.5 dok je stvarna vrednost 1. U mom drugom primeru imamo 1 - 2 
+na kvadrat jer moja hipoteza predviđa 1 a stvarna vrednost je 2. 
+I konačno 1.5 - 3 na kvadrat i to je jednako 1/(2*3), jer 
+je m veličina trening skupa, imamo 3 trening primera. To množimo sa, u zagradi 3.5. Tako 3.5/6 je otprilike 0.68. Sada znamo da za 0.5 
+dobijamo 0.68. Hajde da to iscrtamo. Oh, izvinite, matematička greška, u stvari 
+je 0.58. Dakle, ovo crtamo a to je možda ovde. U redu? Hajde da uradimo 
+još jedno. Šta ako je teta1 = 0? Čemu je J(0) jednako? Ispada 
+da ako je teta1 = 0, tada h(x) je jednako ovoj pravoj liniji koja ide horizontalno, ovako. Merenjem greške imamo da je J(0) jednako 1/2m puta 1 na kvadrat plus 2 na
+ kvadrat plus 3 na kvadrat što je, jedna šestina puta 14 što je oko 2.3. 
+Hajde isto i ovo da nacrtamo. Tako dobijamo vrednost oko 2.3 i 
+naravno, možemo da nastavimo ovako i za ostale vrednosti teta1. Možete da imate i negativne vrednosti teta1 i ako je teta1 
+negativno tada bi h(x) bilo jednako -0.5 puta x tada je teta1 jednako -0.5 i to odgovara hipotezi sa nagibom -0.5. I možete da nastavite računanje grešaka. 
+Ovo bi bilo, znate, za 0.5, izgleda veoma velika greška. Dobijamo nešto kao 5.25. I tako dalje. Za različite vrednosti teta1 
+možete da izračunate ove stvari, u redu? Ispada da ako računate u opsegu 
+vrednosti, dobijate nešto ovako. Računajući opseg vrednosti 
+možete da dobijete ovo. Šta radi J(teta), ovo je J(teta). Da sumiramo, za svaku vrednost teta1, svaku 
+vrednost teta1 koja odgovara različitim hipotezama ili različitim pravim linijama 
+prikazanim na levoj strani, za svaku vrednost teta1 možemo da identifikujemo
+različitu vrednost za J(teta1). Na primer, znate, teta1 = 1 
+odgovara ovoj pravoj liniji kroz podatke, dok za teta1 = 0.5 a 
+ta tačka prikazana u magenta boji odgovara možda ovoj liniji a teta1 = 0 
+što je prikazano plavom, odgovara ovoj horizontalnoj liniji. U redu, za svaku vrednost teta1 bismo dobili različitu vrednost J(teta1) i tada 
+bismo mogli da iscrtamo funkciju desno. Sećate se, cilj optimizacije 
+našeg algoritma učenja je da nađemo vrednost teta1 koja minimizuje J(teta1). U redu? To je bila ciljna funkcija 
+linearne regresije. Ako pogledamo ovu krivu, vrednost koja 
+minimizuje J(teta1) je teta1 = 1. To je stvarno najbolja moguća prava koja odgovara našima podacima, postavljanjem
+ teta1 = 1. Za ovaj određeni trening skup dobili smo savršeno 
+rešenje. Zato minimizacija J(teta1) odgovara nalaženju prave koja odgovara podacima. Da zaokružimo priču. U ovome videu smo videli 
+neke grafičke podatke da bismo razumeli funkciju koštanja. Da bismo to uradili , 
+pojednostavili smo algoritam tako da je imao jedan parametar teta1 a parametar teta0 smo 
+postavili da bude 0. U sledećem videu vratićemo se formulaciji 
+originalnog problema i pogledati neke predstave koje uključuju i teta0 i 
+teta1, bez postavljanja teta0 na 0. Nadam se da sam vam dao malo 
+lepši osećaj šta radi funkcija koštanja J u originalnoj formulaciji linearne regresije.

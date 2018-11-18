@@ -1,0 +1,87 @@
+Dalam video ini kita akan menyatakan sesuatu
+yang disebut fungsi biaya. Ini akan membantu kita mengetahui bagaimana mencocokkan garis lurus
+terbaik ke data kita. Dalam regresi linier kita punya set latihan seperti
+yang terlihat di sini. Ingat notasi kita m adalah jumlah contoh latihan. Jadi
+mungkin m = 47. Dan bentuk hipotesis, yang kita gunakan untuk membuat
+prediksi, adalah fungsi linier ini. Untuk memperkenalkan sedikit istilah lagi,
+theta nol dan theta satu ini, theta i's ini adalah apa yang saya sebut
+parameter model. Apa yang kita akan lakukan dalam video ini adalah bicara tentang
+bagaimana memilih dua nilai parameter ini, theta nol dan theta
+satu. Dengan pilihan parameter yang berbeda theta nol dan theta satu kita mendapat hipotesis
+yang berbeda, fungsi hipotesis yang berbeda. Saya tahu beberapa dari Anda
+mungkin sudah tidak asing dengan apa yang saya akan lakukan di slide ini, tapi hanya untuk
+mengulang ini beberapa contoh. Jika theta nol 1.5 dan theta satu 0, maka
+fungsi hipotesis akan terlihat seperti ini. Baiklah, karena fungsi hipotesis
+Anda adalah h(x) sama dengan 1.5 tambah 0 kali x yaitu ini nilai konstan
+fungsi, ini mendatar pada 1.5. Jika theta nol sama dengan nol dan theta satu
+sama dengan 0.5, maka hipotesis akan terlihat seperti ini. Dan itu harus melalui titik
+(2,1), katakan sekarang Anda punya h(x) atau h theta(x) tapi
+terkadang saya akan mengabaikan theta untuk ringkasnya. Jadi, h(x) akan sama dengan
+0.5 kali x yang terlihat seperti itu. Dan akhirnya jika theta nol sama dengan 1 dan theta
+satu sama dengan 0.5 maka kita berakhir dengan hipotesis yang terlihat seperti ini. Mari kita
+lihat, itu harus melalui titik (2, 2) seperti itu. Dan ini, h(x) baru saya
+atau h theta(x) baru saya. Setuju? Nah Anda ingat bahwa ini
+h theta(x) tapi untuk singkatnya terkadang saya hanya menulis ini sebagai h(x). Dalam
+regresi linier kita punya set latihan, mungkin seperti yang telah saya plot di sini. Apa
+yang kita ingin lakukan adalah menghasilkan nilai untuk parameter theta nol dan theta satu.
+Agar garis lurus yang kita dapat dari sini cocok dengan garis lurus
+yang entah bagaimana pas dengan data. Mungkin seperti garis di sana. Jadi bagaimana kita
+menghasilkan nilai theta nol, theta satu yang pas benar dengan
+data? Idenya kita akan memilih parameter kita theta nol, theta satu sehingga
+h(x), yaitu nilai yang kita prediksi pada input x, bahwa ini paling tidak dekat dengan
+nilai y untuk contoh di set latihan kita, untuk contoh latihan kita.
+Jadi, dalam set latihan kita, kita diberikan sejumlah contoh dimana kita tahu x menunjukkan
+ukuran rumah dan kita tahu harga aktual berapa rumah itu terjual. Jadi mari kita coba
+pilih nilai untuk parameter tersebut sehingga paling tidak di set latihan, diberikan
+x's di set latihan, kita membuat prediksi akurat yang pantas untuk nilai y.
+Mari kita rumuskan ini. Jadi regresi linier, apa yang akan kita lakukan adalah saya
+akan ingin memecahkan persoalan peminimalan. Jadi saya akan menulis memperkecil di atas theta
+nol, theta satu. Dan, saya ingin ini jadi kecil, setuju, saya ingin selisih
+antara h(x) dan y jadi kecil. Dan satu hal yang saya akan lakukan adalah coba memperkecil
+selisih kwadrat antara hasil hipotesis dan harga aktual
+rumah. Oke? Jadi mari kita tambahkan beberapa detail. Ingat bahwa saya sebelumnya menggunakan
+notasi (x(i), y(i)) untuk menampilkan contoh latihan ke-i. Jadi apa yang saya
+benar-benar inginkan adalah menjumlahkan seluruh set latihan saya. Penjumlahan dari i = 1 sampai m dari
+selisih kwadrat antara ini, prediksi hipotesis saya,
+saat ini di input ukuran rumah nomor i, kurang harga aktual
+rumah nomor i akan terjual, dan saya ingin memperkecil penjumlahan set latihan saya, penjumlahan
+dari i = 1 sampai m selisih kwadrat kesalahan ini,
+selisih kwadrat antara harga rumah yang diprediksi dan harga
+rumah saat terjual. Dan hanya mengingatkan Anda akan notasi m di sini adalah
+ukuran set latihan saya, jadi m disana adalah jumlah contoh latihan
+saya. Setuju? Tanda pagar adalah singkatan untuk "jumlah" contoh
+latihan. Oke? Dan untuk membuat beberapa, membuat perhitungan matematika sedikit lebih mudah, saya
+akan melihat pada, Anda tahu, 1 bagi m kali itu. Jadi kita akan mencoba
+memperkecil kesalahan rata-rata saya, yang kita akan perkecil dengan satu per 2m.
+Menempatkan 2, bilangan konstan setengah, di depan itu hanya membuat beberapa perhitungan
+sedikit lebih mudah. Jadi memperkecil setengah dari sesuatu, harusnya memberi Anda nilai
+yang sama dari parameter theta nol, theta satu selagi memperkecil fungsi itu. Dan hanya
+untuk memastikan, persamaan ini jelas, kan? Ekpresi ini,
+h theta(x), ini yang biasa kita tulis, kan? Itu sama dengan ini
+tambah theta satu x(i). Dan notasi ini, minimize theta nol dan theta satu,
+ini artinya temukan bagi saya nilai theta nol dan theta satu yang menyebabkan hasil
+ekspresi ini diperkecil. Dan ekspresi ini bergantung pada theta nol dan theta
+satu. Oke? Jadi hanya untuk mengulang, kita mengajukan persoalan ini seperti temukan bagi saya nilai
+theta nol dan theta satu agar rata-rata satu bagi 2m kali
+penjumlahan kesalahan kwadrat antara prediksi saya atas set latihan kurang
+nilai aktual rumah pada set latihan diperkecil. Jadi ini
+akan menjadi tujuan keseluruhan saya, fungsi untuk regresi linier. Dan hanya untuk,
+menuliskan kembali ini sedikit lebih jelas apa yang akan saya lakukan sesuai ketentuan
+adalah kita biasanya menetapkan fungsi biaya. Yang akan jadi tepat seperti ini. Rumus
+itu yang saya punya di sini. Dan apa yang saya ingin lakukan adalah memperkecil theta nol dan
+theta satu fungsi saya J dari theta nol koma theta satu. Hanya tulis ini,
+ini fungsi biaya saya. Jadi, ini fungsi biaya yang juga disebut fungsi
+kesalahan kwadrat atau terkadang disebut kesalahan fungsi biaya kwadrat dan jelas
+bahwa mengapa kita menghitung kwadrat dari kesalahan-kesalahan itu? Jelas
+bahwa kesalahan fungsi biaya kwadrat adalah pilihan yang masuk akal dan akan bekerja dengan baik untuk
+kebanyakan soal, untuk kebanyakan soal regresi. Ada fungsi biaya lain
+yang akan bekerja sangat baik, tapi kesalahan fungsi biaya kwadrat mungkin yang paling
+umum digunakan untuk soal regresi. Nanti di kelas ini kita juga akan bicara fungsi
+biaya alternatif juga, namun ini, pilihan yang baru kita punya ini, harusnya menjadi
+hal yang paling masuk akal untuk dicoba pada kebanyakan soal regresi linier. Oke. Jadi
+itulah fungsi biaya. Sejauh ini kita hanya melihat definisi matematika dari
+fungsi biaya ini dan dalam kasus ini fungsi J dari theta nol dan theta satu jika
+fungsi ini terlihat sedikit abstrak dan Anda masih tidak mengerti
+apa yang dilakukan fungsi ini di video berikut, pada video kedua berikutnya kita akan benar-benar
+melihat lebih dalam akan apa fungsi biaya J lakukan dan coba memberi Anda
+intuisi yang lebih baik akan apa yang dihitungnya dan mengapa kita ingin menggunakannya.

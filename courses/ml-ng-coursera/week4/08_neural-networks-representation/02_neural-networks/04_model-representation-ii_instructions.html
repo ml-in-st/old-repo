@@ -1,0 +1,152 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Model Representation II
+ </h1>
+ <p>
+  To re-iterate, the following is an example of a neural network:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*} a_1^{(2)} = g(\Theta_{10}^{(1)}x_0 + \Theta_{11}^{(1)}x_1 + \Theta_{12}^{(1)}x_2 + \Theta_{13}^{(1)}x_3) \newline a_2^{(2)} = g(\Theta_{20}^{(1)}x_0 + \Theta_{21}^{(1)}x_1 + \Theta_{22}^{(1)}x_2 + \Theta_{23}^{(1)}x_3) \newline a_3^{(2)} = g(\Theta_{30}^{(1)}x_0 + \Theta_{31}^{(1)}x_1 + \Theta_{32}^{(1)}x_2 + \Theta_{33}^{(1)}x_3) \newline h_\Theta(x) = a_1^{(3)} = g(\Theta_{10}^{(2)}a_0^{(2)} + \Theta_{11}^{(2)}a_1^{(2)} + \Theta_{12}^{(2)}a_2^{(2)} + \Theta_{13}^{(2)}a_3^{(2)}) \newline \end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  In this section we'll do a vectorized implementation of the above functions. We're going to define a new variable $$z_k^{(j)}$$ that encompasses the parameters inside our g function. In our previous example if we replaced by the variable z for all the parameters we would get:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}a_1^{(2)} = g(z_1^{(2)}) \newline a_2^{(2)} = g(z_2^{(2)}) \newline a_3^{(2)} = g(z_3^{(2)}) \newline \end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  In other words, for layer j=2 and node k, the variable z will be:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$z_k^{(2)} = \Theta_{k,0}^{(1)}x_0 + \Theta_{k,1}^{(1)}x_1 + \cdots + \Theta_{k,n}^{(1)}x_n$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  The vector representation of x and $$z^{j}$$ is:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}x = \begin{bmatrix}x_0 \newline x_1 \newline\cdots \newline x_n\end{bmatrix} &amp;z^{(j)} = \begin{bmatrix}z_1^{(j)} \newline z_2^{(j)} \newline\cdots \newline z_n^{(j)}\end{bmatrix}\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  Setting $$x = a^{(1)}$$, we can rewrite the equation as:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$z^{(j)} = \Theta^{(j-1)}a^{(j-1)}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  We are multiplying our matrix $$\Theta^{(j-1)}$$ with dimensions $$s_j\times (n+1)$$ (where $$s_j$$ is the number of our activation nodes) by our vector $$a^{(j-1)}$$ with height (n+1). This gives us our vector $$z^{(j)}$$ with height $$s_j$$. Now we can get a vector of our activation nodes for layer j as follows:
+ </p>
+ <p hasmath="true">
+  $$a^{(j)} = g(z^{(j)})$$
+ </p>
+ <p hasmath="true">
+  Where our function g can be applied element-wise to our vector $$z^{(j)}$$.
+ </p>
+ <p hasmath="true">
+  We can then add a bias unit (equal to 1) to layer j after we have computed $$a^{(j)}$$. This will be element $$a_0^{(j)}$$ and will be equal to 1. To compute our final hypothesis, let's first compute another z vector:
+ </p>
+ <p hasmath="true">
+  $$z^{(j+1)} = \Theta^{(j)}a^{(j)}$$
+ </p>
+ <p hasmath="true">
+  We get this final z vector by multiplying the next theta matrix after $$\Theta^{(j-1)}$$ with the values of all the activation nodes we just got. This last theta matrix $$\Theta^{(j)}$$ will have only
+  <strong>
+   one row
+  </strong>
+  which is multiplied by one column $$a^{(j)}$$ so that our result is a single number. We then get our final result with:
+ </p>
+ <p hasmath="true">
+  $$h_\Theta(x) = a^{(j+1)} = g(z^{(j+1)})$$
+ </p>
+ <p>
+  Notice that in this
+  <strong>
+   last step
+  </strong>
+  , between layer j and layer j+1, we are doing
+  <strong>
+   exactly the same thing
+  </strong>
+  as we did in logistic regression. Adding all these intermediate layers in neural networks allows us to more elegantly produce interesting and more complex non-linear hypotheses.
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,314 @@
+1
+00:00:00,220 --> 00:00:03,688
+Di video sebelumnya, kita bicara tentang
+bentuk hipotesis untuk regresi
+
+2
+00:00:03,688 --> 00:00:07,246
+linier dengan banyak sifat atau
+variabel.
+
+3
+00:00:07,246 --> 00:00:11,912
+Di video ini, kita membahas bagaimana
+mencocokkan parameter hipotesis itu.
+
+4
+00:00:11,912 --> 00:00:15,175
+Khususnya membahas bagaimana menggunakan
+gradient descent untuk regresi
+
+5
+00:00:15,175 --> 00:00:19,875
+linier dengan banyak sifat.
+
+6
+00:00:19,875 --> 00:00:24,802
+Untuk merangkum notasi kita,
+ini hipotesis formal kita dalam
+
+7
+00:00:24,802 --> 00:00:31,509
+regresi linier dengan banyak variabel
+dimana kita sepakat x0 = 1.
+
+8
+00:00:31,509 --> 00:00:37,505
+Parameter model ini adalah theta0
+s/d theta n, tapi gantinya berpikir
+
+9
+00:00:37,505 --> 00:00:42,385
+ini sebagai n parameter terpisah, yang
+juga benar, saya akan berpikir
+
+10
+00:00:42,385 --> 00:00:51,175
+parameternya sebagai theta yang
+merupakan vektor n+1-dimensi.
+
+11
+00:00:51,175 --> 00:00:55,498
+Jadi saya akan berpikir
+parameter model ini
+
+12
+00:00:55,498 --> 00:00:58,674
+sebagai sebuah vektor.
+
+13
+00:00:58,674 --> 00:01:03,507
+Fungsi harga kita adalah J theta0 s/d
+theta n yaitu penjumlahan
+
+14
+00:01:03,507 --> 00:01:08,983
+ketidaktelitian kwadrat ini. Tapi
+gantinya berpikir J sebagai fungsi
+
+15
+00:01:08,983 --> 00:01:14,016
+dari jumlah n+1 ini, saya akan
+lebih sering menulis J sebagai
+
+16
+00:01:14,016 --> 00:01:22,275
+fungsi parameter theta vektor,
+jadi theta disini adalah vektor.
+
+17
+00:01:22,275 --> 00:01:26,897
+Inilah gradient descent. Kita akan 
+memperbaharui berulang kali setiap
+
+18
+00:01:26,897 --> 00:01:32,142
+parameter theta j menurut theta j
+kurang alfa kali bagian derivatif ini.
+
+19
+00:01:32,142 --> 00:01:37,868
+Sekali lagi, kita menulis ini J theta,
+jadi theta j diperbaharui dengan cara
+
+20
+00:01:37,868 --> 00:01:41,840
+theta j kurang kecepatan belajar alfa
+kali derivatif, derivatif
+
+21
+00:01:41,840 --> 00:01:47,840
+sebagian dari fungsi harga dengan
+mengacu pada parameter theta j.
+
+22
+00:01:47,840 --> 00:01:51,305
+Mari lihat bagaimana jadinya ketika kita
+mengimplementasikan gradient descent,
+
+23
+00:01:51,305 --> 00:01:55,985
+khususnya, bagian derivatif sebagian.
+
+24
+00:01:55,985 --> 00:02:01,383
+Ini gradient descent yang kita punya
+untuk kasus n = 1 sifat.
+
+25
+00:02:01,383 --> 00:02:06,782
+Kita punya 2 aturan pembaruan terpisah
+untuk parameter theta0 dan theta1, dan
+
+26
+00:02:06,782 --> 00:02:12,779
+semoga Anda sudah tahu ini.
+Bagian ini tentu saja
+
+27
+00:02:12,779 --> 00:02:17,672
+derivatif sebagian dari fungsi harga
+dengan mengacu pada parameter theta0,
+
+28
+00:02:17,672 --> 00:02:21,891
+dan sama juga, kita punya aturan 
+pembaruan berbeda utk parameter theta1.
+
+29
+00:02:21,891 --> 00:02:26,259
+Hanya ada 1 perbedaan kecil yaitu
+sebelumnya kita cuma punya 1 sifat,
+
+30
+00:02:26,259 --> 00:02:31,992
+kita akan namai itu sifat x(i),
+tapi sekarang dalam notasi baru,
+
+31
+00:02:31,992 --> 00:02:38,462
+kita akan sebut ini x(i) subskrip
+1 untuk menunjukkan 1 sifat.
+
+32
+00:02:38,462 --> 00:02:41,019
+Jadi begitulah jika kita
+cuma punya 1 sifat.
+
+33
+00:02:41,019 --> 00:02:44,496
+Mari lihat algoritma baru untuk
+sifat lebih dari satu,
+
+34
+00:02:44,496 --> 00:02:47,350
+dimana jumlah sifat n
+mungkin jauh lebih besar dari 1.
+
+35
+00:02:47,350 --> 00:02:53,158
+Ini aturan pembaruan kita untuk gradient
+descent, dan bagi Anda yang
+
+36
+00:02:53,158 --> 00:02:57,781
+tahu kalkulus, jika Anda ambil
+definisi fungsi harga dan mengerjakan
+
+37
+00:02:57,781 --> 00:03:03,312
+derivatif sebagian fungsi harga J
+dengan mengacu pada parameter
+
+38
+00:03:03,312 --> 00:03:08,119
+theta j, Anda akan temukan bahwa
+hasilnya adalah bagian di dalam
+
+39
+00:03:08,119 --> 00:03:10,665
+kotak biru yang saya gambar itu.
+
+40
+00:03:10,665 --> 00:03:14,837
+Dan jika Anda implementasikan ini, Anda
+akan mendapatkan implementasi gradient
+
+41
+00:03:14,837 --> 00:03:18,962
+descent yang bekerja untuk
+regresi linier dengan banyak variabel.
+
+42
+00:03:18,962 --> 00:03:21,572
+Hal terakhir yang ingin saya lakukan
+adalah memberi Anda pengertian
+
+43
+00:03:21,572 --> 00:03:26,882
+mengapa algoritma lama dan baru ini
+sepertinya sama, atau mengapa kedua
+
+44
+00:03:26,882 --> 00:03:30,904
+algoritmanya mirip, atau mengapa
+keduanya algoritma gradient descent.
+
+45
+00:03:30,904 --> 00:03:34,363
+Mari perhatikan 1 kasus
+dimana kita punya 2 sifat
+
+46
+00:03:34,363 --> 00:03:37,488
+atau mungkin lebih dari 2 sifat,
+jadi kita punya 3 aturan pembaruan utk
+
+47
+00:03:37,488 --> 00:03:42,680
+parameter theta0, theta1, theta2
+dan mungkin nilai theta lain juga.
+
+48
+00:03:42,680 --> 00:03:49,457
+Jika Anda lihat aturan pembaruan
+theta0, apa yang Anda temukan adalah
+
+49
+00:03:49,457 --> 00:03:55,300
+aturan pembaruan disini sama seperti
+aturan pembaruan yang kita punya
+
+50
+00:03:55,300 --> 00:03:57,350
+sebelumnya untuk kasus n = 1.
+
+51
+00:03:57,350 --> 00:04:00,203
+Dan alasan bahwa mereka ekivalen,
+tentu saja,
+
+52
+00:04:00,203 --> 00:04:06,871
+karena dalam kesepakatan notasi kita,
+kita sepakat x0(i) = 1, itulah
+
+53
+00:04:06,871 --> 00:04:12,003
+mengapa 2 term dalam kotak magenta yang
+saya gambar ini adalah ekivalen.
+
+54
+00:04:12,003 --> 00:04:16,010
+Begitu juga, jika Anda lihat aturan
+pembaruan untuk theta1, Anda temukan
+
+55
+00:04:16,010 --> 00:04:21,540
+bahwa term disini ini ekivalen dengan
+term yang kita punya sebelumnya,
+
+56
+00:04:21,540 --> 00:04:25,020
+atau aturan pembaruan untuk 
+theta1 yang kita punya sebelumnya,
+
+57
+00:04:25,020 --> 00:04:30,222
+dimana kita menggunakan notasi baru ini
+x(i) subskrip 1 untuk menunjukkan
+
+58
+00:04:30,222 --> 00:04:37,605
+sifat pertama kita. Dan sekarang bahwa
+kita punya lebih dari 1 sifat, kita bisa
+
+59
+00:04:37,605 --> 00:04:43,560
+punya aturan pembaruan yang sama untuk
+parameter lain seperti theta2, dst.
+
+60
+00:04:43,560 --> 00:04:48,219
+Ada banyak yang terjadi di slide ini,
+jadi saya mendorong Anda, jika Anda
+
+61
+00:04:48,219 --> 00:04:52,020
+perlu untuk menghentikan sementara
+video ini dan melihat matematika di
+
+62
+00:04:52,020 --> 00:04:55,446
+slide ini untuk memastikan Anda
+mengerti semua yang terjadi disini.
+
+63
+00:04:55,446 --> 00:05:00,440
+Tapi jika Anda mengimplementasikan
+algoritma yang tertulis disini, maka
+
+64
+00:05:00,440 --> 00:05:51,300
+Anda punya implementasi regresi linier
+yang bekerja untuk banyak sifat.

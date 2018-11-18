@@ -1,0 +1,476 @@
+1
+00:00:00,110 --> 00:00:03,780
+Most of the supervised learning algorithms
+we've seen, things like linear regression,
+
+2
+00:00:03,780 --> 00:00:08,140
+logistic regression, and so on, all of
+those algorithms have an optimization
+
+3
+00:00:08,140 --> 00:00:11,940
+objective or some cost function that
+the algorithm was trying to minimize.
+
+4
+00:00:11,940 --> 00:00:15,820
+It turns out that k-means also
+has an optimization objective or
+
+5
+00:00:15,820 --> 00:00:18,150
+a cost function that
+it's trying to minimize.
+
+6
+00:00:18,150 --> 00:00:22,790
+And in this video I'd like to tell you
+what that optimization objective is.
+
+7
+00:00:22,790 --> 00:00:26,740
+And the reason I want to do so
+is because this will be useful to us for
+
+8
+00:00:26,740 --> 00:00:28,010
+two purposes.
+
+9
+00:00:28,010 --> 00:00:32,605
+First, knowing what is the optimization
+objective of k-means will help us to
+
+10
+00:00:32,605 --> 00:00:36,620
+debug the learning algorithm and just make
+sure that k-means is running correctly.
+
+11
+00:00:36,620 --> 00:00:41,850
+And second, and perhaps more importantly,
+in a later video we'll talk about how we
+
+12
+00:00:41,850 --> 00:00:46,170
+can use this to help k-means find better
+costs for this and avoid the local ultima.
+
+13
+00:00:46,170 --> 00:00:49,110
+But we do that in a later
+video that follows this one.
+
+14
+00:00:49,110 --> 00:00:53,714
+Just as a quick reminder while
+k-means is running we're going to be
+
+15
+00:00:53,714 --> 00:00:56,470
+keeping track of two sets of variables.
+
+16
+00:00:56,470 --> 00:01:00,840
+First is the ci's and
+that keeps track of the index or
+
+17
+00:01:00,840 --> 00:01:05,080
+the number of the cluster, to which
+an example xi is currently assigned.
+
+18
+00:01:05,080 --> 00:01:08,460
+And then the other set of variables
+we use is mu subscript k,
+
+19
+00:01:08,460 --> 00:01:12,088
+which is the location
+of cluster centroid k.
+
+20
+00:01:12,088 --> 00:01:17,885
+Again, for k-means we use capital K to
+denote the total number of clusters.
+
+21
+00:01:17,885 --> 00:01:23,625
+And here lower case k is going to be
+an index into the cluster centroids and
+
+22
+00:01:23,625 --> 00:01:27,545
+so, lower case k is going to be
+a number between one and capital K.
+
+23
+00:01:29,375 --> 00:01:35,020
+Now here's one more bit of notation, which
+is gonna use mu subscript ci to denote
+
+24
+00:01:35,020 --> 00:01:40,220
+the cluster centroid of the cluster to
+which example xi has been assigned, right?
+
+25
+00:01:40,220 --> 00:01:43,470
+And to explain that
+notation a little bit more,
+
+26
+00:01:43,470 --> 00:01:48,040
+lets say that xi has been
+assigned to cluster number five.
+
+27
+00:01:48,040 --> 00:01:54,150
+What that means is that ci, that is the
+index of xi, that that is equal to five.
+
+28
+00:01:54,150 --> 00:01:55,160
+Right?
+
+29
+00:01:55,160 --> 00:01:58,877
+Because having ci equals five,
+if that's what it means for
+
+30
+00:01:58,877 --> 00:02:04,760
+the example xi to be assigned
+to cluster number five.
+
+31
+00:02:04,760 --> 00:02:10,860
+And so mu subscript ci is going
+to be equal to mu subscript 5.
+
+32
+00:02:10,860 --> 00:02:13,650
+Because ci is equal to five.
+
+33
+00:02:13,650 --> 00:02:19,200
+And so this mu subscript ci is the cluster
+centroid of cluster number five,
+
+34
+00:02:19,200 --> 00:02:23,240
+which is the cluster to which
+my example xi has been assigned.
+
+35
+00:02:23,240 --> 00:02:27,510
+Out with this notation, we're now ready
+to write out what is the optimization
+
+36
+00:02:27,510 --> 00:02:31,360
+objective of the k-means clustering
+algorithm and here it is.
+
+37
+00:02:31,360 --> 00:02:35,995
+The cost function that k-means is
+minimizing is a function J of all of these
+
+38
+00:02:35,995 --> 00:02:39,630
+parameters, c1 through cm and
+mu 1 through mu K.
+
+39
+00:02:39,630 --> 00:02:42,390
+That k-means is varying
+as the algorithm runs.
+
+40
+00:02:42,390 --> 00:02:44,610
+And the optimization objective
+is shown to the right,
+
+41
+00:02:44,610 --> 00:02:49,020
+is the average of 1 over m of sum from
+i equals 1 through m of this term here.
+
+42
+00:02:50,410 --> 00:02:53,610
+That I've just drawn the red box around,
+right?
+
+43
+00:02:53,610 --> 00:02:58,600
+The square distance between each
+example xi and the location
+
+44
+00:02:58,600 --> 00:03:03,920
+of the cluster centroid to
+which xi has been assigned.
+
+45
+00:03:03,920 --> 00:03:05,890
+So let's draw this and
+just let me explain this.
+
+46
+00:03:05,890 --> 00:03:09,680
+Right, so here's the location of
+training example xi and here's
+
+47
+00:03:09,680 --> 00:03:14,510
+the location of the cluster centroid
+to which example xi has been assigned.
+
+48
+00:03:14,510 --> 00:03:19,696
+So to explain this in pictures,
+if here's x1, x2, and if a point
+
+49
+00:03:19,696 --> 00:03:24,926
+here is my example xi, so
+if that is equal to my example xi,
+
+50
+00:03:24,926 --> 00:03:29,210
+and if xi has been assigned to some
+cluster centroid, I'm gonna denote my
+
+51
+00:03:29,210 --> 00:03:34,860
+cluster centroid with a cross, so
+if that's the location of mu 5, let's say.
+
+52
+00:03:34,860 --> 00:03:39,522
+If x i has been assigned cluster
+centroid five as in my example up there,
+
+53
+00:03:39,522 --> 00:03:44,188
+then this square distance,
+that's the square of the distance between
+
+54
+00:03:44,188 --> 00:03:48,728
+the point xi and this cluster centroid
+to which xi has been assigned.
+
+55
+00:03:48,728 --> 00:03:52,010
+And what k-means can be shown to be doing
+
+56
+00:03:52,010 --> 00:03:56,015
+is that it is trying to define
+parameters ci and mu i.
+
+57
+00:03:56,015 --> 00:04:01,440
+Trying to find c and mu to try to
+minimize this cost function J.
+
+58
+00:04:01,440 --> 00:04:05,710
+This cost function is sometimes
+also called the distortion
+
+59
+00:04:06,800 --> 00:04:10,480
+cost function, or
+the distortion of the k-means algorithm.
+
+60
+00:04:10,480 --> 00:04:13,850
+And just to provide a little bit more
+detail, here's the k-means algorithm.
+
+61
+00:04:13,850 --> 00:04:18,930
+Here's exactly the algorithm as we have
+written it out on the earlier slide.
+
+62
+00:04:18,930 --> 00:04:26,210
+And what this first step of this algorithm
+is, this was the cluster assignment step
+
+63
+00:04:27,980 --> 00:04:32,900
+where we assigned each point
+to the closest centroid.
+
+64
+00:04:32,900 --> 00:04:38,356
+And it's possible to show
+mathematically that what
+
+65
+00:04:38,356 --> 00:04:44,928
+the cluster assignment step is
+doing is exactly Minimizing J,
+
+66
+00:04:44,928 --> 00:04:50,136
+with respect to the variables c1,
+c2 and so on,
+
+67
+00:04:50,136 --> 00:04:57,460
+up to cm, while holding the cluster
+centroids mu 1 up to mu K, fixed.
+
+68
+00:04:58,570 --> 00:05:01,935
+So what the cluster assignment step
+does is it doesn't change the cluster
+
+69
+00:05:01,935 --> 00:05:06,050
+centroids, but what it's doing is this
+is exactly picking the values of c1, c2,
+
+70
+00:05:06,050 --> 00:05:07,810
+up to cm.
+
+71
+00:05:07,810 --> 00:05:13,530
+That minimizes the cost function,
+or the distortion function J.
+
+72
+00:05:13,530 --> 00:05:17,210
+And it's possible to prove that
+mathematically, but I won't do so here.
+
+73
+00:05:17,210 --> 00:05:20,700
+But it has a pretty intuitive meaning of
+just well, let's assign each point to
+
+74
+00:05:20,700 --> 00:05:24,310
+a cluster centroid that is closest to it,
+because that's what minimizes
+
+75
+00:05:24,310 --> 00:05:27,800
+the square of distance between
+the points in the cluster centroid.
+
+76
+00:05:27,800 --> 00:05:33,980
+And then the second step of k-means,
+this second step over here.
+
+77
+00:05:33,980 --> 00:05:38,770
+The second step was
+the move centroid step.
+
+78
+00:05:38,770 --> 00:05:42,790
+And once again I won't prove it, but
+it can be shown mathematically that what
+
+79
+00:05:42,790 --> 00:05:48,350
+the move centroid step does is
+it chooses the values of mu
+
+80
+00:05:48,350 --> 00:05:53,800
+that minimizes J, so it minimizes
+the cost function J with respect to,
+
+81
+00:05:53,800 --> 00:05:58,800
+wrt is my abbreviation for, with respect
+to, when it minimizes J with respect
+
+82
+00:05:58,800 --> 00:06:03,471
+to the locations of the cluster
+centroids mu 1 through mu K.
+
+83
+00:06:03,471 --> 00:06:08,349
+So if is really is doing is this
+taking the two sets of variables and
+
+84
+00:06:08,349 --> 00:06:11,820
+partitioning them into
+two halves right here.
+
+85
+00:06:11,820 --> 00:06:15,460
+First the c sets of variables and
+then you have the mu sets of variables.
+
+86
+00:06:15,460 --> 00:06:18,860
+And what it does is it first minimizes
+J with respect to the variable c and
+
+87
+00:06:18,860 --> 00:06:25,200
+then it minimizes J with respect to
+the variables mu and then it keeps on.
+
+88
+00:06:25,200 --> 00:06:27,680
+And, so all that's all that k-means does.
+
+89
+00:06:27,680 --> 00:06:32,490
+And now that we understand k-means as
+trying to minimize this cost function J,
+
+90
+00:06:32,490 --> 00:06:37,220
+we can also use this to try to debug other
+any algorithm and just kind of make sure
+
+91
+00:06:37,220 --> 00:06:41,230
+that our implementation of
+k-means is running correctly.
+
+92
+00:06:41,230 --> 00:06:44,490
+So, we now understand the k-means
+algorithm as trying to
+
+93
+00:06:44,490 --> 00:06:49,200
+optimize this cost function J, which
+is also called the distortion function.
+
+94
+00:06:50,560 --> 00:06:54,286
+We can use that to debug k-means and help
+make sure that k-means is converging and
+
+95
+00:06:54,286 --> 00:06:55,740
+is running properly.
+
+96
+00:06:55,740 --> 00:06:58,960
+And in the next video we'll
+also see how we can use this
+
+97
+00:06:58,960 --> 00:07:03,738
+to help k-means find better clusters and
+to help k-means to avoid

@@ -1,0 +1,1635 @@
+1
+00:00:00,500 --> 00:00:01,550
+Neste vídeo e no próximo,
+
+2
+00:00:02,040 --> 00:00:03,470
+quero falar sobre uma
+
+3
+00:00:03,760 --> 00:00:05,880
+possível extensão para
+
+4
+00:00:06,140 --> 00:00:08,270
+o algoritmo de detecção de anomalias que desenvolvemos até agora.
+
+5
+00:00:09,020 --> 00:00:11,970
+Essa extensão usa algo chamado distrubuição gaussiana
+
+6
+00:00:12,100 --> 00:00:13,480
+multivariada, e ela
+
+7
+00:00:13,770 --> 00:00:14,970
+tem algumas vantagens
+
+8
+00:00:15,160 --> 00:00:16,790
+e desvantagens, e ela
+
+9
+00:00:17,070 --> 00:00:20,610
+consegue notar algumas anomalias que o algoritmo anterior não conseguia.
+
+10
+00:00:21,740 --> 00:00:23,730
+Como motivação, vamos começar com um exemplo.
+
+11
+00:00:25,620 --> 00:00:28,410
+Digamos que nossos dados parecem com o que desenhei aqui.
+
+12
+00:00:29,060 --> 00:00:30,190
+Vou usar o exemplo
+
+13
+00:00:30,340 --> 00:00:32,320
+de máquinas de monitoramento
+
+14
+00:00:32,890 --> 00:00:34,890
+em um data center, monitorando seus computadores.
+
+15
+00:00:35,290 --> 00:00:36,170
+Meus recursos são "x₁",
+
+16
+00:00:36,220 --> 00:00:37,070
+a utilização da CPU, e
+
+17
+00:00:37,250 --> 00:00:39,280
+"x₂", que pode ser a utilização de memória.
+
+18
+00:00:41,160 --> 00:00:42,160
+Se eu tomar
+
+19
+00:00:42,340 --> 00:00:43,330
+meus dois recursos, "x₁" e "x₂",
+
+20
+00:00:43,580 --> 00:00:45,960
+e modelá-los como gaussianas,
+
+21
+00:00:46,200 --> 00:00:47,430
+aqui está um gráfico dos
+
+22
+00:00:47,610 --> 00:00:49,040
+meus recursos "x₁"
+
+23
+00:00:49,210 --> 00:00:50,370
+e os recursos "x₂",
+
+24
+00:00:50,980 --> 00:00:51,880
+e se eu ajustar uma
+
+25
+00:00:51,910 --> 00:00:52,640
+gaussiana a eles, talvez
+
+26
+00:00:52,760 --> 00:00:56,050
+ache uma gaussiana como esta,
+
+27
+00:00:56,730 --> 00:00:57,750
+então aqui está "p(x₁)",
+
+28
+00:00:57,860 --> 00:01:00,350
+que depende dos
+
+29
+00:01:00,690 --> 00:01:02,130
+parâmetros "μ₁" e
+
+30
+00:01:02,440 --> 00:01:04,740
+"σ₁²",
+
+31
+00:01:04,880 --> 00:01:06,120
+este é o uso de memória
+
+32
+00:01:06,240 --> 00:01:07,020
+e encontro uma gaussiana mais ou
+
+33
+00:01:07,560 --> 00:01:09,910
+menos como essa, e este é "p(x₂)",
+
+34
+00:01:10,760 --> 00:01:12,500
+que depende de "μ₂" e "σ₂²".
+
+35
+00:01:12,590 --> 00:01:14,660
+Então é assim
+
+36
+00:01:14,870 --> 00:01:16,340
+a forma como o algoritmo de detecção de anomalias
+
+37
+00:01:16,790 --> 00:01:17,850
+modela "x₁" e "x₂".
+
+38
+00:01:19,900 --> 00:01:21,160
+Agora, digamos que no
+
+39
+00:01:21,260 --> 00:01:22,330
+conjunto de teste existe
+
+40
+00:01:22,410 --> 00:01:24,010
+um exemplo como este.
+
+41
+00:01:25,540 --> 00:01:26,600
+Na localização daquele "X"
+
+42
+00:01:27,310 --> 00:01:29,160
+em verde, o valor de
+
+43
+00:01:29,360 --> 00:01:31,220
+"x₁" é cerca de 0.4, e o valor de "x₂" é cerca de 1.5.
+
+44
+00:01:31,300 --> 00:01:34,430
+Agora, se você olhar para
+
+45
+00:01:34,660 --> 00:01:35,780
+os dados, parece que
+
+46
+00:01:35,960 --> 00:01:36,780
+a maior parte dos dados
+
+47
+00:01:37,140 --> 00:01:38,800
+fica nesta região, e
+
+48
+00:01:38,940 --> 00:01:40,400
+o "X" verde está
+
+49
+00:01:41,110 --> 00:01:43,510
+bem longe dos outros exemplos que já vi.
+
+50
+00:01:43,840 --> 00:01:44,870
+Parece que ele deveria ser
+
+51
+00:01:45,210 --> 00:01:46,790
+detectado como uma anomalia.
+
+52
+00:01:46,970 --> 00:01:48,660
+Nos meus dados,
+
+53
+00:01:48,790 --> 00:01:49,930
+dos exemplos normais,
+
+54
+00:01:50,320 --> 00:01:51,430
+parece que
+
+55
+00:01:51,510 --> 00:01:52,680
+a utilização da CPU e
+
+56
+00:01:52,770 --> 00:01:54,330
+da memória crescem
+
+57
+00:01:54,680 --> 00:01:56,100
+mais ou menos linearmente um com o outro.
+
+58
+00:01:56,560 --> 00:01:57,720
+Assim, se uma máquina
+
+59
+00:01:57,940 --> 00:01:59,000
+está usando muita CPU,
+
+60
+00:01:59,150 --> 00:02:00,460
+a utilização de memória
+
+61
+00:02:00,830 --> 00:02:02,930
+também será alta, enquanto
+
+62
+00:02:03,320 --> 00:02:05,910
+neste exemplo em verde
+
+63
+00:02:06,040 --> 00:02:07,140
+a utilização de CPU é
+
+64
+00:02:07,280 --> 00:02:08,280
+bem baixa, mas a de memória
+
+65
+00:02:08,490 --> 00:02:09,310
+é muito alta, e eu
+
+66
+00:02:09,430 --> 00:02:10,820
+não vi isso nenhuma vez no conjunto de trieno.
+
+67
+00:02:10,980 --> 00:02:12,150
+Isso deveria ser reconhecido como anomalia.
+
+68
+00:02:13,190 --> 00:02:15,300
+Mas vamos ver o que o algoritmo de detecção de anomalias vai fazer.
+
+69
+00:02:15,570 --> 00:02:16,750
+Bom, na utilização de CPU, ele
+
+70
+00:02:16,850 --> 00:02:17,990
+está por aqui, perto
+
+71
+00:02:18,280 --> 00:02:20,700
+de 0.5, e essa probabilidade é
+
+72
+00:02:20,900 --> 00:02:21,910
+razoavelmente alta, não muito
+
+73
+00:02:22,120 --> 00:02:23,350
+diferente dos outros exemplos que vimos,
+
+74
+00:02:23,650 --> 00:02:25,230
+0.5 está próximo de outros
+
+75
+00:02:26,160 --> 00:02:28,320
+exemplos.
+
+76
+00:02:29,030 --> 00:02:29,900
+Para a utilização de memória,
+
+77
+00:02:30,030 --> 00:02:32,340
+o valor é cerca de 1.5, por aqui.
+
+78
+00:02:32,680 --> 00:02:34,600
+Novamente, está mais
+
+79
+00:02:34,730 --> 00:02:35,850
+para o final da gaussiana,
+
+80
+00:02:35,980 --> 00:02:37,310
+mas os valores aqui
+
+81
+00:02:37,550 --> 00:02:38,830
+e aqui não são muito
+
+82
+00:02:39,210 --> 00:02:41,180
+diferentes de outros exemplos que
+
+83
+00:02:41,430 --> 00:02:43,020
+já vimos, e, assim,
+
+84
+00:02:43,210 --> 00:02:44,530
+"p(x₁)" será alta,
+
+85
+00:02:45,550 --> 00:02:46,030
+razoavelmente alta.
+
+86
+00:02:46,290 --> 00:02:47,730
+"p(x₂)" também.
+
+87
+00:02:47,980 --> 00:02:49,030
+Se você olhar para o gráfico,
+
+88
+00:02:49,910 --> 00:02:51,230
+este ponto aqui
+
+89
+00:02:51,410 --> 00:02:52,530
+não parece muito ruim,
+
+90
+00:02:52,830 --> 00:02:54,440
+e se olhar para o outro gráfico,
+
+91
+00:02:54,720 --> 00:02:56,690
+por aqui, também não parece muito ruim.
+
+92
+00:02:57,050 --> 00:02:58,780
+Afinal, temos exemplos com
+
+93
+00:02:58,980 --> 00:03:00,730
+utilização de memória ainda maior,
+
+94
+00:03:01,030 --> 00:03:02,270
+ou com uso de CPU menor,
+
+95
+00:03:02,860 --> 00:03:04,780
+e esse exemplo não parece tão anômalo.
+
+96
+00:03:05,940 --> 00:03:07,380
+Assim, um algoritmo de detecção de anomalias
+
+97
+00:03:07,680 --> 00:03:10,090
+falhará em detectar esse ponto como anomalia.
+
+98
+00:03:10,550 --> 00:03:12,220
+O que ocorre é que
+
+99
+00:03:12,360 --> 00:03:13,610
+o algoritmo de detecção de anomalias
+
+100
+00:03:13,880 --> 00:03:15,070
+não está conseguindo
+
+101
+00:03:15,200 --> 00:03:16,700
+perceber que esta elipse
+
+102
+00:03:16,900 --> 00:03:18,060
+em azul é a região de alta
+
+103
+00:03:18,210 --> 00:03:19,380
+probabilidade, e que
+
+104
+00:03:19,490 --> 00:03:21,290
+exemplos aqui têm
+
+105
+00:03:21,720 --> 00:03:23,430
+alta probabilidade,
+
+106
+00:03:23,680 --> 00:03:24,980
+e os exemplos no outro
+
+107
+00:03:26,170 --> 00:03:27,280
+círculo têm probabilidade menor,
+
+108
+00:03:27,370 --> 00:03:28,950
+e exemplos no mais externo
+
+109
+00:03:29,220 --> 00:03:31,040
+têm probabilidade ainda menor,
+
+110
+00:03:31,150 --> 00:03:32,070
+e o algoritmo pensa que o "X"
+
+111
+00:03:32,420 --> 00:03:33,430
+em verde tem alta probabilidade.
+
+112
+00:03:34,490 --> 00:03:35,510
+Na verdade, ele tende a pensar que
+
+113
+00:03:35,990 --> 00:03:37,740
+tudo nessa região,
+
+114
+00:03:38,000 --> 00:03:40,400
+tudo na circunferência
+
+115
+00:03:40,580 --> 00:03:43,390
+que estou mostrando tem probabilidade mais ou menos igual.
+
+116
+00:03:44,160 --> 00:03:45,810
+Ele não percebe que algo
+
+117
+00:03:46,790 --> 00:03:50,910
+por aqui tem, na verdade,
+
+118
+00:03:51,080 --> 00:03:53,130
+probabilidade muito menor que algo por aqui.
+
+119
+00:03:55,060 --> 00:03:56,080
+Para resolver esse
+
+120
+00:03:56,270 --> 00:03:57,300
+problema, vamos
+
+121
+00:03:57,580 --> 00:03:58,930
+desenvolver uma versão modificada
+
+122
+00:03:58,990 --> 00:04:01,030
+do algoritmo de detecção de anomalias, usando
+
+123
+00:04:01,430 --> 00:04:02,520
+algo chamado "distribuição gaussiana
+
+124
+00:04:02,580 --> 00:04:05,880
+multivariada", também chamada distribuição normal multivariada.
+
+125
+00:04:07,330 --> 00:04:08,120
+Vamos fazer o seguinte.
+
+126
+00:04:08,810 --> 00:04:10,270
+Temos recursos "x"
+
+127
+00:04:10,470 --> 00:04:11,680
+em ℝⁿ, e,
+
+128
+00:04:11,910 --> 00:04:14,180
+em vez de "p(x₁)" e "p(x₂)" separademente,
+
+129
+00:04:14,570 --> 00:04:15,630
+vamos modelar "p(x)",
+
+130
+00:04:15,800 --> 00:04:16,840
+tudo de uma vez,
+
+131
+00:04:17,010 --> 00:04:18,970
+um modelo para "p(x)", com o vetor "x" inteiro.
+
+132
+00:04:20,300 --> 00:04:21,550
+Assim, os parâmetros da
+
+133
+00:04:21,830 --> 00:04:24,140
+distribuição gaussiana multivariada são μ,
+
+134
+00:04:24,630 --> 00:04:25,770
+um vetor, e σ,
+
+135
+00:04:26,490 --> 00:04:28,450
+que é uma matriz "n" por "n", chamada matriz de covariância.
+
+136
+00:04:29,640 --> 00:04:30,870
+E essa é parecida com a
+
+137
+00:04:31,010 --> 00:04:32,220
+matriz de covariância que
+
+138
+00:04:32,430 --> 00:04:33,560
+vimos quando estávamos trabalhando
+
+139
+00:04:34,080 --> 00:04:35,200
+com PCA,
+
+140
+00:04:35,280 --> 00:04:36,700
+o algoritmo de análise de componentes principais.
+
+141
+00:04:37,860 --> 00:04:38,970
+Para completar, vou
+
+142
+00:04:39,070 --> 00:04:39,880
+escrever a fórmula
+
+143
+00:04:40,930 --> 00:04:42,390
+para a distribuição gaussiana multivariada.
+
+144
+00:04:42,820 --> 00:04:44,030
+Dado um vetor "x",
+
+145
+00:04:44,140 --> 00:04:45,100
+e com a distribuição parametrizada
+
+146
+00:04:46,090 --> 00:04:47,500
+pelos vetores μ
+
+147
+00:04:47,640 --> 00:04:49,280
+e Σ, a probabilidade
+
+148
+00:04:49,360 --> 00:04:50,100
+de "x"
+
+149
+00:04:50,430 --> 00:04:52,260
+(novamente,
+
+150
+00:04:52,580 --> 00:04:54,810
+não existe necessidade nenhuma de decorar essa fórmula,
+
+151
+00:04:56,030 --> 00:04:56,780
+é só pesquisar
+
+152
+00:04:57,010 --> 00:04:58,160
+quando você precisar
+
+153
+00:04:58,340 --> 00:04:59,130
+usá-la), mas esta é
+
+154
+00:04:59,690 --> 00:05:01,230
+a expressão para a probabilidade de "x".
+
+155
+00:05:03,000 --> 00:05:04,680
+a expressão para a probabilidade de "x".
+
+156
+00:05:05,220 --> 00:05:06,300
+a expressão para a probabilidade de "x".
+
+157
+00:05:07,400 --> 00:05:08,850
+E isto aqui,
+
+158
+00:05:10,390 --> 00:05:11,510
+o valor absoluto de "Σ",
+
+159
+00:05:11,680 --> 00:05:13,140
+isto aqui quando
+
+160
+00:05:13,410 --> 00:05:14,430
+escrevemos este símbolo, isso é
+
+161
+00:05:14,600 --> 00:05:17,220
+chamado o determinante de "Σ",
+
+162
+00:05:18,150 --> 00:05:19,620
+uma função matemática
+
+163
+00:05:20,210 --> 00:05:21,740
+que recebe uma matriz, mas
+
+164
+00:05:21,960 --> 00:05:22,820
+você não precisa saber
+
+165
+00:05:23,240 --> 00:05:24,250
+bem o que é o determinante de uma matriz,
+
+166
+00:05:24,780 --> 00:05:25,770
+tudo o que você precisa é
+
+167
+00:05:25,860 --> 00:05:27,180
+saber que você pode
+
+168
+00:05:27,320 --> 00:05:29,380
+calculá-la no Octave usando
+
+169
+00:05:29,760 --> 00:05:31,820
+o comando "det(Σ)".
+
+170
+00:05:33,570 --> 00:05:33,570
+o comando "det(Σ)".
+
+171
+00:05:34,010 --> 00:05:36,210
+Novamente, só para deixar claro:
+
+172
+00:05:36,300 --> 00:05:38,240
+Nessa expressão, esses "Σ"
+
+173
+00:05:38,730 --> 00:05:41,250
+aqui, são matrizes "n" por "n".
+
+174
+00:05:41,850 --> 00:05:43,150
+Isto não é uma somatória,
+
+175
+00:05:43,260 --> 00:05:45,680
+o sigma é uma matriz "n" por "n".
+
+176
+00:05:46,710 --> 00:05:47,780
+Essa é a fórmula para
+
+177
+00:05:48,010 --> 00:05:50,500
+"p(x)", porém,
+
+178
+00:05:50,820 --> 00:05:52,030
+e mais interessante e importante,
+
+179
+00:05:53,940 --> 00:05:55,610
+qual é o formato de "p(x)"?
+
+180
+00:05:56,190 --> 00:05:57,450
+Vamos dar uma olhada em alguns exemplos
+
+181
+00:05:58,020 --> 00:06:00,690
+de distribuições gaussianas multivariadas.
+
+182
+00:06:02,350 --> 00:06:03,380
+Vamos dar uma olhada
+
+183
+00:06:03,500 --> 00:06:04,700
+exemplo com duas dimensões, digamos,
+
+184
+00:06:04,820 --> 00:06:06,550
+"n = 2", eu tenho
+
+185
+00:06:06,710 --> 00:06:08,160
+dois recursos, "x₁" e "x₂".
+
+186
+00:06:09,250 --> 00:06:10,540
+Vamos tomar "μ = 0"
+
+187
+00:06:10,650 --> 00:06:11,800
+e Σ é
+
+188
+00:06:12,330 --> 00:06:14,030
+igual a esta matriz aqui,
+
+189
+00:06:14,200 --> 00:06:16,710
+com "1" na diagonal e "0" nos elementos fora da diagonal.
+
+190
+00:06:17,600 --> 00:06:19,980
+Essa matriz também é chamada matriz identidade.
+
+191
+00:06:21,350 --> 00:06:22,470
+Nesse caso, "p(x)"
+
+192
+00:06:22,590 --> 00:06:24,950
+vai ser
+
+193
+00:06:25,240 --> 00:06:27,430
+isto, e o que
+
+194
+00:06:27,600 --> 00:06:29,380
+estou mostrando na figura é
+
+195
+00:06:29,500 --> 00:06:30,900
+para um valor específico de "x₁"
+
+196
+00:06:31,240 --> 00:06:32,860
+e para um valor específico
+
+197
+00:06:32,970 --> 00:06:34,680
+de "x₂", e a altura
+
+198
+00:06:34,810 --> 00:06:36,470
+dessa superfície é
+
+199
+00:06:36,970 --> 00:06:38,330
+o valor de "p(x)".
+
+200
+00:06:38,470 --> 00:06:39,520
+Com essa configuração,
+
+201
+00:06:40,610 --> 00:06:42,100
+"p(x)" é a maior possível quando
+
+202
+00:06:42,300 --> 00:06:43,620
+"x₁ = x₂ = 0",
+
+203
+00:06:44,010 --> 00:06:45,710
+que é o pico dessa distribuição gaussiana,
+
+204
+00:06:46,950 --> 00:06:48,760
+e a probabilidade decai com essa
+
+205
+00:06:48,970 --> 00:06:51,330
+gaussiana bidimensional,
+
+206
+00:06:51,510 --> 00:06:53,590
+essa superfície bidimensional em formato de sino.
+
+207
+00:06:55,080 --> 00:06:56,400
+Abaixo está o mesmo
+
+208
+00:06:56,610 --> 00:06:58,230
+gráfico, mas traçado utilizando
+
+209
+00:06:58,330 --> 00:07:00,970
+curvas de nível, usando cores diferentes,
+
+210
+00:07:01,150 --> 00:07:02,020
+assim,
+
+211
+00:07:02,530 --> 00:07:04,210
+o vermelho intenso
+
+212
+00:07:04,280 --> 00:07:06,260
+no meio corresponde aos valores mais altos,
+
+213
+00:07:06,850 --> 00:07:08,230
+e os valores decrescem
+
+214
+00:07:08,790 --> 00:07:10,470
+com o amarelo representando um valor pouco menor,
+
+215
+00:07:10,700 --> 00:07:11,830
+ciano valores ainda menores,
+
+216
+00:07:12,060 --> 00:07:13,230
+e o azul escuro representando
+
+217
+00:07:14,000 --> 00:07:15,440
+os menores valores,
+
+218
+00:07:15,450 --> 00:07:17,010
+assim, isso é a mesma figura
+
+219
+00:07:17,240 --> 00:07:19,410
+porém vista de cima, utilizando cores.
+
+220
+00:07:21,390 --> 00:07:22,510
+Portanto, com essa distribuição,
+
+221
+00:07:23,830 --> 00:07:25,010
+pode-se ver que a
+
+222
+00:07:25,300 --> 00:07:27,440
+maior probabilidade está em tordo de "(0,0)"
+
+223
+00:07:27,600 --> 00:07:28,630
+e à medida que se afasta
+
+224
+00:07:28,710 --> 00:07:32,450
+de "(0,0)", a probabilidade de "x₁" e "x₂" diminui.
+
+225
+00:07:36,000 --> 00:07:37,220
+Agora vamos tentar variar alguns
+
+226
+00:07:37,310 --> 00:07:38,630
+dos parâmetros e ver
+
+227
+00:07:38,770 --> 00:07:40,150
+o que acontece.
+
+228
+00:07:40,940 --> 00:07:42,420
+Vamos mudar Σ,
+
+229
+00:07:42,590 --> 00:07:44,720
+diminui-lo um pouquinho.
+
+230
+00:07:44,870 --> 00:07:46,350
+Σ é uma matriz de covariância,
+
+231
+00:07:46,580 --> 00:07:47,710
+que mede a variância,
+
+232
+00:07:47,820 --> 00:07:49,030
+a variabilidade dos recursos "x₁" e "x₂".
+
+233
+00:07:49,120 --> 00:07:50,640
+Se diminuirmos Σ,
+
+234
+00:07:50,720 --> 00:07:52,080
+o que acontece é uma
+
+235
+00:07:52,400 --> 00:07:53,430
+diminuição na largura
+
+236
+00:07:53,780 --> 00:07:54,290
+dessa
+
+237
+00:07:54,400 --> 00:07:56,320
+elevação,
+
+238
+00:07:57,760 --> 00:07:59,310
+e a altura também
+
+239
+00:07:59,550 --> 00:08:00,620
+aumenta um pouco, porque
+
+240
+00:08:01,090 --> 00:08:03,080
+o volume abaixo da superfície é igual a 1.
+
+241
+00:08:03,130 --> 00:08:04,400
+Ou seja, a integral,
+
+242
+00:08:04,950 --> 00:08:06,230
+o volume abaixo da superfície,
+
+243
+00:08:06,580 --> 00:08:08,000
+é igual a 1, porque distribuições
+
+244
+00:08:08,690 --> 00:08:10,080
+de probabilidade devem ter integral igual a 1.
+
+245
+00:08:10,800 --> 00:08:11,650
+Mas se você diminuir a variância,
+
+246
+00:08:12,660 --> 00:08:14,290
+é mais ou menos como diminuir
+
+247
+00:08:14,810 --> 00:08:15,870
+σ²,
+
+248
+00:08:16,740 --> 00:08:20,080
+você acaba com uma distribuição mais estreita e mais alta.
+
+249
+00:08:20,860 --> 00:08:22,150
+Dá pra ver aqui que as elipses concêntricas
+
+250
+00:08:22,580 --> 00:08:27,200
+diminuíram um pouco.
+
+251
+00:08:27,340 --> 00:08:28,730
+Em contraste, se aumentarmos o valor de Σ
+
+252
+00:08:29,770 --> 00:08:31,000
+para os valores 2 e 2
+
+253
+00:08:31,110 --> 00:08:32,020
+na diagonal, ou seja,
+
+254
+00:08:32,220 --> 00:08:34,370
+duas vezes a identidade, você acaba
+
+255
+00:08:34,510 --> 00:08:35,880
+com uma gaussiana muito mais larga e baixa.
+
+256
+00:08:36,150 --> 00:08:38,190
+Ou seja, a largura aumenta bastante.
+
+257
+00:08:38,930 --> 00:08:39,800
+É difícil ver, mas isso
+
+258
+00:08:40,020 --> 00:08:41,090
+ainda é uma elevação em forma de sino,
+
+259
+00:08:41,210 --> 00:08:42,540
+só que muito achatada,
+
+260
+00:08:42,620 --> 00:08:44,470
+ela ficou mais larga,
+
+261
+00:08:44,590 --> 00:08:45,720
+e a variância, ou
+
+262
+00:08:45,830 --> 00:08:48,690
+variabilidade de "x₁" e "x₂" aumenta.
+
+263
+00:08:50,520 --> 00:08:50,980
+Aqui estão mais alguns exemplos.
+
+264
+00:08:51,670 --> 00:08:53,930
+Agora, vamos tentar variar
+
+265
+00:08:54,070 --> 00:08:55,490
+um dos elementos de Σ de cada vez.
+
+266
+00:08:55,840 --> 00:08:58,080
+Digamos que mudo Σ
+
+267
+00:08:58,140 --> 00:09:00,020
+para o valor 0.6 aqui, e 1 ali.
+
+268
+00:09:01,340 --> 00:09:02,380
+O que isso faz é
+
+269
+00:09:02,610 --> 00:09:04,240
+reduzir a variância
+
+270
+00:09:05,780 --> 00:09:06,960
+do primeiro recurso, "x₁",
+
+271
+00:09:07,770 --> 00:09:08,890
+mantendo a variância
+
+272
+00:09:08,960 --> 00:09:11,530
+do segundo recurso, "x₂", igual.
+
+273
+00:09:12,160 --> 00:09:15,150
+Com essa configuração de parâmetros, você pode modelar coisas como isso.
+
+274
+00:09:15,670 --> 00:09:16,910
+"x₁" tem variância menor,
+
+275
+00:09:17,580 --> 00:09:19,120
+e "x₂" tem variância maior.
+
+276
+00:09:20,080 --> 00:09:20,800
+Agora se eu fizer isto,
+
+277
+00:09:21,120 --> 00:09:22,900
+se alterar essa
+
+278
+00:09:23,090 --> 00:09:24,390
+matriz com os valores 2 e 1,
+
+279
+00:09:24,560 --> 00:09:25,900
+também será possível modelar
+
+280
+00:09:26,230 --> 00:09:27,470
+exemplos nos quais
+
+281
+00:09:28,850 --> 00:09:30,590
+"x₁" pode tomar
+
+282
+00:09:30,830 --> 00:09:31,930
+uma gama rande de valores
+
+283
+00:09:32,220 --> 00:09:34,870
+enquanto "x₂" tem uma gama relativamente menor.
+
+284
+00:09:35,070 --> 00:09:37,060
+Isso se reflete na
+
+285
+00:09:37,270 --> 00:09:38,040
+figura também, onde
+
+286
+00:09:38,750 --> 00:09:40,530
+a distribuição decresce
+
+287
+00:09:40,830 --> 00:09:42,670
+mais devagar quando "x₁"
+
+288
+00:09:42,820 --> 00:09:43,940
+se afasta do 0,
+
+289
+00:09:44,180 --> 00:09:45,380
+e diminui muito
+
+290
+00:09:45,640 --> 00:09:48,080
+rapidamente à medida que "x₂" se afasta de 0.
+
+291
+00:09:49,190 --> 00:09:50,710
+Similarmente, se
+
+292
+00:09:50,800 --> 00:09:52,320
+fôssemos modificar
+
+293
+00:09:53,010 --> 00:09:54,490
+este elemento
+
+294
+00:09:54,660 --> 00:09:55,570
+da matriz, parecido com o slide
+
+295
+00:09:57,390 --> 00:09:58,860
+anterior, exceto que
+
+296
+00:09:59,450 --> 00:10:00,900
+variar aqui quer dizer
+
+297
+00:10:01,240 --> 00:10:03,010
+que "x₂" pode assumir uma
+
+298
+00:10:03,170 --> 00:10:04,460
+gama pequena de valores,
+
+299
+00:10:05,190 --> 00:10:06,840
+assim, se isto
+
+300
+00:10:07,200 --> 00:10:08,740
+é 0.6, notamos agora que "x₂"
+
+301
+00:10:09,810 --> 00:10:10,610
+tende a assumir
+
+302
+00:10:10,760 --> 00:10:12,930
+uma gama menor que no exemplo original,
+
+303
+00:10:14,010 --> 00:10:15,310
+enquanto se colocássemos
+
+304
+00:10:15,680 --> 00:10:17,320
+esse valor igual a 2,
+
+305
+00:10:17,410 --> 00:10:20,580
+implica que "x₂" tem uma gama muito maior de valores.
+
+306
+00:10:22,780 --> 00:10:23,570
+Agora, uma das coisas
+
+307
+00:10:23,880 --> 00:10:24,950
+legais da distribuição
+
+308
+00:10:25,190 --> 00:10:26,690
+gaussiana multivariada é que
+
+309
+00:10:26,880 --> 00:10:28,050
+você também pode usá-la
+
+310
+00:10:28,330 --> 00:10:30,230
+para modelar correlações entre dados.
+
+311
+00:10:30,410 --> 00:10:31,930
+Ou seja, podemos usá-la para
+
+312
+00:10:32,060 --> 00:10:33,510
+modelar o fato de
+
+313
+00:10:33,610 --> 00:10:34,940
+"x₁" e "x₂" tenderem
+
+314
+00:10:35,070 --> 00:10:36,760
+a ser altamente correlacionados entre si, por exemplo.
+
+315
+00:10:37,640 --> 00:10:38,880
+Especificamente, se você começar
+
+316
+00:10:39,540 --> 00:10:40,720
+a mudar as entradas
+
+317
+00:10:41,340 --> 00:10:42,390
+fora da diagonal da matriz de covariância,
+
+318
+00:10:42,950 --> 00:10:45,250
+você pode encontrar tipos diferentes de distribuições.
+
+319
+00:10:46,610 --> 00:10:48,250
+Assim, à medida que
+
+320
+00:10:48,340 --> 00:10:49,590
+aumento as entradas fora da diagonal
+
+321
+00:10:50,090 --> 00:10:51,300
+de 0.5 para 0.8,
+
+322
+00:10:51,580 --> 00:10:53,080
+encontro uma distribuição que
+
+323
+00:10:53,380 --> 00:10:54,590
+tem um pico cada vez mais fino
+
+324
+00:10:55,100 --> 00:10:57,480
+ao longo da reta definida pela equação "x = y".
+
+325
+00:10:57,700 --> 00:10:59,100
+Aqui, o gráfico
+
+326
+00:10:59,160 --> 00:11:00,610
+mostra que "x"
+
+327
+00:11:00,730 --> 00:11:03,010
+e "y" tendem a crescer juntos,
+
+328
+00:11:03,290 --> 00:11:04,500
+e as regiões com
+
+329
+00:11:04,640 --> 00:11:06,550
+alta probabilidade são
+
+330
+00:11:06,790 --> 00:11:08,140
+ou "x₁" é grande
+
+331
+00:11:08,260 --> 00:11:09,560
+e "x₂" é grande, ou
+
+332
+00:11:09,890 --> 00:11:11,160
+"x₁" é pequeno e "x₂" é pequeno.
+
+333
+00:11:11,490 --> 00:11:12,480
+Ou algo entre os dois.
+
+334
+00:11:13,110 --> 00:11:14,700
+E à medida que esta entrada,
+
+335
+00:11:15,130 --> 00:11:16,280
+0.8, fica maior, você encontra
+
+336
+00:11:16,490 --> 00:11:18,410
+distribuições gaussianas onde
+
+337
+00:11:18,660 --> 00:11:20,570
+toda a probabilidade está concentrada
+
+338
+00:11:20,770 --> 00:11:22,870
+nessa região estreita,
+
+339
+00:11:24,350 --> 00:11:26,200
+onde "x₁" é aproximadamente
+
+340
+00:11:26,420 --> 00:11:27,530
+igual a "x₂".
+
+341
+00:11:28,020 --> 00:11:30,290
+Essa é uma distribuição muito alta e fina,
+
+342
+00:11:30,670 --> 00:11:32,570
+ao longo dessa
+
+343
+00:11:33,860 --> 00:11:34,940
+região central onde
+
+344
+00:11:35,010 --> 00:11:36,860
+"x₁" é próximo de "x₂".
+
+345
+00:11:37,130 --> 00:11:38,350
+Isso no caso em que
+
+346
+00:11:38,810 --> 00:11:40,360
+as entradas são positivas.
+
+347
+00:11:40,970 --> 00:11:42,120
+Se elas fossem
+
+348
+00:11:42,460 --> 00:11:43,530
+negativas, como
+
+349
+00:11:44,350 --> 00:11:46,340
+de "-0.5"
+
+350
+00:11:46,380 --> 00:11:47,920
+a "-0.8",
+
+351
+00:11:48,060 --> 00:11:49,360
+o que encontramos é um modelo onde
+
+352
+00:11:49,870 --> 00:11:50,930
+colocamos a maioria da probabilidade
+
+353
+00:11:51,620 --> 00:11:53,930
+nessa região de
+
+354
+00:11:54,010 --> 00:11:55,420
+correlação negativa entre "x₁" e "x₂".
+
+355
+00:11:55,710 --> 00:11:57,330
+A maior parte da
+
+356
+00:11:57,480 --> 00:11:58,420
+probabilidade está nessa região,
+
+357
+00:11:58,810 --> 00:11:59,910
+onde "x₁" é aproximadamente
+
+358
+00:12:00,190 --> 00:12:01,700
+"-x₂", em vez de
+
+359
+00:12:01,890 --> 00:12:03,370
+"x₁ = x₂".
+
+360
+00:12:04,180 --> 00:12:05,460
+Isso captura uma
+
+361
+00:12:05,610 --> 00:12:08,050
+correlação negativa entre
+
+362
+00:12:10,300 --> 00:12:10,650
+"x₁" e "x₂".
+
+363
+00:12:11,010 --> 00:12:12,550
+Então é assim
+
+364
+00:12:12,750 --> 00:12:13,640
+isso te dê uma noção das
+
+365
+00:12:13,750 --> 00:12:15,230
+diferentes distribuições que
+
+366
+00:12:15,650 --> 00:12:17,400
+a distribuição gaussiana multivariada consegue capturar.
+
+367
+00:12:18,680 --> 00:12:20,430
+Além de variar a
+
+368
+00:12:20,730 --> 00:12:22,200
+matriz de covariância Σ,
+
+369
+00:12:22,910 --> 00:12:23,880
+a outra coisa que podemos fazer
+
+370
+00:12:24,030 --> 00:12:26,090
+é variar também o
+
+371
+00:12:26,300 --> 00:12:27,730
+parâmetro μ, assim,
+
+372
+00:12:28,370 --> 00:12:29,740
+originalmente tínhamos
+
+373
+00:12:30,270 --> 00:12:31,190
+"μ = [0;0]", e
+
+374
+00:12:31,250 --> 00:12:32,820
+a distribuição estava centrada
+
+375
+00:12:33,270 --> 00:12:34,650
+em torno de "x₁ = 0", "x₂ = 0",
+
+376
+00:12:35,050 --> 00:12:35,980
+o pico da distribuição
+
+377
+00:12:36,070 --> 00:12:38,530
+está aqui, enquanto
+
+378
+00:12:38,950 --> 00:12:40,430
+se variarmos o valor de μ,
+
+379
+00:12:40,610 --> 00:12:42,120
+o pico da
+
+380
+00:12:42,360 --> 00:12:43,700
+distribuição varia.
+
+381
+00:12:43,910 --> 00:12:45,770
+Se "μ = [0; 0.5]",
+
+382
+00:12:45,920 --> 00:12:47,100
+o pico estará em
+
+383
+00:12:47,270 --> 00:12:49,470
+"x₁ = 0" e
+
+384
+00:12:49,810 --> 00:12:51,430
+"x₂ = 0.5", portanto,
+
+385
+00:12:51,980 --> 00:12:53,400
+o pico, ou centro, da
+
+386
+00:12:53,710 --> 00:12:55,260
+distribuição foi deslocado,
+
+387
+00:12:56,470 --> 00:12:57,770
+e se "μ = [1.5; -0.5]",
+
+388
+00:12:58,340 --> 00:13:00,050
+similarmente,
+
+389
+00:13:01,170 --> 00:13:03,350
+o pico da
+
+390
+00:13:03,890 --> 00:13:05,490
+distribuição foi
+
+391
+00:13:05,620 --> 00:13:06,750
+deslocado para outro lugar,
+
+392
+00:13:07,670 --> 00:13:09,710
+correspondente a
+
+393
+00:13:09,910 --> 00:13:11,020
+"x₁ = 1.5"
+
+394
+00:13:11,350 --> 00:13:12,710
+e "x₂ = -0.5", assim,
+
+395
+00:13:13,290 --> 00:13:15,180
+variar o parâmetro μ simplesmente
+
+396
+00:13:15,730 --> 00:13:17,840
+desloca o centro da distribuição toda.
+
+397
+00:13:18,450 --> 00:13:19,670
+Espero que, olhando
+
+398
+00:13:19,780 --> 00:13:21,270
+para todas essas figuras, você
+
+399
+00:13:21,410 --> 00:13:22,440
+tenha uma ideia do tipo
+
+400
+00:13:22,700 --> 00:13:24,850
+de distribuições de probabilidade
+
+401
+00:13:25,070 --> 00:13:28,000
+que a distribuição gaussiana multivariada possibilida capturar.
+
+402
+00:13:28,800 --> 00:13:29,800
+A grande vantagem
+
+403
+00:13:29,990 --> 00:13:30,930
+é que ela permite
+
+404
+00:13:31,130 --> 00:13:32,240
+capturar quando você poderia esperar
+
+405
+00:13:32,750 --> 00:13:33,840
+que dois recursos estejam
+
+406
+00:13:33,970 --> 00:13:36,560
+positivamente ou negativamente correlacionados.
+
+407
+00:13:37,790 --> 00:13:39,030
+No próximo vídeo iremos pegar
+
+408
+00:13:39,260 --> 00:13:40,760
+essa distribuição gaussiana multivariada
+
+409
+00:13:41,670 --> 00:13:43,290
+e aplicá-la em detecção de anomalias.

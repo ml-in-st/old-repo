@@ -1,0 +1,42 @@
+No vídeo anterior, nós falamos sobre
+o formato da hipótese para Regressão Linear com múltiplos atributos ou múltiplas variáveis. Nesse vídeo, iremos conversar sobre como
+ajustar os parâmetros daquelas hipóteses. Iremos particularmente discutir sobre
+como usar o Gradiente Descendente para Regressão Linear com múltiplos atributos. Resumindo rapidamente nossa notação,
+essa é nossa hipótese formal para Regressão Linear Multivariável, onde
+adotamos a convenção de que x0=1. Os parâmetros desse modelo são "θ₀" até "θn", mas ao invés de pensar neles como parâmetros
+independentes, o que também seria válido, eu vou considerá-los como Θ onde
+Θ é um vetor de dimensão n+1. Assim, os parâmetros desses modelo serão um vetor. Nossa função de custo é "J(θ₀,...,θn)",
+que é dada pela soma dos quadrados dos erros.
+Novamente, em vez de pensarmos em "J" como uma função desses n+1 números,
+eu vou começar a escrever "J" como uma função de um vetor parâmetro Θ,
+então esse Θ (em azul) é um vetor. Aqui está o esqueleto do Gradiente Descendente.
+Nós vamos atualizar repetidamente cada parâmetro "θj", de acordo com a regra:
+"θj-α·(termo derivativo)". E vamos escrever isso apenas como "J(Θ)".
+Onde "θj" é atualizado como: "θj" menos a taxa de aprendizagem "α",
+vezes a derivada parcial da função de custo com relação ao parâmetro "θj". Vejamos o resultado disso quando
+implementados o Gradiente Descendente e, particularmente, vejamos qual a
+aparência da derivada parcial. Isto é o nosso Gradiente Descendente
+quando tínhamos "n=1" variáveis. Nós temos duas regras para atualização separadas
+para os parâmetros "θ0" e "θ1". Espero que você esteja familiarizado com isso, e esse termo era a derivada parcial da função de custo
+com respeito ao parâmetro θ0, e analogamente, nós temos uma regra de
+atualização diferente para o parâmetro "θ1". A única diferença é que antes,
+quando tínhamos apenas um atributo, nós chamávamos a variável de "x(i)", mas agora, nós chamaremos isso de
+"x(i)₁" para indicar nossa variável 1. Então isso é o que faríamos
+se tivéssemos apenas 1 variável. Vamos analisar o novo algoritmo. Quando
+tivermos mais de um atributo, onde o número de atributos "n", pode ser
+muito maior que 1, nós teremos essa regra de atualização para o
+Gradiente Descendente e, talvez para aqueles que saibam Cálculo, se vocês pegarem
+a definição da função de custo, e as derivadas parciais da função de
+custo "J" com relação ao parâmetro "θj", vocês descobrirão que essa derivada parcial é exatamente o termo dentro do retângulo azul. E, se você implementar isso,
+terá uma implementação funcional do Gradiente Descendente
+para Regressão Linear Multivariável. A última coisa que quero fazer nesse slide, é dar uma noção do porquê esses dois algoritmos são a mesmo coisa,
+ou porque eles são similares, ou por que ambos são algoritmos de Gradiente Descendente. Vamos considerar um caso onde temos dois ou mais atributos, resultando em três regras de atualização para os parâmetros θ₀, θ₁, θ₂,
+e talvez ainda outros valores de Θ. Se você observar a regra de atualização para θ₀, o que você descobrirá é que teremos a mesma regra de atualização que tínhamos anteriormente, para o caso de "n=1". E a razão para eles serem equivalentes é porque na nossa notação convencional, tínhamos "x(i)₀=1", e por isso esses dois termos dentro da caixa magenta são equivalentes. Analogamente, se você observar a regra
+de atualização para θ₁, você descobrirá que esse termo (caixa em azual claro) é equivalente ao anterior, à regra de atualização que tínhamos para θ₁, sendo que, estamos usando essa nova notação x(i)₁ apenas para indicar a nossa primeira variável.
+E agora que temos mais de uma variável, nós podemos ter regras de atualização similares para os
+outros parâmetros θ₂ e assim por diante. Tem muita coisa acontecendo nesse slide,
+então eu sugiro que, se você precisar, pause o vídeo
+e observe toda a matemática nesse slide com calma para ter certeza que você tenha
+entendido tudo isso. Mas, se você implementar o algoritmo escrito aqui, então você terá uma implementação funcional de
+Regressão Linear para múltiplas variáveis.
+Tradução: Eduardo Bonet | Revisão: Pablo de Morais Andrade

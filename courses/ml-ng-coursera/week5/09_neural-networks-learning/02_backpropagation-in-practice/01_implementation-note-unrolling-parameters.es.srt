@@ -1,0 +1,880 @@
+1
+00:00:00,250 --> 00:00:01,530
+En el video anterior, hablamos acerca
+
+2
+00:00:01,850 --> 00:00:02,870
+de cómo utilizar la retropropagación
+
+3
+00:00:03,980 --> 00:00:05,810
+para calcular las derivadas de tu función de costo.
+
+4
+00:00:06,780 --> 00:00:07,770
+En este video quiero
+
+5
+00:00:08,030 --> 00:00:10,260
+decirte rápidamente un detalle para implementar
+
+6
+00:00:11,220 --> 00:00:13,110
+el desarrollo de tus parámetros a partir de
+
+7
+00:00:13,670 --> 00:00:15,500
+las matrices hacia vectores, las cuales necesitamos
+
+8
+00:00:15,610 --> 00:00:17,870
+para poder utilizar las rutinas de optimización avanzada.
+
+9
+00:00:20,230 --> 00:00:21,470
+Específicamente, digamos que
+
+10
+00:00:21,640 --> 00:00:23,120
+has implementado una función de costo
+
+11
+00:00:23,660 --> 00:00:24,870
+que toma esta entrada; es decir, los parámetros
+
+12
+00:00:25,420 --> 00:00:28,690
+de «theta» y retorna la función de costo y retorna las derivadas.
+
+13
+00:00:30,050 --> 00:00:31,260
+Después puedes pasar esto hacia
+
+14
+00:00:31,510 --> 00:00:33,820
+un algoritmo de optimización avanzada mediante fminunc
+
+15
+00:00:34,080 --> 00:00:34,790
+y fminunc
+
+16
+00:00:34,890 --> 00:00:35,900
+no es el único, por cierto.
+
+17
+00:00:36,060 --> 00:00:38,660
+También existen otros algoritmos de optimización avanzada.
+
+18
+00:00:39,710 --> 00:00:40,910
+Pero todo lo que ellos
+
+19
+00:00:41,030 --> 00:00:41,970
+hacen es tomar esta entrada,
+
+20
+00:00:42,730 --> 00:00:43,560
+una función explícita para costos
+
+21
+00:00:44,490 --> 00:00:45,730
+y algún valor inicial de «theta».
+
+22
+00:00:47,010 --> 00:00:48,490
+Y ambos, bien,
+
+23
+00:00:48,730 --> 00:00:51,600
+estas rutinas suponen que «theta», y
+
+24
+00:00:51,740 --> 00:00:53,360
+el valor inicial de «theta»,
+
+25
+00:00:53,580 --> 00:00:55,410
+que estos son vectores del parámetro, tal vez
+
+26
+00:00:55,640 --> 00:00:57,040
+Rn o Rn + 1.
+
+27
+00:00:57,870 --> 00:01:00,440
+Aunque estos son vectores y
+
+28
+00:01:00,530 --> 00:01:01,880
+también se asume que, bueno ya sabes, tu función
+
+29
+00:01:02,150 --> 00:01:03,770
+de costo retornará como
+
+30
+00:01:03,960 --> 00:01:05,640
+un segundo valor de retorno.
+
+31
+00:01:05,830 --> 00:01:07,410
+Este gradiente, que también es Rn
+
+32
+00:01:07,640 --> 00:01:09,860
+y Rn + 1. Bien, también es un vector.
+
+33
+00:01:10,840 --> 00:01:11,890
+Esto funcionó bien cuando
+
+34
+00:01:12,040 --> 00:01:14,030
+estábamos usando una progresión logística pero
+
+35
+00:01:14,220 --> 00:01:15,120
+ahora que estamos usando una red neuronal
+
+36
+00:01:15,280 --> 00:01:17,160
+nuestros parámetros ya no
+
+37
+00:01:17,220 --> 00:01:18,370
+son más vectores, pero en vez de ello
+
+38
+00:01:18,980 --> 00:01:21,110
+son estas matrices las cuales
+
+39
+00:01:21,310 --> 00:01:22,670
+para una red neuronal completa
+
+40
+00:01:22,830 --> 00:01:26,050
+tendríamos que son matrices de parámetro para «theta» 1, «theta» 2, «theta» 3
+
+41
+00:01:26,700 --> 00:01:28,080
+que podríamos representar en Octave
+
+42
+00:01:28,680 --> 00:01:30,660
+como estas matrices «theta»1, «theta»2, «theta» 3.
+
+43
+00:01:31,450 --> 00:01:33,160
+Y del mismo modo estos términos de
+
+44
+00:01:33,760 --> 00:01:35,030
+gradiente que se espera que retornen.
+
+45
+00:01:35,720 --> 00:01:36,890
+Bien, en el video anterior,
+
+46
+00:01:36,980 --> 00:01:38,430
+mostramos cómo calcular estas
+
+47
+00:01:38,840 --> 00:01:40,520
+matrices de gradiente, que eran
+
+48
+00:01:40,980 --> 00:01:42,290
+D mayúscula 1, D mayúscula 2,
+
+49
+00:01:42,560 --> 00:01:43,950
+D mayúscula 3, que
+
+50
+00:01:44,080 --> 00:01:46,130
+podríamos representar en Octave como las matrices D1, D2, D3.
+
+51
+00:01:48,080 --> 00:01:49,150
+En este video quiero
+
+52
+00:01:49,480 --> 00:01:50,420
+contarte rápidamente algo acerca de
+
+53
+00:01:50,510 --> 00:01:51,480
+la idea de cómo tomar
+
+54
+00:01:51,980 --> 00:01:54,060
+estas matrices y desarrollarlas en vectores.
+
+55
+00:01:54,590 --> 00:01:55,750
+Entonces, terminan
+
+56
+00:01:55,910 --> 00:01:57,790
+por estar en un formato adecuado para
+
+57
+00:01:57,930 --> 00:02:00,090
+pasarlas a «theta», aquí, o para obtener
+
+58
+00:02:00,460 --> 00:02:01,850
+un gradiente acá.
+
+59
+00:02:03,220 --> 00:02:04,540
+Digamos, en concreto, que tenemos
+
+60
+00:02:04,670 --> 00:02:06,740
+una red neuronal con una
+
+61
+00:02:06,950 --> 00:02:08,250
+capa de entrada con diez unidades,
+
+62
+00:02:09,010 --> 00:02:10,000
+una capa oculta con diez unidades
+
+63
+00:02:10,540 --> 00:02:11,870
+y una capa de salida con
+
+64
+00:02:12,020 --> 00:02:13,090
+sólo una unidad, entonces s1
+
+65
+00:02:13,270 --> 00:02:14,030
+es el número de unidades en la capa uno
+
+66
+00:02:14,440 --> 00:02:15,710
+y s2 es el
+
+67
+00:02:15,860 --> 00:02:18,220
+número de unidades en la capa dos y s3 es un número
+
+68
+00:02:18,520 --> 00:02:20,700
+de unidades en la capa tres.
+
+69
+00:02:21,560 --> 00:02:23,200
+En este caso, la dimensión de
+
+70
+00:02:23,460 --> 00:02:25,240
+tus matrices «theta» y
+
+71
+00:02:25,350 --> 00:02:26,380
+D va a ser
+
+72
+00:02:26,570 --> 00:02:28,110
+dada mediante estas expresiones.
+
+73
+00:02:28,520 --> 00:02:30,300
+Por ejemplo, «theta» uno
+
+74
+00:02:30,630 --> 00:02:33,220
+va hacia una matriz de 10 por 11 y así sucesivamente.
+
+75
+00:02:34,420 --> 00:02:35,740
+Entonces, en Octave si quieres
+
+76
+00:02:35,950 --> 00:02:37,960
+para convertirlas entre estas matrices.
+
+77
+00:02:38,580 --> 00:02:38,580
+y en vectores.
+
+78
+00:02:39,330 --> 00:02:40,590
+Lo que puedes hacer es tomar
+
+79
+00:02:40,830 --> 00:02:42,130
+tus «theta» 1, «theta»
+
+80
+00:02:42,350 --> 00:02:44,220
+2, «theta» 3 y escribir esta parte
+
+81
+00:02:44,410 --> 00:02:45,470
+del código y éste tomará
+
+82
+00:02:45,610 --> 00:02:46,820
+todos los elementos de
+
+83
+00:02:46,900 --> 00:02:48,540
+tus tres matrices «theta» y
+
+84
+00:02:48,770 --> 00:02:49,400
+tomar todos los elementos
+
+85
+00:02:49,860 --> 00:02:51,150
+de «theta» uno, todos los
+
+86
+00:02:51,260 --> 00:02:52,290
+elementos de «theta» 2, todos los
+
+87
+00:02:52,400 --> 00:02:53,840
+elementos de «theta» 3,
+
+88
+00:02:54,130 --> 00:02:55,510
+desarrollarlos y poner
+
+89
+00:02:55,770 --> 00:02:57,420
+todos los elementos en un enorme y largo vector.
+
+90
+00:02:58,540 --> 00:02:59,880
+Que es thetaVec y asimismo
+
+91
+00:03:00,960 --> 00:03:02,510
+el segundo comando tomaría
+
+92
+00:03:02,830 --> 00:03:04,350
+todas tus matrices D y
+
+93
+00:03:04,490 --> 00:03:05,600
+las desarrolla en una enorme
+
+94
+00:03:05,930 --> 00:03:07,340
+y largo vector y lo llamamos
+
+95
+00:03:07,510 --> 00:03:08,810
+DVec.
+Para finalizar,
+
+96
+00:03:09,370 --> 00:03:10,330
+si quieres regresar de
+
+97
+00:03:10,520 --> 00:03:13,380
+las representaciones vectoriales a las representaciones de la matriz.
+
+98
+00:03:14,620 --> 00:03:15,630
+¿Qué haces para regresar
+
+99
+00:03:15,840 --> 00:03:17,720
+a «theta» uno?, digamos que, pues tomas
+
+100
+00:03:17,940 --> 00:03:19,250
+thetaVec y lo extraes de
+
+101
+00:03:19,530 --> 00:03:20,980
+los primeros 110 elementos.
+
+102
+00:03:21,470 --> 00:03:22,930
+Y así, «theta» 1 tiene 110
+
+103
+00:03:23,390 --> 00:03:24,650
+elementos porque es es
+
+104
+00:03:24,720 --> 00:03:26,420
+una matriz de 10 por 11, de modo que
+
+105
+00:03:26,810 --> 00:03:28,200
+extraes los primeros 110 elementos
+
+106
+00:03:28,540 --> 00:03:30,200
+después usted puede,
+
+107
+00:03:30,370 --> 00:03:32,960
+utilizar el comando remodelar para remodelar esos regresos hacia «theta» 1.
+
+108
+00:03:33,010 --> 00:03:34,730
+Y del mismo modo, para conseguir
+
+109
+00:03:34,900 --> 00:03:35,850
+que regrese «theta» 2 extraes
+
+110
+00:03:36,280 --> 00:03:39,010
+los siguientes 110 elementos y los remodelas.
+
+111
+00:03:39,670 --> 00:03:41,410
+En cuanto a «theta» 3, extraes
+
+112
+00:03:41,450 --> 00:03:43,320
+lo once elementos finales y ejecutas
+
+113
+00:03:43,500 --> 00:03:45,210
+la remodelación para recuperar «theta» 3.
+
+114
+00:03:48,840 --> 00:03:50,700
+Aquí está una demostración rápida en Octave de ese proceso.
+
+115
+00:03:51,270 --> 00:03:52,370
+Entonces, para este ejemplo
+
+116
+00:03:53,010 --> 00:03:54,530
+pongamos «theta» 1 igual
+
+117
+00:03:55,340 --> 00:03:57,440
+para que sean "unos" de 10 por
+
+118
+00:03:57,670 --> 00:03:59,580
+11, así que es una matriz de puros unos. Y
+
+119
+00:04:00,360 --> 00:04:01,400
+para hacer esto más fácil, veamos,
+
+120
+00:04:01,750 --> 00:04:03,060
+pongamos que sean 2
+
+121
+00:04:03,280 --> 00:04:05,150
+veces unos,10 por
+
+122
+00:04:05,310 --> 00:04:07,390
+11 y entonces
+
+123
+00:04:07,600 --> 00:04:09,570
+digamos que «theta» 3 es igual a 3
+
+124
+00:04:10,290 --> 00:04:12,110
+veces los unos de 1 por 11.
+
+125
+00:04:12,390 --> 00:04:13,680
+Así que esto es 3
+
+126
+00:04:13,980 --> 00:04:17,030
+matrices por separado: «theta» 1, «theta» 2, «theta» 3.
+
+127
+00:04:17,770 --> 00:04:19,010
+Queremos poner todo esto como un vector.
+
+128
+00:04:19,670 --> 00:04:22,740
+thetaVec es igual a «theta»
+
+129
+00:04:23,380 --> 00:04:26,660
+1; «theta» 2.
+
+130
+00:04:28,540 --> 00:04:28,990
+«theta» 3.
+
+131
+00:04:29,260 --> 00:04:32,060
+¿Correcto? Eso es, punto y coma,
+
+132
+00:04:32,540 --> 00:04:34,220
+y dos puntos en medio, así
+
+133
+00:04:35,350 --> 00:04:37,420
+y ahora thetavec
+
+134
+00:04:37,590 --> 00:04:40,090
+va a ser un vector muy largo.
+
+135
+00:04:41,050 --> 00:04:41,910
+De 231 elementos.
+
+136
+00:04:42,970 --> 00:04:46,000
+Si lo despliego, descubro
+
+137
+00:04:46,290 --> 00:04:47,640
+que es un vector muy largo con
+
+138
+00:04:47,780 --> 00:04:48,610
+todos los elementos de la primera
+
+139
+00:04:48,880 --> 00:04:49,630
+matriz, todos los elementos de la
+
+140
+00:04:50,090 --> 00:04:52,360
+segunda matriz, y luego todos los elementos de la tercera matriz.
+
+141
+00:04:53,480 --> 00:04:54,450
+Y si quiero regresar
+
+142
+00:04:54,930 --> 00:04:56,420
+a mis matrices originales, puedo
+
+143
+00:04:56,500 --> 00:05:00,040
+remodelar thetaVec.
+
+144
+00:05:01,400 --> 00:05:02,580
+Vamos a extraer los primeros 110
+
+145
+00:05:03,100 --> 00:05:05,640
+elementos y a remodelarlos en una matriz de 10 por 11.
+
+146
+00:05:06,810 --> 00:05:08,240
+Esto me da de vuelta «theta» 1.
+
+147
+00:05:08,690 --> 00:05:09,770
+Y si luego extraigo
+
+148
+00:05:10,280 --> 00:05:12,220
+los siguientes 110 elementos.
+
+149
+00:05:12,720 --> 00:05:14,690
+Entonces, eso se indexa de 111 a 220.
+
+150
+00:05:14,850 --> 00:05:16,470
+Recupero todos mis 2.
+
+151
+00:05:18,030 --> 00:05:19,330
+Y si voy
+
+152
+00:05:20,850 --> 00:05:22,110
+desde 221 hasta
+
+153
+00:05:22,280 --> 00:05:24,240
+el último elemento, que es
+
+154
+00:05:24,440 --> 00:05:25,970
+el elemento 231 y lo remodelo
+
+155
+00:05:26,070 --> 00:05:28,130
+1 por 11, recupero «theta» 3.
+
+156
+00:05:30,810 --> 00:05:32,110
+Para hacer este proceso muy concreto,
+
+157
+00:05:32,950 --> 00:05:34,750
+he aquí cómo usamos el desarrollo
+
+158
+00:05:35,320 --> 00:05:36,990
+de la idea para implementar nuestro algoritmo de aprendizaje.
+
+159
+00:05:38,200 --> 00:05:39,180
+Digamos que tienes algún
+
+160
+00:05:39,490 --> 00:05:40,600
+valor inicial de los parámetros
+
+161
+00:05:41,170 --> 00:05:42,410
+«theta»1, «theta» 2, «theta» 3.
+
+162
+00:05:42,950 --> 00:05:43,740
+Lo que haremos es
+
+163
+00:05:44,020 --> 00:05:45,880
+tomar estos y desarrollarlos
+
+164
+00:05:46,290 --> 00:05:47,610
+en un vector largo
+
+165
+00:05:47,960 --> 00:05:50,380
+vamos a recuperar el «theta» inicial
+
+166
+00:05:50,600 --> 00:05:52,170
+pasarlo a fminunc
+
+167
+00:05:52,360 --> 00:05:54,900
+como esta configuración inicial de los parámetros de «theta».
+
+168
+00:05:56,160 --> 00:05:58,310
+El otro asunto que necesitamos poner en marcha es implementar la función de costo.
+
+169
+00:05:59,310 --> 00:06:01,510
+Aquí está mi implementación de la función de costo.
+
+170
+00:06:02,900 --> 00:06:04,070
+La función de costo nos va a
+
+171
+00:06:04,160 --> 00:06:05,500
+dar la entrada, thetaVec,
+
+172
+00:06:05,980 --> 00:06:07,090
+que va a ser todos los vectores
+
+173
+00:06:07,350 --> 00:06:08,770
+de mi parámetro que, están en,
+
+174
+00:06:08,870 --> 00:06:10,680
+la forma que ha sido desarrollada en un vector.
+
+175
+00:06:11,960 --> 00:06:12,800
+Entonces, lo primero que voy a
+
+176
+00:06:13,000 --> 00:06:13,890
+hacer es utilizar
+
+177
+00:06:14,100 --> 00:06:16,580
+thetaVec y voy a usar las funciones de remodelación.
+
+178
+00:06:17,040 --> 00:06:18,120
+Así podré extraer los elementos de
+
+179
+00:06:18,320 --> 00:06:19,440
+thetaVec y utilizar el remodelado
+
+180
+00:06:19,750 --> 00:06:20,950
+para recuperar mis
+
+181
+00:06:21,320 --> 00:06:23,560
+matrices originales de parámetro, «theta» 1, «theta» 2, «theta» 3.
+
+182
+00:06:24,120 --> 00:06:26,530
+Así que, estas van a ser las matrices que voy a obtener.
+
+183
+00:06:26,620 --> 00:06:28,000
+Bien, esto me da
+
+184
+00:06:28,060 --> 00:06:29,920
+una forma más conveniente en la cual
+
+185
+00:06:30,130 --> 00:06:31,580
+utilizar estas matrices, de modo que,
+
+186
+00:06:31,750 --> 00:06:33,590
+puedo ejecutar la propagación hacia adelante y
+
+187
+00:06:33,880 --> 00:06:35,400
+la retropropagación para calcular mis
+
+188
+00:06:35,570 --> 00:06:38,140
+derivadas, y para calcular mi función de costo j de «theta».
+
+189
+00:06:39,710 --> 00:06:40,900
+Y finalmente, puedo entonces
+
+190
+00:06:41,120 --> 00:06:42,620
+tomar mis derivadas y desarrollarlas
+
+191
+00:06:43,030 --> 00:06:44,530
+para mantener los elementos
+
+192
+00:06:45,140 --> 00:06:47,440
+en el mismo orden como lo hice cuando desarrollé mis «theta»s.
+
+193
+00:06:48,390 --> 00:06:49,780
+Pero, voy a desarrollar D1, D2,
+
+194
+00:06:50,030 --> 00:06:51,330
+D3, para obtener gradientVec
+
+195
+00:06:52,190 --> 00:06:55,180
+que es ahora a donde puede retornar mi función de costo.
+
+196
+00:06:55,490 --> 00:06:57,420
+Puede retornar un vector de estas derivadas.
+
+197
+00:06:59,150 --> 00:07:00,310
+Pues bien, espero que ahora tengan
+
+198
+00:07:00,490 --> 00:07:01,650
+un sentido claro de cómo
+
+199
+00:07:01,890 --> 00:07:03,200
+convertir de ida y de vuelta entre
+
+200
+00:07:03,360 --> 00:07:04,970
+la representación matricial de los
+
+201
+00:07:05,090 --> 00:07:08,220
+parámetros en comparación con la representación del vector de los parámetros.
+
+202
+00:07:09,360 --> 00:07:10,290
+La ventaja de la representación
+
+203
+00:07:10,760 --> 00:07:12,330
+de la matriz es que cuando
+
+204
+00:07:12,470 --> 00:07:13,530
+tus parámetros se almacenan como
+
+205
+00:07:13,670 --> 00:07:15,670
+matrices es más conveniente cuando
+
+206
+00:07:15,830 --> 00:07:17,430
+estás haciendo una propagación hacia adelante y
+
+207
+00:07:17,530 --> 00:07:19,110
+una retropropagación y es más fácil
+
+208
+00:07:19,850 --> 00:07:21,160
+cuando tus parámetros se almacenan como
+
+209
+00:07:21,360 --> 00:07:22,770
+matrices que puedes aprovechar,
+
+210
+00:07:23,400 --> 00:07:24,780
+en cierto modo, de las implementaciones vectorizadas.
+
+211
+00:07:26,230 --> 00:07:27,900
+Mientras que en contraste, la ventaja de
+
+212
+00:07:28,090 --> 00:07:30,250
+la representación vectorial, cuando tienes,
+
+213
+00:07:30,320 --> 00:07:31,820
+por ejemplo, thetaVec o DVec es que
+
+214
+00:07:32,500 --> 00:07:34,540
+cuando estás utilizando los algoritmos de optimización avanzada,
+
+215
+00:07:34,770 --> 00:07:36,640
+esos algoritmos tienden a
+
+216
+00:07:36,760 --> 00:07:37,730
+suponer que tienes
+
+217
+00:07:38,090 --> 00:07:40,730
+todos tus parámetros desarrollados en un enorme y largo vector.
+
+218
+00:07:41,720 --> 00:07:42,930
+Así que, sólo con lo que acabamos de ver
+
+219
+00:07:43,140 --> 00:07:44,650
+esperamos que ahora tú puedas rápidamente
+
+220
+00:07:45,410 --> 00:07:47,020
+hacer conversiones entre estas dos formas según lo necesites.

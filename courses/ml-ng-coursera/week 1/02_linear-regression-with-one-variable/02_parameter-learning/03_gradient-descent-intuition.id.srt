@@ -1,0 +1,658 @@
+1
+00:00:00,000 --> 00:00:04,353
+Di video sebelumnya, kita memberi
+definisi matematika pada gradient
+
+2
+00:00:04,353 --> 00:00:09,464
+descent. Di video ini, mari belajar lebih
+dalam dan mendapat intuisi lebih baik tentang
+
+3
+00:00:09,464 --> 00:00:14,701
+apa yang algoritma itu lakukan, dan mengapa langkah
+algoritma gradient descent bisa masuk akal.
+
+4
+00:00:14,701 --> 00:00:20,639
+Ini algoritma gradient descent yang
+kita lihat terakhir. Dan, hanya
+
+5
+00:00:20,639 --> 00:00:26,427
+mengingatkan Anda, parameter ini, atau istilah
+ini, alfa, disebut kecepatan belajar.
+
+6
+00:00:26,427 --> 00:00:32,444
+Itu mengontrol berapa besar langkah yang kita ambil
+saat memperbarui parameter theta J saya. Dan
+
+7
+00:00:32,444 --> 00:00:41,360
+istilah kedua ini adalah derivatif.
+Dan apa yang ingin saya kerjakan di video ini
+
+8
+00:00:41,360 --> 00:00:47,360
+adalah memberi Anda intuisi yang lebih baik tentang
+apa yang dikerjakan oleh kedua istilah ini dan mengapa,
+
+9
+00:00:47,360 --> 00:00:53,077
+saat digabungkan, semua pembaharuan ini masuk akal.
+Untuk menyampaikan intuisi ini, apa yang
+
+10
+00:00:53,077 --> 00:00:58,460
+saya ingin lakukan adalah menggunakan contoh yang
+sedikit lebih sederhana dimana kita ingin meminimalkan
+
+11
+00:00:58,460 --> 00:01:03,022
+fungsi dengan satu parameter. Jadi
+katakan kita punya fungsi harga J
+
+12
+00:01:03,022 --> 00:01:07,294
+dengan satu parameter, theta satu, seperti
+yang kita lakukan beberapa video sebelumnya. Dimana
+
+13
+00:01:07,294 --> 00:01:11,913
+theta satu adalah angka riil, okey? Jadi kita punya plot 1D yang
+
+14
+00:01:11,913 --> 00:01:16,416
+sedikit lebih sederhana untuk dilihat. Dan
+mari kita coba pahami mengapa gradient
+
+15
+00:01:16,416 --> 00:01:23,940
+descent akan bekerja di fungsi ini.
+Jadi, katakanlah ini fungsi saya.
+
+16
+00:01:24,660 --> 00:01:31,696
+J(theta satu) dimana theta satu 
+adalah angka riil. Baik,
+
+17
+00:01:31,696 --> 00:01:39,202
+sekarang katakanlah saya telah menginisialisasi
+gradient descent dengan theta satu pada lokasi ini.
+
+18
+00:01:39,202 --> 00:01:46,989
+Jadi bayangkan kita mulai pada titik itu
+di fungsi saya. Apa yang gradient descent akan
+
+19
+00:01:46,989 --> 00:01:56,935
+lakukan adalah memperbaharui theta satu
+sebagai theta satu kurang alfa kali dd
+
+20
+00:01:56,935 --> 00:02:04,694
+theta satu J(theta satu), oke?
+Dan sebagai tambahan, Anda tahu
+
+21
+00:02:04,694 --> 00:02:11,636
+ini derivatif, kan? Jika Anda ingin tahu
+mengapa saya mengubah notasi dari
+
+22
+00:02:11,636 --> 00:02:16,132
+simbol derivatif parsial ini, jika Anda
+tidak tahu perbedaan antara
+
+23
+00:02:16,132 --> 00:02:20,523
+simbol derivatif parsial ini dan 
+dd theta, jangan khawatirkan itu. Teknisnya
+
+24
+00:02:20,523 --> 00:02:24,491
+dalam matematika kita memanggil ini derivatif
+parsial, kita memanggil ini derivarif,
+
+25
+00:02:24,491 --> 00:02:28,299
+tergantung pada jumlah parameter
+dalam fungsi J, tapi itu
+
+26
+00:02:28,299 --> 00:02:32,428
+dasar-dasar teknik matematika. Jadi,
+untuk pelajaran ini, pikirkan
+
+27
+00:02:32,428 --> 00:02:36,768
+simbol parsial dan dd theta satu ini sebagai
+hal yang sama. Dan, jangan khawatir
+
+28
+00:02:36,768 --> 00:02:41,056
+tentang apakah ada perbedaan antara keduanya.
+Saya akan coba gunakan notasi yang tepat
+
+29
+00:02:41,056 --> 00:02:45,190
+secara matematika. Tapi untuk tujuan kita,
+kedua notasi ini benar-benar hal yang sama.
+
+30
+00:02:45,360 --> 00:02:49,627
+Jadi, mari kita lihat apa yang akan dikerjakan
+persamaan ini. Jadi kita akan menghitung
+
+31
+00:02:49,627 --> 00:02:54,293
+derivatif ini, saya tidak yakin jika Anda telah
+melihat derivatif di kalkulus sebelumnya. Tapi
+
+32
+00:02:54,293 --> 00:02:58,666
+apa yang derivatif, pada titik ini, kerjakan
+adalah pada dasarnya mengatakan, mari ambil
+
+33
+00:02:58,666 --> 00:03:02,877
+garis singgung pada titik itu, seperti
+garis lurus itu, garis merah,
+
+34
+00:03:02,877 --> 00:03:06,976
+menyentuh fungsi ini dan
+lihat kemiringan garis merah ini. Itu
+
+35
+00:03:06,976 --> 00:03:11,352
+derivatifnya. Itu mengatakan,
+kemiringan dari garis itu yaitu
+
+36
+00:03:11,352 --> 00:03:15,563
+garis singgung dari fungsi itu, okey, dan
+kemiringan garis itu tentu saja hanya
+
+37
+00:03:15,563 --> 00:03:20,789
+tinggi dibagi oleh bagian horisontal ini.
+Sekarang. Garis ini punya
+
+38
+00:03:20,789 --> 00:03:28,378
+kemiringan positif, jadi derivatifnya
+positif. Dengan demikian, pembaharuan theta saya
+
+39
+00:03:28,378 --> 00:03:36,258
+menjadi, theta satu kurang
+alfa kali beberapa angka positif.
+
+40
+00:03:36,258 --> 00:03:43,103
+Okey? Alfa, kecepatan belajar
+selalu bernilai positif. Jadi
+
+41
+00:03:43,103 --> 00:03:47,932
+saya akan mengambil theta satu, pembaharuan ini
+sebagai theta satu kurang sesuatu. Jadi saya akan
+
+42
+00:03:47,932 --> 00:03:52,644
+berakhir dengan memindahkan theta satu ke kiri.
+Saya akan mengurangi theta satu dan kita bisa lihat
+
+43
+00:03:52,644 --> 00:03:57,473
+ini hal yang benar untuk dilakukan karena
+saya sebenarnya bergerak ke arah ini
+
+44
+00:03:57,473 --> 00:04:02,582
+agar saya lebih dekat ke minimum di sebelah
+sana. Jadi, gradient descent sejauh ini tampaknya
+
+45
+00:04:02,582 --> 00:04:08,115
+melakukan hal yang benar. Mari lihat
+contoh lain. Mari kita ambil fungsi J
+
+46
+00:04:08,115 --> 00:04:13,787
+saya yang sama. Hanya mencoba menggambar fungsi J
+theta satu yang sama. Dan sekarang, katakanlah
+
+47
+00:04:13,787 --> 00:04:19,181
+saya telah menginisialisasi parameter saya
+di sebelah kiri sana. Jadi theta satu
+
+48
+00:04:19,181 --> 00:04:24,161
+ini. Saya akan tambahkan titik itu di atas
+permukaan. Sekarang, derivatif saya, dd
+
+49
+00:04:24,161 --> 00:04:29,567
+theta satu J(theta satu), saat dievaluasi
+di titik ini, lihat di kanan.
+
+50
+00:04:29,567 --> 00:04:35,035
+Kemiringan dari garis itu. Jadi derivatif ini
+adalah kemiringan dari garis ini. Tapi garis
+
+51
+00:04:35,035 --> 00:04:42,745
+ini miring ke bawah, jadi garis ini punya
+kemiringan negatif. Setuju? Atau alternatifnya saya
+
+52
+00:04:42,745 --> 00:04:48,718
+katakan bahwa fungsi ini punya derivatif
+negatif, yang artinya kemiringan negatif pada
+
+53
+00:04:48,718 --> 00:04:54,770
+titik itu. Jadi ini kurang dari sama dengan
+nol. Jadi saat saya memperbaharui theta, jika
+
+54
+00:04:54,770 --> 00:05:02,840
+theta dibaharui sebagai theta kurang alfa
+kali suatu angka negatif, menghasilkan
+
+55
+00:05:02,840 --> 00:05:07,881
+theta satu kurang angka negatif yang
+artinya saya sebenarnya akan menambah theta,
+
+56
+00:05:07,881 --> 00:05:13,106
+setuju? Karena ini kurang angka negatif
+artinya saya sedang menambahkan sesuatu ke theta
+
+57
+00:05:13,106 --> 00:05:17,900
+dan itu artinya saya akan menambahkan
+theta. Jadi kita akan
+
+58
+00:05:17,900 --> 00:05:23,002
+mulai di sini dan menambah theta, yang lagi
+tampaknya seperti hal yang saya ingin lakukan, coba
+
+59
+00:05:23,002 --> 00:05:28,335
+lebih mendekatkan saya ke minimum. Jadi, semoga
+ini menjelaskan intuisi dibalik
+
+60
+00:05:28,335 --> 00:05:33,874
+apa yang derivatif lakukan. Berikutnya mari
+lihat pada kecepatan belajar,
+
+61
+00:05:33,874 --> 00:05:39,956
+alfa, dan mencoba mencari tahu apa yang
+dilakukannya. Jadi, ini aturan pembaharuan
+
+62
+00:05:39,956 --> 00:05:46,641
+gradient descent saya. Baik, ada persamaan ini
+dan mari lihat apa yang bisa terjadi, jika
+
+63
+00:05:46,641 --> 00:05:52,845
+alfa terlalu kecil atau terlalu besar.
+Jadi, contoh pertama ini, apa yang
+
+64
+00:05:52,845 --> 00:05:59,583
+terjadi jika alfa terlalu kecil. Jadi ini
+fungsi J saya. J theta. Mari
+
+65
+00:05:59,583 --> 00:06:04,230
+mulai dari sini. Jika alfa terlalu kecil
+maka apa yang akan saya lakukan adalah
+
+66
+00:06:04,230 --> 00:06:09,322
+mengalikan pembaruan saya dengan beberapa angka kecil.
+Jadi berakhir dengan mengambil langkah bayi kecil
+
+67
+00:06:09,322 --> 00:06:13,841
+seperti itu. Okey, jadi itu satu langkah.
+Lalu dari titik baru ini
+
+68
+00:06:13,841 --> 00:06:18,870
+kita akan mengambil langkah lain. Tapi jika
+alfa terlalu kecil, mari ambil langkah bayi
+
+69
+00:06:18,870 --> 00:06:25,342
+kecil lainnya. Jadi jika kecepatan
+belajar saya terlalu kecil, saya akan berakhir
+
+70
+00:06:25,342 --> 00:06:30,589
+dengan mengambil langkah bayi yang sangat kecil
+ini untuk mencapai minimum dan saya
+
+71
+00:06:30,589 --> 00:06:35,837
+akan perlu banyak langkah untuk mencapai minimum. 
+Jadi jika alfa terlalu kecil, gradient descent bisa
+
+72
+00:06:35,837 --> 00:06:41,019
+lambat karena harus mengambil langkah 
+bayi yang sangat kecil ini. Dan itu
+
+73
+00:06:41,019 --> 00:06:45,829
+akan membutuhkan banyak langkah sebelum
+lebih dekat ke minimum global. Sekarang,
+
+74
+00:06:45,829 --> 00:06:52,236
+bagaimana jika alfa terlalu besar.
+Jadi ini fungsi J theta saya.
+
+75
+00:06:52,236 --> 00:06:57,590
+Tampaknya jika alfa terlalu besar, maka
+gradient descent bisa melampaui minimum
+
+76
+00:06:57,590 --> 00:07:03,362
+dan bahkan bisa gagal untuk bertemu atau bahkan menyimpang.
+Jadi ini yang saya maksudkan. Katakanlah theta di sana.
+
+77
+00:07:03,362 --> 00:07:08,647
+Itu sebenarnya dekat ke minimum. Jadi derivatifnya
+mengarah ke kanan, tapi jika alfa terlalu besar, saya akan
+
+78
+00:07:08,686 --> 00:07:14,140
+mengambil langkah yang sangat besar. Mungkin seperti itu.
+Jadi saya berakhir dengan mengambil langkah yang sangat besar.
+
+79
+00:07:14,140 --> 00:07:20,051
+Sekarang, fungsi harga saya semakin buruk. Karena itu mulai
+dari nilai ini lalu sekarang nilai saya jadi buruk. Sekarang
+
+80
+00:07:20,051 --> 00:07:25,190
+derivatif saya menuju ke kiri, itu sebenarnya mengurangi
+theta. Tapi lihat, jika kecepatan belajar saya terlalu besar,
+
+81
+00:07:25,190 --> 00:07:29,792
+saya mungkin mengambil langkah sangat besar
+berangkat dari sini ke sana. Jadi saya berakhir
+
+82
+00:07:29,792 --> 00:07:35,372
+di sana. Benar? Dan jika kecepatan belajar saya terlalu
+besar, saya bisa mengambil langkah besar lainnya pada
+
+83
+00:07:35,372 --> 00:07:41,034
+akselerasi berikutnya dan melampaui minimum dan
+melampaui dan seterusnya hingga Anda perhatikan
+
+84
+00:07:41,034 --> 00:07:46,765
+saya sebenarnya semakin jauh dan pergi jauh
+dari minimumnya. Jadi jika alfa
+
+85
+00:07:46,765 --> 00:07:51,905
+terlalu besar, itu bisa gagal untuk menemui atau bahkan
+menyimpang dari minimum. Sekarang, saya punya pertanyaan
+
+86
+00:07:51,905 --> 00:07:56,057
+lain untuk Anda. Ini salah satu yang rumit.
+Dan ketika saya mempelajari hal ini pertama kali,
+
+87
+00:07:56,057 --> 00:08:00,005
+butuh waktu lama buat saya untuk memahaminya.
+Bagaimana jika theta satu Anda
+
+88
+00:08:00,005 --> 00:08:04,106
+sudah berada pada minimum lokal? Menurut Anda
+apa satu langkah yang gradient descent akan
+
+89
+00:08:04,106 --> 00:08:10,857
+lakukan? Anggap Anda menginisialisasi theta
+satu pada minimum lokal. Jadi,
+
+90
+00:08:10,857 --> 00:08:16,713
+anggap ini nilai awal theta satu Anda
+di sini dan itu sudah berada pada optimum
+
+91
+00:08:16,713 --> 00:08:22,718
+lokal atau minimum lokal. Itu mengisyaratkan
+bahwa pada optimum lokal, derivatif Anda
+
+92
+00:08:22,718 --> 00:08:28,796
+akan sama dengan nol. Karena itu kemiringannya
+dimana itu adalah titik garis singgung itu,
+
+93
+00:08:28,796 --> 00:08:35,528
+jadi kemiringan garis ini akan sama dengan nol,
+makanya derivatif ini sama dengan nol.
+
+94
+00:08:35,528 --> 00:08:40,941
+Jadi, gradien descent terbaru
+Anda, theta satu, dibaharui
+
+95
+00:08:40,941 --> 00:08:46,284
+jadi theta satu kurang alfa kali nol.
+Jadi, maksudnya, jika Anda
+
+96
+00:08:46,284 --> 00:08:51,222
+telah berada pada optimum lokal, 
+theta satu tidak berubah karena ini,
+
+97
+00:08:51,222 --> 00:08:56,132
+theta satu terbaru sama dengan theta satu.
+Jadi jika parameter Anda sudah berada pada
+
+98
+00:08:56,132 --> 00:09:00,694
+minimum lokal, satu langkah gradient descent
+tidak melakukan apa-apa. Itu tidak mengubah
+
+99
+00:09:00,694 --> 00:09:05,257
+parameternya, yaitu apa yang Anda inginkan.
+Karena itu solusi Anda tetap pada
+
+100
+00:09:05,257 --> 00:09:09,706
+optimum lokal. Ini juga menjelaskan mengapa
+gradient descent bisa menemui minimum lokalnya,
+
+101
+00:09:09,706 --> 00:09:14,326
+bahkan dengan kecepatan belajar, 
+alfa, tetap. Ini maksud saya.
+
+102
+00:09:14,326 --> 00:09:21,550
+Mari lihat satu contoh. Ini fungsi harga J
+dengan theta. Yang mungkin ingin saya
+
+103
+00:09:21,550 --> 00:09:26,811
+minimalkan dan katakanlah saya menginisialisasi
+algoritma gradient descent saya,
+
+104
+00:09:26,811 --> 00:09:32,080
+di sana pada titik magenta itu. Jika saya
+ambil satu langkah gradient descent,
+
+105
+00:09:32,080 --> 00:09:36,941
+mungkin saya akan dibawa ke titik itu karena
+derivatif saya sangat curam di sana, benar?
+
+106
+00:09:36,941 --> 00:09:42,051
+Sekarang saya pada titik hijau ini dan jika
+saya ambil langkah gradient descent lain,
+
+107
+00:09:42,051 --> 00:09:47,036
+Anda perhatikan derivatif saya, kemiringannya,
+kurang curam pada titik hijau saat
+
+108
+00:09:47,036 --> 00:09:51,959
+dibandingkan dengan titik magenta di sana,
+benar? Karena ketika saya mendekati
+
+109
+00:09:51,959 --> 00:09:56,883
+minimum, derivatif saya semakin dekat dan
+dekat ke nol saat saya mencapai minimum.
+
+110
+00:09:56,883 --> 00:10:01,794
+Jadi, sesudah satu langkah gradient descent,
+derivatif baru saya sedikit lebih kecil.
+
+111
+00:10:01,794 --> 00:10:06,635
+Jadi saya akan ambil langkah
+gradient descent lain. Saya akan ambil
+
+112
+00:10:06,635 --> 00:10:11,598
+langkah yang lebih kecil dari titik hijau ini
+daripada yang saya lakukan di titik magenta.
+
+113
+00:10:11,598 --> 00:10:16,038
+Sekarang saya di titik baru, titik merah, dan
+sekarang lebih dekat ke minimum global,
+
+114
+00:10:16,038 --> 00:10:21,229
+jadi derivatif di sini akan lebih kecil dari
+derivatif di titik hijau. Jadi saat saya
+
+115
+00:10:21,229 --> 00:10:26,420
+ambil langkah gradient descent lain, sekarang
+derivatif saya bahkan lebih kecil, dan jadi
+
+116
+00:10:26,420 --> 00:10:31,360
+besarnya pembaharuan terhadap theta satu
+bahkan lebih kecil, jadi Anda bisa ambil
+
+117
+00:10:31,360 --> 00:10:39,145
+langkah kecil seperti itu, dan sambil gradient
+descent berjalan, Anda akan secara otomatis
+
+118
+00:10:39,145 --> 00:10:46,343
+mengambil langkah lebih kecil dan kecil hingga
+akhirnya Anda mengambil langkah sangat kecil,
+
+119
+00:10:46,343 --> 00:10:52,737
+dan Anda menemukan minimum lokal.
+Jadi, untuk merangkum. Dalam gradient
+
+120
+00:10:52,737 --> 00:10:57,716
+descent ketika kita mendekati minimum lokal,
+gradient descent akan secara otomatis mengambil
+
+121
+00:10:57,716 --> 00:11:02,634
+langkah lebih kecil dan itu karena ketika kita
+mendekati minimum lokal, menurut definisi,
+
+122
+00:11:02,634 --> 00:11:07,122
+minimum lokal adalah saat derivatif ini
+sama dengan nol. Jadi saat kita
+
+123
+00:11:07,122 --> 00:11:12,408
+mendekati minimum lokal, derivatif ini
+akan secara otomatis semakin kecil dan
+
+124
+00:11:12,408 --> 00:11:16,957
+gradient descent akan otomatis mengambil
+langkah lebih kecil. Jadi beginilah
+
+125
+00:11:16,957 --> 00:11:21,506
+gradient descent, dan sebenarnya
+tidak perlu mengurangi alfa
+
+126
+00:11:21,506 --> 00:11:26,258
+sepanjang waktu. Itulah algoritma gradient
+descent, dan Anda bisa menggunakannya untuk
+
+127
+00:11:26,258 --> 00:11:30,713
+mencoba meminimalkan setiap fungsi harga J.
+Bukan fungsi harga J yang dinyatakan untuk
+
+128
+00:11:30,713 --> 00:11:34,738
+regresi linier. Dalam video berikut,
+kita akan mengambil fungsi J, dan
+
+129
+00:11:34,738 --> 00:11:38,549
+menset itu kembali ke fungsi harga
+untuk regresi linier.
+
+130
+00:11:38,549 --> 00:11:43,057
+Fungsi harga kwadrat yang kita hasilkan
+pada awalnya. Lalu mengambil gradient descent
+
+131
+00:11:43,057 --> 00:11:47,351
+dan fungsi harga kwadrat, dan menggabungkan 
+mereka bersama. Itu akan menghasilkan
+
+132
+00:11:47,351 --> 00:11:50,948
+algoritma belajar kita yang pertama,
+algoritma regresi linier.

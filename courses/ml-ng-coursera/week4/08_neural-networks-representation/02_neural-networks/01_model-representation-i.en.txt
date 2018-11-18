@@ -1,0 +1,130 @@
+In this video, I want to start telling you
+about how we represent neural networks. In other words,
+how we represent our hypothesis or how we represent our model
+when using neural networks. Neural networks were developed
+as simulating neurons or networks of neurons in the brain. So, to explain the hypothesis
+representation let's start by looking at what a single
+neuron in the brain looks like. Your brain and mine is jam packed full of neurons like
+these and neurons are cells in the brain. And two things to draw
+attention to are that first. The neuron has a cell body,
+like so, and moreover, the neuron has a number of input wires,
+and these are called the dendrites. You think of them as input wires, and
+these receive inputs from other locations. And a neuron also has an output
+wire called an Axon, and this output wire is what it uses
+to send signals to other neurons, so to send messages to other neurons. So, at a simplistic level what a neuron
+is, is a computational unit that gets a number of inputs through it input
+wires and does some computation and then it says outputs via its axon to other
+nodes or to other neurons in the brain. Here's a illustration
+of a group of neurons. The way that neurons communicate with
+each other is with little pulses of electricity, they are also called spikes
+but that just means pulses of electricity. So here is one neuron and what it does
+is if it wants a send a message what it does is sends a little
+pulse of electricity. Varis axon to some different neuron and
+here, this axon that is this open wire, connects to the dendrites of
+this second neuron over here, which then accepts this incoming
+message that some computation. And they, in turn, decide to send out this
+message on this axon to other neurons, and this is the process by which
+all human thought happens. It's these Neurons doing computations and passing messages to other neurons as
+a result of what other inputs they've got. And, by the way, this is how our
+senses and our muscles work as well. If you want to move one of your muscles
+the way that where else in your neuron may send this electricity to your muscle and
+that causes your muscles to contract and your eyes, some senses like your eye must
+send a message to your brain while it does it senses hosts electricity entity
+to a neuron in your brain like so. In a neuro network, or rather,
+in an artificial neuron network that we've implemented on the computer,
+we're going to use a very simple model of what a neuron does we're going to model
+a neuron as just a logistic unit. So, when I draw a yellow circle like that,
+you should think of that as a playing a role analysis,
+who's maybe the body of a neuron, and we then feed the neuron a few inputs
+who's various dendrites or input wiles. And the neuron does some computation. And output some value on this output wire,
+or in the biological neuron, this is an axon. And whenever I draw a diagram like this, what this means is that this
+represents a computation of h of x equals one over one plus e to
+the negative theta transpose x, where as usual, x and
+theta are our parameter vectors, like so. So this is a very simple,
+maybe a vastly oversimplified model, of the computations that the neuron does,
+where it gets a number of inputs, x1, x2, x3 and
+it outputs some value computed like so. When I draw a neural network, usually I
+draw only the input nodes x1, x2, x3. Sometimes when it's useful to do so,
+I'll draw an extra node for x0. This x0 now that's sometimes called
+the bias unit or the bias neuron, but because x0 is already equal to 1,
+sometimes, I draw this, sometimes I won't just depending on whatever is more
+notationally convenient for that example. Finally, one last bit of terminology
+when we talk about neural networks, sometimes we'll say that
+this is a neuron or an artificial neuron with a Sigmoid or
+logistic activation function. So this activation function in
+the neural network terminology. This is just another term for
+that function for that non-linearity g(z)
+= 1 over 1+e to the -z. And whereas so far I've been calling
+theta the parameters of the model, I'll mostly continue to
+use that terminology. Here, it's a copy to the parameters, but
+in neural networks, in the neural network literature sometimes you might hear
+people talk about weights of a model and weights just means exactly the same
+thing as parameters of a model. But I'll mostly continue to use the
+terminology parameters in these videos, but sometimes, you might hear
+others use the weights terminology. So, this little diagram
+represents a single neuron. What a neural network is, is just a group
+of this different neurons strong together. Completely, here we have input units x1,
+x2, x3 and once again, sometimes you can draw this extra note x0
+and Sometimes not, just flow that in here. And here we have three neurons
+which have written 81, 82, 83. I'll talk about those indices later. And once again we can if
+we want add in just a0 and add the mixture bias unit there. There's always a value of 1. And then finally we have this third
+node and the final layer, and there's this third node that outputs the
+value that the hypothesis h(x) computes. To introduce a bit more terminology,
+in a neural network, the first layer, this is also called
+the input layer because this is where we Input our features, x1, x2, x3. The final layer is also called the output
+layer because that layer has a neuron, this one over here, that outputs
+the final value computed by a hypothesis. And then, layer 2 in between,
+this is called the hidden layer. The term hidden layer isn't a great
+terminology, but this ideation is that, you know, you supervised early, where you get to see the inputs and
+get to see the correct outputs, where there's a hidden layer of values you don't
+get to observe in the training setup. It's not x, and it's not y,
+and so we call those hidden. And they try to see neural nets
+with more than one hidden layer but in this example, we have one input layer,
+Layer 1, one hidden layer, Layer 2, and one output layer, Layer 3. But basically,
+anything that isn't an input layer and isn't an output layer is
+called a hidden layer. So I want to be really clear about
+what this neural network is doing. Let's step through the computational
+steps that are and body represented by this diagram. To explain these specific computations
+represented by a neural network, here's a little bit more notation. I'm going to use a superscript j
+subscript i to denote the activation of neuron i or of unit i in layer j. So completely this gave
+superscript to sub group one, that's the activation of the first unit
+in layer two, in our hidden layer. And by activation I just mean
+the value that's computed by and as output by a specific. In addition, new network is
+parametrize by these matrixes, theta super script j Where theta j is going
+to be a matrix of weights controlling the function mapping form one layer,
+maybe the first layer to the second layer, or from the second layer
+to the third layer. So here are the computations that
+are represented by this diagram. This first hidden unit here has
+it's value computed as follows, there's a is a21 is equal to the sigma
+function of the sigma activation function, also called the logistics
+activation function, apply to this sort of linear
+combination of these inputs. And then this second hidden
+unit has this activation value computer as sigmoid of this. And similarly for this third hidden
+unit is computed by that formula. So here we have 3 theta 1 which is matrix of parameters governing our mapping from our three different units,
+our hidden units. Theta 1 is going to be a 3. Theta 1 is going to be
+a 3x4-dimensional matrix. And more generally,
+if a network has SJU units in there j and sj + 1 units and
+sj + 1 then the matrix theta j which governs the function
+mapping from there sj + 1. That will have to mention sj +1
+by sj + 1 I'll just be clear about this notation right. This is Subscript j + 1 and
+that's s subscript j, and then this whole thing, plus 1,
+this whole thing (sj + 1), okay? So that's s subscript j + 1 by, So that's s subscript
+j + 1 by sj + 1 where this plus one is not
+part of the subscript. Okay, so we talked about what the three
+hidden units do to compute their values. Finally, there's a loss of this final and after that we have one more
+unit which computer h of x and that's equal can also be written
+as a(3)1 and that's equal to this. And you notice that I've written
+this with a superscript two here, because theta of superscript two
+is the matrix of parameters, or the matrix of weights that controls the
+function that maps from the hidden units, that is the layer two units to the one
+layer three unit, that is the output unit. To summarize, what we've done is shown
+how a picture like this over here defines an artificial neural network
+which defines a function h that maps with x's input values to
+hopefully to some space that provisions y. And these hypothesis
+are parameterized by parameters denoting with a capital theta so
+that, as we vary theta, we get different hypothesis and
+we get different functions. Mapping say from x to y. So this gives us a mathematical definition
+of how to represent the hypothesis in the neural network. In the next few videos what I would like
+to do is give you more intuition about what these hypothesis representations do,
+as well as go through a few examples and talk about how to compute
+them efficiently.

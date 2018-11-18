@@ -1,0 +1,126 @@
+1
+00:00:00,370 --> 00:00:01,740
+Kas yra programų mokymasis?
+
+2
+00:00:01,740 --> 00:00:05,090
+Greičiausiai naudojatės šia technologije tuzinus kartų
+per dieną to nė nežinodami.
+
+3
+00:00:05,090 --> 00:00:08,790
+Kas kartą, kai naudojatės Google ar Bing paieškomis,
+jos veikia taip gerai todėl
+
+4
+00:00:08,790 --> 00:00:12,340
+kad jų programų mokymosi įranga
+išmoko kaip reitinguoti puslapius.
+
+5
+00:00:12,340 --> 00:00:17,230
+Kai Facebook ar Apple fotografijų programa
+atpažįsta jūsų draugus jūsų fotografijose
+
+6
+00:00:17,230 --> 00:00:18,850
+tai veikia programų mokymosi pagrindu.
+
+7
+00:00:18,850 --> 00:00:20,370
+Kas kartą, kai skaitote paštą ir
+
+8
+00:00:20,370 --> 00:00:24,490
+niekalų filtras išgelbėja jus nuo bridimo
+per tonas niekalų, vėlgi,
+
+9
+00:00:24,490 --> 00:00:29,390
+veikia todėl, kad jūsų kompiuteris išmoko
+atskirti niekalą nuo gero el. laiško.
+
+10
+00:00:29,390 --> 00:00:31,240
+Ten naudojama programų mokymosi technologija.
+
+11
+00:00:31,240 --> 00:00:35,260
+Egzistuoja mokslas, tiriantis, kaip pasiekti, kad kompiuteriai 
+mokytųsi, jų neužprogramavus paraidžiui.
+
+12
+00:00:35,260 --> 00:00:38,660
+Vieno iš mano mokslinių projektų 
+tikslas yra išmokyti robotus tvarkyti
+
+13
+00:00:38,660 --> 00:00:39,780
+namus.
+
+14
+00:00:39,780 --> 00:00:41,010
+Kaip spręstumėte tokią užduotį?
+
+15
+00:00:41,010 --> 00:00:44,860
+Na, ką galima leisti robotui
+jus stebėti demonstruojant užduoties
+
+16
+00:00:44,860 --> 00:00:46,000
+atlikimą ir mokytis.
+
+17
+00:00:46,000 --> 00:00:49,690
+Robotas galėtų stebėti, kokius ojektus
+jūs pakeliate ir kur juos dedate,
+
+18
+00:00:49,690 --> 00:00:52,000
+bei mėginti daryti tą patį, 
+net kai jūsų nėra.
+
+19
+00:00:52,000 --> 00:00:55,460
+Mane tai labai įkvepia DI,
+
+20
+00:00:55,460 --> 00:00:57,530
+dirbtinio intelekto problema.
+
+21
+00:00:57,530 --> 00:00:59,209
+Sukūrę tikrai protingas mašinas,
+
+22
+00:00:59,209 --> 00:01:01,680
+galime daryti viską, ką galite daryti jūs ar aš.
+
+23
+00:01:01,680 --> 00:01:04,920
+Daug mokslininkų mano, kad geriausias būdas
+siekti progreso yra naudojant mokymosi
+
+24
+00:01:04,920 --> 00:01:09,630
+algoritmus, vadinamus neuroniniais tinklais,
+kurie imituoja žmogaus smegenų veikimą, ir
+
+25
+00:01:09,630 --> 00:01:11,030
+šiame kurse dėstysiu ir apie juos.
+
+26
+00:01:11,030 --> 00:01:13,170
+Šiame kurse sužinosite apie programų
+mokymąsi ir
+
+27
+00:01:13,170 --> 00:01:14,390
+patys rašysite mokymosi algoritmus.
+
+28
+00:01:14,390 --> 00:01:16,920
+Aš tikiuosi, kad užsiregistruosite mūsų svetainėje ir
+prisijungsite prie mūsų.

@@ -1,0 +1,395 @@
+1
+00:00:00,004 --> 00:00:03,840
+Witam w ostatnim odcinku kursu Machine Learning.
+
+2
+00:00:03,840 --> 00:00:06,473
+Przeszliśmy razem przez wiele porcji materiału.
+
+3
+00:00:06,473 --> 00:00:08,774
+W tym nagraniu chciałbym zwięźle 
+
+4
+00:00:08,774 --> 00:00:11,003
+podsumować główne zagadnienia tego kursu,
+
+5
+00:00:11,003 --> 00:00:13,089
+a następnie powiedzieć parę słów,
+
+6
+00:00:13,089 --> 00:00:14,729
+które zakończą ten kurs.
+
+7
+00:00:16,390 --> 00:00:18,020
+A zatem czym się zajmowaliśmy?
+
+8
+00:00:18,020 --> 00:00:21,957
+Spędziliśmy sporo czasu na temat nadzorowanych algorytmów uczenia,
+
+9
+00:00:21,957 --> 00:00:25,436
+takich jak liniowa regresja, logistic regression, sieci neuronowe, SVMs.
+
+10
+00:00:25,436 --> 00:00:29,435
+aplikowanych do problemów, gdzie mamy oznaczone dane i oznaczone przykłady
+
+11
+00:00:29,435 --> 00:00:31,300
+jak x(i), y(i).
+
+12
+00:00:31,300 --> 00:00:35,715
+Spędziliśmy również sporo czasu na omówienie uczenia nienadzorowanego 
+
+13
+00:00:35,715 --> 00:00:37,344
+jak klastrowanie K-means,
+
+14
+00:00:37,344 --> 00:00:40,316
+Principal Components Analysis do redukcji przestrzeni wymiarów
+
+15
+00:00:40,316 --> 00:00:43,847
+algorytmy wykrywania anomalii, gdzie mamy tylko
+
+16
+00:00:43,847 --> 00:00:46,363
+nieoznaczone dane x(i).
+
+17
+00:00:46,363 --> 00:00:49,378
+Jednakże wykrywanie anomalii może również korzystać z pewnej ilości danych oznaczonych
+
+18
+00:00:49,378 --> 00:00:51,189
+w celu zewaluowania algorytmu.
+
+19
+00:00:51,451 --> 00:00:54,725
+Poświęciliśmy nieco czasu na omówienie specjalnych zastosowań
+
+20
+00:00:54,725 --> 00:00:56,407
+czy też dodatkowych tematów takich jak systemy polecające
+
+21
+00:00:56,407 --> 00:00:58,895
+oraz wielkoskalowe systemy maszynowego uczenia
+
+22
+00:00:58,895 --> 00:01:01,477
+wliczając w to systemy równoległe oraz natychmiastowego użycia
+
+23
+00:01:01,477 --> 00:01:03,925
+jak również wybrane aplikacje takie jak
+
+24
+00:01:03,925 --> 00:01:07,609
+klasyfikacja obiektów w oparciu o przesuwne okno w dziedzinie wizji komputerowej.
+
+25
+00:01:07,609 --> 00:01:11,549
+Na koniec, poświęciliśmy nieco czasu na omówienie różnych aspektów
+
+26
+00:01:11,549 --> 00:01:15,198
+dotycząych pewnego rodzaju wskazówek na temat budowania systemu maszynowego uczenia.
+
+27
+00:01:15,198 --> 00:01:17,264
+Zawierała się w tym próba zrozumienia
+
+28
+00:01:17,264 --> 00:01:19,233
+co sprawia, że dany algorytm maszynowego uczenia
+
+29
+00:01:19,233 --> 00:01:20,561
+działa lub nie działa.
+
+30
+00:01:20,561 --> 00:01:22,012
+Omówiliśmy zagadnienia dyskryminacji (bias) oraz wariancji (variance).
+
+31
+00:01:22,012 --> 00:01:25,479
+i jak regularyzacja może pomóc przy problemach z wariancją.
+
+32
+00:01:25,479 --> 00:01:28,445
+Spędziliśmy nieco czasu na omówienie
+
+33
+00:01:28,445 --> 00:01:32,313
+zagadnienia, jak zdecydować nad dalszymi krokami.
+
+34
+00:01:32,313 --> 00:01:35,019
+Jak zdecydować na co poświęcić czas
+
+35
+00:01:35,019 --> 00:01:37,513
+gdy konstruujemy system maszynowego uczenia.
+
+36
+00:01:38,021 --> 00:01:41,044
+Omówiliśmy ewaluację systemów uczących się, 
+
+37
+00:01:41,044 --> 00:01:44,221
+metryki oceny takie jak precyzja, pokrycie, oraz miara F1, 
+
+38
+00:01:44,221 --> 00:01:47,072
+a także praktyczne aspekty uczenia
+
+39
+00:01:47,072 --> 00:01:49,898
+dotyczące danych trenujących, cross-validation i testowych.
+
+40
+00:01:49,898 --> 00:01:52,319
+Poświęciliśmy także wiele uwagi na temat
+
+41
+00:01:52,319 --> 00:01:55,741
+debuggowania algorytmów uczących oraz upewnienia się,
+
+42
+00:01:55,741 --> 00:01:57,212
+że algorytm działa prawidłowo.
+
+43
+00:01:57,212 --> 00:01:59,075
+Omówiliśmy zatem diagnostyki
+
+44
+00:01:59,075 --> 00:02:01,999
+takie jak krzywa uczenia, a także pojęcia
+
+45
+00:02:01,999 --> 00:02:04,394
+analizy błędów oraz pułapu (???).
+
+46
+00:02:04,394 --> 00:02:08,187
+Były to różne narzędzia pozwalające zdecydować
+
+47
+00:02:08,187 --> 00:02:10,349
+jakie przedsięwziąć kroki i na co poświęcić swój cenny
+
+48
+00:02:10,349 --> 00:02:12,585
+czas podczas rozwijania systemu uczącego.
+
+49
+00:02:12,585 --> 00:02:17,665
+Pomijając, że macie do dyspozycji narzędzia maszynowego uczenia, 
+
+50
+00:02:17,665 --> 00:02:20,228
+że znacie narzędzia maszynowego uczenia takie jak
+
+51
+00:02:20,228 --> 00:02:22,127
+uczenie nadzorowane oraz nienadzorowane itd, 
+
+52
+00:02:22,127 --> 00:02:26,015
+mam nadzieję, że teraz nie tylko dysponujecie tymi narzędziami,
+
+53
+00:02:26,015 --> 00:02:29,457
+ale również wiecie jak je dobrze zastosować
+
+54
+00:02:29,457 --> 00:02:32,658
+aby zbudować potężne systemy maszynowego uczenia.
+
+55
+00:02:33,658 --> 00:02:35,556
+I to by było tyle.
+
+56
+00:02:35,556 --> 00:02:37,645
+To były tematy poruszane w ramach kursu
+
+57
+00:02:37,645 --> 00:02:39,614
+i jeśli przebrnęliście przez cały ten kurs
+
+58
+00:02:39,614 --> 00:02:41,308
+możecie się teraz uważać
+
+59
+00:02:41,308 --> 00:02:43,511
+za eksperta maszynowego uczenia.
+
+60
+00:02:43,511 --> 00:02:46,879
+Jak wiecie, uczenie maszynowe jest technologią
+
+61
+00:02:46,879 --> 00:02:49,916
+mającą wielki wpływ na naukę, technologię oraz przemysł.
+
+62
+00:02:49,916 --> 00:02:53,360
+I teraz jesteście wystarczająco wykwalifikowani, aby używać
+
+63
+00:02:53,360 --> 00:02:55,351
+tych narzędzi maszynowego uczenia z dobrym rezultatem.
+
+64
+00:02:55,351 --> 00:02:57,910
+Mam nadzieję, że wielu z Was 
+
+65
+00:02:57,910 --> 00:02:59,765
+znajdzie sposoby na zastosowanie maszynowego uczenia
+
+66
+00:02:59,765 --> 00:03:02,324
+w zbudowaniu wspaniałych systemów, wspaniałych aplikacji
+
+67
+00:03:02,324 --> 00:03:03,946
+oraz wspaniałych produktów.
+
+68
+00:03:03,946 --> 00:03:06,084
+Mam nadzieję, że znajdziecie sposoby
+
+69
+00:03:06,084 --> 00:03:07,930
+na użycie maszynowego uczenia nie tylko
+
+70
+00:03:07,930 --> 00:03:09,762
+to uczynienia <i>Waszego</i> życia lepszym, ale może również
+
+71
+00:03:09,762 --> 00:03:14,749
+do poprawy życia innych ludzi.
+
+72
+00:03:14,780 --> 00:03:19,699
+Chciałbym, żebyście wiedzieli, że ten kurs był dla mnie wielką przyjemnością,
+
+73
+00:03:19,699 --> 00:03:21,788
+i za to Wam dziękuję.
+
+74
+00:03:21,788 --> 00:03:23,807
+I zanim zupełnie zakończymy,
+
+75
+00:03:23,807 --> 00:03:25,282
+jest jedna ostatnia rzecz, którą chciałem powiedzieć.
+
+76
+00:03:25,282 --> 00:03:28,956
+Nie tak dawno,
+
+77
+00:03:28,956 --> 00:03:31,306
+sam byłem studentem.
+
+78
+00:03:31,306 --> 00:03:34,711
+I do tej pory nadal uczę sie na różnych kursach
+
+79
+00:03:34,711 --> 00:03:36,902
+kiedy mam czas, aby nauczyć się nowych rzeczy.
+
+80
+00:03:36,902 --> 00:03:39,989
+Zatem dobrze wiem ile czasu zabiera
+
+81
+00:03:39,989 --> 00:03:42,273
+nauczenie się tego materiału.
+
+82
+00:03:42,273 --> 00:03:44,663
+Wiem, że najprawdopodobniej jesteś zajętą osobą
+
+83
+00:03:44,663 --> 00:03:47,302
+z bardzo wieloma obowiązkami.
+
+84
+00:03:47,302 --> 00:03:49,838
+I to, że pomimo tego znalazłeś czas, 
+
+85
+00:03:49,838 --> 00:03:52,431
+aby obejrzeć te nagrania
+
+86
+00:03:52,431 --> 00:03:55,799
+a wiele z nich ciągnęło się
+
+87
+00:03:55,799 --> 00:03:57,598
+godzinami, prawda?
+
+88
+00:03:57,598 --> 00:04:00,068
+I fakt, że wielu z Was poświęciło swój czas
+
+89
+00:04:00,068 --> 00:04:01,826
+na przebrnięcie przez pytania kontrolne
+
+90
+00:04:01,826 --> 00:04:03,731
+oraz że wielu z Was poświęciło czas
+
+91
+00:04:03,731 --> 00:04:06,250
+na pracę nad zadaniami programistycznymi.
+
+92
+00:04:06,250 --> 00:04:09,483
+A było to długie i trudne zadania programistyczne.
+
+93
+00:04:09,483 --> 00:04:12,840
+Chcę bardzo za to podziękować.
+
+94
+00:04:12,840 --> 00:04:17,920
+I wiem, że wielu z Was pracowało ciężko na tym kursie 
+
+95
+00:04:17,920 --> 00:04:21,880
+i że wielu z Was poświęciło wiele czasu
+
+96
+00:04:21,880 --> 00:04:25,396
+że daliście z siebie naprawdę dużo.
+
+97
+00:04:25,396 --> 00:04:29,292
+Mam nadzieję, że również wiele skorzystaliście.
+
+98
+00:04:29,292 --> 00:04:31,347
+A zatem chcę powiedzieć:
+
+99
+00:04:31,347 --> 00:04:36,423
+dziękuję Wam bardzo za bycie słuchaczami tego kursu.

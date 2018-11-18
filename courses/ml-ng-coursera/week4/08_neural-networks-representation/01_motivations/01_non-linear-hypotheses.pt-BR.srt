@@ -1,0 +1,1135 @@
+1
+00:00:00,440 --> 00:00:01,400
+Neste e nos
+
+2
+00:00:01,480 --> 00:00:02,640
+próximos vídeos, eu gostaria
+
+3
+00:00:02,780 --> 00:00:04,270
+de falar sobre um algoritmo
+
+4
+00:00:04,550 --> 00:00:06,110
+de aprendizado chamado Rede Neural.
+
+5
+00:00:07,190 --> 00:00:07,900
+Primeiramente vamos falar
+
+6
+00:00:08,079 --> 00:00:09,330
+sobre representação, e então,
+
+7
+00:00:09,600 --> 00:00:10,390
+nos próximos vídeos,
+
+8
+00:00:10,410 --> 00:00:12,160
+falar sobre os algoritmos.
+
+9
+00:00:12,660 --> 00:00:14,070
+Redes neurais são, na verdade,
+
+10
+00:00:14,510 --> 00:00:15,870
+uma ideia bem antiga,
+
+11
+00:00:16,290 --> 00:00:17,680
+mas que saiu da moda por um tempo.
+
+12
+00:00:18,200 --> 00:00:19,270
+Mas atualmente, ela é a técnica
+
+13
+00:00:19,580 --> 00:00:20,820
+no estado da arte para
+
+14
+00:00:21,090 --> 00:00:22,390
+muitos problemas em Aprendizado de Máquina.
+
+15
+00:00:23,740 --> 00:00:25,740
+Mas, por que precisamos de mais um algoritmo?
+
+16
+00:00:26,300 --> 00:00:28,030
+Nós já temos Regressão Linear,
+
+17
+00:00:28,180 --> 00:00:31,260
+Regressão Logística, por que precisamos de Redes Neurais?
+
+18
+00:00:32,280 --> 00:00:34,260
+Para motivar nossa discussão
+
+19
+00:00:34,790 --> 00:00:35,970
+em Redes Neurais, começarei
+
+20
+00:00:36,120 --> 00:00:37,130
+apresentando exemplos
+
+21
+00:00:37,310 --> 00:00:38,720
+de problemas,
+
+22
+00:00:38,930 --> 00:00:40,100
+onde precisamos
+
+23
+00:00:40,300 --> 00:00:41,850
+aprender hipóteses não-lineares complexas.
+
+24
+00:00:43,850 --> 00:00:45,650
+Considere o problema de classificação,
+com Aprendizado Supervisionado,
+
+25
+00:00:46,530 --> 00:00:48,440
+onde você tem um conjunto
+de treinamento como esse.
+
+26
+00:00:49,280 --> 00:00:50,530
+Se você quiser aplicar uma Regressão
+
+27
+00:00:50,960 --> 00:00:52,710
+Logística nesse problema,
+
+28
+00:00:52,900 --> 00:00:54,250
+uma coisa que você pode fazer é aplicar
+
+29
+00:00:54,660 --> 00:00:56,140
+a regressão logística com muitos
+
+30
+00:00:56,190 --> 00:00:57,720
+termos não lineares como esses.
+
+31
+00:00:58,170 --> 00:00:59,580
+Então aqui, o "g", como sempre,
+
+32
+00:01:00,070 --> 00:01:01,710
+é a função "sigmoid",
+
+33
+00:01:01,780 --> 00:01:04,680
+e podemos incluir vários termos polinomiais como esses.
+
+34
+00:01:05,450 --> 00:01:06,790
+E, se você incluir termos polinomiais
+
+35
+00:01:07,370 --> 00:01:08,280
+o suficiente, talvez,
+
+36
+00:01:08,950 --> 00:01:10,280
+você possa conseguir uma hipótese
+
+37
+00:01:11,600 --> 00:01:13,780
+que separa os exemplos negativos dos positivos.
+
+38
+00:01:14,630 --> 00:01:16,080
+Esse método, em particular, funciona bem
+
+39
+00:01:16,470 --> 00:01:18,400
+quando você tem apenas
+
+40
+00:01:18,620 --> 00:01:20,180
+duas variáveis - x₁ e x₂ - porque
+
+41
+00:01:20,190 --> 00:01:20,980
+você pode incluir
+
+42
+00:01:21,500 --> 00:01:22,880
+todos esses termos polinomiais
+
+43
+00:01:23,400 --> 00:01:24,620
+de x₁ e x₂.
+
+44
+00:01:24,810 --> 00:01:26,280
+Mas em muitos outros casos
+
+45
+00:01:26,520 --> 00:01:27,730
+de Aprendizado de Máquina, teremos
+
+46
+00:01:27,910 --> 00:01:29,230
+muito mais variáveis que apenas duas.
+
+47
+00:01:30,780 --> 00:01:31,760
+Nós já falamos há um tempo
+
+48
+00:01:32,320 --> 00:01:34,560
+sobre previsão para casas.
+
+49
+00:01:35,130 --> 00:01:36,990
+Suponha que você tenha um problema de
+
+50
+00:01:38,020 --> 00:01:39,280
+classificação de casas,
+
+51
+00:01:39,390 --> 00:01:41,170
+ao invés de um problema de Regressão.
+
+52
+00:01:41,580 --> 00:01:43,350
+Você tem diferentes variáveis de uma casa,
+
+53
+00:01:43,440 --> 00:01:44,760
+e você quer prever
+
+54
+00:01:45,010 --> 00:01:46,000
+quais são
+
+55
+00:01:46,050 --> 00:01:47,590
+qual a chance dessa casa ser vendida
+
+56
+00:01:47,700 --> 00:01:48,710
+dentro dos próximos seis meses.
+
+57
+00:01:48,910 --> 00:01:51,040
+Esse seria um problema de classificação.
+
+58
+00:01:52,100 --> 00:01:53,060
+E, como vimos,
+
+59
+00:01:53,260 --> 00:01:55,130
+podemos ter muitas variáveis,
+
+60
+00:01:55,260 --> 00:01:56,480
+talvez uma centena de termos
+
+61
+00:01:56,840 --> 00:01:58,270
+de diferentes casas.
+
+62
+00:02:00,130 --> 00:02:01,610
+Para um problema assim,
+
+63
+00:02:01,880 --> 00:02:03,260
+se fôssemos incluir
+
+64
+00:02:03,370 --> 00:02:04,980
+todos os termos quadráticos -
+
+65
+00:02:05,100 --> 00:02:06,260
+mesmo apenas
+
+66
+00:02:06,540 --> 00:02:07,540
+os termos quadráticos -
+
+67
+00:02:07,930 --> 00:02:10,450
+já seriam muitos termos.
+
+68
+00:02:10,560 --> 00:02:11,580
+Teríamos termos como:
+
+69
+00:02:12,960 --> 00:02:17,610
+x₁², x₁x₂, x₁x₃, x₁x₄, ...
+
+70
+00:02:18,750 --> 00:02:21,880
+até  x₁x₁₀₀ , e então
+
+71
+00:02:21,980 --> 00:02:23,620
+x₂², x₂x₃,
+
+72
+00:02:25,620 --> 00:02:25,980
+e assim por diante.
+
+73
+00:02:26,510 --> 00:02:27,770
+E se você incluir apenas
+
+74
+00:02:28,060 --> 00:02:29,200
+os termos de segunda ordem,
+
+75
+00:02:29,330 --> 00:02:30,750
+ou seja, os termos que são produto,
+
+76
+00:02:30,840 --> 00:02:32,090
+de dois
+
+77
+00:02:32,220 --> 00:02:33,390
+desses termos,
+
+78
+00:02:33,510 --> 00:02:35,010
+x₁ · x₁ , e assim por diante,
+
+79
+00:02:35,780 --> 00:02:36,920
+e então, para o caso de "n=100",
+
+80
+00:02:38,180 --> 00:02:40,280
+teríamos aproximadamente 5,000 variáveis.
+
+81
+00:02:41,890 --> 00:02:44,880
+E, assintoticamente,
+
+82
+00:02:45,000 --> 00:02:46,330
+o número de termos quadráticos cresce
+
+83
+00:02:46,770 --> 00:02:48,670
+aproximadamente na ordem de n²,
+
+84
+00:02:48,820 --> 00:02:50,330
+onde "n" é o número
+
+85
+00:02:50,460 --> 00:02:52,790
+de variáveis originais,
+
+86
+00:02:53,370 --> 00:02:54,780
+como de x₁ até x₁₀₀ , que tínhamos.
+
+87
+00:02:55,700 --> 00:02:58,750
+Isso é, na verdade, mais próximo de n²/2.
+
+88
+00:02:59,920 --> 00:03:01,440
+Então, incluindo todos
+
+89
+00:03:01,560 --> 00:03:02,920
+os termos quadráticos, não parece
+
+90
+00:03:03,220 --> 00:03:04,220
+ser uma boa idéia.
+
+91
+00:03:04,300 --> 00:03:05,380
+Pois são muitas
+
+92
+00:03:05,580 --> 00:03:07,050
+variáveis, e você pode
+
+93
+00:03:07,220 --> 00:03:08,920
+acabar sobreajustando para o conjunto
+
+94
+00:03:09,330 --> 00:03:10,500
+de treino, além disso
+
+95
+00:03:10,740 --> 00:03:12,800
+pode ser computacionalmente custoso,
+
+96
+00:03:14,080 --> 00:03:15,120
+ter tantas variáveis.
+
+97
+00:03:16,450 --> 00:03:17,540
+O que você pode fazer é
+
+98
+00:03:17,770 --> 00:03:19,090
+incluir apenas um subconjunto disso.
+
+99
+00:03:19,290 --> 00:03:20,950
+Então, se você incluir apenas
+
+100
+00:03:21,050 --> 00:03:22,630
+os termos x₁², x₂²,
+
+101
+00:03:23,590 --> 00:03:25,180
+x₃², até talvez,
+
+102
+00:03:25,580 --> 00:03:27,750
+x₁₀₀², então o número
+
+103
+00:03:28,100 --> 00:03:29,500
+de variáveis será bem menor.
+
+104
+00:03:29,980 --> 00:03:31,720
+Aqui você tem apenas 100
+
+105
+00:03:32,070 --> 00:03:33,850
+termos quadráticos.
+
+106
+00:03:34,120 --> 00:03:35,950
+Mas essas variáveis não são suficientes,
+
+107
+00:03:36,100 --> 00:03:37,170
+e certamente não irá
+
+108
+00:03:37,290 --> 00:03:39,330
+ajustar ao conjunto de dados,
+como essa acima.
+
+109
+00:03:39,570 --> 00:03:40,550
+Na verdade, se você incluir
+
+110
+00:03:41,040 --> 00:03:42,720
+apenas essas variáveis quadráticas
+
+111
+00:03:43,170 --> 00:03:44,870
+com x₁ , ...,
+
+112
+00:03:45,350 --> 00:03:46,500
+até x₁₀₀, você pode
+
+113
+00:03:47,460 --> 00:03:48,530
+ajustar hipóteses muito
+
+114
+00:03:48,910 --> 00:03:50,210
+interessantes, você pode
+
+115
+00:03:50,330 --> 00:03:52,350
+ajustar coisas como uma elipse
+
+116
+00:03:52,490 --> 00:03:53,860
+alinhada ao eixo "x", como essa.
+
+117
+00:03:55,080 --> 00:03:56,240
+Mas, você não pode ajustar a
+
+118
+00:03:56,340 --> 00:03:57,930
+dados mais complexos, como o que mostrei.
+
+119
+00:03:59,360 --> 00:04:00,530
+Então, 5,000 variáveis
+
+120
+00:04:00,620 --> 00:04:03,090
+parece muito, se você fosse
+
+121
+00:04:03,230 --> 00:04:04,860
+incluir termos cúbicos,
+
+122
+00:04:05,140 --> 00:04:06,100
+ou de terceira ordem,
+
+123
+00:04:06,440 --> 00:04:08,050
+x₁x₂x₃ ,
+
+124
+00:04:08,400 --> 00:04:09,800
+x₁²x₂ ,
+
+125
+00:04:10,310 --> 00:04:12,240
+x₁₀x₁₁x₁₇ ,
+
+126
+00:04:12,900 --> 00:04:15,280
+e assim por diante.
+
+127
+00:04:15,700 --> 00:04:18,110
+Como você pode imaginar,
+terremos muitos desses termos.
+
+128
+00:04:19,040 --> 00:04:19,770
+Na verdade, haverá
+
+129
+00:04:20,050 --> 00:04:21,260
+mais de n³ variáveis,
+
+130
+00:04:22,210 --> 00:04:23,830
+e se n for 100,
+
+131
+00:04:24,150 --> 00:04:25,660
+podemos calcular,
+
+132
+00:04:25,740 --> 00:04:26,870
+e teríamos algo
+
+133
+00:04:27,730 --> 00:04:29,650
+em torno de 170,000 termos cúbicos.
+
+134
+00:04:30,040 --> 00:04:31,670
+Então, incluir esses termos
+
+135
+00:04:32,260 --> 00:04:34,470
+polinomiais de ordem maior, quando seu
+
+136
+00:04:34,920 --> 00:04:36,050
+conjunto de variáveis
+
+137
+00:04:36,230 --> 00:04:37,730
+é tão grande, aumenta drasticamente
+
+138
+00:04:38,530 --> 00:04:40,440
+a sua quantidade de variáveis.
+
+139
+00:04:41,070 --> 00:04:42,180
+E isso não parece ser
+
+140
+00:04:42,320 --> 00:04:43,320
+uma boa forma de
+
+141
+00:04:43,560 --> 00:04:45,050
+construir classificadores
+
+142
+00:04:45,240 --> 00:04:48,100
+não-lineares, quando o "n" é grande.
+
+143
+00:04:49,590 --> 00:04:52,560
+Em muitos dos problemas de Aprendizado
+de Máquina, o "n" será muito grande.
+
+144
+00:04:53,270 --> 00:04:53,560
+Aqui está um exemplo.
+
+145
+00:04:55,000 --> 00:04:58,140
+Vamos considerar um problema
+de Visão Computacional.
+
+146
+00:04:59,670 --> 00:05:00,770
+Suponha que você queria
+
+147
+00:05:01,260 --> 00:05:02,620
+usar Aprendizado de Máquina
+
+148
+00:05:02,710 --> 00:05:04,610
+para treinar um classificador, para examinar
+
+149
+00:05:04,710 --> 00:05:05,880
+uma imagem, e nos dizer se
+
+150
+00:05:06,160 --> 00:05:08,030
+a imagem é, ou não, um carro.
+
+151
+00:05:09,480 --> 00:05:11,900
+Muitas pessoas perguntam: "Por que visão computacional é complicado?".
+
+152
+00:05:12,390 --> 00:05:13,140
+Quando olhamos
+
+153
+00:05:13,270 --> 00:05:15,670
+para essa imagem, é tão óbvio o que ela é.
+
+154
+00:05:15,900 --> 00:05:17,000
+Você imagina como é que
+
+155
+00:05:17,190 --> 00:05:18,320
+um algoritmo de aprendizado
+
+156
+00:05:18,910 --> 00:05:20,880
+poderia falhar em saber o que há na imagem.
+
+157
+00:05:22,110 --> 00:05:23,330
+Para entender porque Visão Computacional
+
+158
+00:05:23,720 --> 00:05:25,380
+é difícil, vamos aproximar em uma
+
+159
+00:05:25,650 --> 00:05:26,690
+pequena parte da imagem,
+
+160
+00:05:26,940 --> 00:05:28,180
+como essa área,
+
+161
+00:05:28,510 --> 00:05:30,240
+onde está esse retângulo vermelho.
+
+162
+00:05:30,400 --> 00:05:31,330
+Aconte que,
+
+163
+00:05:31,450 --> 00:05:34,270
+onde nós vemos um carro,
+o computador vê isto.
+
+164
+00:05:34,780 --> 00:05:35,930
+O que ele vê é essa matriz,
+
+165
+00:05:36,600 --> 00:05:38,110
+ou essa grade,
+
+166
+00:05:38,580 --> 00:05:40,350
+com os valores de
+intensidade de cada pixel,
+
+167
+00:05:40,610 --> 00:05:42,930
+que nos diz o brilho de
+cada pixel, nessa imagem.
+
+168
+00:05:43,640 --> 00:05:45,170
+E, o problema da Visão Computacional,
+
+169
+00:05:45,550 --> 00:05:47,230
+é olhar para essa matriz de
+
+170
+00:05:47,310 --> 00:05:49,140
+valores de intensidade de pixels,
+
+171
+00:05:49,410 --> 00:05:52,440
+e nos dizer que isso representa
+a maçaneta da porta de um carro.
+
+172
+00:05:54,230 --> 00:05:55,740
+Na verdade, quando nós usamos
+
+173
+00:05:56,030 --> 00:05:57,220
+Aprendizado de Máquina para construir
+
+174
+00:05:57,430 --> 00:05:59,060
+um detector de carro, o que nós fazemos é:
+
+175
+00:05:59,360 --> 00:06:00,510
+nós pegamos um conjunto de
+
+176
+00:06:00,800 --> 00:06:02,690
+treinamento, com alguns
+
+177
+00:06:02,890 --> 00:06:04,250
+exemplos de carros conhecidos,
+
+178
+00:06:04,730 --> 00:06:05,850
+e alguns exemplos
+
+179
+00:06:06,000 --> 00:06:07,150
+de outras coisas,
+
+180
+00:06:07,380 --> 00:06:08,780
+que não sejam carros.
+
+181
+00:06:09,090 --> 00:06:10,590
+Nós fornecemos nosso conjunto de
+
+182
+00:06:10,720 --> 00:06:12,230
+treinamento para o algoritmo,
+
+183
+00:06:12,310 --> 00:06:13,500
+treinamos um classificador.
+
+184
+00:06:13,680 --> 00:06:14,700
+E então podemos testá-lo,
+
+185
+00:06:14,890 --> 00:06:16,710
+mostrando novas imagens e perguntando: "O que é isso?".
+
+186
+00:06:17,980 --> 00:06:20,030
+E esperamos que ele reconheça que é um carro.
+
+187
+00:06:21,410 --> 00:06:24,000
+Para enteder o porquê
+
+188
+00:06:24,120 --> 00:06:26,810
+de precisarmos de uma hipótese não-linear,
+
+189
+00:06:27,050 --> 00:06:27,940
+vamos dar uma olhada em
+
+190
+00:06:28,190 --> 00:06:29,360
+algumas imagens de carro, e
+
+191
+00:06:29,480 --> 00:06:31,780
+"não carros", que poderíamos fornecer ao nosso algoritmo.
+
+192
+00:06:32,960 --> 00:06:33,920
+Vamos pegar alguns pixels
+
+193
+00:06:34,090 --> 00:06:35,630
+de nossas imagens,
+
+194
+00:06:35,750 --> 00:06:37,040
+essa é a localidade do pixel 1,
+
+195
+00:06:37,180 --> 00:06:39,500
+e essa a do pixel 2.
+
+196
+00:06:39,730 --> 00:06:42,390
+E vamos plotar esse carro,
+
+197
+00:06:42,510 --> 00:06:44,010
+em posições do gráfico,
+
+198
+00:06:44,360 --> 00:06:45,890
+dependendo das intensidades
+
+199
+00:06:46,430 --> 00:06:47,870
+do pixel 1 e do pixel 2.
+
+200
+00:06:49,260 --> 00:06:50,630
+E façamos isso com outras imagens.
+
+201
+00:06:51,060 --> 00:06:52,450
+Vamos pegar um exemplo diferente
+
+202
+00:06:52,980 --> 00:06:53,980
+de carro, e olhar
+
+203
+00:06:54,080 --> 00:06:55,010
+nas mesmas posições
+
+204
+00:06:56,160 --> 00:06:57,570
+desses dois pixels,
+
+205
+00:06:57,770 --> 00:06:58,970
+e a imagem tem diferentes
+
+206
+00:06:59,230 --> 00:07:00,660
+intensidades para os pixels 1 e 2.
+
+207
+00:07:00,960 --> 00:07:02,940
+Então, ela fica um
+lugar diferente no gráfico.
+
+208
+00:07:03,360 --> 00:07:05,740
+E então, vamos plotar alguns
+exemplos negativos também.
+
+209
+00:07:05,990 --> 00:07:07,590
+Isso não é um carro,
+
+210
+00:07:07,720 --> 00:07:09,470
+isso também não.
+
+211
+00:07:09,730 --> 00:07:10,910
+E se fizermos isso
+
+212
+00:07:11,070 --> 00:07:12,720
+para cada vez mais exemplos,
+
+213
+00:07:13,280 --> 00:07:14,680
+usando o sinal "+" para carros,
+
+214
+00:07:15,080 --> 00:07:16,310
+e "-" para "não-carros",
+
+215
+00:07:16,890 --> 00:07:18,500
+descobriremos que carros,
+
+216
+00:07:18,830 --> 00:07:20,680
+e não-carros se encontram
+
+217
+00:07:20,890 --> 00:07:22,430
+em diferentes regiões do gráfico.
+
+218
+00:07:22,570 --> 00:07:24,910
+E, o que precisaremos,
+
+219
+00:07:25,180 --> 00:07:26,570
+é algum tipo
+
+220
+00:07:26,750 --> 00:07:28,790
+de função não-linear, para tentar separar
+
+221
+00:07:29,000 --> 00:07:30,900
+essas duas classes.
+
+222
+00:07:32,480 --> 00:07:34,300
+Qual é a dimensão do espaço das variáveis?
+
+223
+00:07:35,290 --> 00:07:38,210
+Suponha que vamos usar
+apenas imagens de 50x50 pixels.
+
+224
+00:07:38,770 --> 00:07:40,050
+Isso supõe que nossas imagens
+
+225
+00:07:40,520 --> 00:07:42,760
+são bem pequenas,
+apenas 50 pixels de cada lado.
+
+226
+00:07:43,470 --> 00:07:44,990
+Então, teríamos 2,500 pixels.
+
+227
+00:07:46,330 --> 00:07:47,650
+Então, a dimensão
+
+228
+00:07:47,740 --> 00:07:49,310
+das nossas variáveis será:
+
+229
+00:07:49,520 --> 00:07:51,450
+"n = 2,500", onde o vetor
+
+230
+00:07:51,700 --> 00:07:52,910
+de variáveis "X" é uma lista
+
+231
+00:07:53,180 --> 00:07:54,570
+das intensidades de todos os pixels.
+
+232
+00:07:54,710 --> 00:07:56,690
+O brilho do pixel 1,
+
+233
+00:07:57,080 --> 00:07:58,030
+brilho do pixel 2,
+
+234
+00:07:58,330 --> 00:07:59,580
+e assim por diante,
+
+235
+00:07:59,870 --> 00:08:01,310
+até o brilho do último pixel.
+
+236
+00:08:01,400 --> 00:08:03,420
+Onde, em uma representação
+
+237
+00:08:03,590 --> 00:08:05,450
+computacional típica,
+
+238
+00:08:05,540 --> 00:08:07,190
+cada um desses valores seria algo
+
+239
+00:08:07,480 --> 00:08:09,020
+entre 0 e 255,
+
+240
+00:08:09,230 --> 00:08:12,110
+se estiverem em escala de cinza.
+
+241
+00:08:12,520 --> 00:08:13,290
+Então temos "n=2,500".
+
+242
+00:08:13,950 --> 00:08:15,580
+E isso se tivermos imagens
+
+243
+00:08:15,740 --> 00:08:17,140
+em tons de cinza.
+
+244
+00:08:17,790 --> 00:08:18,800
+Se usássemos RGB,
+
+245
+00:08:19,440 --> 00:08:21,140
+imagens com valores de: vermelho,
+
+246
+00:08:21,420 --> 00:08:23,870
+verde, e azul; nós teríamos "n=7,500".
+
+247
+00:08:27,650 --> 00:08:28,630
+Portanto, se tentarmos
+
+248
+00:08:29,000 --> 00:08:29,920
+treinar uma hipótese não-linear,
+
+249
+00:08:30,370 --> 00:08:32,020
+incluindo todos os termos quadráticos,
+
+250
+00:08:32,300 --> 00:08:33,710
+ou seja,
+
+251
+00:08:33,810 --> 00:08:34,680
+todos os termos
+
+252
+00:08:35,430 --> 00:08:38,900
+na forma "xi · xj", uma vez que temos
+
+253
+00:08:39,130 --> 00:08:40,370
+2,500 pixels, teríamos
+
+254
+00:08:40,580 --> 00:08:42,500
+algo em torno de 3 milhões de variáveis.
+
+255
+00:08:43,050 --> 00:08:44,620
+E isso ultrapassa o razoável.
+
+256
+00:08:44,720 --> 00:08:46,430
+O custo para encontrar e representar
+
+257
+00:08:46,600 --> 00:08:48,680
+todas essas 3 milhões de variáveis,
+
+258
+00:08:48,840 --> 00:08:50,070
+para cada exemplo do
+
+259
+00:08:50,310 --> 00:08:52,250
+conjunto de treino, seria muito alto.
+
+260
+00:08:55,470 --> 00:08:57,580
+Então, Regressões Logísticas simples,
+
+261
+00:08:58,100 --> 00:08:59,230
+talvez acrescidas de termos
+
+262
+00:08:59,300 --> 00:09:00,510
+quadráticos e cúbicos,
+
+263
+00:09:00,930 --> 00:09:01,910
+não é uma boa maneira
+
+264
+00:09:01,980 --> 00:09:03,950
+de aprendier hipóteses
+complexas, não-lineares,
+
+265
+00:09:04,550 --> 00:09:06,090
+quando "n" é grande.
+
+266
+00:09:06,310 --> 00:09:08,410
+Pois você acaba criando variáveis demais.
+
+267
+00:09:09,370 --> 00:09:10,620
+Nos próximos vídeos, gostaria
+
+268
+00:09:10,840 --> 00:09:11,890
+de falar sobre "Redes Neurais".
+
+269
+00:09:12,080 --> 00:09:13,670
+Que são uma forma
+
+270
+00:09:13,980 --> 00:09:15,370
+muito melhor para o aprendizado
+
+271
+00:09:15,650 --> 00:09:17,720
+de hipóteses complexas não-lineares,
+
+272
+00:09:17,960 --> 00:09:19,780
+e mesmo quando a dimensão
+
+273
+00:09:20,070 --> 00:09:22,080
+das variáveis, "n", é grande.
+
+274
+00:09:22,860 --> 00:09:24,080
+E no decorrer dos vídeos,
+
+275
+00:09:24,420 --> 00:09:25,580
+eu também gostaria
+
+276
+00:09:25,780 --> 00:09:26,730
+de mostrar alguns vídeos
+
+277
+00:09:27,240 --> 00:09:29,030
+divertidos de aplicações importantes
+
+278
+00:09:30,300 --> 00:09:31,290
+das Redes Neurais.
+
+279
+00:09:32,100 --> 00:09:33,480
+E eu espero que esses vídeos sejam
+
+280
+00:09:33,570 --> 00:09:35,460
+proveitosos e divertidos para vocês também!
+Tradução: Luís Moneda | Revisão: Pablo de Morais Andrade

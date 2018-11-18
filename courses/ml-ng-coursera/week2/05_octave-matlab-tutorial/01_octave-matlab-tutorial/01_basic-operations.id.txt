@@ -1,0 +1,56 @@
+Sekarang Anda tahu banyak tentang
+machine learning. Di video ini, saya ingin mengajari Anda satu bahasa pemrograman, Octave, yang akan membuat Anda mengimplementasikan dengan sangat cepat algoritma belajar yang telah kita pelajari sebelumnya, dan algoritma belajar yang akan kita pelajari nanti. Di masa yang lalu, saya telah coba
+mengajar machine learning menggunakan banyak bahasa pemrograman
+yang berbeda termasuk C++, Java, Python, NumPy, R, dan juga Octave, dan yang saya dapati adalah siswa bisa belajar dengan sangat cepat dan produktif, juga membuat purwa-rupa algoritma dengan sangat cepat
+menggunakan bahasa tingkat tinggi seperti Octave. Bahkan, yang sering saya lihat di Silicon Valley adalah jika Anda ingin membuat dan menguji dalam skala besar suatu algoritma belajar, yang orang-orang sering lakukan adalah membuat purwa-rupa menggunakan
+Octave, yang merupakan bahasa pembuat purwa-rupa
+yang sangat bagus. Anda bisa dengan sangat cepat membuat
+algoritma belajar Anda bekerja. Dan sesudah itu, Anda bisa menghabiskan waktu Anda mengimplementasikan kembali algoritma
+itu menggunakan C++, Java, atau beberapa
+bahasa seperti itu. Karena semua pelajaran yang telah kita
+pelajari mengenai memprogram waktu atau
+menghemat waktu, yaitu waktu Anda. Investasi waktu dalam machine learning
+sangat berharga. Jika Anda bisa membuat algoritma Anda bekerja
+secepatnya menggunakan Octave, maka Anda menghemat banyak waktu dengan
+mengembangkan algoritma itu pertama kali dalam Octave, dan kemudian mengimplementasikannya di C++, Java,
+setelah algoritmanya berhasil. Bahasa pembuat purwa-rupa paling umum
+yang saya lihat orang gunakan untuk machine learning adalah Octave, MATLAB, Python, NumPy, and R. Octave bagus karena gratis. MATLAB bagus juga, tapi itu mahal bagi banyak orang. Tapi jika Anda punya MATLAB, Anda bisa menggunakannya di kelas ini. Jika Anda tahu Python, NumPy, atau R, saya lihat beberapa orang
+menggunakan itu. Tapi, yang saya amati mereka biasanya mengerjakannya lebih lambat, karena sintaks Python, NumPy sedikit lebih kaku dari Octave. Karena itu, dan karena kita mengeluarkan kode pembuka dalam Octave, saya sangat merekomendasikan Anda tidak coba membuat latihan di kelas
+ini menggunakan NumPy dan R. Sebaliknya, saya merekomendasikan Anda mengerjakan latihan pemrograman untuk kelas ini menggunakan Octave. Yang akan saya lakukan di video ini adalah melihat daftar perintah-perintah dengan sangat cepat, untuk menunjukkan pada Anda perintah-perintah dan hal-hal yang bisa
+Anda lakukan di Octave. Website mata kuliah ini punya transkrip semua yang saya kerjakan. Jadi, sesudah menonton video ini Anda bisa melihat transkrip yang ditampilkan di website mata kuliah
+ini saat Anda ingin melihat suatu perintah. Konkritnya, yang saya rekomendasikan untuk Anda lakukan adalah menonton video
+tutorial terlebih dulu. Setelah menontonnya hingga selesai, barulah instal Octave di
+komputer Anda. Kemudian, unduh transkrip hal-hal yang Anda lihat di tiap sesi, dan ketik perintah manapun yang menarik bagi Anda di Octave, agar dijalankan di komputer Anda, supaya Anda lihat cara kerjanya sendiri. Jadi, mari kita mulai. Ini layar Windows saya, dan saya akan
+menjalankan Octave, sekarang saya sudah di Octave. Itu tampilan Octave saya. Biar saya tunjukkan operasi dasar yang dapat Anda lakukan
+di Octave. Anda ketik 5 + 6. Hasilnya 11. 3 - 2 5 x 8, 1/2, 2^6 64. Itu operasi matematika dasar. Anda juga dapat mengerjakan operasi
+logika. 1 sama dengan 2. Hasilnya salah. Perintah % adalah sebuah komentar. Jadi, 1 == 2, hasilnya salah, yang dinyatakan dengan 0. 1 tidak sama dengan 2. Ini benar. Jadi hasilnya 1. Perhatikan, tanda tidak sama dengan simbolnya ~= dan bukan != seperti yang digunakan bahasa pemrograman lain. Operasi logika 1 && 0 menggunakan tanda && untuk logika AND. Dan itu hasilnya false. 1 || 0 adalah operasi logika OR. Hasilnya true. xor(1,0) hasilnya 1. Octave-3.2.4.exe:11 di kiri ini adalah prompt Octave default. Itu menunjukkan versi Octave, dsb. Jika Anda tidak ingin melihatnya, ada perintah PS('>> ') yang bisa Anda gunakan untuk merubah
+prompt-nya. Dan karakter di tengah tanda petik, >> spasi, itu adalah tampilan prompt Octave yang
+saya suka. Jadi bila saya enter, uups, maaf. Seperti itu. PS1 seperti itu. Sekarang, prompt Octave saya berubah
+jadi tanda >>. Dimana, kelihatan sedikit lebih bagus. Berikutnya, kita bicara tentang
+variabel Octave. Saya bisa menggunakan variabel a dan menyimpan angka 3 di situ. Tekan enter. Sekarang a sama dengan 3. Anda ingin menyimpan sesuatu di variabel
+tapi tidak ingin menampilkan hasilnya. Jika Anda tambahkan tanda ";", hasilnya tidak ditampilkan. Tekan Enter, tidak ada yang ditampilkan. Sebaliknya, a = 3 menampilkannya. a = 3; tidak menampilkan apa-apa. Saya bisa menyimpan string. b = 'hi'; Sekarang, jika saya enter b isi variabel b ditampilkan.
+Jadi, b adalah string 'hi' c = (3 >= 1); Hasil c adalah true. Jika Anda ingin mencetak atau menampilkan isi variabel,
+begini caranya. Set a=pi; Jika saya ingin menampilkan isi a, cukup ketik a seperti itu, dan
+hasilnya ditampilkan. Untuk pencetakkan yang lebih kompleks ada juga perintah "disp" singkatan untuk
+"display". disp(a) menampilkan isi a seperti itu. Anda juga bisa menampilkan string. disp(sprintf('2 decimals: %0.2 f', a)). Seperti itu. Ini akan menampilkan string-nya. 2 decimals: 3.14. Ini sintaks C gaya lama. Bagi Anda yang telah menulis progam menggunakan C
+sebelumnya, ini sintaks yang Anda gunakan untuk mencetak
+di layar. Jadi, sprintf menghasilkan string 2 decimals: 3.14. %0.2f ini berarti masukkan nilai a ke sini, tampilkan 2 digit dibelakang koma. Kemudian disp mengambil string itu melalui perintah sprintf. Perintah sprintf. Dan disp menampilkan string-nya. Contoh lainnya, disp(sprintf('6 decimals: %0.6f, a)). Ini harusnya mencetak nilai pi dengan 6 angka dibelakang koma. Saya baru saja menampilkan a seperti
+itu. Ada shortcut berguna yaitu format long. Itu menyebabkan string ditampilkan dengan jumlah angka desimal
+yang lebih banyak. Dan format short adalah perintah yang hanya mencetak sedikit angka Okey, begitulah bekerja dengan variabel. Sekarang, mari lihat vektor dan matriks. Katakanlah saya ingin menyimpan matriks
+ke variabel A. Contohnya: [1 2; 3 4; 5 6] Ini menghasilkan matriks A 3 x 2, yang baris pertamanya, 1 2. Baris kedua 3 4. Baris ketiga 5 6. Fungsi tanda ';' pada dasarnya mengatakan, pergi ke baris matriks berikutnya. Ada cara lain untuk mengetik ini. Ketik A = [1 2; 3 4; 5 6; seperti itu. Itu cara lain menyimpan nilai matriks 3 x 2 ini ke A. Anda juga bisa menyimpan vektor. v = [1 2 3] Ini adalah vektor baris, atau ini vektor 3 x 1. Dimana itu, maaf, ini matriks 1 x 3. Bukan 3 x 1. Jika saya ingin menyimpan vektor kolom, yang harus saya lakukan adalah ketik
+v = [1;2;3]. Ini akan menghasilkan vektor 3 x 1 sebagai ganti vektor 1 x 3. Jadi ini akan menjadi sebuah vektor
+kolom. Ini beberapa lagi notasi yang berguna. v = 1:0.1:2 Ini maksudnya memberikan v sejumlah elemen yang mulai dari 1 dan bertambah kelipatan 0.1 hingga mencapai angka 2. Jadi, bila saya lakukan ini, v akan
+jadi vektor baris ini. Ini matriks 1 x 11. Itu 1, 1.1, 1.2, 1.3, dan seterusnya hingga mencapai 2. Saya juga bisa set v = 1:6 Itu menjadikan v berisi nilai-nilai ini. 1 sampai 6, okey. Ini beberapa cara lain untuk
+membentuk matriks. ones(2,3) adalah perintah yang menghasilkan matriks 2 x 3 yaitu matriks yang isinya semua 1. Jadi, jika saya set c = 2*ones(2,3) ini menghasilkan matriks 2 x 3 yang semua nilainya 2. Anda bisa berpikir ini sebagai cara tersingkat untuk menulis c = [2 2 2; 2 2 2] yang juga akan memberi Anda
+hasil yang sama. Katakanlah w = ones(1,3), ini akan jadi vektor baris atau baris dari tiga angka 1, dan selain itu bisa juga w = zeros(1,3), ini menghasilkan matriks 1 x 3 yang semua nilainya 0. Beberapa cara lagi membentuk matriks. Jika saya buat w = rand(1,3) ini menghasilkan matriks 1 x 3 yang semua nilainya acak. Jika saya buat rand(3,3), ini menghasilkan matriks 3 x 3 yang semua nilainya acak diambil dari distribusi seragam antara 0 dan 1. Jadi, setiap kali saya melakukan ini, saya mendapatkan set angka acak berbeda yang didapat secara seragam antara 0 dan 1. Bagi Anda yang tahu variabel acak Gaussian atau bagi Anda yang tahu variabel acak normal, Anda bisa juga set w = randn(1,3) Dan ini akan menghasilkan tiga nilai yang diambil dari distribusi Gaussian dengan nilai tengah 0 dan varians atau standar deviasi sama dengan 1. Anda dapat membuat hal yang lebih kompleks seperti w = -6 + sqrt(10)* katakanlah (randn(1,10000)). Saya akan mengakhirinya dengan ';' karena saya tidak ingin hasilnya
+dicetak. Apakah hasilnya? Hasilnya adalah sebuah vektor dengan jumlah elemen 10000. Jadi, mari kita tampilkan hasilnya. Jadi, ini akan menghasilkan matriks
+seperti ini. Betul? Dengan 10000 elemen. Itulah isi variabel w. Dan jika saya plot histogram dari w dengan perintah 'hist' sekarang, butuh beberapa detik untuk mendapatkan hasil ini, tapi ini adalah histogram dari variabel acak saya, untuk w = -6 + sqrt(10)* variabel acak Gaussian ini. Saya bisa memplot histogram dengan lebih banyak balok, katakanlah,
+50 balok. Dan ini histogram Gaussian saya dengan nilai tengah -6. Karena saya punya -6 di sana ditambah sqrt(10) dikali ini. Jadi, varians dari variabel acak Gaussian ini adalah 10 atau standar deviasinya sqrt(10), yaitu sekitar 3.1. Terakhir, 1 perintah khusus untuk membuat matriks, yaitu perintah
+'eye'. Jadi, 'eye' mungkin permainan kata dari kata
+'identity'. Set eye(4). Ini matriks identitas 4 x 4. Jadi, I = eye(4) Ini menghasilkan matriks identitas
+4 x 4. I = eye(6) menghasilkan matriks identitas 6 x 6, eye(3) adalah matriks identitas 3 x 3. Akhirnya, untuk mengakhiri video ini, ada 1 lagi
+perintah yang berguna, yaitu perintah 'help'. Jadi, Anda bisa mengetik 'help eye' dan ini akan menampilkan fungsi help untuk
+matriks identitas. Tekan q untuk berhenti. Anda juga bisa mengetik 'help rand'. Menampilkan dokumentasi untuk rand atau fungsi pembuatan angka acak. Atau bahkan 'help help', yang menampilkan bantuan dari fungsi help. Jadi, itu semua adalah operasi dasar dalam Octave. Dan dengan ini Anda seharusnya bisa membuat beberapa matriks,
+mengalikan, menambahkan elemen-elemen, dan menggunakan operasi dasar dalam
+Octave. Pada video berikut, saya ingin mulai bicara tentang perintah yang lebih canggih dan bagaimana menggunakan dan memproses data
+dengan Octave.

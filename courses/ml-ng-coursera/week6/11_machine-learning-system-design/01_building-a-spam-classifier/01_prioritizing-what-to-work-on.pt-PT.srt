@@ -1,0 +1,1148 @@
+1
+00:00:01,180 --> 00:00:02,410
+Nos próximos vídeos
+
+2
+00:00:02,560 --> 00:00:04,780
+eu gostaria de falar sobre design de sistemas de aprendizado de máquina.
+
+3
+00:00:05,780 --> 00:00:06,950
+Esses vídeos se referem
+
+4
+00:00:07,190 --> 00:00:08,370
+aos principais problemas que você pode
+
+5
+00:00:08,540 --> 00:00:10,140
+enfrentar ao projetar
+
+6
+00:00:10,220 --> 00:00:11,450
+um sistema complexo de aprendizado de máquina
+
+7
+00:00:12,470 --> 00:00:13,310
+e tem o objetivo
+
+8
+00:00:13,490 --> 00:00:14,680
+de ajudá-lo em como
+
+9
+00:00:14,780 --> 00:00:17,580
+criar estratégias, ao juntar complexos sistemas de aprendizado de máquina.
+
+10
+00:00:18,970 --> 00:00:20,190
+No caso desse próximo conjunto
+
+11
+00:00:20,340 --> 00:00:21,390
+de vídeos parecer um pouco
+
+12
+00:00:21,530 --> 00:00:23,140
+desconectado, é porque esses
+
+13
+00:00:23,360 --> 00:00:24,340
+vídeos referirão
+
+14
+00:00:24,450 --> 00:00:25,800
+a uma gama dos diferentes problemas
+
+15
+00:00:26,150 --> 00:00:28,220
+que você pode encontrar ao projetar sistemas de aprendizado de máquina complexos.
+
+16
+00:00:29,600 --> 00:00:31,080
+E mesmo que
+
+17
+00:00:31,160 --> 00:00:32,270
+o próximo conjunto de vídeos possa parecer
+
+18
+00:00:32,560 --> 00:00:34,740
+de alguma maneira menos matemático, eu acho
+
+19
+00:00:35,050 --> 00:00:36,180
+que esse material pode ser
+
+20
+00:00:36,500 --> 00:00:38,280
+muito útil
+
+21
+00:00:38,400 --> 00:00:39,650
+e potenciais economizadores de tempo
+
+22
+00:00:40,120 --> 00:00:41,610
+quando você estiver construindo grandes sistemas de aprendizado de máquina.
+
+23
+00:00:42,890 --> 00:00:44,140
+Sendo assim, eu gostaria
+
+24
+00:00:44,260 --> 00:00:45,710
+de começar com a questão
+
+25
+00:00:46,330 --> 00:00:47,500
+de priorizar como gastar
+
+26
+00:00:47,790 --> 00:00:48,680
+seu tempo no que tiver que trabalhar
+
+27
+00:00:48,980 --> 00:00:50,330
+e eu começarei
+
+28
+00:00:50,740 --> 00:00:52,220
+com um exemplo de classificação de spams.
+
+29
+00:00:55,580 --> 00:00:57,280
+Digamos que você queira construir um classificador de spam.
+
+30
+00:00:58,540 --> 00:00:59,740
+Aqui estão alguns exemplos
+
+31
+00:01:00,180 --> 00:01:02,340
+de e-mails spam e não spam,
+
+32
+00:01:03,400 --> 00:01:05,350
+onde o da esquerda tenta vender algumas coisas.
+
+33
+00:01:06,270 --> 00:01:07,640
+E note como os spammers
+
+34
+00:01:08,470 --> 00:01:10,080
+deliberadamente soletram errado as palavras,
+
+35
+00:01:10,540 --> 00:01:13,470
+como em "Med1cina" com 1 aqui, e "Hip0tecas".
+
+36
+00:01:14,850 --> 00:01:16,350
+E do lado direito
+
+37
+00:01:16,560 --> 00:01:17,760
+um exemplo óbvio de email não spam,
+
+38
+00:01:18,480 --> 00:01:20,680
+na verdade um email do meu irmão mais novo.
+
+39
+00:01:21,710 --> 00:01:22,940
+Digamos que temos um conjunto
+
+40
+00:01:23,350 --> 00:01:24,560
+de treino rotulado de uma
+
+41
+00:01:24,860 --> 00:01:26,130
+quantidade de emails de spam
+
+42
+00:01:26,240 --> 00:01:28,200
+e um outro tanto de emails de não spam indicados
+
+43
+00:01:28,240 --> 00:01:30,780
+com rótulos "y" iguais a 1 ou 0.
+
+44
+00:01:31,290 --> 00:01:32,600
+Como nós construimos
+
+45
+00:01:33,110 --> 00:01:34,900
+um classificador usando aprendizado supervisionado
+
+46
+00:01:35,230 --> 00:01:37,130
+para distinguir entre spam e não spam?
+
+47
+00:01:38,130 --> 00:01:39,670
+Para aplicar o aprendizado supervisionado,
+
+48
+00:01:40,340 --> 00:01:41,430
+a primeira decisão que precisamos
+
+49
+00:01:41,660 --> 00:01:43,190
+fazer é como
+
+50
+00:01:43,270 --> 00:01:44,860
+queremos representar "x",
+
+51
+00:01:45,260 --> 00:01:46,590
+que são as característica do email.
+
+52
+00:01:47,430 --> 00:01:48,900
+Dados os parâmetros "x"
+
+53
+00:01:49,160 --> 00:01:50,290
+e os rótulos "y" no nosso
+
+54
+00:01:50,410 --> 00:01:51,510
+conjunto de treinamento, nós podemos então
+
+55
+00:01:51,720 --> 00:01:54,660
+treinar um classificador, por exemplo, usando regressão logística.
+
+56
+00:01:56,150 --> 00:01:57,120
+Aqui está uma maneira de escolher
+
+57
+00:01:57,550 --> 00:01:59,630
+um conjunto de caracteristicas para nossos emails.
+
+58
+00:02:00,850 --> 00:02:01,930
+Podemos criar
+
+59
+00:02:02,280 --> 00:02:03,630
+uma lista
+
+60
+00:02:03,870 --> 00:02:05,170
+de uma centena de palavras que nós achamos
+
+61
+00:02:05,440 --> 00:02:06,850
+que sejam indicativas de se o e-mail é
+
+62
+00:02:07,190 --> 00:02:09,230
+spam ou não.
+
+63
+00:02:09,370 --> 00:02:10,410
+Por exemplo, se uma parte
+
+64
+00:02:10,580 --> 00:02:11,640
+do e-mail contém a palavra "deal" (acordo),
+
+65
+00:02:12,340 --> 00:02:13,350
+talvez seja mais provável ser
+
+66
+00:02:13,460 --> 00:02:14,410
+um spam. Se o email contém 
+
+67
+00:02:14,850 --> 00:02:16,280
+a palavra "buy" (comprar), é mais
+
+68
+00:02:16,450 --> 00:02:17,670
+provável que seja spam.
+
+69
+00:02:17,990 --> 00:02:19,340
+Uma palavra como "discount" (desconto) é mais
+
+70
+00:02:19,580 --> 00:02:20,900
+provável que seja spam, enquanto que,
+
+71
+00:02:21,080 --> 00:02:22,340
+se uma parte do e-mail contém meu nome,
+
+72
+00:02:23,920 --> 00:02:25,350
+"Andrew", talvez isso signifique
+
+73
+00:02:25,630 --> 00:02:26,870
+que a pessoa saiba quem
+
+74
+00:02:26,910 --> 00:02:27,740
+eu sou, o que poderia significar 
+
+75
+00:02:27,900 --> 00:02:30,090
+uma chance menor de ser spam.
+
+76
+00:02:31,470 --> 00:02:32,580
+E talvez, por alguma razão, eu acho
+
+77
+00:02:32,840 --> 00:02:33,990
+que a palavra "now" (agora) pode ser
+
+78
+00:02:34,260 --> 00:02:35,680
+indicativo de não spam porque
+
+79
+00:02:35,980 --> 00:02:37,150
+eu recebo um monte
+
+80
+00:02:37,540 --> 00:02:39,370
+de e-mails urgentes, e assim por diante.
+
+81
+00:02:39,520 --> 00:02:41,220
+Assim, nós escolhemos uma centena de palavras mais ou menos.
+
+82
+00:02:42,380 --> 00:02:43,510
+Dado uma parte do e-mail,
+
+83
+00:02:43,970 --> 00:02:44,930
+nós podemos pegar essa parte
+
+84
+00:02:45,180 --> 00:02:46,220
+do e-mail e codificá-la
+
+85
+00:02:46,640 --> 00:02:47,970
+em um vetor
+
+86
+00:02:48,290 --> 00:02:49,930
+de características como se segue.
+
+87
+00:02:50,810 --> 00:02:51,450
+Eu vou pegar minha lista
+
+88
+00:02:51,720 --> 00:02:54,560
+de centenas de palavras e ordená-las
+
+89
+00:02:54,960 --> 00:02:56,620
+em ordem alfabética.
+
+90
+00:02:57,210 --> 00:02:57,980
+Não há necessidade de ordenar mas,
+
+91
+00:02:58,450 --> 00:02:59,910
+aqui está
+
+92
+00:03:00,110 --> 00:03:02,080
+minha lista de palavras: "desconto"
+
+93
+00:03:02,710 --> 00:03:03,950
+e vai descendo até
+
+94
+00:03:04,160 --> 00:03:05,430
+"agora" e assim por diante.
+
+95
+00:03:06,080 --> 00:03:07,230
+Dado uma parte
+
+96
+00:03:07,350 --> 00:03:08,540
+do e-mail como aquela mostrada
+
+97
+00:03:08,610 --> 00:03:09,640
+na direita, eu vou
+
+98
+00:03:09,770 --> 00:03:11,400
+checar e ver se
+
+99
+00:03:11,450 --> 00:03:12,560
+cada uma dessa palavras
+
+100
+00:03:13,030 --> 00:03:14,560
+aparece no e-mail e, então,
+
+101
+00:03:14,810 --> 00:03:16,400
+eu vou definir um vetor
+
+102
+00:03:16,580 --> 00:03:19,130
+de características "x".
+
+103
+00:03:19,260 --> 00:03:20,260
+Na parte do e-mail
+
+104
+00:03:20,340 --> 00:03:21,520
+a direita, meu nome não
+
+105
+00:03:21,930 --> 00:03:23,210
+aparece, então eu vou colocar um zero lá.
+
+106
+00:03:24,070 --> 00:03:25,410
+A palavra "buy" (comprar) aparece,
+
+107
+00:03:26,790 --> 00:03:27,690
+então eu vou colocar o 1 ali
+
+108
+00:03:28,090 --> 00:03:29,450
+e continuo colocando 1 ou 0.
+
+109
+00:03:30,170 --> 00:03:31,550
+Eu vou colocar
+
+110
+00:03:31,730 --> 00:03:33,950
+1, mesmo que a palavra "buy" ocorra duas vezes.
+
+111
+00:03:34,600 --> 00:03:36,490
+Eu não vou contar quantas vezes a palavra aparece.
+
+112
+00:03:37,590 --> 00:03:40,280
+A palavra "deal" (negócio) aparece, eu coloco 1 la.
+
+113
+00:03:40,900 --> 00:03:42,450
+A palavra "discount" (desconto) não aparece,
+
+114
+00:03:42,620 --> 00:03:43,680
+pelo menos não nesse pequeno
+
+115
+00:03:44,520 --> 00:03:46,140
+e-mail, e assim por diante.
+
+116
+00:03:46,810 --> 00:03:48,740
+A palavra "now" (agora) aparece, e assim por diante.
+
+117
+00:03:48,870 --> 00:03:50,250
+Assim, eu coloco 1s e 0s
+
+118
+00:03:50,560 --> 00:03:52,560
+nesse vetor de características, dependendo se
+
+119
+00:03:52,720 --> 00:03:54,230
+uma palavra, em particular, aparece ou não.
+
+120
+00:03:55,060 --> 00:03:56,740
+Nesse exemplo,
+
+121
+00:03:56,870 --> 00:03:58,850
+meu vetor de características teria
+
+122
+00:03:59,110 --> 00:04:00,920
+de mencionar uma centena, 
+
+123
+00:04:02,310 --> 00:04:03,960
+se eu tiver uma centena,
+
+124
+00:04:04,310 --> 00:04:05,460
+se eu escolher uma centena
+
+125
+00:04:05,650 --> 00:04:06,850
+de palavras para usar
+
+126
+00:04:07,010 --> 00:04:08,980
+nessa representação e cada
+
+127
+00:04:09,240 --> 00:04:13,060
+uma das características "Xj" será
+
+128
+00:04:13,300 --> 00:04:15,150
+basicamente 1
+
+129
+00:04:16,360 --> 00:04:17,410
+se você tiver uma determinada
+
+130
+00:04:17,490 --> 00:04:18,930
+ palavra "j" que aparece
+
+131
+00:04:19,420 --> 00:04:20,940
+no e-mail e "Xj"
+
+132
+00:04:22,400 --> 00:04:23,910
+seria zero, em caso contrário.
+
+133
+00:04:25,700 --> 00:04:25,700
+OK.
+
+134
+00:04:25,900 --> 00:04:27,440
+Então isso me dá
+
+135
+00:04:27,600 --> 00:04:30,220
+a representação das características de uma parte do email.
+
+136
+00:04:30,920 --> 00:04:32,060
+Aliás, mesmo que eu tenha
+
+137
+00:04:32,200 --> 00:04:34,260
+descrito esse processo pegando
+
+138
+00:04:34,920 --> 00:04:36,790
+manualmente uma centena de palavras, 
+
+139
+00:04:36,950 --> 00:04:38,510
+na prática o que é mais comumente
+
+140
+00:04:38,940 --> 00:04:40,140
+feito é olhar para
+
+141
+00:04:40,400 --> 00:04:42,710
+um conjunto de trainamento
+
+142
+00:04:42,800 --> 00:04:43,980
+e detectar nesse conjunto 
+
+143
+00:04:44,050 --> 00:04:45,690
+as n palavras de maior ocorrência,
+
+144
+00:04:46,080 --> 00:04:47,290
+onde n está geralmente entre 
+
+145
+00:04:47,450 --> 00:04:49,310
+10 mil e 50 mil, e usar
+
+146
+00:04:49,550 --> 00:04:50,810
+essas palavras como suas características.
+
+147
+00:04:51,630 --> 00:04:52,910
+Assim, ao invés de pegar manualmente
+
+148
+00:04:53,090 --> 00:04:54,220
+uma centena de palavras, aqui você observa
+
+149
+00:04:54,390 --> 00:04:56,030
+os exemplos de treinamento
+
+150
+00:04:56,130 --> 00:04:57,570
+e seleciona as palavras que ocorrem com maior frequência,
+
+151
+00:04:57,930 --> 00:04:58,860
+de 10 mil a 50 mil palavras
+
+152
+00:04:59,260 --> 00:05:00,680
+e essas formam
+
+153
+00:05:00,820 --> 00:05:01,550
+as características do que você vai 
+
+154
+00:05:01,640 --> 00:05:04,320
+usar para representar o seu e-mail na classificação de spam.
+
+155
+00:05:05,450 --> 00:05:06,850
+Se você estiver construindo
+
+156
+00:05:06,910 --> 00:05:09,020
+um classificador de spam, uma questão
+
+157
+00:05:09,570 --> 00:05:11,260
+que você pode enfrentar é: 
+
+158
+00:05:11,500 --> 00:05:12,580
+"Qual é a melhor maneira de usar seu tempo
+
+159
+00:05:13,230 --> 00:05:14,820
+com o objetivo de fazer seu
+
+160
+00:05:14,980 --> 00:05:17,510
+classificador de spam ter uma alta precisão com baixo erro?"
+
+161
+00:05:18,910 --> 00:05:21,350
+Uma tendência natural é coletar um monte de dados.
+
+162
+00:05:21,780 --> 00:05:21,780
+Certo?
+
+163
+00:05:22,030 --> 00:05:23,120
+De fato, existe essa tendência
+
+164
+00:05:23,700 --> 00:05:24,670
+de pensar que, quanto
+
+165
+00:05:24,740 --> 00:05:26,590
+mais dados tivermos, melhor para o algoritmo.
+
+166
+00:05:27,560 --> 00:05:28,850
+E, de fato, no domínio de e-mails
+
+167
+00:05:29,100 --> 00:05:30,500
+spams, existem atualmente
+
+168
+00:05:31,310 --> 00:05:32,840
+ótimos projetos, como o chamado 
+
+169
+00:05:33,180 --> 00:05:35,310
+"Projeto Honeypot", que cria falsos
+
+170
+00:05:35,710 --> 00:05:37,090
+endereços de email e tenta
+
+171
+00:05:37,200 --> 00:05:38,910
+colocar esses falsos endereços
+
+172
+00:05:39,140 --> 00:05:40,710
+nas mãos de spammers e usar
+
+173
+00:05:40,910 --> 00:05:41,870
+isso para tentar coletar toneladas
+
+174
+00:05:42,140 --> 00:05:43,440
+de e-mails com spam e, desse modo,
+
+175
+00:05:44,120 --> 00:05:46,120
+ter acesso a um monte de dados de spam para treinar os algoritmos de aprendizagem.
+
+176
+00:05:47,060 --> 00:05:48,760
+Mas nós já vimos
+
+177
+00:05:49,150 --> 00:05:50,630
+nos vídeos anteriores
+
+178
+00:05:50,650 --> 00:05:53,340
+que ao pegar um monte de dados, normalmente vai ajudar mas nem sempre.
+
+179
+00:05:54,600 --> 00:05:55,810
+Para a maioria dos problemas de aprendizado de máquina,
+
+180
+00:05:56,430 --> 00:05:57,280
+há um monte de outras coisas
+
+181
+00:05:57,620 --> 00:05:59,780
+que você poderia fazer para melhorar a performance.
+
+182
+00:06:00,970 --> 00:06:02,130
+Para spams, uma coisa que você pode
+
+183
+00:06:02,230 --> 00:06:03,420
+pensar é desenvolver
+
+184
+00:06:03,960 --> 00:06:05,620
+recursos mais sofisticados 
+
+185
+00:06:05,820 --> 00:06:08,070
+do e-mail, talvez com base no roteamento de informações do e-mail,
+
+186
+00:06:09,850 --> 00:06:11,920
+e isso seria a informação contida no cabeçalho do e-mail.
+
+187
+00:06:13,130 --> 00:06:14,820
+Assim, quando os spammers enviam e-mails,
+
+188
+00:06:15,250 --> 00:06:16,420
+frequentemente eles tentarão
+
+189
+00:06:16,690 --> 00:06:18,110
+ocultar as origens
+
+190
+00:06:18,340 --> 00:06:20,260
+do e-mail e, talvez
+
+191
+00:06:20,470 --> 00:06:21,880
+usarão cabeçalhos com e-mails falsos
+
+192
+00:06:22,900 --> 00:06:24,060
+ou enviarão e-mails através de
+
+193
+00:06:24,410 --> 00:06:26,360
+um conjunto incomum de serviços de informática,
+
+194
+00:06:27,060 --> 00:06:29,880
+através de rotas incomuns, a fim de entregar o spam para você.
+
+195
+00:06:30,490 --> 00:06:33,690
+Algumas dessas informações serão refletidas no cabeçalho do e-mail
+
+196
+00:06:35,000 --> 00:06:36,600
+e assim alguém pode se imaginar
+
+197
+00:06:38,070 --> 00:06:39,300
+olhando para os cabeçalhos de e-mail
+
+198
+00:06:39,410 --> 00:06:41,060
+e tentando desenvolver atributos mais sofisticados
+
+199
+00:06:41,510 --> 00:06:42,760
+que capturem esse tipo
+
+200
+00:06:43,010 --> 00:06:45,770
+de informação de roteamento no e-mail para identificar se algo é spam.
+
+201
+00:06:46,650 --> 00:06:47,890
+Outra coisa que você pode fazer
+
+202
+00:06:48,380 --> 00:06:49,300
+é olhar para
+
+203
+00:06:49,640 --> 00:06:50,860
+o corpo da mensagem do email, que é
+
+204
+00:06:51,100 --> 00:06:54,350
+o texto do e-mail, e tentar desenvolver atributos mais sofisticados.
+
+205
+00:06:55,320 --> 00:06:56,310
+Por exemplo, poderíamos tratar a palavra
+
+206
+00:06:56,500 --> 00:06:57,560
+"discount" (desconto) e a palavra
+
+207
+00:06:57,690 --> 00:06:59,340
+"discounts" (descontos) como sendo
+
+208
+00:06:59,550 --> 00:07:01,810
+a mesma palavra ou poderíamos
+
+209
+00:07:02,240 --> 00:07:04,120
+tratar as palavras "deal" (negócio) e "Dealer" (Negociador) como a mesma palavra?
+
+210
+00:07:04,380 --> 00:07:05,610
+Mesmo que uma seja
+
+211
+00:07:06,130 --> 00:07:08,020
+minúscula e a outra maiúscula, como nesse exemplo.
+
+212
+00:07:08,740 --> 00:07:10,530
+Ou queremos características mais complexas sobre a pontuação
+
+213
+00:07:12,740 --> 00:07:14,110
+porque talvez o spam esteja usando mais exclamação.
+
+214
+00:07:14,450 --> 00:07:14,730
+Eu não sei.
+
+215
+00:07:15,580 --> 00:07:16,850
+E nessa linha de idéias, talvez
+
+216
+00:07:17,170 --> 00:07:18,560
+queiramos desenvolver 
+
+217
+00:07:18,750 --> 00:07:20,380
+algoritmos mais sofisticados para detetar
+
+218
+00:07:21,120 --> 00:07:22,700
+e talvez corrigir os erros deliberados de ortografia
+
+219
+00:07:23,360 --> 00:07:24,700
+como "segur0", "med1cina" ou "r3logios".
+
+220
+00:07:25,700 --> 00:07:26,890
+Porque spammers realmente fazem isso,
+
+221
+00:07:27,150 --> 00:07:28,400
+se você tiver "relógios"
+
+222
+00:07:29,420 --> 00:07:31,060
+com um "3" no lugar do "e",
+
+223
+00:07:31,450 --> 00:07:32,720
+com essa simples técnica
+
+224
+00:07:32,840 --> 00:07:34,760
+que falamos há pouco, o classificador
+
+225
+00:07:35,090 --> 00:07:36,280
+de spam pode não identificar
+
+226
+00:07:36,800 --> 00:07:38,170
+isso como sendo a mesma coisa
+
+227
+00:07:38,230 --> 00:07:40,260
+que a palavra "relógios" e, assim,
+
+228
+00:07:40,390 --> 00:07:41,430
+pode ter mais dificuldades para identificar
+
+229
+00:07:42,000 --> 00:07:43,930
+isso como um spam, porque contém erros de ortografia de propósito.
+
+230
+00:07:44,830 --> 00:07:45,940
+E é por isso que spammer fazem isso.
+
+231
+00:07:48,230 --> 00:07:49,280
+Enquanto você trabalha com problemas
+
+232
+00:07:49,630 --> 00:07:51,370
+de aprendizado de máquina, você pode
+
+233
+00:07:51,480 --> 00:07:54,690
+pensar em tentar diferentes coisas como essa.
+
+234
+00:07:55,170 --> 00:07:56,560
+A propósito, 
+
+235
+00:07:56,790 --> 00:07:58,480
+eu trabalhei no problema
+
+236
+00:07:58,900 --> 00:08:00,000
+de spam por um tempo
+
+237
+00:08:00,650 --> 00:08:01,610
+e já gastei um bom tempo com isso.
+
+238
+00:08:01,770 --> 00:08:03,040
+E embora eu entenda desse
+
+239
+00:08:03,360 --> 00:08:04,350
+tipo de problema de spam,
+
+240
+00:08:04,820 --> 00:08:05,820
+na verdade, eu sei um pouco sobre isso.
+
+241
+00:08:06,470 --> 00:08:07,380
+Eu teria uma certa dificuldade
+
+242
+00:08:07,600 --> 00:08:09,160
+para falar pra você qual
+
+243
+00:08:09,290 --> 00:08:10,790
+dessas quatro opções seria
+
+244
+00:08:10,980 --> 00:08:12,190
+a melhor maneira de usar seu tempo.
+
+245
+00:08:12,670 --> 00:08:14,180
+Assim, o que acontece, sinceramente, é que,
+
+246
+00:08:14,320 --> 00:08:15,790
+com frequência,
+
+247
+00:08:16,040 --> 00:08:17,240
+um grupo de pesquisa
+
+248
+00:08:17,350 --> 00:08:20,330
+ou grupo de produtos irá fixar aleatoriamente uma dessas opções.
+
+249
+00:08:21,290 --> 00:08:22,870
+E, as vezes, isso se torna
+
+250
+00:08:23,250 --> 00:08:24,350
+no caminho menos
+
+251
+00:08:24,580 --> 00:08:25,610
+útil para gastar
+
+252
+00:08:25,740 --> 00:08:27,700
+seu tempo, dependendo de qual
+
+253
+00:08:27,900 --> 00:08:30,400
+dessas opções alguém acaba se fixando.
+
+254
+00:08:31,350 --> 00:08:32,670
+De qualquer maneira,
+
+255
+00:08:32,800 --> 00:08:33,780
+se você chega ao ponto
+
+256
+00:08:34,150 --> 00:08:35,710
+de gerar uma lista
+
+257
+00:08:35,900 --> 00:08:37,100
+com diferentes opções para serem tentadas, 
+
+258
+00:08:37,250 --> 00:08:38,740
+você provavelmente, já está a frente da média
+
+259
+00:08:39,390 --> 00:08:41,190
+Infelizmente, o que muitas pessoas fazem é,
+
+260
+00:08:41,420 --> 00:08:42,160
+ao invés de tentar listar
+
+261
+00:08:42,230 --> 00:08:43,010
+as opções das coisas
+
+262
+00:08:43,240 --> 00:08:44,510
+poderiam ser tentadas, o que muitas
+
+263
+00:08:44,810 --> 00:08:46,100
+pessoas fazem é acordar
+
+264
+00:08:46,210 --> 00:08:47,380
+de manhã e, por alguma
+
+265
+00:08:47,580 --> 00:08:48,850
+razão, ter uma estranha
+
+266
+00:08:49,110 --> 00:08:50,440
+sensação do tipo, "vamos
+
+267
+00:08:51,290 --> 00:08:52,670
+fazer um projeto Honeypot gigante
+
+268
+00:08:53,190 --> 00:08:54,570
+coletar toneladas de dados"
+
+269
+00:08:55,320 --> 00:08:56,860
+e por alguma estranha razão
+
+270
+00:08:57,570 --> 00:08:58,540
+acordar uma manhã e, aleatoriamente, 
+
+271
+00:08:59,050 --> 00:09:00,330
+se fixar em uma coisa
+
+272
+00:09:00,540 --> 00:09:02,340
+e trabalhar nela por 6 meses.
+
+273
+00:09:03,520 --> 00:09:04,170
+Mas eu acho que podemos fazer melhor
+
+274
+00:09:04,760 --> 00:09:06,130
+e, em particular, o que eu gostaria
+
+275
+00:09:06,270 --> 00:09:07,130
+de fazer no próximo 
+
+276
+00:09:07,310 --> 00:09:08,410
+vídeo é lhe falar sobre
+
+277
+00:09:08,680 --> 00:09:09,890
+o conceito de análise de erros
+
+278
+00:09:11,160 --> 00:09:12,530
+e conversar sobre a forma
+
+279
+00:09:13,270 --> 00:09:15,150
+como você deve tentar
+
+280
+00:09:15,360 --> 00:09:16,830
+ter uma forma mais sistemática
+
+281
+00:09:17,360 --> 00:09:18,640
+de escolher entre opções 
+
+282
+00:09:18,960 --> 00:09:19,950
+dentre as diferentes coisas
+
+283
+00:09:20,010 --> 00:09:21,730
+que você pode trabalhar e, por consequência,
+
+284
+00:09:21,860 --> 00:09:23,430
+ser mais propenso a escolher o que é,
+
+285
+00:09:23,640 --> 00:09:24,820
+atualmente, uma boa maneira
+
+286
+00:09:25,070 --> 00:09:26,070
+de gastar seu tempo
+
+287
+00:09:26,200 --> 00:09:28,920
+para as próximas semanas, dias, ou meses.
+Tradução: Carlos Lacerda | Revisão: Caio H. K. Miyashiro

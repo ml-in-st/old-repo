@@ -1,0 +1,919 @@
+1
+00:00:00,170 --> 00:00:01,340
+Neste vídeo, eu gostaria de
+
+2
+00:00:01,450 --> 00:00:03,230
+como inicializar o K-means 
+
+3
+00:00:04,580 --> 00:00:05,970
+e o mais importante, 
+
+4
+00:00:06,170 --> 00:00:07,240
+Isso também levará a uma discussão de
+
+5
+00:00:07,550 --> 00:00:10,210
+como fazer o K-means evitar uma otimização local.
+
+6
+00:00:10,740 --> 00:00:12,390
+Aqui está o algoritmo de agrupamento
+
+7
+00:00:12,950 --> 00:00:14,420
+de que falamos antes.
+
+8
+00:00:15,760 --> 00:00:16,760
+Uma etapa das quais nós nunca 
+
+9
+00:00:17,260 --> 00:00:18,350
+falamos muito foi sobre a etapa de
+
+10
+00:00:18,820 --> 00:00:21,560
+como iniciar aleatoriamente os centróides.
+
+11
+00:00:22,390 --> 00:00:23,490
+Existem algumas maneiras diferentes que podemos
+
+12
+00:00:23,710 --> 00:00:25,350
+imaginar na inicialização aleatória
+
+13
+00:00:25,960 --> 00:00:26,860
+os centróides aleatoriamente.
+
+14
+00:00:27,510 --> 00:00:28,580
+Porém,  observa-se que
+
+15
+00:00:28,720 --> 00:00:29,820
+existe um método que é
+
+16
+00:00:30,050 --> 00:00:31,700
+muito mais recomendado que 
+
+17
+00:00:32,080 --> 00:00:33,830
+as outras opções que conhecemos.
+
+18
+00:00:34,400 --> 00:00:35,250
+Deixe-me falar sobre esta opção,
+
+19
+00:00:35,590 --> 00:00:38,160
+que é a que funciona melhor na maioria das vezes.
+
+20
+00:00:39,550 --> 00:00:42,210
+Eu costumo inicializar meus centróides dessa forma:
+
+21
+00:00:43,300 --> 00:00:44,710
+Ao executar o K-means, você deve ter
+
+22
+00:00:45,140 --> 00:00:47,160
+o número de centróides, K,
+
+23
+00:00:47,430 --> 00:00:48,520
+definido para ser inferior ao
+
+24
+00:00:48,590 --> 00:00:50,090
+número de exemplos de treinamento M.
+
+25
+00:00:50,170 --> 00:00:51,210
+Seria muito estranho executar
+
+26
+00:00:51,430 --> 00:00:52,600
+o K-means com um número de
+
+27
+00:00:52,870 --> 00:00:54,270
+centróides 
+
+28
+00:00:54,520 --> 00:00:55,790
+igual ou maior que o número de exemplos que você tem, certo?
+
+29
+00:00:58,080 --> 00:00:59,010
+Então, o modo que eu
+
+30
+00:00:59,150 --> 00:01:00,510
+normalmente inicializo o K-means seria,
+
+31
+00:01:00,770 --> 00:01:02,510
+escolher aleatoriamente K exemplos de treinamento,
+
+32
+00:01:02,990 --> 00:01:05,170
+e então 
+
+33
+00:01:05,610 --> 00:01:06,730
+o que eu faria seria definir
+
+34
+00:01:06,850 --> 00:01:09,320
+µ1 a µk iguais a estes k exemplos.
+
+35
+00:01:10,610 --> 00:01:11,470
+Vou mostrar um exemplo concreto.
+
+36
+00:01:12,560 --> 00:01:14,190
+Digamos que k é
+
+37
+00:01:14,470 --> 00:01:16,600
+igual a 2 e então
+
+38
+00:01:17,070 --> 00:01:19,520
+neste exemplo à direita, vamos dizer que eu quero encontrar dois agrupamentos.
+
+39
+00:01:21,170 --> 00:01:22,060
+Então, eu vou
+
+40
+00:01:22,200 --> 00:01:23,350
+para inicializar meus
+
+41
+00:01:23,770 --> 00:01:25,340
+centróides será
+
+42
+00:01:25,470 --> 00:01:27,320
+escolher aleatoriamente alguns exemplos,
+
+43
+00:01:27,760 --> 00:01:28,960
+digamos,
+
+44
+00:01:29,230 --> 00:01:31,060
+eu escolho um deste e escolho um daquele.
+
+45
+00:01:31,230 --> 00:01:32,320
+E a forma que eu vou utilizar
+
+46
+00:01:32,380 --> 00:01:34,100
+para inicializar meus centróides é
+
+47
+00:01:34,310 --> 00:01:35,190
+simplesmentes colocar meus
+
+48
+00:01:36,200 --> 00:01:38,930
+centróides bem em cima desses exemplos.
+
+49
+00:01:39,530 --> 00:01:40,430
+Então, esse é o meu primeiro centróide e
+
+50
+00:01:41,410 --> 00:01:43,230
+esse é o meu segundo centróide, e
+
+51
+00:01:43,390 --> 00:01:45,770
+e essa é uma inicialização aleatória do K-means. 
+
+52
+00:01:48,540 --> 00:01:50,480
+O que eu desenhei parece particularmente bom.
+
+53
+00:01:50,890 --> 00:01:51,810
+Às vezes eu poderia ter menos sorte e
+
+54
+00:01:52,040 --> 00:01:53,370
+ e talvez eu acabaria pegando
+
+55
+00:01:53,510 --> 00:01:54,900
+este como meu primeiro exemplo
+
+56
+00:01:55,330 --> 00:01:58,420
+aleatório, e este como o meu segundo exemplo.
+
+57
+00:01:59,050 --> 00:02:01,380
+E aqui eu estou pegando dois exemplos, porque k é igual a 2. 
+
+58
+00:02:01,590 --> 00:02:03,590
+Nós escolhemos aleatoriamente 
+
+59
+00:02:03,890 --> 00:02:05,030
+dois exemplos de treinamento e se
+
+60
+00:02:05,100 --> 00:02:06,660
+eu escolhi aqueles dois então 
+
+61
+00:02:06,830 --> 00:02:08,040
+eu vou acabar tendo
+
+62
+00:02:08,250 --> 00:02:09,200
+o meu primeiro centróide aqui
+
+63
+00:02:09,510 --> 00:02:10,980
+e aquele como minha 
+
+64
+00:02:11,140 --> 00:02:13,560
+ posição inicial do  segundo centróide.
+
+65
+00:02:14,150 --> 00:02:15,690
+Então, é assim que você pode iniciar
+
+66
+00:02:16,070 --> 00:02:17,560
+os centróides aleatoriamente.
+
+67
+00:02:17,810 --> 00:02:19,670
+E assim, na inicialização,
+
+68
+00:02:19,860 --> 00:02:21,110
+o seu primeiro centróide μ₁ será
+
+69
+00:02:21,270 --> 00:02:23,350
+igual a x (i)
+
+70
+00:02:23,520 --> 00:02:25,870
+por algum valor aleatorio de (i) e
+
+71
+00:02:26,980 --> 00:02:27,660
+μ₂ será igual a x(j) 
+
+72
+00:02:29,240 --> 00:02:30,980
+para algum valor escolhido aleatoriamente diferente de (j) 
+
+73
+00:02:31,380 --> 00:02:32,830
+e assim por diante,
+
+74
+00:02:32,910 --> 00:02:34,440
+se tiver mais agrupamentos e mais centróides.
+
+75
+00:02:35,680 --> 00:02:37,540
+Apenas um comentário.
+
+76
+00:02:38,110 --> 00:02:39,240
+Devo dizer que
+
+77
+00:02:39,320 --> 00:02:40,840
+no vídeo anterior, onde eu ilustrei primeiro
+
+78
+00:02:41,150 --> 00:02:43,030
+o K-means com a animação,
+
+79
+00:02:44,310 --> 00:02:45,070
+naquele conjunto de slides. 
+
+80
+00:02:45,900 --> 00:02:46,890
+apenas para fins de ilustração,
+
+81
+00:02:47,590 --> 00:02:48,690
+eu usei um método diferente para
+
+82
+00:02:49,240 --> 00:02:51,750
+a inicialização dos meus centróides.
+
+83
+00:02:52,460 --> 00:02:53,790
+Porém o método descrito neste slide,
+
+84
+00:02:53,900 --> 00:02:55,940
+é o caminho recomendado. 
+
+85
+00:02:56,430 --> 00:02:58,850
+E é a forma que provavelmente você deve usar, quando você implementar o K-means.
+
+86
+00:03:00,090 --> 00:03:01,560
+Assim, como é sugerido
+
+87
+00:03:02,070 --> 00:03:04,090
+talvez por estas duas figuras à direita. 
+
+88
+00:03:04,930 --> 00:03:06,050
+Eu creio que o K-means
+
+89
+00:03:06,530 --> 00:03:08,130
+ pode acabar convergindo para
+
+90
+00:03:08,260 --> 00:03:10,150
+diferentes soluções, dependendo exatamente de como
+
+91
+00:03:10,860 --> 00:03:12,470
+os agrupamentos foram inicializados,
+
+92
+00:03:12,990 --> 00:03:15,170
+Portanto, dependendo da inicialização aleatória.
+
+93
+00:03:16,280 --> 00:03:18,180
+o K-means pode acabar em diferentes soluções.
+
+94
+00:03:18,930 --> 00:03:22,560
+Em particular, K-means pode realmente acabar em um ponto ótimo.
+
+95
+00:03:23,650 --> 00:03:24,920
+Se você possui dados como estes. 
+
+96
+00:03:25,400 --> 00:03:26,370
+Parece que
+
+97
+00:03:26,660 --> 00:03:28,340
+existem três grupos, então
+
+98
+00:03:28,780 --> 00:03:30,090
+ se você executar o K-means e 
+
+99
+00:03:30,150 --> 00:03:31,380
+ele acabar em um ponto ótimo
+
+100
+00:03:31,820 --> 00:03:32,910
+este pode ser realmente 
+
+101
+00:03:33,040 --> 00:03:35,830
+um ponto ótimo global, você pode acabar com esse agrupamento.
+
+102
+00:03:36,820 --> 00:03:38,440
+Mas se você teve 
+
+103
+00:03:39,110 --> 00:03:41,630
+uma inicialização particularmente infeliz, o K-means também pode
+
+104
+00:03:42,100 --> 00:03:43,660
+ficar preso em diferentes 
+
+105
+00:03:44,180 --> 00:03:45,740
+pontos ótimos locais. 
+
+106
+00:03:45,850 --> 00:03:47,330
+Assim, neste exemplo à esquerda
+
+107
+00:03:47,620 --> 00:03:48,700
+parece que este agrupamento azul captou
+
+108
+00:03:49,470 --> 00:03:51,700
+uma série de pontos à esquerda. e os agrupamento s verde e vermelho,
+
+109
+00:03:52,050 --> 00:03:54,810
+ficaram com um número pequeno de pontos cada.
+
+110
+00:03:55,020 --> 00:03:56,480
+Sendo assim, isso corresponde a 
+
+111
+00:03:56,640 --> 00:03:58,470
+um ponto ótimo local porque
+
+112
+00:03:58,530 --> 00:04:00,060
+tomou basicamente esses 
+
+113
+00:04:00,470 --> 00:04:01,560
+dois agrupamentos e os usou em um. 
+
+114
+00:04:01,780 --> 00:04:03,440
+Além disso,
+
+115
+00:04:04,150 --> 00:04:06,070
+dividiu o segundo agrupamento em
+
+116
+00:04:06,580 --> 00:04:09,170
+dois sub-agrupamentos separados como vemos
+
+117
+00:04:09,380 --> 00:04:10,270
+e também 
+
+118
+00:04:10,720 --> 00:04:12,280
+tomou o segundo agrupamento e 
+
+119
+00:04:12,540 --> 00:04:14,220
+dividiu em dois sub-agrupamentos separados
+
+120
+00:04:14,460 --> 00:04:16,630
+como vemos, portanto,  
+
+121
+00:04:16,760 --> 00:04:17,880
+ambos os exemplos 
+
+122
+00:04:18,000 --> 00:04:18,970
+no canto inferior direito
+
+123
+00:04:19,220 --> 00:04:20,890
+correspondem a diferentes 
+
+124
+00:04:21,250 --> 00:04:22,440
+pontos ótimos locais no K-means e, de fato,
+
+125
+00:04:22,890 --> 00:04:24,440
+neste exemplo aqui, 
+
+126
+00:04:25,070 --> 00:04:26,150
+o agrupamento vermelho
+
+127
+00:04:26,550 --> 00:04:27,870
+captou apenas um único exemplar.
+
+128
+00:04:28,380 --> 00:04:29,810
+E o termo ótimo local,
+
+129
+00:04:30,200 --> 00:04:31,000
+a propósito, refere-se ao
+
+130
+00:04:31,490 --> 00:04:32,930
+ ponto ótimo local desta 
+
+131
+00:04:33,190 --> 00:04:35,940
+função distorção J, e
+
+132
+00:04:36,320 --> 00:04:38,380
+o que essas soluções no 
+
+133
+00:04:38,590 --> 00:04:39,830
+canto inferior esquerdo, 
+
+134
+00:04:40,120 --> 00:04:41,420
+o que esses ótimos locais correspondem
+
+135
+00:04:41,530 --> 00:04:42,880
+são soluções reais onde o K-means ficou
+
+136
+00:04:43,330 --> 00:04:44,050
+preso ao ponto ótimo local e
+
+137
+00:04:44,600 --> 00:04:45,940
+não está fazendo um trabalho muito bom
+
+138
+00:04:46,170 --> 00:04:47,940
+minimizar esta 
+
+139
+00:04:48,110 --> 00:04:50,030
+função distorção J. Então
+
+140
+00:04:50,540 --> 00:04:52,250
+se você está preocupado com a possibilidade do K-means
+
+141
+00:04:52,540 --> 00:04:53,810
+ficar preso em pontos ótimos locais, 
+
+142
+00:04:53,970 --> 00:04:55,110
+se você deseja aumentar as chances
+
+143
+00:04:55,330 --> 00:04:56,950
+do K-means encontrar o 
+
+144
+00:04:57,230 --> 00:04:58,480
+melhor agrupamento possível,
+
+145
+00:04:58,730 --> 00:05:00,290
+como exibido aqui em cima, 
+
+146
+00:05:00,350 --> 00:05:02,820
+o que podemos fazer é tentar múltiplas inicializações aleatórias.
+
+147
+00:05:03,580 --> 00:05:04,820
+Dessa forma, ao invés de apenas inicializar K-means
+
+148
+00:05:05,430 --> 00:05:06,460
+uma vez na esperança de que isso funcione
+
+149
+00:05:06,670 --> 00:05:07,680
+o que podemos fazer é, 
+
+150
+00:05:08,040 --> 00:05:10,020
+inicializar o K-means várias vezes e 
+
+151
+00:05:10,130 --> 00:05:10,990
+executar K-means muitas vezes,
+
+152
+00:05:11,890 --> 00:05:12,870
+e usar isso para 
+
+153
+00:05:12,950 --> 00:05:13,840
+tentar se certificar de chegarmos 
+
+154
+00:05:14,110 --> 00:05:15,640
+a uma melhor solução, 
+
+155
+00:05:15,800 --> 00:05:18,380
+o ótimo global ou o melhor ótimo local possível.
+
+156
+00:05:19,480 --> 00:05:22,460
+Objetivamente, aqui está como você pode fazer sobre isso.
+
+157
+00:05:22,720 --> 00:05:23,500
+Vamos dizer, eu decidi 
+
+158
+00:05:23,700 --> 00:05:24,800
+executar o K-means uma centena de vezes,
+
+159
+00:05:25,160 --> 00:05:26,790
+então eu vou executar este loop
+
+160
+00:05:27,060 --> 00:05:28,900
+uma centena de vezes
+
+161
+00:05:29,330 --> 00:05:30,830
+isto é um número de vezes bem típico,
+
+162
+00:05:30,920 --> 00:05:31,910
+ deve ser um valor 
+
+163
+00:05:32,160 --> 00:05:33,670
+próximo de 50 podendo chegar a 1000.
+
+164
+00:05:35,090 --> 00:05:36,730
+Então, vamos dizer que você decidiu executar o K-means 100 vezes.
+
+165
+00:05:38,220 --> 00:05:39,100
+Então, isso significa que
+
+166
+00:05:39,170 --> 00:05:41,490
+vamos inicializar o K-means aleatoriamente.
+
+167
+00:05:42,350 --> 00:05:43,250
+E para cada uma dessas
+
+168
+00:05:43,340 --> 00:05:44,710
+cem inicializações aleatórias
+
+169
+00:05:45,370 --> 00:05:47,040
+nos executamos o K-means o que
+
+170
+00:05:47,220 --> 00:05:48,200
+nos trará um conjunto de agrupamentos, 
+
+171
+00:05:48,430 --> 00:05:50,270
+e um conjunto de centróides
+
+172
+00:05:50,590 --> 00:05:51,940
+e então nós 
+
+173
+00:05:52,040 --> 00:05:53,760
+calculamos a distorção J,
+
+174
+00:05:54,500 --> 00:05:55,600
+isto vai calcular a função custo 
+
+175
+00:05:56,910 --> 00:05:58,260
+do conjunto do agrupamento 
+
+176
+00:05:58,720 --> 00:05:59,910
+e centróides que recebemos.
+
+177
+00:06:01,000 --> 00:06:03,470
+Finalmente, depois de ter feito esse procedimento uma centena de vezes. 
+
+178
+00:06:04,450 --> 00:06:06,330
+Você terá uma centena de agrupamentos com
+
+179
+00:06:06,710 --> 00:06:08,990
+diferentes tipos de dados e, 
+
+180
+00:06:09,240 --> 00:06:10,310
+finalmente, o que você fará com 
+
+181
+00:06:10,590 --> 00:06:11,510
+todas estas centenas de formas que 
+
+182
+00:06:11,820 --> 00:06:13,210
+você encontrou de agrupamento dos dados.
+
+183
+00:06:13,800 --> 00:06:16,050
+Basta escolher um, que nos dá o menor custo.
+
+184
+00:06:16,400 --> 00:06:18,480
+Isso nos dá a menor distorção. 
+
+185
+00:06:18,960 --> 00:06:20,610
+E acontece que,
+
+186
+00:06:21,170 --> 00:06:22,490
+se estiver executando o K-means com 
+
+187
+00:06:22,670 --> 00:06:24,520
+um número de agrupamentos relativamente pequeno,
+
+188
+00:06:24,630 --> 00:06:25,260
+para que você saiba se o 
+
+189
+00:06:25,520 --> 00:06:26,700
+número de agrupamentos é 
+
+190
+00:06:26,760 --> 00:06:28,180
+algo entre dois ou dez
+
+191
+00:06:28,980 --> 00:06:30,650
+fazer várias inicializações aleatórias 
+
+192
+00:06:31,460 --> 00:06:32,880
+ pode te certificar que
+
+193
+00:06:32,990 --> 00:06:34,430
+encontrou o melhor ponto ótimo.
+
+194
+00:06:34,690 --> 00:06:37,680
+dar uma garantia que você encontrou o melhor agrupamento de dados
+
+195
+00:06:37,870 --> 00:06:38,930
+Mas se K é muito maior, de modo que, 
+
+196
+00:06:39,080 --> 00:06:40,000
+K for maior que 10,
+
+197
+00:06:40,160 --> 00:06:41,010
+certamente se K for grande,
+
+198
+00:06:41,080 --> 00:06:42,340
+se você estava tentando 
+
+199
+00:06:42,400 --> 00:06:44,050
+encontrar centenas de agrupamento, então
+
+200
+00:06:45,840 --> 00:06:47,310
+haverá múltiplas inicializações aleatórias e 
+
+201
+00:06:47,940 --> 00:06:49,220
+será menos provável que haja uma diferença enorme e 
+
+202
+00:06:49,360 --> 00:06:50,400
+haverá uma chance muito maior que 
+
+203
+00:06:50,590 --> 00:06:51,910
+sua primeira inicialização aleatória
+
+204
+00:06:52,320 --> 00:06:53,610
+ lhe traga uma 
+
+205
+00:06:53,730 --> 00:06:55,380
+solução decente já feita,
+
+206
+00:06:56,590 --> 00:06:58,070
+fazer várias inicializações aleatórias 
+
+207
+00:06:58,680 --> 00:07:00,060
+provavelmente vai lhe trazer uma
+
+208
+00:07:00,260 --> 00:07:02,500
+solução um pouco melhor, mas talvez não tanto assim.
+
+209
+00:07:02,780 --> 00:07:04,230
+Mas é realmente no regime onde 
+
+210
+00:07:04,540 --> 00:07:05,810
+você tem um número relativamente 
+
+211
+00:07:06,090 --> 00:07:07,740
+pequeno de agrupamentos, especialmente se 
+
+212
+00:07:08,040 --> 00:07:09,080
+você tem, talvez 2 ou 3 ou 4 agrupamentos 
+
+213
+00:07:09,150 --> 00:07:10,550
+onde a inicialização aleatória 
+
+214
+00:07:11,140 --> 00:07:13,790
+poderia fazer uma enorme diferença em termos de 
+
+215
+00:07:14,190 --> 00:07:15,090
+certificar-se de um bom trabalho
+
+216
+00:07:15,170 --> 00:07:16,920
+minimizando a distorção da função e 
+
+217
+00:07:17,560 --> 00:07:18,730
+dando-lhe um bom agrupamento.
+
+218
+00:07:21,390 --> 00:07:22,560
+Então, este é o K-means 
+
+219
+00:07:22,640 --> 00:07:23,300
+com inicialização aleatória. 
+
+220
+00:07:24,350 --> 00:07:25,570
+Se você está tentando desenvolver um agrupamento  
+
+221
+00:07:25,710 --> 00:07:26,950
+com um número relativamente pequeno de 
+
+222
+00:07:27,310 --> 00:07:28,250
+grupos, 2, 3,
+
+223
+00:07:28,400 --> 00:07:30,540
+4, 5, talvez 6, 7, 
+
+224
+00:07:31,660 --> 00:07:34,040
+usando várias inicializações aleatórias pode, às vezes,
+
+225
+00:07:34,380 --> 00:07:36,830
+ajudá-lo a encontrar de maneira muito melhor o agrupamento dos dados.  
+
+226
+00:07:37,680 --> 00:07:39,650
+Mas, mesmo se você está trabalhando com um grande número de agrupamentos, a inicialização, 
+
+227
+00:07:40,350 --> 00:07:43,280
+o método de inicialização aleatória que eu descrevo aqui. 
+
+228
+00:07:43,520 --> 00:07:45,110
+Aqui tivemos um ponto de partida ao
+
+229
+00:07:45,370 --> 00:07:46,680
+K-means para à partir dele encontrarmos
+
+230
+00:07:47,030 --> 00:07:48,580
+um bom conjunto de agrupamentos.

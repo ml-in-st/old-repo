@@ -1,0 +1,119 @@
+In this video, we'll figure out a slightly
+simpler way to write the cost function than we have been using so far. And we'll also figure out how
+to apply gradient descent to fit the parameters
+of logistic regression. So, by the end of this, video you know how to implement a fully
+working version of logistic regression. Here's our cost function for
+logistic regression. Our overall cost function is 1 over m
+times the sum over the trading set of the cost of making different predictions
+on the different examples of labels y i. And this is the cost of a single
+example that we worked out earlier. And just want to remind you that for classification problems in our training
+sets, and in fact even for examples, now that our training set y is
+always equal to zero or one, right? That's sort of part of
+the mathematical definition of y. Because y is either zero or one, we'll be able to come up with
+a simpler way to write this cost function. And in particular,
+rather than writing out this cost function on two separate lines with two separate
+cases, so y equals one and y equals zero. I'm going to show you a way
+to take these two lines and compress them into one equation. And this would make it more convenient
+to write out a cost function and derive gradient descent. Concretely, we can write out
+the cost function as follows. We say that cost of H(x), y. I'm gonna write this as -y times log h(x)- (1-y) times log (1-h(x)). And I'll show you in a second that
+this expression, no, this equation, is an equivalent way, or more compact way, of writing out this definition of
+the cost function that we have up here. Let's see why that's the case. We know that there are only
+two possible cases. Y must be zero or one. So let's suppose Y equals one. If y is equal to 1, than this equation
+is saying that the cost is equal to, well if y is equal to 1,
+then this thing here is equal to 1. And 1 minus y is going to be equal to 0,
+right. So if y is equal to 1, then 1 minus
+y is 1 minus 1, which is therefore 0. So the second term gets
+multiplied by 0 and goes away. And we're left with only this first term,
+which is y times log- y times log (h(x)). Y is 1 so that's equal to -log h(x). And this equation is exactly what
+we have up here for if y = 1. The other case is if y = 0. And if that's the case, then our writing
+of the cos function is saying that, well, if y is equal to 0, then this
+term here would be equal to zero. Whereas 1 minus y,
+if y is equal to zero would be equal to 1, because 1 minus y becomes 1 minus
+zero which is just equal to 1. And so the cost function simplifies
+to just this last term here, right? Because the fist term over here gets
+multiplied by zero, and so it disappears, and so it's just left with this last term,
+which is -log (1- h(x)). And you can verify that this term
+here is just exactly what we had for when y is equal to 0. So this shows that this definition for
+the cost is just a more compact way of taking both of these expressions,
+the cases y =1 and y = 0, and writing them in a more
+convenient form with just one line. We can therefore write all
+our cost functions for logistic regression as follows. It is this 1 over m of the sum
+of these cost functions. And plugging in the definition for the cost that we worked out earlier,
+we end up with this. And we just put the minus sign outside. And why do we choose
+this particular function, while it looks like there could be other
+cost functions we could have chosen. Although I won't have time to go into
+great detail of this in this course, this cost function can be
+derived from statistics using the principle of maximum
+likelihood estimation. Which is an idea in statistics for how to efficiently find parameters'
+data for different models. And it also has a nice
+property that it is convex. So this is the cost function that essentially everyone uses when
+fitting logistic regression models. If you don't understand the terms that
+I just said, if you don't know what the principle of maximum likelihood
+estimation is, don't worry about it. But it's just a deeper rationale and
+justification behind this particular cost function than
+I have time to go into in this class. Given this cost function,
+in order to fit the parameters, what we're going to do then is try to find the
+parameters theta that minimize J of theta. So if we try to minimize this, this would
+give us some set of parameters theta. Finally, if we're given a new example with
+some set of features x, we can then take the thetas that we fit to our training
+set and output our prediction as this. And just to remind you, the output of
+my hypothesis I'm going to interpret as the probability that y is equal to one. And given the input x and
+parameterized by theta. But just, you can think of this as just my
+hypothesis as estimating the probability that y is equal to one. So all that remains to be done is figure
+out how to actually minimize J of theta as a function of theta so that we can actually fit
+the parameters to our training set. The way we're going to minimize the cost
+function is using gradient descent. Here's our cost function and if we want
+to minimize it as a function of theta, here's our usual template for graded descent where we repeatedly
+update each parameter by taking, updating it as itself minus learning
+ray alpha times this derivative term. If you know some calculus, feel free
+to take this term and try to compute the derivative yourself and see if you can
+simplify it to the same answer that I get. But even if you don't know
+calculus don't worry about it. If you actually compute this, what you get is this equation,
+and just write it out here. It's sum from i equals one through m
+of essentially the error times xij. So if you take this partial derivative
+term and plug it back in here, we can then write out our gradient
+descent algorithm as follows. And all I've done is I took the derivative
+term for the previous slide and plugged it in there. So if you have n features,
+you would have a parameter vector theta, which with parameters theta 0,
+theta 1, theta 2, down to theta n. And you will use this update
+to simultaneously update all of your values of theta. Now, if you take this update rule and compare it to what we were doing for
+linear regression. You might be surprised to realize that,
+well, this equation was exactly what we had for
+linear regression. In fact,
+if you look at the earlier videos, and look at the update rule, the Gradient
+Descent rule for linear regression. It looked exactly like what I
+drew here inside the blue box. So are linear regression and logistic
+regression different algorithms or not? Well, this is resolved by observing
+that for logistic regression, what has changed is that the definition
+for this hypothesis has changed. So as whereas for linear regression,
+we had h(x) equals theta transpose X, now this definition of h(x) has changed. And is instead now one over one
+plus e to the negative transpose x. So even though the update rule
+looks cosmetically identical, because the definition of
+the hypothesis has changed, this is actually not the same thing as
+gradient descent for linear regression. In an earlier video, when we were
+talking about gradient descent for linear regression, we had talked about how
+to monitor a gradient descent to make sure that it is converging. I usually apply that same
+method to logistic regression, too to monitor a gradient descent,
+to make sure it's converging correctly. And hopefully, you can figure out how to apply that
+technique to logistic regression yourself. When implementing logistic
+regression with gradient descent, we have all of these
+different parameter values, theta zero down to theta n, that we
+need to update using this expression. And one thing we could do is have a for
+loop. So for i equals zero to n, or
+for i equals one to n plus one. So update each of these
+parameter values in turn. But of course rather than using a for
+loop, ideally we would also use
+a vector rise implementation. So that a vector rise implementation
+can update all of these m plus one parameters all in one fell swoop. And to check your own understanding, you
+might see if you can figure out how to do the vector rise implementation
+with this algorithm as well. So, now you you know how to implement
+gradient descents for logistic regression. There was one last idea that we
+had talked about earlier, for linear regression,
+which was feature scaling. We saw how feature scaling can help
+gradient descent converge faster for linear regression. The idea of feature scaling also
+applies to gradient descent for logistic regression. And yet we have features that are on very
+different scale, then applying feature scaling can also make grading descent
+run faster for logistic regression. So that's it, you now know how to
+implement logistic regression and this is a very powerful, and probably the most widely used,
+classification algorithm in the world. And you now know how we get it to work for
+yourself.

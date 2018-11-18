@@ -1,0 +1,127 @@
+1
+00:00:00,370 --> 00:00:01,740
+Was ist Maschinelles Lernen?
+
+2
+00:00:01,740 --> 00:00:05,090
+Wahrscheinlich benutzt ihr es mehrere dutzend Mal
+am Tag, ohne es zu bemerken.
+
+3
+00:00:05,090 --> 00:00:08,790
+Jedes Mal, wenn ihr eine Suche bei Google oder
+Bing durchführt, funktioniert das so gut,
+
+4
+00:00:08,790 --> 00:00:12,340
+weil deren Software für Maschinelles Lernen
+herausgefunden hat, wie sie die Seiten ordnen muss.
+
+5
+00:00:12,340 --> 00:00:17,230
+Wenn die Foto-Anwendungen von Facebook oder Apple
+eure Freunde in euren Bildern erkennen,
+
+6
+00:00:17,230 --> 00:00:18,850
+ist das ebenfalls Maschinelles Lernen.
+
+7
+00:00:18,850 --> 00:00:20,370
+Jedes Mal wenn ihr eure Emails lest und
+
+8
+00:00:20,370 --> 00:00:24,490
+der Spamfilter euch davor bewahrt, euch durch
+Tonnen von Spam-Mails klicken zu müssen, dann
+
+9
+00:00:24,490 --> 00:00:29,390
+liegt das wieder daran, dass euer Computer gelernt hat,
+ Spam von Nicht-Spam Nachrichten zu unterscheiden.
+
+10
+00:00:29,390 --> 00:00:31,240
+Das ist Maschinelles Lernen.
+
+11
+00:00:31,240 --> 00:00:35,260
+Es ist die Wissenschaft, Computer dazu zu bringen zu
+lernen, ohne explizit programmiert zu werden.
+
+12
+00:00:35,260 --> 00:00:38,660
+Eines der Forschungsprojekte an denen ich arbeite
+bringt Roboter dazu, das Haus
+
+13
+00:00:38,660 --> 00:00:39,780
+aufzuräumen.
+
+14
+00:00:39,780 --> 00:00:41,010
+Wie geht man so etwas an?
+
+15
+00:00:41,010 --> 00:00:44,860
+Eine Sache die man tun kann ist den Roboter zuschauen zu
+lassen, während man die Aufgabe demonstriert, und
+
+16
+00:00:44,860 --> 00:00:46,000
+dabei zu lernen.
+
+17
+00:00:46,000 --> 00:00:49,690
+Der Roboter kann dann beobachten, welche Objekte
+man aufhebt und wo man sie hinstellt und
+
+18
+00:00:49,690 --> 00:00:52,000
+versuchen das gleiche zu tun,
+ selbst wenn man nicht dabei ist.
+
+19
+00:00:52,000 --> 00:00:55,460
+Einer der Gründe, wieso ich das so
+spannend finde, ist das Problem der AI,
+
+20
+00:00:55,460 --> 00:00:57,530
+der künstlichen Intelligenz (Artificial Intelligence).
+
+21
+00:00:57,530 --> 00:00:59,209
+Wenn wir wahrhaft intelligente Maschinen bauen,
+
+22
+00:00:59,209 --> 00:01:01,680
+können wir fast alles erreichen, was
+ihr oder ich auch tun können.
+
+23
+00:01:01,680 --> 00:01:04,920
+Viele Wissenschaftler glauben dass der beste Weg,
+um dabei Fortschritte zu erzielen, Lern-Algorithmen
+
+24
+00:01:04,920 --> 00:01:09,630
+sind, die man Neuronale Netzwerke nennt und die
+ die Funktionsweise des menschlichen Gehirns imitieren,
+
+25
+00:01:09,630 --> 00:01:11,030
+darüber werde ich euch ebenfalls etwas beibringen.
+
+26
+00:01:11,030 --> 00:01:13,170
+In diesem Kurs lernt ihr Algorithmen des Maschinellen Lernens
+
+27
+00:01:13,170 --> 00:01:14,390
+und werdet sie auch selbst implementieren.
+
+28
+00:01:14,390 --> 00:01:16,920
+Ich hoffe ihr registriert euch
+und schließt euch uns an.

@@ -1,0 +1,84 @@
+Dobrodošli na ovaj besplatan onlajn kurs
+mašinskog učenja. Mašinsko učenje je jedna od najuzbudljivijih tehnologija u
+poslednje vreme. Na ovim časovima ćete učiti o poslednjim dostignućima i takođe steći iskustvo
+tako što ćete lično implementirati i razvijati te algoritme. Verovatno svakog dana koristite
+algoritme koji uče, a da toga niste ni svesni. Svaki put kada upotrebite veb pretraživač
+kao što su Gugl ili Bing da nađete nešto na Internetu, to radi tako dobro između
+ostalog zahvaljujući tome što je neki algoritam, razvijen od strane Gugla ili
+Majkrosofta, naučio kako kako da rangira veb stranice. Svaki put kada koristite Fejsbukovu
+ili Eplovu aplikaciju za označavanje fotografija i ona prepozna fotografije vaših prijatelja, to
+je takođe mašinsko učenje. Svaki put kad čitate mejl i vaš spam filter vas poštedi toga da
+budete zatrpani tonom spama, to je takođe učeći algoritam. Jedna od stvari koja
+mene oduševljava je veliki VI san da će jednog dana biti napravljene mašine inteligentne
+koliko i vi ili ja. Još smo daleko od tog cilja, ali mnogi istraživači iz oblasti veštačke
+inteligencije veruju da najbolji put ka tom cilju vodi preko učećih algoritama koji
+pokušavaju da oponašaju način na koji ljudski mozak uči. Pričaću vam malo i o
+tome na ovim časovima. Na ovim predavanjima učićete o najmodernijim algoritmima mašinskog
+učenja. Ali samo poznavanje algoritama i matematike nije od naročite koristi ako ne znate kako da primenite sve to u praksi
+na konkretne probleme. Zato smo posvetili dosta vremena i
+pravljenju vežbi za vas, kroz koje ćete implementirati svaki od tih algoritama i
+sami videti kako rade. Dakle, zašto je mašinsko učenje toliko rašireno danas?
+Mašinsko učenje je oblast koja se izdvojila iz veštačke inteligencije (VI, eng. AI).
+Želeli smo da napravimo inteligentne mašine, i ispostavilo se da
+postoji nekoliko osnovnih stvari za koje bismo mogli da isprogramiramo mašine da ih rade,
+kao što je pronalaženje najkraćeg puta od A do B. Ali najčešće jednostavno nismo znali kako
+da napišemo VI programe da rade interesantnije stvari, kao što su veb pretraživanje, ili
+označavanje fotografija, ili borba protiv spama. Shvatilo se da jedini način da se ove stvari
+urade jeste omogućiti mašinama da ih same nauče. Tako je razvijeno mašinsko učenje kao
+nova sposobnost računara, i danas ono dotiče mnoge segmente industrije i nauke. Otkad se bavim mašinskim učenjem, tokom uobičajene
+nedelje se dešava da pričam sa pilotima helikoptera, biolozima, mnogo
+ljudi iz sveta računarstva, kolegama ovde na Stenfordu... i u proseku dva do tri
+puta nedeljno dobijem mejl od nekog iz industrije, iz Silicijumske doline, ko
+me kontaktira zato što želi da primeni učeći algoritam za rešavanje nekih problema.
+Ovo je dobar pokazatelj obuhvatnosti oblasti na koje se mašinsko učenje primenjuje. Tu su
+autonomni roboti, računarska biologija, mnogo toga u Silicijumskoj dolini
+na šta mašinsko učenje ima uticaj. Evo još nekih primera mašinskog učenja.
+Dubinska analiza podataka (eng. data mining). Jedan od razloga zašto je mašinsko učenje
+postalo toliko dominantno je razvoj veba i porast automatizacije. To sve znači da imamo
+mnogo veće setove podataka nego ikada ranije. Tako, na primer, jako puno kompanija iz
+Silicijumske doline danas prikuplja tzv. veb klik podatke, zvane još i klik-strim
+(clickstream) podaci, i pokušavaju da koriste algoritme mašinskog učenja za dubinsku analizu ovih
+podataka da bi bolje razumeli i opslužili svoje korisnike. To je veliki
+segment Silicijumske doline danas. Medicinski kartoni. Sa pojavom automatizacije,
+sada imamo elektronske medicinske kartone, i ako bismo mogli da pretvorimo medicinske kartone
+u medicinsko znanje, mogli bismo da počnemo da bolje razumemo bolesti. Računarska biologija.
+Opet, sa automatizacijom, biolozi prikupljaju mnogo podataka o genetskim sekvencama,
+DNK sekvencama, i tome sličnom, i mašine koje izvršavaju algoritme nam omogućavaju
+mnogo bolje razumevanje ljudskog genoma, i toga šta znači biti čovek. I u inženjeringu,
+takođe. U svim inženjerskim poljima imamo sve veće i veće setove podataka
+koje pokušavamo da razumemo koristeći učeće algoritme.
+Druga vrsta mašinskih aplikacija su one koje ne možemo da isprogramiramo
+ručno. Na primer, mnogo godina sam radio na autonomnim helikopterima. Jednostavno
+nismo znali kako da napišemo računarski program koji bi omogućio da helikopter
+samostalno leti. Jedinо što je donelo rezultate je bilo prepuštanje računaru da sam
+nauči kako da upravlja helikopterom. Prepoznavanje rukopisa. Danas je prosleđivanje
+pisama na pravu adresu, kroz čitave države, jeftino, u SAD kao i međunarodno,
+između ostalog i zato što kad ispišete kovertu ovako,
+postoji učeći algoritam koji je naučio kako da čita vaš rukopis,
+tako da može automatski da prosledi kovertu na pravu stranu. Zato nas košta
+nekoliko centi da pošaljemo pismo hiljadama kilometara daleko. I ako ste imali prilike
+da se sretnete sa oblastima kao što su obrada prirodnih jezika ili računarski vid,
+to su oblasti VI u vezi sa razumevanjem jezika ili razumevanjem slika. Najveći
+deo obrade prirodnih jezika i računarskog vida danas, su u stvari
+primenjeno mašinsko učenje. Učeći algoritmi su takođe u širokoj primeni kod
+samoprilagođavajućih programa. Svaki put kada odete na Amazon, Netfliks ili Aj-Tjuns, i
+kada oni preporuče filmove ili proizvode i muziku za vas, to je delo učećeg algoritma.
+Ako razmislite o tome, tamo su milioni korisnika i nije izvodljivo napisati milion
+različitih programa za milion korisnika. Jedini način da softver ponudi ove
+prilagođene preporuke jeste da može da sam nauči da se prilagođava onome što
+se vama sviđa. Konačno, učeći algoritmi se danas koriste da bi se razumeo proces
+učenja kod ljudi i da bi se razumelo kako mozak radi. Govorićemo o tome kako
+istraživači koriste ovo za napredоvanje ka velikom VI snu. Pre nekoliko meseci,
+jedan od studenata mi je pokazao članak o 12 najtraženijih veština u informacionim
+tehnologijama. Veština kojima IT menadžeri zaduženi za zapošljavanje ne mogu da kažu ”ne”.
+Bio je to nešto stariji članak, ali na vrhu ove liste 12 najopželjnijih IT veština
+nalazilo se mašinsko učenje. Ovde na Stenfordu, broj zapošljavača koji me pitaju
+da im preporučim neke diplomce iz oblasti mašinskog učenja je mnogo veći nego
+broj studenata koji diplomiraju na mašinskom učenju kod nas svake godine.
+Zato mislim da postoji velika nezadovoljena potražnja za ovim veštinama, i ovo je pravi
+trenutak da se uči o mašinskom učenju. Ja se nadam da ću vas naučiti puno o tome na
+ovim predavanjima. Na sledećem snimku ćemo početi da se bavimo formalnijom
+definicijom toga šta je mašinsko učenje. I počećemo da govorimo o osnovnim vrstama
+problema i algoritama u mašinskom učenju. Naučićete nešto od terminologije
+u mašinskom učenju i početi da stičete osećaj šta su različiti
+algoritmi i kada bi svaki od njih mogao biti primenljiv.

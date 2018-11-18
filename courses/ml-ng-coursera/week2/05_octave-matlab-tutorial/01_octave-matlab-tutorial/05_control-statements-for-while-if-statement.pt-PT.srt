@@ -1,0 +1,1431 @@
+1
+00:00:00,180 --> 00:00:01,178
+Nesse vídeo,
+eu gostaria de
+
+2
+00:00:01,178 --> 00:00:02,587
+falar pra vocês como escrever
+
+3
+00:00:02,600 --> 00:00:03,842
+estruturas de controle
+
+4
+00:00:03,842 --> 00:00:05,672
+em Octave,
+
+5
+00:00:05,700 --> 00:00:07,280
+expressões como "for", "while" e "if"
+
+6
+00:00:07,350 --> 00:00:12,176
+e também como definir e usar funções.
+
+7
+00:00:12,480 --> 00:00:13,980
+Aqui está minha janela do Octave.
+
+8
+00:00:13,980 --> 00:00:16,502
+Vou mostrar primeiro como usar um loop "for"
+
+9
+00:00:16,502 --> 00:00:17,888
+Eu vou começar definindo
+
+10
+00:00:17,888 --> 00:00:18,852
+v como um vetor 10 x 1
+
+11
+00:00:18,870 --> 00:00:20,808
+de zeros.
+
+12
+00:00:20,830 --> 00:00:22,209
+Eu escrevo
+
+13
+00:00:22,240 --> 00:00:25,071
+um loop "for" onde "i" vai de 1 até 10.
+
+14
+00:00:25,090 --> 00:00:27,608
+Isso para "i" igual a 1 até 10.
+
+15
+00:00:27,608 --> 00:00:29,905
+E vamos ver,
+
+16
+00:00:29,905 --> 00:00:31,466
+Eu vou definir v(i)
+
+17
+00:00:31,466 --> 00:00:33,214
+igual a dois na potência de "i",
+
+18
+00:00:33,220 --> 00:00:36,848
+e finalmente
+
+19
+00:00:36,848 --> 00:00:37,671
+"end".
+
+20
+00:00:37,671 --> 00:00:39,082
+O espaço em branco não importa,
+
+21
+00:00:39,090 --> 00:00:40,538
+eu uso eles
+
+22
+00:00:40,538 --> 00:00:41,960
+apenas para ficar bem identado,
+
+23
+00:00:41,990 --> 00:00:44,385
+mas o espaçamento não importa.
+
+24
+00:00:44,420 --> 00:00:46,163
+Ao fazer isso,
+
+25
+00:00:46,163 --> 00:00:48,626
+o resultado é que "v"
+
+26
+00:00:48,626 --> 00:00:49,420
+será  2^1, 2^2
+
+27
+00:00:49,500 --> 00:00:51,478
+e assim por diante.
+
+28
+00:00:51,490 --> 00:00:52,665
+Então, usando a sintaxe
+
+29
+00:00:52,665 --> 00:00:55,410
+i = 1:10
+
+30
+00:00:55,410 --> 00:00:57,429
+isso faz com que "i"
+
+31
+00:00:57,440 --> 00:00:59,662
+itere pelos valores de 1 até 10.
+
+32
+00:00:59,662 --> 00:01:00,830
+E por falar nisso,
+poderia também
+
+33
+00:01:00,830 --> 00:01:02,481
+fazer
+
+34
+00:01:02,481 --> 00:01:04,795
+indices = 1:10
+
+35
+00:01:04,800 --> 00:01:07,260
+e então
+
+36
+00:01:07,270 --> 00:01:09,305
+os índices no array vão de 1 até 10.
+
+37
+00:01:09,305 --> 00:01:13,249
+Você também pode escrever
+"for i = indices".
+
+38
+00:01:15,040 --> 00:01:17,805
+E isso será o mesmo que i = 1:10.
+
+39
+00:01:17,820 --> 00:01:19,459
+Você pode exibir
+
+40
+00:01:19,480 --> 00:01:23,498
+"i" e isso faria a mesma coisa.
+
+41
+00:01:23,498 --> 00:01:24,698
+Então, isso é um loop "for".
+
+42
+00:01:24,698 --> 00:01:27,201
+Se você estiver familiar com "break"
+
+43
+00:01:27,230 --> 00:01:29,375
+e "continue",
+
+44
+00:01:29,375 --> 00:01:30,809
+aqui estão elas,
+
+45
+00:01:30,809 --> 00:01:32,061
+pode-se usá-las dentro dos loops no Octave.
+
+46
+00:01:32,061 --> 00:01:33,902
+Mas primeiro
+
+47
+00:01:33,902 --> 00:01:36,550
+deixe-me mostrar como um loop "while" funciona.
+
+48
+00:01:36,570 --> 00:01:39,088
+Então, aqui está meu vetor "v".
+
+49
+00:01:39,120 --> 00:01:40,912
+Vamos fazer um laço
+
+50
+00:01:40,920 --> 00:01:44,037
+"while" com "i" igual a 1,
+
+51
+00:01:44,037 --> 00:01:45,259
+enquanto "i" for menor ou igual a 5,
+
+52
+00:01:45,259 --> 00:01:47,662
+vou atribuir
+
+53
+00:01:47,662 --> 00:01:51,082
+a "v(i)" o valor 100
+
+54
+00:01:51,530 --> 00:01:54,449
+e incrementar "i" por 1,
+
+55
+00:01:54,449 --> 00:01:56,644
+e "end".
+
+56
+00:01:56,700 --> 00:01:58,090
+Então o que isso diz?
+
+57
+00:01:58,090 --> 00:01:59,932
+"i" inicia igual a 1
+
+58
+00:01:59,970 --> 00:02:01,359
+e então atribuo
+
+59
+00:02:01,380 --> 00:02:02,629
+100 a "v(i)"
+
+60
+00:02:02,629 --> 00:02:04,249
+e incremento "i" por 1,
+
+61
+00:02:04,260 --> 00:02:07,666
+até que ele seja maior que 5.
+
+62
+00:02:07,690 --> 00:02:09,377
+E como resultado disso,
+
+63
+00:02:09,377 --> 00:02:13,022
+onde previamente "v" era esse
+vetor das potência de dois,
+
+64
+00:02:13,022 --> 00:02:14,573
+eu agora peguei os primeiros
+
+65
+00:02:14,580 --> 00:02:17,225
+cinco elementos do meu vetor
+
+66
+00:02:17,260 --> 00:02:19,618
+e sobrescrevi eles com esse valor de 100.
+
+67
+00:02:19,618 --> 00:02:22,797
+Então esta é a sintaxe para um loop "while".
+
+68
+00:02:23,140 --> 00:02:24,503
+Vamos fazer outro exemplo.
+
+69
+00:02:24,503 --> 00:02:26,600
+"i" é igual 1.
+
+70
+00:02:26,600 --> 00:02:28,491
+"while(true)" e aqui
+
+71
+00:02:28,500 --> 00:02:31,892
+quero mostrar pra vocês como usar
+a declaração "break".
+
+72
+00:02:31,892 --> 00:02:34,040
+Vamos dizer que "v(i)" igual a 999 e
+
+73
+00:02:34,070 --> 00:02:37,331
+i = i + 1
+
+74
+00:02:38,110 --> 00:02:45,900
+se "i" é igual a 6,
+"break"
+
+75
+00:02:47,910 --> 00:02:47,910
+"end".
+
+76
+00:02:48,410 --> 00:02:49,425
+E essa é a primeira vez
+
+77
+00:02:49,425 --> 00:02:51,945
+que usamos a declaração "if",
+
+78
+00:02:51,945 --> 00:02:53,308
+então eu espero que a lógica faça sentido.
+
+79
+00:02:53,308 --> 00:02:57,297
+Já que "i" é igual a 1,
+e dentro do loop,
+
+80
+00:02:57,340 --> 00:02:59,900
+o loop "while" repetidamente define "v(i)" igual a 999
+
+81
+00:02:59,900 --> 00:03:01,527
+e incrementa "i" por 1,
+
+82
+00:03:01,527 --> 00:03:02,901
+e então quando o "i"
+
+83
+00:03:02,920 --> 00:03:04,451
+chega a 6,
+
+84
+00:03:04,451 --> 00:03:05,757
+o "break" interrompe
+
+85
+00:03:05,757 --> 00:03:07,284
+o loop "while",
+e assim
+
+86
+00:03:07,284 --> 00:03:08,596
+o efeito disso deve ser pegar
+
+87
+00:03:08,596 --> 00:03:09,929
+os primeiros cinco elementos desse
+
+88
+00:03:09,929 --> 00:03:11,748
+vetor "v" e defini-los como 999.
+
+89
+00:03:11,748 --> 00:03:14,832
+E de fato, nós pegamos "v"
+
+90
+00:03:14,832 --> 00:03:18,345
+e sobrescrevendo os primeiros
+cinco elementos com 999.
+
+91
+00:03:18,345 --> 00:03:20,172
+Essa é a sintaxe
+
+92
+00:03:20,172 --> 00:03:21,974
+da declaração "if", "for" e
+
+93
+00:03:21,974 --> 00:03:25,058
+"while", e observe o "end".
+
+94
+00:03:25,070 --> 00:03:27,159
+Nós temos dois "end" aqui.
+
+95
+00:03:27,170 --> 00:03:29,719
+Este "end" aqui,
+finaliza a declaração do "if"
+
+96
+00:03:29,730 --> 00:03:33,228
+e o segundo "end",
+finaliza a declaração do "while".
+
+97
+00:03:33,250 --> 00:03:35,265
+Agora eu quero mostrar a sintaxe geral de
+
+98
+00:03:35,265 --> 00:03:37,763
+como usar uma declaração "if" e "else".
+
+99
+00:03:37,763 --> 00:03:40,274
+Então, vejamos,
+
+100
+00:03:40,274 --> 00:03:42,776
+v(1) é igual a 999,
+
+101
+00:03:42,860 --> 00:03:46,996
+vamos escrever v(1) igual a 2 para este exemplo.
+
+102
+00:03:47,020 --> 00:03:48,758
+Então,
+escrevemos
+
+103
+00:03:48,758 --> 00:03:55,050
+"if" v(1)  = igual a 1,
+exibir "The value is one".
+
+104
+00:03:56,855 --> 00:03:58,588
+Aqui está como escrever uma
+
+105
+00:03:58,588 --> 00:04:00,040
+declaração do "else",
+ou melhor,
+
+106
+00:04:00,040 --> 00:04:03,853
+"elseif" v(1) é igual a 2.
+
+107
+00:04:03,853 --> 00:04:07,815
+Isto é, se no nosso exemplo isso for verdade,
+
+108
+00:04:07,815 --> 00:04:12,268
+exibir "The value is two",
+senão
+
+109
+00:04:13,650 --> 00:04:17,960
+exibir "The value is not one or two".
+
+110
+00:04:17,990 --> 00:04:21,699
+Isso é uma declaração "if-else"
+
+111
+00:04:21,700 --> 00:04:23,889
+que termina com um "end".
+
+112
+00:04:23,889 --> 00:04:25,271
+E claro,
+nós apenas
+
+113
+00:04:25,271 --> 00:04:27,589
+definimos v(1) igual a 2,
+então,
+
+114
+00:04:27,610 --> 00:04:30,729
+esperamos que seja exibido "The value is two".
+
+115
+00:04:30,780 --> 00:04:32,844
+E finalmente,
+
+116
+00:04:32,880 --> 00:04:34,143
+eu acho que não falei disso antes,
+
+117
+00:04:34,143 --> 00:04:35,622
+mas se você precisar sair do Octave,
+
+118
+00:04:35,622 --> 00:04:36,947
+você pode digitar o
+comando de saída "exit" e
+
+119
+00:04:36,947 --> 00:04:38,373
+pressionar a tecla Enter,
+isso vai fazer com que
+
+120
+00:04:38,400 --> 00:04:39,981
+o Octave encerre.
+Ou use o comando "quit"
+
+121
+00:04:39,981 --> 00:04:42,428
+que também funciona.
+
+122
+00:04:42,450 --> 00:04:43,857
+Vamos falar sobre
+
+123
+00:04:43,857 --> 00:04:45,292
+funções e como defini-las
+
+124
+00:04:45,310 --> 00:04:48,592
+e como usá-las.
+
+125
+00:04:48,620 --> 00:04:49,680
+Aqui está a minha área de trabalho,
+
+126
+00:04:49,720 --> 00:04:52,078
+e eu predefini um arquivo
+
+127
+00:04:52,078 --> 00:04:56,818
+ou pre-salvei no meu desktop um
+arquivo chamado "squareThisNumber.m"
+
+128
+00:04:56,830 --> 00:04:59,471
+É dessa forma que você define funções no Octave.
+
+129
+00:04:59,480 --> 00:05:01,681
+Você cria um arquivo com o nome
+
+130
+00:05:01,681 --> 00:05:03,958
+da sua função com a extensão ".m",
+
+131
+00:05:03,960 --> 00:05:05,694
+e quando o Octave encontra este arquivo,
+
+132
+00:05:05,730 --> 00:05:07,643
+ele sabe que este
+
+133
+00:05:07,680 --> 00:05:12,322
+é o lugar onde ele deve procurar
+pela definição da função "squareThisNumber.m".
+
+134
+00:05:12,340 --> 00:05:14,076
+Vamos abrir o arquivo.
+
+135
+00:05:14,076 --> 00:05:15,717
+Veja que eu estou usando o
+
+136
+00:05:15,717 --> 00:05:19,352
+programa Microsoft Wordpad para abrir o arquivo.
+
+137
+00:05:19,352 --> 00:05:20,250
+Eu quero apenas encorajá-lo,
+
+138
+00:05:20,250 --> 00:05:23,379
+se você usar o Microsoft Windows,
+
+139
+00:05:23,379 --> 00:05:25,075
+a usar o Wordpad ao invés do
+
+140
+00:05:25,110 --> 00:05:27,477
+Bloco de Notas para abrir estes arquivos,
+
+141
+00:05:27,490 --> 00:05:28,557
+se você tem um
+
+142
+00:05:28,557 --> 00:05:29,938
+editor de texto diferente,
+não tem problema,
+
+143
+00:05:29,938 --> 00:05:33,325
+mas o Bloco de Notas pode estragar o espaçamento.
+
+144
+00:05:33,350 --> 00:05:34,775
+Se você tem apenas o Bloco de Notas
+
+145
+00:05:34,800 --> 00:05:36,312
+ele também pode servir,
+
+146
+00:05:36,312 --> 00:05:37,779
+mas se você tem
+
+147
+00:05:37,779 --> 00:05:39,354
+Wordpad também,
+
+148
+00:05:39,354 --> 00:05:40,609
+eu preferiria usar ele ou
+
+149
+00:05:40,610 --> 00:05:45,053
+outro editor de texto,
+se você tiver um editor de texto diferente para editar as funções.
+
+150
+00:05:45,060 --> 00:05:47,155
+Então, aqui está como você define uma função no Octave.
+
+151
+00:05:47,155 --> 00:05:49,816
+Deixe-me aproximar a imagem um pouco.
+
+152
+00:05:49,816 --> 00:05:52,516
+Esse arquivo possui apenas três linhas.
+
+153
+00:05:52,516 --> 00:05:54,440
+A primeira linha diz: função "y" é igual a raíz quadrada
+
+154
+00:05:54,440 --> 00:05:56,448
+do número de "x",
+
+155
+00:05:56,448 --> 00:05:57,705
+isso informa o Octave que eu vou retornar
+
+156
+00:05:57,705 --> 00:06:00,025
+o valor "y",
+
+157
+00:06:00,025 --> 00:06:01,315
+Eu vou retornar um valor e
+
+158
+00:06:01,315 --> 00:06:02,375
+este valor será salvo
+
+159
+00:06:02,375 --> 00:06:04,443
+na variável "y".
+
+160
+00:06:04,443 --> 00:06:06,003
+Além disso, ele informa o Octave que
+
+161
+00:06:06,003 --> 00:06:08,068
+esta função possui um argumento,
+
+162
+00:06:08,070 --> 00:06:10,408
+que é o argumento "x",
+
+163
+00:06:10,420 --> 00:06:11,846
+e a definição do corpo da função,
+
+164
+00:06:11,846 --> 00:06:15,156
+como y = x ^ 2
+
+165
+00:06:15,180 --> 00:06:16,553
+Então, vamos tentar chamar
+
+166
+00:06:16,553 --> 00:06:19,071
+essa função "squareThisNumber(5)",
+
+167
+00:06:19,071 --> 00:06:21,854
+e isso
+
+168
+00:06:21,854 --> 00:06:23,115
+não vai funcionar,
+
+169
+00:06:23,115 --> 00:06:25,693
+o Octave diz: "a função 'squareThisNumber' não foi definida".
+
+170
+00:06:25,693 --> 00:06:28,902
+Isso acontece porque o Octave não sabe
+onde encontrar o arquivo.
+
+171
+00:06:28,902 --> 00:06:30,682
+Então, como de costume, vamos usar PWD.
+
+172
+00:06:30,690 --> 00:06:32,592
+Não estou no meu diretório,
+
+173
+00:06:32,592 --> 00:06:36,151
+então vamos ver,
+cd 'c:\users\ang\desktop'
+
+174
+00:06:36,151 --> 00:06:39,888
+Aqui é onde o meu desktop fica.
+
+175
+00:06:39,888 --> 00:06:41,276
+Opa, um pequeno erro ali.
+
+176
+00:06:41,276 --> 00:06:42,848
+Users/ang/Desktop
+
+177
+00:06:42,848 --> 00:06:44,157
+e se eu digitar agora "squareThisNumber(5)",
+
+178
+00:06:44,157 --> 00:06:46,728
+ele retorna como
+
+179
+00:06:46,728 --> 00:06:48,505
+como resposta o número 25.
+
+180
+00:06:48,505 --> 00:06:50,347
+Como um recurso avançado,
+
+181
+00:06:50,347 --> 00:06:51,972
+isso é apenas para aqueles
+
+182
+00:06:51,972 --> 00:06:54,596
+que sabem o que o termo "caminho de busca" 
+significa,
+
+183
+00:06:54,596 --> 00:06:55,945
+se você quiser
+
+184
+00:06:55,945 --> 00:06:57,497
+modificar o diretório de busca
+
+185
+00:06:57,497 --> 00:06:58,863
+do Octave, você pode.
+
+186
+00:06:58,863 --> 00:06:59,866
+Pense nesta
+
+187
+00:06:59,866 --> 00:07:01,827
+próxima parte como um material avançado
+
+188
+00:07:01,827 --> 00:07:03,292
+ou opcional.
+
+189
+00:07:03,292 --> 00:07:04,214
+Apenas para aqueles que estão
+
+190
+00:07:04,214 --> 00:07:05,484
+familiarizados com os conceitos
+
+191
+00:07:05,484 --> 00:07:07,642
+de caminho de busca e linguagens de programação,
+
+192
+00:07:07,650 --> 00:07:08,962
+mas você pode usar
+
+193
+00:07:08,962 --> 00:07:11,875
+o termo "addpath('C:\Users\ang\Desktop')"
+
+194
+00:07:11,880 --> 00:07:16,241
+para
+
+195
+00:07:16,241 --> 00:07:17,972
+adicionar o diretório ao
+
+196
+00:07:17,972 --> 00:07:19,744
+caminho de busca do Octave,
+
+197
+00:07:19,744 --> 00:07:21,065
+de forma que mesmo que você vá para
+
+198
+00:07:21,065 --> 00:07:22,611
+outro diretório
+
+199
+00:07:22,611 --> 00:07:24,510
+o Octave ainda irá
+
+200
+00:07:24,510 --> 00:07:26,005
+pesquisar por funções no diretório
+
+201
+00:07:26,005 --> 00:07:29,214
+"C:/Users/ang/Desktop".
+
+202
+00:07:29,214 --> 00:07:30,521
+Mesmo que eu esteja em
+
+203
+00:07:30,521 --> 00:07:31,868
+um diretório diferente agora,
+
+204
+00:07:31,868 --> 00:07:35,297
+o programa sabe onde encontrar a
+função "squareThisNumber"
+
+205
+00:07:35,297 --> 00:07:35,935
+OK ?
+
+206
+00:07:35,935 --> 00:07:37,407
+Mas se você não estiver familiarizado
+
+207
+00:07:37,407 --> 00:07:39,184
+com o conceito do diretório de pesquisa,
+
+208
+00:07:39,184 --> 00:07:40,068
+não se preocupe.
+
+209
+00:07:40,068 --> 00:07:40,889
+Apenas certifique-se de usar
+
+210
+00:07:40,889 --> 00:07:42,053
+o comando "cd" para ir para
+
+211
+00:07:42,053 --> 00:07:43,926
+o diretório onde está sua função antes
+
+212
+00:07:43,940 --> 00:07:47,441
+de executá-la,
+que tudo irá funcionar.
+
+213
+00:07:47,441 --> 00:07:49,587
+Um conceito que o Octave possui
+
+214
+00:07:49,600 --> 00:07:51,058
+e que muitas outras linguagens de programação
+
+215
+00:07:51,058 --> 00:07:52,969
+não possuem,
+
+216
+00:07:52,969 --> 00:07:54,909
+é que ele também permite que você defina
+
+217
+00:07:54,909 --> 00:07:58,873
+funções que retornam múltiplos valores,
+ou múltiplos argumentos.
+
+218
+00:07:58,873 --> 00:08:00,889
+Então aqui está um exemplo disso.
+
+219
+00:08:00,889 --> 00:08:02,931
+Defina a função chamada
+
+220
+00:08:02,931 --> 00:08:04,964
+"squareAndCubeThisNumber(x)"
+
+221
+00:08:04,964 --> 00:08:06,644
+e o que isso diz é que
+
+222
+00:08:06,660 --> 00:08:08,547
+esta função retorna 2 valores,
+"y1" e "y2".
+
+223
+00:08:08,547 --> 00:08:09,955
+Conforme segue,
+
+224
+00:08:09,960 --> 00:08:13,603
+"y1" é "x" ao quadrado,
+"y2" é "x" ao cubo.
+
+225
+00:08:13,603 --> 00:08:16,972
+E o que ele faz é retornar 2 números.
+
+226
+00:08:16,980 --> 00:08:18,855
+Então, alguns de vocês,
+
+227
+00:08:18,855 --> 00:08:20,195
+dependendo da linguagem de programação que vocês usam,
+
+228
+00:08:20,195 --> 00:08:22,931
+C/C++ ou Java.
+
+229
+00:08:22,940 --> 00:08:26,051
+geralmente assumimos que uma função retorna apenas um valor.
+
+230
+00:08:26,051 --> 00:08:27,847
+Mas a sintaxe do Octave
+
+231
+00:08:27,847 --> 00:08:31,679
+permite retornar múltiplos valores.
+
+232
+00:08:32,430 --> 00:08:34,087
+Agora, de volta a janela do Octave.
+
+233
+00:08:34,087 --> 00:08:37,914
+Se eu escrever, "a", "b" igual
+
+234
+00:08:37,914 --> 00:08:41,263
+"squareAndCube(5)"
+
+235
+00:08:41,263 --> 00:08:44,599
+"squareAndCube(5)"
+
+236
+00:08:44,610 --> 00:08:46,338
+então "a" agora é igual 25
+
+237
+00:08:46,338 --> 00:08:47,778
+e "b" é igual ao cubo de 5,
+
+238
+00:08:47,778 --> 00:08:49,729
+igual a 125.
+
+239
+00:08:49,729 --> 00:08:51,645
+Então,
+
+240
+00:08:51,670 --> 00:08:53,010
+isso é conveniente se
+você precisar definir
+
+241
+00:08:53,010 --> 00:08:56,447
+uma função que retorna múltiplos valores.
+
+242
+00:08:56,447 --> 00:08:57,480
+Finalmente, eu irei mostrar
+
+243
+00:08:57,480 --> 00:09:01,123
+mais um exemplo sofisticado de uma função.
+
+244
+00:09:01,130 --> 00:09:02,361
+Vamos dizer que eu tenho um conjunto de dados
+
+245
+00:09:02,370 --> 00:09:04,400
+contendo (1, 1), (2, 2), (3, 3).
+
+246
+00:09:04,430 --> 00:09:07,636
+E o que eu gosto
+
+247
+00:09:07,636 --> 00:09:09,113
+de fazer é definir uma
+
+248
+00:09:09,113 --> 00:09:10,798
+função do Octave para calcular
+
+249
+00:09:10,830 --> 00:09:14,341
+a função de custo J(Teta) para os
+diferentes valores de Teta.
+
+250
+00:09:14,360 --> 00:09:16,157
+Primeiro, vamos colocar os dados no Octave.
+
+251
+00:09:16,160 --> 00:09:17,694
+Então eu defino minha matriz X
+
+252
+00:09:17,700 --> 00:09:20,998
+como [1 1; 1 2; 1 3].
+
+253
+00:09:21,010 --> 00:09:24,043
+Então, esta é a matriz que eu queria,
+
+254
+00:09:24,050 --> 00:09:26,073
+x com x0,
+
+255
+00:09:26,073 --> 00:09:27,428
+a primeira coluna sendo x0
+
+256
+00:09:27,428 --> 00:09:28,746
+e o segundo termo sendo
+
+257
+00:09:28,770 --> 00:09:32,375
+os valores de "x" dos meus
+três exemplos de treinamento.
+
+258
+00:09:32,375 --> 00:09:33,594
+A deixe-me definir
+
+259
+00:09:33,594 --> 00:09:35,488
+"y" como [1; 2; 3],
+
+260
+00:09:35,488 --> 00:09:38,793
+que foram os valores do eixo "y".
+
+261
+00:09:38,810 --> 00:09:40,431
+Então vamos dizer que Teta
+
+262
+00:09:40,431 --> 00:09:43,714
+é igual a "[0; 1]".
+
+263
+00:09:43,730 --> 00:09:45,652
+Aqui no meu desktop,
+
+264
+00:09:45,660 --> 00:09:47,483
+eu predefini a função de custo "J",
+
+265
+00:09:47,490 --> 00:09:49,008
+e se eu abrir
+
+266
+00:09:49,010 --> 00:09:52,019
+a definição desta função,
+ela será como mostrado aqui.
+
+267
+00:09:52,019 --> 00:09:53,579
+Então a função "J" é igual a "costFunctionJ"
+
+268
+00:09:53,580 --> 00:09:55,192
+x, y, Teta
+
+269
+00:09:55,192 --> 00:09:57,151
+alguns comentários,
+descrevendo as entradas
+
+270
+00:09:57,151 --> 00:09:59,546
+e então
+
+271
+00:09:59,560 --> 00:10:01,383
+aqui estão alguns passos,
+define-se "m"
+
+272
+00:10:01,383 --> 00:10:02,995
+como sendo o número de exemplos de treinamento,
+
+273
+00:10:03,020 --> 00:10:05,495
+o número de linhas em "X".
+
+274
+00:10:05,510 --> 00:10:07,596
+Calcule as predições, "predictions" igual a "X" vezes Teta,
+
+275
+00:10:07,596 --> 00:10:10,137
+e assim,
+
+276
+00:10:10,170 --> 00:10:11,670
+isso é um comentário
+
+277
+00:10:11,710 --> 00:10:14,693
+da linha anterior,
+
+278
+00:10:14,720 --> 00:10:16,823
+Aqui calculamos os erros do
+quadrado em "sqrErrors",
+
+279
+00:10:16,823 --> 00:10:18,637
+pegando a diferença entre as "predictions" e
+
+280
+00:10:18,640 --> 00:10:20,265
+os valores de "y"
+
+281
+00:10:20,265 --> 00:10:22,126
+elevando cada elemento ao quadrado
+
+282
+00:10:22,140 --> 00:10:24,376
+e finalmente calculando a função de custo "J".
+
+283
+00:10:24,376 --> 00:10:26,128
+O Octave sabe que
+
+284
+00:10:26,128 --> 00:10:27,439
+J é um valor que
+
+285
+00:10:27,439 --> 00:10:31,383
+eu quero retornar, porque J apareceu 
+aqui na definição da função.
+
+286
+00:10:31,420 --> 00:10:34,127
+Fique a vontade para pausar
+
+287
+00:10:34,170 --> 00:10:35,292
+este vídeo se você quiser
+
+288
+00:10:35,292 --> 00:10:36,712
+para analisar esta função
+
+289
+00:10:36,712 --> 00:10:38,820
+por mais tempo e
+
+290
+00:10:38,820 --> 00:10:44,031
+ter certeza de que você entende
+todos os passos.
+
+291
+00:10:44,031 --> 00:10:45,184
+Mas quando eu executo isso no Octave,
+
+292
+00:10:45,184 --> 00:10:46,630
+eu executo
+
+293
+00:10:46,630 --> 00:10:51,197
+"J = costFunctionJ( X, y, Teta)".
+
+294
+00:10:51,197 --> 00:10:55,142
+Ele calcula.
+Opa, digitei errado ali.
+
+295
+00:10:55,142 --> 00:10:57,018
+Deve ser um "X" maiúsculo.
+
+296
+00:10:57,018 --> 00:11:00,472
+Ele calcula "J" igual 0,
+
+297
+00:11:00,510 --> 00:11:03,367
+porque se o meu conjunto de dados era
+
+298
+00:11:03,367 --> 00:11:06,963
+[1; 2; 3], [1; 2; 3] então, definindo
+
+299
+00:11:06,980 --> 00:11:08,741
+Teta 0 igual a 0, Teta 1 igual a 1.
+
+300
+00:11:08,770 --> 00:11:11,259
+Isso me dá exatamente
+
+301
+00:11:11,259 --> 00:11:15,559
+uma linha de 45 graus que cabe no meu
+conjunto de dados perfeitamente.
+
+302
+00:11:15,600 --> 00:11:16,887
+Por outro lado,  se eu defino
+
+303
+00:11:16,887 --> 00:11:19,828
+Teta igual a, digamos, [0; 0],
+
+304
+00:11:19,830 --> 00:11:22,524
+então esta hipótese
+
+305
+00:11:22,540 --> 00:11:24,050
+está predizendo sempre zeros,
+
+306
+00:11:24,050 --> 00:11:25,803
+Teta 0 igual 0,
+
+307
+00:11:25,810 --> 00:11:27,139
+Teta 1 igual 0 e
+
+308
+00:11:27,139 --> 00:11:29,345
+eu calculo a função "costFunctionJ",
+
+309
+00:11:29,370 --> 00:11:31,830
+que resulta 2.3333,
+
+310
+00:11:31,830 --> 00:11:35,495
+e isso é igual a 1^2,
+
+311
+00:11:35,520 --> 00:11:36,745
+que é o meu erro quadrado no
+
+312
+00:11:36,745 --> 00:11:39,789
+primeiro exemplo,
+mais 2^2,
+
+313
+00:11:39,800 --> 00:11:42,377
+mais 3^2 e então
+
+314
+00:11:42,440 --> 00:11:45,288
+dividido por 2*m,
+que é
+
+315
+00:11:45,288 --> 00:11:47,091
+2 vezes o número de exemplos de treinamento,
+
+316
+00:11:47,091 --> 00:11:50,643
+que é de fato 2.33 e assim,
+
+317
+00:11:50,643 --> 00:11:53,289
+podemos verificar que
+
+318
+00:11:53,330 --> 00:11:54,909
+esta função aqui
+
+319
+00:11:54,909 --> 00:11:56,302
+está calculando corretamente a função de custo.
+
+320
+00:11:56,302 --> 00:11:58,212
+Esses são alguns exemplos
+
+321
+00:11:58,250 --> 00:12:00,222
+que nós testamos no nosso
+
+322
+00:12:00,222 --> 00:12:03,433
+simples exemplo de treino.
+
+323
+00:12:03,490 --> 00:12:04,914
+Isso nos permite verificar
+
+324
+00:12:04,960 --> 00:12:08,689
+que a "costFunctionJ",
+
+325
+00:12:08,720 --> 00:12:10,202
+como definido aqui,
+
+326
+00:12:10,230 --> 00:12:12,992
+está, de fato, calculando
+
+327
+00:12:12,992 --> 00:12:14,908
+corretamente a função de custo,
+
+328
+00:12:14,920 --> 00:12:17,424
+pelo menos no nosso simples exemplo de treino
+
+329
+00:12:17,430 --> 00:12:18,835
+que nós possuímos aqui com X
+
+330
+00:12:18,835 --> 00:12:20,823
+e Y,
+
+331
+00:12:20,823 --> 00:12:25,189
+esse simples exemplo de treino que nós resolvemos.
+
+332
+00:12:25,230 --> 00:12:26,285
+Então agora você sabe como
+
+333
+00:12:26,285 --> 00:12:28,171
+escrever declarações de controle como loops "for",
+
+334
+00:12:28,171 --> 00:12:29,838
+expressões como "for", "while" e "if" no Octave,
+
+335
+00:12:29,838 --> 00:12:33,197
+assim como definir e usar funções.
+
+336
+00:12:33,197 --> 00:12:34,530
+No próximo vídeo,
+
+337
+00:12:34,530 --> 00:12:36,123
+eu vou mostrar rapidamente
+
+338
+00:12:36,123 --> 00:12:38,144
+a logística de como
+
+339
+00:12:38,144 --> 00:12:39,873
+trabalhar e
+
+340
+00:12:39,873 --> 00:12:41,664
+submeter os conjuntos de problemas para
+
+341
+00:12:41,664 --> 00:12:45,212
+esse curso e como usar o nosso
+sistema para submetê-los.
+
+342
+00:12:45,230 --> 00:12:46,794
+E finalmente, depois disso,
+
+343
+00:12:46,794 --> 00:12:48,856
+no vídeo tutorial final do Octave,
+
+344
+00:12:48,856 --> 00:12:51,400
+Eu quero falar com vocês a respeito de vetorização,
+
+345
+00:12:51,400 --> 00:12:52,938
+que é uma idéia de como
+
+346
+00:12:52,938 --> 00:12:56,126
+fazer com que os programas do
+Octave sejam mais rápidos.
+Tradução: Tiago Roberto Lammers | Revisão: Eduardo Bonet

@@ -1,0 +1,774 @@
+1
+00:00:00,190 --> 00:00:01,190
+U prethodnom videu
+sam vam predstavio 
+
+2
+00:00:01,190 --> 00:00:04,960
+matematičku definiciju gradijenta opadanja.
+
+3
+00:00:04,960 --> 00:00:08,830
+Hajdemo malo dublje da vidimo šta algoritam
+
+4
+00:00:08,830 --> 00:00:12,580
+radi i zašto koraci gradijenta 
+opadanja imaju smisla.
+
+5
+00:00:15,430 --> 00:00:19,580
+Ovo je algoritam gradijenta 
+opadanja koji smo videli prošli put.
+
+6
+00:00:19,580 --> 00:00:25,800
+Samo da vas podsetim, ovaj parametar 
+ili ovaj član alfa se zove stopa učenja.
+
+7
+00:00:25,800 --> 00:00:30,620
+On određuje koliko veliki korak 
+pravimo kada menjamo parametar tetaj.
+
+8
+00:00:31,660 --> 00:00:36,406
+Drugi član ovde je izvod
+
+9
+00:00:39,147 --> 00:00:43,904
+a ono što želim da uradim u ovome 
+videu je da vam približim šta svaki od
+
+10
+00:00:43,904 --> 00:00:49,281
+ova dva člana rade i zašto imaju 
+smisla kada se koriste zajedno.
+
+11
+00:00:49,281 --> 00:00:55,054
+Da bih vam prenio te intuicije, 
+koristiću malo jednostavniji
+
+12
+00:00:55,054 --> 00:01:00,403
+primer gde želimo da minimizujemo 
+koristeći samo jedan parametar.
+
+13
+00:01:00,403 --> 00:01:03,930
+Recimo da imamo funkciju J 
+od samo jednog parametra,
+
+14
+00:01:03,930 --> 00:01:09,410
+teta1, kao što smo imali par 
+videa pre, gde je on realan broj.
+
+15
+00:01:09,410 --> 00:01:14,410
+Možemo da imamo jedan 
+crtež koji je malo jednostavniji.
+
+16
+00:01:14,410 --> 00:01:17,360
+Pokušajmo da shvatimo šta 
+gradijent opadanja radi u ovoj funkciji.
+
+17
+00:01:20,850 --> 00:01:26,980
+Recimo da je ovo moja funkcija J(teta1).
+
+18
+00:01:26,980 --> 00:01:28,550
+To je moja ...
+
+19
+00:01:28,550 --> 00:01:31,505
+A teta1 je realan broj.
+
+20
+00:01:32,635 --> 00:01:33,755
+U redu?
+
+21
+00:01:33,755 --> 00:01:39,605
+Hajde da inicijalizujemo gradijent 
+opadanja sa teta1 na ovoj lokaciji.
+
+22
+00:01:39,605 --> 00:01:43,085
+Recimo da počinjemo od te tačke na funkciji.
+
+23
+00:01:44,495 --> 00:01:48,105
+Gradijent opadanja će da vrši izmene.
+
+24
+00:01:49,570 --> 00:01:54,719
+Teta1 je promenjen u teta1 minus alfa puta
+
+25
+00:01:54,719 --> 00:02:01,940
+d d teta1 J(teta1), u redu?
+
+26
+00:02:01,940 --> 00:02:09,140
+Usput, ovaj član izvoda, ako se
+
+27
+00:02:09,140 --> 00:02:13,170
+pitate zašto sam promenio 
+oznaku tih parcijalnih izvoda,
+
+28
+00:02:13,170 --> 00:02:16,280
+ako ne znate šta je razlika između 
+tih simbola parcijalnih izvoda
+
+29
+00:02:16,280 --> 00:02:18,490
+i d d teta, ne brinite.
+
+30
+00:02:18,490 --> 00:02:22,000
+Tehnički, u matematici to zovemo parcijalni izvod i
+
+31
+00:02:22,000 --> 00:02:27,170
+zovite ga izvod, u zavisnosti od broja parametara u funkciji J.
+
+32
+00:02:27,170 --> 00:02:28,690
+Ali to je matematička tehnika.
+
+33
+00:02:28,690 --> 00:02:32,000
+A za svrhe ove lekcije,
+
+34
+00:02:32,000 --> 00:02:36,430
+smatrajte te parcijalne simbole 
+d d teta1 kao potpuno istu stvar.
+
+35
+00:02:36,430 --> 00:02:38,650
+I ne brinite šta je stvarna razlika.
+
+36
+00:02:38,650 --> 00:02:42,340
+Pokušaću da koristim 
+matematički preciznu oznaku ali za
+
+37
+00:02:42,340 --> 00:02:46,550
+naše potrebe te dve oznake su ista stvar.
+
+38
+00:02:46,550 --> 00:02:48,890
+Da vidimo šta ova jednačina radi.
+
+39
+00:02:48,890 --> 00:02:53,470
+Izračunaćemo ovaj izvod, nisam 
+siguran jeste li videli izvode
+
+40
+00:02:53,470 --> 00:02:57,460
+u računu pre, ali šta izvod u ovoj 
+tački radi je da u stvari govori,
+
+41
+00:02:57,460 --> 00:03:02,380
+nacrtajmo tangentu u ovoj tački, 
+kao što je ta prava, ta crvena linija,
+
+42
+00:03:02,380 --> 00:03:06,480
+koja samo dodiruje ovu funkciju, da vidimo nagib ove crvene linije.
+
+43
+00:03:06,480 --> 00:03:07,870
+to je izvod,
+
+44
+00:03:07,870 --> 00:03:11,890
+on govori koji je nagib prave 
+koja je tangenta ove funkcije.
+
+45
+00:03:11,890 --> 00:03:17,278
+U redu, nagib prave je ova visina 
+podeljena ovim horizontalnim delom.
+
+46
+00:03:17,278 --> 00:03:22,780
+Ova linija ima pozitivan nagib,
+
+47
+00:03:22,780 --> 00:03:26,690
+tako da mu je pozitivan izvod.
+
+48
+00:03:26,690 --> 00:03:30,370
+Promena teta će da bude teta1,
+
+49
+00:03:30,370 --> 00:03:35,813
+biće promenjen u teta1 minus 
+alfa puta neki pozitivan broj.
+
+50
+00:03:39,296 --> 00:03:40,271
+U rеdu.
+
+51
+00:03:40,271 --> 00:03:43,300
+Alfa je stopa učenja, uvek je pozitivan broj.
+
+52
+00:03:43,300 --> 00:03:47,220
+Tako imamo da je teta1 
+promenjen u teta1 minus nešto.
+
+53
+00:03:47,220 --> 00:03:49,910
+Tako ću da pomerim teta1 na levo.
+
+54
+00:03:49,910 --> 00:03:53,350
+Smanjiću teta1 i vidimo da je ovo ispravno
+
+55
+00:03:53,350 --> 00:03:55,810
+jer želim da sam usmeren u ovome smeru.
+
+56
+00:03:55,810 --> 00:03:59,490
+Da me dovede do ovoga ovde minimuma.
+
+57
+00:04:00,810 --> 00:04:04,060
+Dakle, gradijent opadanja govori da radimo ispravno.
+
+58
+00:04:04,060 --> 00:04:06,120
+Hajde da vidimo drugi primer.
+
+59
+00:04:06,120 --> 00:04:10,330
+Uzmimo istu moju funkciju J, 
+pokušajmo da nacrtamo istu funkciju
+
+60
+00:04:10,330 --> 00:04:11,530
+J(teta1).
+
+61
+00:04:11,530 --> 00:04:16,140
+A sada, recimo da sam inicijalizovao 
+moj parametar ovde levo.
+
+62
+00:04:16,140 --> 00:04:17,740
+Dakle, teta1 je ovde.
+
+63
+00:04:17,740 --> 00:04:19,240
+Dobijam tu tačku na površi.
+
+64
+00:04:20,650 --> 00:04:25,680
+Sada, moj član izvod po teta1 od J(teta1) u
+
+65
+00:04:25,680 --> 00:04:31,420
+ovoj tački, gledaćemo nagib ove linije,
+
+66
+00:04:31,420 --> 00:04:34,580
+dakle, izvod je nagib ove prave.
+
+67
+00:04:34,580 --> 00:04:37,644
+Ali ova prava je nageta ka dole 
+tako da ona ima negativan nagib,
+
+68
+00:04:41,021 --> 00:04:41,990
+zar ne, 
+
+69
+00:04:41,990 --> 00:04:45,880
+kažem da ova funkcija ima negativan izvod,
+
+70
+00:04:45,880 --> 00:04:48,220
+to samo znači da je negativan nagib u toj tački.
+
+71
+00:04:48,220 --> 00:04:54,690
+To je manje ili jednako 0 tako da, 
+kada menjam teta, imaću teta,
+
+72
+00:04:54,690 --> 00:04:59,100
+menjam ovo teta minus alfa puta negativan broj.
+
+73
+00:05:02,380 --> 00:05:07,460
+Imam teta1 minus negativan broj što znači da ću da
+
+74
+00:05:07,460 --> 00:05:11,210
+povećam teta jer minus negativan broj
+
+75
+00:05:11,210 --> 00:05:12,840
+znači da dodajem nešto na teta.
+
+76
+00:05:12,840 --> 00:05:16,640
+A to znači da ću da povećavam teta
+
+77
+00:05:16,640 --> 00:05:21,110
+dok god nije ovde, povećavam teta dok god
+
+78
+00:05:21,110 --> 00:05:24,270
+me vodi bliže minimumu.
+
+79
+00:05:26,430 --> 00:05:31,600
+Nadam se da ste dobili osećaj šta izvod radi,
+
+80
+00:05:31,600 --> 00:05:36,250
+hajde da vidimo stopu učenja alfa i šta radi.
+
+81
+00:05:38,090 --> 00:05:42,330
+Ovo je pravilo gradijenta opadanja, 
+to je ova jednačina.
+
+82
+00:05:43,890 --> 00:05:48,440
+Hajde da vidimo šta će da se 
+desi ako je alfa previše malo ili
+
+83
+00:05:48,440 --> 00:05:50,740
+je previše veliko.
+
+84
+00:05:50,740 --> 00:05:54,200
+U ovome prvom primeru, 
+šta se dešava ako je alfa previše malo?
+
+85
+00:05:54,200 --> 00:05:59,228
+Ovo je moja funkcija J od teta.
+
+86
+00:05:59,228 --> 00:06:02,460
+Hajde da počnemo ovde.
+
+87
+00:06:02,460 --> 00:06:06,920
+Ako je alfa previše malo, tada ću da množim
+
+88
+00:06:06,920 --> 00:06:11,220
+moju promenu malim brojem tako da 
+ću da pravim male korake kao što je ovaj.
+
+89
+00:06:11,220 --> 00:06:13,350
+U redu, ovaj korak.
+
+90
+00:06:13,350 --> 00:06:16,520
+Tada, od ove nove tačke ću 
+da napravim drugi korak.
+
+91
+00:06:16,520 --> 00:06:19,690
+Ali ako je alfa premalo, pravim još jedan mali korak.
+
+92
+00:06:19,690 --> 00:06:26,530
+I tako, ako je stopa učenja previše mala, dobiću
+
+93
+00:06:26,530 --> 00:06:31,770
+te male, male korake ka minimumu.
+
+94
+00:06:31,770 --> 00:06:35,380
+Trebaće mi mnogo koraka 
+da dođem do minimuma i
+
+95
+00:06:35,380 --> 00:06:38,980
+ako je alf previše malo, 
+gradijent opadanja će da bude spor jer će
+
+96
+00:06:38,980 --> 00:06:40,880
+da pravi male, male korake i tako
+
+97
+00:06:40,880 --> 00:06:44,830
+će mu trebati mnogo koraka pre nego 
+što dođe blizu globalnog minimuma.
+
+98
+00:06:46,750 --> 00:06:49,460
+A šta ako je alfa previše veliko?
+
+99
+00:06:49,460 --> 00:06:54,880
+Dakle, ovo je moja funkcija J od teta, 
+i alfa je previše veliko,
+
+100
+00:06:54,880 --> 00:06:59,180
+tada gradijent opadanja može da prebaci 
+minimum i može da pogreši u konvergenciji ili
+
+101
+00:06:59,180 --> 00:07:00,910
+čak da divergira, dakle na ovo sam mislio.
+
+102
+00:07:00,910 --> 00:07:04,170
+Recimo da su svi podaci ovde, blizu minimuma.
+
+103
+00:07:04,170 --> 00:07:07,430
+Tačke izvoda na desno, ali ako je alfa previše veliko,
+
+104
+00:07:07,430 --> 00:07:09,060
+želim da napravim veliki korak,
+
+105
+00:07:09,060 --> 00:07:10,820
+zapamtite, veliki korak kao ovaj,
+
+106
+00:07:10,820 --> 00:07:14,980
+tako dobijamo veliki korak, 
+i sada moja funkcija koštanja ide na gore.
+
+107
+00:07:14,980 --> 00:07:19,390
+Jer počinje od ove vrednosti i sada one idu na gore.
+
+108
+00:07:19,390 --> 00:07:22,872
+Sada moj izvod kaže da treba umanjiti podatke.
+
+109
+00:07:22,872 --> 00:07:25,070
+Ali ako je moja stopa učenja previše velika,
+
+110
+00:07:25,070 --> 00:07:27,930
+mogu da napravim previše veliki korak dovde.
+
+111
+00:07:27,930 --> 00:07:31,560
+Znači, došli smo dovde, u redu?
+
+112
+00:07:31,560 --> 00:07:35,020
+Ako je korak previše velik možemo 
+da napravimo sledeći veliki korak i
+
+113
+00:07:35,020 --> 00:07:39,950
+pravimo prekoračenje, i opet, dok god ne shvatite
+
+114
+00:07:39,950 --> 00:07:44,170
+da se udaljavate od minimuma.
+
+115
+00:07:44,170 --> 00:07:49,530
+Ako je alfa previše veliko, može se desiti da 
+konvergencija ne uspe ili čak da se desi divergencija.
+
+116
+00:07:49,530 --> 00:07:52,170
+Sada imam još jedno pitanje za vas.
+
+117
+00:07:52,170 --> 00:07:55,870
+To je jedno trik pitanje i kada sam 
+ovo učio prvi put, trebalo mi je
+
+118
+00:07:55,870 --> 00:07:57,020
+mnogo vremena da shvatim.
+
+119
+00:07:57,020 --> 00:08:00,740
+Šta ako je vaš parametar teta1 
+već u lokalnom minimumu,
+
+120
+00:08:00,740 --> 00:08:03,420
+šta mislite koji će korak 
+gradijent opadanja da napravi?
+
+121
+00:08:06,520 --> 00:08:10,260
+Recimo da ste inicijalizovali 
+teta1 na lokalni minimum.
+
+122
+00:08:10,260 --> 00:08:15,580
+Recimo da je to vaša inicijalna vrednost teta1 ovde i
+
+123
+00:08:15,580 --> 00:08:18,630
+već je u lokalnom optimumu 
+ili lokalnom minimumu.
+
+124
+00:08:19,960 --> 00:08:23,280
+Videćete da je lokalni optimum, 
+vaš izvod, jednak nuli.
+
+125
+00:08:23,280 --> 00:08:29,070
+Za taj nagib, tu tačku tangente, 
+dakle nagib u ovoj tački
+
+126
+00:08:29,070 --> 00:08:36,370
+će da bude jednak nuli i tako je i izvod jednak nuli.
+
+127
+00:08:36,370 --> 00:08:38,430
+A u gradijentu opadanja,
+
+128
+00:08:38,430 --> 00:08:43,970
+imate teta1 jer menjate sa teta1 minus alfa puta 0.
+
+129
+00:08:43,970 --> 00:08:48,780
+To znači da ako ste već na lokalnom optimumu,
+
+130
+00:08:48,780 --> 00:08:54,680
+teta1 ostaje nepromenjeno 
+jer je promena teta1 = teta1.
+
+131
+00:08:54,680 --> 00:08:57,830
+Ako su vaši parametri već na lokalnom minimumu
+
+132
+00:08:57,830 --> 00:09:00,980
+korak gradijenta opadanja ne radi ništa, 
+ne menja vaš parametar
+
+133
+00:09:00,980 --> 00:09:04,830
+a to je ono što želite jer čuva vaše 
+rešenje u lokalnom optimumu.
+
+134
+00:09:05,970 --> 00:09:09,860
+Ovo takođe objašnjava zašto gradijent 
+opadanja konvergira lokalnom minimumu
+
+135
+00:09:09,860 --> 00:09:13,110
+iako je stopa učenja fiksna.
+
+136
+00:09:13,110 --> 00:09:15,570
+Na ovo sam mislio, pogledajmo primer.
+
+137
+00:09:15,570 --> 00:09:20,570
+Ovo je funkcija koštanja J(teta)
+
+138
+00:09:20,570 --> 00:09:24,750
+koju bih mogao da minimizujem 
+i recimo da inicijalizujem algoritam,
+
+139
+00:09:24,750 --> 00:09:29,040
+moj algoritam gradijenta opadanja 
+tamo u toj magenta tački.
+
+140
+00:09:29,040 --> 00:09:33,060
+Ako napravim jedan korak u gradijentu opadanja, 
+može da me odvede u tu tačku,
+
+141
+00:09:33,060 --> 00:09:34,770
+jer je izvod veoma strm tamo.
+
+142
+00:09:34,770 --> 00:09:36,020
+Shvatate?
+
+143
+00:09:36,020 --> 00:09:41,130
+Sada sam u ovoj zelenoj tački, 
+i ako napravim sledeći korak u gradijentu opadanja,
+
+144
+00:09:41,130 --> 00:09:45,740
+primetite da je moj izvod, znači nagib, manje strm
+
+145
+00:09:45,740 --> 00:09:49,470
+u toj zelenoj tački nego u magenta tački.
+
+146
+00:09:49,470 --> 00:09:54,060
+Jer što više prilazim minimumu, 
+moj izvod postaje bliži i bliži 0,
+
+147
+00:09:54,060 --> 00:09:57,570
+kako prilazim minimumu.
+
+148
+00:09:57,570 --> 00:10:02,350
+Nakon jednog koraka u opadanju, 
+moj novi izvod je malo manji.
+
+149
+00:10:02,350 --> 00:10:04,890
+Tako da ću da napravim drugi 
+korak u gradijentu opadanja.
+
+150
+00:10:04,890 --> 00:10:08,910
+Prirodno, napraviću manji korak iz ove zelene tačke
+
+151
+00:10:08,910 --> 00:10:11,290
+nego iz magenta tačke.
+
+152
+00:10:11,290 --> 00:10:15,030
+Sada sa novom tačkom, crvenom tačkom, 
+ja sam još bliži globalnom minimumu
+
+153
+00:10:15,030 --> 00:10:19,390
+pa je izvod još manji nego što je bio u zelenoj tački.
+
+154
+00:10:19,390 --> 00:10:21,050
+Tako ću napraviti još jedan 
+korak u gradijentu opadanja.
+
+155
+00:10:22,280 --> 00:10:26,560
+Sada je moj izvod još manji pa je opseg
+
+156
+00:10:26,560 --> 00:10:31,700
+promene teta1 još manji tako da 
+pravim mali korak kao što je ovaj.
+
+157
+00:10:31,700 --> 00:10:36,630
+I kako se gradijent opadanja izvršava,
+
+158
+00:10:36,630 --> 00:10:40,870
+automatski ćete da pravite 
+sve manje i manje korake.
+
+159
+00:10:41,880 --> 00:10:45,230
+Sve dok ne počnete da pravite 
+veoma male korake, znate, i
+
+160
+00:10:45,230 --> 00:10:48,990
+konačno ne konvergirate lokalnom minimumu.
+
+161
+00:10:50,270 --> 00:10:55,580
+Dakle, da ukratko ponovimo, u gradijentu opadanja, 
+kako prilazimo lokalnom minimumu,
+
+162
+00:10:55,580 --> 00:10:58,290
+gradijent opadanja će automatski 
+da pravi manje korake.
+
+163
+00:10:58,290 --> 00:11:01,060
+To je zato što, kada prilazimo lokalnom minimumu,
+
+164
+00:11:01,060 --> 00:11:06,110
+po definiciji lokalni minimum je 
+mesto gde je izvod jednak nuli,
+
+165
+00:11:06,110 --> 00:11:10,450
+što više prilazimo lokalnom minimumu, 
+ovaj izvod će automatski da bude
+
+166
+00:11:10,450 --> 00:11:16,720
+manji i tako će gradijent 
+opadanja da pravi manje korake.
+
+167
+00:11:16,720 --> 00:11:21,140
+Zato nema potrebe da 
+smanjujemo alfa tokom vremena.
+
+168
+00:11:22,810 --> 00:11:27,840
+Dakle, to je algoritam gradijenta opadanja i
+ možete da ga koristite da biste minimizovali
+
+169
+00:11:27,840 --> 00:11:32,940
+bilo koju funkciju koštanja J, ne samo funkciju 
+koštanja koju smo definisali za linearnu regresiju.
+
+170
+00:11:32,940 --> 00:11:35,720
+U sledećem videu ćemo da uzmemo funkciju J i
+
+171
+00:11:35,720 --> 00:11:39,350
+postavićemo je da bude baš funkcija koštanja linearne regresije,
+
+172
+00:11:39,350 --> 00:11:42,140
+kvadratna funkcija koštanja 
+sa kojom smo se sreli ranije.
+
+173
+00:11:42,140 --> 00:11:46,210
+Uzećemo gradijent opadanja i tu sjajnu 
+funkciju koštanja i spojićemo ih zajedno.
+
+174
+00:11:46,210 --> 00:11:48,830
+To će da nam da prvi algoritam učenja,
+
+175
+00:11:48,830 --> 00:11:50,750
+daće nam algoritam linearne regresije.

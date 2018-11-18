@@ -1,0 +1,1831 @@
+1
+00:00:00,370 --> 00:00:01,590
+No vídeo anterior, falamos
+
+2
+00:00:01,890 --> 00:00:04,570
+sobre o encadeamento do reconhecimento de caracteres (OCR) em fotografias e como isso funciona.
+
+3
+00:00:05,480 --> 00:00:06,370
+Nele, poderíamos
+
+4
+00:00:07,050 --> 00:00:08,070
+pegar uma imagem,
+
+5
+00:00:08,130 --> 00:00:10,010
+e passá-la por uma sequência de componentes de
+
+6
+00:00:10,280 --> 00:00:11,680
+aprendizagem automática para
+
+7
+00:00:11,890 --> 00:00:13,820
+tentar ler o texto que aparece na imagem.
+
+8
+00:00:14,590 --> 00:00:15,820
+Neste vídeo eu gostaria de falar
+
+9
+00:00:16,210 --> 00:00:17,360
+um pouco mais sobre como
+
+10
+00:00:17,780 --> 00:00:20,310
+cada componente do encadeamento funciona.
+
+11
+00:00:21,270 --> 00:00:24,070
+Em particular, este vídeo ficará mais centrado na discussão
+
+12
+00:00:24,680 --> 00:00:25,950
+sobre o que é chamado de
+
+13
+00:00:26,750 --> 00:00:31,570
+classificador "sliding windows" (janelas deslizantes). O primeiro estágio
+
+14
+00:00:32,000 --> 00:00:33,390
+do filtro foi a
+
+15
+00:00:33,730 --> 00:00:35,090
+detecção de texto, onde, olhando
+
+16
+00:00:35,330 --> 00:00:36,640
+para uma imagem como esta, tenta-se
+
+17
+00:00:37,020 --> 00:00:39,320
+encontrar as regiões de texto.
+
+18
+00:00:39,850 --> 00:00:42,490
+Detecção de texto é um problema incomum em visão computacional,
+
+19
+00:00:43,220 --> 00:00:44,820
+pois, dependendo do comprimento
+
+20
+00:00:45,140 --> 00:00:46,150
+do texto que se está tentando encontrar,
+
+21
+00:00:46,290 --> 00:00:47,870
+estes retângulos
+
+22
+00:00:47,970 --> 00:00:49,600
+podem ter diferentes proporções.
+
+23
+00:00:51,100 --> 00:00:52,060
+Para falar
+
+24
+00:00:52,220 --> 00:00:53,550
+sobre detecção de coisas em imagens,
+
+25
+00:00:54,300 --> 00:00:55,860
+vamos começar com um exemplo simples
+
+26
+00:00:56,550 --> 00:01:00,080
+de detecção de pedestres. Depois voltaremos às
+
+27
+00:01:00,460 --> 00:01:02,300
+ideias que foram desenvolvidas
+
+28
+00:01:02,570 --> 00:01:04,840
+na detecção de pedestres e as aplicaremos na detecção de texto.
+
+29
+00:01:06,280 --> 00:01:08,010
+Na detecção de pedestres, deseja-se
+
+30
+00:01:08,360 --> 00:01:09,440
+pegar uma imagem como esta
+
+31
+00:01:09,600 --> 00:01:11,010
+e encontrar pedestres
+
+32
+00:01:11,160 --> 00:01:12,920
+individuais que aparecem na imagem.
+
+33
+00:01:13,260 --> 00:01:14,440
+Este é um pedestre que encontramos,
+
+34
+00:01:14,520 --> 00:01:15,550
+este é o segundo,
+
+35
+00:01:15,780 --> 00:01:17,920
+o terceiro, o quarto, o quinto
+
+36
+00:01:18,290 --> 00:01:19,390
+e o sexto.
+
+37
+00:01:19,560 --> 00:01:20,990
+Este problema é talvez um pouco
+
+38
+00:01:21,320 --> 00:01:22,770
+mais simples que detecção de texto apenas
+
+39
+00:01:23,100 --> 00:01:24,200
+porque as proporções
+
+40
+00:01:24,560 --> 00:01:27,490
+dos pedestres são bem similares.
+
+41
+00:01:28,170 --> 00:01:29,280
+Então, podemos usar apenas uma proporção fixa
+
+42
+00:01:29,630 --> 00:01:31,960
+para estes retângulos que estamos tentando encontrar.
+
+43
+00:01:32,420 --> 00:01:33,610
+Por proporção quero dizer
+
+44
+00:01:33,920 --> 00:01:36,420
+a relação entre a altura e a largura destes retângulos.
+
+45
+00:01:37,820 --> 00:01:38,190
+As proporções são as mesmas
+
+46
+00:01:38,650 --> 00:01:40,120
+para diferentes pedestres, porém, para
+
+47
+00:01:40,490 --> 00:01:42,650
+detecção de texto, a relação entre
+
+48
+00:01:43,030 --> 00:01:44,560
+altura e largura é diferente
+
+49
+00:01:44,960 --> 00:01:45,830
+para diferentes linhas de texto.
+
+50
+00:01:46,460 --> 00:01:47,940
+Na detecção de pedestres, apesar
+
+51
+00:01:48,020 --> 00:01:49,250
+deles estarem a diferentes distâncias
+
+52
+00:01:49,810 --> 00:01:51,250
+da câmera e
+
+53
+00:01:51,390 --> 00:01:52,730
+a altura destes retângulos serem
+
+54
+00:01:53,380 --> 00:01:55,600
+diferentes dependendo de quão distantes estão,
+
+55
+00:01:55,990 --> 00:01:57,090
+a proporção é a mesma.
+
+56
+00:01:57,720 --> 00:01:58,880
+Para construir um sistema de
+
+57
+00:01:59,440 --> 00:02:02,460
+detecção de pedestres, podemos fazer o seguinte.
+
+58
+00:02:02,520 --> 00:02:03,650
+Digamos que decidimos
+
+59
+00:02:03,970 --> 00:02:06,100
+padronizar a proporção
+
+60
+00:02:06,690 --> 00:02:08,010
+como 82 por 36.
+
+61
+00:02:08,180 --> 00:02:10,040
+Poderíamos
+
+62
+00:02:10,330 --> 00:02:11,510
+ter escolhido algum número arredondado,
+
+63
+00:02:12,020 --> 00:02:14,000
+como 80 por 40 por exemplo, mas 82 por 36 parece bom.
+
+64
+00:02:16,110 --> 00:02:17,280
+Depois, o que faríamos é sair e
+
+65
+00:02:17,650 --> 00:02:20,420
+coletar grandes conjuntos de treinamento compostos de exemplos positivos e negativos.
+
+66
+00:02:21,240 --> 00:02:22,790
+Aqui estão exemplos de pedaços de
+
+67
+00:02:22,900 --> 00:02:24,230
+imagens de 82 por 36 que
+
+68
+00:02:24,360 --> 00:02:26,230
+contém pedestres e aqui estão
+
+69
+00:02:26,550 --> 00:02:28,360
+exemplos de imagens que não contém.
+
+70
+00:02:29,470 --> 00:02:30,710
+Neste slide mostro 12
+
+71
+00:02:31,050 --> 00:02:33,170
+exemplos positivos de "y = 1"
+
+72
+00:02:33,730 --> 00:02:34,990
+e 12 exemplos de "y = 0".
+
+73
+00:02:36,410 --> 00:02:37,790
+Em típicas aplicações de detecção de
+
+74
+00:02:38,180 --> 00:02:39,200
+pedestres, tem-se
+
+75
+00:02:39,500 --> 00:02:40,880
+algo em torno de 1 mil
+
+76
+00:02:41,230 --> 00:02:42,210
+a talvez
+
+77
+00:02:42,300 --> 00:02:44,410
+10 mil exemplos para treinamento, ou
+
+78
+00:02:44,460 --> 00:02:45,360
+mais ainda se for possível
+
+79
+00:02:45,510 --> 00:02:47,180
+coletar conjuntos maiores de treinamento.
+
+80
+00:02:47,460 --> 00:02:48,590
+E o que se pode fazer então é treinar
+
+81
+00:02:48,910 --> 00:02:50,160
+uma rede neural ou algum
+
+82
+00:02:50,510 --> 00:02:52,420
+outro algoritmo de algoritmo de aprendizado para
+
+83
+00:02:52,610 --> 00:02:54,570
+receber como entrada um pedaço de
+
+84
+00:02:54,970 --> 00:02:56,710
+imagem, de dimensão 82 por 36,
+
+85
+00:02:56,850 --> 00:02:59,180
+e classificá-la
+
+86
+00:02:59,710 --> 00:03:01,070
+(variável "y")
+
+87
+00:03:01,510 --> 00:03:03,850
+como contendo um pedestre ou não.
+
+88
+00:03:05,250 --> 00:03:06,250
+Então, esta é uma forma
+
+89
+00:03:06,470 --> 00:03:08,050
+de se aplicar aprendizado supervisionado para
+
+90
+00:03:08,210 --> 00:03:09,290
+determinar se um pedaço de imagem
+
+91
+00:03:09,530 --> 00:03:12,420
+contém ou não um pedestre.
+
+92
+00:03:14,310 --> 00:03:15,190
+Agora, digamos que coletamos
+
+93
+00:03:15,400 --> 00:03:16,520
+uma nova imagem como esta, uma do
+
+94
+00:03:16,850 --> 00:03:17,920
+conjunto de testes, e
+
+95
+00:03:18,030 --> 00:03:20,240
+queremos tentar encontrar os pedestres que aparecem na imagem.
+
+96
+00:03:21,520 --> 00:03:22,340
+Poderíamos começar
+
+97
+00:03:22,670 --> 00:03:25,140
+pegando um pedação retangular desta imagem,
+
+98
+00:03:25,580 --> 00:03:26,800
+como este mostrado aqui em cima.
+
+99
+00:03:26,900 --> 00:03:27,930
+Este poderia ser um pedaço de
+
+100
+00:03:28,010 --> 00:03:29,440
+82 por 36.
+
+101
+00:03:30,270 --> 00:03:31,530
+Daí, passamos este pedaço de imagem pelo
+
+102
+00:03:31,830 --> 00:03:33,660
+nosso classificador para determinar se
+
+103
+00:03:33,840 --> 00:03:34,900
+existe ou não um
+
+104
+00:03:34,980 --> 00:03:36,310
+pedestre no pedaço de imagem.
+
+105
+00:03:36,620 --> 00:03:38,100
+E esperamos que o classificador retorne
+
+106
+00:03:38,260 --> 00:03:40,600
+"y = 0" para este pedaço, já que não há pedestres.
+
+107
+00:03:42,020 --> 00:03:42,900
+Depois, pegamos
+
+108
+00:03:43,140 --> 00:03:44,380
+o retângulo verde e movemos
+
+109
+00:03:44,490 --> 00:03:45,680
+um pouco, e rodamos
+
+110
+00:03:45,940 --> 00:03:47,180
+o classificador para esse novo
+
+111
+00:03:47,560 --> 00:03:49,700
+pedaço de imagem, para decidir se há um pedestre ali.
+
+112
+00:03:50,760 --> 00:03:51,740
+E então,
+
+113
+00:03:51,920 --> 00:03:53,070
+deslizamos a janela
+
+114
+00:03:53,160 --> 00:03:54,160
+mais para a direita,
+
+115
+00:03:54,420 --> 00:03:56,690
+e rodamos o classificador novamente.
+
+116
+00:03:56,970 --> 00:03:57,850
+A distância, que você
+
+117
+00:03:58,280 --> 00:03:59,770
+desliza o retângulo a cada iteração,
+
+118
+00:04:00,260 --> 00:04:01,720
+é um parâmetro que, às vezes,
+
+119
+00:04:02,190 --> 00:04:04,000
+é chamado de "step size" (tamanho do passo),
+
+120
+00:04:04,070 --> 00:04:06,020
+e outras vezes é chamado de "stride" (passo).
+
+121
+00:04:06,380 --> 00:04:08,970
+E se você deslizar a janela
+
+122
+00:04:09,120 --> 00:04:11,050
+um pixel por iteração,
+
+123
+00:04:11,210 --> 00:04:12,020
+ou seja, usar um passo
+
+124
+00:04:12,360 --> 00:04:14,020
+de tamanho "1", normalmente,
+
+125
+00:04:14,340 --> 00:04:15,560
+você terá o melhor desempenho,
+
+126
+00:04:15,700 --> 00:04:16,960
+mas terá um custo maior.
+
+127
+00:04:17,430 --> 00:04:18,940
+Portanto, é mais comum usar
+
+128
+00:04:19,090 --> 00:04:20,010
+passos de tamanho
+
+129
+00:04:20,210 --> 00:04:20,970
+4 pixels,
+
+130
+00:04:21,250 --> 00:04:22,350
+ou 8 pixels, ou um número
+
+131
+00:04:22,550 --> 00:04:23,600
+maior de pixels.
+
+132
+00:04:24,010 --> 00:04:25,320
+Já que você estará movendo
+
+133
+00:04:25,430 --> 00:04:26,570
+o retângulo um pouco mais,
+
+134
+00:04:26,700 --> 00:04:28,570
+a cada iteração.
+
+135
+00:04:28,870 --> 00:04:30,090
+Assim, usando esse processo,
+
+136
+00:04:30,870 --> 00:04:32,310
+você continua movendo o retângulo
+
+137
+00:04:32,340 --> 00:04:33,160
+um pouco à direita,
+
+138
+00:04:33,370 --> 00:04:34,450
+a cada iteração,
+
+139
+00:04:34,520 --> 00:04:35,780
+e rodando cada um dos pedaços
+
+140
+00:04:36,620 --> 00:04:38,220
+pelo classificador, até que,
+
+141
+00:04:38,900 --> 00:04:42,080
+eventualmente, à medida que você desliza essa janela, por diferentes
+
+142
+00:04:42,150 --> 00:04:43,340
+posições na imagem,
+
+143
+00:04:43,550 --> 00:04:44,680
+começando pela primeira linha,
+
+144
+00:04:44,850 --> 00:04:46,080
+e descendo
+
+145
+00:04:46,160 --> 00:04:47,580
+pelas outras linhas
+
+146
+00:04:47,710 --> 00:04:49,100
+dessa imagem,
+
+147
+00:04:49,290 --> 00:04:50,490
+você terá passado todos
+
+148
+00:04:50,550 --> 00:04:52,070
+esse pedaços da imagem,
+
+149
+00:04:52,240 --> 00:04:53,330
+em algum passo,
+
+150
+00:04:53,430 --> 00:04:54,990
+pelo seu classificador.
+
+151
+00:04:56,990 --> 00:04:57,870
+Mas esse era
+
+152
+00:04:57,970 --> 00:04:59,870
+um retângulo pequeno, ele iria detectar
+
+153
+00:05:00,310 --> 00:05:02,310
+apenas pedestres de um tamanho específico.
+
+154
+00:05:02,780 --> 00:05:04,210
+O que faremos em seguida é
+
+155
+00:05:04,470 --> 00:05:05,990
+olhar pedaços maiores da imagem.
+
+156
+00:05:06,730 --> 00:05:08,270
+Então, agora vamos pegar pedaços
+
+157
+00:05:08,610 --> 00:05:09,700
+maiores da imagem,
+
+158
+00:05:10,310 --> 00:05:11,960
+e passá-los pelo classificador também.
+
+159
+00:05:13,540 --> 00:05:14,320
+E, aliás, quando digo
+
+160
+00:05:14,600 --> 00:05:15,830
+"pegar um pedaço maior da imagem",
+
+161
+00:05:16,080 --> 00:05:17,780
+o que eu realmente quero dizer é, quando
+
+162
+00:05:17,860 --> 00:05:18,850
+você pega um pedaço
+
+163
+00:05:19,490 --> 00:05:20,720
+grande, o que você faz é,
+
+164
+00:05:20,880 --> 00:05:22,110
+pegar esse pedaço da imagem,
+
+165
+00:05:22,800 --> 00:05:24,750
+e reduzi-lo para, por exemplo, 82x36.
+
+166
+00:05:25,000 --> 00:05:26,260
+Então, você pega esse
+
+167
+00:05:26,550 --> 00:05:28,180
+pedaço maior e redimensiona, para ser
+
+168
+00:05:28,300 --> 00:05:29,800
+uma imagem menor, e então,
+
+169
+00:05:29,970 --> 00:05:31,260
+é essa imagem menor
+
+170
+00:05:31,600 --> 00:05:32,620
+que você passa pelo
+
+171
+00:05:32,990 --> 00:05:35,340
+classificador, para decidir se há um pedestre naquele pedaço.
+
+172
+00:05:37,230 --> 00:05:38,310
+E, finalmente, você pode
+
+173
+00:05:38,470 --> 00:05:39,530
+fazer isso para janelas
+
+174
+00:05:39,930 --> 00:05:41,870
+ainda maiores, e rodar
+
+175
+00:05:42,080 --> 00:05:43,830
+esse tamanho de janela
+
+176
+00:05:43,980 --> 00:05:45,920
+até o final. E depois
+
+177
+00:05:45,980 --> 00:05:47,480
+de todo esse processo, esperamos
+
+178
+00:05:48,040 --> 00:05:49,670
+que o seu algoritmo detecte
+
+179
+00:05:50,140 --> 00:05:52,070
+os pedestres que aparecem nessa imagem.
+
+180
+00:05:52,470 --> 00:05:53,850
+É assim que você treina um classificador
+
+181
+00:05:54,290 --> 00:05:55,630
+de Aprendizado Supervisionado,
+
+182
+00:05:55,890 --> 00:05:57,360
+e usa um classificador de janela deslizante,
+
+183
+00:05:57,920 --> 00:05:59,820
+ou um detector de janela deslizante,
+
+184
+00:05:59,970 --> 00:06:01,740
+para encontrar pedestres na imagem.
+
+185
+00:06:03,070 --> 00:06:04,050
+Agora, vamos retornar
+
+186
+00:06:04,150 --> 00:06:05,910
+ao problema de detecção de texto,
+
+187
+00:06:06,100 --> 00:06:07,490
+e falar sobre esse estágio
+
+188
+00:06:07,790 --> 00:06:09,330
+no nosso encadeamento do OCR,
+
+189
+00:06:09,570 --> 00:06:11,340
+onde nosso objetivo é encontrar as regiões de texto.
+
+190
+00:06:13,250 --> 00:06:15,010
+Similarmente à detecção de pedestres,
+
+191
+00:06:15,250 --> 00:06:16,730
+você pode ter um conjunto de treino
+
+192
+00:06:17,030 --> 00:06:18,410
+rotulado, com exemplos
+
+193
+00:06:19,060 --> 00:06:20,930
+positivos e negativos, com os exemplos
+
+194
+00:06:21,530 --> 00:06:23,810
+positivos correspondendo a regiões onde aparecem textos.
+
+195
+00:06:24,300 --> 00:06:27,290
+Ao invés de tentar detectar pedestres, vamos tentar detectar textos.
+
+196
+00:06:28,130 --> 00:06:29,670
+Então, exemplos positivos
+
+197
+00:06:29,770 --> 00:06:31,640
+serão pedaços de imagens onde há texto,
+
+198
+00:06:31,970 --> 00:06:33,330
+e exemplos negativos serão
+
+199
+00:06:33,380 --> 00:06:36,000
+pedaços de imagens que não contém texto.
+
+200
+00:06:36,330 --> 00:06:37,530
+Após treinar o classificador,
+
+201
+00:06:38,030 --> 00:06:39,450
+nós podemos aplicá-lo
+
+202
+00:06:39,870 --> 00:06:41,190
+a uma imagem do conjunto
+
+203
+00:06:42,460 --> 00:06:42,910
+de teste.
+
+204
+00:06:43,310 --> 00:06:44,900
+Aqui está a imagem que usamos como exemplo.
+
+205
+00:06:46,040 --> 00:06:47,300
+Para esse exemplo,
+
+206
+00:06:47,440 --> 00:06:48,400
+eu vou utilizar
+
+207
+00:06:48,560 --> 00:06:50,300
+apenas uma janela deslizante
+
+208
+00:06:50,640 --> 00:06:52,030
+com uma escala fixa,
+
+209
+00:06:52,370 --> 00:06:54,360
+para efeito de ilustração, ou seja, vou usar
+
+210
+00:06:54,450 --> 00:06:56,000
+apenas 1 tamanho de retângulo.
+
+211
+00:06:56,790 --> 00:06:58,110
+Digamos que eu rode
+
+212
+00:06:58,350 --> 00:07:00,070
+o meu classificador de janela deslizante
+
+213
+00:07:00,170 --> 00:07:01,570
+em vários pequenos
+
+214
+00:07:01,630 --> 00:07:04,340
+pedaços de imagem como esse.
+
+215
+00:07:04,430 --> 00:07:05,430
+Se eu fizer isso,
+
+216
+00:07:05,530 --> 00:07:06,670
+terminarei com um resultado
+
+217
+00:07:07,040 --> 00:07:08,530
+como esse, onde as regiões em branco
+
+218
+00:07:08,900 --> 00:07:10,700
+mostram onde meu sistema de detecção
+
+219
+00:07:10,940 --> 00:07:12,190
+de texto encontrou texto.
+
+220
+00:07:12,210 --> 00:07:15,960
+E os eixos dessas duas figuras são iguais.
+
+221
+00:07:16,390 --> 00:07:17,700
+Então, a região aqui no topo,
+
+222
+00:07:18,110 --> 00:07:19,200
+corresponde à região
+
+223
+00:07:19,230 --> 00:07:20,710
+no topo da imagem,
+
+224
+00:07:20,840 --> 00:07:22,040
+e o fato de estar preto,
+
+225
+00:07:22,850 --> 00:07:24,390
+significa que o classificador
+
+226
+00:07:24,840 --> 00:07:25,940
+não encontrou
+
+227
+00:07:26,170 --> 00:07:28,100
+nenhum texto no topo da imagem.
+
+228
+00:07:28,170 --> 00:07:29,630
+E o fato de ter um monte de janelas
+
+229
+00:07:29,810 --> 00:07:31,300
+brancas aqui, reflete que o classificador
+
+230
+00:07:31,540 --> 00:07:33,260
+encontrou um monte de texto nesse local,
+
+231
+00:07:33,520 --> 00:07:34,310
+na imagem.
+
+232
+00:07:35,040 --> 00:07:35,700
+O que eu fiz
+
+233
+00:07:35,780 --> 00:07:36,870
+nessa imagem à esquerda
+
+234
+00:07:37,070 --> 00:07:38,820
+foi usar branco para mostrar
+
+235
+00:07:38,970 --> 00:07:41,050
+onde o classificador acredita que encontrou texto.
+
+236
+00:07:41,810 --> 00:07:43,280
+E os diferentes tons de cinza
+
+237
+00:07:43,880 --> 00:07:45,560
+correspondem à probabilidade
+
+238
+00:07:45,670 --> 00:07:46,750
+gerada pelo classificador.
+
+239
+00:07:47,110 --> 00:07:48,000
+Então, os tons de cinza
+
+240
+00:07:48,520 --> 00:07:49,860
+correspondem a onde
+
+241
+00:07:49,930 --> 00:07:50,750
+o classificador
+
+242
+00:07:51,210 --> 00:07:53,900
+acha que encontrou texto, mas não tem muita confiança.
+
+243
+00:07:54,260 --> 00:07:55,980
+Mas o branco brilhante corresponde
+
+244
+00:07:57,440 --> 00:07:58,400
+a onde o classificador
+
+245
+00:07:58,660 --> 00:08:00,470
+estimou uma probabilidade
+
+246
+00:08:00,630 --> 00:08:03,110
+muito alta de haver texto naquele local.
+
+247
+00:08:04,110 --> 00:08:05,270
+Mas nós ainda não terminamos,
+
+248
+00:08:05,690 --> 00:08:06,580
+porque o que realmente
+
+249
+00:08:06,830 --> 00:08:08,620
+queremos é desenhar retângulos
+
+250
+00:08:08,850 --> 00:08:09,780
+em volta de todas
+
+251
+00:08:10,490 --> 00:08:12,540
+as regiões onde há texto na imagem.
+
+252
+00:08:12,650 --> 00:08:13,540
+Então, vamos tomar
+
+253
+00:08:13,840 --> 00:08:14,990
+mais um passo: vamos pegar
+
+254
+00:08:15,230 --> 00:08:16,880
+a saída do classificar, e aplicar a ela
+
+255
+00:08:17,290 --> 00:08:19,280
+o que é chamado "operador de expansão".
+
+256
+00:08:20,750 --> 00:08:22,250
+Então, o que ele faz é:
+
+257
+00:08:22,430 --> 00:08:24,270
+ele pega a imagem à esquerda,
+
+258
+00:08:25,450 --> 00:08:26,700
+e pega cada uma
+
+259
+00:08:26,800 --> 00:08:28,200
+das regiões em branco,
+
+260
+00:08:28,270 --> 00:08:30,590
+e expande essa região branca.
+
+261
+00:08:31,460 --> 00:08:32,460
+Matematicamente,
+
+262
+00:08:32,610 --> 00:08:34,110
+isso é implementado
+
+263
+00:08:34,270 --> 00:08:35,280
+da seguinte forma:
+
+264
+00:08:35,690 --> 00:08:36,780
+o que fazemos para criar
+
+265
+00:08:36,930 --> 00:08:38,110
+a imagem à direita é
+
+266
+00:08:38,370 --> 00:08:39,510
+para cada pixel, perguntamos
+
+267
+00:08:39,610 --> 00:08:40,790
+se existe, dentro de
+
+268
+00:08:41,370 --> 00:08:42,960
+uma certa distância, um pixel
+
+269
+00:08:43,100 --> 00:08:44,650
+branco na imagem à esquerda.
+
+270
+00:08:45,430 --> 00:08:46,800
+E então, se um pixel específico
+
+271
+00:08:47,220 --> 00:08:48,420
+está até 5 ou 10 pixels
+
+272
+00:08:48,950 --> 00:08:50,280
+de um pixel branco,
+
+273
+00:08:50,610 --> 00:08:52,310
+na imagem à esquerda,
+
+274
+00:08:52,540 --> 00:08:55,020
+colorimos esse pixel também, de branco, na imagem à direita.
+
+275
+00:08:56,190 --> 00:08:57,010
+O efeito disso é:
+
+276
+00:08:57,300 --> 00:08:58,350
+vamos pegar cada um
+
+277
+00:08:58,730 --> 00:08:59,630
+dos borrões brancos
+
+278
+00:09:00,030 --> 00:09:01,370
+na imagem à esquerda,
+
+279
+00:09:01,500 --> 00:09:02,200
+e expandi-los um pouco,
+
+280
+00:09:02,670 --> 00:09:04,110
+a partir da observação se os pixels
+
+281
+00:09:04,170 --> 00:09:05,420
+próximos são brancos,
+
+282
+00:09:05,900 --> 00:09:07,980
+e então colorindo esses pixels de branco, também.
+
+283
+00:09:08,430 --> 00:09:09,900
+Finalmente, quase terminamos.
+
+284
+00:09:10,180 --> 00:09:11,210
+Agora podemos olhar
+
+285
+00:09:11,480 --> 00:09:12,900
+a imagem à direita,
+
+286
+00:09:13,210 --> 00:09:14,650
+e ver os componentes conectados,
+
+287
+00:09:15,320 --> 00:09:16,700
+essas regiões brancas,
+
+288
+00:09:16,990 --> 00:09:19,350
+e desenhar caixas retangulares ao redor deles.
+
+289
+00:09:20,260 --> 00:09:20,990
+E se você olhar
+
+290
+00:09:21,390 --> 00:09:22,850
+todas as regiões brancas,
+
+291
+00:09:23,080 --> 00:09:24,750
+como essa, essa,
+
+292
+00:09:24,990 --> 00:09:26,670
+essa, ..., e usar uma
+
+293
+00:09:27,030 --> 00:09:27,810
+heurística simples,
+
+294
+00:09:28,390 --> 00:09:30,240
+para descartar os retângulos cuja razão
+
+295
+00:09:30,660 --> 00:09:32,760
+entre os lados parece estranha, porque nós sabemos
+
+296
+00:09:32,870 --> 00:09:34,460
+que caixas ao redor de textos
+
+297
+00:09:34,730 --> 00:09:36,130
+devem ser mais largas do que altas.
+
+298
+00:09:37,110 --> 00:09:38,310
+Então, se você ignorar
+
+299
+00:09:38,410 --> 00:09:39,990
+os borrões altos e finos,
+
+300
+00:09:40,230 --> 00:09:42,120
+como esse e esse,
+
+301
+00:09:42,190 --> 00:09:43,390
+e se você descartar eles,
+
+302
+00:09:43,880 --> 00:09:45,490
+porque são muito altos e finos,
+
+303
+00:09:45,660 --> 00:09:46,780
+então desenhamos retângulos
+
+304
+00:09:47,470 --> 00:09:48,440
+em volta daqueles
+
+305
+00:09:48,840 --> 00:09:50,420
+cuja razão entre os lados
+
+306
+00:09:50,610 --> 00:09:51,800
+parecem corretas
+
+307
+00:09:51,950 --> 00:09:53,310
+para regiões de texto.
+
+308
+00:09:53,380 --> 00:09:55,070
+Então, podemos desenhar caixas
+
+309
+00:09:55,450 --> 00:09:56,660
+retangulares em volta dessa
+
+310
+00:09:56,970 --> 00:09:58,500
+região de texto, dessa região,
+
+311
+00:09:58,610 --> 00:10:00,550
+e dessa região, correspondendo
+
+312
+00:10:01,060 --> 00:10:02,180
+ao logo da loja "Lula B's",
+
+313
+00:10:02,650 --> 00:10:04,690
+o nome "Lula B's", e esse sinal "OPEN".
+
+314
+00:10:05,840 --> 00:10:06,000
+
+315
+00:10:07,100 --> 00:10:09,550
+Nesse exemplo, na verdade, um texto é perdido.
+
+316
+00:10:09,860 --> 00:10:12,550
+É muito difícil ler, mas na verdade, existe um texto ali.
+
+317
+00:10:13,080 --> 00:10:14,710
+Que diz "Lula B's", mas a razão entre
+
+318
+00:10:14,950 --> 00:10:16,180
+os lados do retângulo parecia
+
+319
+00:10:16,530 --> 00:10:17,960
+incorreta, pode isso descartamos.
+
+320
+00:10:19,100 --> 00:10:20,240
+Então, o resultado está
+
+321
+00:10:20,530 --> 00:10:21,460
+okay, mas na verdade,
+
+322
+00:10:21,660 --> 00:10:22,760
+o classificador esqueceu
+
+323
+00:10:23,290 --> 00:10:24,400
+de um texto.
+
+324
+00:10:24,760 --> 00:10:25,780
+É muito difícil de ler,
+
+325
+00:10:25,960 --> 00:10:26,900
+porque está escrito
+
+326
+00:10:27,240 --> 00:10:28,700
+contra uma janela transparente.
+
+327
+00:10:29,750 --> 00:10:31,200
+Então, isso é detecção de texto
+
+328
+00:10:32,430 --> 00:10:33,120
+usando janela deslizante.
+
+329
+00:10:33,800 --> 00:10:35,300
+E, tendo encontrado esses retângulos,
+
+330
+00:10:36,100 --> 00:10:37,010
+com textos neles,
+
+331
+00:10:37,110 --> 00:10:38,240
+podemos cortar essas
+
+332
+00:10:38,450 --> 00:10:39,890
+regiões da imagem, e usar
+
+333
+00:10:40,070 --> 00:10:42,100
+futuros estágios do encadeamento para ler o texto.
+
+334
+00:10:45,390 --> 00:10:46,820
+Agora, lembre-se que o segundo
+
+335
+00:10:46,880 --> 00:10:48,360
+estágio do encadeamento era
+
+336
+00:10:48,570 --> 00:10:50,620
+segmentação dos caracteres.
+
+337
+00:10:50,890 --> 00:10:52,530
+Dada uma imagem como essa no topo,
+
+338
+00:10:52,790 --> 00:10:55,660
+como segmentamos os caracteres individuais nessa imagem?
+
+339
+00:10:56,580 --> 00:10:57,460
+O que podemos fazer
+
+340
+00:10:57,910 --> 00:10:59,590
+é usar um algoritmo de Aprendizado
+
+341
+00:11:00,010 --> 00:11:01,020
+Supervisionado, com um
+
+342
+00:11:01,100 --> 00:11:01,990
+conjunto de exemplos
+
+343
+00:11:02,100 --> 00:11:03,810
+positivos, e exemplos negativos.
+
+344
+00:11:03,880 --> 00:11:04,840
+E vamos olhar
+
+345
+00:11:04,900 --> 00:11:06,160
+um pedaço da imagem,
+
+346
+00:11:06,390 --> 00:11:08,110
+e tentar decidir se há
+
+347
+00:11:08,370 --> 00:11:09,690
+uma quebra entre dois caracteres
+
+348
+00:11:10,700 --> 00:11:12,070
+bem no meio daquela imagem.
+
+349
+00:11:13,030 --> 00:11:14,100
+Então, para cada exemplo positivo,
+
+350
+00:11:14,960 --> 00:11:17,040
+para esse primeiro exemplo,
+
+351
+00:11:17,290 --> 00:11:18,590
+o meio desse pedaço de imagem
+
+352
+00:11:18,650 --> 00:11:20,050
+parece, realmente, a quebra
+
+353
+00:11:21,320 --> 00:11:22,890
+entre dois caracteres.
+
+354
+00:11:23,110 --> 00:11:24,120
+O segundo exemplo,
+
+355
+00:11:24,680 --> 00:11:25,770
+novamente, parece
+
+356
+00:11:25,950 --> 00:11:27,370
+um exemplo positivo,
+
+357
+00:11:27,840 --> 00:11:29,020
+porque colocando uma reta
+
+358
+00:11:29,160 --> 00:11:31,190
+bem no meio, eu quebro ele em dois caracteres.
+
+359
+00:11:31,350 --> 00:11:33,310
+Então, esses são exemplos positivos,
+
+360
+00:11:33,510 --> 00:11:35,370
+onde o meio da imagem representa
+
+361
+00:11:35,970 --> 00:11:36,930
+um espaço, ou uma quebra
+
+362
+00:11:37,960 --> 00:11:40,320
+entre dois caracteres distintos,
+
+363
+00:11:40,560 --> 00:11:41,870
+já para os exemplos negativos,
+
+364
+00:11:42,010 --> 00:11:43,160
+você não quebra
+
+365
+00:11:43,690 --> 00:11:44,810
+dois caracteres,
+
+366
+00:11:44,900 --> 00:11:46,610
+bem no meio.
+
+367
+00:11:46,820 --> 00:11:48,160
+Então eles são exemplos negativos porque
+
+368
+00:11:48,460 --> 00:11:50,660
+não representam o ponto central entre dois caracteres.
+
+369
+00:11:51,760 --> 00:11:52,490
+Então, nós vamos
+
+370
+00:11:52,650 --> 00:11:53,940
+treinar um classificador,
+
+371
+00:11:54,500 --> 00:11:55,910
+talvez usando Redes Neurais,
+
+372
+00:11:56,180 --> 00:11:58,000
+talvez outro algoritmo de aprendizagem,
+
+373
+00:11:58,120 --> 00:12:01,420
+para tentar classificar entre exemplos positivos e negativos.
+
+374
+00:12:02,770 --> 00:12:03,980
+Tendo treinado tal classificador,
+
+375
+00:12:04,320 --> 00:12:06,030
+podemos roda-lo nesse tipo de
+
+376
+00:12:06,690 --> 00:12:07,830
+texto, que o nosso sistema
+
+377
+00:12:07,940 --> 00:12:09,410
+de detecção de texto encontrou.
+
+378
+00:12:09,590 --> 00:12:10,970
+À medida que olhamos esse
+
+379
+00:12:11,130 --> 00:12:12,080
+retângulo verde,
+
+380
+00:12:12,230 --> 00:12:13,280
+e nos perguntamos
+
+381
+00:12:13,510 --> 00:12:15,000
+"O meio desse retângulo verde
+
+382
+00:12:15,100 --> 00:12:16,600
+parece o ponto central
+
+383
+00:12:16,680 --> 00:12:18,470
+entre dois caracteres?".
+
+384
+00:12:18,980 --> 00:12:20,220
+E esperamos que a resposta
+
+385
+00:12:20,320 --> 00:12:21,760
+diga "não", e então,
+
+386
+00:12:22,170 --> 00:12:23,280
+deslizamos a janela.
+
+387
+00:12:23,410 --> 00:12:24,850
+E esse é um classificador de
+
+388
+00:12:25,200 --> 00:12:26,410
+deslizamento de janela
+
+389
+00:12:26,500 --> 00:12:27,820
+de 1 dimensão, porque deslizamos
+
+390
+00:12:28,470 --> 00:12:29,560
+a janela em uma linha reta,
+
+391
+00:12:29,780 --> 00:12:32,070
+da esquerda para a direita, não há outras linhas aqui.
+
+392
+00:12:32,270 --> 00:12:34,420
+Há apenas 1 linha aqui.
+
+393
+00:12:34,520 --> 00:12:36,160
+Mas agora, com o classificador
+
+394
+00:12:36,240 --> 00:12:37,250
+nessa posição,
+
+395
+00:12:37,490 --> 00:12:38,700
+perguntamos se devemos
+
+396
+00:12:39,570 --> 00:12:41,580
+colocar uma quebra no meio desse retângulo.
+
+397
+00:12:41,950 --> 00:12:43,040
+E esperamos que a resposta
+
+398
+00:12:43,190 --> 00:12:44,720
+do classificador seja "y=1",
+
+399
+00:12:44,780 --> 00:12:46,460
+e nesse caso nós vamos desenhar uma linha
+
+400
+00:12:46,630 --> 00:12:49,690
+ali no meio, para quebrar esses 2 caracteres.
+
+401
+00:12:50,710 --> 00:12:51,620
+Então deslizamos a janela
+
+402
+00:12:51,870 --> 00:12:53,440
+novamente, esperamos que o classificador
+
+403
+00:12:53,650 --> 00:12:55,020
+diga "não", deslizamos novamente,
+
+404
+00:12:55,300 --> 00:12:56,580
+esperamos que ele diga "sim,
+
+405
+00:12:57,230 --> 00:12:58,830
+quebre aqui", e assim por diante.
+
+406
+00:12:59,200 --> 00:13:00,410
+E deslizamos o classificador
+
+407
+00:13:00,560 --> 00:13:01,770
+para a direita, e esperamos
+
+408
+00:13:01,920 --> 00:13:03,310
+que ele classifique isso como
+
+409
+00:13:03,380 --> 00:13:05,160
+outro exemplo positivo,
+
+410
+00:13:05,770 --> 00:13:07,470
+e assim por diante.
+
+411
+00:13:08,010 --> 00:13:09,180
+E nós vamos deslizar
+
+412
+00:13:09,820 --> 00:13:10,990
+essa janela para a direita,
+
+413
+00:13:11,160 --> 00:13:12,670
+rodando o classificador a cada passo,
+
+414
+00:13:12,800 --> 00:13:13,800
+e esperamos que ele
+
+415
+00:13:14,210 --> 00:13:15,070
+nos diga quais são
+
+416
+00:13:16,190 --> 00:13:17,820
+as posições corretas para
+
+417
+00:13:18,290 --> 00:13:20,410
+quebrar essa imagem em caracteres individuais.
+
+418
+00:13:21,090 --> 00:13:22,450
+Então, isso é uma janela 1D
+
+419
+00:13:22,810 --> 00:13:24,190
+para segmentação de caracteres.
+
+420
+00:13:25,520 --> 00:13:28,430
+Aqui está, de forma geral, o encadeamento de OCR para fotografia:
+
+421
+00:13:29,120 --> 00:13:30,280
+Nesse vídeo, nós falamos sobre
+
+422
+00:13:30,780 --> 00:13:32,170
+o passo de detecção de texto,
+
+423
+00:13:32,360 --> 00:13:34,570
+onde usamos janelas deslizantes para detectar textos.
+
+424
+00:13:35,200 --> 00:13:36,390
+E nós também usamos uma
+
+425
+00:13:37,070 --> 00:13:38,420
+janela deslizante de 1-dimensão,
+
+426
+00:13:38,790 --> 00:13:40,160
+para fazer a segmentação
+
+427
+00:13:40,730 --> 00:13:42,860
+de caracteres (dividir uma imagem em caracteres).
+
+428
+00:13:43,900 --> 00:13:44,770
+E o último passo no
+
+429
+00:13:44,810 --> 00:13:46,040
+encadeamento, é a classificação
+
+430
+00:13:46,720 --> 00:13:48,150
+de caracteres, e você já deve estar
+
+431
+00:13:48,370 --> 00:13:49,750
+muito mais familiarizado com
+
+432
+00:13:50,020 --> 00:13:51,490
+esse passo, a partir de vídeos
+
+433
+00:13:52,080 --> 00:13:54,470
+anteriores sobre Aprendizado Supervisionado.
+
+434
+00:13:55,170 --> 00:13:56,440
+Onde você pode aplicar
+
+435
+00:13:56,940 --> 00:13:58,150
+um método padrão de
+
+436
+00:13:58,360 --> 00:13:59,250
+Aprendizado Supervisionado,
+
+437
+00:13:59,570 --> 00:14:00,650
+como Redes Neurais,
+
+438
+00:14:00,860 --> 00:14:02,100
+para tomar como entrada
+
+439
+00:14:02,980 --> 00:14:05,030
+uma imagem como essa, e classificar que alfabeto,
+
+440
+00:14:05,480 --> 00:14:07,120
+ou qual dos 26 caracteres de A à Z.
+
+441
+00:14:07,230 --> 00:14:08,320
+Ou podemos
+
+442
+00:14:08,570 --> 00:14:09,670
+ter 36 caracteres, se você
+
+443
+00:14:09,780 --> 00:14:11,140
+tiver os dígitos numéricos.
+
+444
+00:14:11,270 --> 00:14:12,650
+Mas seria um problema de
+
+445
+00:14:13,080 --> 00:14:14,410
+classificação multi-classes,
+
+446
+00:14:14,510 --> 00:14:15,690
+onde você toma como entrada
+
+447
+00:14:16,050 --> 00:14:17,390
+uma imagem contendo um caractere,
+
+448
+00:14:18,140 --> 00:14:20,450
+e decide qual é o caractere que aparece na imagem.
+
+449
+00:14:21,080 --> 00:14:22,460
+Então, esse foi o encadeamento
+
+450
+00:14:23,730 --> 00:14:24,750
+OCR de fotografia,
+
+451
+00:14:24,910 --> 00:14:26,140
+e como você pode
+
+452
+00:14:26,520 --> 00:14:27,960
+usar ideias como: classificadores
+
+453
+00:14:28,100 --> 00:14:29,790
+de janelas deslizantes, para
+
+454
+00:14:30,060 --> 00:14:31,570
+desenvolver uma sistema OCR de fotos.
+
+455
+00:14:32,430 --> 00:14:33,570
+Nos próximos vídeos,
+
+456
+00:14:33,680 --> 00:14:34,930
+continuaremos usando o problema
+
+457
+00:14:35,150 --> 00:14:36,550
+de OCR, para explorar questões
+
+458
+00:14:36,960 --> 00:14:39,070
+sobre como desenvolver um sistema como esse.
+Tradução: Pablo de Morais Andrade.

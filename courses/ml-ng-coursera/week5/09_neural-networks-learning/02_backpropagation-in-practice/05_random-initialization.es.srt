@@ -1,0 +1,771 @@
+1
+00:00:00,540 --> 00:00:01,820
+En los videos anteriores,  reunimos
+
+2
+00:00:01,950 --> 00:00:03,220
+casi todas
+
+3
+00:00:03,270 --> 00:00:04,620
+las piezas que ustedes necesitan para
+
+4
+00:00:04,820 --> 00:00:07,170
+implementar y entrenar una red neuronal.
+
+5
+00:00:07,940 --> 00:00:09,060
+Esta es una última idea que
+
+6
+00:00:09,120 --> 00:00:09,980
+tengo que compartir con ustedes, la cual
+
+7
+00:00:10,200 --> 00:00:11,570
+es la idea de la inicialización aleatoria.
+
+8
+00:00:13,220 --> 00:00:14,360
+Cuando están ejecutando un algoritmo como
+
+9
+00:00:14,510 --> 00:00:15,990
+el gradiente de descenso o también los
+
+10
+00:00:16,280 --> 00:00:17,810
+algoritmos de optimización avanzada
+
+11
+00:00:17,940 --> 00:00:20,770
+es necesario que elijamos un valor inicial para los parámetros «theta».
+
+12
+00:00:21,610 --> 00:00:22,990
+Así que para el algoritmo de optimización avanzada, como saben,
+
+13
+00:00:23,570 --> 00:00:24,620
+se asume que ustedes
+
+14
+00:00:24,780 --> 00:00:26,090
+pasarán algún valor inicial
+
+15
+00:00:26,700 --> 00:00:27,640
+para los parámetros «theta».
+
+16
+00:00:29,010 --> 00:00:30,680
+Ahora consideremos el gradiente de descenso.
+
+17
+00:00:31,320 --> 00:00:34,090
+Para eso, como saben, también tenemos que inicializar «theta» con algo.
+
+18
+00:00:34,580 --> 00:00:36,030
+Y entonces podemos gradualmente seguir los pasos para
+
+19
+00:00:36,680 --> 00:00:38,830
+ir hacia abajo, utilizando el gradiente de descenso,
+
+20
+00:00:38,910 --> 00:00:40,920
+para ir hacia abajo a fin de minimizar la función J de «theta».
+
+21
+00:00:41,990 --> 00:00:43,960
+Entonces, ¿Cómo podemos establecer el valor inicial de «theta»?
+
+22
+00:00:44,240 --> 00:00:47,000
+Es posible establecer
+
+23
+00:00:47,520 --> 00:00:48,930
+el valor inicial de «theta»
+
+24
+00:00:49,250 --> 00:00:50,450
+al vector de todos cero.
+
+25
+00:00:51,870 --> 00:00:54,800
+Considerando que esto funcionó bien cuando estuvimos utilizando la regresión logística.
+
+26
+00:00:55,630 --> 00:00:56,690
+Inicializar todos los
+
+27
+00:00:56,760 --> 00:00:57,970
+parámetros en cero en realidad no funciona
+
+28
+00:00:58,310 --> 00:01:00,290
+cuando se está entrenando una red neuronal.
+
+29
+00:01:01,410 --> 00:01:03,150
+Consideren el entrenamiento de la siguiente red neuronal.
+
+30
+00:01:03,650 --> 00:01:06,430
+Y digamos que hemos inicializado todos los parámetros de la red a cero.
+
+31
+00:01:07,970 --> 00:01:09,210
+Y si lo llevan a cabo entonces
+
+32
+00:01:09,780 --> 00:01:10,920
+lo que eso significa es que
+
+33
+00:01:11,160 --> 00:01:13,870
+en la inicialización este peso en azul, que estoy marcando en azul
+
+34
+00:01:15,390 --> 00:01:16,540
+va a ser igual a ese peso.
+
+35
+00:01:17,510 --> 00:01:17,510
+Por lo tanto, ambos son cero.
+
+36
+00:01:18,580 --> 00:01:19,880
+Y este peso que estoy marcando
+
+37
+00:01:20,330 --> 00:01:21,940
+en rojo, es igual a ese peso.
+
+38
+00:01:22,550 --> 00:01:23,040
+Están en rojo.
+
+39
+00:01:23,790 --> 00:01:25,280
+Y también este peso, bueno,
+
+40
+00:01:25,620 --> 00:01:26,500
+el cual estoy marcando con verde
+
+41
+00:01:26,680 --> 00:01:28,940
+va a ser igual al valor de ese peso.
+
+42
+00:01:30,030 --> 00:01:32,820
+Y lo que eso significa es que ambas unidades ocultas: a1 y a2
+
+43
+00:01:32,950 --> 00:01:35,940
+estarán ejecutando la misma función
+
+44
+00:01:36,660 --> 00:01:36,810
+de sus entradas.
+
+45
+00:01:37,810 --> 00:01:38,900
+Y así, terminarán con,
+
+46
+00:01:39,500 --> 00:01:40,870
+en cada uno de sus ejemplos de entrenamiento
+
+47
+00:01:41,430 --> 00:01:43,640
+terminarán  con a (2)1 que es igual a a(2)2.
+
+48
+00:01:46,950 --> 00:01:48,700
+y además no voy
+
+49
+00:01:48,960 --> 00:01:50,050
+a mostrar esto en mucho detalle,
+
+50
+00:01:50,310 --> 00:01:51,420
+sin embargo debido a que estos
+
+51
+00:01:51,580 --> 00:01:52,990
+pesos salientes son iguales,  ustedes
+
+52
+00:01:53,080 --> 00:01:54,630
+pueden demostrar que los
+
+53
+00:01:54,710 --> 00:01:56,560
+valores «delta» también serán los mismos.
+
+54
+00:01:56,790 --> 00:01:57,790
+Así concretamente, terminarán
+
+55
+00:01:57,970 --> 00:02:00,070
+con «delta» 11,
+
+56
+00:02:00,760 --> 00:02:02,900
+«delta» 2 1, que es igual a «delta» 2 2.
+
+57
+00:02:06,120 --> 00:02:07,150
+Y si trabajan con el
+
+58
+00:02:07,230 --> 00:02:08,480
+mapa más a fondo, lo que pueden
+
+59
+00:02:08,760 --> 00:02:09,990
+demostrar es que las derivadas parciales
+
+60
+00:02:11,560 --> 00:02:14,080
+con respecto a sus parámetros cumplirán con lo siguiente.
+
+61
+00:02:15,120 --> 00:02:16,710
+Que la derivada parcial
+
+62
+00:02:17,550 --> 00:02:19,260
+de la función
+
+63
+00:02:19,580 --> 00:02:21,020
+de costo con respecto a-
+
+64
+00:02:21,800 --> 00:02:23,680
+Estoy anotando las derivadas respecto a
+
+65
+00:02:23,900 --> 00:02:25,320
+estos pesos en azul en sus redes.
+
+66
+00:02:26,190 --> 00:02:27,290
+Descubrirán que estas dos derivadas
+
+67
+00:02:27,680 --> 00:02:30,340
+parciales serán iguales entre sí.
+
+68
+00:02:31,970 --> 00:02:33,180
+Y entonces, lo que esto significa es
+
+69
+00:02:33,320 --> 00:02:35,820
+que incluso después de una actualización de gradiente de descenso.
+
+70
+00:02:36,690 --> 00:02:38,200
+Ustedes actualizarán, digamos que
+
+71
+00:02:38,470 --> 00:02:40,800
+el primer peso en azul con, como saben, los ciclos de velocidad de aprendizaje, que es esto.
+
+72
+00:02:41,580 --> 00:02:42,500
+Y actualizarán el segundo
+
+73
+00:02:42,920 --> 00:02:44,620
+peso en azul para la suma de los ciclos de velocidad de aprendizaje,  esto.
+
+74
+00:02:44,820 --> 00:02:45,870
+Pero lo que esto significa es
+
+75
+00:02:45,980 --> 00:02:47,090
+que incluso después de la actualización de un
+
+76
+00:02:47,420 --> 00:02:49,330
+gradiente de descenso, esos dos
+
+77
+00:02:49,680 --> 00:02:50,710
+pesos en azul, esos dos parámetros
+
+78
+00:02:51,430 --> 00:02:53,050
+de color azul terminarán
+
+79
+00:02:53,240 --> 00:02:54,960
+siendo iguales entre sí.
+
+80
+00:02:55,190 --> 00:02:56,210
+Así que ahora serán algo distintos
+
+81
+00:02:56,750 --> 00:02:57,720
+al valor cero, pero este valor
+
+82
+00:02:58,550 --> 00:02:59,520
+será igual a ese valor.
+
+83
+00:03:00,360 --> 00:03:02,790
+Y del mismo modo, incluso después de la actualización del gradiente de descenso.
+
+84
+00:03:03,690 --> 00:03:05,740
+Este valor será igual a ese valor.
+
+85
+00:03:06,170 --> 00:03:07,200
+Habrá algunos valores distintos a cero.
+
+86
+00:03:07,640 --> 00:03:09,450
+Sólo que los dos valores en rojo serán iguales entre sí.
+
+87
+00:03:10,240 --> 00:03:11,760
+Y de forma similar los dos pesos en verde,
+
+88
+00:03:12,060 --> 00:03:13,720
+cambiarán de valor
+
+89
+00:03:13,860 --> 00:03:16,350
+pero ambos terminarán teniendo el mismo valor entre sí.
+
+90
+00:03:17,590 --> 00:03:19,020
+Así que después de cada actualización, los parámetros que corresponden
+
+91
+00:03:19,740 --> 00:03:20,890
+a las entradas que van a cada de las
+
+92
+00:03:21,060 --> 00:03:22,870
+dos unidades ocultas serán idénticos.
+
+93
+00:03:23,700 --> 00:03:24,490
+Es decir que los dos
+
+94
+00:03:24,710 --> 00:03:25,590
+pesos en verde siguen siendo iguales,
+
+95
+00:03:25,640 --> 00:03:26,310
+los dos pesos en rojo siguen siendo
+
+96
+00:03:26,550 --> 00:03:27,750
+iguales, los dos pesos en azul
+
+97
+00:03:28,010 --> 00:03:30,000
+siguen siendo iguales y lo que
+
+98
+00:03:30,160 --> 00:03:31,590
+eso significa es que aún después de
+
+99
+00:03:31,770 --> 00:03:33,070
+una iteración de, digamos,  la gradiente
+
+100
+00:03:33,460 --> 00:03:34,860
+de descenso, descubrirán que
+
+101
+00:03:35,600 --> 00:03:37,250
+las dos unidades ocultas siguen
+
+102
+00:03:37,800 --> 00:03:40,380
+ejecutando exactamente las mismas funciones que la entrada.
+
+103
+00:03:40,830 --> 00:03:43,040
+Así que todavía tienen a(1)2 que es igual a
+
+104
+00:03:43,510 --> 00:03:45,200
+a (2)2.  Así que han vuelto a este caso.
+
+105
+00:03:45,930 --> 00:03:47,380
+Y como siguen ejecutando la gradiente de descenso
+
+106
+00:03:48,390 --> 00:03:50,940
+Los pesos en azul, los pesos en azul permanecerán iguales entre sí.
+
+107
+00:03:51,190 --> 00:03:52,920
+Los dos pesos en rojo permanecerán iguales entre sí.
+
+108
+00:03:53,060 --> 00:03:54,990
+Los dos pesos en verde permanecerán iguales entre sí.
+
+109
+00:03:55,160 --> 00:03:56,860
+Y lo que esto significa
+
+110
+00:03:57,130 --> 00:03:58,260
+es que su red neuronal en realidad
+
+111
+00:03:58,470 --> 00:03:59,980
+no puede ejecutar funciones muy interesantes.
+
+112
+00:04:00,700 --> 00:04:01,910
+Imaginen que no sólo tienen
+
+113
+00:04:02,240 --> 00:04:03,670
+dos unidades ocultas
+
+114
+00:04:04,010 --> 00:04:05,470
+sino que tienen
+
+115
+00:04:05,640 --> 00:04:07,100
+muchas, muchas unidades ocultas.
+
+116
+00:04:08,080 --> 00:04:09,160
+Entonces lo que esto nos indica es que
+
+117
+00:04:09,430 --> 00:04:10,680
+todas sus unidades ocultas están
+
+118
+00:04:10,740 --> 00:04:12,320
+ejecutando exactamente la misma variable
+
+119
+00:04:12,540 --> 00:04:16,300
+todas sus unidades ocultas están ejecutando exactamente la misma función de entrada.
+
+120
+00:04:17,030 --> 00:04:18,980
+Y esta es una representación altamente redundante.
+
+121
+00:04:20,140 --> 00:04:21,010
+Porque eso significa que la unidad
+
+122
+00:04:21,110 --> 00:04:24,160
+de regresión logística final, saben, en realidad sólo llega a ver una variable.
+
+123
+00:04:24,730 --> 00:04:25,460
+Debido a que todas estas son iguales
+
+124
+00:04:26,330 --> 00:04:28,690
+y esto impide que la red neuronal aprenda algo interesante.
+
+125
+00:04:31,600 --> 00:04:32,830
+Con el fin de evitar este
+
+126
+00:04:32,960 --> 00:04:34,050
+problema, por lo tanto la forma en que
+
+127
+00:04:34,590 --> 00:04:35,680
+inicializamos los parámetros de una red neuronal
+
+128
+00:04:36,050 --> 00:04:37,660
+es con la inicialización aleatoria.
+
+129
+00:04:41,820 --> 00:04:43,130
+En concreto, el problema que vimos
+
+130
+00:04:43,250 --> 00:04:44,470
+en la diapositiva anterior
+
+131
+00:04:44,760 --> 00:04:46,240
+es algunas veces llamado el problema
+
+132
+00:04:46,640 --> 00:04:49,040
+de los pesos simétricos, es decir, si todos los pesos son iguales.
+
+133
+00:04:49,810 --> 00:04:51,470
+Y así, esta inicialización aleatoria
+
+134
+00:04:52,590 --> 00:04:54,240
+es la forma en que realizamos la ruptura de la simetría.
+
+135
+00:04:55,520 --> 00:04:56,480
+De forma que lo que hacemos es
+
+136
+00:04:56,680 --> 00:04:58,200
+inicializar cada valor de «theta»
+
+137
+00:04:58,310 --> 00:04:59,460
+a un número aleatorio
+
+138
+00:04:59,830 --> 00:05:01,300
+entre menos «épsilon» y «épsilon».
+
+139
+00:05:02,080 --> 00:05:03,200
+Entonces esta es una anotación para
+
+140
+00:05:03,310 --> 00:05:05,350
+referirme a los números entre menos «épsilon» y mayor a «épsilon».
+
+141
+00:05:06,330 --> 00:05:07,430
+De forma que todos los pesos para mis
+
+142
+00:05:07,540 --> 00:05:08,660
+parámetros se van a inicializar
+
+143
+00:05:08,710 --> 00:05:11,470
+aleatoriamente entre menos «épsilon» y mayor a «épsilon».
+
+144
+00:05:12,300 --> 00:05:13,330
+La forma en que escribo el código para hacer
+
+145
+00:05:13,420 --> 00:05:16,770
+esto es en Octave, es decir,  que «theta» 1 sea igual a este.
+
+146
+00:05:17,550 --> 00:05:19,620
+Y este aleatorio 10 por 11.
+
+147
+00:05:19,910 --> 00:05:21,060
+Así es como ejecutan
+
+148
+00:05:21,640 --> 00:05:23,620
+una matriz dimensional
+
+149
+00:05:24,670 --> 00:05:26,640
+aleatoria de 10 por 11, y todos
+
+150
+00:05:27,070 --> 00:05:30,380
+los valores están entre 0 y 1.
+
+151
+00:05:30,580 --> 00:05:31,350
+De forma que estos van a ser
+
+152
+00:05:31,520 --> 00:05:32,700
+números reales que adquieren
+
+153
+00:05:32,870 --> 00:05:34,860
+cualquier valor continuo entre 0 y 1.
+
+154
+00:05:35,450 --> 00:05:36,290
+Y así, si ustedes toman un
+
+155
+00:05:36,320 --> 00:05:37,440
+número entre 0 y
+
+156
+00:05:37,550 --> 00:05:38,310
+1, multiplíquenlo por 2
+
+157
+00:05:38,590 --> 00:05:39,550
+veces un «épsilon» y
+
+158
+00:05:39,600 --> 00:05:41,050
+menos «épsilon», entonces
+
+159
+00:05:41,160 --> 00:05:42,270
+terminarán con un número que se encuentra
+
+160
+00:05:42,690 --> 00:05:44,160
+entre menos «épsilon» y mayor a «épsilon».
+
+161
+00:05:45,640 --> 00:05:46,970
+Y a propósito, este «épsilon» aquí
+
+162
+00:05:47,230 --> 00:05:48,410
+no tiene nada que ver
+
+163
+00:05:48,730 --> 00:05:49,860
+con el «épsilon» que estábamos
+
+164
+00:05:50,070 --> 00:05:51,710
+utilizando cuando hicimos la comprobación de gradiente.
+
+165
+00:05:52,590 --> 00:05:54,070
+De forma que cuando hicimos la comprobación numérica de gradiente,
+
+166
+00:05:54,850 --> 00:05:57,060
+allí añadimos algunos valores de «épsilon» a «theta».
+
+167
+00:05:57,430 --> 00:05:59,560
+Esto es, como saben, un valor no relacionado de «épsilon».
+
+168
+00:05:59,780 --> 00:06:00,590
+Razón por la que lo estoy indicando como
+
+169
+00:06:00,990 --> 00:06:02,200
+“init_epsilon”, sólo para distinguirlo
+
+170
+00:06:02,480 --> 00:06:04,970
+del valor de «épsilon» que estábamos utilizando en la comprobación de gradiente.
+
+171
+00:06:06,490 --> 00:06:07,590
+Y del mismo modo si desean
+
+172
+00:06:07,690 --> 00:06:09,620
+inicializar «theta» 2
+
+173
+00:06:09,640 --> 00:06:10,820
+a una matriz aleatoria de 1 por
+
+174
+00:06:10,920 --> 00:06:13,430
+11, ustedes pueden hacerlo a través de esta pieza de código.
+
+175
+00:06:15,910 --> 00:06:17,460
+Así que, para resumir, para
+
+176
+00:06:17,660 --> 00:06:18,910
+entrenar una red neuronal,  lo que ustedes
+
+177
+00:06:19,060 --> 00:06:20,850
+deben hacer es inicializar de forma aleatoria los
+
+178
+00:06:20,930 --> 00:06:21,810
+pesos con,  ya saben, con valores
+
+179
+00:06:22,120 --> 00:06:23,370
+pequeños cercanos a 0, entre
+
+180
+00:06:23,740 --> 00:06:24,740
+menos «épsilon» y mayor a «épsilon»,
+
+181
+00:06:25,160 --> 00:06:27,150
+digamos, y luego implementar
+
+182
+00:06:27,620 --> 00:06:29,330
+la retropropagación;  hacer la comprobación de
+
+183
+00:06:30,220 --> 00:06:31,300
+gradiente y utilizar ya sea un gradiente de
+
+184
+00:06:31,660 --> 00:06:32,620
+de descenso o uno de los
+
+185
+00:06:32,880 --> 00:06:34,860
+optimización avanzados para tratar de
+
+186
+00:06:35,100 --> 00:06:36,250
+minimizar J de «theta»
+
+187
+00:06:36,790 --> 00:06:37,860
+como una función de los
+
+188
+00:06:38,050 --> 00:06:39,610
+parámetros «theta» empezando únicamente a partir
+
+189
+00:06:39,890 --> 00:06:41,900
+de valores iniciales elegidos al aleatoriamente para los parámetros.
+
+190
+00:06:42,970 --> 00:06:45,440
+Y al hacer la ruptura de simetría, que es este proceso.
+
+191
+00:06:46,000 --> 00:06:47,110
+Con suerte, la gradiente de descenso o los
+
+192
+00:06:47,580 --> 00:06:48,820
+algoritmos de optimización avanzados serán
+
+193
+00:06:48,980 --> 00:06:50,710
+capaces de encontrar un buen valor de «theta».

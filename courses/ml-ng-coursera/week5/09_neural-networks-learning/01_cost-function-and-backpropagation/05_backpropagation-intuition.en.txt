@@ -1,0 +1,159 @@
+In the previous video, we talked
+about the backpropagation algorithm. To a lot of people seeing it for
+the first time, their first impression is often that wow
+this is a really complicated algorithm, and there are all these different steps,
+and I'm not sure how they fit together. And it's kinda this black box
+of all these complicated steps. In case that's how you're feeling about
+backpropagation, that's actually okay. Backpropagation maybe unfortunately
+is a less mathematically clean, or less mathematically simple algorithm, compared to linear regression or
+logistic regression. And I've actually used backpropagation,
+you know, pretty successfully for many years. And even today I still don't sometimes
+feel like I have a very good sense of just what it's doing, or intuition about
+what back propagation is doing. If, for those of you that are doing
+the programming exercises, that will at least
+mechanically step you through the different steps of how
+to implement back prop. So you'll be able to get it to work for
+yourself. And what I want to do in this video is
+look a little bit more at the mechanical steps of backpropagation, and try to give
+you a little more intuition about what the mechanical steps the back prop is
+doing to hopefully convince you that, you know,
+it's at least a reasonable algorithm. In case even after this video in case back
+propagation still seems very black box and kind of like a,
+too many complicated steps and a little bit magical to you,
+that's actually okay. And Even though I've used back prop for
+many years, sometimes this is a difficult algorithm to understand, but hopefully
+this video will help a little bit. In order to better
+understand backpropagation, let's take another closer look at
+what forward propagation is doing. Here's a neural network with two input
+units that is not counting the bias unit, and two hidden units in this layer, and
+two hidden units in the next layer. And then, finally, one output unit. Again, these counts two, two, two,
+are not counting these bias units on top. In order to illustrate
+forward propagation, I'm going to draw this network
+a little bit differently. And in particular I'm going to draw
+this neuro-network with the nodes drawn as these very fat ellipsis, so
+that I can write text in them. When performing forward propagation,
+we might have some particular example. Say some example x i comma y i. And it'll be this x i that we
+feed into the input layer. So this maybe x i 2 and x i 2
+are the values we set the input layer to. And when we forward propagated
+to the first hidden layer here, what we do is compute z (2) 1 and z (2) 2. So these are the weighted sum
+of inputs of the input units. And then we apply the sigmoid
+of the logistic function, and the sigmoid activation
+function applied to the z value. Here's are the activation values. So that gives us a (2) 1 and a (2) 2. And then we forward propagate
+again to get here z (3) 1. Apply the sigmoid of
+the logistic function, the activation function
+to that to get a (3) 1. And similarly, like so
+until we get z (4) 1. Apply the activation function. This gives us a (4)1, which is the final
+output value of the neural network. Let's erase this arrow to
+give myself some more space. And if you look at what this
+computation really is doing, focusing on this hidden unit, let's say. We have to add this weight. Shown in magenta there is my weight theta
+(2) 1 0, the indexing is not important. And this way here,
+which I'm highlighting in red, that is theta (2) 1 1 and
+this weight here, which I'm drawing in cyan,
+is theta (2) 1 2. So the way we compute this value,
+z(3)1 is, z(3)1 is as equal to this
+magenta weight times this value. So that's theta (2) 10 x 1. And then plus this red
+weight times this value, so that's theta(2) 11 times a(2)1. And finally this cyan
+weight times this value, which is therefore plus
+theta(2)12 times a(2)1. And so that's forward propagation. And it turns out that as we'll
+see later in this video, what backpropagation is doing is
+doing a process very similar to this. Except that instead of the computations
+flowing from the left to the right of this network, the computations since their flow
+from the right to the left of the network. And using a very similar
+computation as this. And I'll say in two slides
+exactly what I mean by that. To better understand what backpropagation
+is doing, let's look at the cost function. It's just the cost function that we had
+for when we have only one output unit. If we have more than one output unit, we just have a summation you know over
+the output units indexed by k there. If you have only one output unit
+then this is a cost function. And we do forward propagation and
+backpropagation on one example at a time. So let's just focus on the single example,
+x (i) y (i) and focus on the case of
+having one output unit. So y (i) here is just a real number. And let's ignore regularization,
+so lambda equals 0. And this final term,
+that regularization term, goes away. Now if you look inside the summation, you find that the cost term
+associated with the training example, that is the cost associated with
+the training example x(i), y(i). That's going to be given
+by this expression. So, the cost to live off
+examplie i is written as follows. And what this cost function does is it
+plays a role similar to the squared arrow. So, rather than looking at
+this complicated expression, if you want you can think of cost
+of i being approximately the square difference between what the neural network
+outputs, versus what is the actual value. Just as in logistic repression,
+we actually prefer to use the slightly more complicated cost
+function using the log. But for the purpose of intuition,
+feel free to think of the cost function as being the sort of the squared
+error cost function. And so this cost(i) measures
+how well is the network doing on correctly predicting example i. How close is the output to
+the actual observed label y(i)? Now let's look at what
+backpropagation is doing. One useful intuition is that
+backpropagation is computing these delta superscript l subscript j terms. And we can think of these as the quote
+error of the activation value that we got for unit j in the layer,
+in the lth layer. More formally, for, and
+this is maybe only for those of you who
+are familiar with calculus. More formally,
+what the delta terms actually are is this, they're the partial derivative
+with respect to z,l,j, that is this weighted sum of inputs
+that were confusing these z terms. Partial derivatives with respect to
+these things of the cost function. So concretely, the cost function
+is a function of the label y and of the value,
+this h of x output value neural network. And if we could go inside
+the neural network and just change those z l
+j values a little bit, then that will affect these values
+that the neural network is outputting. And that will end up
+changing the cost function. And again really, this is only for
+those of you who are expert in Calculus. If you're comfortable
+with partial derivatives, what these delta terms are is they turn
+out to be the partial derivative of the cost function, with respect to these
+intermediate terms that were confusing. And so they're a measure of how much would
+we like to change the neural network's weights, in order to affect these
+intermediate values of the computation. So as to affect the final output
+of the neural network h(x) and therefore affect the overall cost. In case this lost part of this
+partial derivative intuition, in case that doesn't make sense. Don't worry about the rest of this, we can do without really talking
+about partial derivatives. But let's look in more detail about
+what backpropagation is doing. For the output layer,
+the first set's this delta term, delta (4) 1, as y (i) if we're
+doing forward propagation and back propagation on this
+training example i. That says y(i) minus a(4)1. So this is really the error, right? It's the difference between
+the actual value of y minus what was the value predicted, and so
+we're gonna compute delta(4)1 like so. Next we're gonna do,
+propagate these values backwards. I'll explain this in a second, and
+end up computing the delta terms for the previous layer. We're gonna end up with delta(3)1. Delta(3)2. And then we're gonna propagate
+this further backward, and end up computing delta(2)1 and
+delta(2)2. Now the backpropagation
+calculation is a lot like running the forward propagation algorithm,
+but doing it backwards. So here's what I mean. Let's look at how we end up
+with this value of delta(2)2. So we have delta(2)2. And similar to forward propagation,
+let me label a couple of the weights. So this weight,
+which I'm going to draw in cyan. Let's say that weight is theta(2)1 2, and this one down here when
+we highlight this in red. That is going to be let's
+say theta(2) of 2 2. So if we look at how delta(2)2, is computed,
+how it's computed with this note. It turns out that what we're going to do,
+is gonna take this value and multiply it by this weight, and add it
+to this value multiplied by that weight. So it's really a weighted
+sum of these delta values, weighted by the corresponding
+edge strength. So completely, let me fill this in,
+this delta(2)2 is going to be equal to, Theta(2)1 2 is that magenta
+lay times delta(3)1. Plus, and the thing I had in red, that's theta (2)2 times delta (3)2. So it's really literally this
+red wave times this value, plus this magenta weight times this value. And that's how we wind up
+with that value of delta. And just as another example,
+let's look at this value. How do we get that value? Well it's a similar process. If this weight,
+which I'm gonna highlight in green, if this weight is equal to,
+say, delta (3) 1 2. Then we have that delta (3) 2 is going
+to be equal to that green weight, theta (3) 12 times delta (4) 1. And by the way, so far I've been
+writing the delta values only for the hidden units, but
+excluding the bias units. Depending on how you define
+the backpropagation algorithm, or depending on how you implement it,
+you know, you may end up implementing something that computes delta values for
+these bias units as well. The bias units always output the value of
+plus one, and they are just what they are, and there's no way for
+us to change the value. And so, depending on your
+implementation of back prop, the way I usually implement it. I do end up computing these delta values,
+but we just discard them, we don't use them. Because they don't end up being
+part of the calculation needed to compute a derivative. So hopefully that gives you
+a little better intuition about what back propegation is doing. In case of all of this still
+seems sort of magical, sort of black box, in a later video, in
+the putting it together video, I'll try to get a little bit more intuition
+about what backpropagation is doing. But unfortunately this is a difficult
+algorithm to try to visualize and understand what it is really doing. But fortunately I've been, I guess many people have been using
+very successfully for many years. And if you implement the algorithm you can
+have a very effective learning algorithm. Even though the inner workings of exactly
+how it works can be harder to visualize.

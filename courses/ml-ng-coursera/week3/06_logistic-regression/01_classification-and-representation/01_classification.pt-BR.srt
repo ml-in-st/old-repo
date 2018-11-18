@@ -1,0 +1,594 @@
+1
+00:00:00,500 --> 00:00:04,650
+Neste e em alguns dos próximos vídeos, gostaria de começar falando sobre problemas de
+
+2
+00:00:04,650 --> 00:00:09,510
+classificação, onde a variável y que
+desejamos estimar é um valor discreto.
+
+3
+00:00:09,510 --> 00:00:12,651
+Desenvolveremos um algoritmo
+chamado regressão logística,
+
+4
+00:00:12,651 --> 00:00:16,931
+o qual é um dos mais populares e mais
+largamente usados hoje em dia em Aprendizagem de Máquina.
+
+5
+00:00:19,473 --> 00:00:23,270
+Estes são alguns exemplos de
+problemas de classificação.
+
+6
+00:00:23,270 --> 00:00:26,530
+Nos vídeos anteriores, 
+falamos sobre classificação de spams de e-mails,
+
+7
+00:00:26,530 --> 00:00:29,390
+como um exemplo de problema de classificação.
+
+8
+00:00:29,390 --> 00:00:33,110
+Outro exemplo poderia ser a classificação de transações online.
+
+9
+00:00:33,110 --> 00:00:35,540
+Então, se você tem um web site
+de venda de coisas e
+
+10
+00:00:35,540 --> 00:00:39,390
+se você quiser saber se uma transação
+específica é fraudulenta ou não,
+
+11
+00:00:39,390 --> 00:00:44,590
+se alguém está usando um cartão de crédito 
+roubado, ou se roubou a senha de um usuário.
+
+12
+00:00:44,590 --> 00:00:46,830
+Há outro problema de classificação,
+
+13
+00:00:46,830 --> 00:00:50,840
+do qual falamos anteriormente: 
+o exemplo da classificação de
+
+14
+00:00:50,840 --> 00:00:53,960
+tumores como sendo cancerígenos,
+que são malignos, ou em tumores benignos.
+
+15
+00:00:55,120 --> 00:00:59,450
+Em todos estes problemas a variável que
+estamos tentando estimar é uma variável
+
+16
+00:00:59,450 --> 00:01:04,160
+"y" que nós podemos pensar como se
+ela pudesse ter dois valores: ou zero ou um,
+
+17
+00:01:04,160 --> 00:01:09,080
+ou spam ou não spam, fraudulento ou 
+não fraudulento, cancerígino ou benigno.
+
+18
+00:01:10,500 --> 00:01:15,670
+Outro nome para a classe denotada 
+pelo zero é a classe negativa, e
+
+19
+00:01:15,670 --> 00:01:20,020
+o outro nome para a classe denotada 
+pelo um é a classe positiva.
+
+20
+00:01:20,020 --> 00:01:23,930
+Portanto, o zero significa tumor benigno,
+e o um,
+
+21
+00:01:23,930 --> 00:01:27,110
+a classe positiva, 
+um tumor maligno.
+
+22
+00:01:27,110 --> 00:01:31,370
+Da mesma forma, as duas classes, 
+para spam, um, ou não spam, zero.
+
+23
+00:01:31,370 --> 00:01:35,120
+Atribuir as duas classes,
+positiva e negativa, ao zero e
+
+24
+00:01:35,120 --> 00:01:37,290
+ao um é de certo modo arbitrário e
+
+25
+00:01:37,290 --> 00:01:42,220
+não importa muito, mas frequentemente há
+esta intuição de que uma classe negativa
+
+26
+00:01:42,220 --> 00:01:46,590
+representa a falta de algo
+como a falta de um tumor maligno.
+
+27
+00:01:46,590 --> 00:01:51,460
+Conquanto que o um, a classe positiva
+representa a presença de algo que
+
+28
+00:01:51,460 --> 00:01:55,170
+podemos estar procurando, mas
+a definição de qual é negativo e
+
+29
+00:01:55,170 --> 00:01:58,790
+qual é positivo é de certo modo arbitrário
+e não importa muito.
+
+30
+00:02:00,150 --> 00:02:03,080
+Por hora, estudaremos os 
+problemas de classificação com
+
+31
+00:02:03,080 --> 00:02:05,510
+apenas duas classes: zero e um.
+
+32
+00:02:05,510 --> 00:02:09,320
+Mais tarde, falaremos sobre problemas
+de múltiplas classes, nos quais
+
+33
+00:02:09,320 --> 00:02:14,250
+o "y" poder ter quatro valores: zero
+um, dois ou três.
+
+34
+00:02:14,250 --> 00:02:17,720
+Eles são chamados de problemas
+de classificação multiclasse.
+
+35
+00:02:17,720 --> 00:02:22,140
+Porém, em alguns dos próximos vídeos, vamos
+começar com duas classes, chamado de
+
+36
+00:02:22,140 --> 00:02:25,978
+problema de classificação binária, e nos
+importaremos com multiclasse mais adiante.
+
+37
+00:02:25,978 --> 00:02:30,580
+Como desenvolver
+um algoritmo de classificação?
+
+38
+00:02:30,580 --> 00:02:34,770
+Temos aqui um exemplo  de um conjunto 
+de treino para uma tarefa de classificação visando
+
+39
+00:02:34,770 --> 00:02:37,410
+classificar um tumor em maligno ou
+benigno.
+
+40
+00:02:37,410 --> 00:02:44,570
+Observe que a malignidade recebe
+apenas dois valores, zero para não, e um par sim.
+
+41
+00:02:44,570 --> 00:02:47,520
+Logo, algo que poderíamos fazer
+dado este conjunto de treino
+
+42
+00:02:47,520 --> 00:02:50,309
+é aplicar o algoritmo
+que já conhecemos.
+
+43
+00:02:51,410 --> 00:02:53,410
+A regressão linear neste conjunto de dados e
+
+44
+00:02:53,410 --> 00:02:56,320
+apenas tentar ajustar a 
+reta aos dados.
+
+45
+00:02:56,320 --> 00:02:59,840
+Se pegarmos este conjunto de treino e
+ajustarmos uma reta à ele,
+
+46
+00:02:59,840 --> 00:03:03,730
+pode ser que obtenha uma 
+hipótese que se pareça com esta aqui, certo?
+
+47
+00:03:03,730 --> 00:03:05,695
+Logo, essa é minha hipótese,
+
+48
+00:03:05,695 --> 00:03:09,100
+h(x) = teta transposta multiplicada por x.
+
+49
+00:03:09,100 --> 00:03:14,650
+Se quisermos estimar algo, podemos
+tentar o seguinte: estabelecer um limite para
+
+50
+00:03:14,650 --> 00:03:19,165
+os resultados do classificador em 0,5,
+cujo valor é representado no eixo
+
+51
+00:03:19,165 --> 00:03:23,985
+vertical na altura 0,5 e assim, se a hipótese
+
+52
+00:03:23,985 --> 00:03:27,235
+resultar num valor maior ou 
+igual a 0,5, assumimos y = 1.
+
+53
+00:03:27,235 --> 00:03:29,955
+Se o valor for menor do que 0,5, 
+assumimos y = 0.
+
+54
+00:03:29,955 --> 00:03:32,775
+Vamos ver o que acontece quando fazemos isto.
+
+55
+00:03:32,775 --> 00:03:36,359
+Temos 0,5 aqui
+como limite para os resultados e
+
+56
+00:03:36,359 --> 00:03:39,990
+usando a Regressão Linear desta forma:
+
+57
+00:03:39,990 --> 00:03:43,520
+tudo que cair do lado direito deste
+ponto vamos estimar
+
+58
+00:03:43,520 --> 00:03:44,710
+como sendo casos positivos,
+
+59
+00:03:44,710 --> 00:03:50,360
+porque os valores resultantes são maiores que
+0,5 no eixo vertical e tudo
+
+60
+00:03:50,360 --> 00:03:54,629
+que cair à esquerda deste ponto, estimaremos
+como sendo um valor de negação.
+
+61
+00:03:55,720 --> 00:03:57,620
+Neste caso particular,
+
+62
+00:03:57,620 --> 00:04:01,630
+parece que a Regressão Linear está,
+na verdade, fazendo algo razoável,
+
+63
+00:04:01,630 --> 00:04:05,420
+e é isso que estamos interessados,
+nesta tarefa de classificação.
+
+64
+00:04:05,420 --> 00:04:08,120
+Mas, vamos alterar um pouco o problema.
+
+65
+00:04:08,120 --> 00:04:11,530
+Deixem-me estender o eixo horizontal
+um pouco mais e
+
+66
+00:04:11,530 --> 00:04:15,263
+digamos que temos mais um
+exemplo de treino bem mais à direita.
+
+67
+00:04:15,263 --> 00:04:18,900
+Note que este exemplo adicional,
+
+68
+00:04:18,900 --> 00:04:21,960
+este bem aqui, ele de fato,
+não altera nada, certo?
+
+69
+00:04:21,960 --> 00:04:26,200
+Analisando o conjunto de treino fica 
+claro o que é ter uma boa hipótese.
+
+70
+00:04:26,200 --> 00:04:28,970
+É que, tudo o que está 
+aqui pela direita,
+
+71
+00:04:28,970 --> 00:04:31,010
+à direita disso,
+podemos estimar como positivo.
+
+72
+00:04:31,010 --> 00:04:34,930
+Tudo à esquerda provavelmente podemos
+estimar como sendo negativo, porque a partir deste
+
+73
+00:04:34,930 --> 00:04:39,620
+conjunto de treino, parece que todos os tumores
+maiores do que um certo valor por aqui
+
+74
+00:04:39,620 --> 00:04:44,210
+são malignos, e todos os tumores menores
+do que isso não são malignos, pelo menos para
+
+75
+00:04:44,210 --> 00:04:44,820
+este conjunto de treino.
+
+76
+00:04:46,200 --> 00:04:50,730
+Mas, após termos adicionado um exemplo extra,
+aqui, se rodarmos a regressão
+
+77
+00:04:50,730 --> 00:04:54,480
+linear, obteremos uma 
+outra reta, que se ajusta os dados.
+
+78
+00:04:54,480 --> 00:04:56,090
+Que deve parecer com essa linha azul.
+
+79
+00:04:57,600 --> 00:05:02,890
+E se estabelecermos agora o limite
+da hipótese em 0,5,
+
+80
+00:05:02,890 --> 00:05:06,350
+acabaremos tendo o limite de 0,5
+posicionado mais ou menos aqui,
+
+81
+00:05:06,350 --> 00:05:09,750
+então, tudo à direita deste
+ponto estimaremos como positivo e
+
+82
+00:05:09,750 --> 00:05:12,070
+tudo à esquerda dele
+estimaremos como sendo negativo.
+
+83
+00:05:14,590 --> 00:05:18,820
+Isso parece péssimo, 
+que foi feito pela Regressão Linear,
+
+84
+00:05:18,820 --> 00:05:23,110
+porque como sabemos, estes são nossos exemplos
+positivos, e estes nossos exemplos negativos.
+
+85
+00:05:23,110 --> 00:05:28,090
+Ficou bem claro que nós deveríamos
+separar os dois mais ou menos aqui,
+
+86
+00:05:28,090 --> 00:05:31,260
+mas, de algum jeito, ao adicionarmos um exemplo
+aqui bem à direita,
+
+87
+00:05:31,260 --> 00:05:34,300
+este exemplo não nos trouxe
+nada de novo.
+
+88
+00:05:34,300 --> 00:05:37,050
+Digo, não deveria haver nenhuma surpresa
+para o algoritmo de aprendizagem.
+
+89
+00:05:37,050 --> 00:05:40,260
+Ou seja, classificar este novo exemplo aqui
+como maligno,
+
+90
+00:05:40,260 --> 00:05:45,210
+mas, de alguma forma este novo exemplo aqui
+fez com que a Regressão Linear mudasse
+
+91
+00:05:45,210 --> 00:05:50,880
+sua reta para se ajustar aos dados
+desta linha magenta aqui
+
+92
+00:05:50,880 --> 00:05:55,670
+para esta linha azul, e 
+resultou para nós numa hipótese pior.
+
+93
+00:05:56,900 --> 00:06:01,120
+Portanto, aplicar Regressão Linear
+em um problema de classificação
+
+94
+00:06:01,120 --> 00:06:04,470
+geralmente não é uma grande ideia.
+
+95
+00:06:04,470 --> 00:06:09,870
+No primeiro exemplo, antes de ter
+adicionado um exemplo de treino extra,
+
+96
+00:06:09,870 --> 00:06:14,760
+a Regressão Linear sobre eles estava apeas
+tendo sorte e nos havia dado uma hipótese
+
+97
+00:06:14,760 --> 00:06:19,940
+que funcionava bem para aquele exemplo
+em particular, mas, geralmente aplicar
+
+98
+00:06:19,940 --> 00:06:24,760
+Regressão Linear a um conjunto de dados, é
+apenas uma questão de sorte, não é uma boa ideia.
+
+99
+00:06:24,760 --> 00:06:28,350
+Eu não usaria Regressão Linear para
+problemas de classificação.
+
+100
+00:06:29,700 --> 00:06:33,830
+Aqui vai outra coisa engraçada 
+que poderia ocorrer se aplicássemos
+
+101
+00:06:33,830 --> 00:06:36,740
+Regressão Linear para 
+problemas de classificação.
+
+102
+00:06:36,740 --> 00:06:40,630
+Para classificação, nós sabemos 
+que y é ou zero ou um.
+
+103
+00:06:40,630 --> 00:06:44,250
+Mas, usando Regressão Linear onde a hipótese
+
+104
+00:06:44,250 --> 00:06:48,380
+pode resultar em valores ou muito 
+acima de um ou muito abaixo de zero,
+
+105
+00:06:48,380 --> 00:06:52,570
+mesmo se todos os seus exemplos de treino
+tiveram y estabelecido em zero ou um,
+
+106
+00:06:53,920 --> 00:06:56,739
+soa um pouco estranho,
+mesmo que
+
+107
+00:06:56,739 --> 00:07:00,786
+saibamos que deveriam ser zero,
+ou um, fica esquisito se
+
+108
+00:07:00,786 --> 00:07:05,661
+o algoritmo nos der valores muito maiores do que um 
+ou muito menores do que zero.
+
+109
+00:07:09,135 --> 00:07:13,795
+Assim, o que faremos em alguns dos próximos vídeos,
+é desenvolver um algoritmo chamado de Regressão
+
+110
+00:07:13,795 --> 00:07:17,044
+Logística, o qual tem a propriedade
+
+111
+00:07:17,044 --> 00:07:21,635
+que os valores estimados estejam 
+sempre entre zero e um, e
+
+112
+00:07:21,635 --> 00:07:25,114
+não se tornam maiores do que um
+nem menores do que zero.
+
+113
+00:07:26,250 --> 00:07:29,260
+Aliás, Regressão Logística é,
+
+114
+00:07:29,260 --> 00:07:33,370
+um algoritmo de classificação.
+
+115
+00:07:33,370 --> 00:07:38,230
+Pode ser confuso o termo
+regressão aparecer neste nome
+
+116
+00:07:38,230 --> 00:07:42,150
+ainda que Regressão Logística seja,
+de fato, um algoritmo de classificação.
+
+117
+00:07:42,150 --> 00:07:44,720
+Mas, é só um nome que foi dado
+por razões históricas.
+
+118
+00:07:44,720 --> 00:07:49,210
+Então, não se confunda Regressão
+Logística é na verdade um algorítimo de
+
+119
+00:07:49,210 --> 00:07:54,542
+classificação que aplicamos a conjuntos de dados,
+nos quais os valores de y são discretos,
+
+120
+00:07:54,542 --> 00:07:56,610
+quando y puder ser zero ou um.
+
+121
+00:07:56,610 --> 00:08:01,000
+Espero que, agora, você saiba o porquê,
+tendo um problema de classificação,
+
+122
+00:08:01,000 --> 00:08:03,640
+não é uma boa ideia de se usar Regressão Linear.
+
+123
+00:08:03,640 --> 00:08:04,500
+No próximo vídeo,
+
+124
+00:08:04,500 --> 00:08:08,080
+começaremos a trabalhar nos detalhes
+do algoritmo de Regressão Logística.
+Tradução: Carlos Lage | Revisão:

@@ -1,0 +1,87 @@
+En este video definiremos las
+llamadas funciones de costo. Esto nos permitirá descubrir cómo ajustar la mejor línea
+recta posible para nuestros datos. En la regresión lineal tenemos un conjunto de entrenamiento
+como este. Recuerda que la anotación "m" era el número de ejemplos de entrenamiento. Entonces,
+tal vez m=47. Y la forma de la hipótesis, que usamos para hacer
+predicciones, es la función lineal. Para introducir un poco más de terminología,
+estas theta cero y theta uno; estas theta i son lo que llamo
+parámetros del modelo. Lo que haremos en este video será hablar sobre
+cómo escoger estos dos valores de parámetros, theta cero y theta
+uno. Con diferentes elecciones de los parámetros de theta cero y theta uno, obtenemos diferentes
+hipótesis, diferentes funciones de hipótesis. Sé que algunos de ustedes
+probablemente ya están familiarizados con lo que haré en esta diapositiva, pero sólo
+para revisar tenemos algunos ejemplos. Si theta cero es 1.5 y theta uno es 0, entonces
+la función de la hipótesis se verá así. Bien, debido a que tu función de
+hipótesis será "h(x) igual a 1.5 más 0 por x" que es esta función de valor
+constante, es plana a 1.5. Si "theta cero es igual a 0 y theta uno
+es igual 0.5", entonces la hipótesis se verá así. Y debe pasar por este
+punto (2,1), ya que ahora tienes "h(x)" o realmente "h<u>theta (x)" pero
+algunas veces omitiré theta por</u> brevedad. Entonces, "h(x)" será igual a sólo
+0.5 veces "x" que se ve así. Y, finalmente, si "theta cero es igual a 1 y theta
+uno es igual a 0.5", entonces terminaremos con una hipótesis que se ve así. Veamos,
+debe pasar por el punto (2,2) de esta manera. Esta es mi nueva "h(x)"
+o mi nueva "h<u>theta(x)". ¿De acuerdo? Bien,</u> recuerda que es
+"h<u>theta(x)" pero para abreviar</u> algunas veces sólo escribo "h(x)". En
+la regresión lineal tenemos un conjunto de entrenamiento, tal vez como el que trazamos aquí. Lo
+que queremos hacer es obtener los valores para los parámetros de theta cero y theta uno.
+De manera que la línea recta que obtenemos de esto, corresponda con una línea recta
+que, de alguna forma, se ajuste bien a los datos. Tal vez como esa línea. Entonces, ¿cómo
+obtenemos los valores theta cero, theta uno que corresponden al buen ajuste de los
+datos? La idea es que vamos a elegir nuestros parámetros de theta cero y theta uno
+de modo que "h(x)", que significa el valor que predijimos en la entrada "x", que esté cerca
+de los valores “y” para los ejemplo en nuestro conjunto de entrenamiento, para nuestros ejemplos de entrenamiento.
+En nuestro conjunto de entrenamiento, se nos da un número de ejemplos donde sabemos que "x" decide
+la casa y conocemos el precio real al que se vendió. Así que tratemos de
+escoger valores para las parámetros de modo que, por lo menos en el conjunto de entrenamiento, con
+las "x" en el conjunto de entretenimiento, hagamos predicciones razonablemente precisas para los
+valores “y”. Formalicemos esto. En la regresión lineal, lo que haré es que 
+quiero resolver un problema de minimización. Entonces, escribiré minimizar sobre theta
+cero, theta uno. Y, quiero que esto sea pequeño, quiero que la diferencia
+entre "h(x)" y “y” sea pequeña. Y algo que haré es tratar de minimizar la diferencia
+cuadrática entre el resultado de la hipótesis y el precio real de la
+casa ¿Ok? Vamos a completar algunos detalles. Recuerda que utilicé la
+anotación (x(i), y(i)) para representar el ejemplo de entrenamiento de "i". Bien, lo que
+realmente quiero es la suma de mi conjunto de entrenamiento. La suma de “i” es igual a 1 para M de
+la diferencia cuadrática entre esto es la predicción de mi hipótesis
+cuando se introduce el número de “i” del tamaño de la casa menos el precio real al que
+se venderá el número “i” de la casa y quiero minimizar mi suma de conjunto de entrenamiento
+de “i” igual a 1 a través de M de la diferencia de este error cuadrático,
+la diferencia cuadrática entre la predicción del precio de la casa y el precio
+al que realmente se venderá. Y sólo te recuerdo que la anotación “m” aquí era
+el tamaño de mi conjunto de entrenamiento, entonces, “m” es mi número de ejemplos
+de entrenamiento. ¿Cierto? El signo de numeral es la abreviatura de “número” para los ejemplos
+de entrenamiento. ¿Ok? Y para hacer las matemáticas un poco más fáciles,
+realmente veré, 1 sobre m veces eso. Así que trataremos
+de minimizar mi error promedio, y minimizaremos uno por 2m.
+Al poner 2, la constante de un medio, en frente hace que las matemáticas sean
+un poco más fáciles. Entonces, al minimizar la mitad de algo, debe darte los mismos
+valores de los parámetros theta cero, theta uno al minimizar esa función. Y sólo
+asegúrate de que esta ecuación esté clara, ¿entendido? Esta expresión de aquí,
+h<u>theta(x), esta es</u> nuestra usual, ¿cierto? Es igual a esto
+más theta uno x(i). Y, esta anotación, minimiza sobre theta cero y theta uno,
+esto quiere decir encuentra los valores de theta cero y theta uno que causan que se
+minimice la expresión. Y esta expresión depende de theta cero y theta
+uno. ¿Ok? Entonces, sólo para recapitular, planteamos este problema para encontrar los valores de
+theta cero y theta uno, de manera que se reduzca el promedio de uno sobre dos M veces la
+suma de los errores cuadráticos entre mis predicciones del conjunto de entrenamiento menos los
+valores reales de las casas en el conjunto de entrenamiento. Así que esto
+será mi función objetivo general para la regresión lineal. Y sólo para
+rescribir esto un poco más claro lo que haré mediante la convención
+es que generalmente definimos una función de costos. Que será exactamente esto. La
+fórmula que tengo aquí. Y lo que quiero hacer es minimizar, sobre theta cero y
+theta uno, mi función J de theta cero coma theta uno. Sólo escribe
+esto, esta en mi función de costos. Esta función de costos también se llama error
+cuadrático o algunas veces se llama función de costos de error cuadrático y resulta
+que, ¿por qué tomamos los cuadrados de los errores? Resulta
+que la función de costos del error cuadrático es una elección razonable y funcionará bien en
+la mayoría de los problemas, para la mayoría de los problemas de regresión. Hay otras funciones de costos
+que funcionarán muy bien, pero la función de costos de error cuadrático es probablemente
+la más usada para los problemas de regresión. Más adelante en esta clase, también hablaremos sobre
+las funciones de costos alternativas pero esta elección que hicimos debe ser algo
+razonable para intentar con la mayoría de los problemas de regresión. Ok. Entonces,
+esa es la función de costos. Hasta ahora hemos visto la definición matemática de esta
+función de costos y en caso de que esta función J de theta cero, theta uno en caso de
+que esta función parezca un poco más abstracta y que aún no entiendas bien
+qué hace, en el siguiente video, en los siguientes videos veremos
+de forma más profunda qué hace la función de costos J y trataré de darte
+una mejor intuición de qué es el cálculo y por qué queremos usarlo.

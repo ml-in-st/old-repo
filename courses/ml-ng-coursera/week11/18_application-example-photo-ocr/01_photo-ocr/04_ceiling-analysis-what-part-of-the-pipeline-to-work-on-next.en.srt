@@ -1,0 +1,1118 @@
+1
+00:00:00,120 --> 00:00:02,490
+In earlier videos,
+I've said over and over that,
+
+2
+00:00:02,490 --> 00:00:06,670
+when you're developing a machine learning
+system, one of the most valuable resources
+
+3
+00:00:06,670 --> 00:00:11,310
+is your time as the developer,
+in terms of picking what to work on next.
+
+4
+00:00:11,310 --> 00:00:13,380
+Or, if you have a team of developers or
+
+5
+00:00:13,380 --> 00:00:16,690
+a team of engineers working together
+on a machine learning system.
+
+6
+00:00:16,690 --> 00:00:20,160
+Again, one of the most valuable resources
+is the time of the engineers or
+
+7
+00:00:20,160 --> 00:00:22,450
+the developers working on the system.
+
+8
+00:00:22,450 --> 00:00:25,230
+And what you really want
+to avoid is that you or
+
+9
+00:00:25,230 --> 00:00:29,090
+your colleagues your friends spend a lot
+of time working on some component.
+
+10
+00:00:29,090 --> 00:00:34,190
+Only to realize after weeks or
+months of time spent, that all that worked
+
+11
+00:00:34,190 --> 00:00:39,450
+just doesn't make a huge difference on
+the performance of the final system.
+
+12
+00:00:39,450 --> 00:00:43,379
+In this video what I'd like to do is
+something called ceiling analysis.
+
+13
+00:00:44,550 --> 00:00:48,750
+When you're the team working on
+the pipeline machine on your system,
+
+14
+00:00:48,750 --> 00:00:53,550
+this can sometimes give you a very
+strong signal, a very strong guidance on
+
+15
+00:00:53,550 --> 00:00:56,770
+what parts of the pipeline might be
+the best use of your time to work on.
+
+16
+00:00:59,770 --> 00:01:04,670
+To talk about ceiling analysis I'm
+going to keep on using the example of
+
+17
+00:01:04,670 --> 00:01:06,570
+the photo OCR pipeline.
+
+18
+00:01:06,570 --> 00:01:10,840
+And see right here each of these boxes,
+text detection, character segmentation,
+
+19
+00:01:10,840 --> 00:01:12,160
+character recognition,
+
+20
+00:01:12,160 --> 00:01:16,870
+each of these boxes can have even
+a small engineering team working on it.
+
+21
+00:01:16,870 --> 00:01:19,660
+Or maybe the entire system is
+just built by you, either way.
+
+22
+00:01:19,660 --> 00:01:22,850
+But the question is where
+should you allocate resources?
+
+23
+00:01:22,850 --> 00:01:27,502
+Which of these boxes is most worth
+your effort of trying to improve
+
+24
+00:01:27,502 --> 00:01:29,032
+the performance of.
+
+25
+00:01:29,032 --> 00:01:32,151
+In order to explain the idea
+of ceiling analysis,
+
+26
+00:01:32,151 --> 00:01:36,970
+I'm going to keep using the example
+of our photo OCR pipeline.
+
+27
+00:01:36,970 --> 00:01:40,470
+As I mentioned earlier, each of these
+boxes here, each of these machines and
+
+28
+00:01:40,470 --> 00:01:45,070
+components could be the work of
+a small team of engineers, or
+
+29
+00:01:45,070 --> 00:01:49,050
+the whole system could be
+built by just one person.
+
+30
+00:01:49,050 --> 00:01:52,090
+But the question is, where should
+you allocate scarce resources?
+
+31
+00:01:52,090 --> 00:01:56,220
+That is, which of these components, which
+one or two or maybe all three of these
+
+32
+00:01:56,220 --> 00:02:01,650
+components is most worth your time,
+to try to improve the performance of.
+
+33
+00:02:01,650 --> 00:02:04,070
+So here's the idea of ceiling analysis.
+
+34
+00:02:04,070 --> 00:02:07,900
+As in the development process for
+other machine learning systems as well,
+
+35
+00:02:07,900 --> 00:02:12,560
+in order to make decisions on what
+to do for developing the system is
+
+36
+00:02:12,560 --> 00:02:17,570
+going to be very helpful to have a single
+rolled number evaluation metric for
+
+37
+00:02:17,570 --> 00:02:18,440
+this learning system.
+
+38
+00:02:18,440 --> 00:02:20,310
+So let's say we pick
+character level accuracy.
+
+39
+00:02:20,310 --> 00:02:24,920
+So if you're given a test set image,
+what is the fraction of alphabets or
+
+40
+00:02:24,920 --> 00:02:27,730
+characters in a test image
+that we recognize correctly?
+
+41
+00:02:29,040 --> 00:02:32,650
+Or you can pick some other single road
+number evaluation that you could,
+
+42
+00:02:32,650 --> 00:02:33,320
+if you want.
+
+43
+00:02:33,320 --> 00:02:36,560
+But let's say for
+whatever evaluation measure we pick,
+
+44
+00:02:36,560 --> 00:02:41,990
+we find that the overall system
+currently has 72% accuracy.
+
+45
+00:02:41,990 --> 00:02:44,880
+So in other words,
+we have some set of test set images.
+
+46
+00:02:44,880 --> 00:02:47,880
+And from each test set images,
+we run it through text detection,
+
+47
+00:02:47,880 --> 00:02:50,480
+then character segmentation,
+then character recognition.
+
+48
+00:02:50,480 --> 00:02:54,810
+And we find that on our test set the
+overall accuracy of the entire system was
+
+49
+00:02:54,810 --> 00:02:56,780
+72% on whatever metric you chose.
+
+50
+00:02:58,180 --> 00:03:02,810
+Now here's the idea behind ceiling
+analysis, which is that we're going to go
+
+51
+00:03:02,810 --> 00:03:07,280
+through, let's say the first module of our
+machinery pipeline, say text detection.
+
+52
+00:03:07,280 --> 00:03:10,510
+And what we're going to do, is we're
+going to monkey around with the test set.
+
+53
+00:03:10,510 --> 00:03:11,509
+We're gonna go to the test set.
+
+54
+00:03:13,290 --> 00:03:18,250
+For every test example, which is going
+to provide it the correct text detection
+
+55
+00:03:18,250 --> 00:03:23,263
+outputs, so in other words, we're going to
+go to the test set and just manually tell
+
+56
+00:03:23,263 --> 00:03:28,480
+the algorithm where the text is
+in each of the test examples.
+
+57
+00:03:28,480 --> 00:03:32,650
+So in other words gonna simulate
+what happens if you have
+
+58
+00:03:32,650 --> 00:03:37,140
+a text detection system with
+a hundred percent accuracy, for
+
+59
+00:03:37,140 --> 00:03:40,796
+the purpose of detecting text in an image.
+
+60
+00:03:40,796 --> 00:03:44,280
+And really the way you do
+that's pretty simple, right?
+
+61
+00:03:44,280 --> 00:03:48,220
+Instead of letting your learning
+algorhtim detect the text in the images.
+
+62
+00:03:48,220 --> 00:03:49,870
+You wouldn't say go to the images and
+
+63
+00:03:49,870 --> 00:03:54,280
+just manually label what is the location
+of the text in my test set image.
+
+64
+00:03:54,280 --> 00:03:56,180
+And you would then let these correct or
+
+65
+00:03:56,180 --> 00:04:00,840
+let these ground truth labels of where
+is the text be part of your test set.
+
+66
+00:04:00,840 --> 00:04:04,060
+And just use these ground truth
+labels as what you feed in
+
+67
+00:04:04,060 --> 00:04:07,530
+to the next stage of the pipeline, so
+the character segmentation pipeline.
+
+68
+00:04:07,530 --> 00:04:09,250
+Okay?
+So just to say that again.
+
+69
+00:04:09,250 --> 00:04:11,520
+By putting a checkmark over here,
+
+70
+00:04:11,520 --> 00:04:15,520
+what I mean is I'm going to go to my test
+set and just give it the correct answers.
+
+71
+00:04:15,520 --> 00:04:19,230
+Give it the correct labels for
+the text detection part of the pipeline.
+
+72
+00:04:19,230 --> 00:04:23,090
+So that as if I have a perfect test
+detection system on my test set.
+
+73
+00:04:24,110 --> 00:04:28,400
+What we need to do then is run this
+data through the rest of the pipeline.
+
+74
+00:04:28,400 --> 00:04:30,920
+Through character segmentation and
+character recognition.
+
+75
+00:04:30,920 --> 00:04:34,020
+And then use the same
+evaluation metric as before,
+
+76
+00:04:34,020 --> 00:04:37,800
+to measure what was the overall
+accuracy of the entire system.
+
+77
+00:04:37,800 --> 00:04:40,750
+And with perfect text detection,
+hopefully the performance will go up.
+
+78
+00:04:40,750 --> 00:04:43,700
+And in this example, it goes up by by 89%.
+
+79
+00:04:43,700 --> 00:04:47,760
+And then we're gonna keep going, let's
+got o the next stage of the pipeline, so
+
+80
+00:04:47,760 --> 00:04:49,045
+character segmentation.
+
+81
+00:04:49,045 --> 00:04:53,905
+So again, I'm gonna go to my test set,
+and now I'm going to give it the correct
+
+82
+00:04:53,905 --> 00:04:57,900
+text detection output and give it
+the correct character segmentation output.
+
+83
+00:04:57,900 --> 00:05:03,170
+So go to the test set and manually label
+the correct segmentations of the text
+
+84
+00:05:03,170 --> 00:05:06,210
+into individual characters,
+and see how much that helps.
+
+85
+00:05:06,210 --> 00:05:09,699
+And let's say it goes up to 90%
+accuracy for the overall system.
+
+86
+00:05:09,699 --> 00:05:10,280
+Right?
+
+87
+00:05:10,280 --> 00:05:13,930
+So as always the accuracy
+of the overall system.
+
+88
+00:05:13,930 --> 00:05:17,620
+So is whatever the final output of
+the character recognition system is.
+
+89
+00:05:17,620 --> 00:05:19,880
+Whatever the final output
+of the overall pipeline,
+
+90
+00:05:19,880 --> 00:05:22,450
+is going to measure the accuracy of that.
+
+91
+00:05:22,450 --> 00:05:25,680
+And finally I'm going to build a character
+recognition system and give that correct
+
+92
+00:05:25,680 --> 00:05:29,980
+labels as well, and if I do that too then
+no surprise I should get 100% accuracy.
+
+93
+00:05:31,440 --> 00:05:36,370
+Now the nice thing about having done this
+analysis is, we can now understand what is
+
+94
+00:05:36,370 --> 00:05:41,400
+the upside potential of improving
+each of these components?
+
+95
+00:05:41,400 --> 00:05:44,960
+So we see that if we get
+perfect text detection,
+
+96
+00:05:44,960 --> 00:05:47,920
+our performance went up from 72 to 89%.
+
+97
+00:05:47,920 --> 00:05:51,640
+So that's a 17% performance gain.
+
+98
+00:05:51,640 --> 00:05:55,910
+So this means that if we take our current
+system we spend a lot of time improving
+
+99
+00:05:55,910 --> 00:05:57,240
+text detection,
+
+100
+00:05:57,240 --> 00:06:00,930
+that means that we could potentially
+improve our system's performance by 17%.
+
+101
+00:06:00,930 --> 00:06:03,750
+It seems like it's well worth our while.
+
+102
+00:06:03,750 --> 00:06:05,350
+Whereas in contrast,
+
+103
+00:06:05,350 --> 00:06:11,200
+when going from text detection when we
+gave it perfect character segmentation,
+
+104
+00:06:11,200 --> 00:06:15,210
+performance went up only by 1%, so
+that's a more sobering message.
+
+105
+00:06:15,210 --> 00:06:19,800
+It means that no matter how much time
+you spend on character segmentation.
+
+106
+00:06:19,800 --> 00:06:23,470
+Maybe the upside potential is going to be
+pretty small, and maybe you do not want to
+
+107
+00:06:23,470 --> 00:06:26,880
+have a large team of engineers
+working on character segmentation.
+
+108
+00:06:26,880 --> 00:06:31,168
+This sort of analysis shows that even
+when you give it the perfect character
+
+109
+00:06:31,168 --> 00:06:34,750
+segmentation, you performance
+goes up by only one percent.
+
+110
+00:06:34,750 --> 00:06:39,690
+That really estimates what is the ceiling,
+or what is an upper bound on how much you
+
+111
+00:06:39,690 --> 00:06:43,260
+can improve the performance of your system
+and working on one of these components.
+
+112
+00:06:44,370 --> 00:06:46,360
+And finally, going from character,
+
+113
+00:06:46,360 --> 00:06:50,300
+when we get better character recognition
+with the forms went up by ten percent.
+
+114
+00:06:50,300 --> 00:06:55,360
+So again you can decide is ten percent
+improvement, how much is worth your while?
+
+115
+00:06:55,360 --> 00:07:00,420
+This tells you that maybe with more effort
+spent on the last stage of the pipeline,
+
+116
+00:07:00,420 --> 00:07:05,590
+you can improve the performance
+of the systems as well.
+
+117
+00:07:05,590 --> 00:07:06,920
+Another way of thinking about this,
+
+118
+00:07:06,920 --> 00:07:10,190
+is that by going through these sort
+of analysis you're trying to think
+
+119
+00:07:10,190 --> 00:07:14,680
+about what is the upside potential of
+improving each of these components.
+
+120
+00:07:14,680 --> 00:07:17,490
+Or how much could you
+possibly gain if one of
+
+121
+00:07:17,490 --> 00:07:20,520
+these components became
+absolutely perfect?
+
+122
+00:07:20,520 --> 00:07:24,260
+And this really places an upper bound
+on the performance of that system.
+
+123
+00:07:24,260 --> 00:07:28,220
+So the idea of ceiling analysis is pretty
+important, let me just answer this idea
+
+124
+00:07:28,220 --> 00:07:31,910
+again but with a different example but
+more complex one.
+
+125
+00:07:31,910 --> 00:07:35,338
+Let's say that you want to do
+face recognition from images.
+
+126
+00:07:35,338 --> 00:07:37,820
+You want to look at the picture and
+recognize whether or
+
+127
+00:07:37,820 --> 00:07:41,375
+not the person in this picture is
+a particular friend of yours, and
+
+128
+00:07:41,375 --> 00:07:44,900
+try to recognize the person
+Shown in this image.
+
+129
+00:07:44,900 --> 00:07:47,100
+This is a slightly artificial example,
+
+130
+00:07:47,100 --> 00:07:50,360
+this isn't actually how face
+recognition is done in practice.
+
+131
+00:07:50,360 --> 00:07:54,660
+But we're going to set for an example,
+what a pipeline might look
+
+132
+00:07:54,660 --> 00:07:59,140
+like to give you another example of how
+a ceiling analysis process might look.
+
+133
+00:07:59,140 --> 00:08:04,460
+So we have a camera image, and let's say
+that we design a pipeline as follows,
+
+134
+00:08:04,460 --> 00:08:07,920
+the first thing you wanna do is
+pre-processing of the image.
+
+135
+00:08:07,920 --> 00:08:10,830
+So let's take this image like we
+have shown on the upper right, and
+
+136
+00:08:10,830 --> 00:08:12,390
+let's say we want to
+remove the background.
+
+137
+00:08:12,390 --> 00:08:16,090
+So do pre-processing and
+the background disappears.
+
+138
+00:08:16,090 --> 00:08:19,400
+Next we want to say detect
+the face of the person,
+
+139
+00:08:19,400 --> 00:08:21,070
+that's usually done on the learning So
+
+140
+00:08:21,070 --> 00:08:25,740
+we'll run a sliding Windows crossfire
+to draw a box around a person's face.
+
+141
+00:08:25,740 --> 00:08:29,240
+Having detected the face, it turns out
+that if you want to recognize people,
+
+142
+00:08:29,240 --> 00:08:32,010
+it turns out that the eyes
+is a highly useful cue.
+
+143
+00:08:32,010 --> 00:08:36,550
+We actually are, in terms of recognizing
+your friends the appearance of their
+
+144
+00:08:36,550 --> 00:08:39,460
+eyes is actually one of the most
+important cues that you use.
+
+145
+00:08:39,460 --> 00:08:42,540
+So lets run another crossfire to
+detect the eyes of the person.
+
+146
+00:08:42,540 --> 00:08:44,690
+So the segment of the eyes and
+
+147
+00:08:44,690 --> 00:08:48,660
+then since this will give us useful
+features to recognize the person.
+
+148
+00:08:48,660 --> 00:08:51,030
+And then other parts of
+the face of physical interest.
+
+149
+00:08:51,030 --> 00:08:54,750
+Maybe segment of the nose,
+segment of the mouth.
+
+150
+00:08:54,750 --> 00:08:58,780
+And then having found the eyes, the nose,
+and the mouth, all of these give us useful
+
+151
+00:08:58,780 --> 00:09:02,140
+features to maybe feed into
+a logistic regression classifier.
+
+152
+00:09:02,140 --> 00:09:05,450
+And there's a job with a cost priority,
+they'd give us the overall label,
+
+153
+00:09:05,450 --> 00:09:08,800
+to find the label for who we think
+is the identity of this person.
+
+154
+00:09:10,180 --> 00:09:13,980
+So this is a kind of complicated pipeline,
+it's actually probably more complicated
+
+155
+00:09:13,980 --> 00:09:18,200
+than you should be using if you actually
+want to recognize people, but there's
+
+156
+00:09:18,200 --> 00:09:20,889
+an illustrative example that's useful
+to think about for ceiling analysis.
+
+157
+00:09:22,140 --> 00:09:25,040
+So how do you go through ceiling
+analysis for this pipeline.
+
+158
+00:09:25,040 --> 00:09:27,510
+Well se step through these
+pieces one at a time.
+
+159
+00:09:27,510 --> 00:09:30,490
+Let's say your overall
+system has 85% accuracy.
+
+160
+00:09:30,490 --> 00:09:32,920
+The first thing I do is
+go to my test set and
+
+161
+00:09:32,920 --> 00:09:37,190
+manually give it the full
+background segmentation.
+
+162
+00:09:37,190 --> 00:09:39,150
+So manually go to the test set.
+
+163
+00:09:39,150 --> 00:09:43,180
+And use Photoshop or something to just
+tell it where's the background and
+
+164
+00:09:43,180 --> 00:09:47,030
+just manually remove the graph background,
+so this is a ground true background, and
+
+165
+00:09:47,030 --> 00:09:49,030
+see how much the accuracy changes.
+
+166
+00:09:49,030 --> 00:09:52,726
+In this example the accuracy
+goes up by 0.1%.
+
+167
+00:09:52,726 --> 00:09:58,000
+So this is a strong sign that even if you
+have perfect background segmentation,
+
+168
+00:09:58,000 --> 00:10:02,350
+the form is, even with perfect
+background removal the performance or
+
+169
+00:10:02,350 --> 00:10:03,890
+your system isn't going
+to go up that much.
+
+170
+00:10:03,890 --> 00:10:07,410
+So it's maybe not worth a huge
+effort to work on pre-processing
+
+171
+00:10:07,410 --> 00:10:08,210
+on background removal.
+
+172
+00:10:09,300 --> 00:10:13,440
+Then quickly goes to test set give
+it the correct face detection images
+
+173
+00:10:13,440 --> 00:10:15,450
+then again step though the eyes nose and
+
+174
+00:10:15,450 --> 00:10:17,820
+mouth segmentation in some
+order just pick one order.
+
+175
+00:10:17,820 --> 00:10:20,250
+Just give the correct
+location of the eyes.
+
+176
+00:10:20,250 --> 00:10:23,550
+Correct location in noses,
+correct location in mouth, and
+
+177
+00:10:23,550 --> 00:10:28,510
+then finally if I just give it the correct
+overall label I can get 100% accuracy.
+
+178
+00:10:28,510 --> 00:10:33,280
+And so as I go through the system and
+just give more and more components,
+
+179
+00:10:33,280 --> 00:10:37,560
+the correct labels in the test set, the
+performance of the overall system goes up
+
+180
+00:10:37,560 --> 00:10:40,570
+and you can look at how much the
+performance went up on different steps.
+
+181
+00:10:40,570 --> 00:10:44,420
+So from giving it
+the perfect face detection,
+
+182
+00:10:44,420 --> 00:10:48,704
+it looks like the overall performance
+of the system went up by 5.9%.
+
+183
+00:10:48,704 --> 00:10:50,960
+So that's a pretty big jump.
+
+184
+00:10:50,960 --> 00:10:55,450
+It means that maybe it's worth quite
+a bit effort on better face detection.
+
+185
+00:10:55,450 --> 00:10:57,654
+Went up 4% there, it went up 1% there.
+
+186
+00:10:57,654 --> 00:11:01,347
+1% there, and 3% there.
+
+187
+00:11:01,347 --> 00:11:05,427
+So it looks like the components
+that most work are while are,
+
+188
+00:11:05,427 --> 00:11:09,507
+when I gave it perfect face
+detection system went up by 5.9
+
+189
+00:11:09,507 --> 00:11:14,470
+performance when given perfect eyes
+segmentation went to four percent.
+
+190
+00:11:14,470 --> 00:11:18,499
+And then my final which is cost for
+well there's another three percent,
+
+191
+00:11:18,499 --> 00:11:19,500
+gap there maybe.
+
+192
+00:11:19,500 --> 00:11:25,620
+And so this tells maybe whether the
+components are most worthwhile working on.
+
+193
+00:11:25,620 --> 00:11:28,680
+And by the way I want to tell
+you a true cautionary story.
+
+194
+00:11:28,680 --> 00:11:31,531
+The reason I put this is
+in this in preprocessing
+
+195
+00:11:31,531 --> 00:11:36,091
+background removal is because I actually
+know of a true story where there was
+
+196
+00:11:36,091 --> 00:11:40,582
+a research team that actually literally
+had to people spend about a year and
+
+197
+00:11:40,582 --> 00:11:44,600
+a half, spend 18 months working
+on better background removal.
+
+198
+00:11:44,600 --> 00:11:48,865
+But actually I'm obscuring the details for
+obvious reasons, but there was a computer
+
+199
+00:11:48,865 --> 00:11:53,073
+vision application where there's a team of
+two engineers that literally spent about
+
+200
+00:11:53,073 --> 00:11:56,814
+a year and a half working on better
+background removal, actually worked out
+
+201
+00:11:56,814 --> 00:12:01,190
+really complicated algorithms and
+ended up publishing one research paper.
+
+202
+00:12:01,190 --> 00:12:04,730
+But after all that work they found that
+it just did not make huge difference to
+
+203
+00:12:04,730 --> 00:12:10,440
+the overall performance of the actual
+application they were working on and
+
+204
+00:12:10,440 --> 00:12:14,690
+if only someone were to do
+ceiling analysis before hand
+
+205
+00:12:14,690 --> 00:12:16,170
+maybe they could have realized.
+
+206
+00:12:17,250 --> 00:12:18,680
+And one of them said to me afterward.
+
+207
+00:12:18,680 --> 00:12:22,780
+If only you've did this sort of analysis
+like this maybe they could have realized
+
+208
+00:12:22,780 --> 00:12:24,610
+before their 18 months of work.
+
+209
+00:12:24,610 --> 00:12:28,420
+That they should have spend their effort
+focusing on some different component
+
+210
+00:12:28,420 --> 00:12:31,510
+then literally spending 18 months
+working on background removal.
+
+211
+00:12:33,940 --> 00:12:35,610
+So to summarize,
+
+212
+00:12:35,610 --> 00:12:39,900
+pipelines are pretty pervasive in
+complex machine learning applications.
+
+213
+00:12:39,900 --> 00:12:43,624
+And when you're working on a big
+machine learning application,
+
+214
+00:12:43,624 --> 00:12:47,280
+your time as developer is so
+valuable, so just don't waste your
+
+215
+00:12:47,280 --> 00:12:51,160
+time working on something that
+ultimately isn't going to matter.
+
+216
+00:12:51,160 --> 00:12:54,632
+And in this video we'll talk about
+this idea of ceiling analysis,
+
+217
+00:12:54,632 --> 00:12:58,663
+which I've often found to be a very good
+tool for identifying the component of
+
+218
+00:12:58,663 --> 00:13:02,220
+a video as you put focus on that
+component and make a big difference.
+
+219
+00:13:02,220 --> 00:13:07,340
+Will actually have a huge effect on the
+overall performance of your final system.
+
+220
+00:13:07,340 --> 00:13:10,503
+So over the years working machine
+learning, I've actually learned to
+
+221
+00:13:10,503 --> 00:13:13,259
+not trust my own gut feeling
+about what components to work on.
+
+222
+00:13:13,259 --> 00:13:17,199
+So very often, I've work on machine
+learning for a long time, but often I look
+
+223
+00:13:17,199 --> 00:13:20,839
+at a machine learning problem, and
+I may have some gut feeling about oh,
+
+224
+00:13:20,839 --> 00:13:24,160
+let's jump on that component and
+just spend all the time on that.
+
+225
+00:13:24,160 --> 00:13:27,640
+But over the years, I've come to
+even trust my own gut feelings and
+
+226
+00:13:27,640 --> 00:13:29,888
+learn not to trust gut feelings that much.
+
+227
+00:13:29,888 --> 00:13:34,090
+And instead, if you have a sort of machine
+learning problem where it's possible to
+
+228
+00:13:34,090 --> 00:13:37,993
+structure things and do a ceiling
+analysis, often there's a much better and
+
+229
+00:13:37,993 --> 00:13:41,355
+much more reliable way for
+deciding where to put a focused effort,
+
+230
+00:13:41,355 --> 00:13:44,560
+to really improve the performance
+of some component.
+
+231
+00:13:44,560 --> 00:13:47,470
+And be kind of reassured that,
+when you do that, it won't actually have
+
+232
+00:13:47,470 --> 00:13:50,310
+a huge effect on the final
+performance of the overall system.

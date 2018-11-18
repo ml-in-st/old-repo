@@ -1,0 +1,647 @@
+1
+00:00:00,520 --> 00:00:04,480
+W poprzednich nagraniach rozmawialiśmy o 
+algorytmie gradientu prostego
+
+2
+00:00:04,480 --> 00:00:09,540
+oraz modelu regresji liniowej i kwadratowej
+funkcji kosztu.
+
+3
+00:00:09,540 --> 00:00:14,280
+W tym nagraniu złożymy do kupy
+gradient prosty i naszą funkcję kosztu.
+
+4
+00:00:14,280 --> 00:00:17,400
+Otrzymamy w ten sposób algorytm
+regresji liniowej,
+
+5
+00:00:17,400 --> 00:00:18,730
+czyli dopasowanie prostej do naszych danych.
+
+6
+00:00:20,800 --> 00:00:24,950
+Oto, nad czym pracowaliśmy w poprzednich
+nagraniach:
+
+7
+00:00:24,950 --> 00:00:28,920
+Tu jest gradient prosty, który nie jest Ci już obcy,
+
+8
+00:00:28,920 --> 00:00:34,210
+a tutaj - model regresji liniowej, z naszą hipotezą
+liniową oraz
+
+9
+00:00:34,210 --> 00:00:36,540
+funkcją kosztu opartą na kwadracie błędu.
+
+10
+00:00:36,540 --> 00:00:42,312
+Zastosujemy teraz gradient prosty
+
+11
+00:00:42,312 --> 00:00:47,820
+do minimalizacji naszej kwadratowej
+funkcji kosztu.
+
+12
+00:00:47,820 --> 00:00:51,275
+Aby zastosować gradient prosty, tzn.
+
+13
+00:00:51,275 --> 00:00:59,810
+napisać odpowiedni program, kluczowym elementem jest to
+wyrażenie na pochodną.
+
+14
+00:00:59,810 --> 00:01:04,060
+Musimy więc dowiedzieć się, czym jest wyrażenie na
+pochodną cząstkową, a następnie
+
+15
+00:01:04,060 --> 00:01:07,710
+spiąć je z definicją funkcji kosztu J.
+
+16
+00:01:07,710 --> 00:01:11,670
+Wyrażenie wygląda w ten sposób:
+
+17
+00:01:13,020 --> 00:01:15,550
+Suma od i = 1 do m
+
+18
+00:01:15,550 --> 00:01:21,400
+kwadratów błędów (nasza funkcja kosztu)...
+
+19
+00:01:21,400 --> 00:01:23,520
+W tym miejscu po prostu
+
+20
+00:01:23,520 --> 00:01:26,190
+wstawiłem definicję naszej funkcji kosztu.
+
+21
+00:01:27,290 --> 00:01:34,820
+Po uproszczeniu okazuje się, że jest to równe:
+
+22
+00:01:34,820 --> 00:01:43,280
+suma od i=1 do m ( theta0 + theta1*x - y(i) )^2
+
+23
+00:01:43,280 --> 00:01:47,830
+Jedyne, co zrobiłem, to wziąłem definicję hipotezy,
+
+24
+00:01:47,830 --> 00:01:50,782
+i wstawiłem ją tutaj.
+
+25
+00:01:50,782 --> 00:01:53,190
+Okazuje się, że musimy jeszcze wiedzieć, czym jest ta
+pochodna cząstkowa
+
+26
+00:01:53,190 --> 00:01:56,570
+w obydwu przypadkach, tj. gdy j = 0 oraz gdy j = 1.
+
+27
+00:01:56,570 --> 00:02:00,310
+Innymi słowy: chcemy się dowiedzieć, jaka jest
+pochodna cząstkowa
+
+28
+00:02:00,310 --> 00:02:04,170
+dla theta0 oraz theta1.
+
+29
+00:02:04,170 --> 00:02:06,940
+Właśnie to mam zamiar teraz napisać.
+
+30
+00:02:06,940 --> 00:02:12,064
+Okazuje się, że pierwsze wyrażenie upraszcza się do
+
+31
+00:02:12,064 --> 00:02:18,354
+1/m razy suma po moich przykładach treningowych,
+
+32
+00:02:18,354 --> 00:02:24,294
+natomiast w przypadku tego wyrażenia pochodna cząstkowa
+
+33
+00:02:24,294 --> 00:02:27,114
+wygląda tak:
+
+34
+00:02:27,114 --> 00:02:34,008
+... minus y(i) razy x(i).
+
+35
+00:02:34,008 --> 00:02:37,440
+W porządku.
+
+36
+00:02:37,440 --> 00:02:41,720
+Jeśli chodzi o obliczanie tych pochodnych cząstkowych:
+wychodzimy od tego równania
+
+37
+00:02:41,720 --> 00:02:46,000
+i uzyskujemy pierwsze oraz drugie równanie.
+
+38
+00:02:46,000 --> 00:02:51,020
+Obliczenie tych pochodnych cząstkowych wymaga pewnej
+znajomości rachunku różniczkowego wielu zmiennych.
+
+39
+00:02:51,020 --> 00:02:54,930
+Jeśli znasz rachunek różniczkowy, zachęcam do
+wyprowadzenia pochodnych samodzielnie i
+
+40
+00:02:54,930 --> 00:02:59,510
+potwierdzenia, że rzeczywiście otrzymasz wynik, który
+podałem.
+
+41
+00:02:59,510 --> 00:03:04,050
+Jeśli jednak nie jesteś biegły/a w różniczkowaniu,
+nie przejmuj się tym -
+
+42
+00:03:04,050 --> 00:03:08,100
+będzie ok, jeśli po prostu skorzystasz z tych równań, które
+napisałem; rachunek różniczkowy
+
+43
+00:03:08,100 --> 00:03:11,350
+nie będzie Ci potrzebny do wykonania prac domowych.
+
+44
+00:03:11,350 --> 00:03:13,390
+Wróćmy więc do implementacji gradientu prostego:
+
+45
+00:03:14,750 --> 00:03:18,490
+uzbrojeni w te definicje, które okazały się być
+
+46
+00:03:18,490 --> 00:03:22,310
+pochodnymi (czyli tak naprawdę nachyleniem stycznych
+funkcji kosztu J),
+
+47
+00:03:23,310 --> 00:03:27,160
+możemy teraz wstawić je do naszego
+algorytmu gradientu prostego.
+
+48
+00:03:27,160 --> 00:03:28,640
+Mamy więc tu gradient prosty
+
+49
+00:03:28,640 --> 00:03:32,728
+dla regresji liniowej - będziemy powtarzać te kroki
+aż do osiągnięcia zbieżności, tzn.
+
+50
+00:03:32,728 --> 00:03:38,380
+theta0 i theta1 będą aktualizowane jako to minus alfa razy ten
+człon pochodnej,
+
+51
+00:03:39,390 --> 00:03:41,070
+czyli ten człon.
+
+52
+00:03:43,080 --> 00:03:46,050
+Tak więc wygląda nasz algorytm gradientu prostego.
+
+53
+00:03:47,160 --> 00:03:48,628
+To pierwsze wyrażenie
+
+54
+00:03:52,529 --> 00:03:56,804
+jest oczywiście pochodną cząstkową względem theta0,
+
+55
+00:03:56,804 --> 00:03:59,790
+którą pokazaliśmy na poprzednim slajdzie.
+
+56
+00:03:59,790 --> 00:04:05,730
+Drugie wyrażenie z kolei jest po prostu pochodną cząstkową
+
+57
+00:04:05,730 --> 00:04:11,420
+względem theta1, co również pokazaliśmy na
+poprzednim slajdzie.
+
+58
+00:04:11,420 --> 00:04:15,230
+Szybkie przypomnienie: implementując gradient prosty
+
+59
+00:04:15,230 --> 00:04:19,265
+należy aktualizować parametry
+
+60
+00:04:19,265 --> 00:04:22,250
+theta0 i theta1 jednocześnie.
+
+61
+00:04:24,290 --> 00:04:25,570
+A więc,
+
+62
+00:04:25,570 --> 00:04:28,120
+zobaczmy, jak działa gradient prosty.
+
+63
+00:04:28,120 --> 00:04:31,862
+Jednym z problemów gradientu prostego, które widzieliśmy, 
+jest jego wrażliwość na
+
+64
+00:04:31,862 --> 00:04:32,700
+optima lokalne.
+
+65
+00:04:32,700 --> 00:04:36,780
+Gdy tłumaczyłem zasadę gradientu prostego po raz pierwszy,
+pokazałem Ci rysunek,
+
+66
+00:04:36,780 --> 00:04:40,900
+na którym schodziliśmy w dół wzgórza, i widzieliśmy, że w zależności od tego, gdzie zaczniemy,
+
+67
+00:04:40,900 --> 00:04:43,014
+możemy lądować w różnych optimach lokalnych.
+
+68
+00:04:43,014 --> 00:04:45,480
+Wylądujemy tutaj lub tutaj.
+
+69
+00:04:45,480 --> 00:04:50,390
+Okazuje się jednak, że funkcja kosztu dla
+
+70
+00:04:50,390 --> 00:04:55,220
+regresji liniowej zawsze ma kształt miski podobny do tego:
+
+71
+00:04:55,220 --> 00:05:00,190
+Formalna nazwa takiej funkcji to funkcja wypukła.
+
+72
+00:05:03,230 --> 00:05:07,800
+Nie będę teraz podawał formalnej definicji funkcji wypukłej,
+
+73
+00:05:07,800 --> 00:05:09,490
+(W-Y-P-U-K-Ł-A)
+
+74
+00:05:09,490 --> 00:05:16,620
+ale tak "na chłopski rozum" oznacza to funkcję
+o kształcie miski, czyli taką,
+
+75
+00:05:16,620 --> 00:05:22,295
+która nie ma żadnych optimów poza globalnym.
+
+76
+00:05:22,295 --> 00:05:26,465
+Gradient prosty, zastosowany do funkcji kosztu tego typu
+(a stosując regresję liniową...
+
+77
+00:05:26,465 --> 00:05:30,445
+...zawsze otrzymamy taki typ) zawsze osiągnie
+minimum globalne,
+
+78
+00:05:30,445 --> 00:05:33,155
+ponieważ nie mamy żadnego innego optimum lokalnego -
+jedynie optimum globalne.
+
+79
+00:05:33,155 --> 00:05:36,615
+Przyjrzyjmy się więc temu algorytmowi w akcji.
+
+80
+00:05:38,250 --> 00:05:45,910
+Jak zwykle, mamy tutaj wykresy funkcji hipotezy oraz
+funkcji kosztu J.
+
+81
+00:05:45,910 --> 00:05:50,020
+Powiedzmy, że zainicjowałem parametry do tych wartości:
+
+82
+00:05:50,020 --> 00:05:54,220
+zwykle inicjujemy parametry do wartości (0, 0), tzn.
+
+83
+00:05:54,220 --> 00:05:56,370
+theta0 = 0 oraz theta1 = 0.
+
+84
+00:05:56,370 --> 00:06:01,354
+Na potrzeby demonstracji jednak, w tym konkretnym
+
+85
+00:06:01,354 --> 00:06:07,619
+przypadku, przyjąłem na początku
+theta0 = 900, a theta1 = -0,1,
+
+86
+00:06:07,619 --> 00:06:12,644
+co przekłada się na h(x) = -900 - 0,1*x,
+
+87
+00:06:12,644 --> 00:06:16,547
+co z kolei odpowiada takiej prostej.
+
+88
+00:06:16,547 --> 00:06:21,060
+Teraz, jeśli wykonamy jeden krok gradientu prostego,
+
+89
+00:06:21,060 --> 00:06:26,845
+z tego punktu tutaj wylądujemy na dole, po lewej,
+
+90
+00:06:26,845 --> 00:06:31,510
+w tym punkcie tutaj.
+
+91
+00:06:31,510 --> 00:06:35,450
+Zauważ, że moja prosta trochę się zmieniła, i
+
+92
+00:06:35,450 --> 00:06:39,780
+wraz z kolejnymi krokami gradientu prostego, moja prosta
+po lewej stronie będzie się dalej zmieniać.
+
+93
+00:06:41,230 --> 00:06:42,380
+Zgadza się?
+
+94
+00:06:42,380 --> 00:06:46,370
+Znalazłem się też w nowym punkcie mojej funkcji kosztu.
+
+95
+00:06:47,670 --> 00:06:52,760
+Wraz z kolejnymi krokami gradientu prostego zmniejszam koszt,
+
+96
+00:06:52,760 --> 00:06:56,190
+a moje parametry podążają tą trajektorią.
+
+97
+00:06:57,340 --> 00:07:02,430
+Jeśli teraz spojrzysz na lewą stronę, odpowiada to hipotezie,
+
+98
+00:07:02,430 --> 00:07:06,520
+która będzie coraz lepiej dopasowywać się do danych,
+
+99
+00:07:08,200 --> 00:07:14,660
+aż w końcu wyląduję w minimum globalnym,
+a minimum globalne
+
+100
+00:07:14,660 --> 00:07:20,090
+odpowiada hipotezie dającej dobre dopasowanie do danych.
+
+101
+00:07:21,400 --> 00:07:25,800
+A więc tak wygląda gradient prosty - właśnie go uruchomiliśmy
+
+102
+00:07:25,800 --> 00:07:31,230
+i uzyskaliśmy dobre dopasowanie do zbioru danych
+- cen domów.
+
+103
+00:07:31,230 --> 00:07:34,490
+Możemy teraz przewidzieć, jak pójdzie
+
+104
+00:07:34,490 --> 00:07:38,900
+Twojemu znajomemu z domem o powierzchni
+1250 stóp kwadratowych.
+
+105
+00:07:38,900 --> 00:07:43,350
+Możemy odczytać wartość i powiedzieć mu, że być może
+
+106
+00:07:43,350 --> 00:07:48,720
+sprzeda dom za ok. 250 000 dolarów.
+
+107
+00:07:48,720 --> 00:07:52,620
+Algorytm, którego użyliśmy, nazywa się również czasami
+
+108
+00:07:52,620 --> 00:07:57,510
+algorytmem gradientowym zbiorczym
+(ang. batch gradient descent).
+
+109
+00:07:57,510 --> 00:08:00,730
+Okazuje się, że w uczeniu maszynowym
+(mam wrażenie, że my w branży uczenia maszynowego...
+
+110
+00:08:00,730 --> 00:08:04,310
+... nie jesteśmy zbyt dobrzy w wymyślaniu nazw algorytmów)
+
+111
+00:08:04,310 --> 00:08:08,880
+określenie "zbiorczy" odnosi się do faktu, że
+
+112
+00:08:08,880 --> 00:08:13,850
+w każdej iteracji gradientu prostego bierzemy pod uwagę
+wszystkie elementy zbioru uczącego,
+
+113
+00:08:13,850 --> 00:08:17,760
+Wobec tego, licząc pochodne,
+
+114
+00:08:17,760 --> 00:08:21,400
+obliczamy sumy takie ja ta:
+
+115
+00:08:21,400 --> 00:08:25,660
+Tak więc w każdym kroku gradientu prostego obliczamy sumę
+po wszystkich naszych
+
+116
+00:08:25,660 --> 00:08:30,620
+przykładach treningowych, więc termin
+"algorytm gradientowy zbiorczy"
+
+117
+00:08:30,620 --> 00:08:34,175
+oznacza, że rozpatrujemy cały ZBIÓR uczący
+(tj. wszystkie przykłady treningowe).
+
+118
+00:08:34,175 --> 00:08:36,365
+Podkreślam: nie jest to super nazwa, ale
+
+119
+00:08:36,365 --> 00:08:39,585
+tak to nazwali ludzie od uczenia maszynowego.
+
+120
+00:08:39,585 --> 00:08:43,715
+Okazuje się bowiem, że są czasem inne wersje
+gradientu prostego,
+
+121
+00:08:43,715 --> 00:08:46,247
+które nie są zbiorcze, tzn.
+
+122
+00:08:46,247 --> 00:08:48,837
+nie patrzą na cały zbiór uczący,
+
+123
+00:08:48,837 --> 00:08:51,247
+tylko w każdym kroku rozpatrują małe podzbiory przykładów treningowych.
+
+124
+00:08:51,247 --> 00:08:55,207
+W dalszej części kursu poznamy także te inne wersje algorytmu,
+
+125
+00:08:55,207 --> 00:08:58,357
+ale na razie, korzystając z algorytmu, który właśnie poznaliśmy,
+
+126
+00:08:58,357 --> 00:09:03,497
+czyli algorytmu gradientowego zbiorczego,
+wiesz już, jak zaimplementować gradient prosty dla
+regresji liniowej.
+
+127
+00:09:05,980 --> 00:09:09,550
+To tyle, jeśli chodzi o regresję liniową z użyciem
+gradientu prostego.
+
+128
+00:09:09,550 --> 00:09:12,260
+Jeśli zetknąłeś/ęłaś się wcześniej z
+zaawansowaną algebrą liniową
+
+129
+00:09:12,260 --> 00:09:15,510
+(niektórzy z Was mogli mieć zajęcia
+z zaawansowanej algebry liniowej),
+
+130
+00:09:15,510 --> 00:09:19,410
+być może wiesz, że istnieje rozwiązanie, które wprost
+
+131
+00:09:19,410 --> 00:09:22,270
+wyznacza minimum funkcji J, i niepotrzebny jest do tego
+
+132
+00:09:22,270 --> 00:09:25,870
+algorytm iteracyjny, taki jak gradient prosty.
+
+133
+00:09:25,870 --> 00:09:29,730
+W dalszej części kursu opowiemy sobie o tej metodzie,
+
+134
+00:09:29,730 --> 00:09:33,020
+wyznaczającej minimum funkcji kosztu J,
+i nie potrzebującej do tego wielu iteracji,
+
+135
+00:09:33,020 --> 00:09:34,520
+w przeciwieństwie do gradientu prostego.
+
+136
+00:09:34,520 --> 00:09:37,020
+Metoda ta nazywa się metodą równań normalnych.
+
+137
+00:09:37,020 --> 00:09:41,000
+Jednak jeśli znasz tę metodę - okazuje się, 
+że gradient prosty
+
+138
+00:09:41,000 --> 00:09:46,420
+lepiej skaluje się na większe zbiory danych niż 
+metoda równań normalnych,
+
+139
+00:09:46,420 --> 00:09:50,140
+i teraz, znając gradient prosty, będziemy w stanie
+wykorzystać go w wielu
+
+140
+00:09:50,140 --> 00:09:51,400
+różnych kontekstach
+
+141
+00:09:51,400 --> 00:09:53,910
+i zastosujemy go też do wielu różnych problemów
+uczenia maszynowego.
+
+142
+00:09:55,340 --> 00:10:00,430
+A więc: gratulacje z okazji opanowania Twojego pierwszego
+uczącego się algorytmu!
+
+143
+00:10:00,430 --> 00:10:04,990
+W dalszej części będziemy mieli ćwiczenia, w których Twoim
+zadaniem będzie implementacja gradientu prostego,
+
+144
+00:10:04,990 --> 00:10:07,480
+dzięki czemu przekonasz się sam(a),
+jak działa ten algorytm.
+
+145
+00:10:07,480 --> 00:10:11,460
+Jednak wcześniej chcę Ci jeszcze opowiedzieć
+o paru rzeczach w następnych nagraniach.
+
+146
+00:10:11,460 --> 00:10:14,510
+Najpierw, chcę pokazać Ci uogólnienie
+
+147
+00:10:14,510 --> 00:10:17,900
+algorytmu gradientu prostego, dzięki któremu będzie on
+o wiele potężniejszy.
+
+148
+00:10:17,900 --> 00:10:20,420
+Myślę, że przejdziemy do tego w następnym nagraniu.

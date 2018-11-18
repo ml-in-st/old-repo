@@ -1,0 +1,1459 @@
+1
+00:00:00,200 --> 00:00:01,770
+Até agora, você já deve ter visto o algoritmo
+
+2
+00:00:02,250 --> 00:00:03,540
+de detecção de anomalias e falamos
+
+3
+00:00:03,740 --> 00:00:05,240
+também de como
+
+4
+00:00:05,570 --> 00:00:06,870
+avaliar um algortimo de detecção de anomalias.
+
+5
+00:00:07,330 --> 00:00:08,880
+E o resultado é que
+
+6
+00:00:09,530 --> 00:00:10,800
+quando se aplica a detecção de anomalias
+
+7
+00:00:11,170 --> 00:00:12,400
+uma das coisas
+
+8
+00:00:12,460 --> 00:00:13,290
+que tem um efeito enorme
+
+9
+00:00:13,720 --> 00:00:14,860
+em quão bem ela funciona
+
+10
+00:00:14,940 --> 00:00:16,440
+são os atributos que se utiliza,
+
+11
+00:00:16,520 --> 00:00:17,720
+e quais atributos se escolhe,
+
+12
+00:00:18,530 --> 00:00:19,910
+para fornecer ao algoritmo.
+
+13
+00:00:20,830 --> 00:00:22,170
+Assim, nesse vídeo, gostaria
+
+14
+00:00:22,280 --> 00:00:23,390
+de dizer algumas
+
+15
+00:00:23,480 --> 00:00:24,890
+palavras, dar algumas sugestões e
+
+16
+00:00:25,000 --> 00:00:26,250
+diretrizes sobre como
+
+17
+00:00:26,370 --> 00:00:27,920
+seguir no desenho ou seleção dos
+
+18
+00:00:28,470 --> 00:00:30,950
+atributos fornecidos a um algoritmo de detecção de anomalias.
+
+19
+00:00:33,920 --> 00:00:35,310
+No nosso algoritmo de deteção de anomalias,
+
+20
+00:00:36,120 --> 00:00:37,270
+uma das coisas que fizemos foi
+
+21
+00:00:37,510 --> 00:00:40,330
+modelar os atributos utilizando este tipo de distribuição gaussiana.
+
+22
+00:00:41,180 --> 00:00:42,810
+Com xi para mu
+
+23
+00:00:43,120 --> 00:00:46,050
+i, sigma ao quadrado i.
+
+24
+00:00:46,550 --> 00:00:47,890
+Então, uma coisa que
+
+25
+00:00:47,950 --> 00:00:49,620
+costumo fazer é traçar os
+
+26
+00:00:50,670 --> 00:00:52,260
+dados ou o histograma dos
+
+27
+00:00:52,330 --> 00:00:53,490
+dados para certificar-me de que
+
+28
+00:00:53,940 --> 00:00:55,210
+os dados pareçam vagamente
+
+29
+00:00:55,540 --> 00:00:57,320
+gaussianos antes de fornecê-los
+
+30
+00:00:57,470 --> 00:00:58,830
+a meu algoritmo de detecção de anomalias.
+
+31
+00:00:59,810 --> 00:01:01,040
+E, normalmente funcionará bem,
+
+32
+00:01:01,610 --> 00:01:02,820
+mesmo se seus dados não sejam gaussianos,
+
+33
+00:01:03,400 --> 00:01:05,700
+mas isso é um bom controle sanitário para se executar.
+
+34
+00:01:05,970 --> 00:01:06,860
+Aliás, no caso de seus dados
+
+35
+00:01:07,400 --> 00:01:09,540
+não parecerem gaussianos, os algoritmos normalmente funcionarão bem.
+
+36
+00:01:10,410 --> 00:01:12,070
+Mas, se eu concretamente
+
+37
+00:01:12,430 --> 00:01:13,510
+traçar no gráfico dados como esses e
+
+38
+00:01:13,850 --> 00:01:15,280
+se parecer um histograma como esse
+
+39
+00:01:15,370 --> 00:01:16,480
+e a forma de
+
+40
+00:01:16,630 --> 00:01:17,800
+criar um histograma é
+
+41
+00:01:17,950 --> 00:01:19,910
+utilizar o HIST ou o 
+
+42
+00:01:20,130 --> 00:01:21,820
+o comando HIST em Octave,
+
+43
+00:01:21,910 --> 00:01:22,800
+mas se parece com isso,
+
+44
+00:01:23,010 --> 00:01:24,770
+vagamente Gaussiano, portanto se
+
+45
+00:01:24,940 --> 00:01:26,200
+minhas variáveis parecem dessa forma,
+
+46
+00:01:26,480 --> 00:01:29,970
+Eu estaria tranquilo em utilizar em meu algoritmo.
+
+47
+00:01:30,180 --> 00:01:31,830
+Mas se eu fosse fazer um histograma dos meus
+
+48
+00:01:31,950 --> 00:01:33,070
+dados, e fosse
+
+49
+00:01:33,210 --> 00:01:34,800
+para parecer dessa forma, bem, isso
+
+50
+00:01:35,060 --> 00:01:36,090
+não parece de forma alguma uma
+
+51
+00:01:36,220 --> 00:01:38,430
+curva de sino bem formada, trata-se de uma distribuição muito assimétrica,
+
+52
+00:01:39,410 --> 00:01:40,660
+com um pico muito para um dos lados.
+
+53
+00:01:41,750 --> 00:01:42,660
+Se é assim que meus dados
+
+54
+00:01:42,800 --> 00:01:43,960
+parecem, o que eu normalmente 
+
+55
+00:01:44,190 --> 00:01:45,370
+faria é brincar com diferentes
+
+56
+00:01:45,730 --> 00:01:46,920
+transformações para
+
+57
+00:01:47,010 --> 00:01:48,850
+fazê-los parecer mais Gaussianos.
+
+58
+00:01:49,480 --> 00:01:51,940
+E o algoritmo vai funcionar, mesmo se você não as fizer.
+
+59
+00:01:52,590 --> 00:01:53,660
+Mas se você usar essas transformações
+
+60
+00:01:54,630 --> 00:01:56,590
+para tornar seus dados mais gaussianos, deve funcionar um pouco melhor.
+
+61
+00:01:58,030 --> 00:01:59,780
+Assim, dado o conjunto de dados
+
+62
+00:02:00,140 --> 00:02:01,340
+que se parece com isso, o que eu
+
+63
+00:02:01,430 --> 00:02:02,810
+devo fazer é tomar uma
+
+64
+00:02:03,010 --> 00:02:04,520
+transformação logarítmica dos
+
+65
+00:02:04,660 --> 00:02:05,930
+dados e se eu
+
+66
+00:02:06,060 --> 00:02:07,810
+fizer isso e plotar novamente o
+
+67
+00:02:08,150 --> 00:02:09,110
+histograma, o que vou obter
+
+68
+00:02:09,330 --> 00:02:10,500
+com este exemplo particular,
+
+69
+00:02:11,130 --> 00:02:12,400
+é um histograma que se parece com isso.
+
+70
+00:02:12,540 --> 00:02:14,470
+E isso parece muito mais Gaussiano, certo?
+
+71
+00:02:14,650 --> 00:02:15,720
+Isso parece muito mais com a clássica
+
+72
+00:02:16,690 --> 00:02:18,020
+curva em forma de sino, que
+
+73
+00:02:18,710 --> 00:02:21,000
+podemos ajustar a um valor médio e a uma variância "sigma".
+
+74
+00:02:22,180 --> 00:02:22,940
+Então, o que quero dizer com tomar
+
+75
+00:02:23,230 --> 00:02:24,610
+uma transformação logarítmica, é realmente que
+
+76
+00:02:24,860 --> 00:02:26,140
+se eu tiver uma característica x1 e
+
+77
+00:02:26,860 --> 00:02:28,260
+então o histograma de x1 se parecer
+
+78
+00:02:28,720 --> 00:02:30,500
+com isso, então eu deveria
+
+79
+00:02:31,070 --> 00:02:32,210
+pegar a minha característica x1
+
+80
+00:02:32,410 --> 00:02:33,890
+e substituí-la pelo log
+
+81
+00:02:34,800 --> 00:02:36,730
+de x1 e esse é
+
+82
+00:02:36,860 --> 00:02:37,880
+meu novo x1, que vou plotar
+
+83
+00:02:38,170 --> 00:02:40,000
+no histograma à direita, e isso parece muito
+
+84
+00:02:40,430 --> 00:02:42,350
+mais Gaussiano.
+
+85
+00:02:44,000 --> 00:02:44,730
+Em vez de uma simples transformação logarítmica, há algumas outras coisas você pode
+
+86
+00:02:44,920 --> 00:02:46,020
+fazer, pode ser, digamos
+
+87
+00:02:46,110 --> 00:02:47,720
+que eu tenha uma característica diferente x2,
+
+88
+00:02:48,690 --> 00:02:49,840
+talvez eu a substitua por
+
+89
+00:02:50,120 --> 00:02:52,560
+log x + 1
+
+90
+00:02:52,630 --> 00:02:54,720
+ou, mais genericamente, com log
+
+91
+00:02:56,360 --> 00:02:57,690
+x com x2 e
+
+92
+00:02:58,430 --> 00:03:00,350
+alguma constante c e essa
+
+93
+00:03:00,520 --> 00:03:01,540
+constante pode ser algo
+
+94
+00:03:01,890 --> 00:03:04,390
+com o qual eu brinque, para tentar fazê-la parecer o mais Gaussiano possível.
+
+95
+00:03:05,610 --> 00:03:06,820
+Ou por um parâmetro diferente "x3",
+
+96
+00:03:07,200 --> 00:03:08,610
+e talvez substituí-lo pela
+
+97
+00:03:09,730 --> 00:03:11,250
+raiz quadrada de "x3", por exemplo.
+
+98
+00:03:11,610 --> 00:03:14,180
+A raiz quadrada é apenas x3 elevado a meio, certo?
+
+99
+00:03:15,260 --> 00:03:16,660
+E esse meio
+
+100
+00:03:17,130 --> 00:03:19,220
+é outro exemplo de parâmetro com o qual posso brincar.
+
+101
+00:03:19,640 --> 00:03:21,600
+Assim, eu poderia ter x4 e
+
+102
+00:03:22,450 --> 00:03:23,820
+talvez poderia, em vez disso, substituí-la
+
+103
+00:03:24,410 --> 00:03:25,370
+por x4 elevado a
+
+104
+00:03:25,730 --> 00:03:26,790
+alguma outra potência, talvez
+
+105
+00:03:26,890 --> 00:03:28,460
+a potência 1/3
+
+106
+00:03:28,940 --> 00:03:30,830
+E estas, todas
+
+107
+00:03:30,900 --> 00:03:32,320
+estas, esta aqui, este
+
+108
+00:03:32,540 --> 00:03:33,670
+parâmetro do expoente, ou o
+
+109
+00:03:33,810 --> 00:03:35,110
+parâmetro C, todos estes
+
+110
+00:03:35,380 --> 00:03:36,880
+são exemplos de parâmetros com os quais
+
+111
+00:03:36,960 --> 00:03:38,110
+você pode brincar para
+
+112
+00:03:38,460 --> 00:03:40,420
+fazer seus dados parecerem um pouco mais Gaussianos
+
+113
+00:03:45,180 --> 00:03:46,210
+Então, deixe-me fazer uma demonstração ao vivo
+
+114
+00:03:46,740 --> 00:03:48,720
+do que eu realmente faço quando
+
+115
+00:03:49,150 --> 00:03:50,690
+trabalho meus dados para fazê-los parecer mais Gaussianos.
+
+116
+00:03:51,650 --> 00:03:52,370
+Eu já carreguei
+
+117
+00:03:52,750 --> 00:03:54,730
+aqui pra dentro do Octave um conjunto
+
+118
+00:03:54,860 --> 00:03:56,170
+de características x. Eu tenho milhares de exemplos
+
+119
+00:03:57,150 --> 00:03:57,870
+carregados lá.
+
+120
+00:03:58,580 --> 00:04:00,100
+Vamos levantar o histograma dos meus dados.
+
+121
+00:04:01,560 --> 00:04:02,570
+Use o comando hist x.
+
+122
+00:04:03,190 --> 00:04:04,100
+Aí está o meu histograma.
+
+123
+00:04:05,660 --> 00:04:06,580
+Por padrão, acho que ele
+
+124
+00:04:06,680 --> 00:04:08,250
+usa 10 intervalos de histograma,
+
+125
+00:04:08,610 --> 00:04:10,400
+mas eu quero ver um histograma mais fino.
+
+126
+00:04:11,330 --> 00:04:12,950
+Então usamos "hist(x, 50)",
+
+127
+00:04:13,050 --> 00:04:14,970
+para plotar com 50 intervalos diferentes.
+
+128
+00:04:15,310 --> 00:04:15,660
+Assim está melhor.
+
+129
+00:04:16,180 --> 00:04:18,570
+Mas isso não parece muito gaussiano, parece?
+
+130
+00:04:18,930 --> 00:04:20,720
+Vamos começar a brincar um pouco com os dados.
+
+131
+00:04:20,900 --> 00:04:22,310
+Vamos tentar um histograma de
+
+132
+00:04:22,610 --> 00:04:24,810
+"x" elevado a 0,5.
+
+133
+00:04:25,090 --> 00:04:26,590
+Então pegamos a
+
+134
+00:04:26,870 --> 00:04:28,820
+raiz quadrada dos dados e plotamos o histograma.
+
+135
+00:04:30,670 --> 00:04:31,680
+E, bom, parece um pouco mais gaussiano,
+
+136
+00:04:31,800 --> 00:04:32,870
+mas ainda não chegou lá,
+
+137
+00:04:32,960 --> 00:04:34,550
+vamos mexer com o parâmetro 0,5.
+
+138
+00:04:34,790 --> 00:04:35,330
+Veremos.
+
+139
+00:04:36,520 --> 00:04:38,110
+Usando 0,2.
+
+140
+00:04:38,280 --> 00:04:39,780
+Parece um pouco mais gaussiano.
+
+141
+00:04:40,930 --> 00:04:43,150
+Vamos reduzir um pouco mais: 0,1.
+
+142
+00:04:44,450 --> 00:04:45,220
+Bem, isso parece bom.
+
+143
+00:04:45,500 --> 00:04:48,440
+Eu poderia usar 0,1.
+
+144
+00:04:48,880 --> 00:04:50,190
+Bom, vamos tentar 0,05.
+
+145
+00:04:50,520 --> 00:04:50,910
+Entende?
+
+146
+00:04:51,740 --> 00:04:52,750
+Agora está bem gaussiano,
+
+147
+00:04:53,230 --> 00:04:54,090
+já posso definir um novo parâmetro
+
+148
+00:04:54,190 --> 00:04:55,510
+que é "xNew" igual a
+
+149
+00:04:56,110 --> 00:04:58,940
+"x" elevado a 0,05.
+
+150
+00:04:59,620 --> 00:05:01,380
+Agora meu novo parâmetro "xNew"
+
+151
+00:05:01,610 --> 00:05:03,050
+se parece muito mais gaussiano
+
+152
+00:05:03,250 --> 00:05:04,490
+que o meu anterior.
+
+153
+00:05:04,510 --> 00:05:05,560
+Eu poderia usar, então,
+
+154
+00:05:05,850 --> 00:05:07,070
+esse novo parâmetro para alimentar
+
+155
+00:05:07,380 --> 00:05:09,390
+diretamente o algoritmo de detecção de anomalias.
+
+156
+00:05:10,150 --> 00:05:12,100
+E, claro, há mais de uma forma de se fazer isso.
+
+157
+00:05:12,410 --> 00:05:14,530
+Você poderia usar o histograma do logaritmo de "x".
+
+158
+00:05:14,710 --> 00:05:17,320
+Esse é outro exemplo de transformação que pode ser usada.
+
+159
+00:05:18,270 --> 00:05:20,410
+E, quer saber, também me parece bem gaussiano.
+
+160
+00:05:20,870 --> 00:05:22,040
+Então, posso definir
+
+161
+00:05:22,230 --> 00:05:23,760
+"xNew = log(x)"
+
+162
+00:05:24,220 --> 00:05:25,120
+Essa seria uma outra
+
+163
+00:05:25,300 --> 00:05:26,890
+boa escolha de parâmetros para usar.
+
+164
+00:05:28,040 --> 00:05:29,400
+Resumindo, se você plotar
+
+165
+00:05:29,520 --> 00:05:30,580
+o histograma dos dados
+
+166
+00:05:31,000 --> 00:05:31,690
+e achar que está bastante não-gaussiano,
+
+167
+00:05:31,940 --> 00:05:33,460
+vale a pena
+
+168
+00:05:33,740 --> 00:05:35,110
+mexer um pouco com
+
+169
+00:05:35,280 --> 00:05:37,120
+diferentes transformações como essas
+
+170
+00:05:37,290 --> 00:05:38,190
+para ver se você consegue fazer
+
+171
+00:05:38,300 --> 00:05:39,410
+seus dados ficarem um pouco mais gaussianos
+
+172
+00:05:39,570 --> 00:05:40,520
+antes de colocá-los no algoritmo de aprendizagem.
+
+173
+00:05:40,770 --> 00:05:41,970
+Apesar disso, mesmo se você não o fizer,
+
+174
+00:05:42,050 --> 00:05:43,550
+pode funcionar bem.
+
+175
+00:05:43,850 --> 00:05:45,070
+Mas geralmente eu faço essa etapa.
+
+176
+00:05:45,850 --> 00:05:46,880
+Agora, a segunda coisa que eu gostaria de falar
+
+177
+00:05:46,970 --> 00:05:48,280
+é como chegar aos parâmetros
+
+178
+00:05:48,400 --> 00:05:51,540
+para um algoritmo de detecção de anomalias.
+
+179
+00:05:52,650 --> 00:05:53,780
+Como eu geralmente faço
+
+180
+00:05:53,990 --> 00:05:56,490
+é por meio de um processo de análise de erros.
+
+181
+00:05:57,630 --> 00:05:58,590
+Quero dizer que
+
+182
+00:05:58,970 --> 00:05:59,960
+é que é um processo muito similar
+
+183
+00:06:00,320 --> 00:06:02,320
+à analise de erros que
+
+184
+00:06:02,450 --> 00:06:04,600
+usamos para o aprendizado supervisionado,
+
+185
+00:06:04,860 --> 00:06:06,810
+nele, treinaríamos algoritmo completo
+
+186
+00:06:06,860 --> 00:06:08,220
+e o rodaríamos
+
+187
+00:06:08,350 --> 00:06:09,980
+em um conjunto de validação cruzada,
+
+188
+00:06:10,840 --> 00:06:11,870
+olhando para os exemplares em que ele erra
+
+189
+00:06:12,230 --> 00:06:13,500
+e vendo se encontramos
+
+190
+00:06:13,580 --> 00:06:14,800
+parâmetros adicionais
+
+191
+00:06:15,370 --> 00:06:16,440
+para ajudar o algoritmo
+
+192
+00:06:16,580 --> 00:06:17,870
+a ter um melhor desempenho no exemplares errados
+
+193
+00:06:18,280 --> 00:06:19,850
+do conjunto de validação cruzada.
+
+194
+00:06:21,060 --> 00:06:23,380
+Então, vamos tentar
+
+195
+00:06:24,040 --> 00:06:25,960
+exemplificar esse processo,
+
+196
+00:06:26,950 --> 00:06:28,680
+Na detecção de anomalias,
+
+197
+00:06:28,880 --> 00:06:29,690
+esperamos que "p(x)" seja
+
+198
+00:06:29,840 --> 00:06:30,910
+grande para exemplares normais
+
+199
+00:06:31,760 --> 00:06:33,180
+e pequeno para exemplares anômalos.
+
+200
+00:06:34,400 --> 00:06:35,370
+Assim, um problema bem comum
+
+201
+00:06:35,950 --> 00:06:37,780
+seria ter valores comparáveis de "p(x)",
+
+202
+00:06:38,480 --> 00:06:41,540
+talvez valores grandes tanto para exemplares normais como para os anômalos.
+
+203
+00:06:42,940 --> 00:06:44,380
+Vamos ver um exemplo específico disso.
+
+204
+00:06:45,150 --> 00:06:46,760
+Digamos que esses são meus dados
+
+205
+00:06:47,120 --> 00:06:47,970
+Aqui, temos apenas um parâmetro, "x1",
+
+206
+00:06:48,210 --> 00:06:51,130
+então, vou ajustar uma gaussiana a ele.
+
+207
+00:06:52,160 --> 00:06:55,990
+A gaussiana ajustada aos dados pode ser algo assim.
+
+208
+00:06:57,300 --> 00:06:59,130
+Agora, digamos que tenho um exemplar anômalo
+
+209
+00:06:59,670 --> 00:07:00,480
+e que esse exemplar anômalo
+
+210
+00:07:01,080 --> 00:07:02,850
+tem "x" com um valor de 2,5.
+
+211
+00:07:03,020 --> 00:07:06,420
+Assim, ploto meu exemplar anômalo.
+
+212
+00:07:07,200 --> 00:07:08,120
+E, veja, ele está um pouco "enterrado"
+
+213
+00:07:08,650 --> 00:07:09,730
+no meio de vários exemplares normais,
+
+214
+00:07:09,880 --> 00:07:11,690
+então,
+
+215
+00:07:13,450 --> 00:07:14,850
+apenas esse exemplar anômalo,
+
+216
+00:07:15,460 --> 00:07:16,780
+que eu desenhei em verde,
+
+217
+00:07:16,820 --> 00:07:18,550
+tem uma grande probabilidade,
+
+218
+00:07:18,730 --> 00:07:20,000
+que é a altura da curva azul,
+
+219
+00:07:20,960 --> 00:07:22,280
+e o algoritmo não consegue marcar
+
+220
+00:07:22,390 --> 00:07:23,840
+esse exemplar anômalo.
+
+221
+00:07:25,320 --> 00:07:26,600
+Agora, se isso fosse, talvez,
+
+222
+00:07:27,000 --> 00:07:29,540
+uma manufatura de motores de avião ou algo assim,
+
+223
+00:07:29,680 --> 00:07:30,490
+o que eu faria
+
+224
+00:07:30,860 --> 00:07:32,370
+seria olhar meus exemplares de treino
+
+225
+00:07:32,840 --> 00:07:34,500
+e ver o que deu errado
+
+226
+00:07:34,730 --> 00:07:36,920
+com aquele motor em particular
+
+227
+00:07:37,030 --> 00:07:38,360
+e ver se,
+
+228
+00:07:38,720 --> 00:07:40,720
+ao olhar o exemplar,
+
+229
+00:07:40,860 --> 00:07:41,800
+consigo propor um novo parâmetro "x2"
+
+230
+00:07:42,290 --> 00:07:43,890
+que me ajude a distinguir
+
+231
+00:07:44,650 --> 00:07:46,530
+entre esse mau exemplar
+
+232
+00:07:46,900 --> 00:07:47,850
+quando comparado ao resto
+
+233
+00:07:48,530 --> 00:07:49,850
+dos exemplares vermelhos
+
+234
+00:07:50,980 --> 00:07:51,600
+comparados aos motores de avião normais.
+
+235
+00:07:52,790 --> 00:07:53,840
+Se eu conseguir fazer isso,
+
+236
+00:07:54,000 --> 00:07:54,910
+espera-se que,
+
+237
+00:07:55,150 --> 00:07:56,540
+se eu criar um novo parâmetro "x2",
+
+238
+00:07:56,610 --> 00:07:59,360
+quando eu
+
+239
+00:07:59,610 --> 00:08:01,490
+replotar meus dados,
+
+240
+00:08:01,580 --> 00:08:02,530
+Tomando todos os
+
+241
+00:08:02,770 --> 00:08:04,420
+exemplares normais de conjunto de treinamento
+
+242
+00:08:04,750 --> 00:08:05,560
+com sorte, conseguirei ver todos meus exemplares de treino,
+
+243
+00:08:05,710 --> 00:08:07,380
+as cruzes vermelhas aqui.
+
+244
+00:08:08,210 --> 00:08:09,580
+E, com sorte,
+
+245
+00:08:09,860 --> 00:08:11,390
+para o exemplar anômalo,
+
+246
+00:08:11,480 --> 00:08:13,490
+o parâmetro "x2" terá um valor incomum.
+
+247
+00:08:14,470 --> 00:08:15,820
+Assim, meu exemplar verde,
+
+248
+00:08:16,290 --> 00:08:18,670
+essa anomalia aqui,
+
+249
+00:08:18,940 --> 00:08:20,800
+ainda tem "x1" valendo 2,5.
+
+250
+00:08:21,260 --> 00:08:22,900
+Mas talvez, com sorte,
+
+251
+00:08:23,290 --> 00:08:24,530
+"x2" terá um valor muito grande,
+
+252
+00:08:24,840 --> 00:08:26,710
+como 3,5,
+
+253
+00:08:27,940 --> 00:08:28,450
+ou um valor muito pequeno.
+
+254
+00:08:29,450 --> 00:08:30,530
+Mas agora, se eu modelar meus dados,
+
+255
+00:08:30,970 --> 00:08:32,480
+e perceber que
+
+256
+00:08:33,050 --> 00:08:34,660
+meu algoritmo de detecção de anomalias
+
+257
+00:08:35,240 --> 00:08:36,830
+resulta em alta probabilidade
+
+258
+00:08:37,190 --> 00:08:39,160
+para dados nas regiões centrais,
+
+259
+00:08:39,200 --> 00:08:42,470
+um pouco menor aqui e um pouco menor aqui.
+
+260
+00:08:42,660 --> 00:08:43,960
+Um exemplar que está lá fora
+
+261
+00:08:44,070 --> 00:08:45,450
+receberá do meu algoritmo
+
+262
+00:08:45,630 --> 00:08:46,720
+uma probabilidade
+
+263
+00:08:48,360 --> 00:08:48,360
+bem baixa.
+
+264
+00:08:48,510 --> 00:08:49,170
+Resumindo, esse processo é
+
+265
+00:08:49,230 --> 00:08:50,320
+prestar bastante atenção
+
+266
+00:08:51,430 --> 00:08:52,570
+aos erros que são cometidos.
+
+267
+00:08:52,830 --> 00:08:54,370
+Veja a anomalia que o algoritmo
+
+268
+00:08:54,580 --> 00:08:56,020
+não está conseguindo identificar
+
+269
+00:08:56,320 --> 00:08:59,100
+e veja se você consegue propor um novo parâmetro
+
+270
+00:08:59,590 --> 00:09:01,180
+que indique algo incomum
+
+271
+00:09:01,470 --> 00:09:02,590
+nesse motor de avião
+
+272
+00:09:02,800 --> 00:09:03,640
+e use isso para criar um novo parâmetro
+
+273
+00:09:04,530 --> 00:09:05,780
+que torne mais fácil
+
+274
+00:09:05,900 --> 00:09:07,140
+distinguir as anomalias
+
+275
+00:09:07,400 --> 00:09:09,250
+dos bons exemplares.
+
+276
+00:09:09,880 --> 00:09:11,170
+Portanto, esse é o processo
+
+277
+00:09:11,280 --> 00:09:12,600
+de análise de erro
+
+278
+00:09:14,020 --> 00:09:15,360
+use-o para criar novos parâmetros
+
+279
+00:09:15,750 --> 00:09:17,100
+para detecção de anomalias.
+
+280
+00:09:17,770 --> 00:09:18,980
+Finalmente, vou mostrá-lo
+
+281
+00:09:19,090 --> 00:09:20,440
+meu pensamento de como eu geralmente escolho
+
+282
+00:09:20,630 --> 00:09:23,190
+os parâmetros para detecção de anomalias.
+
+283
+00:09:24,350 --> 00:09:27,700
+Então, geralmente o que considero para criar parâmetros é
+
+284
+00:09:27,960 --> 00:09:29,160
+que eu que parâmetros que terão valores
+
+285
+00:09:29,270 --> 00:09:30,610
+ou muito, muito grandes
+
+286
+00:09:30,860 --> 00:09:32,000
+ou muito, muito pequenos
+
+287
+00:09:32,110 --> 00:09:33,890
+para exemplares que imagino que
+
+288
+00:09:34,750 --> 00:09:36,420
+possam se vir a ser anomalias.
+
+289
+00:09:37,850 --> 00:09:38,710
+Vamos voltar ao nosso exemplo
+
+290
+00:09:39,060 --> 00:09:41,820
+de monitoramento de computadores em um centro de processamento de dados.
+
+291
+00:09:42,250 --> 00:09:43,560
+Nele, você terá muitas máquinas,
+
+292
+00:09:43,630 --> 00:09:44,930
+talvez milhares, ou dezenas de milhares
+
+293
+00:09:45,170 --> 00:09:47,830
+de máquinas em um centro de processamento de dados.
+
+294
+00:09:48,310 --> 00:09:49,410
+Queremos saber se
+
+295
+00:09:49,580 --> 00:09:50,640
+um dos computadores
+
+296
+00:09:50,710 --> 00:09:53,320
+está agindo mal ou de forma estranha.
+
+297
+00:09:54,180 --> 00:09:56,050
+Aqui vão alguns exemplos de parâmetros que você pode escolher
+
+298
+00:09:57,020 --> 00:09:59,630
+uso de memória, número de acessos ao disco, carga do CPU, tráfego na rede.
+
+299
+00:10:01,040 --> 00:10:01,960
+Agora, digamos que eu suspeito
+
+300
+00:10:02,220 --> 00:10:03,040
+que um dos casos de falha,
+
+301
+00:10:03,470 --> 00:10:04,580
+por exemplo,
+
+302
+00:10:05,230 --> 00:10:06,970
+nos meu conjunto de dados
+
+303
+00:10:07,150 --> 00:10:08,460
+imagino que o uso do CPU e o tráfego de rede
+
+304
+00:10:08,990 --> 00:10:10,820
+tendam a crescer linearmente um ao outro.
+
+305
+00:10:11,110 --> 00:10:12,120
+Se eu estiver rodando
+
+306
+00:10:12,220 --> 00:10:13,370
+vários servidores de rede
+
+307
+00:10:13,750 --> 00:10:15,050
+e um dos meus servidores
+
+308
+00:10:15,310 --> 00:10:16,530
+está servindo muitos usuários,
+
+309
+00:10:16,850 --> 00:10:19,050
+terei uma alta carga no CPU e um alto uso da rede.
+
+310
+00:10:20,230 --> 00:10:21,360
+Digamos que,
+
+311
+00:10:21,840 --> 00:10:23,280
+eu suspeite que
+
+312
+00:10:23,390 --> 00:10:24,890
+um dos casos de falha é se
+
+313
+00:10:25,180 --> 00:10:26,240
+um dos meus computadores
+
+314
+00:10:26,530 --> 00:10:29,590
+tiver um processo que trava em algum tipo de loop infinito.
+
+315
+00:10:29,670 --> 00:10:30,750
+Imagino que um dos casos de falha,
+
+316
+00:10:30,800 --> 00:10:32,240
+é uma máquina,
+
+317
+00:10:32,420 --> 00:10:33,470
+um dos servidores,
+
+318
+00:10:34,380 --> 00:10:36,020
+tiver um código que
+
+319
+00:10:36,680 --> 00:10:37,990
+está travado em algum loop infinito,
+
+320
+00:10:38,230 --> 00:10:39,550
+fazendo o uso de CPU crescer
+
+321
+00:10:40,380 --> 00:10:41,490
+mas sem aumentar o uso da rede
+
+322
+00:10:41,560 --> 00:10:42,790
+porque ele simplesmente está patinando
+
+323
+00:10:42,940 --> 00:10:44,570
+com o CPU trabalhando muito
+
+324
+00:10:44,870 --> 00:10:46,000
+preso em algum loop infinito.
+
+325
+00:10:46,930 --> 00:10:47,850
+Nesse caso,
+
+326
+00:10:48,240 --> 00:10:49,610
+para detectar esse tipo de anomalia,
+
+327
+00:10:49,780 --> 00:10:52,440
+eu poderia criar um novo parâmetro "x5"
+
+328
+00:10:53,170 --> 00:10:55,130
+que é a carga de CPU
+
+329
+00:10:56,600 --> 00:11:00,120
+dividida pelo tráfego de rede.
+
+330
+00:11:01,230 --> 00:11:02,810
+Com isso, "x5" terá
+
+331
+00:11:03,180 --> 00:11:04,860
+um valor excepcionalmente grande
+
+332
+00:11:05,700 --> 00:11:06,410
+se uma das máquinas tiver
+
+333
+00:11:06,790 --> 00:11:08,190
+uma carga muito grande no CPU
+
+334
+00:11:08,470 --> 00:11:09,980
+mas nem tanto tráfego de rede assim.
+
+335
+00:11:10,250 --> 00:11:11,030
+Esse será um parâmetro
+
+336
+00:11:11,160 --> 00:11:12,390
+que ajudará seu detector de anomalias
+
+337
+00:11:12,490 --> 00:11:14,180
+a capturar um certo tipo de anomalia.
+
+338
+00:11:15,000 --> 00:11:16,700
+E você pode ver que, nas bordas do modelo linear, a incerteza
+
+339
+00:11:16,840 --> 00:11:19,060
+e propor outros parâmetros.
+
+340
+00:11:19,230 --> 00:11:20,090
+Por exemplo,
+
+341
+00:11:20,570 --> 00:11:22,050
+um parâmetro "x6" igual à carga do CPU ao quadrado
+
+342
+00:11:22,880 --> 00:11:25,540
+dividida pelo tráfego de rede.
+
+343
+00:11:27,030 --> 00:11:28,280
+Esse seria uma variação
+
+344
+00:11:28,950 --> 00:11:29,910
+de um parâmetro como "x5"
+
+345
+00:11:30,020 --> 00:11:32,120
+para tentar capturar anomalias
+
+346
+00:11:32,280 --> 00:11:33,650
+nas quais uma das máquinas
+
+347
+00:11:33,800 --> 00:11:35,030
+está com uma carga muito grande no CPU
+
+348
+00:11:35,290 --> 00:11:37,100
+mas não tem um tráfego de rede igualmente grande.
+
+349
+00:11:38,540 --> 00:11:40,080
+Ao criar parâmetros como esses,
+
+350
+00:11:40,290 --> 00:11:41,560
+você pode começar a capturar
+
+351
+00:11:42,770 --> 00:11:44,550
+anomalias correspondentes a combinações incomuns
+
+352
+00:11:45,690 --> 00:11:48,270
+dos valores dos parâmetros.
+
+353
+00:11:50,990 --> 00:11:52,090
+Neste vídeo falamos
+
+354
+00:11:52,260 --> 00:11:53,550
+sobre como pegar um parâmetro
+
+355
+00:11:53,690 --> 00:11:54,670
+e talvez transformá-lo um pouco
+
+356
+00:11:55,120 --> 00:11:56,680
+para que ele fique
+
+357
+00:11:56,830 --> 00:11:57,910
+um pouco mais gaussiano
+
+358
+00:11:58,260 --> 00:12:00,480
+antes de colocá-lo em um algoritmo de detecção de anomalias.
+
+359
+00:12:00,950 --> 00:12:02,110
+Também falamos da análise de erros
+
+360
+00:12:02,740 --> 00:12:04,220
+no processo de criação de parâmetros
+
+361
+00:12:04,870 --> 00:12:06,710
+para tentar capturar diferentes tipos de anomalias.
+
+362
+00:12:07,550 --> 00:12:10,300
+Estes são alguns guias que podem ajudá-lo
+
+363
+00:12:10,850 --> 00:12:12,180
+a escolher bons parâmetros
+
+364
+00:12:12,460 --> 00:12:14,310
+para seu algoritmo de detecção de anomalias,
+
+365
+00:12:14,430 --> 00:12:15,920
+ajudando-o a capturar todo tipo de anomalias.

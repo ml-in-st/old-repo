@@ -1,0 +1,1251 @@
+1
+00:00:00,090 --> 00:00:01,560
+En el algoritmo ACP tomamos
+
+2
+00:00:01,980 --> 00:00:03,530
+"n" variables dimensionales y las reducimos
+
+3
+00:00:03,970 --> 00:00:06,260
+a cierta representación de variables de "k" dimensiones.
+
+4
+00:00:07,620 --> 00:00:09,090
+Este número k es un parámetro
+
+5
+00:00:09,820 --> 00:00:10,800
+del algoritmo de ACP,
+
+6
+00:00:11,810 --> 00:00:13,240
+este número "k" también se conoce como
+
+7
+00:00:13,620 --> 00:00:15,080
+el número de componentes principales
+
+8
+00:00:15,830 --> 00:00:17,480
+o el número de componentes principales que hemos retenido.
+
+9
+00:00:18,530 --> 00:00:19,640
+En este video, me gustaría
+
+10
+00:00:19,810 --> 00:00:20,850
+darle algunas pautas,
+
+11
+00:00:21,730 --> 00:00:23,090
+informarle sobre cómo la gente
+
+12
+00:00:23,430 --> 00:00:24,490
+tiende a pensar sobre cómo
+
+13
+00:00:24,610 --> 00:00:26,740
+elegir este parámetro "k" para ACP.
+
+14
+00:00:28,650 --> 00:00:29,670
+Con el fin de elegir "k",
+
+15
+00:00:30,110 --> 00:00:30,990
+esto es, elegir el número
+
+16
+00:00:31,360 --> 00:00:34,110
+de componentes principales, aquí hay un par de conceptos útiles:
+
+17
+00:00:36,430 --> 00:00:37,520
+lo que ACP intenta hacer es tratar
+
+18
+00:00:37,760 --> 00:00:38,760
+de minimizar
+
+19
+00:00:40,070 --> 00:00:41,510
+los errores de proyección al cuadrado promedio,
+
+20
+00:00:42,030 --> 00:00:43,200
+de modo que trata de minimizar
+
+21
+00:00:43,430 --> 00:00:45,480
+esta cantidad que estoy escribiendo,
+
+22
+00:00:46,410 --> 00:00:47,980
+que es la diferencia entre los datos
+
+23
+00:00:48,150 --> 00:00:50,010
+originales X y la
+
+24
+00:00:50,690 --> 00:00:53,470
+versión proyectada, X-aprox-i, que
+
+25
+00:00:53,620 --> 00:00:54,930
+se definió en el último vídeo, por lo que
+
+26
+00:00:55,020 --> 00:00:55,900
+trata de minimizar la distancia al
+
+27
+00:00:56,160 --> 00:00:57,360
+cuadrado entre x y su proyección
+
+28
+00:00:58,330 --> 00:00:59,750
+sobre esa superficie con dimensiones inferiores.
+
+29
+00:01:01,220 --> 00:01:02,990
+Ese es el error de proyección al cuadrado promedio.
+
+30
+00:01:03,990 --> 00:01:05,320
+También permítame definir la
+
+31
+00:01:05,440 --> 00:01:07,020
+variación total en los
+
+32
+00:01:07,100 --> 00:01:08,730
+datos para que sea
+
+33
+00:01:09,020 --> 00:01:11,730
+la longitud promedio al cuadrado de
+
+34
+00:01:12,140 --> 00:01:14,130
+estos ejemplos Xi,
+
+35
+00:01:14,450 --> 00:01:16,010
+de modo que la variación total en los datos
+
+36
+00:01:16,260 --> 00:01:17,930
+es el promedio de
+
+37
+00:01:18,070 --> 00:01:19,250
+mis conjuntos de entrenamiento, de
+
+38
+00:01:19,370 --> 00:01:21,640
+la longitud de cada uno de mis ejemplos de entrenamiento.
+
+39
+00:01:22,190 --> 00:01:23,690
+Y lo que esto dice es "En promedio, ¿qué tan
+
+40
+00:01:23,940 --> 00:01:24,850
+lejos están mis ejemplos de entrenamiento
+
+41
+00:01:25,690 --> 00:01:27,960
+del vector, qué tan lejos están de ser sólo ceros? "
+
+42
+00:01:28,770 --> 00:01:30,460
+¿Qué tan lejos están, en promedio, qué tan lejos
+
+43
+00:01:30,820 --> 00:01:32,820
+están mis ejemplos de entrenamiento del origen?
+
+44
+00:01:33,510 --> 00:01:34,450
+Cuando estamos tratando de elegir k, una
+
+45
+00:01:35,870 --> 00:01:37,210
+regla general bastante común
+
+46
+00:01:37,400 --> 00:01:38,620
+para elegir k, es elegir
+
+47
+00:01:38,800 --> 00:01:40,290
+los valores más pequeños para que
+
+48
+00:01:40,980 --> 00:01:43,810
+la relación entre estos sea menor que 0.01.
+
+49
+00:01:44,550 --> 00:01:45,540
+En otras palabras,
+
+50
+00:01:46,340 --> 00:01:47,370
+una forma bastante común de
+
+51
+00:01:47,510 --> 00:01:48,460
+pensar en cómo escogemos k,
+
+52
+00:01:48,800 --> 00:01:51,180
+es que queremos el error de proyección al cuadrado promedio,
+
+53
+00:01:51,580 --> 00:01:54,700
+es decir, la distancia promedio
+
+54
+00:01:55,240 --> 00:01:56,340
+entre x y sus proyecciones
+
+55
+00:01:57,570 --> 00:02:00,330
+dividida entre la variación total de los datos,
+
+56
+00:02:00,800 --> 00:02:01,870
+que es la medida en que los datos varían,
+
+57
+00:02:02,940 --> 00:02:04,060
+queremos que esta relación sea menor a,
+
+58
+00:02:04,240 --> 00:02:06,760
+digamos, 0.01
+
+59
+00:02:06,830 --> 00:02:09,450
+o que sea menor al 1%, que es otra manera de considerarlo.
+
+60
+00:02:10,860 --> 00:02:11,940
+Y la forma en que la mayoría de la gente piensa
+
+61
+00:02:12,150 --> 00:02:13,640
+sobre la elección de k, es en lugar
+
+62
+00:02:13,860 --> 00:02:15,660
+de elegir k directamente, la
+
+63
+00:02:15,890 --> 00:02:17,110
+manera en que la mayoría de la gente habla de
+
+64
+00:02:17,480 --> 00:02:18,940
+esto, es preguntándose qué
+
+65
+00:02:19,160 --> 00:02:20,630
+número es este, ya sea 0.01
+
+66
+00:02:20,740 --> 00:02:23,330
+o algún otro número.
+
+67
+00:02:23,720 --> 00:02:25,320
+Si es 0.01, otra forma
+
+68
+00:02:25,490 --> 00:02:27,020
+de decir esto usando el
+
+69
+00:02:27,270 --> 00:02:30,120
+lenguaje de ACP es que se retiene 99% de la varianza.
+
+70
+00:02:32,060 --> 00:02:33,480
+En realidad, no quiero que se preocupe
+
+71
+00:02:33,850 --> 00:02:34,810
+por lo que esta frase significa técnicamente
+
+72
+00:02:35,140 --> 00:02:36,920
+pero esta frase:
+
+73
+00:02:37,830 --> 00:02:39,170
+"el 99% de la varianza se retiene" sólo significa
+
+74
+00:02:39,420 --> 00:02:41,710
+que esta cantidad de la izquierda es menor a 0.01,
+
+75
+00:02:42,340 --> 00:02:43,910
+por lo tanto, si está usando
+
+76
+00:02:44,930 --> 00:02:46,510
+ACP y quiere
+
+77
+00:02:46,630 --> 00:02:47,730
+decirle a alguien, ya sabe,
+
+78
+00:02:48,220 --> 00:02:49,860
+cuántos componentes principales tiene
+
+79
+00:02:49,980 --> 00:02:51,080
+retenidos, sería
+
+80
+00:02:51,140 --> 00:02:52,360
+más común decir: bueno,
+
+81
+00:02:52,450 --> 00:02:55,360
+elegí k para que se retuviera el 99% de la varianza
+
+82
+00:02:55,990 --> 00:02:56,960
+y eso es algo muy útil
+
+83
+00:02:57,660 --> 00:02:58,530
+que debemos saber, significa que
+
+84
+00:02:58,620 --> 00:02:59,820
+el error de proyección al cuadrado promedio
+
+85
+00:03:00,760 --> 00:03:01,720
+dividido entre la variación
+
+86
+00:03:01,900 --> 00:03:03,260
+total fue al menos del 1%.
+
+87
+00:03:03,820 --> 00:03:04,770
+Eso es algo muy provechoso en que
+
+88
+00:03:05,270 --> 00:03:06,790
+pensar, si usted le
+
+89
+00:03:06,920 --> 00:03:08,420
+dice a alguien: "bueno, tenía 100
+
+90
+00:03:09,170 --> 00:03:10,710
+componentes principales o
+
+91
+00:03:10,890 --> 00:03:12,030
+k era igual
+
+92
+00:03:12,720 --> 00:03:13,850
+a 100 en datos de mil dimensiones",
+
+93
+00:03:14,220 --> 00:03:15,350
+es un poco
+
+94
+00:03:15,420 --> 00:03:16,600
+difícil para la gente interpretar
+
+95
+00:03:19,100 --> 00:03:19,100
+un rol en esto.
+
+96
+00:03:19,320 --> 00:03:22,220
+Así que, este número 0.01 es lo que la gente suele usar.
+
+97
+00:03:23,070 --> 00:03:25,380
+Otros valores comunes son: 0.05,
+
+98
+00:03:26,840 --> 00:03:27,810
+por lo que este sería un 5%,
+
+99
+00:03:27,990 --> 00:03:28,870
+al hacer esto, entonces
+
+100
+00:03:29,210 --> 00:03:30,390
+ahora dice: bien, 95%
+
+101
+00:03:30,740 --> 00:03:32,320
+de la varianza es
+
+102
+00:03:32,480 --> 00:03:34,280
+retenida y,
+
+103
+00:03:34,700 --> 00:03:36,710
+otros números tal vez, aproximadamente el 90% de la varianza es retenido,
+
+104
+00:03:37,980 --> 00:03:40,030
+quizá el porcentaje sea tan bajo como 85%,
+
+105
+00:03:40,150 --> 00:03:42,410
+entonces, el 90% correspondería a decir
+
+106
+00:03:44,340 --> 00:03:46,950
+0.10, digamos un 10%.
+
+107
+00:03:47,250 --> 00:03:49,160
+Así que el rango de valores
+
+108
+00:03:49,900 --> 00:03:50,770
+de 90, 95
+
+109
+00:03:50,870 --> 00:03:51,470
+99, quizá hasta un porcentaje tan bajo como el 85% de
+
+110
+00:03:51,500 --> 00:03:55,100
+las variables retenidas sería un rango bastante típico de valores.
+
+111
+00:03:55,780 --> 00:03:56,900
+Tal vez 95 a 99
+
+112
+00:03:57,690 --> 00:03:58,810
+es realmente el rango de valores más
+
+113
+00:03:59,020 --> 00:04:02,080
+común que la gente usa.
+
+114
+00:04:02,130 --> 00:04:02,950
+Para muchos conjuntos de datos, se
+
+115
+00:04:03,010 --> 00:04:04,320
+sorprendería, con el fin de retener
+
+116
+00:04:04,790 --> 00:04:06,590
+el 99% de la varianza, puede a menudo
+
+117
+00:04:06,790 --> 00:04:08,160
+reducir la dimensión de los datos
+
+118
+00:04:08,200 --> 00:04:11,810
+de manera significativa y todavía conservar la mayor parte de la varianza
+
+119
+00:04:12,440 --> 00:04:13,410
+ya que en la mayor parte de conjuntos de datos en la vida real
+
+120
+00:04:13,560 --> 00:04:15,210
+muchas variables están solo
+
+121
+00:04:15,280 --> 00:04:17,060
+altamente correlacionadas, así
+
+122
+00:04:17,310 --> 00:04:17,940
+que resulta posible
+
+123
+00:04:18,490 --> 00:04:19,540
+comprimir los datos en gran manera
+
+124
+00:04:19,610 --> 00:04:20,990
+y aún retener
+
+125
+00:04:21,360 --> 00:04:22,310
+el 99% de la varianza
+
+126
+00:04:22,530 --> 00:04:26,260
+o el 95% de la misma. Entonces, ¿cómo puede implementar esto?
+
+127
+00:04:26,810 --> 00:04:28,610
+Bueno, aquí hay un algoritmo que podría utilizar.
+
+128
+00:04:28,890 --> 00:04:30,360
+Usted puede empezar, si
+
+129
+00:04:30,540 --> 00:04:31,360
+quiere elegir el valor de k,
+
+130
+00:04:31,470 --> 00:04:33,510
+podríamos empezar con k=1 y
+
+131
+00:04:33,550 --> 00:04:34,670
+posteriormente usamos el ACP.
+
+132
+00:04:35,350 --> 00:04:36,440
+Ya sabe, calculamos, usted reduce,
+
+133
+00:04:36,570 --> 00:04:38,880
+calcula z1, z2, hasta zm,
+
+134
+00:04:39,520 --> 00:04:40,790
+calcule todas estas x1aprox y así sucesivamente
+
+135
+00:04:41,090 --> 00:04:42,540
+hasta xm aprox
+
+136
+00:04:43,200 --> 00:04:45,110
+y luego comprobamos si se retiene el 99% de la varianza.
+
+137
+00:04:47,140 --> 00:04:48,890
+Entonces estamos bien y utilizamos k=1
+
+138
+00:04:49,020 --> 00:04:51,960
+pero si no es así, entonces lo que haremos ahora es tratar con k= 2
+
+139
+00:04:52,620 --> 00:04:53,810
+y luego vamos a repetir
+
+140
+00:04:54,200 --> 00:04:56,070
+todo este procedimiento y
+
+141
+00:04:56,170 --> 00:04:57,770
+comprobaremos, usted sabe, si esta expresión fue satisfecha,
+
+142
+00:04:58,470 --> 00:05:00,980
+si es menor a 0.01 y si no, entonces lo hacemos de nuevo.
+
+143
+00:05:01,220 --> 00:05:03,070
+Vamos a tratar con k=3,
+
+144
+00:05:03,310 --> 00:05:04,910
+después con k=4,
+
+145
+00:05:04,970 --> 00:05:06,250
+y así sucesivamente hasta
+
+146
+00:05:06,630 --> 00:05:07,730
+llegar a tal vez k=17
+
+147
+00:05:08,070 --> 00:05:09,040
+y nos encontramos con que el 99% de los datos
+
+148
+00:05:09,090 --> 00:05:13,060
+se ha retenido y luego
+
+149
+00:05:14,120 --> 00:05:15,110
+utilizamos k= 17, ¿cierto?
+
+150
+00:05:15,570 --> 00:05:17,160
+Esa es una manera
+
+151
+00:05:17,240 --> 00:05:18,790
+de elegir el valor más pequeño
+
+152
+00:05:19,130 --> 00:05:20,920
+de k, de manera que se retiene 99% de la varianza.
+
+153
+00:05:22,380 --> 00:05:23,440
+Pero como se puede imaginar,
+
+154
+00:05:23,550 --> 00:05:25,140
+este procedimiento parece terriblemente ineficiente porque
+
+155
+00:05:26,210 --> 00:05:28,120
+estamos tratando con k=1, k =2, estamos haciendo todos estos cálculos.
+
+156
+00:05:29,580 --> 00:05:30,540
+Afortunadamente, cuando se implementa
+
+157
+00:05:31,130 --> 00:05:33,510
+el ACP, en realidad, en
+
+158
+00:05:33,960 --> 00:05:35,530
+este paso, realmente nos da
+
+159
+00:05:35,910 --> 00:05:37,080
+una cantidad que hace que sea
+
+160
+00:05:37,320 --> 00:05:40,160
+mucho más fácil calcular estas cosas también.
+
+161
+00:05:41,110 --> 00:05:42,160
+Específicamente, cuando usa
+
+162
+00:05:42,820 --> 00:05:44,120
+SVD para obtener estas
+
+163
+00:05:44,340 --> 00:05:45,550
+matrices, u, s, y d,
+
+164
+00:05:45,610 --> 00:05:46,780
+cuando esté usando el SVD en la
+
+165
+00:05:47,040 --> 00:05:48,560
+matriz de covarianza «sigma», también
+
+166
+00:05:48,860 --> 00:05:49,780
+nos devuelve esta matriz
+
+167
+00:05:50,300 --> 00:05:52,170
+S y la función de
+
+168
+00:05:52,360 --> 00:05:53,430
+S va a ser
+
+169
+00:05:53,520 --> 00:05:56,790
+una matriz cuadrada, de hecho una matriz nxn,
+
+170
+00:05:57,640 --> 00:05:58,090
+que es
+
+171
+00:05:58,290 --> 00:05:58,290
+diagonal.
+
+172
+00:05:58,830 --> 00:06:00,380
+Por lo tanto, las entradas diagonales son S11,
+
+173
+00:06:00,540 --> 00:06:01,640
+S22, S33
+
+174
+00:06:01,980 --> 00:06:03,240
+bajando hasta
+
+175
+00:06:03,590 --> 00:06:05,130
+Snn, estas serán los únicos elementos
+
+176
+00:06:05,260 --> 00:06:07,010
+distintos de cero en
+
+177
+00:06:07,130 --> 00:06:08,880
+esta matriz, y todo lo que esté fuera
+
+178
+00:06:09,060 --> 00:06:11,470
+de las diagonales va a ser cero.
+
+179
+00:06:11,590 --> 00:06:11,590
+¿Ok?
+
+180
+00:06:11,670 --> 00:06:12,530
+Así que los grandes 0 que yo estoy dibujando,
+
+181
+00:06:13,340 --> 00:06:14,260
+con ellos me refiero a
+
+182
+00:06:14,740 --> 00:06:16,330
+todo lo que está fuera de la diagonal
+
+183
+00:06:17,130 --> 00:06:18,220
+de esta matriz, todas esas
+
+184
+00:06:18,480 --> 00:06:20,310
+entradas en ese espacio van a ser ceros.
+
+185
+00:06:22,300 --> 00:06:23,790
+Y así, lo que es posible
+
+186
+00:06:24,190 --> 00:06:25,250
+mostrar, y no voy a probar
+
+187
+00:06:25,480 --> 00:06:26,380
+esto aquí, resulta que para
+
+188
+00:06:26,620 --> 00:06:27,880
+un valor dado de
+
+189
+00:06:27,980 --> 00:06:29,920
+k, esta cantidad
+
+190
+00:06:30,590 --> 00:06:37,820
+aquí se puede calcular de manera mucho más simple y
+
+191
+00:06:38,800 --> 00:06:40,310
+esa cantidad se puede calcular
+
+192
+00:06:41,000 --> 00:06:42,900
+como 1 menos la
+
+193
+00:06:43,130 --> 00:06:44,400
+suma de i=1 hasta k de
+
+194
+00:06:44,610 --> 00:06:47,960
+Sii dividida entre
+
+195
+00:06:48,640 --> 00:06:50,050
+la suma de i=1
+
+196
+00:06:50,170 --> 00:06:52,010
+hasta n de Sii.
+
+197
+00:06:53,360 --> 00:06:54,820
+Sólo para expresarlo con palabras o
+
+198
+00:06:55,000 --> 00:06:56,170
+sólo para tener otra
+
+199
+00:06:56,450 --> 00:06:57,330
+vista de cómo explicar eso, digamos que
+
+200
+00:06:57,960 --> 00:06:59,370
+si K=3,
+
+201
+00:07:00,810 --> 00:07:01,970
+lo que vamos a hacer para
+
+202
+00:07:02,080 --> 00:07:03,200
+calcular el numerador, la suma
+
+203
+00:07:03,340 --> 00:07:04,680
+desde 1, i=1
+
+204
+00:07:04,820 --> 00:07:05,830
+hasta 3 de Sii, así que solo
+
+205
+00:07:06,240 --> 00:07:08,170
+calculamos la suma de estos tres primeros elementos,
+
+206
+00:07:09,280 --> 00:07:09,710
+así que ese el numerador.
+
+207
+00:07:10,980 --> 00:07:12,880
+Y luego, para el denominador, bueno, es
+
+208
+00:07:13,090 --> 00:07:14,970
+la suma de todas estas entradas de la diagonal
+
+209
+00:07:16,210 --> 00:07:17,470
+y 1 menos la relación de eso,
+
+210
+00:07:17,660 --> 00:07:19,080
+eso me da
+
+211
+00:07:19,300 --> 00:07:21,330
+esta cantidad aquí,
+
+212
+00:07:21,650 --> 00:07:23,440
+la cual he circulado en azul.
+
+213
+00:07:23,650 --> 00:07:24,380
+Así que lo que podemos hacer es
+
+214
+00:07:24,650 --> 00:07:26,000
+simplemente probar si esto
+
+215
+00:07:26,430 --> 00:07:29,330
+es menor o igual a 0.01 o
+
+216
+00:07:29,370 --> 00:07:30,460
+de manera equivalente, podemos probar
+
+217
+00:07:30,830 --> 00:07:31,960
+si la suma de
+
+218
+00:07:32,180 --> 00:07:33,010
+i=1 hasta k,  Sii
+
+219
+00:07:33,970 --> 00:07:35,180
+dividida entre la suma de i=1
+
+220
+00:07:35,320 --> 00:07:37,090
+hasta n Sii,
+
+221
+00:07:37,650 --> 00:07:38,580
+si es mayor o igual a
+
+222
+00:07:38,770 --> 00:07:40,600
+0.99, si quiere
+
+223
+00:07:40,720 --> 00:07:42,920
+asegurarse de que se retiene 99% de la varianza.
+
+224
+00:07:44,770 --> 00:07:45,650
+Lo que puede hacer,
+
+225
+00:07:45,940 --> 00:07:48,360
+es sólo aumentar poco a poco k,
+
+226
+00:07:48,770 --> 00:07:49,820
+escribimos k=1, k=2,
+
+227
+00:07:50,100 --> 00:07:51,290
+k=3 y así sucesivamente,
+
+228
+00:07:52,140 --> 00:07:53,240
+y sólo probar esta cantidad,
+
+229
+00:07:54,720 --> 00:07:56,120
+para ver cuál es el
+
+230
+00:07:56,350 --> 00:07:58,820
+valor más pequeño de k que asegura que se retiene 99% de la varianza.
+
+231
+00:08:00,600 --> 00:08:01,810
+Y si hace esto,
+
+232
+00:08:02,000 --> 00:08:02,790
+entonces usted necesita usar
+
+233
+00:08:03,170 --> 00:08:04,660
+la función SVD sólo una vez.
+
+234
+00:08:04,970 --> 00:08:05,830
+Debido a que le da
+
+235
+00:08:06,010 --> 00:08:07,060
+la matriz S y una vez que
+
+236
+00:08:07,090 --> 00:08:08,350
+tiene la matriz S, puede
+
+237
+00:08:08,490 --> 00:08:09,540
+sólo seguir haciendo
+
+238
+00:08:09,770 --> 00:08:11,370
+este cálculo mediante el aumento
+
+239
+00:08:11,930 --> 00:08:12,910
+del valor de k en el
+
+240
+00:08:13,070 --> 00:08:14,450
+numerador y así no
+
+241
+00:08:14,560 --> 00:08:16,290
+es necesario estar usando la función SVD
+
+242
+00:08:16,540 --> 00:08:18,620
+una y otra vez para probar los diferentes valores de k.
+
+243
+00:08:18,910 --> 00:08:20,030
+Por lo tanto, este procedimiento es mucho más
+
+244
+00:08:20,150 --> 00:08:21,700
+eficiente y esto puede
+
+245
+00:08:21,910 --> 00:08:24,020
+permitirle seleccionar el
+
+246
+00:08:24,090 --> 00:08:25,890
+valor de k sin necesidad
+
+247
+00:08:26,260 --> 00:08:27,620
+de ejecutar el ACP desde cero
+
+248
+00:08:28,030 --> 00:08:30,650
+una y otra vez. De modo que usted ejecuta SVD una vez, esto
+
+249
+00:08:30,850 --> 00:08:32,350
+le da todos estos números diagonales,
+
+250
+00:08:32,780 --> 00:08:35,090
+todos estos números S11, S22 hasta Snn,
+
+251
+00:08:35,780 --> 00:08:36,820
+después usted puede,
+
+252
+00:08:36,920 --> 00:08:38,440
+sólo variar k
+
+253
+00:08:38,730 --> 00:08:40,740
+en esta expresión para encontrar
+
+254
+00:08:41,010 --> 00:08:42,250
+el valor más pequeño de k, de modo
+
+255
+00:08:43,140 --> 00:08:44,030
+que se retiene 99% de la varianza.
+
+256
+00:08:44,850 --> 00:08:45,870
+Así que, para resumir, el modo
+
+257
+00:08:46,050 --> 00:08:47,850
+que utilizo comúnmente, la manera en la
+
+258
+00:08:47,970 --> 00:08:49,050
+que a menudo elijo k
+
+259
+00:08:49,420 --> 00:08:50,790
+cuando estoy usando ACP para compresión,
+
+260
+00:08:51,120 --> 00:08:52,590
+es que usaría una vez SVD
+
+261
+00:08:52,950 --> 00:08:54,480
+en la matriz de covarianza y luego
+
+262
+00:08:54,540 --> 00:08:55,750
+usaría esta fórmula y
+
+263
+00:08:56,030 --> 00:08:57,930
+elegiría el valor más pequeño de k
+
+264
+00:08:58,020 --> 00:09:00,390
+por medio del cual se satisface esta expresión.
+
+265
+00:09:01,580 --> 00:09:02,560
+Por cierto, incluso si usted
+
+266
+00:09:02,650 --> 00:09:03,850
+fuera a elegir valor diferente a k
+
+267
+00:09:04,180 --> 00:09:04,960
+e incluso si fuera a
+
+268
+00:09:05,000 --> 00:09:05,920
+elegir el del valor de k manualmente,
+
+269
+00:09:06,090 --> 00:09:07,250
+tal vez usted
+
+270
+00:09:07,300 --> 00:09:08,620
+podría tener datos de 1000 dimensiones
+
+271
+00:09:09,540 --> 00:09:11,590
+y sólo quiero elegir k=100,
+
+272
+00:09:12,430 --> 00:09:13,450
+entonces, si quiere explicar
+
+273
+00:09:13,690 --> 00:09:14,760
+a otros lo que acaba de hacer,
+
+274
+00:09:15,230 --> 00:09:17,070
+una buena manera de explicar el desempeño
+
+275
+00:09:17,750 --> 00:09:18,910
+de su implementación de ACP es
+
+276
+00:09:19,220 --> 00:09:20,300
+en realidad tomar
+
+277
+00:09:20,540 --> 00:09:21,670
+esta cantidad y calcular
+
+278
+00:09:21,890 --> 00:09:23,000
+lo que esto representa y esto le indicará
+
+279
+00:09:23,110 --> 00:09:25,770
+cuál fue el porcentaje de varianza retenido
+
+280
+00:09:26,300 --> 00:09:28,070
+y si reporta ese número, entonces
+
+281
+00:09:28,340 --> 00:09:29,720
+las personas que están familiarizadas
+
+282
+00:09:30,100 --> 00:09:31,610
+con ACP pueden usar
+
+283
+00:09:31,880 --> 00:09:33,020
+esto para obtener una
+
+284
+00:09:33,080 --> 00:09:34,560
+mejor comprensión de qué
+
+285
+00:09:34,900 --> 00:09:37,340
+tan bien se está aproximando su representación de cien dimensiones
+
+286
+00:09:37,690 --> 00:09:39,270
+a sus datos originales
+
+287
+00:09:39,580 --> 00:09:41,300
+porque hay un 99% de la varianza retenida.
+
+288
+00:09:41,990 --> 00:09:44,140
+Eso es realmente una medida de su
+
+289
+00:09:44,360 --> 00:09:45,860
+error de construcción al cuadrado, esa
+
+290
+00:09:46,240 --> 00:09:47,870
+relación de 0.01, sólo
+
+291
+00:09:48,430 --> 00:09:49,940
+le da a la gente un buen sentido
+
+292
+00:09:50,430 --> 00:09:51,820
+intuitivo sobre si su aplicación de ACP
+
+293
+00:09:52,580 --> 00:09:53,840
+está encontrando una
+
+294
+00:09:54,000 --> 00:09:56,530
+buena aproximación a su conjunto de datos original.
+
+295
+00:09:58,440 --> 00:09:59,600
+Ojalá esto le de un
+
+296
+00:09:59,800 --> 00:10:01,260
+procedimiento eficiente para la elección
+
+297
+00:10:01,850 --> 00:10:02,800
+del número k, para elegir a
+
+298
+00:10:03,260 --> 00:10:04,940
+qué dimensión reducir sus
+
+299
+00:10:05,160 --> 00:10:06,630
+datos y si
+
+300
+00:10:06,750 --> 00:10:07,830
+aplica ACP a grupos de datos
+
+301
+00:10:07,970 --> 00:10:09,740
+de altas dimensiones, digamos
+
+302
+00:10:09,990 --> 00:10:11,570
+datos de 1000 dimensiones, muy a menudo,
+
+303
+00:10:11,980 --> 00:10:13,340
+sólo porque los conjuntos de datos tienden
+
+304
+00:10:13,530 --> 00:10:14,720
+a tener variables altamente
+
+305
+00:10:15,070 --> 00:10:16,140
+correlacionadas, esta es sólo una
+
+306
+00:10:16,280 --> 00:10:17,190
+propiedad de la mayoría de los conjuntos de datos que se ven,
+
+307
+00:10:18,440 --> 00:10:19,420
+a menudo encuentra que el ACP
+
+308
+00:10:20,040 --> 00:10:21,610
+será capaz de retener el 99%
+
+309
+00:10:21,840 --> 00:10:22,940
+de la varianza o digamos
+
+310
+00:10:23,110 --> 00:10:24,440
+95, 99, alguna
+
+311
+00:10:24,720 --> 00:10:25,910
+fracción alta de la varianza,
+
+312
+00:10:26,360 --> 00:10:27,580
+incluso durante la compresión de datos
+
+313
+00:10:28,560 --> 00:10:29,720
+por un factor muy grande.

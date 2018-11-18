@@ -1,0 +1,646 @@
+1
+00:00:00,290 --> 00:00:03,747
+Di video ini kita bicara tentang
+
+2
+00:00:03,747 --> 00:00:06,630
+matriks, perkalian matriks atau
+
+3
+00:00:06,630 --> 00:00:10,170
+bagaimana mengalikan dua matriks
+bersama.
+
+4
+00:00:10,170 --> 00:00:13,123
+Saat kita bicara tentang metode
+
+5
+00:00:13,123 --> 00:00:16,270
+dalam regresi linier tentang bagaimana
+
+6
+00:00:16,270 --> 00:00:18,810
+menyelesaikan parameternya,
+
+7
+00:00:18,810 --> 00:00:22,840
+theta 0 dan theta 1, sekaligus,
+
+8
+00:00:24,090 --> 00:00:27,440
+tanpa perlu algoritma iteratif
+seperti gradient descent,
+
+9
+00:00:28,840 --> 00:00:32,610
+saat kita bicara tentang algoritma itu,
+
+10
+00:00:32,610 --> 00:00:34,805
+tampaknya perkalian
+
+11
+00:00:34,805 --> 00:00:38,060
+matriks adalah salah satu kunci yang
+perlu Anda tahu.
+
+12
+00:00:38,060 --> 00:00:43,460
+Seperti biasa, mari kita mulai
+dengan 1 contoh.
+
+13
+00:00:43,460 --> 00:00:46,480
+Katakanlah saya punya 2 matriks
+
+14
+00:00:46,480 --> 00:00:49,240
+dan saya mau mengalikannya bersama.
+
+15
+00:00:49,240 --> 00:00:53,790
+Mari kita lihat contoh ini
+
+16
+00:00:55,180 --> 00:00:59,770
+dan sebentar lagi saya akan memberitahu
+Anda apa yang terjadi.
+
+17
+00:00:59,770 --> 00:01:03,370
+Hal pertama yang
+
+18
+00:01:03,370 --> 00:01:04,790
+saya akan lakukan,
+
+19
+00:01:06,070 --> 00:01:08,570
+saya akan mengeluarkan kolom pertama
+
+20
+00:01:08,570 --> 00:01:12,620
+matriks di kanan ini.
+
+21
+00:01:12,620 --> 00:01:16,550
+Dan saya akan ambil matriks
+
+22
+00:01:16,550 --> 00:01:20,430
+di kiri ini dan
+
+23
+00:01:20,430 --> 00:01:24,960
+mengalikannya dengan 1 vektor.
+
+24
+00:01:24,960 --> 00:01:28,840
+Itu kolom pertaman ini, OKE?
+
+25
+00:01:28,840 --> 00:01:30,580
+Dan tampaknya jika saya
+
+26
+00:01:30,580 --> 00:01:35,540
+lakukan itu saya akan mendapat
+vektor 11, 9.
+
+27
+00:01:35,540 --> 00:01:39,650
+Ini sama dengan perkalian
+
+28
+00:01:39,650 --> 00:01:42,159
+matriks vektor yang Anda lihat di
+video sebelumnya.
+
+29
+00:01:43,260 --> 00:01:46,880
+Saya sudah kerjakan ini, jadi saya tahu
+hasilnya 11, 9.
+
+30
+00:01:46,880 --> 00:01:48,470
+Kemudian, hal ke-2
+
+31
+00:01:48,470 --> 00:01:53,060
+yang saya akan kerjakan adalah
+
+32
+00:01:53,060 --> 00:01:58,005
+menarik keluar kolom ke-2,
+
+33
+00:01:58,005 --> 00:01:59,950
+matriks di kanan ini dan
+
+34
+00:01:59,950 --> 00:02:07,510
+saya akan
+
+35
+00:02:07,510 --> 00:02:12,350
+ambil matriks di kiri ini,
+
+36
+00:02:12,350 --> 00:02:15,810
+matriks itu,
+
+37
+00:02:15,810 --> 00:02:17,550
+dan mengalikannya dengan
+
+38
+00:02:17,550 --> 00:02:20,252
+kolom kedua itu di kanan.
+
+39
+00:02:20,252 --> 00:02:25,494
+Jadi, lagi-lagi, ini set
+
+40
+00:02:25,494 --> 00:02:31,270
+perkalian matriks vektor, yang
+
+41
+00:02:31,270 --> 00:02:36,520
+Anda lihat di video sebelumya, dan
+
+42
+00:02:36,520 --> 00:02:39,744
+tampaknya jika Anda
+
+43
+00:02:39,744 --> 00:02:42,730
+mengalikannya matriks ini dengan
+
+44
+00:02:42,730 --> 00:02:46,540
+vektor ini, Anda dapat 10, 14.
+
+45
+00:02:46,540 --> 00:02:47,480
+Ngomong-ngomong,
+
+46
+00:02:47,480 --> 00:02:52,550
+jika Anda mau latihan
+
+47
+00:02:52,550 --> 00:02:54,540
+perkalian matriks vektor Anda,
+
+48
+00:02:55,720 --> 00:03:00,300
+Anda bebas menghentikan sementara video
+ini dan mengecek hasil ini sendiri.
+
+49
+00:03:00,300 --> 00:03:04,630
+Lalu, saya akan
+
+50
+00:03:04,630 --> 00:03:07,000
+mengambil kedua hasil ini dan
+
+51
+00:03:07,000 --> 00:03:10,680
+meletakkannya bersama, dan itu menjadi
+jawaban saya.
+
+52
+00:03:10,680 --> 00:03:13,340
+Jadi, tampaknya
+
+53
+00:03:13,340 --> 00:03:16,830
+hasil perkalian ini adalah
+
+54
+00:03:16,830 --> 00:03:25,470
+matriks 2 x 2, dan
+
+55
+00:03:25,470 --> 00:03:30,220
+cara saya mengisi
+
+56
+00:03:30,220 --> 00:03:32,400
+matriks ini, hanya dengan
+
+57
+00:03:32,400 --> 00:03:35,540
+mengambil elemen 11, 9
+
+58
+00:03:35,540 --> 00:03:40,930
+dan memasukkan mereka ke sini, dan
+
+59
+00:03:40,930 --> 00:03:46,690
+mengambil 10, 14 dan memasukkan
+
+60
+00:03:46,690 --> 00:03:51,712
+mereka ke kolom kedua.
+
+61
+00:03:51,712 --> 00:03:57,960
+okey?
+
+62
+00:03:57,960 --> 00:04:03,980
+Jadi, itulah mekanisme
+
+63
+00:04:05,220 --> 00:04:11,880
+bagaimana mengalikan matriks dengan
+
+64
+00:04:11,880 --> 00:04:14,820
+matriks lain.
+
+65
+00:04:14,820 --> 00:04:17,130
+Pada dasarnya Anda melihat pada
+
+66
+00:04:17,130 --> 00:04:18,810
+kolom matriks kedua satu per satu
+dan Anda menyusun jawabannya.
+
+67
+00:04:18,810 --> 00:04:22,460
+Sebentar lagi,
+
+68
+00:04:22,460 --> 00:04:28,600
+kita akan mempelajarinya
+
+69
+00:04:29,750 --> 00:04:34,860
+lebih baik lagi, tapi saya hanya
+
+70
+00:04:34,860 --> 00:04:37,530
+ingin menegaskan,
+
+71
+00:04:37,530 --> 00:04:41,200
+contoh pertama ini adalah matriks 2 x 3,
+
+72
+00:04:41,200 --> 00:04:45,230
+dikalikan dengan
+
+73
+00:04:46,510 --> 00:04:50,198
+matriks 3 x 2, dan
+
+74
+00:04:50,198 --> 00:04:55,154
+menghasilkan
+
+75
+00:04:55,154 --> 00:05:01,149
+matriks
+
+76
+00:05:01,149 --> 00:05:05,080
+2 x 2.
+
+77
+00:05:05,080 --> 00:05:10,190
+Dan sebentar lagi, kita akan lihat
+mengapa begini.
+
+78
+00:05:11,530 --> 00:05:13,660
+Baiklah.
+
+79
+00:05:13,660 --> 00:05:17,300
+Itulah mekanisme perhitungannya.
+
+80
+00:05:17,300 --> 00:05:24,230
+Mari lihat
+
+81
+00:05:24,230 --> 00:05:29,670
+detilnya dan lihat apa
+
+82
+00:05:29,670 --> 00:05:32,670
+yang terjadi.
+
+83
+00:05:32,670 --> 00:05:35,340
+Inilah detilnya.
+
+84
+00:05:35,340 --> 00:05:41,332
+Saya punya matriks A dan
+
+85
+00:05:41,332 --> 00:05:46,168
+saya ingin mengalikan itu
+
+86
+00:05:46,168 --> 00:05:51,255
+dengan matriks B, dan hasilnya
+
+87
+00:05:51,255 --> 00:05:55,488
+matriks baru C. Dan
+
+88
+00:05:55,488 --> 00:06:00,748
+tampaknya Anda hanya bisa
+
+89
+00:06:00,748 --> 00:06:03,158
+mengalikan matriks yang punya
+
+90
+00:06:03,158 --> 00:06:07,948
+dimensi yang cocok. Jadi A
+
+91
+00:06:07,948 --> 00:06:13,552
+adalah matriks m x n,
+
+92
+00:06:13,552 --> 00:06:16,948
+m baris, n kolom dan
+
+93
+00:06:16,948 --> 00:06:21,608
+saya akan mengalikannya
+
+94
+00:06:21,608 --> 00:06:24,731
+dengan matriks n x o.
+
+95
+00:06:24,731 --> 00:06:30,150
+Tampaknya n ini
+
+96
+00:06:30,150 --> 00:06:31,168
+harus sama dengan n ini
+
+97
+00:06:31,168 --> 00:06:33,972
+di sini. Jadi jumlah kolom
+
+98
+00:06:33,972 --> 00:06:39,577
+di matriks pertama ini harus sama
+dengan jumlah baris di matriks kedua.
+
+99
+00:06:39,577 --> 00:06:45,184
+Dan hasil perkalian
+
+100
+00:06:45,184 --> 00:06:51,219
+ini adalah matriks
+
+101
+00:06:51,219 --> 00:06:55,570
+m x o, seperti matriks C di sini.
+
+102
+00:06:55,570 --> 00:06:59,896
+Dan, di video sebelumnya,
+
+103
+00:06:59,896 --> 00:07:03,715
+semua yang kita lakukan berkaitan
+
+104
+00:07:03,715 --> 00:07:08,820
+dengan kasus khusus ini
+
+105
+00:07:08,820 --> 00:07:13,937
+o = 1.
+
+106
+00:07:13,937 --> 00:07:16,950
+okey?
+
+107
+00:07:16,950 --> 00:07:22,547
+Itu jika B adalah vektor.
+
+108
+00:07:22,547 --> 00:07:27,930
+Tapi sekarang, kita akan
+
+109
+00:07:27,930 --> 00:07:31,950
+menampilkan jika nilai o > 1.
+
+110
+00:07:34,900 --> 00:07:39,839
+Jadi, inilah caranya Anda
+
+111
+00:07:39,839 --> 00:07:41,040
+mengalikan dua matriks bersama.
+
+112
+00:07:41,040 --> 00:07:47,019
+Apa yang
+
+113
+00:07:48,470 --> 00:07:53,780
+saya akan lakukan adalah
+
+114
+00:07:53,780 --> 00:07:56,380
+mengambil
+
+115
+00:07:56,380 --> 00:07:59,480
+kolom pertama B
+
+116
+00:07:59,480 --> 00:08:04,030
+dan memperlakukan itu sebagai suatu
+vektor,
+
+117
+00:08:04,030 --> 00:08:09,050
+dan mengalikan matriks A
+
+118
+00:08:09,050 --> 00:08:15,620
+dengan kolom pertama B.
+
+119
+00:08:15,620 --> 00:08:22,486
+Hasilnya adalah
+
+120
+00:08:22,486 --> 00:08:27,572
+vektor m x 1,
+
+121
+00:08:27,572 --> 00:08:33,189
+dan kita akan meletakkannya di sini.
+
+122
+00:08:33,189 --> 00:08:37,930
+Lalu, saya akan
+
+123
+00:08:37,930 --> 00:08:44,560
+mengambil kolom kedua
+
+124
+00:08:44,560 --> 00:08:46,160
+B,
+
+125
+00:08:47,430 --> 00:08:51,080
+ini vektor n x 1
+
+126
+00:08:51,080 --> 00:08:56,330
+lain, sehingga kolom ini
+
+127
+00:08:56,330 --> 00:09:01,970
+di sini, yang ini, n x 1,
+
+128
+00:09:01,970 --> 00:09:07,540
+itu vektor n-dimensi,
+
+129
+00:09:08,790 --> 00:09:10,810
+akan mengalikan matriks ini
+
+130
+00:09:10,810 --> 00:09:13,040
+dengan vektor n x 1 ini.
+
+131
+00:09:13,040 --> 00:09:15,050
+Hasilnya
+
+132
+00:09:15,050 --> 00:09:19,340
+vektor m-dimensi
+
+133
+00:09:19,340 --> 00:09:23,541
+yang akan diletakkan di sana.
+
+134
+00:09:23,541 --> 00:09:29,319
+Dan seterusnya.
+
+135
+00:09:29,319 --> 00:09:33,400
+okey?
+
+136
+00:09:34,450 --> 00:09:36,890
+Kemudian,
+
+137
+00:09:36,890 --> 00:09:41,600
+saya akan mengambil kolom
+
+138
+00:09:41,600 --> 00:09:44,120
+ketiga, mengalikannya dengan
+
+139
+00:09:44,120 --> 00:09:48,290
+matriks ini, hasilnya vektor m-dimensi.
+
+140
+00:09:48,290 --> 00:09:54,000
+Dan seterusnya hingga Anda mengerjakan
+
+141
+00:09:54,000 --> 00:09:59,860
+matriks A
+
+142
+00:10:00,930 --> 00:10:05,902
+kali
+
+143
+00:10:05,902 --> 00:10:10,760
+kolom terakhir B, yang hasilnya
+
+144
+00:10:10,760 --> 00:10:13,852
+kolom terakhir C.
+
+145
+00:10:13,852 --> 00:10:16,742
+Sekali lagi,
+
+146
+00:10:16,742 --> 00:10:21,518
+kolom ke-i matriks C diperoleh
+
+147
+00:10:21,518 --> 00:10:22,072
+dengan mengalikan
+
+148
+00:10:22,072 --> 00:10:25,436
+matriks A
+
+149
+00:10:25,436 --> 00:10:27,935
+dengan
+
+150
+00:10:27,935 --> 00:10:31,295
+kolom ke-i
+
+151
+00:10:31,295 --> 00:10:35,840
+matriks B untuk nilai
+
+152
+00:10:35,840 --> 00:10:41,333
+i = 1, 2, ..., o.
+
+153
+00:10:41,333 --> 00:10:47,070
+Okey?
+
+154
+00:10:47,070 --> 00:10:51,685
+Ini hanya rangkuman akan
+
+155
+00:10:51,685 --> 00:10:56,310
+apa yang kita lakukan di atas
+
+156
+00:10:56,310 --> 00:10:59,410
+untuk menghitung matriks C.
+
+157
+00:10:59,410 --> 00:11:03,720
+Mari kita lihat 1 contoh lagi.
+
+158
+00:11:03,720 --> 00:11:08,440
+Katakanlah, saya ingin mengalikan
+kedua matriks ini.

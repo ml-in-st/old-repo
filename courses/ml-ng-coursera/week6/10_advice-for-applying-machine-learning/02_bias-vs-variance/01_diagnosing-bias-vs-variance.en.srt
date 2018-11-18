@@ -1,0 +1,511 @@
+1
+00:00:00,000 --> 00:00:03,890
+If you run a learning algorithm and it doesn't do as long as you are hoping,
+
+2
+00:00:03,890 --> 00:00:05,370
+almost all the time,
+
+3
+00:00:05,370 --> 00:00:10,015
+it will be because you have either a high bias problem or a high variance problem,
+
+4
+00:00:10,015 --> 00:00:13,730
+in other words, either an underfitting problem or an overfitting problem.
+
+5
+00:00:13,730 --> 00:00:17,160
+In this case, it's very important to figure out which of
+
+6
+00:00:17,160 --> 00:00:20,965
+these two problems is bias or variance or a bit of both that you actually have.
+
+7
+00:00:20,965 --> 00:00:24,120
+Because knowing which of these two things is happening would give
+
+8
+00:00:24,120 --> 00:00:26,010
+a very strong indicator for
+
+9
+00:00:26,010 --> 00:00:29,950
+whether the useful and promising ways to try to improve your algorithm.
+
+10
+00:00:29,950 --> 00:00:33,150
+In this video, I'd like to delve more deeply into
+
+11
+00:00:33,150 --> 00:00:36,860
+this bias and variance issue and understand them better as was
+
+12
+00:00:36,860 --> 00:00:39,950
+figure out how to look in a learning algorithm and
+
+13
+00:00:39,950 --> 00:00:43,370
+evaluate or diagnose whether we might have a bias problem or
+
+14
+00:00:43,370 --> 00:00:46,595
+a variance problem since this will be critical to figuring out
+
+15
+00:00:46,595 --> 00:00:51,005
+how to improve the performance of a learning algorithm that you will implement.
+
+16
+00:00:51,005 --> 00:00:55,100
+So, you've already seen this figure a few times where if you fit
+
+17
+00:00:55,100 --> 00:00:59,690
+two simple hypothesis like a straight line that underfits the data,
+
+18
+00:00:59,690 --> 00:01:02,375
+if you fit a two complex hypothesis,
+
+19
+00:01:02,375 --> 00:01:07,085
+then that might fit the training set perfectly but overfit the data and this
+
+20
+00:01:07,085 --> 00:01:11,870
+may be hypothesis of some intermediate level of complexities
+
+21
+00:01:11,870 --> 00:01:16,430
+of some maybe degree two polynomials or not too low and not too high degree
+
+22
+00:01:16,430 --> 00:01:21,780
+that's like just right and gives you the best generalization error over these options.
+
+23
+00:01:21,780 --> 00:01:26,700
+Now that we're armed with the notion of chain training and validation in test sets,
+
+24
+00:01:26,700 --> 00:01:31,090
+we can understand the concepts of bias and variance a little bit better.
+
+25
+00:01:31,090 --> 00:01:34,640
+Concretely, let's let our training error and cross
+
+26
+00:01:34,640 --> 00:01:38,220
+validation error be defined as in the previous videos.
+
+27
+00:01:38,220 --> 00:01:39,985
+Just say the squared error,
+
+28
+00:01:39,985 --> 00:01:41,210
+the average squared error,
+
+29
+00:01:41,210 --> 00:01:46,145
+as measured on the training sets or as measured on the cross validation set.
+
+30
+00:01:46,145 --> 00:01:48,350
+Now, let's plot the following figure.
+
+31
+00:01:48,350 --> 00:01:52,450
+On the horizontal axis I'm going to plot the degree of polynomial.
+
+32
+00:01:52,450 --> 00:01:58,315
+So, as I go to the right I'm going to be fitting higher and higher order polynomials.
+
+33
+00:01:58,315 --> 00:02:02,100
+So where the left of this figure where maybe d equals one,
+
+34
+00:02:02,100 --> 00:02:03,570
+we're going to be fitting
+
+35
+00:02:03,570 --> 00:02:08,370
+very simple functions whereas we're here on the right of the horizontal axis,
+
+36
+00:02:08,370 --> 00:02:10,380
+I have much larger values of ds,
+
+37
+00:02:10,380 --> 00:02:12,935
+of a much higher degree polynomial.
+
+38
+00:02:12,935 --> 00:02:16,185
+So here, that's going to correspond to fitting
+
+39
+00:02:16,185 --> 00:02:19,880
+much more complex functions to your training set.
+
+40
+00:02:19,880 --> 00:02:21,880
+Let's look at the training error and
+
+41
+00:02:21,880 --> 00:02:25,080
+the cross validation error and plot them on this figure.
+
+42
+00:02:25,080 --> 00:02:27,470
+Let's start with the training error.
+
+43
+00:02:27,470 --> 00:02:30,430
+As we increase the degree of the polynomial,
+
+44
+00:02:30,430 --> 00:02:35,620
+we're going to be able to fit our training set better and better and so if d equals one,
+
+45
+00:02:35,620 --> 00:02:37,890
+then there is high training error,
+
+46
+00:02:37,890 --> 00:02:41,610
+if we have a very high degree of polynomial our training error is going to be really low,
+
+47
+00:02:41,610 --> 00:02:44,390
+maybe even 0 because will fit the training set really well.
+
+48
+00:02:44,390 --> 00:02:47,340
+So, as we increase the degree of polynomial,
+
+49
+00:02:47,340 --> 00:02:50,570
+we find typically that the training error decreases.
+
+50
+00:02:50,570 --> 00:02:56,695
+So I'm going to write J subscript train of theta there,
+
+51
+00:02:56,695 --> 00:02:59,970
+because our training error tends to decrease with
+
+52
+00:02:59,970 --> 00:03:03,930
+the degree of the polynomial that we fit to the data.
+
+53
+00:03:03,930 --> 00:03:08,030
+Next, let's look at the cross-validation error or for that matter,
+
+54
+00:03:08,030 --> 00:03:10,070
+if we look at the test set error,
+
+55
+00:03:10,070 --> 00:03:14,905
+we'll get a pretty similar result as if we were to plot the cross validation error.
+
+56
+00:03:14,905 --> 00:03:18,225
+So, we know that if d equals one,
+
+57
+00:03:18,225 --> 00:03:21,805
+we're fitting a very simple function and so we may be
+
+58
+00:03:21,805 --> 00:03:27,005
+underfitting the training set and so it's going to be very high cross-validation error.
+
+59
+00:03:27,005 --> 00:03:30,655
+If we fit an intermediate degree polynomial,
+
+60
+00:03:30,655 --> 00:03:34,170
+we had d equals two in our example in the previous slide,
+
+61
+00:03:34,170 --> 00:03:36,960
+we're going to have a much lower cross-validation error because
+
+62
+00:03:36,960 --> 00:03:40,650
+we're finding a much better fit to the data.
+
+63
+00:03:40,650 --> 00:03:42,730
+Conversely, if d were too high.
+
+64
+00:03:42,730 --> 00:03:45,595
+So if d took on say a value of four,
+
+65
+00:03:45,595 --> 00:03:47,345
+then we're again overfitting,
+
+66
+00:03:47,345 --> 00:03:50,640
+and so we end up with a high value for cross-validation error.
+
+67
+00:03:50,640 --> 00:03:54,750
+So, if you were to vary this smoothly and plot a curve,
+
+68
+00:03:54,750 --> 00:04:00,535
+you might end up with a curve like that where that's JCV of theta.
+
+69
+00:04:00,535 --> 00:04:05,590
+Again, if you plot J test of theta you get something very similar.
+
+70
+00:04:05,590 --> 00:04:09,220
+So, this sort of plot also helps us
+
+71
+00:04:09,220 --> 00:04:12,700
+to better understand the notions of bias and variance.
+
+72
+00:04:12,700 --> 00:04:14,740
+Concretely, suppose you have applied
+
+73
+00:04:14,740 --> 00:04:18,905
+a learning algorithm and it's not performing as well as you are hoping,
+
+74
+00:04:18,905 --> 00:04:23,680
+so if your cross-validation set error or your test set error is high,
+
+75
+00:04:23,680 --> 00:04:26,380
+how can we figure out if the learning algorithm is suffering
+
+76
+00:04:26,380 --> 00:04:29,760
+from high bias or suffering from high variance?
+
+77
+00:04:29,760 --> 00:04:33,055
+So, the setting of a cross-validation error being high
+
+78
+00:04:33,055 --> 00:04:37,805
+corresponds to either this regime or this regime.
+
+79
+00:04:37,805 --> 00:04:42,705
+So, this regime on the left corresponds to a high bias problem.
+
+80
+00:04:42,705 --> 00:04:47,010
+That is, if you are fitting a overly low order polynomial such as
+
+81
+00:04:47,010 --> 00:04:52,160
+a d equals one when we really needed a higher order polynomial to fit to data,
+
+82
+00:04:52,160 --> 00:04:57,465
+whereas in contrast this regime corresponds to a high variance problem.
+
+83
+00:04:57,465 --> 00:05:03,445
+That is, if d the degree of polynomial was too large for the data set that we have,
+
+84
+00:05:03,445 --> 00:05:08,815
+and this figure gives us a clue for how to distinguish between these two cases.
+
+85
+00:05:08,815 --> 00:05:12,615
+Concretely, for the high bias case,
+
+86
+00:05:12,615 --> 00:05:15,345
+that is the case of underfitting,
+
+87
+00:05:15,345 --> 00:05:16,920
+what we find is that
+
+88
+00:05:16,920 --> 00:05:22,490
+both the cross validation error and the training error are going to be high.
+
+89
+00:05:22,490 --> 00:05:25,700
+So, if your algorithm is suffering from a bias problem,
+
+90
+00:05:25,700 --> 00:05:31,120
+the training set error will be
+
+91
+00:05:31,120 --> 00:05:39,390
+high and you might find that the cross validation error will also be high.
+
+92
+00:05:39,390 --> 00:05:41,865
+It might be close,
+
+93
+00:05:41,865 --> 00:05:44,410
+maybe just slightly higher, than the training error.
+
+94
+00:05:44,410 --> 00:05:46,860
+So, if you see this combination,
+
+95
+00:05:46,860 --> 00:05:51,470
+that's a sign that your algorithm may be suffering from high bias.
+
+96
+00:05:51,690 --> 00:05:56,000
+In contrast, if your algorithm is suffering from high variance,
+
+97
+00:05:56,000 --> 00:05:58,585
+then if you look here,
+
+98
+00:05:58,585 --> 00:06:02,115
+we'll notice that J train,
+
+99
+00:06:02,115 --> 00:06:03,905
+that is the training error,
+
+100
+00:06:03,905 --> 00:06:07,065
+is going to be low.
+
+101
+00:06:07,065 --> 00:06:10,745
+That is, you're fitting the training set very well,
+
+102
+00:06:10,745 --> 00:06:17,250
+whereas your cross validation error assuming that this is, say,
+
+103
+00:06:17,250 --> 00:06:20,099
+the squared error which we're trying to minimize say,
+
+104
+00:06:20,099 --> 00:06:24,925
+whereas in contrast your error on a cross validation set or your cross function or cross
+
+105
+00:06:24,925 --> 00:06:30,060
+validation set will be much bigger than your training set error.
+
+106
+00:06:30,060 --> 00:06:32,570
+So, this is a double greater than sign.
+
+107
+00:06:32,570 --> 00:06:35,430
+That's the map symbol for much greater thans,
+
+108
+00:06:35,430 --> 00:06:37,855
+denoted by two greater than signs.
+
+109
+00:06:37,855 --> 00:06:42,290
+So if you see this combination of values,
+
+110
+00:06:42,290 --> 00:06:44,520
+then that's a clue that
+
+111
+00:06:44,520 --> 00:06:49,135
+your learning algorithm may be suffering from high variance and might be overfitting.
+
+112
+00:06:49,135 --> 00:06:52,320
+The key that distinguishes these two cases is,
+
+113
+00:06:52,320 --> 00:06:54,240
+if you have a high bias problem,
+
+114
+00:06:54,240 --> 00:06:56,730
+your training set error will also be high is
+
+115
+00:06:56,730 --> 00:06:59,925
+your hypothesis just not fitting the training set well.
+
+116
+00:06:59,925 --> 00:07:02,220
+If you have a high variance problem,
+
+117
+00:07:02,220 --> 00:07:04,475
+your training set error will usually be low,
+
+118
+00:07:04,475 --> 00:07:07,840
+that is much lower than your cross-validation error.
+
+119
+00:07:07,840 --> 00:07:10,260
+So hopefully that gives you
+
+120
+00:07:10,260 --> 00:07:14,400
+a somewhat better understanding of the two problems of bias and variance.
+
+121
+00:07:14,400 --> 00:07:18,540
+I still have a lot more to say about bias and variance in the next few videos,
+
+122
+00:07:18,540 --> 00:07:21,510
+but what we'll see later is that by diagnosing whether
+
+123
+00:07:21,510 --> 00:07:25,020
+a learning algorithm may be suffering from high bias or high variance,
+
+124
+00:07:25,020 --> 00:07:28,490
+I'll show you even more details on how to do that in later videos.
+
+125
+00:07:28,490 --> 00:07:31,860
+But we'll see that by figuring out whether a learning algorithm may be
+
+126
+00:07:31,860 --> 00:07:35,490
+suffering from high bias or high variance or combination of both,
+
+127
+00:07:35,490 --> 00:07:38,880
+that that would give us much better guidance for what might be promising things to
+
+128
+00:07:38,880 --> 00:07:42,380
+try in order to improve the performance of a learning algorithm.

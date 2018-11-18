@@ -1,0 +1,504 @@
+1
+00:00:00,500 --> 00:00:04,650
+Pada video ini dan
+
+2
+00:00:04,650 --> 00:00:09,510
+berikutnya, saya ingin
+
+3
+00:00:09,510 --> 00:00:12,651
+bicara tentang masalah klasifikasi,
+
+4
+00:00:12,651 --> 00:00:16,931
+dimana variabel y yang
+
+5
+00:00:19,473 --> 00:00:23,270
+ingin Anda prediksi
+
+6
+00:00:23,270 --> 00:00:26,530
+bernilai diskrit. Kita akan membuat
+
+7
+00:00:26,530 --> 00:00:29,390
+algoritma bernama regresi logistik,
+
+8
+00:00:29,390 --> 00:00:33,110
+yaitu salah satu
+
+9
+00:00:33,110 --> 00:00:35,540
+algoritma belajar yang paling populer dan
+banyak digunakan hari-hari ini.
+
+10
+00:00:35,540 --> 00:00:39,390
+Berikut beberapa contoh masalah
+klasifikasi.
+
+11
+00:00:39,390 --> 00:00:44,590
+Sebelumnya, kita sudah bicara tentang
+
+12
+00:00:44,590 --> 00:00:46,830
+klasifikasi surel spam sebagai
+
+13
+00:00:46,830 --> 00:00:50,840
+contoh masalah klasifikasi.
+
+14
+00:00:50,840 --> 00:00:53,960
+Contoh lainnya mengklasifikasi
+transaksi online.
+
+15
+00:00:55,120 --> 00:00:59,450
+Jika Anda punya website
+
+16
+00:00:59,450 --> 00:01:04,160
+yang menjual barang dan Anda
+
+17
+00:01:04,160 --> 00:01:09,080
+ingin tahu jika sebuah
+
+18
+00:01:10,500 --> 00:01:15,670
+transaksi curang atau
+
+19
+00:01:15,670 --> 00:01:20,020
+tidak, apakah seseorang
+
+20
+00:01:20,020 --> 00:01:23,930
+sedang menggunakan kartu kredit curian
+
+21
+00:01:23,930 --> 00:01:27,110
+atau telah mencuri kata kunci pengguna.
+
+22
+00:01:27,110 --> 00:01:31,370
+Itu masalah klasifikasi lain, dan
+
+23
+00:01:31,370 --> 00:01:35,120
+sebelumnya kita juga bicara tentang
+
+24
+00:01:35,120 --> 00:01:37,290
+contoh mengklasifikasikan tumor
+
+25
+00:01:37,290 --> 00:01:42,220
+sebagai tumor ganas atau jinak.
+
+26
+00:01:42,220 --> 00:01:46,590
+Pada semua masalah ini,
+
+27
+00:01:46,590 --> 00:01:51,460
+variabel yang coba kita
+
+28
+00:01:51,460 --> 00:01:55,170
+prediksi adalah variabel
+
+29
+00:01:55,170 --> 00:01:58,790
+Y yang katakanlah
+
+30
+00:02:00,150 --> 00:02:03,080
+punya 2 nilai,
+
+31
+00:02:03,080 --> 00:02:05,510
+0 atau 1,
+
+32
+00:02:05,510 --> 00:02:09,320
+spam atau bukan spam, curang
+
+33
+00:02:09,320 --> 00:02:14,250
+atau tidak curang, ganas atau jinak.
+
+34
+00:02:14,250 --> 00:02:17,720
+Nama lain untuk kelas yang
+
+35
+00:02:17,720 --> 00:02:22,140
+kita tandai dengan 0 adalah
+
+36
+00:02:22,140 --> 00:02:25,978
+kelas negatif, dan nama lain
+
+37
+00:02:25,978 --> 00:02:30,580
+untuk kelas yang
+
+38
+00:02:30,580 --> 00:02:34,770
+ditandai 1 adalah kelas positif.
+
+39
+00:02:34,770 --> 00:02:37,410
+Jadi, 0 bisa menunjukkan
+
+40
+00:02:37,410 --> 00:02:44,570
+tumor jinak, dan 1,
+
+41
+00:02:44,570 --> 00:02:47,520
+kelas positif, menunjukkan tumor ganas.
+
+42
+00:02:47,520 --> 00:02:50,309
+Penetapan 2 kelas
+
+43
+00:02:51,410 --> 00:02:53,410
+spam,
+
+44
+00:02:53,410 --> 00:02:56,320
+bukan spam, dst,
+
+45
+00:02:56,320 --> 00:02:59,840
+penetapan 2 kelas
+
+46
+00:02:59,840 --> 00:03:03,730
+ke positif atau negatif,
+
+47
+00:03:03,730 --> 00:03:05,695
+0 atau 1, hanya suka-suka saja
+
+48
+00:03:05,695 --> 00:03:09,100
+itu tidak begitu penting.
+
+49
+00:03:09,100 --> 00:03:14,650
+Tapi terkadang ada
+
+50
+00:03:14,650 --> 00:03:19,165
+intuisi bahwa
+
+51
+00:03:19,165 --> 00:03:23,985
+kelas negatif menyampaikan
+
+52
+00:03:23,985 --> 00:03:27,235
+ketiadaan sesuatu, seperti
+
+53
+00:03:27,235 --> 00:03:29,955
+tumor ganas, dimana 1,
+
+54
+00:03:29,955 --> 00:03:32,775
+kelas positif, menyampaikan
+
+55
+00:03:32,775 --> 00:03:36,359
+adanya sesuatu yang kita sedang cari.
+
+56
+00:03:36,359 --> 00:03:39,990
+Tapi definisi akan mana yang
+
+57
+00:03:39,990 --> 00:03:43,520
+negatif dan mana yang positif
+
+58
+00:03:43,520 --> 00:03:44,710
+terserah saja, tidak begitu penting.
+
+59
+00:03:44,710 --> 00:03:50,360
+Sekarang kita akan mulai
+
+60
+00:03:50,360 --> 00:03:54,629
+dengan kasus klasifikasi
+
+61
+00:03:55,720 --> 00:03:57,620
+2 kelas, 0 dan 1.
+
+62
+00:03:57,620 --> 00:04:01,630
+Nanti kita akan bicara kasus untuk
+
+63
+00:04:01,630 --> 00:04:05,420
+beragam kelas, dimana variabel
+
+64
+00:04:05,420 --> 00:04:08,120
+Y katakanlah
+
+65
+00:04:08,120 --> 00:04:11,530
+bernilai 0, 1, 2, dan 3.
+
+66
+00:04:11,530 --> 00:04:15,263
+Ini disebut kasus klasifikasi beragam
+kelas.
+
+67
+00:04:15,263 --> 00:04:18,900
+Tapi, untuk beberapa video
+
+68
+00:04:18,900 --> 00:04:21,960
+berikut, kita mulai dengan
+
+69
+00:04:21,960 --> 00:04:26,200
+2 kelas atau kasus klasifikasi biner.
+
+70
+00:04:26,200 --> 00:04:28,970
+Kita bicara tentang yang beragam kelas
+nanti.
+
+71
+00:04:28,970 --> 00:04:31,010
+Jadi, bagaimana kita mengembangkan
+algoritma klasifikasi?
+
+72
+00:04:31,010 --> 00:04:34,930
+Ini satu contoh
+
+73
+00:04:34,930 --> 00:04:39,620
+set latihan
+
+74
+00:04:39,620 --> 00:04:44,210
+untuk mengklasifikasi tumor
+
+75
+00:04:44,210 --> 00:04:44,820
+apakah ganas atau jinak,
+
+76
+00:04:46,200 --> 00:04:50,730
+yang ditunjukkan dengan
+
+77
+00:04:50,730 --> 00:04:54,480
+dua nilai, 0 (Tidak),
+
+78
+00:04:54,480 --> 00:04:56,090
+dan 1 (Ya).
+
+79
+00:04:57,600 --> 00:05:02,890
+Satu hal yang dapat
+
+80
+00:05:02,890 --> 00:05:06,350
+dilakukan dengan set latihan ini
+
+81
+00:05:06,350 --> 00:05:09,750
+adalah mengaplikasikan algoritma
+
+82
+00:05:09,750 --> 00:05:12,070
+regresi linier ke set data ini
+
+83
+00:05:14,590 --> 00:05:18,820
+dan coba menarik garis lurus ke data.
+
+84
+00:05:18,820 --> 00:05:23,110
+Jadi, jika Anda
+
+85
+00:05:23,110 --> 00:05:28,090
+menarik garis lurus,
+
+86
+00:05:28,090 --> 00:05:31,260
+mungkin Anda mendapatkan
+
+87
+00:05:31,260 --> 00:05:34,300
+hipotesis seperti itu.
+
+88
+00:05:34,300 --> 00:05:37,050
+Itu hipotesis saya,
+
+89
+00:05:37,050 --> 00:05:40,260
+h(x) = (theta)T x.
+
+90
+00:05:40,260 --> 00:05:45,210
+Jika Anda ingin
+
+91
+00:05:45,210 --> 00:05:50,880
+membuat prediksi, 1 hal yang dapat
+
+92
+00:05:50,880 --> 00:05:55,670
+Anda lakukan adalah
+
+93
+00:05:56,900 --> 00:06:01,120
+menetapkan batas ambang hasil
+pengklasifikasian pada 0.5.
+
+94
+00:06:01,120 --> 00:06:04,470
+Yaitu, pada sumbu vertikal nilai 0.5.
+
+95
+00:06:04,470 --> 00:06:09,870
+Jika hasil hipotesis
+
+96
+00:06:09,870 --> 00:06:14,760
+bernilai >= 0.5
+
+97
+00:06:14,760 --> 00:06:19,940
+Anda prediksi y = 1.
+
+98
+00:06:19,940 --> 00:06:24,760
+Jika hasilnya < 0.5,
+maka prediksi y = 0.
+
+99
+00:06:24,760 --> 00:06:28,350
+Mari kita lakukan.
+
+100
+00:06:29,700 --> 00:06:33,830
+Ini 0.5
+
+101
+00:06:33,830 --> 00:06:36,740
+batas ambangnya.
+
+102
+00:06:36,740 --> 00:06:40,630
+Menggunakan regresi linier seperti ini.
+
+103
+00:06:40,630 --> 00:06:44,250
+Semua yang disebelah kanan
+
+104
+00:06:44,250 --> 00:06:48,380
+titik ini, kita
+
+105
+00:06:48,380 --> 00:06:52,570
+prediksi sebagai kelas
+
+106
+00:06:53,920 --> 00:06:56,739
+positif karena nilainya
+
+107
+00:06:56,739 --> 00:07:00,786
+lebih besar dari 0.5
+
+108
+00:07:00,786 --> 00:07:05,661
+pada sumbu vertikal, dan
+
+109
+00:07:09,135 --> 00:07:13,795
+semua yang disebelah kiri
+
+110
+00:07:13,795 --> 00:07:17,044
+kita prediksi
+
+111
+00:07:17,044 --> 00:07:21,635
+bernilai negatif.
+
+112
+00:07:21,635 --> 00:07:25,114
+Dalam contoh ini,
+
+113
+00:07:26,250 --> 00:07:29,260
+sepertinya regresi linier
+
+114
+00:07:29,260 --> 00:07:33,370
+melakukan sesuatu yang masuk akal
+meskipun
+
+115
+00:07:33,370 --> 00:07:38,230
+ini tugas klasifikasi
+
+116
+00:07:38,230 --> 00:07:42,150
+yang menarik perhatian kita.
+
+117
+00:07:42,150 --> 00:07:44,720
+Tapi, mari kita ubah sedikit kasusnya.
+
+118
+00:07:44,720 --> 00:07:49,210
+Biar saya panjangkan sumbu
+
+119
+00:07:49,210 --> 00:07:54,542
+horisontalnya dan katakanlah
+
+120
+00:07:54,542 --> 00:07:56,610
+kita punya 1 lagi contoh
+
+121
+00:07:56,610 --> 00:08:01,000
+latihan di sebelah kanan atas sana.
+
+122
+00:08:01,000 --> 00:08:03,640
+Perhatikan bahwa contoh
+
+123
+00:08:03,640 --> 00:08:04,500
+latihan tambahan itu
+
+124
+00:08:04,500 --> 00:08:08,080
+tidak merubah apapun, benar?

@@ -1,0 +1,258 @@
+1
+00:00:00,120 --> 00:00:03,430
+U ovome videu bih 
+bih da pričam o grupisanju.
+
+2
+00:00:03,430 --> 00:00:07,670
+Biće uzbudljivo jer je ovo naš prvi
+ algoritam nenadgledanog učenja,
+
+3
+00:00:07,670 --> 00:00:11,880
+gde učimo iz neoznačenih
+podataka umesto iz označenih.
+
+4
+00:00:11,880 --> 00:00:14,450
+Dakle, šta je nenadgledano učenje?
+
+5
+00:00:14,450 --> 00:00:18,380
+Ukratko sam pričao o 
+nenadgledanom učenju na početku kursa ali
+
+6
+00:00:18,380 --> 00:00:21,720
+je korisno da ga uporedimo 
+sa nadgledanim učenjem.
+
+7
+00:00:21,720 --> 00:00:24,590
+Dakle, ovo je tipičan problem
+ nadgledanog učenja gde smo dobili
+
+8
+00:00:24,590 --> 00:00:29,440
+označen trening skup i cilj je pronaći
+ granicu odluke koja razdvaja
+
+9
+00:00:29,440 --> 00:00:33,090
+pozitivne oznake od negativnih primera.
+
+10
+00:00:33,090 --> 00:00:37,190
+Dakle, problem nadgledanog učenja je u ovome
+ slučaju dobio skup oznaka da nađe
+
+11
+00:00:37,190 --> 00:00:39,210
+hipotezu na osnovu njega.
+
+12
+00:00:39,210 --> 00:00:42,270
+Suprotno tome, u nenadgledanom
+ problemu učenja
+
+13
+00:00:42,270 --> 00:00:46,740
+dobili smo podatke koji nisu povezani
+ sa bilo kakvim oznakama.
+
+14
+00:00:46,740 --> 00:00:48,803
+Dakle, dobili smo podatke 
+koji izgledaju ovako.
+
+15
+00:00:48,803 --> 00:00:53,802
+Ovo je trening skup tačaka
+ bez oznaka, i on je
+
+16
+00:00:53,802 --> 00:00:59,090
+napisan samo sa x1, x2, i tako dalje
+ do xm a nemamo bilo kakvu oznaku y.
+
+17
+00:00:59,090 --> 00:01:03,560
+Zato iscrtane tačke na grafu nemaju oznake na
+
+18
+00:01:03,560 --> 00:01:04,170
+sebi.
+
+19
+00:01:04,170 --> 00:01:07,810
+Dakle, u nenadgledanom učenju 
+šta radimo je da dajemo tu vrstu
+
+20
+00:01:07,810 --> 00:01:10,280
+neoznačenih trening podataka algoritmu i
+
+21
+00:01:10,280 --> 00:01:15,450
+samo pitamo algoritam da nađe
+ neku strukturu u podacima za nas.
+
+22
+00:01:15,450 --> 00:01:19,910
+Dajući ovome skupu podataka tip
+ strukture možemo da imamo algoritam koji
+
+23
+00:01:19,910 --> 00:01:25,510
+izgleda kao da taj skup ima tačke 
+grupisane u dve odvojene grupe i
+
+24
+00:01:25,510 --> 00:01:28,250
+algoritam koji traži
+
+25
+00:01:28,250 --> 00:01:32,480
+grupe koje sam upravo zaokružio 
+se zove algoritam grupisanja.
+
+26
+00:01:32,480 --> 00:01:36,280
+I ovo bi bio naš prvi tip
+ nenadgledanog učenja,
+
+27
+00:01:36,280 --> 00:01:39,960
+ipak, biće i drugih tipova algoritama
+ nenadgledanog učenja o kojima
+
+28
+00:01:39,960 --> 00:01:43,750
+ćemo da pričamo kasnije, koji 
+pronalaze druge tipove struktura,
+
+29
+00:01:43,750 --> 00:01:46,920
+drugačije tipove obrazaca 
+od grupa podataka.
+
+30
+00:01:46,920 --> 00:01:50,060
+O tome ćemo da govorimo
+ posle grupisanja.
+
+31
+00:01:50,060 --> 00:01:52,460
+Dakle, za šta je dobro grupisanje?
+
+32
+00:01:52,460 --> 00:01:55,010
+Ranije na kursu sam 
+spomenuo par aplikacija.
+
+33
+00:01:55,010 --> 00:01:58,535
+Jedna je segmentacija tržišta gde 
+možete da imate bazu podataka korisnika i
+
+34
+00:01:58,535 --> 00:02:01,245
+želite da ih grupišete u 
+različite segmente tržišta
+
+35
+00:02:01,245 --> 00:02:05,980
+tako da im možete da prodajete
+ odvojeno po segmentima tržišta.
+
+36
+00:02:05,980 --> 00:02:07,594
+Analiza društvenih mreža.
+
+37
+00:02:07,594 --> 00:02:12,635
+Već postoje grupe koje su 
+napravljene gledanjem u
+
+38
+00:02:12,635 --> 00:02:15,155
+grupe ljudi na socijalnim mrežama.
+
+39
+00:02:15,155 --> 00:02:17,985
+Stvari kao Fejsbuk, Gugl+, 
+ili možda informacija
+
+40
+00:02:17,985 --> 00:02:21,915
+o tome ko su ljudi kojima ste 
+nejčešće slali mejlove ili ko su ljudi
+
+41
+00:02:21,915 --> 00:02:25,920
+koji su najčešće slali mejlove i 
+naći vezu u grupama ljudi.
+
+42
+00:02:25,920 --> 00:02:30,123
+Dakle, ovo bi bio još jedan algoritam 
+grupisanja gde želite da nađete
+
+43
+00:02:30,123 --> 00:02:33,039
+koje su povezane grupe prijatelja
+ u društvenoj mreži.
+
+44
+00:02:33,039 --> 00:02:36,340
+Ovo je nešto na čemu je radio 
+jedan moj prijatelj koji je koristio
+
+45
+00:02:36,340 --> 00:02:39,970
+grupisanje da bi bolje organizovao 
+grupe računara ili centre podataka.
+
+46
+00:02:39,970 --> 00:02:44,672
+Da bi našao koji računari u centru 
+podataka u grupi mogu da rade
+
+47
+00:02:44,672 --> 00:02:48,251
+zajedno, možete da koristite 
+ovo da biste organizovali resurse i
+
+48
+00:02:48,251 --> 00:02:52,979
+kako da osmislite mrežu i komunikaciju
+ vašeg centra podataka.
+
+49
+00:02:52,979 --> 00:02:57,433
+I na kraju, nešto na čemu je 
+radio drugi prijatelj koristeći
+
+50
+00:02:57,433 --> 00:03:01,272
+algoritme grupisanja da bi razumio
+ raspored u galaksiji i
+
+51
+00:03:01,272 --> 00:03:04,280
+koristeći ovo, razumeo 
+podatke iz astronomije.
+
+52
+00:03:06,730 --> 00:03:11,188
+Dakle, to je grupisanje, što je 
+naš prvi primer algoritma
+
+53
+00:03:11,188 --> 00:03:12,629
+nenadgledanog učenja.
+
+54
+00:03:12,629 --> 00:03:16,660
+U sledećem videu počećemo da govorimo
+o specifičnim algoritmima grupisanja.

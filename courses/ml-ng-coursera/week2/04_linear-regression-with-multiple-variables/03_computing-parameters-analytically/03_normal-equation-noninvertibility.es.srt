@@ -1,0 +1,447 @@
+1
+00:00:00,000 --> 00:00:03,162
+En este video, quiero hablar de la ecuación normal
+
+2
+00:00:03,162 --> 00:00:05,212
+y la no invertibilidad.
+
+3
+00:00:05,212 --> 00:00:07,877
+Este es un concepto algo más avanzado,
+
+4
+00:00:07,877 --> 00:00:10,289
+pero es algo sobre lo que muchas veces me han preguntado.
+
+5
+00:00:10,289 --> 00:00:12,711
+Y por eso quería hablar de eso aquí.
+
+6
+00:00:12,711 --> 00:00:14,752
+Pero este es un concepto algo más avanzado,
+
+7
+00:00:14,752 --> 00:00:17,982
+así que puedes considerar esto como material opcional.
+
+8
+00:00:17,982 --> 00:00:22,413
+Hay un fenómeno con el que puedes tropezarte
+
+9
+00:00:22,413 --> 00:00:24,416
+y que tal vez para algunos de ustedes sea útil comprender.
+
+10
+00:00:24,416 --> 00:00:26,619
+Pero incluso si no lo entiendes
+
+11
+00:00:26,619 --> 00:00:28,450
+la ecuación normal y la regresión lineal,
+
+12
+00:00:28,450 --> 00:00:30,539
+realmente deberías conseguir que funcione bien.
+
+13
+00:00:30,539 --> 00:00:33,195
+Aquí está el problema:
+
+14
+00:00:33,195 --> 00:00:35,691
+Para aquellos de ustedes que tal vez están
+
+15
+00:00:35,691 --> 00:00:37,876
+más familiarizados con el álgebra lineal,
+
+16
+00:00:37,876 --> 00:00:39,884
+lo que algunos estudiantes me han preguntado es,
+
+17
+00:00:39,884 --> 00:00:42,542
+al calcular esto
+
+18
+00:00:42,542 --> 00:00:45,130
+«theta» es igual a (X transpuesta X) X inversa transpuesta  y</u></u></u>
+
+19
+00:00:45,130 --> 00:00:49,476
+¿y si la matriz X transpuesta X es no invertible?</u>
+
+20
+00:00:49,476 --> 00:00:52,336
+Así que, aquellos que saben un poco más de álgebra lineal
+
+21
+00:00:52,336 --> 00:00:55,171
+tal vez saben que solo algunas matrices
+
+22
+00:00:55,171 --> 00:00:58,598
+son invertibles y que algunas matrices no tienen una inversa,
+
+23
+00:00:58,598 --> 00:01:00,540
+a esas les llamamos matrices no invertibles,
+
+24
+00:01:00,540 --> 00:01:04,737
+matrices singulares o degeneradas.
+
+25
+00:01:04,737 --> 00:01:08,893
+El tema o el problema de que X traspone X sea no invertible</u>
+
+26
+00:01:08,893 --> 00:01:11,287
+debería ocurrir muy raramente.
+
+27
+00:01:11,287 --> 00:01:16,749
+Y en Octave, si se implementa esto para calcular «theta»,
+
+28
+00:01:16,749 --> 00:01:20,636
+resulta que en realidad hará lo correcto.
+
+29
+00:01:20,636 --> 00:01:24,629
+Me estoy poniendo un poco técnico ahora y no quiero entrar en detalles,
+
+30
+00:01:24,629 --> 00:01:28,207
+pero Octave tiene dos funciones para invertir matrices:
+
+31
+00:01:28,207 --> 00:01:32,146
+Una se llama pinv(), y la otra se llama inv().
+
+32
+00:01:32,146 --> 00:01:36,089
+Las diferencias entre ambas son algo un poco técnico.
+
+33
+00:01:36,089 --> 00:01:38,107
+Una se llama la pseudoinversa, la otra se llama la inversa.
+
+34
+00:01:38,107 --> 00:01:42,658
+Puedes demostrarlo matemáticamente mientras se utiliza la función pinv(),
+
+35
+00:01:42,658 --> 00:01:47,145
+entonces esto va a calcular el valor de «theta2 que deseas,
+
+36
+00:01:47,145 --> 00:01:51,227
+incluso si (X transpuesta X) es no invertible.</u>
+
+37
+00:01:51,227 --> 00:01:54,095
+Los detalles específicos sobre cuáles son las diferencias entre
+
+38
+00:01:54,095 --> 00:01:55,959
+pinv() y lo que es inv()
+
+39
+00:01:55,959 --> 00:01:58,562
+son conceptos de cálculo numérico algo avanzados,
+
+40
+00:01:58,562 --> 00:02:00,907
+a los que realmente no quiero entrar.
+
+41
+00:02:00,907 --> 00:02:02,993
+Pero creo que en este video opcional
+
+42
+00:02:02,993 --> 00:02:04,672
+trato de darte un poco de intuición
+
+43
+00:02:04,672 --> 00:02:08,823
+sobre lo que significa para X transpuesta X ser no invertible.</u>
+
+44
+00:02:08,823 --> 00:02:12,108
+Para quienes saben un poco más de álgebra lineal
+
+45
+00:02:12,108 --> 00:02:13,556
+y que pueden estar interesados.
+
+46
+00:02:13,556 --> 00:02:15,948
+No voy a probar esto matemáticamente,
+
+47
+00:02:15,948 --> 00:02:18,684
+pero si X transpuesta X es no invertible,</u>
+
+48
+00:02:18,684 --> 00:02:22,596
+hay por lo general dos causas comunes:
+
+49
+00:02:22,596 --> 00:02:26,238
+La primera causa es que si de alguna manera, en tu problema de aprendizaje,
+
+50
+00:02:26,238 --> 00:02:28,461
+tienes características redundantes,
+
+51
+00:02:28,461 --> 00:02:30,844
+específicamente, si intentas predecir los precios de la vivienda
+
+52
+00:02:30,844 --> 00:02:34,877
+y si x1 es el tamaño de una casa en pies cuadrados,</u>
+
+53
+00:02:34,877 --> 00:02:37,792
+y x2 es el tamaño de la casa en metros cuadrados,</u>
+
+54
+00:02:37,792 --> 00:02:46,071
+entonces, como sabes, 1 metro es igual a 3.28 pies, redondeando a dos decimales,
+
+55
+00:02:46,071 --> 00:02:48,947
+y así tus dos características siempre satisfacerán la restricción
+
+56
+00:02:48,947 --> 00:02:55,378
+de que x1 es igual a (3.28)^2 multiplicado por x2.</u></u>
+
+57
+00:02:55,378 --> 00:02:59,107
+Y puedes demostrar, para algunos de ustedes - esto es álgebra lineal un poco avanzada-, ahora,
+
+58
+00:02:59,107 --> 00:03:01,169
+pero si eres experto en álgebra lineal,
+
+59
+00:03:01,169 --> 00:03:05,275
+en realidad puedes demostrar que si tus dos características están relacionadas mediante una ecuación lineal como esta,
+
+60
+00:03:05,275 --> 00:03:09,095
+la matriz X transpuesta X será no invertible.</u>
+
+61
+00:03:09,095 --> 00:03:13,320
+Lo segundo que puede causar que X transpuesta X sea no invertible</u>
+
+62
+00:03:13,320 --> 00:03:17,043
+es si estás tratando de ejecutar un algoritmo de aprendizaje
+
+63
+00:03:17,043 --> 00:03:18,850
+con un lote de características.
+
+64
+00:03:18,850 --> 00:03:23,035
+Específicamente, si "m" es menor que o igual a "n".
+
+65
+00:03:23,035 --> 00:03:27,723
+Por ejemplo, si imaginas que tienes "m" igual a 10 ejemplos de entrenamiento
+
+66
+00:03:27,723 --> 00:03:31,192
+y que tienes "n" igual a 100 características, entonces estás tratando
+
+67
+00:03:31,192 --> 00:03:36,829
+de ajustar un parámetro del vector «theta», el cual es de dimensión (n+1),
+
+68
+00:03:36,829 --> 00:03:39,308
+así que si es de dimensiones uno a uno
+
+69
+00:03:39,308 --> 00:03:43,602
+estás intentando ajustar parámetros uno a uno para sólo 10 ejemplos de entrenamiento.
+
+70
+00:03:43,602 --> 00:03:46,899
+Y esto resulta funcionar a veces,
+
+71
+00:03:46,899 --> 00:03:49,078
+pero no siempre es una buena idea.
+
+72
+00:03:49,078 --> 00:03:52,212
+Porque, como veremos más adelante, puedes no tener  datos suficientes
+
+73
+00:03:52,212 --> 00:03:58,432
+si sólo tienes 10 ejemplos para ajustar 100 o 101 parámetros.
+
+74
+00:03:58,432 --> 00:04:01,924
+Veremos más adelante en este curso, que estos pueden ser muy pocos datos
+
+75
+00:04:01,924 --> 00:04:04,418
+para ajustar tantos parámetros.
+
+76
+00:04:04,418 --> 00:04:07,544
+Pero por lo general, lo que hacemos entonces si "m" es menor que "n",
+
+77
+00:04:07,544 --> 00:04:12,513
+es ver si podemos eliminar algunas de las características o bien usar una técnica
+
+78
+00:04:12,513 --> 00:04:14,689
+llamada regularización,
+
+79
+00:04:14,689 --> 00:04:17,477
+que es algo de lo que también vamos a hablar un poco más adelante en este curso,
+
+80
+00:04:17,477 --> 00:04:21,905
+que te permitirá ajustar un lote de parámetros utilizando un lote de características
+
+81
+00:04:21,905 --> 00:04:24,117
+incluso si tienes un conjunto de entrenamiento relativamente pequeño.
+
+82
+00:04:24,117 --> 00:04:27,698
+Pero esta regularización será un tema más adelante en este curso.
+
+83
+00:04:27,698 --> 00:04:32,628
+Para resumir, si alguna vez te encuentras con que X transpuesta X es singular</u>
+
+84
+00:04:32,628 --> 00:04:35,877
+o alternativamente es no invertible,
+
+85
+00:04:35,877 --> 00:04:38,380
+lo que recomiendo que hagas es
+
+86
+00:04:38,380 --> 00:04:42,016
+primero: observar tus características y ver si tienes características redundantes
+
+87
+00:04:42,016 --> 00:04:45,304
+como estas x1 y x2 siendo linealmente dependientes,</u></u>
+
+88
+00:04:45,304 --> 00:04:48,017
+o siendo una función lineal una de la otra, así
+
+89
+00:04:48,017 --> 00:04:49,841
+y si tienes características redundantes y
+
+90
+00:04:49,841 --> 00:04:51,493
+si sólo eliminas una de estas características
+
+91
+00:04:51,493 --> 00:04:53,724
+realmente no necesitas ambas características,
+
+92
+00:04:53,724 --> 00:04:55,601
+así que si simplemente eliminas una de estas características
+
+93
+00:04:55,601 --> 00:04:58,586
+eso resolverá tu problema de no invertibilidad
+
+94
+00:04:58,586 --> 00:05:02,655
+así es que, primero analizo mis características y compruebo si alguna es redundante
+
+95
+00:05:02,655 --> 00:05:05,481
+y si las hay, entonces, como sabes, sigo eliminando las características redundantes
+
+96
+00:05:05,481 --> 00:05:07,659
+hasta que ya no son redundantes.
+
+97
+00:05:07,659 --> 00:05:09,799
+Y si tus características no son redundantes,
+
+98
+00:05:09,799 --> 00:05:11,939
+comprobaría si podría tener demasiadas características,
+
+99
+00:05:11,939 --> 00:05:13,638
+y si ese es el caso, ya sea que
+
+100
+00:05:13,638 --> 00:05:16,140
+elimine algunas características si puedo simplemente utilizar menos características,
+
+101
+00:05:16,140 --> 00:05:20,708
+o de lo contrario consideraría usar la regularización,
+
+102
+00:05:20,708 --> 00:05:22,821
+que es el tema del que vamos a hablar más adelante.
+
+103
+00:05:22,821 --> 00:05:27,877
+Por lo tanto, eso es todo sobre la ecuación normal y lo que significa
+
+104
+00:05:27,877 --> 00:05:31,885
+que la matriz X transpuesta X sea no invertible.</u>
+
+105
+00:05:31,885 --> 00:05:35,710
+Pero esto es un problema que espero que te encuentres muy rara vez.
+
+106
+00:05:35,710 --> 00:05:40,554
+Y si solo lo implementas en Octave utilizando la función pinv()
+
+107
+00:05:40,554 --> 00:05:42,853
+que se llama la función pseudoinversa
+
+108
+00:05:42,853 --> 00:05:46,700
+por lo que utilizas una librería de álgebra lineal diferente, eso se llama pseudoinversa,
+
+109
+00:05:46,700 --> 00:05:50,071
+pero esa implementación debe hacer solo lo correcto
+
+110
+00:05:50,071 --> 00:05:52,582
+incluso si X transpuesta X no es invertible</u>
+
+111
+00:05:52,582 --> 00:05:55,198
+lo que de todos modos debería suceder muy rara vez
+
+112
+00:05:55,198 --> 99:59:59,000
+por lo que esto no debería ser un problema para la mayoría de las implementaciones de regresión lineal.

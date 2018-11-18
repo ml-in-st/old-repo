@@ -1,0 +1,535 @@
+1
+00:00:00,100 --> 00:00:04,850
+Perkalian matriks benar-benar
+
+2
+00:00:04,850 --> 00:00:08,160
+berguna karena Anda bisa memasukkan
+
+3
+00:00:08,160 --> 00:00:10,880
+banyak perhitungan ke dalam
+
+4
+00:00:10,880 --> 00:00:15,046
+satu operasi perkalian matriks.
+
+5
+00:00:18,286 --> 00:00:21,157
+Tapi Anda harus berhati-hati menggunakannya.
+
+6
+00:00:21,157 --> 00:00:26,100
+Dalam video ini saya ingin
+
+7
+00:00:26,100 --> 00:00:29,990
+memberitahu Anda tentang beberapa sifat perkalian matriks.
+
+8
+00:00:29,990 --> 00:00:31,690
+Saat bekerja dengan angka
+
+9
+00:00:31,690 --> 00:00:35,390
+atau saat bekerja dengan
+
+10
+00:00:35,390 --> 00:00:38,790
+skalar, perkalian bersifat komutatif.
+
+11
+00:00:40,010 --> 00:00:42,260
+Maksud perkataan saya adalah
+
+12
+00:00:42,260 --> 00:00:44,050
+jika Anda mengambil tiga kali
+
+13
+00:00:44,050 --> 00:00:47,410
+lima, yang sama dengan
+
+14
+00:00:47,410 --> 00:00:50,410
+lima kali tiga dan
+
+15
+00:00:50,410 --> 00:00:53,160
+urutan perkaliannya tidak penting.
+
+16
+00:00:53,160 --> 00:00:57,040
+Ini disebut sifat komutatif
+
+17
+00:00:57,040 --> 00:00:58,240
+dari perkalian angka riil.
+
+18
+00:00:58,240 --> 00:01:03,490
+Tampaknya sifat ini, dimana
+
+19
+00:01:03,490 --> 00:01:08,090
+Anda bisa menukar
+
+20
+00:01:08,090 --> 00:01:10,996
+urutannya dalam
+
+21
+00:01:10,996 --> 00:01:13,740
+mengalikan sesuatu, ini tidak benar untuk perkalian matriks.
+
+22
+00:01:13,740 --> 00:01:17,130
+Jadi konkritnya, jika matriks
+
+23
+00:01:17,130 --> 00:01:20,510
+A dan B, maka
+
+24
+00:01:20,510 --> 00:01:24,320
+umumnya, A kali B
+
+25
+00:01:24,320 --> 00:01:26,970
+tidak sama dengan B kali
+
+26
+00:01:26,970 --> 00:01:30,290
+A. Jadi hati-hati dengan itu.
+
+27
+00:01:30,290 --> 00:01:35,500
+Tidak baik menukar
+
+28
+00:01:36,750 --> 00:01:42,578
+urutan saat Anda mengalikan matriks.
+
+29
+00:01:42,578 --> 00:01:47,540
+Jadi, kita katakan perkalian matriks
+
+30
+00:01:47,540 --> 00:01:52,490
+tidak komutatif, itu cara yang elegan
+
+31
+00:01:52,490 --> 00:01:56,440
+mengatakannya.
+
+32
+00:01:58,000 --> 00:02:03,270
+Sebagai contoh konkrit, ini
+
+33
+00:02:03,270 --> 00:02:09,641
+dua matriks, matriks 1100
+
+34
+00:02:09,641 --> 00:02:11,302
+kali 0020, dan jika Anda mengalikan
+
+35
+00:02:11,302 --> 00:02:16,750
+dua matriks ini, Anda dapatkan hasil di kanan ini.
+
+36
+00:02:16,750 --> 00:02:19,040
+Sekarang, mari tukar urutan kedua matriks ini.
+
+37
+00:02:19,040 --> 00:02:23,870
+Saya akan mengambil dua
+
+38
+00:02:23,870 --> 00:02:29,340
+matriks ini dan menukar mereka.
+
+39
+00:02:29,340 --> 00:02:32,200
+Tampaknya jika Anda mengalikan
+
+40
+00:02:34,360 --> 00:02:36,280
+dua matriks ini, Anda mendapat
+
+41
+00:02:36,280 --> 00:02:43,450
+jawaban kedua di
+
+42
+00:02:43,450 --> 00:02:46,800
+kanan dan,
+
+43
+00:02:46,800 --> 00:02:50,360
+jelas, dua matriks ini
+
+44
+00:02:50,360 --> 00:02:57,660
+tidak sama satu sama lain.
+
+45
+00:02:57,660 --> 00:03:00,140
+Jadi, umumnya,
+
+46
+00:03:00,140 --> 00:03:01,630
+jika Anda punya
+
+47
+00:03:01,630 --> 00:03:07,775
+operasi matriks seperti
+
+48
+00:03:07,775 --> 00:03:13,519
+A kali B. Jika A
+
+49
+00:03:13,519 --> 00:03:18,080
+matriks m x n
+
+50
+00:03:18,080 --> 00:03:27,110
+dan B matriks n x m,
+
+51
+00:03:27,110 --> 00:03:30,580
+hanya sebagai contoh,
+
+52
+00:03:30,580 --> 00:03:34,760
+maka
+
+53
+00:03:34,760 --> 00:03:39,577
+matriks A kali B
+
+54
+00:03:39,577 --> 00:03:43,069
+akan jadi
+
+55
+00:03:43,069 --> 00:03:48,180
+matriks m x m,
+
+56
+00:03:48,180 --> 00:03:51,220
+sementara
+
+57
+00:03:51,220 --> 00:03:54,000
+matriks B x A
+
+58
+00:03:54,000 --> 00:03:55,550
+akan jadi matriks n x n.
+
+59
+00:03:55,550 --> 00:03:56,360
+Jadi
+
+60
+00:03:56,360 --> 00:03:59,800
+dimensinya tidak sama, benar.
+
+61
+00:03:59,800 --> 00:04:03,170
+Jadi A kali B dan
+
+62
+00:04:03,170 --> 00:04:05,940
+B kali A tidak mungkin sama dimensinya.
+
+63
+00:04:05,940 --> 00:04:11,460
+Pada contoh di sebelah kiri,
+
+64
+00:04:11,460 --> 00:04:15,980
+saya punya matriks dua kali dua,
+
+65
+00:04:15,980 --> 00:04:20,460
+jadi dimensinya sama,
+
+66
+00:04:20,460 --> 00:04:27,130
+tapi umumnya menukar
+
+67
+00:04:27,130 --> 00:04:33,750
+urutan matriks
+
+68
+00:04:33,750 --> 00:04:39,670
+dapat mengubah dimensi
+
+69
+00:04:39,670 --> 00:04:41,150
+Oke?
+
+70
+00:04:41,150 --> 00:04:44,210
+perkalian matriks tidak komutatif.
+
+71
+00:04:44,210 --> 00:04:47,100
+Ini berikutnya yang ingin saya bicarakan.
+
+72
+00:04:47,100 --> 00:04:50,900
+Jadi, saat bicara tentang angka
+
+73
+00:04:50,900 --> 00:04:54,750
+riil, atau skalar, mari
+
+74
+00:04:54,750 --> 00:04:56,690
+lihat, saya punya 3 kali 5 kali 2.
+
+75
+00:04:56,690 --> 00:05:00,750
+Saya bisa mengalikan
+
+76
+00:05:00,750 --> 00:05:04,410
+5 kali 2 duluan, dan
+
+77
+00:05:04,410 --> 00:05:09,910
+saya bisa menghitung ini sebagai 3 kali 10.
+
+78
+00:05:09,910 --> 00:05:14,479
+Atau, saya bisa mengalikan
+
+79
+00:05:14,479 --> 00:05:18,550
+tiga kali lima duluan dan
+
+80
+00:05:18,550 --> 00:05:24,730
+saya menghitung ini sebagai,
+
+81
+00:05:25,890 --> 00:05:29,230
+lima belas kali dua dan
+
+82
+00:05:29,230 --> 00:05:33,640
+keduanya memberi jawaban yang sama, kan?
+
+83
+00:05:33,640 --> 00:05:38,610
+Keduanya sama dengan
+
+84
+00:05:38,610 --> 00:05:43,110
+tiga puluh jadi tidak peduli saya
+
+85
+00:05:43,110 --> 00:05:47,820
+mengalikan lima kali
+
+86
+00:05:47,820 --> 00:05:51,850
+dua duluan atau saya
+
+87
+00:05:51,850 --> 00:05:53,470
+mengalikan tiga kali lima
+
+88
+00:05:53,470 --> 00:05:57,776
+duluan karena, tiga
+
+89
+00:05:57,776 --> 00:05:59,880
+kali lima kali dua
+
+90
+00:05:59,880 --> 00:06:05,600
+sama dengan tiga kali
+
+91
+00:06:07,660 --> 00:06:09,807
+lima kali dua.
+
+92
+00:06:09,807 --> 00:06:12,810
+Dan ini disebut
+
+93
+00:06:12,810 --> 00:06:17,170
+sifat asosiatif dari aturan perkalian angka.
+
+94
+00:06:17,170 --> 00:06:18,850
+Tampak bahwa perkalian matriks adalah asosiatif.
+
+95
+00:06:18,850 --> 00:06:21,910
+Jadi konkritnya, katakanlah
+
+96
+00:06:21,910 --> 00:06:25,120
+saya punya perkalian tiga
+
+97
+00:06:25,120 --> 00:06:28,940
+matriks, A kali B kali
+
+98
+00:06:28,940 --> 00:06:33,900
+C. Lalu saya bisa
+
+99
+00:06:33,900 --> 00:06:37,775
+menghitung ini sebagai A
+
+100
+00:06:37,775 --> 00:06:42,520
+kali, B kali C
+
+101
+00:06:42,520 --> 00:06:46,710
+atau saya dapat menghitungnya sebagai
+
+102
+00:06:46,710 --> 00:06:51,640
+A kali B, kali C
+
+103
+00:06:51,640 --> 00:06:55,180
+dan ini memberi saya jawaban yang sama.
+
+104
+00:06:55,180 --> 00:07:00,180
+Saya tidak akan membuktikan ini, tapi
+
+105
+00:07:00,180 --> 00:07:03,720
+saya pikir, Anda bisa percaya perkataan saya.
+
+106
+00:07:03,720 --> 00:07:04,650
+Betul?
+
+107
+00:07:04,650 --> 00:07:07,840
+dua kasus ini, mari lihat
+
+108
+00:07:07,840 --> 00:07:11,290
+satu kasus dulu.
+
+109
+00:07:12,370 --> 00:07:13,940
+Maksud saya adalah
+
+110
+00:07:13,940 --> 00:07:17,420
+jika Anda ingin menghitung
+
+111
+00:07:17,420 --> 00:07:22,160
+A kali B kali C, apa yang
+
+112
+00:07:23,360 --> 00:07:27,840
+bisa Anda lakukan adalah Anda bisa
+
+113
+00:07:27,840 --> 00:07:32,560
+menghitung B kali C duluan.
+
+114
+00:07:32,560 --> 00:07:37,900
+Jadi biar D sama dengan B kali
+
+115
+00:07:37,900 --> 00:07:42,860
+C, lalu hitung A kali
+
+116
+00:07:44,550 --> 00:07:47,890
+D. Jadi ini benar-benar
+
+117
+00:07:47,890 --> 00:07:52,355
+menghitung A kali B
+
+118
+00:07:52,355 --> 00:07:55,535
+kali C. Atau, untuk
+
+119
+00:07:55,535 --> 00:07:58,425
+kasus kedua ini, Anda dapat
+
+120
+00:07:58,425 --> 00:08:02,465
+menghitungnya seperti, Anda bisa
+
+121
+00:08:02,465 --> 00:08:06,605
+set E sama dengan A
+
+122
+00:08:06,605 --> 00:08:08,655
+kali B. Lalu hitung E
+
+123
+00:08:10,100 --> 00:08:15,858
+kali C. Dan ini
+
+124
+00:08:15,858 --> 00:08:21,928
+sama dengan A
+
+125
+00:08:21,928 --> 00:08:23,280
+Betul?
+
+126
+00:08:23,280 --> 00:08:25,830
+dan tampaknya kedua
+
+127
+00:08:25,830 --> 00:08:29,640
+pilihan ini akan memberi
+
+128
+00:08:29,640 --> 00:08:33,830
+Anda jawaban yang sama.
+
+129
+00:08:33,830 --> 00:08:38,280
+Jadi kita katakan perkalian
+
+130
+00:08:39,910 --> 00:08:44,260
+matriks bersifat asosiatif.
+
+131
+00:08:44,260 --> 00:08:47,630
+okey?
+
+132
+00:08:47,630 --> 00:08:51,820
+Dan jangan khawatirkan istilah
+
+133
+00:08:51,820 --> 00:08:57,750
+asosiatif dan komutatif itu
+
+134
+00:08:57,750 --> 00:09:02,389
+saya tidak akan menggunakan

@@ -1,0 +1,426 @@
+1
+00:00:00,000 --> 00:00:04,262
+Dobrodošli na ovaj besplatan onlajn kurs
+mašinskog učenja. Mašinsko učenje je
+
+2
+00:00:04,262 --> 00:00:08,579
+jedna od najuzbudljivijih tehnologija u
+poslednje vreme. Na ovim časovima ćete učiti
+
+3
+00:00:08,579 --> 00:00:13,115
+o poslednjim dostignućima i takođe steći iskustvo
+tako što ćete lično implementirati i razvijati
+
+4
+00:00:13,115 --> 00:00:17,487
+te algoritme. Verovatno svakog dana koristite
+algoritme koji uče, a da toga niste ni svesni.
+
+5
+00:00:17,487 --> 00:00:21,422
+Svaki put kada upotrebite veb pretraživač
+kao što su Gugl ili Bing da nađete nešto
+
+6
+00:00:21,422 --> 00:00:25,794
+na Internetu, to radi tako dobro između
+ostalog zahvaljujući tome što je neki
+
+7
+00:00:25,794 --> 00:00:30,002
+algoritam, razvijen od strane Gugla ili
+Majkrosofta, naučio kako kako da rangira
+
+8
+00:00:30,002 --> 00:00:35,144
+veb stranice. Svaki put kada koristite Fejsbukovu
+ili Eplovu aplikaciju za označavanje fotografija
+
+9
+00:00:35,144 --> 00:00:40,595
+i ona prepozna fotografije vaših prijatelja, to
+je takođe mašinsko učenje. Svaki put kad čitate
+
+10
+00:00:40,595 --> 00:00:46,054
+mejl i vaš spam filter vas poštedi toga da
+budete zatrpani tonom spama, to je
+
+11
+00:00:46,054 --> 00:00:50,980
+takođe učeći algoritam. Jedna od stvari koja
+mene oduševljava je veliki VI san da će jednog
+
+12
+00:00:50,980 --> 00:00:55,643
+dana biti napravljene mašine inteligentne
+koliko i vi ili ja. Još smo daleko od tog
+
+13
+00:00:55,643 --> 00:01:00,076
+cilja, ali mnogi istraživači iz oblasti veštačke
+inteligencije veruju da najbolji put ka tom cilju
+
+14
+00:01:00,076 --> 00:01:04,567
+vodi preko učećih algoritama koji
+pokušavaju da oponašaju način na koji
+
+15
+00:01:04,567 --> 00:01:08,994
+ljudski mozak uči. Pričaću vam malo i o
+tome na ovim časovima. Na ovim predavanjima
+
+16
+00:01:08,994 --> 00:01:13,542
+učićete o najmodernijim algoritmima mašinskog
+učenja. Ali samo poznavanje algoritama
+
+17
+00:01:13,542 --> 00:01:17,919
+i matematike nije od naročite koristi ako ne znate
+
+18
+00:01:17,919 --> 00:01:22,466
+kako da primenite sve to u praksi
+na konkretne probleme.
+
+19
+00:01:22,466 --> 00:01:26,844
+Zato smo posvetili dosta vremena i
+pravljenju vežbi za vas, kroz koje ćete
+
+20
+00:01:26,844 --> 00:01:32,088
+implementirati svaki od tih algoritama i
+sami videti kako rade. Dakle, zašto je
+
+21
+00:01:32,088 --> 00:01:37,075
+mašinsko učenje toliko rašireno danas?
+Mašinsko učenje je oblast koja se izdvojila
+
+22
+00:01:37,075 --> 00:01:41,713
+iz veštačke inteligencije (VI, eng. AI).
+Želeli smo da napravimo
+
+23
+00:01:41,713 --> 00:01:46,642
+inteligentne mašine, i ispostavilo se da
+postoji nekoliko osnovnih stvari za koje
+
+24
+00:01:46,642 --> 00:01:51,454
+bismo mogli da isprogramiramo mašine da ih rade,
+kao što je pronalaženje najkraćeg puta od A do B.
+
+25
+00:01:51,454 --> 00:01:56,267
+Ali najčešće jednostavno nismo znali kako
+da napišemo VI programe da rade interesantnije
+
+26
+00:01:56,267 --> 00:02:00,905
+stvari, kao što su veb pretraživanje, ili
+označavanje fotografija, ili borba protiv spama.
+
+27
+00:02:00,905 --> 00:02:05,718
+Shvatilo se da jedini način da se ove stvari
+urade jeste omogućiti mašinama da ih same nauče.
+
+28
+00:02:05,718 --> 00:02:11,237
+Tako je razvijeno mašinsko učenje kao
+nova sposobnost računara, i danas
+
+29
+00:02:11,237 --> 00:02:16,950
+ono dotiče mnoge segmente industrije i nauke.
+
+30
+00:02:16,950 --> 00:02:21,496
+Otkad se bavim mašinskim učenjem, tokom uobičajene
+nedelje se dešava da pričam sa
+
+31
+00:02:21,496 --> 00:02:25,698
+pilotima helikoptera, biolozima, mnogo
+ljudi iz sveta računarstva, kolegama
+
+32
+00:02:25,698 --> 00:02:30,590
+ovde na Stenfordu... i u proseku dva do tri
+puta nedeljno dobijem mejl od nekog iz
+
+33
+00:02:30,590 --> 00:02:35,021
+industrije, iz Silicijumske doline, ko
+me kontaktira zato što želi da primeni
+
+34
+00:02:35,021 --> 00:02:39,741
+učeći algoritam za rešavanje nekih problema.
+Ovo je dobar pokazatelj obuhvatnosti oblasti
+
+35
+00:02:39,741 --> 00:02:44,000
+na koje se mašinsko učenje primenjuje. Tu su
+autonomni roboti, računarska biologija,
+
+36
+00:02:44,000 --> 00:02:48,777
+mnogo toga u Silicijumskoj dolini
+na šta mašinsko učenje ima uticaj.
+
+37
+00:02:48,777 --> 00:02:55,320
+Evo još nekih primera mašinskog učenja.
+Dubinska analiza podataka (eng. data mining).
+
+38
+00:02:55,320 --> 00:03:00,063
+Jedan od razloga zašto je mašinsko učenje
+postalo toliko dominantno je razvoj veba i
+
+39
+00:03:00,063 --> 00:03:04,751
+porast automatizacije. To sve znači da imamo
+mnogo veće setove podataka nego ikada ranije.
+
+40
+00:03:04,751 --> 00:03:09,272
+Tako, na primer, jako puno kompanija iz
+Silicijumske doline danas prikuplja
+
+41
+00:03:09,272 --> 00:03:13,737
+tzv. veb klik podatke, zvane još i klik-strim
+(clickstream) podaci, i pokušavaju da koriste algoritme
+
+42
+00:03:13,737 --> 00:03:18,481
+mašinskog učenja za dubinsku analizu ovih
+podataka da bi bolje razumeli i opslužili
+
+43
+00:03:18,481 --> 00:03:22,327
+svoje korisnike. To je veliki
+segment Silicijumske doline danas.
+
+44
+00:03:22,327 --> 00:03:27,483
+Medicinski kartoni. Sa pojavom automatizacije,
+sada imamo elektronske medicinske kartone, i
+
+45
+00:03:27,483 --> 00:03:32,640
+ako bismo mogli da pretvorimo medicinske kartone
+u medicinsko znanje, mogli bismo da počnemo da
+
+46
+00:03:32,640 --> 00:03:37,238
+bolje razumemo bolesti. Računarska biologija.
+Opet, sa automatizacijom, biolozi prikupljaju
+
+47
+00:03:37,238 --> 00:03:41,774
+mnogo podataka o genetskim sekvencama,
+DNK sekvencama, i tome sličnom, i mašine
+
+48
+00:03:41,774 --> 00:03:46,931
+koje izvršavaju algoritme nam omogućavaju
+mnogo bolje razumevanje ljudskog genoma,
+
+49
+00:03:46,931 --> 00:03:51,376
+i toga šta znači biti čovek. I u inženjeringu,
+takođe. U svim inženjerskim poljima imamo
+
+50
+00:03:51,376 --> 00:03:55,034
+sve veće i veće setove podataka
+koje pokušavamo da razumemo
+
+51
+00:03:55,034 --> 00:03:59,249
+koristeći učeće algoritme.
+Druga vrsta mašinskih aplikacija
+
+52
+00:03:59,249 --> 00:04:03,440
+su one koje ne možemo da isprogramiramo
+ručno. Na primer, mnogo godina sam radio
+
+53
+00:04:03,440 --> 00:04:08,328
+na autonomnim helikopterima. Jednostavno
+nismo znali kako da napišemo računarski
+
+54
+00:04:08,328 --> 00:04:18,023
+program koji bi omogućio da helikopter
+samostalno leti. Jedinо što je donelo
+
+55
+00:04:18,023 --> 00:04:35,580
+rezultate je bilo prepuštanje računaru da sam
+nauči kako da upravlja helikopterom.
+
+56
+00:04:37,120 --> 00:04:42,880
+Prepoznavanje rukopisa. Danas je prosleđivanje
+pisama na pravu adresu, kroz čitave države,
+
+57
+00:04:42,880 --> 00:04:47,330
+jeftino, u SAD kao i međunarodno,
+između ostalog i zato što
+
+58
+00:04:47,330 --> 00:04:51,899
+kad ispišete kovertu ovako,
+postoji učeći algoritam
+
+59
+00:04:51,899 --> 00:04:56,943
+koji je naučio kako da čita vaš rukopis,
+tako da može automatski da prosledi
+
+60
+00:04:56,943 --> 00:05:01,749
+kovertu na pravu stranu. Zato nas košta
+nekoliko centi da pošaljemo pismo hiljadama
+
+61
+00:05:01,749 --> 00:05:06,318
+kilometara daleko. I ako ste imali prilike
+da se sretnete sa oblastima kao što su obrada
+
+62
+00:05:06,318 --> 00:05:10,531
+prirodnih jezika ili računarski vid,
+to su oblasti VI u vezi sa razumevanjem
+
+63
+00:05:10,531 --> 00:05:15,321
+jezika ili razumevanjem slika. Najveći
+deo obrade prirodnih jezika
+
+64
+00:05:15,321 --> 00:05:20,689
+i računarskog vida danas, su u stvari
+primenjeno mašinsko učenje. Učeći
+
+65
+00:05:20,689 --> 00:05:25,576
+algoritmi su takođe u širokoj primeni kod
+samoprilagođavajućih programa. Svaki put kada
+
+66
+00:05:25,576 --> 00:05:30,286
+odete na Amazon, Netfliks ili Aj-Tjuns, i
+kada oni preporuče filmove ili proizvode
+
+67
+00:05:30,286 --> 00:05:35,073
+i muziku za vas, to je delo učećeg algoritma.
+Ako razmislite o tome, tamo su milioni korisnika
+
+68
+00:05:35,073 --> 00:05:39,999
+i nije izvodljivo napisati milion
+različitih programa za milion korisnika.
+
+69
+00:05:39,999 --> 00:05:44,807
+Jedini način da softver ponudi ove
+prilagođene preporuke jeste da može
+
+70
+00:05:44,807 --> 00:05:49,258
+da sam nauči da se prilagođava onome što
+se vama sviđa. Konačno, učeći algoritmi
+
+71
+00:05:49,258 --> 00:05:53,294
+se danas koriste da bi se razumeo proces
+učenja kod ljudi i da bi se razumelo kako
+
+72
+00:05:53,294 --> 00:05:58,042
+mozak radi. Govorićemo o tome kako
+istraživači koriste ovo za napredоvanje
+
+73
+00:05:58,042 --> 00:06:03,182
+ka velikom VI snu. Pre nekoliko meseci,
+jedan od studenata mi je pokazao članak
+
+74
+00:06:03,182 --> 00:06:07,996
+o 12 najtraženijih veština u informacionim
+tehnologijama. Veština kojima IT menadžeri
+
+75
+00:06:07,996 --> 00:06:13,006
+zaduženi za zapošljavanje ne mogu da kažu ”ne”.
+Bio je to nešto stariji članak, ali na vrhu
+
+76
+00:06:13,006 --> 00:06:17,988
+ove liste 12 najopželjnijih IT veština
+nalazilo se mašinsko učenje. Ovde na
+
+77
+00:06:17,988 --> 00:06:21,793
+Stenfordu, broj zapošljavača koji me pitaju
+da im preporučim neke diplomce iz oblasti
+
+78
+00:06:21,793 --> 00:06:25,920
+mašinskog učenja je mnogo veći nego
+broj studenata koji diplomiraju
+
+79
+00:06:25,920 --> 00:06:30,047
+na mašinskom učenju kod nas svake godine.
+Zato mislim da postoji velika nezadovoljena
+
+80
+00:06:30,047 --> 00:06:34,280
+potražnja za ovim veštinama, i ovo je pravi
+trenutak da se uči o mašinskom učenju. Ja
+
+81
+00:06:34,280 --> 00:06:38,454
+se nadam da ću vas naučiti puno o tome na
+ovim predavanjima. Na sledećem snimku
+
+82
+00:06:38,454 --> 00:06:42,123
+ćemo početi da se bavimo formalnijom
+definicijom toga šta je mašinsko učenje.
+
+83
+00:06:42,123 --> 00:06:46,044
+I počećemo da govorimo o osnovnim vrstama
+problema i algoritama u mašinskom učenju.
+
+84
+00:06:46,044 --> 00:06:49,864
+Naučićete nešto od terminologije
+u mašinskom učenju i početi da
+
+85
+00:06:49,864 --> 00:06:53,684
+stičete osećaj šta su različiti
+algoritmi i kada bi svaki od njih
+
+86
+00:06:53,684 --> 00:06:54,740
+mogao biti primenljiv.

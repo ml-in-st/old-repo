@@ -1,0 +1,17 @@
+Was ist Maschinelles Lernen? Wahrscheinlich benutzt ihr es mehrere dutzend Mal
+am Tag, ohne es zu bemerken. Jedes Mal, wenn ihr eine Suche bei Google oder
+Bing durchführt, funktioniert das so gut, weil deren Software für Maschinelles Lernen
+herausgefunden hat, wie sie die Seiten ordnen muss. Wenn die Foto-Anwendungen von Facebook oder Apple
+eure Freunde in euren Bildern erkennen, ist das ebenfalls Maschinelles Lernen. Jedes Mal wenn ihr eure Emails lest und der Spamfilter euch davor bewahrt, euch durch
+Tonnen von Spam-Mails klicken zu müssen, dann liegt das wieder daran, dass euer Computer gelernt hat,
+ Spam von Nicht-Spam Nachrichten zu unterscheiden. Das ist Maschinelles Lernen. Es ist die Wissenschaft, Computer dazu zu bringen zu
+lernen, ohne explizit programmiert zu werden. Eines der Forschungsprojekte an denen ich arbeite
+bringt Roboter dazu, das Haus aufzuräumen. Wie geht man so etwas an? Eine Sache die man tun kann ist den Roboter zuschauen zu
+lassen, während man die Aufgabe demonstriert, und dabei zu lernen. Der Roboter kann dann beobachten, welche Objekte
+man aufhebt und wo man sie hinstellt und versuchen das gleiche zu tun,
+ selbst wenn man nicht dabei ist. Einer der Gründe, wieso ich das so
+spannend finde, ist das Problem der AI, der künstlichen Intelligenz (Artificial Intelligence). Wenn wir wahrhaft intelligente Maschinen bauen, können wir fast alles erreichen, was
+ihr oder ich auch tun können. Viele Wissenschaftler glauben dass der beste Weg,
+um dabei Fortschritte zu erzielen, Lern-Algorithmen sind, die man Neuronale Netzwerke nennt und die
+ die Funktionsweise des menschlichen Gehirns imitieren, darüber werde ich euch ebenfalls etwas beibringen. In diesem Kurs lernt ihr Algorithmen des Maschinellen Lernens und werdet sie auch selbst implementieren. Ich hoffe ihr registriert euch
+und schließt euch uns an.

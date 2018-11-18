@@ -1,0 +1,419 @@
+1
+00:00:00,000 --> 00:00:04,100
+W poprzednim filmie podaliśmy definicję matematyczną funkcji
+
+2
+00:00:04,100 --> 00:00:08,616
+kosztu. W tym filmie zobaczymy parę przykładów, aby wyrobić sobie intuicję,
+
+3
+00:00:08,616 --> 00:00:14,466
+co robi funkcja kosztu i dlaczego chcemy jej użyć. Krótkie przypomnienie:
+
+4
+00:00:14,466 --> 00:00:19,396
+oto, co mieliśmy ostatnio. Chcemy dopasować prostą do naszych danych, więc
+
+5
+00:00:19,396 --> 00:00:23,958
+sformułowaliśmy hipotezę z tymi parametrami theta0 i theta1, a
+
+6
+00:00:23,958 --> 00:00:28,888
+w zależności od wyboru tych parametrów uzyskujemy różne dopasowanie prostych.
+
+7
+00:00:31,323 --> 00:00:33,758
+A więc dane są dopasowane w ten sposób, mamy tu funkcję kosztu, a
+
+8
+00:00:33,758 --> 00:00:38,554
+to był nasz cel optymalizacji. W tym nagraniu, w celu lepszej
+
+9
+00:00:38,554 --> 00:00:43,293
+wizualizacji funkcji kosztu J, będę korzystał z uproszczonej funkcji
+
+10
+00:00:43,293 --> 00:00:48,220
+hipotezy - tej po prawej stronie. Zamierzam więc użyć uproszczonej hipotezy,
+
+11
+00:00:48,220 --> 00:00:53,275
+równej po prostu theta1 razy x. Możemy o tym myśleć w ten sposób,
+
+12
+00:00:53,275 --> 00:00:58,721
+że parametr theta0 jest równy 0. Mam więc tylko jeden parametr theta1, a
+
+13
+00:00:58,721 --> 00:01:04,372
+moja funkcja kosztu jest podobna do tego, co było wcześniej, z tym, że h(x) równa się teraz
+
+14
+00:01:04,372 --> 00:01:10,309
+theta1 razy x. Mam tylko jeden parametr theta1, a więc celem
+
+15
+00:01:10,309 --> 00:01:16,246
+mojej optymalizacji jest minimalizacja J(theta1). Graficznie oznacza to, że
+
+16
+00:01:16,246 --> 00:01:21,611
+jeśli theta0 równa się 0, to odpowiada to wyborowi jedynie tych funkcji
+
+17
+00:01:21,611 --> 00:01:27,176
+hipotezy, które przechodzą przez punkt (0, 0). Korzystając z
+
+18
+00:01:27,176 --> 00:01:33,415
+takiej uproszczonej definicji funkcji kosztu hipotezy, spróbujmy lepiej zrozumieć
+
+19
+00:01:33,415 --> 00:01:40,178
+ideę funkcji kosztu. Okazuje się, że musimy zrozumieć dwie kluczowe funkcje.
+
+20
+00:01:40,178 --> 00:01:46,432
+Pierwszą jest hipoteza, a drugą funkcja kosztu. Zauważ,
+
+21
+00:01:46,432 --> 00:01:52,068
+że dla stałej wartości theta1, funkcja hipotezy h(x)
+
+22
+00:01:52,068 --> 00:01:58,168
+jest funkcją x. Tak więc hipoteza jest funkcją wielkości domu -
+
+23
+00:01:58,168 --> 00:02:03,959
+x. Z kolei funkcja kosztu J jest funkcją parametru theta1,
+
+24
+00:02:03,959 --> 00:02:09,993
+który określa nachylenie prostej względem osi. Narysujmy te funkcje
+
+25
+00:02:09,993 --> 00:02:15,481
+i spróbujmy zrozumieć je obie lepiej. Zacznijmy od hipotezy. Powiedzmy,
+
+26
+00:02:15,481 --> 00:02:20,283
+że po lewej mamy zbiór uczący trzech punktów: (1, 1), (2, 2) i (3,3). Wybierzmy
+
+27
+00:02:20,283 --> 00:02:25,338
+wartość theta1 tak, że gdy theta1 = 1, jeśli taką wybiorę wartość
+
+28
+00:02:25,338 --> 00:02:30,392
+theta1, moja hipoteza będzie prostą taką jak ta.
+
+29
+00:02:30,392 --> 00:02:35,234
+Zaznaczam też, że przy rysowaniu funkcji hipotezy, oś x -
+
+30
+00:02:35,234 --> 00:02:40,525
+moja oś pozioma jest oznaczona jako x, czyli wielkość domu.
+
+31
+00:02:40,525 --> 00:02:46,551
+Teraz, zakładając na chwilę, że theta1 = 1, chcę
+
+32
+00:02:46,551 --> 00:02:52,430
+sprawdzić, jakie jest J(theta1), gdy theta1 = 1. Policzmy
+
+33
+00:02:52,430 --> 00:02:58,781
+więc wartość funkcji kosztu dla wartości równej 1. Jak zwykle
+
+34
+00:02:58,781 --> 00:03:05,761
+moja funkcja kosztu jest zdefiniowana w ten sposób. Suma po całym zbiorze uczącym
+
+35
+00:03:05,761 --> 00:03:13,840
+błędu do kwadratu. A więc jest to równe
+
+36
+00:03:14,740 --> 00:03:25,066
+h(theta1) razy x(i) - y(i) do kwadratu, a po uproszczeniu okazuje się, że jest to 0
+
+37
+00:03:25,066 --> 00:03:31,995
+kwadrat plus zero kwadrat plus 0 kwadrat, co oczywiście równa się 0.
+
+38
+00:03:31,995 --> 00:03:39,098
+Okazuje się, że wewnątrz funkcji każdy z tych wyrazów jest równy 0, ponieważ
+
+39
+00:03:39,098 --> 00:03:46,288
+w przypadku tego zbioru uczącego mamy punkty (1, 1), (2, 2), (3, 3). Jeśli theta1
+
+40
+00:03:46,288 --> 00:03:54,667
+jest równe 1, wtedy h(x(i)) równa się dokładnie y(i). Zapiszę to
+
+41
+00:03:54,667 --> 00:04:04,164
+ładniej. Ok? A więc h(x) - y w każdym przypadku jest równe 0,
+
+42
+00:04:04,164 --> 00:04:14,821
+i dlatego J(1) = 0. Tak więc wiemy, że J(1) = 0.
+
+43
+00:04:14,821 --> 00:04:20,504
+Narysujmy to. Po prawej narysuję funkcję kosztu J.
+
+44
+00:04:20,504 --> 00:04:26,187
+Zauważ, że ponieważ moja funkcja kosztu jest funkcją parametru theta1,
+
+45
+00:04:26,187 --> 00:04:32,017
+gdy rysuję funkcję kosztu, oznaczam oś poziomą jako
+
+46
+00:04:32,017 --> 00:04:38,069
+theta1. Mam więc J(1) = 0 - narysujmy to. Otrzymujemy
+
+47
+00:04:38,069 --> 00:04:46,464
+"X" w tym miejscu. Spójrzmy teraz na resztę przykładów. Theta1 może
+
+48
+00:04:46,464 --> 00:04:52,470
+przyjąć różne wartości. Theta1 może przyjąć wartości ujemne,
+
+49
+00:04:52,470 --> 00:04:58,876
+zero, wartości dodatnie... Co więc się stanie, jeśli theta1 będzie równe 0,5? Co wtedy?
+
+50
+00:04:58,876 --> 00:05:05,442
+Narysujmy to. Przypiszę wartość 0,5 do theta1 - wtedy moja
+
+51
+00:05:05,442 --> 00:05:11,688
+hipoteza wygląda tak. Mamy prostą o nachyleniu równym 0,5 -
+
+52
+00:05:11,688 --> 00:05:17,855
+policzmy J(0,5). Mamy więc 1/2m razy funkcja kosztu...
+
+53
+00:05:17,855 --> 00:05:23,769
+Okazuje się, że funkcja kosztu będzie sumą kwadratów
+
+54
+00:05:23,769 --> 00:05:29,609
+wysokości punktu względem tej linii plus wysokość tego punktu
+
+55
+00:05:29,609 --> 00:05:34,783
+plus wysokość tego punktu. Jest tak, bo ta pionowa
+
+56
+00:05:34,783 --> 00:05:42,854
+odległość jest po prostu różnicą między y(i) a h(x(i) - naszą przewidywaną
+
+57
+00:05:42,854 --> 00:05:48,772
+wartością dla x(i), prawda? Tak więc pierwszy przykład to 0,5 - 1 do kwadratu,
+
+58
+00:05:49,033 --> 00:05:55,647
+bo hipoteza przewiduje wartość 0,5, a rzeczywista wartość wynosi 1. W drugim
+
+59
+00:05:55,647 --> 00:06:02,436
+przypadku mamy (1-2)^2, bo moja hipoteza
+
+60
+00:06:02,436 --> 00:06:09,663
+przewidziała wartość 1, podczas gdy prawdziwa cena wyniosła 2. Na końcu mamy (1,5 - 3)^2.
+
+61
+00:06:09,663 --> 00:06:17,263
+To się równa 1/(2*3), bo mój
+
+62
+00:06:17,263 --> 00:06:24,274
+zbiór uczący ma trzy przykłady treningowe. Teraz mnożymy
+
+63
+00:06:24,274 --> 00:06:33,011
+przez uproszczoną hipotezę: 3,5/6, co daje ok. 0,68.
+
+64
+00:06:33,011 --> 00:06:41,085
+Teraz więc wiemy, że J(0,5) wynosi ok. 0,68. Narysujmy to.
+
+65
+00:06:41,085 --> 00:06:50,308
+O, przepraszam, błąd - tak naprawdę to 0,58. To będzie gdzieś
+
+66
+00:06:50,308 --> 00:07:00,293
+tutaj. Ok? Zróbmy jeszcze jeden przykład. Co, jeśli theta1 = 0?
+
+67
+00:07:00,293 --> 00:07:08,975
+Czemu równa się J(0)? Okazuje się, że jeśli theta1 = 0, to h(x)
+
+68
+00:07:08,975 --> 00:07:16,916
+jest po prostu linią poziomą, taką jak ta.
+
+69
+00:07:16,916 --> 00:07:26,882
+Tak więc, mierząc błędy, otrzymujemy J(0) =
+
+70
+00:07:26,882 --> 00:07:34,659
+(1/2m) * (1^2 + 2^2 + 3^2), a to jest równe
+
+71
+00:07:34,659 --> 00:07:41,555
+1/6 * 14, a to równa się ok. 2,3. Narysujmy to.
+
+72
+00:07:41,555 --> 00:07:47,622
+Otrzymujemy więc wartość ok. 2,3. Oczywiście możemy to powtarzać dla
+
+73
+00:07:47,622 --> 00:07:53,335
+innych wartości theta1. Okazuje się, że możesz mieć też ujemne
+
+74
+00:07:53,335 --> 00:07:59,327
+wartości theta1. Wtedy h(x) będzie się równać
+
+75
+00:07:59,327 --> 00:08:05,179
+-0,5*x. Theta1 = -0,5, co odpowiada
+
+76
+00:08:05,179 --> 00:08:10,188
+hipotezie o nachyleniu -0,5. Możesz
+
+77
+00:08:10,188 --> 00:08:15,694
+liczyć te błędy dalej. Okazuje się, że dla wartości -0,5
+
+78
+00:08:15,694 --> 00:08:21,520
+błąd będzie bardzo duży, ok. 5.25.
+
+79
+00:08:21,520 --> 00:08:28,087
+Możesz też policzyć błąd dla innych wartości theta1.
+
+80
+00:08:28,087 --> 00:08:34,413
+Okazuje się, że jeśli przeliczysz szereg wartości, otrzymasz coś
+
+81
+00:08:34,413 --> 00:08:40,499
+takiego. A licząc błąd dla różnych wartości, możesz w końcu powoli nakreślić
+
+82
+00:08:40,499 --> 00:08:50,999
+jak wygląda funkcja J(theta). Wygląda ona właśnie tak. Podsumowując:
+
+83
+00:08:50,999 --> 00:08:57,851
+każda wartość theta1 odpowiada innej
+
+84
+00:08:57,851 --> 00:09:04,448
+hipotezie, innemu dopasowaniu prostej po lewej. I dla każdej wartości
+
+85
+00:09:04,448 --> 00:09:11,723
+theta1 otrzymalibyśmy inną wartość J(theta1).
+
+86
+00:09:11,723 --> 00:09:19,354
+Np. dla theta1 = 1, mamy linię przechodzącą
+
+87
+00:09:19,354 --> 00:09:27,846
+idealnie przez te dane. Jeśli theta1 = 0,5 (punkt oznaczony magentą),
+
+88
+00:09:27,846 --> 00:09:35,340
+otrzymujemy taką linię, a jeśli theta1 = 0, co zaznaczyłem na niebiesko, odpowiada to
+
+89
+00:09:35,340 --> 00:09:41,527
+tej linii poziomej. Tak więc w przypadku każdej wartości theta1
+
+90
+00:09:41,527 --> 00:09:48,516
+mamy inną wartość J(theta1) i możemy na tej podstawie sporządzić ten wykres
+
+91
+00:09:48,516 --> 00:09:54,461
+po prawej. Teraz przypomnij sobie, że celem naszej optymalizacji
+
+92
+00:09:54,461 --> 00:10:01,963
+jest wybór wartości theta1, która minimalizuje J(theta1).
+
+93
+00:10:01,963 --> 00:10:08,076
+To był nasz cel optymalizacji w przypadku regresji liniowej. Patrząc na
+
+94
+00:10:08,076 --> 00:10:13,710
+tę krzywą, wartością minimalizującą J(theta1) jest theta1 = 1.
+
+95
+00:10:13,710 --> 00:10:19,132
+I rzeczywiście: jest to najlepiej dopasowana linia
+
+96
+00:10:19,132 --> 00:10:24,624
+przechodząca przez dane. W przypadku tego
+
+97
+00:10:24,624 --> 00:10:30,328
+zbioru uczącego otrzymaliśmy idealne dopasowanie. Dlatego minimalizacja J(theta1)
+
+98
+00:10:30,328 --> 00:10:36,447
+odpowiada znalezieniu prostej dobrze dopasowanej do danych.
+
+99
+00:10:36,447 --> 00:10:40,884
+Podsumowując: narysowaliśmy parę wykresów, aby zrozumieć funkcję
+
+100
+00:10:40,884 --> 00:10:45,259
+kosztu. W tym celu uprościliśmy algorytm tak, że miał on tylko jeden
+
+101
+00:10:45,259 --> 00:10:50,258
+parametr: theta1. Przyjęliśmy, że theta0 jest stałe i równe 0. W następnym materiale
+
+102
+00:10:50,258 --> 00:10:54,445
+powrócimy do pierwotnej postaci algorytmu i zobaczymy parę
+
+103
+00:10:54,445 --> 00:10:59,570
+wizualizacji uwzględniających zarówno theta0, jak i theta1, tzn. przyjmiemy, że theta0
+
+104
+00:10:59,570 --> 00:11:04,757
+nie jest równe 0. To powinno wyrobić Ci lepszą intuicję odnośnie tego, co robi
+
+105
+00:11:04,757 --> 00:11:09,257
+funkcja kosztu J w przypadku pierwotnej wersji regresji liniowej.

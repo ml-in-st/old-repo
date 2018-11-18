@@ -1,0 +1,1527 @@
+1
+00:00:00,090 --> 00:00:01,450
+En un video anterior, había
+
+2
+00:00:01,610 --> 00:00:02,710
+dicho que el ACP
+
+3
+00:00:02,840 --> 00:00:05,410
+a veces se utiliza para acelerar el tiempo de ejecución de un algoritmo de aprendizaje.
+
+4
+00:00:07,070 --> 00:00:08,140
+En este video me gustaría
+
+5
+00:00:08,370 --> 00:00:09,520
+explicar cómo hacer esto realmente
+
+6
+00:00:09,820 --> 00:00:11,270
+y también
+
+7
+00:00:11,460 --> 00:00:12,900
+darle
+
+8
+00:00:12,990 --> 00:00:14,550
+algunos consejos sobre cómo aplicar el ACP.
+
+9
+00:00:17,110 --> 00:00:19,630
+Esto es como usted puede utilizar el ACP para acelerar un algoritmo de aprendizaje,
+
+10
+00:00:20,270 --> 00:00:21,940
+y esta aceleración del algoritmo de aprendizaje supervisado
+
+11
+00:00:22,270 --> 00:00:23,630
+es en realidad, el uso más
+
+12
+00:00:23,870 --> 00:00:25,870
+común que personalmente
+
+13
+00:00:26,530 --> 00:00:27,720
+le doy al ACP.
+
+14
+00:00:28,710 --> 00:00:29,640
+Digamos que usted tienen un
+
+15
+00:00:30,300 --> 00:00:31,660
+problema de aprendizaje supervisado, tome en cuenta que es un
+
+16
+00:00:31,810 --> 00:00:33,380
+problema de aprendizaje supervisado, con entradas
+
+17
+00:00:33,690 --> 00:00:35,510
+"x" y valores asignados "y", y
+
+18
+00:00:35,810 --> 00:00:37,330
+digamos que sus ejemplos xi
+
+19
+00:00:37,830 --> 00:00:39,140
+son de muy altas dimensiones.
+
+20
+00:00:39,840 --> 00:00:41,670
+Así que, digamos que sus ejemplos, xi son
+
+21
+00:00:41,800 --> 00:00:44,000
+vectores de variables de 10000 dimensiones,
+
+22
+00:00:45,510 --> 00:00:46,550
+un ejemplo de esto sería:
+
+23
+00:00:46,700 --> 00:00:48,130
+si usted estuviera trabajando cierto problema
+
+24
+00:00:48,540 --> 00:00:50,390
+de vision computacional, en el que
+
+25
+00:00:50,650 --> 00:00:52,410
+tiene unas imágenes de 100x100, de modo
+
+26
+00:00:52,780 --> 00:00:55,550
+que si usted tiene 100x100, esto es 10000 pixeles,
+
+27
+00:00:55,850 --> 00:00:57,520
+por lo que si "xi" son,
+
+28
+00:00:57,780 --> 00:00:59,240
+ya sabe, vectores de variables que
+
+29
+00:00:59,760 --> 00:01:01,670
+que contienen sus valores de intensidad
+
+30
+00:01:02,470 --> 00:01:03,580
+de 10000 pixeles, entonces
+
+31
+00:01:04,410 --> 00:01:05,580
+tiene vectores de variables de 10000 dimensiones.
+
+32
+00:01:06,880 --> 00:01:08,530
+Así que, con vectores de variables
+
+33
+00:01:09,300 --> 00:01:10,890
+de dimensiones tan altas como estas,
+
+34
+00:01:11,320 --> 00:01:12,860
+la ejecución de un algoritmo de aprendizaje puede ser lenta ¿verdad?
+
+35
+00:01:13,030 --> 00:01:14,300
+Simplemente, si usted alimenta vectores
+
+36
+00:01:14,790 --> 00:01:16,980
+de variables de 10000 dimensiones en regresión logística,
+
+37
+00:01:17,570 --> 00:01:19,780
+o una red neuronal, o una máquina de vectores de soporte o lo que tenga,
+
+38
+00:01:20,450 --> 00:01:22,000
+sólo porque se trata de una gran cantidad de datos,
+
+39
+00:01:22,200 --> 00:01:23,060
+esto es, 10000 números,
+
+40
+00:01:24,130 --> 00:01:25,970
+puede hacer que la ejecución de su algoritmo de aprendizaje sea más lenta.
+
+41
+00:01:27,170 --> 00:01:28,530
+Afortunadamente, con ACP podremos
+
+42
+00:01:28,680 --> 00:01:29,810
+reducir la dimensión de los datos
+
+43
+00:01:30,060 --> 00:01:31,050
+y hacer que
+
+44
+00:01:31,180 --> 00:01:32,410
+nuestros algoritmos se ejecuten de
+
+45
+00:01:32,920 --> 00:01:34,440
+manera más eficiente. Ahora le muestro cómo
+
+46
+00:01:34,590 --> 00:01:35,780
+hacerlo: Primero vamos a
+
+47
+00:01:35,980 --> 00:01:37,030
+tomar nuestro grupo de entrenamiento de valores asignados
+
+48
+00:01:37,400 --> 00:01:39,520
+y extraeremos sólo las entradas,
+
+49
+00:01:39,800 --> 00:01:41,830
+sólo vamos a extraer las "x"
+
+50
+00:01:42,730 --> 00:01:45,130
+y de forma temporal dejaremos a un lado las "y".
+
+51
+00:01:45,860 --> 00:01:46,750
+Así que esto ahora nos dará
+
+52
+00:01:47,090 --> 00:01:49,150
+un conjunto de entrenamiento sin valores asignados de x1
+
+53
+00:01:49,400 --> 00:01:51,000
+a xm, que son tal vez
+
+54
+00:01:51,240 --> 00:01:53,600
+datos de 10000 dimensiones,
+
+55
+00:01:53,940 --> 00:01:55,800
+tenemos ejemplos de diez mil dimensiones.
+
+56
+00:01:55,870 --> 00:01:57,230
+Entonces, sólo extraemos los vectores de entrada
+
+57
+00:01:58,370 --> 00:01:58,930
+x1 a xm.
+
+58
+00:02:00,650 --> 00:02:01,810
+Luego vamos a aplicar el ACP
+
+59
+00:02:02,700 --> 00:02:03,740
+y esto me dará una
+
+60
+00:02:03,980 --> 00:02:06,100
+representación de los datos con dimensiones reducidas,
+
+61
+00:02:06,410 --> 00:02:08,010
+así que en vez de
+
+62
+00:02:08,260 --> 00:02:09,540
+vectores de variables de 10000 dimensiones, ahora
+
+63
+00:02:09,780 --> 00:02:11,880
+tenemos tal vez vectores de variables de mil dimensiones.
+
+64
+00:02:12,330 --> 00:02:13,500
+Así que eso es como un ahorro de 10x,
+
+65
+00:02:15,110 --> 00:02:17,260
+esto me da, si se quiere, un nuevo conjunto de entrenamiento.
+
+66
+00:02:17,910 --> 00:02:19,430
+Mientras que anteriormente pude haber
+
+67
+00:02:19,620 --> 00:02:21,180
+tenido un ejemplo x1, y1,
+
+68
+00:02:21,490 --> 00:02:24,340
+mi primera entrada de entrenamiento, está ahora representada por z1.
+
+69
+00:02:24,580 --> 00:02:25,800
+Entonces, tendremos una
+
+70
+00:02:26,050 --> 00:02:27,010
+nueva especie de ejemplo de entrenamiento,
+
+71
+00:02:28,210 --> 00:02:29,240
+que es z1 emparejado con y1 y
+
+72
+00:02:30,700 --> 00:02:33,170
+de manera similar z2, y2 y así sucesivamente, hasta zm, ym,
+
+73
+00:02:33,770 --> 00:02:35,300
+debido a que mis ejemplos de entrenamiento
+
+74
+00:02:35,460 --> 00:02:36,980
+ahora son representados de esta forma
+
+75
+00:02:37,480 --> 00:02:41,040
+con menos dimensiones z1, z2, hasta zm.
+
+76
+00:02:41,310 --> 00:02:42,340
+Por último, puedo tomar este
+
+77
+00:02:43,650 --> 00:02:45,060
+conjunto de entrenamiento de dimensión reducida y
+
+78
+00:02:45,240 --> 00:02:46,540
+alimentarlo a un algoritmo de aprendizaje, puede ser
+
+79
+00:02:46,640 --> 00:02:47,900
+una una red neuronal, una regresión logística
+
+80
+00:02:48,280 --> 00:02:49,450
+y puedo
+
+81
+00:02:49,750 --> 00:02:51,990
+aprender la hipótesis "h", que
+
+82
+00:02:52,230 --> 00:02:53,830
+toma esta entrada, estas representaciones z de pocas dimensiones
+
+83
+00:02:54,330 --> 00:02:56,230
+y trata de hacer predicciones.
+
+84
+00:02:57,890 --> 00:02:59,030
+Así que, si estuviera usando regresión logística
+
+85
+00:02:59,460 --> 00:03:00,880
+por ejemplo, entrenaría
+
+86
+00:03:01,060 --> 00:03:02,760
+una hipótesis que diera como resultado,
+
+87
+00:03:03,080 --> 00:03:04,020
+1 sobre 1 + e a la
+
+88
+00:03:04,180 --> 00:03:06,020
+transposición teta negativa "z",
+
+89
+00:03:07,620 --> 00:03:10,150
+que lleva esta entrada
+
+90
+00:03:10,610 --> 00:03:11,530
+a uno de estos
+
+91
+00:03:11,960 --> 00:03:13,660
+vectores z y trata de hacer una predicción.
+
+92
+00:03:15,260 --> 00:03:16,310
+Finalmente, si tiene
+
+93
+00:03:16,630 --> 00:03:17,800
+un nuevo ejemplo, tal vez un nuevo
+
+94
+00:03:17,920 --> 00:03:20,060
+ejemplo de prueba "x", lo que hace
+
+95
+00:03:20,220 --> 00:03:21,340
+es que tomaría
+
+96
+00:03:22,130 --> 00:03:23,730
+su ejemplo de prueba "x",
+
+97
+00:03:24,960 --> 00:03:26,590
+lo asignaría por medio de la misma asignación
+
+98
+00:03:26,990 --> 00:03:27,860
+encontrada por el ACP
+
+99
+00:03:28,220 --> 00:03:29,610
+para obtener su "z" correspondiente y
+
+100
+00:03:30,390 --> 00:03:31,280
+esa "z" luego se alimenta a
+
+101
+00:03:31,950 --> 00:03:33,740
+esta hipótesis, y esta
+
+102
+00:03:33,910 --> 00:03:35,450
+hipótesis a su vez hace una
+
+103
+00:03:35,750 --> 00:03:36,740
+predicción de su entrada x.
+
+104
+00:03:38,110 --> 00:03:40,090
+Una nota final, lo que hace el ACP
+
+105
+00:03:40,510 --> 00:03:42,350
+es que define una asignación de
+
+106
+00:03:42,710 --> 00:03:45,090
+"x" a "z" y
+
+107
+00:03:45,960 --> 00:03:46,970
+esta asignación de "x" a "z"
+
+108
+00:03:47,050 --> 00:03:48,280
+debe definirse mediante la ejecución
+
+109
+00:03:48,580 --> 00:03:50,840
+del ACP,sólo en los conjuntos de entrenamiento y
+
+110
+00:03:51,650 --> 00:03:53,310
+en particular, esta asignación que el ACP
+
+111
+00:03:53,530 --> 00:03:54,770
+está aprendiendo, esta
+
+112
+00:03:54,950 --> 00:03:57,650
+asignación, lo que hace es que calcula el conjunto de parámetros
+
+113
+00:03:58,210 --> 00:04:00,500
+que son la escalación de variables y la normalización de media,
+
+114
+00:04:01,240 --> 00:04:04,040
+también calcula esta matriz "u reducida"
+
+115
+00:04:04,680 --> 00:04:05,510
+pero todas estas cosas, la "u reducida",
+
+116
+00:04:05,670 --> 00:04:06,980
+esto es como un
+
+117
+00:04:07,120 --> 00:04:08,420
+parámetro que ACP
+
+118
+00:04:08,670 --> 00:04:09,950
+aprende y debemos
+
+119
+00:04:10,150 --> 00:04:12,270
+estar ajustando nuestros parámetros sólo a
+
+120
+00:04:12,480 --> 00:04:13,990
+nuestros conjuntos de entrenamiento y
+
+121
+00:04:14,040 --> 00:04:16,250
+no a nuestra validación cruzada o la los conjuntos de prueba,
+
+122
+00:04:16,370 --> 00:04:17,560
+así que estas cosas, la "u reducida"
+
+123
+00:04:18,180 --> 00:04:19,460
+y demás, deben ser
+
+124
+00:04:19,820 --> 00:04:22,430
+obtenidas mediante la ejecución de ACP sólo en su conjunto de entrenamiento y
+
+125
+00:04:23,300 --> 00:04:26,930
+después de haber encontrado "u reducida", o haber encontrado los parámetros de escalación de variables
+
+126
+00:04:27,350 --> 00:04:28,620
+donde se da la normalización de media
+
+127
+00:04:29,320 --> 00:04:31,790
+y la escala
+
+128
+00:04:32,180 --> 00:04:34,500
+entre la que se dividen las variables para obtenerlas en escalas comparables.
+
+129
+00:04:34,760 --> 00:04:36,010
+Después de haber encontrado todos esos parámetros
+
+130
+00:04:36,570 --> 00:04:38,010
+en el conjunto de entrenamiento, puede
+
+131
+00:04:38,220 --> 00:04:41,560
+aplicar la misma asignación a otros ejemplos que pueden estar en
+
+132
+00:04:41,820 --> 00:04:45,020
+sus conjuntos de validación cruzada o
+
+133
+00:04:45,180 --> 00:04:46,680
+sus conjuntos de prueba, ¿de acuerdo?
+
+134
+00:04:47,150 --> 00:04:48,340
+Sólo para resumir, cuando está
+
+135
+00:04:48,450 --> 00:04:49,790
+ejecutando un ACP, ejecútelo
+
+136
+00:04:49,900 --> 00:04:51,070
+sólo en la porción de conjunto
+
+137
+00:04:51,220 --> 00:04:52,450
+de entrenamiento de los datos
+
+138
+00:04:52,490 --> 00:04:55,880
+no en el conjunto de datos de validación cruzada o la parte de conjuntos de prueba de sus datos y
+
+139
+00:04:56,410 --> 00:04:57,620
+eso define la asignación de
+
+140
+00:04:57,870 --> 00:04:58,770
+"x" a "z" y posteriormente puede
+
+141
+00:04:58,950 --> 00:05:00,320
+aplicar esa asignación a
+
+142
+00:05:00,560 --> 00:05:02,240
+su conjunto de datos de validación cruzada y a su
+
+143
+00:05:02,290 --> 00:05:03,370
+conjunto de prueba. Por cierto, en este
+
+144
+00:05:03,450 --> 00:05:04,660
+ejemplo, hablé sobre la
+
+145
+00:05:05,000 --> 00:05:06,660
+reducción de datos, de
+
+146
+00:05:06,950 --> 00:05:08,510
+10000 dimensiones a 1000
+
+147
+00:05:08,740 --> 00:05:10,350
+dimensiones, esto no es en realidad
+
+148
+00:05:10,660 --> 00:05:11,950
+poco factible. Para muchos
+
+149
+00:05:12,280 --> 00:05:14,720
+problemas, en realidad reducimos los datos dimensionales, ya sabe,
+
+150
+00:05:17,600 --> 00:05:18,700
+por 5x, tal vez por 10 veces y
+
+151
+00:05:18,780 --> 00:05:20,910
+todavía conservamos la mayor parte de la varianza y podemos hacer esto
+
+152
+00:05:21,270 --> 00:05:22,680
+apenas afectando el rendimiento,
+
+153
+00:05:23,900 --> 00:05:25,840
+en cuanto a la precisión de la clasificación, vamos a decir,
+
+154
+00:05:26,240 --> 00:05:27,970
+afectando en forma mínima, la precisión de
+
+155
+00:05:28,770 --> 00:05:30,320
+la clasificación del algoritmo de aprendizaje y
+
+156
+00:05:31,090 --> 00:05:32,140
+al trabajar con datos en menores dimensiones
+
+157
+00:05:32,590 --> 00:05:33,730
+nuestro algoritmo de aprendizaje
+
+158
+00:05:34,060 --> 00:05:36,500
+a menudo se puede ejecutar mucho más rápido.
+
+159
+00:05:36,910 --> 00:05:38,120
+En resumen, hemos hablado hasta ahora
+
+160
+00:05:38,410 --> 00:05:40,920
+sobre las siguientes aplicaciones del ACP.
+
+161
+00:05:41,970 --> 00:05:43,780
+La primera es la aplicación de compresión, que
+
+162
+00:05:44,020 --> 00:05:45,140
+podríamos emplear para reducir
+
+163
+00:05:45,500 --> 00:05:46,440
+la memoria o el espacio en disco
+
+164
+00:05:46,590 --> 00:05:47,960
+necesario para almacenar los datos y hemos
+
+165
+00:05:48,240 --> 00:05:49,390
+hablado de cómo
+
+166
+00:05:49,460 --> 00:05:51,630
+usar esto para acelerar un algoritmo de aprendizaje.
+
+167
+00:05:52,100 --> 00:05:53,870
+En estas aplicaciones, con el fin
+
+168
+00:05:54,130 --> 00:05:56,240
+de elegir k, a menudo vamos a
+
+169
+00:05:56,420 --> 00:05:58,770
+hacerlo de acuerdo con  determinar
+
+170
+00:05:59,160 --> 00:06:00,590
+cuál es el porcentaje de
+
+171
+00:06:00,810 --> 00:06:03,880
+la varianza retenida y así
+
+172
+00:06:04,780 --> 00:06:06,320
+para este algoritmo de aprendizaje, la aplicación
+
+173
+00:06:06,570 --> 00:06:10,050
+de velocidad, a menudo retendrá el 99% de la varianza.
+
+174
+00:06:10,530 --> 00:06:11,690
+Esa sería una opción muy típica
+
+175
+00:06:12,100 --> 00:06:14,270
+de cómo elegir k. Entonces,
+
+176
+00:06:14,730 --> 00:06:16,640
+así es como usted elije k para estas aplicaciones de compresión;
+
+177
+00:06:17,850 --> 00:06:19,590
+mientras que para las aplicaciones de visualización
+
+178
+00:06:20,760 --> 00:06:22,100
+que por lo general sabemos
+
+179
+00:06:22,230 --> 00:06:23,550
+cómo trazar, sólo datos de dos dimensiones
+
+180
+00:06:24,020 --> 00:06:25,520
+o datos de tres dimensiones y
+
+181
+00:06:26,540 --> 00:06:28,650
+para las aplicaciones de visualización, vamos a
+
+182
+00:06:28,830 --> 00:06:29,660
+elegir usualmente, k= 2
+
+183
+00:06:29,710 --> 00:06:31,930
+o k=3, ya que podemos trazar
+
+184
+00:06:32,740 --> 00:06:33,500
+sólo los conjuntos de datos 2D y 3D.
+
+185
+00:06:34,510 --> 00:06:35,720
+Así que esto resume las principales
+
+186
+00:06:36,020 --> 00:06:37,230
+aplicaciones del ACP, así
+
+187
+00:06:37,870 --> 00:06:39,580
+como la forma de elegir el valor de k
+
+188
+00:06:39,670 --> 00:06:41,540
+para estas diferentes aplicaciones.
+
+189
+00:06:42,890 --> 00:06:45,710
+Debo mencionar que a menudo existe un mal uso frecuente
+
+190
+00:06:46,400 --> 00:06:48,100
+del ACP y
+
+191
+00:06:48,800 --> 00:06:50,300
+a veces se oye hablar de otros
+
+192
+00:06:50,580 --> 00:06:51,820
+que cometen este error, espero que no tan a menudo.
+
+193
+00:06:52,230 --> 00:06:54,780
+Sólo quiero mencionar esto para que sepa lo que no debe hacer,
+
+194
+00:06:55,480 --> 00:06:56,460
+hay un mal uso del ACP,
+
+195
+00:06:56,540 --> 00:06:59,170
+que consiste en tratar de usarlo para evitar un ajuste excesivo.
+
+196
+00:07:00,380 --> 00:07:00,660
+He aquí el razonamiento:
+
+197
+00:07:01,910 --> 00:07:03,080
+Esta no es una gran manera
+
+198
+00:07:03,730 --> 00:07:04,610
+de utilizar el ACP pero
+
+199
+00:07:04,670 --> 00:07:05,630
+hay una razón detrás de este
+
+200
+00:07:05,690 --> 00:07:07,080
+método, que es, ya sabe,
+
+201
+00:07:07,350 --> 00:07:09,090
+si tenemos xi, entonces,
+
+202
+00:07:09,300 --> 00:07:10,660
+tal vez tengamos "n" variables pero
+
+203
+00:07:10,830 --> 00:07:12,640
+si comprimimos los datos y
+
+204
+00:07:12,750 --> 00:07:13,700
+mejor usamos zi,
+
+205
+00:07:14,270 --> 00:07:15,410
+que reduce el número
+
+206
+00:07:15,560 --> 00:07:17,050
+de variables para k, lo que
+
+207
+00:07:17,290 --> 00:07:19,300
+podría minimizar las dimensiones y
+
+208
+00:07:19,410 --> 00:07:21,130
+si tenemos una cantidad más pequeña
+
+209
+00:07:21,490 --> 00:07:22,520
+de variables, si k
+
+210
+00:07:22,770 --> 00:07:25,800
+es 1000 y n es
+
+211
+00:07:26,090 --> 00:07:27,010
+10000, si tenemos sólo datos
+
+212
+00:07:27,780 --> 00:07:29,390
+de 1000 dimensiones, tal vez
+
+213
+00:07:29,670 --> 00:07:30,580
+tenemos una menor tendencia al ajuste excesivo que
+
+214
+00:07:31,260 --> 00:07:32,230
+si usáramos datos de 10000 dimensiones con
+
+215
+00:07:33,280 --> 00:07:34,980
+un millar de funciones.
+
+216
+00:07:35,950 --> 00:07:37,160
+Así que, algunas personas consideran al
+
+217
+00:07:37,360 --> 00:07:39,360
+ACP como una manera de prevenir el exceso de ajustes pero
+
+218
+00:07:39,950 --> 00:07:41,940
+sólo para enfatizar, esta es una
+
+219
+00:07:42,110 --> 00:07:44,000
+mala aplicación del ACP
+
+220
+00:07:44,260 --> 00:07:46,080
+y no recomiendo realizarla.
+
+221
+00:07:46,520 --> 00:07:48,430
+Y no es que este método funcione mal,
+
+222
+00:07:49,000 --> 00:07:49,920
+si quiere usar
+
+223
+00:07:50,330 --> 00:07:51,560
+este método para reducir la dimensión de los datos,
+
+224
+00:07:51,890 --> 00:07:52,830
+para tratar de prevenir el exceso de ajustes,
+
+225
+00:07:53,690 --> 00:07:54,830
+tal vez funcione bien pero
+
+226
+00:07:55,560 --> 00:07:56,720
+esta no es una buena
+
+227
+00:07:57,040 --> 00:07:58,340
+forma de enfrentar
+
+228
+00:07:58,680 --> 00:08:00,390
+el exceso de ajustes y en cambio, si usted está
+
+229
+00:08:00,510 --> 00:08:01,810
+preocupado por el exceso de ajustes, hay
+
+230
+00:08:02,030 --> 00:08:03,420
+una forma mucho mejor para hacer frente a este problema,
+
+231
+00:08:03,800 --> 00:08:05,680
+el uso de regularización, en vez de usar
+
+232
+00:08:05,900 --> 00:08:07,910
+el ACP para reducir la dimensión de los datos y
+
+233
+00:08:08,670 --> 00:08:10,000
+la razón es que, si
+
+234
+00:08:11,010 --> 00:08:12,150
+usted piensa acerca de cómo funciona el ACP,
+
+235
+00:08:12,900 --> 00:08:13,950
+no utiliza los valores asignados
+
+236
+00:08:14,530 --> 00:08:15,680
+"y", usted sólo mira sus
+
+237
+00:08:16,050 --> 00:08:17,220
+entradas xi, y está
+
+238
+00:08:17,340 --> 00:08:19,070
+utilizando esto para encontrar una
+
+239
+00:08:19,130 --> 00:08:21,150
+aproximación dimensional inferior a sus datos.
+
+240
+00:08:21,390 --> 00:08:22,840
+Entonces, lo que el ACP hace, es que
+
+241
+00:08:23,190 --> 00:08:25,410
+desecha algo de información,
+
+242
+00:08:26,460 --> 00:08:28,040
+elimina o reduce la
+
+243
+00:08:28,180 --> 00:08:29,680
+dimensión de sus datos sin
+
+244
+00:08:30,110 --> 00:08:31,390
+saber cuáles son los valores de "y",
+
+245
+00:08:32,380 --> 00:08:33,700
+por lo que esto quizá es correcto; el usar
+
+246
+00:08:34,250 --> 00:08:35,770
+el ACP de esta manera
+
+247
+00:08:35,920 --> 00:08:37,750
+tal vez esté bien si, por ejemplo
+
+248
+00:08:37,990 --> 00:08:39,190
+el 99% de la
+
+249
+00:08:39,410 --> 00:08:40,400
+varianza se mantiene, si usted está reteniendo
+
+250
+00:08:40,830 --> 00:08:41,970
+la mayor parte de la varianza pero
+
+251
+00:08:42,100 --> 00:08:44,230
+también podría perder un poco de información valiosa.
+
+252
+00:08:45,010 --> 00:08:45,980
+Resulta que si usted está
+
+253
+00:08:46,310 --> 00:08:47,580
+reteniendo el 99% de
+
+254
+00:08:47,820 --> 00:08:49,260
+de la varianza o el 95%
+
+255
+00:08:49,360 --> 00:08:50,940
+de la varianza o la cantidad que sea,
+
+256
+00:08:51,020 --> 00:08:52,310
+lo que sucede es que el simple uso de la
+
+257
+00:08:52,720 --> 00:08:54,650
+regularización le dará con frecuencia
+
+258
+00:08:54,790 --> 00:08:56,010
+un método al menos igual de efectivo
+
+259
+00:08:56,220 --> 00:08:57,880
+para prevenir el exceso de ajustes
+
+260
+00:08:58,900 --> 00:09:00,340
+y la regularización funcionará mejor
+
+261
+00:09:00,590 --> 00:09:02,220
+porque cuando usted
+
+262
+00:09:02,350 --> 00:09:03,890
+está aplicando la regresión lineal, la regresión logística
+
+263
+00:09:04,250 --> 00:09:05,240
+o algún otro método
+
+264
+00:09:05,600 --> 00:09:07,390
+con la regularización, bueno, este problema de minimización
+
+265
+00:09:08,010 --> 00:09:09,420
+en realidad sabe cuáles son los
+
+266
+00:09:09,480 --> 00:09:10,740
+valores de "y", por lo que
+
+267
+00:09:10,960 --> 00:09:12,680
+es menos probable desechar
+
+268
+00:09:12,880 --> 00:09:14,330
+alguna información valiosa, mientras que
+
+269
+00:09:14,730 --> 00:09:15,790
+el ACP no hace uso
+
+270
+00:09:16,060 --> 00:09:17,810
+de los valores asignados y es más
+
+271
+00:09:17,850 --> 00:09:19,940
+probable que elimine información valiosa.
+
+272
+00:09:20,230 --> 00:09:21,370
+Así que, para resumir, este es
+
+273
+00:09:21,620 --> 00:09:22,900
+un buen uso del ACP, si su
+
+274
+00:09:23,010 --> 00:09:24,380
+motivación principal es acelerar
+
+275
+00:09:24,530 --> 00:09:26,490
+su algoritmo de aprendizaje pero
+
+276
+00:09:26,790 --> 00:09:28,360
+el usar el ACP para tratar de prevenir el exceso de ajustes,
+
+277
+00:09:28,650 --> 00:09:29,630
+no es un buen uso de
+
+278
+00:09:30,030 --> 00:09:32,270
+ACP, el usar la regularización en vez de esto,
+
+279
+00:09:32,900 --> 00:09:36,190
+es lo que en realidad mucha gente recomendaría
+
+280
+00:09:36,440 --> 00:09:40,490
+hacer en su lugar. Por último,
+
+281
+00:09:41,310 --> 00:09:43,350
+un último mal uso de ACP y
+
+282
+00:09:43,750 --> 00:09:45,760
+debería decir que ACP es un algoritmo muy útil,
+
+283
+00:09:46,270 --> 00:09:49,170
+con frecuencia lo uso para la compresión con propósitos de visualización
+
+284
+00:09:50,230 --> 00:09:51,400
+pero, lo que a veces
+
+285
+00:09:51,570 --> 00:09:53,310
+noto es que también la gente suele
+
+286
+00:09:53,710 --> 00:09:56,080
+usar el ACP donde no debería.
+
+287
+00:09:56,220 --> 00:09:57,940
+Por otro lado, algo que veo con frecuencia
+
+288
+00:09:58,030 --> 00:09:59,140
+es que si alguien
+
+289
+00:09:59,330 --> 00:10:00,330
+está diseñando un sistema de aprendizaje automático
+
+290
+00:10:01,010 --> 00:10:02,130
+pueden anotar el plan
+
+291
+00:10:02,200 --> 00:10:04,150
+de este modo: vamos a diseñar un sistema de aprendizaje,
+
+292
+00:10:05,060 --> 00:10:06,080
+tomamos un conjunto de entrenamiento y luego,
+
+293
+00:10:06,570 --> 00:10:07,350
+ya sabe, lo que haré es ejecutar ACP
+
+294
+00:10:07,400 --> 00:10:08,700
+después entrenar regresión logística
+
+295
+00:10:08,860 --> 00:10:11,200
+y luego lo pruebo en mis datos de prueba.
+
+296
+00:10:11,680 --> 00:10:12,770
+Muy a menudo al inicio
+
+297
+00:10:13,090 --> 00:10:14,360
+de un proyecto,
+
+298
+00:10:14,600 --> 00:10:15,600
+alguien sólo escribirá un
+
+299
+00:10:15,720 --> 00:10:16,980
+plan de proyecto que dirá:
+
+300
+00:10:17,310 --> 00:10:18,610
+vamos a hacer estos cuatro pasos con incluyendo el ACP.
+
+301
+00:10:20,210 --> 00:10:21,220
+Antes de escribir un plan de proyecto
+
+302
+00:10:21,530 --> 00:10:23,350
+que incorpora el ACP de este modo,
+
+303
+00:10:23,560 --> 00:10:24,860
+una muy buena
+
+304
+00:10:25,030 --> 00:10:27,110
+pregunta que debemos hacernos es, bueno, ¿y si quisiéramos
+
+305
+00:10:27,630 --> 00:10:28,560
+simplemente hacer todo sin usar
+
+306
+00:10:29,540 --> 00:10:31,470
+el ACP?
+
+307
+00:10:32,170 --> 00:10:33,450
+Y muchas veces la gente no
+
+308
+00:10:33,800 --> 00:10:34,940
+considera este paso antes de
+
+309
+00:10:35,440 --> 00:10:37,080
+dar con un plan de proyecto complicado e
+
+310
+00:10:37,920 --> 00:10:40,620
+implementar ACP y así sucesivamente.
+
+311
+00:10:40,810 --> 00:10:42,360
+Algunas veces y de forma muy específica,
+
+312
+00:10:43,050 --> 00:10:44,300
+lo que suelo aconsejar a la gente
+
+313
+00:10:44,670 --> 00:10:45,980
+es que antes de implementar
+
+314
+00:10:46,450 --> 00:10:47,970
+el ACP, lo que sugeriría en primer lugar,
+
+315
+00:10:48,220 --> 00:10:49,410
+ya sabe, al hacer cualquier acción,
+
+316
+00:10:49,600 --> 00:10:50,770
+tomar lo que sea que quiera hacer,
+
+317
+00:10:50,850 --> 00:10:52,030
+es primero considerar
+
+318
+00:10:52,450 --> 00:10:53,650
+hacerlo con sus
+
+319
+00:10:53,980 --> 00:10:56,420
+datos en bruto originales xi, y
+
+320
+00:10:56,600 --> 00:10:57,860
+sólo si eso no funciona
+
+321
+00:10:57,960 --> 00:10:59,650
+como usted quiere, entonces  implemente el ACP y considere usar Zi.
+
+322
+00:11:01,010 --> 00:11:02,420
+Por lo tanto, antes de usar ACP, ya sabe,
+
+323
+00:11:03,030 --> 00:11:03,930
+en vez de reducir la dimensión
+
+324
+00:11:04,360 --> 00:11:05,710
+de los datos, yo consideraría,
+
+325
+00:11:06,640 --> 00:11:08,020
+bueno, vamos a saltar este paso de ACP
+
+326
+00:11:08,420 --> 00:11:09,690
+y pensaría, vamos a
+
+327
+00:11:10,040 --> 00:11:11,460
+entrenar simplemente mi algoritmo de aprendizaje
+
+328
+00:11:12,440 --> 00:11:13,560
+en mis datos originales.
+
+329
+00:11:14,410 --> 00:11:15,990
+Vamos a usar sólo mis entradas originales
+
+330
+00:11:16,300 --> 00:11:17,770
+xi, y recomendaría
+
+331
+00:11:18,180 --> 00:11:19,550
+en lugar de poner el ACP en el
+
+332
+00:11:19,720 --> 00:11:20,910
+algoritmo, sólo
+
+333
+00:11:21,030 --> 00:11:23,250
+tratar de hacer lo que sea que esté haciendo, primero con xi y
+
+334
+00:11:24,090 --> 00:11:25,000
+sólo si tiene una
+
+335
+00:11:25,150 --> 00:11:26,180
+razón para creer que no funciona,
+
+336
+00:11:26,480 --> 00:11:27,590
+si esto causa que su
+
+337
+00:11:27,790 --> 00:11:29,470
+algoritmo de aprendizaje termine
+
+338
+00:11:29,510 --> 00:11:31,100
+ejecutándose muy despacio, o sólo si
+
+339
+00:11:31,280 --> 00:11:32,680
+el requisito de memoria o espacio
+
+340
+00:11:32,910 --> 00:11:34,140
+de disco es demasiado grande,
+
+341
+00:11:34,430 --> 00:11:35,850
+entonces usted querrá comprimir
+
+342
+00:11:36,190 --> 00:11:37,810
+su representación pero sólo si
+
+343
+00:11:38,000 --> 00:11:39,020
+el uso de xi no funciona,
+
+344
+00:11:39,360 --> 00:11:40,640
+sólo si tiene pruebas o una gran razón
+
+345
+00:11:40,950 --> 00:11:41,890
+para creer que no funciona el uso de
+
+346
+00:11:42,380 --> 00:11:43,890
+xi , entonces aplique
+
+347
+00:11:44,380 --> 00:11:46,730
+el ACP y considere el uso de la representación comprimida.
+
+348
+00:11:47,990 --> 00:11:48,830
+Porque lo que veo es que
+
+349
+00:11:49,100 --> 00:11:50,380
+a veces la gente comienza con
+
+350
+00:11:50,530 --> 00:11:51,520
+un plan de proyecto que incorpora ACP
+
+351
+00:11:52,100 --> 00:11:54,580
+y en ocasiones, sea lo que sea que estén
+
+352
+00:11:54,650 --> 00:11:55,620
+haciendo,
+
+353
+00:11:55,820 --> 00:11:57,380
+funcionará bien,
+
+354
+00:11:57,660 --> 00:11:59,520
+aún sin usar el ACP.
+
+355
+00:11:59,840 --> 00:12:01,650
+Entonces, sólo considérelo como una
+
+356
+00:12:01,860 --> 00:12:03,130
+alternativa también, antes de
+
+357
+00:12:03,320 --> 00:12:04,170
+desperdiciar tanto tiempo para
+
+358
+00:12:04,300 --> 00:12:05,570
+obtener un ACP, calcule lo
+
+359
+00:12:05,770 --> 00:12:08,100
+que será "k" y así sucesivamente.
+
+360
+00:12:08,250 --> 00:12:09,330
+Eso es todo sobre ACP,
+
+361
+00:12:09,800 --> 00:12:11,000
+a pesar de estos últimos
+
+362
+00:12:11,080 --> 00:12:12,380
+comentarios, ACP es un
+
+363
+00:12:12,690 --> 00:12:14,060
+algoritmo increíblemente útil, cuando se
+
+364
+00:12:14,150 --> 00:12:15,330
+usa para las aplicaciones adecuadas
+
+365
+00:12:16,070 --> 00:12:17,480
+y de hecho estoy muy acostumbrado a él,
+
+366
+00:12:17,770 --> 00:12:19,330
+en mi caso,
+
+367
+00:12:19,580 --> 00:12:20,650
+lo uso principalmente para acelerar
+
+368
+00:12:20,850 --> 00:12:22,150
+el tiempo de ejecución de mis algoritmos de aprendizaje
+
+369
+00:12:22,880 --> 00:12:24,310
+pero creo que una aplicación
+
+370
+00:12:24,400 --> 00:12:25,690
+común del ACP,
+
+371
+00:12:26,020 --> 00:12:27,300
+es utilizarlo para
+
+372
+00:12:27,410 --> 00:12:29,030
+comprimir los datos, para reducir
+
+373
+00:12:29,620 --> 00:12:30,650
+los requisitos de memoria o el espacio en disco
+
+374
+00:12:30,990 --> 00:12:33,130
+o utilizarlo para visualizar los datos.
+
+375
+00:12:34,270 --> 00:12:35,710
+El ACP es uno de
+
+376
+00:12:35,750 --> 00:12:36,960
+los algoritmos más comúnmente usados
+
+377
+00:12:36,990 --> 00:12:39,420
+y uno de los más poderosos algoritmos de aprendizaje no supervisado.
+
+378
+00:12:40,060 --> 00:12:41,210
+Con lo que ha aprendido
+
+379
+00:12:41,420 --> 00:12:43,120
+en estos videos, espero que
+
+380
+00:12:43,500 --> 00:12:44,710
+sea capaz de poner en práctica
+
+381
+00:12:45,150 --> 00:12:46,280
+el ACP y utilizarlo
+
+382
+00:12:46,500 --> 00:12:47,930
+para todos estos fines también.

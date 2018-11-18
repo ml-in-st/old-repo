@@ -1,0 +1,433 @@
+1
+00:00:00,000 --> 00:00:05,399
+Dalam video ini kita akan menyatakan sesuatu
+yang disebut fungsi biaya. Ini akan membantu kita
+
+2
+00:00:05,399 --> 00:00:10,688
+mengetahui bagaimana mencocokkan garis lurus
+terbaik ke data kita. Dalam regresi
+
+3
+00:00:10,688 --> 00:00:16,758
+linier kita punya set latihan seperti
+yang terlihat di sini. Ingat notasi kita m
+
+4
+00:00:16,758 --> 00:00:21,972
+adalah jumlah contoh latihan. Jadi
+mungkin m = 47. Dan bentuk
+
+5
+00:00:21,972 --> 00:00:27,731
+hipotesis, yang kita gunakan untuk membuat
+prediksi, adalah fungsi linier ini. Untuk
+
+6
+00:00:27,731 --> 00:00:33,723
+memperkenalkan sedikit istilah lagi,
+theta nol dan theta satu ini,
+
+7
+00:00:33,723 --> 00:00:39,759
+theta i's ini adalah apa yang saya sebut
+parameter model. Apa yang kita
+
+8
+00:00:39,759 --> 00:00:44,578
+akan lakukan dalam video ini adalah bicara tentang
+bagaimana memilih dua nilai
+
+9
+00:00:44,578 --> 00:00:49,654
+parameter ini, theta nol dan theta
+satu. Dengan pilihan parameter yang berbeda
+
+10
+00:00:49,654 --> 00:00:54,408
+theta nol dan theta satu kita mendapat hipotesis
+yang berbeda, fungsi hipotesis yang
+
+11
+00:00:54,408 --> 00:00:59,355
+berbeda. Saya tahu beberapa dari Anda
+mungkin sudah tidak asing dengan apa yang saya
+
+12
+00:00:59,355 --> 00:01:04,367
+akan lakukan di slide ini, tapi hanya untuk
+mengulang ini beberapa contoh. Jika theta
+
+13
+00:01:04,367 --> 00:01:09,378
+nol 1.5 dan theta satu 0, maka
+fungsi hipotesis akan terlihat seperti
+
+14
+00:01:09,378 --> 00:01:15,701
+ini. Baiklah, karena fungsi hipotesis
+Anda adalah h(x) sama dengan 1.5 tambah
+
+15
+00:01:15,701 --> 00:01:22,645
+0 kali x yaitu ini nilai konstan
+fungsi, ini mendatar pada 1.5. Jika
+
+16
+00:01:22,645 --> 00:01:29,332
+theta nol sama dengan nol dan theta satu
+sama dengan 0.5, maka hipotesis akan terlihat
+
+17
+00:01:29,332 --> 00:01:35,536
+seperti ini. Dan itu harus melalui titik
+(2,1), katakan sekarang Anda punya h(x) atau
+
+18
+00:01:35,536 --> 00:01:40,666
+h theta(x) tapi
+terkadang saya akan mengabaikan theta untuk
+
+19
+00:01:40,666 --> 00:01:46,518
+ringkasnya. Jadi, h(x) akan sama dengan
+0.5 kali x yang terlihat seperti itu. Dan
+
+20
+00:01:46,518 --> 00:01:52,443
+akhirnya jika theta nol sama dengan 1 dan theta
+satu sama dengan 0.5 maka kita berakhir dengan
+
+21
+00:01:52,443 --> 00:01:58,598
+hipotesis yang terlihat seperti ini. Mari kita
+lihat, itu harus melalui titik
+
+22
+00:01:58,598 --> 00:02:04,468
+(2, 2) seperti itu. Dan ini, h(x) baru saya
+atau h theta(x) baru saya. Setuju? Nah
+
+23
+00:02:04,468 --> 00:02:09,980
+Anda ingat bahwa ini
+h theta(x) tapi untuk singkatnya
+
+24
+00:02:09,980 --> 00:02:16,584
+terkadang saya hanya menulis ini sebagai h(x). Dalam
+regresi linier kita punya set latihan,
+
+25
+00:02:16,584 --> 00:02:22,439
+mungkin seperti yang telah saya plot di sini. Apa
+yang kita ingin lakukan adalah menghasilkan nilai untuk
+
+26
+00:02:22,439 --> 00:02:28,295
+parameter theta nol dan theta satu.
+Agar garis lurus yang kita dapat
+
+27
+00:02:28,295 --> 00:02:33,799
+dari sini cocok dengan garis lurus
+yang entah bagaimana pas dengan data. Mungkin
+
+28
+00:02:33,799 --> 00:02:39,756
+seperti garis di sana. Jadi bagaimana kita
+menghasilkan nilai theta nol, theta satu
+
+29
+00:02:39,756 --> 00:02:45,350
+yang pas benar dengan
+data? Idenya kita akan memilih
+
+30
+00:02:45,350 --> 00:02:51,162
+parameter kita theta nol, theta satu sehingga
+h(x), yaitu nilai yang kita prediksi
+
+31
+00:02:51,162 --> 00:02:56,330
+pada input x, bahwa ini paling tidak dekat dengan
+nilai y untuk contoh di set latihan
+
+32
+00:02:56,330 --> 00:03:01,133
+kita, untuk contoh latihan kita.
+Jadi, dalam set latihan kita, kita diberikan
+
+33
+00:03:01,133 --> 00:03:06,505
+sejumlah contoh dimana kita tahu x menunjukkan
+ukuran rumah dan kita tahu harga aktual
+
+34
+00:03:06,505 --> 00:03:11,796
+berapa rumah itu terjual. Jadi mari kita coba
+pilih nilai untuk parameter tersebut sehingga
+
+35
+00:03:11,796 --> 00:03:17,302
+paling tidak di set latihan, diberikan
+x's di set latihan, kita membuat
+
+36
+00:03:17,302 --> 00:03:23,507
+prediksi akurat yang pantas untuk nilai y.
+Mari kita rumuskan ini. Jadi regresi
+
+37
+00:03:23,507 --> 00:03:29,401
+linier, apa yang akan kita lakukan adalah saya
+akan ingin memecahkan persoalan peminimalan.
+
+38
+00:03:29,401 --> 00:03:38,787
+Jadi saya akan menulis memperkecil di atas theta
+nol, theta satu. Dan, saya ingin ini jadi
+
+39
+00:03:38,787 --> 00:03:44,379
+kecil, setuju, saya ingin selisih
+antara h(x) dan y jadi kecil. Dan satu
+
+40
+00:03:44,379 --> 00:03:50,493
+hal yang saya akan lakukan adalah coba memperkecil
+selisih kwadrat antara hasil
+
+41
+00:03:50,493 --> 00:03:56,159
+hipotesis dan harga aktual
+rumah. Oke? Jadi mari kita tambahkan beberapa
+
+42
+00:03:56,159 --> 00:04:01,379
+detail. Ingat bahwa saya sebelumnya menggunakan
+notasi (x(i), y(i)) untuk menampilkan
+
+43
+00:04:01,379 --> 00:04:07,418
+contoh latihan ke-i. Jadi apa yang saya
+benar-benar inginkan adalah menjumlahkan seluruh set
+
+44
+00:04:07,418 --> 00:04:13,202
+latihan saya. Penjumlahan dari i = 1 sampai m dari
+selisih kwadrat antara
+
+45
+00:04:13,202 --> 00:04:18,896
+ini, prediksi hipotesis saya,
+saat ini di input ukuran rumah nomor
+
+46
+00:04:18,896 --> 00:04:24,380
+i, kurang harga aktual
+rumah nomor i akan terjual, dan saya ingin
+
+47
+00:04:24,380 --> 00:04:29,588
+memperkecil penjumlahan set latihan saya, penjumlahan
+dari i = 1 sampai m
+
+48
+00:04:29,588 --> 00:04:35,281
+selisih kwadrat kesalahan ini,
+selisih kwadrat antara harga rumah
+
+49
+00:04:35,281 --> 00:04:41,091
+yang diprediksi dan harga
+rumah saat terjual. Dan hanya
+
+50
+00:04:41,091 --> 00:04:47,723
+mengingatkan Anda akan notasi m di sini adalah
+ukuran set latihan saya,
+
+51
+00:04:47,723 --> 00:04:53,347
+jadi m disana adalah jumlah contoh latihan
+saya. Setuju? Tanda pagar adalah
+
+52
+00:04:53,347 --> 00:04:59,045
+singkatan untuk "jumlah" contoh
+latihan. Oke? Dan untuk membuat beberapa,
+
+53
+00:04:59,045 --> 00:05:04,888
+membuat perhitungan matematika sedikit lebih mudah, saya
+akan melihat pada, Anda tahu, 1
+
+54
+00:05:04,888 --> 00:05:09,578
+bagi m kali itu. Jadi kita akan mencoba
+memperkecil kesalahan rata-rata saya, yang kita
+
+55
+00:05:09,578 --> 00:05:13,926
+akan perkecil dengan satu per 2m.
+Menempatkan 2, bilangan konstan setengah, di
+
+56
+00:05:13,926 --> 00:05:18,386
+depan itu hanya membuat beberapa perhitungan
+sedikit lebih mudah. Jadi memperkecil setengah dari
+
+57
+00:05:18,386 --> 00:05:23,073
+sesuatu, harusnya memberi Anda nilai
+yang sama dari parameter theta nol, theta
+
+58
+00:05:23,073 --> 00:05:27,647
+satu selagi memperkecil fungsi itu. Dan hanya
+untuk memastikan, persamaan ini
+
+59
+00:05:27,647 --> 00:05:35,569
+jelas, kan? Ekpresi ini,
+h theta(x), ini yang
+
+60
+00:05:35,569 --> 00:05:44,880
+biasa kita tulis, kan? Itu sama dengan ini
+tambah theta satu x(i). Dan notasi ini,
+
+61
+00:05:44,880 --> 00:05:49,814
+minimize theta nol dan theta satu,
+ini artinya temukan bagi saya nilai theta
+
+62
+00:05:49,814 --> 00:05:54,369
+nol dan theta satu yang menyebabkan hasil
+ekspresi ini diperkecil. Dan ekspresi
+
+63
+00:05:54,369 --> 00:05:59,557
+ini bergantung pada theta nol dan theta
+satu. Oke? Jadi hanya untuk mengulang, kita mengajukan
+
+64
+00:05:59,557 --> 00:06:04,382
+persoalan ini seperti temukan bagi saya nilai
+theta nol dan theta satu agar
+
+65
+00:06:04,575 --> 00:06:09,292
+rata-rata satu bagi 2m kali
+penjumlahan kesalahan kwadrat antara
+
+66
+00:06:09,292 --> 00:06:14,590
+prediksi saya atas set latihan kurang
+nilai aktual rumah pada
+
+67
+00:06:14,590 --> 00:06:19,694
+set latihan diperkecil. Jadi ini
+akan menjadi tujuan keseluruhan saya, fungsi
+
+68
+00:06:19,694 --> 00:06:25,127
+untuk regresi linier. Dan hanya untuk,
+menuliskan kembali ini sedikit lebih
+
+69
+00:06:25,127 --> 00:06:30,580
+jelas apa yang akan saya lakukan sesuai ketentuan
+adalah kita biasanya menetapkan fungsi biaya.
+
+70
+00:06:30,860 --> 00:06:38,965
+Yang akan jadi tepat seperti ini. Rumus
+itu yang saya punya di sini. Dan apa yang saya
+
+71
+00:06:38,965 --> 00:06:48,388
+ingin lakukan adalah memperkecil theta nol dan
+theta satu fungsi saya J dari theta nol
+
+72
+00:06:48,388 --> 00:06:57,428
+koma theta satu. Hanya tulis ini,
+ini fungsi biaya saya. Jadi, ini
+
+73
+00:06:57,428 --> 00:07:06,943
+fungsi biaya yang juga disebut fungsi
+kesalahan kwadrat atau terkadang disebut
+
+74
+00:07:06,943 --> 00:07:14,461
+kesalahan fungsi biaya kwadrat dan jelas
+bahwa mengapa kita menghitung
+
+75
+00:07:14,461 --> 00:07:19,006
+kwadrat dari kesalahan-kesalahan itu? Jelas
+bahwa kesalahan fungsi biaya kwadrat adalah
+
+76
+00:07:19,006 --> 00:07:23,214
+pilihan yang masuk akal dan akan bekerja dengan baik untuk
+kebanyakan soal, untuk kebanyakan soal
+
+77
+00:07:23,214 --> 00:07:27,815
+regresi. Ada fungsi biaya lain
+yang akan bekerja sangat baik, tapi kesalahan
+
+78
+00:07:27,815 --> 00:07:32,473
+fungsi biaya kwadrat mungkin yang paling
+umum digunakan untuk soal regresi.
+
+79
+00:07:32,473 --> 00:07:36,793
+Nanti di kelas ini kita juga akan bicara fungsi
+biaya alternatif juga, namun ini, pilihan
+
+80
+00:07:36,793 --> 00:07:41,282
+yang baru kita punya ini, harusnya menjadi
+hal yang paling masuk akal untuk dicoba pada
+
+81
+00:07:41,282 --> 00:07:45,706
+kebanyakan soal regresi linier. Oke. Jadi
+itulah fungsi biaya. Sejauh ini kita
+
+82
+00:07:45,706 --> 00:07:50,899
+hanya melihat definisi matematika dari
+fungsi biaya ini dan dalam kasus ini
+
+83
+00:07:50,899 --> 00:07:55,973
+fungsi J dari theta nol dan theta satu jika
+fungsi ini terlihat sedikit abstrak
+
+84
+00:07:55,973 --> 00:08:00,808
+dan Anda masih tidak mengerti
+apa yang dilakukan fungsi ini di video berikut, pada
+
+85
+00:08:00,808 --> 00:08:05,882
+video kedua berikutnya kita akan benar-benar
+melihat lebih dalam akan apa fungsi
+
+86
+00:08:05,882 --> 00:08:10,776
+biaya J lakukan dan coba memberi Anda
+intuisi yang lebih baik akan apa yang dihitungnya
+
+87
+00:08:10,776 --> 00:08:12,329
+dan mengapa kita ingin menggunakannya.

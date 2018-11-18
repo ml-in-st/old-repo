@@ -1,0 +1,111 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Matrix-Vector Multiplication
+ </h1>
+ <p>
+  We map the column of the vector onto each row of the matrix, multiplying each element and summing the result.
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix} a &amp; b \newline c &amp; d \newline e &amp; f \end{bmatrix} *\begin{bmatrix} x \newline y \newline \end{bmatrix} =\begin{bmatrix} a*x + b*y \newline c*x + d*y \newline e*x + f*y\end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  The result is a
+  <strong>
+   vector
+  </strong>
+  . The number of
+  <strong>
+   columns
+  </strong>
+  of the matrix must equal the number of
+  <strong>
+   rows
+  </strong>
+  of the vector.
+ </p>
+ <p>
+  An
+  <strong>
+   m x n matrix
+  </strong>
+  multiplied by an
+  <strong>
+   n x 1 vector
+  </strong>
+  results in an
+  <strong>
+   m x 1 vector
+  </strong>
+  .
+ </p>
+ <p>
+  Below is an example of a matrix-vector multiplication. Make sure you understand how the multiplication works. Feel free to try different matrix-vector multiplications.
+ </p>
+ <pre evaluatorid="n48TWVmsQlePE1lZrHJXwA@2" language="matlab">% Initialize matrix A 
+A = [1, 2, 3; 4, 5, 6;7, 8, 9] 
+
+% Initialize vector v 
+v = [1; 1; 1] 
+
+% Multiply A * v
+Av = A * v
+
+</pre>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

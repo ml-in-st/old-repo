@@ -1,0 +1,131 @@
+In this video, I'd like to talk about
+the Gaussian distribution which is also called the normal distribution. In case you're already intimately
+familiar with the Gaussian distribution, it's probably okay to skip this video,
+but if you're not sure or if it has been a while since you've
+worked with the Gaussian distribution or normal distribution then please do watch
+this video all the way to the end. And in the video after this we'll start
+applying the Gaussian distribution to developing an anomaly
+detection algorithm. Let's say x is a row value's random
+variable, so x is a row number. If the probability distribution
+of x is Gaussian with mean mu and variance sigma squared. Then, we'll write this as x,
+the random variable. Tilde, this little tilde,
+this is distributed as. And then to denote
+a Gaussian distribution, sometimes I'm going to write script
+N parentheses mu comma sigma script. So this script N stands for
+normal since Gaussian and normal they mean the thing are synonyms. And the Gaussian distribution is
+parametarized by two parameters, by a mean parameter which we denote mu and a variance parameter which
+we denote via sigma squared. If we plot the Gaussian distribution or
+Gaussian probability density. It'll look like the bell shaped curve
+which you may have seen before. And so this bell shaped curve is paramafied
+by those two parameters, mu and sequel. And the location of the center of this
+bell shaped curve is the mean mu. And the width of this bell shaped curve,
+roughly that, is this parameter, sigma,
+is also called one standard deviation, and so this specifies the probability
+of x taking on different values. So, x taking on values here in
+the middle here it's pretty high, since the Gaussian density here is pretty
+high, whereas x taking on values further, and further away will be
+diminishing in probability. Finally just for completeness
+let me write out the formula for the Gaussian distribution. So the probability of x, and
+I'll sometimes write this as the p (x) when we write this as P ( x ; mu,
+sigma squared), and so this denotes that the probability of X is parameterized by
+the two parameters mu and sigma squared. And the formula for
+the Gaussian density is this 1/ root 2 pi, sigma e (-(x-mu/g)
+squared/2 sigma squared. So there's no need to
+memorize this formula. This is just the formula for the
+bell-shaped curve over here on the left. There's no need to memorize it, and if you ever need to use this,
+you can always look this up. And so that figure on the left, that is
+what you get if you take a fixed value of mu and take a fixed value of sigma,
+and you plot P(x) so this curve here. This is really p(x) plotted
+as a function of X for a fixed value of Mu and of sigma squared. And by the way sometimes it's easier to
+think in terms of sigma squared that's called the variance. And sometimes is easier to
+think in terms of sigma. So sigma is called the standard deviation,
+and so it specifies the width of this
+Gaussian probability density, where as the square sigma, or
+sigma squared, is called the variance. Let's look at some examples of what
+the Gaussian distribution looks like. If mu equals zero, sigma equals one. Then we have a Gaussian distribution
+that's centered around zero, because that's mu and the width of this Gaussian, so that's one
+standard deviation is sigma over there. Let's look at some examples of Gaussians. If mu is equal to zero and
+sigma equals one, then that corresponds to a Gaussian
+distribution that is centered at zero, since mu is zero, and
+the width of this Gaussian is is controlled by sigma by
+that variance parameter sigma. Here's another example. That same mu is equal to 0 and
+sigma is equal to .5 so the standard deviation is .5 and the
+variance sigma squared would therefore be the square of 0.5 would be 0.25 and
+in that case the Gaussian distribution, the Gaussian probability
+density goes like this. Is also sent as zero. But now the width of this is much
+smaller because the smaller the area is, the width of this Gaussian
+density is roughly half as wide. But because this is a probability
+distribution, the area under the curve, that's the shaded area there. That area must integrate to one this is
+a property of probability distributing. So this is a much taller Gaussian
+density because this half is Y but half the standard deviation but
+it twice as tall. Another example is sigma is equal to
+2 then you get a much fatter a much wider Gaussian density and so here the sigma parameter controls that
+Gaussian distribution has a wider width. And once again, the area under the curve,
+that is the shaded area, will always integrate to one, that's the property of
+probability distributions and because it's wider it's also half as tall in order
+to still integrate to the same thing. And finally one last example would be if
+we now change the mu parameters as well. Then instead of being centered at 0 we
+now have a Gaussian distribution that's centered at 3 because this shifts over
+the entire Gaussian distribution. Next, let's talk about
+the Parameter estimation problem. So what's the parameter
+estimation problem? Let's say we have a dataset of
+m examples so exponents x m and lets say each of this
+example is a row number. Here in the figure I've plotted
+an example of the dataset so the horizontal axis is the x axis and
+either will have a range of examples of x, and I've just plotted
+them on this figure here. And the parameter estimation problem is, let's say I suspect that these examples
+came from a Gaussian distribution. So let's say I suspect that each of
+my examples, x i, was distributed. That's what this tilde thing means. Let's not suspect that each of these
+examples were distributed according to a normal distribution, or Gaussian
+distribution, with some parameter mu and some parameter sigma square. But I don't know what the values
+of these parameters are. The problem of parameter estimation is,
+given my data set, I want to try to figure out, well I want to estimate what
+are the values of mu and sigma squared. So if you're given a data set like this, it looks like maybe if I estimate what
+Gaussian distribution the data came from, maybe that might be roughly
+the Gaussian distribution it came from. With mu being the center of
+the distribution, sigma standing for the deviation controlling the width
+of this Gaussian distribution. Seems like a reasonable fit to the data. Because, you know, looks like the data
+has a very high probability of being in the central region, and
+a low probability of being further out, even though probability of
+being further out, and so on. So maybe this is a reasonable
+estimate of mu and sigma squared. That is, if it corresponds to
+a Gaussian distribution function that looks like this. So what I'm going to do is just write out
+the formula the standard formulas for estimating the parameters Mu and
+sigma squared. Our estimate or
+the way we're going to estimate mu is going to be just
+the average of my example. So mu is the mean parameter. Just take my training set,
+take my m examples and average them. And that just means the center
+of this distribution. How about sigma squared? Well, the variance, I'll just write
+out the standard formula again, I'm going to estimate as sum over one
+through m of x i minus mu squared. And so this mu here is actually
+the mu that I compute over here using this formula. And what the variance is, or one interpretation of the variance
+is that if you look at this term, that's the square difference between the
+value I got in my example minus the mean. Minus the center,
+minus the mean of the distribution. And so
+in the variance I'm gonna estimate as just the average of the square differences
+between my examples, minus the mean. And as a side comment, only for those
+of you that are experts in statistics. If you're an expert in statistics,
+and if you've heard of maximum likelihood estimation,
+then these parameters, these estimates, are actually the maximum likelihood
+estimates of the primes of mu and sigma squared but if you haven't heard
+of that before don't worry about it, all you need to know is that these
+are the two standard formulas for how to figure out what are mu and
+Sigma squared given the data set. Finally one last side comment again only
+for those of you that have maybe taken the statistics class before but if you've
+taken statistics This class before. Some of you may have seen the formula
+here where this is M-1 instead of M so this first term becomes
+1/M-1 instead of 1/M. In machine learning people tend to learn
+1/M formula but in practice whether it is 1/M or 1/M-1 it makes essentially no
+difference assuming M is reasonably large. a reasonably large training set size. So just in case you've seen
+this other version before. In either version it works just about
+equally well but in machine learning most people tend to use 1/M in this
+formula.And the two versions have slightly different theoretical properties
+like these are different math properties. Bit of practice it really makes makes
+very little difference, if any. So, hopefully you now have a good sense of
+what the Gaussian distribution looks like, as well as how to estimate
+the parameters mu and sigma squared of Gaussian distribution
+if you're given a training set, that is if you're given a set of data
+that you suspect comes from a Gaussian distribution with unknown parameters,
+mu and sigma squared. In the next video,
+we'll start to take this and apply it to develop an anomaly
+detection algorithm.

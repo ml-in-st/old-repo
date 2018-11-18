@@ -1,0 +1,724 @@
+1
+00:00:00,000 --> 00:00:04,620
+Di video ini saya akan menyatakan apa
+sebenarnya persoalan machine learning
+
+2
+00:00:04,620 --> 00:00:08,910
+yang paling umum, yaitu supervised
+learning. Saya akan definisikan supervised learning
+
+3
+00:00:08,910 --> 00:00:13,255
+lebih formil lagi nanti, tapi mungkin
+paling baik menjelaskan atau memulai dengan contoh
+
+4
+00:00:13,255 --> 00:00:17,820
+apa sebenarnya itu dan kita akan mendefinisikan
+secara formil nanti. Katakanlah Anda ingin
+
+5
+00:00:17,820 --> 00:00:23,072
+memprediksi harga perumahan. Beberapa waktu lalu, seorang
+mahasiswa mengambil beberapa kumpulan data dari
+
+6
+00:00:23,072 --> 00:00:28,745
+Institute of Portland di Oregon. Dan katakan
+Anda memplot satu kumpulan data dan tampak seperti
+
+7
+00:00:28,745 --> 00:00:34,347
+ini. Di sini pada sumbu horizontal,
+ukuran rumah yang berbeda-beda dalam kaki persegi,
+
+8
+00:00:34,347 --> 00:00:39,879
+dan pada sumbu vertikal, harga
+rumah yang berbeda-beda dalam ribuan dolar.
+
+9
+00:00:39,879 --> 00:00:45,168
+Jadi. Dengan data ini, katakan Anda punya teman
+yang memiliki sebuah rumah yang, katakan 750
+
+10
+00:00:45,168 --> 00:00:50,708
+kaki persegi dan berharap menjualnya
+dan mereka ingin tahu berapa yang bisa mereka
+
+11
+00:00:50,708 --> 00:00:56,116
+dapatkan dari rumah itu. Jadi bagaimana algoritma
+belajar menolong Anda? Satu hal yang mungkin dapat
+
+12
+00:00:56,116 --> 00:01:01,524
+dilakukan algoritma belajar adalah meletakkan
+garis lurus melalui data atau mencocokkan suatu
+
+13
+00:01:01,524 --> 00:01:07,111
+garis lurus ke data tersebut dan, berdasarkan
+hal itu, mungkin sepertinya rumah itu dapat di
+
+14
+00:01:07,111 --> 00:01:13,239
+jual mungkin sekitar $150,000. Tapi mungkin ini
+bukan satu-satunya algoritma belajar yang dapat Anda
+
+15
+00:01:13,239 --> 00:01:18,536
+gunakan. Mungkin ada yang lebih baik.
+Contohnya, sebagai ganti meletakkan garis
+
+16
+00:01:18,536 --> 00:01:23,620
+lurus ke data, kita bisa putuskan bahwa
+lebih baik mencocokkan sebuah fungsi
+
+17
+00:01:23,620 --> 00:01:29,110
+kwadrat atau sebuah polinomial orde kedua ke
+data ini. Dan jika Anda melakukan itu, dan membuat
+
+18
+00:01:29,110 --> 00:01:34,667
+prediksi di sini, maka tampaknya,
+mungkin kita dapat menjual rumah itu mendekati
+
+19
+00:01:34,667 --> 00:01:39,184
+$200,000. Salah satu hal yang akan kita bicarakan
+nanti adalah bagaimana memilih dan bagaimana
+
+20
+00:01:39,184 --> 00:01:43,792
+memutuskan apakah Anda ingin meletakkan garis lurus
+ke data atau apakah Anda ingin mencocokkan
+
+21
+00:01:43,792 --> 00:01:48,631
+fungsi kwadrat ke data dan tidak
+memilih mana yang adil yang memberikan teman
+
+22
+00:01:48,631 --> 00:01:53,182
+Anda rumah yang lebih baik untuk dijual. Tapi masing-
+masing akan menjadi contoh yang baik bagi sebuah
+
+23
+00:01:53,182 --> 00:01:57,834
+algoritma belajar. Jadi ini adalah contoh
+dari algoritma supervised learning. Dan
+
+24
+00:01:57,834 --> 00:02:03,736
+istilah supervised learning mengacu pada
+fakta bahwa kita memberi algoritma ini sekumpulan data
+
+25
+00:02:03,736 --> 00:02:09,089
+dimana "jawaban yang benar" di
+berikan. Artinya, kita memberikan sekumpulan data
+
+26
+00:02:09,089 --> 00:02:14,580
+rumah-rumah dimana untuk setiap contoh dalam kumpulan
+data ini, kita memberitahu algoritma ini berapa harga
+
+27
+00:02:14,580 --> 00:02:20,002
+yang benar begitu juga berapa harga aktualnya begitu,
+rumah itu terjual dan tujuan dari
+
+28
+00:02:20,002 --> 00:02:25,423
+algoritma ini hanya ingin menghasilkan lebih banyak
+jawaban-jawaban benar ini seperti untuk rumah baru
+
+29
+00:02:25,423 --> 00:02:30,579
+ini, Anda tahu, bahwa mungkin teman Anda
+coba untuk menjualnya. Untuk mendefinisikan dengan
+
+30
+00:02:30,579 --> 00:02:35,257
+istilah lagi, ini disebut juga
+persoalan regresi dan dengan
+
+31
+00:02:35,257 --> 00:02:40,467
+persoalan regresi, maksud saya, kita coba memprediksi
+output bernilai kontinyu. Sebut saja harganya.
+
+32
+00:02:40,467 --> 00:02:44,720
+Jadi secara teknis, saya kira harga dapat
+dibulatkan ke nilai sen terdekat. Jadi mungkin
+
+33
+00:02:44,720 --> 00:02:49,246
+harga sebenarnya nilai-nilai diskrit, tapi
+biasanya kita berpikir harga rumah
+
+34
+00:02:49,246 --> 00:02:53,608
+sebagai bilangan riil, sebagai nilai skalar, sebagai
+sejumlah nilai yang kontinyu dan istilah
+
+35
+00:02:53,608 --> 00:02:58,080
+regresi merujuk pada fakta bahwa kita
+sedang mencoba memprediksi jenis sifat yang
+
+36
+00:02:58,080 --> 00:03:02,060
+bernilai kontinyu. Ini contoh lain
+supervised learning, beberapa teman
+
+37
+00:03:02,060 --> 00:03:06,427
+dan saya benar-benar sedang mengerjakan ini
+sebelumnya. Mari kita lihat Anda ingin melihat
+
+38
+00:03:06,427 --> 00:03:11,675
+catatan medis dan coba memprediksi
+kanker payudara apakah ganas atau jinak. Jika
+
+39
+00:03:11,675 --> 00:03:16,856
+seseorang menemukan tumor payudara, gumpalan
+di payudara mereka, tumor ganas adalah
+
+40
+00:03:16,856 --> 00:03:22,300
+tumor yang jahat dan berbahaya, dan
+tumor jinak adalah tumor yang tidak berbahaya.
+
+41
+00:03:22,300 --> 00:03:27,876
+Jadi tak diragukan lagi orang sangat peduli akan hal ini.
+Mari kita lihat sekumpulan data dan anggaplah
+
+42
+00:03:27,876 --> 00:03:33,164
+pada kumpulan data Anda sumbu
+horizontalnya ukuran tumor dan
+
+43
+00:03:33,164 --> 00:03:39,317
+sumbu vertikalnya saya akan memplot satu
+atau nol, ya atau tidak, apakah ya atau bukan, ini
+
+44
+00:03:39,317 --> 00:03:45,184
+contoh tumor yang telah kita lihat sebelumnya yang
+ganas, artinya satu atau nol jika tidak ganas
+
+45
+00:03:45,184 --> 00:03:50,392
+atau jinak. Jadi katakanlah kumpulan data kita tampak
+seperti ini dimana kita melihat tumor seukuran
+
+46
+00:03:50,392 --> 00:03:56,283
+ini yang tampaknya jinak. Satu
+berukuran ini, satu berukuran ini. Dan seterusnya.
+
+47
+00:03:56,283 --> 00:04:02,227
+Dan sedihnya kita juga melihat beberapa tumor
+ganas, satu berukuran itu, satu berukuran
+
+48
+00:04:02,227 --> 00:04:08,572
+itu, satu berukuran itu... Dan seterusnya. Jadi
+contoh ini... Saya punya lima contoh tumor
+
+49
+00:04:08,572 --> 00:04:15,159
+jinak diperlihatkan di bawah ini, dan lima contoh
+tumor ganas ditampilkan dengan sumbu vertikal
+
+50
+00:04:15,159 --> 00:04:21,504
+bernilai satu. Dan katakanlah kita punya
+teman yang tragisnya punya tumor payudara,
+
+51
+00:04:21,504 --> 00:04:28,097
+dan katakanlah ukuran tumor payudaranya
+mungkin sekitar nilai ini.
+
+52
+00:04:28,097 --> 00:04:32,930
+Pertanyaan terkait machine learning adalah, dapatkah Anda
+memperkirakan berapa kemungkinannya, berapa
+
+53
+00:04:32,930 --> 00:04:37,819
+kesempatan bahwa suatu tumor ganas
+versus jinak? Untuk memperkenalkan satu
+
+54
+00:04:37,819 --> 00:04:42,719
+istilah lagi, ini adalah contoh dari
+persoalan klasifikasi. Istilah
+
+55
+00:04:42,719 --> 00:04:47,342
+klasifikasi merujuk pada fakta bahwa
+kita sedang mencoba memprediksi output
+
+56
+00:04:47,342 --> 00:04:52,321
+bernilai diskrit: nol atau satu, ganas atau
+jinak. Dan tampaknya dalam
+
+57
+00:04:52,321 --> 00:04:58,331
+persoalan klasifikasi kadangkala kamu bisa
+memiliki lebih dari dua nilai untuk dua
+
+58
+00:04:58,331 --> 00:05:03,852
+nilai yang paling tepat atas outputnya. Sebagai
+contoh konkrit, mungkin ada tiga
+
+59
+00:05:03,852 --> 00:05:09,947
+tipe kanker payudara sehingga Anda bisa mencoba
+untuk memprediksi nilai diskrit nol,
+
+60
+00:05:09,947 --> 00:05:15,138
+satu, dua, atau tiga dengan nol untuk jinak.
+Tumor jinak, jadi tidak kanker. Dan satu bisa
+
+61
+00:05:15,138 --> 00:05:19,836
+berarti, kanker jenis pertama, seperti, Anda punya
+tiga jenis kanker, jenis pertama bisa yang mana saja
+
+62
+00:05:19,836 --> 00:05:24,654
+dari ketiganya. Dan dua bisa berarti kanker jenis
+kedua, tiga bisa berarti kanker jenis
+
+63
+00:05:24,654 --> 00:05:29,111
+ketiga. Tapi ini juga akan menjadi
+persoalan klasifikasi, karena output kumpulan
+
+64
+00:05:29,111 --> 00:05:33,929
+nilai diskrit ini berhubungan
+dengan, Anda tahu, tidak kanker, atau jenis kanker
+
+65
+00:05:33,929 --> 00:05:39,094
+satu, atau jenis kanker dua, atau jenis kanker
+tiga. Dalam persoalan klasifikasi ada
+
+66
+00:05:39,094 --> 00:05:44,413
+cara lain untuk memplot data ini. Biar saya tunjukkan
+pada Anda apa yang saya maksudkan. Biar saya gunakan
+
+67
+00:05:44,413 --> 00:05:49,206
+simbol yang sedikit berbeda untuk memplot data
+ini. Jadi jika ukuran tumor akan menjadi
+
+68
+00:05:49,206 --> 00:05:54,303
+sifat yang akan saya gunakan untuk memprediksi
+keganasan atau kejinakan, saya dapat juga menggambar
+
+69
+00:05:54,303 --> 00:05:58,975
+data saya seperti ini. Saya akan menggunakan
+simbol lain untuk menunjukkan jinak dan
+
+70
+00:05:58,975 --> 00:06:03,707
+ganas, atau contoh negatif dan positif
+saya. Jadi sebagai ganti menggambar tanda silang,
+
+71
+00:06:03,707 --> 00:06:11,595
+sekarang saya akan menggambar O untuk tumor
+jinak. Seperti ini. Dan saya akan tetap
+
+72
+00:06:11,595 --> 00:06:18,655
+menggunakan X untuk menunjukkan tumor ganas saya.
+Oke? Saya harap ini mulai dapat dimengerti.
+
+73
+00:06:18,655 --> 00:06:23,624
+Semua yang saya lakukan adalah saya mengambil, Anda tahu,
+ini, kumpulan data saya di atas dan saya hanya
+
+74
+00:06:23,624 --> 00:06:30,894
+memetakannya ke bawah. Ke garis riil ini seperti ini.
+Dan mulai menggunakan simbol-simbol yang berbeda,
+
+75
+00:06:30,894 --> 00:06:35,828
+lingkaran dan tanda silang, untuk menunjukkan contoh
+ganas versus jinak. Sekarang di contoh
+
+76
+00:06:35,828 --> 00:06:41,091
+ini kita hanya menggunakan satu ciri atau satu
+sifat, sebagian besar, ukuran tumor untuk
+
+77
+00:06:41,091 --> 00:06:46,289
+memprediksi apakah tumor ganas
+atau jinak. Persoalan machine learning
+
+78
+00:06:46,289 --> 00:06:51,355
+lainnya saat kita punya lebih dari satu
+ciri, lebih dari satu sifat. Ini
+
+79
+00:06:51,355 --> 00:06:56,749
+contohnya. Katakanlah sebagai ganti hanya
+mengetahui ukuran tumor, kita tahu keduanya
+
+80
+00:06:56,749 --> 00:07:02,387
+umur pasien dan ukuran tumor. Dalam
+kasus itu mungkin data Anda akan terlihat
+
+81
+00:07:02,387 --> 00:07:08,562
+seperti ini dimana saya mungkin punya sekumpulan pasien
+dengan umur-umur itu dan ukuran tumor itu dan
+
+82
+00:07:08,562 --> 00:07:14,980
+mereka terlihat seperti ini. Dan sekumpulan pasien
+yang berbeda, mereka terlihat sedikit berbeda,
+
+83
+00:07:15,600 --> 00:07:23,968
+yang memiliki tumor tampaknya ganas, seperti yang
+ditunjukkan oleh tanda-tanda silang. Jadi, katakanlah Anda
+
+84
+00:07:23,968 --> 00:07:32,027
+punya teman yang tragisnya punya
+tumor. Dan mungkin, ukuran tumornya dan umur
+
+85
+00:07:32,027 --> 00:07:37,657
+jatuhnya di sekitar sana. Jadi diberikan kumpulan data
+seperti ini, apa yang algoritma belajar
+
+86
+00:07:37,657 --> 00:07:42,462
+mungkin lakukan adalah membuat garis lurus
+melalui data untuk mencoba memisahkan
+
+87
+00:07:42,462 --> 00:07:47,710
+tumor ganas dari tumor jinak
+dan, jadi algoritma belajar bisa memutuskan
+
+88
+00:07:47,710 --> 00:07:53,004
+untuk membuat garis lurus seperti itu untuk
+memisahkan dua kelas tumor.
+
+89
+00:07:53,004 --> 00:07:57,644
+Dan. Anda tahu, dengan ini, semoga Anda
+dapat memutuskan bahwa tumor teman Anda
+
+90
+00:07:57,644 --> 00:08:02,322
+kemungkinan besar jika di sebelah sana,
+semoga algoritma belajar Anda
+
+91
+00:08:02,322 --> 00:08:07,305
+akan mengatakan bahwa tumor teman Anda jatuh
+di sisi jinak ini dan karena itu kemungkinan
+
+92
+00:08:07,305 --> 00:08:12,044
+besar jinak daripada ganas. Dalam
+contoh ini kita punya dua ciri-ciri, yaitu,
+
+93
+00:08:12,044 --> 00:08:17,147
+umur pasien dan ukuran
+tumor. Dalam persoalan machine learning lainnya
+
+94
+00:08:17,147 --> 00:08:21,454
+kita akan sering punya lebih banyak ciri-ciri, dan
+teman saya yang bekerja pada persoalan ini, mereka
+
+95
+00:08:21,454 --> 00:08:25,849
+sebenarnya menggunakan ciri-ciri lainnya seperti ini,
+yakni ketebalan gumpalan, ketebalan gumpalan dari
+
+96
+00:08:25,849 --> 00:08:30,299
+tumor payudara. Keseragaman ukuran sel
+tumor. Keseragaman bentuk sel
+
+97
+00:08:30,299 --> 00:08:34,911
+tumor, dan seterusnya, dan ciri-ciri lainnya
+juga. Dan tampaknya satu dari yang mena-,
+
+98
+00:08:34,911 --> 00:08:39,907
+algoritma belajar yang paling menarik yang
+akan kita lihat di kelas ini adalah algoritma
+
+99
+00:08:39,907 --> 00:08:45,153
+belajar yang dapat menangani, tidak hanya dua
+atau tiga atau lima ciri-ciri, tapi ciri-ciri
+
+100
+00:08:45,153 --> 00:08:50,150
+yang tak terbatas jumlahnya. Di slide ini, saya
+telah mendaftarkan total lima ciri-ciri yang berbeda.
+
+101
+00:08:50,150 --> 00:08:54,482
+Persis, dua pada sumbu dan tiga lainnya di atas sini.
+Namun tampaknya pada beberapa persoalan
+
+102
+00:08:54,482 --> 00:08:58,497
+belajar, apa yang benar-benar Anda inginkan bukan mau
+menggunakan, seperti, tiga atau lima ciri-ciri.
+
+103
+00:08:58,497 --> 00:09:02,566
+Melainkan, Anda ingin menggunakan ciri-ciri
+yang tak terhingga jumlahnya, sifat-sifat
+
+104
+00:09:02,566 --> 00:09:06,211
+yang tak terhingga jumlahnya, sehingga algoritma
+belajar Anda punya banyak sifat atau
+
+105
+00:09:06,211 --> 00:09:10,333
+ciri atau isyarat lalu membuat prediksi-
+prediksi itu. Jadi bagaimana Anda menangani ciri-ciri
+
+106
+00:09:10,333 --> 00:09:14,439
+yang tak terhingga jumlahnya. Bahkan bagaimana Anda
+menyimpan hal-hal yang tak terhingga
+
+107
+00:09:14,439 --> 00:09:18,290
+jumlahnya di komputer saat komputer
+Anda akan kehabisan memori.
+
+108
+00:09:18,290 --> 00:09:22,188
+Tampaknya saat kita bicara tentang
+algoritma yang disebut Support Vector
+
+109
+00:09:22,188 --> 00:09:26,675
+Machine, akan ada trik matematika
+yang akan memperkenankan komputer untuk menangani
+
+110
+00:09:26,675 --> 00:09:31,214
+ciri-ciri yang tak terhingga jumlahnya. Bayangkan
+bahwa saya tidak hanya menulis dua ciri-ciri
+
+111
+00:09:31,214 --> 00:09:35,487
+di sini dan tiga ciri-ciri di kanan. Tapi, bayangkan
+saya menulis daftar panjang tak berhingga, saya
+
+112
+00:09:35,487 --> 00:09:39,866
+terus menulis lebih dan lebih dan lebih banyak
+ciri-ciri. Seperti daftar panjang tak terhingga
+
+113
+00:09:39,866 --> 00:09:44,192
+ciri-ciri. Tampaknya, kita akan bisa
+memajukan algoritma yang dapat menangani
+
+114
+00:09:44,192 --> 00:09:49,701
+itu. Jadi, sebagai rangkuman. Di kelas
+ini kita akan membahas tentang supervised
+
+115
+00:09:49,701 --> 00:09:54,167
+learning. Dan gagasannya adalah, di
+supervised learning, dalam setiap contoh pada
+
+116
+00:09:54,167 --> 00:09:58,880
+kumpulan data kita, kita diberitahu apa
+"jawaban benarnya" yang kita punya
+
+117
+00:09:58,880 --> 00:10:03,960
+sama seperti algoritma itu telah memprediksi
+contoh itu. Contohnya harga
+
+118
+00:10:03,960 --> 00:10:08,428
+rumah, atau apakah tumor ganas atau
+jinak. Kita juga membahas tentang
+
+119
+00:10:08,428 --> 00:10:13,202
+persoalan regresi. Dan dengan regresi,
+itu maksudnya tujuan kita mau memprediksi
+
+120
+00:10:13,202 --> 00:10:17,977
+output bernilai kontinyu. Dan kita membahas
+tentang persoalan klasifikasi, yang mana
+
+121
+00:10:17,977 --> 00:10:22,690
+tujuannya untuk memprediksi output bernilai
+diskrit. Hanya sebuah pertanyaan cepat terakhir:
+
+122
+00:10:22,690 --> 00:10:27,541
+Anggap Anda sedang menjalankan perusahaan dan Anda
+ingin mengembangkan algoritma belajar untuk
+
+123
+00:10:27,541 --> 00:10:32,618
+mengatasi kedua persoalan berikut. Pada
+soal pertama, Anda punya inventaris besar
+
+124
+00:10:32,618 --> 00:10:38,113
+barang-barang yang identik. Jadi bayangkan Anda punya
+ribuan salinan beberapa barang yang
+
+125
+00:10:38,113 --> 00:10:43,607
+identik untuk dijual dan Anda ingin memprediksi berapa
+banyak dari barang-barang ini yang Anda jual dalam
+
+126
+00:10:43,607 --> 00:10:49,172
+tiga bulan kedepan. Dalam persoalan kedua,
+soal dua, Anda ingin-- Anda punya banyak
+
+127
+00:10:49,172 --> 00:10:54,145
+pengguna dan Anda ingin menulis perangkat lunak untuk
+memeriksa setiap individu dari rekening
+
+128
+00:10:54,145 --> 00:10:59,193
+pelanggan Anda, jadi setiap rekening
+pelanggan Anda; dan untuk setiap rekening,
+
+129
+00:10:59,193 --> 00:11:04,178
+putuskan apakah atau tidak rekening telah
+diretas atau dikompromikan. Jadi, untuk setiap
+
+130
+00:11:04,178 --> 00:11:08,914
+soal ini, haruskah mereka diperlakukan sebagai
+persoalan klasifikasi, atau sebagai
+
+131
+00:11:08,914 --> 00:11:14,087
+persoalan regresi? Saat video berhenti sementara,
+silakan gunakan mouse Anda untuk memilih yang mana
+
+132
+00:11:14,087 --> 00:11:20,884
+dari keempat pilihan di sebelah kiri Anda
+pikir sebagai jawaban yang benar. Jadi semoga,
+
+133
+00:11:20,884 --> 00:11:25,871
+Anda mendapat bahwa ini jawabannya. Untuk
+soal pertama, saya akan memperlakukan ini sebagai
+
+134
+00:11:25,871 --> 00:11:31,058
+persoalan regresi, karena jika saya punya, Anda
+tahu, ribuan barang, well, saya mungkin
+
+135
+00:11:31,058 --> 00:11:36,071
+akan memperlakukan ini sebagai nilai riil,
+sebagai nilai kontinyu. Dan
+
+136
+00:11:36,290 --> 00:11:41,837
+memperlakukan, karenanya, jumlah barang yang saya jual,
+sebagai nilai kontinyu. Dan untuk
+
+137
+00:11:41,837 --> 00:11:47,748
+soal kedua, saya akan memperlakukan itu sebagai
+persoalan klasifikasi, karena saya bisa
+
+138
+00:11:47,748 --> 00:11:53,659
+katakan, atur nilai yang ingin saya prediksi dengan
+nol, untuk menunjukkan rekening tidak di
+
+139
+00:11:53,659 --> 00:11:58,850
+retas. Dan atur nilai satu untuk menunjukkan
+rekening telah diretas. Jadi
+
+140
+00:11:58,850 --> 00:12:03,287
+seperti, Anda tahu, kanker payudara,
+nol adalah jinak, satu adalah ganas. Jadi saya
+
+141
+00:12:03,287 --> 00:12:08,150
+bisa atur ini menjadi nol atau satu tergantung
+apakah rekening telah diretas, dan punya
+
+142
+00:12:08,150 --> 00:12:13,134
+algoritma mencoba memprediksi masing-masing dari
+dua nilai diskrit ini. Dan karena ada
+
+143
+00:12:13,134 --> 00:12:17,693
+sejumlah kecil nilai diskrit, karenanya saya
+akan memperlakukan ini sebagai persoalan
+
+144
+00:12:17,693 --> 00:12:23,075
+klasifikasi. Jadi, itu saja untuk supervised
+learning dan pada video berikutnya saya akan membahas
+
+145
+00:12:23,075 --> 00:12:28,325
+tentang unsupervised learning, yang merupakan
+kategori utama lainnya dari algoritma belajar.

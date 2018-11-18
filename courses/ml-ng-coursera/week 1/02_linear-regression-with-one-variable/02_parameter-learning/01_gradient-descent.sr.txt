@@ -1,0 +1,83 @@
+Prethodno smo definisali funkciju koštanja J. U ovome videu bih želeo da vam govorim
+ o algoritmu zvanom gradijent opadanja za minimizaciju funkcije koštanja J. Gradijent opadanja je opšti algoritam, ne koristi se samo u linearnoj regresiji. Koristi se svuda u mašinskom učenju. Kasnije na kursu ćemo da koristimo 
+gradijent opadanja da bismo minimizovali funkcije a ne samo funkciju 
+koštanja J za linearnu regresiju. Dakle, u ovome videu ćemo da govorimo 
+o gradijentu opadanja za minimizaciju proizvoljne funkcije J a kasnije u videima ćemo da ga primenimo posebno na funkciju koštanja J definisanu za linearnu regresiju. Dakle ovo je postavka problema. Pretpostavićemo da imamo 
+neku funkciju J(teta0, teta1) možda je to funkcija linearne regresije a možda neka druga funkcija 
+koju želimo da minimizujemo. I želimo da dobijemo algoritam koji minimizuje tu funkciju J(teta0, teta1). Još jednom, gradijent opadanja je primenjiv na uopštenije funkcije. Znači zamislite da imate funkciju kao J od teta0, teta1, teta2 do tetan i želite da minimizujete teta0, minimizujete preko teta0 do tetan J(teta0, ... tetan). Naš gradijent opadanja je algoritam za rešavanje opštijeg problema. Ali zbog kratkoće, zbog složenosti označavanja 
+pretvaraću se da imam samo dva parametra do kraja ovoga videa. Evo ideje gradijenta opadanja. Ono što ćemo da uradimo 
+je da pretpostavimo početne vrednosti za teta0 i teta1. Stvarno nije važno koje su to 
+vrednosti ali uopšteno postavljamo teta0 na 0 i teta1 na 0, samo ih inicijalizujemo na 0. Ono šta ćemo da uradimo u gradijentu 
+opadanja je da menjamo teta0 i teta1 po malo da bismo smanjili 
+J(teta0, teta1) dok god, nadajmo se, ne dobijemo minimum, ili 
+možda lokalni minimum. Da vidimo na slikama šta gradijent opadanja radi. Recimo da želite da minimizujete ovu funkciju. Vidite ose, ovo su teta0, teta1 na horizontalnim 
+osama a J je na vertikalnoj. Dakle, visina površi pokazuje J a mi 
+želimo da minimizujemo tu funkciju. Želimo da počnemo sa 
+teta0 i teta1 u nekoj tački. Zamislite da uzmete neku 
+vrednost za teta0, teta1 a to odgovara nekoj početnoj 
+tački na površi ove funkcije. Neka vrednost teta0, teta1 
+daje vam tačku ovde. Inicijalizovao sam je na 0, 0 ali možete isto tako da je inicijalizujete
+ i na neku drugu vrednost. Sada zamislite da ovaj oblik prikazuje otvor. Zamislite ovo kao predeo 
+sa travnatim parkom sa dva brda kao ova, i 
+želim da zamislite da fizički stojite na toj tački na brdu, na 
+tom malom brdu u vašem parku. U gradijentu opadanja ćemo 
+da se okrećemo za 360 stepeni, samo da pogledamo oko nas i da se 
+zapitamo ako napravimo mali korak u nekom smeru i ako želimo da 
+se spustimo što je brže moguće u kom smeru ćemo da 
+napravimo taj mali korak. Ako želim da idem dole, dakle želim fizički da idem nizbrdo 
+što je brže moguće. Ako stojite na toj tački na brdu, gledate okolo i nalazite da je najbolji smer 
+da napravite mali korak nadole otprilike taj smer. U redu, sada ste na ovoj novoj tački na brdu. Opet ćete da gledate okolo i da kažete, kojim smerom da 
+napravim mali korak nadole? Ako to uradite i napravite drugi 
+korak, zakoračite u tom smeru. I tako nastavljate, sa te nove tačke gledate okolo, odlučite kojim smerom ćete najpre nizbrdo. Ponovo zakoračite i tako dalje, dok ne dođete do lokalnog minimuma. Gradijent opadanja ima zanimljivu osobinu. Kada smo prvi put pokrenuli gradijent 
+opadanja počeli smo sa ove tačke ovde, u redu? Počeli smo sa te tačke. Zamislite da smo inicijalizovali gradijent 
+opadanja samo par koraka desno. Zamislite da smo inicijalizovali gradijent 
+opadanja sa te tačke gore desno. Ako želite da ponovite proces, 
+startujete iz te tačke, gledate okolo, zakoračite u smeru najbržeg 
+spuštanja, uradićete ovo. Gledate okolo, zakoračite, i tako dalje. I ako počnete samo nekoliko 
+koraka desno, gradijent opadanja će da vas odvede do drugog optimuma desno. Ako počnete od prve tačke doći ćete na ovaj lokalni optimum, ali ako počnete sa
+ neke lokacije koja je blizu završićete na veoma udaljenom optimumu. Ovo je osobina gradijenta 
+ opadanja o čemu ćemo da govorimo malo kasnije. Dakle, to je intuicija sa slika. Pogledajmo matematiku. Ovo je definicija algoritma 
+gradijenta opadanja . Ovo ćemo da ponavljamo
+ dok god ne konvergiramo, menjaćemo parametar tetaj, uzećemo tetaj i oduzimaćemo od njega 
+alfa puta ovaj član ovde. Da vidimo, ima mnogo detalja u ovoj 
+jednačini pa ću da raspakujem neke. Prvo, ova oznaka ovde :=, koristićemo := da bismo obeležili operator dodeljivanja. Konkretno, ako napišem a := b 
+znači u računarskom jeziku uzmi vrednost iz b i prepiši preko vrednosti a. Dakle, to znači postavi a na 
+vrednost b, što je dodeljivanje. Takođe mogu da uradim a := a + 1. To znači uzmi a i povećaj ga za 1. Za razliku od toga, ako 
+koristim znak jednakosti pišem a = b tada je to istinitosna tvrdnja. U redu? Dakle, ako napišem a = b, tada tvrdim da je vrednost od 
+a jednaka vrednosti b, u redu? Na levoj strani je računarska operacija gde smo postavili a na novu vrednost. Na desnoj strani je tvrdnja, 
+tvrdim da su vrednosti od a i b iste, dok kad napišete 
+a := a + 1, to znači povećanje a za 1,. Nadam se da neću nikada 
+da pišem a = a + 1 jer je to pogrešno. a i a + 1 nikada ne mogu da budu iste vrednosti. U redu? Dakle, ovo je prvi deo definicije. Ovo alfa ovde je broj koji se zove stopa učenja. Ono što alfa radi je da u osnovi kontroliše koliko veliki korak pravimo niz 
+brdo dok pravimo spuštanje. Ako je alfa veoma veliko, to 
+odgovara veoma agresivnoj proceduri gradijenta opadanja gde pokušavamo 
+da napravimo velike korake na dole a ako je alf veom malo, tada pravimo 
+male, bebi korake niz brdo. Kasnije ću da se vratim na ovo, 
+kako da postavimo alfa i tako to. I konačno, ovaj član ovde je izvedeni član. Neću o njemu da pričam baš 
+sad ali ću da izvedem taj član i kasnije ću vam reći šta je on. Neki od vas su malo više 
+upućeni u račun od ostalih ali iako niste upućeni, ne brinite za to. Reći ću vam šta treba da znate o njemu. Postoji još jedna stvar o gradijentu opadanja, mi ćemo da menjamo teta0 i teta1, u redu? Te promene se rade za j = 0 i j = 1 pa ćemo da menjamo teta0 i teta1. Veština implementacije 
+gradijenta opadanja je, za ovaj izraz, za ovu jednačinu, da menjate istovremeno teta0 i teta1. Ono na šta mislim je da ćemo 
+u jednačini da menjamo teta0 := teta0 minus nešto 
+i teta1 := teta1 minus nešto. Način na koji to implementiramo 
+je da računamo desnu stranu. Računamo tu stvar za teta0 
+i teta1 i onda istovremeno, u isto vreme, menjamo teta0 i teta1, u redu? Evo šta sam mislio time. Ovo je ispravna implementacija 
+gradijenta opadanja, istovremeno ažuriranje. Postaviću temp0 da je jednako 
+tome, temp1 je jednako tome i tako računamo desnu stranu, i kada je izračunamo čuvamo njihove vrednosti u promenjivima 
+temp0 i temp1. Promeniću teta0 i teta1 istovremeno jer je to 
+ispravna implementacija. Sa druge strane, ovo nije ispravna implementacija 
+koja ne radi istovremeno izmene. Dakle u ovoj pogrešnoj implementaciji 
+računamo temp0 a onda menjamo teta0 pa računamo 
+temp1 i onda menjamo teta1. Razlika između implementacije na desnoj strani i na levoj strani je, ako pogledate dole, vidite ovaj korak, ako tada menjate teta0, tada ćete da koristite novu vrednost 
+teta0 za računanje ovoga izvedenog člana. Tako dobijate različitu vrednost 
+za temp1 u odnosu na levu stranu. Jer ste uključili novu vrednost teta0 u ovu jednačinu. Dakle, ovo na desnoj strani 
+nije ispravna implementacija gradijenta opadanja, u redu? Neću vam govoriti zašto 
+trebate istovremene izmene. Ispada da je način na koji se 
+gradijent opadanja obično implementira, o čemu ćemo da govorimo kasnije, je više prirodan način implementacije korištenjem istovremenih izmena. Kada se govori o gradijentu opadanja, uvek se misli na istovremene izmene. Ako implementirate sa 
+neistovremenim izmenama, verovatno će da radi. Ali taj algoritam nije ispravan. To se ne odnosi na gradijent opadanja, to je neki drugi algoritam 
+sa drugačijim osobinama. I zbog raznih razloga može da 
+se ponaša veoma čudno, i ono što treba da uradite je da 
+implementirate istovremene izmene. Tako izgleda algoritam gradijenta opadanja. U sledećem videu ćemo da 
+idemo dublje u izvedeni član, koji sam napisao gore ali ga nisam definisao. Ako ste pohađali računski 
+kurs i ako poznajete parcijalne izvode i izvode, to je baš ono što je taj izvedeni član a u slučaju da ne poznajete račun, ne brinite. Sledeći video će da vam da spoznaju i reći vam sve što vam treba da 
+znate da izračunate taj izvedeni član iako niste videli račun, iako 
+ranije niste videli parcijalne izvode. Nadam se da ćemo u sledećem videu moći da vam damo spoznaju koja vam 
+treba da primenite gradijent opadanja.

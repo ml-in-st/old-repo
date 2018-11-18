@@ -1,0 +1,415 @@
+1
+00:00:00,960 --> 00:00:05,684
+U ovome videu ćemo da zakopamo malo dublje da 
+bismo dobili jasniju sliku o tome šta funkcija
+
+2
+00:00:05,684 --> 00:00:10,523
+koštanja radi. Podrazumeva se da ste
+ upoznati sa crtanjem kontura. Ako
+
+3
+00:00:10,523 --> 00:00:15,189
+niste upoznati, neke od ilustracija
+
+4
+00:00:15,189 --> 00:00:20,144
+u videu će imati smisla a neke 
+neće ali je u redu da preskočite
+
+5
+00:00:20,144 --> 00:00:24,522
+ovaj video ili neki od njih jer niste ranije videli crtanje
+
+6
+00:00:24,522 --> 00:00:29,246
+kontura. To je u redu i opet ćete razumeti ostatak kursa
+
+7
+00:00:29,246 --> 00:00:34,935
+bez tih delova. Kao i obično, 
+ovo je formulacija našeg problema,
+
+8
+00:00:34,935 --> 00:00:39,882
+sa parametrima hipoteze, funkcijom 
+koštanja i ciljem naše optimizacije. Za razliku
+
+9
+00:00:39,882 --> 00:00:45,163
+od prošlog puta, zadržaću oba parametra, teta0
+
+10
+00:00:45,163 --> 00:00:50,573
+i teta1 dok budemo pravili vizualizaciju
+ funkcije koštanja. Dakle, isto
+
+11
+00:00:50,573 --> 00:00:57,204
+kao i prošli put, želimo da razumemo 
+hipotezu h i funkciju koštanja J.
+
+12
+00:00:57,204 --> 00:01:04,167
+Dakle, ovo je moj trening skup cena 
+nekretnina, hajde da napravimo neku hipotezu.
+
+13
+00:01:04,167 --> 00:01:10,219
+Recimo, ovo uopšte nije dobra hipoteza. Ako postavim
+ teta0 = 50
+
+14
+00:01:10,219 --> 00:01:16,270
+i teta1 = 0.06, dobiću ovu dole hipotezu koja
+
+15
+00:01:16,270 --> 00:01:22,190
+odgovara ovoj pravoj liniji. Za ove vrednosti teta0 i teta1,
+
+16
+00:01:22,190 --> 00:01:27,511
+želimo da iscrtamo odgovarajuću funkciju koštanja. Evo šta
+
+17
+00:01:27,511 --> 00:01:33,150
+smo uradili prošli put kada smo imali 
+samo teta1. Drugim rečima, iscrtali smo
+
+18
+00:01:33,150 --> 00:01:37,814
+crtež koji izgleda ovako kao funkciju od 
+teta1. Ali sad imamo dva parametra,
+
+19
+00:01:37,814 --> 00:01:42,340
+teta0 i teta1 pa će crtanje da bude malo složenije. Ispada da,
+
+20
+00:01:42,340 --> 00:01:47,699
+kada smo imali samo jedan parametar, 
+dio koji smo crtali je bila funkcija
+
+21
+00:01:47,699 --> 00:01:52,925
+u obliku luka. Sad kada imamo dva 
+parametra, ispada da funkcija koštanja
+
+22
+00:01:52,925 --> 00:01:58,218
+takođe ima oblik luka. U zavisnosti od vašeg trening skupa,
+
+23
+00:01:58,218 --> 00:02:03,511
+možete da dobijete funkciju koja izgleda ovako. Dakle, ovo je
+
+24
+00:02:03,511 --> 00:02:09,404
+3D oblik gde su ose označene kao teta0 i teta1.
+
+25
+00:02:09,404 --> 00:02:15,326
+Ako menjate teta0 i teta1, dva 
+parametra, dobijate različite vrednosti
+
+26
+00:02:15,326 --> 00:02:20,964
+funkcije koštanja J (teta0, teta1) a visina ove površi iznad
+
+27
+00:02:20,964 --> 00:02:26,347
+određene tačke teta0, teta1, to je vertikalna osa,
+
+28
+00:02:26,347 --> 00:02:31,200
+visina tačke na površi upućuje na vrednost J(teta0, teta1).
+
+29
+00:02:31,200 --> 00:02:36,471
+Kao što možete da vidite ima oblik luka. Pokazaću vam
+
+30
+00:02:36,471 --> 00:02:46,351
+isti crtež u 3D. Dakle, ovo je ista figura 
+u 3D, imamo ose teta0 i teta1 a
+
+31
+00:02:46,351 --> 00:02:52,122
+vertikalna osa J(teta0, teta1) i ako rotiram ovo dobićete
+
+32
+00:02:52,122 --> 00:02:57,608
+osećaj ravni u obliku luka i tako izgleda funkcija koštanja J.
+
+33
+00:02:57,608 --> 00:03:03,592
+Radi ilustracije, u ostatku ovoga videa
+
+34
+00:03:03,592 --> 00:03:09,077
+neću da koristim ove 3D oblike da bih vam pokazao
+
+35
+00:03:09,077 --> 00:03:16,475
+funkciju J, umesto toga koristiću 
+konturu, ili ono što volim da zovem
+
+36
+00:03:16,475 --> 00:03:24,748
+oblikom konture, mislim da imaju isto
+ značenje, da bih vam pokazao ravni.
+
+37
+00:03:24,748 --> 00:03:31,135
+Dakle, ovo je primer oblika konture, na desnoj strani, gde su ose
+
+38
+00:03:31,135 --> 00:03:37,602
+teta0 i teta1. Šta svaki od ovih ovala, šta 
+svaka od ovih elipsi pokazuje je skup
+
+39
+00:03:37,602 --> 00:03:43,757
+tačaka koje uzimaju iste vrednosti za J(teta0, teta1).
+
+40
+00:03:43,757 --> 00:03:50,514
+Konkretno, na primer ovo, uzećete tu tačku, tu tačku i tu tačku.
+
+41
+00:03:50,514 --> 00:03:55,583
+Sve tri tačke koje sam nacrtao magenta
+ bojom liniji imaju istu vrednost
+
+42
+00:03:55,583 --> 00:03:59,730
+za J(teta0, teta1). U redu. Ovo je teta0, teta1 osa
+
+43
+00:03:59,730 --> 00:04:04,774
+ali sve tri imaju istu vrednost za J(teta0, teta1)
+
+44
+00:04:04,774 --> 00:04:10,218
+a ako niste mnogo viđali slike kontura, zamislite da
+
+45
+00:04:10,218 --> 00:04:14,992
+funkcija u obliku luka izlazi iz mog 
+ekrana. Dakle, to je minimum,
+
+46
+00:04:14,992 --> 00:04:19,668
+dno luka je tačka upravo ovde, ova sredina, sredina tih
+
+47
+00:04:19,668 --> 00:04:24,285
+koncentričnih elipsi. I zamislite oblik 
+luka koji kao da izrasta iz mog
+
+48
+00:04:24,285 --> 00:04:28,786
+ekrana, ovako, tako da svaka elipsa ima istu visinu
+
+49
+00:04:28,786 --> 00:04:33,345
+iznad mog ekrana. A minimum luka je baš dole.
+
+50
+00:04:33,345 --> 00:04:37,787
+I tako, oblici kontura su možda prihvaćeniji način
+
+51
+00:04:37,787 --> 00:04:45,185
+predstavljanja moje funkcije J. 
+Pogledajmo neke primere. Ovde imam
+
+52
+00:04:45,185 --> 00:04:53,275
+određenu tačku, u redu. A to je ako je teta0 jednako otprilike
+
+53
+00:04:53,275 --> 00:05:01,964
+800 a teta1 jednako oko -0.15. Tako, ova crvena
+
+54
+00:05:01,964 --> 00:05:07,322
+tačka odgovara skupu vrednosti para teta0, teta1
+
+55
+00:05:07,322 --> 00:05:12,092
+i u stvari odgovara hipotezi teta0 je
+
+56
+00:05:12,092 --> 00:05:17,189
+oko 800, seče horizontalnu osu na oko 800, a ovo je
+
+57
+00:05:17,189 --> 00:05:21,763
+nagib od oko -0.15. Ova linija ne odgovara baš najbolje
+
+58
+00:05:21,763 --> 00:05:26,859
+podacima. Ova hipoteza h(x) sa ovim vrednostima teta0
+
+59
+00:05:26,859 --> 00:05:32,283
+teta1 uopšte ne odgovara podacima. To shvatate, to
+
+60
+00:05:32,283 --> 00:05:37,531
+je koštanje. Ta vrednost je tamo, 
+poprilično je udaljena od minimuma,
+
+61
+00:05:37,531 --> 00:05:42,901
+ovo je prilično visoka cena jer ovo ne odgovara
+
+62
+00:05:42,901 --> 00:05:47,247
+podacima. Pogledajmo još neke primere. Ovo je drugačija
+
+63
+00:05:47,247 --> 00:05:52,489
+hipoteza, koja još uvek ne odgovara podacima ali je malo bolja
+
+64
+00:05:52,489 --> 00:05:57,986
+tako da evo je tačka na desnoj strani, to su parametri teta0
+
+65
+00:05:57,986 --> 00:06:07,387
+teta1 i moja teta0 vrednost. To je oko 360 i moja vrednost za
+
+66
+00:06:07,387 --> 00:06:14,047
+teta1. Jednaka je 0. Hajde da napišemo, teta0 = 360
+
+67
+00:06:14,047 --> 00:06:20,063
+a teta1 = 0. A taj par parametara odgovara ovoj
+
+68
+00:06:20,063 --> 00:06:26,161
+hipotezi, odgovara pravoj koja je h(x) = 360 + 0 * x.
+
+69
+00:06:26,161 --> 00:06:32,421
+Dakle, to je hipoteza. I ona ima svoju cenu, a
+
+70
+00:06:32,421 --> 00:06:38,600
+ta cena je visina J funkcije u toj tački.
+
+71
+00:06:38,791 --> 00:06:44,886
+Pogledajmo par primera. Još jednom, ovo je, u ovoj vrednosti
+
+72
+00:06:44,886 --> 00:06:52,231
+teta0 i u toj vrednosti teta1 dobijamo ovu hipotezu h(x)
+
+73
+00:06:52,231 --> 00:06:58,599
+i još jednom ne tako dobro slaganje sa podacima 
+i još je dalje od minimuma. Poslednji primer,
+
+74
+00:06:58,599 --> 00:07:03,450
+ovo nije baš minimum ali je blizu minimuma. Dakle,
+
+75
+00:07:03,450 --> 00:07:08,486
+prilično dobro odgovara podacima gde, za određenu vrednost
+
+76
+00:07:08,486 --> 00:07:13,337
+teta0 i za određenu vrednost teta1 imamo
+
+77
+00:07:13,337 --> 00:07:18,004
+određeno h(x). Ovo nije baš minimum ali je
+
+78
+00:07:18,004 --> 00:07:23,039
+prilično blizu. Suma kvadrata 
+grešaka je suma rastojanja između
+
+79
+00:07:23,039 --> 00:07:28,259
+mojih trening primera i moje hipoteze. 
+To je suma kvadrata rastojanja.
+
+80
+00:07:28,259 --> 00:07:32,548
+Sve ove greške, sve je to prilično blizu minimuma iako
+
+81
+00:07:32,548 --> 00:07:37,096
+nije baš minimum. Nadam se da su 
+vam ove slike pomogle da bolje
+
+82
+00:07:37,096 --> 00:07:41,869
+razumete šta su vrednosti funkcije koštanja J, kako
+
+83
+00:07:41,869 --> 00:07:47,324
+odgovaraju različitim hipotezama 
+i kako bolje hipoteze odgovaraju
+
+84
+00:07:47,324 --> 00:07:52,983
+tačkama koje su bliže minimumu funkcije koštanja J. Ono što zaista
+
+85
+00:07:52,983 --> 00:07:57,619
+želimo je efikasan algoritam, efikasan softver za
+
+86
+00:07:57,619 --> 00:08:02,218
+automatsko pronalaženje vrednosti 
+teta0 i teta1 koje minimizuju
+
+87
+00:08:02,218 --> 00:08:06,566
+funkciju koštanja J, u redu? A ono što ne želimo je da
+
+88
+00:08:06,566 --> 00:08:10,697
+napišemo softver, iscrtamo tačke i onda ručno čitamo
+
+89
+00:08:10,697 --> 00:08:15,263
+brojeve, to nije dobar način. Videćemo kasnije da,
+
+90
+00:08:15,426 --> 00:08:19,938
+kada budemo gledali komplikovanije 
+primere, imaćemo visokodimenzione oblike
+
+91
+00:08:19,938 --> 00:08:23,906
+sa više parametara, videćete kasnije u ovome kursu da
+
+92
+00:08:23,906 --> 00:08:28,091
+postoje primeri gde ne možete da iscrtate ove oblike i
+
+93
+00:08:28,091 --> 00:08:33,664
+to postaje teže da se sagleda. Ono što želimo je softver
+
+94
+00:08:33,664 --> 00:08:37,729
+koji pronalazi vrednosti teta0, teta1 
+koje minimizuju ovu funkciju a
+
+95
+00:08:37,916 --> 00:08:42,914
+u sledećem videu počećemo da govorimo 
+o algoritmu koji automatski pronalazi
+
+96
+00:08:42,914 --> 00:08:47,600
+te vrednosti teta0 i teta1 koje minimizuju funkciju koštanja J.

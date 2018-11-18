@@ -1,0 +1,426 @@
+1
+00:00:00,000 --> 00:00:04,100
+Trong đoạn phim trước đó, chúng ta đã đưa ra định nghĩa toán học của hàm sai số.
+
+2
+00:00:04,100 --> 00:00:08,616
+Trong đoạn phim này, chúng ta sẽ xem xét một số ví dụ một cách trực giác
+
+3
+00:00:08,616 --> 00:00:14,466
+về hoạt động của hàm sai số, và tại sao chúng ta muốn dùng hàm này.
+
+4
+00:00:14,466 --> 00:00:19,396
+Tóm lại những gì chúng ta đã học được từ lần trước. Chúng ta muốn tìm một đường thẳng phù hợp với dữ liệu của chúng ta, do đó, chúng ta đã có điều này
+
+5
+00:00:19,396 --> 00:00:23,958
+được thành lập như là một giả thuyết với tham số theta-0 và theta-1, và
+
+6
+00:00:23,958 --> 00:00:28,888
+với các tham số khác nhau, chúng ta sẽ có đường thẳng phù hợp khác nhau
+
+7
+00:00:31,323 --> 00:00:33,758
+Do đó, mục tiêu của chúng ta là phù hợp tất cả các dữ liệu và
+
+8
+00:00:33,758 --> 00:00:38,554
+giảm thiểu hóa hàm sai số. [âm thanh] Vì vậy trong đoạn phim này, để
+
+9
+00:00:38,554 --> 00:00:43,293
+hình dung tốt hơn hàm đánh giá J, tôi sẽ đơn giản hàm giá trị h
+
+10
+00:00:43,293 --> 00:00:48,220
+được hiển thị bên phải. Tôi sẽ đơn giản hóa hàm giá trị h
+
+11
+00:00:48,220 --> 00:00:53,275
+bằng cách chỉ dùng theta-1 nhân cho x. Điều này cũng tương tự như chúng ta thiết lập
+
+12
+00:00:53,275 --> 00:00:58,721
+tham số theta-0 bằng 0. Chúng ta chỉ có 1 tham số theta-1.
+
+13
+00:00:58,721 --> 00:01:04,372
+Hàm đánh giá J cũng giống như lúc trước, chỉ khác là hàm giá trị h giờ chỉ bằng
+
+14
+00:01:04,372 --> 00:01:10,309
+theta-1 nhân với x. Giờ hàm đánh giá J chỉ còn theta-1 nên mục tiêu của chúng ta
+
+15
+00:01:10,309 --> 00:01:16,246
+là tìm giá trị nhỏ nhất cho hàm J(theta-1). Trong đồ thị sau đây,
+
+16
+00:01:16,246 --> 00:01:21,611
+nếu theta-0 bằng 0, hàm giá trị
+
+17
+00:01:21,611 --> 00:01:27,176
+sẽ đi qua gốc tọa độ (0,0). Bằng cách đơn giản hóa
+
+18
+00:01:27,176 --> 00:01:33,415
+hàm giá trị h, chúng ta sẽ hiểu cách hoạt động
+
+19
+00:01:33,415 --> 00:01:40,178
+của hàm này tốt hơn. Nói tóm lại, chúng ta cằn hiểu cách hoạt động của 2 hàm sau đây.
+
+20
+00:01:40,178 --> 00:01:46,432
+Một là hàm giá trị h, và hai là hàm sai số J. Hãy xem sét..
+
+21
+00:01:46,432 --> 00:01:52,068
+hàm giá trị h(x). Đối với một mệnh giá của theta-1, đây là một
+
+22
+00:01:52,068 --> 00:01:58,168
+chức năng của X. Vì vậy, các giả thuyết là một chức năng của, những gì là kích thước của các hauls
+
+23
+00:01:58,168 --> 00:02:03,959
+X. trái ngược, hàm chi phí, J, đó là một chức năng của các tham số, theta
+
+24
+00:02:03,959 --> 00:02:09,993
+một, điều khiển độ dốc của đường thẳng. Chúng ta hãy nội các chức năng này
+
+25
+00:02:09,993 --> 00:02:15,481
+và cố gắng hiểu cả hai tốt hơn.
+Hãy đồ giả thuyết. Bên trái,
+
+26
+00:02:15,481 --> 00:02:20,283
+Hãy nói rằng đây là của tôi huấn luyện với ba điểm (1,1), (2, 2) và (3, 3). Chúng ta hãy
+
+27
+00:02:20,283 --> 00:02:25,338
+chọn một giá trị theta-1, vì vậy khi theta-1 bằng một trong, và nếu đó là sự lựa chọn của tôi cho
+
+28
+00:02:25,338 --> 00:02:30,392
+Theta-1, sau đó giả thuyết của tôi sẽ giống như thế này đường thẳng trên đây.
+
+29
+00:02:30,392 --> 00:02:35,234
+Và tôi 'm gonna chỉ ra, khi tôi đang vẽ chức năng giả thuyết của tôi. X trục, của tôi
+
+30
+00:02:35,234 --> 00:02:40,525
+trục ngang được dán nhãn X, xếp bạn đã biết, kích thước của các lỗ hổng của
+
+31
+00:02:40,525 --> 00:02:46,551
+[unintelligible]. Bây giờ, tạm thời [unintelligible] rằng một trong những bằng một trong, những gì tôi muốn làm là
+
+32
+00:02:46,551 --> 00:02:52,430
+tìm ra những gì là j theta-1, khi theta-1 là bằng với một trong những. Vì vậy cho phép đi trước
+
+33
+00:02:52,430 --> 00:02:58,781
+và tính toán những gì chức năng chi phí đã cho. Bạn sẽ vượt quá một trong. Vâng, như thường lệ,
+
+34
+00:02:58,781 --> 00:03:05,761
+chức năng nguyên nhân của tôi được định nghĩa như sau, phải không? Một số từ, một số of'em là đào tạo
+
+35
+00:03:05,761 --> 00:03:13,840
+bộ điều kiện thông thường bình phương lỗi này.
+Và, điều này là do đó tương đương với. Và điều này.
+
+36
+00:03:14,740 --> 00:03:25,066
+Của theta-1 x tôi trừ y tôi và nếu bạn đơn giản hóa điều này hóa ra là. Rằng. Zero
+
+37
+00:03:25,066 --> 00:03:31,995
+Quảng trường số không quảng trường bằng không vuông mà tất nhiên, chỉ bằng 0. Bây giờ,
+
+38
+00:03:31,995 --> 00:03:39,098
+bên trong hàm sai số. Nó chỉ ra mỗi trong số này điều khoản là bằng 0. Bởi vì
+
+39
+00:03:39,098 --> 00:03:46,288
+Đối với cụ thể [unintelligible] tôi có hoặc ví dụ [unintelligible] là 112233. Nếu Phiên bản beta
+
+40
+00:03:46,288 --> 00:03:54,667
+một là bằng 1. Sau đó, h của x. h của x tôi. Bằng y tôi chính xác, hãy để tôi viết
+
+41
+00:03:54,667 --> 00:04:04,164
+này tốt hơn. Quyền? Và như vậy, h x trừ y, mỗi người trong số những điều khoản này là bằng 0,
+
+42
+00:04:04,164 --> 00:04:14,821
+đó là lý do tại sao tôi tìm thấy rằng j của một trong những là bằng 0. Vì vậy, chúng tôi bây giờ biết rằng j của một trong những là
+
+43
+00:04:14,821 --> 00:04:20,504
+bằng số không. Chúng ta hãy âm mưu đó. Những gì tôi đang gonna do bên phải là nội dung của tôi chi phí
+
+44
+00:04:20,504 --> 00:04:26,187
+chức năng j. Và thông báo, bởi vì hàm chi phí của tôi là một chức năng của tham số của tôi
+
+45
+00:04:26,187 --> 00:04:32,017
+Theta-1, khi tôi âm mưu của tôi hàm chi phí, trục ngang bây giờ có nhãn với
+
+46
+00:04:32,017 --> 00:04:38,069
+Theta-1 trong. Vì vậy, tôi có j của một [unintelligible] zero vì vậy hãy đi trước và nội dung đó. Kết thúc
+
+47
+00:04:38,069 --> 00:04:46,464
+với. Một x trên đó. Bây giờ cho phép xem xét một số ví dụ khác. Theta-1 có thể mất trên một
+
+48
+00:04:46,464 --> 00:04:52,470
+phạm vi của các giá trị khác nhau. Quyền? Vì vậy, theta-1 có thể mất trên các giá trị tiêu cực,
+
+49
+00:04:52,470 --> 00:04:58,876
+không, các giá trị tích cực. Vì vậy nếu theta-1 là tương đương với 0.5. Điều gì xảy ra sau đó? Chúng ta hãy
+
+50
+00:04:58,876 --> 00:05:05,442
+đi trước và nội dung đó. I 'm bây giờ đi để đặt theta-1 bằng 05, và trong trường hợp đó của tôi
+
+51
+00:05:05,442 --> 00:05:11,688
+giả thuyết bây giờ trông như thế này. Như một phù hợp với độ dốc bằng sang 0.5, và cho phép
+
+52
+00:05:11,688 --> 00:05:17,855
+tính toán J, của 0.5. Vì vậy, mà là có là một trong hơn 2 M của, hàm nguyên nhân thông thường của tôi.
+
+53
+00:05:17,855 --> 00:05:23,769
+Nó chỉ ra rằng chức năng gây ra sẽ là tổng của các giá trị vuông của
+
+54
+00:05:23,769 --> 00:05:29,609
+Chiều cao của dòng này. Cộng với tổng bình phương của chiều cao của đường đó, cộng với
+
+55
+00:05:29,609 --> 00:05:34,783
+Tổng bình phương của chiều cao của đường đó, đúng??Nguyên nhân chỉ này dọc
+
+56
+00:05:34,783 --> 00:05:42,854
+khoảng cách, đó là sự khác biệt giữa, bạn đã biết, Y. TÔI, N. Giá trị dự đoán, H
+
+57
+00:05:42,854 --> 00:05:48,772
+của XI, phải không? Vì vậy, ví dụ đầu tiên [unintelligible] năm trừ một bình phương.
+
+58
+00:05:49,033 --> 00:05:55,647
+Bởi vì dự đoán của tôi giả thuyết 0.5.
+Trong khi đó, giá trị thực là một trong. Đối với tôi
+
+59
+00:05:55,647 --> 00:06:02,436
+Ví dụ thứ hai, tôi nhận được, một trừ đi hai bình phương, bởi vì dự đoán giả thuyết của tôi
+
+60
+00:06:02,436 --> 00:06:09,663
+một, nhưng thực tế nhà ở giá là hai.
+Và sau đó cuối cùng, cộng với. 1.5 trừ đi ba
+
+61
+00:06:09,663 --> 00:06:17,263
+bình phương. Và vì thế đó là bằng 1 trên hai lần ba. Bởi vì, M khi kinh doanh
+
+62
+00:06:17,263 --> 00:06:24,274
+thiết lập kích thước, bên phải, có ba [unintelligible] những ví dụ. Trong đó, đó là lần
+
+63
+00:06:24,274 --> 00:06:33,011
+đơn giản hóa cho [unintelligible] nó là 3,5.
+Vì vậy mà là 3,5 hơn sáu mà là về
+
+64
+00:06:33,011 --> 00:06:41,085
+0,68. Vì vậy, bây giờ chúng ta biết rằng j 0.5 là về 0,68. Cho phép đi và câu lạc bộ đó. Oh
+
+65
+00:06:41,085 --> 00:06:50,308
+Xin lỗi [unintelligible] là thực sự 0,58. Vì vậy [unintelligible] là [unintelligible]. Qua
+
+66
+00:06:50,308 --> 00:07:00,293
+có. Ok? Bây giờ, chúng ta hãy làm một trong những chi tiết. Làm thế nào về nếu theta ai là bằng 0, những gì
+
+67
+00:07:00,293 --> 00:07:08,975
+là j của zero bằng? Nó chỉ ra rằng nếu theta bằng 0, thì H X
+
+68
+00:07:08,975 --> 00:07:16,916
+là chỉ bằng với, bạn đã biết, này đường thẳng, quyền, mà chỉ cần đi theo chiều ngang
+
+69
+00:07:16,916 --> 00:07:26,882
+Thích cái này. Và như vậy, đo lường các lỗi.
+Hiện có j của zero là bằng 1
+
+70
+00:07:26,882 --> 00:07:34,659
+trên hai M, thời gian một bình phương cộng với hai bình phương cộng với ba bình phương, đó là, một trong
+
+71
+00:07:34,659 --> 00:07:41,555
+sáu lần mười bốn là khoảng 2,3. Vì vậy, hãy đi trước và nội dung là tốt. Vì vậy nó
+
+72
+00:07:41,555 --> 00:07:47,622
+kết thúc với một giá trị xung quanh. [unintelligible] và tất nhiên chúng tôi có thể tiếp tục ngày làm điều này
+
+73
+00:07:47,622 --> 00:07:53,335
+cho các giá trị khác của theta-1 trong. Nó chỉ ra rằng bạn có thể có bạn biết tiêu cực
+
+74
+00:07:53,335 --> 00:07:59,327
+giá trị của theta một trong là tốt vì vậy nếu theta một là tiêu cực thì h x sẽ được bình đẳng
+
+75
+00:07:59,327 --> 00:08:05,179
+để nói rằng trừ 0,5 lần x theta [unintelligible] một trong những là trừ 0,5 và vì vậy mà tương ứng
+
+76
+00:08:05,179 --> 00:08:10,188
+để một giả thuyết [unintelligible]. Và với một độ dốc của tiêu cực 0.5. Và bạn có thể
+
+77
+00:08:10,188 --> 00:08:15,694
+thực sự giữ trên máy tính các lỗi này.
+Điều này hóa là, bạn đã biết, cho 0.5,
+
+78
+00:08:15,694 --> 00:08:21,520
+nó chỉ ra có thực sự là cao lỗi. Nó hoạt động ra là một cái gì đó, như thế, 5,25. Và
+
+79
+00:08:21,520 --> 00:08:28,087
+như vậy, và các giá trị khác nhau của theta-1, bạn có thể tính toán những việc này, phải không?
+
+80
+00:08:28,087 --> 00:08:34,413
+Và nó chỉ ra rằng bạn, phạm vi tính của bạn các giá trị, bạn sẽ có được một cái gì đó như
+
+81
+00:08:34,413 --> 00:08:40,499
+đó. Và bởi máy tính phạm vi giá trị, bạn có thể thực sự chậm tạo
+
+82
+00:08:40,499 --> 00:08:50,999
+ra. Những gì hiện chức năng j của Theta nói và đó là những gì j của Theta. Để recap, cho
+
+83
+00:08:50,999 --> 00:08:57,851
+mỗi giá trị của theta-1, phải không? Mỗi giá trị của theta-1 trong tương ứng với một khác nhau
+
+84
+00:08:57,851 --> 00:09:04,448
+giả thuyết, hoặc để một đường thẳng khác nhau phù hợp với ở bên trái. Và cho mỗi giá trị
+
+85
+00:09:04,448 --> 00:09:11,723
+của theta-1 trong, sau đó chúng tôi có thể lấy được một giá trị khác nhau của j theta-1 trong. Và cho
+
+86
+00:09:11,723 --> 00:09:19,354
+Ví dụ, bạn đã biết, theta một = 1, trao đổi thư từ để sửa đường thẳng
+
+87
+00:09:19,354 --> 00:09:27,846
+[unintelligible] các dữ liệu. Trong khi theta-1 bằng 0,5. Và thời điểm này [unintelligible]
+
+88
+00:09:27,846 --> 00:09:35,340
+trao đổi thư từ đó dòng, và theta-0 bằng 0. [unintelligible] phản ứng lại để
+
+89
+00:09:35,340 --> 00:09:41,527
+dòng này ngang. Phải, do đó, đối với mỗi giá trị của theta-1 trong chúng tôi vết thương lên với một
+
+90
+00:09:41,527 --> 00:09:48,516
+giá trị khác nhau của j theta-1 và chúng tôi có thể thì sử dụng điều này để theo dõi trong âm mưu này
+
+91
+00:09:48,516 --> 00:09:54,461
+bên phải. Bây giờ bạn hãy nhớ, mục tiêu tối ưu hóa cho việc học tập của chúng tôi
+
+92
+00:09:54,461 --> 00:10:01,963
+thuật toán là chúng tôi muốn chọn các giá trị của theta-1 trong. Mà giảm thiểu JF dữ liệu một.
+
+93
+00:10:01,963 --> 00:10:08,076
+Quyền? Đó là hàm mục tiêu của chúng tôi cho hồi quy tuyến tính. Vâng, nhìn vào
+
+94
+00:10:08,076 --> 00:10:13,710
+đường cong này, giá trị tối thiểu hoá j theta-1 là, bạn đã biết, theta-1 bằng
+
+95
+00:10:13,710 --> 00:10:19,132
+một trong những. Và thấp và behold, đó thực sự là tốt nhất có thể thẳng dòng phù hợp với
+
+96
+00:10:19,132 --> 00:10:24,624
+thông qua các dữ liệu của chúng tôi, bằng cách thiết lập theta-1 bằng một trong. Và chỉ, cho này đặc biệt
+
+97
+00:10:24,624 --> 00:10:30,328
+đào tạo tập, chúng tôi thực sự sẽ chỉ phù hợp hoàn hảo. Và đó là lý do tại sao việc giảm thiểu j
+
+98
+00:10:30,328 --> 00:10:36,447
+của theta-1 trong tương ứng với việc tìm kiếm một đường thẳng phù hợp với dữ liệu tốt. Vì vậy,
+
+99
+00:10:36,447 --> 00:10:40,884
+để bọc lên. Trong video này, chúng tôi nhìn lên một số lô. Để hiểu hàm sai số
+
+100
+00:10:40,884 --> 00:10:45,259
+chúng tôi sẽ đơn giản hóa thuật toán bằng cách chỉ dùng
+
+101
+00:10:45,259 --> 00:10:50,258
+tham số theta-1 và đặt tham số theta-0 bằng 0. Trong đoạn phim tiếp theo,
+
+102
+00:10:50,258 --> 00:10:54,445
+chúng ta sẽ quay lại công thức ban đầu và xem xét
+
+103
+00:10:54,445 --> 00:10:59,570
+một cách trực quan cả hai tham số theta-0 và theta-1 với theta-0 khác 0.
+
+104
+00:10:59,570 --> 00:11:04,757
+Và hy vọng rằng nó sẽ giúp bạn dễ dàng hiểu hàm sai số J
+
+105
+00:11:04,757 --> 00:11:09,257
+hoạt động như thế nào trong công thức hồi quy tuyến tính ban đầu.

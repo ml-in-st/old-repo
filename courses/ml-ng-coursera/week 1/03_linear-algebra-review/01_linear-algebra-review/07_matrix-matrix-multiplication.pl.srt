@@ -1,0 +1,696 @@
+1
+00:00:00,290 --> 00:00:03,747
+W tyn nagraniu porozmawiamy o mnożeniu macierzy,
+
+2
+00:00:03,747 --> 00:00:06,630
+tj. jak pomnożyć przez siebie 2 macierze.
+
+3
+00:00:06,630 --> 00:00:10,170
+Gdy będziemy rozmawiać o metodzie
+regresji liniowej, pozwalającej obliczyć
+
+4
+00:00:10,170 --> 00:00:13,123
+parametry theta0 i theta1 za jednym zamachem,
+
+5
+00:00:13,123 --> 00:00:16,270
+bez potrzeby stosowania algorytmu iteracyjnego,
+takiego jak gradient prosty,
+
+6
+00:00:16,270 --> 00:00:18,810
+okaże się, że mnożenie macierzy
+
+7
+00:00:18,810 --> 00:00:22,840
+przez macierz jest jednym z kluczowych
+zagadnień, które musimy znać.
+
+8
+00:00:24,090 --> 00:00:27,440
+Jak zwykle, zacznijmy od przykładu:
+
+9
+00:00:28,840 --> 00:00:32,610
+Powiedzmy, że mamy 2 macierze, które chcemy
+pomnożyć przez siebie.
+
+10
+00:00:32,610 --> 00:00:34,805
+Pozwól, że szybko zrobię ten przykład, a
+
+11
+00:00:34,805 --> 00:00:38,060
+potem wytłumaczę, co się tu stało.
+
+12
+00:00:38,060 --> 00:00:43,460
+Wezmę teraz pierwszą kolumnę
+
+13
+00:00:43,460 --> 00:00:46,480
+tej macierzy po prawej stronie.
+
+14
+00:00:46,480 --> 00:00:49,240
+Wezmę teraz tę macierz z lewej
+
+15
+00:00:49,240 --> 00:00:53,790
+i pomnożę ją przez wektor, który jest tą
+pierwszą kolumną.
+
+16
+00:00:55,180 --> 00:00:59,770
+Jeśli to zrobię, otrzymam wektor 11, 9,
+
+17
+00:00:59,770 --> 00:01:03,370
+a więc mamy tutaj takie same mnożenie
+macierz-wektor,
+
+18
+00:01:03,370 --> 00:01:04,790
+które widzieliśmy w poprzednim materiale.
+
+19
+00:01:06,070 --> 00:01:08,570
+Rozwiązałem to już wcześniej, więc wiem,
+że to jest 11 i 9.
+
+20
+00:01:08,570 --> 00:01:12,620
+Druga rzecz, którą zrobię: wezmę
+
+21
+00:01:12,620 --> 00:01:16,550
+drugą kolumnę tej macierzy z prawej,
+
+22
+00:01:16,550 --> 00:01:20,430
+potem wezmę tę macierz z lewej,
+
+23
+00:01:20,430 --> 00:01:24,960
+tę macierz, i pomnożę ją przez drugą kolumnę
+z prawej.
+
+24
+00:01:24,960 --> 00:01:28,840
+Po raz kolejny: jest to mnożenie
+macierzy przez wektor,
+
+25
+00:01:28,840 --> 00:01:30,580
+które widziałaś/eś w poprzednim nagraniu.
+
+26
+00:01:30,580 --> 00:01:35,540
+Okazuje się, że otrzymamy wektor 10, 14.
+
+27
+00:01:35,540 --> 00:01:39,650
+Na marginesie: jeśli chcesz poćwiczyć mnożenie
+macierzy przez wektor,
+
+28
+00:01:39,650 --> 00:01:42,159
+możesz zatrzymać nagranie i sam(a)
+sprawdzić wynik.
+
+29
+00:01:43,260 --> 00:01:46,880
+Teraz wezmę te dwa wyniki i złożę je razem,
+
+30
+00:01:46,880 --> 00:01:48,470
+i to będzie moja odpowiedź.
+
+31
+00:01:48,470 --> 00:01:53,060
+Okazuje się więc, że iloczyn będzie macierzą
+o wymiarach 2 x 2.
+
+32
+00:01:53,060 --> 00:01:58,005
+Wypełnię tę macierz, biorąc elementy 11, 9,
+
+33
+00:01:58,005 --> 00:01:59,950
+i wstawiając je tutaj.
+
+34
+00:01:59,950 --> 00:02:07,510
+Wezmę też 10, 14, i wstawię je tutaj, ok?
+
+35
+00:02:07,510 --> 00:02:12,350
+Tak więc wygląda mnożenie przez siebie
+dwóch macierzy.
+
+36
+00:02:12,350 --> 00:02:15,810
+Po prostu mnożysz macierz z lewej przez
+kolejne kolumny, a potem
+
+37
+00:02:15,810 --> 00:02:17,550
+składasz wyniki w jedną macierz.
+
+38
+00:02:17,550 --> 00:02:20,252
+Za chwilę zrobimy to jeszcze raz powoli,
+
+39
+00:02:20,252 --> 00:02:25,494
+ale chciałbym zwrócić uwagę, że ta
+pierwsza macierz jest macierzą 2 x 3.
+
+40
+00:02:25,494 --> 00:02:31,270
+Mnożymy ją przez macierz 3 x 2, a wynikiem
+
+41
+00:02:31,270 --> 00:02:36,520
+okazuje się być macierz 2 x 2.
+
+42
+00:02:36,520 --> 00:02:39,744
+Za chwilę zobaczymy, skąd się to wzięło.
+
+43
+00:02:39,744 --> 00:02:42,730
+Dobrze, więc tak wygląda kolejność obliczeń.
+
+44
+00:02:42,730 --> 00:02:46,540
+Przyjrzyjmy się teraz szczegółom i zobaczmy,
+czemu wygląda to w ten sposób.
+
+45
+00:02:46,540 --> 00:02:47,480
+Oto szczegóły:
+
+46
+00:02:47,480 --> 00:02:52,550
+mam macierz A, którą chcę pomnożyć przez
+macierz B,
+
+47
+00:02:52,550 --> 00:02:54,540
+a wynikiem będzie jakaś macierz C.
+
+48
+00:02:55,720 --> 00:03:00,300
+Okazuje się, że można mnożyć przez siebie
+jedynie macierze, których wymiary
+pasują do siebie.
+
+49
+00:03:00,300 --> 00:03:04,630
+Macierz A ma więc wymiary m x n, tj.
+m wierszy, n kolumn.
+
+50
+00:03:04,630 --> 00:03:07,000
+Mnożymy ją przez macierz n x o.
+
+51
+00:03:07,000 --> 00:03:10,680
+Okazuje się, że n w tym miejscu musi
+pasować do n w tym miejscu.
+
+52
+00:03:10,680 --> 00:03:13,340
+Innymi słowy: liczba kolumn pierwszej macierzy
+
+53
+00:03:13,340 --> 00:03:16,830
+musi się równać liczbie wierszy drugiej macierzy.
+
+54
+00:03:16,830 --> 00:03:25,470
+Wynikiem mnożenia będzie macierz m x o,
+tak jak macierz C.
+
+55
+00:03:25,470 --> 00:03:30,220
+W poprzednim nagraniu mieliśmy
+szczególny przypadek, gdy
+
+56
+00:03:30,220 --> 00:03:32,400
+o było równe 1.
+
+57
+00:03:32,400 --> 00:03:35,540
+Był to przypadek, gdy B była wektorem.
+
+58
+00:03:35,540 --> 00:03:40,930
+Teraz jednak uwzględniamy przypadki wartości
+większych niż 1.
+
+59
+00:03:40,930 --> 00:03:46,690
+Oto, jak mnożymy więc przez siebie
+dwie macierze.
+
+60
+00:03:46,690 --> 00:03:51,712
+Wezmę teraz pierwszą kolumnę z B
+
+61
+00:03:51,712 --> 00:03:57,960
+i potraktuję ją jak wektor, i pomnożę macierz A
+przez pierwszą kolumnę B.
+
+62
+00:03:57,960 --> 00:04:03,980
+Wynikiem będzie wektor m x 1 - wstawię go tutaj.
+
+63
+00:04:05,220 --> 00:04:11,880
+Teraz wezmę drugą kolumnę B, jasne?
+
+64
+00:04:11,880 --> 00:04:14,820
+Mamy więc kolejny wektor n x 1.
+
+65
+00:04:14,820 --> 00:04:17,130
+Ta kolumna ma wymiar n x 1.
+
+66
+00:04:17,130 --> 00:04:18,810
+Jest to n-wymiarowy wektor.
+
+67
+00:04:18,810 --> 00:04:22,460
+Pomnożę teraz tę macierz przez ten wektor n x 1.
+
+68
+00:04:22,460 --> 00:04:28,600
+Wynikiem będzie m-wymiarowy wektor,
+który wstawię tutaj, i tak dalej.
+
+69
+00:04:29,750 --> 00:04:34,860
+Potem wezmę trzecią kolumnę, pomnożę
+przez tę macierz.
+
+70
+00:04:34,860 --> 00:04:37,530
+Otrzymam m-wymiarowy wektor.
+
+71
+00:04:37,530 --> 00:04:41,200
+Powtarzamy to, dopóki nie dotrzemy do
+ostatniej kolumny.
+
+72
+00:04:41,200 --> 00:04:45,230
+Macierz A razy ostatnia kolumna daje nam
+ostatnią kolumnę macierzy C.
+
+73
+00:04:46,510 --> 00:04:50,198
+Powtórzę: i-ta kolumna
+
+74
+00:04:50,198 --> 00:04:55,154
+macierzy C powstaje z mnożenia macierzy A
+
+75
+00:04:55,154 --> 00:05:01,149
+przez i-tą kolumnę macierzy B, gdzie
+
+76
+00:05:01,149 --> 00:05:05,080
+i = 1, 2 aż do o włącznie.
+
+77
+00:05:05,080 --> 00:05:10,190
+Podsumowaliśmy więc, co zrobiliśmy, aby
+obliczyć macierz C.
+
+78
+00:05:11,530 --> 00:05:13,660
+Spójrzmy na jeszcze jeden przykład.
+
+79
+00:05:13,660 --> 00:05:17,300
+Powiedzmy, że chcę pomnożyć przez siebie te
+dwie macierze.
+
+80
+00:05:17,300 --> 00:05:24,230
+Najpierw wezmę więc pierwszą kolumnę
+drugiej macierzy.
+
+81
+00:05:24,230 --> 00:05:29,670
+Na poprzednim slajdzie była to macierz B -
+
+82
+00:05:29,670 --> 00:05:32,670
+w ten sposób mam tę macierz razy ten wektor.
+
+83
+00:05:32,670 --> 00:05:35,340
+Wykonajmy szybko te obliczenia.
+
+84
+00:05:35,340 --> 00:05:41,332
+To będzie równe [1, 3] x [0, 3],
+
+85
+00:05:41,332 --> 00:05:46,168
+co daje 1 x 0 + 3 x 3.
+
+86
+00:05:46,168 --> 00:05:51,255
+Drugi element to [2 5] x [0 3],
+
+87
+00:05:51,255 --> 00:05:55,488
+co daje 2 x 0 + 5 x 3.
+
+88
+00:05:55,488 --> 00:06:00,748
+To będzie [9 15].
+
+89
+00:06:00,748 --> 00:06:03,158
+Właściwie pozwól, że napiszę to na zielono.
+
+90
+00:06:03,158 --> 00:06:07,948
+Więc to jest [9 15].
+
+91
+00:06:07,948 --> 00:06:13,552
+Następnie, wezmę drugą kolumnę stąd,
+
+92
+00:06:13,552 --> 00:06:16,948
+i wykonam odpowiednie obliczenia.
+
+93
+00:06:16,948 --> 00:06:21,608
+Mamy więc macierz razy ten wektor [1 2].
+
+94
+00:06:21,608 --> 00:06:24,731
+Policzmy to szybko.
+
+95
+00:06:24,731 --> 00:06:30,150
+Mamy w tym wierszu 1 x 1 + 3 x 2.
+
+96
+00:06:30,150 --> 00:06:31,168
+Policzmy kolejny.
+
+97
+00:06:31,168 --> 00:06:33,972
+Zobaczmy...
+
+98
+00:06:33,972 --> 00:06:39,577
+to daje mi 2 x 1 + 5 x 2, a
+
+99
+00:06:39,577 --> 00:06:45,184
+to będzie równe
+
+100
+00:06:45,184 --> 00:06:51,219
+1 x 1 + 3 x 1, czyli 7, a
+
+101
+00:06:51,219 --> 00:06:55,570
+2 x 1 + 5 x 2 to 12.
+
+102
+00:06:55,570 --> 00:06:59,896
+Mam więc te dwie liczby, a mój wynik -
+
+103
+00:06:59,896 --> 00:07:03,715
+iloczyn tych dwóch macierzy -
+
+104
+00:07:03,715 --> 00:07:08,820
+otrzymam, wstawiając to tutaj, a to tutaj.
+
+105
+00:07:08,820 --> 00:07:13,937
+Mam więc [9 15] oraz
+
+106
+00:07:13,937 --> 00:07:16,950
+[7 12]
+(na slajdzie jest błędnie wpisana czwórka
+w 1-szym wierszu, 2-ej kolumnie wyniku
+- przyp. tłum)
+
+107
+00:07:16,950 --> 00:07:22,547
+Być może zauważyłaś/eś, że wynikiem mnożenia
+macierzy 2 x 2 przez inną macierz 2 x 2,
+
+108
+00:07:22,547 --> 00:07:27,930
+jest macierz 2 x 2 - ta pierwsza dwójka
+razy ta druga dwójka.
+
+109
+00:07:27,930 --> 00:07:31,950
+Tak więc wynik jest również macierzą 2 x 2.
+
+110
+00:07:34,900 --> 00:07:39,839
+Wreszcie, pozwól, że pokażę jeden cwany trik,
+który można stosować przy mnożeniu dwóch
+
+111
+00:07:39,839 --> 00:07:41,040
+macierzy.
+
+112
+00:07:41,040 --> 00:07:47,019
+Powiedzmy, że, tak jak wcześniej, mamy 4 domy,
+których cenę chcemy przewidzieć.
+
+113
+00:07:48,470 --> 00:07:53,780
+Tylko że teraz mamy 3 rywalizujące ze sobą
+hipotezy po prawej.
+
+114
+00:07:53,780 --> 00:07:56,380
+Tak więc, jeśli chcesz zastosować wszystkie 3
+
+115
+00:07:56,380 --> 00:07:59,480
+rywalizujące ze sobą hipotezy do naszych 4 domów,
+okazuje się, że
+
+116
+00:07:59,480 --> 00:08:04,030
+możesz to zrobić wydajnie, korzystając z
+mnożenia macierzy przez macierz.
+
+117
+00:08:04,030 --> 00:08:09,050
+Po lewej mam tu moją zwykłą macierz,
+taką samą, jak w poprzednim nagraniu,
+
+118
+00:08:09,050 --> 00:08:15,620
+której wartości są cenami domów - dodam tylko
+kolumnę jedynek z lewej.
+
+119
+00:08:15,620 --> 00:08:22,486
+Teraz stworzę drugą macierz, w której
+
+120
+00:08:22,486 --> 00:08:27,572
+pierwszą kolumną będzie [-40 0,25],
+
+121
+00:08:27,572 --> 00:08:33,189
+drugą - [200 0,1], i tak dalej.
+
+122
+00:08:33,189 --> 00:08:37,930
+Okazuje się, że jeśli przemnożymy te dwie macierze,
+
+123
+00:08:37,930 --> 00:08:44,560
+pierwsza kolumna (niebieska)...
+
+124
+00:08:44,560 --> 00:08:46,160
+hmm... czym ona będzie?
+
+125
+00:08:47,430 --> 00:08:51,080
+Procedura mnożenia dwóch macierzy jest taka,
+
+126
+00:08:51,080 --> 00:08:56,330
+że pierwszą kolumnę otrzymamy, mnożąc tę macierz przez tę pierwszą kolumnę.
+
+127
+00:08:56,330 --> 00:09:01,970
+Widzieliśmy w poprzednim nagraniu, że są to
+dokładnie przewidywane ceny domów
+
+128
+00:09:01,970 --> 00:09:07,540
+zgodnie z pierwszą hipotezą, o, tą tutaj.
+
+129
+00:09:08,790 --> 00:09:10,810
+A co z drugą kolumną?
+
+130
+00:09:10,810 --> 00:09:13,040
+Cóż, druga kolumna...
+
+131
+00:09:13,040 --> 00:09:15,050
+Otrzymujemy ją, biorąc tę macierz
+
+132
+00:09:15,050 --> 00:09:19,340
+i mnożąc ją przez tę drugą kolumnę.
+
+133
+00:09:19,340 --> 00:09:23,541
+Tak więc druga kolumna okazuje się być
+
+134
+00:09:23,541 --> 00:09:29,319
+predykcjami wg drugiej hipotezy, o, tej tutaj.
+
+135
+00:09:29,319 --> 00:09:33,400
+Podobnie z trzecią kolumną.
+
+136
+00:09:34,450 --> 00:09:36,890
+Nie omówiłem szczegółów obliczeń, ale
+
+137
+00:09:36,890 --> 00:09:41,600
+mam nadzieję, że w razie czego nie będziesz się
+krępować, zatrzymasz nagranie i po prostu
+sprawdzisz obliczenia samodzielnie,
+
+138
+00:09:41,600 --> 00:09:44,120
+i przekonasz się, że to, co powiedziałem,
+jest prawdą.
+
+139
+00:09:44,120 --> 00:09:48,290
+Okazuje się też, że tworząc te dwie macierze,
+możesz
+
+140
+00:09:48,290 --> 00:09:54,000
+szybko zastosować 3 hipotezy do wszystkich 4
+cen domów,
+
+141
+00:09:54,000 --> 00:09:59,860
+aby uzyskać wszystkie 12 cen przewidywanych
+przez te 3 hipotezy dla 4 domów.
+
+142
+00:10:00,930 --> 00:10:05,902
+A więc jedno mnożenie macierzowe załatwiło
+nam 12 prognoz.
+
+143
+00:10:05,902 --> 00:10:10,760
+Jest jeszcze lepiej: okazuje się, że
+do mnożenia macierzowego
+
+144
+00:10:10,760 --> 00:10:13,852
+dostępnych jest wiele dobrych bibliotek
+algebry liniowej,
+
+145
+00:10:13,852 --> 00:10:16,742
+które wykonają mnożenie za Ciebie.
+
+146
+00:10:16,742 --> 00:10:21,518
+I to w praktycznie każdym, sensownym języku
+programowania, którego możesz
+
+147
+00:10:21,518 --> 00:10:22,072
+używać.
+
+148
+00:10:22,072 --> 00:10:25,436
+Na pewno pierwsze 10 najpopularniejszych
+języków programowania
+
+149
+00:10:25,436 --> 00:10:27,935
+będzie posiadać świetne biblioteki
+do algebry liniowej.
+
+150
+00:10:27,935 --> 00:10:31,295
+Będą to dobre biblioteki, 
+wysoce zoptymalizowane tak,
+
+151
+00:10:31,295 --> 00:10:35,840
+aby wykonywać mnożenie macierzowe
+bardzo wydajnie,
+
+152
+00:10:35,840 --> 00:10:41,333
+w tym wykorzystując wszelkie
+obliczenia równoległe
+
+153
+00:10:41,333 --> 00:10:47,070
+do których zdolny jest Twój komputer, jeśli
+ma kilka rdzeni lub procesorów.
+
+154
+00:10:47,070 --> 00:10:51,685
+Wewnątrz samego procesora także mamy 
+czasem urównoleglenie obliczeń,
+
+155
+00:10:51,685 --> 00:10:56,310
+tzw. SIMD, z którego może korzystać komputer.
+
+156
+00:10:56,310 --> 00:10:59,410
+Mamy do tego dobre, darmowe biblioteki,
+
+157
+00:10:59,410 --> 00:11:03,720
+które potrafią wykonywać mnożenie macierzowe
+bardzo wydajnie tak,
+
+158
+00:11:03,720 --> 00:11:08,440
+że możesz w wydajny sposób generować wiele
+prognoz na podstawie wielu hipotez.

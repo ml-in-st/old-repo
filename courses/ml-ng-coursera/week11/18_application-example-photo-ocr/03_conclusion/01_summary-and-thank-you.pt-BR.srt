@@ -1,0 +1,395 @@
+1
+00:00:00,004 --> 00:00:03,840
+Bem-vindo ao último vídeo deste curso de Aprendizagem de Máquina.
+
+2
+00:00:03,840 --> 00:00:06,473
+Estivemos juntos por muitos vídeos diferentes.
+
+3
+00:00:06,473 --> 00:00:08,774
+Neste vídeo eu gostaria de rapidamente
+
+4
+00:00:08,774 --> 00:00:11,003
+resumir os principais tópicos deste curso
+
+5
+00:00:11,003 --> 00:00:13,089
+e dizer algumas palavras ao final
+
+6
+00:00:13,089 --> 00:00:14,729
+para que assim terminemos o curso.
+
+7
+00:00:16,390 --> 00:00:18,020
+Então, o que foi que fizemos? 
+
+8
+00:00:18,020 --> 00:00:21,957
+Nesta curso falamos bastante sobre aprendizado supervisionado,
+
+9
+00:00:21,957 --> 00:00:25,436
+como regressão linear, regressão logística, redes neurais, Máquinas de Vetores-Suporte (SVMs),
+
+10
+00:00:25,436 --> 00:00:29,435
+para problemas onde você nomeou dados e exemplos
+
+11
+00:00:29,435 --> 00:00:31,300
+como x(i), y(i).
+
+12
+00:00:31,300 --> 00:00:35,715
+Além disso, falamos bastante sobre aprendizado não-supervisionado,
+
+13
+00:00:35,715 --> 00:00:37,344
+como agrupamento K-médias,
+
+14
+00:00:37,344 --> 00:00:40,316
+Análise de Componentes Principais para redução de dimensionalidade
+
+15
+00:00:40,316 --> 00:00:43,847
+e algoritmos de detecção de anomalias para quando você tem
+
+16
+00:00:43,847 --> 00:00:46,363
+apenas dados não-rotulados x(i),
+
+17
+00:00:46,363 --> 00:00:49,378
+ainda que a detecção de anomalia também possa usar algum dado rotulado
+
+18
+00:00:49,378 --> 00:00:51,189
+para avaliar o algoritmo.
+
+19
+00:00:51,451 --> 00:00:54,725
+Também falamos sobre aplicações especiais
+
+20
+00:00:54,725 --> 00:00:56,407
+ou tópicos especiais, como sistemas de tecomendação
+
+21
+00:00:56,407 --> 00:00:58,895
+e sistemas de aprendizagem de máquina em larga escala,
+
+22
+00:00:58,895 --> 00:01:01,477
+incluindo sistema paralelo de rápido uso
+
+23
+00:01:01,477 --> 00:01:03,925
+assim como algumas aplicações especias,
+
+24
+00:01:03,925 --> 00:01:07,609
+como classificação de objetos com janelas deslizantes para visão computacional.
+
+25
+00:01:07,609 --> 00:01:11,549
+E, finalmente, também dedicamos um bom tempo para falar sobre os diferentes aspectos
+
+26
+00:01:11,549 --> 00:01:15,198
+de recomendação na construção do sistema de aprendizagem de máquina.
+
+27
+00:01:15,198 --> 00:01:17,264
+Sendo que este envolveu a tentativa de entender 
+
+28
+00:01:17,264 --> 00:01:19,233
+o que é que faz um algoritmo de aprendizagem de máquina
+
+29
+00:01:19,233 --> 00:01:20,561
+funcionar ou não.
+
+30
+00:01:20,561 --> 00:01:22,012
+Conversamos sobre viés e variância,
+
+31
+00:01:22,012 --> 00:01:25,479
+e como a regularização pode ajudar com alguns problemas de variância.
+
+32
+00:01:25,479 --> 00:01:28,445
+Também utilizamos um pouco do nosso tempo falando
+
+33
+00:01:28,445 --> 00:01:32,313
+a respeito da questão de como decidir o que trabalhar na sequência.
+
+34
+00:01:32,313 --> 00:01:35,019
+Como priorizar como você gasta seu tempo
+
+35
+00:01:35,019 --> 00:01:37,513
+quando você está desenvolvendo um sistema de aprendizagem de máquina.
+
+36
+00:01:38,021 --> 00:01:41,044
+Falamos sobre avaliação de algoritmos de aprendizagem,
+
+37
+00:01:41,044 --> 00:01:44,221
+avaliação métrica da precisão, cobertura e F1 score, 
+
+38
+00:01:44,221 --> 00:01:47,072
+bem como aspectos práticos de avaliação
+
+39
+00:01:47,072 --> 00:01:49,898
+como o treinamento, validação cruzada e conjuntos de testes.
+
+40
+00:01:49,898 --> 00:01:52,319
+Também utilizamos bastante tempo falando sobre
+
+41
+00:01:52,319 --> 00:01:55,741
+depuração de algoritmos de aprendizagem e de certificar-se de que
+
+42
+00:01:55,741 --> 00:01:57,212
+o algoritmo de aprendizagem funciona.
+
+43
+00:01:57,212 --> 00:01:59,075
+Conversamos sobre diagnósticos,
+
+44
+00:01:59,075 --> 00:02:01,999
+como curvas de aprendizagem e também sobre
+
+45
+00:02:01,999 --> 00:02:04,394
+análises de erro e análises de teto.
+
+46
+00:02:04,394 --> 00:02:08,187
+E assim, todas essas foram diferentes ferramentas para ajudar na decisão
+
+47
+00:02:08,187 --> 00:02:10,349
+do que fazer em seguida e como gastar seu valioso tempo
+
+48
+00:02:10,349 --> 00:02:12,585
+quando você está desenvolvendo um sistema de aprendizagem de máquina.
+
+49
+00:02:12,585 --> 00:02:17,665
+Além de ter as ferramentas de aprendizagem de máquina à sua disposição,
+
+50
+00:02:17,665 --> 00:02:20,228
+conhecer as ferramentas de aprendizagem de máquina, 
+
+51
+00:02:20,228 --> 00:02:22,127
+como aprendizagem supervisionada e aprendizagem não-supervisionada, 
+
+52
+00:02:22,127 --> 00:02:26,015
+e assim espero que agora você não tenha apenas as ferramentas,
+
+53
+00:02:26,015 --> 00:02:29,457
+mas que saiba como aplicá-las muito bem
+
+54
+00:02:29,457 --> 00:02:32,658
+para construir sistemas de aprendizagem de máquinas poderosos.
+
+55
+00:02:33,658 --> 00:02:35,556
+Então é isso.
+
+56
+00:02:35,556 --> 00:02:37,645
+Estes foram os tópicos deste curso
+
+57
+00:02:37,645 --> 00:02:39,614
+e se você se empenhou ao longo deste curso
+
+58
+00:02:39,614 --> 00:02:41,308
+você pode se considerar
+
+59
+00:02:41,308 --> 00:02:43,511
+um especialista em aprendizagem de máquina.
+
+60
+00:02:43,511 --> 00:02:46,879
+Como você sabe, aprendizagem de máquina é uma tecnologia
+
+61
+00:02:46,879 --> 00:02:49,916
+que está tendo um impacto enorme na ciência, tecnologia e indústria.
+
+62
+00:02:49,916 --> 00:02:53,360
+E agora você está bem qualificado para usar
+
+63
+00:02:53,360 --> 00:02:55,351
+essas ferramentas de aprendizagem de máquina para grande efeito.
+
+64
+00:02:55,351 --> 00:02:57,910
+Espero que neste curso, muitos de vocês encontrem
+
+65
+00:02:57,910 --> 00:02:59,765
+maneiras de usar a aprendizagem de máquina
+
+66
+00:02:59,765 --> 00:03:02,324
+para construir excelentes sistemas e aplicações
+
+67
+00:03:02,324 --> 00:03:03,946
+e ótimos produtos.
+
+68
+00:03:03,946 --> 00:03:06,084
+E também espero que você encontre
+
+69
+00:03:06,084 --> 00:03:07,930
+formas de usar a aprendizagem de máquina
+
+70
+00:03:07,930 --> 00:03:09,762
+não apenas para fazer sua  vida melhor, mas talvez algum dia
+
+71
+00:03:09,762 --> 00:03:14,749
+usá-la para fazer a vida de muitas outras pessoas melhor.
+
+72
+00:03:14,780 --> 00:03:19,699
+Ensinar este curso foi muito divertido para mim.
+
+73
+00:03:19,699 --> 00:03:21,788
+Muito obrigado por tudo.
+
+74
+00:03:21,788 --> 00:03:23,807
+E antes de encerrar,
+
+75
+00:03:23,807 --> 00:03:25,282
+gostaria de dizer só mais uma coisa:
+
+76
+00:03:25,282 --> 00:03:28,956
+Não faz muito tempo
+
+77
+00:03:28,956 --> 00:03:31,306
+que eu mesmo era um aluno.
+
+78
+00:03:31,306 --> 00:03:34,711
+E mesmo hoje, eu ainda faço cursos diferentes
+
+79
+00:03:34,711 --> 00:03:36,902
+quando tenho tempo para tentar aprender coisas novas.
+
+80
+00:03:36,902 --> 00:03:39,989
+Eu sei quanto tempo é consumido
+
+81
+00:03:39,989 --> 00:03:42,273
+para aprender essas coisas.
+
+82
+00:03:42,273 --> 00:03:44,663
+Sei que provavelmente você é uma pessoa ocupada
+
+83
+00:03:44,663 --> 00:03:47,302
+com muitos afazeres, muitas outras coisas acontecem em sua vida.
+
+84
+00:03:47,302 --> 00:03:49,838
+E o fato é que você ainda encontrou tempo
+
+85
+00:03:49,838 --> 00:03:52,431
+para assistir esses vídeos,
+
+86
+00:03:52,431 --> 00:03:55,799
+muitos deles
+
+87
+00:03:55,799 --> 00:03:57,598
+se estenderam por horas.
+
+88
+00:03:57,598 --> 00:04:00,068
+E na verdade muitos de vocês ainda gastaram tempo
+
+89
+00:04:00,068 --> 00:04:01,826
+para fazer a revisão das questões
+
+90
+00:04:01,826 --> 00:04:03,731
+e muitos ainda arrumam tempo
+
+91
+00:04:03,731 --> 00:04:06,250
+para trabalhar nos exercícios de programação.
+
+92
+00:04:06,250 --> 00:04:09,483
+E eram exercícios de programação longos e complicados.
+
+93
+00:04:09,483 --> 00:04:12,840
+Gostaria de agradecer por tudo isso.
+
+94
+00:04:12,840 --> 00:04:17,920
+E sei que muitos de vocês trabalharam duro durante as aulas
+
+95
+00:04:17,920 --> 00:04:21,880
+e muitos dispensaram bastante tempo para as aulas,
+
+96
+00:04:21,880 --> 00:04:25,396
+vários de vocês se dedicaram muito nas aulas.
+
+97
+00:04:25,396 --> 00:04:29,292
+Espero que tenham aprendido muito com esta aula.
+
+98
+00:04:29,292 --> 00:04:31,347
+Quero dizer:
+
+99
+00:04:31,347 --> 00:04:36,423
+Muitíssimo obrigado por terem sido alunos neste curso.

@@ -1,0 +1,1174 @@
+1
+00:00:01,060 --> 00:00:02,420
+En este video definiré cuál
+es posible que sea el problema más común
+
+2
+00:00:02,620 --> 00:00:03,900
+un enfoque para construir un
+
+3
+00:00:03,970 --> 00:00:06,390
+sistema de recomendación llamado filtrado colaborativo.
+
+4
+00:00:07,540 --> 00:00:08,880
+El algoritmo del que estamos hablando
+
+5
+00:00:09,180 --> 00:00:10,400
+tiene una propiedad muy interesante
+
+6
+00:00:10,680 --> 00:00:11,830
+que hace
+
+7
+00:00:12,120 --> 00:00:13,290
+lo que se llama aprendizaje de variables y
+
+8
+00:00:13,790 --> 00:00:14,800
+con esto quiero decir que este
+
+9
+00:00:14,960 --> 00:00:16,270
+será un algoritmo que puede
+
+10
+00:00:16,450 --> 00:00:19,010
+empezar a aprender por sí mismo cuáles variables usar.
+
+11
+00:00:21,130 --> 00:00:22,100
+Aquí tenemos el conjunto de datos
+
+12
+00:00:22,220 --> 00:00:23,440
+que teníamos y habíamos
+
+13
+00:00:23,720 --> 00:00:25,030
+supuesto que para cada película,
+
+14
+00:00:25,690 --> 00:00:27,000
+alguien había venido y
+
+15
+00:00:27,320 --> 00:00:28,640
+dicho qué tan romántica
+
+16
+00:00:28,840 --> 00:00:30,550
+era esa película era y cuánta acción hubo en esa película.
+
+17
+00:00:31,680 --> 00:00:32,880
+Pero como se pueden imaginar,
+
+18
+00:00:33,020 --> 00:00:34,320
+puede ser muy difícil y se consume tiempo
+
+19
+00:00:34,500 --> 00:00:36,390
+y dinero si se trata en realidad
+
+20
+00:00:36,490 --> 00:00:37,860
+que alguien, ya saben,
+
+21
+00:00:38,050 --> 00:00:39,440
+vea cada película y les diga
+
+22
+00:00:39,700 --> 00:00:40,880
+que tan romántica es cada película y
+
+23
+00:00:41,410 --> 00:00:42,570
+cuánta acción tiene cada
+
+24
+00:00:42,660 --> 00:00:44,270
+película, y muchas veces ustedes
+
+25
+00:00:44,390 --> 00:00:46,760
+querrán aún más variables que sólo estas dos.
+
+26
+00:00:46,980 --> 00:00:48,130
+Así que, ¿de dónde obtienen estas variables?
+
+27
+00:00:49,890 --> 00:00:50,920
+Cambiemos un poco el problema
+
+28
+00:00:51,500 --> 00:00:53,220
+y supongamos que
+
+29
+00:00:53,980 --> 00:00:55,160
+tenemos un conjunto de datos en donde
+
+30
+00:00:55,410 --> 00:00:57,980
+no sabemos los valores de estas variables.
+
+31
+00:00:58,380 --> 00:00:59,280
+Así que tenemos el conjunto de datos
+
+32
+00:00:59,640 --> 00:01:01,140
+de las películas y de
+
+33
+00:01:01,270 --> 00:01:03,550
+qué forma las calificaron los usuarios, pero
+
+34
+00:01:03,760 --> 00:01:05,190
+no tenemos idea de lo romántica que es cada
+
+35
+00:01:05,370 --> 00:01:06,140
+película y no tenemos
+
+36
+00:01:06,310 --> 00:01:07,660
+idea de cuánta acción tiene cada
+
+37
+00:01:07,820 --> 00:01:09,940
+película, por lo que reemplacé todas estos asuntos con signos de interrogación.
+
+38
+00:01:11,310 --> 00:01:12,330
+Pero ahora vamos a hacer una suposición un poco diferente.
+
+39
+00:01:13,870 --> 00:01:15,570
+Digamos que hemos ido con cada uno de nuestros usuarios, y que cada uno de nuestros usuarios nos ha dicho
+
+40
+00:01:15,980 --> 00:01:18,510
+cuánto le gustan las
+
+41
+00:01:18,820 --> 00:01:20,040
+películas románticas y cuánto
+
+42
+00:01:20,220 --> 00:01:22,320
+le gustan las películas llenas de acción.
+
+43
+00:01:22,830 --> 00:01:26,090
+Así que Alice está asociada con un vector de parámetros teta 1,
+
+44
+00:01:26,820 --> 00:01:27,470
+Bob, teta 2,
+
+45
+00:01:27,910 --> 00:01:28,440
+Carol, teta 3,
+
+46
+00:01:28,970 --> 00:01:30,330
+Dave, teta 4.
+
+47
+00:01:30,500 --> 00:01:31,530
+Y digamos que también usamos esta
+
+48
+00:01:31,780 --> 00:01:33,040
+y que Alice nos dice
+
+49
+00:01:33,380 --> 00:01:35,340
+que a ella realmente
+
+50
+00:01:35,610 --> 00:01:36,960
+le gustan las películas románticas, así que
+
+51
+00:01:37,140 --> 00:01:38,780
+hay un cinco aquí, que
+
+52
+00:01:39,280 --> 00:01:41,210
+es el multiplicador asociado con x1, y digamos
+
+53
+00:01:41,570 --> 00:01:42,680
+que Alice nos dice
+
+54
+00:01:42,840 --> 00:01:45,030
+que en realidad no le gustan las películas de acción, así que hay un 0 allí.
+
+55
+00:01:46,060 --> 00:01:47,190
+Y Bob nos dice algo similar
+
+56
+00:01:48,660 --> 00:01:49,770
+así que tenemos teta 2 aquí,
+
+57
+00:01:50,630 --> 00:01:52,460
+mientras Carol nos dice que
+
+58
+00:01:53,570 --> 00:01:54,720
+a ella realmente le gustan las películas de acción,
+
+59
+00:01:55,240 --> 00:01:56,450
+por lo que hay un 5 allí,
+
+60
+00:01:56,900 --> 00:01:58,600
+es el multiplicador asociado con x2,
+
+61
+00:01:58,980 --> 00:02:00,160
+y recuerden que también hay
+
+62
+00:02:01,210 --> 00:02:03,490
+x0 que es igual a 1, y digamos
+
+63
+00:02:03,770 --> 00:02:05,390
+que Carol nos dice
+
+64
+00:02:05,610 --> 00:02:07,000
+que no le gustan las películas románticas
+
+65
+00:02:07,390 --> 00:02:09,640
+y así sucesivamente, de manera similar para Dave.
+
+66
+00:02:09,840 --> 00:02:11,030
+Así que supongamos que de alguna manera,
+
+67
+00:02:11,440 --> 00:02:12,830
+podemos ir a los usuarios y
+
+68
+00:02:13,290 --> 00:02:14,600
+cada usuario j nos dice
+
+69
+00:02:15,020 --> 00:02:16,160
+cuál es el valor
+
+70
+00:02:17,090 --> 00:02:18,870
+de teta j para ellos.
+
+71
+00:02:19,450 --> 00:02:22,190
+Así que básicamente nos especifica lo mucho que les gustan los diferentes tipos de películas.
+
+72
+00:02:24,060 --> 00:02:25,280
+Si podemos obtener estos parámetros
+
+73
+00:02:25,990 --> 00:02:27,890
+teta de nuestros usuarios, entonces
+
+74
+00:02:28,050 --> 00:02:29,820
+resulta que se hace posible
+
+75
+00:02:29,960 --> 00:02:31,210
+tratar de inferir cuáles son los
+
+76
+00:02:31,310 --> 00:02:33,710
+valores de x1 y x2 para cada película.
+
+77
+00:02:34,800 --> 00:02:35,140
+Veamos un ejemplo.
+
+78
+00:02:35,730 --> 00:02:36,560
+Veamos la película 1.
+
+79
+00:02:38,690 --> 00:02:39,790
+Así que esa película 1 está asociada
+
+80
+00:02:40,580 --> 00:02:42,050
+con un vector de dirección x(1)
+
+81
+00:02:42,890 --> 00:02:45,420
+Y ya saben, esta película se llama Love at last, pero vamos a ignorar eso.
+
+82
+00:02:45,770 --> 00:02:46,750
+Hagamos de cuenta que no sabemos
+
+83
+00:02:46,870 --> 00:02:49,060
+de qué se trata esta película, así que vamos a ignorar el título de esta película.
+
+84
+00:02:50,180 --> 00:02:52,270
+Todo lo que sabemos es que a Alice le encantó esta película.
+
+85
+00:02:52,450 --> 00:02:53,110
+A Bob le encantó esta película.
+
+86
+00:02:53,750 --> 00:02:55,370
+Carol y Dave odiaron esta película.
+
+87
+00:02:56,450 --> 00:02:57,450
+Así que, ¿qué podemos deducir?
+
+88
+00:02:57,830 --> 00:02:58,900
+Bueno, sabemos por los
+
+89
+00:02:58,990 --> 00:03:00,510
+vectores de variables, que a Alice
+
+90
+00:03:00,780 --> 00:03:03,190
+y a Bob les encantan las películas románticas
+
+91
+00:03:03,700 --> 00:03:05,660
+porque nos dijeron que hay un 5 aquí.
+
+92
+00:03:06,290 --> 00:03:07,480
+En cuanto a Carol y Dave,
+
+93
+00:03:08,380 --> 00:03:10,150
+sabemos que ellos odian
+
+94
+00:03:10,510 --> 00:03:11,920
+las películas románticas y que
+
+95
+00:03:12,300 --> 00:03:13,990
+les encantan las películas de acción. De modo que
+
+96
+00:03:14,730 --> 00:03:16,050
+debido a que esos son los vectores de parámetros
+
+97
+00:03:16,340 --> 00:03:18,830
+que los usuarios 3 y 4, Carol y Dave, nos dieron.
+
+98
+00:03:20,110 --> 00:03:20,950
+Así que basados en el hecho
+
+99
+00:03:21,390 --> 00:03:22,340
+de que la película 1 les encantó
+
+100
+00:03:22,880 --> 00:03:24,120
+a Alice y a Bob, y Carol y Dave la
+
+101
+00:03:24,340 --> 00:03:26,460
+odiaron, podríamos
+
+102
+00:03:26,910 --> 00:03:30,810
+concluir de manera razonable que esta es probablemente una película romántica,
+
+103
+00:03:31,180 --> 00:03:34,240
+probablemente no sea una película con mucha acción.
+
+104
+00:03:35,290 --> 00:03:36,360
+Este ejemplo es un poco
+
+105
+00:03:36,520 --> 00:03:38,090
+matemáticamente simplificado, pero lo que
+
+106
+00:03:38,260 --> 00:03:40,330
+realmente estamos preguntando es qué
+
+107
+00:03:40,590 --> 00:03:42,010
+vector de dirección debería ser x1
+
+108
+00:03:42,840 --> 00:03:45,370
+de manera que teta 1 que transpone
+
+109
+00:03:46,030 --> 00:03:48,940
+x(1) es aproximadamente igual a 5;
+
+110
+00:03:49,660 --> 00:03:51,700
+esa es la calificación de Alice, y
+
+111
+00:03:51,920 --> 00:03:55,360
+teta 2 que transpone x(1) también
+
+112
+00:03:55,510 --> 00:03:56,660
+es aproximadamente igual a 5,
+
+113
+00:03:57,670 --> 00:03:59,100
+y teta 3 que transpone x(1) es
+
+114
+00:03:59,310 --> 00:04:02,180
+aproximadamente igual a 0,
+
+115
+00:04:03,020 --> 00:04:05,250
+por lo que esta sería la calificación de Carol, y
+
+116
+00:04:06,970 --> 00:04:09,780
+teta 4 que transpone x(1)
+
+117
+00:04:10,740 --> 00:04:11,630
+es aproximadamente igual a 0.
+
+118
+00:04:12,590 --> 00:04:13,520
+Y de esto, parece que
+
+119
+00:04:13,770 --> 00:04:16,000
+x(1) es igual a
+
+120
+00:04:16,870 --> 00:04:18,770
+uno, que es el término de intercepción, y
+
+121
+00:04:19,080 --> 00:04:20,960
+luego 1.0, 0.0, eso tiene sentido
+
+122
+00:04:21,310 --> 00:04:22,390
+ya que sabemos las preferencias de Alice,
+
+123
+00:04:22,790 --> 00:04:24,110
+Bob, Carol, y Dave
+
+124
+00:04:24,770 --> 00:04:25,940
+por las películas, y la forma en la que calificaron esa película.
+
+125
+00:04:27,700 --> 00:04:29,080
+Así, de manera más general, podemos
+
+126
+00:04:29,220 --> 00:04:30,210
+revisar esta lista y tratar de
+
+127
+00:04:30,430 --> 00:04:31,520
+averiguar cuáles podrían
+
+128
+00:04:31,700 --> 00:04:35,260
+ser variables razonables para estas otras películas también.
+
+129
+00:04:39,160 --> 00:04:41,890
+Vamos a formular este problema para conocer las variables x(1).
+
+130
+00:04:42,410 --> 00:04:44,220
+Digamos que nuestros
+
+131
+00:04:44,340 --> 00:04:45,860
+usuarios nos han dado sus preferencias.
+
+132
+00:04:46,580 --> 00:04:47,950
+Así que digamos que nuestros usuarios
+
+133
+00:04:48,130 --> 00:04:49,100
+vinieron y nos dijeron
+
+134
+00:04:49,330 --> 00:04:50,800
+estos valores para teta 1
+
+135
+00:04:50,890 --> 00:04:52,990
+hasta teta nu
+
+136
+00:04:53,280 --> 00:04:54,430
+y queremos saber el
+
+137
+00:04:54,790 --> 00:04:56,130
+vector de dirección x(1) para la película
+
+138
+00:04:56,540 --> 00:04:58,020
+número i. Lo que podemos
+
+139
+00:04:58,200 --> 00:05:00,830
+hacer es, por lo tanto, plantear el siguiente problema de optimización.
+
+140
+00:05:01,220 --> 00:05:02,210
+Así que queremos sumar sobre
+
+141
+00:05:02,840 --> 00:05:04,600
+todos los índices de j para
+
+142
+00:05:04,930 --> 00:05:06,280
+los que tenemos una calificación
+
+143
+00:05:06,950 --> 00:05:08,340
+para la película i porque
+
+144
+00:05:08,750 --> 00:05:10,040
+estamos tratando de conocer las variables
+
+145
+00:05:10,950 --> 00:05:13,560
+para la película i que es este vector de dirección x(1).
+
+146
+00:05:14,650 --> 00:05:15,660
+Así que a continuación, lo que
+
+147
+00:05:15,780 --> 00:05:18,450
+queremos es minimizar este error al cuadrado,
+
+148
+00:05:19,020 --> 00:05:20,160
+así que queremos elegir
+
+149
+00:05:20,420 --> 00:05:22,430
+las variables x(i), de manera que,
+
+150
+00:05:22,900 --> 00:05:25,000
+el valor predictivo de
+
+151
+00:05:25,200 --> 00:05:26,820
+cómo el usuario j califica la película
+
+152
+00:05:27,110 --> 00:05:28,170
+i será similar,
+
+153
+00:05:28,900 --> 00:05:30,130
+no estará muy alejado en el
+
+154
+00:05:30,440 --> 00:05:31,910
+sentido del error cuadrado del valor real
+
+155
+00:05:32,530 --> 00:05:35,330
+y(i,j) que observamos en realidad en
+
+156
+00:05:35,530 --> 00:05:37,130
+la calificación del usuario j
+
+157
+00:05:38,310 --> 00:05:40,790
+sobre la película i.
+Así, sólo para
+
+158
+00:05:41,040 --> 00:05:42,320
+resumir lo que hace este término,
+
+159
+00:05:42,840 --> 00:05:44,060
+es que trata de elegir las variables
+
+160
+00:05:45,040 --> 00:05:46,590
+x(i) de modo que para
+
+161
+00:05:46,960 --> 00:05:48,210
+todos los usuarios j que
+
+162
+00:05:48,360 --> 00:05:50,190
+calificado esa película, el
+
+163
+00:05:50,860 --> 00:05:52,830
+algoritmo también predice un
+
+164
+00:05:52,900 --> 00:05:55,490
+valor para cómo habría calificado ese usuario esa película;
+
+165
+00:05:56,170 --> 00:05:57,720
+eso no está demasiado alejado, en
+
+166
+00:05:57,810 --> 00:05:59,730
+el sentido del error cuadrado, del valor real
+
+167
+00:06:00,000 --> 00:06:02,310
+con el que el usuario calificó esa película.
+
+168
+00:06:03,380 --> 00:06:04,560
+Así que ese es el término de error al cuadrado.
+
+169
+00:06:05,420 --> 00:06:07,200
+Como de costumbre, podemos
+
+170
+00:06:07,310 --> 00:06:08,430
+añadir también este tipo de
+
+171
+00:06:08,520 --> 00:06:09,850
+término de regularización para prevenir
+
+172
+00:06:10,300 --> 00:06:11,870
+que las variables se hagan demasiado grandes.
+
+173
+00:06:13,720 --> 00:06:15,610
+De modo que así es cómo
+
+174
+00:06:15,760 --> 00:06:16,910
+conoceríamos las variables
+
+175
+00:06:17,420 --> 00:06:19,140
+para una película específica, pero
+
+176
+00:06:19,690 --> 00:06:20,480
+lo que queremos hacer es
+
+177
+00:06:20,740 --> 00:06:22,060
+conocer todas las variables para todas
+
+178
+00:06:22,230 --> 00:06:23,820
+las películas, así que lo que
+
+179
+00:06:24,080 --> 00:06:25,050
+voy a hacer es añadir esta
+
+180
+00:06:25,240 --> 00:06:26,620
+suma adicional aquí, así
+
+181
+00:06:26,780 --> 00:06:28,840
+voy a sumar sobre todas las películas nm,
+
+182
+00:06:29,260 --> 00:06:33,140
+películas n subíndice m, y voy a minimizar
+
+183
+00:06:33,830 --> 00:06:34,670
+este objetivo en la parte superior
+
+184
+00:06:35,010 --> 00:06:37,080
+que suma todas las películas.
+
+185
+00:06:37,410 --> 00:06:39,930
+Y si si hacen esto, terminan con el siguiente problema de optimización.
+
+186
+00:06:40,950 --> 00:06:42,320
+Y si minimizan
+
+187
+00:06:42,890 --> 00:06:44,520
+esto, con suerte tendrán
+
+188
+00:06:44,680 --> 00:06:47,440
+un conjunto razonable de variables para todas sus películas.
+
+189
+00:06:48,650 --> 00:06:50,080
+Así que juntando todo,
+
+190
+00:06:50,210 --> 00:06:51,050
+el algoritmo del que hablamos
+
+191
+00:06:51,330 --> 00:06:52,730
+en el vídeo anterior y
+
+192
+00:06:53,180 --> 00:06:54,810
+el algoritmo del que acabamos de hablar en este video,
+
+193
+00:06:55,730 --> 00:06:57,070
+en el vídeo anterior, lo que
+
+194
+00:06:57,180 --> 00:06:58,710
+mostramos es que,
+
+195
+00:06:58,820 --> 00:06:59,700
+si tienen un conjunto de
+
+196
+00:06:59,790 --> 00:07:00,640
+calificaciones de películas, --sí tienen
+
+197
+00:07:00,640 --> 00:07:03,960
+los datos r(i,j) y
+
+198
+00:07:04,090 --> 00:07:06,100
+tienen los datos y(i,j)-- así que tenemos las calificaciones de películas,
+
+199
+00:07:08,500 --> 00:07:09,650
+entonces, dadas las variables para sus
+
+200
+00:07:09,800 --> 00:07:11,800
+diferentes películas, podemos conocer estos parámetros teta.
+
+201
+00:07:12,340 --> 00:07:13,110
+Así que si conocieran las variables
+
+202
+00:07:13,830 --> 00:07:15,000
+podrían saber los parámetros
+
+203
+00:07:15,650 --> 00:07:16,850
+teta para sus diferentes usuarios.
+
+204
+00:07:18,250 --> 00:07:19,770
+Y lo que mostramos anteriormente en
+
+205
+00:07:19,930 --> 00:07:21,400
+este vídeo es que si
+
+206
+00:07:21,790 --> 00:07:22,860
+los usuarios están dispuestos a
+
+207
+00:07:23,000 --> 00:07:25,450
+darles los parámetros, entonces ustedes
+
+208
+00:07:25,560 --> 00:07:28,060
+pueden calcular las variables para las diferentes películas.
+
+209
+00:07:29,270 --> 00:07:31,490
+Así que esto es una especie de problema del huevo y la gallina.
+
+210
+00:07:31,770 --> 00:07:32,290
+¿Cuál fue primero?
+
+211
+00:07:32,900 --> 00:07:35,570
+Ya saben, si podemos obtener los tetas, podemos conocer las x’s.
+
+212
+00:07:36,060 --> 00:07:38,160
+Si tenemos las x’s, podemos conocer los tetas.
+
+213
+00:07:39,500 --> 00:07:40,500
+Lo que pueden
+
+214
+00:07:40,680 --> 00:07:41,790
+hacer es, y esto
+
+215
+00:07:41,910 --> 00:07:43,000
+realmente funciona, lo que
+
+216
+00:07:43,110 --> 00:07:44,530
+pueden hacer es, de hecho, adivinar al azar
+
+217
+00:07:45,170 --> 00:07:47,160
+algún valor para las tetas.
+
+218
+00:07:48,210 --> 00:07:49,200
+Con base en su conjetura aleatoria inicial para las tetas,
+
+219
+00:07:49,530 --> 00:07:50,630
+pueden
+
+220
+00:07:50,940 --> 00:07:52,530
+seguir adelante y usar
+
+221
+00:07:53,160 --> 00:07:54,210
+el procedimiento del que acabamos de hablar
+
+222
+00:07:54,460 --> 00:07:55,810
+a fin de
+
+223
+00:07:56,060 --> 00:07:57,740
+conocer las variables para sus diferentes películas.
+
+224
+00:07:58,800 --> 00:07:59,990
+Ahora, dado algún conjunto inicial
+
+225
+00:08:00,130 --> 00:08:01,160
+de variables para sus películas, pueden
+
+226
+00:08:01,240 --> 00:08:02,730
+usar entonces este
+
+227
+00:08:03,050 --> 00:08:04,060
+primer método del que hablamos
+
+228
+00:08:04,130 --> 00:08:06,180
+en el vídeo anterior, para tratar de obtener
+
+229
+00:08:06,360 --> 00:08:08,590
+un estimado aún mejor para sus parámetros teta.
+
+230
+00:08:09,560 --> 00:08:12,420
+Ahora que tienen una mejor configuración de los parámetros teta para sus usuarios,
+
+231
+00:08:12,860 --> 00:08:13,850
+podemos usar eso para, tal vez,
+
+232
+00:08:14,070 --> 00:08:15,140
+incluso obtener un mejor conjunto de
+
+233
+00:08:15,240 --> 00:08:17,110
+variables y así sucesivamente.
+
+234
+00:08:17,380 --> 00:08:18,400
+Podemos seguir
+
+235
+00:08:18,600 --> 00:08:19,440
+iterando, yendo y viniendo
+
+236
+00:08:19,790 --> 00:08:21,270
+y optimizando teta, x, teta,
+
+237
+00:08:21,560 --> 00:08:24,000
+x, teta, y esto
+
+238
+00:08:24,270 --> 00:08:25,290
+realmente funciona, y si
+
+239
+00:08:25,410 --> 00:08:26,340
+hacen esto, esto en realidad va a
+
+240
+00:08:26,800 --> 00:08:28,360
+causar que su algoritmo converja
+
+241
+00:08:28,930 --> 00:08:30,430
+en un conjunto razonable de
+
+242
+00:08:31,340 --> 00:08:32,650
+variables para sus películas y un
+
+243
+00:08:32,790 --> 00:08:34,880
+conjunto razonable de parámetros para sus diferentes usuarios.
+
+244
+00:08:36,080 --> 00:08:38,870
+Así que este es un algoritmo básico de filtrado colaborativo.
+
+245
+00:08:39,770 --> 00:08:40,850
+Esto no es en realidad el algoritmo final
+
+246
+00:08:41,020 --> 00:08:42,890
+que vamos a usar. En el siguiente
+
+247
+00:08:43,120 --> 00:08:44,100
+vídeo, vamos a poder mejorar
+
+248
+00:08:44,790 --> 00:08:45,610
+en este algoritmo y hacerlo
+
+249
+00:08:45,920 --> 00:08:47,430
+un poco más computacionalmente eficaz.
+
+250
+00:08:48,390 --> 00:08:49,510
+Pero espero que éste les haya dado
+
+251
+00:08:49,640 --> 00:08:50,600
+una idea sobre cómo pueden
+
+252
+00:08:50,680 --> 00:08:51,980
+formular un
+
+253
+00:08:52,040 --> 00:08:52,990
+problema en el que pueden conocer de manera simultánea
+
+254
+00:08:53,930 --> 00:08:57,200
+los parámetros y al mismo tiempo conocer las variables de las diferentes películas.
+
+255
+00:08:58,440 --> 00:08:59,660
+Y para este problema, para el
+
+256
+00:08:59,740 --> 00:09:01,100
+el sistema de recomendación, esto es
+
+257
+00:09:01,390 --> 00:09:02,950
+posible sólo porque cada usuario
+
+258
+00:09:03,490 --> 00:09:04,840
+califica varias películas y, con suerte,
+
+259
+00:09:05,100 --> 00:09:06,410
+cada película es calificada
+
+260
+00:09:06,790 --> 00:09:08,710
+por varios usuarios. Así que
+
+261
+00:09:09,280 --> 00:09:10,150
+pueden hacer esto un
+
+262
+00:09:10,270 --> 00:09:11,150
+proceso de ida y venida para calcular teta
+
+263
+00:09:11,200 --> 00:09:14,400
+y x. 
+De modo que para
+
+264
+00:09:14,830 --> 00:09:15,910
+resumir, en este vídeo hemos
+
+265
+00:09:16,140 --> 00:09:18,710
+visto un algoritmo de filtrado colaborativo inicial.
+
+266
+00:09:19,680 --> 00:09:21,550
+El término filtrado colaborativo se refiere
+
+267
+00:09:22,020 --> 00:09:23,620
+a la observación de que, cuando
+
+268
+00:09:23,760 --> 00:09:25,020
+ejecutan este algoritmo con un
+
+269
+00:09:25,210 --> 00:09:26,790
+gran conjunto de usuarios, lo que todos
+
+270
+00:09:26,960 --> 00:09:28,410
+estos usuarios están haciendo efectivamente es una especie de
+
+271
+00:09:29,070 --> 00:09:31,300
+colaboración - o colaboran para
+
+272
+00:09:31,490 --> 00:09:32,770
+obtener mejores calificaciones de películas para
+
+273
+00:09:33,010 --> 00:09:34,610
+todos, porque con cada
+
+274
+00:09:34,840 --> 00:09:36,540
+usuario que califica un subconjunto de películas,
+
+275
+00:09:37,350 --> 00:09:39,040
+cada usuario le está ayudando al
+
+276
+00:09:39,300 --> 00:09:41,490
+el algoritmo un poco a conocer mejores variables,
+
+277
+00:09:42,900 --> 00:09:44,390
+y luego al ayudar -
+
+278
+00:09:44,490 --> 00:09:46,690
+al calificar algunas películas yo mismo, estaré ayudando
+
+279
+00:09:47,810 --> 00:09:49,550
+al sistema a conocer mejores variables, y
+
+280
+00:09:49,680 --> 00:09:50,750
+entonces estas variables pueden ser usadas
+
+281
+00:09:50,930 --> 00:09:52,610
+por el sistema para hacer mejores
+
+282
+00:09:52,890 --> 00:09:54,380
+predicciones de películas para todos los demás.
+
+283
+00:09:54,640 --> 00:09:55,450
+Así que hay un sentido de
+
+284
+00:09:55,530 --> 00:09:56,980
+colaboración en el que cada usuario está
+
+285
+00:09:57,370 --> 00:09:58,980
+ayudando al sistema a conocer mejores variables
+
+286
+00:09:59,360 --> 00:10:00,740
+para el bien común. Esto
+
+287
+00:10:00,810 --> 00:10:03,450
+es filtrado colaborativo.
+
+288
+00:10:04,070 --> 00:10:04,990
+En el siguiente vídeo, lo que vamos a hacer
+
+289
+00:10:05,140 --> 00:10:07,490
+es tomar las ideas que
+
+290
+00:10:07,740 --> 00:10:08,850
+han funcionado, y tratar de
+
+291
+00:10:09,090 --> 00:10:09,910
+desarrollar un mejor
+
+292
+00:10:10,170 --> 00:10:11,920
+algoritmo, una técnica un poco mejor
+
+293
+00:10:12,180 --> 00:10:13,640
+para el filtrado colaborativo.
