@@ -1,0 +1,493 @@
+As part of this course by deeplearning.ai, hope to not just teach you the technical
+ideas in deep learning, but also introduce you to some of the people,
+some of the heroes in deep learning. The people that invented so many of these ideas that you learn about
+in this course or in this specialization. In these videos, I hope to also
+ask these leaders of deep learning to give you career advice for
+how you can break into deep learning, for how you can do research or
+find a job in deep learning. As the first of this interview series, I am delighted to present to you
+an interview with Geoffrey Hinton. Welcome Geoff, and thank you for
+doing this interview with deeplearning.ai. >> Thank you for inviting me. >> I think that at this point you more
+than anyone else on this planet has invented so
+many of the ideas behind deep learning. And a lot of people have been calling
+you the godfather of deep learning. Although it wasn't until we were chatting
+a few minutes ago, until I realized you think I'm the first one to call you
+that, which I'm quite happy to have done. But what I want to ask is,
+many people know you as a legend, I want to ask about your
+personal story behind the legend. So how did you get involved in, going way
+back, how did you get involved in AI and machine learning and neural networks? >> So when I was at high school,
+I had a classmate who was always better than me at everything,
+he was a brilliant mathematician. And he came into school one day and said,
+did you know the brain uses holograms? And I guess that was about 1966, and
+I said, sort of what's a hologram? And he explained that in a hologram
+you can chop off half of it, and you still get the whole picture. And that memories in the brain might
+be distributed over the whole brain. And so I guess he'd read
+about Lashley's experiments, where you chop off bits
+of a rat's brain and discover that it's very hard to find one
+bit where it stores one particular memory. So that's what first got me interested
+in how does the brain store memories. And then when I went to university, I started off studying physiology and
+physics. I think when I was at Cambridge, I was the only undergraduate
+doing physiology and physics. And then I gave up on that and tried to do philosophy, because I
+thought that might give me more insight. But that seemed to me actually lacking in ways of distinguishing
+when they said something false. And so then I switched to psychology. And in psychology they had very,
+very simple theories, and it seemed to me it was sort of hopelessly inadequate
+to explaining what the brain was doing. So then I took some time off and
+became a carpenter. And then I decided that I'd try AI,
+and went of to Edinburgh, to study AI with Langer Higgins. And he had done very nice
+work on neural networks, and he'd just given up on neural networks, and
+been very impressed by Winograd's thesis. So when I arrived he thought I was kind
+of doing this old fashioned stuff, and I ought to start on symbolic AI. And we had a lot of fights about that, but
+I just kept on doing what I believed in. >> And then what? >> I eventually got a PhD in AI, and
+then I couldn't get a job in Britain. But I saw this very nice advertisement for Sloan Fellowships in California,
+and I managed to get one of those. And I went to California, and
+everything was different there. So in Britain,
+neural nets was regarded as kind of silly, and in California, Don Norman and David Rumelhart were very open
+to ideas about neural nets. It was the first time I'd been somewhere
+where thinking about how the brain works, and thinking about how that
+might relate to psychology, was seen as a very positive thing. And it was a lot of fun there, in particular collaborating
+with David Rumelhart was great. >> I see, great.
+So this was when you were at UCSD, and you and Rumelhart around what, 1982, wound up writing the seminal
+backprop paper, right? >> Actually,
+it was more complicated than that. >> What happened? >> In, I think, early 1982, David Rumelhart and me, and Ron Williams, between us developed
+the backprop algorithm, it was mainly David Rumelhart's idea. We discovered later that many
+other people had invented it. David Parker had invented, it probably
+after us, but before we'd published. Paul Werbos had published it already
+quite a few years earlier, but nobody paid it much attention. And there were other people who'd
+developed very similar algorithms, it's not clear what's meant by backprop. But using the chain rule to get
+derivatives was not a novel idea. >> I see, why do you think it
+was your paper that helped so much the community latch on to backprop? It feels like your paper marked
+an infection in the acceptance of this algorithm, whoever accepted it. >> So we managed to get
+a paper into Nature in 1986. And I did quite a lot of political
+work to get the paper accepted. I figured out that one of the referees was
+probably going to be Stuart Sutherland, who was a well known
+psychologist in Britain. And I went to talk to him for
+a long time, and explained to him exactly
+what was going on. And he was very impressed by the fact that we showed that backprop could
+learn representations for words. And you could look at those
+representations, which are little vectors, and you could understand the meaning
+of the individual features. So we actually trained it on little
+triples of words about family trees, like Mary has mother Victoria. And you'd give it the first two words, and
+it would have to predict the last word. And after you trained it, you could see all sorts of features in the
+representations of the individual words. Like the nationality of the person there, what generation they were, which branch of
+the family tree they were in, and so on. That was what made Stuart Sutherland
+really impressed with it, and I think that's why the paper got accepted. >> Very early word embeddings,
+and you're already seeing learned features of semantic meanings
+emerge from the training algorithm. >> Yes, so from a psychologist's point of
+view, what was interesting was it unified two completely different strands of
+ideas about what knowledge was like. So there was the old psychologist's
+view that a concept is just a big bundle of features, and
+there's lots of evidence for that. And then there was the AI view of the
+time, which is a formal structurist view. Which was that a concept is how
+it relates to other concepts. And to capture a concept, you'd have to
+do something like a graph structure or maybe a semantic net. And what this back propagation
+example showed was, you could give it the information that would go into a graph
+structure, or in this case a family tree. And it could convert that information into
+features in such a way that it could then use the features to derive new
+consistent information, ie generalize. But the crucial thing was this to and fro
+between the graphical representation or the tree structured representation
+of the family tree, and a representation of the people
+as big feature vectors. And in fact that from the graph-like
+representation you could get feature vectors. And from the feature vectors, you could
+get more of the graph-like representation. >> So this is 1986? In the early 90s, Bengio showed that
+you can actually take real data, you could take English text, and
+apply the same techniques there, and get embeddings for real words from English
+text, and that impressed people a lot. >> I guess recently we've been talking a
+lot about how fast computers like GPUs and supercomputers that's
+driving deep learning. I didn't realize that back between 1986
+and the early 90's, it sounds like between you and Benjio there was already
+the beginnings of this trend. >> Yes, it was a huge advance. In 1986, I was using a list machine which
+was less than a tenth of a mega flop. And by about 1993 or thereabouts,
+people were seeing ten mega flops. >> I see.
+>> So there was a factor of 100, and that's the point at
+which is was easy to use, because computers were
+just getting faster. >> Over the past several decades,
+you've invented so many pieces of neural networks and
+deep learning. I'm actually curious,
+of all of the things you've invented, which of the ones you're still
+most excited about today? >> So I think the most beautiful
+one is the work I do with Terry Sejnowski on Boltzmann machines. So we discovered there was this really, really simple learning algorithm
+that applied to great big density connected nets where you
+could only see a few of the nodes. So it would learn hidden representations
+and it was a very simple algorithm. And it looked like the kind of thing you
+should be able to get in a brain because each synapse only needed to know
+about the behavior of the two neurons it was directly connected to. And the information that was
+propagated was the same. There were two different phases,
+which we called wake and sleep. But in the two different phases, you're propagating information
+in just the same way. Where as in something like back
+propagation, there's a forward pass and a backward pass, and
+they work differently. They're sending different
+kinds of signals. So I think that's
+the most beautiful thing. And for many years it looked
+just like a curiosity, because it looked like
+it was much too slow. But then later on, I got rid of a little
+bit of the beauty, and it started letting me settle down and just use one iteration,
+in a somewhat simpler net. And that gave restricted
+Boltzmann machines, which actually worked
+effectively in practice. So in the Netflix competition,
+for example, restricted Boltzmann machines were one
+of the ingredients of the winning entry. >> And in fact, a lot of the recent
+resurgence of neural net and deep learning, starting about 2007,
+was the restricted Boltzmann machine, and derestricted Boltzmann machine
+work that you and your lab did. >> Yes so that's another of the pieces
+of work I'm very happy with, the idea of that you could train your
+restricted Boltzmann machine, which just had one layer of hidden features and
+you could learn one layer of feature. And then you could treat those
+features as data and do it again, and then you could treat the new features
+you learned as data and do it again, as many times as you liked. So that was nice, it worked in practice. And then UY Tay realized that the whole
+thing could be treated as a single model, but it was a weird kind of model. It was a model where at the top you had
+a restricted Boltzmann machine, but below that you had a Sigmoid belief
+net which was something that invented many years early. So it was a directed model and what we'd managed to come up with by
+training these restricted Boltzmann machines was an efficient way of doing
+inferences in Sigmoid belief nets. So, around that time, there were people doing neural nets,
+who would use densely connected nets, but didn't have any good ways of doing
+probabilistic imprints in them. And you had people doing graphical models,
+unlike my children, who could do inference properly, but
+only in sparsely connected nets. And what we managed to show was
+the way of learning these deep belief nets so that there's an approximate
+form of inference that's very fast, it's just hands in a single forward pass
+and that was a very beautiful result. And you could guarantee that each time
+you learn that extra layer of features there was a band, each time you learned
+a new layer, you got a new band, and the new band was always
+better than the old band. >> The variational bands,
+showing as you add layers. Yes, I remember that video. >> So that was the second thing
+that I was really excited about. And I guess the third thing was the work
+I did with on variational methods. It turns out people in statistics
+had done similar work earlier, but we didn't know about that. So we managed to make EN work a whole lot better by showing
+you didn't need to do a perfect E step. You could do an approximate E step. And EN was a big algorithm in statistics. And we'd showed a big
+generalization of it. And in particular, in 1993,
+I guess, with Van Camp. I did a paper, with I think,
+the first variational Bayes paper, where we showed that you could actually
+do a version of Bayesian learning that was far more tractable, by
+approximating the true posterior with a. And you could do that in neural net. And I was very excited by that. >> I see.
+Wow, right. Yep, I think I remember
+all of these papers. You and Hinton, approximate Paper,
+spent many hours reading over that. And I think some of
+the algorithms you use today, or some of the algorithms that lots of
+people use almost every day, are what, things like dropouts, or
+I guess activations came from your group? >> Yes and no. So other people have thought
+about rectified linear units. And we actually did some work with
+restricted Boltzmann machines showing that a ReLU was almost exactly equivalent
+to a whole stack of logistic units. And that's one of the things
+that helped ReLUs catch on. >> I was really curious about that. The value paper had a lot of
+math showing that this function can be approximated with this
+really complicated formula. Did you do that math so your paper would
+get accepted into an academic conference, or did all that math really influence
+the development of max of 0 and x? >> That was one of the cases where
+actually the math was important to the development of the idea. So I knew about rectified linear units,
+obviously, and I knew about logistic units. And because of the work
+on Boltzmann machines, all of the basic work was
+done using logistic units. And so the question was, could the learning algorithm work in
+something with rectified linear units? And by showing the rectified linear units
+were almost exactly equivalent to a stack of logistic units, we showed that
+all the math would go through. >> I see. And it provided the inspiration for
+today, tons of people use ReLU and it just works without-
+>> Yeah. >> Without necessarily needing to
+understand the same motivation. >> Yeah, one thing I noticed
+later when I went to Google. I guess in 2014, I gave a talk
+at Google about using ReLUs and initializing with the identity matrix. because the nice thing about ReLUs is
+that if you keep replicating the hidden layers and
+you initialize with the identity, it just copies the pattern
+in the layer below. And so I was showing that you could train
+networks with 300 hidden layers and you could train them really efficiently
+if you initialize with their identity. But I didn't pursue that any further and
+I really regret not pursuing that. We published one paper with showing
+you could initialize an active showing you could initialize
+recurringness like that. But I should have pursued it further
+because Later on these residual networks is really that kind of thing. >> Over the years I've heard
+you talk a lot about the brain. I've heard you talk about relationship
+being backprop and the brain. What are your current thoughts on that? >> I'm actually working on
+a paper on that right now. I guess my main thought is this. If it turns out the back prop is a really
+good algorithm for doing learning. Then for sure evolution could've
+figured out how to prevent it. I mean you have cells that could
+turn into either eyeballs or teeth. Now, if cells can do that, they can for
+sure implement backpropagation and presumably this huge
+selective pressure for it. So I think the neuroscientist idea that
+it doesn't look plausible is just silly. There may be some subtle
+implementation of it. And I think the brain probably has
+something that may not be exactly be backpropagation, but
+it's quite close to it. And over the years, I've come up with a
+number of ideas about how this might work. So in 1987, working with Jay McClelland, I came up with
+the recirculation algorithm, where the idea is you send
+information round a loop. And you try to make it so that things don't change as
+information goes around this loop. So the simplest version would be you
+have input units and hidden units, and you send information from the input to
+the hidden and then back to the input, and then back to the hidden and
+then back to the input and so on. And what you want,
+you want to train an autoencoder, but you want to train it without
+having to do backpropagation. So you just train it to try and get rid
+of all variation in the activities. So the idea is that the learning rule for synapse is change the weighting
+proportion to the presynaptic input and in proportion to the rate of
+change at the post synaptic input. But in recirculation, you're trying
+to make the post synaptic input, you're trying to make the old one
+be good and the new one be bad, so you're changing in that direction. We invented this algorithm before
+neuroscientists come up with spike-timing-dependent plasticity. Spike-timing-dependent plasticity is
+actually the same algorithm but the other way round, where the new thing is good and
+the old thing is bad in the learning rule. So you're changing the weighting
+proportions to the preset outlook activity times the new person outlook
+activity minus the old one. Later on I realized in 2007,
+that if you took a stack of Restricted Boltzmann machines and
+you trained it up. After it was trained, you then had
+exactly the right conditions for implementing backpropagation
+by just trying to reconstruct. If you looked at the reconstruction era,
+that reconstruction era would actually tell you the derivative
+of the discriminative performance. And at the first deep learning workshop
+at in 2007, I gave a talk about that. That was almost completely ignored. Later on, Joshua Benjo,
+took up the idea and that's actually done quite
+a lot of more work on that. And I've been doing
+more work on it myself. And I think this idea that if you have
+a stack of autoencoders, then you can get derivatives by sending activity
+backwards and locate reconstructionaires, is a really interesting idea and
+may well be how the brain does it. >> One other topic that I know you follow
+about and that I hear you're still working on is how to deal with
+multiple time skills in deep learning? So, can you share your thoughts on that? >> Yes, so actually, that goes back to
+my first years of graduate student. The first talk I ever gave was about
+using what I called fast weights. So weights that adapt rapidly,
+but decay rapidly. And therefore can hold short term memory. And I showed in a very simple
+system in 1973 that you could do true recursion with those weights. And what I mean by true recursion
+is that the neurons that is used in representing things get re-used for
+representing things in the recursive core. And the weights that is used for actually knowledge get re-used
+in the recursive core. And so that leads the question of
+when you pop out your recursive core, how do you remember what it was
+you were in the middle of doing? Where's that memory? because you used the neurons for
+the recursive core. And the answer is you can put that
+memory into fast weights, and you can recover the activities
+neurons from those fast weights. And more recently working with Jimmy Ba, we actually got a paper in it by using
+fast weights for recursion like that. >> I see. >> So that was quite a big gap. The first model was
+unpublished in 1973 and then Jimmy Ba's model was in 2015,
+I think, or 2016. So it's about 40 years later. >> And, I guess,
+one other idea of Quite a few years now, over five years, I think is capsules,
+where are you with that? >> Okay, so I'm back to
+the state I'm used to being in. Which is I have this idea I really
+believe in and nobody else believes it. And I submit papers about it and
+they would get rejected. But I really believe in this idea and
+I'm just going to keep pushing it. So it hinges on,
+there's a couple of key ideas. One is about how you represent
+multi dimensional entities, and you can represent multi-dimensional entities
+by just a little backdoor activities. As long as you know
+there's any one of them. So the idea is in each region of
+the image, you'll assume there's at most, one of the particular kind of feature. And then you'll use a bunch of neurons,
+and their activities will represent
+the different aspects to that feature, like within that region exactly
+what are its x and y coordinates? What orientation is it at? How fast is it moving? What color is it? How bright is it? And stuff like that. So you can use a whole bunch of neurons
+to represent different dimensions of the same thing. Provided there's only one of them. That's a very different way
+of doing representation from what we're normally
+used to in neuronettes. Normally in neuronettes,
+we just have a great big layer, and all the units go off and
+do whatever they do. But you don't think of bundling them
+up into little groups that represent different coordinates of the same thing. So I think we should beat
+this extra structure. And then the other idea
+that goes with that. >> So this means in the truth
+of the representation, you partition the representation. >> Yes.
+>> To different subsets. >> Yes.
+>> To represent, right, rather than- >> I call each of those subsets a capsule. >> I see. >> And the idea is a capsule is able to
+represent an instance of a feature, but only one. And it represents all the different
+properties of that feature. It's a feature that has a lot
+of properties as opposed to a normal neuron and a normal neuronette,
+which has just one scale of property. >> Yeah, I see yep. >> And then what you can do if you've got
+that, is you can do something that normal neuronettes are very bad at, which is you
+can do what I call routine by agreement. So let's suppose you want
+to do segmentation and you have something that might be a mouth
+and something else that might be a nose. And you want to know if you should
+put them together to make one thing. So the idea should have a capsule for a mouth that has
+the parameters of the mouth. And you have a capsule for a nose
+that has the parameters of the nose. And then to decipher whether
+to put them together or not, you get each of them to vote for
+what the parameters should be for a face. Now if the mouth and the nose are in
+the right spacial relationship, they will agree. So when you get two captures at one level
+voting for the same set of parameters at the next level up,
+you can assume they're probably right, because agreement in a high
+dimensional space is very unlikely. And that's a very different
+way of doing filtering, than what we normally use in neural nets. So I think this routing by agreement
+is going to be crucial for getting neural nets to generalize
+much better from limited data. I think it'd be very good at
+getting the changes in viewpoint, very good at doing segmentation. And I'm hoping it will be much more
+statistically efficient than what we currently do in neural nets. Which is, if you want to deal
+with changes in viewpoint, you just give it a whole bunch of changes
+in view point and training on them all. >> I see, right, so rather than
+FIFO learning, supervised learning, you can learn this in some different way. >> Well, I still plan to do it
+with supervised learning, but the mechanics of the forward
+paths are very different. It's not a pure forward path in the sense
+that there's little bits of iteration going on, where you think you found
+a mouth and you think you found a nose. And use a little bit
+of iteration to decide whether they should really
+go together to make a face. And you can do back props
+from that iteration. So you can try and
+do it a little discriminatively, and we're working on that
+now at my group in Toronto. So I now have a little Google team
+in Toronto, part of the Brain team. That's what I'm excited about right now. >> I see, great, yeah. Look forward to that paper
+when that comes out. >> Yeah, if it comes out [LAUGH]. >> You worked in deep learning for
+several decades. I'm actually really curious,
+how has your thinking, your understanding of AI
+changed over these years? >> So I guess a lot of my intellectual
+history has been around back propagation, and how to use back propagation,
+how to make use of its power. So to begin with, in the mid 80s,
+we were using it for discriminative learning and
+it was working well. I then decided, by the early 90s, that actually most human learning was
+going to be unsupervised learning. And I got much more interested
+in unsupervised learning, and that's when I worked on things
+like the Wegstein algorithm. >> And your comments at that time
+really influenced my thinking as well. So when I was leading Google Brain,
+our first project spent a lot of work in unsupervised learning
+because of your influence. >> Right, and I may have misled you. Because in the long run, I think unsupervised learning is
+going to be absolutely crucial. But you have to sort of face reality. And what's worked over the last ten
+years or so is supervised learning. Discriminative training,
+where you have labels, or you're trying to predict the next thing
+in the series, so that acts as the label. And that's worked incredibly well. I still believe that unsupervised learning
+is going to be crucial, and things will work incredibly much better than they do
+now when we get that working properly, but we haven't yet. >> Yeah, I think many of the senior
+people in deep learning, including myself,
+remain very excited about it. It's just none of us really have
+almost any idea how to do it yet. Maybe you do, I don't feel like I do. >> Variational altering code is where
+you use the reparameterization tricks. Seemed to me like a really nice idea. And generative adversarial nets also
+seemed to me to be a really nice idea. I think generative
+adversarial nets are one of the sort of biggest ideas in
+deep learning that's really new. I'm hoping I can make
+capsules that successful, but right now generative adversarial nets,
+I think, have been a big breakthrough. >> What happened to sparsity and
+slow features, which were two of the other principles for
+building unsupervised models? I was never as big on
+sparsity as you were, buddy. But slow features, I think, is a mistake. You shouldn't say slow. The basic idea is right, but you shouldn't
+go for features that don't change, you should go for
+features that change in predictable ways. So here's a sort of basic principle
+about how you model anything. You take your measurements,
+and you're applying nonlinear transformations to your
+measurements until you get to a representation as a state vector
+in which the action is linear. So you don't just pretend it's linear
+like you do with common filters. But you actually find a transformation
+from the observables to the underlying variables
+where linear operations, like matrix multipliers on the underlying
+variables, will do the work. So for example,
+if you want to change viewpoints. If you want to produce the image
+from another viewpoint, what you should do is go from
+the pixels to coordinates. And once you got to
+the coordinate representation, which is a kind of thing I'm
+hoping captures will find. You can then do a matrix multiplier
+to change viewpoint, and then you can map it back to pixels. >> Right, that's why you did all that. >> I think that's a very,
+very general principle. >> That's why you did all that
+work on face synthesis, right? Where you take a face and compress it
+to very low dimensional vector, and so you can fiddle with that and
+get back other faces. >> I had a student who worked on that,
+I didn't do much work on that myself. >> Now I'm sure you still
+get asked all the time, if someone wants to break into deep
+learning, what should they do? So what advice would you have? I'm sure you've given a lot of advice to
+people in one on one settings, but for the global audience of
+people watching this video. What advice would you have for
+them to get into deep learning? >> Okay, so my advice is sort of read the
+literature, but don't read too much of it. So this is advice I got from my advisor,
+which is very unlike what most people say. Most people say you should spend several
+years reading the literature and then you should start
+working on your own ideas. And that may be true for some researchers,
+but for creative researchers I think what you want to do is read
+a little bit of the literature. And notice something that you
+think everybody is doing wrong, I'm contrary in that sense. You look at it and
+it just doesn't feel right. And then figure out how to do it right. And then when people tell you,
+that's no good, just keep at it. And I have a very good principle for
+helping people keep at it, which is either your intuitions
+are good or they're not. If your intuitions are good,
+you should follow them and you'll eventually be successful. If your intuitions are not good,
+it doesn't matter what you do. >> I see [LAUGH]. Inspiring advice, might as well go for it. >> You might as well
+trust your intuitions. There's no point not trusting them. >> I see, yeah. I usually advise people to not just read,
+but replicate published papers. And maybe that puts a natural
+limiter on how many you could do, because replicating results
+is pretty time consuming. Yes, it's true that when you're
+trying to replicate a published you discover all over little
+tricks necessary to make it work. The other advice I have is,
+never stop programming. Because if you give a student
+something to do, if they're botching, they'll come back and say, it didn't work. And the reason it didn't work would
+be some little decision they made, that they didn't realize is crucial. And if you give it to a good student,
+like for example. You can give him anything and
+he'll come back and say, it worked. I remember doing this once,
+and I said, but wait a minute. Since we last talked, I realized it couldn't possibly work for
+the following reason. And said, yeah, I realized that right
+away, so I assumed you didn't mean that. >> [LAUGH] I see, yeah,
+that's great, yeah. Let's see, any other advice for people that want to break into AI and
+deep learning? >> I think that's basically, read enough
+so you start developing intuitions. And then, trust your intuitions and
+go for it, don't be too worried if everybody
+else says it's nonsense. >> And I guess there's no way
+to know if others are right or wrong when they say it's nonsense, but you
+just have to go for it, and then find out. >> Right, but there is one thing, which
+is, if you think it's a really good idea, and other people tell you
+it's complete nonsense, then you know you're
+really on to something. So one example of that is when and
+I first came up with variational methods. I sent mail explaining it to a former
+student of mine called Peter Brown, who knew a lot about. And he showed it to people
+who worked with him, called the brothers,
+they were twins, I think. And he then told me later what they said,
+and they said, either this guy's drunk,
+or he's just stupid, so they really,
+really thought it was nonsense. Now, it could have been partly
+the way I explained it, because I explained it in intuitive terms. But when you have what you
+think is a good idea and other people think is complete rubbish,
+that's the sign of a really good idea. >> I see, and research topics, new grad students should
+work on capsules and maybe unsupervised learning, any other? >> One good piece of advice for
+new grad students is, see if you can find an advisor
+who has beliefs similar to yours. Because if you work on stuff that
+your advisor feels deeply about, you'll get a lot of good advice and
+time from your advisor. If you work on stuff your
+advisor's not interested in, all you'll get is, you get some advice,
+but it won't be nearly so useful. >> I see, and
+last one on advice for learners, how do you feel about people
+entering a PhD program? Versus joining a top company,
+or a top research group? >> Yeah, it's complicated,
+I think right now, what's happening is, there aren't enough academics trained in
+deep learning to educate all the people that we need educated in universities. There just isn't the faculty
+bandwidth there, but I think that's going to be temporary. I think what's happened is,
+most departments have been very slow to understand the kind of
+revolution that's going on. I kind of agree with you, that it's not
+quite a second industrial revolution, but it's something on nearly that scale. And there's a huge sea change going on, basically because our relationship
+to computers has changed. Instead of programming them,
+we now show them, and they figure it out. That's a completely different
+way of using computers, and computer science departments are built
+around the idea of programming computers. And they don't understand that sort of, this showing computers is going to
+be as big as programming computers. Except they don't understand that half the
+people in the department should be people who get computers to do
+things by showing them. So my department refuses to acknowledge
+that it should have lots and lots of people doing this. They think they got a couple,
+maybe a few more, but not too many. And in that situation, you have to remind the big companies
+to do quite a lot of the training. So Google is now training people,
+we call brain residence, I suspect the universities
+will eventually catch up. >> I see, right, in fact, maybe a lot
+of students have figured this out. A lot of top 50 programs,
+over half of the applicants are actually wanting to work on showing,
+rather than programming. Yeah, cool, yeah, in fact,
+to give credit where it's due, whereas a deep learning AI is creating
+a deep learning specialization. As far as I know, their first deep
+learning MOOC was actually yours taught on Coursera, back in 2012, as well. And somewhat strangely, that's when you first published the RMS
+algorithm, which also is a rough. >> Right, yes, well, as you know, that was
+because you invited me to do the MOOC. And then when I was very dubious about
+doing, you kept pushing me to do it, so it was very good that I did,
+although it was a lot of work. >> Yes, and thank you for doing that,
+I remember you complaining to me, how much work it was. And you staying out late at night,
+but I think many, many learners have benefited for your first MOOC, so
+I'm very grateful to you for it, so. >> That's good, yeah
+>> Yeah, over the years, I've seen you embroiled in debates
+about paradigms for AI, and whether there's been a paradigm shift for
+AI. What are your,
+can you share your thoughts on that? >> Yes, happily, so I think that in
+the early days, back in the 50s, people like von Neumann and
+didn't believe in symbolic AI, they were far more inspired by the brain. Unfortunately, they both died much too
+young, and their voice wasn't heard. And in the early days of AI, people were completely convinced that
+the representations you need for intelligence were symbolic
+expressions of some kind. Sort of cleaned up logic, where you could
+do nomeratonic things, and not quite logic, but something like logic, and that
+the essence of intelligence was reasoning. What's happened now is,
+there's a completely different view, which is that what a thought is, is just
+a great big vector of neural activity, so contrast that with a thought
+being a symbolic expression. And I think the people who thought that
+thoughts were symbolic expressions just made a huge mistake. What comes in is a string of words, and
+what comes out is a string of words. And because of that, strings of words
+are the obvious way to represent things. So they thought what must be in
+between was a string of words, or something like a string of words. And I think what's in between is
+nothing like a string of words. I think the idea that thoughts must be
+in some kind of language is as silly as the idea that understanding
+the layout of a spatial scene must be in pixels, pixels come in. And if we could, if we had a dot
+matrix printer attached to us, then pixels would come out, but
+what's in between isn't pixels. And so I think thoughts are just
+these great big vectors, and that big vectors have causal powers. They cause other big vectors, and that's utterly unlike the standard AI view
+that thoughts are symbolic expressions. >> I see, good, I guess AI is certainly coming round
+to this new point of view these days. >> Some of it, I think a lot of people in AI still think
+thoughts have to be symbolic expressions. >> Thank you very much for
+doing this interview. It was fascinating to hear how deep
+learning has evolved over the years, as well as how you're still helping drive
+it into the future, so thank you, Jeff. >> Well, thank you for
+giving me this opportunity. >> Thank you.

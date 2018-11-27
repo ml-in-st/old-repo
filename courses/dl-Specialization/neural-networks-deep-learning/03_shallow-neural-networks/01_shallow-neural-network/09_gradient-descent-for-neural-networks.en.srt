@@ -1,0 +1,767 @@
+1
+00:00:00,000 --> 00:00:03,840
+all right I think that's be an exciting
+
+2
+00:00:01,800 --> 00:00:06,240
+video in this video you see how to
+
+3
+00:00:03,840 --> 00:00:08,730
+implement gradient descent for your
+
+4
+00:00:06,240 --> 00:00:10,530
+neural network with one hidden layer in
+
+5
+00:00:08,730 --> 00:00:12,809
+this video I'm going to just give you
+
+6
+00:00:10,530 --> 00:00:14,639
+the equations you need to implement in
+
+7
+00:00:12,809 --> 00:00:17,039
+order to get back propagation of the
+
+8
+00:00:14,639 --> 00:00:19,410
+gradient descent working and then in the
+
+9
+00:00:17,039 --> 00:00:21,510
+video after this one I'll give some more
+
+10
+00:00:19,410 --> 00:00:24,150
+intuition about why these particular
+
+11
+00:00:21,510 --> 00:00:26,070
+equations are the accurate equations or
+
+12
+00:00:24,150 --> 00:00:27,630
+the correct equations for computing the
+
+13
+00:00:26,070 --> 00:00:28,289
+gradients you need for your neural
+
+14
+00:00:27,630 --> 00:00:30,090
+network
+
+15
+00:00:28,289 --> 00:00:32,520
+so your neural network with a single
+
+16
+00:00:30,090 --> 00:00:39,930
+peasant layer for now will have
+
+17
+00:00:32,520 --> 00:00:44,760
+parameters W 1 V 1 W 2 and B 2 and so as
+
+18
+00:00:39,930 --> 00:00:50,399
+a reminder if you have NX alternative
+
+19
+00:00:44,760 --> 00:00:56,640
+the UM n 0 input features and N 1 hidden
+
+20
+00:00:50,399 --> 00:00:59,149
+units and n 2 output units in our
+
+21
+00:00:56,640 --> 00:01:05,670
+example so far don't yet n 2 equals 1
+
+22
+00:00:59,149 --> 00:01:08,880
+then the matrix W 1 will be N 1 by n 0 V
+
+23
+00:01:05,670 --> 00:01:11,250
+1 will be an N 1 dimensional vector so
+
+24
+00:01:08,880 --> 00:01:13,350
+you can write down as a 10-1 by 1
+
+25
+00:01:11,250 --> 00:01:16,500
+dimensional matrix really a column
+
+26
+00:01:13,350 --> 00:01:20,750
+vector the dimensions of W 2 will be n 2
+
+27
+00:01:16,500 --> 00:01:26,759
+by N 1 and the dimension of B 2 will be
+
+28
+00:01:20,750 --> 00:01:28,590
+n 2 by 1 right where again so far we've
+
+29
+00:01:26,759 --> 00:01:30,930
+only seen examples where n 2 is equal to
+
+30
+00:01:28,590 --> 00:01:36,930
+1 where you have just one a single
+
+31
+00:01:30,930 --> 00:01:39,570
+hidden unit so you also have a cost
+
+32
+00:01:36,930 --> 00:01:41,340
+function for a neural network and for
+
+33
+00:01:39,570 --> 00:01:44,220
+now I'm just going to assume that you're
+
+34
+00:01:41,340 --> 00:01:48,659
+doing binary classification so in that
+
+35
+00:01:44,220 --> 00:01:51,740
+case the cost of your parameters as
+
+36
+00:01:48,659 --> 00:01:57,090
+follows is going to be 1 over m of the
+
+37
+00:01:51,740 --> 00:01:59,969
+average of that loss function and so L
+
+38
+00:01:57,090 --> 00:02:03,420
+here is the loss when your new network
+
+39
+00:01:59,969 --> 00:02:06,240
+predicts y hat right this is really a a
+
+40
+00:02:03,420 --> 00:02:07,649
+2 when the ground should 0 is equal to Y
+
+41
+00:02:06,240 --> 00:02:09,629
+and if you're doing binary
+
+42
+00:02:07,649 --> 00:02:12,510
+classification the loss function can be
+
+43
+00:02:09,629 --> 00:02:15,030
+exactly what you use for logistic
+
+44
+00:02:12,510 --> 00:02:18,420
+earlier so to train the parameters your
+
+45
+00:02:15,030 --> 00:02:21,450
+algorithms you need to perform gradient
+
+46
+00:02:18,420 --> 00:02:23,189
+descent when training a neural network
+
+47
+00:02:21,450 --> 00:02:25,379
+is important to initialize the
+
+48
+00:02:23,189 --> 00:02:26,129
+parameters randomly rounded into all
+
+49
+00:02:25,379 --> 00:02:28,140
+zeros
+
+50
+00:02:26,129 --> 00:02:30,030
+we'll see later why that's the case but
+
+51
+00:02:28,140 --> 00:02:32,069
+after initializing the parameter to
+
+52
+00:02:30,030 --> 00:02:34,140
+something each loop of gradient descent
+
+53
+00:02:32,069 --> 00:02:36,780
+would compute the predictions
+
+54
+00:02:34,140 --> 00:02:42,359
+so you basically compute you know y hat
+
+55
+00:02:36,780 --> 00:02:44,519
+I for I equals 1 through m say and then
+
+56
+00:02:42,359 --> 00:02:49,440
+you need to compute the derivative so
+
+57
+00:02:44,519 --> 00:02:51,420
+you need to compute DW 1 and that's we
+
+58
+00:02:49,440 --> 00:02:54,359
+see the derivative of the cost function
+
+59
+00:02:51,420 --> 00:02:56,489
+with respect to the parameter W 1 you
+
+60
+00:02:54,359 --> 00:02:59,220
+need to compute another variable which
+
+61
+00:02:56,489 --> 00:03:00,870
+is going to call DP 1 which is the
+
+62
+00:02:59,220 --> 00:03:04,109
+derivative or the slope of your cost
+
+63
+00:03:00,870 --> 00:03:07,349
+function with respect to the variable B
+
+64
+00:03:04,109 --> 00:03:10,170
+1 and so on similarly for the other
+
+65
+00:03:07,349 --> 00:03:12,629
+parameters W 2 and B 2 and then finally
+
+66
+00:03:10,170 --> 00:03:17,879
+the gradient descent update would be to
+
+67
+00:03:12,629 --> 00:03:22,709
+update W 1 as W 1 minus alpha the
+
+68
+00:03:17,879 --> 00:03:26,129
+learning rate times d w1 v 1 gets
+
+69
+00:03:22,709 --> 00:03:31,620
+updated as B 1 minus the learning rate
+
+70
+00:03:26,129 --> 00:03:34,739
+times D B 1 as similarly for W 2 and B 2
+
+71
+00:03:31,620 --> 00:03:36,299
+and sometimes I use colon equals and
+
+72
+00:03:34,739 --> 00:03:38,489
+sometimes equals as either either the
+
+73
+00:03:36,299 --> 00:03:40,829
+notation works fine and so this would be
+
+74
+00:03:38,489 --> 00:03:42,510
+one iteration of gradient descent and
+
+75
+00:03:40,829 --> 00:03:44,280
+then your repeat this some number of
+
+76
+00:03:42,510 --> 00:03:46,079
+times until your parameters look like
+
+77
+00:03:44,280 --> 00:03:48,150
+they're converging so in previous videos
+
+78
+00:03:46,079 --> 00:03:50,099
+we talked about how to compute the
+
+79
+00:03:48,150 --> 00:03:51,629
+predictions how to compute the outputs
+
+80
+00:03:50,099 --> 00:03:54,060
+and we saw how to do that in a
+
+81
+00:03:51,629 --> 00:03:56,269
+vectorized way as well so the key is to
+
+82
+00:03:54,060 --> 00:04:00,180
+know how to compute these partial
+
+83
+00:03:56,269 --> 00:04:04,079
+derivative terms the DW 1 DB 1 as well
+
+84
+00:04:00,180 --> 00:04:06,780
+as the derivatives BW 2 and DP 2 so what
+
+85
+00:04:04,079 --> 00:04:09,419
+I'd like to do is just give you the
+
+86
+00:04:06,780 --> 00:04:12,150
+equations you need in order to compute
+
+87
+00:04:09,419 --> 00:04:14,699
+these derivatives and I'll defer to the
+
+88
+00:04:12,150 --> 00:04:17,430
+next video which is an optional video to
+
+89
+00:04:14,699 --> 00:04:19,090
+go great turn to Jeff about how we came
+
+90
+00:04:17,430 --> 00:04:21,400
+up with those formulas
+
+91
+00:04:19,090 --> 00:04:26,169
+so then just summarize again the
+
+92
+00:04:21,400 --> 00:04:33,250
+equations for for propagation so you
+
+93
+00:04:26,169 --> 00:04:37,900
+have Z 1 equals W 1 X plus B 1 and then
+
+94
+00:04:33,250 --> 00:04:41,680
+a 1 equals the activation function in
+
+95
+00:04:37,900 --> 00:04:49,690
+that layer applied other than Y since V
+
+96
+00:04:41,680 --> 00:04:53,530
+1 and then Z 2 equals W 2 A 1 plus B 2
+
+97
+00:04:49,690 --> 00:04:55,180
+and then finally difference all
+
+98
+00:04:53,530 --> 00:05:01,210
+vectorize across your training set right
+
+99
+00:04:55,180 --> 00:05:02,740
+a 2 is equal to G 2 of V 2 looking for
+
+100
+00:05:01,210 --> 00:05:04,870
+now if we assume you're doing binary
+
+101
+00:05:02,740 --> 00:05:06,610
+classification then this activation
+
+102
+00:05:04,870 --> 00:05:08,560
+function really should be the sigmoid
+
+103
+00:05:06,610 --> 00:05:11,080
+function so I'm just throw that in here
+
+104
+00:05:08,560 --> 00:05:13,870
+so that's the forward propagation or the
+
+105
+00:05:11,080 --> 00:05:15,729
+left-to-right forward computation for
+
+106
+00:05:13,870 --> 00:05:18,430
+your neural network next let's compute
+
+107
+00:05:15,729 --> 00:05:24,750
+the derivatives so this is the back
+
+108
+00:05:18,430 --> 00:05:30,750
+propagation step then it computes DZ 2
+
+109
+00:05:24,750 --> 00:05:33,610
+equals a 2 minus the ground truth Y and
+
+110
+00:05:30,750 --> 00:05:36,580
+just just as a reminder all this is
+
+111
+00:05:33,610 --> 00:05:41,289
+vectorize across example so the matrix Y
+
+112
+00:05:36,580 --> 00:05:45,280
+is this sum 1 by M matrix that lists all
+
+113
+00:05:41,289 --> 00:05:51,370
+of your M examples horizontally then it
+
+114
+00:05:45,280 --> 00:05:55,330
+turns out DW 2 is equal to this in fact
+
+115
+00:05:51,370 --> 00:05:58,870
+um these first three equations are very
+
+116
+00:05:55,330 --> 00:06:00,900
+similar to gradient descent for logistic
+
+117
+00:05:58,870 --> 00:06:00,900
+regression
+
+118
+00:06:00,960 --> 00:06:12,610
+X is equals 1 comma um keep DIMMs equals
+
+119
+00:06:07,419 --> 00:06:15,580
+true and just a little detail this NP
+
+120
+00:06:12,610 --> 00:06:18,070
+dot some is a Python numpy commands or
+
+121
+00:06:15,580 --> 00:06:21,100
+something across one dimension of a
+
+122
+00:06:18,070 --> 00:06:24,810
+matrix in this case summing horizontally
+
+123
+00:06:21,100 --> 00:06:27,600
+and what q DIMMs does is it prevents
+
+124
+00:06:24,810 --> 00:06:31,230
+- from outputting one of those funny
+
+125
+00:06:27,600 --> 00:06:34,650
+bank 1 various red where the dimensions
+
+126
+00:06:31,230 --> 00:06:37,010
+was you know n comma so by having keep
+
+127
+00:06:34,650 --> 00:06:41,280
+them sequels true this ensures that
+
+128
+00:06:37,010 --> 00:06:44,580
+Python outputs 4gb to a vector that is
+
+129
+00:06:41,280 --> 00:06:47,820
+sum and buy one technically this will be
+
+130
+00:06:44,580 --> 00:06:50,130
+I guess n to buy one in this case is
+
+131
+00:06:47,820 --> 00:06:53,520
+just a one by one number so maybe it
+
+132
+00:06:50,130 --> 00:06:56,790
+doesn't matter but later on we'll see
+
+133
+00:06:53,520 --> 00:06:58,500
+when it really matters so so far what
+
+134
+00:06:56,790 --> 00:07:01,320
+we've done is very similar to logistic
+
+135
+00:06:58,500 --> 00:07:03,919
+regression but now as you compute
+
+136
+00:07:01,320 --> 00:07:14,370
+continue to run back propagation you
+
+137
+00:07:03,919 --> 00:07:19,380
+would compute this Z 2 times G 1 prime
+
+138
+00:07:14,370 --> 00:07:20,880
+of Z 1 so this quantity G 1 prime is the
+
+139
+00:07:19,380 --> 00:07:22,919
+derivative of whatever was the
+
+140
+00:07:20,880 --> 00:07:25,770
+activation function you use for the
+
+141
+00:07:22,919 --> 00:07:27,030
+hidden layer and for the output layer I
+
+142
+00:07:25,770 --> 00:07:29,400
+assume that you're doing binary
+
+143
+00:07:27,030 --> 00:07:30,780
+classification with the sigmoid function
+
+144
+00:07:29,400 --> 00:07:34,620
+so that's already baked into that
+
+145
+00:07:30,780 --> 00:07:39,090
+formula for DZ 2 and this times is a
+
+146
+00:07:34,620 --> 00:07:43,050
+element-wise product so this year
+
+147
+00:07:39,090 --> 00:07:46,950
+there's going to be an N 1 by M matrix
+
+148
+00:07:43,050 --> 00:07:48,990
+and this here this element wise
+
+149
+00:07:46,950 --> 00:07:52,680
+derivative thing is also going to be an
+
+150
+00:07:48,990 --> 00:07:54,720
+N 1 by n matrix and so this times there
+
+151
+00:07:52,680 --> 00:07:59,669
+is another min wise product of two
+
+152
+00:07:54,720 --> 00:08:08,490
+matrices then finally DW 1 is equal to
+
+153
+00:07:59,669 --> 00:08:18,950
+that and DV 1 is equal to this and P dot
+
+154
+00:08:08,490 --> 00:08:21,900
+some D Z 1 X is equals 1 keep Tim's
+
+155
+00:08:18,950 --> 00:08:23,430
+equals true so whereas
+
+156
+00:08:21,900 --> 00:08:27,210
+previously the cheap business maybe
+
+157
+00:08:23,430 --> 00:08:28,590
+matter less if n2 is equal to 1000 sofa
+
+158
+00:08:27,210 --> 00:08:35,729
+one by one thing is there's a real
+
+159
+00:08:28,590 --> 00:08:38,370
+number here P p1 will be a n 1 by 1
+
+160
+00:08:35,729 --> 00:08:40,110
+vector and so you want Python you want n
+
+161
+00:08:38,370 --> 00:08:43,110
+P dot some output something of this
+
+162
+00:08:40,110 --> 00:08:46,529
+dimension rather than a family Matic one
+
+163
+00:08:43,110 --> 00:08:48,360
+array of that dimension which could end
+
+164
+00:08:46,529 --> 00:08:50,580
+up messing up some of your later
+
+165
+00:08:48,360 --> 00:08:53,310
+calculations the other way would be to
+
+166
+00:08:50,580 --> 00:08:56,910
+not have to keep them parameters but to
+
+167
+00:08:53,310 --> 00:09:00,060
+explicitly call in a reshape to reshape
+
+168
+00:08:56,910 --> 00:09:04,400
+the output of NP dot some into this
+
+169
+00:09:00,060 --> 00:09:08,310
+dimension which you would like DB so how
+
+170
+00:09:04,400 --> 00:09:11,339
+so that was for propagation in I guess
+
+171
+00:09:08,310 --> 00:09:14,310
+four equations and back propagation in I
+
+172
+00:09:11,339 --> 00:09:16,680
+guess six equations I know I just wrote
+
+173
+00:09:14,310 --> 00:09:18,870
+down these equations but in the next
+
+174
+00:09:16,680 --> 00:09:22,050
+optional video let's go over some
+
+175
+00:09:18,870 --> 00:09:23,940
+intuitions for how the six equations for
+
+176
+00:09:22,050 --> 00:09:25,830
+the back propagation algorithm were
+
+177
+00:09:23,940 --> 00:09:27,750
+derived please feel free to watch that
+
+178
+00:09:25,830 --> 00:09:30,000
+or not but either way if you implement
+
+179
+00:09:27,750 --> 00:09:32,730
+these algorithms you will have a correct
+
+180
+00:09:30,000 --> 00:09:34,650
+implementation of for profit backdrop
+
+181
+00:09:32,730 --> 00:09:36,750
+and you'll be able to compute the
+
+182
+00:09:34,650 --> 00:09:39,029
+derivatives you need in order to apply
+
+183
+00:09:36,750 --> 00:09:41,520
+gradient descent to learn the parameters
+
+184
+00:09:39,029 --> 00:09:43,680
+of your neural network it is possible to
+
+185
+00:09:41,520 --> 00:09:45,209
+implement design room and get it to work
+
+186
+00:09:43,680 --> 00:09:47,130
+without deeply understanding the
+
+187
+00:09:45,209 --> 00:09:50,520
+calculus a lot of successful people
+
+188
+00:09:47,130 --> 00:09:52,320
+earning practitioners do so but if you
+
+189
+00:09:50,520 --> 00:09:54,180
+want you can also watch the next video
+
+190
+00:09:52,320 --> 00:09:56,580
+just to get a bit more intuition about
+
+191
+00:09:54,180 --> 00:09:58,820
+the derivation of these of these
+
+192
+00:09:56,580 --> 00:09:58,820
+equations

@@ -1,0 +1,87 @@
+Bonjour et bienvenue. Comme vous le savez sans doute, l'apprentissage profond a déjà transformé les entreprises internet traditionnelles 
+comme la recherche sur le web et la publicité. Mais l'apprentissage profond permet également des produits nouveaux et des entreprises 
+et de créer des moyens d’aider les gens. Depuis des meilleurs soins de santé, où l'apprentissage profond devient
+ vraiment bon pour lire des radiographies; à la possibilité de 
+dispenser un enseignement personnalisé, jusqu'à l’agriculture de précision, 
+et même des voitures qui se conduisent 
+elles même et beaucoup d’autres choses. Si vous voulez apprendre les outils 
+de l’apprentissage profond et être capable de les appliquer 
+pour construire ces choses étonnantes, Je tiens à vous aider à y arriver. Lorsque vous aurez terminé 
+la séquence de cours sur Coursera, appelée la spécialisation, 
+vous serez en mesure de mettre 'apprentissage profond' sur votre CV
+ en toute confiance. Durant la prochaine décennie, Je pense que nous avons tous une chance de 
+bâtir un monde étonnant, une société incroyable, C’est le pouvoir de l’IA, et j’espère que vous jouerez 
+un rôle important dans la création 
+de cette société propulsée par l'IA. Alors, allons-y. Je pense que IA est la nouvelle électricité. Depuis ses débuts il y a environ 100 ans, l’électrification de notre société a transformé 
+toutes les grandes industries, absolument tout, le transport, la fabrication, les soins de santé, les communications 
+et bien d’autres encore. Et aujourd'hui, nous voyons 
+une voie étonnamment claire pour que l'IA amène
+ une transformation tout aussi grande. Et bien sûr, la partie de l’IA qui monte rapidement et qui est à la tête
+ d'un grand nombre de ces développements,
+ est l'apprentissage profond. Donc, aujourd'hui, l'apprentissage profond
+ est l’une des compétences les plus recherchées 
+dans le mondes de la technologie. Et grâce à ce cours et aux
+ quelques cours suivant, Je veux vous aider à acquérir et
+ à maîtriser ces compétences. Voici donc ce que vous apprendrez 
+dans cette séquence de cours également appelé
+ une spécialisation sur Coursera. Dans le premier cours, vous apprendrez les bases
+ des réseaux de neurones, vous verrez les réseaux neuronaux 
+et l'apprentissage profond. Cette vidéo que vous regardez fait partie de ce premier cours 
+qui dure quatre semaines au total. Et chacun des cinq cours dans la spécialisation
+ durera entre deux et quatre semaines, en fait la plupart d'entre eux 
+durent moins de quatre semaines. Mais dans ce premier cours, vous apprendrez à construire
+ un réseau de neurones, y compris un réseau de neurones profond et
+ la façon de l'entraîner avec des données. Et à la fin de ce cours, vous serez en mesure de construire 
+un réseau de neurones profond pour reconnaître,
+ devinez quoi ? Des chats. 
+Pour une raison inconnue, Il y a une sorte de passion pour les chats
+ en apprentissage profond. Et oui, suivant la tradition,
+ dans ce premier cours, nous allons construire un module
+ de reconnaissance de chat. Puis dans le deuxième cours, vous apprendrez les aspects pratiques
+ de l’apprentissage profond. Vous apprendrez, maintenant que vous avez 
+construit votre réseau de neurones, comment le faire fonctionner
+ de façon performante. Vous verrez le réglage des hyperparametres,
+ la régularisation, Comment diagnostiquer le coût et 
+la variance et des algorithmes d’optimisation avancés comme le momentum, 
+RMS prop et l’algorithme d’optimisation d'Adam. Parfois, il semble qu’il y a
+ beaucoup de réglages même un peu de magie noire dans la façon
+ de construire un réseau de neurones. Donc le second du cours qui 
+ne dure que trois semaines, va démystifier un peu de cette magie noire. Dans le troisième cours,
+ qui dure deux semaines, vous apprendrez à structurer votre projet
+ d’apprentissage automatique. Il s’avère que la stratégie pour construire un système d’apprentissage automatique
+ a changé dans l’ère de l’apprentissage profond. Ainsi, par exemple, la façon dont vous divisez
+ vos données, en sets d'apprentissage, set de développement ou dev set, aussi appelé
+ set de validation croisée et set de test, a changé dans l’ère de l’apprentissage profond. Alors quelles sont les bonnes pratiques
+ pour faire ça et quand votre set d'apprentissage
+ et votre set de test proviennent 
+de distributions différentes, ce qui arrive beaucoup plus souvent
+ dans l’ère de l’apprentissage profond. Comment faire dans ce cas ? Et si vous avez entendu parler 
+d’apprentissage profond de bout en bout, vous en apprendrez aussi plus à ce sujet 
+dans ce troisième cours vous verrez quand l’utiliser et 
+peut-être quand ne pas l'utiliser. Le contenu de ce troisième cours 
+est relativement unique. Je vais partager avec vous beaucoup 
+de leçons que j’ai durement apprises en développant et déployant beaucoup 
+de produits d’apprentissage profond. Autant que je sache, C’est en grande partie du contenu 
+qui n’est pas enseigné dans la plupart des universités qui ont 
+des cours d'apprentissage profond. Mais j’espère vraiment vous aider
+ à faire que votre système d'apprentissage 
+profond fonctionne correctement. Dans le prochain cours, nous parlerons de réseaux neuronaux convolutifs,
+ souvent abrégés CNNs. Les réseaux de neurones convolutifs 
+sont souvent appliqués aux images. Vous apprendrez à construire 
+ces modèles dans le quatrième cours. Enfin, au cours cinq, vous allez apprendre les modèles de séquence
+ et leurs applications au traitement du langage naturel 
+et à d’autres problèmes. Les modèles de séquence comprennent
+ des modèles comme réseaux neuronaux récursifs, 
+en abrégé RNNs, le modèle LSTM, c'est à dire modèle long short term memory 
+(mémoire à court et long terme) Vous apprendrez ce que 
+ces termes signifient au cours cinq et à les appliquer à des problèmes 
+de traitement du langage naturel. Donc vous découvrirez ces modèles
+ au cours cinq et vous serez capables de 
+les appliquer à des données séquentielles. Ainsi, par exemple, le langage naturel
+ est juste une suite de mots, et vous verrez aussi comment ces modèles 
+peuvent être appliqués à la reconnaissance vocale, ou à la génération de musique 
+et à d’autres problèmes. En suivant ces cours, vous apprendrez les outils de l’apprentissage profond. Vous pourrez les appliquer pour 
+construire des choses étonnantes, et j’espère qu'ainsi beaucoup d’entre vous
+ pourront aussi faire progresser leur carrière. Alors, allons-y. Passez s'il-vous plaît à la vidéo 
+suivante, où nous parlerons de l'apprentissage profond 
+appliqué à l’apprentissage supervisé.

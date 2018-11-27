@@ -1,0 +1,356 @@
+Hi Yann, you've been such a leader for
+Deep Learning for so long, thanks a lot for doing this with us.
+>> Well, thanks for having me.
+>> So, you've been working on neural nets for
+a long time. I would love to hear your personal story
+of how you got started in AI, how did you networking with neural networks?
+>> So, I was always interested in intelligence, in general,
+the origins of intelligence in humans. Got me interested into human
+evolution when I was a kid. >> That was in France? >> It was in France, yeah. I was in middle school or something and I was interested in technology,
+space, etc. My favorite movie was
+2001: A Space Odyssey. You had intelligent machines,
+space travel, and human evolution as kind of the themes
+that was what I was fascinated by. And the concept of intelligent machines
+I think really kind of appealed to me. And then I studied electrical engineering. And when I was at school, I was maybe
+in second year of engineering school, I stumbled on a book,
+which was actually a philosophy book. It was a debate between Noam Chomsky,
+the computational linguist at MIT, and Jean Piaget who is
+a cognitive psychologist sort of psychology of child
+development in Switzerland. And it was basically a debate
+between nature and nurture, where Chomsky arguing for the fact that
+language has a lot of innate structure, and Piaget saying a lot of it is learned,
+and etc. And on the side of Piaget was
+a transcription of a person who, each of these guys sort of brought their
+teams of people to argue for their side. And on the side of Piaget was
+Seymour Papert from MIT, who had worked on the perceptron model, one of
+the first machines capable of running. And I never heard of the perceptron,
+and I read this article that say, machine capable of running,
+that sounds wonderful. And so I started going to several
+university libraries and searching for everything I could find that talked about
+the perceptron and realized there was a lot of papers from the 50s, but
+it kind of stopped at the end of the 60s, with a book that was co-authored
+by the same Seymour Papert. >> What year was this? >> So this was in 1980, roughly?
+>> Right. >> And so I did a couple of projects with some of the math professor in my school
+on kind of neural nets, essentially. But there was no one there I could
+talk to who had worked on this, because the field basically had
+disappeared in the meantime, right? Since 1980, nobody was working on this. And experimented with this a little bit, writing kind of simulation software of
+various kinds, reading about neuroscience. When I finished my engineering studies,
+I studied chip design. I'm good at site design at the time, so
+it's something completely different. And when I finished I really
+wanted to do research on this and I figured out already that at the time
+the important question was how you train neural nets with multiple layers. It was pretty clear in the literature
+of the 60s that that was the important question that had been left unsolved and
+their idea of hierarchy and everything. I'd read Fukushima's article
+on the neocognitron, right? Which was this sort of hierarchical
+architecture very similar to now what we now call convolutional nets, but without
+really backprop style learning algorithms. And I met people who were in
+a small independent club in France. They were interested in what they
+called at the time, Automata Networks. And they gave me a couple papers, the people on functional networks
+which is not very popular anymore. But it's the first associative memories
+with neural net and that paper can revive the interest of some research committees
+into neural net in the early 80s. Where by mostly physicists and
+condense matter physicists and a few psychologists,
+it was still not okay for engineers and computer scientists to
+talk about neural nets. And they also should be another
+paper that had just been distributed as a pre-print, whose title was
+Optimal Perceptual Inference. And this was the first paper on
+Boltzmann machines by Geoff Hinton and Terry Sejnowski. It was talking about hidden units. It was talking about, basically,
+the part of learning, multilayer neural nets are more
+capable than just classifiers. So I said, I need to meet these people [LAUGH].
+>> Wow. >> Because they're only interested in the right problem. And a couple of years later,
+after I started my PhD, I participated in a workshop in Le Juch that was organized
+by the people I was working with. And Terry was one of
+the speakers at the workshop, so I met him at that time.
+>> It was like early 80s now. >> This is 1985, early 1985. So I met Terry Sejnowski in 1985 in
+the workshop in France in Le Juch and a lot of people were there, founders
+of early neural net, jump up field and, a lot of people working on theoretical
+neuroscience and stuff like that. It was a fascinating workshop. I met also, a couple of people from Bell
+Labs who eventually hired me at Bell Labs, but this was several years
+before I finished my PhD. So I talked to Terry Sejnowski and I was
+telling him about what I was working on which was some version
+of backprop at the time. This is before backprop was a paper and Terry was working on net talk at the time. This was before the Rumelhart, Hinton, Williams paper on
+backprop had been published. But he was friends with Geoff,
+this information was circulating, so he was already working on trying
+to make this work for net talk, but he didn't tell me.
+>> I see. >> And he went back to US and told Geoff there is some kid in France
+who's working on the same stuff we're working on.
+>> I see. >> [LAUGH] And then a few months later, in June, there was another conference in
+France where Geoff was a keynote speaker. And he gave a talk on Boltzmann machines. Of course,
+he was working on the backprop paper. And he gave this talk, and then there was 50 people around
+him who wanted to talk to him. And the first thing he
+said to the organizer is, do you know this guy, Yann LeCun? And it's because he had read my paper
+in the proceedings that was written in French. And he could sort of read French and
+he could see the math and he could figure out what sort of backprop,
+and so we had lunch together and that's how we became friends.
+>> I see, well. >> [LAUGH] >> So that's because multiple groups independently reinvented or
+invented backprop pretty much. >> Right, well, we realized that the whole idea with Chain Rule or what the optimal
+control people call the joint state method which is really the context in
+which backprop was really invented. This in context of optimal
+control back in the early 60s. This idea that you could use graded
+descent basically with multiple stages is what backprop really is and that popped
+up in various contexts at various times. And but I think the Rumelhart,
+Hinton, Williams paper is the one that popularized it.
+>> I see, yeah, no, cool, yeah. And then fast forward a few years,
+you wound up at AT&T Bell Labs, where you invented, among many things, the
+net, which we talk about in the course. And I remember when way back,
+I was a summer intern at AT&T Bell Labs, where I worked with Michael Kerns and
+a few others, and of hearing about your work even back then. So tell me more about your AT&T,
+the net, experience. >> Okay, so what happened is, I actually started working on
+convolutional net when I was A postdoc, University of Toronto, chief intern. I did the first experiment,
+I wrote the code there, and I did the first experiments
+there that showed that, if you had a very small data set. The data set I was training on, there
+was no or anything like that back then. So I drew a bunch of
+characters with my mouse. I had an Amiga, a personal computer,
+which was the best computer ever. And I drew a bunch of characters and
+then used that. I did augmentation to kind of increase it,
+and then used that as a way
+to test performance. And I compared things like
+fully connected nets, locally connected nets
+without shared weights. And then shared weight networks. Which was basically the first comment. And that worked really well for relatively
+small data sets, could show that you get better performance and no over-training
+with conventional architecture. And when I go to Bell Labs
+in October 1988, the first thing I did was first,
+scale up the network, because we had faster computers a few
+months before I go to Bell Labs. My boss at the time, Larry Jackal,
+who became a department head of said we should order a computer for
+you before you come. Where do you want? I say well, here Toronto,
+there is which was the stuff. It'd be great if we had one. And they ordered one and
+I had one for myself. At University of Toronto it was one for
+the entire department, right? One just for me, right? And so Larry told me he said, you know at
+Bell Labs you don't get famous by saving money.
+>> [LAUGH] >> So that was awesome, and they had been working already for
+awhile on character recognition. They had this enormous data set called
+USDS that had 5,000 training samples. [LAUGH] And so immediately I trained a
+net, which was in the net one, basically. And trained it on this data set and got really good results,
+better results than the other methods. They had tried on it, and that other
+people had tried on it is that so that, we knew we had
+something fairly early on. This was within three months
+of me joining Bell Labs. And so that was the first
+version of commercial net where we had a convolution with stride,
+and we did not have separate and pulling layers.
+>> Mm-hm. >> So each convolution was actually directly. And the reason for this is that we just could not afford to
+have a convolution at every location. There was just too much computation.
+>> I see. >> [COUGH] So, the second version had a separate convolution and
+pulling the air in something. I guess that's the one
+that's called one really. So we published a couple papers
+on this at competitions in Nips. And so, interesting story,
+did you ever talk to Nips about this work? And Jeffrey Ton was in the audience, and
+then you know I came back to my seat, I was sitting next to him and he said,
+there's one bit of information in your talk which is that,
+if you do all the sensible things, it actually works.
+>> [LAUGH] >> Then that showed the after deadline of work went on to make history
+because it became widely adopted. These ideas became widely adopted for reading cheques and-
+>> Yeah, the bigger value adopted within AT&T but
+not very much outside. And I think it's a little difficult for me to really understand why, but
+the simple factor [INAUDIBLE]. So this was back in the late 80s,
+and there was no Internet. We had email, we had FTP, but
+there was no Internet, really. No two labs were using the same
+software or hardware platform, right? Some people are at some workstations,
+others had other machines, some people were using PCs or whatever. There was no such thing as Python or
+MATLAB or anything like that, right? People are writing their own code. I had spent a year and
+a half basically writing, me and when he was still a student. We're working together,
+and we spent a year and a half basically just writing
+a neural net simulator. And at the time because there
+was no match-up with Python. You had to kind of write
+your own interpreter, right? To kind of control it. So we want our own list of interpreter. And so all the networks written in
+list using a numerical back hand. Very similar to what we have now with
+blocks that you can interconnect and instead of many differentiation and
+all that stuff that we;re familiar now, with torsion by torsion,
+tensile flow and all those things. So then we developed
+a bunch of applications. We got together with a group of engineers. Very smart people. Some of them were like theoretical physicists who kind of turned
+engineer at the Bell Labs. Chris Dodgers was one
+of them who then had to distinguished career at
+Microsoft research afterwards. And Krieg Nolan. But keep on and we're collaborating
+with them to kind of make this technology practical.
+>> I see. >> And so together we developed this
+characterization systems. And that meant integrating,
+convolutional net with things like, similar to things like we now call
+CRFs for interpreting sequences of characters not just individual address.
+>> Yeah, right to the net paper had
+partially under neural network and partially under atomic machinery
+>> Right, to pull it together? >> Yeah, that's right. And so the first half on the paper
+is on convolutional nets, and the paper is mostly cited for that. And then the second half,
+very few people have read it, [LAUGH] and it's about sort of sequence
+level, discriminative running, and basically structure prediction
+with that normalization. So it's very similar to CRF, in fact.
+>> Fascinating >> You know with PTCRFS over the years. So that was very successful,
+except that the day we were celebrating the deployment of
+that system in major bank, we worked with this group that I
+was mentioning that was kind of doing the engineering of the whole system. And then another product group in
+a different part of the country that belonged to a subsidiary
+of AT&T called NCR. So this is the-
+>> [CROSSTALK] >> National Cash Register, right. They also build large ATM machines, and they build large check
+reading machines for banks. So they were the customers, if you want. They were using our check billing systems. And they had deployed it in a bank. I can't remember which bank it was. They deployed those, so
+there were ATM machines in a French book. So they could read the check you
+would deposit, and we were all at a fancy restaurant celebrating
+the department of this thing where, when the company announced that
+it was breaking itself up. So this was 1995 and AT&T announced that it was breaking
+itself up into two companies. So there was AT&T, and then there
+was Lucen Technologies, and NCR. So NCR was spun off, and
+Lucent Technologies was spun off. And the engineering group went with Lucent
+Technologies, and the product group, of course, went with NCR. And the sad thing is that the AT&T
+lawyers in their infinite wisdom assigned the patents,
+there was a patent on covolutional net which is thankfully expired.
+>> I see [LAUGH]. >> [LAUGH] Expired in 2007. About ten years ago. And they signed patent to NCR, but
+there was nobody in NCR who actually knew even what a convolutional
+net was really. And so the patent was in the hands of
+people who had no idea what they had. And we were in a different company
+that now could not really develop the technology, and our engineering
+team was in a separate company, because we went with AT&T and
+engineering went with Lucent, and the product group went with NCR. So it was a little depressing [LAUGH].
+>> So in addition to your early work, when your networks were Part,
+you kept persisting on neural networks even when there was some sort
+of winter for neural net. So what was like that?
+>> Well, so I persisted and didn't persist in some ways. I was always convinced that eventually
+those techniques would come back to the fore, and sort of people would figure
+out how to use them in practice, and it would be useful. So I always had that in
+the back of my mind. But in 1996,
+when AT&T broke itself up, and all of our work on character recognition,
+basically, was kind of broken up because the part
+of the group went in separate way, I was also promoted to department head,
+and I had to figure out what to work on. And this was the early days of
+the Internet, we're talking 1995. And I had the idea somehow
+that one big problem about the emergence of the Internet
+was going to be to bring all the knowledge that we had
+on paper to the digital world. And so I started, actually,
+a project called DjVu, D-J-V-U, which was to compress scanned documents,
+essentially, so they could be distributed
+over the Internet. And this project was really fun for a
+while, and had some success, although AT&T really didn't know what to do with it.
+>> Yeah, I remember that, really helping dissemination of online research papers.
+>> Yeah, that's right, exactly. And we scanned the entire proceedings of
+NIPS, and we made them available online- >> I see, I remember that. >> To kind of demonstrate how that worked. And we could compress high resolution
+pages to just a few kilobytes. >> So ConvNet, starting from some of your much
+earlier work has now come and pretty much taken over the field
+of computer vision, and starting to encroach significantly
+into even other fields. So just tell me about how
+you saw that whole process. >> [LAUGH] So to tell you how I thought this
+was going to happen early on. So first of all, I always believed
+that this was going to work. It required fast computers and lots of
+data, but I always believed, somehow, that this was going to be
+the right thing to do. What I thought, originally, when I was at
+Bell Labs, that there was going to be some sort of continuous progress along these
+directions as machines got more powerful. And we were even designing chips to run
+convolutional nets at Bell Labs, but now those are actually in hospital graph
+separately had two different chips for running convolutional
+nets really efficiently. And so we thought there was going to
+be a kind of a pick up of this, and kind of growing interest and
+sort of continuous progress for it. But in fact, because of the sort
+of interest for neural nets, sort of dying in the mid-90s,
+that didn't happen. So there was kind of a dark period of six
+or seven years between 1995 roughly and 2002 when basically nobody
+was working on this. In fact, there was a little bit of work. There was some work at Microsoft
+in the early 2000s on using convolutional nets for
+Chinese character recognition. >> Group, yeah, exactly. And there was some other small work for
+face detection and things like this in France, and in various
+other places, but it was very small. I discovered actually recently
+that a couple groups that came up with ideas that are essentially very
+similar to convolutional nets, but never quite published it the same way for
+medical image analysis. And those were mostly in
+the context of commercial systems. And so
+it never quite made it to the population. I mean, it was after our first work
+on convolutional nets, and they were not really aware of it, but it sort of
+developed in parallel a little bit. So several people got kind of similar
+ideas several years interval. But then I was really
+surprised by how fast interest picked up after the ImageNet-
+>> 2012 >> In 2012, so it's the end of 2012. It was kind of a very
+interesting event at ECCV, in Florence,
+where there was a workshop on ImageNet. And they already knew that
+had won by a large margin. And so everybody was waiting for talk. And most people in the computer vision
+community had no idea what a convolutional net was. I mean, they heard me talk about it. I actually had an invited talk at
+CVPR in 2000 where I talked about it, but most people had not
+paid much attention to it. Senior people did,
+they knew what it was, but the more junior people in the community
+were really, had no idea what it was. And so just gives his talk, and he doesn't
+explain what a convolutional net is because he assumes everybody knows, right? because he comes from a so he says,
+here's how everything is connected, and how we transform the data and
+what results we get. Again, assuming that
+everybody knows what it is. And a lot of people
+are incredibly surprised. And you could see the opinion of people
+changing as he was kind of giving his talk, very senior people in the field.
+>> So you think that workshop was a defining moment that swayed a lot
+of the computer vision community. >> Yeah, definitely. >> That's right, yeah. >> That's the way it happened, yeah, right there.
+>> So today, you retain a faculty position at NYU, and you also lead FAIR,
+Facebook AI Research. I know you have a pretty unique point of
+view on how corporate research should be done. Do you want to share
+your thoughts on that? >> Yeah, so I mean, one of the beautiful things that I managed to do at Facebook in
+the last four years is that I was given a lot of freedom to setup FAIR the way
+I thought was the most appropriate, because this was the first research
+organization within Facebook. Facebook is a sort of
+engineering-centric company. And so far was really focused on sort
+of survival or short-term things. And Facebook was about to turn ten
+years old, had a successful IPO. And was basically thinking about
+the next ten years, right? I mean, Mark Zuckerberg was thinking,
+what is going to be important for the next ten years? And the survival of the company
+was not in question anymore. So this is the kind of transition where
+a large company can start to think, or it was not such a large
+company at the time. Facebook had 5,000 employees or
+so, but it had the luxury to think about the next ten years and
+what would be important in technology. And Mark and his team decided
+that AI was going to be a crucial piece of technology for connecting people,
+which is the mission of Facebook. And so they explored several ways
+to kind of build an effort in AI. They had a small internal group,
+engineering group, experimenting with convolutional nets and
+stuff that were getting really good results in face recognition and various
+other things, which peaked their interest. And they explored the idea of hiring
+a bunch of young researchers, or acquiring a company, or things like this. And they settled on the idea of hiring
+someone senior in the field, and then kind of setting up
+a research organization. And it was a bit of a culture shock,
+initially, because the way research operates in the company
+is very different from engineering, right? You have longer time scales and horizon. And researchers tend to be very
+conservative about the choice of places where they want to work. And I made it very clear very early
+on that research needs to be open, that researchers need to not only
+be encouraged to publish, but be even mandated to publish. And also be evaluated on
+criteria that are similar to what we used to evaluate
+academic researchers. [COUGH] And so what Mark and
+Mike Schroepfer, the CTO of the company, who is my boss now, said, they said,
+Facebook is a very open company. We distribute a lot of
+stuff in open source. Schroepfer, the CTO, comes from the open source world.
+>> Mozilla. >> He was from Mozilla before that, and a lot of people came from that world. So that was in the DNA of the company,
+so that made me very confident that we could kind of
+set up an open research organization. And then the fact that the company is not
+obsessively compulsive about IP as some other companies are makes it much easier
+to collaborate with universities and have arrangements by which a person
+can have a foot in industry and a foot in academia.
+>> And you find that valuable, yourself?
+>> Absolutely, yes. Yeah, so if you look at my
+publications over the last four years, the vast majority of them
+are publications with my students at NYU.
+>> I see. >> Because at Facebook, I did a lot of organizing the lab, hiring, set the direction and advising,
+and things like this. But I don't get involved in individual
+research projects to get my name on papers. And I don't care to get my name
+on papers anymore, but it's- >> It's not sending out someone else to do your dirty work rather than doing
+all the dirty work yourself. >> Exactly, and you never want to put yourself, you want to
+stay behind the scene. You don't want to put yourself in
+competition with people in your lab in that case.
+>> I'm sure you get asked this a lot but hoping you answer for all the people
+watching this video as well. What advice do you have for
+someone wanting to get involved in the, break into AI?
+>> [LAUGH] I mean, it's such a different world now than
+when it was when I got started. But I think what's great now is it's very
+easy for people to get involved at some level, the tools that are available are so
+easy to use now, in terms of whatever. You can have a run through on the cheap
+computer in your bedroom, [LAUGH] and basically train your conventional net or
+your current net to do whatever, and there's a lot of tools. You can learn a lot from online material
+about this without, it's not very onerous. So you see high school students
+now playing with this right? Which is kind of great, I think and
+they certainly are growing interest from the student population to learn
+about machine learning and AI and it's very exciting for young people and
+I find that wonderful I think. So my advice is, if you want to get
+into this, make yourself useful. So make a contribution to an open
+source project, for example. Or make an implementation of some standard
+algorithm that you can't find the code of online, but you'd like to make
+it available to other people. So take a paper that
+you think is important, and then re-implement the algorithm,
+and then put it open source package, or contribute to one of
+those open source packages. And if the stuff you write is interesting
+and useful, you'll get noticed. Maybe you'll get a nice job at
+a company you really wanted a job at, or maybe you'll get accepted in your
+favorite PhD program or things like this. So I think that's a good way to get started.
+>> So open source contributions is a good way to
+enter the community, give back to learn. >> Yeah, that's right, that's right.
+>> Thanks a lot Jan that was fascinating, I've known you for many years and
+it's still fascinating to hear all these details of all the stories that
+have gone in over the years. >> Yeah, there's many stories like this that, reflecting back at the moment
+when they happen you don't realize, what importance it might take 10 or
+20 years later. >> Yeah, thank you. >> Thanks.

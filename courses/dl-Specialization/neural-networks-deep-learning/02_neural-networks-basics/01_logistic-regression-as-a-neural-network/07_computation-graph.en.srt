@@ -1,0 +1,211 @@
+1
+00:00:00,000 --> 00:00:03,000
+You've heard me say that the computations of a neural network are
+
+2
+00:00:03,000 --> 00:00:07,253
+organized in terms of a forward pass or a forward propagation step,
+
+3
+00:00:07,253 --> 00:00:10,005
+in which we compute the output of the neural network,
+
+4
+00:00:10,005 --> 00:00:13,310
+followed by a backward pass or back propagation step,
+
+5
+00:00:13,310 --> 00:00:16,137
+which we use to compute gradients or compute derivatives.
+
+6
+00:00:16,137 --> 00:00:21,540
+The computation graph explains why it is organized this way.
+
+7
+00:00:21,540 --> 00:00:24,375
+In this video, we'll go through an example.
+
+8
+00:00:24,375 --> 00:00:28,060
+In order to illustrate the computation graph,
+
+9
+00:00:28,060 --> 00:00:34,260
+let's use a simpler example than logistic regression or a full blown neural network.
+
+10
+00:00:34,260 --> 00:00:37,200
+Let's say that we're trying to compute a function, J,
+
+11
+00:00:37,200 --> 00:00:39,510
+which is a function of three variables a, b,
+
+12
+00:00:39,510 --> 00:00:44,900
+and c and let's say that function is 3(a+bc).
+
+13
+00:00:44,900 --> 00:00:49,260
+Computing this function actually has three distinct steps.
+
+14
+00:00:49,260 --> 00:00:51,799
+The first is you need to compute what is
+
+15
+00:00:51,799 --> 00:00:55,195
+bc and let's say we store that in the variable call u.
+
+16
+00:00:55,195 --> 00:00:59,117
+So u=bc and then you my compute V=a *u.
+
+17
+00:00:59,117 --> 00:01:06,060
+So let's say this is V. And then finally,
+
+18
+00:01:06,060 --> 00:01:09,380
+your output J is 3V.
+
+19
+00:01:09,380 --> 00:01:15,555
+So this is your final function J that you're trying to compute.
+
+20
+00:01:15,555 --> 00:01:20,970
+We can take these three steps and draw them in a computation graph as follows.
+
+21
+00:01:20,970 --> 00:01:26,400
+Let's say, I draw your three variables a, b, and c here.
+
+22
+00:01:26,400 --> 00:01:31,825
+So the first thing we did was compute u=bc.
+
+23
+00:01:31,825 --> 00:01:35,015
+So I'm going to put a rectangular box around that.
+
+24
+00:01:35,015 --> 00:01:39,030
+And so the input to that are b and c. And then,
+
+25
+00:01:39,030 --> 00:01:41,505
+you might have V=a+u.
+
+26
+00:01:41,505 --> 00:01:47,440
+So the inputs to that
+
+27
+00:01:47,440 --> 00:01:56,645
+are V. So the inputs to that are u with just computed together with a.
+
+28
+00:01:56,645 --> 00:02:04,205
+And then finally, we have J=3V.
+
+29
+00:02:04,205 --> 00:02:07,235
+So as a concrete example, if a=5,
+
+30
+00:02:07,235 --> 00:02:10,040
+b=3 and c=2 then u=bc would be six because
+
+31
+00:02:10,040 --> 00:02:15,967
+a+u would be 5+6 is 11, J is three times that, so J=33.
+
+32
+00:02:15,967 --> 00:02:22,310
+And indeed, hopefully you can verify
+
+33
+00:02:22,310 --> 00:02:29,520
+that this is three times five plus three times two.
+
+34
+00:02:29,520 --> 00:02:30,865
+And if you expand that out,
+
+35
+00:02:30,865 --> 00:02:34,390
+you actually get 33 as the value of J.
+
+36
+00:02:34,390 --> 00:02:38,060
+So, the computation graph comes in handy when there is
+
+37
+00:02:38,060 --> 00:02:41,790
+some distinguished or some special output variable,
+
+38
+00:02:41,790 --> 00:02:43,940
+such as J in this case,
+
+39
+00:02:43,940 --> 00:02:46,215
+that you want to optimize.
+
+40
+00:02:46,215 --> 00:02:48,755
+And in the case of a logistic regression,
+
+41
+00:02:48,755 --> 00:02:53,260
+J is of course the cos function that we're trying to minimize.
+
+42
+00:02:53,260 --> 00:02:56,615
+And what we're seeing in this little example is that,
+
+43
+00:02:56,615 --> 00:02:58,666
+through a left-to-right pass,
+
+44
+00:02:58,666 --> 00:03:01,075
+you can compute the value of J.
+
+45
+00:03:01,075 --> 00:03:05,993
+And what we'll see in the next couple of slides is that in order to compute derivatives,
+
+46
+00:03:05,993 --> 00:03:10,010
+there'll be a right-to-left pass like this,
+
+47
+00:03:10,010 --> 00:03:14,380
+kind of going in the opposite direction as the blue arrows.
+
+48
+00:03:14,380 --> 00:03:17,205
+That would be most natural for computing the derivatives.
+
+49
+00:03:17,205 --> 00:03:20,015
+So to recap, the computation graph organizes
+
+50
+00:03:20,015 --> 00:03:24,250
+a computation with this blue arrow, left-to-right computation.
+
+51
+00:03:24,250 --> 00:03:26,510
+Let's refer to the next video how you can do
+
+52
+00:03:26,510 --> 00:03:31,710
+the backward red arrow right-to-left computation of the derivatives.
+
+53
+00:03:31,710 --> 00:03:33,000
+Let's go on to the next video.

@@ -1,0 +1,443 @@
+1
+00:00:00,030 --> 00:00:04,710
+why does your new network need a
+
+2
+00:00:02,220 --> 00:00:06,089
+nonlinear activation function turns out
+
+3
+00:00:04,710 --> 00:00:08,160
+that for your new network to compute
+
+4
+00:00:06,089 --> 00:00:09,990
+interesting functions you do need to
+
+5
+00:00:08,160 --> 00:00:12,990
+take a nonlinear activation function
+
+6
+00:00:09,990 --> 00:00:15,990
+less you want so just the for prop
+
+7
+00:00:12,990 --> 00:00:18,029
+equations for the neural network why
+
+8
+00:00:15,990 --> 00:00:22,160
+don't we just get rid of this get rid of
+
+9
+00:00:18,029 --> 00:00:25,920
+the function G and set a1 equals Z 1 or
+
+10
+00:00:22,160 --> 00:00:28,289
+alternatively you could say that G of Z
+
+11
+00:00:25,920 --> 00:00:31,470
+is equal to Z right sometimes this is
+
+12
+00:00:28,289 --> 00:00:33,210
+called the linear activation function
+
+13
+00:00:31,470 --> 00:00:35,280
+maybe a better name for it would be the
+
+14
+00:00:33,210 --> 00:00:37,280
+identity activation function because
+
+15
+00:00:35,280 --> 00:00:39,270
+they're just outputs whatever was input
+
+16
+00:00:37,280 --> 00:00:44,010
+for the purpose of this
+
+17
+00:00:39,270 --> 00:00:46,410
+what if a2 was just equal to z2 it turns
+
+18
+00:00:44,010 --> 00:00:50,730
+out if you do this then this model is
+
+19
+00:00:46,410 --> 00:00:54,390
+just computing Y or Y hat as a linear
+
+20
+00:00:50,730 --> 00:00:57,170
+function of your input features x2 take
+
+21
+00:00:54,390 --> 00:01:05,970
+the first two equations if you have that
+
+22
+00:00:57,170 --> 00:01:12,720
+a1 is equal to z1 is equal to w1 X plus
+
+23
+00:01:05,970 --> 00:01:21,869
+B and if then a2 is equal to z2 is equal
+
+24
+00:01:12,720 --> 00:01:24,900
+to W 2 a1 plus B then if you take the
+
+25
+00:01:21,869 --> 00:01:32,009
+definition of a1 and plug it in there
+
+26
+00:01:24,900 --> 00:01:38,520
+you find that a2 is equal to W 2 times W
+
+27
+00:01:32,009 --> 00:01:43,920
+1 X plus b1 a bit all right so this is
+
+28
+00:01:38,520 --> 00:01:59,120
+um a 1 plus B 2 and so this simplifies
+
+29
+00:01:43,920 --> 00:02:06,120
+to W 2 W 1 X plus W 2 b1 plus b2 so this
+
+30
+00:01:59,120 --> 00:02:08,930
+it's just let's call this w prime b
+
+31
+00:02:06,120 --> 00:02:10,710
+prime so it is just equal to w prime X
+
+32
+00:02:08,930 --> 00:02:12,720
+plus B Prime
+
+33
+00:02:10,710 --> 00:02:15,690
+if you were to use linear activation
+
+34
+00:02:12,720 --> 00:02:18,690
+functions or we go to call them identity
+
+35
+00:02:15,690 --> 00:02:20,940
+activation functions then the new
+
+36
+00:02:18,690 --> 00:02:24,390
+network is just outputting a linear
+
+37
+00:02:20,940 --> 00:02:26,940
+function of the input and we'll talk
+
+38
+00:02:24,390 --> 00:02:28,740
+about deep networks later new networks
+
+39
+00:02:26,940 --> 00:02:31,260
+with many many layers many many hidden
+
+40
+00:02:28,740 --> 00:02:33,570
+layers and it turns out that if you use
+
+41
+00:02:31,260 --> 00:02:35,070
+a linear activation function or
+
+42
+00:02:33,570 --> 00:02:37,140
+alternatively if you don't have an
+
+43
+00:02:35,070 --> 00:02:38,790
+activation function then no matter how
+
+44
+00:02:37,140 --> 00:02:41,610
+many layers your neural network has
+
+45
+00:02:38,790 --> 00:02:43,590
+always doing is just computing a linear
+
+46
+00:02:41,610 --> 00:02:46,980
+activation function so you might as well
+
+47
+00:02:43,590 --> 00:02:49,770
+not have any hidden layers some of the
+
+48
+00:02:46,980 --> 00:02:52,020
+cases that briefly mentioned it turns
+
+49
+00:02:49,770 --> 00:02:54,510
+out that if you have a linear activation
+
+50
+00:02:52,020 --> 00:02:57,000
+function here and a sigmoid function
+
+51
+00:02:54,510 --> 00:02:59,010
+here then this model is no more
+
+52
+00:02:57,000 --> 00:03:02,700
+expressive than standard logistic
+
+53
+00:02:59,010 --> 00:03:04,440
+regression without any hidden layer so I
+
+54
+00:03:02,700 --> 00:03:06,360
+won't bother to prove that but you could
+
+55
+00:03:04,440 --> 00:03:09,240
+try to do so if you want but the
+
+56
+00:03:06,360 --> 00:03:12,690
+take-home is that a linear hidden layer
+
+57
+00:03:09,240 --> 00:03:15,000
+is more or less useless because on the
+
+58
+00:03:12,690 --> 00:03:17,850
+composition of two linear functions is
+
+59
+00:03:15,000 --> 00:03:20,190
+itself a linear function so unless you
+
+60
+00:03:17,850 --> 00:03:21,989
+throw a non-linearity in there then
+
+61
+00:03:20,190 --> 00:03:24,060
+you're not computing more interesting
+
+62
+00:03:21,989 --> 00:03:27,209
+functions even as you go deeper in the
+
+63
+00:03:24,060 --> 00:03:28,739
+network there is just one place where
+
+64
+00:03:27,209 --> 00:03:32,820
+you might use a linear activation
+
+65
+00:03:28,739 --> 00:03:35,640
+function G of Z equals Z and that's if
+
+66
+00:03:32,820 --> 00:03:38,790
+you are doing machine learning on a
+
+67
+00:03:35,640 --> 00:03:41,130
+regression problem so if Y is a real
+
+68
+00:03:38,790 --> 00:03:44,640
+number so for example if you're trying
+
+69
+00:03:41,130 --> 00:03:47,010
+to predict housing prices so Y is a it's
+
+70
+00:03:44,640 --> 00:03:50,430
+not 0 1 but it's a real number you know
+
+71
+00:03:47,010 --> 00:03:53,340
+anywhere from zero dollars is a price of
+
+72
+00:03:50,430 --> 00:03:55,650
+holes up to however expensive right
+
+73
+00:03:53,340 --> 00:03:58,530
+house of kin I guess maybe however can
+
+74
+00:03:55,650 --> 00:04:03,000
+be you know potentially millions of
+
+75
+00:03:58,530 --> 00:04:07,160
+dollars so however however much houses
+
+76
+00:04:03,000 --> 00:04:11,670
+cost in your data set but if Y takes on
+
+77
+00:04:07,160 --> 00:04:13,829
+these real values then it might be OK to
+
+78
+00:04:11,670 --> 00:04:19,380
+have a linear activation function here
+
+79
+00:04:13,829 --> 00:04:21,060
+so that your output Y hat is also a real
+
+80
+00:04:19,380 --> 00:04:24,750
+number going anywhere from minus
+
+81
+00:04:21,060 --> 00:04:27,630
+infinity to plus infinity but then the
+
+82
+00:04:24,750 --> 00:04:29,580
+hidden units should not use the new
+
+83
+00:04:27,630 --> 00:04:33,180
+activation functions they could use relu
+
+84
+00:04:29,580 --> 00:04:35,370
+or 10h or these you relu or maybe
+
+85
+00:04:33,180 --> 00:04:37,020
+something else so the one place you
+
+86
+00:04:35,370 --> 00:04:40,230
+might use a linear activation function
+
+87
+00:04:37,020 --> 00:04:43,350
+others usually in the output layer but
+
+88
+00:04:40,230 --> 00:04:46,820
+other than that using a linear
+
+89
+00:04:43,350 --> 00:04:48,690
+activation function in a fitting layer
+
+90
+00:04:46,820 --> 00:04:51,540
+except for some very special
+
+91
+00:04:48,690 --> 00:04:53,640
+circumstances relating to compression
+
+92
+00:04:51,540 --> 00:04:55,200
+that won't want to talk about using a
+
+93
+00:04:53,640 --> 00:04:57,180
+linear activation function is extremely
+
+94
+00:04:55,200 --> 00:04:59,100
+rare oh and of course today actually
+
+95
+00:04:57,180 --> 00:05:01,230
+predicting housing prices as you saw on
+
+96
+00:04:59,100 --> 00:05:03,450
+the week 1 video because housing prices
+
+97
+00:05:01,230 --> 00:05:06,210
+are all non-negative perhaps even then
+
+98
+00:05:03,450 --> 00:05:09,180
+you can use a value activation function
+
+99
+00:05:06,210 --> 00:05:12,030
+so that your outputs Y hat are all
+
+100
+00:05:09,180 --> 00:05:14,040
+greater than or equal to 0 so I hope
+
+101
+00:05:12,030 --> 00:05:16,170
+that gives you a sense of why having a
+
+102
+00:05:14,040 --> 00:05:19,620
+nonlinear activation function is a
+
+103
+00:05:16,170 --> 00:05:21,030
+critical part of neural networks next
+
+104
+00:05:19,620 --> 00:05:24,330
+we're going to start to talk about
+
+105
+00:05:21,030 --> 00:05:25,950
+gradient descent and to do that to set
+
+106
+00:05:24,330 --> 00:05:28,320
+up for discussion for gradient descent
+
+107
+00:05:25,950 --> 00:05:30,810
+in the next video I want to show you how
+
+108
+00:05:28,320 --> 00:05:33,150
+to estimate how to compute the slope of
+
+109
+00:05:30,810 --> 00:05:35,070
+the derivative of individual activation
+
+110
+00:05:33,150 --> 00:05:37,430
+functions so let's go on to the next
+
+111
+00:05:35,070 --> 00:05:37,430
+video

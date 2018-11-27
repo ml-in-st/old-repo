@@ -1,0 +1,487 @@
+1
+00:00:00,060 --> 00:00:05,130
+you've now learned so much about deep
+
+2
+00:00:02,610 --> 00:00:07,529
+learning and sequence models that we can
+
+3
+00:00:05,130 --> 00:00:10,200
+actually describe a trigger word system
+
+4
+00:00:07,529 --> 00:00:12,509
+quite simply just on one slide as you
+
+5
+00:00:10,200 --> 00:00:14,219
+see in this video but when the rise of
+
+6
+00:00:12,509 --> 00:00:16,170
+speech recognition have been more and
+
+7
+00:00:14,219 --> 00:00:17,789
+more devices you can wake up with your
+
+8
+00:00:16,170 --> 00:00:20,580
+voice and those are sometimes called
+
+9
+00:00:17,789 --> 00:00:22,289
+trigger word detection systems so let's
+
+10
+00:00:20,580 --> 00:00:25,410
+see how you can build a trigger word
+
+11
+00:00:22,289 --> 00:00:28,320
+system examples of triggering systems
+
+12
+00:00:25,410 --> 00:00:29,730
+include Amazon echo which is broken out
+
+13
+00:00:28,320 --> 00:00:32,579
+what that word elixir
+
+14
+00:00:29,730 --> 00:00:36,420
+the by dou dou R or s part devices woken
+
+15
+00:00:32,579 --> 00:00:38,700
+up with face duty how Apple Siri working
+
+16
+00:00:36,420 --> 00:00:41,730
+out with hey Siri and Google home woken
+
+17
+00:00:38,700 --> 00:00:44,550
+up with ok Google so stands the trigger
+
+18
+00:00:41,730 --> 00:00:46,620
+word detection that if you have say an
+
+19
+00:00:44,550 --> 00:00:49,079
+Amazon echo in your living room you can
+
+20
+00:00:46,620 --> 00:00:51,180
+walk the living room and just say Alexa
+
+21
+00:00:49,079 --> 00:00:53,010
+what time is it and have it wake up I'll
+
+22
+00:00:51,180 --> 00:00:57,120
+be triggered by the words of exer and
+
+23
+00:00:53,010 --> 00:00:58,949
+answer your voice query so if you can
+
+24
+00:00:57,120 --> 00:01:01,379
+build a trigger word detection system
+
+25
+00:00:58,949 --> 00:01:03,690
+maybe you can make your computer do
+
+26
+00:01:01,379 --> 00:01:06,840
+something by telling it computer
+
+27
+00:01:03,690 --> 00:01:09,689
+activate one of my friends also works on
+
+28
+00:01:06,840 --> 00:01:12,330
+turning on an offer particular lamp
+
+29
+00:01:09,689 --> 00:01:14,700
+using a trigger word kind of as a fun
+
+30
+00:01:12,330 --> 00:01:16,439
+project but what I want to show you is
+
+31
+00:01:14,700 --> 00:01:19,439
+how you can build a trigger word
+
+32
+00:01:16,439 --> 00:01:21,750
+detection system now the trigger word
+
+33
+00:01:19,439 --> 00:01:24,409
+detection literature is still evolving
+
+34
+00:01:21,750 --> 00:01:27,000
+so there actually isn't a single
+
+35
+00:01:24,409 --> 00:01:30,270
+universally agreed on algorithm for
+
+36
+00:01:27,000 --> 00:01:31,920
+trigger word detection yet the
+
+37
+00:01:30,270 --> 00:01:33,840
+literature on trigger word detection
+
+38
+00:01:31,920 --> 00:01:36,240
+algorithm is still evolving so there
+
+39
+00:01:33,840 --> 00:01:37,500
+isn't wide consensus yet on what's the
+
+40
+00:01:36,240 --> 00:01:39,450
+best algorithm for trigger word
+
+41
+00:01:37,500 --> 00:01:41,899
+detection so I'm just going to show you
+
+42
+00:01:39,450 --> 00:01:45,180
+one example of an algorithm you can use
+
+43
+00:01:41,899 --> 00:01:47,299
+now you've seen our ends like this and
+
+44
+00:01:45,180 --> 00:01:50,159
+what we really do is take an audio clip
+
+45
+00:01:47,299 --> 00:01:51,090
+maybe compute spectrogram features and
+
+46
+00:01:50,159 --> 00:01:54,119
+that generates
+
+47
+00:01:51,090 --> 00:01:57,540
+features x1 x2 x3 audio features x1 x2
+
+48
+00:01:54,119 --> 00:02:00,329
+x3 that you pass through an RNN and so
+
+49
+00:01:57,540 --> 00:02:06,180
+all that remains to be done is to define
+
+50
+00:02:00,329 --> 00:02:08,970
+the target labels Y so if this point in
+
+51
+00:02:06,180 --> 00:02:11,310
+the audio clip is when someone just
+
+52
+00:02:08,970 --> 00:02:13,080
+finished saying the trigger word such as
+
+53
+00:02:11,310 --> 00:02:15,870
+a lecture or saline
+
+54
+00:02:13,080 --> 00:02:17,760
+hey Suri or okay Google then in the
+
+55
+00:02:15,870 --> 00:02:20,640
+training sets you can set the target
+
+56
+00:02:17,760 --> 00:02:23,250
+labels to be zero for everything before
+
+57
+00:02:20,640 --> 00:02:27,270
+that point and right after that to set
+
+58
+00:02:23,250 --> 00:02:29,460
+the target label of one and then if a
+
+59
+00:02:27,270 --> 00:02:32,280
+little bit later on you know the trigger
+
+60
+00:02:29,460 --> 00:02:35,670
+word was set again and the trigger was
+
+61
+00:02:32,280 --> 00:02:38,460
+said at this point then you can again
+
+62
+00:02:35,670 --> 00:02:43,170
+set the target label to be one right
+
+63
+00:02:38,460 --> 00:02:46,230
+after that now this type of labeling
+
+64
+00:02:43,170 --> 00:02:47,700
+scheme for an RNN you know could work
+
+65
+00:02:46,230 --> 00:02:51,150
+actually this won't actually work
+
+66
+00:02:47,700 --> 00:02:53,610
+reasonably well one slight disadvantage
+
+67
+00:02:51,150 --> 00:02:56,010
+of this is it creates a very imbalanced
+
+68
+00:02:53,610 --> 00:02:56,760
+training set so if a lot more zeros than
+
+69
+00:02:56,010 --> 00:02:59,610
+ones
+
+70
+00:02:56,760 --> 00:03:01,610
+so one other thing you could do that
+
+71
+00:02:59,610 --> 00:03:03,810
+it's getting a little bit of a hack but
+
+72
+00:03:01,610 --> 00:03:06,600
+could make them all the little bit easy
+
+73
+00:03:03,810 --> 00:03:08,970
+to train is instead of setting only a
+
+74
+00:03:06,600 --> 00:03:11,210
+single time step to output one you can
+
+75
+00:03:08,970 --> 00:03:13,530
+actually make an output a few ones for
+
+76
+00:03:11,210 --> 00:03:16,950
+several times or for a fixed period of
+
+77
+00:03:13,530 --> 00:03:23,540
+time before reverting back to zero so
+
+78
+00:03:16,950 --> 00:03:27,600
+and that thumb slightly evens out the
+
+79
+00:03:23,540 --> 00:03:32,760
+ratio of ones to zeros but this is a
+
+80
+00:03:27,600 --> 00:03:34,980
+little bit of a hack but if this is when
+
+81
+00:03:32,760 --> 00:03:37,080
+in the audio clipper trigger where the
+
+82
+00:03:34,980 --> 00:03:38,940
+set then right after that you can set
+
+83
+00:03:37,080 --> 00:03:40,800
+the toggle able to one and if this is
+
+84
+00:03:38,940 --> 00:03:42,930
+the trigger words say the game then
+
+85
+00:03:40,800 --> 00:03:49,050
+right after that just when you want the
+
+86
+00:03:42,930 --> 00:03:51,180
+RNN to output one so you get to play
+
+87
+00:03:49,050 --> 00:03:54,750
+more of this as well in the programming
+
+88
+00:03:51,180 --> 00:03:56,370
+exercise but so I think you should feel
+
+89
+00:03:54,750 --> 00:03:58,650
+quite proud of yourself we've learned
+
+90
+00:03:56,370 --> 00:04:00,540
+enough about the learning that it just
+
+91
+00:03:58,650 --> 00:04:03,090
+takes one picture at one slide to this
+
+92
+00:04:00,540 --> 00:04:06,360
+to describe something as complicated as
+
+93
+00:04:03,090 --> 00:04:07,920
+trigger word detection and based on this
+
+94
+00:04:06,360 --> 00:04:10,380
+I hope you'd be able to implement
+
+95
+00:04:07,920 --> 00:04:12,450
+something that works and allows you to
+
+96
+00:04:10,380 --> 00:04:15,120
+detect trigger words
+
+97
+00:04:12,450 --> 00:04:18,450
+but you see more of this in the program
+
+98
+00:04:15,120 --> 00:04:20,519
+exercise so that's it for trigger words
+
+99
+00:04:18,450 --> 00:04:21,630
+and I hope you feel quite proud of
+
+100
+00:04:20,519 --> 00:04:23,760
+yourself for how much you've learned
+
+101
+00:04:21,630 --> 00:04:26,340
+about deep learning that you can now
+
+102
+00:04:23,760 --> 00:04:28,350
+describe trigger words in just one slide
+
+103
+00:04:26,340 --> 00:04:30,360
+in a few minutes and that you've been
+
+104
+00:04:28,350 --> 00:04:32,700
+hopeful II implemented and get it to
+
+105
+00:04:30,360 --> 00:04:34,350
+work maybe even make it do something fun
+
+106
+00:04:32,700 --> 00:04:35,580
+in your house that I'm like turn on or
+
+107
+00:04:34,350 --> 00:04:37,889
+turn off um you could do something like
+
+108
+00:04:35,580 --> 00:04:40,740
+a computer when you're when someone else
+
+109
+00:04:37,889 --> 00:04:43,230
+says they trigger words on this is the
+
+110
+00:04:40,740 --> 00:04:46,440
+last technical video of this course and
+
+111
+00:04:43,230 --> 00:04:48,960
+to wrap up in this course on sequence
+
+112
+00:04:46,440 --> 00:04:52,950
+models you learned about rnns including
+
+113
+00:04:48,960 --> 00:04:55,169
+both gr use and LS TMS and then in the
+
+114
+00:04:52,950 --> 00:04:56,450
+second week you learned a lot about word
+
+115
+00:04:55,169 --> 00:04:59,160
+embeddings and how they learn
+
+116
+00:04:56,450 --> 00:05:01,440
+representations of words and then in
+
+117
+00:04:59,160 --> 00:05:04,530
+this week you learned about the
+
+118
+00:05:01,440 --> 00:05:07,770
+attention model as well as how to use it
+
+119
+00:05:04,530 --> 00:05:10,169
+to process audio data and I hope you
+
+120
+00:05:07,770 --> 00:05:12,840
+have fun implementing all of these ideas
+
+121
+00:05:10,169 --> 00:05:15,470
+in this beast program sighs let's go on
+
+122
+00:05:12,840 --> 00:05:15,470
+to the last video

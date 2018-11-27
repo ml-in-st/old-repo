@@ -1,0 +1,3055 @@
+1
+00:00:00,620 --> 00:00:03,610
+As part of this course by deeplearning.ai,
+
+2
+00:00:03,610 --> 00:00:07,590
+hope to not just teach you the technical
+ideas in deep learning, but
+
+3
+00:00:07,590 --> 00:00:11,658
+also introduce you to some of the people,
+some of the heroes in deep learning.
+
+4
+00:00:11,658 --> 00:00:13,160
+The people that invented so
+
+5
+00:00:13,160 --> 00:00:17,700
+many of these ideas that you learn about
+in this course or in this specialization.
+
+6
+00:00:17,700 --> 00:00:21,420
+In these videos, I hope to also
+ask these leaders of deep learning
+
+7
+00:00:21,420 --> 00:00:24,990
+to give you career advice for
+how you can break into deep learning, for
+
+8
+00:00:24,990 --> 00:00:27,805
+how you can do research or
+find a job in deep learning.
+
+9
+00:00:27,805 --> 00:00:30,156
+As the first of this interview series,
+
+10
+00:00:30,156 --> 00:00:34,228
+I am delighted to present to you
+an interview with Geoffrey Hinton.
+
+11
+00:00:38,427 --> 00:00:44,150
+Welcome Geoff, and thank you for
+doing this interview with deeplearning.ai.
+
+12
+00:00:44,150 --> 00:00:46,550
+>> Thank you for inviting me.
+
+13
+00:00:46,550 --> 00:00:50,088
+>> I think that at this point you more
+than anyone else on this planet has
+
+14
+00:00:50,088 --> 00:00:52,835
+invented so
+many of the ideas behind deep learning.
+
+15
+00:00:52,835 --> 00:00:57,650
+And a lot of people have been calling
+you the godfather of deep learning.
+
+16
+00:00:57,650 --> 00:01:01,529
+Although it wasn't until we were chatting
+a few minutes ago, until I realized
+
+17
+00:01:01,529 --> 00:01:05,600
+you think I'm the first one to call you
+that, which I'm quite happy to have done.
+
+18
+00:01:06,780 --> 00:01:11,320
+But what I want to ask is,
+many people know you as a legend,
+
+19
+00:01:11,320 --> 00:01:15,030
+I want to ask about your
+personal story behind the legend.
+
+20
+00:01:15,030 --> 00:01:19,980
+So how did you get involved in, going way
+back, how did you get involved in AI and
+
+21
+00:01:19,980 --> 00:01:21,520
+machine learning and neural networks?
+
+22
+00:01:22,730 --> 00:01:26,960
+>> So when I was at high school,
+I had a classmate who was always
+
+23
+00:01:26,960 --> 00:01:31,220
+better than me at everything,
+he was a brilliant mathematician.
+
+24
+00:01:31,220 --> 00:01:37,010
+And he came into school one day and said,
+did you know the brain uses holograms?
+
+25
+00:01:38,190 --> 00:01:44,161
+And I guess that was about 1966, and
+I said, sort of what's a hologram?
+
+26
+00:01:44,161 --> 00:01:47,390
+And he explained that in a hologram
+you can chop off half of it, and
+
+27
+00:01:47,390 --> 00:01:49,730
+you still get the whole picture.
+
+28
+00:01:49,730 --> 00:01:53,466
+And that memories in the brain might
+be distributed over the whole brain.
+
+29
+00:01:53,466 --> 00:01:56,022
+And so I guess he'd read
+about Lashley's experiments,
+
+30
+00:01:56,022 --> 00:01:57,939
+where you chop off bits
+of a rat's brain and
+
+31
+00:01:57,939 --> 00:02:01,740
+discover that it's very hard to find one
+bit where it stores one particular memory.
+
+32
+00:02:04,411 --> 00:02:08,920
+So that's what first got me interested
+in how does the brain store memories.
+
+33
+00:02:10,180 --> 00:02:12,220
+And then when I went to university,
+
+34
+00:02:12,220 --> 00:02:15,130
+I started off studying physiology and
+physics.
+
+35
+00:02:16,400 --> 00:02:17,731
+I think when I was at Cambridge,
+
+36
+00:02:17,731 --> 00:02:20,260
+I was the only undergraduate
+doing physiology and physics.
+
+37
+00:02:21,888 --> 00:02:25,270
+And then I gave up on that and
+
+38
+00:02:25,270 --> 00:02:29,170
+tried to do philosophy, because I
+thought that might give me more insight.
+
+39
+00:02:29,170 --> 00:02:32,780
+But that seemed to me actually
+
+40
+00:02:32,780 --> 00:02:37,130
+lacking in ways of distinguishing
+when they said something false.
+
+41
+00:02:37,130 --> 00:02:39,420
+And so then I switched to psychology.
+
+42
+00:02:41,988 --> 00:02:45,920
+And in psychology they had very,
+very simple theories, and it seemed to me
+
+43
+00:02:45,920 --> 00:02:49,620
+it was sort of hopelessly inadequate
+to explaining what the brain was doing.
+
+44
+00:02:49,620 --> 00:02:52,737
+So then I took some time off and
+became a carpenter.
+
+45
+00:02:52,737 --> 00:02:57,169
+And then I decided that I'd try AI,
+and went of to Edinburgh,
+
+46
+00:02:57,169 --> 00:02:59,580
+to study AI with Langer Higgins.
+
+47
+00:02:59,580 --> 00:03:02,662
+And he had done very nice
+work on neural networks, and
+
+48
+00:03:02,662 --> 00:03:07,830
+he'd just given up on neural networks, and
+been very impressed by Winograd's thesis.
+
+49
+00:03:07,830 --> 00:03:11,460
+So when I arrived he thought I was kind
+of doing this old fashioned stuff, and
+
+50
+00:03:11,460 --> 00:03:14,210
+I ought to start on symbolic AI.
+
+51
+00:03:14,210 --> 00:03:18,210
+And we had a lot of fights about that, but
+I just kept on doing what I believed in.
+
+52
+00:03:18,210 --> 00:03:21,138
+>> And then what?
+
+53
+00:03:21,138 --> 00:03:28,033
+>> I eventually got a PhD in AI, and
+then I couldn't get a job in Britain.
+
+54
+00:03:28,033 --> 00:03:30,979
+But I saw this very nice advertisement for
+
+55
+00:03:30,979 --> 00:03:36,070
+Sloan Fellowships in California,
+and I managed to get one of those.
+
+56
+00:03:36,070 --> 00:03:40,625
+And I went to California, and
+everything was different there.
+
+57
+00:03:40,625 --> 00:03:46,685
+So in Britain,
+neural nets was regarded as kind of silly,
+
+58
+00:03:46,685 --> 00:03:50,272
+and in California, Don Norman and
+
+59
+00:03:50,272 --> 00:03:56,640
+David Rumelhart were very open
+to ideas about neural nets.
+
+60
+00:03:56,640 --> 00:04:00,720
+It was the first time I'd been somewhere
+where thinking about how the brain works,
+
+61
+00:04:00,720 --> 00:04:03,290
+and thinking about how that
+might relate to psychology,
+
+62
+00:04:03,290 --> 00:04:05,650
+was seen as a very positive thing.
+
+63
+00:04:05,650 --> 00:04:06,936
+And it was a lot of fun there,
+
+64
+00:04:06,936 --> 00:04:09,792
+in particular collaborating
+with David Rumelhart was great.
+
+65
+00:04:09,792 --> 00:04:12,968
+>> I see, great.
+So this was when you were at UCSD, and
+
+66
+00:04:12,968 --> 00:04:16,177
+you and Rumelhart around what, 1982,
+
+67
+00:04:16,177 --> 00:04:20,182
+wound up writing the seminal
+backprop paper, right?
+
+68
+00:04:20,182 --> 00:04:23,292
+>> Actually,
+it was more complicated than that.
+
+69
+00:04:23,292 --> 00:04:24,796
+>> What happened?
+
+70
+00:04:24,796 --> 00:04:28,214
+>> In, I think, early 1982,
+
+71
+00:04:28,214 --> 00:04:32,900
+David Rumelhart and me, and Ron Williams,
+
+72
+00:04:32,900 --> 00:04:37,967
+between us developed
+the backprop algorithm,
+
+73
+00:04:37,967 --> 00:04:42,291
+it was mainly David Rumelhart's idea.
+
+74
+00:04:42,291 --> 00:04:46,390
+We discovered later that many
+other people had invented it.
+
+75
+00:04:46,390 --> 00:04:52,798
+David Parker had invented, it probably
+after us, but before we'd published.
+
+76
+00:04:52,798 --> 00:04:56,425
+Paul Werbos had published it already
+quite a few years earlier, but
+
+77
+00:04:56,425 --> 00:04:58,860
+nobody paid it much attention.
+
+78
+00:04:58,860 --> 00:05:01,923
+And there were other people who'd
+developed very similar algorithms,
+
+79
+00:05:01,923 --> 00:05:04,340
+it's not clear what's meant by backprop.
+
+80
+00:05:04,340 --> 00:05:08,055
+But using the chain rule to get
+derivatives was not a novel idea.
+
+81
+00:05:08,055 --> 00:05:12,484
+>> I see, why do you think it
+was your paper that helped so
+
+82
+00:05:12,484 --> 00:05:15,940
+much the community latch on to backprop?
+
+83
+00:05:15,940 --> 00:05:20,540
+It feels like your paper marked
+an infection in the acceptance of this
+
+84
+00:05:20,540 --> 00:05:22,934
+algorithm, whoever accepted it.
+
+85
+00:05:22,934 --> 00:05:26,675
+>> So we managed to get
+a paper into Nature in 1986.
+
+86
+00:05:26,675 --> 00:05:30,580
+And I did quite a lot of political
+work to get the paper accepted.
+
+87
+00:05:30,580 --> 00:05:34,622
+I figured out that one of the referees was
+probably going to be Stuart Sutherland,
+
+88
+00:05:34,622 --> 00:05:36,992
+who was a well known
+psychologist in Britain.
+
+89
+00:05:36,992 --> 00:05:38,815
+And I went to talk to him for
+a long time, and
+
+90
+00:05:38,815 --> 00:05:41,480
+explained to him exactly
+what was going on.
+
+91
+00:05:41,480 --> 00:05:44,140
+And he was very impressed by the fact
+
+92
+00:05:44,140 --> 00:05:48,970
+that we showed that backprop could
+learn representations for words.
+
+93
+00:05:48,970 --> 00:05:52,490
+And you could look at those
+representations, which are little vectors,
+
+94
+00:05:52,490 --> 00:05:55,950
+and you could understand the meaning
+of the individual features.
+
+95
+00:05:55,950 --> 00:06:01,600
+So we actually trained it on little
+triples of words about family trees,
+
+96
+00:06:01,600 --> 00:06:06,420
+like Mary has mother Victoria.
+
+97
+00:06:06,420 --> 00:06:11,550
+And you'd give it the first two words, and
+it would have to predict the last word.
+
+98
+00:06:11,550 --> 00:06:12,970
+And after you trained it,
+
+99
+00:06:12,970 --> 00:06:17,780
+you could see all sorts of features in the
+representations of the individual words.
+
+100
+00:06:17,780 --> 00:06:19,950
+Like the nationality of the person there,
+
+101
+00:06:19,950 --> 00:06:25,180
+what generation they were, which branch of
+the family tree they were in, and so on.
+
+102
+00:06:25,180 --> 00:06:27,680
+That was what made Stuart Sutherland
+really impressed with it, and
+
+103
+00:06:27,680 --> 00:06:29,666
+I think that's why the paper got accepted.
+
+104
+00:06:29,666 --> 00:06:33,905
+>> Very early word embeddings,
+and you're already seeing learned
+
+105
+00:06:33,905 --> 00:06:38,390
+features of semantic meanings
+emerge from the training algorithm.
+
+106
+00:06:38,390 --> 00:06:44,090
+>> Yes, so from a psychologist's point of
+view, what was interesting was it unified
+
+107
+00:06:44,090 --> 00:06:49,740
+two completely different strands of
+ideas about what knowledge was like.
+
+108
+00:06:49,740 --> 00:06:53,460
+So there was the old psychologist's
+view that a concept is just a big
+
+109
+00:06:53,460 --> 00:06:56,810
+bundle of features, and
+there's lots of evidence for that.
+
+110
+00:06:56,810 --> 00:07:02,180
+And then there was the AI view of the
+time, which is a formal structurist view.
+
+111
+00:07:02,180 --> 00:07:06,190
+Which was that a concept is how
+it relates to other concepts.
+
+112
+00:07:06,190 --> 00:07:09,820
+And to capture a concept, you'd have to
+do something like a graph structure or
+
+113
+00:07:09,820 --> 00:07:11,640
+maybe a semantic net.
+
+114
+00:07:11,640 --> 00:07:15,875
+And what this back propagation
+example showed was, you could give it
+
+115
+00:07:15,875 --> 00:07:21,070
+the information that would go into a graph
+structure, or in this case a family tree.
+
+116
+00:07:22,080 --> 00:07:26,920
+And it could convert that information into
+features in such a way that it could then
+
+117
+00:07:26,920 --> 00:07:33,470
+use the features to derive new
+consistent information, ie generalize.
+
+118
+00:07:33,470 --> 00:07:38,438
+But the crucial thing was this to and fro
+between the graphical representation or
+
+119
+00:07:38,438 --> 00:07:43,000
+the tree structured representation
+of the family tree, and
+
+120
+00:07:43,000 --> 00:07:46,715
+a representation of the people
+as big feature vectors.
+
+121
+00:07:46,715 --> 00:07:50,873
+And in fact that from the graph-like
+representation you could get feature
+
+122
+00:07:50,873 --> 00:07:51,469
+vectors.
+
+123
+00:07:51,469 --> 00:07:54,995
+And from the feature vectors, you could
+get more of the graph-like representation.
+
+124
+00:07:54,995 --> 00:07:57,730
+>> So this is 1986?
+
+125
+00:07:57,730 --> 00:08:02,430
+In the early 90s, Bengio showed that
+you can actually take real data,
+
+126
+00:08:02,430 --> 00:08:07,420
+you could take English text, and
+apply the same techniques there, and
+
+127
+00:08:07,420 --> 00:08:13,980
+get embeddings for real words from English
+text, and that impressed people a lot.
+
+128
+00:08:13,980 --> 00:08:18,682
+>> I guess recently we've been talking a
+lot about how fast computers like GPUs and
+
+129
+00:08:18,682 --> 00:08:21,750
+supercomputers that's
+driving deep learning.
+
+130
+00:08:21,750 --> 00:08:26,376
+I didn't realize that back between 1986
+and the early 90's, it sounds like between
+
+131
+00:08:26,376 --> 00:08:29,570
+you and Benjio there was already
+the beginnings of this trend.
+
+132
+00:08:30,600 --> 00:08:32,630
+>> Yes, it was a huge advance.
+
+133
+00:08:32,630 --> 00:08:41,440
+In 1986, I was using a list machine which
+was less than a tenth of a mega flop.
+
+134
+00:08:41,440 --> 00:08:47,720
+And by about 1993 or thereabouts,
+people were seeing ten mega flops.
+
+135
+00:08:47,720 --> 00:08:49,600
+>> I see.
+>> So there was a factor of 100,
+
+136
+00:08:49,600 --> 00:08:51,770
+and that's the point at
+which is was easy to use,
+
+137
+00:08:51,770 --> 00:08:53,580
+because computers were
+just getting faster.
+
+138
+00:08:53,580 --> 00:08:56,960
+>> Over the past several decades,
+you've invented so
+
+139
+00:08:56,960 --> 00:08:59,970
+many pieces of neural networks and
+deep learning.
+
+140
+00:08:59,970 --> 00:09:02,670
+I'm actually curious,
+of all of the things you've invented,
+
+141
+00:09:02,670 --> 00:09:05,050
+which of the ones you're still
+most excited about today?
+
+142
+00:09:06,940 --> 00:09:09,590
+>> So I think the most beautiful
+one is the work I do with
+
+143
+00:09:09,590 --> 00:09:12,620
+Terry Sejnowski on Boltzmann machines.
+
+144
+00:09:12,620 --> 00:09:14,500
+So we discovered there was this really,
+
+145
+00:09:14,500 --> 00:09:18,830
+really simple learning algorithm
+that applied to great big
+
+146
+00:09:18,830 --> 00:09:23,550
+density connected nets where you
+could only see a few of the nodes.
+
+147
+00:09:23,550 --> 00:09:27,730
+So it would learn hidden representations
+and it was a very simple algorithm.
+
+148
+00:09:27,730 --> 00:09:31,130
+And it looked like the kind of thing you
+should be able to get in a brain because
+
+149
+00:09:31,130 --> 00:09:34,210
+each synapse only needed to know
+about the behavior of the two
+
+150
+00:09:34,210 --> 00:09:35,940
+neurons it was directly connected to.
+
+151
+00:09:37,010 --> 00:09:41,230
+And the information that was
+propagated was the same.
+
+152
+00:09:41,230 --> 00:09:45,160
+There were two different phases,
+which we called wake and sleep.
+
+153
+00:09:45,160 --> 00:09:46,820
+But in the two different phases,
+
+154
+00:09:46,820 --> 00:09:48,760
+you're propagating information
+in just the same way.
+
+155
+00:09:48,760 --> 00:09:52,360
+Where as in something like back
+propagation, there's a forward pass and
+
+156
+00:09:52,360 --> 00:09:54,820
+a backward pass, and
+they work differently.
+
+157
+00:09:54,820 --> 00:09:56,379
+They're sending different
+kinds of signals.
+
+158
+00:09:58,100 --> 00:10:01,190
+So I think that's
+the most beautiful thing.
+
+159
+00:10:01,190 --> 00:10:03,730
+And for many years it looked
+just like a curiosity,
+
+160
+00:10:03,730 --> 00:10:05,090
+because it looked like
+it was much too slow.
+
+161
+00:10:06,210 --> 00:10:10,420
+But then later on, I got rid of a little
+bit of the beauty, and it started letting
+
+162
+00:10:10,420 --> 00:10:13,730
+me settle down and just use one iteration,
+in a somewhat simpler net.
+
+163
+00:10:13,730 --> 00:10:16,570
+And that gave restricted
+Boltzmann machines,
+
+164
+00:10:16,570 --> 00:10:19,430
+which actually worked
+effectively in practice.
+
+165
+00:10:19,430 --> 00:10:21,586
+So in the Netflix competition,
+for example,
+
+166
+00:10:21,586 --> 00:10:26,170
+restricted Boltzmann machines were one
+of the ingredients of the winning entry.
+
+167
+00:10:26,170 --> 00:10:30,210
+>> And in fact, a lot of the recent
+resurgence of neural net and
+
+168
+00:10:30,210 --> 00:10:34,790
+deep learning, starting about 2007,
+was the restricted Boltzmann machine,
+
+169
+00:10:34,790 --> 00:10:37,710
+and derestricted Boltzmann machine
+work that you and your lab did.
+
+170
+00:10:38,940 --> 00:10:42,130
+>> Yes so that's another of the pieces
+of work I'm very happy with,
+
+171
+00:10:42,130 --> 00:10:46,290
+the idea of that you could train your
+restricted Boltzmann machine, which just
+
+172
+00:10:46,290 --> 00:10:51,120
+had one layer of hidden features and
+you could learn one layer of feature.
+
+173
+00:10:51,120 --> 00:10:54,850
+And then you could treat those
+features as data and do it again, and
+
+174
+00:10:54,850 --> 00:10:57,953
+then you could treat the new features
+you learned as data and do it again,
+
+175
+00:10:57,953 --> 00:10:59,570
+as many times as you liked.
+
+176
+00:10:59,570 --> 00:11:03,060
+So that was nice, it worked in practice.
+
+177
+00:11:03,060 --> 00:11:08,709
+And then UY Tay realized that the whole
+thing could be treated as a single model,
+
+178
+00:11:08,709 --> 00:11:11,110
+but it was a weird kind of model.
+
+179
+00:11:11,110 --> 00:11:15,946
+It was a model where at the top you had
+a restricted Boltzmann machine, but
+
+180
+00:11:15,946 --> 00:11:20,626
+below that you had a Sigmoid belief
+net which was something that
+
+181
+00:11:20,626 --> 00:11:23,060
+invented many years early.
+
+182
+00:11:23,060 --> 00:11:24,620
+So it was a directed model and
+
+183
+00:11:24,620 --> 00:11:28,651
+what we'd managed to come up with by
+training these restricted Boltzmann
+
+184
+00:11:28,651 --> 00:11:32,760
+machines was an efficient way of doing
+inferences in Sigmoid belief nets.
+
+185
+00:11:33,830 --> 00:11:36,870
+So, around that time,
+
+186
+00:11:36,870 --> 00:11:41,270
+there were people doing neural nets,
+who would use densely connected nets, but
+
+187
+00:11:41,270 --> 00:11:45,500
+didn't have any good ways of doing
+probabilistic imprints in them.
+
+188
+00:11:45,500 --> 00:11:50,050
+And you had people doing graphical models,
+unlike my children,
+
+189
+00:11:50,050 --> 00:11:55,603
+who could do inference properly, but
+only in sparsely connected nets.
+
+190
+00:11:55,603 --> 00:12:01,140
+And what we managed to show was
+the way of learning these deep
+
+191
+00:12:01,140 --> 00:12:06,280
+belief nets so that there's an approximate
+form of inference that's very fast,
+
+192
+00:12:06,280 --> 00:12:10,578
+it's just hands in a single forward pass
+and that was a very beautiful result.
+
+193
+00:12:10,578 --> 00:12:14,890
+And you could guarantee that each time
+you learn that extra layer of features
+
+194
+00:12:16,010 --> 00:12:19,980
+there was a band, each time you learned
+a new layer, you got a new band, and
+
+195
+00:12:19,980 --> 00:12:22,700
+the new band was always
+better than the old band.
+
+196
+00:12:22,700 --> 00:12:25,810
+>> The variational bands,
+showing as you add layers.
+
+197
+00:12:25,810 --> 00:12:26,970
+Yes, I remember that video.
+
+198
+00:12:26,970 --> 00:12:29,680
+>> So that was the second thing
+that I was really excited about.
+
+199
+00:12:29,680 --> 00:12:35,600
+And I guess the third thing was the work
+I did with on variational methods.
+
+200
+00:12:35,600 --> 00:12:40,750
+It turns out people in statistics
+had done similar work earlier,
+
+201
+00:12:40,750 --> 00:12:43,100
+but we didn't know about that.
+
+202
+00:12:44,610 --> 00:12:47,260
+So we managed to make
+
+203
+00:12:47,260 --> 00:12:50,250
+EN work a whole lot better by showing
+you didn't need to do a perfect E step.
+
+204
+00:12:50,250 --> 00:12:52,800
+You could do an approximate E step.
+
+205
+00:12:52,800 --> 00:12:55,320
+And EN was a big algorithm in statistics.
+
+206
+00:12:55,320 --> 00:12:58,380
+And we'd showed a big
+generalization of it.
+
+207
+00:12:58,380 --> 00:13:02,490
+And in particular, in 1993,
+I guess, with Van Camp.
+
+208
+00:13:02,490 --> 00:13:07,040
+I did a paper, with I think,
+the first variational Bayes paper,
+
+209
+00:13:07,040 --> 00:13:12,090
+where we showed that you could actually
+do a version of Bayesian learning
+
+210
+00:13:12,090 --> 00:13:17,950
+that was far more tractable, by
+approximating the true posterior with a.
+
+211
+00:13:17,950 --> 00:13:20,320
+And you could do that in neural net.
+
+212
+00:13:20,320 --> 00:13:22,600
+And I was very excited by that.
+
+213
+00:13:22,600 --> 00:13:23,680
+>> I see.
+Wow, right.
+
+214
+00:13:23,680 --> 00:13:26,670
+Yep, I think I remember
+all of these papers.
+
+215
+00:13:26,670 --> 00:13:32,630
+You and Hinton, approximate Paper,
+spent many hours reading over that.
+
+216
+00:13:32,630 --> 00:13:36,070
+And I think some of
+the algorithms you use today, or
+
+217
+00:13:36,070 --> 00:13:41,110
+some of the algorithms that lots of
+people use almost every day, are what,
+
+218
+00:13:41,110 --> 00:13:46,570
+things like dropouts, or
+I guess activations came from your group?
+
+219
+00:13:46,570 --> 00:13:47,390
+>> Yes and no.
+
+220
+00:13:47,390 --> 00:13:51,470
+So other people have thought
+about rectified linear units.
+
+221
+00:13:51,470 --> 00:13:56,860
+And we actually did some work with
+restricted Boltzmann machines showing
+
+222
+00:13:56,860 --> 00:14:02,880
+that a ReLU was almost exactly equivalent
+to a whole stack of logistic units.
+
+223
+00:14:02,880 --> 00:14:05,190
+And that's one of the things
+that helped ReLUs catch on.
+
+224
+00:14:05,190 --> 00:14:07,440
+>> I was really curious about that.
+
+225
+00:14:07,440 --> 00:14:12,570
+The value paper had a lot of
+math showing that this function
+
+226
+00:14:12,570 --> 00:14:15,530
+can be approximated with this
+really complicated formula.
+
+227
+00:14:15,530 --> 00:14:19,140
+Did you do that math so your paper would
+get accepted into an academic conference,
+
+228
+00:14:19,140 --> 00:14:24,840
+or did all that math really influence
+the development of max of 0 and x?
+
+229
+00:14:26,450 --> 00:14:30,440
+>> That was one of the cases where
+actually the math was important
+
+230
+00:14:30,440 --> 00:14:32,350
+to the development of the idea.
+
+231
+00:14:32,350 --> 00:14:35,262
+So I knew about rectified linear units,
+obviously, and
+
+232
+00:14:35,262 --> 00:14:36,821
+I knew about logistic units.
+
+233
+00:14:36,821 --> 00:14:39,250
+And because of the work
+on Boltzmann machines,
+
+234
+00:14:39,250 --> 00:14:42,720
+all of the basic work was
+done using logistic units.
+
+235
+00:14:42,720 --> 00:14:45,120
+And so the question was,
+
+236
+00:14:45,120 --> 00:14:49,070
+could the learning algorithm work in
+something with rectified linear units?
+
+237
+00:14:49,070 --> 00:14:54,400
+And by showing the rectified linear units
+were almost exactly equivalent to a stack
+
+238
+00:14:54,400 --> 00:15:00,350
+of logistic units, we showed that
+all the math would go through.
+
+239
+00:15:00,350 --> 00:15:01,508
+>> I see.
+
+240
+00:15:01,508 --> 00:15:05,890
+And it provided the inspiration for
+today, tons of people use ReLU and
+
+241
+00:15:05,890 --> 00:15:08,000
+it just works without-
+>> Yeah.
+
+242
+00:15:08,000 --> 00:15:12,130
+>> Without necessarily needing to
+understand the same motivation.
+
+243
+00:15:13,150 --> 00:15:16,850
+>> Yeah, one thing I noticed
+later when I went to Google.
+
+244
+00:15:16,850 --> 00:15:22,796
+I guess in 2014, I gave a talk
+at Google about using ReLUs and
+
+245
+00:15:22,796 --> 00:15:26,660
+initializing with the identity matrix.
+
+246
+00:15:26,660 --> 00:15:30,300
+because the nice thing about ReLUs is
+that if you keep replicating the hidden
+
+247
+00:15:30,300 --> 00:15:32,667
+layers and
+you initialize with the identity,
+
+248
+00:15:32,667 --> 00:15:35,050
+it just copies the pattern
+in the layer below.
+
+249
+00:15:36,140 --> 00:15:40,120
+And so I was showing that you could train
+networks with 300 hidden layers and
+
+250
+00:15:40,120 --> 00:15:44,760
+you could train them really efficiently
+if you initialize with their identity.
+
+251
+00:15:44,760 --> 00:15:48,065
+But I didn't pursue that any further and
+I really regret not pursuing that.
+
+252
+00:15:48,065 --> 00:15:52,507
+We published one paper with showing
+you could initialize an active
+
+253
+00:15:52,507 --> 00:15:55,565
+showing you could initialize
+recurringness like that.
+
+254
+00:15:55,565 --> 00:16:00,370
+But I should have pursued it further
+because Later on these residual
+
+255
+00:16:00,370 --> 00:16:03,572
+networks is really that kind of thing.
+
+256
+00:16:03,572 --> 00:16:06,660
+>> Over the years I've heard
+you talk a lot about the brain.
+
+257
+00:16:06,660 --> 00:16:09,447
+I've heard you talk about relationship
+being backprop and the brain.
+
+258
+00:16:09,447 --> 00:16:13,720
+What are your current thoughts on that?
+
+259
+00:16:13,720 --> 00:16:16,910
+>> I'm actually working on
+a paper on that right now.
+
+260
+00:16:18,250 --> 00:16:21,160
+I guess my main thought is this.
+
+261
+00:16:21,160 --> 00:16:25,570
+If it turns out the back prop is a really
+good algorithm for doing learning.
+
+262
+00:16:26,620 --> 00:16:31,610
+Then for sure evolution could've
+figured out how to prevent it.
+
+263
+00:16:32,730 --> 00:16:37,270
+I mean you have cells that could
+turn into either eyeballs or teeth.
+
+264
+00:16:37,270 --> 00:16:42,440
+Now, if cells can do that, they can for
+sure implement backpropagation and
+
+265
+00:16:42,440 --> 00:16:45,860
+presumably this huge
+selective pressure for it.
+
+266
+00:16:45,860 --> 00:16:50,490
+So I think the neuroscientist idea that
+it doesn't look plausible is just silly.
+
+267
+00:16:50,490 --> 00:16:52,890
+There may be some subtle
+implementation of it.
+
+268
+00:16:52,890 --> 00:16:56,000
+And I think the brain probably has
+something that may not be exactly be
+
+269
+00:16:56,000 --> 00:16:58,620
+backpropagation, but
+it's quite close to it.
+
+270
+00:16:58,620 --> 00:17:02,566
+And over the years, I've come up with a
+number of ideas about how this might work.
+
+271
+00:17:02,566 --> 00:17:06,994
+So in 1987, working with Jay McClelland,
+
+272
+00:17:06,994 --> 00:17:11,202
+I came up with
+the recirculation algorithm,
+
+273
+00:17:11,202 --> 00:17:16,090
+where the idea is you send
+information round a loop.
+
+274
+00:17:17,470 --> 00:17:18,686
+And you try to make it so
+
+275
+00:17:18,686 --> 00:17:22,206
+that things don't change as
+information goes around this loop.
+
+276
+00:17:22,206 --> 00:17:26,490
+So the simplest version would be you
+have input units and hidden units, and
+
+277
+00:17:26,490 --> 00:17:31,046
+you send information from the input to
+the hidden and then back to the input, and
+
+278
+00:17:31,046 --> 00:17:34,388
+then back to the hidden and
+then back to the input and so on.
+
+279
+00:17:34,388 --> 00:17:38,001
+And what you want,
+you want to train an autoencoder,
+
+280
+00:17:38,001 --> 00:17:42,300
+but you want to train it without
+having to do backpropagation.
+
+281
+00:17:42,300 --> 00:17:47,250
+So you just train it to try and get rid
+of all variation in the activities.
+
+282
+00:17:47,250 --> 00:17:51,922
+So the idea is that the learning rule for
+
+283
+00:17:51,922 --> 00:17:57,930
+synapse is change the weighting
+proportion to the presynaptic input and
+
+284
+00:17:57,930 --> 00:18:01,780
+in proportion to the rate of
+change at the post synaptic input.
+
+285
+00:18:01,780 --> 00:18:04,060
+But in recirculation, you're trying
+to make the post synaptic input,
+
+286
+00:18:04,060 --> 00:18:08,330
+you're trying to make the old one
+be good and the new one be bad, so
+
+287
+00:18:08,330 --> 00:18:09,620
+you're changing in that direction.
+
+288
+00:18:11,010 --> 00:18:14,472
+We invented this algorithm before
+neuroscientists come up with
+
+289
+00:18:14,472 --> 00:18:16,521
+spike-timing-dependent plasticity.
+
+290
+00:18:16,521 --> 00:18:20,700
+Spike-timing-dependent plasticity is
+actually the same algorithm but the other
+
+291
+00:18:20,700 --> 00:18:26,220
+way round, where the new thing is good and
+the old thing is bad in the learning rule.
+
+292
+00:18:26,220 --> 00:18:30,010
+So you're changing the weighting
+proportions to the preset outlook activity
+
+293
+00:18:30,010 --> 00:18:35,690
+times the new person outlook
+activity minus the old one.
+
+294
+00:18:37,060 --> 00:18:42,020
+Later on I realized in 2007,
+that if you took a stack of
+
+295
+00:18:42,020 --> 00:18:47,830
+Restricted Boltzmann machines and
+you trained it up.
+
+296
+00:18:47,830 --> 00:18:52,620
+After it was trained, you then had
+exactly the right conditions for
+
+297
+00:18:52,620 --> 00:18:56,450
+implementing backpropagation
+by just trying to reconstruct.
+
+298
+00:18:56,450 --> 00:19:01,124
+If you looked at the reconstruction era,
+that reconstruction era would
+
+299
+00:19:01,124 --> 00:19:05,728
+actually tell you the derivative
+of the discriminative performance.
+
+300
+00:19:05,728 --> 00:19:12,079
+And at the first deep learning workshop
+at in 2007, I gave a talk about that.
+
+301
+00:19:12,079 --> 00:19:16,454
+That was almost completely ignored.
+
+302
+00:19:16,454 --> 00:19:19,799
+Later on, Joshua Benjo,
+took up the idea and
+
+303
+00:19:19,799 --> 00:19:24,340
+that's actually done quite
+a lot of more work on that.
+
+304
+00:19:24,340 --> 00:19:26,490
+And I've been doing
+more work on it myself.
+
+305
+00:19:26,490 --> 00:19:33,280
+And I think this idea that if you have
+a stack of autoencoders, then you can
+
+306
+00:19:33,280 --> 00:19:38,440
+get derivatives by sending activity
+backwards and locate reconstructionaires,
+
+307
+00:19:38,440 --> 00:19:42,520
+is a really interesting idea and
+may well be how the brain does it.
+
+308
+00:19:42,520 --> 00:19:47,520
+>> One other topic that I know you follow
+about and that I hear you're still
+
+309
+00:19:47,520 --> 00:19:51,930
+working on is how to deal with
+multiple time skills in deep learning?
+
+310
+00:19:51,930 --> 00:19:54,468
+So, can you share your thoughts on that?
+
+311
+00:19:54,468 --> 00:19:58,910
+>> Yes, so actually, that goes back to
+my first years of graduate student.
+
+312
+00:19:58,910 --> 00:20:04,040
+The first talk I ever gave was about
+using what I called fast weights.
+
+313
+00:20:04,040 --> 00:20:07,560
+So weights that adapt rapidly,
+but decay rapidly.
+
+314
+00:20:07,560 --> 00:20:08,832
+And therefore can hold short term memory.
+
+315
+00:20:08,832 --> 00:20:13,496
+And I showed in a very simple
+system in 1973 that you could do
+
+316
+00:20:13,496 --> 00:20:16,590
+true recursion with those weights.
+
+317
+00:20:16,590 --> 00:20:23,010
+And what I mean by true recursion
+is that the neurons that is used
+
+318
+00:20:23,010 --> 00:20:28,470
+in representing things get re-used for
+representing things in the recursive core.
+
+319
+00:20:30,210 --> 00:20:31,750
+And the weights that is used for
+
+320
+00:20:31,750 --> 00:20:34,388
+actually knowledge get re-used
+in the recursive core.
+
+321
+00:20:34,388 --> 00:20:39,170
+And so that leads the question of
+when you pop out your recursive core,
+
+322
+00:20:39,170 --> 00:20:41,600
+how do you remember what it was
+you were in the middle of doing?
+
+323
+00:20:41,600 --> 00:20:42,970
+Where's that memory?
+
+324
+00:20:42,970 --> 00:20:45,015
+because you used the neurons for
+the recursive core.
+
+325
+00:20:46,080 --> 00:20:49,240
+And the answer is you can put that
+memory into fast weights, and
+
+326
+00:20:49,240 --> 00:20:53,940
+you can recover the activities
+neurons from those fast weights.
+
+327
+00:20:53,940 --> 00:20:56,151
+And more recently working with Jimmy Ba,
+
+328
+00:20:56,151 --> 00:21:00,141
+we actually got a paper in it by using
+fast weights for recursion like that.
+
+329
+00:21:00,141 --> 00:21:00,898
+>> I see.
+
+330
+00:21:00,898 --> 00:21:04,145
+>> So that was quite a big gap.
+
+331
+00:21:04,145 --> 00:21:08,746
+The first model was
+unpublished in 1973 and
+
+332
+00:21:08,746 --> 00:21:14,966
+then Jimmy Ba's model was in 2015,
+I think, or 2016.
+
+333
+00:21:14,966 --> 00:21:16,469
+So it's about 40 years later.
+
+334
+00:21:16,469 --> 00:21:22,840
+>> And, I guess,
+one other idea of Quite a few years now,
+
+335
+00:21:22,840 --> 00:21:29,350
+over five years, I think is capsules,
+where are you with that?
+
+336
+00:21:29,350 --> 00:21:34,150
+>> Okay, so I'm back to
+the state I'm used to being in.
+
+337
+00:21:34,150 --> 00:21:39,320
+Which is I have this idea I really
+believe in and nobody else believes it.
+
+338
+00:21:39,320 --> 00:21:42,120
+And I submit papers about it and
+they would get rejected.
+
+339
+00:21:42,120 --> 00:21:45,938
+But I really believe in this idea and
+I'm just going to keep pushing it.
+
+340
+00:21:45,938 --> 00:21:53,880
+So it hinges on,
+there's a couple of key ideas.
+
+341
+00:21:53,880 --> 00:22:00,000
+One is about how you represent
+multi dimensional entities, and you
+
+342
+00:22:00,000 --> 00:22:05,070
+can represent multi-dimensional entities
+by just a little backdoor activities.
+
+343
+00:22:05,070 --> 00:22:07,630
+As long as you know
+there's any one of them.
+
+344
+00:22:07,630 --> 00:22:12,150
+So the idea is in each region of
+the image, you'll assume there's at most,
+
+345
+00:22:12,150 --> 00:22:14,000
+one of the particular kind of feature.
+
+346
+00:22:15,200 --> 00:22:18,020
+And then you'll use a bunch of neurons,
+and
+
+347
+00:22:18,020 --> 00:22:23,190
+their activities will represent
+the different aspects to that feature,
+
+348
+00:22:24,230 --> 00:22:27,270
+like within that region exactly
+what are its x and y coordinates?
+
+349
+00:22:27,270 --> 00:22:28,780
+What orientation is it at?
+
+350
+00:22:28,780 --> 00:22:29,930
+How fast is it moving?
+
+351
+00:22:29,930 --> 00:22:30,630
+What color is it?
+
+352
+00:22:30,630 --> 00:22:31,270
+How bright is it?
+
+353
+00:22:31,270 --> 00:22:32,590
+And stuff like that.
+
+354
+00:22:32,590 --> 00:22:36,350
+So you can use a whole bunch of neurons
+to represent different dimensions of
+
+355
+00:22:36,350 --> 00:22:37,710
+the same thing.
+
+356
+00:22:37,710 --> 00:22:39,410
+Provided there's only one of them.
+
+357
+00:22:40,490 --> 00:22:46,110
+That's a very different way
+of doing representation
+
+358
+00:22:46,110 --> 00:22:48,155
+from what we're normally
+used to in neuronettes.
+
+359
+00:22:48,155 --> 00:22:49,820
+Normally in neuronettes,
+we just have a great big layer,
+
+360
+00:22:49,820 --> 00:22:52,080
+and all the units go off and
+do whatever they do.
+
+361
+00:22:52,080 --> 00:22:55,770
+But you don't think of bundling them
+up into little groups that represent
+
+362
+00:22:55,770 --> 00:22:57,310
+different coordinates of the same thing.
+
+363
+00:22:58,660 --> 00:23:02,080
+So I think we should beat
+this extra structure.
+
+364
+00:23:02,080 --> 00:23:05,020
+And then the other idea
+that goes with that.
+
+365
+00:23:05,020 --> 00:23:07,410
+>> So this means in the truth
+of the representation,
+
+366
+00:23:07,410 --> 00:23:09,280
+you partition the representation.
+
+367
+00:23:09,280 --> 00:23:11,270
+>> Yes.
+>> To different subsets.
+
+368
+00:23:11,270 --> 00:23:13,900
+>> Yes.
+>> To represent, right, rather than-
+
+369
+00:23:13,900 --> 00:23:15,600
+>> I call each of those subsets a capsule.
+
+370
+00:23:15,600 --> 00:23:16,180
+>> I see.
+
+371
+00:23:16,180 --> 00:23:21,078
+>> And the idea is a capsule is able to
+represent an instance of a feature, but
+
+372
+00:23:21,078 --> 00:23:21,794
+only one.
+
+373
+00:23:21,794 --> 00:23:27,130
+And it represents all the different
+properties of that feature.
+
+374
+00:23:27,130 --> 00:23:29,880
+It's a feature that has a lot
+of properties as opposed to
+
+375
+00:23:29,880 --> 00:23:34,530
+a normal neuron and a normal neuronette,
+which has just one scale of property.
+
+376
+00:23:34,530 --> 00:23:36,240
+>> Yeah, I see yep.
+
+377
+00:23:36,240 --> 00:23:41,423
+>> And then what you can do if you've got
+that, is you can do something that normal
+
+378
+00:23:41,423 --> 00:23:48,980
+neuronettes are very bad at, which is you
+can do what I call routine by agreement.
+
+379
+00:23:48,980 --> 00:23:52,960
+So let's suppose you want
+to do segmentation and
+
+380
+00:23:52,960 --> 00:23:56,660
+you have something that might be a mouth
+and something else that might be a nose.
+
+381
+00:23:57,910 --> 00:24:02,179
+And you want to know if you should
+put them together to make one thing.
+
+382
+00:24:02,179 --> 00:24:03,879
+So the idea should have a capsule for
+
+383
+00:24:03,879 --> 00:24:06,040
+a mouth that has
+the parameters of the mouth.
+
+384
+00:24:06,040 --> 00:24:10,582
+And you have a capsule for a nose
+that has the parameters of the nose.
+
+385
+00:24:10,582 --> 00:24:13,797
+And then to decipher whether
+to put them together or
+
+386
+00:24:13,797 --> 00:24:18,670
+not, you get each of them to vote for
+what the parameters should be for a face.
+
+387
+00:24:19,930 --> 00:24:23,718
+Now if the mouth and the nose are in
+the right spacial relationship,
+
+388
+00:24:23,718 --> 00:24:24,725
+they will agree.
+
+389
+00:24:24,725 --> 00:24:28,888
+So when you get two captures at one level
+voting for the same set of parameters at
+
+390
+00:24:28,888 --> 00:24:32,106
+the next level up,
+you can assume they're probably right,
+
+391
+00:24:32,106 --> 00:24:35,350
+because agreement in a high
+dimensional space is very unlikely.
+
+392
+00:24:36,950 --> 00:24:42,109
+And that's a very different
+way of doing filtering,
+
+393
+00:24:42,109 --> 00:24:46,130
+than what we normally use in neural nets.
+
+394
+00:24:46,130 --> 00:24:50,708
+So I think this routing by agreement
+is going to be crucial for
+
+395
+00:24:50,708 --> 00:24:56,700
+getting neural nets to generalize
+much better from limited data.
+
+396
+00:24:56,700 --> 00:24:59,797
+I think it'd be very good at
+getting the changes in viewpoint,
+
+397
+00:24:59,797 --> 00:25:01,500
+very good at doing segmentation.
+
+398
+00:25:01,500 --> 00:25:04,794
+And I'm hoping it will be much more
+statistically efficient than what we
+
+399
+00:25:04,794 --> 00:25:06,147
+currently do in neural nets.
+
+400
+00:25:06,147 --> 00:25:08,575
+Which is, if you want to deal
+with changes in viewpoint,
+
+401
+00:25:08,575 --> 00:25:12,000
+you just give it a whole bunch of changes
+in view point and training on them all.
+
+402
+00:25:12,000 --> 00:25:16,460
+>> I see, right, so rather than
+FIFO learning, supervised learning,
+
+403
+00:25:16,460 --> 00:25:19,120
+you can learn this in some different way.
+
+404
+00:25:20,220 --> 00:25:24,120
+>> Well, I still plan to do it
+with supervised learning, but
+
+405
+00:25:24,120 --> 00:25:27,720
+the mechanics of the forward
+paths are very different.
+
+406
+00:25:27,720 --> 00:25:32,010
+It's not a pure forward path in the sense
+that there's little bits of iteration
+
+407
+00:25:32,010 --> 00:25:36,550
+going on, where you think you found
+a mouth and you think you found a nose.
+
+408
+00:25:36,550 --> 00:25:39,127
+And use a little bit
+of iteration to decide
+
+409
+00:25:39,127 --> 00:25:42,530
+whether they should really
+go together to make a face.
+
+410
+00:25:42,530 --> 00:25:46,352
+And you can do back props
+from that iteration.
+
+411
+00:25:46,352 --> 00:25:50,286
+So you can try and
+do it a little discriminatively,
+
+412
+00:25:50,286 --> 00:25:54,417
+and we're working on that
+now at my group in Toronto.
+
+413
+00:25:54,417 --> 00:26:00,260
+So I now have a little Google team
+in Toronto, part of the Brain team.
+
+414
+00:26:00,260 --> 00:26:02,127
+That's what I'm excited about right now.
+
+415
+00:26:02,127 --> 00:26:02,891
+>> I see, great, yeah.
+
+416
+00:26:02,891 --> 00:26:05,366
+Look forward to that paper
+when that comes out.
+
+417
+00:26:05,366 --> 00:26:10,750
+>> Yeah, if it comes out [LAUGH].
+
+418
+00:26:10,750 --> 00:26:13,040
+>> You worked in deep learning for
+several decades.
+
+419
+00:26:13,040 --> 00:26:15,330
+I'm actually really curious,
+how has your thinking,
+
+420
+00:26:15,330 --> 00:26:18,760
+your understanding of AI
+changed over these years?
+
+421
+00:26:20,380 --> 00:26:27,678
+>> So I guess a lot of my intellectual
+history has been around back propagation,
+
+422
+00:26:27,678 --> 00:26:33,531
+and how to use back propagation,
+how to make use of its power.
+
+423
+00:26:33,531 --> 00:26:36,966
+So to begin with, in the mid 80s,
+we were using it for
+
+424
+00:26:36,966 --> 00:26:40,203
+discriminative learning and
+it was working well.
+
+425
+00:26:40,203 --> 00:26:42,405
+I then decided, by the early 90s,
+
+426
+00:26:42,405 --> 00:26:46,749
+that actually most human learning was
+going to be unsupervised learning.
+
+427
+00:26:46,749 --> 00:26:50,138
+And I got much more interested
+in unsupervised learning, and
+
+428
+00:26:50,138 --> 00:26:54,300
+that's when I worked on things
+like the Wegstein algorithm.
+
+429
+00:26:54,300 --> 00:26:58,306
+>> And your comments at that time
+really influenced my thinking as well.
+
+430
+00:26:58,306 --> 00:27:03,010
+So when I was leading Google Brain,
+our first project spent a lot of
+
+431
+00:27:03,010 --> 00:27:07,900
+work in unsupervised learning
+because of your influence.
+
+432
+00:27:07,900 --> 00:27:09,740
+>> Right, and I may have misled you.
+
+433
+00:27:09,740 --> 00:27:11,470
+Because in the long run,
+
+434
+00:27:11,470 --> 00:27:13,840
+I think unsupervised learning is
+going to be absolutely crucial.
+
+435
+00:27:15,160 --> 00:27:19,376
+But you have to sort of face reality.
+
+436
+00:27:19,376 --> 00:27:24,107
+And what's worked over the last ten
+years or so is supervised learning.
+
+437
+00:27:24,107 --> 00:27:27,179
+Discriminative training,
+where you have labels, or
+
+438
+00:27:27,179 --> 00:27:31,810
+you're trying to predict the next thing
+in the series, so that acts as the label.
+
+439
+00:27:31,810 --> 00:27:33,769
+And that's worked incredibly well.
+
+440
+00:27:37,528 --> 00:27:42,266
+I still believe that unsupervised learning
+is going to be crucial, and things will
+
+441
+00:27:42,266 --> 00:27:47,145
+work incredibly much better than they do
+now when we get that working properly, but
+
+442
+00:27:47,145 --> 00:27:48,200
+we haven't yet.
+
+443
+00:27:49,990 --> 00:27:53,225
+>> Yeah, I think many of the senior
+people in deep learning,
+
+444
+00:27:53,225 --> 00:27:56,074
+including myself,
+remain very excited about it.
+
+445
+00:27:56,074 --> 00:28:01,513
+It's just none of us really have
+almost any idea how to do it yet.
+
+446
+00:28:01,513 --> 00:28:04,983
+Maybe you do, I don't feel like I do.
+
+447
+00:28:04,983 --> 00:28:08,160
+>> Variational altering code is where
+you use the reparameterization tricks.
+
+448
+00:28:08,160 --> 00:28:10,120
+Seemed to me like a really nice idea.
+
+449
+00:28:10,120 --> 00:28:15,260
+And generative adversarial nets also
+seemed to me to be a really nice idea.
+
+450
+00:28:15,260 --> 00:28:18,645
+I think generative
+adversarial nets are one of
+
+451
+00:28:18,645 --> 00:28:23,430
+the sort of biggest ideas in
+deep learning that's really new.
+
+452
+00:28:23,430 --> 00:28:26,363
+I'm hoping I can make
+capsules that successful, but
+
+453
+00:28:26,363 --> 00:28:31,740
+right now generative adversarial nets,
+I think, have been a big breakthrough.
+
+454
+00:28:31,740 --> 00:28:34,439
+>> What happened to sparsity and
+slow features,
+
+455
+00:28:34,439 --> 00:28:38,806
+which were two of the other principles for
+building unsupervised models?
+
+456
+00:28:41,556 --> 00:28:47,788
+I was never as big on
+sparsity as you were, buddy.
+
+457
+00:28:47,788 --> 00:28:52,672
+But slow features, I think, is a mistake.
+
+458
+00:28:52,672 --> 00:28:53,660
+You shouldn't say slow.
+
+459
+00:28:53,660 --> 00:28:57,880
+The basic idea is right, but you shouldn't
+go for features that don't change,
+
+460
+00:28:57,880 --> 00:29:00,660
+you should go for
+features that change in predictable ways.
+
+461
+00:29:01,680 --> 00:29:07,060
+So here's a sort of basic principle
+about how you model anything.
+
+462
+00:29:08,620 --> 00:29:13,391
+You take your measurements,
+and you're applying nonlinear
+
+463
+00:29:13,391 --> 00:29:17,612
+transformations to your
+measurements until you get to
+
+464
+00:29:17,612 --> 00:29:22,672
+a representation as a state vector
+in which the action is linear.
+
+465
+00:29:22,672 --> 00:29:26,103
+So you don't just pretend it's linear
+like you do with common filters.
+
+466
+00:29:26,103 --> 00:29:29,625
+But you actually find a transformation
+from the observables to
+
+467
+00:29:29,625 --> 00:29:32,616
+the underlying variables
+where linear operations,
+
+468
+00:29:32,616 --> 00:29:37,480
+like matrix multipliers on the underlying
+variables, will do the work.
+
+469
+00:29:37,480 --> 00:29:39,700
+So for example,
+if you want to change viewpoints.
+
+470
+00:29:39,700 --> 00:29:42,890
+If you want to produce the image
+from another viewpoint,
+
+471
+00:29:42,890 --> 00:29:46,900
+what you should do is go from
+the pixels to coordinates.
+
+472
+00:29:47,950 --> 00:29:50,686
+And once you got to
+the coordinate representation,
+
+473
+00:29:50,686 --> 00:29:54,120
+which is a kind of thing I'm
+hoping captures will find.
+
+474
+00:29:54,120 --> 00:29:57,350
+You can then do a matrix multiplier
+to change viewpoint, and
+
+475
+00:29:57,350 --> 00:29:59,210
+then you can map it back to pixels.
+
+476
+00:29:59,210 --> 00:29:59,893
+>> Right, that's why you did all that.
+
+477
+00:29:59,893 --> 00:30:02,170
+>> I think that's a very,
+very general principle.
+
+478
+00:30:02,170 --> 00:30:04,773
+>> That's why you did all that
+work on face synthesis, right?
+
+479
+00:30:04,773 --> 00:30:09,355
+Where you take a face and compress it
+to very low dimensional vector, and so
+
+480
+00:30:09,355 --> 00:30:12,450
+you can fiddle with that and
+get back other faces.
+
+481
+00:30:12,450 --> 00:30:15,950
+>> I had a student who worked on that,
+I didn't do much work on that myself.
+
+482
+00:30:17,100 --> 00:30:19,180
+>> Now I'm sure you still
+get asked all the time,
+
+483
+00:30:19,180 --> 00:30:23,920
+if someone wants to break into deep
+learning, what should they do?
+
+484
+00:30:23,920 --> 00:30:25,040
+So what advice would you have?
+
+485
+00:30:25,040 --> 00:30:28,938
+I'm sure you've given a lot of advice to
+people in one on one settings, but for
+
+486
+00:30:28,938 --> 00:30:31,550
+the global audience of
+people watching this video.
+
+487
+00:30:31,550 --> 00:30:35,999
+What advice would you have for
+them to get into deep learning?
+
+488
+00:30:35,999 --> 00:30:42,171
+>> Okay, so my advice is sort of read the
+literature, but don't read too much of it.
+
+489
+00:30:42,171 --> 00:30:48,030
+So this is advice I got from my advisor,
+which is very unlike what most people say.
+
+490
+00:30:48,030 --> 00:30:52,474
+Most people say you should spend several
+years reading the literature and
+
+491
+00:30:52,474 --> 00:30:55,421
+then you should start
+working on your own ideas.
+
+492
+00:30:55,421 --> 00:31:00,295
+And that may be true for some researchers,
+but for creative researchers I think
+
+493
+00:31:00,295 --> 00:31:03,803
+what you want to do is read
+a little bit of the literature.
+
+494
+00:31:03,803 --> 00:31:07,792
+And notice something that you
+think everybody is doing wrong,
+
+495
+00:31:07,792 --> 00:31:10,340
+I'm contrary in that sense.
+
+496
+00:31:10,340 --> 00:31:13,568
+You look at it and
+it just doesn't feel right.
+
+497
+00:31:13,568 --> 00:31:15,660
+And then figure out how to do it right.
+
+498
+00:31:16,890 --> 00:31:22,476
+And then when people tell you,
+that's no good, just keep at it.
+
+499
+00:31:22,476 --> 00:31:26,339
+And I have a very good principle for
+helping people keep at it,
+
+500
+00:31:26,339 --> 00:31:29,996
+which is either your intuitions
+are good or they're not.
+
+501
+00:31:29,996 --> 00:31:32,030
+If your intuitions are good,
+you should follow them and
+
+502
+00:31:32,030 --> 00:31:34,060
+you'll eventually be successful.
+
+503
+00:31:34,060 --> 00:31:36,478
+If your intuitions are not good,
+it doesn't matter what you do.
+
+504
+00:31:36,478 --> 00:31:40,329
+>> I see [LAUGH].
+
+505
+00:31:40,329 --> 00:31:43,420
+Inspiring advice, might as well go for it.
+
+506
+00:31:43,420 --> 00:31:45,410
+>> You might as well
+trust your intuitions.
+
+507
+00:31:45,410 --> 00:31:47,847
+There's no point not trusting them.
+
+508
+00:31:47,847 --> 00:31:49,420
+>> I see, yeah.
+
+509
+00:31:49,420 --> 00:31:55,193
+I usually advise people to not just read,
+but replicate published papers.
+
+510
+00:31:55,193 --> 00:31:58,161
+And maybe that puts a natural
+limiter on how many you could do,
+
+511
+00:31:58,161 --> 00:32:00,800
+because replicating results
+is pretty time consuming.
+
+512
+00:32:01,910 --> 00:32:05,312
+Yes, it's true that when you're
+trying to replicate a published
+
+513
+00:32:05,312 --> 00:32:08,100
+you discover all over little
+tricks necessary to make it work.
+
+514
+00:32:08,100 --> 00:32:11,938
+The other advice I have is,
+never stop programming.
+
+515
+00:32:11,938 --> 00:32:15,577
+Because if you give a student
+something to do, if they're botching,
+
+516
+00:32:15,577 --> 00:32:18,550
+they'll come back and say, it didn't work.
+
+517
+00:32:18,550 --> 00:32:22,030
+And the reason it didn't work would
+be some little decision they made,
+
+518
+00:32:22,030 --> 00:32:25,100
+that they didn't realize is crucial.
+
+519
+00:32:25,100 --> 00:32:28,850
+And if you give it to a good student,
+like for example.
+
+520
+00:32:28,850 --> 00:32:31,120
+You can give him anything and
+he'll come back and say, it worked.
+
+521
+00:32:32,670 --> 00:32:36,420
+I remember doing this once,
+and I said, but wait a minute.
+
+522
+00:32:36,420 --> 00:32:37,330
+Since we last talked,
+
+523
+00:32:37,330 --> 00:32:40,380
+I realized it couldn't possibly work for
+the following reason.
+
+524
+00:32:40,380 --> 00:32:43,586
+And said, yeah, I realized that right
+away, so I assumed you didn't mean that.
+
+525
+00:32:43,586 --> 00:32:47,627
+>> [LAUGH] I see, yeah,
+that's great, yeah.
+
+526
+00:32:47,627 --> 00:32:51,575
+Let's see, any other advice for
+
+527
+00:32:51,575 --> 00:32:57,782
+people that want to break into AI and
+deep learning?
+
+528
+00:32:57,782 --> 00:33:02,000
+>> I think that's basically, read enough
+so you start developing intuitions.
+
+529
+00:33:02,000 --> 00:33:05,811
+And then, trust your intuitions and
+go for it,
+
+530
+00:33:05,811 --> 00:33:10,783
+don't be too worried if everybody
+else says it's nonsense.
+
+531
+00:33:10,783 --> 00:33:14,352
+>> And I guess there's no way
+to know if others are right or
+
+532
+00:33:14,352 --> 00:33:19,950
+wrong when they say it's nonsense, but you
+just have to go for it, and then find out.
+
+533
+00:33:19,950 --> 00:33:24,350
+>> Right, but there is one thing, which
+is, if you think it's a really good idea,
+
+534
+00:33:24,350 --> 00:33:27,201
+and other people tell you
+it's complete nonsense,
+
+535
+00:33:27,201 --> 00:33:29,761
+then you know you're
+really on to something.
+
+536
+00:33:29,761 --> 00:33:33,960
+So one example of that is when and
+I first came up with variational methods.
+
+537
+00:33:35,420 --> 00:33:40,690
+I sent mail explaining it to a former
+student of mine called Peter Brown,
+
+538
+00:33:40,690 --> 00:33:42,560
+who knew a lot about.
+
+539
+00:33:43,570 --> 00:33:46,967
+And he showed it to people
+who worked with him,
+
+540
+00:33:46,967 --> 00:33:51,253
+called the brothers,
+they were twins, I think.
+
+541
+00:33:51,253 --> 00:33:55,914
+And he then told me later what they said,
+and they said,
+
+542
+00:33:55,914 --> 00:34:00,277
+either this guy's drunk,
+or he's just stupid, so
+
+543
+00:34:00,277 --> 00:34:04,260
+they really,
+really thought it was nonsense.
+
+544
+00:34:04,260 --> 00:34:06,460
+Now, it could have been partly
+the way I explained it,
+
+545
+00:34:06,460 --> 00:34:08,043
+because I explained it in intuitive terms.
+
+546
+00:34:09,150 --> 00:34:13,100
+But when you have what you
+think is a good idea and
+
+547
+00:34:13,100 --> 00:34:16,810
+other people think is complete rubbish,
+that's the sign of a really good idea.
+
+548
+00:34:18,026 --> 00:34:21,555
+>> I see, and research topics,
+
+549
+00:34:21,555 --> 00:34:26,183
+new grad students should
+work on capsules and
+
+550
+00:34:26,183 --> 00:34:30,707
+maybe unsupervised learning, any other?
+
+551
+00:34:30,707 --> 00:34:34,078
+>> One good piece of advice for
+new grad students is,
+
+552
+00:34:34,078 --> 00:34:38,344
+see if you can find an advisor
+who has beliefs similar to yours.
+
+553
+00:34:38,344 --> 00:34:42,637
+Because if you work on stuff that
+your advisor feels deeply about,
+
+554
+00:34:42,637 --> 00:34:47,170
+you'll get a lot of good advice and
+time from your advisor.
+
+555
+00:34:47,170 --> 00:34:50,590
+If you work on stuff your
+advisor's not interested in,
+
+556
+00:34:50,590 --> 00:34:55,262
+all you'll get is, you get some advice,
+but it won't be nearly so useful.
+
+557
+00:34:55,262 --> 00:34:58,386
+>> I see, and
+last one on advice for learners,
+
+558
+00:34:58,386 --> 00:35:02,440
+how do you feel about people
+entering a PhD program?
+
+559
+00:35:02,440 --> 00:35:09,687
+Versus joining a top company,
+or a top research group?
+
+560
+00:35:09,687 --> 00:35:13,890
+>> Yeah, it's complicated,
+I think right now, what's happening is,
+
+561
+00:35:13,890 --> 00:35:18,727
+there aren't enough academics trained in
+deep learning to educate all the people
+
+562
+00:35:18,727 --> 00:35:21,125
+that we need educated in universities.
+
+563
+00:35:21,125 --> 00:35:25,011
+There just isn't the faculty
+bandwidth there, but
+
+564
+00:35:25,011 --> 00:35:27,780
+I think that's going to be temporary.
+
+565
+00:35:27,780 --> 00:35:32,410
+I think what's happened is,
+most departments have been very slow to
+
+566
+00:35:32,410 --> 00:35:34,890
+understand the kind of
+revolution that's going on.
+
+567
+00:35:34,890 --> 00:35:38,720
+I kind of agree with you, that it's not
+quite a second industrial revolution, but
+
+568
+00:35:38,720 --> 00:35:41,000
+it's something on nearly that scale.
+
+569
+00:35:41,000 --> 00:35:43,691
+And there's a huge sea change going on,
+
+570
+00:35:43,691 --> 00:35:47,980
+basically because our relationship
+to computers has changed.
+
+571
+00:35:47,980 --> 00:35:53,920
+Instead of programming them,
+we now show them, and they figure it out.
+
+572
+00:35:53,920 --> 00:35:56,570
+That's a completely different
+way of using computers, and
+
+573
+00:35:56,570 --> 00:36:01,210
+computer science departments are built
+around the idea of programming computers.
+
+574
+00:36:01,210 --> 00:36:03,480
+And they don't understand that sort of,
+
+575
+00:36:05,000 --> 00:36:09,330
+this showing computers is going to
+be as big as programming computers.
+
+576
+00:36:09,330 --> 00:36:13,940
+Except they don't understand that half the
+people in the department should be people
+
+577
+00:36:13,940 --> 00:36:16,510
+who get computers to do
+things by showing them.
+
+578
+00:36:16,510 --> 00:36:22,183
+So my department refuses to acknowledge
+that it should have lots and
+
+579
+00:36:22,183 --> 00:36:24,790
+lots of people doing this.
+
+580
+00:36:24,790 --> 00:36:28,730
+They think they got a couple,
+maybe a few more, but not too many.
+
+581
+00:36:31,260 --> 00:36:32,452
+And in that situation,
+
+582
+00:36:32,452 --> 00:36:36,510
+you have to remind the big companies
+to do quite a lot of the training.
+
+583
+00:36:36,510 --> 00:36:40,335
+So Google is now training people,
+we call brain residence,
+
+584
+00:36:40,335 --> 00:36:43,792
+I suspect the universities
+will eventually catch up.
+
+585
+00:36:43,792 --> 00:36:48,360
+>> I see, right, in fact, maybe a lot
+of students have figured this out.
+
+586
+00:36:48,360 --> 00:36:53,131
+A lot of top 50 programs,
+over half of the applicants are actually
+
+587
+00:36:53,131 --> 00:36:57,079
+wanting to work on showing,
+rather than programming.
+
+588
+00:36:57,079 --> 00:37:00,720
+Yeah, cool, yeah, in fact,
+to give credit where it's due,
+
+589
+00:37:00,720 --> 00:37:04,930
+whereas a deep learning AI is creating
+a deep learning specialization.
+
+590
+00:37:04,930 --> 00:37:09,239
+As far as I know, their first deep
+learning MOOC was actually yours taught
+
+591
+00:37:09,239 --> 00:37:11,752
+on Coursera, back in 2012, as well.
+
+592
+00:37:12,828 --> 00:37:14,430
+And somewhat strangely,
+
+593
+00:37:14,430 --> 00:37:18,900
+that's when you first published the RMS
+algorithm, which also is a rough.
+
+594
+00:37:20,240 --> 00:37:25,910
+>> Right, yes, well, as you know, that was
+because you invited me to do the MOOC.
+
+595
+00:37:25,910 --> 00:37:30,239
+And then when I was very dubious about
+doing, you kept pushing me to do it, so
+
+596
+00:37:30,239 --> 00:37:34,340
+it was very good that I did,
+although it was a lot of work.
+
+597
+00:37:34,340 --> 00:37:37,409
+>> Yes, and thank you for doing that,
+I remember you complaining to me,
+
+598
+00:37:37,409 --> 00:37:38,351
+how much work it was.
+
+599
+00:37:38,351 --> 00:37:42,413
+And you staying out late at night,
+but I think many, many learners have
+
+600
+00:37:42,413 --> 00:37:47,330
+benefited for your first MOOC, so
+I'm very grateful to you for it, so.
+
+601
+00:37:47,330 --> 00:37:49,260
+>> That's good, yeah
+>> Yeah, over the years,
+
+602
+00:37:49,260 --> 00:37:53,290
+I've seen you embroiled in debates
+about paradigms for AI, and
+
+603
+00:37:53,290 --> 00:37:57,030
+whether there's been a paradigm shift for
+AI.
+
+604
+00:37:57,030 --> 00:37:59,984
+What are your,
+can you share your thoughts on that?
+
+605
+00:37:59,984 --> 00:38:05,157
+>> Yes, happily, so I think that in
+the early days, back in the 50s,
+
+606
+00:38:05,157 --> 00:38:10,335
+people like von Neumann and
+didn't believe in symbolic AI,
+
+607
+00:38:10,335 --> 00:38:14,220
+they were far more inspired by the brain.
+
+608
+00:38:14,220 --> 00:38:20,127
+Unfortunately, they both died much too
+young, and their voice wasn't heard.
+
+609
+00:38:20,127 --> 00:38:21,806
+And in the early days of AI,
+
+610
+00:38:21,806 --> 00:38:26,259
+people were completely convinced that
+the representations you need for
+
+611
+00:38:26,259 --> 00:38:30,500
+intelligence were symbolic
+expressions of some kind.
+
+612
+00:38:30,500 --> 00:38:35,509
+Sort of cleaned up logic, where you could
+do nomeratonic things, and not quite
+
+613
+00:38:35,509 --> 00:38:41,143
+logic, but something like logic, and that
+the essence of intelligence was reasoning.
+
+614
+00:38:41,143 --> 00:38:45,662
+What's happened now is,
+there's a completely different view,
+
+615
+00:38:45,662 --> 00:38:50,984
+which is that what a thought is, is just
+a great big vector of neural activity,
+
+616
+00:38:50,984 --> 00:38:55,200
+so contrast that with a thought
+being a symbolic expression.
+
+617
+00:38:55,200 --> 00:38:59,087
+And I think the people who thought that
+thoughts were symbolic expressions just
+
+618
+00:38:59,087 --> 00:39:00,140
+made a huge mistake.
+
+619
+00:39:01,210 --> 00:39:07,030
+What comes in is a string of words, and
+what comes out is a string of words.
+
+620
+00:39:08,140 --> 00:39:12,580
+And because of that, strings of words
+are the obvious way to represent things.
+
+621
+00:39:12,580 --> 00:39:15,710
+So they thought what must be in
+between was a string of words, or
+
+622
+00:39:15,710 --> 00:39:18,360
+something like a string of words.
+
+623
+00:39:18,360 --> 00:39:21,310
+And I think what's in between is
+nothing like a string of words.
+
+624
+00:39:21,310 --> 00:39:26,060
+I think the idea that thoughts must be
+in some kind of language is as silly as
+
+625
+00:39:26,060 --> 00:39:30,980
+the idea that understanding
+the layout of a spatial scene
+
+626
+00:39:30,980 --> 00:39:34,280
+must be in pixels, pixels come in.
+
+627
+00:39:34,280 --> 00:39:37,930
+And if we could, if we had a dot
+matrix printer attached to us,
+
+628
+00:39:37,930 --> 00:39:41,929
+then pixels would come out, but
+what's in between isn't pixels.
+
+629
+00:39:43,210 --> 00:39:46,620
+And so I think thoughts are just
+these great big vectors, and
+
+630
+00:39:46,620 --> 00:39:48,460
+that big vectors have causal powers.
+
+631
+00:39:48,460 --> 00:39:50,490
+They cause other big vectors, and
+
+632
+00:39:50,490 --> 00:39:56,100
+that's utterly unlike the standard AI view
+that thoughts are symbolic expressions.
+
+633
+00:39:56,100 --> 00:39:56,700
+>> I see, good,
+
+634
+00:39:57,740 --> 00:40:01,560
+I guess AI is certainly coming round
+to this new point of view these days.
+
+635
+00:40:01,560 --> 00:40:02,660
+>> Some of it,
+
+636
+00:40:02,660 --> 00:40:08,230
+I think a lot of people in AI still think
+thoughts have to be symbolic expressions.
+
+637
+00:40:08,230 --> 00:40:09,780
+>> Thank you very much for
+doing this interview.
+
+638
+00:40:09,780 --> 00:40:12,970
+It was fascinating to hear how deep
+learning has evolved over the years,
+
+639
+00:40:12,970 --> 00:40:17,680
+as well as how you're still helping drive
+it into the future, so thank you, Jeff.
+
+640
+00:40:17,680 --> 00:40:19,038
+>> Well, thank you for
+giving me this opportunity.
+
+641
+00:40:19,038 --> 00:40:20,147
+>> Thank you.

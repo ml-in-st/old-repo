@@ -1,0 +1,108 @@
+In the third course of this sequence of
+five courses, you saw how error analysis can help you focus your time on doing
+the most useful work for your project. Now, beam search is
+an approximate search algorithm, also called a heuristic search algorithm. And so it doesn't always output
+the most likely sentence. It's only keeping track of B equals 3 or
+10 or 100 top possibilities. So what if beam search makes a mistake? In this video, you'll learn how error
+analysis interacts with beam search and how you can figure out whether it is
+the beam search algorithm that's causing problems and worth spending time on. Or whether it might be your RNN
+model that is causing problems and worth spending time on. Let's take a look at how to do
+error analysis with beam search. Let's use this example of Jane
+visite l'Afrique en septembre. So let's say that in your
+machine translation dev set, your development set,
+the human provided this translation and Jane visits Africa in September,
+and I'm going to call this y*. So it is a pretty good
+translation written by a human. Then let's say that when you run beam
+search on your learned RNN model and your learned translation model,
+it ends up with this translation, which we will call y-hat,
+Jane visited Africa last September, which is a much worse translation
+of the French sentence. It actually changes the meaning,
+so it's not a good translation. Now, your model has two main components. There is a neural network model,
+the sequence to sequence model. We shall just call this your RNN model. It's really an encoder and a decoder. And you have your beam search algorithm, which you're running
+with some beam width b. And wouldn't it be nice if you
+could attribute this error, this not very good translation,
+to one of these two components? Was it the RNN or really the neural
+network that is more to blame, or is it the beam search algorithm,
+that is more to blame? And what you saw in the third
+course of the sequence is that it's always tempting to collect more
+training data that never hurts. So in similar way, it's always tempting
+to increase the beam width that never hurts or pretty much never hurts. But just as getting more
+training data by itself might not get you to the level of
+performance you want. In the same way, increasing the beam width by itself might
+not get you to where you want to go. But how do you decide whether or not improving the search algorithm
+is a good use of your time? So just how you can break
+the problem down and figure out what's actually
+a good use of your time. Now, the RNN, the neural network, what was called RNN really means
+the encoder and the decoder. It computes P(y given x). So for example, for
+a sentence, Jane visits Africa in September,
+you plug in Jane visits Africa. Again, I'm ignoring upper versus
+lowercase now, right, and so on. And this computes P(y given x). So it turns out that
+the most useful thing for you to do at this point is to
+compute using this model to compute P(y* given x) as well as to compute
+P(y-hat given x) using your RNN model. And then to see which
+of these two is bigger. So it's possible that the left side
+is bigger than the right hand side. It's also possible that P(y*) is less
+than P(y-hat) actually, or less than or equal to, right? Depending on which of these two cases
+hold true, you'd be able to more clearly ascribe this particular error,
+this particular bad translation to one of the RNN or the beam search
+algorithm being had greater fault. So let's take out the logic behind this. Here are the two sentences
+from the previous slide. And remember,
+we're going to compute P(y* given x) and P(y-hat given x) and
+see which of these two is bigger. So there are going to be two cases. In case 1,
+P(y* given x) as output by the RNN model is greater than P(y-hat given x). What does this mean? Well, the beam search
+algorithm chose y-hat, right? The way you got y-hat was you had
+an RNN that was computing P(y given x). And beam search's job was to try to find
+a value of y that gives that arg max. But in this case,
+y* actually attains a higher value for P(y given x) than the y-hat. So what this allows you to conclude is
+beam search is failing to actually give you the value of y that maximizes
+P(y given x) because the one job that beam search had was to find
+the value of y that makes this really big. But it chose y-hat,
+the y* actually gets a much bigger value. So in this case, you could conclude
+that beam search is at fault. Now, how about the other case? In case 2, P(y* given x) is less than or equal to P(y-hat given x), right? And then either this or
+this has gotta be true. So either case 1 or
+case 2 has to hold true. What do you conclude under case 2? Well, in our example, y* is a better translation than y-hat. But according to the RNN,
+P(y*) is less than P(y-hat), so saying that y* is a less
+likely output than y-hat. So in this case,
+it seems that the RNN model is at fault and it might be worth
+spending more time working on the RNN. There's some subtleties here pertaining to length normalizations
+that I'm glossing over. There's some subtleties pertaining
+to length normalizations that I'm glossing over. And if you are using some
+sort of length normalization, instead of evaluating these probabilities,
+you should be evaluating the optimization objective that takes into
+account length normalization. But ignoring that complication for now,
+in this case, what this tells you is that even though y* is a better translation, the RNN ascribed y* in lower probability
+than the inferior translation. So in this case,
+I will say the RNN model is at fault. So the error analysis
+process looks as follows. You go through the development set and find the mistakes that the algorithm
+made in the development set. And so in this example, let's say that
+P(y* given x) was 2 x 10 to the -10, whereas, P(y-hat given x)
+was 1 x 10 to the -10. Using the logic from the previous slide,
+in this case, we see that beam search actually chose y-hat,
+which has a lower probability than y*. So I will say beam search is at fault. So I'll abbreviate that B. And then you go through
+a second mistake or second bad output by the algorithm,
+look at these probabilities. And maybe for the second example,
+you think the model is at fault. I'm going to abbreviate
+the RNN model with R. And you go through more examples. And sometimes the beam search is at fault,
+sometimes the model is at fault, and so on. And through this process, you can then
+carry out error analysis to figure out what fraction of errors are due to
+beam search versus the RNN model. And with an error analysis process like
+this, for every example in your dev sets, where the algorithm gives a much worse
+output than the human translation, you can try to ascribe the error
+to either the search algorithm or to the objective function, or
+to the RNN model that generates the objective function that beam
+search is supposed to be maximizing. And through this, you can try to figure
+out which of these two components is responsible for more errors. And only if you find that beam search
+is responsible for a lot of errors, then maybe is we're working hard
+to increase the beam width. Whereas in contrast, if you find
+that the RNN model is at fault, then you could do a deeper layer of
+analysis to try to figure out if you want to add regularization, or
+get more training data, or try a different network architecture,
+or something else. And so a lot of the techniques that
+you saw in the third course in the sequence will be applicable there. So that's it for
+error analysis using beam search. I found this particular error analysis
+process very useful whenever you have an approximate optimization algorithm,
+such as beam search that is working to optimize some sort of
+objective, some sort of cost function that is output by a learning algorithm,
+such as a sequence-to-sequence model or a sequence-to-sequence RNN that we've
+been discussing in these lectures. So with that, I hope that you'll be more
+efficient at making these types of models work well for your applications.

@@ -1,0 +1,323 @@
+1
+00:00:00,060 --> 00:00:04,259
+so what a deep learning have to do the
+
+2
+00:00:02,370 --> 00:00:06,480
+brain at the risk of giving away the
+
+3
+00:00:04,259 --> 00:00:08,670
+punchline I would say not a whole lot
+
+4
+00:00:06,480 --> 00:00:10,469
+but let's take a quick look at why
+
+5
+00:00:08,670 --> 00:00:13,530
+people keep making the analogy between
+
+6
+00:00:10,469 --> 00:00:15,480
+deep learning and the human brain when
+
+7
+00:00:13,530 --> 00:00:18,600
+you implement a neural network this is
+
+8
+00:00:15,480 --> 00:00:20,279
+what you do for prop and back prop and I
+
+9
+00:00:18,600 --> 00:00:22,680
+think because it's been difficult to
+
+10
+00:00:20,279 --> 00:00:24,600
+convey intuitions about what these
+
+11
+00:00:22,680 --> 00:00:27,150
+equations are doing really great and
+
+12
+00:00:24,600 --> 00:00:29,730
+descends on a very complex function the
+
+13
+00:00:27,150 --> 00:00:32,399
+analogy that is like the brain has
+
+14
+00:00:29,730 --> 00:00:34,440
+become really an oversimplified
+
+15
+00:00:32,399 --> 00:00:36,660
+explanation for what this is doing but
+
+16
+00:00:34,440 --> 00:00:39,149
+the simplicity of this makes it you know
+
+17
+00:00:36,660 --> 00:00:41,399
+kind of seductive for people to just say
+
+18
+00:00:39,149 --> 00:00:43,290
+it publicly as well as the media to
+
+19
+00:00:41,399 --> 00:00:45,899
+report it and certainly called the
+
+20
+00:00:43,290 --> 00:00:48,469
+popular imagination and there is a very
+
+21
+00:00:45,899 --> 00:00:51,780
+loose analogy between let's say a
+
+22
+00:00:48,469 --> 00:00:55,949
+logistic regression unit with a sigmoid
+
+23
+00:00:51,780 --> 00:00:58,620
+activation function and here's a cartoon
+
+24
+00:00:55,949 --> 00:01:01,890
+of a single neuron in the brain in this
+
+25
+00:00:58,620 --> 00:01:03,600
+picture of a biological neuron on this
+
+26
+00:01:01,890 --> 00:01:06,330
+neuron which is a cell in your brain
+
+27
+00:01:03,600 --> 00:01:09,420
+receives electric signals from you know
+
+28
+00:01:06,330 --> 00:01:12,299
+other neurons mu X 1 X 2 X 3 or maybe
+
+29
+00:01:09,420 --> 00:01:15,119
+from other neurons a 1 a 2 a 3 there's a
+
+30
+00:01:12,299 --> 00:01:17,850
+simple thresholded computation and then
+
+31
+00:01:15,119 --> 00:01:20,700
+if this neuron fires it sends a pulse of
+
+32
+00:01:17,850 --> 00:01:23,640
+electricity down the axon down this long
+
+33
+00:01:20,700 --> 00:01:27,450
+wire perhaps to other neurons so there
+
+34
+00:01:23,640 --> 00:01:29,700
+is a very simplistic analogy between a
+
+35
+00:01:27,450 --> 00:01:32,189
+single logistic unit between a single
+
+36
+00:01:29,700 --> 00:01:35,100
+neuron and network and a biological
+
+37
+00:01:32,189 --> 00:01:37,500
+neuron like that shown on a right but I
+
+38
+00:01:35,100 --> 00:01:40,170
+think that today even neuroscientists
+
+39
+00:01:37,500 --> 00:01:42,720
+have almost no idea what even a single
+
+40
+00:01:40,170 --> 00:01:44,850
+neuron is doing a single neuron appears
+
+41
+00:01:42,720 --> 00:01:47,700
+to be much more complex than we are able
+
+42
+00:01:44,850 --> 00:01:50,700
+to characterize with neuroscience and
+
+43
+00:01:47,700 --> 00:01:53,220
+while some of what is doing is a little
+
+44
+00:01:50,700 --> 00:01:55,079
+bit like logistic regression there's
+
+45
+00:01:53,220 --> 00:01:57,390
+still a lot about what even a single
+
+46
+00:01:55,079 --> 00:02:00,119
+neuron does that no one there no human
+
+47
+00:01:57,390 --> 00:02:01,979
+today understands for example exactly
+
+48
+00:02:00,119 --> 00:02:03,960
+how neurons in the human brain learn
+
+49
+00:02:01,979 --> 00:02:07,170
+this is still a very mysterious process
+
+50
+00:02:03,960 --> 00:02:08,970
+and it's completely unclear today
+
+51
+00:02:07,170 --> 00:02:10,440
+whether the human brain uses an
+
+52
+00:02:08,970 --> 00:02:12,120
+algorithm does anything like back
+
+53
+00:02:10,440 --> 00:02:13,769
+propagation or gradient descent
+
+54
+00:02:12,120 --> 00:02:16,200
+or if there's some fundamentally
+
+55
+00:02:13,769 --> 00:02:19,950
+different learning principle that the
+
+56
+00:02:16,200 --> 00:02:22,349
+human brain uses so when I think of deep
+
+57
+00:02:19,950 --> 00:02:24,420
+learning I think of it as being very
+
+58
+00:02:22,349 --> 00:02:27,000
+good and learning very flexible
+
+59
+00:02:24,420 --> 00:02:29,280
+functions very complex functions to
+
+60
+00:02:27,000 --> 00:02:31,290
+learn X to Y mappings to learn
+
+61
+00:02:29,280 --> 00:02:34,319
+input-output mappings in supervised
+
+62
+00:02:31,290 --> 00:02:36,750
+learning and whereas D is like the brain
+
+63
+00:02:34,319 --> 00:02:39,659
+analogy maybe that was useful once I
+
+64
+00:02:36,750 --> 00:02:41,970
+think the field has moved to the point
+
+65
+00:02:39,659 --> 00:02:44,069
+where that analogy is breaking down and
+
+66
+00:02:41,970 --> 00:02:47,280
+I tend not to use that analogy much
+
+67
+00:02:44,069 --> 00:02:49,799
+anymore so that's it so neural networks
+
+68
+00:02:47,280 --> 00:02:51,810
+and their brain I do think that maybe
+
+69
+00:02:49,799 --> 00:02:53,849
+the field of computer vision has taken a
+
+70
+00:02:51,810 --> 00:02:56,069
+bit more inspiration from the human
+
+71
+00:02:53,849 --> 00:02:58,950
+brains and other disciplines that also
+
+72
+00:02:56,069 --> 00:03:00,840
+apply to learning but I personally use
+
+73
+00:02:58,950 --> 00:03:04,019
+the analogy you know to the human brain
+
+74
+00:03:00,840 --> 00:03:04,890
+less than I used to so that's it for
+
+75
+00:03:04,019 --> 00:03:07,409
+this video
+
+76
+00:03:04,890 --> 00:03:09,090
+you now know how to implement for prop
+
+77
+00:03:07,409 --> 00:03:11,609
+and back prop in gradient descent even
+
+78
+00:03:09,090 --> 00:03:13,620
+for deep neural networks best of luck
+
+79
+00:03:11,609 --> 00:03:15,629
+with the pro exercise and I look forward
+
+80
+00:03:13,620 --> 00:03:18,530
+to sharing more of these ideas of you in
+
+81
+00:03:15,629 --> 00:03:18,530
+the second course

@@ -1,0 +1,682 @@
+1
+00:00:00,210 --> 00:00:05,570
+In the third course of this sequence of
+five courses, you saw how error analysis
+
+2
+00:00:05,570 --> 00:00:11,110
+can help you focus your time on doing
+the most useful work for your project.
+
+3
+00:00:11,110 --> 00:00:14,122
+Now, beam search is
+an approximate search algorithm,
+
+4
+00:00:14,122 --> 00:00:16,500
+also called a heuristic search algorithm.
+
+5
+00:00:16,500 --> 00:00:20,439
+And so it doesn't always output
+the most likely sentence.
+
+6
+00:00:20,439 --> 00:00:26,140
+It's only keeping track of B equals 3 or
+10 or 100 top possibilities.
+
+7
+00:00:26,140 --> 00:00:29,180
+So what if beam search makes a mistake?
+
+8
+00:00:29,180 --> 00:00:33,888
+In this video, you'll learn how error
+analysis interacts with beam search and
+
+9
+00:00:33,888 --> 00:00:38,457
+how you can figure out whether it is
+the beam search algorithm that's causing
+
+10
+00:00:38,457 --> 00:00:40,722
+problems and worth spending time on.
+
+11
+00:00:40,722 --> 00:00:44,350
+Or whether it might be your RNN
+model that is causing problems and
+
+12
+00:00:44,350 --> 00:00:46,290
+worth spending time on.
+
+13
+00:00:46,290 --> 00:00:50,580
+Let's take a look at how to do
+error analysis with beam search.
+
+14
+00:00:50,580 --> 00:00:56,550
+Let's use this example of Jane
+visite l'Afrique en septembre.
+
+15
+00:00:56,550 --> 00:01:00,110
+So let's say that in your
+machine translation dev set,
+
+16
+00:01:00,110 --> 00:01:04,202
+your development set,
+the human provided this translation and
+
+17
+00:01:04,202 --> 00:01:08,311
+Jane visits Africa in September,
+and I'm going to call this y*.
+
+18
+00:01:08,311 --> 00:01:11,975
+So it is a pretty good
+translation written by a human.
+
+19
+00:01:11,975 --> 00:01:16,367
+Then let's say that when you run beam
+search on your learned RNN model and
+
+20
+00:01:16,367 --> 00:01:20,545
+your learned translation model,
+it ends up with this translation,
+
+21
+00:01:20,545 --> 00:01:24,506
+which we will call y-hat,
+Jane visited Africa last September,
+
+22
+00:01:24,506 --> 00:01:28,262
+which is a much worse translation
+of the French sentence.
+
+23
+00:01:28,262 --> 00:01:32,682
+It actually changes the meaning,
+so it's not a good translation.
+
+24
+00:01:32,682 --> 00:01:35,981
+Now, your model has two main components.
+
+25
+00:01:35,981 --> 00:01:40,833
+There is a neural network model,
+the sequence to sequence model.
+
+26
+00:01:40,833 --> 00:01:43,626
+We shall just call this your RNN model.
+
+27
+00:01:43,626 --> 00:01:45,986
+It's really an encoder and a decoder.
+
+28
+00:01:45,986 --> 00:01:49,268
+And you have your beam search algorithm,
+
+29
+00:01:49,268 --> 00:01:52,934
+which you're running
+with some beam width b.
+
+30
+00:01:52,934 --> 00:01:56,408
+And wouldn't it be nice if you
+could attribute this error,
+
+31
+00:01:56,408 --> 00:02:00,240
+this not very good translation,
+to one of these two components?
+
+32
+00:02:00,240 --> 00:02:04,812
+Was it the RNN or really the neural
+network that is more to blame, or
+
+33
+00:02:04,812 --> 00:02:08,662
+is it the beam search algorithm,
+that is more to blame?
+
+34
+00:02:08,662 --> 00:02:12,246
+And what you saw in the third
+course of the sequence is that
+
+35
+00:02:12,246 --> 00:02:17,170
+it's always tempting to collect more
+training data that never hurts.
+
+36
+00:02:17,170 --> 00:02:21,665
+So in similar way, it's always tempting
+to increase the beam width that never
+
+37
+00:02:21,665 --> 00:02:23,700
+hurts or pretty much never hurts.
+
+38
+00:02:23,700 --> 00:02:28,890
+But just as getting more
+training data by itself might not
+
+39
+00:02:28,890 --> 00:02:31,470
+get you to the level of
+performance you want.
+
+40
+00:02:31,470 --> 00:02:32,490
+In the same way,
+
+41
+00:02:32,490 --> 00:02:37,540
+increasing the beam width by itself might
+not get you to where you want to go.
+
+42
+00:02:38,570 --> 00:02:40,580
+But how do you decide whether or
+
+43
+00:02:40,580 --> 00:02:44,325
+not improving the search algorithm
+is a good use of your time?
+
+44
+00:02:44,325 --> 00:02:46,917
+So just how you can break
+the problem down and
+
+45
+00:02:46,917 --> 00:02:50,012
+figure out what's actually
+a good use of your time.
+
+46
+00:02:50,012 --> 00:02:52,339
+Now, the RNN, the neural network,
+
+47
+00:02:52,339 --> 00:02:56,263
+what was called RNN really means
+the encoder and the decoder.
+
+48
+00:02:56,263 --> 00:03:02,248
+It computes P(y given x).
+
+49
+00:03:02,248 --> 00:03:07,268
+So for example, for
+a sentence, Jane visits Africa
+
+50
+00:03:07,268 --> 00:03:11,850
+in September,
+you plug in Jane visits Africa.
+
+51
+00:03:11,850 --> 00:03:15,741
+Again, I'm ignoring upper versus
+lowercase now, right, and so on.
+
+52
+00:03:15,741 --> 00:03:18,810
+And this computes P(y given x).
+
+53
+00:03:18,810 --> 00:03:22,965
+So it turns out that
+the most useful thing for
+
+54
+00:03:22,965 --> 00:03:28,804
+you to do at this point is to
+compute using this model to compute
+
+55
+00:03:28,804 --> 00:03:36,840
+P(y* given x) as well as to compute
+P(y-hat given x) using your RNN model.
+
+56
+00:03:36,840 --> 00:03:39,570
+And then to see which
+of these two is bigger.
+
+57
+00:03:39,570 --> 00:03:43,120
+So it's possible that the left side
+is bigger than the right hand side.
+
+58
+00:03:43,120 --> 00:03:47,744
+It's also possible that P(y*) is less
+than P(y-hat) actually, or less than or
+
+59
+00:03:47,744 --> 00:03:48,776
+equal to, right?
+
+60
+00:03:48,776 --> 00:03:53,481
+Depending on which of these two cases
+hold true, you'd be able to more
+
+61
+00:03:53,481 --> 00:03:58,511
+clearly ascribe this particular error,
+this particular bad translation
+
+62
+00:03:58,511 --> 00:04:04,010
+to one of the RNN or the beam search
+algorithm being had greater fault.
+
+63
+00:04:04,010 --> 00:04:07,252
+So let's take out the logic behind this.
+
+64
+00:04:07,252 --> 00:04:09,550
+Here are the two sentences
+from the previous slide.
+
+65
+00:04:09,550 --> 00:04:14,460
+And remember,
+we're going to compute P(y* given x) and
+
+66
+00:04:14,460 --> 00:04:19,870
+P(y-hat given x) and
+see which of these two is bigger.
+
+67
+00:04:19,870 --> 00:04:21,196
+So there are going to be two cases.
+
+68
+00:04:21,196 --> 00:04:26,184
+In case 1,
+P(y* given x) as output by the RNN
+
+69
+00:04:26,184 --> 00:04:31,360
+model is greater than P(y-hat given x).
+
+70
+00:04:31,360 --> 00:04:32,140
+What does this mean?
+
+71
+00:04:32,140 --> 00:04:37,778
+Well, the beam search
+algorithm chose y-hat, right?
+
+72
+00:04:37,778 --> 00:04:44,194
+The way you got y-hat was you had
+an RNN that was computing P(y given x).
+
+73
+00:04:44,194 --> 00:04:50,390
+And beam search's job was to try to find
+a value of y that gives that arg max.
+
+74
+00:04:51,500 --> 00:04:57,389
+But in this case,
+y* actually attains a higher value for
+
+75
+00:04:57,389 --> 00:05:00,720
+P(y given x) than the y-hat.
+
+76
+00:05:00,720 --> 00:05:05,340
+So what this allows you to conclude is
+beam search is failing to actually give
+
+77
+00:05:05,340 --> 00:05:10,980
+you the value of y that maximizes
+P(y given x) because the one
+
+78
+00:05:10,980 --> 00:05:15,850
+job that beam search had was to find
+the value of y that makes this really big.
+
+79
+00:05:15,850 --> 00:05:19,660
+But it chose y-hat,
+the y* actually gets a much bigger value.
+
+80
+00:05:19,660 --> 00:05:23,601
+So in this case, you could conclude
+that beam search is at fault.
+
+81
+00:05:24,750 --> 00:05:26,219
+Now, how about the other case?
+
+82
+00:05:26,219 --> 00:05:30,438
+In case 2, P(y* given x) is less than or
+
+83
+00:05:30,438 --> 00:05:34,319
+equal to P(y-hat given x), right?
+
+84
+00:05:34,319 --> 00:05:37,410
+And then either this or
+this has gotta be true.
+
+85
+00:05:37,410 --> 00:05:40,530
+So either case 1 or
+case 2 has to hold true.
+
+86
+00:05:40,530 --> 00:05:43,820
+What do you conclude under case 2?
+
+87
+00:05:43,820 --> 00:05:47,095
+Well, in our example,
+
+88
+00:05:47,095 --> 00:05:51,490
+y* is a better translation than y-hat.
+
+89
+00:05:51,490 --> 00:05:57,081
+But according to the RNN,
+P(y*) is less than P(y-hat),
+
+90
+00:05:57,081 --> 00:06:02,670
+so saying that y* is a less
+likely output than y-hat.
+
+91
+00:06:02,670 --> 00:06:07,810
+So in this case,
+it seems that the RNN model is
+
+92
+00:06:07,810 --> 00:06:12,440
+at fault and it might be worth
+spending more time working on the RNN.
+
+93
+00:06:13,510 --> 00:06:16,310
+There's some subtleties here pertaining to
+
+94
+00:06:16,310 --> 00:06:18,970
+length normalizations
+that I'm glossing over.
+
+95
+00:06:18,970 --> 00:06:23,487
+There's some subtleties pertaining
+to length normalizations that I'm
+
+96
+00:06:23,487 --> 00:06:24,520
+glossing over.
+
+97
+00:06:24,520 --> 00:06:28,330
+And if you are using some
+sort of length normalization,
+
+98
+00:06:28,330 --> 00:06:32,880
+instead of evaluating these probabilities,
+you should be evaluating the optimization
+
+99
+00:06:32,880 --> 00:06:36,620
+objective that takes into
+account length normalization.
+
+100
+00:06:36,620 --> 00:06:41,048
+But ignoring that complication for now,
+in this case, what this tells you is that
+
+101
+00:06:41,048 --> 00:06:46,830
+even though y* is a better translation,
+
+102
+00:06:46,830 --> 00:06:53,142
+the RNN ascribed y* in lower probability
+than the inferior translation.
+
+103
+00:06:53,142 --> 00:06:57,570
+So in this case,
+I will say the RNN model is at fault.
+
+104
+00:06:57,570 --> 00:07:01,460
+So the error analysis
+process looks as follows.
+
+105
+00:07:01,460 --> 00:07:03,572
+You go through the development set and
+
+106
+00:07:03,572 --> 00:07:07,270
+find the mistakes that the algorithm
+made in the development set.
+
+107
+00:07:08,300 --> 00:07:16,103
+And so in this example, let's say that
+P(y* given x) was 2 x 10 to the -10,
+
+108
+00:07:16,103 --> 00:07:21,610
+whereas, P(y-hat given x)
+was 1 x 10 to the -10.
+
+109
+00:07:21,610 --> 00:07:26,746
+Using the logic from the previous slide,
+in this case, we see that
+
+110
+00:07:26,746 --> 00:07:32,725
+beam search actually chose y-hat,
+which has a lower probability than y*.
+
+111
+00:07:32,725 --> 00:07:35,220
+So I will say beam search is at fault.
+
+112
+00:07:35,220 --> 00:07:36,348
+So I'll abbreviate that B.
+
+113
+00:07:36,348 --> 00:07:39,440
+And then you go through
+a second mistake or
+
+114
+00:07:39,440 --> 00:07:43,390
+second bad output by the algorithm,
+look at these probabilities.
+
+115
+00:07:43,390 --> 00:07:47,150
+And maybe for the second example,
+you think the model is at fault.
+
+116
+00:07:47,150 --> 00:07:50,045
+I'm going to abbreviate
+the RNN model with R.
+
+117
+00:07:50,045 --> 00:07:52,253
+And you go through more examples.
+
+118
+00:07:52,253 --> 00:07:57,037
+And sometimes the beam search is at fault,
+sometimes the model is at fault,
+
+119
+00:07:57,037 --> 00:07:57,720
+and so on.
+
+120
+00:07:58,760 --> 00:08:04,530
+And through this process, you can then
+carry out error analysis to figure out
+
+121
+00:08:04,530 --> 00:08:10,560
+what fraction of errors are due to
+beam search versus the RNN model.
+
+122
+00:08:10,560 --> 00:08:16,660
+And with an error analysis process like
+this, for every example in your dev sets,
+
+123
+00:08:16,660 --> 00:08:23,450
+where the algorithm gives a much worse
+output than the human translation,
+
+124
+00:08:23,450 --> 00:08:28,230
+you can try to ascribe the error
+to either the search algorithm or
+
+125
+00:08:28,230 --> 00:08:32,350
+to the objective function, or
+to the RNN model that generates
+
+126
+00:08:32,350 --> 00:08:37,240
+the objective function that beam
+search is supposed to be maximizing.
+
+127
+00:08:37,240 --> 00:08:41,340
+And through this, you can try to figure
+out which of these two components is
+
+128
+00:08:41,340 --> 00:08:43,470
+responsible for more errors.
+
+129
+00:08:43,470 --> 00:08:46,940
+And only if you find that beam search
+is responsible for a lot of errors,
+
+130
+00:08:46,940 --> 00:08:51,300
+then maybe is we're working hard
+to increase the beam width.
+
+131
+00:08:51,300 --> 00:08:55,080
+Whereas in contrast, if you find
+that the RNN model is at fault,
+
+132
+00:08:55,080 --> 00:08:59,350
+then you could do a deeper layer of
+analysis to try to figure out if you want
+
+133
+00:08:59,350 --> 00:09:02,571
+to add regularization, or
+get more training data, or
+
+134
+00:09:02,571 --> 00:09:06,164
+try a different network architecture,
+or something else.
+
+135
+00:09:06,164 --> 00:09:10,597
+And so a lot of the techniques that
+you saw in the third course in
+
+136
+00:09:10,597 --> 00:09:13,505
+the sequence will be applicable there.
+
+137
+00:09:13,505 --> 00:09:17,740
+So that's it for
+error analysis using beam search.
+
+138
+00:09:17,740 --> 00:09:22,170
+I found this particular error analysis
+process very useful whenever you have
+
+139
+00:09:22,170 --> 00:09:25,870
+an approximate optimization algorithm,
+such as beam search
+
+140
+00:09:25,870 --> 00:09:29,690
+that is working to optimize some sort of
+objective, some sort of cost function
+
+141
+00:09:29,690 --> 00:09:33,120
+that is output by a learning algorithm,
+such as a sequence-to-sequence model or
+
+142
+00:09:33,120 --> 00:09:37,110
+a sequence-to-sequence RNN that we've
+been discussing in these lectures.
+
+143
+00:09:37,110 --> 00:09:41,840
+So with that, I hope that you'll be more
+efficient at making these types of models
+
+144
+00:09:41,840 --> 00:09:43,170
+work well for your applications.

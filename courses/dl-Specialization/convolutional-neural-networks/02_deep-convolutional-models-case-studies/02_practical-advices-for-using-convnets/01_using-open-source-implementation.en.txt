@@ -1,0 +1,65 @@
+You've now learned about several
+highly effective neural network and ConvNet architectures. What I want to do in the next few videos
+is share with you some practical advice on how to use them, first starting with
+using open source implementations. It turns out that a lot of these neural
+networks are difficult or finicky to replicate because a lot of details
+about tuning of the hyperparameters such as learning decay and other things that
+make some difference to the performance. And so I've found that it's
+sometimes difficult even for, say, a higher deep loving PhD students,
+even at the top universities to replicate someone else's polished
+work just from reading their paper. Fortunately, a lot of
+deep learning researchers routinely open source their work on
+the Internet, such as on GitHub. And as you do work yourself,
+I certainly encourage you to consider contributing back your
+code to the open source community. But if you see a research paper whose
+results you would like to build on top of, one thing you should consider doing, one thing I do quite often it's just look
+online for an open source implementation. Because if you can get the author's
+implementation, you can usually get going much faster than if you would try
+to reimplement it from scratch. Although sometimes reimplementing
+from scratch could be a good exercise to do as well. If you're already familiar
+with how to use GitHub, this video might be less necessary or
+less important for you. But if you aren't used to downloading
+open-source code from GitHub, let me quickly show you how easy it is. Let's say you're excited about residual
+networks, and you want to use it. So let's search for residence on GitHub. And so you actually see a lot of different
+implementations of residence on GitHub. And I'm just going to go
+to the first URL here. And this is a GitHub repo
+that implements residence. Along with the GitHub webpages if
+you scroll down we'll have some text describing the work or
+the particular implementation. On this particular repo,
+this particular GitHub repository was actually by the original
+authors of the ResNet paper. And this code,
+this license under an MIT license, you can click through to take a look
+at the implications of this license. The MIT License is one of
+the more permissive or one of the more open open-source licenses. So I'm going to go ahead and download the
+code, and to do that, click on this link. This gives you the URL that you
+can use to download the code. I'm going to click on this button over
+here to copy the URL to my clipboard and then go over here. Then all you have to do is type git clone
+and then Ctrl+V for the URL and hit Enter. And so
+in a couples of seconds it has download, has cloned this repository
+to my local hard disk. So let's go into the directory and
+let's take a look. I'm more used in Mac than Windows, but I
+guess let's see, let's go to prototxt and I think this is where it has
+the files specifying the network. So let's take a look at this file, because
+this is a very long file that specifies the detail configurations of the ResNet
+with a 101 layers, all right? And it looks like from what I
+remember seeing from this webpage, this particular implementation
+uses the Cafe framework. But if you wanted implementation
+of this code using some other programming framework,
+you might be able to find it as well. So if you're developing
+a computer vision application, a very common workflow would be to
+pick an architecture that you like, maybe one of the ones you
+learned about in this course. Or maybe one that you heard about from
+a friend or from some literature. And look for
+an open source implementation and download it from GitHub to
+start building from there. One of the advantages of doing so
+also is that sometimes these networks take a long time to train, and someone else
+might have used multiple GPUs and a very large dataset to pretrain
+some of these networks. And that allows you to do
+transfer learning using these networks which we'll discuss
+in the next video as well. Of course if you're computer vision
+researcher implementing these things from scratch, then your workflow
+will be different. And if you do that, then do contribute your work back
+to the open source community. But because so many vision researchers
+have done so much work implementing these architectures, I found that often
+starting with open-source implementations is a better way, or certainly a faster
+way to get started on a new project.

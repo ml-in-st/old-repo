@@ -1,0 +1,119 @@
+In the last video,
+you saw the basic beam search algorithm. In this video, you'll learn some little
+changes that make it work even better. Length normalization is a small change to
+the beam search algorithm that can help you get much better results. Here's what it is. Beam search is maximizing
+this probability. And this product here is just expressing the observation that P(y1) up to y(Ty), given x, can be expressed as P(y1) given x times P(y2), given x and y1 times dot dot dot, up to I guess p of y Ty given x and y1 up to y t1-1. Maybe this notation is a bit more scary
+and more intimidating than it needs to be, but this is that probabilities
+that you see previously. Now, if you're implementing these, these
+probabilities are all numbers less than 1. Often they're much less than 1. And multiplying a lot of numbers less
+than 1 will result in a tiny, tiny, tiny number,
+which can result in numerical underflow. Meaning that it's too small for the floating part representation in
+your computer to store accurately. So in practice, instead of maximizing
+this product, we will take logs. And if you insert a log there, then log
+of a product becomes a sum of a log, and maximizing this sum of log
+probabilities should give you the same results in terms of
+selecting the most likely sentence y. So by taking logs,
+you end up with a more numerically stable algorithm that is less
+prone to rounding errors, numerical rounding errors, or
+to really numerical underflow. And because the log function,
+that's the logarithmic function, this is strictly monotonically
+increasing function, maximizing P(y). And because the logarithmic function, here's the log function, is a strictly
+monotonically increasing function, we know that maximizing log
+P(y) given x should give you the same result as
+maximizing P(y) given x. As in the same value of y that maximizes
+this should also maximize that. So in most implementations,
+you keep track of the sum of logs of the probabilities rather
+than the protocol of probabilities. Now, there's one other change
+to this objective function that makes the machine translation
+algorithm work even better. Which is that, if you referred to
+this original objective up here, if you have a very long sentence,
+the probability of that sentence is going to be low, because you're
+multiplying as many terms here. Lots of numbers are less than 1 to
+estimate the probability of that sentence. And so if you multiply all the numbers
+that are less than 1 together, you just tend to end up
+with a smaller probability. And so this objective function
+has an undesirable effect, that maybe it unnaturally tends to
+prefer very short translations. It tends to prefer very short outputs. Because the probability of a short
+sentence is determined just by multiplying fewer of these numbers are less than 1. And so the product would
+just be not quite as small. And by the way,
+the same thing is true for this. The log of our probability is
+always less than or equal to 1. You're actually in this range of the log. So the more terms you have together,
+the more negative this thing becomes. So there's one other change to
+the algorithm that makes it work better, which is instead of using this as the
+objective you're trying to maximize, one thing you could do is normalize this by
+the number of words in your translation. And so this takes the average of the log
+of the probability of each word. And this significantly reduces the penalty
+for outputting longer translations. And in practice, as a heuristic instead
+of dividing by Ty, by the number of words in the output sentence,
+sometimes you use a softer approach. We have Ty to the power of alpha,
+where maybe alpha is equal to 0.7. So if alpha was equal to 1, then yeah,
+completely normalizing by length. If alpha was equal to 0, then, well, Ty to the 0 would be 1,
+then you're just not normalizing at all. And this is somewhat in between full
+normalization, and no normalization, and alpha's another hyper parameter you
+have within that you can tune to try to get the best results. And have to admit, using alpha this way,
+this is a heuristic or this is a hack. There isn't a great theoretical
+justification for it, but people have found this works well. People have found that it works well in
+practice, so many groups will do this. And you can try out different
+values of alpha and see which one gives you the best result. So just to wrap up how
+you run beam search, as you run beam search you see a lot
+of sentences with length equal 1, a lot of sentences with length equal 2,
+a lot of sentences with length equals 3. And so on, and
+maybe you run beam search for 30 steps and you consider output sentences
+up to length 30, let's say. And so with beam with a 3,
+you will be keeping track of the top three possibilities for
+each of these possible sentence lengths, 1, 2, 3, 4 and so on, up to 30. Then, you would look at all of the output sentences and
+score them against this score. And so you can take your top sentences and
+just compute this objective function onto sentences that you
+have seen through the beam search process. And then finally, of all of these
+sentences that you validate this way, you pick the one that achieves
+the highest value on this normalized log probability objective. Sometimes it's called a normalized
+log likelihood objective. And then that would be the final
+translation, your outputs. So that's how you implement beam search,
+and you get to play this yourself
+in this week's problem exercise. Finally, a few implementational details,
+how do you choose the beam width B? The larger B is, the more
+possibilities you're considering, and does the better the sentence
+you probably find. But the larger B is,
+the more computationally expensive your algorithm is, because you're also
+keeping a lot more possibilities around. All right, so finally, let's just wrap up with some thoughts
+on how to choose the beam width B. So here are the pros and cons of setting
+B to be very large versus very small. If the beam width is very large, then you consider a lot of possibilities,
+and so you tend to get a better result because you are consuming a lot of
+different options, but it will be slower. And the memory requirements will also
+grow, will also be compositionally slower. Whereas if you use a very small beam
+width, then you get a worse result because you're just keeping less possibilities
+in mind as the algorithm is running. But you get a result faster and the memory
+requirements will also be lower. So in the previous video, we used in our
+running example a beam width of three, so we're keeping three
+possibilities in mind. In practice, that is on the small side. In production systems, it's not uncommon
+to see a beam width maybe around 10, and I think beam width of 100
+would be considered very large for a production system,
+depending on the application. But for research systems where people
+want to squeeze out every last drop of performance in order to publish
+the paper with the best possible result. It's not uncommon to see people
+use beam widths of 1,000 or 3,000, but this is very application,
+that's why it's a domain dependent. So I would say try other variety of values
+of B as you work through your application. But when B gets very large,
+there is often diminishing returns. So for many applications, I would
+expect to see a huge gain as you go from a beam widht of 1, which is very
+greedy search, to 3, to maybe 10. But the gains as you go from 1,000 to
+3,000 in beam width might not be as big. And for those of you that have taken maybe
+a lot of computer science courses before, if you're familiar with computer
+science search algorithms like BFS, Breadth First Search, or
+DFS, Depth First Search. The way to think about beam search is
+that, unlike those other algorithms which you have learned about in a computer
+science algorithms course, and don't worry about it if you've
+not heard of these algorithms. But if you've heard of Breadth First
+Search and Depth First Search then unlike those algorithms,
+which are exact search algorithms. Beam search runs much faster but does not
+guarantee to find the exact maximum for this arg max that you would like to find. If you haven't heard of breadth
+first search or depth first search, don't worry about it,
+it's not important for our purposes. But if you have, this is how beam
+search relates to those algorithms. So that's it for beam search,
+which is a widely used algorithm in many production systems, or
+in many commercial systems. Now, in the circles in the sequence
+of courses of deep learning, we talked a lot about error analysis. It turns out, one of the most useful
+tools I've found is to be able to do error analysis on beam search. So you sometimes wonder,
+should I increase my beam width? Is my beam width working well enough? And there's some simple things
+you can compute to give you guidance on whether you need to work
+on improving your search algorithm. Let's talk about that in the next video.

@@ -1,0 +1,164 @@
+One of the challenges of
+machine translation is that, given a French sentence, there could
+be multiple English translations that are equally good translations
+of that French sentence. So how do you evaluate a machine
+translation system if there are multiple equally good answers, unlike, say, image recognition
+where there's one right answer? You just measure accuracy. If there are multiple great answers,
+how do you measure accuracy? The way this is done conventionally is
+through something called the BLEU score. So, in this optional video,
+I want to share with you, I want to give you a sense
+of how the BLEU score works. Let's say you are given a French
+sentence Le chat est sur le tapis. And you are given a reference,
+human generated translation of this, which is the the cat is on the mat. But there are multiple,
+pretty good translations of this. So a different human, different person might translate
+it as there is a cat on the mat. And both of these are actually just
+perfectly fine translations of the French sentence. What the BLEU score does is given
+a machine generated translation, it allows you to automatically
+compute a score that measures how good is
+that machine translation. And the intuition is so
+long as the machine generated translation is pretty close to any of
+the references provided by humans, then it will get a high BLEU score. BLEU, by the way, stands for
+bilingual evaluation, Understudy. So in the theater world, an understudy is someone that learns
+the role of a more senior actor so they can take over the role of
+the more senior actor, if necessary. And motivation for BLEU is that,
+whereas you could ask human evaluators to evaluate
+the machine translation system, the BLEU score is an understudy,
+could be a substitute for having humans evaluate every output
+of a machine translation system. So the BLEU score was due to
+Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu. This paper has been incredibly
+influential, and is, actually, quite a readable paper. So I encourage you to take
+a look if you have time. So, the intuition behind the BLEU
+score is we're going to look at the machine generated output and
+see if the types of words it generates appear in at least one
+of the human generated references. And so these human generated
+references would be provided as part of the depth set or
+as part of the test set. Now, let's look at
+a somewhat extreme example. Let's say that the machine
+translation system abbreviating machine translation is MT. So the machine translation, or the MT
+output, is the the the the the the the. So this is clearly a pretty
+terrible translation. So one way to measure how good
+the machine translation output is, is to look at each the words in the output
+and see if it appears in the references. And so, this would be called a precision
+of the machine translation output. And in this case, there are seven words
+in the machine translation output. And every one of these 7 words appears in
+either Reference 1 or Reference 2, right? So the word the appears
+in both references. So each of these words looks like
+a pretty good word to include. So this will have a precision of 7 over 7. It looks like it was a great precision. So this is why the basic precision
+measure of what fraction of the words in the MT output
+also appear in the references. This is not a particularly useful measure, because it seems to imply that this
+MT output has very high precision. So instead, what we're going
+to use is a modified precision measure in which we will give each
+word credit only up to the maximum number of times it appears
+in the reference sentences. So in Reference 1, the word,
+the, appears twice. In Reference 2, the word,
+the, appears just once. So 2 is bigger than 1, and so
+we're going to say that the word, the, gets credit up to twice. So, with a modified precision,
+we will say that, it gets a score of 2 out of 7,
+because out of 7 words, we'll give it a 2 credits for appearing. So here, the denominator is the count
+of the number of times the word, the, appears of 7 words in total. And the numerator is the count of the
+number of times the word, the, appears. We clip this count, we take a max,
+or we clip this count, at 2. So this gives us the modified
+precision measure. Now, so far,
+we've been looking at words in isolation. In the BLEU score, you don't want to
+just look at isolated words. You maybe want to look at
+pairs of words as well. Let's define a portion of
+the BLEU score on bigrams. And bigrams just means pairs of
+words appearing next to each other. So now, let's see how we could use
+bigrams to define the BLEU score. And this will just be a portion
+of the final BLEU score. And we'll take unigrams, or single words,
+as well as bigrams, which means pairs of words into account as well as
+maybe even longer sequences of words, such as trigrams,
+which means three words pairing together. So, let's continue our
+example from before. We have to same Reference 1 and
+Reference 2. But now let's say
+the machine translation or the MT System has
+a slightly better output. The cat the cat on the mat. Still not a great translation, but
+maybe better than the last one. So here, the possible bigrams are,
+well there's the cat, but ignore case. And then there's cat the,
+that's another bigram. And then there's the cat again, but
+I've already had that, so let's skip that. And then cat on is the next one. And then on the, and the mat. So these are the bigrams in
+the machine translation output. And so let's count up, How many
+times each of these bigrams appear. The cat appears twice, cat the appears
+once, and the others all appear just once. And then finally, let's define the clipped
+count, so count, and then subscript clip. And to define that,
+let's take this column of numbers, but give our algorithm credit only up
+to the maximum number of times that that bigram appears in either
+Reference 1 or Reference 2. So the cat appears a maximum of
+once in either of the references. So I'm going to clip that count to 1. Cat the, well, it doesn't appear
+in Reference 1 or Reference 2, so I clip that to 0. Cat on, yep, that appears once. We give it credit for once. On the appears once, give that credit for
+once, and the mat appears once. So these are the clipped counts. We're taking all the counts and clipping
+them, really reducing them to be no more than the number of times that bigram
+appears in at least one of the references. And then, finally, our modified bigram precision will
+be the sum of the count clipped. So that's 1, 2, 3,
+4 divided by the total number of bigrams. That's 2, 3, 4, 5, 6, so 4 out of 6 or two-thirds is the modified
+precision on bigrams. So let's just formalize
+this a little bit further. With what we had developed on unigrams, we defined this modified precision
+computed on unigrams as P subscript 1. The P stands for precision and the subscript 1 here means that
+we're referring to unigrams. But that is defined as
+sum over the unigrams. So that just means sum over the words that
+appear in the machine translation output. So this is called y hat of count clip,
+Of that unigram. Divided by sum of our unigrams in
+the machine translation output of count, number of counts of that unigram, right? And so this is what we had gotten I guess is 2 out of 7, 2 slides back. So the 1 here refers to unigram, meaning we're looking at
+single words in isolation. You can also define Pn
+as the n-gram version, Instead of unigram, for n-gram. So this would be sum over the n-grams in the machine translation output of count clip of that n-gram divided by sum over n-grams of
+the count of that n-gram. And so these precisions, or
+these modified precision scores, measured on unigrams or on bigrams,
+which we did on a previous slide, or on trigrams,
+which are triples of words, or even higher values of n for
+other n-grams. This allows you to measure the degree
+to which the machine translation output is similar or
+maybe overlaps with the references. And one thing that you could probably
+convince yourself of is if the MT output is exactly the same as
+either Reference 1 or Reference 2, then all of these values P1, and P2 and
+so on, they'll all be equal to 1.0. So to get a modified precision of 1.0, you just have to be exactly
+equal to one of the references. And sometimes it's possible to
+achieve this even if you aren't exactly the same as any of the references. But you kind of combine them
+in a way that hopefully still results in a good translation. Finally, Finally, let's put this together to
+form the final BLEU score. So P subscript n is the BLEU
+score computed on n-grams only. Also the modified precision
+computed on n-grams only. And by convention to compute one number,
+you compute P1, P2, P3 and P4, and combine them
+together using the following formula. It's going to be the average, so sum from
+n = 1 to 4 of Pn and divide that by 4. So basically taking the average. By convention the BLEU score is defined
+as, e to the this, then exponentiations, and linear operate, exponentiation
+is strictly monotonically increasing operation and then we actually adjust
+this with one more factor called the, BP penalty. So BP, Stands for brevity penalty. The details maybe aren't super important. But to just give you a sense,
+it turns out that if you output very short translations, it's easier
+to get high precision. Because probably most of the words
+you output appear in the references. But we don't want translations
+that are very short. So the BP, or the brevity penalty,
+is an adjustment factor that penalizes translation systems that output
+translations that are too short. So the formula for
+the brevity penalty is the following. It's equal to 1 if your machine
+translation system actually outputs things that are longer than the human
+generated reference outputs. And otherwise is some
+formula like that that overall penalizes shorter translations. So, in the details you
+can find in this paper. So, once again,
+earlier in this set of courses, you saw the importance of having
+a single real number evaluation metric. Because it allows you to try out two
+ideas, see which one achieves a higher score, and then try to stick with
+the one that achieved the higher score. So the reason the BLEU
+score was revolutionary for machine translation was because this gave
+a pretty good, by no means perfect, but pretty good single real
+number evaluation metric. And so that accelerated the progress of
+the entire field of machine translation. I hope this video gave you a sense
+of how the BLEU score works. In practice, few people would
+implement a BLEU score from scratch. There are open source implementations
+that you can download and just use to evaluate your own system. But today, BLEU score is used to evaluate
+many systems that generate text, such as machine translation systems,
+as well as the example I showed briefly earlier of image captioning systems
+where you would have a system, have a neural network
+generated image caption. And then use the BLEU score to see how
+much that overlaps with maybe a reference caption or multiple reference captions
+that were generated by people. So the BLEU score is a useful single
+real number evaluation metric to use whenever you want your algorithm
+to generate a piece of text. And you want to see whether it has
+similar meaning as a reference piece of text generated by humans. This is not used for speech recognition,
+because in speech recognition, there's usually one ground truth. And you just use other measures to see
+if you got the speech transcription on pretty much, exactly word for
+word correct. But for things like image captioning,
+and multiple captions for a picture, it could be about equally good or
+for machine translations. There are multiple translations,
+but equally good. The BLEU score gives you a way to
+evaluate that automatically and therefore speed up your development. So with that, I hope you have
+a sense of how the BLEU score works.

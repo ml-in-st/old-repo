@@ -1,0 +1,102 @@
+After you train a sequence model, one of
+the ways you can informally get a sense of what is learned is to have
+a sample novel sequences. Let's take a look at
+how you could do that. So remember that a sequence model,
+models the chance of any particular sequence of words as follows,
+and so what we like to do is sample from this distribution to
+generate noble sequences of words. So the network was trained using
+this structure shown at the top. But to sample, you do something
+slightly different, so what you want to do is first sample what is the first
+word you want your model to generate. And so for that you input the usual
+x1 equals 0, a0 equals 0. And now your first time stamp will have some max probability
+over possible outputs. So what you do is you then randomly sample
+according to this soft max distribution. So what the soft max distribution gives
+you is it tells you what is the chance that it refers to this a, what is
+the chance that it refers to this Aaron? What's the chance it refers to Zulu, what is the chance that the first
+word is the Unknown word token. Maybe it was a chance it was
+a end of sentence token. And then you take this vector and
+use, for example, the numpy command np.random.choice to sample
+according to distribution defined by this vector probabilities, and
+that lets you sample the first words. Next you then go on to
+the second time step, and now remember that the second time
+step is expecting this y1 as input. But what you do is you then take
+the y1 hat that you just sampled and pass that in here as the input
+to the next timestep. So whatever works, you just chose the first time step passes
+this input in the second position, and then this soft max will make
+a prediction for what is y hat 2. Example, let's say that after
+you sample the first word, the first word happened to be z,
+which is very common choice of first word. Then you pass in v as x2, which is now equal to y hat 1. And now you're trying to figure
+out what is the chance of what the second word is given
+that the first word is d. And this is going to be y hat 2. Then you again use this type of
+sampling function to sample y hat 2. And then at the next time stamp, you take whatever choice you had
+represented say as a one hard encoding. And pass that to next timestep and then you sample the third word
+to that whatever you chose, and you keep going until you
+get to the last time step. And so
+how do you know when the sequence ends? Well, one thing you could do is if
+the end of sentence token is part of your vocabulary, you could keep
+sampling until you generate an EOS token. And that tells you you've hit the end
+of a sentence and you can stop. Or alternatively, if you do not
+include this in your vocabulary then you can also just decide to sample
+20 words or 100 words or something, and then keep going until you've
+reached that number of time steps. And this particular procedure will
+sometimes generate an unknown word token. If you want to make sure that your
+algorithm never generates this token, one thing you could do is just reject any sample that came out as unknown word token
+and just keep resampling from the rest of the vocabulary until you get
+a word that's not an unknown word. Or you can just leave it in the output as
+well if you don't mind having an unknown word output. So this is how you would generate
+a randomly chosen sentence from your RNN language model. Now, so
+far we've been building a words level RNN, by which I mean the vocabulary
+are words from English. Depending on your application, one thing you can do is also
+build a character level RNN. So in this case your vocabulary
+will just be the alphabets. Up to z, and as well as maybe space, punctuation if you wish,
+the digits 0 to 9. And if you want to distinguish
+the uppercase and lowercase, you can include the uppercase
+alphabets as well, and one thing you can do as you just
+look at your training set and look at the characters that appears there
+and use that to define the vocabulary. And if you build a character level
+language model rather than a word level language model,
+then your sequence y1, y2, y3, would be the individual
+characters in your training data, rather than the individual
+words in your training data. So for our previous example, the sentence
+cats average 15 hours of sleep a day. In this example,
+c would be y1, a would be y2, t will be y3,
+the space will be y4 and so on. Using a character level language
+model has some pros and cons. One is that you don't ever have to
+worry about unknown word tokens. In particular,
+a character level language model is able to assign a sequence like mau,
+a non-zero probability. Whereas if mau was not in your vocabulary
+for the word level language model, you just have to assign it
+the unknown word token. But the main disadvantage of
+the character level language model is that you end up with
+much longer sequences. So many english sentences
+will have 10 to 20 words but may have many, many dozens of characters. And so character language models are not
+as good as word level language models at capturing long range
+dependencies between how the the earlier parts of the sentence also
+affect the later part of the sentence. And character level models are also just
+more computationally expensive to train. So the trend I've been seeing in
+natural language processing is that for the most part, word level language
+model are still used, but as computers gets faster there are more
+and more applications where people are, at least in some special cases, starting
+to look at more character level models. But they tend to be much hardware, much
+more computationally expensive to train, so they are not in widespread use today. Except for maybe specialized applications
+where you might need to deal with unknown words or
+other vocabulary words a lot. Or they are also used in more
+specialized applications where you have a more specialized vocabulary. So under these methods, what you can now do is build an RNN to
+look at the purpose of English text, build a word level, build a character language model, sample from
+the language model that you've trained. So here are some examples of text
+thatwere examples from a language model, actually from a culture
+level language model. And you get to implement something like
+this yourself in the [INAUDIBLE] exercise. If the model was trained on news articles, then it generates texts like
+that shown on the left. And this looks vaguely like news text,
+not quite grammatical, but maybe sounds a little bit like
+things that could be appearing news, concussion epidemic to be examined. And it was trained on
+Shakespearean text and then it generates stuff that sounds
+like Shakespeare could have written it. The mortal moon hath her eclipse in love. And subject of this thou
+art another this fold. When besser be my love to me see sabl's. For whose are ruse of mine eyes heaves. So that's it for the basic RNN, and how
+you can build a language model using it, as well as sample from the language
+model that you've trained. In the next few videos, I want to discuss
+further some of the challenges of training RNNs, as well as how to adjust some of
+these challenges, specifically vanishing gradients by building even more
+powerful models of the RNN. So in the next video let's talk about
+the problem of vanishing the gradient and we will go on to talk about the GRU, Gate
+Recurring Unit as well as the LSTM models.

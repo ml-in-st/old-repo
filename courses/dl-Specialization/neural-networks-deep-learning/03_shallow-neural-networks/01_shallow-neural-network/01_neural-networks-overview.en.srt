@@ -1,0 +1,379 @@
+1
+00:00:00,030 --> 00:00:05,279
+welcome back in this week's you learn to
+
+2
+00:00:02,639 --> 00:00:07,440
+implement a neural network before diving
+
+3
+00:00:05,279 --> 00:00:09,059
+into the technical details I wanted in
+
+4
+00:00:07,440 --> 00:00:10,889
+this video to give you a quick overview
+
+5
+00:00:09,059 --> 00:00:13,679
+of what you'll be seeing in this week's
+
+6
+00:00:10,889 --> 00:00:15,389
+videos so if you don't follow all the
+
+7
+00:00:13,679 --> 00:00:17,100
+details in this video don't worry about
+
+8
+00:00:15,389 --> 00:00:19,680
+it we'll delve in the technical details
+
+9
+00:00:17,100 --> 00:00:21,660
+in the next few videos but for now let's
+
+10
+00:00:19,680 --> 00:00:24,269
+give a quick overview of how you
+
+11
+00:00:21,660 --> 00:00:26,250
+implement in your network last week we
+
+12
+00:00:24,269 --> 00:00:30,300
+had talked about logistic regression and
+
+13
+00:00:26,250 --> 00:00:32,430
+we saw how this model corresponds to the
+
+14
+00:00:30,300 --> 00:00:35,520
+following computation graph where you
+
+15
+00:00:32,430 --> 00:00:38,370
+didn't put the features X and parameters
+
+16
+00:00:35,520 --> 00:00:40,620
+W MB that allows you to compute Z which
+
+17
+00:00:38,370 --> 00:00:44,219
+is then used to compute a and we were
+
+18
+00:00:40,620 --> 00:00:47,190
+using a interchangeably with this output
+
+19
+00:00:44,219 --> 00:00:51,059
+Y hat and then you can compute the loss
+
+20
+00:00:47,190 --> 00:00:52,920
+function l a new network looks like this
+
+21
+00:00:51,059 --> 00:00:54,930
+and as I'd already previously alluded
+
+22
+00:00:52,920 --> 00:00:57,239
+you can form a neural network by
+
+23
+00:00:54,930 --> 00:01:00,420
+stacking together a lot of little
+
+24
+00:00:57,239 --> 00:01:02,969
+sigmoid units whereas previously this
+
+25
+00:01:00,420 --> 00:01:04,920
+node corresponds to two steps of
+
+26
+00:01:02,969 --> 00:01:07,680
+calculations the first three compute the
+
+27
+00:01:04,920 --> 00:01:11,640
+Z value second is it computes this a
+
+28
+00:01:07,680 --> 00:01:14,549
+value in this dual network this stack of
+
+29
+00:01:11,640 --> 00:01:17,880
+notes will correspond to a Z like
+
+30
+00:01:14,549 --> 00:01:21,720
+calculation like this as well as an a
+
+31
+00:01:17,880 --> 00:01:24,090
+like calculation like that and then that
+
+32
+00:01:21,720 --> 00:01:26,790
+node will correspond to another Z and
+
+33
+00:01:24,090 --> 00:01:29,040
+another 8 like calculation so the
+
+34
+00:01:26,790 --> 00:01:30,000
+notation which we should use later will
+
+35
+00:01:29,040 --> 00:01:32,759
+look like this
+
+36
+00:01:30,000 --> 00:01:35,430
+first what inputs the features X
+
+37
+00:01:32,759 --> 00:01:40,320
+together with some parameters W and B
+
+38
+00:01:35,430 --> 00:01:42,930
+and this will allow you to compute z1 so
+
+39
+00:01:40,320 --> 00:01:45,600
+new notation that one should use is that
+
+40
+00:01:42,930 --> 00:01:48,689
+we'll use a superscript square bracket 1
+
+41
+00:01:45,600 --> 00:01:50,759
+to refer to quantities associated with
+
+42
+00:01:48,689 --> 00:01:53,579
+this stack of nodes called a lair and
+
+43
+00:01:50,759 --> 00:01:56,280
+then later we'll use superscript square
+
+44
+00:01:53,579 --> 00:01:58,920
+bracket 2 to refer to quantities
+
+45
+00:01:56,280 --> 00:02:01,200
+associated with Daniel really that's
+
+46
+00:01:58,920 --> 00:02:04,140
+called another layer of the network and
+
+47
+00:02:01,200 --> 00:02:06,719
+the superscript square brackets like we
+
+48
+00:02:04,140 --> 00:02:10,319
+have here are not to be confused with
+
+49
+00:02:06,719 --> 00:02:12,390
+the superscript round brackets which we
+
+50
+00:02:10,319 --> 00:02:14,080
+used to refer to individual training
+
+51
+00:02:12,390 --> 00:02:16,300
+examples so whereas X
+
+52
+00:02:14,080 --> 00:02:19,030
+supersu round bracket I referred to the
+
+53
+00:02:16,300 --> 00:02:21,340
+I've trained example superscript square
+
+54
+00:02:19,030 --> 00:02:25,570
+bracket 1 and 2 refers to these
+
+55
+00:02:21,340 --> 00:02:28,600
+different um layers layer 1 and layer 2
+
+56
+00:02:25,570 --> 00:02:32,860
+in this network but they're going on
+
+57
+00:02:28,600 --> 00:02:35,350
+after computing z1 similar to logistic
+
+58
+00:02:32,860 --> 00:02:39,000
+regression there will be a computation
+
+59
+00:02:35,350 --> 00:02:44,550
+to compute a 1 and that's just some
+
+60
+00:02:39,000 --> 00:02:49,270
+sigmoid of z1 and then you compute Z 2
+
+61
+00:02:44,550 --> 00:02:54,610
+using another linear equation and then
+
+62
+00:02:49,270 --> 00:02:57,370
+compute a 2 and a 2 is the final output
+
+63
+00:02:54,610 --> 00:02:59,890
+of the neural network and will also be
+
+64
+00:02:57,370 --> 00:03:01,390
+used interchangeably with Y hat so I
+
+65
+00:02:59,890 --> 00:03:03,730
+know there was a lot of details but the
+
+66
+00:03:01,390 --> 00:03:06,460
+key intuition to take away is that
+
+67
+00:03:03,730 --> 00:03:09,220
+whereas for logistic regression we had
+
+68
+00:03:06,460 --> 00:03:11,590
+this Z followed by a calculation and
+
+69
+00:03:09,220 --> 00:03:13,780
+this new network here we just do it
+
+70
+00:03:11,590 --> 00:03:16,390
+multiple times as a CV followed by a
+
+71
+00:03:13,780 --> 00:03:19,959
+calculation and a Z followed by a
+
+72
+00:03:16,390 --> 00:03:22,600
+calculation and then you finally compute
+
+73
+00:03:19,959 --> 00:03:24,670
+the loss at the end and you remember
+
+74
+00:03:22,600 --> 00:03:27,959
+that for the just regression we had in
+
+75
+00:03:24,670 --> 00:03:30,970
+some backward calculation in order to
+
+76
+00:03:27,959 --> 00:03:34,750
+compute derivatives are so confusing
+
+77
+00:03:30,970 --> 00:03:36,580
+da easy and so on so in the same way in
+
+78
+00:03:34,750 --> 00:03:38,860
+a new network we'll end up doing a
+
+79
+00:03:36,580 --> 00:03:44,910
+backward calculation that looks like
+
+80
+00:03:38,860 --> 00:03:50,890
+this and we jump you end up computing da
+
+81
+00:03:44,910 --> 00:03:57,850
+2 DZ 2 that allows you to compute so DW
+
+82
+00:03:50,890 --> 00:04:01,090
+2 DB 2 and so on in this order the right
+
+83
+00:03:57,850 --> 00:04:05,020
+to less backward calculation that is
+
+84
+00:04:01,090 --> 00:04:05,360
+denoting with the red arrows so thank
+
+85
+00:04:05,020 --> 00:04:07,970
+you
+
+86
+00:04:05,360 --> 00:04:09,770
+quick overview of what a new network
+
+87
+00:04:07,970 --> 00:04:12,950
+websites based you take a logistic
+
+88
+00:04:09,770 --> 00:04:14,630
+regression and repeating it twice I know
+
+89
+00:04:12,950 --> 00:04:16,880
+there was a lot of new notation lot of
+
+90
+00:04:14,630 --> 00:04:18,980
+new details don't worry about to get and
+
+91
+00:04:16,880 --> 00:04:20,900
+follow everything we'll go into the
+
+92
+00:04:18,980 --> 00:04:22,820
+details most slowly in the next few
+
+93
+00:04:20,900 --> 00:04:24,620
+videos so let's go on to the next video
+
+94
+00:04:22,820 --> 00:04:27,850
+we'll stop to talk about the neural
+
+95
+00:04:24,620 --> 00:04:27,850
+network representation

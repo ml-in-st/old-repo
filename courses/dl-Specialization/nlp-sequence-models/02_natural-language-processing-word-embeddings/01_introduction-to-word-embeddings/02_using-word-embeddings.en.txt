@@ -1,0 +1,116 @@
+In the last video,
+you saw what it might mean to learn a featurized representations
+of different words. In this video, you see how we can
+take these representations and plug them into NLP applications. Let's start with an example. Continuing with the named
+entity recognition example, if you're trying to detect people's names. Given a sentence like Sally Johnson is
+an orange farmer, hopefully, you'll figure out that Sally Johnson is a person's name,
+hence, the outputs 1 like that. And one way to be sure that
+Sally Johnson has to be a person, rather than say the name of the corporation is
+that you know orange farmer is a person. So previously, we had talked about one hot
+representations to represent these words, x(1), x(2), and so on. But if you can now use
+the featurized representations, the embedding vectors that we
+talked about in the last video. Then after having trained a model that
+uses word embeddings as the inputs, if you now see a new input,
+Robert Lin is an apple farmer. Knowing that orange and apple are very
+similar will make it easier for your learning algorithm to generalize
+to figure out that Robert Lin is also a human, is also a person's name. One of the most interesting cases will be,
+what if in your test set you see not Robert Lin is an apple farmer,
+but you see much less common words? What if you see Robert Lin
+is a durian cultivator? A durian is a rare type of fruit, popular
+in Singapore and a few other countries. But if you have a small label training set
+for the named entity recognition task, you might not even have
+seen the word durian or seen the word cultivator
+in your training set. I guess technically,
+this should be a durian cultivator. But if you have learned a word embedding
+that tells you that durian is a fruit, so it's like an orange, and a cultivator,
+someone that cultivates is like a farmer, then you might still be generalize from
+having seen an orange farmer in your training set to knowing that a durian
+cultivator is also probably a person. So one of the reasons that word
+embeddings will be able to do this is the algorithms to learning word embeddings
+can examine very large text corpuses, maybe found off the Internet. So you can examine very large data sets,
+maybe a billion words, maybe even up to 100 billion
+words would be quite reasonable. So very large training sets
+of just unlabeled text. And by examining tons of unlabeled text,
+which you can download more or less for free, you can figure out
+that orange and durian are similar. And farmer and cultivator are similar,
+and therefore, learn embeddings,
+that groups them together. Now having discovered that orange and durian are both fruits by reading
+massive amounts of Internet text, what you can do is then take this word
+embedding and apply it to your named entity recognition task, for which you
+might have a much smaller training set, maybe just 100,000 words in your
+training set, or even much smaller. And so this allows you to
+carry out transfer learning, where you take information
+you've learned from huge amounts of unlabeled text that
+you can suck down essentially for free off the Internet to figure out that
+orange, apple, and durian are fruits. And then transfer that knowledge to
+a task, such as named entity recognition, for which you may have a relatively
+small labeled training set. And, of course, for simplicity, l drew
+this for it only as a unidirectional RNN. If you actually want to carry out the
+named entity recognition task, you should, of course, use a bidirectional RNN rather
+than a simpler one I've drawn here. But to summarize, this is how you can carry out transfer
+learning using word embeddings. Step 1 is to learn word embeddings
+from a large text corpus, a very large text corpus or you can also download
+pre-trained word embeddings online. There are several word embeddings
+that you can find online under very permissive licenses. And you can then take these
+word embeddings and transfer the embedding to new task, where you have
+a much smaller labeled training sets. And use this, let's say, 300 dimensional
+embedding, to represent your words. One nice thing also about
+this is you can now use relatively lower dimensional
+feature vectors. So rather than using a 10,000
+dimensional one-hot vector, you can now instead use maybe
+a 300 dimensional dense vector. Although the one-hot vector is fast and
+the 300 dimensional vector that you might learn for
+your embedding will be a dense vector. And then, finally,
+as you train your model on your new task, on your named entity recognition
+task with a smaller label data set, one thing you can optionally do
+is to continue to fine tune, continue to adjust the word
+embeddings with the new data. In practice, you would do this only if
+this task 2 has a pretty big data set. If your label data set for
+step 2 is quite small, then usually, I would not bother to continue to
+fine tune the word embeddings. So word embeddings tend to make the
+biggest difference when the task you're trying to carry out has
+a relatively smaller training set. So it has been useful for many NLP tasks. And I'll just name a few. Don't worry if you don't know these terms. It has been useful for named entity
+recognition, for text summarization, for co-reference resolution, for parsing. These are all maybe pretty
+standard NLP tasks. It has been less useful for
+language modeling, machine translation, especially if you're accessing a language
+modeling or machine translation task for which you have a lot of data
+just dedicated to that task. So as seen in other
+transfer learning settings, if you're trying to transfer
+from some task A to some task B, the process of transfer learning is
+just most useful when you happen to have a ton of data for A and
+a relatively smaller data set for B. And so that's true for
+a lot of NLP tasks, and just less true for some language modeling and
+machine translation settings. Finally, word embeddings has
+a interesting relationship to the face encoding ideas that you learned
+about in the previous course, if you took the convolutional
+neural networks course. So you will remember that for
+face recognition, we train this Siamese network
+architecture that would learn, say, a 128 dimensional representation for
+different faces. And then you can compare these
+encodings in order to figure out if these two pictures are of the same face. The words encoding and
+embedding mean fairly similar things. So in the face recognition literature,
+people also use the term encoding to refer to these vectors,
+f(x(i)) and f(x(j)). One difference between the face
+recognition literature and what we do in word embeddings is that,
+for face recognition, you wanted to train a neural network
+that can take as input any face picture, even a picture you've never seen before, and have a neural network compute
+an encoding for that new picture. Whereas what we'll do, and you'll
+understand this better when we go through the next few videos, whereas what we'll
+do for learning word embeddings is that we'll have a fixed vocabulary of,
+say, 10,000 words. And we'll learn a vector e1 through, say, e10,000 that just learns
+a fixed encoding or learns a fixed embedding for
+each of the words in our vocabulary. So that's one difference between the set
+of ideas you saw for face recognition versus what the algorithms we'll
+discuss in the next few videos. But the terms encoding and embedding
+are used somewhat interchangeably. So the difference I just described is
+not represented by the difference in terminologies. It's just a difference in how we need to
+use these algorithms in face recognition, where there's unlimited sea of
+pictures you could see in the future. Versus natural language processing, where
+there might be just a fixed vocabulary, and everything else like that we'll
+just declare as an unknown word. So in this video, you saw how using
+word embeddings allows you to implement this type of transfer learning. And how, by replacing the one-hot vectors
+we're using previously with the embedding vectors, you can allow your algorithms
+to generalize much better, or you can learn from much less label data. Next, I want to show you just a few more
+properties of these word embeddings. And then after that,
+we will talk about algorithms for actually learning these word embeddings. Let's go on to the next video, where you'll see how word embeddings can
+help with reasoning about analogies.

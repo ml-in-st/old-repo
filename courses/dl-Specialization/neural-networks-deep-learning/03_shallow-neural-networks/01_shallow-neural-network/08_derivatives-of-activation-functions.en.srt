@@ -1,0 +1,639 @@
+1
+00:00:00,060 --> 00:00:03,659
+when you implement back-propagation for
+
+2
+00:00:02,070 --> 00:00:05,940
+your neural network you need to really
+
+3
+00:00:03,659 --> 00:00:08,550
+compute the slope or the derivative of
+
+4
+00:00:05,940 --> 00:00:10,440
+the activation functions so let's take a
+
+5
+00:00:08,550 --> 00:00:12,840
+look at our choices of activation
+
+6
+00:00:10,440 --> 00:00:15,120
+functions and how you can compute the
+
+7
+00:00:12,840 --> 00:00:17,880
+slope of these functions you can see
+
+8
+00:00:15,120 --> 00:00:21,300
+familiar sigmoid activation function and
+
+9
+00:00:17,880 --> 00:00:23,670
+so for any given value of z maybe this
+
+10
+00:00:21,300 --> 00:00:26,580
+value of z this function will have some
+
+11
+00:00:23,670 --> 00:00:28,980
+slope or some derivative corresponding
+
+12
+00:00:26,580 --> 00:00:31,199
+to if you draw a rule line there you
+
+13
+00:00:28,980 --> 00:00:35,460
+know the height over with there's no
+
+14
+00:00:31,199 --> 00:00:37,890
+triangle here so if G of Z is the
+
+15
+00:00:35,460 --> 00:00:42,719
+sigmoid function then the slope of the
+
+16
+00:00:37,890 --> 00:00:44,750
+function is e VZ G of Z and so we know
+
+17
+00:00:42,719 --> 00:00:50,610
+from calculators that the disss slope of
+
+18
+00:00:44,750 --> 00:00:52,230
+G of X and V and if you are familiar
+
+19
+00:00:50,610 --> 00:00:54,420
+with calculus and know how to take
+
+20
+00:00:52,230 --> 00:00:56,879
+derivatives if you take the derivative
+
+21
+00:00:54,420 --> 00:00:59,309
+of the sigmoid function it is possible
+
+22
+00:00:56,879 --> 00:01:01,530
+to show that it is equal to this formula
+
+23
+00:00:59,309 --> 00:01:03,750
+and again I'm not going to do the
+
+24
+00:01:01,530 --> 00:01:05,760
+calculus steps but if you're familiar
+
+25
+00:01:03,750 --> 00:01:08,340
+with calculus do for you to pause the
+
+26
+00:01:05,760 --> 00:01:14,430
+video and try to prove this yourself and
+
+27
+00:01:08,340 --> 00:01:18,030
+so this is equal to just G of Z times 1
+
+28
+00:01:14,430 --> 00:01:21,170
+minus G of Z so let's just sanity check
+
+29
+00:01:18,030 --> 00:01:24,689
+that this expression makes sense
+
+30
+00:01:21,170 --> 00:01:29,610
+first if Z is very large so say Z is
+
+31
+00:01:24,689 --> 00:01:32,189
+equal to 10 then G of Z will be close to
+
+32
+00:01:29,610 --> 00:01:37,049
+1 and so the formula we have on the Left
+
+33
+00:01:32,189 --> 00:01:42,240
+tells us that D DZ G of Z does be close
+
+34
+00:01:37,049 --> 00:01:45,149
+to G of Z which is equal to 1 times 1
+
+35
+00:01:42,240 --> 00:01:48,119
+minus 1 which is therefore very close to
+
+36
+00:01:45,149 --> 00:01:50,990
+0 and this isn't d correct because when
+
+37
+00:01:48,119 --> 00:01:54,090
+Z is very large the slope is close to 0
+
+38
+00:01:50,990 --> 00:01:57,180
+conversely of Z is equal to minus 10 so
+
+39
+00:01:54,090 --> 00:02:00,509
+there's no way out there then G of Z is
+
+40
+00:01:57,180 --> 00:02:04,110
+close to 0 so the following on the left
+
+41
+00:02:00,509 --> 00:02:07,140
+tells us d DZ G of Z will be close to G
+
+42
+00:02:04,110 --> 00:02:09,690
+of Z which is 0 times 1 line is 0 and so
+
+43
+00:02:07,140 --> 00:02:10,670
+this is also very close to 0 which is
+
+44
+00:02:09,690 --> 00:02:13,740
+correct
+
+45
+00:02:10,670 --> 00:02:17,610
+finally at Z is equal to 0
+
+46
+00:02:13,740 --> 00:02:20,040
+then G of Z is equal to 1/2 that's a
+
+47
+00:02:17,610 --> 00:02:25,170
+sigmoid function right here and so the
+
+48
+00:02:20,040 --> 00:02:28,920
+derivative is on equal to 1/2 times 1
+
+49
+00:02:25,170 --> 00:02:31,130
+minus 1/2 which is equal to 1/4 and that
+
+50
+00:02:28,920 --> 00:02:33,570
+actually is turns out to be the correct
+
+51
+00:02:31,130 --> 00:02:35,760
+value of the derivative or the slope of
+
+52
+00:02:33,570 --> 00:02:38,160
+this function when Z is equal to 0
+
+53
+00:02:35,760 --> 00:02:41,130
+finally just to introduce one more piece
+
+54
+00:02:38,160 --> 00:02:43,980
+of notation sometimes instead of writing
+
+55
+00:02:41,130 --> 00:02:47,190
+this thing the shorthand for the
+
+56
+00:02:43,980 --> 00:02:51,120
+derivative is G prime of Z so G prime of
+
+57
+00:02:47,190 --> 00:02:53,790
+Z in calculus the the little dash on top
+
+58
+00:02:51,120 --> 00:02:56,010
+is called prime but so G prime of Z is a
+
+59
+00:02:53,790 --> 00:02:58,740
+shorthand for the in calculus for the
+
+60
+00:02:56,010 --> 00:03:01,890
+derivative of the function of G with
+
+61
+00:02:58,740 --> 00:03:08,910
+respect to the input variable Z um and
+
+62
+00:03:01,890 --> 00:03:13,350
+then in a new network we have a equals G
+
+63
+00:03:08,910 --> 00:03:18,030
+of Z right equals this then this formula
+
+64
+00:03:13,350 --> 00:03:19,950
+also simplifies to a times 1 minus a so
+
+65
+00:03:18,030 --> 00:03:23,430
+sometimes the implementation you might
+
+66
+00:03:19,950 --> 00:03:26,400
+see something like G prime of Z equals a
+
+67
+00:03:23,430 --> 00:03:29,880
+times 1 minus a and that just refers to
+
+68
+00:03:26,400 --> 00:03:32,340
+you know the observation that G prime
+
+69
+00:03:29,880 --> 00:03:34,530
+which is used derivative is equal to
+
+70
+00:03:32,340 --> 00:03:36,360
+this over here and the advantage of this
+
+71
+00:03:34,530 --> 00:03:39,690
+formula is that if you've already
+
+72
+00:03:36,360 --> 00:03:41,280
+computed the value for a then by using
+
+73
+00:03:39,690 --> 00:03:44,040
+this expression you can very quickly
+
+74
+00:03:41,280 --> 00:03:46,620
+compute the value for the slope for G
+
+75
+00:03:44,040 --> 00:03:48,930
+prime s alright so that was the sigmoid
+
+76
+00:03:46,620 --> 00:03:51,720
+activation function let's now look at
+
+77
+00:03:48,930 --> 00:03:54,810
+the 10h activation function similar to
+
+78
+00:03:51,720 --> 00:04:02,130
+what we had previously the definition of
+
+79
+00:03:54,810 --> 00:04:06,570
+d DZ G of Z is the slope of G of Z as a
+
+80
+00:04:02,130 --> 00:04:09,270
+particular point of Z and if you look at
+
+81
+00:04:06,570 --> 00:04:12,600
+the formula for the hyperbolic tangent
+
+82
+00:04:09,270 --> 00:04:14,430
+function and if you know calculus you
+
+83
+00:04:12,600 --> 00:04:18,799
+can take derivatives and show that this
+
+84
+00:04:14,430 --> 00:04:18,799
+simplifies to this formula
+
+85
+00:04:19,560 --> 00:04:25,830
+and using the own shorthand we have
+
+86
+00:04:23,070 --> 00:04:29,010
+previously when we call this G prime of
+
+87
+00:04:25,830 --> 00:04:30,900
+Z you gain so if you want you can sanity
+
+88
+00:04:29,010 --> 00:04:34,410
+check that this formula make sense so
+
+89
+00:04:30,900 --> 00:04:38,669
+for example if Z is equal to 10 10 H of
+
+90
+00:04:34,410 --> 00:04:44,639
+Z will be very close to 1 this goes from
+
+91
+00:04:38,669 --> 00:04:46,889
+plus 1 to minus 1 and then G prime of Z
+
+92
+00:04:44,639 --> 00:04:49,350
+according to this formula will be about
+
+93
+00:04:46,889 --> 00:04:52,320
+1 minus 1 squared so during 3 closes
+
+94
+00:04:49,350 --> 00:04:55,050
+zero so that was a Z is very large the
+
+95
+00:04:52,320 --> 00:04:58,230
+slope is close to zero conversely a Z is
+
+96
+00:04:55,050 --> 00:05:02,250
+very small say Z is equal to minus 10
+
+97
+00:04:58,230 --> 00:05:05,510
+then 10 H of Z will be close to minus 1
+
+98
+00:05:02,250 --> 00:05:09,570
+and so G prime of Z will be close to 1
+
+99
+00:05:05,510 --> 00:05:12,020
+minus negative 1 squared so it's close
+
+100
+00:05:09,570 --> 00:05:16,350
+to 1 minus 1 which is also close to 0
+
+101
+00:05:12,020 --> 00:05:20,160
+and finally is equal to 0 then 10 H of Z
+
+102
+00:05:16,350 --> 00:05:22,260
+is equal to 0 and then the slope is
+
+103
+00:05:20,160 --> 00:05:24,750
+actually equal to 1 which is which
+
+104
+00:05:22,260 --> 00:05:28,590
+selection the slope point on Z is equal
+
+105
+00:05:24,750 --> 00:05:31,140
+to 0 so just to summarize if a is equal
+
+106
+00:05:28,590 --> 00:05:34,380
+to G of Z so if a is equal to this
+
+107
+00:05:31,140 --> 00:05:38,370
+challenge of Z then the derivative G
+
+108
+00:05:34,380 --> 00:05:40,620
+prime of Z is equal to 1 minus a squared
+
+109
+00:05:38,370 --> 00:05:43,020
+so once again if you've already computed
+
+110
+00:05:40,620 --> 00:05:45,600
+the value of a you can use this formula
+
+111
+00:05:43,020 --> 00:05:47,789
+to very quickly compute the derivative
+
+112
+00:05:45,600 --> 00:05:49,350
+as well finally here's how you compute
+
+113
+00:05:47,789 --> 00:05:52,020
+the derivatives for the value and
+
+114
+00:05:49,350 --> 00:05:56,340
+looky-loo activation functions for the
+
+115
+00:05:52,020 --> 00:06:00,120
+value g of z is equal to max of 0 comma
+
+116
+00:05:56,340 --> 00:06:04,710
+Z so the derivative is equal to you
+
+117
+00:06:00,120 --> 00:06:09,840
+turns out to be 0 if Z is less than 0
+
+118
+00:06:04,710 --> 00:06:11,390
+and 1 if Z is greater than 0 and is
+
+119
+00:06:09,840 --> 00:06:14,610
+actually our undefined
+
+120
+00:06:11,390 --> 00:06:18,000
+technically undefined the G is equal to
+
+121
+00:06:14,610 --> 00:06:20,130
+exactly 0 but um if you're implementing
+
+122
+00:06:18,000 --> 00:06:21,690
+this in software it might not be a
+
+123
+00:06:20,130 --> 00:06:25,169
+hundred percent mathematically correct
+
+124
+00:06:21,690 --> 00:06:27,270
+but the work just fine if you V is
+
+125
+00:06:25,169 --> 00:06:29,580
+exactly really zero if you set the
+
+126
+00:06:27,270 --> 00:06:32,340
+derivative to be equal to 1 or this had
+
+127
+00:06:29,580 --> 00:06:33,300
+to be 0 it kind of doesn't matter if
+
+128
+00:06:32,340 --> 00:06:35,490
+you're an excellent
+
+129
+00:06:33,300 --> 00:06:37,710
+nation technically G prime then becomes
+
+130
+00:06:35,490 --> 00:06:39,750
+what's called a sub gradient of the
+
+131
+00:06:37,710 --> 00:06:42,449
+activation function G of Z which is why
+
+132
+00:06:39,750 --> 00:06:44,699
+gradient descent still works but you can
+
+133
+00:06:42,449 --> 00:06:46,770
+think of it as that the chance of Z
+
+134
+00:06:44,699 --> 00:06:48,690
+being you know zero point exactly those
+
+135
+00:06:46,770 --> 00:06:51,000
+or those of those or zero is so small
+
+136
+00:06:48,690 --> 00:06:53,280
+that it almost doesn't matter what you
+
+137
+00:06:51,000 --> 00:06:55,349
+set the derivative to be equal to when Z
+
+138
+00:06:53,280 --> 00:06:57,990
+is equal to zero so in practice this is
+
+139
+00:06:55,349 --> 00:07:01,259
+what people implement for the derivative
+
+140
+00:06:57,990 --> 00:07:03,060
+of Z and finally if you are training on
+
+141
+00:07:01,259 --> 00:07:07,139
+your own network with the we here a Lou
+
+142
+00:07:03,060 --> 00:07:14,759
+activation function then G of Z is going
+
+143
+00:07:07,139 --> 00:07:20,280
+to be max of say 0.01 Z comma Z and so G
+
+144
+00:07:14,759 --> 00:07:26,280
+prime of Z is equal to 0.01 that Z is
+
+145
+00:07:20,280 --> 00:07:27,900
+less than 0 and 1 if Z is greater than 0
+
+146
+00:07:26,280 --> 00:07:29,460
+and once again the gradient is
+
+147
+00:07:27,900 --> 00:07:31,919
+technically not defined when Z is
+
+148
+00:07:29,460 --> 00:07:34,289
+exactly equal to 0 but some maybe
+
+149
+00:07:31,919 --> 00:07:36,000
+implement a piece of code that sets the
+
+150
+00:07:34,289 --> 00:07:39,330
+derivative or the assess G prime Z
+
+151
+00:07:36,000 --> 00:07:41,039
+either a 0.01 or to 1 either way it
+
+152
+00:07:39,330 --> 00:07:43,560
+doesn't really matter when Z is exactly
+
+153
+00:07:41,039 --> 00:07:45,750
+0 your co-workers so arms of these
+
+154
+00:07:43,560 --> 00:07:47,580
+formulas you should either compute the
+
+155
+00:07:45,750 --> 00:07:50,490
+slopes or the derivatives of your
+
+156
+00:07:47,580 --> 00:07:52,469
+activation assumptions now we have this
+
+157
+00:07:50,490 --> 00:07:54,389
+building blocks you're ready to see how
+
+158
+00:07:52,469 --> 00:07:56,159
+to implement gradient descent for your
+
+159
+00:07:54,389 --> 00:07:58,940
+neural network let's go onto the next
+
+160
+00:07:56,159 --> 00:07:58,940
+video to see that

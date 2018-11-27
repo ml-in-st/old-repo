@@ -1,0 +1,136 @@
+In the last video, you saw how you
+can learn a neural language model in order to get good word embeddings. In this video, you see the Word2Vec
+algorithm which is simple and comfortably more efficient way to
+learn this types of embeddings. Lets take a look. Most of the ideas I'll present in
+this video are due to Tomas Mikolov, Kai Chen, Greg Corrado, and Jeff Dean. Let's say you're given this
+sentence in your training set. In the skip-gram model, what we're going
+to do is come up with a few context to target errors to create our
+supervised learning problem. So rather than having the context
+be always the last four words or the last end words immediately before the
+target word, what I'm going to do is, say, randomly pick a word to
+be the context word. And let's say we chose the word orange. And what we're going to do is randomly
+pick another word within some window. Say plus minus five words or plus minus ten words of the context word
+and we choose that to be target word. So maybe just by chance you might
+pick juice to be a target word, that's just one word later. Or you might choose two words before. So you have another pair where
+the target could be glass or, Maybe just by chance you choose
+the word my as the target. And so we'll set up a supervised learning
+problem where given the context word, you're asked to predict what is a randomly
+chosen word within say, a plus minus ten word window, or plus minus five or ten
+word window of that input context word. And obviously, this is not a very
+easy learning problem, because within plus minus 10 words of the word orange,
+it could be a lot of different words. But a girl that's setting up this
+supervised learning problem, isn't to do well on the supervised
+learning problem per se, it is that we want to use this learning
+problem to learn good word embeddings. So, here are the details of the model. Let's say that we'll continue
+to our vocab of 10,000 words. And some have been on vocab sizes
+that exceeds a million words. But the basic supervised learning problem
+we're going to solve is that we want to learn the mapping from some Context c,
+such as the word orange to some target, which we will call t,
+which might be the word juice or the word glass or the word my, if we use
+the example from the previous slide. So in our vocabulary,
+orange is word 6257, and the word juice is the word 4834 in
+our vocab of 10,000 words. And so that's the input x that you
+want to learn to map to that open y. So to represent the input such as the word
+orange, you can start out with some one hot vector which is going to
+be write as O subscript C, so there's a one hot vector for
+the context words. And then similar to what you saw
+on the last video you can take the embedding matrix E, multiply E
+by the vector O subscript C, and this gives you your embedding vector for
+the input context word, so here EC is equal to capital
+E times that one hot vector. Then in this new network that we formed
+we're going to take this vector EC and feed it to a softmax unit. So I've been drawing softmax unit
+as a node in a neural network. That's not an o, that's a softmax unit. And then there's a drop in
+the softmax unit to output y hat. So to write out this model in detail. This is the model, the softmax model, probability of different tanka words given the input context
+word as e to the e, theta t transpose, ec. Divided by some over all words,
+so we're going to say, sum from J equals one to all 10,000
+words of e to the theta j transposed ec. So here theta T is
+the parameter associated with, I'll put t, but really there's a chance of a particular word, t, being the label. So I've left off the biased
+term to solve mass but we could include that too if we wish. And then finally the loss function for
+softmax will be the usual. So we use y to represent the target word. And we use a one-hot representation for
+y hat and y here. Then the lost would be The negative log liklihood, so sum from i equals 1 to 10,000 of yi log yi hat. So that's a usual loss for softmax where we're representing the target
+y as a one hot vector. So this would be a one hot vector
+with just 1 1 and the rest zeros. And if the target word is juice,
+then it'd be element 4834 from up here. That is equal to 1 and
+the rest will be equal to 0. And similarly Y hat will be a 10,000
+dimensional vector output by the softmax unit with probabilities for
+all 10,000 possible targets words. So to summarize, this is the overall
+little model, little neural network with basically looking up the
+embedding and then just a soft max unit. And the matrix E will have a lot of
+parameters, so the matrix E has parameters corresponding to all of these
+embedding vectors, E subscript C. And then the softmax unit also has
+parameters that gives the theta T parameters but if you optimize this
+loss function with respect to the all of these parameters, you actually get
+a pretty good set of embedding vectors. So this is called the skip-gram model
+because is taking as input one word like orange and then trying to predict
+some words skipping a few words from the left or the right side. To predict what comes little bit before
+little bit after the context words. Now, it turns out there are a couple
+problems with using this algorithm. And the primary problem
+is computational speed. In particular, for the softmax model,
+every time you want to evaluate this probability, you need to carry out a sum
+over all 10,000 words in your vocabulary. And maybe 10,000 isn't too bad, but if you're using a vocabulary of
+size 100,000 or a 1,000,000, it gets really slow to sum up over
+this denominator every single time. And, in fact, 10,000 is actually
+already that will be quite slow, but it makes even harder to scale
+to larger vocabularies. So there are a few solutions to this,
+one which you see in the literature is to use a hierarchical
+softmax classifier. And what that means is, instead of trying to categorize something
+into all 10,000 carries on one go. Imagine if you have one classifier, it tells you is the target word in
+the first 5,000 words in the vocabulary? Or is in the second 5,000
+words in the vocabulary? And lets say this binary cost that it
+tells you this is in the first 5,000 words, think of second class to tell
+you that this in the first 2,500 words of vocab or
+in the second 2,500 words vocab and so on. Until eventually you get down to
+classify exactly what word it is, so that the leaf of this tree, and so
+having a tree of classifiers like this, means that each of the retriever nodes of
+the tree can be just a binding classifier. And so you don't need to sum
+over all 10,000 words or else it will capsize in order
+to make a single classification. In fact, the computational
+classifying tree like this scales like log of the vocab size
+rather than linear in vocab size. So this is called a hierarchical
+softmax classifier. I should mention in practice, the
+hierarchical softmax classifier doesn't use a perfectly balanced tree or
+this perfectly symmetric tree, with equal numbers of words on the left
+and right sides of each branch. In practice, the hierarchical software
+classifier can be developed so that the common words tend to be on top, whereas the less common words like durian
+can be buried much deeper in the tree. Because you see the more common
+words more often, and so you might need only a few traversals
+to get to common words like the and of. Whereas you see less frequent words
+like durian much less often, so it says okay that are buried deep in the tree
+because you don't need to go that deep. So there are various heuristics for building the tree how you used to
+build the hierarchical software spire. So this is one idea you
+see in the literature, the speeding up the softmax
+classification. But I won't spend too much more time. And you can read more details of this on the paper that I referenced by Thomas and others, on the first slide. But I won't spend too
+much more time on this. Because in the next video,
+where she talk about a different method, called nectar sampling,
+which I think is even simpler. And also works really well for
+speeding up the softmax classifier and the problem of needing the sum over
+the entire cap size in the denominator. So you see more of that in the next video. But before moving on, one quick Topic I want you to understand
+is how to sample the context C. So once you sample the context C,
+the target T can be sampled within, say, a plus minus ten word
+window of the context C, but how do you choose the context C? One thing you could do is just
+sample uniformly, at random, from your training corpus. When we do that, you find that there
+are some words like the, of, a, and, to and so
+on that appear extremely frequently. And so, if you do that, you find that in
+your context to target mapping pairs just get these these types of words extremely
+frequently, whereas there are other words like orange, apple, and
+also durian that don't appear that often. And maybe you don't want your training
+site to be dominated by these extremely frequently or current words, because then
+you spend almost all the effort updating ec, for those frequently occurring words. But you want to make sure that you spend
+some time updating the embedding, even for these less common words like e durian. So in practice the distribution
+of words pc isn't taken just entirely uniformly at random for
+the training set purpose, but instead there are different heuristics
+that you could use in order to balance out something from the common words
+together with the less common words. So that's it for
+the Word2Vec skip-gram model. If you read the original paper by that I
+referenced earlier, you find that that paper actually had two versions of this
+Word2Vec model, the skip gram was one. And the other one is called the CBow,
+the continuous backwards model, which takes the surrounding
+contexts from middle word, and uses the surrounding words to
+try to predict the middle word, and that algorithm also works,
+it has some advantages and disadvantages. But the key problem with this algorithm
+with the skip-gram model as presented so far is that the softmax step is very
+expensive to calculate because needing to sum over your entire vocabulary size
+into the denominator of the soft packs. In the next video I show you an algorithm
+that modifies the training objective that makes it run much more efficiently
+therefore lets you apply this in a much bigger fitting set as well and therefore
+learn much better word embeddings. Lets go onto the next video.

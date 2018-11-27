@@ -1,0 +1,124 @@
+Hello and welcome back. This week you learn
+about object detection. This is one of the areas of computer
+vision that's just exploding and is working so much better than
+just a couple of years ago. In order to build up to object detection,
+you first learn about object localization. Let's start by defining what that means. You're already familiar with the image
+classification task where an algorithm looks at this picture and might be
+responsible for saying this is a car. So that was classification. The problem you learn to build in your
+network to address later on this video is classification with localization. Which means not only do you have
+to label this as say a car but the algorithm also is responsible for
+putting a bounding box, or drawing a red rectangle around
+the position of the car in the image. So that's called the classification
+with localization problem. Where the term localization refers
+to figuring out where in the picture is the car you've detective. Later this week,
+you then learn about the detection problem where now there might be multiple
+objects in the picture and you have to detect them all and
+and localized them all. And if you're doing this for
+an autonomous driving application, then you might need to
+detect not just other cars, but maybe other pedestrians and
+motorcycles and maybe even other objects. So you'll see that later this week. So in the terminology we'll use this week,
+the classification and the classification of localization
+problems usually have one object. Usually one big object in the middle of
+the image that you're trying to recognize or recognize and localize. In contrast, in the detection problem
+there can be multiple objects. And in fact, maybe even multiple
+objects of different categories within a single image. So the ideas you've learned about for
+image classification will be useful for classification with localization. And that the ideas you learn for localization will then turn out
+to be useful for detection. So let's start by talking about
+classification with localization. You're already familiar with the image
+classification problem, in which you might input a picture into a ConfNet with
+multiple layers so that's our ConfNet. And this results in a vector
+features that is fed to maybe a softmax unit that
+outputs the predicted clause. So if you are building a self driving car, maybe your object categories
+are the following. Where you might have a pedestrian, or
+a car, or a motorcycle, or a background. This means none of the above. So if there's no pedestrian, no car, no motorcycle,
+then you might have an output background. So these are your classes, they have
+a softmax with four possible outputs. So this is the standard
+classification pipeline. How about if you want to localize
+the car in the image as well. To do that,
+you can change your neural network to have a few more output units
+that output a bounding box. So, in particular, you can have
+the neural network output four more numbers, and
+I'm going to call them bx, by, bh, and bw. And these four numbers parameterized
+the bounding box of the detected object. So in these videos, I am going to use
+the notational convention that the upper left of the image, I'm going to
+denote as the coordinate (0,0), and at the lower right is (1,1). So, specifying the bounding box, the red rectangle requires
+specifying the midpoint. So that’s the point bx, by as well as the height,
+that would be bh, as well as the width,
+bw of this bounding box. So now if your training set contains
+not just the object cross label, which a neural network is
+trying to predict up here, but it also contains four additional numbers. Giving the bounding box then you can use
+supervised learning to make your algorithm outputs not just a class label but
+also the four parameters to tell you where is the bounding
+box of the object you detected. So in this example the ideal bx might be about 0.5 because this is about
+halfway to the right to the image. by might be about 0.7 since it's about
+maybe 70% to the way down to the image. bh might be about 0.3 because
+the height of this red square is about 30% of the overall
+height of the image. And bw might be about 0.4
+let's say because the width of the red box is about 0.4 of
+the overall width of the entire image. So let's formalize this a bit more in
+terms of how we define the target label y for this as a supervised learning task. So just as a reminder these
+are our four classes, and the neural network now outputs those
+four numbers as well as a class label, or maybe probabilities
+of the class labels. So, let's define the target
+label y as follows. Is going to be a vector where
+the first component pc is going to be, is there an object? So, if the object is, classes 1,
+2 or 3, pc will be equal to 1. And if it's the background class, so if it's none of the objects you're
+trying to detect, then pc will be 0. And pc you can think of
+that as standing for the probability that there's an object. Probability that one of the classes
+you're trying to detect is there. So something other than
+the background class. Next if there is an object,
+then you wanted to output bx, by, bh and bw, the bounding box for
+the object you detected. And finally if there is an object,
+so if pc is equal to 1, you wanted to also output c1, c2 and c3 which tells us is it the class 1,
+class 2 or class 3. So is it a pedestrian,
+a car or a motorcycle. And remember in the problem
+we're addressing we assume that your image
+has only one object. So at most, one of these
+objects appears in the picture, in this classification
+with localization problem. So let's go through a couple of examples. If this is a training set image,
+so if that is x, then y will be the first component pc will be equal to 1
+because there is an object, then bx, by, by, bh and
+bw will specify the bounding box. So your labeled training set will
+need bounding boxes in the labels. And then finally this is a car,
+so it's class 2. So c1 will be 0 because
+it's not a pedestrian, c2 will be 1 because it is car,
+c3 will be 0 since it is not a motorcycle. So among c1, c2 and c3 at most
+one of them should be equal to 1. So that's if there's
+an object in the image. What if there's no object in the image? What if we have a training
+example where x is equal to that? In this case, pc would be equal to 0, and the rest of the elements of this,
+will be don't cares, so I'm going to write question
+marks in all of them. So this is a don't care, because if
+there is no object in this image, then you don't care what bounding box
+the neural network outputs as well as which of the three objects,
+c1, c2, c3 it thinks it is. So given a set of label training examples,
+this is how you will construct x, the input image as well as y,
+the cost label both for images where there is an object and
+for images where there is no object. And the set of this will then
+define your training set. Finally, next let's
+describe the loss function you use to train the neural network. So the ground true label was y and
+the neural network outputs some yhat. What should be the loss be? Well if you're using squared error then the loss can be (y1 hat- y1) squared + (y2 hat- y2) squared + ...+( y8 hat- y8) squared. Notice that y here has eight components. So that goes from sum of the squares
+of the difference of the elements. And that's the loss if y1=1. So that's the case where
+there is an object. So y1= pc. So, pc = 1,
+that if there is an object in the image then the loss can be the sum of
+squares of all the different elements. The other case is if y1=0, so that's if this pc = 0. In that case the loss can be
+just (y1 hat-y1) squared, because in that second case, all of the
+rest of the components are don't care us. And so all you care about is
+how accurately is the neural network ourputting pc in that case. So just a recap, if y1 = 1,
+that's this case, then you can use squared error to
+penalize square deviation from the predicted, and
+the actual output of all eight components. Whereas if y1 = 0, then the second to
+the eighth components I don't care. So all you care about is how
+accurately is your neural network estimating y1, which is equal to pc. Just as a side comment for those of
+you that want to know all the details, I've used the squared error just
+to simplify the description here. In practice you could probably
+use a log like feature loss for the c1, c2, c3 to the softmax output. One of those elements usually
+you can use squared error or something like squared error for
+the bounding box coordinates and if a pc you could use something
+like the logistics regression loss. Although even if you use squared
+error it'll probably work okay. So that's how you get a neural network
+to not just classify an object but also to localize it. The idea of having a neural network
+output a bunch of real numbers to tell you where things are in a picture
+turns out to be a very powerful idea. In the next video I want to share with
+you some other places where this idea of having a neural network output a set of
+real numbers, almost as a regression task, can be very powerful to use elsewhere
+in computer vision as well. So let's go on to the next video.
