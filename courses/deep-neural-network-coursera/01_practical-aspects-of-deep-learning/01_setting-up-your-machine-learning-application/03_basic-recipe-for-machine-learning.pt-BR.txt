@@ -1,0 +1,69 @@
+No vídeo anterior, você viu como observar os erros de treino 
+e de validação pode ajudá-lo a diagnosticar se seu algoritmo tem um problema com
+o Viés ou com a Variância, ou talvez com ambos. Acontece que essa informação permite 
+que você possa de maneira muito mais sistemática, utilizando algo chamado receita básica para aprendizado de máquina, que lhe permite
+de maneira muito mais sistemática conseguir melhorar o desempenho do seu
+algoritmo. Vejamos... Quando treinamos uma rede neural, aqui está uma receita básica que vou usar. Após ter treinado um modelo inicial, minha primeira pergunta é, o seu algoritmo tem alto Viés? E então, a fim de avaliar se o Viés é alto, você deve analisar, na verdade, o conjunto de treino ou o desempenho dos dados
+de treino. Certo. E então, se ele realmente tem um Viés alto, se ele não está nem mesmo ajustando o conjunto
+de treino tão bem, algumas coisas que você poderia fazer seriam
+tentar escolher uma rede maior, como mais camadas intermediárias ou mais unidades ocultas, ou você poderia treiná-lo por mais tempo. Talvez treinos mais longos ou testar
+alguns algoritmos com otimização mais avançada, sobre a qual ainda falaremos 
+neste curso. Ou você também poderia tentar, isso é um tipo de "talvez funcionará, talvez não". Mas, nós veremos depois que existem várias
+arquiteturas diferentes de redes neurais e talvez você possa encontrar uma nova arquitetura
+de rede que seja mais adequada a esse problema. Estou colocando isso entre parênteses porque é uma 
+das coisas que você tem que tentar. Talvez você possa fazê-lo funcionar, talvez não. Considerando que usar uma rede maior quase
+sempre ajuda, e treinar por mais tempo nem
+sempre ajuda, mas, certamente, não custa nada. Então, quando treinamos um algoritmo de aprendizagem, eu tentaria essas coisas até que eu pudesse, pelo
+menos, me livrar desses problemas com o Viés, no caso, voltando depois de ter tentado isso e
+continuar tentando até conseguir um bom ajuste, pelo menos, um bom ajuste para o conjunto de
+treino. E geralmente, se você tiver uma rede grande o 
+suficiente, você deveria conseguir ajustar bem os dados de 
+treino, desde que seja um problema que é possível de ser resolvido, certo? Se a imagem estiver muito borrada, pode ser impossível de conseguir um bom ajuste. Mas, se pelo menos um humano conseguir realizar
+bem a tarefa, se você achar que o erro de Bayes não é tão alto, então, por meio do treino de uma rede 
+suficientemente grande, você deveria conseguir, assim espero, ter um bom resultado, pelo menos no
+conjunto de treino. Para pelo menos ajustar ou sobre-ajustar o conjunto
+de treino. Uma vez que você reduza o Viés para um valor
+aceitável, então, pergunte-se, você tem um problema com a Variância? E para avaliar isso, eu olharia para o desempenho
+do conjunto de validação. Você consegue generalizar, a partir de um desempenho
+bom do conjunto de treino, para ter um desempenho bom do
+conjunto de validação? E se você tiver uma Variância alta, a melhor maneira de se resolver um problema com a
+Variância alta é conseguir mais dados. Se você consegui-los, você só estará ajudando. Mas, às vezes, você 
+não consegue reunir mais dados. Ou você poderia tentar regularização, sobre o qual falaremos no próximo vídeo, para tentar reduzir o sobre-ajuste. E também, novamente, 
+às vezes você simplesmente tem que tentar. Mas, se você conseguir encontrar uma arquitetura
+de rede neural mais apropriada, às vezes, isso pode reduzir o seu problema de 
+Variância também, assim como reduzir o seu problema de Viés. Mas como
+fazer isso? É mais difícil ser totalmente sistemático
+em relação a como fazer isso. Mas, então, eu tento essas estratégias e meio que
+fico retornando à elas até que, com sorte, eu consiga encontrar algo tanto
+com baixo Viés como com baixa Variância, momento no qual o trabalho estará feito. Então, alguns pontos a serem notados, Primeiro, dependendo se você tiver Viés alto
+ou Variância alta, o conjunto de coisas que você deveria tentar
+pode ser bem diferente. Então, geralmente eu usaria o conjunto de validação
+de treino para tentar diagnosticar se há um problema com o Viés ou
+com a Variância, e, então, me basear nisso para selecionar o subconjunto
+apropriado de coisas para tentar. Então, por exemplo, se você tiver um problema com
+Viés alto, conseguir mais dados de treino não vai ajudar. Ou, pelo menos, não é a coisa mais eficiente a se fazer. Então, ser claro em relação a um problema
+com Viés ou Variância ou ambos pode te ajudar a focar na seleção das coisas
+mais úteis a tentar. Segundo, na era anterior do aprendizado de máquina, havia muita discussão sobre o chamado
+"tradeoff" (escolha) entre Viés e Variância. E a razão para isso era que, para muitas das coisas que você podia tentar, você poderia aumentar o Viés e reduzir a Variância, ou reduzir o Viés e aumentar a Variância. Mas, lá na era pré-aprendizagem profunda, não tínhamos muitas ferramentas, não tínhamos tantas ferramentas que só reduziriam o Viés, ou só Variância, sem prejudicar o outro. Mas na era moderna de aprendizagem profunda, na
+era de big data, contanto que você consiga continuar treinando uma rede
+maior, e contanto que você consiga adquirir mais dados, o que não é sempre o caso para qualquer um desses, mas, se for o caso, então conseguir uma rede maior quase sempre só diminui o seu Viés sem necessariamente prejudicar
+a sua Variância, desde que você faça a regularização de maneira
+apropriada. E conseguir mais dados quase sempre reduz sua Variância e não prejudica muito seu Viés. Então, o que realmente acontece é que, com esses dois passos, a habilidade de treinar, de escolher uma rede, ou conseguir mais dados, agora, nós temos ferramentas para reduzir o Viés e
+apenas o Viés ou reduzir a Variância e apenas a Variância, sem realmente prejudicar tanto o outro. E eu acho que esse é um dos grandes motivos para que a aprendizagem profunda tenha sido tão 
+útil para o aprendizado supervisionado, para que exista muito menos tradeoff,
+menos escolhas, onde você tenha que equilibrar com cuidado o Viés e a Variância, mas, às vezes, você simplesmente tem mais opções
+para reduzir o Viés ou reduzir a Variância, sem necessariamente 
+prejudicar o outro. E, na verdade, desde que você tenha uma rede bem
+regularizada, nós falaremos sobre regularização a partir do
+próximo vídeo, treinar uma rede maior quase nunca decepciona. E o custo principal de treinar uma rede neural que é
+muito grande é apenas tempo computacional, contanto que você esteja regularizando. Então, espero que isso te dê uma noção da estrutura
+básica de como organizar seu problema de aprendizado de máquina para
+diagnosticar o Viés e a Variância, e então tentar selecionar a operação certa para ter
+progresso no seu problema. Uma das coisas que mencionei várias vezes nesse vídeo
+é a regularização, que é uma técnica bastante útil para reduzir a 
+Variância. Existe um pouco de tradeoff de Viés e Variância quando
+você usa regularização. Pode ser que ela aumente o Viés um pouco, apesar de, frequentemente, não muito, se você tiver
+uma rede suficientemente gigante. Mas, entraremos mais em detalhas no próximo vídeo
+para que você possa entender melhor como aplicar regularização
+ à sua rede neural.
+[Tradução: Gabriella Miya | Revisão: Carlos Lage]

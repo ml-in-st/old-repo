@@ -1,0 +1,92 @@
+Olá, e bem vindo de volta. Você viu até agora que 
+alterar as redes neurais pode envolver a configuração de 
+muitos hiperparâmetros distintos. Mas, e como saber o que é uma boa 
+configuração para esses hiperparâmetros? Neste vídeo, quero compartilhar 
+com você algumas orientações, algumas dicas de como organizar sistematicamente
+o processo de ajuste dos hiperparâmetros, que, espero, tornarão mais eficiente a convergência, quando realizamos uma boa 
+configuração dos hiperparâmetros. Uma das coisas difíceis ao treinar 
+redes [neurais] profundas é o número exato de hiperparâmetros
+ com o qual você tem de lidar, desde alfa, a taxa de aprendizagem 
+ até beta, o termo de impulso ('momentum'), se tiver usando 'momentum', ou os hiperparâmetros do Algoritmo de Otimização de Adam,
+beta 1, beta 2 e épsilon. Talvez tenha que escolher 
+o número de camadas, e também o número de unidades ocultas
+ para as diferentes camadas, e talvez queira controlar a 
+redução da taxa de aprendizagem, não usando assim uma única 
+taxa de aprendizagem alfa. E então, é claro, talvez precise escolher o 
+tamanho do "mini-batch". Assim, alguns destes hiperparâmetros 
+são mais importantes do que outros. Para a maioria dos aplicativos 
+de aprendizagem, eu diria que alfa, a taxa de aprendizagem é o hiperparâmetro
+mais importante a ser ajustado. Além de alfa, eu tendeira a ajustar alguns 
+outros poucos hiperparâmetros em seguida, talvez beta, o termo 
+de impulso ('momentum'), digamos que 0,9 é um 
+bom valor inicial para ele. Também ajustaria o tamanho 
+do mini-batch para certificar que o algoritmo de aprendizagem está 
+funcionando adequadamente. Também sempre penso 
+nas unidades ocultas. Os quais circulei em laranja, são realmente os três que considero
+mais importantes após a taxa de aprendizagem alfa, e em seguida,
+terceiros na importância, após ajustar os outros, o número de camadas,
+que pode fazer uma enorme diferença, e a taxa de redução de alfa. E depois, se estiver usando o algoritmo de Adam,
+que praticamente eu nunca ajustei: beta 1, beta 2 e épsilon. Eu uso sempre 0,9, 0,999 e 10 ^ -8 (dez à menos 8),
+embora você possa tentar ajustá-los como quiser. Mas, espero que isto posto,
+ tenha lhe dado a de ideia de quais dos hiperparâmetros podem ser mais importantes que os outros: alfa, o mais importante, com certeza, seguido de, talvez, os circulados em laranja,
+[beta, unidades ocultas, mini-batch] seguidos, talvez, pelos circulados em roxo
+[número de camadas e taxa de redução de alfa]. Mas, essa não é uma regra 
+difícil e rápida, e penso que outros praticantes da 
+aprendizagem profunda podem discordar de mim ou ter 
+outros conceitos sobre ela. Agora, se estiver tentando ajustar 
+um conjunto de hiperparâmetros, como selecionar um conjunto de valores
+a serem explorados? Nas gerações iniciais dos algoritmos de
+aprendizagem de máquina, se tivéssemos dois hiperparâmetros, os quais estou chamando de 
+hiperparâmetro um e hiperparâmetro dois, era prática comum provar os 
+pontos em uma grade como esta e sistematicamente 
+explorar tais valores. Aqui estou colocando 
+uma grade cinco por cinco. Na prática, poderíamos ter mais ou menos do que
+ uma grade cinco por cinco, mas experimente este exemplo, todos os 25 pontos e então, 
+pegue aqueles hiperparâmetros que funcionarem melhor. Esta prática funciona bem quando o número de 
+hiperparâmetros é relativamente pequeno. Na aprendizagem profunda, o que tendemos a fazer, e o que eu recomendo que você faça, ao invés disso, é escolher os pontos aleatoriamente. Então, vá em frente e escolha, talvez, 
+o mesmo número de pontos, 25 pontos, e então experimente os hiperparâmetros
+deste conjunto de pontos escolhidos aleatoriamente. E a razão para fazer assim, 
+é que é muito difícil saber de antemão quais hiperparâmetros serão os 
+mais importantes para o seu problema. E como visto no slide anterior, alguns hiperparâmetros são, de fato,
+muito mais importantes do que outros. Então, como exemplo, digamos que hiperparâmetro 1 seja o alfa, a taxa de aprendizagem. E num exemplo extremo, digamos que o hiperparâmetro 2 era o valor épsilon que temos no denominador
+do algoritmo de Adam. A sua escolha de alfa importa muito
+e sua escolha de épsilon quase não faz falta. Se você testar a partir da grade,
+então você realmente terá usado cinco valores de alfa e poderá ter encontrado, com 
+todos os valores diferentes de épsilon, basicamente 
+a mesma resposta. Então, após treinar 25 
+modelos, usou apenas cinco valores para a taxa 
+de aprendizagem alfa, a qual é, de fato, realmente importante. Ao passo que, em contraste,
+pegando por amostragem aleatória, então, você terá tentado 
+25 valores distintos de alfa e, portanto, você estará mais propenso a encontrar um valor
+que, de fato, funcione bem. Dei este exemplo, usando apenas dois hiperparâmetros. Na prática, você pesquisará usando
+muito mais do que estes hiperparâmetros, então, se tiver, digamos, três hiperparâmetros, acho que
+ao invés de pesquisar num quadrado, você deverá pesquisar num cubo,
+onde esta terceira dimensão é o hiperparâmetro 3 e então, por amostragem, neste cubo tridimensional, você terá que testar muitos valores mais de cada um
+dos três hiperparâmetros. E, na prática, você estará pesquisando sobre um número ainda maior de 
+hiperparâmetros do que apenas três e, às vezes, será difícil saber de antemão
+quais deles serão realmente importantes hiperparâmetros para seu
+aplicativo, assim, por amostragem aleatória ao invés de usar a grade, parece que você terá
+uma abordagem mais rica na exploração do conjunto de valores possíveis para os hiperparâmetros mais importantes,
+quaisquer que eles venham a ser. Quando pegamos por amostragem
+os hiperparâmetros, outra prática comum é usar
+um esquema "do mais abrangente para o mais restrito" (zoom in). Então, digamos que neste exemplo bidimensional
+onde criamos estes pontos, e talvez, possamos concluir que ele funciona melhor e talvez, alguns outros pontos ao redor
+ele tenda a funcionar realmente melhor, então, a abordagem do mais abrangente para o mais restrito (zoom in) em uma região menor de hiperparâmetros
+e então, testar mais neste espaço, tornando-o mais denso. Ou talvez, novamente de forma aleatória, mas agora, focando mais nos recursos de busca dentro deste quadrado azul, se estiver suspeitando que 
+ele terá os melhores valores para os hiperparâmetros, talvez nesta região. Assim, após realizar um teste mais abrangente,
+na região do quadrado maior, e isso ter-lhe apontado para 
+focar mais neste quadrado menor. Você pode, então, testar mais 
+densamente neste quadrado menor. Esse tipo de pesquisa da abrangente para a restrita
+é também usado frequentemente. E ao experimentar estes valores distintos 
+nos seus hiperparâmetros, você pode então pegar qualquer valor que permita que você obtenha o melhor 
+do objetivo do seu conjunto de treinamento ("training set") ou obtenha o melhor com seu conjunto 
+de desenvolvimento ("dev set") ou o quer que você estiver tentando otimizar
+no seu processo de pesquisa de hiperparâmetros. Espero que isso lhe dê uma forma mais sistemática de organizar o seu processo de
+pesquisa de hiperparâmetro. Então, os dois pontos-chave 
+que devem ser lembrados são: usar amostragem aleatória 
+e pesquisar de modo adequado, e opcionalmente, considere implementar
+um processo de mais abrangente para mais restrito (grosso para fino). Mas, há muita coisa mais sobre pesquisas de 
+hiperparâmetros do que o que vimos aqui. Falaremos mais no próximo vídeo
+sobre como escolher a escala adequada
+para testar seus hiperparâmetros.
+[Tradução: Carlos Lage | Revisão: Renato Barata Gomes]

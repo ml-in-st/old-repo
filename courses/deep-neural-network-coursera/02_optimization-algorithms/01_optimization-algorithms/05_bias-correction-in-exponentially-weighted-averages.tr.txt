@@ -1,0 +1,38 @@
+Üstel ağırlıklı ortalamaları nasıl 
+uygulayacağınızı öğrendiniz. Bu ortalamaları daha doğru bir 
+şekilde hesaplayabilmeniz için yanlı düzeltme(biased correction) adı 
+verilen bir teknik ayrıntı vardır. Hadi bunların nasıl çalıştığına bakalım. Bir önceki videoda, beta=0.9 
+değeri için bu şekili görmüştük. Bu beta=0.98 değeri 
+için oluşturulan şekildir. Ancak, buradaki formülü burada yazıyorsanız, yeşil eğriyi beta = 0.98 olarak almazsınız. Aslında mor eğriyi elde ettiniz. Ve mor eğrinin gerçekten çok 
+düşük başladığını fark ettiniz. O zaman bunun nasıl etkilediğini görelim. Hareketli bir ortalama uygularken, 
+onu v0 = 0 ve ardından v1 = 0.98v0 + 0.02teta1 
+ile başlatabilirsiniz. Ancak v0, 0'a eşittir,
+ bu yüzden terim gider. Yani V1 sadece 0.02*teta1'dir. Bu yüzden ilk günün sıcaklığı 40 Fahrenheit ise v1, 0.02 çarpı 40, yani 8'dir. Yani burada çok daha düşük bir 
+değer elde edersiniz. Yani, ilk günün sıcaklığının 
+çok iyi bir tahmini değil. v2, 0.98*v1 + 0.02*teta2 
+olacaktır. Ve v1'i eklersek(plug in),
+ burada düzenli olarak çarparsak; o zaman v2'nin aslında 0.98*0.02 
+teta1 + 0.02*teta2'ye eşit olduğunu görürsünüz. Ve bu da 0,0196*teta1 + 0.02*teta2 olur. Dolayısıyla, teta1 ve teta2'nin pozitif 
+sayılar olduğunu varsayarak, bu v2'yi hesapladığınızda, teta1 veya 
+teta2'den çok daha az olacaktır. Dolayısıyla v2 yılın ilk iki günü için 
+çok iyi bir tahmin değil. Dolayısıyla, bu tahminin daha iyi olmasını 
+sağlayan bir yöntem olduğu ortaya çıkıyor, bu da özellikle tahmininizin başlangıç aşamasında bu işlemi daha doğru bir hale getiriyor. Bu, Vt'yi almak yerine, 1-Beta
+ ile bölünen Vt'yi, buradaki mevcut verilerin 
+olduğu t'nin gücüne alır. Öyleyse somut bir örneği ele alalım. T = 2 olduğunda, t'nin gücü 1- beta yani 1-0,98 karedir ve bunun 0,0396 olduğu ortaya çıkar. Ve böylece 2. günde sıcaklık tahmininiz v2, 0.0396'ya bölünür ve bu, 0.0196*teta1 + 0.02*teta2 olacaktır. Bu iki şeyin "0,03 ve 6" paydaya 
+eklendiğini fark ettiniz. Ve böylece bu, teta1 ve teta2'nin 
+ağırlıklı ortalaması haline gelir ve bu da bu yanlılığı ortadan kaldırır. Yani, t genişledikçe, t'nin beta'ya 
+yaklaşacağını fark ediyorsunuz, bu yüzden t yeterince büyük olduğunda, yanlılık düzeltmesi(bias correction) 
+neredeyse hiçbir fark yaratmıyor. Bu yüzden t büyük olduğunda, 
+mor çizgi ve yeşil çizgi hemen hemen çakışmaktadır. Ancak, yanlı düzeltmesi, bu sıcaklığın
+ daha iyi bir tahminini elde etmenize yardımcı olabileceği zaman
+ tahminlerinizi hala hava ısınırken öğrenmenin bu ilk aşamasındadır. Ve mor çizgiden yeşil çizgiye gitmenize 
+yardımcı olan bu yanlı düzeltmedir. Bu nedenle, makine öğrenmesinde, 
+üstel ağırlıklı ortalamaların çoğu uygulaması için, insanlar genellikle yanlı düzeltmelerini
+(bias corrections) uygulamakla uğraşmazlar. Çünkü çoğu insan başlangıç 
+dönemini beklemeyi ve ve biraz daha yanlı bir tahminde bulunarak
+ oradan gitmeyi tercih eder. Fakat bu ilk aşamada yanlılıktan 
+endişe ediyorsanız, üstel ağırlıklı hareketli 
+ortalamanız hala hazırlanıyor. Daha sonra yanlı düzeltmesi, 
+daha iyi bir tahminde bulunmanıza yardımcı olabilir. Artık üstel ağırlıklı hareketli 
+ağırlıkların nasıl uygulanacağını biliyorsunuz. Hadi biraz daha iyi optimizasyon 
+algoritmaları oluşturmak için bunu kullanalım.

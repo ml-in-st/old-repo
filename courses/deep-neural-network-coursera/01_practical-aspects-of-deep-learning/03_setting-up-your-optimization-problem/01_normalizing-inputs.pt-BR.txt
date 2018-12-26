@@ -1,0 +1,66 @@
+Quando treinamos uma rede neural, uma das técnicas que podem acelerar o seu treino é normalizar suas entradas. Vejamos o que isso significa. Vamos ver se um treino se ajusta 
+com duas características de entrada. Assim, a característica de entrada x 
+ tem duas dimensões, e aqui está um gráfico de dispersão 
+do seu conjunto de treino. Normalizar suas entradas 
+corresponde a duas etapas. A primeira é subtrair ou zerar a média. Então você define µ = 1/m 
+vezes a somatória (variando i de 1 até m) de X⁽ⁱ⁾. Isso é um vetor, e então 'x' é definido
+como x - µ para cada exemplo de treino, então isso significa que você apenas modifica
+a formação definida até que ela atinja a média 0. E o segundo passo é 
+normalizar a variância. Note que o recurso x₁
+ tem variância muito maior que o x₂ aqui. Então definiremos σ² = 1/m vezes a somatória (variando i de 1 a m) de x⁽ⁱ⁾**2. Acho que este é um
+'produto de Hadamard'. E agora sigma ao quadrado é um vetor com a variância de cada uma das características, e note que já subtraímos a média, assim, x⁽ⁱ⁾ ao quadrado, 
+usando produto de Hadamard, é apenas a variância. E você pega cada exemplo e o divide 
+por este vetor sigma ao quadrado. Então graficamente, você termina com isto. Onde agora, 
+as variâncias de x₁ e de x₂ são ambas iguais a um. E uma dica, se usar isto
+para escalar seus dados de treino, use os mesmos valores de µ e σ² para normalizar
+seu conjunto de teste, certo? Em particular, você 
+não deve normalizar o conjunto de treino e o conjunto de teste de formas diferentes: quaisquer que sejam estes ou esses valores,
+ use-os nestas duas fórmulas, para que você escale seu 
+conjunto de teste exatamente da mesma forma, ao invés de estimar 'µ' e 'σ²' separadamente 
+nos seus conjuntos de teste e de treino. Pois você quer seus dados,
+ambos os exemplos de teste e de treino, tenham a mesma transformação
+definida pela mesma média, µ, e pela mesma variância, σ², 
+calculados em seus dados de treino. E por que fazemos isto? Por que desejamos normalizar as
+características de entrada? Lembre-se que uma função de custo é definida
+como está escrito no canto superior direito. Então se você usar características (x) de entrada 
+não normalizadas, será mais provável que sua função de custo parecerá com isto, 
+uma tigela bem esguichada, uma função de custo bem alongada,
+onde o mínimo que você está tentando encontrar talvez, esteja lá. Mas se suas características estiverem em escalas bem diferentes,
+digamos que a característica x₁ varia de 1 a 1000, e a característica x₂,
+varia de 0 a 1, a relação, ou o intervalo de valores para os parâmetros w₁ e w₂ 
+vão acabar assumindo valores muito diferentes. E talvez estes eixos devessem ser w₁ e w₂, 
+mas nesta explanação, vou traçar w e b, dessa forma sua função de custo 
+pode se tornar uma tigela alongada assim. Então se você traçar os contornos desta função, você pode ter uma função bem alongada como essa. Enquanto que se você normalizar os recursos, sua função de custo vai em média, 
+parecer mais simétrica. E se você estiver executando o gradiente descendente
+sobre a função de custo como a da esquerda, então talvez você precise usar
+uma taxa de aprendizagem bem pequena, porque se você está aqui, esse gradiente descendente
+pode precisar de muitos passos para oscilar para frente e para trás, antes que ele finalmente 
+encontre seu caminho para o mínimo. Enquanto que se você tiver um contorno mais esférico, 
+onde quer que você comece, o gradiente descendente poderá ir diretamente 
+para o mínimo. Você pode dar passos muito maiores
+com o gradiente descendente, do que precisar ficar oscilando, 
+como na figura à esquerda. Claro que na prática, 
+w é um vetor com alta dimensão, então tentar traçá-lo em 2D não é suficiente 
+ para adequadamente compreendê-lo. Mas a intuição aproximada de que a sua 
+função de custo será mais redonda e mais fácil de otimizar quando seus recursos estão 
+todos em escalas similares. Não de 1 a 1000 
+e de 0 a 1, mas, a maioria, a partir de -1 até 1
+ ou com variâncias semelhantes entre eles. Isso só faz com que a sua função de custo J
+se torne mais fácil e rápida de se otimizar. Na prática, se uma característica, 
+digamos que x₁, varie de 0 até 1, e x₂ varie de -1 até 1,
+e x₃ varie de 1 até 2, estas são escalas bastante semelhantes, 
+então isso vai funcionar muito bem. É quando eles estão em 
+escalas dramaticamente diferentes como umas de 1 a 1000, e outras de 0 até 1, 
+isso realmente fere seu algoritmo de otimização. Mas apenas atribuindo a todas elas a 
+média = 0, e digamos, variância = 1, como fizemos no último slide, isso só garante que todos
+os seus recursos estejam em uma escala semelhante e frequentemente farão com que
+seu algoritmo de aprendizagem seja executado rápido. Então se suas características de entrada 
+vierem de escalas muito diferentes, talvez algumas delas sejam de 0 a 1, outras de 1 a 1000, 
+será importante normalizá-las. Se elas vierem em escalas similares,
+esta etapa é menos importante. Embora realizar este tipo de 
+normalização nunca realmente cause algum dano, logo,
+eu sempre o farei, mesmo sem a certeza de que ele ajudará a acelerar
+ o treinamento do algoritmo. Então, isso é tudo sobre normalização
+ das características (x) de entrada. Em seguida, falaremos sobre 
+formas de acelerar o treino da sua rede neural.
+[Tradução: Diogo dos Santos Farias | Revisão: Carlos Lage]

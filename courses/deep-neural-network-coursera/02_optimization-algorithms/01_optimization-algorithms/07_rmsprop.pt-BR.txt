@@ -1,0 +1,50 @@
+Você viu como usar o impulso (momentum)
+pode acelerar o gradiente descendente. Há um outro algoritmo chamado "RMSprop", que significa propagação da raiz quadrada média,
+que também pode acelerar o gradiente descendente. Vejamos como funciona. Lembre-se do nosso exemplo anterior,
+que se você implementar o gradiente descendente, você pode acabar com oscilações enormes
+na direção vertical, mesmo enquanto ele estiver tentando progredir na direção horizontal. Para esclarecer este exemplo, digamos que o eixo vertical é o parâmetro b, e o eixo horizontal é o parâmetro w. Poderia ser w1 e w2, onde alguns
+dos parâmetros centrais foram nomeados 'b' e 'w' por uma questão da intuição. Assim, você quer desacelerar o aprendizado na direção b, ou seja, na direção vertical. E acelerar o aprendizado, ou ao menos não desacelerá-lo na direção horizontal. E isso é o que o algoritmo RMSprop faz para realizar isto. Na iteração t, ele vai calcular,
+como de costume, as derivadas dW e db no "mini-batch" atual. Eu ia manter esta média móvel exponencialmente ponderada. Ao invés de VdW, eu vou usar a notação nova SdW. Então SdW é igual a beta vezes seu valor anterior + (1- beta) vezes dW ao quadrado. Às vezes, uso dW**2 para denotar a exponenciação,
+ mas agora, escreverei apenas dW². Então, para esclarecer, esta operação ao quadrado
+é uma operação ao quadrado do produto de Hadamard. E o que ela está fazendo é realmente mantendo
+uma média móvel exponencialmente ponderada dos quadrados das derivadas. E similarmente, também temos Sdb igual a beta (Sdb) +
+(1-beta) db². E novamente, a quadratura é uma 
+operação do produto de Hadamard. Em seguida, o RMSprop atualiza os parâmetros da seguinte forma. W se atualiza para W menos a taxa de aprendizagem, e enquanto anteriormente, nós tínhamos alfa vezes dW, agora fica dW dividido pela raíz quadrada de SdW. E b se atualiza para b menos a taxa de aprendizagem vezes db, ao invés de apenas o gradiente, e fica também divido por Sdb. Então, vamos ver como isto funciona. Lembre-se de que na direção horizontal ou neste exemplo, na direção W,
+nós queremos que o aprendizado vá rápido. Enquanto que na direção vertical,
+ou neste exemplo na direção b, nós queremos desacelerar todas as oscilações na direção vertical. Então, com estes termos Sdw e Sdb, o que esperamos é que SdW fique relativamente pequeno, para que aqui, dividamos por um número relativamente pequeno. Enquanto Sdb ficará relativamente grande,
+para que aqui, possamos dividir por um número relativamente grande, para desacelerar
+as atualizações na dimensão vertical. E de fato, se você der uma olhada nas derivadas, elas são muito maiores na direção vertical do que na horizontal. Então, a inclinação é bem grande na direção b, certo? E com derivadas como esta,
+isso acaba se tornando um db bem grande e um dw bem pequeno. Porque a função está inclinada
+muito mais acentuadamente na direção vertical do que como na direção b,
+do que na direção w, do que na direção horizontal. E então, db ao quadrado ficará comparativamente grande. Assim, Sdb ficará relativamente grande,
+e em comparação com isso, dW ficará menor, ou dW ao quadrado ficará menor, e então SdW ficará menor. Logo, o efeito líquido disto é que
+as suas atualizações na direção vertical ficam divididas por um número muito maior,
+e isso ajuda a reduzir as oscilações. Enquanto as atualizações na direção horizontal
+ficam divididas por um número menor. Assim, o impacto líquido de se usar RMSprop
+é que as suas atualizações terminarão parecendo mais com isto. Que suas atualizações na direção vertical oscilarão para cima e para baixo,
+mas na direção horizontal, seguirão contínuas. E um efeito disto é que, portanto,
+você também pode usar uma taxa de aprendizagem alfa maior, e obter um aprendizado mais rápido
+sem divergir na direção vertical. Agora, para esclarecer, eu chamei as direções vertical e horizontal de b e w, apenas para ilustrar isso. Na prática, você terá um espaço dimensional de parâmetros muito grande, então talvez, as dimensões verticais,
+onde você estará tentando reduzir as oscilações é um conjunto de soma de parâmetros, w1, w2, w17. E as dimensões horizontais
+poderão ser w3, w4 e assim por diante, certo? E assim, a separação 
+em 'W' e 'b' é apenas um exemplo. Na prática, dW é um vetor de parâmetro de alta dimensão. Db também é um vetor de parâmetro de alta dimensão, mas a ideia é que em dimensões, onde você tem essas oscilações, você acaba calculando uma soma maior. Uma média ponderada para estes quadrados e derivadas, e você acaba reduzindo as direções,
+onde há essas oscilações. Assim, esse é o RMSprop, que significa propagação da raiz quadrada média, porque aqui, você estará elevando as derivadas ao quadrado,
+e então, você tirará a raiz quadrada aqui no final. Então, finalmente, só mais alguns detalhes sobre este algoritmo,
+antes de prosseguirmos. No próximo vídeo, na verdade,
+combinaremos o RMSprop com o impulso (momentum). Assim, ao invés de usar o hiperparâmetro beta,
+o qual nós tínhamos usado para impulso, vou chamar esse hiperparâmetro de beta 2, só para não confundir. O mesmo hiperparâmetro para ambos o impulso e para o RMSprop. E também para assegurar
+que seu algoritmo não possa ser dividido por zero. E se a raiz quadrada de SdW for bem próxima de zero, certo? Então, seria um desastre. E para assegurar estabilidade numérica,
+quando você implementar isto, na prática, você adiciona um épsilon bem pequeno ao denominador. Não importa muito qual épsilon é usado. 10 elevado a -8 seria um padrão razoável, 
+mas isto apenas assegura uma leve estabilidade numérica,
+ para arredondamento numérico ou qualquer outro motivo, para que você não acabe dividindo por um número muito pequeno. Então, esse é o RMSprop,
+e parecido com o impulso (momentum), tem os esfeitos de reduzir as oscilações no gradiente descendente,
+no gradiente descendente do mini-batch. E permitindo com que você talvez,
+use uma taxa de aprendizagem alfa maior. E certamente acelerando a velocidade
+de aprendizado do seu algoritmo. Então, agora você sabe como implementar RMSprop,
+e esta será outra forma de você acelerar o seu algoritmo de aprendizado. Uma curiosidade sobre RMSprop, na verdade, ele não foi proposto em um artigo científico, mas em um curso da Coursera,
+que o Jeff Hinton ensinou na Coursera anos atrás. Eu acho que a Coursera não foi criada
+para ser uma plataforma para disseminação de pesquisas acadêmicas inovadoras,
+porém isso funcionou muito bem nesse caso. E foi realmente através do curso na Coursera,
+que o RMSprop começou a ser amplamente conhecido e realmente decolou. Nós falamos sobre o impulso (momentum). Falamos sobre o RMSprop. Acontece que se você colocá-los juntos,
+você pode conseguir um algoritmo de otimização ainda melhor. Falaremos sobre isso no próximo vídeo.
+[Tradução: Diogo dos Santos Farias | Revisão: Carlos Lage]

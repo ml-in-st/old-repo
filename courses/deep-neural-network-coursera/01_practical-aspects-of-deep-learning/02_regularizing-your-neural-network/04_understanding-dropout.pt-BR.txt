@@ -1,0 +1,49 @@
+O "abandono" ("dropout") faz essa coisa aparentemente
+louca de nocautear unidades ao acaso na sua rede. Por que isso funciona tão bem como um regulador? Vamos ter uma ideia de como isso funciona. No vídeo anterior, nós entendemos que o "abandono" 
+nocauteia unidades ao acaso na sua rede. Então é como se em cada iteração,
+você trabalhasse com uma rede neural menor, e trabalhando com uma rede neural menor,
+a impressão é de que deveria se ter um efeito regularizador. Vamos dar uma olhada nisso melhor. Vamos ver isso da perspectiva de 
+uma unidade individual. Digamos que esta. Agora, para que esta unidade faça 
+seu trabalho, quanto a entradas, ela necessita gerar uma saída 
+com algum significado. Enquanto que com "abandono", as entradas podem ser eliminadas ao acaso. Às vezes, essas duas unidades serão eliminadas, outras, uma unidade diferente será eliminada. Então, o que isso significa é que esta unidade, que estou circulando em roxo, pode depender de qualquer recurso, 
+porque qualquer um poderia desaparecer ao acaso, ou qualquer uma
+de suas próprias entradas poderia desaparecer ao acaso. Alguns em particular,
+relutariam em pôr todas suas apostas, digamos que apenas nesta entrada, certo? Os pesos, relutamos em pôr peso demais em qualquer entrada, 
+visto que ela poderia desaparecer. Assim, esta unidade ficará mais motivada
+para se espalhar dessa forma e pôr um pouco mais de peso em cada uma das 
+quatro entradas desta unidade. E espalhando todos os pesos, isso tenderá a um efeito de diminuição
+da norma ao quadrado dos pesos. E então, semelhante ao que vimos na regularização de L2, o efeito de implementar "abandono" é diminuir os pesos e fazer uma regularização
+similar à da L2, o que ajuda a prevenir sobreajuste. Mas acontece que o "abandono" pode se apresentar formalmente como 
+uma forma adaptativa de regularização. Mas as penalidades de L2 
+em pesos diversos são diferentes, dependendo do tamanho das ativações 
+sendo multiplicadas por esse peso. Mas para resumir, 
+é possível demonstrar que o "abandono" tem um efeito similar à regularização L2. Só que para regularização L2 
+aplicada a pesos diferentes pode ser um pouco diferente,
+e até mais adaptativa à escala de entradas diversas. Mais um detalhe para quando 
+você for implementar "abandono". Aqui temos uma rede, onde 
+há três características de entrada. Isto é, sete unidades escondidas aqui, sete, três, duas, um. Então, um dos parâmetros que nós tivemos de escolher foi o "keep-prob", o qual tem a chance
+de manter uma unidade em cada camada. Então, também é razoável diferir "keep-prob" por camada. Logo, para a primeira camada, sua matriz W'¹' será de 3 por 7. Sua segunda matriz de peso será de 7 por 7. W'³' será de 7 por 3 e assim por diante. E assim, W'²' é na verdade, a maior matriz de peso, porque eles são realmente o maior conjunto de parâmetros que poderiam estar em W'²', que é sete por sete. Então para prevenir, para reduzir o sobreajuste dessa matriz, talvez para esta camada, acho que esta é a camada dois, você pode possuir um "keep-prob" que é relativamente baixo, digamos que 0,5, enquanto que para camadas diferentes,
+onde você pode se preocupar menos em relação a sobreajuste, você poderia ter um "keep-prob" mais alto, talvez apenas 0,7. E se uma camada for pequena,
+não se preocupe com sobreajuste, você pode utilizar um "keep-prob" de 1,0. Para ficar mais claro, eu estou desenhando estes números na caixa roxa. Poderiam ser "keep-probs" diversos para camadas diferentes. Note que o "keep-prob" = 1 
+indica que você está mantendo cada unidade e portanto, você não utilizará o "abandono" para essa camada. Mas para camadas, com as quais
+você se preocupa em relação a sobreajuste, as camadas com muitos parâmetros, você pode definir o "keep-prob" de forma que ele fique menor,
+ para aplicar uma forma mais poderosa de "abandono". Isso de certa forma, inicia o parâmetro de regularização Lambda da regularização L2,
+onde você tenta regularizar algumas camadas, mais que outras. E tecnicamente,
+você também pode aplicar o "abandono" à camada de entrada, onde você tem alguma chance de apenas
+deixar um ou mais recursos (características) de entrada. Embora na prática, não faça isso constantemente. Então, um "keep-prob" = 1 é muito comum para essa entrada. Você também pode usar um valor alto, talvez 0,9, mas é menos provável que
+você queira eliminar metade dos recursos de entrada. Assim, geralmente "keep-prob", se você aplicar a lei, será um número próximo de um, se você ao menos,
+aplicar "abandono" nessa entrada. Apenas para resumir: você está mais preocupado
+com algumas camadas sofrendo mais sobreajuste que outras, você pode definir um "keep-prob"
+menor para algumas camadas, em relação a outras. A desvantagem disso é que isso lhe fornece ainda mais hiperparâmetros para pesquisar usando validação cruzada. Uma outra alternativa pode ser
+ter algumas camadas nas quais você aplica "abandono" e algumas outras, nas quais você não o aplica, e então ter apenas um hiperparâmetro, o qual é um "keep-prob" para as camadas
+nas quais você realmente aplica "abandono". E antes de concluir, só mais algumas dicas. Muitas das implementações de "abandono" bem sucedidas foram para visão computacional. Então em visão computacional, o tamanho da entrada é tão grande, inserindo todos esses pixels, que você nunca tem dados suficientes. Logo, "abandono" é muito usado por visão computacional. E há muitos pesquisadores
+de visão computacional que o utilizam bastante, quase como que um padrão. Mas o que se deve recordar é que
+"abandono" é uma técnica de regularização, que ajuda a prevenir sobreajuste. E então, a menos que meu algoritmo esteja sobreajustado, eu não me incomodaria em usar "abandono". Assim, ele é usado um pouco menos que outras áreas de aplicação. É só que na visão computacional, você geralmente não tem dados suficientes, então você quase sempre tem sobreajuste, e é por isso que há alguns pesquisadores de visão computacional
+que preferem utilizar "abandono". Mas essa atitude não deve ser aplicada a todas as disciplinas, penso eu. Uma grande desvantagem do "abandono"
+é que a função de custo J não fica bem definida. Em toda iteração, você anula um monte de nós ao acaso. Logo, se você estiver conferindo o gradiente descendente, é mais difícil fazer uma dupla verificação sobre se você tem uma função de custo J
+que está indo ladeira abaixo em cada iteração. Porque a função de custo J que você está otimizando é na verdade, menos bem definida, ou certamente é complicada de se calcular. Assim, você perder essa ferramenta de depuração,
+para em seu lugar, ter uma com um gráfico, um como este. Então, o que eu geralmente faço é desligar o "abandono", defino "keep-prob" = 1, e executo meu código, e certifico-me de que está
+monotonicamente diminuindo J, e então, ligo o "abandono" e torço para que eu não tenha introduzido
+erros no meu código durante o "abandono". Porque você pode precisar de outras formas, eu acho, mas não precisa traçar essas figuras, para se certificar que seu código está funcionando,
+que o gradiente descendente está funcionando, mesmo com o "abandono". Com isso, há ainda algumas outras técnicas de regularização que valem a pena você saber. Falaremos sobre algumas outras técnicas no próximo vídeo.
+[Tradução: Diogo dos Santos Farias | Revisão: Carlos Lage]

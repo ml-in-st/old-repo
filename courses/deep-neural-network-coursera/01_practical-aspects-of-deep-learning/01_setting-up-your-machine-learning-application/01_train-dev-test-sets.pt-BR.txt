@@ -1,0 +1,167 @@
+Bem-vindo ao curso sobre os 
+aspectos práticos de aprendizagem profunda. Provavelmente você já aprendeu 
+como implementar uma rede neural. Nesta semana, você irá aprender sobre 
+os aspectos práticos de como fazer sua rede neural funcionar bem. Desde aspectos como otimização de 
+hiperparâmetros, como configurar seus dados, a como ter certeza de que seu algoritmo 
+de otimização execute rapidamente, de forma que seu algoritmo de 
+aprendizagem, aprenda em um tempo razoável. Nesta primeira semana, iniciaremos falando como 
+configurar um problema de aprendizagem de máquina. Então, falaremos sobre regularização. E vamos falar sobre alguns truques, para nos certificarmos que a implementação 
+de sua rede neural está correta. Com isso, vamos começar. Fazer boas escolhas em como configurar seus 
+conjuntos de treino, de desenvolvimento e de teste, pode fazer uma grande 
+diferença em ajudá-lo a encontrar rapidamente uma rede 
+neural de alta performance. Ao treinar uma rede neural, você 
+tem que tomar muitas decisões do tipo: quantas camadas terá a sua rede neural? Quantas unidades ocultas terão cada camada? Qual é a taxa de aprendizagem? Qual função de ativação você quer 
+usar para as diferentes camadas? Quando você está 
+começando uma nova aplicação, é quase impossível adivinhar 
+corretamente, os valores disso tudo e das escolhas dos 
+hiperparâmetros, na sua primeira tentativa. Então, na prática, Aprendizagem de Máquina 
+Aplicada é um processo altamente empírico, onde você normalmente 
+começa com uma ideia do tipo: você quer construir uma rede 
+neural com um certo número de camadas, certo número de unidades ocultas, com 
+certo conjunto de dados, e assim por diante. E então, você simplesmente tem que programá-la 
+e testá-la, executando o seu código. Você executa, testa e obtém 
+um resultado que lhe diz quão bem funciona esta rede 
+ou suas configurações específicas. E com base nos resultados, você pode refinar suas ideias, 
+mudar suas escolhas e continuar interagindo com o objetivo de 
+encontrar uma rede neural cada vez melhor. Atualmente, aprendizagem profunda obteve 
+grande sucesso em diversas áreas. Desde o processamento natural da linguagem - PNL, 
+ até a visão computacional, e em reconhecimento de voz, até uma gama 
+de aplicações em dados estruturados. Dados estruturados incluem tudo, desde 
+anúncios até pesquisa na web, que não são apenas ferramentas de pesquisa na Internet, 
+mas também, por exemplo, portais de compras. Na verdade, todos os portais querem entregar bons resultados de pesquisa quando 
+você insere termos em um campo de pesquisa. Também na segurança computacional, 
+ em logística, tais como descobrir aonde enviar motoristas para coletar 
+e entregar coisas, e muito mais. Então, o que eu vejo é que, às vezes, 
+um pesquisador com muita experiência em PNL tentaria fazer algo 
+em visão computacional. Ou um pesquisador com muita experiência 
+em reconhecimento de voz poderia entrar na área de publicidade
+ e tentar fazer algo nela. Ou alguém da área de segurança poderia 
+entrar e fazer algo no campo de logística. E o que eu tenho visto é que 
+intuições de uma área de domínio, ou de uma área de aplicação, muitas 
+vezes não se transferem para outras. E as melhores escolhas dependerão 
+da quantidade de dados e da quantidade de características de entrada que você tem 
+ combinados com as configurações do seu computador, bem como se você está treinando em GPUs ou CPUs. E desta forma, exatamente qual a configuração 
+das GPUs e CPUs, dentre muitas outras coisas. Então, penso que para muitas 
+aplicações é quase impossível. Mesmo pessoas experientes em aprendizagem 
+profunda, acham praticamente impossível adivinhar a melhor escolha dos 
+hiperparâmetros, já na primeira vez. E então, atualmente, aprendizagem 
+profunda aplicada é um processo muito iterativo, onde você tem que 
+percorrer este ciclo muitas vezes para que se encontre uma boa 
+opção de rede para sua aplicação. Então, uma das coisas que determina quão rapidamente você pode progredir é quão eficientemente você 
+consegue percorrer este ciclo. E configurar bem os seus conjuntos de dados, 
+em termos de treino, de desenvolvimento e de teste, o faz muito 
+mais eficiente nisto. Então, se estes são os dados de treino, 
+vamos desenhá-los como esta caixa grande. Tradicionalmente, você pega 
+todos os dados que você tem e e tira uma parte deles para se 
+tornar o seu conjunto de treino. Uma parte disso será o 
+conjunto de validação cruzada, algumas vezes chamado de 
+conjunto de desenvolvimento. E para ser breve, vou 
+chamá-lo de "dev set", mas todos estes termos 
+significam basicamente a mesma coisa. Então, você pega uma última parte 
+para ser o seu conjunto de teste. Então, o fluxo do trabalho é que você se mantenha 
+ treinando algoritmos com seus conjuntos de treino. E utilize seu "dev set" ou o seu conjunto 
+de validação cruzada para verificar qual, dos diversos modelos, tem a 
+melhor performance neste seu "dev set". E então, após ter feito 
+isso por tempo suficiente, quando você chegar a um 
+modelo final, que você queira avaliar, você pega o melhor modelo 
+encontrado e o avalia no seu conjunto de teste, a fim de obter uma estimativa imparcial 
+de quão bem o seu algoritmo está indo. Na era anterior da aprendizagem de 
+máquina, era uma prática comum pegar todos os seus dados e 
+dividi-los em uma relação 70/30%, as pessoas falavam normalmente sobre 
+a divisão de teste e de treino 70/30, se você não tivesse um "dev set" 
+específico, ou talvez uma divisão 60/20/20%, sendo 60% treino,
+20% desenvolvimento e 20% teste. E há alguns anos, isto era 
+considerado como melhor prática em aprendizagem de máquina. Se você tem, talvez, 
+100 exemplos no total, talvez 1.000 exemplos no total, 
+talvez até 10.000 exemplos, estas proporções eram 
+regras gerais perfeitamente razoáveis. Mas na era moderna do 
+"Big Data", onde, por exemplo, você pode ter um milhão de exemplos no total, 
+então a tendência é que o conjunto de de desenvolvimento e de teste tenham se 
+tornado uma porcentagem muito menor do total. Porque lembre-se, o objetivo do "dev set" 
+ou do conjunto de desenvolvimento é que você teste diferentes algoritmos nele, 
+e veja quais algoritmos funcionam melhor. Então, o "dev set" precisa só 
+ser grande suficiente para que você avalie, digamos, duas 
+opções de algoritmos diferentes ou dez opções de algoritmos, e rapidamente 
+decida qual deles está indo melhor. E você pode não precisar 
+dos 20% totais para isso. Então, por exemplo, se você tiver um milhão de 
+exemplos de treinamento, você pode decidir que ter apenas 10.000 exemplos no seu 
+"dev set" é mais do que suficiente para avaliar 1 ou 2 algoritmos 
+que estão indo melhor. Em uma linha similar, o principal objetivo 
+do seu conjunto de teste, dado o classificador final, é dar-lhe uma boa ideia 
+ de quão bem ele está indo. E novamente, se você tem um milhão 
+de exemplos, você pode decidir que 10.000 exemplos é mais do que suficiente 
+para avaliar um único classificador e dar-lhe uma boa ideia 
+de quão bem ele está indo. Então, neste exemplo, onde 
+você tem um milhão de exemplos, se você precisa somente de 10.000 
+para o seu "dev" e 10.000 para o seu teste, sua proporção será: 
+10.000 é 1% de 1 milhão. Então, você terá 98% para treino,
+ 1% para validação cruzada e 1% para teste. E eu também vi aplicações onde, se você tem mais de um milhão 
+de exemplos, você pode terminar com 99,5% para treino, 
+0,25% para "dev", para 0,25% teste. Ou talvez, 0,4% para "dev",
+ 0,1% para teste. Só para recapitular, ao configurar 
+seu problema de aprendizagem de máquina, eu normalmente o configurarei em conjuntos 
+de treino, de desenvolvimento e de teste, e se você tem um conjunto de dados relativamente 
+pequeno, estas proporções podem ser ok. Mas se você tem um conjunto de dados muito 
+maior, também é bom definir seus conjuntos de desenvolvimento e de teste muito menores do 
+que 20%, ou mesmo 10%, dos seus dados. Nós daremos orientações mais específicas 
+sobre os tamanhos dos conjuntos de "dev" e de teste, mais tarde 
+nesta especialização. Uma outra tendência que estamos vendo na 
+era moderna de aprendizagem profunda é que, mais e mais pessoas treinam em distribuições 
+de teste e de treino incompatíveis. Digamos que você está construindo um app que permite 
+que os usuários façam "upload" de diversas fotos e e seu objetivo é encontrar fotos de 
+gatos para mostrar aos seus usuários. Talvez, todos os seus 
+usuários gostem de gatos. Talvez seu conjunto de treino vem 
+de fotos de gatos baixadas da internet, mas seus conjuntos de "dev" e de teste são compostos por 
+imagens de gatos de usuários que usam o nosso app. Talvez, seu conjunto de treino tem 
+um monte de imagens baixadas da internet, mas os conjuntos de "dev" e teste são 
+imagens carregadas pelos usuários. Resulta que muitas páginas web têm imagens de gatos
+com resolução muito alta, muito profissionais, e com molduras legais. Mas talvez, seus usuários estão 
+carregando imagens nebulosas, com baixa resolução, tiradas de câmeras 
+de celular, em condições mais casuais. Assim, estas duas distribuições 
+de dados podem ser diferentes. A regra geral, que eu lhe 
+encorajaria a seguir neste caso é: garantir que os conjuntos de "dev" e 
+de teste venham da mesma distribuição. Falaremos mais sobre estas 
+orientações específicas, mas pelo fato de você usar o conjunto de "dev" 
+para avaliar muitos modelos diferentes e tentar otimizar a performance 
+no conjunto de "dev", seria legal se o seu conjunto de validação cruzada - "dev" - viesse da 
+mesma distribuição que o seu conjunto de teste. Mas, pelo fato de que os algoritmos de aprendizagem 
+profunda tenham um apetite enorme para dados de treino, uma tendência que eu vejo é que você 
+utilize todos os tipos de táticas criativas, tais como páginas web indexadas, para obter um conjunto de treino muito 
+maior do que você obteria de outra forma. Mesmo que o ônus disto, seja que 
+os dados do seu conjunto de treino, não venham da mesma distribuição 
+que seus conjuntos de "dev" e de teste. Mas, veja que, desde 
+que você siga esta regra geral, o progresso no seu algoritmo de 
+aprendizagem de máquina será mais rápido. E eu também darei uma 
+explicação mais detalhada para esta regra específica mais 
+tarde nesta especialização. Finalmente, pode ser ok 
+não ter um conjunto de teste. Lembre-se que o objetivo do conjunto 
+de teste é dar-lhe uma ideia imparcial da performance da sua rede 
+final, da rede que você selecionou. Mas, se você não precisa 
+desta estimativa imparcial, então pode ser ok não 
+ter um conjunto de teste. Assim, o que você faz, se você tem um conjunto 
+de "dev", mas não um conjunto de teste é: você treina no conjunto de treinamento e então,
+você tenta arquiteturas de modelos diferentes. Avalie tais modelos no conjunto de "dev", 
+e então use isso para interagir e e tentar obter um bom modelo. Porque você colocou seus 
+dados no conjunto de "dev", isto não lhe dá mais uma 
+ideia imparcial de performance. Mas, se você não precisa de uma, 
+isso é perfeitamente normal. No mundo de aprendizagem de máquina, 
+quando você tem um conjunto de treino e um de "dev", mas nenhum 
+conjunto de teste a parte, a maioria das pessoas chamarão 
+isso de conjunto de treinamento e eles chamarão o conjunto de 
+"dev" como conjunto de teste. Mas, o que eles acabam fazendo é usando 
+o conjunto de teste como um conjunto de validação cruzada, que talvez não seja o uso 
+mais apropriado da terminologia, porque eles estão 
+sobre-ajustando o conjunto de teste. Então, quando a equipe lhe diz que eles apenas 
+têm um conjunto de treino e um de teste, Eu seria cauteloso e pensaria: eles têm 
+realmente um conjunto de "dev"? Porque eles estão 
+sobre-ajustando o conjunto de teste. Culturalmente, é difícil mudar 
+algumas destas terminologias da equipe e fazê-los chamar de conjunto de validação cruzada 
+ao invés de um conjunto de teste. Mesmo que eu acho que chamando-o 
+um conjunto de treino e de desenvolvimento seria 
+uma terminologia mais correta. Isto é, na verdade, uma prática 
+correta, se você não precisa ter uma ideia completamente imparcial 
+da performance do seu algoritmo. Então, configurar conjuntos de treino, de 
+"dev" e de teste, permitirá uma integração mais rápida. Isso também permitirá que você meça mais 
+eficientemente o comportamento e a variância do seu algoritmo, para que você selecione 
+mais eficientemente formas de otimizá-lo. Vamos começar a falar sobre isso no próximo vídeo. 
+[Tradução: Renato Barata Gomes | Revisão: Carlos Lage]

@@ -1,0 +1,75 @@
+No último vídeo, você viu como amostragem ao acaso,
+sobre a escala de hiperparâmetros, pode permitir que você pesquise
+sobre o espaço de hiperparâmetros de forma mais eficiente. Mas acontece que amostragem ao acaso
+não é o mesmo que amostragem uniformemente ao acaso, sobre o intervalo de valores válidos. Ao invés disso, é importante escolher a escala apropriada, na qual explorar os hiperparâmetros. Neste vídeo, vou mostrar como fazer isso. Digamos que você esteja tentando escolher 
+o número de unidades ocultas, n'ˡ', para uma dada camada l. E digamos que você ache que uma boa faixa de valores 
+seja algo entre 50 e 100. Nesse caso, se você olhar para a faixa numérica entre 50 e 100, talvez escolhendo alguns valores
+numéricos ao acaso dentro desta linha numérica, esse é um modo bem tangível de 
+se procurar por este hiperparâmetro particular. Ou se você está tentando decidir sobre 
+o número de camadas na sua rede neural, vamos chamá-la de L, talvez você ache que o número total de camadas 
+deva ser entre 2 e 4. Então, amostragem uniformemente ao acaso, 
+entre 2, 3 e 4 pode ser razoável. Ou até usando uma busca de grade,
+onde você avalia explicitamente os valores 2, 3 e 4 pode ser razoável. Então, estes foram alguns exemplos, 
+onde amostragem uniformemente ao acaso sobre o intervalo considerado 
+pode ser algo razoável a se fazer. Mas isso não é verdadeiro para todos os hiperparâmetros. Vamos olhar em outro exemplo. Digamos que você esteja procurando
+o hiperparâmetro alfa, a taxa de aprendizagem, e digamos que você suspeite que 0,0001 
+possa estar na extremidade baixa, ou talvez pudesse ser tão alta quanto 1. Agora, se você desenhar a faixa numérica de 0,0001 a 1, e experimentar valores uniformemente 
+ao acaso sobre esta faixa numérica, aproximadamente 90% dos valores 
+que você experimentar estarão entre 0,1 e 1. Então, você está usando 90% dos recursos 
+para procurar entre 0,1 e 1, e apenas 10% dos recursos 
+para procurar entre 0,0001 e 1. Então isso não parece ser correto. Ao invés disso, parece ser mais razoável
+procurar por hiperparâmetros em uma escala longa, onde ao invés de usar uma escala linear, 
+você teria aqui 0.0001, e 0,001, e então 1. E assim você experimenta uniformemente,
+ao acaso, nesse tipo de escala logarítmica. Agora, você tem mais recursos 
+dedicados a procurar entre 0,0001 e 0,001, e entre 0,001 e 0,01, e assim por diante. Então em Python, a forma de você implementar isso é r = - 4 * np.random.rand() e então um valor de alfa escolhido ao acaso seria 
+alfa = 10 elevado a potência r. Assim, após esta primeira linha, 
+r será um número aleatório entre -4 e 0. E alfa aqui ficará entre 10 elevado a -4 e 10 elevado a 0. Logo, 10 elevado a -4 é isto na esquerda, 
+este 10 elevado a -4. E 1 é 10 elevado a 0. Em um caso mais genérico, se você está experimentando entre
+10 elevado a "a" e 10 elevado a "b", na escala longa, e neste exemplo, isto é 10 elevado a "a", e você pode descobrir o que "a" é tirando 
+a log de 0,0001 na base 10, que vai lhe dizer que "a" é -4, e este valor na direita é 10 elevado a "b", e você pode descobrir o que "b" é calculando log de 1 na base 10, que lhe diz que "b" é igual a 0. Então o que você faz é experimentar 
+"r" uniformemente, ao acaso, entre "a" e "b". Nesse caso, "r" estaria entre -4 e 0. E você pode definir alfa, no seu valor de hiperparâmetro
+aleatoriamente amostrado, como 10 elevado a "r", certo? Então recapitulando, para fazer
+amostragem na escala logarítmica, você pega o valor baixo, usa o logaritmo para descobrir o valor de "a", pega o valor alto, usa o logaritmo para descobrir o valor de "b", então agora, você está tentando fazer uma amostragem
+entre 10 elevado a "a" e 10 elevado a "b" em uma escala longa, assim, você define "r" 
+uniformemente ao acaso, entre "a" e "b", e então você define o hiperparâmetro 
+como sendo 10 elevado a "r", e é assim que você implementa 
+amostra nesta escala logarítmica. Finalmente, outro caso complicado 
+é experimentar o hiperparâmetro Beta, usado para calcular 
+médias móveis exponencialmente variáveis. Então digamos que você suspeite que 
+Beta deva estar entre 0,9 e 0,999. Talvez esta seja a faixa de valores 
+que você deseja procurar. Então lembre-se de que quando você calcula
+médias móveis exponencialmente ponderadas usando 0.9 é como se calculasse 
+a média dos 10 últimos valores. Como tirar a média da temperatura de 10 dias, enquanto que usar 0.999 é como 
+tirar a média dos últimos 1000 valores. Então, similarmente ao que vimos no último slide,
+se você quiser procurar entre 0,9 e 0,999, não faz sentido fazer amostragem na escala linear, certo? Uniformemente, ao acaso, entre 0,9 e 0,999. Assim, a melhor forma de pensar nisso, é que nós queremos explorar 
+o intervalo de valores para 1 menos Beta, o qual agora, vai variar de 0,1 a 0,001. Logo, nós faremos uma amostragem entre Beta, pegando valores de 0,1, até talvez 0,01, ou até 0,001. Então, usando o método que aprendemos na última apresentação, isto é 10 elevado a -1, isto é 10 elevado a -3. Note que na última apresentação, 
+o valor menor ficava na esquerda, e o valor maior, na direita, mas aqui, 
+isso é ao contrário. O valor maior está na esquerda, e o menor, na direita. Assim, o que você deve fazer é a amostragem uniformemente, 
+ao acaso, de -3 a -1. E você define 1 - Beta = 10 elevado a "r", e 
+Beta = 1 - 10 elevado a "r". E isso se torna o valor aleatório 
+da amostragem do seu hiperparâmetro, escolhido na escala apropriada. Espero que esteja claro que, dessa forma, você usa tanto recursos explorando a gama de 0,9 a 0,99, quando você usaria, explorando de 0,99 a 0,999. Se você deseja estudar uma 
+justificativa matemática mais formal sobre por que estamos fazendo isso,
+por que é uma má ideia fazer amostragem em uma escala linear, é porque quando Beta está próximo a 1, 
+a sensibilidade de resultados que você consegue, muda,
+mesmo com alterações muito pequenas em Beta. Então se Beta mudar de 0,9 para 0,9005, não tem problema, isso dificilmente 
+fará diferença nos seus resultados. Mas se Beta vai de 0,999 para 0,9995, isso vai ter um impacto grande
+em relação ao que seu algoritmo está fazendo, certo? Em ambos os dois casos, 
+há uma média em torno de 10 valores. Porém aqui, ele passou de 
+uma média exponencialmente ponderada sobre os últimos 1000 exemplos, 
+para agora, os 2000 últimos exemplos. E isso é porque essa fórmula 
+que nós temos, 1/ (1 - Beta), é muito sensível a pequenas mudanças em Beta, 
+quando Beta está próximo a 1. Então o que este processo inteiro de amostragem faz é possibilitar com que você faça amostragens
+mais densamente, no regime de quando Beta está próximo a 1. Ou alternativamente, quando 1 - Beta 
+está próximo a 0, você pode ser mais eficiente, 
+em termos de como você distribui as amostragens, para explorar o espaço de 
+possíveis resultados mais eficientemente. Então, eu espero que isso lhe ajude 
+a selecionar a melhor escala, para fazer a amostragem dos hiperparâmetros. No caso de você não fazer a escolha certa
+de escala para alguma opção de hiperparâmetro, não se preocupe muito sobre isso. Mesmo que você faça a amostragem 
+na escala uniforme, onde outra escala seria melhor, você ainda 
+pode conseguir bons resultados. Especialmente, se você utilizar uma busca do genérico
+para o específico, para que em iterações posteriores, você foque mais no intervalo mais
+útil de valores de hiperparâmetros para fazer amostragem. Espero que isso lhe ajude em
+ sua pesquisa de hiperparâmetro. No próximo vídeo, também quero
+compartilhar com você algo sobre como organizar o seu processo de pesquisa de hiperparâmetro, o que espero que torne seu 
+fluxo de trabalho mais eficiente.
+[Tradução: Diogo dos Santos Farias | Revisão: Carlos Lage]

@@ -1,0 +1,162 @@
+Bem-vindo Yuanqing. Estou muito feliz 
+que você pôde estar aqui conosco hoje. Claro. Hoje, você é chefe de pesquisas 
+ na Baidu e quando o governo chinês, o governo da China, estava 
+procurando por alguém para começar e construir um laboratório 
+nacional de aprendizagem profunda, eles chamaram você para 
+ajudá-los a iniciar este negócio. Então, sem dúvida, 
+acredito que você seja o número 1 em toda a China, no 
+que tange aprendizagem profunda. Eu gostaria de fazer muitas 
+perguntas sobre o seu trabalho, mas antes disso, eu gostaria de 
+escutar sobre sua história pessoal. Como você se preparou para
+este tipo de trabalho que você faz? Bem, antes do meu 
+programa de Ph.D., minha especialização foi em Ótica, está mais relacionada à Física. Acho que eu tinha 
+um conhecimento bem sólido, muito bom, com matemática. Depois, eu vim 
+para os Estados Unidos. Então, eu fiquei pensando: qual especialização eu posso 
+escolher para o meu programa de Ph.D.? Eu estava pensando, bem, acho que eu posso tentar
+ Ótica ou alguma outra coisa. No início dos anos 2000, a nanotecnologia estava muito em alta. Mas eu achava que deveria 
+escolher algo ainda mais legal. E me apareceu uma boa 
+oportunidade, pois eu estava fazendo algumas aulas na Universidade da 
+Pensilvânia, e eu pude conhecer Dan Lee. Mais tarde, ele tornou-se 
+meu orientador de doutorado. Eu achava que aprendizagem de 
+máquina era uma ótima coisa a fazer. E fiquei muito empolgado 
+e mudei minha especialização. Então, fiz meu Ph.D na 
+Universidade da Pensilvânia, com especialização em 
+aprendizagem de máquina. Eu fiquei lá por cinco 
+anos e foi muito empolgante. Eu aprendi muitas coisas do zero, muitos algoritmos, 
+até mesmo PCA - Análise dos Componentes Principais. Eu não sabia tudo isso antes. Eu sentia que estava 
+aprendendo coisas novas a cada dia. Isso foi uma experiência 
+sensacional para mim. Foi uma daquelas experiências 
+com muitas coisas novas? Apesar de que, sabe, você trabalhou muito, e talvez não tenha 
+sido devidamente valorizado naquela época. Você tem razão. Por isso, acho que 
+a NEC foi um lugar legal. No início, eu trabalhei lá como pesquisador. E novamente, eu me sentia tipo: nossa! Eu aprendi muitas coisas. Na verdade, mais tarde na NEC, eu comecei a trabalhar 
+com visão computacional. Na verdade, eu comecei a trabalhar com visão 
+computacional muito tarde, relativamente tarde. E a primeira coisa que fiz foi participar na competição "ImageNet Challenge". 
+Foi o primeiro ano da "ImageNet Challenge". Eu estava gerenciando uma 
+equipe para trabalhar em um projeto. Tive sorte. Nós tivemos sorte, 
+porque éramos muito fortes, e no final, acabamos ficando em primeiro lugar. Ganhamos o primeiro lugar na competição 
+de forma esmagadora. Então, você esteve entre os primeiros 
+ganhadores da competição "ImageNet"? Sim, sim. Eu fui a pessoa que 
+fiz a apresentação naquele workshop. Foi realmente uma 
+ótima experiência para mim, e, na verdade, isso me levou às tarefas de 
+visão computacional em enorme escala do projeto LISA! Eu tenho trabalhado nos problemas de
+enorme escala do LISA desde então. Quando o artigo sobre 
+LISA saiu no New York Times, e mais tarde também 
+saiu no AlexNet, isso realmente me impressionou. Eu pensei, nossa, aprendizagem 
+profunda é muito poderosa. Desde então, eu me esforcei muito para 
+trabalhar em aprendizagem profunda. Então, como chefe do 
+Laboratório Nacional da China, Laboratório Nacional de Pesquisa 
+em aprendizagem profunda, deve haver muitas atividades 
+interessantes ocorrendo lá. Então, para o público global, 
+que está nos assistindo, o que eles deveriam saber sobre o 
+que está acontecendo no Laboratório Nacional? A missão deste Laboratório Nacional 
+de Engenharia é construir uma plataforma muito 
+grande de aprendizagem profunda, e espero que 
+seja a maior delas, ou pelo menos 
+a maior na China. E esta plataforma oferecerá às pessoas uma 
+estrutura de aprendizagem profunda tipo PADDLE/PADDLE. E oferecemos às pessoas 
+recursos computacionais de larga escala, assim como uma base 
+de dados do tipo 'BigData'. E se as pessoas forem
+capazes de desenvolver uma pesquisa ou uma boa 
+tecnologia nessas plataformas, também oferecemos 
+a elas grandes aplicações. Então, por exemplo, a tecnologia pode 
+ser testada em grandes aplicações no Baidu, para que a tecnologia possa 
+ser integrada e otimizada. Então, acreditamos que, 
+combinar todos estes recursos resultará em uma 
+plataforma muito poderosa. Você também pode obter 
+um exemplo de cada um. Por exemplo, neste momento, 
+se publicamos um artigo, e alguém quer reproduzi-lo, a melhor coisa a se fazer é 
+disponibilizar um código em algum lugar, de modo que você possa fazer o 
+download do código no seu computador, e também testar e 
+encontrar o conjunto de dados em algum lugar. E talvez você também precise ter uma boa configuração
+ para que seu computador o execute sem problemas. Então, isso certamente 
+demandará pelo menos algum esforço. Ao menos, no LISA e no Laboratório Nacional 
+ de aprendizagem profunda, as coisas serão mais fáceis. Então, se alguém está usando estas 
+plataformas para escrever o artigo, para fazer este trabalho 
+e escrever o artigo, e o laboratório que tem 
+o código nesta plataforma, e a estrutura computacional já está configurada para 
+este código, e os dados já estão disponíveis também, basicamente, você só precisa de uma 
+simples linha de comando para subir o banco de dados. Então, isso é uma grande ajuda nas questões de
+ perda de reprodutibilidade em ciência da computação. Assim, você facilmente, 
+em apenas alguns segundos, pode começar a aprender 
+algo que você viu num artigo. Sim. Isso é extremamente poderoso. Então, isso é somente um exemplo do trabalho 
+ que estamos realizando para garantir que estejamos fornecendo uma plataforma muito 
+poderosa para a comunidade e para a indústria. Isso é incrível. Realmente irá acelerar 
+as pesquisas em aprendizagem profunda. >> Pois é. Você pode nos dar
+uma ideia de quanto recurso o governo chinês está investindo para lhe dar 
+suporte neste Laboratório Nacional de Aprendizagem Profunda? Então, penso que para este 
+Laboratório Nacional de Engenharia, o governo pode criar um fundo aqui 
+para construir a infraestrutura. Mas eu acho que, 
+ainda mais importante, será uma bandeira na China que resultará em muitos 
+projetos de aprendizagem profunda, incluindo um projeto nacional, e políticas de regulamentação, 
+e este tipo de coisas. Então, isto é, na verdade, 
+extremamente poderoso, e eu acho que, ao fazer isso, é uma honra para nós
+recebermos este laboratório. Você está, de certa forma, no coração 
+da aprendizagem profunda na China. Então, há muitas 
+atividades na China que o público global ainda não 
+conhece ou ainda não viu. O que as pessoas fora da China deveriam 
+saber sobre aprendizagem profunda na China? Sim. Acho que na China, especialmente nestes últimos anos, a aprendizagem profunda se 
+fortaleceu em produtos e serviços. Então, está realmente estourando, abrangendo desde ferramentas de pesquisa, até reconhecimento facial, vigilância, "e-commerce", 
+muitos lugares. Penso que eles estão investindo bastante 
+em aprendizagem profunda e também, estão se esforçando em utilizar a 
+tecnologia para tornar os negócios mais poderosos. E, isto é, na verdade, muito importante para o 
+desenvolvimento da alta tecnologia, no geral. Acho que eu, e muitas pessoas 
+também compartilham essa opinião, nós acreditamos que é muito importante para 
+este processo, o que chamamos de ciclo positivo. Por exemplo, quando 
+começamos a pensar em desenvolver alguma tecnologia 
+que terá algum dado inicial, e que tentaremos fazer algo com 
+algum algoritmo inicial, ela lançará nosso produto inicial 
+para aquele serviço. Então depois, ela obterá 
+dados para os usuários. E outros obterão mais dados, então desenvolveremos 
+algoritmos melhores. Porque, se vemos mais dados, sabemos 
+o que seria um algoritmo melhor. Então, com mais dados 
+e um algoritmo melhor, seremos capazes de ter uma tecnologia 
+melhor para produtos e serviços. E definitivamente, acreditamos que seremos 
+capazes de atrair mais usuários usando o produto. A tecnologia é melhor. E nós teremos mais dados. Então, isso é muito bom, 
+um movimento positivo. E isso é muito especial, especialmente para tecnologias 
+relacionadas à Inteligência Artificial, para tecnologias 
+tradicionais, como o laser. Eu estava trabalhando nisso antes. Então, o crescimento desta 
+tecnologia será mais linear. Mas antes, esta tecnologia de IA, devido a este ciclo positivo, você pode imaginar que, num dado momento,
+definitivamente, tem um crescimento rápido. Ao menos isso é, na verdade, muito importante 
+quando projetamos uma pesquisa, quando realizamos nossas próprias 
+Pesquisas & Desenvolvimento (R&D). Nós trabalhamos no direcionamento em que somos 
+capazes de alcançar este rápido período de otimização. Mas se nosso negócio não for 
+capaz de financiar este ciclo positivo, se não fomos capazes de
+financiar este forte ciclo positivo, isso não funcionará 
+porque alguma outra pessoa terá uma visão de 
+sustentar este forte ciclo, e eles chegarão a este lugar 
+muito mais rápido do que você. Então, está é uma lógica muito importante 
+para nós, quando estamos analisando, digamos, você precisa de uma empresa, qual direção 
+devemos ou não trabalhar. Este é definitivamente um fator 
+muito importante que devemos analisar. Atualmente, tanto na China, nos Estados Unidos, como em nível global, há muitas pessoas querendo entrar em 
+aprendizagem profunda e Inteligência Artificial. Qual conselho você daria para 
+alguém que quer entrar neste setor? Então, há muitas pessoas que 
+começarão com plataformas "open source". Penso que isso é extremamente 
+poderoso para muitos iniciantes. Quando eu estava fazendo estudos na 
+minha pesquisa em aprendizagem profunda, não havia muitos 
+recursos "open source". Penso que, hoje em dia, em IA, 
+especialmente em Aprendizagem Profunda, é uma comunidade muito boa, e há várias pessoas muito 
+boas nestas plataformas. Há o "TensorFlow", "Caffe". Agora eles chamam Caffe2 também certo? Na China temos a Paddle/Paddle e é muito boa.
+E online, há muitos cursos que lhe ensinam 
+como usar estas plataformas. Além disso, atualmente há também muitas referências disponíveis 
+publicamente, e muitas pessoas podem ver, quão bem pessoas habilidosas 
+e com muita experiência utilizam estas referências. Então, basicamente, para se 
+familiarizar com aprendizagem profunda, acho que este é um 
+ponto de partida muito bom. Como você adquiriu este conhecimento? Na verdade, eu acabei 
+indo na direção oposta. Eu aprendi PCA (Análise de Componentes Principais), 
+eu aprendi LDA (Análise de Discriminantes Lineares), antes de aprender aprendizagem profunda, na verdade. Basicamente, sinto que 
+também é uma boa maneira. De certa forma, estabelecermos 
+vários fundamentos. Aprendemos modelos gráficos. Todos estes são muito importantes. Embora aprendizagem 
+profunda agora vá além. Mas, conhecer isso 
+lhe dará uma ótima intuição de como funciona 
+aprendizagem profunda. E então um dia, provavelmente leva à conexão entre a aprendizagem profunda 
+e as normas como uma plataforma ou uma abordagem. Acho que já existem 
+muitas conexões. E, na verdade, as normas enriquecem 
+a aprendizagem profunda. Quero dizer, há formas mais 
+ricas de fazer aprendizagem profunda. Então, sinto que é bom começar 
+com muitos códigos abertos, e estes são recursos bem poderosos. Eu também sugiro que você também aprenda 
+aquelas coisas básicas de aprendizagem profunda. Muito obrigado. Foi fascinante. Mesmo que eu lhe
+conheça há muito tempo, há muitos detalhes 
+na sua forma de pensar, que eu não havia percebido 
+até agora. Então, muito obrigado. Muito obrigado por me receber. 
+[Tradução: Renato Barata Gomes
+Revisão: Gabriella Miya e Carlos Lage]

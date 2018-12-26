@@ -1,0 +1,43 @@
+Derin Öğrenme'nin yükselişinde En önemli fikirlerden biri de "toptan normalleştirme" denen Sergey Ioffe ve Christian Szegedy adında iki araştırmacı tarafından yaratılan bir algoritma oldu. Toptan normalleştirme hipermetre(*)'nizin problemi çok daha kolay aramasını, sinir ağınızın çok daha güçlü olmasını sağlar. Hiperparametrelerin seçimi, gerçekten işe yarayan 
+ hiperparametrelerin seçiminden çok daha geniştir. ve çok derin ağları bile daha kolay bir şekilde
+ eğitmenizi sağlayacaktır Haydi toptan normalleştirmenin nasıl çalıştığını görelim. Bir modeli eğitirken -mesela mantıksal bağlanım-
+ hatırlayabilirsiniz ki giriş özniteliklerini normalleştirmek öğrenmeleri hızlandırabilir. 
+ Hesaplama anlamında, ortalamaları eğitim kümenizden çıkarın değişiklikleri hesaplayın xi'nin karesinin toplamı. bu eleman yönelimli bir kare alma sonra da veri kümenizi değişkenlere
+ göre değiştirin Ve önceki bir videoda bunun nasıl 
+ eğitim problemlerinizin çevritlerini ince uzun bir şey olabilecekken
+ daha yuvarlak bir olmasını ve eğim inişi gibi bir algoritmanın iyileştirebilmesi
+ için daha kolay bir hale getirebileceğini gördük Bu, girdi değerlerini bir sinirsel ağa normalleştirmek
+ açısından, bağlanımı değiştirmek için çalışıyor. Peki ya daha derin bir model? Sadece x girdisi özniteliği yok, 
+bu katmanda a1 etkilenimi, bu katmanda, 
+ a2 etkilenimi vesaire. Diyelim ki w3, b3 parametrelerini
+ eğitmek istiyorsunuz, o zaman ortalamayı ve a2'nin değişikliğini w3,b3'ün eğitiminin daha etkili olması için
+ normalleştirseniz güzel olmaz mıydı? Mantıksal bağlanım durumunda,
+ x1,x2,x3'ün normalleştirilmesinin belki de w ve b'yi daha etkili eğitmenizde
+ yardımcı olduğunu gördük Burada soru şu, herhangi bir gizli katman için a'nın değerlerini,bu örnek için a2 diyelim, ama gerçekte herhangi bir gizli katmanda w3,b3'ü daha hızlı eğitmek için normalleştirebilir miyiz? a2 diğer katmanın girdisi olduğu için bu nedenle w3 ve b3'ün eğitimini etkiliyor. İşte bu toptan normalleştirme, ya da kısaca toptan norm'u Aslında teknik olarak a2'nin değil,
+ z2'nin değerlerini normalleştireceğiz. Derin öğrenme literatüründe değeri
+ etkilenim fonksiyonundan, yani z2'den, önce mi normalleştirmelisin?
+ Yoksa etkilenim fonksiyonunu, yani a2'yi, uyguladıktan sonra mı normalleştirmelisin?
+Konusunda tartışmalar vardır. Pratikte, z2'yi normalleştirme çok daha sık yapılır. İşte bu benim sunacağım ve size de varsayılan seçiminiz olarak önereceğim versiyonu. Toptan norm'unu şöyle uygularsınız, Bazı ortalama değerler verildiğinde, sinir ağınızda, Diyelim ki z1'den zm'ye kadar gizli ek girdi değerleriniz var, ve bu seferki gerçekten bir gizli katmandan, bunu herhangi bir gizli katmandaki z için i 1'den m'ye kadar eşittir olarak yazmak daha doğru olur. Ama yazımı azaltmak için [l]'yi atlayacağım Sadece bu satırdaki gösterimi basitleştirmek için. Yani bu değerler verildiğinde, yapmanız gereken şekildeki gibi ortalamayı hesaplamak. Bunların hepsi bir l katmanına özel, ama [l]'yi atlıyorum. Ve sonra değişikliği tahmin ettiğiniz
+ formülle hesaplıyoruz. Sonra her bir zi'yi alıp normalleştiriyoruz. Yani normalleştirilmiş zi'yi
+ortalamayı çıkararak ve standart sapmaya bölerek buluyoruz. Sayısal istikrar için, genelde paydaya epsilon ekleriz. Sadece sigmanın karesi herhangi bir tahminde sıfır çıkarsa diye. Şimdi bu z değerlerini aldık, ortalamaları sıfır olacak ve
+ standart ek girdi değişikliği olacak
+ şekilde normalleştirdik Yani z'nin her bileşeni 0 ortalamasına ve 1 değişikliğine sahip. Ama gizli ek girdilerin her zaman
+ ortalamalarının 0 ve değişikliklerinin 1
+ olmasını istemiyoruz. Belki gizli ek girdilerin farklı bir
+ dağıtımlarının olması mantıklı geliyordur. Yani bunun yerine yapacağımız şunu hesaplamak: Buna "z tilde = gama zi norm. + beta" diyeceğim. Ve burada, gama ve beta
+modelinizin öğrenilebilir parametreleri. Yani eğim inişini, ya da başka bir algoritmayı,momentumun eğim inişi, ya da rms düzgün atomu gibi,
+ gama ve beta parametrelerini güncellersiniz. tıpkı sinir ağınızın ağırlıklarını
+güncelleyeceğiniz gibi Şimdi, gama ve betanın etkisinin z tildenin ortalamasının istediğiniz
+bir şey olmasını sağladığına dikkat edin. Hatta, eğer gama eşittir karekök sigma kare artı epsilon, eğer gama bu payda
+terimine eşit olsaydı. Ve beta mu'ya eşit olsaydı,
+buradaki değer, gama z norm. artı beta kesinlikle bu eşitliğ tersine çevirirdi. Eğer, bu doğruysa O zaman aslında z tilde i eşittir zi. Ve gama ve beta parametrelerinin
+uygun bir ayarıyla, bu normalleştirme adımı, şu ki, Bu 4 denklem sadece kimlik
+fonksiyonunu hesaplıyor. Ama gama ve betanın başka değerlerini seçmek
+gizli girdi değerlerinin başka ortalamalara ve değişiklik değerlerine
+sahip olmasına izin veriyor. Bunu sinir ağınıza uydurmanın yolu halbuki daha önce bu z1,z2 ve benzer değerleri kullanıyordunuz, sinir ağınızdaki daha sonraki hesaplamalarda zi yerine z tilda i kullanırsınız. Ve bu [I]i açıkça hangi katmanda olduğunu belirtmek için geri koymak istersiniz, buraya geri koyabilirsiniz. Yani, bundan almış olacağınızı umduğum şey, gördük ki girdi özelliği x'i normalleştirmek bir sinir ağında öğrenmeye yardımcı olabilir. Ve toptan normun yaptığı bu normalleştirme sürecini sadece girdi katmanına değil, sinir ağındaki bir saklı katmanın en dibindeki değerlere de uygulamaktır. Yani bu tip bir normalleşmeyi saklı ünitenizin bazı değerlerinin, z ortalama ve varyasını normalleştirmek için uygulayacaktır. Ancak girdiyi ve bu saklı ünite değerlerini eğitmek arasındaki bir fark, saklı ünite değerlerinizi ortalama sıfır ve varyans 1 olacak şekilde zorlamak istemeyebilirsiniz. Örneğin, eğer bir s işlevli etkilenim fonksiyonunuz varsa, değerlerinizin hep burada kümelenmesini istemezsiniz. Onların daha geniş bir değişikliğe ya da
+ 0'dan farklı bir ortalamaya sahip olmasını isteyebilirsiniz. Sigmoid fonksiyonun düzsel-olmayan yapısından faydalanmak yerine değerlerinizin
+ bu düz düzende olmasını istemeyebileceğinizden dolayı İşte bu yüzden gama ve beta parametreleriyle zi değerlerinizin istediğiniz bir değer aralığına
+ sahip olduğundan emin olabilirsiniz. Aslında yaptığı şey gizli ek girdilerinizin standartlaştırılmış ortalama ve değişikliğe sahip olduğunu gösteriyor.
+O da ortalama ve değişikliğin iki özel gama ve beta parametreleri tarafından kontrol edildiği
+,ki öğrenme algoritması onları istedikleri şeye ayarlayabilir, standartlaştırılmış ortalama ve değişikliğe sahip olduğunu gösteriyor. Yani gerçekten yaptığı bu gizli ek girdilerin ortalama ve değişiklik değerlerini, aslında zi ler, sabit bir ortalama ve değişikliğe ayarlıyor. Ve o ortalama ve değişiklik 0 ve 1 olabilir, ya da tamamen farklı değerler olabilir. ve bu gama ve beta parametreleriyle kontrol ediliyor. Yani umuyorum ki bu size toptan normunun mekanikleri hakkında bir algı sağlar. En azından tek katmanlı bir sinir ağı için. Gelecek videoda, sizlere toptan normunu nasıl bir sinirsel ağa, hatta daha da derin bir sinirsel ağa, ve bir sinirsel ağın pek çok farklı katmanı için nasıl uygulanacağını ve çalışacağını göstereceğim. Ve ondan sonra, toptan normunun nasıl bize sinirsel ağlarınızı eğitmeniz hakkında
+ yardım edebileceğinin önsezisini alacağız. Eğer hala nasıl çalıştığı biraz gizemli geliyorsa, dayanın ve iki video içinde bunu daha açık hale getireceğiz.

@@ -1,0 +1,75 @@
+A verificação de gradiente é uma técnica
+que me ajudou a economizar muito tempo, e me ajudou, muitas vezes, a encontrar erros
+na minha implementação de retropropagação. Vamos ver como você também 
+pode utilizá-la para depurar, ou verificar se a sua implementação
+e a sua retropropagação estão corretas. A sua rede neural terá alguns tipos de parâmetros,
+W'¹', b'¹' e assim por diante, até W'ᴸ' b'ᴸ'. Então, para implementar a verificação de gradiente,
+a primeira coisa que você deve fazer é pegar todos os seus parâmetros e remodelá-los
+em um vetor teta gigante. Assim, o que você deve fazer é pegar W,
+a qual é uma matriz, e remodelá-la em um vetor. Você deve pegar todos esses Ws
+e remodelá-los em vetores, e então, concatenar todas estas coisas, de modo que
+você tenha um vetor teta gigante. Um vetor gigante pronunciado como teta. Então, digamos que a função de custo J
+é uma função dos Ws e bs. Agora você tem a função de custo J
+como apenas uma função de teta. A seguir, com "W" e "b" ordenados da mesma forma, você também pode pegar dW'¹', db'¹',
+ etc., e remodelá-los em um vetor gigante dΘ 
+com a mesma dimensão de teta. Assim, da mesma forma que antes,
+nós moldamos dW'¹' na matriz, db'¹' já é um vetor. Nós moldamos dW'ᴸ',
+todos os dW's que são matrizes. Lembre-se, dW'¹' tem 
+a mesma dimensão de W'¹'. db'¹' tem a mesma dimensão de b'¹'. Então, com o mesmo tipo de operação
+de remodelagem e concatenação, você pode remodelar todas
+essas derivadas em um vetor gigante dΘ. O qual tem a mesma dimensão do vetor teta. Então, a pergunta agora é: seria o teta o gradiente ou a inclinação da função de custo j? Eis como implementar uma 
+verificação de gradiente, frequentemente abrevie
+verificação de gradiente para "grad check". Primeiro, lembramos que J 
+é uma função do parâmetro gigante teta, certo? Logo, J se expande, sendo uma função de teta 1,
+ teta 2, teta 3, etc. Qualquer que seja a dimensão deste vetor de parâmetro gigante teta. E para implementar a verificação de gradiente,
+você vai implementar um laço de repetição (um 'loop'), para cada i:
+ "for each i:" , ou seja, para cada componente de teta, calculemos dΘapprox [i] = e deixe-me fazer uma diferença de dois lados. Então, eu vou pegar J de teta. Θ₁, Θ₂, até Θᵢ. E nós vamos empurrar tetaᵢ e 
+adicionar épsilon assim. Então, apenas adicione épsilon a tetaᵢ,
+e mantenha todo o resto da mesma forma. E por você estar tirando uma diferença de dois lados, nós faremos no outro lado com tetaᵢ,
+mas agora menos épsilon. E então, todos os outros 
+elementos de teta ficam sozinhos. Pegamos isto, e dividimos por 2 épsilon. 
+[NT: o professor fala "2 teta", mas, corretamente escreve "2 épsilon"] E o que vimos, 
+no vídeo anterior é que isto deve ser aproximadamente
+igual a dӨᵢ que deve ser a derivada parcial 
+de J ou em relação a, eu acho que Өᵢ, se dӨᵢ for
+a derivada da função de custo J. Então, você vai calcular isto 
+para cada valor de i, e no fim, você vai 
+acabar tendo dois vetores. Você vai ter este dӨapprox, que vai ter a mesma 
+dimensão de dӨ. E ambos têm, por sua vez, 
+a mesma dimensão de teta. E o que você quer fazer é verificar
+se estes vetores, estas matrizes, se entre elas serão iguais. Então, detalhadamente, como você define se dois vetores são, de fato, 
+razoavelmente próximos um do outro ou não? O que eu faço é o seguinte: Eu calculo a distância euclidiana
+entre estes dois vetores, dӨapprox menos dӨ,
+e apenas a norma o2 disto. Note que não está elevado ao quadrado, então, essa é a soma dos quadrados
+dos elementos das diferenças, e então você extrai uma raiz quadrada,
+enquanto calcula a distância euclidiana. E apenas para normalizar 
+pelo comprimento destes vetores, divida por dӨapprox mais dӨ. Apenas pegue os comprimentos
+euclidianos destes vetores. E a linha para o denominador é só para, caso
+algum destes vetores sejam realmente pequenos, ou grandes demais, seu denominador
+transforma esta fórmula em uma razão. Logo, quando você implementa isso na prática, eu uso épsilon igual a, talvez, 10 elevado a menos 7. E com esta faixa de valores de épsilon,
+ se você achar que esta fórmula lhe dá um valor como 10 elevado a menos 7 
+ou menor, então está tudo bem. Isso significa que a sua 
+aproximação derivada está correta. Este é apenas um valor muito pequeno. Se estiver talvez, na faixa de 10 elevado a -5,
+eu daria uma olhado cuidadosa. Talvez, esteja tudo bem. Mas, eu prefiro conferir 
+os componentes deste vetor, e confirmar que nenhum dos 
+componentes são grandes demais. E se algum dos componentes desta diferença 
+for grande demais, talvez você tenha algum erro em algum lugar. E se esta fórmula na esquerda estiver
+na ordem de 10⁻ᶟ, aí eu me preocuparia, porque
+talvez haja um erro em algum lugar. Mas, você realmente deveria estar obtendo
+valores muito menores que 10⁻ᶟ. Se houver qualquer um maior que 10⁻ᶟ,
+então, eu ficaria muito preocupado. Eu ficaria seriamente preocupado 
+ por haver algum erro. Você deveria verificar os componentes individuais de dados para ver se 
+há um valor específico de i para o qual dӨapprox [i] é
+ muito diferente de dӨi. E usar isso para tentar localizar se algum dos seus cálculos derivados 
+podem estar certos ou não. E depois de realizar algumas depurações,
+finalmente, isso acaba se tornando este tipo de valor bem pequeno,
+e então, você talvez, tenha uma implementação correta. Assim, quando você implementa uma rede neural, o que geralmente acontece é que
+eu implemento propagação para frente, para trás, e então, eu descubro que esta verificação de gradiente
+tem um valor relativamente grande. E eu suspeito que deva haver um erro,
+depuro várias vezes, e depois de depurar por algum tempo,
+se eu achar que a verificação de gradiente passa com um valor pequeno, você pode confiar mais que está correto. Então, agora você sabe
+como a verificação de gradiente funciona. Isso me ajudou a encontrar muitos erros
+em minhas implementações de redes neurais, e eu espero que lhe ajude também. No próximo vídeo,
+quero compartilhar com você algumas dicas ou algumas notas sobre
+como de fato, implementar a verificação de gradiente. Vamos para o próximo vídeo.
+Tradução: Diogo dos Santos Farias | Revisão: Carlos Lage.

@@ -1,0 +1,102 @@
+Além da regularização de L2 e do abandono da regularização, há algumas outras técnicas para reduzir
+sobreajuste na sua rede neural. Vamos analisar. Digamos que você esteja ajustando 
+um classificador de gato. Se você estiver sobreajustando,
+obter mais dados de treino pode ajudar, mas obter mais dados de treino pode ser caro e,
+ às vezes, você simplesmente não tem como fazê-lo. Mas, o que você pode fazer é aumentar
+o seu conjunto de treino, pegando uma imagem como esta, e por exemplo, 
+invertendo-a horizontalmente e implementando isso também 
+no seu conjunto de treino. Então, agora, ao invés de apenas
+um exemplo no seu conjunto de treino, você pode adicionar isso
+ ao seu exemplo de treinamento. Então, invertendo imagens horizontalmente, você pode dobrar o tamanho 
+do seu conjunto de treino. Por seu conjunto de treino estar um pouco redundante
+ agora, isso pode não ser tão bom quanto se você tivesse coletado um conjunto adicional
+independente de exemplos novos em folha. Porém, você poderia fazer isso
+sem precisar pagar a despesa de sair por aí atrás de mais fotos de gatos. Mas, além de inverter horizontalmente, você também pode pegar
+cortes aleatórios da imagem. Então, aqui nós giramos e
+ampliamos a imagem aleatoriamente e, ainda assim, 
+se parece com um gato. Assim, fazendo distorções aleatórias 
+e girando da imagem, você pode aumentar o conjunto de dados
+e produzir exemplos de treino adicionais falsos. Novamente, estes falsos exemplos de treino extras
+não adicionam muita informação, uma vez que não são um 
+novo exemplo independente de um gato. Contudo, fazer isso quase de graça, ao invés de enfrentar custos computacionais, pode se tornar uma forma barata
+de fornecer mais dados ao seu algoritmo, e dessa forma, regularizá-lo e
+reduzir sobreajuste. E sintetizando exemplos como este,
+o que você está realmente dizendo ao seu algoritmo é que se algo é um gato, mesmo depois
+de ter sido invertido horizontalmente, continua sendo um gato. Note que eu não o inverti verticalmente, porque talvez nós não queiramos
+gatos de cabeça para baixo, certo? E também, mesmo depois de ter 
+ampliado e cortado parte da imagem, continua a ser um gato. Para reconhecimento de caractere óptico,
+você também pode aumentar o seu conjunto de dados pegando dígitos e impondo rotações e
+distorções aleatórias a eles. Assim, se você adicionar estas coisas ao seu conjunto de treino, estes também ainda serão dígitos 4. Para exemplificar, eu apliquei 
+uma distorção bem forte. Este está bem ondulado, mas na prática,
+você não precisa distorcer o quatro tão agressivamente, faça apenas uma distorção mais sutil
+do que a que eu estou mostrando aqui, para fazer com que este exemplo fique 
+mais claro para você. Então, uma distorção mais sutil 
+é mais usada na prática, porque estes números quatro à direita
+parecem muito distorcidos. Assim, aumentar cada dado
+pode ser usado como uma técnica de regularização, na verdade, similar à regularização. Há uma outra técnica que é muito usada
+chamada interrupção precoce (early stopping). O que você vai fazer é,
+ao executar o gradiente descendente, traçar das duas uma: ou o erro de treinamento, você usará erro de classificação 01
+ no conjunto de treino, ou apenas traçar a função de custo J, otimizando, e isso decresceria monotonicamente, 
+desta forma, tudo bem? Pois, à medida que você treina, com sorte, a sua função de custo J deve decrescer. Assim, com a interrupção precoce,
+o que você faz é traçar isto, e você também traça o seu erro 
+do conjunto de desenvolvimento. E novamente, isso poderia ser um erro de classificação
+em um conjunto de desenvolvimento, ou algo como a função de custo, como a perda logística
+ou o logaritmo da perda do conjunto de desenvolvimento. Daí, percebemos que o erro do seu 
+conjunto de desenvolvimento geralmente vai cair um pouco, e então vai aumentar a partir daqui. Então, o que a interrupção
+precoce faz é que, você dirá, bem, parece que a sua rede neural estava funcionando melhor
+perto daquela iteração, então, você quer apenas deixar de treinar
+na sua rede neural na metade do caminho, e pegar qualquer valor atingido 
+nesse erro do conjunto de desenvolvimento. E por que isso funciona? Quando você ainda não executou 
+muitas iterações para a sua rede neural,
+seus parâmetros w ficarão próximos de zero, pois, com inicialização aleatória,
+você possivelmente inicializa w a valores pequenos aleatórios, então, antes de você treinar por um bom tempo,
+w ainda continua bem pequeno. E à medida que você itera, enquanto você treina,
+w fica maior e maior até aqui, onde talvez você tenha um valor muito maior
+de parâmetros w para a sua rede neural. Assim, o que a interrupção precoce faz é
+parar no meio do caminho, onde você tem apenas um peso w de porte médio. E similarmente à regularização L2,
+escolhendo uma rede neural com norma menor para os seus parâmetros w,
+com sorte, sua rede neural sobreajustará menos. E o termo "interrupção precoce"
+refere-se ao fato de que você apenas interrompe o treino da sua rede neural mais cedo. Eu às vezes, uso interrupção precoce,
+quando estou treinando uma rede neural. Mas, há uma desvantagem nisso, deixe-me explicar. Eu vejo que o processo de aprendizagem de máquina
+compreende vários outros passos diferentes. Um, é que você quer um algoritmo para
+otimizar a função de custo J e temos várias ferramentas para fazer isso,
+como o gradiente descendente, e falaremos mais tarde sobre outros algoritmos,
+como momentum, RMSprop e Adam, dentre outros. Mas, depois de ter otimizado a função de custo J,
+você também queria não sobreajustar. E temos algumas ferramentas para fazer isso,
+como a sua regularização, obtendo mais dados, etc. Agora, em aprendizado de máquina,
+nós já temos tantos hiperparâmetros que surgem ao longo do tempo, que já é muito complicado escolher
+entre o espaço de possíveis algoritmos. E então, eu acho mais fácil pensar 
+em aprendizado de máquina, quando você tem um conjunto de ferramentas
+para otimizar a função de custo J, e quando você está focando em 
+otimizar a função de custo J, o que importa é encontrar w e b,
+para que J(w,b) seja o menor possível. Você apenas não pensa em mais nada, 
+além de reduzir isto. E então, é uma tarefa completamente
+separada para não sobreajustar, ou seja, para reduzir a variância. E você tem um conjunto separado 
+de ferramentas para fazer isso. E este princípio, às vezes, é chamado 
+de ortogonalização. E há esta ideia de que você quer
+ser capaz de pensar em uma tarefa de cada vez. Falarei mais sobre ortogonalização em um outro vídeo, então, se você não estiver entendendo agora,
+não se preocupe com isso. Mas, para mim, a principal desvantagem 
+da interrupção precoce são esses dois pares, essas duas tarefas. Você não pode mais trabalhar
+com estes dois problemas independentemente, pois, interromper o gradiente descendente mais cedo, pode parar o que quer que você esteja fazendo
+para otimizar a função de custo J, porque agora, você não está fazendo um bom trabalho
+reduzindo a função de custo J. Você não o fez muito bem. E você também tenta simultaneamente, 
+não sobreajustar. Logo, ao invés de usar ferramentas diferentes
+para resolver os dois problemas, você está usando uma que mistura as duas. E isso faz com que fique mais complicado pensar sobre o conjunto de coisas que você poderia tentar. Ao invés de usar a interrupção precoce,
+outra alternativa seria usar a regularização de L2, assim você consegue treinar a rede neural o máximo possível. Eu acho que isso faz com que o espaço
+de pesquisa de hiperparâmetros fique mais fácil de decompor, e mais fácil de sondar. Mas, a desvantagem disso é que
+você pode ter de tentar um monte de valores do parâmetro de regularização lambda. E isso faz com que a pesquisa sobre muitos valores de lambda
+seja computacionalmente mais cara. E a vantagem da interrupção precoce é que,
+ao se executar o processo de gradiente descendente apenas uma vez, você consegue
+experimentar valores de w pequeno, w médio e w grande, sem precisar tentar um monte de valores
+do hiperparâmetro de regularização L2 lambda. Se você ainda não estiver entendendo este conceito,
+não se preocupe. Nós falaremos melhor sobre ortogonalização em outro vídeo mais tarde,
+acho que vai ficar mais claro. Apesar dessas desvantagens, 
+muitas pessoas a utilizam. Eu pessoalmente prefiro usar apenas
+a regularização L2, e tentar valores diferentes de lambda. Isso, assumindo que você pode arcar
+ com a computação para isso. Mas, a interrupção precoce faz
+com que você consiga um efeito similar, sem ter de tentar explicitamente
+um monte de valores de lambda. Então, você viu como usar o aumento do dado,
+assim como usar a interrupção precoce para reduzir variância
+ou para prevenir sobreajuste na sua rede neural. A seguir, falaremos sobre algumas técnicas para configurar seu problema de otimização,
+para que seu treinamento seja executado rapidamente.
+[Tradução: Diogo dos Santos Farias | Revisão: Carlos Lage]

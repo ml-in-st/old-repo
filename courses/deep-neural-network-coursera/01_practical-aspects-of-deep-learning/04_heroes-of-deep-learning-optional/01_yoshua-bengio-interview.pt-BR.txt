@@ -1,0 +1,320 @@
+Oi Yoshua. Estou muito feliz que 
+você pôde estar aqui conosco hoje. Estou muito feliz também. Hoje, você não é apenas um pesquisador 
+ou engenheiro de aprendizagem profunda. Você tornou-se uma das instituições e 
+um dos ícones de aprendizagem profunda, mas eu gostaria muito de saber 
+como essa história começou. Então, como você acabou gostando de aprendizagem 
+profunda, e depois seguindo esta jornada? Bem, na verdade, começou quando 
+eu era criança, adolescente, e lia muito sobre ficção 
+científica, como muitos de nós. E quando eu comecei meus estudos de pós-graduação 
+em 1985, comecei lendo artigos de redes neurais, e foi quando eu fiquei muito empolgado, 
+e tornou-se realmente uma paixão. Como era em meados 
+dos anos 1980, certo, 1985, lendo estes artigos? 
+Você se lembra? − Sim. Bem, a partir dos cursos que eu fiz em 
+IA clássica com sistemas inteligentes, e, de repente, descobrir que havia 
+todo este mundo de descoberta de como humanos aprendiam, 
+e sobre a inteligência humana. E como desenhar conexões entre 
+isso e a inteligência artificial e computadores. Isso foi muito empolgante para mim 
+quando eu descobri esta literatura, e eu comecei a ler sobre 
+conexionismo, é claro. Então, os artigos de Geoff Hinton, 
+Rumelhart, e assim por diante. E eu trabalhei com redes recorrentes, 
+reconhecimento de fala, HMNs, que são modelos gráficos. E então, rapidamente, mudei para os laboratórios Bell
+da AT&T e MIT, onde eu fiz pós-doutorado. E foi onde eu descobri alguns dos 
+problemas com as dependências de longo-prazo no 
+treino de redes neurais. E então, logo depois, eu fui recrutado 
+pela UdeM, de volta em Montreal, onde eu passei a maior 
+parte da minha adolescência. Então, como alguém que esteve lá 
+por muitas décadas e viu de tudo, certamente quase tudo, 
+conte-me o que você pensa sobre a evolução da aprendizagem profunda 
+e redes neurais ao longo do tempo? Começamos com 
+experimentos, intuições, e a teoria acabou vindo mais tarde. Agora, nós entendemos 
+muito melhor, por exemplo, porque retropropagação está funcionando tão 
+bem, porque profundidade é tão importante. E estes conceitos, não tínhamos uma 
+base teórica sólida naquela época. Quando começamos a trabalhar em redes profundas 
+no início dos anos 2000, tínhamos a intuição que fazia sentido que uma rede mais 
+profunda deveria ser mais poderosa. Mas não sabíamos como pegar isso e fazer a prova, e é claro, nossos experimentos, 
+inicialmente, não funcionaram. E, quais foram as coisas que, na sua 
+opinião, de fato se concretizaram? E quais foram as maiores 
+surpresas ou o que deu errado, se comparado com o 
+que sabíamos há 30 anos? Então, um dos maiores 
+erros que eu cometi foi pensar como todo mundo 
+na década de 1990, que você precisava de não-linearidades sutis 
+para que a retropropagação funcionasse. Porque eu pensei que, se tivéssemos 
+algo corrigindo as não-linearidades, onde você tem uma parte plana, 
+isso seria muito difícil de treinar, porque a derivada seria 
+zero em muitos pontos. E quando começamos a fazer 
+experimentos com ReLu ("rectified linear unit"), com redes profundas por volta de 2010, 
+eu estava obcecado com a ideia que deveríamos ter cuidado para que os neurônios 
+não saturassem muito na parte zero. Mas no final, acabou resultando que, na 
+verdade, o ReLu estava trabalhando bem melhor do que os sigmoides e anexos, 
+e isso foi uma grande surpresa. Nós fizemos desta forma, explorando isso 
+pela conexão biológica, na verdade, não porque achávamos 
+que seria mais fácil otimizar. Mas resultou que funcionou melhor, enquanto na 
+verdade eu achava que seria mais difícil de treinar. Deixe-me perguntá-lo. Qual é a relação entre aprendizagem 
+profunda e o cérebro? Há uma resposta óbvia, mas eu 
+estou curioso qual é a sua resposta? Bem, o insight inicial que realmente 
+me deixou empolgado com redes neurais foi este ideia 
+dos conexionistas que informação é distribuída através da ativação 
+de muitos neurônios. Ao invés de ser representada 
+por um tipo de célula avó, como eles estavam chamando, 
+uma representação simbólica. Essa era uma visão 
+tradicional em IA clássica. E eu ainda acredito que isso é 
+uma coisa muito importante, e ainda vejo pessoas redescobrindo a importância 
+disso, até mesmo recentemente. Então, essa foi realmente a base. A coisa da profundidade é algo que veio 
+depois, no início da década de 2000, mas não era algo que estava pensando 
+na década de 1990, por exemplo. Certo, certo, e lembro-me que você construiu 
+muitas representações relativamente rasas, mas bem distribuídas de 
+"word embeddings", certo, bem no início. Certo, isso mesmo. Esta é uma das coisas que eu me 
+empolguei muito no final da década de 1990. Na verdade, meu irmão Samy e eu, trabalhamos 
+na ideia que poderíamos usar redes neurais para enfrentar a maldição da 
+dimensionalidade, que acreditava-se ser um dos problemas centrais 
+com aprendizagem de estatística. E o fato que podíamos ter 
+estas representações distribuídas para representar distribuições conjuntas ao longo 
+de muitas variáveis aleatórias de uma forma muito eficiente. E resultou que funcionou muito 
+bem, e eu estendi isso para distribuições sobre sequências de palavras, 
+e assim foi que surgiu "word embeddings". Porque eu pensei, isso 
+permitirá generalização através de palavras que tenham um 
+significado semântico similar e assim por diante. Nas últimas décadas, seu grupo 
+de pesquisa inventou mais ideias que ninguém consegue 
+resumir em alguns minutos. Então, estou curioso, quais 
+são as invenções ou ideias do seu grupo que 
+deixou você mais orgulhoso? Bem, eu acho que mencionei 
+dependências de longo-prazo, este estudo. Eu penso que as pessoas 
+ainda não entendem muito bem. Então, há a história que eu mencionei 
+sobre a maldição da dimensionalidade, distribuições conjuntas com redes neurais, 
+que tornaram-se, mais recentemente, o que fez Hugo Larochelle. E então, como disse, isso deu 
+origem a muitos trabalhos em aprendizagem de "word embeddings" 
+para distribuições conjuntas de palavras. Então veio o que eu acho que são os eventos 
+mais conhecidos do trabalho que fizemos com aprendizagem profunda, com pilhas 
+de "autoencoders" e pilhas de RBMs (Restricted Boltzmann Machines). Isso foi o trabalho sobre 
+entender melhor as dificuldades no treino de redes profundas 
+com as ideias de inicialização, e também, o desaparecimento do 
+gradiente em redes profundas. E este trabalho realmente foi o que deu 
+origem aos experimentos que mostraram a importância das funções 
+lineares de ativação. Depois, eu nomearia alguns dos trabalhos 
+mais importantes relativos ao trabalho que realizamos com aprendizagem não supervisionada, a auto-encoder 
+com fitragem de ruído (denoising auto-encoder), as GANs, que são muito populares atualmente, 
+as Redes Gerativas Adversárias. O trabalho que fizemos com tradução 
+de máquina neural baseada em atenção,
+[NT: attention-based NMT(Bahdanau et al., 2014] que acabou tornando-se muito importante 
+em trabalhos de tradução. E atualmente está sendo usado em sistemas 
+industriais, como "Google Translate". Mas esta coisa de atenção, na verdade 
+mudou muito minha visão sobre redes neurais. Costumávamos pensar redes neurais como 
+máquinas que podiam mapear um vetor para outro. Mas realmente com mecanismos de atenção, você 
+pode manipular qualquer tipo de estrutura de dados. E isso está realmente abrindo uma 
+série de avenidas interessantes. Um direcionamento que, na verdade, 
+possibilita a conexão com a biologia, uma coisa que eu tenho 
+trabalhado nos últimos anos é, como podemos criar algo similar a retropropagação, 
+mas que os cérebros poderiam implementar. E temos alguns artigos nesta direção 
+que parecem ser interessantes para o pessoal da neurociência. E então, estamos continuando 
+nesta direção, obviamente. Um dos tópicos, que eu sei 
+que você tem pensado muito, é a relação entre aprendizagem profunda e o cérebro. Você pode nos 
+falar um pouco mais sobre isso? Esta coisa biológica é algo que eu 
+venho pensando há algum tempo, na verdade, e que eu venho, eu diria, 
+sonhando acordado. Porque, penso nisso como um quebra-cabeça. Então, nós temos estes pedaços de evidências, 
+do que sabemos sobre o cérebro e da aprendizagem no cérebro, como plasticidade 
+dependente do tempo de disparos entre os neurônios. E, por outro lado, temos todos esses 
+conceitos da aprendizagem de máquina. A ideia do treinamento global 
+de todo o sistema com relação a uma função objetiva, e 
+a ideia da retropropagação. E o que significa retropropagação? Tipo, o que realmente 
+significa atribuição de crédito? Quando eu comecei a pensar sobre como 
+cérebros podem fazer algo tipo retropropagação, isso me levou a pensar sobre, bem, talvez haja 
+alguns conceitos mais genéricos por trás da retropropagação que o faça tão eficiente que 
+nos permita sermos eficientes com retropropagação. E talvez, há um grupo maior de maneiras 
+de fazer atribuição de crédito, e isso se relaciona a perguntas que pessoas, que estão 
+na aprendizagem por reforço, estejam fazendo. Então, é interessante como, às vezes, 
+perguntas simples nos levam a pensar sobre tantas coisas 
+diferentes, e nos força a pensarmos sobre tantos elementos que você gostaria de introduzir, 
+como um grande quebra-cabeça. Então, isso tem sido há alguns anos. E eu preciso dizer que esta grande 
+jornada, como muitas daquelas que eu segui, foi altamente inspirada 
+pelos pensamentos de Jeff Hinton. Especificamente, ele apresentou 
+isso em 2007, eu acho, o primeiro "workshop" em 
+aprendizagem profunda, em que era como ele pensava 
+que o cérebro funcionava. Qual tipo de código 
+temporal poderia ser usado para potencialmente fazer 
+o trabalho de retropropagação. E isso leva a muitas ideias que 
+eu tenho explorado nos últimos anos. Sim, é uma história 
+interessante que tem sido escrita basicamente 
+há uma década agora. Um dos temas que eu também 
+já escutei você falar muitas vezes é Aprendizado não Supervisionado. Podes compartilhar a sua 
+perspectiva sobre o tema? Sim, sim. Então, aprendizagem não 
+supervisionada é muito importante. Agora, nosso sistema industrial está 
+baseado em aprendizagem supervisionada, que essencialmente requer que humanos definam 
+quais são os conceitos importantes para o problema e rotular 
+estes conceitos nos dados. E nós construímos todos esses brinquedos 
+incríveis, e serviços e sistemas que usam isso. Mas humanos são capazes 
+de fazer muito mais. Eles são capazes de explorar e descobrir 
+novos conceitos através da observação e interação com o mundo. Uma criança de 2 anos é capaz 
+de entender física intuitivamente. Em outras palavras, ela entende sobre 
+gravidade, ela entende sobre pressão, ela entende sobre inercia, ela entende líquidos e sólidos. E claro, seus pais nunca a 
+ensinaram nada disso, certo? Então, como ela aprendeu isso? Então, este é o tipo de pergunta que a aprendizagem 
+não supervisionada está tentando responder. Não é apenas sobre nós 
+termos rótulos ou não. Trata-se, na verdade, do 
+desenvolvimento de uma construção mental que explica como o mundo 
+funciona, através de observação. E mais recentemente, 
+eu tenho combinado as ideias de aprendizagem não supervisionada 
+com as ideias de aprendizagem por reforço. Porque eu acredito que há 
+um indicativo muito forte sobre os importantes conceitos subjacentes 
+que estamos tentando desvendar, que estamos tentando 
+separar uns dos outros. O que um humano ou máquina pode 
+aprender pela interação com o mundo, explorando o mundo, fazendo testes 
+e tentando controlar as coisas. Então, penso que isso está 
+conectado com as ideias originais de aprendizagem profunda. Bem, minha experiência com 
+aprendizagem não supervisionada. Há 15 anos, quando começamos a 
+fazer os RBMs, e essas coisas, eu estava muito focado na ideia 
+da aprendizagem de boas representações. E eu ainda penso que 
+está é uma questão essencial. Mas o que não sabemos é como e o 
+que é uma boa representação? Como descobrimos uma 
+função objetiva, por exemplo? Então, tentamos muitas 
+coisas ao longo dos anos. E isso é, na verdade, uma das coisas mais legais sobre 
+as pesquisas em aprendizagem não supervisionada, que há tantas ideias distintas, tantas formas diferentes 
+de atacar este problema. E que, talvez haja uma outra forma, que 
+descobriremos no próximo ano, e que é totalmente diferente, talvez o cérebro esteja usando 
+algo completamente diferente. Então, isso não é pesquisa incremental. Isso é algo que, em si, 
+já é muito exploratória. Não temos uma boa definição do que é 
+a função objetiva correta, nem mesmo para medir se um sistema está fazendo um bom 
+trabalho em aprendizagem não supervisionada. Então, é claro que é desafiador, 
+mas ao mesmo tempo, isso deixa um vasto 
+campo de oportunidades, e isso é o que os pesquisadores 
+adoram, pelo menos é algo que me atrai. Nos dias de hoje, há muita coisa 
+acontecendo na aprendizagem profunda. E eu penso que nós já passamos 
+o ponto onde é possível que qualquer ser humano leia qualquer artigo 
+publicado sobre aprendizagem profunda. Então, estou curioso, qual campo na 
+aprendizagem profunda mais te encanta? Bem, eu sou muito ambiciosa, e 
+eu sinto que o estado da ciência atual da aprendizagem profunda 
+está longe de onde gostaria de vê-lo. E eu tenho a impressão que nossos 
+sistemas agora, cometem erros que sugerem que eles têm um entendimento 
+do mundo muito superficial. Então, o que mais me encanta agora é o 
+direcionamento de pesquisa em que não estamos tentando construir sistemas 
+que não irão fazer algo útil. Estamos voltando aos princípios do tipo: 
+como um computador observa o mundo, interage com o mundo e 
+descobre como o mundo funciona? Mesmo se este mundo é simples, algo que possamos 
+programar como um tipo de videogame, nós não sabemos como fazer bem isto. E isso está ok, porque eu não tenho 
+que competir com Google, Facebook, e Baidu, dentre outros, certo? Porque isso é um tipo de pesquisa básica que pode ser feita por qualquer um 
+em sua garagem e poderia mudar o mundo. Então, há muitas 
+formas de abordar isso. Mas eu vejo bons frutos, nas 
+interações entre aprendizagem profunda e aprendizagem por 
+reforço, e que são importantes. E eu estou muito empolgado 
+que o progresso nesta direção possa ter um grande impacto 
+em aplicações práticas na verdade. Porque se você olhar para alguns dos grandes 
+desafios que temos nas aplicações, tipo como lidamos com novos domínios, ou categorias das quais temos 
+muito poucos exemplos. E em casos onde humanos são muito 
+bons em solucionar estes problemas. Assim, essas transferências de 
+aprendizagem e problemas de dramatização, elas se tornariam muito mais fácil de resolver, 
+se nós tivéssemos sistemas que tivessem um entendimento melhor 
+de como o mundo funciona. Um entendimento 
+mais profundo, certa? O que realmente está acontecendo? Quais são as causas 
+daquilo que estou vendo? E como eu posso influenciar 
+o que eu vejo, pelas minhas ações? Então, estas são tipos de questões 
+que eu estou muito empolgado atualmente. Eu penso que a conexão e a pesquisa 
+na aprendizagem profunda evoluíram nas últimas décadas com 
+perguntas bem antigas de IA. Porque muito do sucesso em aprendizagem 
+profunda tem haver com a percepção. Então, o que ainda falta? O que resta é um tipo 
+de condição de alto nível, que está relacionado com o entendimento em um 
+nível abstrato de como as coisas funcionam. Então, programas que entendem 
+abstrações de alto nível, ainda não alcançaram estes níveis altos de 
+abstração, e nós precisamos chegar lá. Temos que pensar sobre raciocínio, 
+processamento sequencial de informação. Nós temos que pensar 
+como funciona a casualidade e como máquinas podem descobrir 
+todas estas coisas por si mesmas. Potencialmente guiadas por humanos, mas 
+o máximo que der, de forma autônoma. E parece, partindo do 
+que você disse, que você é um fã de abordagens de 
+pesquisa onde você faz experimentos. Usarei o termo problema de 
+brinquedo, não de forma depreciativa. Certo, mas em um pequeno problema. E você é otimista que eles possam ser 
+transferidos para problemas maiores mais tarde. Sim, sim. Transfere de certa forma. Claro, teremos que fazer 
+algum trabalho para ampliar e tratar estes problemas, mas a minha motivação principal para estes problemas de brinquedos, é que 
+podemos entender melhor nossas falhas e podemos reduzir o problema 
+a algo que podemos intuitivamente manipulá-lo e entendê-lo mais facilmente. Então, um tipo clássico de abordagem 
+científica de divisão e conquista. Além disso, eu penso, algo que 
+as pessoas não pensam muito, é o ciclo de pesquisa pode 
+ser muito mais rápido. Então, se eu puder fazer um experimento em algumas 
+horas, eu consigo progredir muito mais rápido. Se eu tiver que treinar um modelo gigante 
+que tenta capturar todo o senso comum e tudo relativo ao conhecimento 
+genérico, que eventualmente nós faremos. É apenas que cada experimento toma muito 
+tempo com o hardware disponível atualmente. Então, enquanto nossos amigos de hardware estão 
+construindo máquinas mil vezes, ou um milhão de vezes mais rápidas, 
+eu faço estes experimentos de brinquedos. [Risos] Sabe, eu também 
+escutei você falar de ciência da aprendizagem profunda, não 
+apenas como uma disciplina de engenharia, mas realizando mais trabalho para 
+entender o que está realmente acontecendo. Compartilhe os seus 
+conhecimentos sobre isso. Claro, absolutamente. Eu tenho medo que grande do parte que estamos 
+fazendo é tipo um monte de pessoas cegas tentando encontrar o seu caminho. [Risos] E podemos ter sorte e encontrar 
+coisas interessantes deste jeito. Mas, realmente, se nós 
+pararmos um pouco e tentarmos entender o que estamos fazendo 
+de forma que seja transferível, porque voltamos aos 
+princípios da teoria, mas quando eu digo teoria, eu não quero 
+dizer necessariamente matemática. Claro que eu gosto de matemática, etc., mas 
+eu não acho que nós precisamos que tudo seja formalizado matematicamente, 
+mas sim formalizados de forma lógica. No sentido que eu consiga 
+convencer alguém que isso funciona, que isso faz sentido. Este é o aspecto mais importante. E então, a matemática nos permite 
+tornar isso mais forte e comprovado. Mas isso é mais sobre 
+o entendimento, na verdade. E é também sobre 
+fazer a nossa pesquisa, não para ser a próxima linha 
+de base ou referência, ou para ser melhor que os outros caras no 
+outro laboratório, ou na outra empresa. É mais sobre que tipo de pergunta devemos 
+fazer, de modo que nos permita entender melhor o 
+fenômeno de interesse. O que torna, por exemplo, o treinamento em redes mais profundas 
+ou em redes atuais mais difícil? Temos algumas ideias, mas muitas 
+coisas ainda não entendemos. Então, talvez possamos projetar experimentos cujo 
+objetivo não seja ter um algoritmo melhor, mas apenas entender melhor os 
+algoritmos que temos atualmente, ou quais circunstâncias fazem com que um 
+algoritmo específico trabalhe melhor e por quê. É o porquê que realmente importa. Isto é ciência. É a razão. Certo. Hoje existem 
+muitas pessoas querendo entrar nesta área. E eu tenho certeza que já respondeu 
+isso em muitas sessões individuais, mas com todas estas pessoas assistindo 
+este vídeo, qual dica você daria às pessoas que querem entrar na IA, 
+entrar na aprendizagem profunda? Certo. Primeiramente, há 
+motivações distintas e coisas diferentes que pode-se fazer. O que você precisa para tonar-se um pesquisador de aprendizagem 
+profunda, não é necessariamente o mesmo, caso você queira tornar-se um engenheiro que irá usar 
+aprendizagem profunda para construir produtos. Há diferentes níveis de entendimento que 
+são necessários em ambos os casos. Mas de qualquer forma, em 
+ambos os casos, pratique. Então, para realmente dominar um 
+assunto como aprendizagem profunda, obviamente você precisa ler muito. Você tem que praticar programar 
+as coisas por conta própria. Muitas vezes eu entrevisto 
+estudantes que utilizaram software. E hoje em dia, há tantos softwares 
+bons que permitem que você faça "plug and play" sem entender 
+nada do que está sendo feito. Ou em um nível tão superficial 
+que depois torna-se difícil de descobrir quando algo não funciona ou 
+o que está acontecendo de errado. Então, de fato, tente implementar coisas, 
+mesmo que sejam ineficientes. Mas assegurar-se de que você realmente esteja 
+entendo o que está acontecendo, é muito útil. E tente fazer 
+as coisas você mesmo. Então, não use apenas uma plataforma 
+de programação onde você pode fazer de tudo com algumas linhas de código, mas que você 
+não sabe exatamente o que está acontecendo. Exatamente, exatamente! 
+Eu diria ainda mais. Tente distinguir as coisas por 
+si, desde o início, se puder. Isso ajuda muito. Mas, as coisas normais que você 
+tem que fazer, tais como ler, analisar códigos de outras pessoas, 
+escrever seu próprio código, fazer muitos experimentos, assegurar-se de 
+que você entenda tudo o que está fazendo. Então, especialmente 
+na parte da ciência, tentar perguntar "por que eu estou fazendo isso?" 
+"Por que as pessoas estão fazendo isso?" Talvez a resposta esteja em algum lugar 
+do livro e você tem que ler mais. Mas é ainda melhor se você 
+consegue descobrir por si mesmo. Sim, legal. E de fato, das coisas que li, 
+você, Ian Goodfellow e Aaron Courville escreveram 
+um livro altamente considerado. Obrigado, obrigado. Sim, está vendendo muito. É um pouco insano. Sinto que há mais pessoas lendo este livro, 
+do que pessoas que estão capacitadas para lê-lo atualmente [RISO]. Também, os anais 
+da conferência IRCT, é o melhor lugar para 
+encontrar bons artigos. Claro que há ótimos artigos na 
+NIPS, ICML e outras conferências. Mas se você realmente quer ler 
+muitos artigos bons, leia os últimos anais da IRCT, eles lhe darão uma 
+visão muito boa deste campo. Legal! Algum outro comentário? Quando pessoas pedem conselhos de como 
+alguém se torna bom em aprendizagem profunda? Bem, depende de 
+onde você vem. Não se apavore com a matemática. Trabalhe nos conceitos, e então a 
+matemática se tornará muito mais fácil de entender uma vez que você 
+domina o que acontece no nível intuitivo. E uma boa notícia é que você não 
+precisa de 5 anos de doutorado para ser especialista em aprendizagem profunda. Na verdade, você pode 
+aprender bem rápido. Se você tem uma boa base 
+em ciência da computação e matemática, você pode aprender o 
+suficiente para utilizá-la, construir coisas e começar experimentos de 
+pesquisa em apenas alguns meses. Aproximadamente seis meses para 
+pessoas com o treinamento apropriado. Talvez elas não saibam nada 
+de aprendizagem de máquina, mas se elas são boas em matemática e ciência 
+da computação, isso pode ser bem rápido. E claro, isso significa que você precisa 
+ter o treinamento correto em matemática e ciência da computação. Às vezes, o que você aprende nos cursos 
+de ciência da computação não é suficiente. Você precisa de um aprendizado 
+contínuo em matemática, especialmente. Por exemplo, probabilidade, 
+álgebra e otimização. Entendo. E Cálculo. E Cálculo, correto. Muito obrigado, Joshua, por compartilhar 
+os comentários, ideias e conselhos. Mesmo que eu te conheça por muito tempo, 
+há muitos detalhes do início da sua trajetória que eu não 
+sabia até agora. Então, obrigado. Bem, obrigado Andrew, 
+por estar fazendo este vídeo especial e pelo 
+que você está fazendo. Espero que seja utilizado por muita gente. 
+[Tradução: Renato Barata Gomes | Revisão: Carlos Lage]

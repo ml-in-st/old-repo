@@ -1,0 +1,42 @@
+Você aprendeu como implementar
+médias móveis exponencialmente ponderadas. Há um detalhe técnico chamado 
+correção de viés ("bias correction"), que pode tornar mais preciso o
+cálculo destas médias. Vamos ver como isto funciona. Num vídeo anterior, você viu esta imagem para beta = 0,9. Esta imagem para beta = 0,98. Mas acontece que se você implementar 
+a fórmula, como expressa aqui, você não conseguirá a curva verde 
+quando, digamos, beta = 0,98. Na verdade, você conseguirá a curva roxa. E você pode notar que a curva 
+roxa inicia bem embaixo. Então, vamos ver como isso o afeta. Quando você está implementando uma média móvel, 
+você inicia com V₀ = 0, e então V₁ = 0,98 V₀ + 0,02 teta 1. Mas V₀ é igual a 0, então 
+esse termo some. E V₁ fica apenas 0,02 vezes teta 1. E é por isso, que a temperatura do primeiro dia é,
+digamos que 40 graus Fahrenheit, assim, V₁ será 0,02 vezes 40, o qual é 8. Então, você obtém
+ um valor muito menor aqui. Logo, não é uma boa estimativa da 
+temperatura do primeiro dia. V₂ será 0,98 vezes V₁ + 0,2 vezes teta 2. E se você ligar V₁, que ´é isto aqui 
+embaixo e multiplicá-lo, você descobre que V₂ é 
+na verdade, igual a 0,98 vezes 0,02 vezes teta 1 + 0,02 vezes teta 2. E que 0,0196 teta 1 + 0,02 teta 2. Então novamente, assumindo que teta 1 e
+ teta 2 são números positivos, quando você calcula este V₂, ele resultará muito menor que teta 1 ou teta 2. Então, V₂ não é uma estimativa muito boa
+da temperatura dos dois primeiros dias do ano. Mas acontece que há uma forma 
+de modificar esta estimativa que a torna melhor, faz com que ela seja mais acurada, especialmente durante esta 
+fase inicial da sua estimativa, a qual é, ao invés de pegar Vt, 
+pegar Vt dividido por (1 - beta elevado a t), 
+onde t é o dado atual no qual estamos. Vamos ver um exemplo na prática. Quando t = 2,
+ 1- (beta elevado a t) é 1- (0,98 ao quadrado) e isso é igual a 0,0396. E então, sua 
+estimativa da temperatura do segundo dia torna-se V₂ dividido por 0,0396 e isto será 0,0196 vezes 
+teta 1 + 0,02 teta 2. Você nota que estas duas coisas 
+somam-se ao denominador 0,0396. E isso vira uma média ponderada 
+de teta 1 e teta 2 e isto remove esse "viés". Assim, você nota que quando 
+t se torna grande, beta elevado a t se aproxima de 0, e é por isso 
+que quando t for grande o suficiente, a correção de "viés" 
+quase não faz diferença. Por isso, quando t é grande, 
+a linha roxa e a linha verde praticamente se sobrepõem. Mas durante, essa fase inicial de aprendizagem,
+quando você ainda está aquecendo suas estimativas, quando a correção de viés pode ajudá-lo
+a obter uma estimativa melhor desta temperatura. E é essa correção de viés
+ que lhe ajuda a ir da linha roxa à linha verde. Então, em aprendizado de máquina,
+para a maioria das implementações de média móvel exponencialmente ponderada, as pessoas muitas vezes
+não se incomodam em implementar correções de vieses. Porque a maioria das pessoas prefere 
+apenas esperar esse período inicial e ter uma estimativa ligeiramente mais tendenciosa 
+e partir de lá. Porém, se você estiver preocupado com o viés
+ durante a fase inicial, enquanto a sua média móvel
+exponencialmente ponderada ainda estiver se aquecendo, então, a correção de viés pode lhe ajudar
+a conseguir uma estimativa melhor no início. Agora você já sabe como implementar médias móveis
+exponencialmente ponderadas! Vamos continuar e usá-las
+para construir alguns algoritmos de otimização melhores!
+[Tradução: Diogo dos Santos Farias | Revisão: Carlos Lage]

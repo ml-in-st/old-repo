@@ -1,0 +1,41 @@
+Nos primórdios da aprendizagem profunda, as pessoas se preocupavam muito
+em relação ao algoritmo de optimização ficar preso numa ótima local inadequada. Mas assim como a teoria da 
+aprendizagem profunda tem avançado, a nossa compreensão de 'ótima local' 
+também tem mudado. Deixe-me mostrar-lhe o que 
+pensamos sobre ótima local agora, e questões no problema de 
+optimização na aprendizagem profunda. Esta era uma imagem que as pessoas costumavam ter em mente
+quando se preocupavam com ótimas locais. Talvez, você esteja tentando optimizar 
+a atribuição de alguns parâmetros, nós os chamamos de W₁ e W₂, e a altura da superfície é a função de custo J. Nesta figura, parece haver
+um monte de ótimas locais, em todos esses pontos. E seria mais fácil o gradiente descendente, ou um dos outros algoritmos, ficar 
+preso numa dessas ótimas locais do que chegar a uma ótima global. Acontece que se você estiver traçando uma figura
+como esta em duas dimensões, fica fácil criar parcelas como esta
+com um monte de ótimas locais (mínimas locais) diferentes. E estes gráficos de dimensão bem pequena
+eram o que geralmente guiava a intuição. Mas esta intuição na verdade, não está correta. Acontece que se você estiver treinando uma rede neural, a maioria dos pontos com gradiente zero não são
+ótimas locais, assim como estes. Ao invés disso, a maioria dos pontos com gradiente zero
+em uma função de custo são pontos de sela. Então, esse é um ponto onde o gradiente zero, novamente, talvez seja W₁, W₂, e a altura é o valor da função de custo J. Mas informalmente, uma função de espaço dimensional muito alto, se o gradiente for zero, pode ser, em cada direção, uma função do tipo convexa,
+ ou uma função do tipo côncava. E se você estiver em, digamos, um espaço de 20 mil dimensões, para que ele seja uma ótima local, todas as 20 mil direções precisam parecer com isso. Então, a chance disso acontecer é talvez, muito pequena, talvez dois elevado a menos 20 mil. Ao invés disso, é muito mais provável que você consiga
+algumas direções em que a curva dobre para cima assim, da mesma formas que algumas direções
+em que a função de curva está dobrando para baixo, ao invés de estarem todas curvadas para cima. Logo, é por isso que em espaços dimensionais altos, você na verdade, está muito mais propenso a ir
+para um ponto sobrecarregado como esse mostrado à direita, e então para a mínima local. Quanto ao porquê da superfície
+ ser chamada de ponto de sela, se você usar a imaginação, talvez, isto passe a ser com uma sela, certo? E isto seja um cavalo. Aqui temos a cabeça do cavalo, este é o olho do cavalo. Bom, não é o melhor desenho de um cavalo,
+mas creio que vocês tenham entendido. Então, você, o cavaleiro, vai se sentar aqui na sela. Por isso, este ponto aqui, onde a derivada é zero, é chamado de ponto de sela. Há realmente um ponto nessa sela,
+onde você se sentaria, eu acho, e acontece de ele ter derivada zero. Então, uma das lições que aprendemos na história da aprendizagem profunda é que
+um monte de nossas ideias sobre espaços de baixa dimensão, como o qual você pode traçar na esquerda, na verdade, não se transferem para os espaços de dimensão alta
+sobre os quais nossos algoritmos de aprendizagem operam. Pois, se você tiver 20 mil parâmetros, e J como sua função de vetor dimensional acima de 20 mil, então, você provavelmente verá
+mais pontos de sela do que pontos de mínima local. Se as ótimas locais não são o problema, então qual é o problema? Acontece que planaltos podem 
+realmente diminuir a aprendizagem e um platô é uma região onde a derivada está 
+perto de zero durante um tempo considerável. Logo, se você estiver aqui, o gradiente descendente vai para baixo na superfície, e dado que o gradiente é zero ou próximo de zero, a superfície fica muito plana. Você pode na verdade, levar muito tempo para encontrar o caminho para talvez,
+este ponto na planície. E então, por conta de uma perturbação
+aleatória de esquerda ou direita, talvez eu finalmente vá
+usar canetas coloridas para esclarecer melhor. Seu algoritmo pode então, rumar para fora do platô, passando por essa inclinação bem longa,
+antes de tomar seu rumo aqui a fim de que possa sair do platô. Então, as lições deste vídeo são, primeiro: é improvável que você fique preso em mínimais locais (ótimas locais) ruins durante muito tempo,
+ treinando uma rede neural razoavelmente grande, poupe um monte de parâmetros, e a função de custo J fique definida
+sobre um espaço de dimensão relativamente alta. Mas segundo: platôs são um problema e podem 
+diminuir muito a velocidade da aprendizagem. E é aí que algoritmos como "momentum" ou "RmsProp" ou "Adam" também podem
+realmente contribuir com seu algoritmo de aprendizagem. E estes são cenários onde algoritmos de observação
+sofisticados como o "Adam", podem acelerar a taxa na qual você descende no platô e então, sai dele. Assim, porque sua rede está resolvendo problemas de otimização
+sobre espaços de dimensão alta, honestamente, eu acho que ninguém faz ideia de como esses espaços se parecem, e nossa compreensão deles ainda está evoluindo. Mas eu espero que isso lhe dê alguma ideia dos desafios que os algoritmos de otimização podem enfrentar. Então, parabéns por concluir o conteúdo desta semana! Por favor, dê uma olhada no quiz desta semana,
+assim como no exercício de programação. Espero que você se divirta,
+praticando algumas das ideias do exercício de programação desta semana, e estou ansioso
+para vê-los no início dos vídeos da próxima semana.
+[Tradução: Diogo dos Santos Farias | Revisão: Carlos Lage]

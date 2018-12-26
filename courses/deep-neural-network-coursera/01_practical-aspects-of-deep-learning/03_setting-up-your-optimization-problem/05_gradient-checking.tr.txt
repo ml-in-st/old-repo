@@ -1,0 +1,61 @@
+Eğim kontrolü (gradient checking), geri yayılımı
+uygularken bana birçok kez zaman kazandırmış ve hataları
+bulmamda yardımcı olmuş bir tekniktir. Şimdi bunu kendi uygulamanızda
+hata ayıklamak (debug) veya uygulamanızın doğruluğunu teyit etmek
+için nasıl kullanabileceğinizi görelim. Sinir ağınız; W1, b1'den Wl, bL'ye kadar
+birtakım parametrelere sahip olacaktır. Eğim kontrolünü uygulamak için
+yapmanız gereken ilk işlem tüm parametrelerin büyük bir
+vektöre dönüştürülmesidir. Yani burada yapmanız gereken şey,
+W matrisini bir vektöre dönüştürmektir. Tüm W'ları vektörlere dönüştürdükten sonra
+hepsini birbirine bağlayarak büyük bir vektör elde etmiş olacaksınız. Bu büyük vektöre theta diyelim. Burada bedel fonksiyonu (cost function) J,
+W ve B'nin fonksiyonu olmak yerine yalnızca theta'nın bir fonksiyonu olmaktadır. Ardından W ve B ile yaptığımız gibi dW[1], db[1] ve devamını da
+theta ile aynı boyutlara sahip olan büyük bir vektöre (d theta) dönüştebilirsiniz. Daha önce yaptığımız gibi, dW[1]'i matrise
+dönüştürdük. db[1] ise zaten bir vektördü. dW[L] yi,matris olan tüm 
+dW'lere dönüştürdük. dW1'in W1 ile ve db1'in b1 ile aynı boyutlara sahip olduğunu unutmayın. Buradaki türevleri, daha önceden yaptığımız gibi
+yeniden boyutlandırarak ve birbirine bağlayarak d theta vektörünü oluşturabilirsiniz. d theta vektörü, theta vektörü
+ile aynı boyuta sahiptir. Burada asıl soru, d theta eğim (gradient) midir ya da bir diğer deyişle
+bedel fonksiyonu J'nin eğimi midir? Şimdi eğim kontrolünü (gradient checking)
+nasıl uygulayacağımızı görelim. Ayrıca gradient checking'in genelde
+grad check olarak kısaltıldığını da belirtelim. Öncelikle J'nin, theta'nın
+bir fonksiyonu olduğunu hatırlayalım. Yani J'yi theta 1, theta2, theta 3 ve devamının
+bir fonksiyonu olarak gösterebiliriz. Burada theta'ların sayısı,
+theta vektörünün boyutuna eşittir. Eğim kontrolünü uygulayabilmek için,
+her i için yani her theta için d theta approx i'yi hesaplayacak bir döngü oluşturmamız gerekiyor. Burada iki yönlü bir fark alalım. J(theta)'yı alalım. Theta 1, theta 2 ve theta i'ye kadar. Burada yalnızca theta i'yi epsilon kadar arttırıp geri kalanları aynı tutmak için
+theta i'ye epsilon ekleyeceğiz. Burada iki yönlü fark aldığımız için aynı işlemi -epsilon ekleyerek
+diğer taraf için de yapacağız. Geriye kalan elemanları ise
+olduğu gibi bırakacağız. Ve bu ifadeyi 2 theta'ya böleceğiz. Bir önceki videoda da gördüğümüz üzere bu ifade, yaklaşık olarak d theta i'ye eşittir. Burada d theta i,
+—eğer d theta i, bedel fonksiyonu J'nin türevi ise— J'nin theta i'ye göre kısmi türevidir. Burada yapmanız gereken, her i değeri
+için bu ifadeyi hesaplamaktır. Ve hesaplama sonucunda
+elinizde 2 tane vektör olacak. Burada d theta approx, d theta ile
+aynı boyuta sahip olacaktır. Aynı şekilde bu iki vektör de theta ile aynı boyuta sahip olacaktır. Burada yapmanız gereken, bu iki vektörün
+birbirlerine yaklaşık olarak eşit olup olmadığını kontrol etmektir. Peki, iki vektörün birbirine gerçekten yakın olup olmadığını nasıl kontrol edebiliriz? Ben tam olarak şu adımları izliyorum. Öncelikle iki vektör arasındaki Öklid uzaklığını hesaplarım. d theta approx eksi d theta,
+yani bu ifadenin L2 büyüklüğü (L2 norm) Burada bu ifadenin karesinin
+alınmadığına dikkat edin. Burada tüm elemanların
+farklarının karelerini toplayıp karekökünü alırız ve
+Öklid uzaklığını elde ederiz. Ardından bu ifadeyi vektör uzaklıkları
+ile normalize etmek için d theta approx artı d theta ile böleriz. Yalnızca bu vektörlerin
+Öklid uzaklıklarını kullanırız. Burada payda, vektörlerin çok küçük veya
+büyük olması durumunda bu ifadeyi bir orana dönüştürmektedir. Bunu çalışmalarımda uygularken epsilon'u 10 üzeri -7, yani 1e-7 olarak seçerim. Eğer bu formül, bu epsilon değerini kullanırken 10 üzeri -7 veya daha küçük bir değeri
+sonuç olarak veriyorsa, bu gayet güzel. Bu, yaptığımız türev yaklaşımının
+doğru olduğunu gösterir. Bu yalnızca küçük bir değer. Eğer sonuç 10 üzeri -5 civarlarındaysa
+sonucu dikkatlice incelerdim. Belki de doğru olan budur. Ancak bu vektörün elemanlarını
+tekrardan kontrol eder ve hiçbir elemanın çok büyük
+olmadığından emin olurdum. Eğer elemanlardan bazıları çok büyük ise muhtemelen bir yerde hata vardır. Eğer bu sonuç 10 üzeri -3 civarlarındaysa çok daha dikkatli inceleyerek
+hatayı bulmaya çalışırdım. Genelde sonuç olarak 10 üzeri -3'ten
+küçük bir değer elde etmelisiniz. Eğer sonuç 10 üzeri -3'ten büyükse,
+bu durumda daha büyük bir sıkıntı vardır. Gerçekten bir yerde hata
+yaptığımdan emin olurdum. Bu durumda theta'nın her
+elemanını tek tek inceleyerek d theta approx i ile d theta i'nin farklı olmasına sebep olan bir i değerinin olup
+olmadığını incelerdim. Ardından bu değeri, türev hesaplamaları
+sırasında herhangi bir hata yapıp yapmadığımdan emin
+olmak için kullanırdım. Ayıklama sürecinden sonra bu değer
+oldukça küçük bir değer haline gelir ve bu da, doğru bir uygulama
+yaptığımız işaret eder. Bir sinir ağını uygularken genelde öncelikle ileri yayılım ve
+geri yayılımı uygularım. Ardından eğim kontrolü yapıp çıkan
+çıkan sonucun büyük olduğunu fark ederim. Buradan da bir yerlerde hata olduğundan
+şüphelenir ve hatayı bulmaya çalışırım. Eğer hataları ayıkladıktan sonra eğim
+kontrolü sonucu küçük bir değer elde ettiysem uygulamamın doğru olduğuna emin olabilirim. Artık eğim kontrolünün nasıl
+işlediğini biliyorsunuz Sinir ağlarını uygularken birçok kez
+hataları bulmamda yardımcı olmuştu. Umuyorum ki size de yardımcı olacaktır. Gelecek videoda, eğim kontrolünü
+gerçekten nasıl uygulayabileceğiniz hakkında ekstra birkaç
+tavsiye ve not paylaşacağım. Haydi bir sonraki videoya geçelim.

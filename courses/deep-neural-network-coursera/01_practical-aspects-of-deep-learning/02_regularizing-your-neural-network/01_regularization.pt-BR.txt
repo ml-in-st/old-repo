@@ -1,0 +1,80 @@
+Se você suspeitar que a sua rede neural está sobre-ajustando seus dados, ou seja, você está tendo um problema de alta variância, uma das primeiras coisas que você 
+deve tentar talvez seja a regularização. Outro modo de se lidar com alta variância, é compilar mais dados de treino, o que é bem confiável. Mas você nem sempre consegue mais dados de treino, ou seria caro conseguir mais dados. Porém, adicionando regularização geralmente
+ prevenirá o sobre-ajustamento, ou reduzirá os erros na sua rede. Então, vamos ver como a regularização funciona. Vamos desenvolver estas ideias,
+usando regressão logística. Lembre-se que para regressão logística,
+você tenta minimizar a função de custo J, a qual é definida como esta função de custo, soma dos seus exemplos de treino, das perdas das previsões individuais em exemplos diferentes, onde você se lembra que w e b na regressão logística, são os parâmetros. Logo, 'w' é um vetor parâmetro, de dimensão nₓ,
+ e 'b' ´é um número real. E para adicionar regularização à regressão logística,
+o que você faz é adicionar a ela isto, que é chamado parâmetro de regularização λ
+ (lambda). Eu vou falar mais sobre isso em um segundo. Mas lambda/2m vezes a [(norma de w) ao quadrado]. Então aqui, a norma de w ao quadrado
+ é apenas igual a somatória de j (variando de 1 até nx) de wj ao quadrado,
+ou isso também pode ser escrito como w transposto w, ´´é apenas uma norma euclidiana quadrada do vetor de parâmetro w. E isso é chamado de 
+regularização L₂ Porque aqui, 
+você está usando a norma euclidiana, ou a norma L₂ 
+com o vetor de parâmetro w. Agora, por que você regulariza apenas o parâmetro w? Por que não adicionamos algo aqui sobre b também? Na prática, você poderia fazer isso, 
+mas eu geralmente apenas o omito. Porque se você olhar para seus parâmetros,
+w é normalmente um vetor de parâmetro de alta dimensão, especialmente 
+com um problema de variância alta. Talvez w apenas tenha um monte de parâmetros, então não está encaixando todos os parâmetros bem,
+ enquanto b é apenas um número. Então, quase todos os parâmetros estão em w, ao invés de b. E você adicionar este último termo, na prática, não vai fazer muita diferença, porque b é apenas um parâmetro 
+em meio a um grande número de parâmetros. Na prática, eu geralmente 
+não me dou o trabalho de inclui-lo. Mas você pode, se quiser. Então a regularização L₂
+ é o tipo mais comum de regularização. Você também já deve ter ouvido algumas pessoas 
+falarem sobre regularização L₁ quando você adiciona, 
+ao invés da norma L₂, um termo, que é lambda/m da somatória disto. E isso também é chamado de 
+norma L₁ do vetor de parâmetro w, por isso o subscrito 1 está ali, certo? E eu acho que colocar 'm' ou '2m' no denominador
+é apenas uma constante de escala. Se você usar a regularização L₁,
+ w vai acabar ficando disperso. E o que isso significa é que o vetor w 
+ficará com um monte de zeros. E alguns dizem que isso pode 
+ajudar a comprimir o modelo, porque o conjunto de parâmetros é zero,
+e você precisará de menos memória para armazenar o modelo. Embora eu ache que, na prática, 
+a regularização L₁ não ajude muito a tornar seu modelo esparso. Então, eu não acho que ela seja tão usada assim, ao menos não para o propósito de comprimir um modelo. E quando as pessoas treinam suas redes, a regularização L₂ é usada com mais frequência. Perdão, só consertando um pouco da notação aqui. Um último detalhe. Lambda aqui é chamada
+de parâmetro de regularização. E normalmente, você estabelece isso usando conjunto de desenvolvimento, ou usando validação cruzada. Quando você tenta uma 
+variedade de valores e vê qual funciona melhor, em termos de pesar entre 
+fazer bem no seu conjunto de treino ou também definir que dois dos seus parâmetros normais diminuam, o que ajuda a prevenir sobre-ajustamento. Então lambda é um outro 
+hiperparâmetro que talvez precisa ser ajustado. E a propósito, quanto aos exercícios de programação, lambda é uma palavra-chave reservada 
+na linguagem de programação Python. Então no exercício de programação, nós teremos lambd, sem o 'a', para não conflitar com a
+ palavra-chave reservada em Python. Então nós usamos 'lambd' para representar
+o parâmetro de regularização de lambda. Então é assim que você implementa 
+a regularização L₂ para regressão logística. E em relação a rede neural? Em uma rede neural, você tem uma função de custo, que é uma função de todos os seus parâmetros,
+w'¹', b'¹' até w'ᴸ'. x + b'ᴸ' onde L maiúsculo é o 
+número de camadas em sua rede neural. Assim, a função de custo é esta,
+1/m vezes a somatória das perdas, (i = 1 até m) 
+dos seus m exemplos de treino. E na regularização, você adiciona lambda sobre 2m vezes a somatória de todos os seus parâmetros w,
+ sua matriz de parâmetro é w, (para l = 1 até L) da norma quadrada, onde esta norma de uma matriz, ou seja, a norma ao quadrado é definida como a somatória de i, somatória de j, de cada dos elementos dessa matriz, ao quadrado. E você quiser os indicadores desta soma, é a somatória de i=1 a n'ˡ ̄ ¹', soma de j=1 a n'ˡ', porque w é uma matriz de 
+dimensões n'ˡ ̄ ¹' x n'ˡ', onde estes são o número de unidades
+nas camadas ocultas [l-1] ou nas camadas [l]. Então esta norma da matriz é chamada de 
+norma de Frobenius da matriz, e é assinalada com um F no subscrito. Então por razões técnicas ocultas de Álgebra Linear, isso não é chamado de 'norma L₂'
+de uma matriz. Ao invés disso, é chamado de 
+norma de Frobenius de uma matriz. Eu sei que parece que seria mais natural 
+apenas chamá-la 'norma L₂ da matriz', mas realmente por razões ocultas, 
+que você não precisa saber, por convenção, 
+isto é chamado de norma de Frobenius. Isso é apenas a 
+somatória dos quadrados dos elementos de uma matriz. Então, como você pode 
+implementar gradiente descendente com isso? Anteriormente, nós completaríamos dw 
+usando retro-propagação ("backprop"), onde a retro-propagação nos daria 
+a derivada parcial de J em relação a w (∂j/∂w), 
+ou realmente w para qualquer [l] dado. E em seguida, você atualiza w'ˡ', para
+w'ˡ' - [(a taxa de aprendizagem α) vezes dw'ˡ']. E isso ocorre antes de adicionarmos
+este termo de regularização extra ao objetivo. Agora que adicionamos 
+este termo de regularização ao objetivo, o que você faz é pegar dw e adiciona a ele lambda/m vezes w'ˡ'. E então você apenas calcula esta atualização, 
+da mesma forma que antes. Acontece que com esta nova 
+definição de dw'ˡ', este dw'ˡ' novo ainda é uma definição 
+correta da derivada da sua função de custo, 
+em relação aos seus parâmetros, agora que você adicionou 
+o termo de regularização extra ao final. E é por essa razão que a regularização L₂
+ às vezes, é chamada decaimento* (do peso).
+                                                                    [* NT: "weight decay" - Hinton 1989 ]. Então, se eu pegar esta definição de dw'ˡ'
+ e apenas a ligá-la aqui, você pode ver que a atualização é w'ˡ' = w'ˡ' vezes a taxa de aprendizagem alfa vezes o resultado da retro-propagação + (lambda/m) vezes w'ˡ'. Ponha o sinal de menos ali. E isso é igual a w'ˡ'- alfa vezes lambda/m vezes w'ˡ' - alfa vezes o que você obteve na retro-propagação. E este termo mostra que 
+qualquer que seja a matriz w'ˡ', você a tornará 
+um pouco menor, certo? Isso, na verdade, é como se 
+você estivesse pegando a matriz w e multiplicando por 
+1-alfa vezes lambda/m. Você está realmente pegando a matriz w 
+e subtraindo alfa lambda/m vezes isto. Como você está multiplicando a 
+matriz w por este número, que vai ficar um pouco menor que 1. E é por isso que a regularização da norma L₂
+também é chamada de decaimento (do peso). Porque é como se fosse 
+o gradiente descendente comum, onde você atualiza w, subtraindo alfa vezes o gradiente original
+ que você obteve através da retro-propagação. Mas agora você também está multiplicando w 
+por esta coisa, a qual é um pouco menor que 1. Então, o nome alternativo para a regularização L₂ é
+decaimento (do peso). Eu não vou usar esse nome, mas o motivo para que ela seja chamada de decaimento
+é que este primeiro termo aqui é igual a este. Então você está apenas multiplicando as métricas de peso
+por um número ligeiramente menor que 1. E é assim que você implementa a 
+regularização L₂ em uma rede neural. Agora, uma pergunta que geralmente me fazem é: "Andrew, por que a regularização previne o sobre-ajuste?" Veremos isso no próximo vídeo, e intuiremos como a regularização previne o sobre-ajuste.

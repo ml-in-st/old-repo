@@ -1,0 +1,78 @@
+Uma das coisas que podem ajudar
+a acelerar seu algorítimo de aprendizagem, é reduzir lentamente sua
+taxa de aprendizagem ao longo do tempo. Nós chamamos isso de decaimento da taxa de aprendizagem. Vamos ver como você pode implementar isso. Vamos começar com um exemplo de
+porquê talvez você queira implementar o decaimento da taxa de aprendizagem. Suponha que você esteja implementando
+um gradiente descendente em mini-lote, com um mini-lote razoavelmente pequeno. Talvez um mini-lote tenha apenas 64,
+128 exemplos. Então, enquanto você realiza a iteração,
+seus passos ficarão um pouco mais ruidosos. Então ele tenderá a este mínimo
+aqui, mas ele não irá convergir de forma exata. Mas seu algorítimo pode acabar
+apenas vagando, e nunca realmente convergir, porque você está
+usando algum valor fixo para alfa. E há apenas alguns ruídos em
+seu seus mini-lotes diferentes. Mas se você quer reduzir vagarosamente
+sua taxa de aprendizagem alfa, então, durante as fases iniciais, enquanto
+sua taxa de aprendizagem alfa ainda é grande, você ainda pode ter
+um aprendizado relativamente rápido. Mas à medida em que alfa fica menor, os passos
+que você dá ficarão mais lentos e menores. Então você acaba oscilando em
+uma região estreita ao redor deste mínimo, ao invés de vaguear,
+mesmo que o treinamento continue. Então a intuição por trás da redução
+lenta de alfa, é que talvez durante os passos iniciais da aprendizagem, você
+poderia dar passos muito maiores. Mas à medida que as abordagens de aprendizagem convergem, ter uma taxa de aprendizagem mais lenta
+lhe permite dar passos menores. Então, eis o modo de
+implementar o decaimento da taxa de aprendizagem. Lembre-se de que uma época é uma passagem, através dos dados, certo? Então se você tem um conjunto de treino como a seguir, talvez você o divida em
+diferentes mini-lotes. Então a primeira passagem através do conjunto
+de treino é denominada a primeira época, e então a segunda passagem é
+a segunda época, e assim por diante. Então, uma coisa que você pode fazer,
+é estabelecer sua taxa de aprendizagem alfa = 1 sobre 1 + um parâmetro,
+que chamarei de taxa de decaimento, vezes o número da época, multiplicado por uma taxa de aprendizagem inicial, alfa 0:
+ alfa = [1 / (1 + tx_decaimento * num_época)] * α₀ Note que a taxa de decaimento aqui
+se torna outro hiperparâmetro, que talvez você precise ajustar. Então aqui vai um exemplo concreto. Se você pegar várias épocas, então
+várias passagens através dos seus dados. Se α₀ = - 0,2, 
+e a taxa de decaimento = 1, então, durante sua primeira época, alfa será [1/ (1 +1)] * 0,2. Então sua taxa de aprendizagem será 0,1. Isso é apenas uma avaliação dessa fórmula,
+quando a taxa de decaimento é igual a 1, e o número da época é 1. Na segunda época,
+sua taxa de aprendizagem decai para 0,67. Na terceira, 0,5,
+na quarta 0,4, e assim por diante. E sinta-se livre para analisar mais
+valores por conta própria. E tenha a noção de que, em função do
+número de sua época, sua taxa de aprendizagem decai gradualmente, correto,
+de acordo com essa fórmula no topo. Então, se você quer usar o decaimento da taxa de aprendizagem,
+o que você pode fazer, é tentar uma variedade de valores para
+ambos: hiperparâmetro alfa zero, bem como para o hiperparâmetro 
+taxa de decaimento, e então tentar achar
+o valor que funciona bem. Além dessa fórmula para
+o decaimento da taxa de aprendizagem, há algumas outros
+caminhos que as pessoas usam. Por exemplo,
+isso é chamado de decaimento exponencial. Onde alfa é igual a
+algum número menor que 1, como 0,95 elevado ao número da época,
+vezes α₀. Então isso irá rapidamente
+decair, exponencialmente, sua taxa de aprendizagem . Outras fórmulas que as pessoas
+usam são coisas como alfa = [(alguma constante) / raiz quadrada
+do número da época] vezes α₀. Ou alguma constante k,
+outro hiperparâmetro, sobre a raiz quadrada
+do mini-lote número t, vezes α₀. E algumas vezes você também vê pessoas usando
+uma taxa de aprendizagem que decai em passos discretos. Portanto, em um dado números de passos,
+você tem certa taxa de aprendizagem, e então, após um tempo, você
+a decrementa pela metade. Após outro tempo, pela metade. E após outro tempo, pela metade. E então essa é uma escada discreta. Então, até agora, nós falamos sobre usar
+algumas formas para determinar como alfa, a taxa de aprendizagem, muda ao longo do tempo. Uma outra coisa que as pessoas fazem às vezes,
+é o decaimento manual. E então, se você está treinando
+apenas um modelo por vez, e se o seu modelo demora várias horas,
+ou até mesmo vários dias para ser treinado. O que algumas pessoas fazem, é apenas observar seu modelo: como 
+ ele vem treinando ao longo de um grande número de dias. E então manualmente dizer, parece
+que a taxa de aprendizagem desacelerou, diminuirei alfa um pouco. É claro que isso funciona,
+esse controle manual de alfa, realmente ajustando alfa manualmente,
+hora a hora, ou dia a dia. Isso funciona somente se você está treinando
+apenas um pequeno número de modelos, mas às vezes algumas pessoas fazem isso também. Então agora você tem algumas opções a mais para
+controlar a taxa de aprendizagem alfa. Agora, caso você esteja pensando, uau,
+isso é um monte de hiperparâmetros. Como eu seleciono dentre todas
+essas opções diferentes? Eu diria, não se preocupe com isso agora. Na próxima semana, nós falaremos mais sobre como
+escolher hiperparâmetros sistematicamente. Para mim, eu diria que o decaimento
+da taxa de aprendizagem é uma das últimas da lista de coisas que eu tento. Definindo alfa, apenas fixando o valor de
+alfa, e fazendo com que seja bem ajustado, tem um grande impacto. O decaimento da taxa de aprendizagem de fato ajuda. Algumas vezes, ele pode realmente
+ajudar a acelerar o treinamento, mas ele está um pouco abaixo na minha lista
+em termos das coisas que eu tentaria. Mas na próxima semana,
+quando falarmos sobre ajuste de hiperparâmetros, você verá modos mais sistemáticos de
+organizar todos esses hiperparâmetros. E como procurar
+eficientemente entre eles. Então isso é tudo para o decaimento da taxa de aprendizagem. Finalmente, eu também falaria
+um pouco sobre local optima, e pontos de descanso, em redes neurais. Assim, você pode ter uma intuição
+um pouco melhor sobre os tipos de problemas de otimização que seu algorítimo
+de otimização está tentando resolver, quando você está tentando treinar
+essas redes neurais. Vamos para o próximo vídeo para ver isso.
+[Tradução: Sylvia Amaral | Revisão: Carlos Lage]

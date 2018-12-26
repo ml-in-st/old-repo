@@ -1,0 +1,47 @@
+Momentum kullanımının gradyan düşümünü 
+nasıl hızlandırdığını gördünüz. RMSprop adında başka bir algoritma da, ki bu root mean square prop'u temsil eder, 
+ve bu da gradyan düşümünü hızlandırabilir. Nasıl kullanıldığına bakalım. Daha önceden kullanmış olduğumuz örneği
+ hatırlayın; gradyan düşümü uygularsanız, her ne kadar yatay doğrultuda ilerlemeye çalışşa bile, Dikey doğrultuda ciddi salınımlarla neticelenebilir. Bu ders çerçevesinde sezgi geliştirmek amacıyla, diyelim ki dikey eksenin parametresi b ve yatay eksenin 
+parametresi de w olsun.. Gercekten de w1 ya da w2 veya merkez 
+parametrelerinden bazıları sezgisellik adına b ve w olarak adlandırılabilir. Ve bu yüzden, öğrenmeyi b doğrultusunda ya da dikey doğrultuda yavaşlatmak, ve öğrenmeyi yatay doğrultuda hızlandırmak ya da 
+en azından yavaşlatmamak isteyebilirsiniz. RMSprop algoritmasının yaptığı şey budur, bunu gerçekleştirmek. Yineleme t'de, her zaman yaptığımız, güncel türev dW, db mini-yığında hesaplamak. VdW yerine bu üssel ağırlıklı ortalamayı tutacaktım, onun yerine yeni bir notasyon SdW kullanacağım. Yani, SdW, β çarpı önceki değeri artı (1 - β) çarpı dW'nun karesine eşit olacaktır. Bazen [ANLAŞILAMIYOR] dW'nun karesi olarak. Kafalarda soru işareti kalmaması için, 
+bu kare alma işlemi bir öğe bazlı kare alma işlemidir. Yani bunun işlevi, türevlerin karelerinin üssel ağırlıklı ortalamalarını tutmaktır. Ve bir benzeri, elimizde 
+Sdb = β Sdb + (1 - β)db^2 de var. Ve tekrar edeyim, kare alma işlemi 
+bir öğe bazlı kare alma işlemidir. Takiben, RMSprop parametreleri şu şekilde günceller: W, W - α (öğrenme hızı) olarak güncellenir ve önceden elimizde alfa çarpı dW varken, şimdi dW'nun, SdW'nun kare kökü'ne bölümü olur. Ve b, b eksi öğrenme hızı çarpı sadece gradyan yerine, bu da db bölü Sdb olur. O zaman bunun nasıl çalıştığına dair 
+biraz sezgi geliştirmeye çalışalım. Hatırlayın, yatay doğrultuda ya da bu örnekte, W doğrultusunda, 
+öğrenmenin oldukça hızlı ilerlemesini istiyoruz. Buna karşın, dikey doğrultuda
+ya da bu örnekte b doğrultusunda, dikey doğrultuda yaşanacak 
+tüm salınımları yavaşlatmak istiyoruz. Böylelikle bu SdW ve Sdb terimleri olarak, beklediğimiz şey, 
+SdW'nin göreceli olarak küçük olması, ki böylece burada göreceli olarak küçük bir sayıya bölüyor olalım, öte yandan, Sdb göreceli olarak büyük olmalı, 
+ki burada göreceli olarak büyük bir sayıya bölüyor olalım, 
+ve böylece bu da dikey boyutta güncellemeleri yavaşlatabilsin. Ve gerçekten de şayet türevlere bakarsanız, bu türevler dikey doğrultuda yatay doğrultudakilere nazaran 
+çok daha büyüktür. Yani b doğrultusunda eğim daha fazla, değil mi? Yani böylesi türevler ile çok büyük bir db 
+ve göreceli olarak küçük bir dw olur. çünkü fonksiyon dikey doğrultuda (b doğrultusunda), 
+yataydaki doğrultudan (w doğrultusundan) çok daha dik eğimli olur. Ve böylece, db'nin karesi göreceli olarak daha büyük olacak. Böylece, Sdb göreceli olarak daha büyük, buna karşın 
+karşılaştırmalı olarak, dW daha küçük olacaktır. ya da dW'nun karesi daha küçük, ve böylece SdW daha küçük olacaktır. Bu durumun net etkisi 
+dikey doğrultudaki güncellemelerinizin cok daha büyük sayılara bölünmesi ve bunun da salınımları sönümlemeye yardım etmesidir. buna karşın, yatay doğrultudaki güncellemeler 
+daha küçük sayılara bölünüyor olacak. Yani RMSprop kullanmanın net etkisi 
+güncellemelerin nihayetinde daha çok şu şekilde görünmeleri olacak: dikey doğrultudaki güncellemeleriniz yatay doğrultudaki güncellemelerinize nazaran azalacak
+ ve böyle devam edebilecek. Ve bunun bir etkisi de dolayısıyla sizin daha büyük bir öğrenme hızı alfası kullanabilmeniz ve dikey doğrultuda ıraksama yaşamadan 
+daha hızlı öğrenme sağlamanızdır. Şimdi sırf kafalardaki soruları temizlemek için 
+yatay ve dikey doğrultular b ve w'yu örneklemek adına göstereyim. Pratikte, çok yüksek boyutlu bir 
+parametre alanı içinde olursunuz, o yüzden, 
+salınımlarını sönümlemeye çalıştığınız dikey boyutlar, bir takım w1, w2, w17 parametrelerinin toplamı, (sanırım burada b1 b2, b17 demek istiyor?) ve yatay boyutlar w3, w4 ve benzeri olabilir, değil mi? ve böylelikle, buradaki w ve b ayrımı sadece bir örnekleme olur. Uygulamada, dW çok boyutlu bir parametre vektörüdür. Db de ayrıca çok boyutlu bir parametre vektörüdür, ama bu noktada sezgi, 
+bu salınımları aldığınız boyutlarda bu kareler ve türevler için daha büyük bir toplamı ya da bir ağırlıklı ortalama hesaplamanız, ve böylece, bu salınımların olduğu doğrultuları sönümlüyor olmanızdır. Yani, RMSprop bu, 
+ve bu kök ortalama kare anlamına geliyor, çünkü çünkü burada türevlerin karesini alıyorsunuz ve 
+kare kökünü sonunda burada alıyorsunuz. Sonuç olarak, devam etmeden önce, bu algoritma hakkında son birkaç ayrıntı. Bir sonraki videoda, aslında RMSprop'u momentumla birleştireceğiz. Burada momentum amacıyla kullandığımız 
+hiperparametre beta'yı (β) kullanmak yerine, çelişmemek amacıyla, 
+bu seferlik bunlara hiperparametre beta 2 diyeceğim. Hem momentum hem de RMSprop için 
+aynı hiperparametre, birbirlerine karışmasın diye. Ve ayrıca, algoritmanızın 
+sıfıra bölünmediğinden emin olmak için... Düşünün, ya SdW'nun kare kökü sıfıra çok yakın bir değerse, değil mi. O zaman her şey mahvolabilir. Sırf sayısal tutarlılığı sağlamak için, ne zaman bunu pratikte uygulamak isterseniz, paydaya çok çok küçük bir epsilon (Ɛ) eklersiniz. Epsilon'un ne olduğu gerçekten de çok önemli değil, 10 üzeri-8 gibi bir şey, makul bir varsayılan olabilir, ama bu sadece biraz daha iyi bir 
+sayısal tutarlılık sağlar. 
+Ki bu da sayısal bir yuvarlama ya da herhangi başka bir nedenle, çok çok küçük bir sayıya 
+bölmenizin önüne geçmek için. Sonuçta RMSprop dediğimiz şey bu, ve momentum'a 
+benzer olarak, gradyan düşümü esnasındaki, mini-yığın gradyan düşümü esnasındaki, 
+salınımların sönümlenmesi etkisini sağlar. Ve size daha büyük bir öğrenme hızı alfası 
+kullanmanıza olanak sağlar. Ve kesinlikle algoritmanızın öğrenme hızı süresini hızlandıracaktır. Ve böylece RMSprop uygulamasını artık biliyorsunuz 
+ve bu öğrenme algoritmasının hızlandırılması için diğer bir yönetem olacak. RMSprop ile ilgili ilginç bir durum da, bu gerçekten de ilk kez akademik bir çalışmada değil, 
+aksine - yıllar evvel Coursera'da ders verirken - Jeff Hinton tarafından bir Coursera kursunda 
+ileri sürülmüştü. Sanırım Coursera,
+ özgün akademik çalışmaların yayımlanması amacıyla
+ bir platform olsun diye tasarlanmamıştı, ama bu bağlamda gayet iyi iş yaptı. Ve gerçekten de RMSprop Coursera kursu sayesinde geniş çevrelerce bilinmeye başlandı ve sonrasında sıçarama yaptı. Momentum hakkında konuştuk, RMSprop hakkında konuştuk. Sonunda anlaşılıyor ki, şayet ikisini bir araya getirirseniz, çok daha iyi bir optimizasyon algoritması elde edersiniz. Sonraki videomuzda bunun hakkında biraz konuşalım.

@@ -1,0 +1,23 @@
+Derin öğrenmenin ilk günlerinde insanlar optimizasyon algoritması
+ hakkında oldukça endişeliydi. Kötü yerel optimum
+ değerinde kalmaktan endişeliydiler Fakat bu derin öğrenme teorisi ilerledikçe bizim yerel optimum anlayışımız da değişiyor. İzin verin size yerel optimumu
+ şimdilerde nasıl ele aldığımız göstereyim. Ve derin öğrenmedeki optimizasyon problemlerini İnsanların yerel optimumu düşünürken
+ canlandırdığı fotoğraf buydu. Diyelim ki bazı parametreleri
+ optimize etmeye çalışıyorsunuz, W1 ve W2 isimlerini verelim onlara ve yüzeydeki yükseklik de maliyet fonksiyonu oluyor. Bu fotoğrafta bir sürü yerel optimum 
+değeri olduğu görülüyor. Bu gibi durumlarda gradyan düşümü ya da herhangi bir diğer algoritma global optimumu bulamadan yerel optimumlardan birinde sıkışır. Görünen o ki, eğer iki boyutta
+ böyle bir figür çizmek isterseniz bir sürü yerel optimumu olan
+ böyle bir grafik yaratmak kolay olur. Böyle az boyutlu grafikler 
+onların sezgilerini yönlendirmişti. Fakat bu sezgi aslında doğru değil. Bir sinir ağını eğittiğinizde görüyorsunuz ki sıfır gradyanlarının çoğu noktası
+ burdaki gibi yerel optimum değil. Aksine, maliyet fonksiyonundaki
+ sıfır gradyanın çoğu noktası eyer noktalarıdır. Yani, bu sıfır gradyanın yine ..(?) W1, W2 olduğu nokta. Ve yükseklik de maliyet fonksiyonu J'nin değeri. İnformal olarak,
+ çok boyutlu uzayın bir fonksiyonu, eğer gradyan sıfır ise, o zaman her iki yönde de dışbükeyimsi ya da içbükeyimsi bir fonksiyon olabilir. Ve diyelim ki siz 20.000 boyutlu uzayda çalışıyorsunuz, o zaman onun yerel optimum olması için 20.000 yönün hepsinin bu şekilde görünmesi lazım. Ve böyle bir şeyin olma ihtimalı bayağı düşük. belki 2^(-20.000) kadar küçük bir olasılık. Eğrinin yukarı doğru bükülü olduğu yönler ve aynı zamanda bazı yönlerde ise aşağı doğru bükülü örneklerle karşılaşma ihtimaliniz çok daha yüksek. Yani çok yüksek boyutlu uzaylarda yerel optimum yerine sağdaki gibi eyer noktasıyla karşılaşma ihtimalinin yüksek olma nedeni bu Bu yüzeye niye eyer noktası deniyor
+ diye soracak olursanız Gözünüzde canlandırırsanız, atların üstüne koyulan
+ eyere benziyor, değil mi? Mesela bu bir at olsun bu atın kafası, bu da gözü olsun. Bu kötü bir at oldu tabi ama fikiri anladınız. Siz de tabi sürücü olarak burada eyerde oturacaksınız. Yani buradaki türevin sıfır olduğu bu noktanın eyer olarak adlandırılma sebebi bu. Sanırım burada eyerin üzerine oturacağınız bir nokta var. Orası da türevin sıfır olduğu nokta oluyor. Evet, derin öğrenme tarihinden
+ çıkardığımız bir ders şu; düşük boyutlu uzaylar hakkındaki sezgilerimiz, mesela soldaki grafik gibi, öğrenme algoritmalarımızın da çalıştığı çok boyutlu uzaylarda pek işe yaramıyor. Çünkü 20.000 parametreniz varsa J 20.000 boyutlu vektör üzerinde bir fonksiyon oluyor. O zaman da yerel optimum yerine
+ eyer noktasıyla karşılaşma ihtimaliniz çok yüksek. Peki eğer yerel optimum problem teşkil etmiyorsa, o zaman problem nedir? Görünen o ki platolar gerçekten öğrenmeyi yavaşlatıyor. Plato türevin çok uzun süre sıfıra yakın olduğu bir bölgedir. Eğer şuradaysanız, o zaman gradyan düşümü aşağı doğru inecek. Ve gradyan sıfır ya da sıfıra çok yakın olduğu için bu oldukça düz bir yüzey Plato üzerine bu noktaya yavaş yavaş gelmek için çok fazla zaman harcayabilirsiniz. Ve rastgele sağa ya da sola sapmalardan dolayı -daha açık olsun diye kalemin rengini değiştireceğim- algoritmanız nihayet plato dışına çıkabilir. Aşağıya inene kadar bu uzun eğimi geçiyor ve ancak bu noktaya gelip platodan çıkıyor. Bu videodan aklınızda şunlar kalsın; ilk olarak, eğer büyük bir sinir ağı eğitiyorsanız, bir sürü parametreyi kaydediyorsanız ve maliyet fonksiyonunuz J görece
+ çok boyutlu bir uzayda tanımlıysa, kötü bir yerel optimumda sıkışma ihtimaliniz düşük. İkinci olarak, platolar problem teşkil ediyor 
+ve öğrenmeyi oldukça yavaşlatabiliyor. Bu noktada da momentum, RmsProp ya da Adam gibi algoritmalar öğrenme algoritmanıza yardımcı oluyorlar. Bu tarz senaryolarda Adam gibi sofistike gözlem algoritmaları platodan aşağıya inme ve en sonunda onu terk etme sürenizi hızlandırabilir. Şimdi, sinir ağınız çok yüksek boyutlu uzayda optimizasyon problemlerini çözüyor. 
+Dürüst olmak gerekirse, Ben kimsenin bu uzaylar hakkında
+ derin sezgileri olduğunu düşünmüyorum. Bu konudaki bilgimiz halen evriliyor. Yine de bu video size
+ optimizasyon algoritmalarının karşılaştığı problemler hakkında daha iyi bir sezgi sunar diye umuyorum. Bu haftadaki içeriklerin sonuna geldiniz, tebrikler! Lütfen bu haftanın testine ve programlama ödevine bi bakın. Umarım bu haftanın programlama ödevleri ile 
+bu fikirler üzerinde pratik kazanırsınız. Ve tabiki önümüzdeki haftanın videolarında görüşmek üzere!

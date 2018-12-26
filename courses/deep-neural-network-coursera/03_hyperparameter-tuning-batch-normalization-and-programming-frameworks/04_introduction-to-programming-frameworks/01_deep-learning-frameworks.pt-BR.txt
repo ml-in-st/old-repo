@@ -1,0 +1,47 @@
+Você aprendeu a implementar algoritmos de aprendizagem profunda mais ou menos a partir do zero, usando Python e NumPY. E fico feliz por você ter feito isso, porque eu quero que você entenda o que esses algoritmos
+de aprendizagem profunda realmente fazem. Mas você percebe que quando 
+implementa modelos mais complexos, como redes neurais convolucionais 
+ou redes neurais recorrentes, ou que quando você começa a implementar
+modelos muito grandes, isso se torna cada vez menos prático, pelo menos para a maioria das pessoas,
+não é prático implementar tudo você mesmo, do zero. Felizmente, temos agora muitas estruturas boas de programas de aprendizagem
+profunda que podem lhe ajudar a implementar estes modelos. Para fazer uma analogia, creio que você saiba como fazer uma multiplicação de matrizes, 
+e você deve ser capaz de implementar códigos para multiplicar duas matrizes, você mesmo. Mas quando você constrói aplicativos muito grandes, você provavelmente não vai querer
+implementar sua própria função de multiplicação de matriz, mas ao invés disso, você vai querer recorrer a uma biblioteca de álgebra linear numérica,
+a qual poderia fazê-lo mais eficientemente para você. Mas ainda é importante que você saiba
+como a multiplicação de duas matrizes funciona. Então, eu acho que a aprendizagem
+profunda amadureceu ao ponto de estar realmente mais prática, você será mais eficiente fazendo algumas coisas com algumas
+das estruturas da aprendizagem profunda. Então, vamos dar uma olhada nisso. Hoje, há muitas estruturas de aprendizagem profunda que fazem com que seja 
+mais fácil implementar redes neurais, e aqui estão algumas das principais. Cada uma dessas estruturas tem
+uma comunidade dedicada de usuários e desenvolvedores e eu acho que cada uma dessas estruturas é uma escolha confiável 
+para alguns subconjuntos de aplicativos. Há muitas pessoas escrevendo artigos, comparando essas estruturas de aprendizagem profunda 
+e o quão bem elas variam. E por conta dessas estruturas estarem
+frequentemente evoluindo e ficando melhores a cada mês, vou deixar para vocês
+fazerem algumas pesquisas na internet, se vocês quiserem ver os pros e contras 
+de algumas dessas estruturas. Mas eu acho que muitas dessas estruturas têm
+evoluído e melhorado muito rápido. Então, ao invés de recomendar
+qualquer uma dessas estruturas, eu vou compartilhar com vocês o critério
+que eu aconselharia que vocês usassem para escolher estruturas. Um critério importante é a facilidade de programar, e isso significa tanto desenvolver a rede neural e iterar nela (testar),
+quanto instalá-la para produção, para uso real, por milhares ou milhões
+ou talvez, centenas de milhões de usuários, dependendo do que você está tentando fazer. Um segundo critério importante
+é a velocidade de execução, especialmente, quando treinando
+conjuntos de dados grandes, algumas estruturas vão lhe permitir 
+executar e treinar sua rede neural 
+mais eficientemente que outras. E então, um critério sobre o qual as pessoas 
+não falam muito, mas que eu acho importante, é se a estrutura é 
+realmente aberta, ou não. E para que uma estrutura
+seja realmente aberta, ela precisa não apenas ter fonte aberto,
+mas acho que também precisa de uma boa administração. Infelizmente, na indústria de programas de computadores,
+algumas empresas têm um histórico de programas de fonte aberto,
+mas mantendo controle único da própria empresa sobre o produto. Então, após alguns anos, depois de as pessoas começaram a usar o programa, algumas empresas têm um histórico
+de limitar gradualmente aquilo que era código aberto. Ou talvez, movendo funcionalidades
+para os seus serviços de nuvem proprietários. Então, uma coisa que enfatizo é o quanto você confia 
+que a estrutura permanecerá de fonte aberto por um longo tempo,
+ao invés de estar simplesmente sobre o controle de uma única empresa, a qual por qualquer que seja a razão, pode decidir limitá-lo no futuro, mesmo que o programa 
+esteja atualmente lançado sob código aberto. Mas ao menos, a curto prazo, 
+dependendo das suas preferências de linguagem, se você prefere Python ou Java ou C++ ou outra coisa, e dependendo do aplicativo no 
+qual você está trabalhando, se é de visão computacional ou 
+de processamento de linguagem natural, ou de publicidade online ou outra coisa, eu acho que muitas dessas 
+estruturas seriam uma boa alternativa. Então, dito isso sobre estruturas de programação fornecendo um nível alto de abstração,
+ao invés de apenas uma biblioteca de álgebra linear numérica, qualquer uma dessas estruturas de programa pode fazer com que você seja mais eficiente,
+quando você for desenvolver aplicativos de aprendizagem.
+[Tradução: Diogo dos Santos Farias | Revisão: Carlos Lage]

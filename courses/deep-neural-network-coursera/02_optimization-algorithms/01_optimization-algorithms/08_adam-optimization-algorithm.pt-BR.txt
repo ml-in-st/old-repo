@@ -1,0 +1,46 @@
+Ao longo da história da aprendizagem profunda, muitos pesquisadores, incluindo alguns bem renomados, às vezes, propuseram algoritmos de otimização, e demonstraram que eles funcionavam bem em algumas ocasiões. Mas esses algoritmos de otimização posteriormente mostraram não se adequarem tão bem
+à vasta gama de redes neurais que você poderia querer treinar. Então ao longo do tempo,
+eu acho que a comunidade de aprendizagem profunda realmente desenvolveu um certo ceticismo em relação a algoritmos de otimização novos. E muitas pessoas sentiram
+que gradiente descendente com impulso realmente funciona bem, então era difícil propor coisas que funcionassem muito melhor. Assim, a propagação da raiz das médias quadradas (RMS prop)
+e o algoritmo de otimização Adam, sobre o qual falaremos neste vídeo, é um desses algoritmos raros que realmente se destacou, e tem demonstrado funcionar bem
+em meio a uma ampla gama de arquiteturas de aprendizagem profunda. Então, esse é um dos algoritmos
+que eu não hesitaria em recomendar que testassem, porque muitas pessoas o usaram
+e viram que ele funciona bem em várias ocasiões. E o algoritmo de otimização Adam,
+basicamente, pega o impulso e a 
+propagação da raiz das médias quadradas e os une. Vamos ver como isso funciona! Para implementar o Adam, você pode inicializar: Vdw=0, Sdw=0 e da mesma forma, 
+Vdb=0, Sdb=0. E então na iteração t, você calcula as derivadas: 
+calcula dw, db, usando mini-batch. Assim, normalmente, você o faz com 
+gradiente descendente de mini-batch. E assim você faz a média móvel exponencialmente ponderada 
+do impulso. Então Vdw=ß. Mas agora, eu o chamarei ß₁
+para distingui-lo deste hiperparâmetro ß₂ que nós usaremos para a 
+propagação RMS disto. Então, isto é exatamente
+o que nós tínhamos quando estávamos implementando o impulso, com a exceção de que agora
+é chamado de hiperparâmetro ß₁, ao invés de ß. E da mesma forma, você tem Vdb, como sendo: 
+1-ß₁ vezes db. E então você faz a atualização da propagação RMS também. Assim agora, Sdw = você tem um hiperparâmetro 
+ß₂ Sdw₂ + (1 - ß₂ ) dw². E novamente, a potência ali
+é a potência do produto de Hadamard das suas derivadas dw. E assim, Sdb = ß₂ Sdb₂ + (1 - ß₂ ) db² Logo, esta é a atualização do impulso com o hiperparâmetro ß₁ e esta é a atualização da propagação RMS
+ com o hiperparâmetro ß₂. Na implementação do Adam, você realmente implementa 
+correção do viés. Assim, você terá V corrigido. Corrigido significa 
+"após correção de enviesamento". Vdw=Vdw / (1 - ß₁ ^ t) , 
+se você tiver feito 't' iterações. E da mesma forma, Vdb corrigido
+é igual a Vdb / (1 - ß1 elevado a t). E então similarmente,
+você implementa esta correção de enviesamento no S também. Logo, isso é 
+Sdw dividido por um menos ß₂ elevado a t e Sdb corrigido igual a 
+Sdb dividido por um menos ß₂ elevado a t. Por fim, você executa a atualização. Então atualizamos W, como sendo
+ W menos alfa vezes... se você estivesse implementando apenas o impulso, você usaria Vdw, ou talvez Vdw corrigido. Mas agora, nós adicionamos
+ a porção da propagação da raiz disto. Logo, nós também vamos dividir
+por raízes quadradas de Sdw corrigido mais épsilon. E da mesma forma, atualizamos 'b' de uma forma parecida, Vdb corrigido divido por raiz quadrada de Sdb corrigido, mais épsilon. E então, este algoritmo combina o efeito do gradiente descendente com impulso junto com o 
+gradiente descendente com a propagação da raiz. E isto é um algoritmo de aprendizagem muito usado, que provou ser muito eficaz para muitas redes neurais
+diferentes de uma ampla variedade de arquiteturas. Assim, este algoritmo tem vários hiperparâmetros. O hiperparâmetro alfa (taxa de aprendizagem) ainda é importante
+e geralmente precisa ser adaptado. Então você tem apenas que experimentar
+alguns valores de alfa e checar qual deles funciona. Uma opção comum, a realmente padrão, para ß₁ é 0.9. Então esta é uma média móvel, a média ponderada de dw, certo?
+Esta é a luz dinâmica do impulso. O hiperparâmetro para ß₂, os autores do artigo do Adam, inventores do algoritmo de Adam, recomendam 0.999. Novamente, isto calcula a média móvel
+exponencialmente ponderada de dw², assim como db². E então épsilon, a escolha de épsilon não importa muito. Porém os autores do artigo Adam recomendaram 10 elevado a menos 8. Mas este parâmetro, você realmente não precisa estabelecer, e isso não afeta muito o desempenho. Mas, ao implementar Adam, o que as pessoas geralmente fazem é apenas usar o valor padrão. Logo, ß₁ e ß₂, assim como épsilon. Eu não acho que alguém realmente ajuste épsilon. Então, tente uma variedade de valores de alfa 
+e veja o que funciona melhor. Você também poderia ajustar ß₁ e ß₂, mas isso não é feito com frequência
+entre os praticantes que conheço. Então, de vem o termo 'Adam'? Adam significa Estimativa do Momento Adaptável. Assim, ß₁ calcula a média das derivadas. Isto é chamado de primeiro momento. E ß₂ é usado para se calcular a média móvel exponencialmente
+ponderada das potências, e isto é chamado de segundo momento. Então isso dá origem ao nome 
+Estimativa do Momento Adaptável. Mas todos o chamam apenas de 
+algoritmo de otimização Adam. E, a propósito, um dos meus mais antigos amigos
+e colaboradores é chamado Adam Coates. Até onde sei, este algoritmo não tem nada a ver com ele, à parte do fato de ele o utilizar, às vezes. Mas algumas vezes, me perguntam sobre isso, então agora, você já sabe. Bom, isso é tudo sobre o algoritmo de otimização Adam. Com isso, eu acho que você será capaz de treinar suas redes neurais muito mais rápido. Mas antes de concluirmos esta semana, continuaremos falando sobre ajustes de hiperparâmetro, assim como sobre entender como um problema de otimização para redes neurais se parece. No próximo vídeo, falaremos sobre 
+decaimento da taxa de aprendizagem.
+[Tradução: Diogo dos Santos farias | Revisão: Carlos Lage]

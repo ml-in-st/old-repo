@@ -1,0 +1,111 @@
+Tenho notado que quase todos os bons praticantes
+de aprendizado de máquina tendem a ser muito sofisticados no
+entendimento de "Viés" e "Variância". Viés e Variância são conceitos fáceis de
+aprender, mas difíceis de dominar. Mesmo que você ache que já viu os 
+conceitos básicos de Viés e Variância, muitas vezes, existem mais conceitos novos
+do que você esperava. Nos Erros em Aprendizagem Profunda, outra tendência é a de que tem havido menos discussão a respeito do
+chamado "trade-off" (escolha) entre Viés e Variância. É possível que você tenha ouvido sobre
+esse "trade-off" entre Viés e Variância. Mas nos Erros em Aprendizagem Profunda,
+há menos "trade-off", então, temos solucionado o Viés, e solucionado a Variância, mas apenas falamos menos sobre o
+"trade-off" entre Viés e Variância. Vejamos o que isso significa. Vejamos um conjunto de dados
+parecido com este. Se você encaixar uma linha reta
+nesses dados, talvez consiga uma regressão logística
+ajustada a isso. Isso não é um bom ajuste de dados. Assim, isso é uma classe de alto Viés, que chamamos como um caso de
+subajuste de dados. De maneira contrária, se você encaixar um classificador
+incrivelmente complexo, talvez uma rede neural profunda ou uma rede neural com todas as camadas
+intermediárias, talvez você possa encaixar os dados
+de maneira perfeita, mas isso também não parece um 
+bom ajuste. Então, há um classificador de alta Variância
+num caso de sobre-ajuste dos dados. E pode haver algum tipo de classificador
+intermediário entre eles, com um nível médio de complexidade, que talvez possa se encaixar
+corretamente assim. Este parece ser um ajuste muito
+mais razoável de dados, que dizemos ser a medida certa. Está
+em algum lugar no meio. Então, num exemplo bidimensional como este, com apenas duas características, x₁ e x₂, você pode plotar os dados
+e visualizar o Viés e a Variância. Em problemas com um número
+grande de dimensões, você não pode plotar os dados e 
+visualizar os limites de divisão. Em vez disso, existem outros tipos
+diferentes de métrica que analisaremos para
+tentar entender o Viés e a Variância. Então, seguindo nosso exemplo de
+classificação de fotos de gatos, onde este é um exemplo positivo
+e este um exemplo negativo, os dois números-chave a se observar para
+entender o Viés e a Variância serão o erro do conjunto de treino e o erro 
+do conjunto de validação ou desenvolvimento. Então, para fins ilustrativos, digamos que você reconhece gatos
+nas fotos, é algo que as pessoas conseguem fazer
+quase perfeitamente, certo? Então, digamos que o seu erro do conjunto de treino
+é 1% e o seu erro de conjunto de validação é, para fins ilustrativos, digamos, 11%. Neste exemplo, você está indo muito bem no conjunto
+de treino, mas relativamente mal no conjunto de
+desenvolvimento. Então, parece que este é um caso de
+sobre-ajuste do seu conjunto de treino, que, de alguma forma, você não está
+fazendo uma boa generalização, para o conjunto de validação cruzada com
+o conjunto de desenvolvimento. Assim, se você tem um exemplo como esse, nós diríamos que ele tem alta Variância. Então, por meio da observação dos erros no conjunto
+de treino e no conjunto de desenvolvimento, você conseguiria fazer um diagnóstico do
+seu algoritmo como tendo alta Variância. Agora, digamos que você meça os erros dos
+ seus conjuntos de treino e de validação, e obtenha um resultado diferente. Digamos que o erro do seu conjunto
+de treino é 15%. Estou escrevendo o erro do seu conjunto
+de treino na linha superior, e o erro do seu conjunto de
+desenvolvimento é 16%. Nesse caso, assumindo a grosso modo 
+que humanos obtêm 0% de erro, que humanos podem olhar para essas fotos
+e simplesmente dizer se é um gato ou não, então, parece que o algoritmo não está indo
+ bem nem mesmo no conjunto de treinamento. Então, se ele não está nem ajustando
+os dados de treino tão bem, este é um caso de subajuste dos dados. E então, esse algoritmo tem alto Viés. Mas, por outro lado, isso está fazendo uma
+generalização razoável para o conjunto de validação, ao passo que o desempenho no conjunto de validação
+é apenas 1% pior que o no conjunto de treino. Então, esse algoritmo tem um problema de
+alto Viés porque não estava nem mesmo
+adequado ao conjunto de treino. Bem, isso se parece com os gráficos mais à
+esquerda do slide anterior. Agora, vejamos outro exemplo. Digamos que você tem 15% de erro
+no conjunto de treino, então, temos um Viés bem alto, mas, quando você avalia o conjunto de
+validação, o erro é pior ainda, talvez em 30%. Nesse caso, eu diagnosticaria o algoritmo
+ como tendo alto Viés, porque não está indo bem no conjunto de
+treino, e alta Variância. Então, este realmente tem o pior dos
+dois mundos. E um último exemplo, se você tem 0.5 de erro no conjunto
+de treino, e 1% no conjunto de validação, então, talvez nossos usuários fiquem 
+bastante felizes, por você ter um classificador de gatos
+com apenas 1% de erro, e nós temos baixo Viés e baixa Variância. Uma sutileza, que mencionarei brevemente que deixaremos para um próximo vídeo para
+ser discutido com maiores detalhes, é que essa análise se baseia no pressuposto de que o nível de desempenho humano
+tem aproximadamente 0% de erro ou, de maneira mais geral, que o erro
+ideal, por vezes chamado de erro de Bayes, então, o erro na classificação ótima Bayesiana é
+praticamente 0%. Não quero entrar em detalhes sobre
+isso neste vídeo em específico, mas acontece que, se o erro ideal ou o erro 
+de Bayes são muito maiores, como 15%, então se você olhar para esse
+classificador, 15% é, na verdade, perfeitamente razoável 
+para o conjunto de treino e você não o veria como tendo Viés alto 
+e também com uma Variância baixa. Então, no caso de como analisar o
+Viés e a Variância, quando nenhum classificador consegue
+ter um bom desempenho, por exemplo, se você tiver imagens bastante embaçadas, de maneira que nenhum humano ou
+qualquer sistema possa ir bem, então, talvez o erro de Bayes seja muito
+mais alto, e, assim, existem alguns detalhes
+sobre como essa análise mudará. Mas, deixando essa sutileza de lado
+por enquanto, o ponto-chave é que ao olhar para o erro no seu conjunto de treino, você
+pode ter uma noção de como está sendo o ajuste, pelo menos nos dados de treino, e isso te mostra se você tem
+um problema relacionado ao Viés. E, dependendo do quão alto é o erro do seu conjunto de treino em
+relação ao conjunto de validação, você tem uma noção do quão grave
+é o problema da Variância. Então, você fará um bom trabalho na generalização 
+do conjunto de treino pro de validação pois isso te dará uma noção da Variância. Tudo isso se baseia no pressuposto
+de que o erro de Bayes é bem pequeno e que os seus conjuntos de treino
+e validação foram construídos com a mesma distribuição. Se esses pressupostos forem violados, existe uma análise mais sofisticada
+que você pode fazer, sobre a qual nós falaremos num próximo
+vídeo. No slide anterior, você observou como um Viés alto, e uma Variância alta são, e acho que você tem uma noção de como é
+uma classe boa. Como um Viés alto e uma Variância alta
+parecem? São praticamente o pior dos dois mundos. Você deve se lembrar, dissemos que
+um classificador assim é um classificador com alto Viés porque é um caso de subajuste dos dados. Então, esse seria um classificador praticamente
+linear e que, portanto, causa subajuste dos dados. representaremos isso em roxo. Mas se, de alguma forma, seu 
+classificador fizer coisas estranhas, então, existe, na verdade, um sobre-ajuste
+de partes dos dados também. Então, o classificador que eu desenhei
+em roxo tem tanto Viés alto como Variância alta. Ele tem Viés alto porque, uma vez que é um classificador
+praticamente linear, não há um bom ajuste. Veja, essa linha quadrática se ajusta bem mas, por ter muita flexibilidade no meio, de alguma forma, ele tem esse exemplo e esse exemplo têm sobre-ajuste desses dois
+exemplos também. Então, esse classificador tem Viés alto porque
+era basicamente linear, mas talvez você precise de uma função curvilínea
+ou quadrática. E ele tem Variância alta, porque existe muita flexibilidade para ajustar
+aqueles dois fora da área, ou aqueles dois exemplos no meio também. Nesse caso, parece um pouco forjado, bem, esse exemplo é um pouco forjado em duas
+dimensões, mas com duas entradas altamente dimensionais. Na verdade, você consegue algo com Viés alto em algumas regiões e Variância alta
+em algumas regiões, então é possível conseguir classificadores assim com entradas de altas dimensões que parecem
+menos artificiais. Então, para resumir, você viu que por meio da
+observação do erro de algoritmo no conjunto de treino e do erro no conjunto
+de validação, você pode tentar diagnosticar se ele tem problemas com alto Viés ou
+alta Variância, ou talvez ambos, ou nenhum dos dois. E dependendo do seu algoritmo, se ele sofre
+com o Viés ou com a Variância, Acontece que existem algumas coisas diferentes
+que você pode tentar. Então, no próximo vídeo, quero te apresentar o que eu chamo de uma receita básica para
+aprendizado de máquina, que te permite tentar melhorar seu algoritmo
+de forma mais sistemática, dependendo se ele tiver problemas com
+Viés alto ou Variância alta. Então, vamos para o próximo vídeo.
+[Tradução: Gabriella Miya | Revisão: Carlos Lage]

@@ -1,0 +1,220 @@
+上一节课中 我们学习了指数加权平均
+In the last video, we talked about
+exponentially weighted averages. 这将是几个训练神经网络的优化算法的
+This will turn out to be a key component of 关键组成部分
+several optimization algorithms
+that you used to train your neural networks. 所以 在这个视频中 我将详细讲解
+So, in this video, I want to delve a little bit deeper 这一算法的具体作用
+into intuitions for what this algorithm is really doing. 先回顾一下 这是实现指数加权平均的关键等式。
+Recall that this is a key equation
+for implementing exponentially weighted averages. 如果β=0.9 可以获得红色曲线
+And so, if β=0.9, you got the red line. 如果β值趋向于1
+If it was much closer to one, 如果β=0.98 可以获得绿色曲线
+if it was 0.98, you get the green line. 如果数值更小
+And if it's much smaller, 比如0.5 可以获得黄色曲线
+maybe 0.5, you get the yellow line. 接下来我们来了解下
+Let's look a bit more than that to understand how 它是如何计算每日气温的
+this is computing averages of the daily temperature. 这是运算等式
+So, here's that equation again. 假设β=0.9 我们来列出相应的等式
+and let's set beta equals 0.9 and write out
+a few equations that this corresponds to. 因此 当运算时 你的T值
+So whereas, when you're implementing it you have T 从0到1 到2 到3
+going from zero to one, to two, to three, T值逐渐增大 为了方便分析
+increasing values of T. To analyze it, 我将T值按降序排列 这里只列出一部分
+I've written it with decreasing values of T.
+And this goes on. 我们先以第一个等式为例
+So let's take this first equation here, 了解下V100到底是什么
+and understand what V100 really is. V100将是
+So V100 is going to be, 先将这两项互换一下
+let me reverse these two terms, 这项变成0.1*θ100
+this is going to be 0.1 times theta 100, 加上0.9乘以前一天的数值
+plus 0.9 times whatever the value was
+on the previous day. 那么 V99又是什么
+Now, but what is V99? 我们把它代入这个等式
+Well, we'll just plug it in from this equation. 所以V99就等于0.1*θ99
+So this is just going to be 0.1 times theta 99, 当然 这两项也被互换了
+and again I've reversed these two terms, 加上0.9*V98
+plus 0.9 times V98. 那么 V98又是什么
+But then what is V98? 你可以从这个等式中得知
+Well, you just get that from here. 你可以代入这里
+So you can just plug in here, 0.1*θ98
+0.1 times theta 98, 加上0.9*V97,以此类推
+plus 0.9 times V97, and so on. 如果将这些项全部相乘
+And if you multiply all of these terms out, 能得到V100=0.1*θ100加上
+you can show that V100 is 0.1 times theta 100 plus. 现在 我们看下θ99的系数
+Now, let's look at the coefficient on theta 99, 将是0.1*0.9*θ99
+it's going to be 0.1 times 0.9, times theta 99. 现在 我们看下θ98的系数
+Now, let's look at the coefficient on theta 98, 为0.1*0.9*0.9
+there's a 0.1 here times 0.9, times 0.9. 所以 如果我们展开代数
+So if we expand out the Algebra, 这就是0.1*0.9²*θ98
+this become 0.1 times 0.9 squared, times theta 98. 如果你继续展开
+And, if you keep expanding this out, 这一项将变成0.1*0.9³
+you find that this becomes 0.1 times 0.9 cubed, *θ97+0.1
+(times) theta97 plus 0.1. 乘以0.9的四次方
+times 0.9 to the fourth, 乘以θ96 加上点点点
+times theta 96, plus dot dot dot. 这是一种求和方式 也是θ100的加权平均值
+So this is really a way to sum and
+that's a weighted average of theta 100, 是目前的每日气温
+which is the current days temperature and
+we're looking for 也是我们对第一百天的气温的预估
+a perspective of V100 which you calculate
+on the 100th day of the year. 但这些是 θ100
+But those are sum of your theta 100, θ99 θ98
+theta 99, theta 98, θ97 θ96等等的总和
+theta 97, theta 96, and so on. 所以 一种画图方法可以是
+So one way to draw this in pictures would be if, 假设 我们有几天的气温值
+let's say we have some number of days of temperature 这是θ 这是T θ100是一个总和值
+So this is theta and this is T.
+So theta 100 will be sum value, θ99也是一个总和值
+then theta 99 will be sum value, θ98 以及这些
+theta 98, so these are, 这是T=100
+so this is T equals 100, (t等于) 99 98 诸如此类
+99, 98, and so on, 每日气温和总和之间的比率
+ratio of sum number of days of temperature. 接着 我们能得到一个指数衰减函数
+And what we have is then
+an exponentially decaying function. 起止点为0.1和0.9
+So starting from 0.1 to 0.9, 乘以0.1 (乘以)0.9²
+times 0.1 to 0.9 squared, 乘以0.1 然后依次类推
+times 0.1, to and so on. 这就是指数衰减函数
+So you have this exponentially decaying function. 你计算V100的方式
+And the way you compute V100, 就是选择两个函数间的元素 然后求和
+is you take the element wise product
+between these two functions and sum it up. 例如 选这个值
+So you take this value, θ100*0.1
+theta 100 times 0.1, 乘以这个值 θ99*0.1*0.9
+times this value of theta 99 times 0.1 times 0.9, 这是第二项 依次类推
+that's the second term and so on. 这将每日气温值
+So it's really taking the daily temperature, 乘以这个指数衰减函数 然后求和
+multiply with this exponentially decaying function,
+and then summing it up. 这就是你的V100值
+And this becomes your V100. 事实证明 使用链式法则来计算 具体细节 我们稍后再讲
+up to details that we will talk about later， 但这里的所有系数
+but all of these coefficients, 加起来等于1或接近1
+add up to one or add up to very close to one 将涉及我们下一讲中的偏差修正
+up to a detail called bias correction
+which we'll talk about in the next video. 但正因为如此 这的确是一个指数加权平均值
+But because of that,
+this really is an exponentially weighted average. 最后 你可能会想
+And finally, you might wonder, 这是几天的平均气温值
+how many days temperature is this averaging over. 结果是0.9的十次方
+Well, it turns out that 0.9 to the power of 10, 大约0.35 也就是大约1/E
+is about 0.35 and
+this turns out to be about one over E, 一个自然算法的基础值
+one of the base of natural algorithms. 通常 如果有1-ε
+And, more generally, if you have one minus epsilon, 以此为例
+so in this example, ε=0.1
+epsilon would be 0.1, 因此 (1-ε)的1/ε方
+so if this was 0.9,
+then one minus epsilon to the one over epsilon. 大约是1/E
+This is about one over E, 大约是0.34 0.35
+this is about 0.34, 0.35. 换句话说
+And so, in other words, 大约需要10天
+it takes about 10 days for the height of this to 这一值能降到峰值1/E的1/3
+decay to around 1/3 already one over E of the peak. 正因为此
+So it's because of this, 当β=0.9 我们说
+that when beta equals 0.9, we say that, 就好像你在计算时
+this is as if you're computing, 指数加权平均值只关注最近十天的气温值
+an exponentially weighted average that
+focuses on just the last 10 days temperature. 因为十天后 气温值将降至
+Because it's after 10 days that the weight decays 不到目前气温值的三分之一
+to less than about
+a third of the weight of the current day. 相反 如果β=0.98
+Whereas, in contrast, if beta was equal to 0.98, 那0.98的几次方才能使这个值足够小
+then, well, what do you need 0.98 to the power of
+in order for this to really small? 结果 0.98的50次方大约
+Turns out that 0.98 to the power of 50
+will be approximately 等于1/E 所以 要使数值足够大
+equal to one over E. So the way to be pretty big 头五十天的数值必须远大于1/E
+will be bigger than one over E for the first 50 days, 之后 它们将会很快衰减
+and then they'll decay quite rapidly over that. 所以 感觉上这是一件困难又迅速的事
+So intuitively, this is the hard and fast thing, 你可以把它看作50天的平均气温
+you can think of this as averaging over
+about 50 days temperature. 因为在这个例子中
+Because, in this example, 要使用等式左边的这一项
+to use the notation here on the left, ε需要等于0.02
+it's as if epsilon is equal to 0.02, 1/ε等于50
+so one over epsilon is 50. 顺便说一下 我们也就是这样获得这个公式的
+And this, by the way, is how we got the formula, 我们获得1/(1-β)或相应天数的平均值
+that we averaging over one over one minus beta
+or so days. 在这里 ε可替换1-β
+Right here, epsilon replace a row of 1 minus beta. 它能告诉你 大概多少天的气温值
+It tells you, up to some constant roughly how many 可以作为气温均值
+days' temperature you should think of this
+as averaging over. 但这只是一种经验之谈
+But this is just a rule of thumb for 
+how to think about it, 并非正式的数学表述方式
+and it isn't a formal mathematical statement. 最后 我们来了解下 如何在实际情况中使用它
+Finally, let's talk about 
+how you actually implement this. 回顾下 我们先将V0设为0
+Recall that we start over V0 initialized as zero, 然后 计算第一天的值V1
+then compute V one on the first day, V2，等第
+V2, and so on. 现在 为了解释这一算法
+Now, to explain the algorithm, 需要写下V0
+it was useful to write down V0, V1 V2 及其他数值 作为不同的变量
+V1, V2, and so on as distinct variables. 但实际使用这一运算时
+But if you're implementing this in practice, 这是你需要做的 初始化V值为0
+this is what you do:
+you initialize V to be called to zero, 第一天
+and then on day one, 你将V值设为
+you would set V equals beta, β*V+(1-β)*θ1
+times V, plus one minus beta, times theta one. 第二天 更新V值
+And then on the next day, you will update V, 被称为
+to be called to βV+(1-β)*θ2
+beta V, plus 1 minus beta, 以此类推
+theta 2, and so on. 有时 我们用V下标θ来表示
+And sometimes we use this notation V
+subscript theta to denote that V在计算指数加权平均值θ
+V is computing this exponentially weighted average 
+of the parameter theta. 用四个新表达式再讲一遍
+So just to say this again but with four new formats, 设置Vθ=0
+you set V theta equals zero, 接着 不间断地 给每一天设置一个值
+and then, repeatedly, have one each day, 你会得到θT 将它代入Vθ
+you would get next theta T, and then set to V theta, 得到
+gets updated as β乘以Vθ的旧值
+beta, times the old value of V theta, 加上(1-β)
+plus one minus beta, 乘以Vθ的当前值
+times the current value of V theta. 这个指数加权平均公式的优点之一是
+So one of the advantages of
+this exponentially weighted average formula, 不需要太多存储空间
+is that it takes very little memory. 只需在计算机内存中保留一行数字
+You just need to keep just 
+one row number in computer memory, 基于新数值 你用这个公式不断重写运算即可
+and you keep on overwriting it with this formula
+based on the latest values that you got. 主要是因为高效
+And it's really this reason, the efficiency, 它基本只占一行代码
+it just takes one line of code basically 一个单一初始值的储存和内存空间
+and just storage and memory for 
+a single raw number 来计算指数加权平均值
+to compute this exponentially weighted average. 这并不是最好的方法
+It's really not the best way, 不是计算均值最准确的方法
+not the most accurate way to compute an average. 如果你需要计算一个移动窗口
+If you were to compute a moving window, 例如 直接算出近十天或五十天的气温总和
+where you explicitly sum over the last 10 days, 除以10或者50
+the last 50 days temperature 
+and just divide by 10 or divide by 50, 通常会给你一个更好的估计值
+that usually gives you a better estimate. 但缺点是
+But the disadvantage of that, 保存所有气温值
+of explicitly keeping all the temperatures around and 以及近十天气温的总和 需要更多内存
+sum of the last 10 days is it requires more memory, 更难实现 花费也更高
+and it's just more complicated to implement 
+and is computationally more expensive. 在接下来的视频中 我们会看到一些例子
+So for things, 
+we'll see some examples on the next few videos, 需要你计算很多变量的平均值
+where you need to compute 
+averages of a lot of variables. 不论是计算还是存储效率 今天介绍的这个方法都十分高效
+This is a very efficient way 
+to do so both from computation 这也是为什么它在机器学习中被广泛应用
+and memory efficiency point of view 
+which is why it's used in a lot of machine learning. 更不用说它的另一个优势 就是只需一行代码
+Not to mention that there's just one line of code 
+which is, maybe, another advantage. 现在 你知道了如何实现指数加权平均运算
+So, now, you know how to implement 
+exponentially weighted averages. 另一个值得你了解的技术细节是
+There's one more technical detail 
+that's worth for you knowing 偏差修正
+about called bias correction. 我们将在下一讲中介绍 那之后
+Let's see that in the next video, and then after that, 你就能用这些方法去建立
+you will use this to build 一个更好的优化算法
+a better optimization algorithm
+ than the straight forward
+GTC字幕组翻译

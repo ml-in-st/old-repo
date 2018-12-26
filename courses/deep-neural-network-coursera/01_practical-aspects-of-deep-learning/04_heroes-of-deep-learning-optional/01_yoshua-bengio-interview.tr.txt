@@ -1,0 +1,233 @@
+Selam Joshua, bugün aramıza 
+katılabildiğin için çok memnunum. Ben de çok memnunum. Bugün derin öğrenmede sadece bir 
+araştırmacı veya mühendis değilsin. Derin öğrenme kurumlarından,
+ ikonlarından biri oldun. Bunun başlama hikayesini
+ duymak istiyorum. Peki derin öğrenmeye nasıl 
+başladın ve bu kadar ilerledin? Aslında çoğumuz gibi 
+gençlik zamanlarımda çok fazla bilim kurgu 
+romanı okuyarak başladı. 1985 yılında linans eğitimime başladığımda,
+ sinir ağları ile ilgili makaleler okumaya başladım ve burası heyecanlandığım, benim için 
+gerçek bir tutku olmaya başladığı yerdi. Ve 80'lerin ortalarında, 1985'te
+ bu makaleleri okumak nasıldı? Hatırlıyor musun? Evet. İleri sistemlerle aldığım klasik yapay
+ zeka kurslarından yola çıkarak, insanların nasıl öğrenebildiği ve insan 
+zekası ile ilgili tüm bu düşünce dünyasını ve bunlarla, yapay zeka ve bilgisayarlar arasındaki 
+bağlantıları nasıl oluşturabileceğimizi keşfettim. Bu literatürü keşfetmek benim
+ için çok heyecan vericiydi ve Elbette bağlantıcıları okumaya başladım. Geoff Hinton, Rumelhart
+ ve diğerlerinin makalelerini... Ve özyineli ağlar,
+ konuşma tanıma üzerine çalıştım. HMN ve grafiksel modeller üzerine çalıştım. Sonra hızlıca doktora sonrası araştırma yaptığım
+ AT&T Bell Laboratuvarları’na ve MIT’ye taşındım. Ve burada sinir ağlarının uzun süreli 
+bağımlılıklarla olan bazı sorunlarını keşfettim. Kısa bir süre sonra gençlik yıllarımın 
+büyük bir kısmını geçirdiğim Montreal’deki UdeM’de işe geri alındım. Son birkaç on yıldır orada olan
+ ve her şeyi gören biri olarak, derin öğrenme ve sinir ağlarının bu zaman zarfında evrimi hakkında ne düşündüğünüzü 
+biraz anlatır mısınız? Deneylerle başlarız, daha da sonra sezgiler ve teori bir nevi sonra gelir. Şimdi Backdrop'ın neden bu kadar iyi çalıştığını, derinliğin neden bu kadar önemli 
+olduğunu daha iyi anlıyoruz. Ve o günlerde, bu görüşler ile ilgili
+ sağlam bir kanıt yoktu. 2000'li yılların başlarında derin ağlarda
+ çalışmaya başladığımızda, daha derin bir ağın daha güçlü olması gerektiğine dair 
+bir çok sezgimiz vardı. Ama bunu nasıl yapacağımızı ve kanıtlayacağımızı bilmiyorduk ve elbette deneylerimiz
+ başlangıçta işe yaramadı. Aslında, doğru çıktığını düşündüğünüz en önemli şeyler nelerdi?  Ve 30 sene önceki bildiklerimizle 
+kıyasladığımızda yanlış çıkan en büyük süprizler nelerdi? Tabii ki, yaptığım en büyük hatalardan biri, 90'lardaki herkes gibi, Backdrop'un çalışması için doğrusal olmayanları 
+düzleştirmemiz gerektiğini düşünmek oldu. Çünkü eğer doğrusal olmayanları
+ düzeltirsek, düz bir bölüme sahip olduğunda çalıştırmanın 
+daha zor olacağını düşündüm. Çünkü türevi bir çok yerde sıfır olurdu. Ve 2010'da ReLU'yla ve derin ağlarla 
+deneyler yapmaya başladığımızda, nötronların sıfır bölümünde çok fazla doymaması konusunda dikkatli olmaya kafayı takmıştım. Ama sonunda gerçekten ReLU'nun
+ sigmoidlerden daha iyi çalıştığı ve bağlandığı ortaya çıktı, bu çok şaşırtıcıydı. Aslında bunu biyolojik
+ bağlantılar sayesinde keşfettik, sadece iyileştirmenin daha kolay
+ olacağını düşündüğümüzden değil, Ama eğitilmesinin daha zor olacağını düşünmeme
+ rağmen daha iyi çalıştığı ortaya çıktı. O zaman size sormama izin verin, Derin öğrenme ve beyin arasındaki ilişki nedir? Açık bir cevabı var, ancak sizin buna 
+cevabınızı merak ediyorum. Sinir ağları ile ilgili beni gerçekten heyecanlandıran içgörü,
+ bağlantıcılardan gelen bilginin birçok nöronun aktivasyonu boyunca dağıtıldığı fikriydi. Büyükanne hücresine göre temsil edilmekten ziyade, sembolik bir temsil olarak adlandırılıyordu. Bu klasik yapay zekadaki geleneksel bakış açısıydı. Ve hala bunun gerçekten önemli 
+bir şey olduğuna inanıyorum ve insanların son zamanlarda bile bunun 
+önemini yeniden keşfettiklerini görüyorum. Yani bu gerçekten bir temeldi. Derinlik, daha sonra 2000'lerin
+ başında gelen bir şeydi. Örneğin 90'larda düşündüğüm bir şey değildi. Doğru, doğru, ve pek çok göreceli sığlık 
+inşa ettiğinizi hatırlıyorum fakat kelimeleri gömmek
+ için fazla dağıtılmış temsillerdi. Evet, bu doğru. 90'ların sonunda gerçekten heyecanlandığım 
+şeylerden biri buydu.  Aslında, kardeşim Samy ve ben, 
+istatistiksel öğrenmeyle yüzlerce meseleden biri olduğuna inanılan
+ boyutsallık laneti ile baş etmek için sinir ağlarını kullanabileceğimiz fikrini kullandık. Ve bu dağıtılmış sunumlara
+ sahip olabildiğimiz gerçeği, birçok rastgele değişken üzerinde ortak dağılımları çok verimli bir şekilde temsil etmek için kullanılabilir. Ve gayet iyi işe yaradı, 
+ve sonra bunları sözcük dizileri üzerindeki ortak dağılımlara genişlettim ve 
+kelime gömmeleri bu şekilde doğdu. Çünkü bunun benzer anlamsal bir anlamı olan sözcükler arasında genellemeye 
+izin vereceğini düşündüm. Son birkaç yılda, araştırma grubunuz
+ herkesin birkaç dakika içinde özetleyebileceğinden daha fazla fikir icat etti. Grubunuzdan çıkan, en çok hangi fikirlerle veya icatlarla gurur 
+duyduğunuzu merak ediyorum. Sanırım uzun dönem bağımlılıklar ve 
+bunlarla ilgili çalışmalardan bahsetmiştim. Bence insanlar bunu hala 
+yeteri kadar anlayamıyor. Ayrıca boyutsallık laneti ve sinir ağları ile
+ ortak dağılımlar ile ilgili yakın zamanlarda Hugo Larochelle'nin
+ yaptığı bir şeyden bahsettiğim bir hikaye var. Ve sonra söylediğim gibi, 
+bu sözcüklerde ortak dağılımlar için kelime gömmelerini öğrenme üzerine her türlü çalışmaya yol açmıştır. Muhtemelen derin öğrenme ile ilgili
+ yaptığımız çalışmalardan en bilineni, otomatik gizyazarlar ve RBM yığınları ile ilgiliydi. O zamanlarda, başlangıç fikirleri ile
+ derin ağları eğitmenin zorluklarını ve aynı zamanda derin ağlardaki
+ ufuk çizgisini daha iyi anlamaya çalışmaktı. Ve bu çalışma, gerçekten parçalı 
+doğrusal etkilenim fonksiyonlarının önemini gösteren deneylere 
+yol açan çalışma oldu. Daha sonra, denetimsiz öğrenmeyle 
+ilgili yaptığımız çalışmaların en önemlisi, otokodlayıcılar ve 
+günümüzde çok popüler olan üretici rekabet ağlarıyla ilgili
+ yaptığımız çalışmalar diyebilirim. Dikkati kullanarak, sinirsel makine
+ çevirisi için yaptığımız çalışmaların, çevirinin çalışması için çok önemli
+ olduğu ortaya çıktı. Ve şuan Google Çeviri gibi 
+endüstri sistemlerinde de kullanılıyor. Ama dikkat konusu sinir ağları ile ilgili
+ düşüncelerimi gerçekten değiştirdi. Eskiden, sinir ağlarını<br /> vektörler arasında eşleme
+ yapan makineler olarak görürdük. Ama, artık dikkat düzenekleri ile,
+ her türlü veri yapısını halledebilirsiniz. Ve bu gerçekten
+ çok ilginç yollar açıyor. Aslında biyolojiye bağlanma yönü, son birkaç yıldır üzerinde 
+çalıştığım bir şey, beyinin sağlayabileceği backprop gibi şeyleri
+ nasıl ortaya çıkarabileceğimizdi. Ve bu doğrultuda sinirbilim 
+insanlarının dikkatini çeken makalelerimiz var. Tabiki de bu doğrultuda
+ devam ediyoruz. Hakkında çok düşündüğünüzü bildiğim konulardan biri de, derin öğrenme ve beyin arasındaki ilişki, bunun hakkında biraz
+ daha bilgi verebilir misiniz? Aslında biyoloji konusu, bir süredir 
+düşündüğüm bir şey. Ve hakkında çok fazla düşündüğümü, 
+hayal kurduğumu söyleyebilirim. Sanırım puzzle'a benzediği için. Beyinden bildiğimiz ve beyinden öğrendiğimiz başak zamanlaması bağımlı plastisite gibi kanıtlara sahibiz. başak zamanlaması bağımlı plastisite
+ gibi kanıtlara sahibiz. Ve diğer yandan, bu kavramların hepsi makine öğrenmesinden var. Bütün sistemi, nesnel bir işleve ve 
+backprop düşüncesine göre küresel olarak geliştirme fikri. Ve ''backprop'' ne anlama geliyor? Yani sorumluluk atama gerçekten 
+ne anlama geliyor? Beyinlerin backprop gibi bir şeyi nasıl 
+yapabileceğini düşünmeye başladığımda, backprop'un arkasında, backprop'la
+ daha verimli olmamızı sağlayan, daha genel bazı kavramların 
+olabileceğini düşünmemi sağladı. Belki de, sorumluluk ataması
+ yapmak için daha fazla yol vardır, ve bunlar, pekiştirme öğrenmesinde
+ bulunan kişilerin sorduğu soruları bağlar. Bazen basit bir soru sormanın sizi
+ birçok farklı şey hakkında
+ düşünmeye yönlendirmesi ve büyük bir bulmaca gibi bir araya getir-
+mek isteyeceğiniz birçok öğe hakkında düşünmeye zorluyor
+ olması gerçekten ilginç. Yani bu birkaç yıl boyunca<br /> böyle devam etti. Ve şunu söylemeliyim ki, tüm bu 
+çalışmalar, takip ettiklerimin çoğu gibi, büyük ölçüde Jeff Hinton'un
+ düşüncelerinden etkilendi. Bu nedenle özellikle, 2007'de ilk derin öğrenme atölyesinde 
+bu konuşmayı verdiğinde, düşündüğü şey beynin çalışma şekliydi. Backprop'un yaptığı işin bir kısmını yapabilmek için nasıl bir zamansal kod kullanılabilir. Ve bu, son yıllarda keşfettiğim 
+pek çok fikre yol açtı. Evet, yani aslında bu
+ on yıldan beri çalışan ilginç bir hikaye. Birden fazla kez konuştuğunuzu
+ duyduğum konulardan biri de gözetimsiz öğrenmedir. Bu konudaki görüşünüzü<br /> paylaşabilir misiniz? Evet, gözetimsiz öğrenme
+ gerçekten önemli. Şuan, endüstriyel sistemlerimiz
+esas olarak insanların,<br /> problemler için önemli kavramların ne olduğunu<br /> tanımlamaları ve bu kavramları
+ verilerde etiketlemelerini gerektiren gözetimsiz
+ öğrenmeye dayanıyor. Tüm bu inanılmaz oyuncakları,<br />servisleri ve sistemleri
+ bunu kullanarak inşa ediyoruz. Ama insanlar daha <br />fazlasını yapabilir. Dünya ile gözlem ve etkileşim 
+ile yeni kavramları keşfedip, icat edebilirler. 2 yaşındaki bir çocuk
+ sezgisel fiziği anlayabilir. Başka bir deyişle,
+ yer çekimini, basıncı, eylemsizliği anlar. Sıvıları, katıları anlar. Ve elbette ailesi bu konular
+ hakkında hiçbir şey<br /> anlatmamıştır. Peki, nasıl anladı? Bu, gözetimsiz öğrenmenin 
+cevap vermeye çalıştığı sorudur. Bu sadece etiketlerimiz var 
+veya etiketlere ihtiyacımız yok 
+demek değildir. Aslında bu,<br /> dünyanın gözlemle nasıl çalıştığını açıklayan zihinsel 
+bir yapı inşa etmekle ilgilidir. Ve daha yakın zamanda, gözetimsiz öğrenmedeki fikirleri pekiştirme
+ öğrenimindeki fikirler ile birleştirdim. Çünkü çözmeye çalıştığımız temel kavramlar temel kavramlar hakkında çok güçlü
+ bir gösterge olduğuna inanıyorum ve bunları birbirinden ayırmaya çalışıyoruz. Bir insanın ya da makinenin
+ dünyayı etkileyerek, keşfederek, yeni şeyler deneyerek ve bir şeyleri kontrol
+ etmeye çalışarak elde edebileceği şeyler. Yani bunların, gözetimsiz öğrenmenin 
+orijinal fikirleri ile sıkı sıkıya bağlı olduğunu aldığını düşünüyorum. Dolayısıyla benim gözetimsiz öğrenme<br /> hakkında düşüncem; 15 yıl önce RBM'leri ve otokodlayıcıları
+ yapmaya başladığımızda, iyi gösterimleri öğrenme
+ fikrine yoğunlaşmaktı. Ve hala bunun önemli bir soru 
+olduğunu düşünüyorum. Ama bilmediğimiz şey, iyi gösterimin
+ ne ve nasıl olduğuydu. Mesela, amaç fonksiyonunu 
+nasıl anlarız? Bu yüzden yıllar boyunca <br />pek çok şey denedik. Ve aslında gözetimsiz öğrenme 
+araştırmasıyla ilgili güzel şeylerden biri, pek çok farklı fikrin olması, sorunun çözülmesi için 
+farklı yolların olması. Ve belki de gelecek yıl keşfedeceğimiz
+ tamamen farklı bir şey var ve belki de beynimiz tamamen
+ farklı bir şey kullanıyor. Yani bu artımlı bir araştırma değil, kendi içinde keşifler yapan bir şey. Sistemin, gözetimsiz öğrenmede
+ iyi bir iş çıkardığını ölçmek için bile doğru amaç fonksiyonunun
+ ne olduğunun bir tanımına sahip değiliz. Elbette bu zorlayıcı ama aynı zamanda, araştırmacıların gerçekten sevdiği, en azından bana öyle gelen,
+ geniş bir olasılık alanı bırakıyor. Bugünlerde, derin öğrenmede
+ çok fazla değişiklikler oluyor. Ve sanırım, herhangi bir
+ insanin yayınlanmış olan<br /> her bir derin öğrenme makalesini okumasının 
+mümkün olduğu noktayı geçtik. Merak ediyorum, derin öğrenmeyle
+ ilgili sizi en çok<br /> heyecanlandıran şey ne? Çok hırslıyım ve derin öğrenme
+ biliminin şu anki durumunun görmek istediğim yerden çok 
+uzakta olduğunu hissediyorum. Ve sistemlerimizin şu anda 
+dünya hakkında çok<br /> yüzeysel bir anlayışa sahip olduklarını gösteren
+ hatalar yaptığını düşünüyorum. Şimdi beni en çok heyecanlan-
+dıran şey, araştırmaların yararlı bir şeyler yapacak sistemleri
+ inşa etmeye çalışmadığı yönü. Sadece bir bilgisayarın 
+dünyayı nasıl gözlemlediği, <br />etkileşime girdiği ve dünyanın nasıl işlediğini 
+keşfettiği ile ilgili ilkelere<br /> geri dönüyoruz. Dünya bu kadar basit, 
+video oyunu gibi <br />programlayabileceğimiz bir şey olsaydı bile, bunu iyi bir şekilde <br />nasıl yapacağımızı bilmiyoruz. Ve bu harika, çünkü Google, 
+Facebook, Baidu ve diğerleri ile 
+rekabet etmek zorunda değilim. Öyle değil mi? Çünkü bu bir bakıma <br />herhangi birinin garajında yapabileceği ve dünyayı 
+değiştirebilecek temel bir araştırma. Elbette buna saldıracak 
+pek çok yön var. Fakat derin öğrenme ve pekiştirme 
+öğrenimindeki fikirler arasındaki
+ yararlı etkileşimlerin çok önemli olduğunu görüyorum. Ve bu yönde gelişmenin 
+aslında pratik uygulamalar üzerinde büyük bir etkisi olabileceği 
+için gerçekten çok heyecanlıyım. Çünkü uygulamalarda olan bazı
+ büyük zorluklara bakarsanız, yeni alanlarla nasıl<br /> baş ettiğimiz veya çok az örneğimiz olan <br />kategoriler gibi. Ve aslında insanların bu problemleri
+ çözmede çok iyi olduğu durumlarda. Eğer dünyanın nasıl işlediğini
+ daha iyi anlayan sistemlerimiz olsaydı, transfer öğrenme 
+ve dramatizasyon sorunları ile başa çıkmak daha kolay olurdu. Daha derin bir anlayış, değil mi? Aslında ne oluyor? Gördüklerimin sebepleri neler? Ve eylemlerimle, gördüklerimi
+ nasıl etkileyebilirim? Bunlar, bu günlerde gerçekten
+ heyecanlı olduğum sorular. Bence bu bağlantı ayrıca, yapay zekadaki eski sorularla derin öğrenme araştırmaları yıllar içinde gelişti. Çünkü derin öğrenmede bir çok başarı 
+algı ile olmuştur. Ne kaldı, değil mi? Geriye kalanlar, bir şeyin nasıl işlediğini soyut bir seviyede anlamakla ilgili
+ olan yüksek düzeyli bir durumdur. Şuan yüksek seviyelere ulaşmadığını düşündüğüm, bu yüzden o seviyelere ulaşmalıyız. Bilginin sırayla işlenmesi hakkında, 
+akıl yürütme hakkında düşünmeliyiz. Nedenselliğin nasıl çalıştığını
+ ve makinelerin tüm bunların kendi başlarına nasıl keşfedebileceğini
+ düşünmek zorundayız. Potansiyel olarak insanlar tarafından 
+yönlendirilir, ancak mümkün olduğu 
+kadar otonom bir şekilde çalışırlar. Söylediklerinizden deneyler yaptığınız araştırma yaklaşımlarının hayranı 
+olduğunuz anlaşılıyor. Toy problemleri terimini kullanacağım,
+ elbette küçümseyici anlamda değil. Evet, ama küçük problemler. Ve bunun daha sonra büyük sorunlara
+ aktarıldığına dair iyimsersiniz. Evet, meta şekilde aktarıyor. Tabi ki bu problemleri büyütmek
+ ve ele almak için bazı çalışmalar yapmamız gerekecek. Ama bu toy problemleri <br /> giderme konusundaki asıl motivasyonum,
+ başarısızlıklarımızı daha iyi anlayabilmek ve sorunu sezgisel olarak
+ daha kolay manipüle edip, daha kolay anlayabileceğimiz
+ bir şeye indirgemek. Yani bir çeşit klasik böl ve
+ fethet bilim anlayışı. Ve ayrıca, bence, insanların 
+yeterince düşünmediği bir şey, araştırma döngüsünün çok daha
+ hızlı olabileceğidir. Eğer bir deneyi birkaç saatte yapabiliyorsam,
+ daha hızlı bir şekilde ilerleyebilirim. Tüm sağduyuları ve genel kültürdeki
+ her şeyi yakalayan büyük bir modeli denemem gerekirse,
+ ki sonunda yapacağız. Sadece her bir deney, 
+mevcut donanım ile çok zaman alıyor. Bu yüzden, donanımdaki arkadaşlarımız
+ bin ya da milyon kat daha hızlı olacak makineler üretirken, 
+ben bu toy deneyleri yapıyorum. Biliyorsunuz, sadece bir mühendislik
+ disiplini olarak değil, derin öğrenme bilimi hakkında 
+konuştuğunuzu duydum, ayrıca gerçekten neler olduğunu anlamak
+için daha fazla çalışma yapıyorsunuz. Bu konudaki düşüncelerinizi
+ paylaşmak ister misiniz? >> Evet, kesinlikle. Yaptığımız çalışmaların çoğunun,
+ bir bakıma kör insanların yollarını
+ bulmaya çalışmasına benzemesinden korkuyorum. Ve bilirsiniz, şanslı olursanız
+ bu yolda ilgi çekici şeyler bulabilirsiniz. Gerçekten, biraz durursak ve ne yaptığımızı aktarılabilir 
+bir şekilde anlamaya çalışırsak, çünkü, prensiplerden 
+teorilere geçmeye çalışıyoruz, ama teori, her zaman matematik demek değildir. Tabi ki matematiği seviyorum, ancak
+ ihtiyacımız olan, her şeyin matematiksel olarak formüle edilmesi değil,
+mantıksal olarak formüle edilmesidir. Bir bakıma, birisini mantıklı
+ olsa da olmasa da, bunun çalışacağına ikna edebilirim Bu, en önemli bakış açısıdır. Ve sonra matematik, güçlendirir ve sağlamlaştırır. Ama bu daha çok anlama ile ilgili. Bu sonraki başlangıç çizgisinde olmakla, kıyaslamakla, karşı
+ laboratuvarlardakileri veya diğer şirketleri geçmekle ilgili değil, 
+araştırmalarımızı yapmakla ilgili. Bu daha çok merak olgularını
+ anlamamızı sağlaması için ne tarz sorular sormamız gerektiği ile ilgili. Örneğin, derin ağlarda veya mevcut ağlarda 
+çalışmayı ne zorlaştırıyor? Bazı fikirlerimiz var ama
+ çoğu şeyi hala anlayamıyoruz. Belki de amacı daha iyi bir algoritma kurmak olmayan sadece şuan sahip olduğumuz algoritmaları veya
+ hangi durumların belirli algoritmaları daha iyi çalıştırdığını ve nedenlerini
+ anlamak olan deneyler tasarlayabiliriz. Bu yüzden bu gerçekten önemli. İşte bilim budur. Nedeni bu. Doğru. Bugün
+ bu alana girmek isteyen çok fazla insan var. Eminim ki bu soruyu birebir 
+ortamlarda çok fazla yanıtladınız ama bu videoyu izleyen, 
+yapay zeka ve derin öğrenmeye girmek isteyen insanlara 
+ne tavsiye edersiniz? Doğru, ilk olarak yapılabilecek motivasyon kaynakları ve farklı şeyler var. Derin bir öğrenme araştırmacısı
+ olmak için ihtiyacınız olan şeyler, ürünler üretmek için derin öğrenmeyi kullanmak 
+isteyen bir mühendisinkiyle aynı olmayabilir. Her iki durumda da farklı anlayış 
+seviyelerine ihtiyaç duyulur. Ama her durumda pratik yapmak gerekir. Derin öğrenme gibi bir konuya 
+gerçekten hakim olma için elbette çok fazla okumanız gerekiyor. İşlerinizi kendiniz programlamak zorundasınız. Sıklıkla, yazılım kullanmış olan
+ öğrencilerle görüşürüm. Ve bu günlerde, sadece çalıştırıp oynatabileceğiniz
+ ve yaptıklarınızın hiçbirini anlamanıza gerek olmayan pek çok iyi yazılım var. Bu kadar yüzeysel bir seviyede olunca, ne zaman çalışmadığını ve 
+neyin yanlış gittiğini anlamak zorlaşıyor. Yani, aslında verimsiz olsa da 
+bir şeyleri kendiniz uygulamaya çalışın, Bir şeyleri kendinizin denemesi,
+ aslında neler olduğunu anlamak için çok faydalı bir yol. Bu yüzden, sadece birkaç satır kodla her şeyi yapabileceğiniz programlama çatılarından birini kullanmayın, gerçekte 
+ne olduğunu bilmiyorsunuz. Tam anlamıyla öyle, ve 
+bundan daha fazlasını bile söyleyebilirim. Yapabiliyorsan, bir şeyleri
+ ilk yöntemlerinden elde etmeye çalışmak, gerçekten yardımcı olur. Genel olarak okumanız,
+ başka insanların kodlarına bakmanız, kendi kodlarınızı yazmanız,
+ bol bol deney yapmanız ve yaptığınız her şeyi anladığınızdan 
+emin olmanız gerekir. Özellikle bilim bölümü için,<br /> neden bunu yaptığınızı, diğer insanların neden 
+bunu yaptığını sorgulamanız gerekir. Belki de cevap kitabın bir yerinde ve
+ daha çok okumanız gerekiyor. Ama kendi başınıza anlayabilirseniz daha bile iyi. Evet, öyle. Ve aslında okuduklarımdan, siz ve Ian Goodfellow gerçekten saygın kitaplar yazdınız. Çok teşekkürler Evet, çok satıyor. Biraz çılgınca. Şuan okuyabilecekten daha çok kişinin bu kitabı okuduğunu düşünüyorum. Fakat elbette, <br />Uluslararası Öğrenme Konferansları(ICLR)’nın raporları, muhtemelen iyi makalelerin
+ en çok yoğunlaştığı yer. Elbette NIPS, ICML ve diğer konferanslarda da
+ çok iyi makaleler var. Ama gerçekten iyi makaleler okumak istiyorsanız,
+ ICLR'nın son birkaç raporunu okuyun. Bu size gerçekten iyi bir
+ bakış açısı kazandıracaktır. Evet. Başka düşünceleriniz var mı? İnsanlara derin öğrenmede 
+iyi olmaları için ne önerirsiniz? Aslında bu başladığınız noktaya göre değişir. Matematikten korkmayın. Sadece sezgilerinizi geliştirin. 
+Bir kere sezgisel seviyeyi kavrarsanız daha sonra matematiği anlamak
+ daha kolay gelecektir. İyi haber şu ki: derin öğrenmede 
+donanımlı olmak için 5 yıllık bir doktoraya ihtiyacınız yok. Gerçekten kolay bir şekilde öğrenebilirsiniz. Eğer bilgisayar biliminde ve matematikte
+ iyi bir altyapınız varsa, birkaç ayda kullanacak,
+ bir şeyler yaratacak ve yeni araştırma deneyleri başlatacak
+ kadar öğrenebilirsiniz. Doğru çalışmayla, yaklaşık 6 aylık bir süreçte, makine öğrenmesiyle ilgili bir şey 
+bilmeseler de, matematikte ve bilgisayar biliminde iyilerse gerçekten hızlı öğrenebilirler. Ve elbette bu, matematikte ve bilgisayar biliminde 
+doğru eğitime sahip olmanız gerektiği anlamına geliyor. Bazen sadece bilgisayar bilimi derslerinde
+ öğrendikleriniz yeterli olmuyor. Özellikle sürekli bir matematiğe ihtiyacınız var. Örneğin; olasılık, cebir ve iyileme... Anlıyorum, ve kalkülüs? Evet kalkülüs de. Tüm yorum, fikir ve tavsiyelerini paylaştığın 
+için çok teşekkür ederim Joshua. Seni uzun zamandır tanıyor olsam da, şimdiye
+ kadar bilmediğim erken tarihinin birçok detayı var, bu yüzden teşekkür ederim. Andrew, bu özel kaydı yaptığın için ve yaptığın şeyler için teşekkürler. Umarım, bir sürü insana yardımcı olur.

@@ -1,0 +1,40 @@
+Son videoda, gradyan kontrolünü öğrendiniz. Bu videoda, bazı pratik ipuçları ve bunları sinir ağınıza nasıl uygulayacağınızla 
+ilgili bazı notlar paylaşmak istiyorum. İlk olarak, gradyan(eğim) kontrolünü eğitimde kullanmayın.
+Sadece hata ayıklamak için. Yani bunun anlamı, "dθapprox[i]" "i" nin tüm değerleri için, çok yavaş bir hesaplamadır. Gradyan düşümü uygulaması için, dθ'yi ve türevi hesaplamak için sadece geri-yayılımı kullanın. Ve bunu sadece hata ayıklarken, dθ'ye yakın olduğundan emin olmak için hesaplarsınız. Ama bunu yaptıktan sonra, gradyan kontrolünü kapatırsınız ve bunu gradyan düşümünün her yinelenmesi
+ sırasında çalıştırmazsınız. Çünkü bu sadece çok yavaştır. İkincisi, eğer algoritma gradyan kontrolünde başarısız olursa, 
+bileşenlere bakın. Bireysel bileşenlere bakın 
+ve hatayı tanımlamaya çalışın. Yani demek istediğim, eğer "dθapprox" ifadesi 
+dθ'den çok uzak olursa yapmam gereken şey, "dθapprox"un değerlerinin dθ'nin değerlerinden
+ oldukça farklı olduğunu görmek için, "i"nin farklı değerlerine bakmaktır. Örneğin, eğer θ'nin ya da dθ'nin değerini çok uzak bulursanız, hepsi, bazı katman veya katmanlar için "dbl"ye karşılık gelir. Fakat, dw'nin bileşenleri daha yakındır, değil mi? Hatırlayın, θ'nin farklı bileşenleri "b" ve "w"nun farklı bileşenlerine karşılık gelir. Bu durumla karşılaştığınızda,
+ hatanın b parametrelerine göre "db" türevinin nasıl hesaplandığını bulabilirsiniz. Ve benzer şekilde tersi, eğer çok uzak değerler bulursanız, "dθapprox"un değerleri, dθ'den çok uzaksa, tüm bu bileşenlerin dw'den ya da 
+dw'nin belirli bir katmanından geldiğini görürsünüz ve bu, hatanın bulunduğu yere girmenize yardımcı olabilir. Bu, her zaman hatayı hemen tanımlamanıza izin vermez fakat bazen hatayı nerede arayacağınız konusunda
+ bazı tahminler yürütmenize yardımcı olur. Sıradaki, gradyan kontrolünü yaparken, eğer düzenlileştirme kullanıyorsanız, 
+düzenlileştirme terimlerinizi hatırlayın. Yani, eğer maliyet fonksiyonunuz J(θ) ise
+ kayıplarınızın 1'den m'e kadar olan toplama eşittir ve daha sonra, 
+düzenlileştirme terimi eklenir. Ve "wl"nin karesi "l" üzerinden toplanır, 
+ bu J fonksiyonun tanımıdır. Ve, dθ ifadesi,
+ düzenlileştirme terimini içeren J'nin θ'ya göre gradyantının alınması ile elde edilir. Yani, bu terimi dahil etmeyi unutmayın. Bir sonraki, gradyan kontrolü seyreltme (dropout)
+ ile birlikte çalışmaz. Çünkü her yinelemede, "dropout" 
+gizli birimlerin farklı alt kümelerini rastgele olarak ortadan kaldırır. "Seyreltme (dropout)" gradyan düşümü yapıyorken, J maliyet fonksiyonun hesaplanması kolay değildir. "Seyreltme (dropout)" işlemi, 
+bazı J maliyet fonksiyonunun optimizasyonu olarak görülebilir fakat J maliyet fonksiyonu, 
+herhangi bir yinelemede ortadan kaldırabilecekleri, düğümlerin tüm üstel büyük alt kümeleri üzerinde 
+toplanmasıyla tanımlanır. Dolayısıyla, J maliyet fonksiyonunun hesaplanması çok zordur ve farklı alt kümeleri ortadan kaldırmak için
+ "seyreltme (dropout)" kullandığınızda, her seferinde sadece maliyet fonksiyonunu örnekliyorsunuz. Bu nedenle, "Seyreltme (dropout)" ile 
+hesaplamanızı iki kez kontrol etmek için gradyan kontrolünü kullanmak zordur. Yani genellikle yaptığım şey, 
+"seyreltme(dropout)" olmadan gradyan kontrolünü uygulamaktır. Yani isterseniz, "keep-prob" ve "dropout" değerini
+ 1.0'a eşit olacak şekilde ayarlayabilirsiniz. Ve sonra "dropout"u açın ve "dropout" uygulamamın 
+doğru olduğunu umuyorum. Yapabileceğiniz diğer şeyler, 
+düşmüş düğümlerin örüntülerini düzeltmek gibi ve ve [..] şeklindeki örüntü için gradyan kontrolünün doğru olduğunu teyit edin. Fakat pratikte, bunu genellikle uygulamıyorum. Bu nedenle benim önerim, "dropout"un kapatılması,
+ algoritmanızı iki kez kontrol etmek için gradyan kontrolünün kullanılması en azından "dropout" kullanılmadan daha doğrudur
+ve daha sonra "dropot"u açın. Son olarak, bu küçük bir ayrıntıdır. Bu imkansız değildir, nadiren gerçekleşir, 
+ancak rastgele başlatmalarda (initialization) "w" ve "b" 0'a yakın olduğunda gradyan düşümü uygulamanızın doğru olması imkansız değildir. Ancak, gradyan düşümünü çalıştırırken ve 
+"w" ve "b" değerleri daha da büyümeye başlıyorsa belki de geri-yayılım uygulamanız, 
+sadece "w" ve "b" sıfıra yakınken doğrudur fakat "w" ve "b" büyük olduğunda, bu daha da yanlış olur. Yapabileceğiniz bir şey, ben bunu pek yapmam, ancak yapabileceğiniz bir şey, rastgele başlatma (initialization) 
+işleminde gradyan kontrolünü çalıştırmaktır ve daha sonra ağınızı bir süreliğine eğitin,
+böylece "w" ve "b"nin sıfırdan, küçük rastgele başlangıç değerlerinizden
+ uzaklaşmak için biraz zamanı olur. Ve birkaç iterasyon için eğittikten sonra
+ tekrar gradyan kontrolünü çalıştırın. Yani bu, gradyan kontrolü için. Ve bu haftanın materyallerinin sonuna geldiğiniz için 
+tebrik ederim! Bu hafta, geliştirme ve eğitim kümelerinizi 
+nasıl kuracağınızı sapma ve varyansı nasıl analiz edeceğinizi ve
+ yüksek sapmaya, yüksek varyansa ya da hem yüksek varyansa ve hem de yüksek sapmaya sahipseniz 
+ne yapacağınızı öğrendiniz. Ayrıca, regülasyonun farklı biçimlerini, L2 regülasyonu gibi, ve "seyreltme(dropout)"yi sinir ağınıza nasıl uygulayacağınızı gördünüz. Yani, sinir ağınızın eğitimini hızlandırmak için bazı ipuçlarını ve son olarak da gradyan kontrolünü gördünüz. Bu yüzden bu hafta çok şey gördüğünüzü düşünüyorum ve bu haftaki programlama alıştırmasında bu fikirlerin çoğunu kullanacaksınız. İyi şanslar diliyorum ve ikinci hafta konularında tekrar görüşmeyi sabırsızlıkla beliyorum.

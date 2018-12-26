@@ -1,0 +1,89 @@
+Por que regularização 
+ajuda com o sobre-ajuste? Por que ela ajuda com a redução 
+de problemas de variância? Vamos analisar alguns exemplos para 
+ter uma noção sobre como isso funciona. Então, lembre-se do viés de alta 
+(high bias) e da alta variância. E eu descrevo as imagens do nosso 
+vídeo anterior que parecem algo assim. Agora, vejamos um ajuste de uma estrutura 
+de uma rede neural grande e profunda. Eu sei que não desenhei esta 
+muito grande nem muito profunda, vejamos algumas redes 
+neurais e este sobre-ajuste. Então, você tem uma função 
+de custo tipo J em função de W, b, igual a soma das perdas. Então, o que fizemos para 
+a regularização foi adicionar este termo extra, que penaliza as matrizes de peso, 
+de serem muito grandes. Esta era a norma de Frobenius. Então, porque é que a 
+redução da norma L2 ou da norma Frobenius ou dos parâmetros 
+podem causar em um sobre-ajuste menor? Um conceito é que se você ajusta o lambda de regularização 
+para ser muito, muito grande, eles serão incentivados a definir as matrizes de peso W, 
+razoavelmente próximas de zero. Então, uma intuição é talvez definir o 
+peso a um valor bem perto de zero para muitas unidades ocultas, 
+que basicamente anulam muito o impacto 
+destas unidades ocultas. E, se esse é o caso, então, esta rede neural muito mais 
+simplificada, torna-se muito menor. Na verdade, é quase tipo uma 
+unidade de regressão logística, mas empilhada provavelmente 
+na mesma profundidade. E isso levará este este caso de sobre-ajuste muito mais perto 
+da esquerda para outro caso de "high bias". Mas, tomara que haja um valor 
+intermediário de lambda que resulte em ema solução mais perto 
+desta solução "ajustada" no centro. Mas a intuição é que, ao 
+ajustar lambda em um valor muito alto, definiremos 
+W próximo a zero, que na prática, não é 
+na verdade o que ocorre. Podemos pensar nisso como a 
+anulação, ou pelo menos a redução do impacto de muitas unidades ocultas, resultando em uma sensação de obtenção 
+de uma rede mais simples. Eles vão ficando cada vez mais perto, como 
+se você estivesse utilizando regressão logística. A intuição de zerar completamente várias 
+unidades ocultas não está muito correta. O que realmente acaba acontecendo é que eles 
+ainda usarão todas as unidades ocultas. Entretanto, cada uma delas 
+tem um efeito muito menor. Mas você acaba obtendo 
+uma rede mais simples, como se você tivesse uma rede menor, que 
+portanto, é menos propensa ao sobre-ajuste. Então, muito deste 
+conceito ajuda mais quando você implementa 
+regularização no exercício de programação. Na verdade, você consegue ver por si mesmo, 
+alguns resultados destas reduções de variância. Aqui está outra tentativa 
+de uma intuição adicional do porquê regularização 
+ajuda a prevenir sobre-ajuste. E para isso, eu assumirei 
+que estamos utilizando a função de ativação tanh, 
+que parece com esta. Esta é uma função g(z) = tanh (z). Então, se for o caso, observe que, enquanto 
+Z é muito pequeno, portanto, se Z recebe um intervalo 
+muito pequeno de parâmetros, mais ou menos por aqui, então você está 
+usando somente o regime linear da função tanh. E somente quando Z começa a receber valores 
+maiores ou valores menores, desta forma, é que a função de ativação 
+começa a tornar-se menos linear. Então, a noção que você pode 
+aprender aqui, é que se lambda, o parâmetro de 
+regularização, é grande, então, resulta que seus parâmetro 
+serão relativamente pequenos, porque eles são penalizados, sendo 
+grandes em uma função de custo. Assim, se os intervalos de W são 
+pequenos, então, pelo fato de Z ser igual a W, então é tecnicamente + b, mas se W tende a ser muito pequeno, então Z também será 
+relativamente pequeno. E particularmente, se Z acaba recebendo 
+valores relativamente pequenos, somente neste intervalo, então g(Z) será mais ou menos linear. Então, é como se cada 
+camada fosse mais ou menos linear. Como se fosse uma regressão linear. E vimos no curso 1 que, se cada camada é linear, então toda a sua rede 
+é apenas uma rede linear. E assim, mesmo uma rede profunda, uma rede profunda com 
+uma função de ativação linear, finalmente é aquela que consegue 
+somente calcular uma função linear. Então, ela não pode ser usada 
+em decisões muito complexas. Limites de decisões não-lineares, 
+que a permitem realmente um sobre-ajuste correto sobre os 
+conjuntos de dados, como vimos no sobre-ajuste de alta 
+variância no slide anterior. Apenas para resumir: se a regularização se 
+torna muito grande, o parâmetro W é muito pequeno, então Z será relativamente pequeno, meio que ignorando os 
+efeitos de b momentaneamente. Então, Z será relativamente pequeno, ou realmente, eu diria que recebe 
+um intervalo pequeno de valores. E assim, se a função de ativação for tanh, será relativamente linear. Então, toda a sua rede neural estará 
+calculando algo não muito diferente do que uma grande função linear, 
+que é desta forma, uma função simples, ao invés de uma 
+função não-linear altamente complexa. E assim, muito menos capaz 
+de realizar um sobre-ajuste. E novamente, quando você entrar em 
+regularização no exercício de programação, você será capaz de verificar por 
+si mesmo alguns destes efeitos. Antes de encerrar nossa 
+discussão sobre regularização, quero dar a vocês uma 
+dica de implementação. Quando estiver 
+implementando regularização, pegamos nossa definição de função de 
+custo J e, na verdade, a modificamos adicionando este termo extra que 
+penaliza o peso quando é muito grande. Assim, se você está 
+implementando gradiente descendente, uma das etapas para depurar o gradiente descendente 
+é plotar a função de custo J, como uma função do número de elevações do gradiente 
+descendente e você deve verificar se a função de custo J diminui monotonicamente 
+após cada elevação do gradiente descendente. E se você está implementando regularização, então lembre-se, por favor, que 
+J agora tem esta nova definição. Se você plotar a definição antiga de J, apenas este primeiro termo, então talvez você não 
+veja um decréscimo contínuo. Então, para depurar o gradiente descendente, 
+assegure-se que você esteja plotando esta nova definição de J, incluindo 
+este segundo termo também. Caso contrário, você pode não ver o 
+decréscimo contínuo do J em cada elevação. Então, esta é a regularização L2, que é na verdade, uma técnica de regularização que eu mais uso nos 
+módulos de treinamento de aprendizagem profunda. Em aprendizagem profunda há 
+uma outra técnica de regularização chamada de regularização dropout. Vamos dar uma olhada nela no próximo vídeo. 
+[Tradução: Renato Barata Gomes | Revisão: Carlos Lage]

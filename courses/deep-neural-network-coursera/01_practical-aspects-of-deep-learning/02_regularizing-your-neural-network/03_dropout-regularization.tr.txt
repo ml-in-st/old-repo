@@ -1,0 +1,50 @@
+L2 düzenlileştirmesine ek olarak oldukça etkili düzenlileştirme tekniklerinden
+birisi de seyreltmedir (dropout). Şimdi nasıl çalıştığını görelim. Diyelim ki burada gördüğünüz gibi bir sinir ağını
+eğitiyorsunuz ve aşırı öğrenme durumu sözkonusu. Şimdi seyreltme ile ne yapacağımızı görelim. Öncelikle bu sinir ağının bir kopyasını alalım. Seyreltme ile yapacağımız şey,
+sinir ağının her bir katmanında bulunan düğümleri (node) elemek için bir olasılık değeri belirlemektir. Diyelim ki bu sinir ağının katmanlarında bulunan düğümler için yazı tura atacağız. Bu durumda her bir düğümün elenme ve elenmeme olasılığını 0.5 olarak bulmuş oluruz. Diyelim ki yazı tura atmayla işimiz bittikten sonra örneğin bu düğümleri elemeye karar verdik. Bu durumda yapmanız gereken şey, bu düğümlerin
+girdi ve çıktı bağlantılarını yok etmektir. Sonuç olarak çok daha küçük ve sadeleştirilmiş bir sinir ağını elde ederiz. Ardından geri yayılım ile eğitime devam edersiniz. Bu yaptıklarımız yalnızca bir eğitim örneği için geçerli. Diğer eğitim örnekleri için ise, birçok kez yazı tura attıktan sonra bazı düğümleri
+sinir ağında tutarız, bazılarını ise seyreltiriz
+veya başka bir ifade ile, eleriz. Eğitim sırasında kullanılan her bir örnek için, sadeleştirilmiş sinir ağlarını kullanarak
+eğitimi gerçekleştiririz. Bu biraz sıra dışı bir teknik gibi görünüyor olabilir. Düğümlerin bir kısmını rastgele seçip,
+geri kalanları ise eliyoruz. Ancak bu gerçekten de işe yarıyor. Ama bunu siz de tahmin edebilirsiniz, çünkü burada
+her bir örnek için çok daha küçük sinir ağı eğitiyoruz. Veya burada daha küçük ağların eğitilmesinin neden
+bir sinir ağını düzenlileştirebildiğimizi imkan tanıdığı hakkında bir fikir verebilir. Şimdi seyreltmeyi nasıl uygulayacağımızı görelim. Seyretlemeyi uygulamanın birkaç farklı yolu var. Ben sizlere en çok kullanılanı göstereceğim. Buna aynı zamanda "ters seyreltme" de denmektedir. Bütünlüğü sağlamak adına, diyelim ki seyreltmeyi,
+l=3 katmanı ile görselleştirmek istiyoruz. Birazdan yazacağım kodda bir sürü 3'ler olacak. Burada tek bir katmandaki seyreltmeyi
+görselleştirmeye çalışacağım. Burada yapacağımız şey, d adında bir vektör oluşturacağız ve d3, 3. katmanın seyreltme vektörü olacaktır. d3 vektörünü, np.random.rand() ile oluşturacağım ve bu vektör, a3 ile aynı boyuta sahip olacak. Eğer bu ifadenin, keep.prob adını verdiğim sayıdan küçük olduğunu görürsem Burada keep.prob bir sayıdır. Videonun başlarında bu sayıyı 0.5 olarak belirlemiştik. Şimdi ise bu örnekte 0.8 olarak belirleyeceğim. Ve bu sayı, hangi gizli birimlerin tutulacağını belirleyen
+olasılık değeri olacaktır. Yani keep.prob = 0.8 olur, bu da 0.2 ihtimalle gizli birimlerin
+eleneceği anlamına gelmektedir. Burada bu yöntemin yaptığı şey,
+rastgele bir matris üretmektir. Eğer elinizdeki değerleri vektörleştirirseniz
+bu yöntem yine oldukça güzel çalışmaktadır. Yani d3 bir matristir. Her bir örnek ve her bir gizli birim için karşılık gelen d3 matrisi, %80 ihtimalle 1 ve %20 ihtimalle 0 olacaktır. Yani buradaki rastgele sayı 0.8'den küçük olursa,
+0.8 ihtimalle 1 veya "True" ve %20 veya 0.2 ihtimalle 0 veya "False" olma
+ihtimaline sahiptir. Ardından burada yapacağımız şey, 3. katmadan
+etkilenimleri (activations) almaktır. Bu örnekte buna a3 diyelim. a3, hesapladığımız etkilenimlerdir. Burada a3'ü, eski a3 çarpı d3 olarak belirleyeceğiz. Burada a3 ile d3'ün elemanlarını çarpıyoruz. Bunu ayrıca a3 *= d3 şeklinde de yazabilirsiniz. d3'ün 0 olan her elemanı için ve buradaki elemanların bir kısmının %20 ihtimalle
+0 olacağı için bu işlemin yaptığı şey, çarpım işlemi sonucu d3'ün karşılık gelen
+elemanlarını sıfırlamaktır. Eğer bunu Python'da yaparsanız, d3, her elemanı 1 veya 0 yerine True veya False olan bir Boolean dizisi olacaktır. Ama çarpım işlemi düzgün bir şekilde çalışacak ve bu dizideki True ve False değerlerini
+1 ve 0 olarak yorumlayacaktır. Eğer bunu Python'da uygularsanız,
+bunu bizzat kendiniz göreceksiniz. Son olarak a3'ü, 0.8'e veya başka bir ifade ile keep.prob değerine bölerek ölçeklendireceğiz. Bu son adımın ne yaptığını açıklayayım. Diyelim ki 3. gizli katmanda 50 birim veya 50 nöron bulunmaktadır. Yani a3, 50 * 1 boyutlu veya vektörizasyon yaptıysanız 50 * m boyutludur. Eğer bu birimleri %80 ihtimalle tutup,
+%20 ihtimalle eleyecekseniz sonuç olarak ortalama 10 birimi söndürür veya sıfırlarsınız. Şimdi z^4'ün değerine bakarsanız, z^4, w^4 * a^3 + b^4'e eşit olacaktır. Ve beklendiği üzere bu %20 oranla azaltılacaktır. Burada demek istediğim,
+elemanların %20'si sıfırlanacaktır. z^4'ün beklenti değerini azaltmamak için yapmanız gereken şey bu değeri 0.8'e bölmektir. Bu işlem, a3'ün beklenti değerini değiştirmemek için beklenti değerini yaklaşık %20 arttıracaktır. İşte burası, tersine seyreltme olarak adlandırdığımız tekniktir. Ve bunun etkisi, keep.prob değeri nasıl belirlediğiniz fark etmeksizin ister 0.8, isterseniz 0.9, hatta 1 olsun ki bunu 1 olarak belirlediğinizde herhangi bir
+seyreltme olmayacağı anlamına gelir çünkü bu her şeyi veya yarısını ya da
+ne kadarlık bir değer belirlediyseniz, o kadarını tutar. Tersine seyreltme tekniği,
+bu değeri keep.prob değerine bölerek a3'ün beklenti değerinin
+değişmeyeceğinin garantisini vermektedir.. Test zamanında gördüğümüz üzere, bir sinir ağını değerlendirmeye çalıştığınızda ki bunu bir sonraki slaytta konuşacağız. Bu tersine seyreltme tekniği, burada yeşil kutu içine aldığım teknik, ölçeklendirme problemini bir nebze çözdüğü
+için test işlemini çok daha kolaylaştırmaktadır. Tersine seyreltme tekniği, şu ana kadar gördüğüm tüm seyreltme
+tekniklerinden en çok uygulanandır. Ben de size bunu uygulamanızı öneriyorum. Seyreltmenin ilk geliştirme aşamalarında keep.prob ile bölme işlemi kullanılmamaktaydı. ve bu da test işlemini oldukça karmaşık
+hale bir getirmekteydi. Ama yine tekrarlayayım, insanlar diğer
+versiyonları kullanmayı tercih etmiyorlar. Burada yaptığınız şey d vektörünü kullanmak ve farklı eğitim örnekleri için farklı gizli birimleri sıfırladığınızı göreceksiniz. Eğer aynı eğitim seti üzerinde, birden çok kez
+aynı şekilde ve farklı şekillerde seyreltme yaparsanız, farklı gizli birimleri rastgele bir şekilde sıfırlarsınız. Yani bu, bir eğitim örneği için her seferinde aynı gizli birimi sıfırlayacaksınız
+anlamına gelmez. eğim azalmasının birinci yinelemesinde bazı gizli birimleri sıfırlarsınız. Eğitm azalmasını ikinci yinelemesinde ise yani eğitm setinin üzerinden
+ikinci kez geçtiğinizde başka gizli birimleri sıfırlarsınız. 3. katmanın vektörü d3, hem ileri hem de geri yayılım sırasında nelerin sıfırlanacağını belirlerken kullanılır. Burada yalnızca ileri yayılımı gösteriyorum. Şimdi algortitmayı eğittimize göre
+test zamanında şunu yaparız: Test zamanında size tahmin edilmesi
+istenen bir x değeri verilir. Standart notasyonumuza uyarak buna a^0 diyeceğim. Burada test örneği x'i temsil etmek için
+0. katmanın etkilenimlerini kullanacağım. Test zamanında yapacağımız şey, aslında seyreltmeyi kullanmamaktır. Burada z^1 = w^1.a^0 + b^1 a^1 = g^1(z^1) z^2 = w^2.a^1 + b^2 a^2 = ... olarak belirleyeceğiz ve bunu, y^ tahminini
+üreten son katmana kadar devam edeceğiz. Burada dikkat etmeniz gereken şey,
+test zamanında seyreltmeyi açık bir şekilde kullanmıyoruz. Rastgele bir
+şekilde yazı tura atarak hangi gizli birimleri eleyeceğimizi belirlemiyoruz. Bunun sebebi, test zamanında tahmin yaparken çıktının rastgele olmasını istemememizdir. Eğer test zamanında seyreltmeyi uygularsanız bu yalnızca tahminlerinize gürültü ekler. Teorik olarak düşündüğünüzde, bir
+tahmin süreci oluşturup seyreltilmiş gizli birimler üzerinden
+birden çok kez geçebilirsiniz. Ancak bu yöntem, hesaplama açısından oldukça verimsiz ve neredeyse diğeriyle aynı sonucu vermektedir. Ayrıca bahsetmek istediğim bir şey daha var. Bu tersine seyreltme tekniğinde, bir önceki slaytta gördüğümüz üzere keep.prob
+ değerine böldüğümüz kısmı hatırlayın. Bunu yapmamızın sebebi, test zamanında seyreltme sonucunu ölçeklendirmeyi
+uygulamasak bile beklenti değerinin değişmemesini sağlamaktır. Bu yüzden test zamanında ekstra ölçeklendirme
+parametresi eklemenize gerek yoktur. Bu, eğitim zamanında yaptığımızdan farklıdır. İşte seyreltme dediğimiz şey tam olarak bu. Ve bunu 1. haftanın program
+alıştırmasında uyguladığınızda daha iyi bir tecrübe elde edeceksiniz. Peki bu neden çalışmaktadır? Bir sonraki videoda, size seyreltmenin gerçekten ne yaptığı
+hakkında daha iyi bilgi vereceğim. Haydi bir sonraki videoya geçelim.
