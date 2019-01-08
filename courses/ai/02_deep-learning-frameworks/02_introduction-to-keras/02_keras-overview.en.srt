@@ -1,0 +1,313 @@
+1
+00:00:01,440 --> 00:00:04,450
+Okay, let's get started with
+our introduction to Keras.
+
+2
+00:00:05,700 --> 00:00:08,030
+First off what is Keras,
+and why would you use it?
+
+3
+00:00:09,260 --> 00:00:12,190
+Keras is a popular deep learning
+framework written in Python.
+
+4
+00:00:13,300 --> 00:00:14,620
+It has been open sourced in 2015, and
+
+5
+00:00:14,620 --> 00:00:20,080
+it's excellent documentation
+can be found on the keras.io.
+
+6
+00:00:20,080 --> 00:00:21,825
+In case you're interested,
+
+7
+00:00:21,825 --> 00:00:25,609
+the source code can be found on
+GitHub under the following link.
+
+8
+00:00:27,562 --> 00:00:30,740
+Okay, why would you choose
+Keras as your debugging tool?
+
+9
+00:00:30,740 --> 00:00:34,800
+There's quite a few aspects to it, and
+one thing I want to mention is community.
+
+10
+00:00:35,980 --> 00:00:38,890
+Keras is a very popular library.
+
+11
+00:00:38,890 --> 00:00:39,770
+And as an active and
+
+12
+00:00:39,770 --> 00:00:43,370
+positive community that might help you
+with any questions that you might have.
+
+13
+00:00:45,050 --> 00:00:48,650
+So for instance, you might direct your
+questions towards the following Google
+
+14
+00:00:48,650 --> 00:00:53,600
+group or you join the following Slack
+channel, and people could help you there.
+
+15
+00:00:55,990 --> 00:01:03,390
+Alright, another crucial aspect that
+makes Keras a strong pick is its design.
+
+16
+00:01:04,620 --> 00:01:08,676
+Keras has an intuitive high-level
+API that makes it very easy for
+
+17
+00:01:08,676 --> 00:01:12,299
+you to get started with first examples and
+deep learning.
+
+18
+00:01:14,832 --> 00:01:19,748
+With this intuitive API,
+you can quickly prototype new models and
+
+19
+00:01:19,748 --> 00:01:23,710
+have a very fast development and
+prototyping cycle.
+
+20
+00:01:25,910 --> 00:01:33,440
+Also, Keras is built with very modular
+building blocks and easy to extend.
+
+21
+00:01:33,440 --> 00:01:37,686
+So for instance,
+if you want to build new custom layers,
+
+22
+00:01:37,686 --> 00:01:40,877
+that's quite easy to achieve with Keras.
+
+23
+00:01:44,802 --> 00:01:48,590
+Another thing that makes Keras
+quite interesting is the ecosystem.
+
+24
+00:01:49,790 --> 00:01:53,220
+For instance, under the following
+link you'll find many resources
+
+25
+00:01:53,220 --> 00:01:57,140
+on top of Keras,
+that includes third party libraries,
+
+26
+00:01:57,140 --> 00:01:59,800
+as well as full-blown applications
+built on top of Keras.
+
+27
+00:02:01,340 --> 00:02:05,410
+Also, Keras comes shipped with many end
+to end examples that you can simply
+
+28
+00:02:05,410 --> 00:02:06,140
+check out and run.
+
+29
+00:02:08,400 --> 00:02:09,950
+On top of that,
+
+30
+00:02:09,950 --> 00:02:13,850
+in Keras you have many pre-built models
+that have all ready been trained for you.
+
+31
+00:02:15,750 --> 00:02:20,790
+And there's quite a few data
+sets available in Keras.
+
+32
+00:02:20,790 --> 00:02:24,590
+So that means,
+you don't have to manually download many
+
+33
+00:02:24,590 --> 00:02:28,320
+of the standard data sets out there and
+pre-process them.
+
+34
+00:02:28,320 --> 00:02:31,480
+But you can just load them
+through the Keras API.
+
+35
+00:02:35,040 --> 00:02:39,660
+Another interesting aspect to
+Keras is the concept of backends.
+
+36
+00:02:39,660 --> 00:02:45,920
+So one way to view Keras is, you can
+see it as your deep learning front-end.
+
+37
+00:02:45,920 --> 00:02:49,120
+So essentially what Keras provides is
+
+38
+00:02:49,120 --> 00:02:54,250
+your high level entry point to
+deep learning, but in the back,
+
+39
+00:02:54,250 --> 00:02:58,470
+what actually runs Keras is different
+engines that do all the heavy lifting.
+
+40
+00:02:59,800 --> 00:03:02,500
+So there's a choice of
+backends available for Keras.
+
+41
+00:03:04,290 --> 00:03:09,160
+First of all, there's Google Tensorflow,
+which is also the default engine for
+
+42
+00:03:09,160 --> 00:03:09,790
+Keras.
+
+43
+00:03:09,790 --> 00:03:15,090
+And we will exclusively use
+Tensorflow in this course.
+
+44
+00:03:16,130 --> 00:03:19,207
+Then there's theano, and
+also Microsoft CNTK.
+
+45
+00:03:21,861 --> 00:03:27,412
+You can quite easily swap backends and
+depending on your configuration,
+
+46
+00:03:27,412 --> 00:03:30,376
+Keras runs seamlessly on CPUs or GPUs.
+
+47
+00:03:32,834 --> 00:03:36,824
+So before we introduce the concepts
+of Keras in more detail,
+
+48
+00:03:36,824 --> 00:03:42,850
+let's just have very first look,
+a glimpse, at an example built with Keras.
+
+49
+00:03:42,850 --> 00:03:47,902
+First thing you do is,
+you load the data set, in this case,
+
+50
+00:03:47,902 --> 00:03:52,210
+the mnist data set 400 digits,
+directly through the Keras API.
+
+51
+00:03:53,230 --> 00:03:56,550
+Then, you define a model,
+in this case, a sequential model.
+
+52
+00:03:58,320 --> 00:04:04,730
+After we have done so, you can just add
+new layers to your model one by one.
+
+53
+00:04:07,030 --> 00:04:10,640
+After that, we compile our
+model with a loss function and
+
+54
+00:04:10,640 --> 00:04:14,480
+an optimizer and
+fit our model on training data.
+
+55
+00:04:16,510 --> 00:04:19,560
+On a high level,
+that's all there is to it.
+
+56
+00:04:19,560 --> 00:04:22,780
+Every Keras example, more or
+less looks like this.
+
+57
+00:04:24,930 --> 00:04:27,360
+All right, to install Keras,
+
+58
+00:04:28,400 --> 00:04:33,560
+we first have to install a backend, as we
+said before we're using Tensorflow here.
+
+59
+00:04:33,560 --> 00:04:37,760
+So go ahead and install Tensorflow
+with pip install Tensorflow.
+
+60
+00:04:39,750 --> 00:04:42,725
+Optionally, we also need to
+install other dependencies.
+
+61
+00:04:42,725 --> 00:04:49,284
+[COUGH] For instance,
+we need the library h5py for model.
+
+62
+00:04:49,284 --> 00:04:54,225
+So go ahead and
+install it through pip installer h5py.
+
+63
+00:04:55,979 --> 00:05:00,522
+As last step, we need to install Keras
+itself through pip installer keras.
+
+64
+00:05:00,522 --> 00:05:05,740
+All right,
+that was the first introduction to Keras.
+
+65
+00:05:05,740 --> 00:05:10,520
+In the next video, we introduce
+the sequential model API of Keras.

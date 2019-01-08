@@ -1,0 +1,257 @@
+1
+00:00:01,190 --> 00:00:06,390
+LSTMs are so powerful that we can dedicate
+a whole lecture on how they are working.
+
+2
+00:00:07,580 --> 00:00:11,420
+You could take an entire course on LSTMs,
+and
+
+3
+00:00:11,420 --> 00:00:15,220
+if you are planning to do so please
+check out the description of this video.
+
+4
+00:00:17,070 --> 00:00:22,553
+But we will try to give you a more
+intuitive way of looking at LSTMs.
+
+5
+00:00:26,066 --> 00:00:28,940
+So this is a single neuron in LSTMs.
+
+6
+00:00:28,940 --> 00:00:33,390
+By the way, LSTMs stands for
+Long Short Term Memory Networks.
+
+7
+00:00:33,390 --> 00:00:37,640
+And s in the feet forward network,
+it marks an input xt,
+
+8
+00:00:37,640 --> 00:00:43,260
+to an output vector, ht, by using
+weights and an activation function.
+
+9
+00:00:43,260 --> 00:00:46,760
+Note that the same holds whether
+you are using scalars or
+
+10
+00:00:46,760 --> 00:00:49,410
+vectors as input and output.
+
+11
+00:00:49,410 --> 00:00:52,650
+But we now see a lot of
+additional components.
+
+12
+00:00:52,650 --> 00:00:57,780
+So the first thing we notice is that there
+is no direct connection between xt and ht.
+
+13
+00:00:57,780 --> 00:01:01,709
+All data flows through ct,
+which is the so called cell state.
+
+14
+00:01:02,860 --> 00:01:06,510
+Cell state is the actual
+memory of the LSTM neuron.
+
+15
+00:01:06,510 --> 00:01:10,560
+Notice that there are three additional
+units present in a LSTM neuron,
+
+16
+00:01:11,660 --> 00:01:15,350
+an input gate, an output gate,
+and a forget gate.
+
+17
+00:01:16,540 --> 00:01:20,010
+Those three gates
+are controlling the state of ct.
+
+18
+00:01:20,010 --> 00:01:22,830
+The way how this is
+controlled is as follows.
+
+19
+00:01:22,830 --> 00:01:24,370
+So have a look at the input first.
+
+20
+00:01:25,520 --> 00:01:30,610
+The first thing we notice is that xt is
+not only used as input of the neuron but
+
+21
+00:01:30,610 --> 00:01:32,970
+also as input to the gate.
+
+22
+00:01:32,970 --> 00:01:35,810
+So the input gate, as the other gates,
+
+23
+00:01:35,810 --> 00:01:39,380
+has a separate weight vector which
+is straight from the input data and
+
+24
+00:01:39,380 --> 00:01:43,520
+learns to control the influx of
+information into the cell's data city.
+
+25
+00:01:45,490 --> 00:01:49,956
+This is done by a vector dot product
+between the input xt after it has been
+
+26
+00:01:49,956 --> 00:01:54,360
+squashed by the activation function and
+the output of the input gate.
+
+27
+00:01:56,380 --> 00:01:59,980
+In other words,
+through the weight vector of the input
+
+28
+00:01:59,980 --> 00:02:01,855
+gate the neuron can learn
+from creating data.
+
+29
+00:02:01,855 --> 00:02:07,311
+When it is a good idea to open the gate
+and have the input start in the cell.
+
+30
+00:02:07,311 --> 00:02:10,250
+Often it is a bad idea
+to remember things and
+
+31
+00:02:10,250 --> 00:02:13,936
+close the influx information
+into the cell state ct.
+
+32
+00:02:13,936 --> 00:02:16,646
+Note that this is a continuous value, so
+
+33
+00:02:16,646 --> 00:02:20,960
+just like a wall which can be
+partially opened and closed.
+
+34
+00:02:20,960 --> 00:02:24,929
+Finally it is important to notice that
+all the cell state has an influence on
+
+35
+00:02:24,929 --> 00:02:26,480
+the gate.
+
+36
+00:02:26,480 --> 00:02:29,990
+This is again accomplished through
+a separate weight vector so
+
+37
+00:02:29,990 --> 00:02:34,560
+that the actual input gate is controlled
+by the historic cell state as well
+
+38
+00:02:34,560 --> 00:02:36,120
+as by the actual value of xt.
+
+39
+00:02:36,120 --> 00:02:39,420
+So now let's have a look
+at the output gate.
+
+40
+00:02:39,420 --> 00:02:45,040
+Again, it is controlled by the actual
+value xt and by the actual cell state ct.
+
+41
+00:02:46,550 --> 00:02:50,770
+Here the output gate controls how
+much of cell state ct gets output
+
+42
+00:02:50,770 --> 00:02:52,680
+to down stimulants connected to ht.
+
+43
+00:02:52,680 --> 00:03:00,842
+So this topology is the initial LSTM
+proposed by and Hoover in 1997.
+
+44
+00:03:00,842 --> 00:03:04,707
+In 1999 Felix and
+
+45
+00:03:04,707 --> 00:03:08,975
+added an additional component,
+the forget gate.
+
+46
+00:03:08,975 --> 00:03:13,285
+They discovered that without the
+capability of forgetting the cell state ct
+
+47
+00:03:13,285 --> 00:03:17,410
+may grow indefinitely and eventually
+causes the network to break down.
+
+48
+00:03:18,630 --> 00:03:22,172
+Again the forget gate is controlled
+by the actual input xt and
+
+49
+00:03:22,172 --> 00:03:24,710
+the current cell state ct.
+
+50
+00:03:24,710 --> 00:03:28,540
+And again through calculation of induct
+product between the output of the forget
+
+51
+00:03:28,540 --> 00:03:31,150
+gate and the previous cell state ct,
+
+52
+00:03:31,150 --> 00:03:34,410
+it controls how much of the actual
+cell state ct is preserved.
+
+53
+00:03:35,740 --> 00:03:40,470
+Another exotic but totally exciting
+neronetwork technology is an autoencoder.
+
+54
+00:03:40,470 --> 00:03:42,430
+So let's learn about it
+in the next lecture.

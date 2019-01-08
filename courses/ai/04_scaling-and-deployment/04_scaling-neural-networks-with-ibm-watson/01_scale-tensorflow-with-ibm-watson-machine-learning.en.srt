@@ -1,0 +1,483 @@
+1
+00:00:00,000 --> 00:00:03,540
+So now, let's actually scale and deploy
+
+2
+00:00:03,540 --> 00:00:06,625
+a TensorFlow model with IBM Watson Machine Learning.
+
+3
+00:00:06,625 --> 00:00:10,740
+Watson Machine Learning, it's a service in the cloud where you can deploy
+
+4
+00:00:10,740 --> 00:00:16,430
+your model and Watson Machine Learning takes care about scaling and for tolerance.
+
+5
+00:00:16,430 --> 00:00:19,470
+So, scaling happens on a GPU cluster.
+
+6
+00:00:19,470 --> 00:00:21,285
+And if you don't use the model,
+
+7
+00:00:21,285 --> 00:00:22,980
+there is no load on the cluster.
+
+8
+00:00:22,980 --> 00:00:24,420
+Therefore, there's no charge.
+
+9
+00:00:24,420 --> 00:00:26,928
+And if there is a heavy load on the model, then, of course,
+
+10
+00:00:26,928 --> 00:00:31,380
+you are charged for the CPU and GPU cycles you are using.
+
+11
+00:00:31,380 --> 00:00:34,095
+Luckily, there is also free tier.
+
+12
+00:00:34,095 --> 00:00:39,983
+S, no need to worry, you can use it for free for a limited amount of IPI calls,
+
+13
+00:00:39,983 --> 00:00:41,755
+and that's actually what's happening.
+
+14
+00:00:41,755 --> 00:00:45,260
+So you deploy the model to the IBM Watson Machine Learning service,
+
+15
+00:00:45,260 --> 00:00:47,410
+which actually at the moment can run
+
+16
+00:00:47,410 --> 00:00:51,735
+Scikit-learn and Spark ML models
+
+17
+00:00:51,735 --> 00:00:54,222
+from the Machine Learning perspective
+
+18
+00:00:54,222 --> 00:00:57,090
+and TensorFlow models from a deep learning perspective.
+
+19
+00:00:57,090 --> 00:01:01,620
+So the next one which will be released is the support for Cargospot as well.
+
+20
+00:01:01,620 --> 00:01:07,515
+The overall recharge of such a deployment is just arrest and point for scoring,
+
+21
+00:01:07,515 --> 00:01:13,015
+you can do training on the service but in this course we will only cover scoring.
+
+22
+00:01:13,015 --> 00:01:16,050
+So that means you deploy your already trained model to
+
+23
+00:01:16,050 --> 00:01:19,005
+the service and then you get a score endpoint,
+
+24
+00:01:19,005 --> 00:01:22,380
+which you then can provide to others and they can use
+
+25
+00:01:22,380 --> 00:01:27,773
+your endpoint with only a little skills about the over all staff.
+
+26
+00:01:27,773 --> 00:01:32,265
+It's just the rest endpoint so everybody can actually call a rest endpoint.
+
+27
+00:01:32,265 --> 00:01:34,050
+So let's get started.
+
+28
+00:01:34,050 --> 00:01:38,845
+We start with an import of Tensorflow and then we import the MNIST dataset.
+
+29
+00:01:38,845 --> 00:01:41,025
+So this is again an MNIST example,
+
+30
+00:01:41,025 --> 00:01:43,485
+it's an MNIST classification example.
+
+31
+00:01:43,485 --> 00:01:47,635
+So we have the number of inputs.
+
+32
+00:01:47,635 --> 00:01:51,830
+That's again, 784 dimensions.
+
+33
+00:01:51,830 --> 00:01:54,360
+One picks list one dimension and we have
+
+34
+00:01:54,360 --> 00:01:57,040
+an output of 10 dimensions because we 10 classes,
+
+35
+00:01:57,040 --> 00:01:59,865
+that digits from zero to nine.
+
+36
+00:01:59,865 --> 00:02:05,515
+And again, we create the placeholders for those two and then we initialize some weights.
+
+37
+00:02:05,515 --> 00:02:07,805
+So this is a convolutional neural network.
+
+38
+00:02:07,805 --> 00:02:09,540
+We have covered convolutional neural networks in
+
+39
+00:02:09,540 --> 00:02:13,005
+the first week and also in the third week using Caris,
+
+40
+00:02:13,005 --> 00:02:15,520
+but here we are using Tensorflow.
+
+41
+00:02:15,520 --> 00:02:20,040
+But don't worry if you don't understand it because Tensorflow is a very,
+
+42
+00:02:20,040 --> 00:02:25,155
+very low level framework with a lot of linear algebra operations going on.
+
+43
+00:02:25,155 --> 00:02:29,895
+So it's just sufficient if you get some idea of what's going on.
+
+44
+00:02:29,895 --> 00:02:32,025
+So once you've defined the rates,
+
+45
+00:02:32,025 --> 00:02:34,725
+you will actually also create the layers.
+
+46
+00:02:34,725 --> 00:02:37,300
+This is far more complicated than in Caris, believe me.
+
+47
+00:02:37,300 --> 00:02:43,320
+And then, we set some training parameters like number of iterations which is 60,000,
+
+48
+00:02:43,320 --> 00:02:44,585
+bit size of 128,
+
+49
+00:02:44,585 --> 00:02:48,370
+sometimes I'm using 64 or 32,
+
+50
+00:02:48,370 --> 00:02:52,905
+that depends on your data and it's also hyperparameter which we have to tune.
+
+51
+00:02:52,905 --> 00:02:57,935
+And every 10 steps we display some intermediate results.
+
+52
+00:02:57,935 --> 00:03:02,970
+We initialize all of the variables and we start the session,
+
+53
+00:03:02,970 --> 00:03:09,140
+and then we directly enter into the creative descent loop and immediately start training.
+
+54
+00:03:09,140 --> 00:03:10,710
+This takes some time.
+
+55
+00:03:10,710 --> 00:03:14,280
+It takes more time than in the example of the first week because in the first week
+
+56
+00:03:14,280 --> 00:03:18,555
+we've used Softmax regression and here we are using convolutional layers.
+
+57
+00:03:18,555 --> 00:03:21,329
+So that's computationally more expensive,
+
+58
+00:03:21,329 --> 00:03:24,940
+therefore it takes more time.
+
+59
+00:03:24,940 --> 00:03:26,644
+So this seems to be done,
+
+60
+00:03:26,644 --> 00:03:28,855
+model training has finished.
+
+61
+00:03:28,855 --> 00:03:30,100
+So now, it's time to create
+
+62
+00:03:30,100 --> 00:03:34,370
+some signatures for the tensors which we are using for scoring.
+
+63
+00:03:34,370 --> 00:03:36,430
+Don't worry too much about this detail but
+
+64
+00:03:36,430 --> 00:03:38,590
+it's basically somehow extracting the scheme off to
+
+65
+00:03:38,590 --> 00:03:44,500
+input that the Watson Machine Learning Service knows how to define the rest endpoint.
+
+66
+00:03:44,500 --> 00:03:46,765
+Now, we're saving the model to the file system,
+
+67
+00:03:46,765 --> 00:03:49,460
+again in Tensorflow this is a bit more complicated,
+
+68
+00:03:49,460 --> 00:03:51,530
+in Caris it's just one line of code,
+
+69
+00:03:51,530 --> 00:03:55,480
+recited as a compressed archive and we have to extract the contents of
+
+70
+00:03:55,480 --> 00:04:00,035
+the archive in order to make it available for the Watson Machine Learning Service.
+
+71
+00:04:00,035 --> 00:04:03,625
+So the Watson Machine Learning Service is only a set of rest APIs,
+
+72
+00:04:03,625 --> 00:04:07,115
+but luckily there exists Python client,
+
+73
+00:04:07,115 --> 00:04:13,200
+so we don't have to mess up with ugly rest calls and just can use this skeleton here.
+
+74
+00:04:13,200 --> 00:04:17,965
+So you have to provide the credentials of the Watson Machine Learning Service.
+
+75
+00:04:17,965 --> 00:04:19,710
+In order to obtain those,
+
+76
+00:04:19,710 --> 00:04:22,915
+just go to the application where your service is bound to,
+
+77
+00:04:22,915 --> 00:04:24,903
+click on the connections tab,
+
+78
+00:04:24,903 --> 00:04:27,125
+and then click on the new credentials.
+
+79
+00:04:27,125 --> 00:04:31,395
+And that basically returns you the credentials you need to access the service.
+
+80
+00:04:31,395 --> 00:04:34,000
+So this is a chase with a lot of information,
+
+81
+00:04:34,000 --> 00:04:37,134
+but we just need a credential section here.
+
+82
+00:04:37,134 --> 00:04:40,230
+Now it's time to build a client,
+
+83
+00:04:40,230 --> 00:04:43,499
+and we can add some metadata.
+
+84
+00:04:43,499 --> 00:04:49,725
+So this is metadata from my friend Krishna in the IBM Watson Lab in Bangalore.
+
+85
+00:04:49,725 --> 00:04:54,020
+And now we can store the model into the service.
+
+86
+00:04:54,020 --> 00:04:55,940
+So after we have started the service,
+
+87
+00:04:55,940 --> 00:04:59,863
+in the UI of the Watson Machine Learning it looks like this,
+
+88
+00:04:59,863 --> 00:05:01,502
+but it's not deployed so far,
+
+89
+00:05:01,502 --> 00:05:03,130
+so we have to deploy it first.
+
+90
+00:05:03,130 --> 00:05:08,450
+So now let's deploy it using the client API, and once this is done,
+
+91
+00:05:08,450 --> 00:05:12,422
+we can have a look at the UI of the Watson Machine Learning service,
+
+92
+00:05:12,422 --> 00:05:16,778
+and we will see that the deployment actually was successfully.
+
+93
+00:05:16,778 --> 00:05:18,350
+Once the model is deployed,
+
+94
+00:05:18,350 --> 00:05:20,680
+it returns a scoring endpoint and using
+
+95
+00:05:20,680 --> 00:05:24,110
+the scoring endpoint we can actually provide the service to others.
+
+96
+00:05:24,110 --> 00:05:25,850
+So now let's test the service,
+
+97
+00:05:25,850 --> 00:05:29,165
+we are taking two images from the MNST dataset.
+
+98
+00:05:29,165 --> 00:05:31,570
+Let's have a look how they look like.
+
+99
+00:05:31,570 --> 00:05:35,565
+I know that it's a five and a four already but know you are also convinced.
+
+100
+00:05:35,565 --> 00:05:40,430
+And now we create a JSON object containing those two images.
+
+101
+00:05:40,430 --> 00:05:44,495
+So remember, each image is a vector of size 784.
+
+102
+00:05:44,495 --> 00:05:48,275
+So we just pass those two vectors in the JSON array,
+
+103
+00:05:48,275 --> 00:05:51,873
+and this JSON array is a property of a JSON object,
+
+104
+00:05:51,873 --> 00:05:53,690
+which has input it's name.
+
+105
+00:05:53,690 --> 00:05:55,370
+And that's basically all,
+
+106
+00:05:55,370 --> 00:06:00,410
+you can just use the scoring URL and our scoring data and let's see what happens.
+
+107
+00:06:00,410 --> 00:06:02,190
+Awesome. It works.
+
+108
+00:06:02,190 --> 00:06:06,520
+So the return classes are five and four and you can see that's obviously correct.
+
+109
+00:06:06,520 --> 00:06:09,140
+And the cool thing is now you don't have to care about
+
+110
+00:06:09,140 --> 00:06:12,210
+operations and for tolerance and scaling,
+
+111
+00:06:12,210 --> 00:06:13,665
+if you need more performance,
+
+112
+00:06:13,665 --> 00:06:16,430
+the service automatically will assign more GPUs
+
+113
+00:06:16,430 --> 00:06:20,440
+to the task and the response time will be kept stable.
+
+114
+00:06:20,440 --> 00:06:22,910
+So in order to create a Watson Machine Learning service,
+
+115
+00:06:22,910 --> 00:06:25,735
+you just need to access the IBM cloud dashboard,
+
+116
+00:06:25,735 --> 00:06:27,080
+you click on resource,
+
+117
+00:06:27,080 --> 00:06:31,700
+then you filter for Watson and then you receive Watson Machine Learning,
+
+118
+00:06:31,700 --> 00:06:35,815
+you click on that one and you finally click on Create and that's all.
+
+119
+00:06:35,815 --> 00:06:37,280
+Once the service is deployed,
+
+120
+00:06:37,280 --> 00:06:39,020
+you can click on launch dashboard,
+
+121
+00:06:39,020 --> 00:06:42,020
+and you will enter the UI of the Watson Machine Learning service.

@@ -1,0 +1,97 @@
+Let's get started with
+Deep Feedforward Networks. So this is an example of hypothetical
+sensor data of a production machine. So each row contains information about
+a production of a particular part with an associated part number. So our goal is to predict asperity
+which is highly correlated with effect if the part is healthy or faulty
+based on the observed sensor values. So which column can be used to
+create a simple rule for this? First we have to observe that all
+three columns are aggregations of some sort of sensor value. So we are losing information. But this is fine for this example. We notice that the vibration aggregation
+gives us the best indication for our rule, so let's code it. So let's start with
+creation of a data point. The first field is part number,
+so let's take 100. The next field is next temp,
+which will be set to 35. The middle temp is 35 as well. And finally set the max vibration to 12. After producing the part, asperity
+is measured, so we set it to 0.32. So let's copy this four times to
+reflect our four measurements. As in the example of the slides, I will
+update those values now accordingly. Let's implement our simple rule to
+predict asperity based on a sensor value. Obviously, max vibration has
+the largest impact on the outcome. Therefore, if max vibration is greater
+than 100, we return 13 or 0.33 otherwise. If we now test this function,
+we get quite good results. So now let's see if we can do
+better without hard coding a rule. This formula here is called
+a linear regression model. It's called regression because it
+predicts a continuous value based on observations x and weights w. Let's create our first machine
+learning algorithm called linear regression in Python. So remember that we have to create
+a linear combination between our input fields and some parameters w. And if you plot this,
+w1 is the offset of the line. So if you run this now, you obviously run into an error
+because we haven't defined w yet. So let's do this now. And now let's choose the parameters
+w in a way that it somehow resembles the rule which we have created before. If you set everything to 0,
+you get 0 as a result. So let's try to adjust those values. We cheat a bit, we just take
+the numbers of our dataset and play around until we get a better result. As we can see,
+we are getting relatively close here. In a real world scenario, of course,
+those parameters w will be set by an optimizer which is part of neural
+network or machine learning training. Maybe if you noticed that there is one
+x missing in order to get equally sized vectors. Therefore, we define x0 as 1. This is the bias term, or
+the offset of the linear regression. So now we can multiply x with w,
+because both vectors have the same length. If we just write down what we've learned
+before, we'll come up with the following. Well, doesn't look this
+like linear regression? Just put y at the end and you can see it. So that's cool. We can express linear regression with
+a single vector-vector multiplication. It turns out that parts with an asperity
+greater than 1 are not usable, so we consider them to be faulty or broken. Let's change our table to reflect this. Let's code it. So let's change this regression data set
+into a binary classification data set. Then our rule gets more simpler and
+also more precise. And in addition, it's changed our linear regression
+model to a logistic regression one. In order to achieve this, just add
+a sigmoid computation step to our website. So the neural side is between 0 and 1, and
+by selecting a threshold in the middle, so we can basically turn this model
+into binary classification model. So this looks brilliant already. So the logistic sigmoid function
+squashes a range from minus infinity to plus infinity
+to a range between 0 and 1. So this means we can easily turn our
+lineal regression model into a logistic regression model and
+create a binary classifier. Let's wait, you have to define
+a threshold between 0 and 1 in order to get the binary classifier, in order to get a clear separation between
+the classes instead of a continuous range. So why am I telling you all about
+this in a neural networks class? So let's have a look at the most simple
+neural network, the so called perceptron. The idea is that your input vectors get
+multiplied with the weights vector and finally the sum is taken. Note that even the biased
+term is taken into the sum. So what you should be aware of is
+that this is nothing else than a linear combination or dot product
+between two vectors, or in other words, linear regression. If you replace thick mode from the
+logistic regression function with a simple step function, you're done and
+you have created a Perceptron. A perceptron is a binary
+linear classifier. So now let's see how we can improve this. By the way, the first perceptron has been
+implemented on top of an IBM 704 in 1954, which was the first computer with
+floating point arithmetic hardware. So this guy here is a feedforward neural
+network with a so called hidden layer. In order to understand this better,
+let's code it first. So Python dictionaries are of course
+not the best way to do data science. Let's convert our data points to a matrix. First, we have to get rid of the labels
+which are called keys in Python dictionaries, And
+turn each data point into an array. Neither asperity nor part number are
+required here, so let's get rid of those. But we have to align this array or
+vector, the size of the weight vector. So we have to add a 1 at the beginning
+in order to support the bias. So this is what we want. Native Python arrays are slow and also not supporting linear
+algebra operations. So let's work this into a NumPy array. And let's do it for all the data points. Let's create a function called neuron,
+which computes the logistic function for just one data point. We define a weight vector w,
+Which we initialize randomly. And use the dot product between
+the data point and the weight vector, In order to compute the linear
+regression function. Then we apply sigmoid as activation
+function and we're done. So let's see if this compiles and runs. Note that we don't get anything
+useful here because we randomly initialized the weight
+vector w and didn't train it. By the way,
+training means updating the weight vector. So now let's pimp this function
+a bit in order to compute all data points in parallel. First, we have to improve the sigmoid
+function that it also takes multiple values at once. Fortunately, NumPy does the job for
+us here. Since this function now takes a matrix, we also have to change our weights
+from vector to matrix as well. And finally we have to create
+a matrix from our input data. We can use NumPy again because a nested
+array is nothing else than a matrix. So now we can compute one layer in one go. Now let's create a second layer. We only have to change the weight matrix
+because the second layer is computed independently from the first layer. And as a last step, we just stick those
+two computations on top of each other and we're done with our first
+feedforward neural network. Of course, the predicted values
+are incorrect because we're using randomly initialized weight matrices. This is now an untrained
+feedforward neural network. Note that a single hidden layer on your
+network is capable of representing any mathematical function. This is known as the universal
+function approximation theory. So you might ask yourself why
+are multiple hidden layer or other topologies used at all. This is because of training. Even if you can represent
+any mathematical function, you might not be able to train it. Because training means
+selecting good values for the weight matrices, and
+this is not an easy task. But let's talk about this later. Let's get started with
+Recurrent Neural Networks.

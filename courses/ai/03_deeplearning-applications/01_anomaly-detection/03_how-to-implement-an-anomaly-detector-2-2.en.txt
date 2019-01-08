@@ -1,0 +1,30 @@
+In this module,
+we will use our LSTM anomaly detector, and turn it into a real time
+anomaly detection system. So if you want to get an anomaly detection
+system from a playground into production, you have to hook it up to data source. Either we can directly access data
+from a data source for training, or we need to run from process in between. One special case which is the most
+interesting one in my opinion is looking on a realtime data stream. Because a lot of data loses it's
+value within the first seconds. So think of a stock market taker or
+cryptcurrency market ticker or ask data or IoT sense data. We can data into creation is most of
+them with some sort od message cue or stream engine. At the lowest level, even a TCP connection
+can be seen as a message queue. Although, if you can't consume
+your messages fast enough, you will lose data due to time outs. Even the UDP connection can be seen
+as some kind of a message queue. But your messages can get lost and
+order is not preserved. Often also, HTTP with rest, our web
+circuits are used as message queues. MQTT is often used for IoT telemetry use
+cases because it's very lightweight. MQTT defines the message protocol,
+so it decouples on the end receiver. We will use MQTT in our example. Kafka is also an example of a message
+protocol which is widely used for all sorts of data. At the other end of the spectrum
+resides streaming engines, like IBM Streams,
+Apache Spark, or Apache Flink, which do not only allow data movement but
+also data transformation in between. So in our case, we use the MQTT message program, which is
+provided by the IBM Watson IoT platform. Realtime SLR metadata is sometimes have
+to get for demonstration purposes, that's why we use the simulator
+implemented on top of Node-RED. For the queue and consume it directly from the deep learning
+framework is fine for development. But for production scenario,
+we have to deploy a model. A convenient way for this is using the
+IBM Watson machine learning service which supports various MLNT frameworks like
+Spark ML, TensorFlow, PyTorch, and so on. The cool thing is that
+everything comes as a service so you are not wasting your
+time with operations. So let's see how this is done
+in real life, so stay tuned.

@@ -1,0 +1,475 @@
+1
+00:00:00,110 --> 00:00:05,325
+Welcome back. In the last session we have defined,
+
+2
+00:00:05,325 --> 00:00:12,690
+we have constructed the input and output data as extreme and widely.
+
+3
+00:00:12,690 --> 00:00:22,057
+Now we are coming to the most interesting topic which is designing of the LSTM network.
+
+4
+00:00:22,057 --> 00:00:23,400
+But first of all,
+
+5
+00:00:23,400 --> 00:00:27,485
+we need to import some required packages.
+
+6
+00:00:27,485 --> 00:00:29,295
+So, what we are importing here,
+
+7
+00:00:29,295 --> 00:00:32,535
+we're importing here dense class,
+
+8
+00:00:32,535 --> 00:00:36,580
+we're importing here input layer,
+
+9
+00:00:36,580 --> 00:00:41,790
+LSTM layer, and we're importing here the model class.
+
+10
+00:00:41,790 --> 00:00:48,825
+I also have here import h5py package
+
+11
+00:00:48,825 --> 00:00:56,565
+because I use it to store the trained LSTM model.
+
+12
+00:00:56,565 --> 00:01:03,985
+So, let's start. The first class which we have here is the input layer.
+
+13
+00:01:03,985 --> 00:01:08,720
+We're using here functional API of Keras.
+
+14
+00:01:08,720 --> 00:01:16,060
+There are two flavors of how we can designed neural networks with Keras,
+
+15
+00:01:16,060 --> 00:01:18,450
+one is sequential API.
+
+16
+00:01:18,450 --> 00:01:21,060
+This is the most known actually.
+
+17
+00:01:21,060 --> 00:01:27,395
+And another one is the functional API which is much more flexible.
+
+18
+00:01:27,395 --> 00:01:34,995
+So, I have decided to start to learn immediately with functional API because later on,
+
+19
+00:01:34,995 --> 00:01:44,610
+you will see that you can do much easier more complicated things with functional API.
+
+20
+00:01:44,610 --> 00:01:48,120
+So, first layer is the input layer.
+
+21
+00:01:48,120 --> 00:01:53,430
+As always every neural network needs an input.
+
+22
+00:01:53,430 --> 00:01:58,554
+It takes the argument batch shape.
+
+23
+00:01:58,554 --> 00:02:01,280
+This is a three dimensional arrays.
+
+24
+00:02:01,280 --> 00:02:07,930
+So, it consist of batch size which we have defined as 64,
+
+25
+00:02:07,930 --> 00:02:13,570
+it has timesteps which are 10,
+
+26
+00:02:13,570 --> 00:02:18,039
+and it has number of parameters.
+
+27
+00:02:18,039 --> 00:02:21,720
+So, we are dealing only with
+
+28
+00:02:21,720 --> 00:02:30,097
+crude oil prices and this is only one dimension which we have.
+
+29
+00:02:30,097 --> 00:02:38,550
+So, we are predicting the crude oil price is one dimension,
+
+30
+00:02:38,550 --> 00:02:40,810
+so we have here only one.
+
+31
+00:02:40,810 --> 00:02:47,025
+So, suppose we would predict crude oil price for Europe,
+
+32
+00:02:47,025 --> 00:02:51,835
+crude oil price for US at the same timesteps,
+
+33
+00:02:51,835 --> 00:02:56,870
+so we would have here two parameters but we have only one.
+
+34
+00:02:56,870 --> 00:03:01,945
+And the output of
+
+35
+00:03:01,945 --> 00:03:09,740
+this class we are storing in the input is one parameter.
+
+36
+00:03:09,740 --> 00:03:16,200
+Secondly, we are defining the LSTM layer.
+
+37
+00:03:16,200 --> 00:03:26,500
+This LSTM layer takes its arguments several parameters.
+
+38
+00:03:26,500 --> 00:03:31,320
+So actually, if you look at Keras documentation,
+
+39
+00:03:31,320 --> 00:03:34,240
+you will see that it has a lot of parameters
+
+40
+00:03:34,240 --> 00:03:42,210
+but we are dealing only with the most important ones.
+
+41
+00:03:42,210 --> 00:03:48,660
+And here the first one is the number of LSTM notes.
+
+42
+00:03:48,660 --> 00:03:52,250
+So, if I have here only one node,
+
+43
+00:03:52,250 --> 00:04:01,520
+we can see the whole layer is a one node,
+
+44
+00:04:01,520 --> 00:04:03,327
+is a one memory cell.
+
+45
+00:04:03,327 --> 00:04:07,390
+This is what I have spoken about in the previous session.
+
+46
+00:04:07,390 --> 00:04:13,495
+I said that LSTM layer is roughly equal to one node,
+
+47
+00:04:13,495 --> 00:04:17,015
+to one LSTM cell.
+
+48
+00:04:17,015 --> 00:04:20,675
+This is really very roughly,
+
+49
+00:04:20,675 --> 00:04:27,685
+and I have said it not to confuse you with too much information at that point of time.
+
+50
+00:04:27,685 --> 00:04:35,110
+But now, we know LSTM layer can take much more nodes,
+
+51
+00:04:35,110 --> 00:04:37,710
+you can say also neuron's.
+
+52
+00:04:37,710 --> 00:04:41,320
+So, here I have decided to
+
+53
+00:04:41,320 --> 00:04:51,720
+use 10 nodes in the both layers.
+
+54
+00:04:51,980 --> 00:04:56,660
+So, we see 10 nodes,
+
+55
+00:04:56,660 --> 00:04:59,405
+then we see stateful true.
+
+56
+00:04:59,405 --> 00:05:08,605
+So, we have decided that our LSTM network will be stateful therefore,
+
+57
+00:05:08,605 --> 00:05:10,856
+we are setting it's true.
+
+58
+00:05:10,856 --> 00:05:13,825
+So, the second one is the return sequences,
+
+59
+00:05:13,825 --> 00:05:15,640
+it's a separate point.
+
+60
+00:05:15,640 --> 00:05:19,820
+And we're setting here return sequences, true.
+
+61
+00:05:19,820 --> 00:05:23,725
+That means that it will return the whole sequence,
+
+62
+00:05:23,725 --> 00:05:30,192
+the whole output sequence for every timesteps.
+
+63
+00:05:30,192 --> 00:05:32,070
+So, we have here 10 timesteps,
+
+64
+00:05:32,070 --> 00:05:36,645
+it will return a sequence of 10 outputs.
+
+65
+00:05:36,645 --> 00:05:48,213
+And this one, the output of this layer will be the input of the next layer which is,
+
+66
+00:05:48,213 --> 00:05:54,180
+actually this is architecture of stacked LSTM layers.
+
+67
+00:05:54,180 --> 00:05:59,940
+And you'll see that the output of this LSTM layer is stored here, lstm_1_mae.
+
+68
+00:05:59,940 --> 00:06:08,370
+And it goes as input into the next layer lstm_1_mae here.
+
+69
+00:06:08,370 --> 00:06:12,430
+And if you look carefully on the whole structure,
+
+70
+00:06:12,430 --> 00:06:21,665
+you'll see that the input layer is stored here in this variable, inputs_1_mae.
+
+71
+00:06:21,665 --> 00:06:31,409
+This output of this layer goes as input into the next layer here.
+
+72
+00:06:31,409 --> 00:06:38,260
+So, then we have output of the LSTM layer which is stored here lstm_1_mae,
+
+73
+00:06:38,260 --> 00:06:43,745
+and it goes as input into the next LSTM layer.
+
+74
+00:06:43,745 --> 00:06:48,383
+The output of this layer is lst_2_mae,
+
+75
+00:06:48,383 --> 00:06:51,595
+so now we have the structure.
+
+76
+00:06:51,595 --> 00:06:55,718
+And now, we need a dense layer,
+
+77
+00:06:55,718 --> 00:07:00,055
+dense actually is a fully connected layer.
+
+78
+00:07:00,055 --> 00:07:04,280
+As you know from another neural networks which are actually
+
+79
+00:07:04,280 --> 00:07:10,087
+consisting only from such layers like multilayer perceptron,
+
+80
+00:07:10,087 --> 00:07:16,430
+this is a typical picture of neural network they consisting of
+
+81
+00:07:16,430 --> 00:07:25,053
+dense layers and we need this layer to output our data.
+
+82
+00:07:25,053 --> 00:07:29,320
+So, it takes one argument which is units.
+
+83
+00:07:29,320 --> 00:07:30,995
+Units Is again, one.
+
+84
+00:07:30,995 --> 00:07:33,020
+This is the same as one here.
+
+85
+00:07:33,020 --> 00:07:34,380
+This is only one dimension.
+
+86
+00:07:34,380 --> 00:07:39,950
+We are dealing only with one thing which we are going to
+
+87
+00:07:39,950 --> 00:07:46,935
+predict which is the crude oil price, one unit.
+
+88
+00:07:46,935 --> 00:07:56,365
+And this class takes its input lstm_2_mae from here,
+
+89
+00:07:56,365 --> 00:07:59,207
+and we have the output.
+
+90
+00:07:59,207 --> 00:08:02,970
+So, now we are defining the model.
+
+91
+00:08:02,970 --> 00:08:08,695
+The model class takes two arguments,
+
+92
+00:08:08,695 --> 00:08:16,286
+the inputs which is the input layer and the outputs which is the output layer,
+
+93
+00:08:16,286 --> 00:08:18,995
+this is the output_1_mae.
+
+94
+00:08:18,995 --> 00:08:22,403
+And this is already our regressor.
+
+95
+00:08:22,403 --> 00:08:25,605
+So, if we define the model we have our regressor,
+
+96
+00:08:25,605 --> 00:08:28,310
+we have our model.
+
+97
+00:08:28,310 --> 00:08:31,230
+In the last step we have to compile this model.
+
+98
+00:08:31,230 --> 00:08:33,380
+So, meaning that the whole thing,
+
+99
+00:08:33,380 --> 00:08:39,153
+the whole structure will be built-up and connected.
+
+100
+00:08:39,153 --> 00:08:41,495
+So we call this compile method,
+
+101
+00:08:41,495 --> 00:08:47,400
+everything what we described here is going to be designed and connected.
+
+102
+00:08:47,400 --> 00:08:52,020
+So, we use this optimizer and the compile method.
+
+103
+00:08:52,020 --> 00:08:55,060
+We're using optimizer which is Adam,
+
+104
+00:08:55,060 --> 00:09:00,620
+and we use loss function which is mean absolute error.
+
+105
+00:09:00,620 --> 00:09:07,405
+In the next sessions, we are going to see that we can use also another function,
+
+106
+00:09:07,405 --> 00:09:12,050
+another loss function which is called MSE, means squared error.
+
+107
+00:09:12,050 --> 00:09:17,695
+And we are going to compare which loss function performs better,
+
+108
+00:09:17,695 --> 00:09:21,430
+mean absolute error or mean squared error,
+
+109
+00:09:21,430 --> 00:09:25,450
+and what are the differences.
+
+110
+00:09:25,450 --> 00:09:32,825
+So, now we can execute this.
+
+111
+00:09:32,825 --> 00:09:37,355
+And we see this is our LSTM layer.
+
+112
+00:09:37,355 --> 00:09:39,185
+It has input layer,
+
+113
+00:09:39,185 --> 00:09:41,500
+it has two LSTM layer,
+
+114
+00:09:41,500 --> 00:09:44,305
+and it has dense layer.
+
+115
+00:09:44,305 --> 00:09:45,990
+In the next session,
+
+116
+00:09:45,990 --> 00:09:51,440
+we're going to dive deeper into the structure and we're going to
+
+117
+00:09:51,440 --> 00:09:57,860
+look onto anatomy of the LSTM layer.
+
+118
+00:09:57,860 --> 00:10:00,410
+And until the next time,
+
+119
+00:10:00,410 --> 00:10:04,350
+stay tuned, enjoy. Bye.

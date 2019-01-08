@@ -1,0 +1,45 @@
+So this lecture is about creating
+an anomaly detector using neural networks. You want to do this in
+an unsupervised manner. So remember, in supervised learning,
+we have our data, but each item in your data set needs to be assigned to a label,
+either class or continuous value. We call this target which
+we want to predict. In the case of anomaly detection, this can be a binary target
+indicating an anomaly or not. Or a continuous value, so
+an anomaly score or RUL score. RUL stands for remaining useful lifetime. Given that labeled data,
+a model is trained. In this case, a supervised one
+because we tell the model to replicate the underlying hidden function using
+the supervised label data set. There are more unlabeled than
+labeled data sets available. Therefore, we want to
+get rid of the bus but it turns out this is not a trivial task. So look at this time series for example. It is an accelerometer based vibration
+data set which is attached to peering, one vibration axis is shown in red and
+one is shown in blue. So how can we predict if the peering
+is in a broken or healthy condition. In this case, I'm telling you
+that the peering is totally fine. So let's have a look at a data
+set from the faulty peering. Hm, hard to tell isn't it? So let's zoom in a bit and check again. So in the top we see half the data, and
+at the bottom we see the faulty one. At least we can tell
+that they are different. So we are using our biological neural
+network in our brain in order to see this. So what if an artificial neural
+network can do the same. So if our brain looks at two
+different time-series plots, it's able to spot the difference. In theory, we can implement the artificial
+neural network to do exactly the same. A convolution neural network, for
+example, can look at the two plots and tell whether they are different or not. To be honest, I haven't tried this,
+so maybe that's an exercise for you. But what we can do is, using the LSTM,
+a long short term memory network, for time series analysis. Remember that the LSTM
+is still incomplete, and ideally fits time series and
+sequence data. But isn't there a problem? Since this is unsupervised machine
+learning, we don't have labels available. So the task of a neural
+network is to take X and adjust the ways that it reconstructs Y,
+but we don't have Y. So hopefully,
+you remember what the outer encoder does. So an outer encoder is using X
+as input and output as well. So an outer encoder will try to
+reconstruct what it sees on the left-hand side on the right-hand side. And if you now train the outer encoder,
+with an LSTM and healthy data, it tries to reconstruct the healthy data. And remember that it runs
+through a neural bottleneck. And once it's trained, it will have a hard time to reconstruct
+faulty data, that's the point. That's how the anomaly detector works. But how do we know if you're
+currently showing healthy or faulty data to the model. So this is quite simple. Because in a real world scenario,
+there is much more healthy data, than broken one available for training. So if you randomly pick a sample, the
+chances are very high that it is healthy data, and the chance is of course very
+low, that we've picked faulty data. There are much more sophisticated
+strategies behind that, which are often domain specific, therefore
+we won't dive more into details here. In the next module, we will implement an LSTM outer encoder
+based anomaly detector using keras. So stay tuned.

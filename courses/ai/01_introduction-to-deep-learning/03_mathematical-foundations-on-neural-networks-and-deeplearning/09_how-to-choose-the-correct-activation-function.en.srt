@@ -1,0 +1,227 @@
+1
+00:00:00,320 --> 00:00:05,310
+So this video covers activation
+functions and from the previous lecture,
+
+2
+00:00:05,310 --> 00:00:09,580
+you have maybe remember that we have
+the sigmoid activation function
+
+3
+00:00:09,580 --> 00:00:11,360
+used in logistic regression.
+
+4
+00:00:11,360 --> 00:00:16,630
+So this is the so-called logistic sigmoid
+function and this is applied twice.
+
+5
+00:00:16,630 --> 00:00:21,070
+So activation function,
+it's non-linear due to the model and
+
+6
+00:00:21,070 --> 00:00:26,370
+with only one single hidden layer, having
+or learning the activation function,
+
+7
+00:00:26,370 --> 00:00:29,510
+a neural network is the universal
+function approximator,
+
+8
+00:00:29,510 --> 00:00:32,520
+capable of learning any
+mathematical function.
+
+9
+00:00:32,520 --> 00:00:36,570
+In contrast, if you only have
+linear layers, then you can add as
+
+10
+00:00:36,570 --> 00:00:41,340
+many hidden layers as you like, you never
+get a universal function approximator.
+
+11
+00:00:41,340 --> 00:00:45,570
+So there's also another activation
+function widely used, this is tanh.
+
+12
+00:00:45,570 --> 00:00:51,670
+So tanh has the advantage, as you can see,
+that it also covers the negative range.
+
+13
+00:00:51,670 --> 00:00:55,410
+So if you have data which in the negative
+range, tanh might be better.
+
+14
+00:00:55,410 --> 00:00:59,280
+And it's also used in the output
+layer of binary classification.
+
+15
+00:00:59,280 --> 00:01:04,385
+In case of multiclass specification,
+the output layer uses soft mix.
+
+16
+00:01:04,385 --> 00:01:09,940
+So soft mix is defined as a function
+which takes the value of z,
+
+17
+00:01:09,940 --> 00:01:12,210
+and then takes e to the power of it.
+
+18
+00:01:12,210 --> 00:01:17,045
+And then it divides by the sum of e taken
+to the power of all the other c values.
+
+19
+00:01:17,045 --> 00:01:21,005
+So this soft mix function has
+the property that R class
+
+20
+00:01:21,005 --> 00:01:24,400
+probabilities are summed into 1.
+
+21
+00:01:24,400 --> 00:01:27,232
+In the case of multiclass specification,
+
+22
+00:01:27,232 --> 00:01:32,260
+the actual class you have predicted
+will assemble in a value close to 1.
+
+23
+00:01:32,260 --> 00:01:36,177
+And all other classes
+are assembled in values close to 0.
+
+24
+00:01:36,177 --> 00:01:40,138
+So this activation function ideally
+fits to one hat encoded vector in
+
+25
+00:01:40,138 --> 00:01:41,850
+the output layer.
+
+26
+00:01:41,850 --> 00:01:46,100
+So this is another activation
+function which is called ReLU.
+
+27
+00:01:46,100 --> 00:01:48,400
+So ReLU doesn't really look non-linear,
+
+28
+00:01:48,400 --> 00:01:52,090
+but actually it is,
+because a linear function is only a line.
+
+29
+00:01:52,090 --> 00:01:57,200
+And it turns out that the combination
+of multiple ReLU activation functions,
+
+30
+00:01:57,200 --> 00:02:00,530
+you also can approximate
+any mathematical function.
+
+31
+00:02:00,530 --> 00:02:04,830
+ReLU is the most used
+activation function today.
+
+32
+00:02:04,830 --> 00:02:09,124
+This is, first of all, because
+the computation of complexity is less, and
+
+33
+00:02:09,124 --> 00:02:12,291
+your networks also tend to
+converge faster using ReLU.
+
+34
+00:02:12,291 --> 00:02:15,964
+One problem with ReLU is that
+it can cause dead neurons,
+
+35
+00:02:15,964 --> 00:02:21,291
+because of a range value output is 0,
+therefore, there is a valuation of ReLU.
+
+36
+00:02:21,291 --> 00:02:26,364
+So this is called leaky ReLU, as you can
+see on the negative side there is a little
+
+37
+00:02:26,364 --> 00:02:31,391
+value, and that increases the value range,
+and also prevents that neurons.
+
+38
+00:02:31,391 --> 00:02:35,188
+So in case your neural network
+training doesn't work perfectly,
+
+39
+00:02:35,188 --> 00:02:39,550
+you just can try leaky ReLU or also
+there's a variation called random ReLU.
+
+40
+00:02:39,550 --> 00:02:44,090
+So it's best to start with ReLU for
+the input and the hidden layers.
+
+41
+00:02:44,090 --> 00:02:47,400
+And for the output layer,
+it depends on your task.
+
+42
+00:02:47,400 --> 00:02:51,699
+So if you are relinear regressor,
+you use a linear output unit,
+
+43
+00:02:51,699 --> 00:02:56,174
+and if you are creating a classifier,
+you use soft mix or sigmoid.
+
+44
+00:02:56,174 --> 00:02:59,179
+And nobody, of course,
+stops you from trying other things.
+
+45
+00:03:00,770 --> 00:03:01,920
+So the next video,
+
+46
+00:03:01,920 --> 00:03:05,080
+it will tell you something about
+the bias variance tradeoff.
+
+47
+00:03:05,080 --> 00:03:08,250
+Or in other words how to prevent
+overfitting of a neural network

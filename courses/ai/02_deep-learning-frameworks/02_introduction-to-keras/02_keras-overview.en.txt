@@ -1,0 +1,55 @@
+Okay, let's get started with
+our introduction to Keras. First off what is Keras,
+and why would you use it? Keras is a popular deep learning
+framework written in Python. It has been open sourced in 2015, and it's excellent documentation
+can be found on the keras.io. In case you're interested, the source code can be found on
+GitHub under the following link. Okay, why would you choose
+Keras as your debugging tool? There's quite a few aspects to it, and
+one thing I want to mention is community. Keras is a very popular library. And as an active and positive community that might help you
+with any questions that you might have. So for instance, you might direct your
+questions towards the following Google group or you join the following Slack
+channel, and people could help you there. Alright, another crucial aspect that
+makes Keras a strong pick is its design. Keras has an intuitive high-level
+API that makes it very easy for you to get started with first examples and
+deep learning. With this intuitive API,
+you can quickly prototype new models and have a very fast development and
+prototyping cycle. Also, Keras is built with very modular
+building blocks and easy to extend. So for instance,
+if you want to build new custom layers, that's quite easy to achieve with Keras. Another thing that makes Keras
+quite interesting is the ecosystem. For instance, under the following
+link you'll find many resources on top of Keras,
+that includes third party libraries, as well as full-blown applications
+built on top of Keras. Also, Keras comes shipped with many end
+to end examples that you can simply check out and run. On top of that, in Keras you have many pre-built models
+that have all ready been trained for you. And there's quite a few data
+sets available in Keras. So that means,
+you don't have to manually download many of the standard data sets out there and
+pre-process them. But you can just load them
+through the Keras API. Another interesting aspect to
+Keras is the concept of backends. So one way to view Keras is, you can
+see it as your deep learning front-end. So essentially what Keras provides is your high level entry point to
+deep learning, but in the back, what actually runs Keras is different
+engines that do all the heavy lifting. So there's a choice of
+backends available for Keras. First of all, there's Google Tensorflow,
+which is also the default engine for Keras. And we will exclusively use
+Tensorflow in this course. Then there's theano, and
+also Microsoft CNTK. You can quite easily swap backends and
+depending on your configuration, Keras runs seamlessly on CPUs or GPUs. So before we introduce the concepts
+of Keras in more detail, let's just have very first look,
+a glimpse, at an example built with Keras. First thing you do is,
+you load the data set, in this case, the mnist data set 400 digits,
+directly through the Keras API. Then, you define a model,
+in this case, a sequential model. After we have done so, you can just add
+new layers to your model one by one. After that, we compile our
+model with a loss function and an optimizer and
+fit our model on training data. On a high level,
+that's all there is to it. Every Keras example, more or
+less looks like this. All right, to install Keras, we first have to install a backend, as we
+said before we're using Tensorflow here. So go ahead and install Tensorflow
+with pip install Tensorflow. Optionally, we also need to
+install other dependencies. [COUGH] For instance,
+we need the library h5py for model. So go ahead and
+install it through pip installer h5py. As last step, we need to install Keras
+itself through pip installer keras. All right,
+that was the first introduction to Keras. In the next video, we introduce
+the sequential model API of Keras.

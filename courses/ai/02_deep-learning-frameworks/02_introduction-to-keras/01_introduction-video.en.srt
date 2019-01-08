@@ -1,0 +1,68 @@
+1
+00:00:00,260 --> 00:00:02,580
+Hello, and
+welcome to this part of the ghost.
+
+2
+00:00:02,580 --> 00:00:07,010
+My name is Max Pumperla and
+I'm a Deep Learning Engineer at Skymind.
+
+3
+00:00:07,010 --> 00:00:09,793
+While my background is in pure
+mathematics; I've been in data science and
+
+4
+00:00:09,793 --> 00:00:11,920
+in particular,
+deep learning for many years.
+
+5
+00:00:11,920 --> 00:00:15,085
+I'm currently working on open-source
+machine learning software for
+
+6
+00:00:15,085 --> 00:00:17,456
+the JBM such as the tensor library,
+and for the 4J and
+
+7
+00:00:17,456 --> 00:00:20,370
+the deep learning framework,
+deep learning 4J.
+
+8
+00:00:20,370 --> 00:00:23,040
+Also for which you will learn
+more about later in this series.
+
+9
+00:00:24,040 --> 00:00:27,150
+In this part of the course, I will
+introduce you to a popular high level deep
+
+10
+00:00:27,150 --> 00:00:30,720
+running library written
+in Python called Keras.
+
+11
+00:00:30,720 --> 00:00:33,777
+I've been working with and contributing
+to Keras over the last few years and
+
+12
+00:00:33,777 --> 00:00:35,271
+hope you would like it as much as I do.
+
+13
+00:00:35,271 --> 00:00:40,117
+In the next few videos you will see
+how to quickly prototype deep learning
+
+14
+00:00:40,117 --> 00:00:43,860
+models using Keras elegant and
+intuitive API, enjoy.

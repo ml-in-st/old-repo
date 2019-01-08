@@ -1,0 +1,239 @@
+1
+00:00:00,000 --> 00:00:01,980
+In this video, I will tell you something about
+
+2
+00:00:01,980 --> 00:00:06,185
+Bias-Variance Tradeoff and how you can prevent overfitting of a neural network.
+
+3
+00:00:06,185 --> 00:00:09,683
+So, neural network is a universal function approximator.
+
+4
+00:00:09,683 --> 00:00:11,740
+The first of all, this is really cool.
+
+5
+00:00:11,740 --> 00:00:14,940
+But on the other hand, it means that it tends to
+
+6
+00:00:14,940 --> 00:00:18,885
+fit any dataset ideally and that can be a problem
+
+7
+00:00:18,885 --> 00:00:22,620
+because any dataset contains also lot of noise and
+
+8
+00:00:22,620 --> 00:00:26,940
+does not always reflect the truth of the underlying physical system.
+
+9
+00:00:26,940 --> 00:00:29,490
+Therefore, you shouldn't always fit too strong to
+
+10
+00:00:29,490 --> 00:00:32,835
+your data and try to generalize a bit more.
+
+11
+00:00:32,835 --> 00:00:37,275
+You can divide your dataset into a training and a test dataset.
+
+12
+00:00:37,275 --> 00:00:39,294
+And using the training dataset,
+
+13
+00:00:39,294 --> 00:00:42,405
+you train your neural network and after training,
+
+14
+00:00:42,405 --> 00:00:46,000
+you assess the performance.
+
+15
+00:00:46,000 --> 00:00:48,470
+So, once this is a good value,
+
+16
+00:00:48,470 --> 00:00:52,195
+you use the test dataset and also assess the performance.
+
+17
+00:00:52,195 --> 00:00:55,855
+If the performance is equally good, then you are fine.
+
+18
+00:00:55,855 --> 00:00:57,385
+If the performance drops,
+
+19
+00:00:57,385 --> 00:01:00,430
+you most likely have an overfitting problem.
+
+20
+00:01:00,430 --> 00:01:05,755
+So, here you see data for a binary classification problem in a 2D space.
+
+21
+00:01:05,755 --> 00:01:08,345
+So, this is of course a non-linear separation,
+
+22
+00:01:08,345 --> 00:01:11,110
+but you can draw the line differently.
+
+23
+00:01:11,110 --> 00:01:16,225
+So, you see one line which actually tries to fit every data point perfectly.
+
+24
+00:01:16,225 --> 00:01:17,860
+So, that means on the training set,
+
+25
+00:01:17,860 --> 00:01:20,420
+you will get very, very high accuracy,
+
+26
+00:01:20,420 --> 00:01:24,895
+but once you add additional points which are not fitting this line,
+
+27
+00:01:24,895 --> 00:01:27,390
+then you get an error.
+
+28
+00:01:27,390 --> 00:01:31,390
+So, the best way is to draw a line which makes some errors on the training set,
+
+29
+00:01:31,390 --> 00:01:36,860
+but then performs better on the tests that are on readable data.
+
+30
+00:01:36,860 --> 00:01:41,325
+So, how can we prevent overfitting in neural networks.
+
+31
+00:01:41,325 --> 00:01:44,290
+So, one way is just get more data.
+
+32
+00:01:44,290 --> 00:01:48,640
+That's always the first thing you should try and there's a rule of thumb,
+
+33
+00:01:48,640 --> 00:01:53,740
+you should have 10 times more data than you have weights or parameters in your model.
+
+34
+00:01:53,740 --> 00:01:56,545
+The second thing you can do is regularization.
+
+35
+00:01:56,545 --> 00:02:03,355
+So, regularization is basically a way to penalize high weights.
+
+36
+00:02:03,355 --> 00:02:05,315
+So, you don't have to understand everything here.
+
+37
+00:02:05,315 --> 00:02:10,030
+But the idea is, you have a cost function and on the right hand side,
+
+38
+00:02:10,030 --> 00:02:14,960
+you are basically summing over all the weights and all layers of the neural network.
+
+39
+00:02:14,960 --> 00:02:17,305
+And if you get high weights,
+
+40
+00:02:17,305 --> 00:02:19,188
+then the cost goes up.
+
+41
+00:02:19,188 --> 00:02:23,590
+Therefore, you are penalizing those high weights and neural network
+
+42
+00:02:23,590 --> 00:02:28,225
+tries to fit your data without getting these high weights.
+
+43
+00:02:28,225 --> 00:02:32,155
+And how strong you want to influence this regularization,
+
+44
+00:02:32,155 --> 00:02:36,220
+you can specify the regularization parameter Lambda.
+
+45
+00:02:36,220 --> 00:02:40,630
+Another way of addressing this problem is so-called Early Stopping.
+
+46
+00:02:40,630 --> 00:02:42,040
+So, Early Stopping means,
+
+47
+00:02:42,040 --> 00:02:47,117
+you don't train until you get full convergence of the training set.
+
+48
+00:02:47,117 --> 00:02:48,745
+You stop somehow in the middle.
+
+49
+00:02:48,745 --> 00:02:53,290
+You can, of course, always monitor the training accuracy and
+
+50
+00:02:53,290 --> 00:02:58,045
+validation accuracy or training loss and the validation loss during training.
+
+51
+00:02:58,045 --> 00:03:03,460
+And once the validation loss gets up and the training loss didn't get down,
+
+52
+00:03:03,460 --> 00:03:08,865
+you can just stop with training and you also obtain a more general model.
+
+53
+00:03:08,865 --> 00:03:10,358
+So, then there's Drop Out.
+
+54
+00:03:10,358 --> 00:03:17,110
+In Drop Out, you randomly deactivate neurons in each epoch or in each iteration.
+
+55
+00:03:17,110 --> 00:03:19,365
+So, this causes the neural network to take
+
+56
+00:03:19,365 --> 00:03:22,300
+our path through to graph during training and therefore,
+
+57
+00:03:22,300 --> 00:03:23,910
+also helps in generalization.
+
+58
+00:03:23,910 --> 00:03:26,971
+So, I think now you have quite a good idea how neural networks
+
+59
+00:03:26,971 --> 00:03:30,705
+work and what important parameters are they to tune and therefore,
+
+60
+00:03:30,705 --> 00:03:32,470
+we now can skip to the next section.

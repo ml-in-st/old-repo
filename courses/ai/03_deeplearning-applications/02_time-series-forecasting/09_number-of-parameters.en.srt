@@ -1,0 +1,360 @@
+1
+00:00:00,730 --> 00:00:02,140
+Welcome back.
+
+2
+00:00:02,140 --> 00:00:06,630
+In the last session, we have
+discussed the anatomy of a LSTM node.
+
+3
+00:00:07,650 --> 00:00:14,820
+And today, we are going to look,
+How the number of parameters is computed.
+
+4
+00:00:14,820 --> 00:00:15,618
+So let's have a look.
+
+5
+00:00:18,391 --> 00:00:27,133
+Here we have defined,
+The LSTM layers with ten nodes.
+
+6
+00:00:30,430 --> 00:00:32,771
+So let's execute.
+
+7
+00:00:32,771 --> 00:00:38,030
+Okay, and then we can see here in the last
+column, here the number of parameters.
+
+8
+00:00:38,030 --> 00:00:42,396
+And we see that for the first LSTM layer,
+
+9
+00:00:42,396 --> 00:00:45,993
+we have 480 parameters and for
+
+10
+00:00:45,993 --> 00:00:51,655
+the second LSTM layer,
+we have even more, 840.
+
+11
+00:00:51,655 --> 00:00:59,228
+So let's see if we increase the number
+of nodes to 20, what is going on.
+
+12
+00:01:02,816 --> 00:01:05,580
+So now we have even more.
+
+13
+00:01:05,580 --> 00:01:13,490
+So the first LSTM layer
+has 1,760 parameters,
+
+14
+00:01:13,490 --> 00:01:19,366
+the second LSTM layer
+has 3,280 parameters.
+
+15
+00:01:19,366 --> 00:01:24,880
+So where all those
+figures are coming from?
+
+16
+00:01:27,150 --> 00:01:28,209
+So let's have a look.
+
+17
+00:01:33,054 --> 00:01:41,470
+What we have here is each
+LSTM node has three gates.
+
+18
+00:01:41,470 --> 00:01:47,410
+So we have input gate, Sorry.
+
+19
+00:01:47,410 --> 00:01:52,349
+We have forget gate and
+we have output gate.
+
+20
+00:01:55,188 --> 00:02:00,815
+We have also said that
+the cell state is its memory.
+
+21
+00:02:03,109 --> 00:02:05,540
+Then we have also defined
+the hidden state.
+
+22
+00:02:05,540 --> 00:02:09,050
+Hidden state is equivalent
+to the cell output,
+
+23
+00:02:10,520 --> 00:02:15,460
+meaning LSTM hidden state size is the same
+
+24
+00:02:15,460 --> 00:02:20,255
+as number of nodes, or neurons,
+which you have defined,
+
+25
+00:02:20,255 --> 00:02:26,900
+which we have to define and
+this is the same as output size.
+
+26
+00:02:26,900 --> 00:02:28,585
+So lets have a look again.
+
+27
+00:02:31,046 --> 00:02:33,791
+So here, lets say again, ten.
+
+28
+00:02:37,040 --> 00:02:38,516
+Ten.
+
+29
+00:02:38,516 --> 00:02:42,650
+This LSTM layer has ten nodes.
+
+30
+00:02:42,650 --> 00:02:45,300
+So the output size is equal to ten.
+
+31
+00:02:46,700 --> 00:02:54,080
+It has one cell state,
+three gates and ten output nodes.
+
+32
+00:02:55,240 --> 00:02:56,940
+What about input nodes?
+
+33
+00:02:58,360 --> 00:03:03,983
+Let us have a look and
+compute for the first LSTM layer,
+
+34
+00:03:03,983 --> 00:03:07,808
+the number, Of parameters.
+
+35
+00:03:07,808 --> 00:03:11,870
+But first here is the formula,
+how it's computed.
+
+36
+00:03:12,990 --> 00:03:16,604
+So we have the weights,
+
+37
+00:03:19,320 --> 00:03:25,934
+Of input size plus weights of output
+
+38
+00:03:25,934 --> 00:03:31,456
+size plus one bias variable.
+
+39
+00:03:31,456 --> 00:03:37,810
+Input plus output plus
+output plus bias variable.
+
+40
+00:03:37,810 --> 00:03:42,680
+And this is all along
+the output size vector
+
+41
+00:03:44,350 --> 00:03:51,340
+multiplied with three gates
+plus cell state, so four.
+
+42
+00:03:51,340 --> 00:03:55,353
+So 4 multiplied LSTM output size,
+
+43
+00:03:55,353 --> 00:04:04,570
+multiplied with some input size plus
+output size plus one bias variable.
+
+44
+00:04:04,570 --> 00:04:06,130
+So let us compute and
+
+45
+00:04:06,130 --> 00:04:12,340
+see it's actually pretty simple
+if you have tried it by yourself.
+
+46
+00:04:12,340 --> 00:04:17,030
+So first of all,
+we are taking the first LSTM layer.
+
+47
+00:04:17,030 --> 00:04:21,843
+This is the first LSTM layer,
+First LSTM layer.
+
+48
+00:04:24,143 --> 00:04:31,121
+It has output size is equal to 10 or
+this is the same as hidden state size.
+
+49
+00:04:34,364 --> 00:04:38,010
+How many inputs does it have?
+
+50
+00:04:38,010 --> 00:04:43,777
+Well, we have here, above it,
+we have input layer.
+
+51
+00:04:43,777 --> 00:04:48,630
+And this input layer has dimension of one.
+
+52
+00:04:48,630 --> 00:04:52,170
+So the output of this
+input layer is also one.
+
+53
+00:04:53,600 --> 00:04:57,490
+Therefore, we are computing it like this.
+
+54
+00:04:57,490 --> 00:05:03,730
+So three gates plus cell state is four,
+multiplied
+
+55
+00:05:03,730 --> 00:05:08,578
+with output size which is
+equal number of nodes,
+
+56
+00:05:08,578 --> 00:05:13,770
+is ten, multiplied with the sum and
+
+57
+00:05:13,770 --> 00:05:17,690
+then we have input size of
+the first layer is one.
+
+58
+00:05:17,690 --> 00:05:22,799
+So it's receiving inputs from the first
+
+59
+00:05:22,799 --> 00:05:27,616
+input layer which has dimension one.
+
+60
+00:05:27,616 --> 00:05:32,270
+Output size again is ten and
+one bias variable.
+
+61
+00:05:32,270 --> 00:05:36,540
+If we compute we are getting 480.
+
+62
+00:05:36,540 --> 00:05:37,503
+Let's see.
+
+63
+00:05:44,490 --> 00:05:45,380
+Yes.
+
+64
+00:05:45,380 --> 00:05:48,008
+We have 480.
+
+65
+00:05:48,008 --> 00:05:50,274
+Now let us have a look
+at the second layer.
+
+66
+00:05:52,856 --> 00:05:58,814
+Second layer has again three
+gates plus cell state four,
+
+67
+00:05:58,814 --> 00:06:04,430
+multiplied with output size is, again ten.
+
+68
+00:06:04,430 --> 00:06:09,980
+But input size is not one anymore,
+but, ten.
+
+69
+00:06:09,980 --> 00:06:10,680
+Why?
+
+70
+00:06:10,680 --> 00:06:16,190
+Because it receiving the inputs
+from the first LSTM layer
+
+71
+00:06:17,760 --> 00:06:23,390
+in the dimension of ten, it has ten nodes.
+
+72
+00:06:23,390 --> 00:06:27,854
+The output dimension is ten,
+and the output dimension of
+
+73
+00:06:27,854 --> 00:06:32,876
+the first layer is the input
+dimension of the second LSTM layer.
+
+74
+00:06:37,225 --> 00:06:42,152
+So we have the input size as ten,
+the output size is again ten, and
+
+75
+00:06:42,152 --> 00:06:43,684
+one bias variable.
+
+76
+00:06:46,450 --> 00:06:50,983
+We are executing this and getting 840.
+
+77
+00:06:50,983 --> 00:06:52,989
+Let us see.
+
+78
+00:06:52,989 --> 00:06:55,669
+Yes, correct, 840.
+
+79
+00:06:55,669 --> 00:07:01,741
+So with this, enjoy our sessions,
+and see you next time.
+
+80
+00:07:01,741 --> 00:07:02,678
+Bye, bye.

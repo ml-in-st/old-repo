@@ -1,0 +1,407 @@
+1
+00:00:00,320 --> 00:00:04,850
+In this example, we will improve our
+hand written digit recognizer which will
+
+2
+00:00:04,850 --> 00:00:06,060
+implement it in week two.
+
+3
+00:00:06,060 --> 00:00:09,780
+If we use the [INAUDIBLE] for this.
+
+4
+00:00:09,780 --> 00:00:15,194
+Remember, in week two,
+if you used soft [INAUDIBLE] flow and
+
+5
+00:00:15,194 --> 00:00:18,350
+got an accuracy of around 92%.
+
+6
+00:00:18,350 --> 00:00:20,281
+So let's see if we can do better.
+
+7
+00:00:22,456 --> 00:00:25,150
+We will start with a couple of imports.
+
+8
+00:00:25,150 --> 00:00:27,720
+Again, most of the frameworks
+
+9
+00:00:27,720 --> 00:00:31,620
+are providing the most
+interesting data sets as imports.
+
+10
+00:00:31,620 --> 00:00:36,079
+So in this case, we will used the end
+of this data set provided by We will
+
+11
+00:00:36,079 --> 00:00:40,694
+use the all ready known sequential model
+type and we import through layer types.
+
+12
+00:00:44,583 --> 00:00:47,040
+Then you all ready know where it is.
+
+13
+00:00:47,040 --> 00:00:52,420
+So, drop out which is a functionality
+to prevent over fitting is usually only
+
+14
+00:00:52,420 --> 00:00:57,050
+a parameter to a layer but it carries,
+it is moderate as a separate layer.
+
+15
+00:00:57,050 --> 00:01:01,100
+Since deep learning is in anyway
+nothing else than taking functions.
+
+16
+00:01:01,100 --> 00:01:03,755
+This perfectly make sense.
+
+17
+00:01:03,755 --> 00:01:07,885
+So that during every iteration,
+
+18
+00:01:07,885 --> 00:01:14,390
+a number of random neurons gets
+freezed and deviates an updated.
+
+19
+00:01:14,390 --> 00:01:19,000
+So this prevents over-fitting, and
+that model generalizes better.
+
+20
+00:01:19,000 --> 00:01:22,000
+Is a layer which reduces
+the dimensionality
+
+21
+00:01:22,000 --> 00:01:23,510
+of a which we will see later.
+
+22
+00:01:24,730 --> 00:01:30,480
+Then you put a tool in important layers
+for convolution in your networks.
+
+23
+00:01:30,480 --> 00:01:35,790
+Is the two dimensional convolutions
+layer which perfectly fits image data.
+
+24
+00:01:35,790 --> 00:01:41,016
+And next, pulling 2D as
+the name suggests is a pulling
+
+25
+00:01:41,016 --> 00:01:45,911
+layer using the max pulling
+function again in 2D.
+
+26
+00:01:45,911 --> 00:01:48,265
+The we can specify later.
+
+27
+00:01:50,630 --> 00:01:55,830
+Allows us to access properties
+of the underlying backend with
+
+28
+00:01:55,830 --> 00:02:00,990
+a special function in this case, we could
+access those functions using capital k.
+
+29
+00:02:01,990 --> 00:02:04,960
+We defined some constants,
+you should all ready know what those mean,
+
+30
+00:02:05,960 --> 00:02:09,630
+then we need to find the shape of
+the images which are 28 by 28 pixels.
+
+31
+00:02:11,270 --> 00:02:18,323
+Note that in this example we are not
+using a vector of 784 pixels,
+
+32
+00:02:18,323 --> 00:02:22,422
+but the 3D tensor of 28 by 28 by 1.
+
+33
+00:02:22,422 --> 00:02:26,951
+The third dimension usually is
+reserved for the color venue, and
+
+34
+00:02:26,951 --> 00:02:28,440
+has a shape of three.
+
+35
+00:02:28,440 --> 00:02:29,210
+Let's load the data.
+
+36
+00:02:30,570 --> 00:02:32,000
+This is a very convenient method,
+
+37
+00:02:32,000 --> 00:02:35,840
+because it will try to [INAUDIBLE]
+off four non paid arrays.
+
+38
+00:02:35,840 --> 00:02:40,330
+The FE input vector to neural
+network with the size of 784, and
+
+39
+00:02:40,330 --> 00:02:47,190
+the effort target vector in the dimension
+one which contains only the class labels.
+
+40
+00:02:47,190 --> 00:02:51,530
+From zero to nine, and it all through
+the times to split between training and
+
+41
+00:02:51,530 --> 00:02:52,060
+test data.
+
+42
+00:02:53,720 --> 00:02:58,438
+Now it's time to access the properties
+of the tensor flow back end by using
+
+43
+00:02:58,438 --> 00:02:59,669
+the key variable.
+
+44
+00:02:59,669 --> 00:03:03,544
+Since I auto supported we
+have to define the way,
+
+45
+00:03:03,544 --> 00:03:07,029
+how the color information
+is encoded in the image.
+
+46
+00:03:08,762 --> 00:03:13,481
+Some case of the it would
+expect a 28 by 28 by 1.
+
+47
+00:03:13,481 --> 00:03:17,455
+But here we needed 1 by 28 by 28.
+
+48
+00:03:17,455 --> 00:03:20,960
+If only one here, because its
+a mono-form image and not the image.
+
+49
+00:03:22,660 --> 00:03:26,870
+You apply some data pre-processing by
+casting the data and normalizing it.
+
+50
+00:03:28,300 --> 00:03:32,130
+Analyzing the straight forward here,
+but just to write by 55 and
+
+51
+00:03:32,130 --> 00:03:34,840
+we obtain a very range between zero and
+one.
+
+52
+00:03:34,840 --> 00:03:38,290
+It was on in order to verify
+if the shape is correct, and
+
+53
+00:03:38,290 --> 00:03:41,760
+also to count the number of training and
+text examples.
+
+54
+00:03:41,760 --> 00:03:44,970
+So since the label is recorded
+as a singular mention
+
+55
+00:03:44,970 --> 00:03:49,080
+with variables between zero and nine,
+we transform this to one hot and
+
+56
+00:03:49,080 --> 00:03:52,170
+call it vector,
+using the caret two category invention.
+
+57
+00:03:52,170 --> 00:03:56,730
+We started a sequential model and
+added a 2D convolutional layer.
+
+58
+00:03:56,730 --> 00:03:59,090
+This layer has 32 neurons, and
+
+59
+00:03:59,090 --> 00:04:02,136
+uses a three by three matrix
+to scan our body image.
+
+60
+00:04:02,136 --> 00:04:08,450
+We're using activation function, and we
+define the input shape as 28 by 28 by 1,
+
+61
+00:04:08,450 --> 00:04:14,340
+because you're using the This is
+followed by narrow 2D convolution layer.
+
+62
+00:04:14,340 --> 00:04:17,080
+This time, we are specifying 64 neurons.
+
+63
+00:04:17,080 --> 00:04:20,550
+Followed by this,
+we are adding a 2D max pooling layer,
+
+64
+00:04:20,550 --> 00:04:24,730
+which is counting the image
+by a 2 by 2 matrix.
+
+65
+00:04:24,730 --> 00:04:29,486
+Now we drop our 25% of
+the neurons in each iteration.
+
+66
+00:04:29,486 --> 00:04:36,777
+Now we've down the 28 by 28 by 1
+into a vector of 784 elements.
+
+67
+00:04:36,777 --> 00:04:40,159
+And then, we add a fully
+connected layer with 128 neurons.
+
+68
+00:04:41,320 --> 00:04:45,510
+Again, we drop out, this time 50%
+of the neurons in each iteration.
+
+69
+00:04:45,510 --> 00:04:49,910
+Finally, we end up with a fully connected
+layer, with ten output nuerons.
+
+70
+00:04:49,910 --> 00:04:54,020
+Note that we change the activation
+function from value to soft next,
+
+71
+00:04:54,020 --> 00:04:58,250
+which is an ideal fit for
+our ten element one hot encoded vector.
+
+72
+00:05:00,170 --> 00:05:03,500
+As cost function,
+we defined categorical across entropy
+
+73
+00:05:03,500 --> 00:05:08,060
+which is a very good fit for
+my declassification task.
+
+74
+00:05:08,060 --> 00:05:12,400
+It's great to send out data,
+we use other data which turns out
+
+75
+00:05:12,400 --> 00:05:16,950
+to converge best given the dataset,
+and that you're in a topology.
+
+76
+00:05:16,950 --> 00:05:20,167
+Then we start training
+with the usual parameters.
+
+77
+00:05:20,167 --> 00:05:23,790
+After training, we checked
+the accuracy using the test data set.
+
+78
+00:05:23,790 --> 00:05:26,950
+Finally, you print loss in the accuracy
+on a test data set, and we are done.
+
+79
+00:05:28,440 --> 00:05:29,891
+Let's run this.
+
+80
+00:05:29,891 --> 00:05:32,252
+After training the 60,000 examples,
+
+81
+00:05:32,252 --> 00:05:36,140
+we noticed that we are doing
+quite well on the training data.
+
+82
+00:05:36,140 --> 00:05:39,740
+And if you look at the test data,
+you see that we are doing an amazing job.
+
+83
+00:05:39,740 --> 00:05:44,020
+We went up from 92% accuracy
+with softmax equation,
+
+84
+00:05:44,020 --> 00:05:48,110
+to 99% accuracy using this very
+simple convolutional neural network.
+
+85
+00:05:48,110 --> 00:05:53,310
+In the next video, you will see how more
+complex convolutional neural network
+
+86
+00:05:53,310 --> 00:05:55,615
+can give us amazing recites,
+and image classification.

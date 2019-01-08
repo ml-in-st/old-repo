@@ -1,0 +1,107 @@
+1
+00:00:00,000 --> 00:00:03,240
+Let's get started with recurrent neural networks.
+
+2
+00:00:03,240 --> 00:00:05,310
+So, in the last lecture, we've learned that
+
+3
+00:00:05,310 --> 00:00:10,155
+a single layer feed forward neural networks can represent any mathematical function.
+
+4
+00:00:10,155 --> 00:00:14,910
+But we've briefly explained that training such a neural network is impossible.
+
+5
+00:00:14,910 --> 00:00:18,630
+At least the tools and methods we have at the moment.
+
+6
+00:00:18,630 --> 00:00:21,569
+If you give me a quantum computer and a bit of time,
+
+7
+00:00:21,569 --> 00:00:23,400
+I might come up with a better solution.
+
+8
+00:00:23,400 --> 00:00:26,670
+So, since training is such a difficult task,
+
+9
+00:00:26,670 --> 00:00:29,400
+people came up with different types of layers and
+
+10
+00:00:29,400 --> 00:00:32,550
+topologies and recurrent neural networks is one of them.
+
+11
+00:00:32,550 --> 00:00:36,570
+So while feed forward neural networks are good at learning the function,
+
+12
+00:00:36,570 --> 00:00:40,795
+they fail off when it comes to sequence and time series data,
+
+13
+00:00:40,795 --> 00:00:43,860
+like we have for example in IoT sense of data.
+
+14
+00:00:43,860 --> 00:00:47,820
+Processing sequences and time series require some sort of
+
+15
+00:00:47,820 --> 00:00:54,320
+memory since dynamic temporal behavior is also adding information to the whole picture.
+
+16
+00:00:54,320 --> 00:00:58,575
+So, by introducing loop back connections between the neurons,
+
+17
+00:00:58,575 --> 00:01:01,935
+such a recurrent neural network can remember past events.
+
+18
+00:01:01,935 --> 00:01:05,610
+Note that any recurrent neural network can be unfolded
+
+19
+00:01:05,610 --> 00:01:09,765
+through time and then basically forms a feed forward neural network.
+
+20
+00:01:09,765 --> 00:01:15,980
+So again, this whole exercise is only to make training more efficient.
+
+21
+00:01:15,980 --> 00:01:20,380
+There exists an abundance of recurrent neural network types,
+
+22
+00:01:20,380 --> 00:01:24,640
+recursive, hopfield, fully recurrent,
+
+23
+00:01:24,640 --> 00:01:27,820
+Elman network, Jordan network,
+
+24
+00:01:27,820 --> 00:01:33,565
+echo state, neural history compressor and finally an LSTM.
+
+25
+00:01:33,565 --> 00:01:37,440
+We will only concentrate on the LSTM in this course.
+
+26
+00:01:37,440 --> 00:01:40,010
+It stands for long short term memory.
+
+27
+00:01:40,010 --> 00:01:46,140
+Those are so powerful and essential that we dedicate the next lecture entirely to LSTMs.

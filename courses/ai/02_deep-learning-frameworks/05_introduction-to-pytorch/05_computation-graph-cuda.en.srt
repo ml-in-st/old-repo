@@ -1,0 +1,815 @@
+1
+00:00:00,000 --> 00:00:03,460
+Welcome back. In the last session,
+
+2
+00:00:03,460 --> 00:00:07,140
+we have seen how to reshape a torch Tensor.
+
+3
+00:00:07,140 --> 00:00:14,295
+We saw that we are calling view method and this method would reshape our torch Tensor.
+
+4
+00:00:14,295 --> 00:00:18,005
+Today, we're going to discuss a very important topic.
+
+5
+00:00:18,005 --> 00:00:22,270
+This is the topic of Computational Graphs in PyTorch.
+
+6
+00:00:22,270 --> 00:00:27,340
+As we know in other deep learning frameworks,
+
+7
+00:00:27,340 --> 00:00:33,485
+we also deal with computational graphs like in Keras or in TensorFlow.
+
+8
+00:00:33,485 --> 00:00:35,890
+But, in these frameworks,
+
+9
+00:00:35,890 --> 00:00:38,345
+the computational graph are fixed,
+
+10
+00:00:38,345 --> 00:00:41,085
+so you create a model,
+
+11
+00:00:41,085 --> 00:00:46,250
+and as in Keras for example you define, for example,
+
+12
+00:00:46,250 --> 00:00:51,730
+if it is a neural network you define different layers, optimizer,
+
+13
+00:00:51,730 --> 00:00:54,060
+you define loss function,
+
+14
+00:00:54,060 --> 00:00:56,880
+number of epochs, the batch size,
+
+15
+00:00:56,880 --> 00:00:59,170
+and then you call compile.
+
+16
+00:00:59,170 --> 00:01:01,170
+If you call compile,
+
+17
+00:01:01,170 --> 00:01:05,345
+the run time will create a computational graph of
+
+18
+00:01:05,345 --> 00:01:10,665
+this model and this computational graph is fixed,
+
+19
+00:01:10,665 --> 00:01:12,370
+so you cannot change,
+
+20
+00:01:12,370 --> 00:01:19,210
+if you call model.fit it will execute the computational graph,
+
+21
+00:01:19,210 --> 00:01:25,665
+and during run time you cannot change it anymore, it's fixed.
+
+22
+00:01:25,665 --> 00:01:31,710
+And PyTorch has created something completely different.
+
+23
+00:01:31,710 --> 00:01:37,970
+The creators of PyTorch have decided that they
+
+24
+00:01:37,970 --> 00:01:46,090
+need a flexibility to change the computational graph at the runtime.
+
+25
+00:01:46,090 --> 00:01:49,290
+How did they accomplish this?
+
+26
+00:01:49,290 --> 00:01:55,015
+They have created a component which is called autograd.Variable.
+
+27
+00:01:55,015 --> 00:02:04,055
+This is the main building block of computational graph in PyTorch. How it works?
+
+28
+00:02:04,055 --> 00:02:08,035
+Let us see, let us execute this next cell.
+
+29
+00:02:08,035 --> 00:02:13,070
+So, first of all, we are creating autograd.Variable,
+
+30
+00:02:13,070 --> 00:02:16,880
+we are passing two parameters.
+
+31
+00:02:16,880 --> 00:02:21,505
+One parameter is actually data of this autograd.Variable.
+
+32
+00:02:21,505 --> 00:02:25,320
+This is a torch Tensor of size three,
+
+33
+00:02:25,320 --> 00:02:33,070
+and then we can pass the second argument which is requires_grad,
+
+34
+00:02:33,070 --> 00:02:40,030
+which is the meaning requires gradient, true or false.
+
+35
+00:02:40,030 --> 00:02:47,635
+It means following, it will say requires_grad true,
+
+36
+00:02:47,635 --> 00:02:58,340
+we are saying that this autograd.Variable should track how it was created.
+
+37
+00:02:58,340 --> 00:03:01,440
+This is very important.
+
+38
+00:03:01,440 --> 00:03:06,810
+So, we can print out here the data,
+
+39
+00:03:06,810 --> 00:03:10,585
+which is inside of this autograd.Variable.
+
+40
+00:03:10,585 --> 00:03:17,655
+This is simply the tensor of size three; one, two, three.
+
+41
+00:03:17,655 --> 00:03:21,540
+Then we are creating the next autograd.Variable,
+
+42
+00:03:21,540 --> 00:03:26,740
+which is Y. autograd.Variable, y the same.
+
+43
+00:03:26,740 --> 00:03:30,170
+We are passing this argument, data,
+
+44
+00:03:30,170 --> 00:03:32,220
+this is the first parameter,
+
+45
+00:03:32,220 --> 00:03:34,860
+then we are passing the second parameter,
+
+46
+00:03:34,860 --> 00:03:38,720
+requires gradient true or false, we're passing true.
+
+47
+00:03:38,720 --> 00:03:44,135
+And then we are adding up x and y,
+
+48
+00:03:44,135 --> 00:03:50,840
+and here we are printing the data in the component z,
+
+49
+00:03:50,840 --> 00:03:53,785
+which is the sum of x and y.
+
+50
+00:03:53,785 --> 00:03:56,020
+So, this is the sum,
+
+51
+00:03:56,020 --> 00:04:02,525
+so we just have summed up element wise two vectors.
+
+52
+00:04:02,525 --> 00:04:10,955
+But here, what is very interesting here is that we can also see how z was created.
+
+53
+00:04:10,955 --> 00:04:17,915
+If we write z.grad, function grad_fn,
+
+54
+00:04:17,915 --> 00:04:20,385
+and print out this operation,
+
+55
+00:04:20,385 --> 00:04:26,645
+we see that z was created by add operation.
+
+56
+00:04:26,645 --> 00:04:30,100
+It's very interesting. Let us see next example.
+
+57
+00:04:30,100 --> 00:04:36,835
+Here we are summing up the components of the z vector.
+
+58
+00:04:36,835 --> 00:04:41,720
+So, z vector we have created a sum of x and y,
+
+59
+00:04:41,720 --> 00:04:45,575
+this is five, seven, nine.
+
+60
+00:04:45,575 --> 00:04:51,980
+If we add up all those elements we are getting 21.
+
+61
+00:04:51,980 --> 00:04:59,905
+Nothing very interesting and special. But if we call in the next step,
+
+62
+00:04:59,905 --> 00:05:02,885
+if we call s grad function,
+
+63
+00:05:02,885 --> 00:05:09,455
+grad fn, we see that it was created as a sum.
+
+64
+00:05:09,455 --> 00:05:18,990
+So, the PyTorch knows exactly for every variable how it was created.
+
+65
+00:05:18,990 --> 00:05:23,940
+Here we are with the next example,
+
+66
+00:05:23,940 --> 00:05:28,890
+in here we have a function s. This function s is
+
+67
+00:05:28,890 --> 00:05:34,820
+the sum of two variable vectors of size three,
+
+68
+00:05:34,820 --> 00:05:38,685
+so we are summing up this vectors element wise.
+
+69
+00:05:38,685 --> 00:05:42,720
+So, we are summing the first element of vector x,
+
+70
+00:05:42,720 --> 00:05:45,905
+with the first element of vector y.
+
+71
+00:05:45,905 --> 00:05:49,835
+The second element with the second and third with the third.
+
+72
+00:05:49,835 --> 00:05:55,040
+So, now if we create partial differentiation,
+
+73
+00:05:55,040 --> 00:06:00,480
+so if we differentiate s
+
+74
+00:06:00,480 --> 00:06:07,865
+with respect to x_0, for example.
+
+75
+00:06:07,865 --> 00:06:11,770
+Due to the rules of partial differentiation,
+
+76
+00:06:11,770 --> 00:06:16,310
+we would deal with other variables other than x,
+
+77
+00:06:16,310 --> 00:06:20,650
+y as with the constants.
+
+78
+00:06:20,650 --> 00:06:29,650
+So, the partial differentiation for s,
+
+79
+00:06:29,650 --> 00:06:34,100
+for the function s, with respect to variable x_0 is one.
+
+80
+00:06:34,100 --> 00:06:39,985
+Let us see how it works with PyTorch.
+
+81
+00:06:39,985 --> 00:06:47,435
+So, first of all, let us recap that s was the sum.
+
+82
+00:06:47,435 --> 00:06:52,800
+This is actually the sum element wise.
+
+83
+00:06:52,850 --> 00:06:58,160
+And here we are calling backward,
+
+84
+00:06:58,160 --> 00:07:09,345
+and backward means, start back propagation from this point backwards.
+
+85
+00:07:09,345 --> 00:07:12,270
+So, it's starting back propagation,
+
+86
+00:07:12,270 --> 00:07:14,890
+so we have the function s which is the sum,
+
+87
+00:07:14,890 --> 00:07:17,220
+and then we say backwards,
+
+88
+00:07:17,220 --> 00:07:22,815
+and here we can pass the argument retain_graph true.
+
+89
+00:07:22,815 --> 00:07:26,495
+I will not go into details,
+
+90
+00:07:26,495 --> 00:07:30,345
+but it's optional actually.
+
+91
+00:07:30,345 --> 00:07:37,525
+So, here we round this in Excel what we see here is following.
+
+92
+00:07:37,525 --> 00:07:42,215
+So, first of all, we are printing vector x,
+
+93
+00:07:42,215 --> 00:07:48,330
+we see he has nothing special with just printing out this vector.
+
+94
+00:07:48,330 --> 00:07:53,950
+But, now if we print out the gradients,
+
+95
+00:07:53,950 --> 00:07:57,375
+not the gradient function as in a previous time,
+
+96
+00:07:57,375 --> 00:08:02,260
+but now we are we can print out the gradient.
+
+97
+00:08:02,260 --> 00:08:06,590
+Meaning gradient is the value of,
+
+98
+00:08:06,590 --> 00:08:10,680
+if we create differentiation,
+
+99
+00:08:10,680 --> 00:08:16,530
+if we differentiate the function at a special point,
+
+100
+00:08:16,530 --> 00:08:25,005
+we're getting also the value of this partial differentiation.
+
+101
+00:08:25,005 --> 00:08:31,155
+And here where it differentiates this function.
+
+102
+00:08:31,155 --> 00:08:34,650
+With respect to variable x,
+
+103
+00:08:34,650 --> 00:08:44,256
+x is consisting of three variables: x zero,
+
+104
+00:08:44,256 --> 00:08:46,690
+x one, x three.
+
+105
+00:08:46,690 --> 00:08:52,795
+So if we differentiate partially with respect to x zero,
+
+106
+00:08:52,795 --> 00:08:55,365
+we're getting one and then,
+
+107
+00:08:55,365 --> 00:08:59,070
+again with respect to x one,
+
+108
+00:08:59,070 --> 00:09:02,725
+we're getting one and with respect to x two, we're getting one.
+
+109
+00:09:02,725 --> 00:09:05,740
+We saw that this is very simple function.
+
+110
+00:09:05,740 --> 00:09:08,400
+If we create partial differentiation,
+
+111
+00:09:08,400 --> 00:09:14,250
+it would be one and all other variables would get zeros.
+
+112
+00:09:14,250 --> 00:09:16,224
+The level over here, we have one, one, one.
+
+113
+00:09:16,224 --> 00:09:21,465
+The same thing if we create differentiation,
+
+114
+00:09:21,465 --> 00:09:25,110
+partial differentiation with respect to y.
+
+115
+00:09:25,110 --> 00:09:31,310
+Because y is also, as x,
+
+116
+00:09:31,310 --> 00:09:38,160
+a simple plain variable here without any coefficient or exponentiations.
+
+117
+00:09:38,160 --> 00:09:40,632
+It's just one, one, one.
+
+118
+00:09:40,632 --> 00:09:48,885
+But what will happen if we call again <Backward>?
+
+119
+00:09:48,885 --> 00:09:55,640
+And then we call again: (x.grad) and (y.grad).
+
+120
+00:09:55,640 --> 00:10:00,980
+You see, it was updated.
+
+121
+00:10:00,980 --> 00:10:06,210
+So now, we have here two, two, two and
+
+122
+00:10:06,210 --> 00:10:13,410
+that was for x and for y the same, two, two, two.
+
+123
+00:10:13,410 --> 00:10:20,125
+What has happened? Let us call again <Backward> and again print out.
+
+124
+00:10:20,125 --> 00:10:23,985
+Now it's again changed.
+
+125
+00:10:23,985 --> 00:10:26,894
+It's three. The reason is,
+
+126
+00:10:26,894 --> 00:10:30,990
+that every time you call <Backward>,
+
+127
+00:10:30,990 --> 00:10:36,035
+the gradient property is accumulated.
+
+128
+00:10:36,035 --> 00:10:43,460
+This is a technology of PyTorch which is used for special,
+
+129
+00:10:43,460 --> 00:10:49,180
+there are some models where it's very convenient to use.
+
+130
+00:10:49,180 --> 00:10:52,820
+In this introductory session,
+
+131
+00:10:52,820 --> 00:10:59,765
+we will not use it but it's important to know that: every time if you call <Backward>,
+
+132
+00:10:59,765 --> 00:11:04,810
+the gradient will be accumulated.
+
+133
+00:11:04,810 --> 00:11:12,520
+Next important point is how to preserve the computational graph.
+
+134
+00:11:12,520 --> 00:11:15,945
+As you know, as you already know,
+
+135
+00:11:15,945 --> 00:11:22,260
+the autograd of variables are consisting of two components.
+
+136
+00:11:22,260 --> 00:11:24,255
+One is the data.
+
+137
+00:11:24,255 --> 00:11:28,720
+Another one is the grad fn, gradient function.
+
+138
+00:11:28,720 --> 00:11:31,065
+So with the data,
+
+139
+00:11:31,065 --> 00:11:34,410
+you can get out of the gradient.
+
+140
+00:11:34,410 --> 00:11:37,725
+Of the autograd variable,
+
+141
+00:11:37,725 --> 00:11:39,960
+you can get out the data.
+
+142
+00:11:39,960 --> 00:11:42,120
+And with grad fn,
+
+143
+00:11:42,120 --> 00:11:47,035
+you can get out of the function how this variable was created.
+
+144
+00:11:47,035 --> 00:11:51,303
+Let us execute next cell.
+
+145
+00:11:51,303 --> 00:11:57,010
+In this cell, we are creating two Tensors of size two.
+
+146
+00:11:57,010 --> 00:11:59,990
+And then we are summing up these Tensors.
+
+147
+00:11:59,990 --> 00:12:01,775
+So very simple.
+
+148
+00:12:01,775 --> 00:12:08,720
+So we're getting actually Tensor of size two by two, sorry.
+
+149
+00:12:08,720 --> 00:12:14,100
+So now let us execute next cell.
+
+150
+00:12:14,100 --> 00:12:22,860
+Here, we're creating autograd variable x, out of x,
+
+151
+00:12:22,860 --> 00:12:27,295
+and autograd variable y, out of y,
+
+152
+00:12:27,295 --> 00:12:33,015
+and saying both times (requires_gradient=True).
+
+153
+00:12:33,015 --> 00:12:38,093
+So now I can sum up these variables:
+
+154
+00:12:38,093 --> 00:12:45,690
+var_x + var_y and then we're printing out the gradient function,
+
+155
+00:12:45,690 --> 00:12:47,160
+how it was created.
+
+156
+00:12:47,160 --> 00:12:56,595
+Let us do this and we see z was created with add operation, <AddBackward>.
+
+157
+00:12:56,595 --> 00:13:00,720
+But now, what we do is the Following: we are extracting
+
+158
+00:13:00,720 --> 00:13:06,180
+the data out of this sum. Just the data.
+
+159
+00:13:06,180 --> 00:13:12,835
+And passing it to a new variable which is called var_z_data.
+
+160
+00:13:12,835 --> 00:13:21,940
+And then, we are creating actually new variable, new autograd.Variable,
+
+161
+00:13:21,940 --> 00:13:28,050
+and passing this new data variable in it and
+
+162
+00:13:28,050 --> 00:13:34,716
+then we are printing out and then we are trying to print out how it was created.
+
+163
+00:13:34,716 --> 00:13:42,228
+So we're actually printing out new_variable_z.gradient_function.
+
+164
+00:13:42,228 --> 00:13:45,330
+And then you see, none.
+
+165
+00:13:45,330 --> 00:13:47,880
+It's lost, because here,
+
+166
+00:13:47,880 --> 00:13:52,000
+if we are extracting the data.
+
+167
+00:13:52,000 --> 00:13:58,832
+We have extracted only data but not the gradient function.
+
+168
+00:13:58,832 --> 00:14:07,980
+And, yes, then the computational graph at this point is already broken so
+
+169
+00:14:07,980 --> 00:14:13,470
+the grad_fn was not passed and we
+
+170
+00:14:13,470 --> 00:14:19,305
+have retained only data but not the gradient function.
+
+171
+00:14:19,305 --> 00:14:28,185
+Now, if we tried to call <Backward> on this new autograd variable,
+
+172
+00:14:28,185 --> 00:14:34,675
+new_var_z which was created again with the data out of var_z,
+
+173
+00:14:34,675 --> 00:14:41,130
+we will get exception because there's nothing there.
+
+174
+00:14:41,130 --> 00:14:44,635
+Here we have a runtime error
+
+175
+00:14:44,635 --> 00:14:51,215
+that the element of variable does not require grad and does not have a gradient function.
+
+176
+00:14:51,215 --> 00:14:52,785
+This is the important point.
+
+177
+00:14:52,785 --> 00:14:55,110
+Does not have a gradient function.
+
+178
+00:14:55,110 --> 00:15:02,235
+Gradient function was lost and last but not least,
+
+179
+00:15:02,235 --> 00:15:06,585
+in this session, I would like to
+
+180
+00:15:06,585 --> 00:15:11,595
+briefly mention the CUDA functionality of the Torch Tensor.
+
+181
+00:15:11,595 --> 00:15:16,275
+As you probably remember,
+
+182
+00:15:16,275 --> 00:15:18,695
+the keras in Tensor flow,
+
+183
+00:15:18,695 --> 00:15:26,215
+automatically detect whether you have GPU acceleration on your machine or not.
+
+184
+00:15:26,215 --> 00:15:31,220
+And they will execute everything on the GPU,
+
+185
+00:15:31,220 --> 00:15:33,615
+if your GPU is available,
+
+186
+00:15:33,615 --> 00:15:36,740
+or on CPU if GPU is not available,
+
+187
+00:15:36,740 --> 00:15:43,550
+for PyTorch, you can very granually decide what to execute on GPU
+
+188
+00:15:43,550 --> 00:15:51,735
+and which Tensors you want to execute where, on GPU or on CPU.
+
+189
+00:15:51,735 --> 00:15:55,530
+Here you have a check.
+
+190
+00:15:55,530 --> 00:16:02,625
+And you can check torch.CUDA.is available().
+
+191
+00:16:02,625 --> 00:16:10,330
+And this check you can run every time if you want to decide where to execute the Tensor.
+
+192
+00:16:10,330 --> 00:16:15,455
+If you want to execute the tensor on CUDA,
+
+193
+00:16:15,455 --> 00:16:18,530
+and CUDA is available,
+
+194
+00:16:18,530 --> 00:16:22,845
+you just add CUDA function,.cuda().
+
+195
+00:16:22,845 --> 00:16:29,620
+And then it will run this Tensor on GPU.
+
+196
+00:16:29,620 --> 00:16:33,435
+If you don't want to run the Tensor on GPU,
+
+197
+00:16:33,435 --> 00:16:42,010
+you don't add this CUDA function at the end and it will run on CPU.
+
+198
+00:16:42,010 --> 00:16:43,655
+This is very, very flexible.
+
+199
+00:16:43,655 --> 00:16:45,745
+So in my opinion,
+
+200
+00:16:45,745 --> 00:16:52,820
+the main advantage of PyTorch is its huge flexibility.
+
+201
+00:16:52,820 --> 00:16:58,360
+Okay. I hope you enjoyed the session and next time we're going
+
+202
+00:16:58,360 --> 00:17:03,610
+to try something really practical.
+
+203
+00:17:03,610 --> 00:17:06,890
+We're going to build up a linear model with PyTorch.
+
+204
+00:17:06,890 --> 00:17:10,000
+See you then. Enjoy our sessions. Bye bye.

@@ -1,0 +1,41 @@
+In this video,
+I will explain how to use SystemML. We'll walk through full example
+program that will explain how to write a DMS script and
+use SystemML's Python API. First, we'll understand
+how to implement a simple, Hello World and
+matrix multiplication example using DML. The goal of this example
+is to understand how to write a simple DML script and
+use ML Context API. Then we'll move on to a more complicated
+example where we will understand how to implement three different algorithms
+to train a linear aggression model. The goal here is to understand how
+System ML enables data scientist to implement that custom algorithm,
+using for this specific uses. The example, three and four explains,
+how a data scientist who prefers to invoke a pre-implemented
+algorithm, can use SystemML. Finally, we understand how to
+drain a simple neural network, using kiosk to DML API. You can install SystemML using PIP. Since I've already installed SystemML,
+I will skip this step. Instead I will check the version SystemML
+previously installed on this system. It shows that I have installed SystemML
+1.1, which is currently under development. SystemML version 1.1 requires park two and
+above. If you are using a different kernel, you
+can change the kernel using this option. In this cell,
+we import MLContext class and DML method. From this system a mini package
+we create an American text object by passing either a spark context or
+a spark session object. Next, we check the version of SystemML
+using American text information. In the next cell, we create a simple d. We create a simple DML script,
+that brings hello word. Notice DML script object is created
+by passing the DMS strength, to the DML material
+being reported earlier. We then execute the script. Using American text, execute matter. Let's say that instead of using system
+mms building script print method. We want to use Python's print method. In this case, we create a string in DML. And specify that we want to
+fetch that string as an output. Then we use American text
+get method after execution. Let's load numpy and
+sklearn which we'll use in later examples. Now that we know how to
+execute a DMS script and fetch the output using ML context,
+let's understand how to pass input to SystemML
+using ML context input method. Four, we can yield a random matrix X
+with a thousand columns and sparsity .5. The number of throughs are passed by the
+user by the dollar parameter [INAUDIBLE]. We then multiply the matrix X with
+the transpose in computer sum. The pass the value of the dollar parameter
+enough, in this case, 1e raised to six. Using the input method, we now execute
+the script using American text. As you can see, it spawned a spark job
+likely to generate a random matrix. When this job is finished,
+the value of s will be greater. Which is [INAUDIBLE].

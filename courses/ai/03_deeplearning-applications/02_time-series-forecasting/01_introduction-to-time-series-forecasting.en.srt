@@ -1,0 +1,208 @@
+1
+00:00:00,190 --> 00:00:04,740
+I'm very excited to welcome
+you to our training session on
+
+2
+00:00:04,740 --> 00:00:09,690
+Sequence Prediction with Keras and LSTM.
+
+3
+00:00:09,690 --> 00:00:12,440
+First of all, we need, of course, data.
+
+4
+00:00:13,800 --> 00:00:17,971
+And I have decided that we can go to FRED,
+
+5
+00:00:17,971 --> 00:00:22,160
+the Federal Reserve Bank on St. Louis.
+
+6
+00:00:23,410 --> 00:00:30,237
+And download here Crude Oil Prices for
+
+7
+00:00:30,237 --> 00:00:34,090
+oil Brent in Europe.
+
+8
+00:00:34,090 --> 00:00:39,583
+This data is measured since 1987,
+
+9
+00:00:39,583 --> 00:00:43,540
+and we can download the entire data set,
+
+10
+00:00:44,760 --> 00:00:49,040
+what I have already done.
+
+11
+00:00:49,040 --> 00:00:51,290
+We can have a first look at this data.
+
+12
+00:00:51,290 --> 00:00:55,364
+We see that it has several peaks,
+
+13
+00:00:55,364 --> 00:00:59,301
+one was in September 1990.
+
+14
+00:00:59,301 --> 00:01:04,197
+And the biggest one in June 2008,
+
+15
+00:01:04,197 --> 00:01:08,787
+then it went down, then it went up,
+
+16
+00:01:08,787 --> 00:01:13,100
+and so on, and so on, and so on.
+
+17
+00:01:13,100 --> 00:01:19,633
+This data, we can download
+by clicking on this button,
+
+18
+00:01:19,633 --> 00:01:26,729
+and then we can import it into
+our development environment.
+
+19
+00:01:26,729 --> 00:01:34,620
+And here, we have to upload the data
+into the Cloud Object Storage.
+
+20
+00:01:37,220 --> 00:01:41,610
+We are using
+Cloud Object Storage to ensure
+
+21
+00:01:41,610 --> 00:01:46,650
+that the data is located
+in merged environment.
+
+22
+00:01:48,350 --> 00:01:52,620
+As you'll see,
+I have already uploaded the data.
+
+23
+00:01:52,620 --> 00:01:53,770
+This is very simple.
+
+24
+00:01:53,770 --> 00:01:56,400
+You'll click on browse here.
+
+25
+00:01:56,400 --> 00:02:01,980
+And it will be uploaded, and
+then you click on Insert to Code.
+
+26
+00:02:01,980 --> 00:02:07,350
+It will insert some lines of code and
+in the end, if you execute this code,
+
+27
+00:02:07,350 --> 00:02:13,060
+you are getting the data
+as a Pandas DataFrame.
+
+28
+00:02:13,060 --> 00:02:17,115
+You see it has two columns,
+
+29
+00:02:17,115 --> 00:02:20,825
+it has 7,993 rows.
+
+30
+00:02:20,825 --> 00:02:24,196
+And here,
+I have to mention the data source,
+
+31
+00:02:24,196 --> 00:02:30,080
+that the data is coming from
+US Energy Information Administration.
+
+32
+00:02:30,080 --> 00:02:36,174
+In the first step, we have to do
+some minor data pre-processing.
+
+33
+00:02:37,230 --> 00:02:44,997
+And this is because the data
+contains some innate rules.
+
+34
+00:02:44,997 --> 00:02:50,201
+And in the CC file,
+every time where the innate
+
+35
+00:02:50,201 --> 00:02:55,005
+is in the data,
+they have put a point in it,
+
+36
+00:02:55,005 --> 00:02:59,289
+so we have to remove all those points.
+
+37
+00:03:00,750 --> 00:03:06,050
+What we can do now, and we can see,
+if you bring the shape,
+
+38
+00:03:06,050 --> 00:03:12,810
+we can see that around
+200 rows were removed.
+
+39
+00:03:12,810 --> 00:03:19,390
+First, what we can do, we can print out,
+we can visualize our data.
+
+40
+00:03:21,020 --> 00:03:26,652
+And this is done by calling plot function.
+
+41
+00:03:28,802 --> 00:03:35,628
+And here, we can see similar
+representation of the data,
+
+42
+00:03:35,628 --> 00:03:41,198
+as we've already seen on
+the home page of FRED,
+
+43
+00:03:41,198 --> 00:03:48,580
+a Federal Reserve Bank,
+all those peaks and so on, and so on.
+
+44
+00:03:48,580 --> 00:03:57,229
+And yes, with this we
+are finishing the data upload part.
+
+45
+00:03:57,229 --> 00:04:04,263
+And we are looking forward to
+see you in the next section.
+
+46
+00:04:04,263 --> 00:04:10,617
+Stay tuned, and
+enjoy sequence prediction, bye-bye.

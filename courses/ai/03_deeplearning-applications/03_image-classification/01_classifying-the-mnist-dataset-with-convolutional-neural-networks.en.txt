@@ -1,0 +1,65 @@
+In this example, we will improve our
+hand written digit recognizer which will implement it in week two. If we use the [INAUDIBLE] for this. Remember, in week two,
+if you used soft [INAUDIBLE] flow and got an accuracy of around 92%. So let's see if we can do better. We will start with a couple of imports. Again, most of the frameworks are providing the most
+interesting data sets as imports. So in this case, we will used the end
+of this data set provided by We will use the all ready known sequential model
+type and we import through layer types. Then you all ready know where it is. So, drop out which is a functionality
+to prevent over fitting is usually only a parameter to a layer but it carries,
+it is moderate as a separate layer. Since deep learning is in anyway
+nothing else than taking functions. This perfectly make sense. So that during every iteration, a number of random neurons gets
+freezed and deviates an updated. So this prevents over-fitting, and
+that model generalizes better. Is a layer which reduces
+the dimensionality of a which we will see later. Then you put a tool in important layers
+for convolution in your networks. Is the two dimensional convolutions
+layer which perfectly fits image data. And next, pulling 2D as
+the name suggests is a pulling layer using the max pulling
+function again in 2D. The we can specify later. Allows us to access properties
+of the underlying backend with a special function in this case, we could
+access those functions using capital k. We defined some constants,
+you should all ready know what those mean, then we need to find the shape of
+the images which are 28 by 28 pixels. Note that in this example we are not
+using a vector of 784 pixels, but the 3D tensor of 28 by 28 by 1. The third dimension usually is
+reserved for the color venue, and has a shape of three. Let's load the data. This is a very convenient method, because it will try to [INAUDIBLE]
+off four non paid arrays. The FE input vector to neural
+network with the size of 784, and the effort target vector in the dimension
+one which contains only the class labels. From zero to nine, and it all through
+the times to split between training and test data. Now it's time to access the properties
+of the tensor flow back end by using the key variable. Since I auto supported we
+have to define the way, how the color information
+is encoded in the image. Some case of the it would
+expect a 28 by 28 by 1. But here we needed 1 by 28 by 28. If only one here, because its
+a mono-form image and not the image. You apply some data pre-processing by
+casting the data and normalizing it. Analyzing the straight forward here,
+but just to write by 55 and we obtain a very range between zero and
+one. It was on in order to verify
+if the shape is correct, and also to count the number of training and
+text examples. So since the label is recorded
+as a singular mention with variables between zero and nine,
+we transform this to one hot and call it vector,
+using the caret two category invention. We started a sequential model and
+added a 2D convolutional layer. This layer has 32 neurons, and uses a three by three matrix
+to scan our body image. We're using activation function, and we
+define the input shape as 28 by 28 by 1, because you're using the This is
+followed by narrow 2D convolution layer. This time, we are specifying 64 neurons. Followed by this,
+we are adding a 2D max pooling layer, which is counting the image
+by a 2 by 2 matrix. Now we drop our 25% of
+the neurons in each iteration. Now we've down the 28 by 28 by 1
+into a vector of 784 elements. And then, we add a fully
+connected layer with 128 neurons. Again, we drop out, this time 50%
+of the neurons in each iteration. Finally, we end up with a fully connected
+layer, with ten output nuerons. Note that we change the activation
+function from value to soft next, which is an ideal fit for
+our ten element one hot encoded vector. As cost function,
+we defined categorical across entropy which is a very good fit for
+my declassification task. It's great to send out data,
+we use other data which turns out to converge best given the dataset,
+and that you're in a topology. Then we start training
+with the usual parameters. After training, we checked
+the accuracy using the test data set. Finally, you print loss in the accuracy
+on a test data set, and we are done. Let's run this. After training the 60,000 examples, we noticed that we are doing
+quite well on the training data. And if you look at the test data,
+you see that we are doing an amazing job. We went up from 92% accuracy
+with softmax equation, to 99% accuracy using this very
+simple convolutional neural network. In the next video, you will see how more
+complex convolutional neural network can give us amazing recites,
+and image classification.

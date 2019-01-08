@@ -1,0 +1,175 @@
+1
+00:00:00,000 --> 00:00:02,505
+Autoencoders are, besides LSTMs,
+
+2
+00:00:02,505 --> 00:00:05,265
+the most exciting neural network topology.
+
+3
+00:00:05,265 --> 00:00:09,176
+They can do amazing things but let's first understand how they work.
+
+4
+00:00:09,176 --> 00:00:13,575
+So autoencoders are like neural networks with a couple of exceptions.
+
+5
+00:00:13,575 --> 00:00:16,270
+As in an ordinary neural network,
+
+6
+00:00:16,270 --> 00:00:21,690
+we have an input layer where we present examples of our dataset as vectors, X.
+
+7
+00:00:21,690 --> 00:00:25,395
+Usually neural networks are trained to find a hidden function,
+
+8
+00:00:25,395 --> 00:00:27,940
+f which maps X to Y.
+
+9
+00:00:27,940 --> 00:00:30,725
+But an autoencoder is different,
+
+10
+00:00:30,725 --> 00:00:33,630
+it tries to map X to X'.
+
+11
+00:00:33,630 --> 00:00:38,105
+Or in other words, it tries to reconstruct whatever vector,
+
+12
+00:00:38,105 --> 00:00:42,175
+X it sees on the left-hand side on right-hand side.
+
+13
+00:00:42,175 --> 00:00:45,927
+This is also known as the identity function.
+
+14
+00:00:45,927 --> 00:00:50,615
+And as you know that neural networks are universal function approximators,
+
+15
+00:00:50,615 --> 00:00:53,855
+it is obvious that the neural network can learn the identity function.
+
+16
+00:00:53,855 --> 00:00:56,555
+But now here's the catch.
+
+17
+00:00:56,555 --> 00:00:59,630
+As there are no direct connections between X and X',
+
+18
+00:00:59,630 --> 00:01:03,089
+all data has to pass through layer, Z.
+
+19
+00:01:03,089 --> 00:01:06,195
+Since layer, Z has less neurons than X,
+
+20
+00:01:06,195 --> 00:01:11,760
+all data needs to flow through this so-called neural bottleneck.
+
+21
+00:01:11,760 --> 00:01:14,750
+This leads to a sort of identity function which is
+
+22
+00:01:14,750 --> 00:01:19,245
+resistant to noise and doesn't learn any irrelevant data.
+
+23
+00:01:19,245 --> 00:01:21,800
+We will use autoencoders throughout the course,
+
+24
+00:01:21,800 --> 00:01:25,430
+but let me show you some simple applications of it.
+
+25
+00:01:25,430 --> 00:01:27,565
+Anomaly detection.
+
+26
+00:01:27,565 --> 00:01:30,915
+Since an autoencoder can't learn irrelevant data,
+
+27
+00:01:30,915 --> 00:01:35,115
+it would do a good job in learning the whole training set as good as possible.
+
+28
+00:01:35,115 --> 00:01:39,600
+So whenever data is shown to an autoencoder which it hasn't seen before,
+
+29
+00:01:39,600 --> 00:01:42,945
+it will do a best job in reconstructing it.
+
+30
+00:01:42,945 --> 00:01:44,805
+This can be used for anomaly detection.
+
+31
+00:01:44,805 --> 00:01:50,043
+Dimension reduction is one of the most famous unsupervised Machine Learning disciplines,
+
+32
+00:01:50,043 --> 00:01:54,830
+and prominent algorithms are PCA which stands for principle component analysis,
+
+33
+00:01:54,830 --> 00:02:00,365
+or t-SNE which is t-Distributed Stochastic Neighbor Embedding.
+
+34
+00:02:00,365 --> 00:02:03,905
+Whereas PCA is a linear consummation and therefore is less powerful,
+
+35
+00:02:03,905 --> 00:02:07,265
+t-SNE is a non-linear dimension reduction.
+
+36
+00:02:07,265 --> 00:02:12,383
+It has the interesting property that neighboring distances are preserved,
+
+37
+00:02:12,383 --> 00:02:18,065
+therefore it is very suited for 2D and 3D plots of high dimensional data.
+
+38
+00:02:18,065 --> 00:02:22,458
+Autoencoders are autoperforming t-SNE from optimization point of view,
+
+39
+00:02:22,458 --> 00:02:26,120
+therefore it is very interesting to use them for such tasks.
+
+40
+00:02:26,120 --> 00:02:29,140
+Now we've learned a lot about different neural network types.
+
+41
+00:02:29,140 --> 00:02:30,860
+We've learned that the weight matrix,
+
+42
+00:02:30,860 --> 00:02:33,024
+W is essential for learning and training,
+
+43
+00:02:33,024 --> 00:02:35,990
+but we have never learned how to actually come up with a good value
+
+44
+00:02:35,990 --> 00:02:39,100
+set for W. So let's cover this in the next lecture.

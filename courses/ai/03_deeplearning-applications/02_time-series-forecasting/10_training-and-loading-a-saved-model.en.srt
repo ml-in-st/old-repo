@@ -1,0 +1,219 @@
+1
+00:00:00,080 --> 00:00:03,330
+Welcome back. In the last session,
+
+2
+00:00:03,330 --> 00:00:07,846
+we have computed the number of parameters.
+
+3
+00:00:07,846 --> 00:00:16,427
+And now, we're going to show how to train stateful LSTM network.
+
+4
+00:00:16,427 --> 00:00:20,210
+Here, you see a loop,
+
+5
+00:00:20,210 --> 00:00:26,475
+which is going to the number of epochs.
+
+6
+00:00:26,475 --> 00:00:32,030
+We have defined the number of epochs as 120.
+
+7
+00:00:32,030 --> 00:00:36,315
+And within this loop,
+
+8
+00:00:36,315 --> 00:00:40,440
+we are calling fit method of the regressor.
+
+9
+00:00:40,440 --> 00:00:44,110
+So, for short reminder,
+
+10
+00:00:44,110 --> 00:00:46,540
+we have defined the regressor.
+
+11
+00:00:46,540 --> 00:00:48,200
+This is the model action.
+
+12
+00:00:48,200 --> 00:00:51,070
+Then we have compiled this model,
+
+13
+00:00:51,070 --> 00:00:58,610
+and this model class has a method fit.
+
+14
+00:00:58,610 --> 00:01:05,015
+We pass as arguments the train set, X train.
+
+15
+00:01:05,015 --> 00:01:08,671
+These are the input values.
+
+16
+00:01:08,671 --> 00:01:13,010
+Y train, these are the output values.
+
+17
+00:01:13,010 --> 00:01:18,255
+And then we have to say shuffle, false.
+
+18
+00:01:18,255 --> 00:01:28,615
+Why? This is why because we're dealing with sequences and if we would shuffle,
+
+19
+00:01:28,615 --> 00:01:37,954
+we would break the whole order of measurements,
+
+20
+00:01:37,954 --> 00:01:41,652
+so it will not shuffle.
+
+21
+00:01:41,652 --> 00:01:47,255
+Now, we have to define the number of epochs.
+
+22
+00:01:47,255 --> 00:01:53,170
+And here, we have to set the epochs equals
+
+23
+00:01:53,170 --> 00:02:00,360
+one because we will call this fit method for all 120 epochs.
+
+24
+00:02:00,360 --> 00:02:07,710
+And then we have to say batch size equal batch size.
+
+25
+00:02:07,710 --> 00:02:11,640
+Batch size, in our case, 64.
+
+26
+00:02:11,640 --> 00:02:13,875
+And then also very important,
+
+27
+00:02:13,875 --> 00:02:15,990
+we say, reset states.
+
+28
+00:02:15,990 --> 00:02:20,426
+So if the training is finished for an epoch,
+
+29
+00:02:20,426 --> 00:02:28,160
+we need to reset all states which are hidden state and cell state.
+
+30
+00:02:28,160 --> 00:02:31,455
+We would not do this.
+
+31
+00:02:31,455 --> 00:02:35,760
+We would take the states to the next epoch,
+
+32
+00:02:35,760 --> 00:02:37,400
+but we don't want this.
+
+33
+00:02:37,400 --> 00:02:43,120
+We want to start a new epoch freshly.
+
+34
+00:02:43,120 --> 00:02:51,965
+We want to initialize the state's with a zeroth.
+
+35
+00:02:51,965 --> 00:02:54,845
+I will not call this method because I have already
+
+36
+00:02:54,845 --> 00:03:00,795
+trained the model and
+
+37
+00:03:00,795 --> 00:03:05,520
+it would take some minutes but we don't need this.
+
+38
+00:03:05,520 --> 00:03:14,521
+I have stored the model on the system here and I can see where it's stored.
+
+39
+00:03:14,521 --> 00:03:18,540
+I can call exclamation mark and then I immediately have accessed
+
+40
+00:03:18,540 --> 00:03:22,860
+one line bash. And as I call this.
+
+41
+00:03:22,860 --> 00:03:28,115
+I see, okay, I have folder called Models,
+
+42
+00:03:28,115 --> 00:03:29,925
+and in this folder,
+
+43
+00:03:29,925 --> 00:03:31,410
+I have two models.
+
+44
+00:03:31,410 --> 00:03:37,345
+One where I have used mean
+
+45
+00:03:37,345 --> 00:03:44,020
+absolute error as a loss function and another one with a mean squared error.
+
+46
+00:03:44,020 --> 00:03:46,710
+So, in the later sessions,
+
+47
+00:03:46,710 --> 00:03:52,460
+we will see what is the difference in the prediction accuracy between those two.
+
+48
+00:03:52,460 --> 00:03:58,100
+And Keras provides the method, load model.
+
+49
+00:03:58,100 --> 00:04:02,554
+With this method, I can load stored model,
+
+50
+00:04:02,554 --> 00:04:06,360
+which I will do now.
+
+51
+00:04:06,360 --> 00:04:12,230
+It will take some seconds
+
+52
+00:04:12,230 --> 00:04:18,017
+and we see the model is loaded now.
+
+53
+00:04:18,017 --> 00:04:20,307
+So, stay tuned.
+
+54
+00:04:20,307 --> 00:04:21,400
+See you next time.
+
+55
+00:04:21,400 --> 00:04:23,450
+Enjoy. Bye bye.

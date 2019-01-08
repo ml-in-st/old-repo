@@ -1,0 +1,14 @@
+Hello, and
+welcome to this part of the ghost. My name is Max Pumperla and
+I'm a Deep Learning Engineer at Skymind. While my background is in pure
+mathematics; I've been in data science and in particular,
+deep learning for many years. I'm currently working on open-source
+machine learning software for the JBM such as the tensor library,
+and for the 4J and the deep learning framework,
+deep learning 4J. Also for which you will learn
+more about later in this series. In this part of the course, I will
+introduce you to a popular high level deep running library written
+in Python called Keras. I've been working with and contributing
+to Keras over the last few years and hope you would like it as much as I do. In the next few videos you will see
+how to quickly prototype deep learning models using Keras elegant and
+intuitive API, enjoy.

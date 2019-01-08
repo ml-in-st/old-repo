@@ -1,0 +1,149 @@
+Hi, in this example I'm going to
+demonstrate running Keras models in DL4J in
+the IBM Data Science Experience. And it's going to be
+a full end to end example. So the contents of this
+section are going to include Python to Java all in the IBM DSX. We're going to demonstrate
+a classification example. So I'm going to, use a simple
+classification example where we got four features and three classes,
+and a relatively small data file. But understand that the model we use
+to execute that in DL4J is generic. It will work with any
+classification example as long as the following
+requirements are met. The data has to be stored in
+comma separated value files. And it has to be a classification example. That's it. And then we get into DL4J we're
+going to demonstrate validation. But also note that the model
+could be trained in DL4J. So we'd have a choice of either
+training the model in Keras, in our notebook, or training the model
+in DL4J in Java on Spark or Java. So, All of the code that we're
+going to demonstrate and all the work that we're going to do here can be done on
+the IBM Data Science Experience platform. And the first step we're going to show
+is on the IBM Data Science Experience, we're going to build a Python Notebook. And in that Python Notebook, we're
+going to build and train a neural net. So once we have our
+Python Notebook in Keras, a typical route would be to train
+it in the data science experience. And then once we've trained it
+in the data science experience, we could save the model. And that's what we see
+over here on the right. Right, going from training
+in DSX to the saved model. But note that there's an alternative path. And that is where we could
+save just the configuration. So perhaps we do a proof of concept
+where we train it in Python but we have more resources in Spark. In that case we can take
+the saved configuration and as you'll see in the next
+slide train that in DSX. So from the Python notebook
+we have these two paths. Train in DSX, save the train model and
+import that into DL4J using our KerasModelImport functionality
+or write the code in the Python Notebook. Perhaps generate a proof-of-concept
+over a small sample set of data. And save just the configuration and
+then import that into DL4J for training. Once we have the model into DL4J, using
+DL4J's KerasModelImport functionality, note that we have an option of training
+it on Spark, or training it locally, just training it in Java,
+by executing Java locally. The path that I'm going to demonstrate
+in this code is the Spark path, executing it in Spark either for just
+inference or validation or training it. So let's walk through the code. We're going to be doing
+some classification. And it's going to involve comma
+separated values in a text file. Here's an example you
+may have seen before. We're using the Iris DataSet,
+4 features and 3 classes. So even though our initial example here is
+kind of like a Hello World, rather basic, note that the KerasModelImport
+functionality is generic, and would work with any
+classification example for a large number of classes,
+a large volume of data. So our data file looks like this. We have features, and then the last
+column here is zero, one or two. That is the class. So we have three classes of flowers and
+four features, four measurements of those flowers. So let's take a look at the Keras code. So I'm going to import numpy,
+import pandas, so some imports. We're going to be using Keras so
+we're going to use a feedforward network. So we'll need Sequential API. And we're going to do some
+classification and some label encoding. We set a random seed for
+reproducible results. That's right here. So we get a consistent random seed. And then we build a dataframe
+from reading that iris.csv file. Then we want to take the zero, ones, and two, and
+convert those to one-hot encoding. So we're going to encode those values. They could also have been text there, and this code would work as well,
+whether we have integers or text values. It's taking a string, determining
+the number of classes, and encoding that. So what we have at the end of this step. So we have our dummy_y and we have our x. So you see we split our
+dataset here into X and Y. Once we split it into X and
+Y, we manipulate Y. So we get dummy encoding also
+known as one hot encoding. So at the end of that code,
+we'll have the features file. Notice that we now just
+have the four features. And this is the dataset X. And the data set dummy_y
+will have the labels. And note that it's just one hot in coding,
+all 0's except for one, so this is class 0. This would be class one, and
+this would be class two. So that just shows you how the data is
+encoded for this example, here in Keras. That's called one hot or
+dummy encoding, for the labels. Then we build a model. So we add a dense layer,
+we add our output layer, for our three classes, specify the updater. Straightforward neural
+network configuration for a simple feedforward neural network. Then we train the model, and
+then we save the model, okay? So in this case we're doing what? We're saving the trained model. Note that the model could
+be trained further or we could have just saved
+the configuration to train that in DL4J. But in this case I am
+saving the trained model. So, this my_model.h5 file
+will be the data file that's loaded into DL4J
+in the next section. The DL4J code for this example
+is available here at this URL. And note that, that was just a single URL. I broke it into two lines so
+that it will display. So what we do in the DL4J code, and
+there's some boilerplate code and some imports that I didn't include, but the key features are,
+we create a MultiLayerNetwork. And the way we create that
+MultiLayerNetwork is not manually in DL4J, but by importing the KerasModel and
+weights that we saved previously. So when we execute this code, we'll be
+generating this modelFileName based upon a parameter that was passed
+to this code to load our model. So we're going to pass it our model. And this bit of code will
+take that model from Keras, and create a MultiLayerNetwork. Because we want to execute this in Spark
+using a Data Science Experience's Spark as a Service, we're going to need to set
+up a ParameterAveragingTrainingMaster. And so, what a training master does is,
+for the workers, when they each finish their forward pass and
+they update their weights, at some point, they need to share those weights so that
+they're all working towards the same goal. And in DL4J the tool that does
+that is the training master. And here, we're configuring
+a ParameterAveragingTrainingMaster. We need to create our Spark context. And these two lines of
+code here will do that. So we have our
+ParameterAveragingTrainingMaster, our model, and our Spark context. Now we need to tie them all together by
+creating a SparkDl4jMultiLayer network. And we pass this, our Spark configuration, that you saw
+configured in the previous slide. And then we pass it our network and the network you saw us
+create here previously. The network's generated by
+reading that Keras file. And then in addition to
+the Spark configuration and the network we need to
+specify our training master. Now we have all the pieces needed
+to execute this code in Spark. So when we execute this in Spark, we need
+to pass our executable our data file. And this training file gets
+passed to each of the workers. So what we do here is we're
+going to read that file. And then we're going to
+create a list from that file. And then from that list,
+we're going to create an RDD. That's a Resilient Distributive Dataset
+that Spark uses for parallel processing. So now we have everything needed
+to do parallel processing on Spark across this data file that we
+shipped up to the Spark cluster. And then we can train the network. So the code will take
+an optional train parameter. So if we wanted to train the network
+this code would take effect. All right, so we're calling sparkNet.fit
+on our dataset that we passed. Or we can just run an evaluation, right? If we're just using for inference,
+if we're just taking the model and only doing passing data in and
+getting the model's prediction. This code evaluates the network to
+make sure we're getting consistent, expected results. And that's all we'll do in
+the demonstration that I'll do next. I will not train the network in Spark,
+I'll train it in Keras. I will import the train network,
+pass it a data file, and do an evaluation of the predictions
+made by the neural net. So that's the deal for Jcode. That deal for Jcode has been bundled
+up and placed into this jar. So its been compiled and placed into this dl4j-snapshot.jar
+located at this location. So in your notebook you'd
+have to execute this command. Note that we're using
+!wget to escape Python and execute this as a shell command. This will download the file
+locally in your notebook. And once again, note that you could
+do this with your own example. Now, we built our model in our notebook. So when we save the model,
+the model will be saved locally. So, this my_model.h5 file
+will be available locally. We're also going to make sure that we
+have a copy of our iris.txt data file. So, that's going to be available. Note, in a previous slide
+I called that iris.csv. iris.txt is the correct name for
+that file. We're going to run spark-submit. Submit it to the training master that's
+made available to spark master, rather, that's made available
+in the DSX environment. Specify that we want to run this class. And that's the class of the code
+walkthrough I just did, the important Java pieces. That's the KerasModelImport,
+the Spark context and the Spark DL4J multilayer along
+with the training master. That class is in this jar. And then any options after the JAR
+apply to the class itself. So we're specifying the batch size,
+we're specifying where the label is. So in the case of our data file,
+we had feature, feature, feature, feature, four features,
+and then we had a label. So the label index in that case would
+be the fifth field starting at zero. That would be four. So you specify the labels
+are in the fourth column. We say that we don't want to train it. We just want to run inference,
+we want to run evaluation basically. Specify there's three classes. So this iris.txt file has three classes,
+three species of flowers. We need to ship my_model.h5 and
+specify my_model.h5 is the model to be loaded
+in that KerasModelImport. So right here, we need to make
+sure that that file is shipped. And then here we specify that this class
+right there, should be loading that file. And then specify the dataFileName. And once again, that needs to be
+available in the local directory of the executor's or
+the worker's, and that's it. So in the next section I'm going to actually demonstrate a code
+walk-through where I execute this code. Thank you.

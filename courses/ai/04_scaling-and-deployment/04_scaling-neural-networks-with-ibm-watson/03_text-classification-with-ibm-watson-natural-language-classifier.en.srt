@@ -1,0 +1,75 @@
+1
+00:00:00,000 --> 00:00:03,505
+So, let's have a look at the IBM Watson Natural Language Classifier.
+
+2
+00:00:03,505 --> 00:00:06,290
+So, this is a natural language processing service.
+
+3
+00:00:06,290 --> 00:00:10,290
+It's just based on deep learning and comes as a service in the cloud,
+
+4
+00:00:10,290 --> 00:00:13,145
+and again it's just the ReST API,
+
+5
+00:00:13,145 --> 00:00:16,770
+and we are seeing here a little demo user interface.
+
+6
+00:00:16,770 --> 00:00:19,580
+So, this is an already pre-trained classifier.
+
+7
+00:00:19,580 --> 00:00:23,440
+Of course, you can train the classifier on your own with your own data,
+
+8
+00:00:23,440 --> 00:00:27,170
+but this has been trained with weather-related data.
+
+9
+00:00:27,170 --> 00:00:30,105
+Let's ask a question,
+
+10
+00:00:30,105 --> 00:00:37,010
+and you see here the classifier is 100% confident that we are talking about temperature.
+
+11
+00:00:37,010 --> 00:00:38,565
+So, I assume the question,
+
+12
+00:00:38,565 --> 00:00:40,070
+"Should I prepare for sleet?"
+
+13
+00:00:40,070 --> 00:00:43,640
+will recite a condition, let's see.
+
+14
+00:00:43,640 --> 00:00:48,655
+Let's see here, you have 0.94% accuracy that we are talking about conditions.
+
+15
+00:00:48,655 --> 00:00:50,430
+So, this is just a little example.
+
+16
+00:00:50,430 --> 00:00:53,905
+So, you can train this classifier in the cloud using ReST API,
+
+17
+00:00:53,905 --> 00:00:58,620
+you don't care about the topology and parameterization of your neural network.
+
+18
+00:00:58,620 --> 00:01:00,930
+And it basically just works.
+
+19
+00:01:00,930 --> 00:01:04,650
+Okay? Let's see what we can do more, and

@@ -1,0 +1,65 @@
+Welcome to the lecture on Linear Algebra. So before we start,
+let's have a look at some important terms. Let's start with Scalar. Scalar is basically any number, like 1, 5, 23, or 42. But we are not limited to integers. Also, real numbers are scalars,
+like 23.5, for example. If you group a number of scalars together,
+you end up with a vector. This is a vector of length four. And this is one of length three. And this is one of length five. So vector can easily be
+confused with tuple. So this guy here can be either a vector or
+a tuple. But this is a tuple. Can you see the difference? So in a vector, each element has to have
+the same type, whereas in the tuple, types can be mixed. A Matrix is the big brother of a vector. It's basically a list
+of equal-sized vectors. Notice that the number of rows and columns can be different, but
+each element has to have the same type. A Matrix has n columns and m rows, therefore we call these
+matrices m- by- n matrices. So the left one is a 3- by- 4 matrix
+whereas the right one is a 2- by- 5 matrix. Finally, the coolest guy
+is called the Tensor. Here, you can see a 3D tensor which is
+basically nothing else like a matrix, but in three dimensions. Tensors can be quite handy in
+image processing, for example. So you can have one dimension for
+the height, one for the width, and one for colors, alpha channel, and
+focus information, for example. So a tensor is more general term for
+special cases. So, for example,
+a zero-dimensional tensor is a scalar, a one-dimensional tensor is a vector,
+a two-dimensional tensor is a matrix. So now, you can really show off
+in front of your colleagues by knowing all those terms. So, let's start with some math. The most important mathematical
+operation on tensors used in this course is multiplication. We can multiple two scalars, so
+let's start with two integers, 2 and 3. If you multiply them together we get 6. But we can also multiply two vectors. Note that the column-wise notation
+is the most common in math. This multiplication is
+called the dot product or scalar product because
+it returns a scalar. We won't cover the cross product or
+the vector product here. So that dot product simply takes
+the first element of the first vector and multiplies it with the first
+element of the second vector. Then it does the same for
+the second elements of the vectors. And finally the rest. So now, all those immediate
+products are summed up. And the reciting sum is
+the solution to the dot product. Generally speaking, a vector multiplication is
+a linear combination of those. This is very handy in deep learning,
+because one vector normally is used for the data, and one vector is used for the training weights,
+which you will see later. Using this notation, we can also make use
+of GPUs or SIMD instruction sets on CPUs. Note that both vectors need
+to be of the same size. We will use NumPy as central library for
+linear algebra in Python. So let's import it. Now, we create two vectors, A and B. Note, that those are implemented as
+one-dimensional NumPy arrays in Python. Now we'll use the dot method of
+the NumPy area object in order to do the calculation. Not only a multiplication between
+two vectors is defined, also, multiplication between a matrix and
+a vector. So just take the first element of the
+first row and column of the matrix, and multiply it with the first
+element of the vector. [BLANK AUDIO] And then put it as the first
+element of the restarting vector. Then repeat the steps for
+the second column's first element, and the second element of the vector. Finally, repeat the steps for
+the third column, first row of the matrix with
+the third element of the vector. And then, we repeat the same steps for
+the second row of the matrix. And then we sum up all those components. End result is a two element vector. So this is nothing else than two vector
+dot products calculated in one go. But the first vector is encoded in
+the first row of the matrix and the second vector in the second row. This is also very handy for SIMD or GPU instruction sets where we can speed
+up those calculations dramatically. Also, the notation becomes more concise. As long as the number of columns matches
+the number of elements in the vector, we can apply this calculation for
+arbitrary factors. Vector matrix multiplication
+is just a special case of matrix-matrix multiplication,
+but we do not need to cover this here. Let's implement a vector matrix
+multiplication in NumPy. We will start with the same vector,
+a and b, and turn it into a matrix using
+a two dimensional NumPy array. Now we can use the same
+overloaded dot method in order to calculate the matrix
+vector multiplication. Note that result is the same as two
+sequential vector-vector dot products. But now, this function is expressed
+in a single call which can be easily parallelized in an SIMD or
+GPU instruction set. So this was enough math for now. You should be able to understand
+most of the math in your networks. So let's get started with
+our first neural network.

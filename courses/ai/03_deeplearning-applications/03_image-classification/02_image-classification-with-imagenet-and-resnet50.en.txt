@@ -1,0 +1,41 @@
+So let's scale up our example a bit. They're using a convolutional neural
+network architecture which is known as ResNet-50. ResNet-50 is a 50-layer
+convolutional neural network with a special property that we
+are not strictly following the rule, that there are only connections
+between subsequent layers. So ResNet is using so called residual
+learning, the actual layers are skipping some connections and connecting to more
+downstream layers to improve performance. But details on that is beyond
+the scope of this course and luckily this class already provides us
+with a prepared and compiled model. We import an image router and
+some pre-imposed processing helpers. But it's getting even better. We are not only provided
+with a prepared model but we are also provided with
+a already trained model. So in this case we specify that
+we want to obtain the weights based on a training which has been
+done on the image net data set. So the image net data set is
+a pre-classified database with over 14 million images, and over 27 classes,
+and nearly 22,000 subclasses. Obviously, training a 50-layer neural
+network with 14 million images can take quite some time. So we're lucky that we
+can just download it. By the way,
+this process is called transfer learning, especially if you would further improve
+and train the model with our data. We will test this model with an elephant
+which I found in the Internet. We load this image and
+scale it down to 224 by 224 pixels. We turn this into a 3D array,
+also known as a 3D tensor, with 224 by 224 by 3 since we
+are working with a colored image. We now expand the shape to 1 by 224 by 224
+by 3 because usually we are expecting or we are throwing a bunch of
+images at a neural network but in this case we have only one,
+so the first dimension is one. Then we scale the image, then we normalize the data to range
+between minus one and plus one. Now it's time to predict the elephant. The output is a vector of size 1,000,
+so we're getting back a vector with class probabilities for
+1,000 classes which is not very handy. Therefore, we use 3D core predict method,
+and we get back the extra class labels as strings, in this case for
+the three best classes. Let's execute the and while it runs, let's
+look at the image which we are using. So this obviously is an elephant. We download the elephant and we rename it to elephant.jpeg
+because this name we are using here. So as you can see, with the probability
+of 93%, this is an African elephant. So this works pretty well. Note that in the original example,
+the authors used a different image, so most likely an image
+of an Indian elephant. Let's try something else. Let's try a bee. Okay, this looks more like fly,
+but let's see what happens. Okay, this was a quite difficult example. Even I thought this was a fly, me and
+the neuron have not agreed on this. So with a probability of 33% this is
+a fly, and with 26%, this is a bee. Anyway, I think you got the point and
+you see how easy things are getting. Especially if you are using all of your.

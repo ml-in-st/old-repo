@@ -1,0 +1,107 @@
+1
+00:00:00,000 --> 00:00:01,975
+Hi my name is Tom Hanlon.
+
+2
+00:00:01,975 --> 00:00:07,510
+I will be delivering the sections of this course that cover Deep Learning 4J.
+
+3
+00:00:07,510 --> 00:00:11,875
+Sometimes shortened to DL 4J.
+
+4
+00:00:11,875 --> 00:00:13,700
+And what DL 4J is,
+
+5
+00:00:13,700 --> 00:00:17,960
+is a tool kit for building neural networks using Java.
+
+6
+00:00:17,960 --> 00:00:21,105
+And although many data scientists work in Python,
+
+7
+00:00:21,105 --> 00:00:26,380
+the most widely used language in enterprise application space is Java.
+
+8
+00:00:26,380 --> 00:00:30,820
+So DL 4J aims to build a toolkit to focus on Java,
+
+9
+00:00:30,820 --> 00:00:36,214
+but also to help bridge that gap between Python and Java,
+
+10
+00:00:36,214 --> 00:00:39,085
+we provide a tool called Keras Model Import,
+
+11
+00:00:39,085 --> 00:00:43,665
+and this allows the loading of models that have been built in Keras using Python,
+
+12
+00:00:43,665 --> 00:00:48,390
+import them into DL 4J and deployed on the JVM,
+
+13
+00:00:48,390 --> 00:00:50,400
+in the Java environment.
+
+14
+00:00:50,400 --> 00:00:53,358
+In addition to the Keras Model Import,
+
+15
+00:00:53,358 --> 00:00:59,040
+some other features of DL 4J that I will be covering in this course will be executing DL
+
+16
+00:00:59,040 --> 00:01:02,546
+4J neural networks for either training or inference
+
+17
+00:01:02,546 --> 00:01:06,690
+where we just ask the neural net for its output on Sparke.
+
+18
+00:01:06,690 --> 00:01:10,170
+So in this courses I will be demonstrating Keras Model Import DL
+
+19
+00:01:10,170 --> 00:01:14,000
+4J execution on Sparke in
+
+20
+00:01:14,000 --> 00:01:18,075
+the IBM data science experience and also just
+
+21
+00:01:18,075 --> 00:01:23,110
+executing locally in Java on the data science experience.
+
+22
+00:01:23,110 --> 00:01:26,460
+If you wanted to learn more about DL 4J,
+
+23
+00:01:26,460 --> 00:01:30,525
+you can visit deeplearning4J.org for documentation,
+
+24
+00:01:30,525 --> 00:01:34,320
+examples and a quickstart guide that will help you set up
+
+25
+00:01:34,320 --> 00:01:38,620
+your java environment in intelliJ and IDE,
+
+26
+00:01:38,620 --> 00:01:44,345
+integrated developing environment to work with DL 4J directly.
+
+27
+00:01:44,345 --> 00:01:47,000
+Enjoy the course. Nice meeting you.

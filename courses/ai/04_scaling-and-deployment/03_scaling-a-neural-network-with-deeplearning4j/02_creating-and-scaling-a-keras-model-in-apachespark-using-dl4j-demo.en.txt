@@ -1,0 +1,120 @@
+All right, now that we've
+demonstrated what we intend to do, let's go ahead and do it. Let's go ahead and write a model
+classifier in Keras, save the model, input that model into DL4J and
+execute it on Spark. So first I'm going to
+create a new notebook. And I'm going to call this Coursera for
+the Coursera example, and create. So I've created a Python
+notebook with Spark. So the first thing we're
+going to need to do, is we're going to need to
+download our data file. And that data file is right here. So, I'm going to run wget and grab that file from this GitHub repo. When I've done that, ls should show it. Now that we see that it's there,
+let's go ahead and take a look at it. So we see the data file is
+as I described previously. A measurement, another measurement,
+another measurement, another measurement and
+then the class of the iris. And we some irises in class 0,
+irises in class 1, irises in class 2. So now we have the data file. Let's build a model. So we're going to be using Keras so
+there's some imports we need to include. And let's add those here in this cell. All right, so we're going to import NumPy, import Pandas and some additional imports. We're going to set a random seed for
+reproducibility. I'll put some new lines there so we get
+the data up in the middle of the screen. Now we're going to read
+that iris.txt file and create a data set of our features and
+a data set of our labels. So we're going to read the file, iris.txt,
+there is no header so every line is data. And then the x-data set is
+going to be our features. So the first four columns are going to
+be interpreted as floats. And the last one is an integer,
+in this case. This code would also work
+if it was text labels, because we transform
+that in the next example. So the last field here
+are these integers for the, Labels, for the classes. So let's take that dataset,
+the y dataset, the labels. And encode that using dummy encoding
+also called one-hot encoding. Basically we have three classes so
+that will be an array of three values, they'll all be zero's except for one. So class one will be 1,0,0,
+class two will be 0,1,0. And if you need to demonstrate that,
+or explore that a little bit you can go ahead and short circuit this code and
+print out dummy wide to the screen. Now let's build our model. So we're going to use
+a simple sequential model, a feed-forward neural net, right here. So our input has four features,
+so that defines our input layer. And our output has three classes,
+so that defines our output layer. So, a single hidden layer neural network,
+feed forward neural network. Now let's pass it our data So we want to say given this model,
+feed it our features, have it trained towards the goal
+of predicting the class. Which is stored in dummy_y. We're going to run it for 20 epics,
+that's 20 full passes through the data. And we're going to look at five examples per forward pass before
+we update our weights. And the next thing we want to do is,
+we want to save the model. So when the model completes, we want
+to write the model to a h5 archive, which is how Keras saves its model. So that's the full collection
+of our Python code. Let's go ahead and execute that sum. Just a warning about the changes upcoming. Lets us know we are using
+the Tensorflow backend. And there we see as it
+goes through each epic. We see it starts off with
+the accuracy of .66, largely random. And then it trains and improves. And when it's done we should see,
+That data file. So if we run ls. We should see that it's
+written my_model.h5. Excellent, so we've run our Keras model, it trained to an accuracy of 84. And now we're going to ship that
+saved model into that DL4J code. So the first thing we need to do is we
+need to download that compiled jar, that has the DL4J code to load the model. And you're welcome to
+go to this git-repo and take a complete look at that code This is larger, so
+it might take a little bit of time. While that's downloading I'm going to show
+you the code that we're going to execute. So in order to execute this code, we're
+going to do what we've done, similar. We need to execute a spark-submit script. And so spark-submit is available here. And then this is just a line
+continuation characters. So I don't have really long lines. So the data science experience
+environment provides a environmental variable that points us
+to this spark-submit. Spark-submit allows us to specify
+the class that we'd like to execute. And that's right here. So I want to run
+the KerasImportCSVSparkRunner. In order to get the data files uploaded
+to Spark, we use this files command. So that just says, take these files, ship them into Spark and make them available in the working directory
+of all of our workers for this job. So they'll be available for any of
+the workers that are working on this job Specify we want to submit it to
+the Spark Master that's defined in the environmental variable in the data
+science experience as $MASTER. And then we want to ship,
+This JAR file, so this is the JAR file
+that contains this class. All right?
+So this is the class we're going to execute. This is the JAR file
+that contains this class. This class, when it runs, is going to load
+the model that I just saved in Keras. And when it loads that model, it's going to do an evaluation against
+the data found in this iris.text file. So now we just need to tell
+our KerasImportCSVSparkRunner class the parameters
+that it needs to execute. When I run distributed training in Spark,
+I can specify the batch size per worker. This is just like specifying the
+batch-size on a non-distributed process. How many examples to view
+before we update our weights? And note that these options take a single
+dash whereas there's a previous options to take a double dash. But the main differentiators,
+they come after the jar file. So these are the options that will be
+passed to this class when it's executed. The class KerasImportCSVSparkRunner, has an option where I could specify
+that I wanted it to train, in Spark. I'm setting that to false. We're just going to do validation to
+verify that the network has imported correctly and
+we're getting expected results. As I've said previously,
+this is a generic example. So you could train it on
+a classification problem with 10 classes in a CSV file where the index
+lable was perhaps 10 or 11 or 12. All right?
+So you specify which column is the label and how many labels there are. So I encourage you to try
+perhaps your own example. The other option that we want to pass to, KerasImportCSVSparkRunner is
+the name of the model. Right?
+So this is the Keras model file let's specify here and here. So here we're saying ship this
+model file up into Spark. And here we're saying to this
+class load that model and create a DL4J model from that
+saved Keras configuration. Similar for the data file. We need to specify that we want. Once we've taken our model,
+loaded it into DL4J, configured a Spark training master,
+configured how to read the data file, that it goes ahead and
+reads that and does an evaluation. And that's it. So this command, this shell command
+started with the exclamation point will submit that jar right there to Spark. And when that charge is shipped to Spark,
+it'll say run this class. And that class will load
+this model specified here. That model will evaluate this file, and these are configuration options
+that say how to read that file. And this option just says, we're not
+going to train, just run an evaluation. So verify that our data file
+up above has downloaded. It has, let's go ahead and run this code. It may take some time. Understand we're shipping
+the jar to the Spark workers. And the Data Science Experience does
+provide the access to the Spark history server. There we go. So we're getting some logging output. But yeah, you can go take a look at the
+history of your jobs in the Spark history server, by going to
+the environment of your notebook. Let's just wait for that to make some progress. There we go. Spark is very verbose. So what we're looking for is the code that we're executing
+does an evaluation at the end. And we're looking for that evaluation, so we'll see it like a truth table, we'll
+class one was classified as class one. X number of times class
+two is classified as, so it'll show us the positives, show us the false positives and
+negatives etc. Show us how well the model did basically. So there we see the output
+from one of the workers. So we some information about memory
+use as the workers load the RDD or their subset of the RDD. So that they can process it. Now we see some farther progress. Excellent! So it completed. Similarly if we scrolled up and
+saw the accuracy of the Python example, we see similar accuracy, 82%. We could've trained it further. I just ran it through 20 epochs, just so
+it started to make some progress. So it did good with class 0,
+class 1, about 50-50. On class two it got correct. So it's having a little bit of trouble
+with probably the middle class right? Or actually more accurate it looks like
+one is similar to two in some way and it hasn't quite solved that relation yet. You could have trained it further and
+I believe it will get to higher accuracy. But we see here accuracy of 82, and
+if we scroll up to where we executed our Python, we see very similar accuracy. So there you have it. A full, end to end example of
+building a model in Keras, in the data science experience. Saving that model into
+the data science experience. And loading that model into
+DL4J to execute it on Spark in the IBM's data science experience. Thank you.

@@ -1,0 +1,343 @@
+1
+00:00:00,010 --> 00:00:02,940
+To invoke SystemML from command line,
+
+2
+00:00:02,940 --> 00:00:07,869
+the user has to provide the location of the ML script via -f option.
+
+3
+00:00:07,869 --> 00:00:11,105
+The command line and argument such as "$".
+
+4
+00:00:11,105 --> 00:00:15,780
+And now, can be parsed via -nvargs option.
+
+5
+00:00:15,780 --> 00:00:21,080
+The user can also specify the execution mode using -exec option.
+
+6
+00:00:21,080 --> 00:00:27,795
+In most cases, you will end up using hybrid_spark mode or hybrid mode.
+
+7
+00:00:27,795 --> 00:00:32,130
+Let's use the Linear Regression as an example and
+
+8
+00:00:32,130 --> 00:00:35,225
+consider three cases: In the first case,
+
+9
+00:00:35,225 --> 00:00:39,480
+the data resides in on HDFS or local file system.
+
+10
+00:00:39,480 --> 00:00:42,950
+In the second case, we'll assume that SystemML is part
+
+11
+00:00:42,950 --> 00:00:48,325
+the whole spark workflow and data is available as RDD or DataFrame.
+
+12
+00:00:48,325 --> 00:00:50,157
+In the third case,
+
+13
+00:00:50,157 --> 00:00:55,130
+we'll assume that SystemML is called by other Java program for scoring.
+
+14
+00:00:55,130 --> 00:00:57,620
+Hence, the data is available as Java double array.
+
+15
+00:00:57,620 --> 00:01:01,759
+The Linear Regression given here and available via this URL
+
+16
+00:01:01,759 --> 00:01:07,120
+takes at least three parameters: X,
+
+17
+00:01:07,120 --> 00:01:11,540
+Y and B. X refers to the location of input features,
+
+18
+00:01:11,540 --> 00:01:14,589
+Y refers to the location of the response variables,
+
+19
+00:01:14,589 --> 00:01:18,120
+and B refers to the location where
+
+20
+00:01:18,120 --> 00:01:23,825
+SystemML should store the estimated regression coefficient.
+
+21
+00:01:23,825 --> 00:01:28,910
+The first case can be further divided into three subcases.
+
+22
+00:01:28,910 --> 00:01:32,830
+The first subcase, the data resides
+
+23
+00:01:32,830 --> 00:01:36,850
+on local file system and the user wants to use single node backedn.
+
+24
+00:01:36,850 --> 00:01:39,420
+In the second subcase,
+
+25
+00:01:39,420 --> 00:01:41,760
+the data resides on HDFS,
+
+26
+00:01:41,760 --> 00:01:44,360
+and the user wants to use hadoop backend.
+
+27
+00:01:44,360 --> 00:01:47,090
+In the third subcase,
+
+28
+00:01:47,090 --> 00:01:47,790
+the data resized on HDFS again, and the user wants to use spark backend.
+
+29
+00:01:47,790 --> 00:01:55,783
+Let's examine the first subcase.
+
+30
+00:01:55,783 --> 00:02:02,652
+The other user invoke SystemML using Java by providing the DMLScript, using -f option.
+
+31
+00:02:02,652 --> 00:02:06,880
+And the named arguments X,
+
+32
+00:02:06,880 --> 00:02:11,625
+Y and B, are provided using -nvargs option.
+
+33
+00:02:11,625 --> 00:02:14,702
+It is important to note that the second command preserves algebraic rewrites,
+
+34
+00:02:14,702 --> 00:02:19,470
+but now also spawn local MR jobs.
+
+35
+00:02:19,470 --> 00:02:22,505
+If you want to run
+
+36
+00:02:22,505 --> 00:02:27,342
+the same Linear Regression script without a single line of change on a hadoop,
+
+37
+00:02:27,342 --> 00:02:31,940
+you'll invoke it with hadoop jar command.
+
+38
+00:02:31,940 --> 00:02:34,850
+The argument will remain exactly the same except in
+
+39
+00:02:34,850 --> 00:02:40,270
+this case you'll provide hybrid as the execution mode.
+
+40
+00:02:40,730 --> 00:02:47,030
+If you want to run the Linear Regression script on spark cluster,
+
+41
+00:02:47,030 --> 00:02:49,665
+you will use spark-submit command.
+
+42
+00:02:49,665 --> 00:02:54,035
+In this case, you may not provide -exec option,
+
+43
+00:02:54,035 --> 00:03:01,635
+as per SystemML will infer that you are running on spark cluster.
+
+44
+00:03:01,635 --> 00:03:03,575
+Now let's examine the second case.
+
+45
+00:03:03,575 --> 00:03:06,960
+Where SystemML is part of a spark workflow and data is available as
+
+46
+00:03:06,960 --> 00:03:11,665
+an RDD or a DataFrame.
+
+47
+00:03:11,665 --> 00:03:16,890
+Here, you can use the MLContext API that offers a programmer tech interface
+
+48
+00:03:16,890 --> 00:03:22,380
+for interacting with SystemML from spark using languages such as Scala, Java, and Python.
+
+49
+00:03:22,380 --> 00:03:25,540
+MLContext API allows the users to registers RDD's and DataFrame
+
+50
+00:03:25,540 --> 00:03:32,890
+as input and output variables of a DMLScript.
+
+51
+00:03:32,890 --> 00:03:40,490
+This enables SystemML to seamlessly integrate into a entire spark ecosystem.
+
+52
+00:03:40,490 --> 00:03:46,550
+A MLContext object can be created by parsing its constructor,
+
+53
+00:03:46,550 --> 00:03:50,610
+a reference of spark context or spark session.
+
+54
+00:03:50,610 --> 00:03:58,760
+This ScripFactory class allows a DMLScript to be created from strings,
+
+55
+00:03:58,760 --> 00:04:01,390
+files, URL's and input strings.
+
+56
+00:04:01,390 --> 00:04:08,370
+Here, we will use DML from file method to create the script object.
+
+57
+00:04:08,370 --> 00:04:15,720
+The input RDD X can be part using the inner input command.
+
+58
+00:04:15,720 --> 00:04:20,250
+Finally, we execute the script using the execute method of MLContext object.
+
+59
+00:04:20,250 --> 00:04:29,240
+The Python MLContext is similar to the Scala MLContext discribed earlier.
+
+60
+00:04:29,240 --> 00:04:36,900
+SystemML's Python package is available on PyPi and can be installed using "pip" command.
+
+61
+00:04:36,900 --> 00:04:43,690
+MLLearn API allows a Python programmer
+
+62
+00:04:43,690 --> 00:04:50,970
+to invoke SystemML's algorithm using a scikit-learn like API or Spark's ML pipeline API.
+
+63
+00:04:50,970 --> 00:04:54,260
+Hence, the input data can be a NumPy array,
+
+64
+00:04:54,260 --> 00:04:57,000
+Scipy array, a Panda DataFrame,
+
+65
+00:04:57,000 --> 00:04:59,595
+or a Spark DataFrame.
+
+66
+00:04:59,595 --> 00:05:05,560
+Since these API conforms to the ML pipelines estimator interface,
+
+67
+00:05:05,560 --> 00:05:09,790
+they can be used in tandem with MLLearn's feature extractors,
+
+68
+00:05:09,790 --> 00:05:12,990
+transformers, coding and cross validation classes.
+
+69
+00:05:12,990 --> 00:05:19,877
+The use of force created Linear Regression object given here,
+
+70
+00:05:19,877 --> 00:05:22,970
+and then invokes fit and predict method.
+
+71
+00:05:22,970 --> 00:05:30,270
+This shows the ML pipeline-like API where the input to the fit method is the DataFrame,
+
+72
+00:05:30,270 --> 00:05:34,730
+and the next shows
+
+73
+00:05:34,730 --> 00:05:37,970
+the scikit-like API where the input to the fit method are two NumPy arrays.
+
+74
+00:05:37,970 --> 00:05:47,730
+There are three different ways to implement a deep learning modeling system.
+
+75
+00:05:47,730 --> 00:05:50,625
+Using a DML bodied ML library,
+
+76
+00:05:50,625 --> 00:05:53,514
+using the experimental Caffe2DML API,
+
+77
+00:05:53,514 --> 00:05:58,810
+and using the experimental Keras2DML API.
+
+78
+00:05:58,810 --> 00:06:00,546
+Keras2DML API and Caffe2DML API are instances of
+
+79
+00:06:00,546 --> 00:06:04,777
+the MLLearn library we discussed earlier.
+
+80
+00:06:04,777 --> 00:06:08,800
+Hence, they have fit and predict method and can
+
+81
+00:06:08,800 --> 00:06:15,570
+take a Numpy array or a Spark DataFrame as input.
+
+82
+00:06:15,570 --> 00:06:25,111
+Underneath, Keras2DML API takes a keras_model and generates an equivalent DML script.
+
+83
+00:06:25,111 --> 00:06:33,080
+Similarly, Caffe2DML takes, as an input,
+
+84
+00:06:33,080 --> 00:06:36,575
+a deep learning model expressed in caffe format and generates
+
+85
+00:06:36,575 --> 00:06:42,197
+underneath the equivalent DML script.
+
+86
+00:06:42,197 --> 00:06:46,000
+We will skip the JMLC's coding API in this video.

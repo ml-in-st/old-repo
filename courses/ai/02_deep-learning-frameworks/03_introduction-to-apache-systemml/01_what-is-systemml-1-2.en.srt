@@ -1,0 +1,205 @@
+1
+00:00:00,500 --> 00:00:02,970
+In this video,
+I will explain how to use SystemML.
+
+2
+00:00:05,880 --> 00:00:10,870
+SystemML provides a R-like language
+called Declarative Machine Learning,
+
+3
+00:00:10,870 --> 00:00:16,390
+or DML, for data scientists to
+implement machine learning algorithm.
+
+4
+00:00:16,390 --> 00:00:18,630
+Here is a sample of DML script.
+
+5
+00:00:18,630 --> 00:00:23,588
+In this script, we generate a random
+matrix X, with 1,000 cols and
+
+6
+00:00:23,588 --> 00:00:24,902
+sparsity 0.5.
+
+7
+00:00:24,902 --> 00:00:30,750
+The number of rows is provided by
+the user using the dollar parameter nr.
+
+8
+00:00:31,760 --> 00:00:36,030
+We then multiply the matrix X with
+the transpose and compute the sum.
+
+9
+00:00:37,560 --> 00:00:41,402
+It is important to note that DML
+simply simplifies the development and
+
+10
+00:00:41,402 --> 00:00:44,150
+deployment of the machine
+learning algorithms.
+
+11
+00:00:44,150 --> 00:00:47,834
+It does so,
+by separating algorithm semantics from
+
+12
+00:00:47,834 --> 00:00:52,530
+the underlying data representation and
+runtime execution plan.
+
+13
+00:00:55,275 --> 00:01:00,800
+DML is expressive enough to cover
+a broad class of algorithms.
+
+14
+00:01:00,800 --> 00:01:06,370
+Such as Descriptive Statistics,
+Classification, Clustering,
+
+15
+00:01:06,370 --> 00:01:10,830
+Regression, Matrix Factorization,
+Dimensionality Reduction,
+
+16
+00:01:10,830 --> 00:01:13,070
+Survival Model, and Deep Learning.
+
+17
+00:01:14,520 --> 00:01:18,670
+These algorithms are pre-packaged with
+SystemML and available on GitHub.
+
+18
+00:01:20,380 --> 00:01:26,850
+SystemML also supports commonly used data
+transformation task such as recording,
+
+19
+00:01:26,850 --> 00:01:31,500
+demicording, bending, scaling,
+and missing values imputation.
+
+20
+00:01:34,010 --> 00:01:38,612
+SystemML has a cost less compiler
+that automatically generates
+
+21
+00:01:38,612 --> 00:01:41,610
+hybrid runtime execution plans.
+
+22
+00:01:41,610 --> 00:01:46,040
+That are composed of single node and
+distributed operations.
+
+23
+00:01:46,040 --> 00:01:51,970
+These plans are generated depending
+on data and cluster characteristics,
+
+24
+00:01:51,970 --> 00:01:56,920
+such as data size, data sparsity,
+cluster size and memory configuration.
+
+25
+00:01:58,260 --> 00:02:02,480
+In our previous example,
+if the user specifies a small linear,
+
+26
+00:02:02,480 --> 00:02:06,060
+then SystemML might compile
+a single node plan.
+
+27
+00:02:06,060 --> 00:02:06,872
+On the other hand,
+
+28
+00:02:06,872 --> 00:02:11,700
+if linear is large, then SystemML
+might compile Hadoop or a Spark plan.
+
+29
+00:02:13,300 --> 00:02:14,540
+The language component
+
+30
+00:02:15,610 --> 00:02:20,559
+passes the DML script into a hierarchy
+of statement blocks and statements.
+
+31
+00:02:21,810 --> 00:02:26,760
+It also performs syntactic analysis,
+live variable analysis, and
+
+32
+00:02:26,760 --> 00:02:27,880
+semantic validation.
+
+33
+00:02:29,030 --> 00:02:34,560
+We then construct a directed cyclic
+graph of high-level operators,
+
+34
+00:02:34,560 --> 00:02:36,530
+called as HOPs, per statement.
+
+35
+00:02:37,740 --> 00:02:42,793
+SystemML optimizer performs various
+optimizations on this HOP DAGs.
+
+36
+00:02:42,793 --> 00:02:46,413
+For example,
+algebraic simplifications rewrite,
+
+37
+00:02:46,413 --> 00:02:51,830
+interprocedural analysis, and
+matrix multiplication chain optimization.
+
+38
+00:02:51,830 --> 00:02:59,140
+Each HOP DAG is compiled into a dug up
+low level operators called a slopes,
+
+39
+00:02:59,140 --> 00:03:02,019
+based on memory estimation,
+data and cluster characteristics.
+
+40
+00:03:03,610 --> 00:03:06,606
+Loops are back in specific operator and
+
+41
+00:03:06,606 --> 00:03:12,158
+have corresponding real-time
+implementation called instructions.
+
+42
+00:03:14,710 --> 00:03:19,520
+SystemML runs in an embeddable,
+standalone, and in cluster mode.
+
+43
+00:03:20,810 --> 00:03:24,920
+It also supports various APIs in Scala,
+Python, and Java.

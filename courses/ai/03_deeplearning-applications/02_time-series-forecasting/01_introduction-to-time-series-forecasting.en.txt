@@ -1,0 +1,26 @@
+I'm very excited to welcome
+you to our training session on Sequence Prediction with Keras and LSTM. First of all, we need, of course, data. And I have decided that we can go to FRED, the Federal Reserve Bank on St. Louis. And download here Crude Oil Prices for oil Brent in Europe. This data is measured since 1987, and we can download the entire data set, what I have already done. We can have a first look at this data. We see that it has several peaks, one was in September 1990. And the biggest one in June 2008, then it went down, then it went up, and so on, and so on, and so on. This data, we can download
+by clicking on this button, and then we can import it into
+our development environment. And here, we have to upload the data
+into the Cloud Object Storage. We are using
+Cloud Object Storage to ensure that the data is located
+in merged environment. As you'll see,
+I have already uploaded the data. This is very simple. You'll click on browse here. And it will be uploaded, and
+then you click on Insert to Code. It will insert some lines of code and
+in the end, if you execute this code, you are getting the data
+as a Pandas DataFrame. You see it has two columns, it has 7,993 rows. And here,
+I have to mention the data source, that the data is coming from
+US Energy Information Administration. In the first step, we have to do
+some minor data pre-processing. And this is because the data
+contains some innate rules. And in the CC file,
+every time where the innate is in the data,
+they have put a point in it, so we have to remove all those points. What we can do now, and we can see,
+if you bring the shape, we can see that around
+200 rows were removed. First, what we can do, we can print out,
+we can visualize our data. And this is done by calling plot function. And here, we can see similar
+representation of the data, as we've already seen on
+the home page of FRED, a Federal Reserve Bank,
+all those peaks and so on, and so on. And yes, with this we
+are finishing the data upload part. And we are looking forward to
+see you in the next section. Stay tuned, and
+enjoy sequence prediction, bye-bye.

@@ -1,0 +1,34 @@
+Let's load the diabetes
+dataset from scikit-learn. To visualize the dataset,
+we use Macro List scatter plot. The training data points
+are colored black, and the test data points are colored red. The x-axis denotes the input features,
+and the y-axis denotes the response. As you can see,
+the response values are between 0 and 400. Our goal here is to train a linear
+regression model which attempts to find a line somewhere here. Which we can then use to
+predict the response value which is this given the input features. In data cell, we'll denote the slope
+of this line by the V W and the intercept with biased B. Before we dive into
+the linear regression code, let's look at a couple of preliminaries. The built-in function solve computes
+the least squares solution, Ax = b, such that the norm,
+Ax- b, is minimized. It is important to note that
+this function can operate only on small to medium
+sized input matrix. Linear regression model assumes
+that the relationship between input feature and
+the response variable is linear. The goal, then, is to estimate
+the regression coefficient w. We use the square loss,
+given here differentiating the loss with respect to w,
+we get this expression. We set this expression to 0 and
+we arrive at the expression given here. The expression here can be computed
+using solve built in function, where A is x is transpose x and
+b is x transpose y. The dml script for
+linear regression done as simply a solve function,
+by first setting a and b. Setting a to x transpose x,
+and b to x transpose y. Since we don't know whether the line
+passes through the origin, we add a bias. This is done by first appending and
+solve it all ones, using cbind function. For training,
+we need to pass the values for the variables x and
+y using the input method. In this case, x is the NumPy matrix,
+diabetes_x_train, and y is the NumPy matrix,
+diabetes_y_train. Since we want to find the line with
+the slope w and intercept bias, we mark the WM bias as output and
+we get democratic seclusion. Now that we have WM bias
+let's plot the line on our scikit scatter plot which is this.

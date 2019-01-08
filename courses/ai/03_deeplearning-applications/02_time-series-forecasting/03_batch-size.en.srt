@@ -1,0 +1,263 @@
+1
+00:00:00,000 --> 00:00:03,765
+Welcome back. Today, we are going to
+
+2
+00:00:03,765 --> 00:00:10,915
+discuss a very important topic which is the Batch-size.
+
+3
+00:00:10,915 --> 00:00:14,570
+As we earlier have discussed,
+
+4
+00:00:14,570 --> 00:00:20,036
+we use batches to train LSTMs.
+
+5
+00:00:20,036 --> 00:00:26,710
+But now, which batch-size to select?
+
+6
+00:00:26,710 --> 00:00:28,932
+So, what could it be?
+
+7
+00:00:28,932 --> 00:00:31,950
+It could be one, or probably six,
+
+8
+00:00:31,950 --> 00:00:36,345
+or 12, or 64, or 100.
+
+9
+00:00:36,345 --> 00:00:38,540
+What is the optimum?
+
+10
+00:00:38,540 --> 00:00:42,635
+This is a very important decision because
+
+11
+00:00:42,635 --> 00:00:49,405
+as you will see and especially in the programming assignments,
+
+12
+00:00:49,405 --> 00:00:58,128
+you are going to see how strongly it impacts the prediction accuracy.
+
+13
+00:00:58,128 --> 00:01:07,103
+Now, just imagine you don't know nothing about this world,
+
+14
+00:01:07,103 --> 00:01:11,330
+you would like to learn what the bird is.
+
+15
+00:01:11,330 --> 00:01:15,460
+So, how to distinguish a bird from
+
+16
+00:01:15,460 --> 00:01:21,370
+all other animals or all other things which you are seeing around you.
+
+17
+00:01:21,370 --> 00:01:30,225
+And you learned that as a child like you have never seen a bird.
+
+18
+00:01:30,225 --> 00:01:38,215
+So now, you are shown images of birds,
+
+19
+00:01:38,215 --> 00:01:43,280
+and there are two modes how can you learn.
+
+20
+00:01:43,280 --> 00:01:47,590
+For example, this is just example, just a game.
+
+21
+00:01:47,590 --> 00:01:56,515
+And the first mode you will be presented one image at the time.
+
+22
+00:01:56,515 --> 00:01:58,560
+So you see one image,
+
+23
+00:01:58,560 --> 00:02:02,545
+one bird image, then you make your notes,
+
+24
+00:02:02,545 --> 00:02:09,015
+you identify special bird qualities,
+
+25
+00:02:09,015 --> 00:02:13,243
+and this is what this meaning setting weights.
+
+26
+00:02:13,243 --> 00:02:18,305
+So, you are actually weighting some properties as
+
+27
+00:02:18,305 --> 00:02:24,895
+very important for a bird like intrinsic properties,
+
+28
+00:02:24,895 --> 00:02:28,495
+or you'll say, "Okay.
+
+29
+00:02:28,495 --> 00:02:31,675
+This is property common for other things,
+
+30
+00:02:31,675 --> 00:02:34,079
+so it's not a bird special."
+
+31
+00:02:34,079 --> 00:02:37,265
+So, you'll see one image of a bird,
+
+32
+00:02:37,265 --> 00:02:40,265
+make your notes, then you see another image,
+
+33
+00:02:40,265 --> 00:02:43,080
+and another image, and another image.
+
+34
+00:02:43,080 --> 00:02:44,680
+Another mode would be,
+
+35
+00:02:44,680 --> 00:02:50,010
+you will be presented several images at a time.
+
+36
+00:02:50,010 --> 00:02:55,705
+Let's say, five, not too much, maybe 10.
+
+37
+00:02:55,705 --> 00:02:59,800
+And then you see all those 10 images,
+
+38
+00:02:59,800 --> 00:03:07,605
+and you are going immediately recognize some similarities between those creatures.
+
+39
+00:03:07,605 --> 00:03:11,240
+You're going to see that they have feathers,
+
+40
+00:03:11,240 --> 00:03:14,743
+and so on, and so on at one time.
+
+41
+00:03:14,743 --> 00:03:20,625
+So, you have all those samples and you can compare,
+
+42
+00:03:20,625 --> 00:03:23,370
+and you can learn much faster,
+
+43
+00:03:23,370 --> 00:03:26,237
+and much more efficient.
+
+44
+00:03:26,237 --> 00:03:29,226
+This is for humans.
+
+45
+00:03:29,226 --> 00:03:36,070
+And as by our experience,
+
+46
+00:03:36,070 --> 00:03:43,660
+is this similar to machines especially for such networks as LSTMs,
+
+47
+00:03:43,660 --> 00:03:48,210
+also for CNN's for convolutional neural networks.
+
+48
+00:03:48,210 --> 00:03:56,240
+It is important to provide a batch-size which
+
+49
+00:03:56,240 --> 00:04:05,600
+is for the machine optimal to learn the underlying pattern.
+
+50
+00:04:05,600 --> 00:04:09,600
+And as by our experience,
+
+51
+00:04:09,600 --> 00:04:18,468
+a batch-size is around 60 to 80 are in most cases optimal.
+
+52
+00:04:18,468 --> 00:04:24,774
+And therefore, we're going to select a batch-size of 64.
+
+53
+00:04:24,774 --> 00:04:28,355
+It doesn't have to be 64 or 62,
+
+54
+00:04:28,355 --> 00:04:34,845
+just common to select such numbers like 32,
+
+55
+00:04:34,845 --> 00:04:39,760
+and so on divided by eight.
+
+56
+00:04:39,760 --> 00:04:46,230
+It's not imperative but, okay.
+
+57
+00:04:46,230 --> 00:04:54,085
+So, we're going to select the batch of size 64.
+
+58
+00:04:54,085 --> 00:04:59,090
+And later on, we will see in programming assignments what is going
+
+59
+00:04:59,090 --> 00:05:04,230
+to happen if you use batch of size six, for example.
+
+60
+00:05:04,230 --> 00:05:07,310
+This is interesting.
+
+61
+00:05:07,310 --> 00:05:08,590
+First of all,
+
+62
+00:05:08,590 --> 00:05:13,670
+you will see that the performance if you train your neural network,
+
+63
+00:05:13,670 --> 00:05:16,824
+you will see it will take much more time.
+
+64
+00:05:16,824 --> 00:05:23,705
+But is it impacting the performance positively or negatively?
+
+65
+00:05:23,705 --> 00:05:26,680
+You are going to figure out in your programming assignments.
+
+66
+00:05:26,680 --> 00:05:30,340
+So, stay tuned, until the next time. Bye bye.

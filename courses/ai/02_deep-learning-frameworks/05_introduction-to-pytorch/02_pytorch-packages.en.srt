@@ -1,0 +1,131 @@
+1
+00:00:00,000 --> 00:00:02,715
+Welcome back. In the last session,
+
+2
+00:00:02,715 --> 00:00:07,037
+we have briefly discussed how to install PyTorch.
+
+3
+00:00:07,037 --> 00:00:14,950
+Today we're going to look at the most important PyTorch libraries.
+
+4
+00:00:14,950 --> 00:00:20,275
+First of all, this is the torch library,
+
+5
+00:00:20,275 --> 00:00:26,005
+which is actually the Tensor library of PyTorch.
+
+6
+00:00:26,005 --> 00:00:30,400
+This library is very similar to NumPy.
+
+7
+00:00:30,400 --> 00:00:34,717
+The second one is the torch-autograd library.
+
+8
+00:00:34,717 --> 00:00:40,000
+This is at tape-based automatic differentiation library.
+
+9
+00:00:40,000 --> 00:00:43,430
+What is the meaning of this tape-based and automatic?
+
+10
+00:00:43,430 --> 00:00:49,038
+We're going to see in our next sessions.
+
+11
+00:00:49,038 --> 00:00:52,068
+Here I have torch.nn.
+
+12
+00:00:52,068 --> 00:00:55,970
+This is a neural network library.
+
+13
+00:00:55,970 --> 00:01:04,090
+We are not going to build up a neural network in this introductory sessions.
+
+14
+00:01:04,090 --> 00:01:09,215
+But it's important to know that this library
+
+15
+00:01:09,215 --> 00:01:15,260
+is actually the most important if you would like to build neural network.
+
+16
+00:01:15,260 --> 00:01:20,480
+And here the last one is the torch optim library.
+
+17
+00:01:20,480 --> 00:01:25,340
+This is a torch optimization library which
+
+18
+00:01:25,340 --> 00:01:30,905
+contains all those famous algorithms,
+
+19
+00:01:30,905 --> 00:01:36,350
+optimization algorithms like SGD, Stochastic Gradient Descent,
+
+20
+00:01:36,350 --> 00:01:41,030
+RMSProp, Adam, and so on which we
+
+21
+00:01:41,030 --> 00:01:46,240
+all know from in other frameworks like Keras, and TensorFlow, and so on.
+
+22
+00:01:46,240 --> 00:01:49,590
+So just execute the cell.
+
+23
+00:01:49,590 --> 00:01:53,375
+And it says here a manual seed.
+
+24
+00:01:53,375 --> 00:01:58,060
+And I see everything is fine executed.
+
+25
+00:01:58,060 --> 00:02:02,905
+I just wanted to mention that all those introductory sessions,
+
+26
+00:02:02,905 --> 00:02:10,821
+I'm basing actually on official Pytorch documentation.
+
+27
+00:02:10,821 --> 00:02:19,415
+But I will try to give you a little bit more insight in what is the meaning of,
+
+28
+00:02:19,415 --> 00:02:24,090
+especially if we are speaking about high dimensional arrays,
+
+29
+00:02:24,090 --> 00:02:29,598
+and we're talking about autograd and so on,
+
+30
+00:02:29,598 --> 00:02:31,390
+it could be a little bit confusing.
+
+31
+00:02:31,390 --> 00:02:34,840
+So with this introductory session,
+
+32
+00:02:34,840 --> 00:02:38,875
+I think everything will be fine.
+
+33
+00:02:38,875 --> 00:02:43,790
+And stay tuned and see you in the next session. Bye bye.

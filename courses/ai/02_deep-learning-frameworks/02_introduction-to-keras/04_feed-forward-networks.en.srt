@@ -1,0 +1,387 @@
+1
+00:00:00,730 --> 00:00:04,045
+In this video, you're going to learn to implement
+
+2
+00:00:04,045 --> 00:00:06,400
+feed-forward networks with Keras and
+
+3
+00:00:06,400 --> 00:00:10,550
+build a little application to predict handwritten digits.
+
+4
+00:00:10,550 --> 00:00:14,675
+In the introduction to deep learning in this course,
+
+5
+00:00:14,675 --> 00:00:18,735
+you've learned about multi-layer perceptrons or MLPs for short.
+
+6
+00:00:18,735 --> 00:00:23,374
+These kinds of networks are also sometimes called densely-connected networks.
+
+7
+00:00:23,374 --> 00:00:26,300
+And to build them, we essentially have to sack layers
+
+8
+00:00:26,300 --> 00:00:33,675
+of so-called dense layers on top of each other with activations.
+
+9
+00:00:33,675 --> 00:00:40,073
+A technique that we're going to use for regularization is called a Dropout,
+
+10
+00:00:40,073 --> 00:00:46,830
+and we build Keras Dropout layers into our network to achieve that.
+
+11
+00:00:46,830 --> 00:00:52,035
+We then build a sequential model from both Dense and Dropout layers
+
+12
+00:00:52,035 --> 00:00:58,845
+to arrive at a application.
+
+13
+00:00:58,845 --> 00:01:00,971
+Okay, let's start with Dense layers.
+
+14
+00:01:00,971 --> 00:01:02,235
+To initialize the Dense layer,
+
+15
+00:01:02,235 --> 00:01:04,585
+we'll have to do a few things.
+
+16
+00:01:04,585 --> 00:01:08,480
+First off, you always have to specify the number of output neurons or
+
+17
+00:01:08,480 --> 00:01:13,615
+units that the layer is going to have.
+
+18
+00:01:13,615 --> 00:01:16,030
+Secondly, usually, you want
+
+19
+00:01:16,030 --> 00:01:18,977
+to provide an activation function. So, if you don't, there won't be any.
+
+20
+00:01:18,977 --> 00:01:21,494
+Okay.
+
+21
+00:01:21,494 --> 00:01:26,205
+So, there's None right there as a default keyword.
+
+22
+00:01:26,205 --> 00:01:28,740
+And if you want to have a Sigmoid,
+
+23
+00:01:28,740 --> 00:01:30,975
+then simply put the name Sigmoid there,
+
+24
+00:01:30,975 --> 00:01:33,630
+or [inaudible] , whatever you like.
+
+25
+00:01:33,630 --> 00:01:38,975
+The third argument is use_bias which set to true,
+
+26
+00:01:38,975 --> 00:01:42,267
+which indicates that we are using a bias term.
+
+27
+00:01:42,267 --> 00:01:46,940
+And you probably shouldn't touch that unless you know what you're doing.
+
+28
+00:01:46,940 --> 00:01:52,810
+And the last two keywords in this signature are the kernel_initializer and
+
+29
+00:01:52,810 --> 00:01:58,890
+the bias_initializer which are set to specific initialization that meets,
+
+30
+00:01:58,890 --> 00:02:02,960
+so the kernel, or the weights of this dense layer are set to
+
+31
+00:02:02,960 --> 00:02:08,470
+glorot_uniform initialization and the bias's are simply set to zero.
+
+32
+00:02:08,470 --> 00:02:12,575
+So, unless you know a lot about
+
+33
+00:02:12,575 --> 00:02:16,965
+initialization which we don't really cover in this lecture here,
+
+34
+00:02:16,965 --> 00:02:23,615
+you probably shouldn't touch many of the keywords that are provided in Keras for you.
+
+35
+00:02:23,615 --> 00:02:28,375
+So Dropout layers are much easier to specify.
+
+36
+00:02:28,375 --> 00:02:31,285
+Actually, you just have to specify rate.
+
+37
+00:02:31,285 --> 00:02:34,510
+Meaning, a value between zero and one,
+
+38
+00:02:34,510 --> 00:02:40,145
+which indicates the fraction of units to drop in each forward pass.
+
+39
+00:02:40,145 --> 00:02:48,150
+If you want, you can also specify random seed for reproducibility.
+
+40
+00:02:48,150 --> 00:02:51,595
+All right, let's move on to a building, an actual application.
+
+41
+00:02:51,595 --> 00:02:57,585
+We're going to use the mnist dataset of hundred digits.
+
+42
+00:02:57,585 --> 00:03:04,280
+The mnist datasets consist of 60,000 train sample and 10,000 samples for tests.
+
+43
+00:03:04,280 --> 00:03:14,180
+And each individual sample is a 28 by 28 image which has a handwritten digits on it.
+
+44
+00:03:14,180 --> 00:03:22,365
+The labels are simply encoded as the actual digits, 0-9.
+
+45
+00:03:22,365 --> 00:03:25,555
+So to built this application, you first,
+
+46
+00:03:25,555 --> 00:03:33,210
+import the mnist dataset from Keras and also import the [inaudible] function of these later on.
+
+47
+00:03:33,210 --> 00:03:35,595
+And our sequential model,
+
+48
+00:03:35,595 --> 00:03:43,603
+and the two layers that we're going to use, Dense and Dropout.
+
+49
+00:03:43,603 --> 00:03:46,230
+Okay. The first thing, we specify here is the batch_size.
+
+50
+00:03:46,230 --> 00:03:49,135
+And we set it to 128.
+
+51
+00:03:49,135 --> 00:03:54,930
+This batch_size will be used in the forward pass and also for the predictions.
+
+52
+00:03:54,930 --> 00:03:59,612
+The number of classes is the number of digits there are [inaudible].
+
+53
+00:03:59,612 --> 00:04:05,210
+And we are going to train on that for 20 epochs in total.
+
+54
+00:04:05,210 --> 00:04:09,313
+So, and something what we have to do to load data is called,
+
+55
+00:04:09,313 --> 00:04:16,740
+mnist.load_data to retrieve training and test features and [inaudible].
+
+56
+00:04:16,740 --> 00:04:21,404
+Okay. Next step is data pre-processing.
+
+57
+00:04:21,404 --> 00:04:23,500
+So I mentioned before that,
+
+58
+00:04:23,500 --> 00:04:30,135
+the mnist samples of 28 by 28 images,
+
+59
+00:04:30,135 --> 00:04:36,930
+and we need to flatten them to 784 vector to feed them into dense layer.
+
+60
+00:04:36,930 --> 00:04:41,085
+So first, we're going to reshape both train and test data.
+
+61
+00:04:41,085 --> 00:04:44,490
+Then, set them to a float type,
+
+62
+00:04:44,490 --> 00:04:50,935
+and divide them by 255 to arrive at values that lie between zero and one.
+
+63
+00:04:50,935 --> 00:04:54,175
+As a last step in pre-processing,
+
+64
+00:04:54,175 --> 00:04:58,630
+we're going to [inaudible] the labels that we have,
+
+65
+00:04:58,630 --> 00:05:01,238
+with our function two categorical.
+
+66
+00:05:01,238 --> 00:05:03,865
+So that means, for instance,
+
+67
+00:05:03,865 --> 00:05:10,087
+if we have a label with the number zero on it,
+
+68
+00:05:10,087 --> 00:05:12,105
+is that with zero,
+
+69
+00:05:12,105 --> 00:05:17,900
+this is going to be transformed into a vector of length 10 that has all zeros
+
+70
+00:05:17,900 --> 00:05:25,640
+but one at the first place.
+
+71
+00:05:25,640 --> 00:05:28,850
+Next, we can proceed to defining and running our model.
+
+72
+00:05:28,850 --> 00:05:32,270
+So we start by initializing a sequential model and then,
+
+73
+00:05:32,270 --> 00:05:36,863
+adding Dense and Dropout layers one by one. All right.
+
+74
+00:05:36,863 --> 00:05:41,978
+In first layer, you see that we also specify the input shape,
+
+75
+00:05:41,978 --> 00:05:44,530
+which is essentially 784,
+
+76
+00:05:44,530 --> 00:05:45,990
+the length of our vectors.
+
+77
+00:05:45,990 --> 00:05:51,875
+This input shape has to be provided only in the first layer
+
+78
+00:05:51,875 --> 00:06:00,570
+and succeeding shapes and other layers are then referred by Keras for you.
+
+79
+00:06:00,570 --> 00:06:04,290
+So as you can see, we have three Dense layers in total.
+
+80
+00:06:04,290 --> 00:06:05,667
+Then one with output length of 512.
+
+81
+00:06:05,667 --> 00:06:09,299
+Another one with 512.
+
+82
+00:06:09,299 --> 00:06:16,826
+And then, the final layer as 10 output classes.
+
+83
+00:06:16,826 --> 00:06:24,895
+And we also adds two Dropout layers with a drop rate of 20 percent. All right.
+
+84
+00:06:24,895 --> 00:06:30,061
+Once we have specified our model,
+
+85
+00:06:30,061 --> 00:06:34,650
+we can get a summary, print it on the command line by imposing model of that summary.
+
+86
+00:06:34,650 --> 00:06:41,732
+Next, we compile our model with categorical_crossentropy,
+
+87
+00:06:41,732 --> 00:06:46,625
+and specify the optimizer as to [inaudible] and also evaluate
+
+88
+00:06:46,625 --> 00:06:53,209
+the accuracy metric Okay.
+
+89
+00:06:53,209 --> 00:06:57,515
+So we can then fit our model with the train data that we have.
+
+90
+00:06:57,515 --> 00:07:01,077
+We set the batch size as defined previously in the epochs.
+
+91
+00:07:01,077 --> 00:07:07,624
+And we can also specify validation data namely the test data that we've updated.
+
+92
+00:07:07,624 --> 00:07:15,980
+So the last step we do in this model is we create a score by evaluating the model.
+
+93
+00:07:15,980 --> 00:07:20,875
+In this case, we get back a pair when we did
+
+94
+00:07:20,875 --> 00:07:25,770
+test loss and the accuracy which we print to the command line as well.
+
+95
+00:07:25,770 --> 00:07:33,793
+If you do so, you should achieve about 98 percent accuracy with this model. All right.
+
+96
+00:07:33,793 --> 00:07:38,246
+That's it's for Multi Layer Perceptrons.
+
+97
+00:07:38,246 --> 00:07:44,670
+In the next lecture, we learn about [inaudible] with pairs and [inaudible] in particular.

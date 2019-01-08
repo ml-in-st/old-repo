@@ -1,0 +1,455 @@
+1
+00:00:00,380 --> 00:00:03,260
+Welcome to the lecture on Linear Algebra.
+
+2
+00:00:03,260 --> 00:00:07,130
+So before we start,
+let's have a look at some important terms.
+
+3
+00:00:07,130 --> 00:00:08,770
+Let's start with Scalar.
+
+4
+00:00:08,770 --> 00:00:13,446
+Scalar is basically any number,
+
+5
+00:00:13,446 --> 00:00:17,793
+like 1, 5, 23, or 42.
+
+6
+00:00:17,793 --> 00:00:20,790
+But we are not limited to integers.
+
+7
+00:00:20,790 --> 00:00:25,915
+Also, real numbers are scalars,
+like 23.5, for example.
+
+8
+00:00:25,915 --> 00:00:30,673
+If you group a number of scalars together,
+you end up with a vector.
+
+9
+00:00:30,673 --> 00:00:34,056
+This is a vector of length four.
+
+10
+00:00:34,056 --> 00:00:36,360
+And this is one of length three.
+
+11
+00:00:36,360 --> 00:00:38,353
+And this is one of length five.
+
+12
+00:00:40,454 --> 00:00:44,545
+So vector can easily be
+confused with tuple.
+
+13
+00:00:44,545 --> 00:00:48,090
+So this guy here can be either a vector or
+a tuple.
+
+14
+00:00:49,560 --> 00:00:50,602
+But this is a tuple.
+
+15
+00:00:50,602 --> 00:00:51,800
+Can you see the difference?
+
+16
+00:00:52,870 --> 00:00:57,950
+So in a vector, each element has to have
+the same type, whereas in the tuple,
+
+17
+00:00:57,950 --> 00:00:59,610
+types can be mixed.
+
+18
+00:00:59,610 --> 00:01:03,040
+A Matrix is the big brother of a vector.
+
+19
+00:01:03,040 --> 00:01:05,670
+It's basically a list
+of equal-sized vectors.
+
+20
+00:01:06,740 --> 00:01:08,690
+Notice that the number of rows and
+
+21
+00:01:08,690 --> 00:01:13,210
+columns can be different, but
+each element has to have the same type.
+
+22
+00:01:13,210 --> 00:01:15,878
+A Matrix has n columns and m rows,
+
+23
+00:01:15,878 --> 00:01:20,276
+therefore we call these
+matrices m- by- n matrices.
+
+24
+00:01:22,689 --> 00:01:27,367
+So the left one is a 3- by- 4 matrix
+whereas the right one is a 2- by- 5
+
+25
+00:01:27,367 --> 00:01:28,430
+matrix.
+
+26
+00:01:28,430 --> 00:01:31,150
+Finally, the coolest guy
+is called the Tensor.
+
+27
+00:01:31,150 --> 00:01:35,740
+Here, you can see a 3D tensor which is
+basically nothing else like a matrix,
+
+28
+00:01:35,740 --> 00:01:37,050
+but in three dimensions.
+
+29
+00:01:38,280 --> 00:01:41,670
+Tensors can be quite handy in
+image processing, for example.
+
+30
+00:01:42,700 --> 00:01:47,548
+So you can have one dimension for
+the height, one for the width, and
+
+31
+00:01:47,548 --> 00:01:52,754
+one for colors, alpha channel, and
+focus information, for example.
+
+32
+00:01:52,754 --> 00:01:57,673
+So a tensor is more general term for
+special cases.
+
+33
+00:01:57,673 --> 00:02:01,295
+So, for example,
+a zero-dimensional tensor is a scalar,
+
+34
+00:02:01,295 --> 00:02:06,129
+a one-dimensional tensor is a vector,
+a two-dimensional tensor is a matrix.
+
+35
+00:02:08,350 --> 00:02:10,920
+So now, you can really show off
+in front of your colleagues
+
+36
+00:02:10,920 --> 00:02:13,040
+by knowing all those terms.
+
+37
+00:02:13,040 --> 00:02:14,350
+So, let's start with some math.
+
+38
+00:02:15,570 --> 00:02:18,330
+The most important mathematical
+operation on tensors
+
+39
+00:02:18,330 --> 00:02:20,150
+used in this course is multiplication.
+
+40
+00:02:22,100 --> 00:02:28,160
+We can multiple two scalars, so
+let's start with two integers, 2 and 3.
+
+41
+00:02:28,160 --> 00:02:31,540
+If you multiply them together we get 6.
+
+42
+00:02:31,540 --> 00:02:33,490
+But we can also multiply two vectors.
+
+43
+00:02:35,360 --> 00:02:38,620
+Note that the column-wise notation
+is the most common in math.
+
+44
+00:02:38,620 --> 00:02:40,930
+This multiplication is
+called the dot product or
+
+45
+00:02:40,930 --> 00:02:43,410
+scalar product because
+it returns a scalar.
+
+46
+00:02:43,410 --> 00:02:46,858
+We won't cover the cross product or
+the vector product here.
+
+47
+00:02:46,858 --> 00:02:50,800
+So that dot product simply takes
+the first element of the first vector and
+
+48
+00:02:50,800 --> 00:02:53,835
+multiplies it with the first
+element of the second vector.
+
+49
+00:02:53,835 --> 00:02:56,900
+Then it does the same for
+the second elements of the vectors.
+
+50
+00:02:58,260 --> 00:03:00,240
+And finally the rest.
+
+51
+00:03:00,240 --> 00:03:03,064
+So now, all those immediate
+products are summed up.
+
+52
+00:03:03,064 --> 00:03:06,925
+And the reciting sum is
+the solution to the dot product.
+
+53
+00:03:06,925 --> 00:03:08,550
+Generally speaking,
+
+54
+00:03:08,550 --> 00:03:13,240
+a vector multiplication is
+a linear combination of those.
+
+55
+00:03:13,240 --> 00:03:18,100
+This is very handy in deep learning,
+because one vector normally is used for
+
+56
+00:03:18,100 --> 00:03:20,290
+the data, and one vector is used for
+
+57
+00:03:20,290 --> 00:03:22,410
+the training weights,
+which you will see later.
+
+58
+00:03:22,410 --> 00:03:28,079
+Using this notation, we can also make use
+of GPUs or SIMD instruction sets on CPUs.
+
+59
+00:03:29,200 --> 00:03:32,240
+Note that both vectors need
+to be of the same size.
+
+60
+00:03:32,240 --> 00:03:37,100
+We will use NumPy as central library for
+linear algebra in Python.
+
+61
+00:03:37,100 --> 00:03:38,365
+So let's import it.
+
+62
+00:03:39,991 --> 00:03:42,220
+Now, we create two vectors, A and B.
+
+63
+00:03:46,020 --> 00:03:50,328
+Note, that those are implemented as
+one-dimensional NumPy arrays in Python.
+
+64
+00:03:55,760 --> 00:03:59,644
+Now we'll use the dot method of
+the NumPy area object in order to do
+
+65
+00:03:59,644 --> 00:04:01,460
+the calculation.
+
+66
+00:04:01,460 --> 00:04:05,490
+Not only a multiplication between
+two vectors is defined, also,
+
+67
+00:04:05,490 --> 00:04:08,550
+multiplication between a matrix and
+a vector.
+
+68
+00:04:08,550 --> 00:04:12,537
+So just take the first element of the
+first row and column of the matrix, and
+
+69
+00:04:12,537 --> 00:04:15,209
+multiply it with the first
+element of the vector.
+
+70
+00:04:15,209 --> 00:04:23,795
+[BLANK AUDIO] And then put it as the first
+element of the restarting vector.
+
+71
+00:04:23,795 --> 00:04:26,890
+Then repeat the steps for
+the second column's first element, and
+
+72
+00:04:26,890 --> 00:04:29,110
+the second element of the vector.
+
+73
+00:04:29,110 --> 00:04:31,900
+Finally, repeat the steps for
+the third column,
+
+74
+00:04:31,900 --> 00:04:34,880
+first row of the matrix with
+the third element of the vector.
+
+75
+00:04:34,880 --> 00:04:38,370
+And then, we repeat the same steps for
+the second row of the matrix.
+
+76
+00:04:40,011 --> 00:04:43,458
+And then we sum up all those components.
+
+77
+00:04:43,458 --> 00:04:45,750
+End result is a two element vector.
+
+78
+00:04:46,850 --> 00:04:52,245
+So this is nothing else than two vector
+dot products calculated in one go.
+
+79
+00:04:52,245 --> 00:04:56,404
+But the first vector is encoded in
+the first row of the matrix and
+
+80
+00:04:56,404 --> 00:04:58,850
+the second vector in the second row.
+
+81
+00:04:58,850 --> 00:05:01,334
+This is also very handy for SIMD or
+
+82
+00:05:01,334 --> 00:05:07,215
+GPU instruction sets where we can speed
+up those calculations dramatically.
+
+83
+00:05:07,215 --> 00:05:09,818
+Also, the notation becomes more concise.
+
+84
+00:05:09,818 --> 00:05:14,409
+As long as the number of columns matches
+the number of elements in the vector,
+
+85
+00:05:14,409 --> 00:05:17,707
+we can apply this calculation for
+arbitrary factors.
+
+86
+00:05:17,707 --> 00:05:20,547
+Vector matrix multiplication
+is just a special
+
+87
+00:05:20,547 --> 00:05:25,309
+case of matrix-matrix multiplication,
+but we do not need to cover this here.
+
+88
+00:05:25,309 --> 00:05:29,080
+Let's implement a vector matrix
+multiplication in NumPy.
+
+89
+00:05:29,080 --> 00:05:31,220
+We will start with the same vector,
+a and b,
+
+90
+00:05:31,220 --> 00:05:34,890
+and turn it into a matrix using
+a two dimensional NumPy array.
+
+91
+00:05:34,890 --> 00:05:37,880
+Now we can use the same
+overloaded dot method
+
+92
+00:05:37,880 --> 00:05:41,430
+in order to calculate the matrix
+vector multiplication.
+
+93
+00:05:41,430 --> 00:05:46,210
+Note that result is the same as two
+sequential vector-vector dot products.
+
+94
+00:05:46,210 --> 00:05:50,430
+But now, this function is expressed
+in a single call which can be
+
+95
+00:05:50,430 --> 00:05:54,110
+easily parallelized in an SIMD or
+GPU instruction set.
+
+96
+00:05:54,110 --> 00:05:56,094
+So this was enough math for now.
+
+97
+00:05:56,094 --> 00:05:59,831
+You should be able to understand
+most of the math in your networks.
+
+98
+00:05:59,831 --> 00:06:03,153
+So let's get started with
+our first neural network.

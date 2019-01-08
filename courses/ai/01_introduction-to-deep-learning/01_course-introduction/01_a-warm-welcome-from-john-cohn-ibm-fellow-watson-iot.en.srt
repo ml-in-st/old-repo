@@ -1,0 +1,139 @@
+1
+00:00:00,000 --> 00:00:01,815
+Hi. I'm John Cohn,
+
+2
+00:00:01,815 --> 00:00:06,575
+IBM fellow and Chief Scientist for the Watson IoT data center here in Munich,
+
+3
+00:00:06,575 --> 00:00:09,660
+and I want to welcome you to this wonderful start of
+
+4
+00:00:09,660 --> 00:00:12,828
+a class on Applied AI in Deep Learning,
+
+5
+00:00:12,828 --> 00:00:14,745
+done by my friend Romeo here.
+
+6
+00:00:14,745 --> 00:00:16,395
+You're going to love this class.
+
+7
+00:00:16,395 --> 00:00:17,730
+I'm taking it too,
+
+8
+00:00:17,730 --> 00:00:23,455
+and as somebody who's been on the sidelines of AI since the very beginning,
+
+9
+00:00:23,455 --> 00:00:29,168
+40 years ago, Marvin Minsky son was my roommate at MIT,
+
+10
+00:00:29,168 --> 00:00:31,115
+and talking to Marvin about neural nets,
+
+11
+00:00:31,115 --> 00:00:33,420
+I thought, "Yeah, like that's going to happen."
+
+12
+00:00:33,420 --> 00:00:39,510
+I went on to build devices like gaming processors that had GPUs.
+
+13
+00:00:39,510 --> 00:00:43,140
+Little did I know that at the other end of my 40 years that
+
+14
+00:00:43,140 --> 00:00:47,145
+I'd be using GPUs to help do real neural nets.
+
+15
+00:00:47,145 --> 00:00:50,160
+You're going to find that this is a great way to get into this.
+
+16
+00:00:50,160 --> 00:00:52,575
+As somebody who started on punch cards, now,
+
+17
+00:00:52,575 --> 00:00:55,350
+I'm using all the modern tools, TensorFlow,
+
+18
+00:00:55,350 --> 00:00:58,245
+Keras, Jupyter, and solving real problems.
+
+19
+00:00:58,245 --> 00:01:00,270
+Here, in this beautiful building in Munich,
+
+20
+00:01:00,270 --> 00:01:04,013
+we take in thousands of data points all the time on the building,
+
+21
+00:01:04,013 --> 00:01:05,453
+the air quality, the temperature,
+
+22
+00:01:05,453 --> 00:01:07,905
+the humidity, people flow,
+
+23
+00:01:07,905 --> 00:01:10,050
+control of the buildings, lights,
+
+24
+00:01:10,050 --> 00:01:13,455
+windows et cetera, and we are using Romeo's code,
+
+25
+00:01:13,455 --> 00:01:15,555
+the stuff that you're going to learn in this class,
+
+26
+00:01:15,555 --> 00:01:18,000
+to do deep learning and build
+
+27
+00:01:18,000 --> 00:01:21,480
+models that will help us determine what's normal and what's not normal.
+
+28
+00:01:21,480 --> 00:01:23,835
+We'll be able to do things like predicting
+
+29
+00:01:23,835 --> 00:01:27,250
+occupancy so we can pre-cool or pre-warm the building.
+
+30
+00:01:27,250 --> 00:01:30,641
+We're making it so that we can do all these experiments
+
+31
+00:01:30,641 --> 00:01:34,200
+using the infrastructure that you're going to learn in this excellent course.
+
+32
+00:01:34,200 --> 00:01:35,869
+So, thank you for checking in,
+
+33
+00:01:35,869 --> 00:01:39,155
+enjoy the course, and thank Romeo for me.
+
+34
+00:01:39,155 --> 00:01:40,326
+He's made it all very,
+
+35
+00:01:40,326 --> 00:01:41,540
+very easy for all.

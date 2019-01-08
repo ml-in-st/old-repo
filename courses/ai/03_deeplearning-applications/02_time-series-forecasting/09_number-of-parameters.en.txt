@@ -1,0 +1,42 @@
+Welcome back. In the last session, we have
+discussed the anatomy of a LSTM node. And today, we are going to look,
+How the number of parameters is computed. So let's have a look. Here we have defined,
+The LSTM layers with ten nodes. So let's execute. Okay, and then we can see here in the last
+column, here the number of parameters. And we see that for the first LSTM layer, we have 480 parameters and for the second LSTM layer,
+we have even more, 840. So let's see if we increase the number
+of nodes to 20, what is going on. So now we have even more. So the first LSTM layer
+has 1,760 parameters, the second LSTM layer
+has 3,280 parameters. So where all those
+figures are coming from? So let's have a look. What we have here is each
+LSTM node has three gates. So we have input gate, Sorry. We have forget gate and
+we have output gate. We have also said that
+the cell state is its memory. Then we have also defined
+the hidden state. Hidden state is equivalent
+to the cell output, meaning LSTM hidden state size is the same as number of nodes, or neurons,
+which you have defined, which we have to define and
+this is the same as output size. So lets have a look again. So here, lets say again, ten. Ten. This LSTM layer has ten nodes. So the output size is equal to ten. It has one cell state,
+three gates and ten output nodes. What about input nodes? Let us have a look and
+compute for the first LSTM layer, the number, Of parameters. But first here is the formula,
+how it's computed. So we have the weights, Of input size plus weights of output size plus one bias variable. Input plus output plus
+output plus bias variable. And this is all along
+the output size vector multiplied with three gates
+plus cell state, so four. So 4 multiplied LSTM output size, multiplied with some input size plus
+output size plus one bias variable. So let us compute and see it's actually pretty simple
+if you have tried it by yourself. So first of all,
+we are taking the first LSTM layer. This is the first LSTM layer,
+First LSTM layer. It has output size is equal to 10 or
+this is the same as hidden state size. How many inputs does it have? Well, we have here, above it,
+we have input layer. And this input layer has dimension of one. So the output of this
+input layer is also one. Therefore, we are computing it like this. So three gates plus cell state is four,
+multiplied with output size which is
+equal number of nodes, is ten, multiplied with the sum and then we have input size of
+the first layer is one. So it's receiving inputs from the first input layer which has dimension one. Output size again is ten and
+one bias variable. If we compute we are getting 480. Let's see. Yes. We have 480. Now let us have a look
+at the second layer. Second layer has again three
+gates plus cell state four, multiplied with output size is, again ten. But input size is not one anymore,
+but, ten. Why? Because it receiving the inputs
+from the first LSTM layer in the dimension of ten, it has ten nodes. The output dimension is ten,
+and the output dimension of the first layer is the input
+dimension of the second LSTM layer. So we have the input size as ten,
+the output size is again ten, and one bias variable. We are executing this and getting 840. Let us see. Yes, correct, 840. So with this, enjoy our sessions,
+and see you next time. Bye, bye.

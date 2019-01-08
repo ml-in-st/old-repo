@@ -1,0 +1,663 @@
+1
+00:00:00,900 --> 00:00:05,290
+Hi. Welcome to the DeepLearning4J Overview.
+
+2
+00:00:05,290 --> 00:00:07,870
+In this section I'm going to provide an overview of
+
+3
+00:00:07,870 --> 00:00:13,000
+the tools that the DeepLearning4J project provides.
+
+4
+00:00:13,000 --> 00:00:19,790
+Any code that I write for this Coursera course will be shared in this Git repo.
+
+5
+00:00:19,790 --> 00:00:23,500
+So you can go to this GitHub location and take a look at any
+
+6
+00:00:23,500 --> 00:00:27,950
+of the code that has been generated for this course.
+
+7
+00:00:27,950 --> 00:00:35,415
+So what DeepLearning4J does is it provides a toolkit for using DeepLearning on the JVM.
+
+8
+00:00:35,415 --> 00:00:39,380
+It consists of a number of subprojects.
+
+9
+00:00:39,380 --> 00:00:45,015
+A large part of our work as data scientists is spent in terms of ingesting, processing,
+
+10
+00:00:45,015 --> 00:00:51,325
+preprocessing, normalizing, standardizing, and otherwise manipulating our data source.
+
+11
+00:00:51,325 --> 00:00:55,795
+And our data source might be a comma separated value file,
+
+12
+00:00:55,795 --> 00:00:59,095
+might be a collection of images, or video,
+
+13
+00:00:59,095 --> 00:01:08,394
+or audio files, and DataVec is our subproject in DL4J that provides tools for ETL.
+
+14
+00:01:08,394 --> 00:01:11,580
+The processing that takes place when
+
+15
+00:01:11,580 --> 00:01:17,485
+a neural network trains is numeric processing of arrays.
+
+16
+00:01:17,485 --> 00:01:20,535
+So it's matrix to matrix multiplication,
+
+17
+00:01:20,535 --> 00:01:22,980
+and ND4J handles that.
+
+18
+00:01:22,980 --> 00:01:29,145
+You can kind of think of ND4J as the equivalent of what NumPY has for Python.
+
+19
+00:01:29,145 --> 00:01:33,569
+You can think of it as NumPY for the JVM.
+
+20
+00:01:33,569 --> 00:01:38,740
+Since we're doing matrix to matrix multiplication,
+
+21
+00:01:38,740 --> 00:01:46,630
+so libnd4j provides the native libraries for execution on GPUs and or CPUs.
+
+22
+00:01:46,630 --> 00:01:52,075
+And then DeepLearning4J, this is where we define our neural net,
+
+23
+00:01:52,075 --> 00:01:56,410
+configure it, and then train it.
+
+24
+00:01:56,410 --> 00:02:00,715
+So let's talk about DataVec first.
+
+25
+00:02:00,715 --> 00:02:04,888
+So DataVec needs to get your data into a numeric array,
+
+26
+00:02:04,888 --> 00:02:06,565
+sometimes called a tensor.
+
+27
+00:02:06,565 --> 00:02:11,950
+Sometimes perhaps a more appropriate term would be an indexed n-dimensional array,
+
+28
+00:02:11,950 --> 00:02:15,110
+a multi-dimensional array of values.
+
+29
+00:02:15,110 --> 00:02:21,245
+And DataVec helps you get from your data source into that numeric array.
+
+30
+00:02:21,245 --> 00:02:24,520
+Your data source might be log files, text documents,
+
+31
+00:02:24,520 --> 00:02:26,830
+voice samples, tabular data,
+
+32
+00:02:26,830 --> 00:02:30,545
+images, video, and more.
+
+33
+00:02:30,545 --> 00:02:37,105
+Some of the features that DataVec provides: transformation.
+
+34
+00:02:37,105 --> 00:02:40,420
+I may need to transform a list of classes
+
+35
+00:02:40,420 --> 00:02:44,965
+or a numeric representation of classes to a one-hot representation.
+
+36
+00:02:44,965 --> 00:02:47,955
+I may need to join data sets.
+
+37
+00:02:47,955 --> 00:02:50,365
+I may need to transform values.
+
+38
+00:02:50,365 --> 00:02:54,635
+I may need to reorganize the data into another schema.
+
+39
+00:02:54,635 --> 00:02:57,241
+I will need to scale my data,
+
+40
+00:02:57,241 --> 00:03:03,865
+perhaps between values of zero and one so that we have consistent ranges of values.
+
+41
+00:03:03,865 --> 00:03:08,790
+So normalizing and standardizing DataVec provides tools for that.
+
+42
+00:03:08,790 --> 00:03:12,740
+A neural network trains best if the data is shuffled,
+
+43
+00:03:12,740 --> 00:03:16,010
+so DataVec provides tools to assist with
+
+44
+00:03:16,010 --> 00:03:19,965
+shuffling the data at many points along the pipeline,
+
+45
+00:03:19,965 --> 00:03:27,123
+and then splitting our data into test and train.
+
+46
+00:03:27,123 --> 00:03:31,515
+In order to train a neural net if we're doing supervised learning,
+
+47
+00:03:31,515 --> 00:03:34,710
+we need some way to get the label of the data.
+
+48
+00:03:34,710 --> 00:03:38,893
+And the label might be stored as part of the file path.
+
+49
+00:03:38,893 --> 00:03:46,184
+So we might have a directory of images of cats and a directory named Cats.
+
+50
+00:03:46,184 --> 00:03:47,620
+We would extract that.
+
+51
+00:03:47,620 --> 00:03:53,550
+And collection of images of dogs might be in a directory named Dogs.
+
+52
+00:03:53,550 --> 00:03:55,260
+So some tools for doing that.
+
+53
+00:03:55,260 --> 00:03:57,225
+If the labels in the path,
+
+54
+00:03:57,225 --> 00:03:58,710
+perhaps the name of the file,
+
+55
+00:03:58,710 --> 00:04:01,290
+we can use Path Label Generator.
+
+56
+00:04:01,290 --> 00:04:06,270
+If the label is in the parent path, like I described,
+
+57
+00:04:06,270 --> 00:04:08,080
+the directory of cats and dogs,
+
+58
+00:04:08,080 --> 00:04:12,020
+then we could use Parent Path Label Generator.
+
+59
+00:04:12,020 --> 00:04:16,315
+If the label's stored as a column in your CSV data,
+
+60
+00:04:16,315 --> 00:04:21,125
+then we provide the labelindex to the RecordReaderDataSetIterator.
+
+61
+00:04:21,125 --> 00:04:24,010
+And there will be an example of code in
+
+62
+00:04:24,010 --> 00:04:28,955
+the next section where you'll actually see that particular use case.
+
+63
+00:04:28,955 --> 00:04:31,335
+So some commonly used features in DataVec,
+
+64
+00:04:31,335 --> 00:04:35,312
+a RecordReader to read our files or input,
+
+65
+00:04:35,312 --> 00:04:37,900
+converting it to a list of writables.
+
+66
+00:04:37,900 --> 00:04:41,430
+So we'll pass our record reader in input split which says where in
+
+67
+00:04:41,430 --> 00:04:46,615
+the file system and that file system could be HDFS or S3,
+
+68
+00:04:46,615 --> 00:04:52,190
+any Java interpretable file path.
+
+69
+00:04:52,190 --> 00:04:56,325
+Normalizing our data, standardize, scale,
+
+70
+00:04:56,325 --> 00:05:00,880
+transform processes to modify the schema of the data,
+
+71
+00:05:00,880 --> 00:05:06,300
+join datasets to replace strings, extract labels.
+
+72
+00:05:06,300 --> 00:05:10,831
+So here's a quick diagram of some of the available ETL paths.
+
+73
+00:05:10,831 --> 00:05:15,040
+There's more, but there you see some of the classes or some of
+
+74
+00:05:15,040 --> 00:05:19,495
+the tools that you would use depending upon our data source,
+
+75
+00:05:19,495 --> 00:05:20,860
+where the label is,
+
+76
+00:05:20,860 --> 00:05:23,110
+what type of RecordReader we're going to use
+
+77
+00:05:23,110 --> 00:05:25,525
+to read it depending upon how the data is stored.
+
+78
+00:05:25,525 --> 00:05:32,010
+And down here you'll see where we convert to an INDArray.
+
+79
+00:05:32,010 --> 00:05:34,695
+That's our RecordReaderDataSetIterator.
+
+80
+00:05:34,695 --> 00:05:36,720
+It takes what the RecordReader provides,
+
+81
+00:05:36,720 --> 00:05:38,895
+a list of writables,
+
+82
+00:05:38,895 --> 00:05:41,145
+a list of records you can think of that,
+
+83
+00:05:41,145 --> 00:05:46,530
+and converts that into a multi-dimensional array of features,
+
+84
+00:05:46,530 --> 00:05:49,915
+and then if they're doing supervised learning,
+
+85
+00:05:49,915 --> 00:05:54,720
+an additional multi-dimensional array of labels.
+
+86
+00:05:54,720 --> 00:06:03,760
+I couldn't put all the available record readers
+
+87
+00:06:03,760 --> 00:06:05,620
+here in this slide.
+
+88
+00:06:05,620 --> 00:06:10,810
+Too many of them. So here's a link to a web page that provides
+
+89
+00:06:10,810 --> 00:06:16,702
+a list of many of the available record readers.
+
+90
+00:06:16,702 --> 00:06:19,750
+You may need to preprocess your data.
+
+91
+00:06:19,750 --> 00:06:25,730
+So an example would be images where the pixel values might be 0 to
+
+92
+00:06:25,730 --> 00:06:31,660
+255 to determine the range of a color in that pixel.
+
+93
+00:06:31,660 --> 00:06:35,590
+To process that data in a neural net you may want to scale
+
+94
+00:06:35,590 --> 00:06:39,520
+those two values between zero and one.
+
+95
+00:06:39,520 --> 00:06:42,550
+And we could use MinMax scaling.
+
+96
+00:06:42,550 --> 00:06:48,890
+We could use NormalizerMinMaxScaler where we find the observed men and the observed maps.
+
+97
+00:06:48,890 --> 00:06:54,400
+In the case of the images we know what the potential Max and the potential Min is,
+
+98
+00:06:54,400 --> 00:06:58,870
+but your data might not necessarily be images and you might need to extract
+
+99
+00:06:58,870 --> 00:07:01,810
+the observed Max and the observed Min and then
+
+100
+00:07:01,810 --> 00:07:04,620
+apply those and set the observed Max to one and the observed Min to zero.
+
+101
+00:07:04,620 --> 00:07:09,265
+NormalizerStandardize,
+
+102
+00:07:09,265 --> 00:07:12,460
+NormalizerMinMaxScaler needs to read through
+
+103
+00:07:12,460 --> 00:07:16,230
+the whole data set to extract them in an max,
+
+104
+00:07:16,230 --> 00:07:17,800
+the global min and max.
+
+105
+00:07:17,800 --> 00:07:22,750
+NormalizerStandardizer prevents that initial pass
+
+106
+00:07:22,750 --> 00:07:26,440
+by providing a moving column wise variance and mean,
+
+107
+00:07:26,440 --> 00:07:34,759
+thereby eliminating the need to preprocess the data.
+
+108
+00:07:34,759 --> 00:07:38,180
+So CSVRecordReader is commonly
+
+109
+00:07:38,180 --> 00:07:41,420
+used if we have CSV data and we'll have an example of that.
+
+110
+00:07:41,420 --> 00:07:47,225
+We'll also have an example in this course of CSV sequence RecordReader
+
+111
+00:07:47,225 --> 00:07:54,340
+where we're generating a time series structure out of the data that's stored,
+
+112
+00:07:54,340 --> 00:07:57,465
+image RecordReader if you are reading images,
+
+113
+00:07:57,465 --> 00:08:01,680
+and there's examples of that in the GitHub DeepLearning4J,
+
+114
+00:08:01,680 --> 00:08:04,395
+GitHub repo providing examples.
+
+115
+00:08:04,395 --> 00:08:06,850
+You won't necessarily be doing one in this course.
+
+116
+00:08:06,850 --> 00:08:09,330
+JacksonRecordReader if I was reading
+
+117
+00:08:09,330 --> 00:08:13,905
+JSON parent path label generator quite commonly used.
+
+118
+00:08:13,905 --> 00:08:17,220
+Transform, TransformProcess, Transform Process
+
+119
+00:08:17,220 --> 00:08:21,990
+Builder always to choose which columns you'd like to use.
+
+120
+00:08:21,990 --> 00:08:30,800
+Perhaps perform computation transformation of those columns.
+
+121
+00:08:30,800 --> 00:08:33,145
+Now let's talk about ND4J.
+
+122
+00:08:33,145 --> 00:08:38,395
+ND4J for is our numeric scientific computing libraries.
+
+123
+00:08:38,395 --> 00:08:43,720
+One of its main features is a versatile and dimensional array object.
+
+124
+00:08:43,720 --> 00:08:48,430
+So we'll be creating indexed and dimensional arrays and then our neural net will be
+
+125
+00:08:48,430 --> 00:08:51,010
+processing those and generating its output which will
+
+126
+00:08:51,010 --> 00:08:54,535
+also be an indexed and dimensional array.
+
+127
+00:08:54,535 --> 00:09:00,090
+Multi-platforms functionality and support including GPUs.
+
+128
+00:09:00,090 --> 00:09:03,440
+Neural nets take a lot of computing power,
+
+129
+00:09:03,440 --> 00:09:06,330
+though perform significantly faster on
+
+130
+00:09:06,330 --> 00:09:10,980
+graphic processing units or GPUs and in order to switch from CPU
+
+131
+00:09:10,980 --> 00:09:18,480
+to GPU and DL4J it's as easy as changing a configuration of what the ND4J backend is.
+
+132
+00:09:18,480 --> 00:09:26,564
+So it's a simple change of your POM file and then an execute on GPUs rather than CPUs.
+
+133
+00:09:26,564 --> 00:09:31,745
+And the tools we're frequently using from ND4J,
+
+134
+00:09:31,745 --> 00:09:36,275
+DataSet, and a DataSet is a collection of INDArrays,
+
+135
+00:09:36,275 --> 00:09:41,825
+one for the features and one for the labels, and then DataSetIterator,
+
+136
+00:09:41,825 --> 00:09:48,020
+that RecordReader DataSetIterator is where we move from DataVec parsing,
+
+137
+00:09:48,020 --> 00:09:53,400
+processing, configuring our input into generating the INDArray.
+
+138
+00:09:53,400 --> 00:09:57,005
+So RecordReader DataSetIterator for
+
+139
+00:09:57,005 --> 00:10:02,445
+processing that data and getting it into ND4J to pass it to our neural net.
+
+140
+00:10:02,445 --> 00:10:08,075
+Libnd4j this is a C++ engine that powers ND4J.
+
+141
+00:10:08,075 --> 00:10:10,620
+We need the speed and
+
+142
+00:10:10,620 --> 00:10:19,726
+the native processing support of C++ and libnd4j provides that for us.
+
+143
+00:10:19,726 --> 00:10:26,010
+DeepLearning4J, this is where we built our neural nets and we can
+
+144
+00:10:26,010 --> 00:10:29,247
+configure our neural nets to execute on CPUs or GPUs
+
+145
+00:10:29,247 --> 00:10:33,300
+by changing that line in our POM file.
+
+146
+00:10:33,300 --> 00:10:36,810
+We can specify we want standalone or
+
+147
+00:10:36,810 --> 00:10:41,685
+parallel processing so you can build a simple neural net that runs locally on CPUs,
+
+148
+00:10:41,685 --> 00:10:46,475
+switch our POM file and it's executing on GPUs.
+
+149
+00:10:46,475 --> 00:10:51,080
+Wrap that neural net in ParallelWrapper or
+
+150
+00:10:51,080 --> 00:10:54,605
+SparkDl4JMultilayer and it will now
+
+151
+00:10:54,605 --> 00:10:59,925
+execute in parallel across a collection of Spark nodes on your Spark cluster.
+
+152
+00:10:59,925 --> 00:11:02,605
+And that's one of the focuses of this course.
+
+153
+00:11:02,605 --> 00:11:07,970
+We're going to demonstrate deploying your code or neural nets
+
+154
+00:11:07,970 --> 00:11:13,830
+code onto the Spark cluster that IBM's data science experience provides.
+
+155
+00:11:13,830 --> 00:11:16,420
+And then ParallelWrapper.
+
+156
+00:11:16,420 --> 00:11:21,165
+If we had a collection of GPUs on a single machine we need to do parallel processing,
+
+157
+00:11:21,165 --> 00:11:27,805
+across those GPUs we would use ParallelWrapper.
+
+158
+00:11:27,805 --> 00:11:29,960
+So if you wanted more information,
+
+159
+00:11:29,960 --> 00:11:33,825
+GitHub DeepLearning4J that's where we store the code.
+
+160
+00:11:33,825 --> 00:11:35,750
+That's the actual source code.
+
+161
+00:11:35,750 --> 00:11:41,595
+A Gitter chat if you needed help from one of our engineers or a member of the community.
+
+162
+00:11:41,595 --> 00:11:46,380
+We're constantly monitoring that Gitter channel that we see right here.
+
+163
+00:11:46,380 --> 00:11:51,750
+And then our website, deeplearning4j.org.
+
+164
+00:11:51,750 --> 00:11:54,690
+You can go there and get assistance,
+
+165
+00:11:54,690 --> 00:11:59,285
+some documentation, et cetera.
+
+166
+00:11:59,285 --> 00:12:02,360
+Thank you.

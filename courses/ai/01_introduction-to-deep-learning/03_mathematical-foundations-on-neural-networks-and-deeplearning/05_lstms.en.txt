@@ -1,0 +1,43 @@
+LSTMs are so powerful that we can dedicate
+a whole lecture on how they are working. You could take an entire course on LSTMs,
+and if you are planning to do so please
+check out the description of this video. But we will try to give you a more
+intuitive way of looking at LSTMs. So this is a single neuron in LSTMs. By the way, LSTMs stands for
+Long Short Term Memory Networks. And s in the feet forward network,
+it marks an input xt, to an output vector, ht, by using
+weights and an activation function. Note that the same holds whether
+you are using scalars or vectors as input and output. But we now see a lot of
+additional components. So the first thing we notice is that there
+is no direct connection between xt and ht. All data flows through ct,
+which is the so called cell state. Cell state is the actual
+memory of the LSTM neuron. Notice that there are three additional
+units present in a LSTM neuron, an input gate, an output gate,
+and a forget gate. Those three gates
+are controlling the state of ct. The way how this is
+controlled is as follows. So have a look at the input first. The first thing we notice is that xt is
+not only used as input of the neuron but also as input to the gate. So the input gate, as the other gates, has a separate weight vector which
+is straight from the input data and learns to control the influx of
+information into the cell's data city. This is done by a vector dot product
+between the input xt after it has been squashed by the activation function and
+the output of the input gate. In other words,
+through the weight vector of the input gate the neuron can learn
+from creating data. When it is a good idea to open the gate
+and have the input start in the cell. Often it is a bad idea
+to remember things and close the influx information
+into the cell state ct. Note that this is a continuous value, so just like a wall which can be
+partially opened and closed. Finally it is important to notice that
+all the cell state has an influence on the gate. This is again accomplished through
+a separate weight vector so that the actual input gate is controlled
+by the historic cell state as well as by the actual value of xt. So now let's have a look
+at the output gate. Again, it is controlled by the actual
+value xt and by the actual cell state ct. Here the output gate controls how
+much of cell state ct gets output to down stimulants connected to ht. So this topology is the initial LSTM
+proposed by and Hoover in 1997. In 1999 Felix and added an additional component,
+the forget gate. They discovered that without the
+capability of forgetting the cell state ct may grow indefinitely and eventually
+causes the network to break down. Again the forget gate is controlled
+by the actual input xt and the current cell state ct. And again through calculation of induct
+product between the output of the forget gate and the previous cell state ct, it controls how much of the actual
+cell state ct is preserved. Another exotic but totally exciting
+neronetwork technology is an autoencoder. So let's learn about it
+in the next lecture.

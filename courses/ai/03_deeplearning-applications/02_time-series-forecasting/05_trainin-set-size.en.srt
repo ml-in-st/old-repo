@@ -1,0 +1,267 @@
+1
+00:00:00,000 --> 00:00:03,015
+Welcome back. In the last session,
+
+2
+00:00:03,015 --> 00:00:07,275
+we have discussed the importance of the batch-size.
+
+3
+00:00:07,275 --> 00:00:16,115
+So, now, we're going to compute the training-set size based on batch-size.
+
+4
+00:00:16,115 --> 00:00:21,410
+So we have said that the training set must have
+
+5
+00:00:21,410 --> 00:00:28,607
+a size which is divisible by the batch-size without remainder,
+
+6
+00:00:28,607 --> 00:00:33,090
+which means that a modulo of such operations must be zero.
+
+7
+00:00:33,090 --> 00:00:35,700
+Let's try to compute it manually.
+
+8
+00:00:35,700 --> 00:00:38,967
+So, first of all,
+
+9
+00:00:38,967 --> 00:00:44,205
+we compute the length of our entire dataset.
+
+10
+00:00:44,205 --> 00:00:49,340
+This is 7776.
+
+11
+00:00:49,340 --> 00:00:50,720
+In the next step,
+
+12
+00:00:50,720 --> 00:00:54,050
+we are subtracting the test set.
+
+13
+00:00:54,050 --> 00:00:59,245
+Test set will be of 10 percent of the entire data set,
+
+14
+00:00:59,245 --> 00:01:05,051
+and we are getting this number, 6998.4.
+
+15
+00:01:05,051 --> 00:01:12,235
+So, now, if we try to divide this value by the batch-size,
+
+16
+00:01:12,235 --> 00:01:14,820
+we're getting this flow of number.
+
+17
+00:01:14,820 --> 00:01:20,345
+And that indicates that this value is not entirely and
+
+18
+00:01:20,345 --> 00:01:25,947
+not divisible by the batch-size without remainder.
+
+19
+00:01:25,947 --> 00:01:29,400
+So, we can compute modulo.
+
+20
+00:01:29,400 --> 00:01:30,809
+We see a modulo is 24.
+
+21
+00:01:30,809 --> 00:01:45,196
+It's not divisible without remainder. Sorry, 22.
+
+22
+00:01:45,196 --> 00:01:49,225
+Now, we can guess now what the number could be.
+
+23
+00:01:49,225 --> 00:01:57,088
+Actually, I have already taken the correct one,
+
+24
+00:01:57,088 --> 00:02:01,340
+and it's a simple mathematical calculation actually,
+
+25
+00:02:01,340 --> 00:02:04,160
+which can be done manually.
+
+26
+00:02:04,160 --> 00:02:06,680
+And you can see for this number,
+
+27
+00:02:06,680 --> 00:02:13,643
+for the 6976, the modulo is equal zero.
+
+28
+00:02:13,643 --> 00:02:17,118
+So, now, just imagine this scenario.
+
+29
+00:02:17,118 --> 00:02:20,345
+You are trying out several batch-sizes.
+
+30
+00:02:20,345 --> 00:02:24,890
+And every time, you have to compute training can test set size,
+
+31
+00:02:24,890 --> 00:02:27,350
+which is divisible by the batch-size.
+
+32
+00:02:27,350 --> 00:02:30,148
+If you do it manually,
+
+33
+00:02:30,148 --> 00:02:32,475
+it's inefficient and time-consuming.
+
+34
+00:02:32,475 --> 00:02:34,394
+So even if it takes five minutes,
+
+35
+00:02:34,394 --> 00:02:37,445
+so you have every time or three minutes,
+
+36
+00:02:37,445 --> 00:02:38,870
+every time to remember,
+
+37
+00:02:38,870 --> 00:02:44,315
+I have to compute this and write some lines of code.
+
+38
+00:02:44,315 --> 00:02:49,030
+So to do this,
+
+39
+00:02:49,030 --> 00:02:52,585
+we can write a method or function here in Python,
+
+40
+00:02:52,585 --> 00:02:55,003
+which will do it for us.
+
+41
+00:02:55,003 --> 00:02:58,400
+I can write this already here.
+
+42
+00:02:58,400 --> 00:03:01,215
+This function takes three parameters.
+
+43
+00:03:01,215 --> 00:03:09,071
+It takes dataset, it takes batch-size and then takes test set in percent.
+
+44
+00:03:09,071 --> 00:03:11,050
+So, we do following.
+
+45
+00:03:11,050 --> 00:03:14,085
+First of all, we compute the length of the data set,
+
+46
+00:03:14,085 --> 00:03:19,820
+which we have done already here actually in this cell.
+
+47
+00:03:19,820 --> 00:03:21,525
+We have computed lengths,
+
+48
+00:03:21,525 --> 00:03:23,838
+then we subtract from this lengths,
+
+49
+00:03:23,838 --> 00:03:26,623
+the test set lengths.
+
+50
+00:03:26,623 --> 00:03:32,302
+And then we are going to iterate within the range of lengths'
+
+51
+00:03:32,302 --> 00:03:40,470
+and try for every lengths in this range,
+
+52
+00:03:40,470 --> 00:03:42,345
+try to compute modulo,
+
+53
+00:03:42,345 --> 00:03:46,430
+so the length modulo batch-size.
+
+54
+00:03:46,430 --> 00:03:52,495
+And every value which has modulo zero,
+
+55
+00:03:52,495 --> 00:03:56,315
+every value of length in this range,
+
+56
+00:03:56,315 --> 00:04:04,515
+we're going to store in this temporal array, train, lengths, values.
+
+57
+00:04:04,515 --> 00:04:10,990
+And then in the end we're returning just the maximum value from this array.
+
+58
+00:04:10,990 --> 00:04:16,785
+Let's see how it works.
+
+59
+00:04:16,785 --> 00:04:21,010
+So it has found two value here,
+
+60
+00:04:21,010 --> 00:04:25,890
+which are divisible without remainder by the batch-size.
+
+61
+00:04:25,890 --> 00:04:33,340
+This is 6912 and 6976.
+
+62
+00:04:33,340 --> 00:04:35,907
+And this method takes the last one,
+
+63
+00:04:35,907 --> 00:04:38,053
+so the maximum one.
+
+64
+00:04:38,053 --> 00:04:44,593
+And this is our training set length.
+
+65
+00:04:44,593 --> 00:04:51,150
+And this is actually what we needed to do in this session.
+
+66
+00:04:51,150 --> 00:04:53,760
+So stay tuned, until the next time,
+
+67
+00:04:53,760 --> 00:04:56,560
+enjoy our sessions. Bye bye.

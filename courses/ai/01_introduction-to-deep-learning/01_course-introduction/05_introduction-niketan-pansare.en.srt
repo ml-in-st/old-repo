@@ -1,0 +1,39 @@
+1
+00:00:00,000 --> 00:00:03,510
+Hi, everyone. My name is Niketan Pansare,
+
+2
+00:00:03,510 --> 00:00:06,525
+and I'm one of the core instructor of the schools.
+
+3
+00:00:06,525 --> 00:00:08,490
+Just a little background,
+
+4
+00:00:08,490 --> 00:00:12,030
+I did my PhD in computer science and from Rice University.
+
+5
+00:00:12,030 --> 00:00:16,435
+And since then, I've been working at IBM Almaden Research Center.
+
+6
+00:00:16,435 --> 00:00:18,415
+I've been primarily working on a project called
+
+7
+00:00:18,415 --> 00:00:22,425
+SystemML which is now a top level Apache project.
+
+8
+00:00:22,425 --> 00:00:25,365
+In the schools, I will introduce SystemML,
+
+9
+00:00:25,365 --> 00:00:28,955
+and also, I'll be covering a module on denoise.
+
+10
+00:00:28,955 --> 00:00:30,270
+Hope you enjoy this course.

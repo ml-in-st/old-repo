@@ -1,0 +1,555 @@
+1
+00:00:00,000 --> 00:00:03,476
+Welcome to the TensorBoard intro [inaudible] to debug your Neural Networks.
+
+2
+00:00:03,476 --> 00:00:06,630
+So Neural Network often is some sort
+
+3
+00:00:06,630 --> 00:00:11,490
+of black box and it's very hard to see what's going on during training.
+
+4
+00:00:11,490 --> 00:00:14,970
+So usually people tend to print out all sorts of measures during
+
+5
+00:00:14,970 --> 00:00:19,230
+the Gradient Descent Loop in order to the debug and make sense of the training phase.
+
+6
+00:00:19,230 --> 00:00:24,340
+So what are the most important parameters to be looked at in training Neural Network?
+
+7
+00:00:24,340 --> 00:00:29,325
+So the most important is definitely the loss overtime.
+
+8
+00:00:29,325 --> 00:00:31,760
+So as you remember from the previous video,
+
+9
+00:00:31,760 --> 00:00:34,795
+loss defines how good or bad a Neural Network fits the data.
+
+10
+00:00:34,795 --> 00:00:37,420
+And by the way, this here is a quite good loss function
+
+11
+00:00:37,420 --> 00:00:40,850
+because it converges to a local optima quite fast.
+
+12
+00:00:40,850 --> 00:00:44,185
+The blue line instead is indicating a learning rate which is too small.
+
+13
+00:00:44,185 --> 00:00:48,470
+We are slowly converging against the optimum, but it takes too long.
+
+14
+00:00:48,470 --> 00:00:53,875
+So let's run this for 10,000 iterations and we obtained the following diagram.
+
+15
+00:00:53,875 --> 00:00:56,260
+It's hard to say, but chances are high,
+
+16
+00:00:56,260 --> 00:00:57,800
+that with a too low learning rate,
+
+17
+00:00:57,800 --> 00:01:00,280
+we never reach to decide local optimum.
+
+18
+00:01:00,280 --> 00:01:03,820
+Finally, if you have chosen the learning rate which is too high,
+
+19
+00:01:03,820 --> 00:01:06,346
+we notice a considerable amount of bouncing,
+
+20
+00:01:06,346 --> 00:01:09,190
+and the only reason why we are still conversion is that
+
+21
+00:01:09,190 --> 00:01:12,750
+the underlying model we're optimizing over is rather simple.
+
+22
+00:01:12,750 --> 00:01:16,720
+Another may be even more important measure is accuracy.
+
+23
+00:01:16,720 --> 00:01:19,885
+Here you see accuracy over training iterations.
+
+24
+00:01:19,885 --> 00:01:21,665
+And as loss goes down,
+
+25
+00:01:21,665 --> 00:01:23,845
+you should see accuracy going up.
+
+26
+00:01:23,845 --> 00:01:26,193
+So those are scalar times series,
+
+27
+00:01:26,193 --> 00:01:28,870
+but now let's have a look at the weight matrices.
+
+28
+00:01:28,870 --> 00:01:30,340
+This is far more interesting.
+
+29
+00:01:30,340 --> 00:01:31,650
+Those contain many values,
+
+30
+00:01:31,650 --> 00:01:34,815
+and we have to find a way to visualize them at once.
+
+31
+00:01:34,815 --> 00:01:39,030
+Fortunately, TensorBoard does a pretty good job in creating a summary,
+
+32
+00:01:39,030 --> 00:01:42,320
+overweight matrix of arbitrary shape.
+
+33
+00:01:42,320 --> 00:01:45,970
+You can find more on how these summaries are calculated in the video description.
+
+34
+00:01:45,970 --> 00:01:49,475
+But here, we see a pretty healthy distribution of weights.
+
+35
+00:01:49,475 --> 00:01:53,260
+Bad examples include cases where all values are very close to zero
+
+36
+00:01:53,260 --> 00:01:57,575
+or a uniform distribution resembling a random weight initialization.
+
+37
+00:01:57,575 --> 00:02:01,150
+This can be an indication that the actual layer hasn't done anything.
+
+38
+00:02:01,150 --> 00:02:05,400
+Besides monitoring weights, we can also monitor activations.
+
+39
+00:02:05,400 --> 00:02:07,510
+Note that the activation is the output of
+
+40
+00:02:07,510 --> 00:02:10,705
+a particular layer with the activation function applied.
+
+41
+00:02:10,705 --> 00:02:13,395
+In this simple case, the [inaudible] Y.
+
+42
+00:02:13,395 --> 00:02:17,110
+Remember, that Y is the output of the Softmax function.
+
+43
+00:02:17,110 --> 00:02:18,741
+So any K dimensional vector,
+
+44
+00:02:18,741 --> 00:02:22,015
+with value range between plus and minus infinity is squashed
+
+45
+00:02:22,015 --> 00:02:26,460
+into a K dimensional vector if value ranges between zero and one.
+
+46
+00:02:26,460 --> 00:02:31,015
+This is the default activation function for output layer and classification tasks.
+
+47
+00:02:31,015 --> 00:02:33,955
+So here we see what we expect in a healthy classifier.
+
+48
+00:02:33,955 --> 00:02:38,725
+Most of the values are close to zero because those are assigned part of probability,
+
+49
+00:02:38,725 --> 00:02:41,435
+a particular input is not in the class.
+
+50
+00:02:41,435 --> 00:02:45,205
+And we see a fair amount of values near to one.
+
+51
+00:02:45,205 --> 00:02:48,910
+Those are the cases where particular input is in the class.
+
+52
+00:02:48,910 --> 00:02:51,460
+Since we have 10 different classes.
+
+53
+00:02:51,460 --> 00:02:55,975
+It is obvious that we see more values close to zero than close to one.
+
+54
+00:02:55,975 --> 00:02:58,260
+So let's have a look at TensorBoard.
+
+55
+00:02:58,260 --> 00:03:00,750
+Instructions on how to access TensorBoard from
+
+56
+00:03:00,750 --> 00:03:04,550
+data science experience are given in the description section of this video.
+
+57
+00:03:04,550 --> 00:03:07,480
+TensorBoard can visualize multiple run simultaneously,
+
+58
+00:03:07,480 --> 00:03:09,805
+in order to compare among those.
+
+59
+00:03:09,805 --> 00:03:12,970
+But let's only have a look at a single run for now.
+
+60
+00:03:12,970 --> 00:03:15,385
+First, you have to look at the Scalar view.
+
+61
+00:03:15,385 --> 00:03:17,853
+So in this step, all summaries of scalars
+
+62
+00:03:17,853 --> 00:03:20,490
+and how they evolve over training time are displayed.
+
+63
+00:03:20,490 --> 00:03:24,350
+In our example, we've recorded the two most important measures.
+
+64
+00:03:24,350 --> 00:03:27,135
+Loss and Accuracy. As you can see,
+
+65
+00:03:27,135 --> 00:03:30,285
+they are in loss, which is actually a very good sign.
+
+66
+00:03:30,285 --> 00:03:33,600
+The lower the loss and therefore the arrow of the neural network is,
+
+67
+00:03:33,600 --> 00:03:35,503
+the better the accuracy.
+
+68
+00:03:35,503 --> 00:03:39,685
+We can maximize the plot and also adjust the smoothing parameter.
+
+69
+00:03:39,685 --> 00:03:41,040
+If we set it to one,
+
+70
+00:03:41,040 --> 00:03:44,130
+we obtain a line which isn't displayed here.
+
+71
+00:03:44,130 --> 00:03:46,330
+So let's decrease it slowly.
+
+72
+00:03:46,330 --> 00:03:48,735
+As we can see, this line,
+
+73
+00:03:48,735 --> 00:03:51,317
+more and more fits the actual trajectory and with 0.96
+
+74
+00:03:51,317 --> 00:03:57,415
+we can clearly see a trend without getting lost too much into details.
+
+75
+00:03:57,415 --> 00:04:00,000
+And here again, we can have a look at
+
+76
+00:04:00,000 --> 00:04:04,035
+those two important measures and see that they are inverse.
+
+77
+00:04:04,035 --> 00:04:07,295
+Remember that loss is based on a defined loss function.
+
+78
+00:04:07,295 --> 00:04:10,350
+Cross-Entropy in this case and accuracy tells us
+
+79
+00:04:10,350 --> 00:04:14,955
+the fraction of correctly classified examples over a total number of examples.
+
+80
+00:04:14,955 --> 00:04:16,779
+So now we have a look at the graph tab.
+
+81
+00:04:16,779 --> 00:04:18,955
+This graph should be read bottom up.
+
+82
+00:04:18,955 --> 00:04:25,235
+So we start with a weight matrix W and the placeholder X for your input data.
+
+83
+00:04:25,235 --> 00:04:29,060
+This is multiplied and then the bias where it will be is added.
+
+84
+00:04:29,060 --> 00:04:33,740
+This result is quashed using Softmax and the final result is thought in Y.
+
+85
+00:04:33,740 --> 00:04:36,210
+Note that Y underscore and Y are then used to
+
+86
+00:04:36,210 --> 00:04:39,315
+calculate accuracy by taking the Argmax of both.
+
+87
+00:04:39,315 --> 00:04:42,622
+By comparing those and taking the mean over this vector,
+
+88
+00:04:42,622 --> 00:04:44,333
+we obtain the accuracy.
+
+89
+00:04:44,333 --> 00:04:48,870
+The upper branch of the graph computes loss using the Cross-Entropy function.
+
+90
+00:04:48,870 --> 00:04:53,673
+Note that parts of the graph are hidden to us in an externalized sub-graph.
+
+91
+00:04:53,673 --> 00:04:58,545
+As you can see, the connection points of the sub-graph have turned red now.
+
+92
+00:04:58,545 --> 00:05:04,060
+You can include the sub-graph but then the graph becomes more complex.
+
+93
+00:05:04,060 --> 00:05:07,610
+This is because the gradient computation is reading values from variables and
+
+94
+00:05:07,610 --> 00:05:12,315
+placeholders all over the place and doesn't add more information at that point.
+
+95
+00:05:12,315 --> 00:05:14,875
+Therefore, let's remove it again.
+
+96
+00:05:14,875 --> 00:05:18,820
+Now, let's turn to histograms and have a look at the weight matrix.
+
+97
+00:05:18,820 --> 00:05:23,477
+This is a highly compressed view of what's going on inside the matrix during training.
+
+98
+00:05:23,477 --> 00:05:24,867
+So in the C axis,
+
+99
+00:05:24,867 --> 00:05:26,935
+training iterations are reflected.
+
+100
+00:05:26,935 --> 00:05:29,335
+The closer, the more recent they are.
+
+101
+00:05:29,335 --> 00:05:32,337
+The x axis informs us about the values,
+
+102
+00:05:32,337 --> 00:05:34,825
+elements in the matrix have been assigned to.
+
+103
+00:05:34,825 --> 00:05:37,235
+And the Y axis shows frequency.
+
+104
+00:05:37,235 --> 00:05:38,575
+So in this case,
+
+105
+00:05:38,575 --> 00:05:41,545
+we are looking at a pretty healthy chart.
+
+106
+00:05:41,545 --> 00:05:44,890
+It is important to understand how this condensed view is created.
+
+107
+00:05:44,890 --> 00:05:48,920
+Therefore, a link containing further explanations can be found below.
+
+108
+00:05:48,920 --> 00:05:53,005
+But intuitively, lacking the histogram in a pure mathematical sense,
+
+109
+00:05:53,005 --> 00:05:56,384
+the plot gives you an intuition but value ranges
+
+110
+00:05:56,384 --> 00:06:00,780
+at what frequencies are assigned to each element of the weight matrix.
+
+111
+00:06:00,780 --> 00:06:06,043
+So we see that the values are symmetrically centered around the mean of zero,
+
+112
+00:06:06,043 --> 00:06:09,600
+but although they are close to zero but not exactly zero.
+
+113
+00:06:09,600 --> 00:06:11,960
+This is important since gradients are correlating
+
+114
+00:06:11,960 --> 00:06:15,320
+with weights and with zero gradients we cannot work.
+
+115
+00:06:15,320 --> 00:06:17,746
+The other observation is,
+
+116
+00:06:17,746 --> 00:06:19,665
+that on the left and the right extremes,
+
+117
+00:06:19,665 --> 00:06:21,540
+close to minus one and plus one,
+
+118
+00:06:21,540 --> 00:06:22,900
+there's nothing much going on.
+
+119
+00:06:22,900 --> 00:06:25,785
+And therefore, we are definitely not over saturating.
+
+120
+00:06:25,785 --> 00:06:30,730
+Finally, this also definitely doesn't look like a uniform distribution.
+
+121
+00:06:30,730 --> 00:06:33,067
+Therefore, training worked pretty well.
+
+122
+00:06:33,067 --> 00:06:35,310
+Now we have a look at Y. Y in
+
+123
+00:06:35,310 --> 00:06:40,390
+the Softmax regression model corresponds to the newer activations of an output player.
+
+124
+00:06:40,390 --> 00:06:42,800
+You see that most of the values are close to
+
+125
+00:06:42,800 --> 00:06:46,035
+zero and some are close to one and in between.
+
+126
+00:06:46,035 --> 00:06:47,655
+That's nothing much going on.
+
+127
+00:06:47,655 --> 00:06:50,025
+And this is also a very good sign,
+
+128
+00:06:50,025 --> 00:06:53,840
+since this is exactly what Softmax should do in a mighty class classifier,
+
+129
+00:06:53,840 --> 00:06:57,010
+because class probabilities in the output vectors are either
+
+130
+00:06:57,010 --> 00:07:00,650
+zero for the wrong classes or one for the correct class.
+
+131
+00:07:00,650 --> 00:07:03,875
+Since there are more incorrect classes and correct ones,
+
+132
+00:07:03,875 --> 00:07:05,945
+nine versus one in this case,
+
+133
+00:07:05,945 --> 00:07:08,780
+you see much more zero values than one's.
+
+134
+00:07:08,780 --> 00:07:10,587
+There's much more to say about TensorBoard,
+
+135
+00:07:10,587 --> 00:07:15,295
+but we've covered the most important aspects for this course and we will see in
+
+136
+00:07:15,295 --> 00:07:17,540
+future lectures how those matrices can be
+
+137
+00:07:17,540 --> 00:07:20,403
+used in order to debug neural networks during training.
+
+138
+00:07:20,403 --> 00:07:23,435
+In the next module, we will recover automatic differentiation,
+
+139
+00:07:23,435 --> 00:07:25,310
+one of the key features of Tensor.

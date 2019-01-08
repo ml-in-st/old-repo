@@ -1,0 +1,111 @@
+1
+00:00:00,000 --> 00:00:05,820
+Welcome back. Today, we're starting our PyTorch introductory sessions.
+
+2
+00:00:05,820 --> 00:00:07,815
+What is PyTorch?
+
+3
+00:00:07,815 --> 00:00:15,620
+PyTorch is a new Deep Learning Framework which is highly dynamic in tons of ways.
+
+4
+00:00:15,620 --> 00:00:23,040
+This framework is is a rising star on the sky of Deep Learning and very,
+
+5
+00:00:23,040 --> 00:00:27,550
+very popular especially by research.
+
+6
+00:00:27,550 --> 00:00:28,980
+But first of all,
+
+7
+00:00:28,980 --> 00:00:32,050
+we just going to download and install
+
+8
+00:00:32,050 --> 00:00:37,370
+PyTorch in our Watson Data Science Experience workbook.
+
+9
+00:00:37,370 --> 00:00:45,505
+Just go to pytorch.org then scroll down to the Get Started section and then here,
+
+10
+00:00:45,505 --> 00:00:48,145
+you have a selection.
+
+11
+00:00:48,145 --> 00:00:55,260
+For our Watson Data Science Experience notebooks,
+
+12
+00:00:55,260 --> 00:00:58,210
+we need operating system Linux,
+
+13
+00:00:58,210 --> 00:01:00,909
+we need package manager pip,
+
+14
+00:01:00,909 --> 00:01:06,205
+and we select Python 2.7.
+
+15
+00:01:06,205 --> 00:01:12,990
+And we don't select CUDA because,
+
+16
+00:01:12,990 --> 00:01:15,116
+at least at the moment,
+
+17
+00:01:15,116 --> 00:01:19,365
+we don't have GPU acceleration there.
+
+18
+00:01:19,365 --> 00:01:24,393
+And then you have here this two lines of code.
+
+19
+00:01:24,393 --> 00:01:35,100
+Just copy them and go to your Jupyter Notebook and then you can paste them,
+
+20
+00:01:35,100 --> 00:01:45,640
+but you have to place exclamation marks at the beginning of the line before pip.
+
+21
+00:01:45,640 --> 00:01:49,620
+And then you just execute this,
+
+22
+00:01:49,620 --> 00:01:57,983
+and I don't execute it because I have already installed PyTorch in my environment.
+
+23
+00:01:57,983 --> 00:01:59,190
+And then you can test.
+
+24
+00:01:59,190 --> 00:02:00,715
+If you import PyTorch,
+
+25
+00:02:00,715 --> 00:02:05,317
+you see everything went mostly, everything is fine.
+
+26
+00:02:05,317 --> 00:02:08,640
+So, see you then in the next session.
+
+27
+00:02:08,640 --> 00:02:13,560
+Then, we are going to look at the important packages
+
+28
+00:02:13,560 --> 00:02:20,450
+of PyTorch and do some interesting things. Bye-bye.

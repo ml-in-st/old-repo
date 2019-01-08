@@ -1,0 +1,331 @@
+1
+00:00:00,000 --> 00:00:02,370
+Welcome back. Last time,
+
+2
+00:00:02,370 --> 00:00:06,855
+we have discussed the dimensionality of the tensors.
+
+3
+00:00:06,855 --> 00:00:10,080
+Today, we're going to have a quick look at
+
+4
+00:00:10,080 --> 00:00:15,222
+the mathematical operations with tensors like multiplication,
+
+5
+00:00:15,222 --> 00:00:18,420
+addition, and so on.
+
+6
+00:00:18,420 --> 00:00:24,195
+First, we define two tensors of size three.
+
+7
+00:00:24,195 --> 00:00:28,340
+It's a one tensor one, two, three,
+
+8
+00:00:28,340 --> 00:00:30,788
+second one, four, five, six,
+
+9
+00:00:30,788 --> 00:00:34,285
+and then, we can multiply tensors.
+
+10
+00:00:34,285 --> 00:00:39,455
+So, if we call "matmul", let's execute.
+
+11
+00:00:39,455 --> 00:00:44,055
+So we see, we are printing out of the tensors,
+
+12
+00:00:44,055 --> 00:00:49,735
+we have the first float tensor of size three,
+
+13
+00:00:49,735 --> 00:00:52,275
+second one of the same size,
+
+14
+00:00:52,275 --> 00:00:57,050
+and the result of matmul is scalar.
+
+15
+00:00:57,050 --> 00:01:01,410
+Why it so? Because matmul is actually
+
+16
+00:01:01,410 --> 00:01:09,558
+scalar multiplication which we know from linear algebra.
+
+17
+00:01:09,558 --> 00:01:12,740
+So, the second one is
+
+18
+00:01:12,740 --> 00:01:21,090
+interesting operation which we can do with tensors is concatenation.
+
+19
+00:01:21,090 --> 00:01:27,175
+First, we define two tensors from
+
+20
+00:01:27,175 --> 00:01:34,245
+random numbers of size two and then,
+
+21
+00:01:34,245 --> 00:01:40,810
+we are calling "torch.cat", "torch.cat".
+
+22
+00:01:40,810 --> 00:01:50,040
+It will concatenate tensors and by default if we don't specify the axis,
+
+23
+00:01:50,040 --> 00:01:53,675
+it will stock the tensors.
+
+24
+00:01:53,675 --> 00:01:58,564
+Maybe we should execute this.
+
+25
+00:01:58,564 --> 00:02:06,640
+All right now, so you can see that we have here one tensor
+
+26
+00:02:06,640 --> 00:02:15,543
+which has two rows and five columns of size two by five.
+
+27
+00:02:15,543 --> 00:02:24,780
+We have second tensor which have three rows, five columns,
+
+28
+00:02:24,780 --> 00:02:31,900
+three by five, and if you call cat concatenate,
+
+29
+00:02:31,900 --> 00:02:37,980
+it will stock this two matrices or two tensors
+
+30
+00:02:37,980 --> 00:02:45,355
+and we have them a tensor of size five by five.
+
+31
+00:02:45,355 --> 00:02:54,570
+Another way is to concatenate tensors column wise.
+
+32
+00:02:54,570 --> 00:02:59,255
+For this, we have to specify axis.
+
+33
+00:02:59,255 --> 00:03:04,290
+So if we specify axis of one as a second parameter,
+
+34
+00:03:04,290 --> 00:03:09,320
+it will align the tensors,
+
+35
+00:03:09,320 --> 00:03:12,888
+so it will concatenate column wise.
+
+36
+00:03:12,888 --> 00:03:16,520
+So, we can see how it looks like.
+
+37
+00:03:16,520 --> 00:03:21,335
+So, we have one tensor of size two by three,
+
+38
+00:03:21,335 --> 00:03:25,727
+second one of size two by five,
+
+39
+00:03:25,727 --> 00:03:31,685
+and if we call cat with axis of one,
+
+40
+00:03:31,685 --> 00:03:38,160
+we will get a tensor of size two by eight.
+
+41
+00:03:38,160 --> 00:03:44,615
+So, if we define wrong number,
+
+42
+00:03:44,615 --> 00:03:48,214
+it will not be able to execute this concatenation,
+
+43
+00:03:48,214 --> 00:03:52,145
+I mean wrong number of rows for example.
+
+44
+00:03:52,145 --> 00:03:59,491
+Let's define the second tensor of size three by five.
+
+45
+00:03:59,491 --> 00:04:03,900
+Instead of two by five,
+
+46
+00:04:03,900 --> 00:04:07,068
+and then we execute this,
+
+47
+00:04:07,068 --> 00:04:12,040
+so we get error, inconsistent tensor sizes.
+
+48
+00:04:12,040 --> 00:04:14,356
+It's pretty simple.
+
+49
+00:04:14,356 --> 00:04:18,150
+Now, we're going to look how to reshape the tensors.
+
+50
+00:04:18,150 --> 00:04:21,670
+It's actually a variation which we usually need.
+
+51
+00:04:21,670 --> 00:04:28,025
+Let's assume we have RGB images.
+
+52
+00:04:28,025 --> 00:04:34,165
+We have 64,000 images which we can for example,
+
+53
+00:04:34,165 --> 00:04:38,680
+analyze with our convolutional neural network.
+
+54
+00:04:38,680 --> 00:04:43,840
+And here, if we want to reshape this tensor,
+
+55
+00:04:43,840 --> 00:04:55,360
+so initially we have a tensor of shape (64,000,
+
+56
+00:04:55,360 --> 00:04:58,186
+3, 28, 28) what could it be?
+
+57
+00:04:58,186 --> 00:05:03,422
+It could be here on the second position,
+
+58
+00:05:03,422 --> 00:05:06,117
+it could be number of color channels, three,
+
+59
+00:05:06,117 --> 00:05:10,555
+it's actually a usual way to define images.
+
+60
+00:05:10,555 --> 00:05:12,720
+And the last two,
+
+61
+00:05:12,720 --> 00:05:15,964
+we'll use 28, 28,
+
+62
+00:05:15,964 --> 00:05:18,820
+this is the image size.
+
+63
+00:05:18,820 --> 00:05:28,062
+Now, let's assume we have to reshape the whole tensor or this is a tensor,
+
+64
+00:05:28,062 --> 00:05:31,715
+actually torch number, we'll create a tensor,
+
+65
+00:05:31,715 --> 00:05:33,310
+we'll have to reshape it,
+
+66
+00:05:33,310 --> 00:05:38,380
+and we want to introduce a batch size for example.
+
+67
+00:05:38,380 --> 00:05:46,804
+So, we want to see how many batches we can construct out of 64,000 images.
+
+68
+00:05:46,804 --> 00:05:51,300
+So, we have here on the first position,
+
+69
+00:05:51,300 --> 00:05:53,795
+we will define the batch size.
+
+70
+00:05:53,795 --> 00:05:58,300
+Now, we can left unchanged the number of
+
+71
+00:05:58,300 --> 00:06:04,180
+color channels which is three and the image size 28, 28.
+
+72
+00:06:04,180 --> 00:06:10,795
+But here, we can infer the second dimension,
+
+73
+00:06:10,795 --> 00:06:14,920
+we can left unfilled,
+
+74
+00:06:14,920 --> 00:06:16,779
+so with minus one,
+
+75
+00:06:16,779 --> 00:06:21,260
+and it will cost the pytorch will automatically infer
+
+76
+00:06:21,260 --> 00:06:31,150
+the correct second dimension.
+
+77
+00:06:31,150 --> 00:06:39,396
+It takes some time because it calls a random number.
+
+78
+00:06:39,396 --> 00:06:43,127
+Sometimes it takes a moment.
+
+79
+00:06:43,127 --> 00:06:51,900
+So now, we see batch size 32 and then it has insert 2,000, it's great.
+
+80
+00:06:51,900 --> 00:06:56,325
+So, if you multiplied 2,000 with 32,
+
+81
+00:06:56,325 --> 00:07:00,470
+you will get exactly 64,000.
+
+82
+00:07:00,470 --> 00:07:04,250
+Okay. I hope you enjoyed the session and see you next time.
+
+83
+00:07:04,250 --> 00:07:06,460
+Enjoy. Bye bye.

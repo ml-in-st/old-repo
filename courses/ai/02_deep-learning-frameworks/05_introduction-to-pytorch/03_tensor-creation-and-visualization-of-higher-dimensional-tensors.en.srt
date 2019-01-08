@@ -1,0 +1,307 @@
+1
+00:00:00,000 --> 00:00:02,340
+Welcome back. In the last session,
+
+2
+00:00:02,340 --> 00:00:06,500
+we have briefly discussed the most important Torch libraries.
+
+3
+00:00:06,500 --> 00:00:10,890
+Today, we're going to have a closer look at
+
+4
+00:00:10,890 --> 00:00:18,090
+the Torch library which is the PyTorch tensor library.
+
+5
+00:00:18,090 --> 00:00:20,030
+So, how to create a tensor?
+
+6
+00:00:20,030 --> 00:00:22,455
+It's very simple with PyTorch.
+
+7
+00:00:22,455 --> 00:00:29,460
+So first of all, you create an object which is a vector or a matrix,
+
+8
+00:00:29,460 --> 00:00:36,225
+and then you pass this object to tensor class as an argument.
+
+9
+00:00:36,225 --> 00:00:42,475
+So you see here, we have created one vector, one, two and three.
+
+10
+00:00:42,475 --> 00:00:50,620
+And then, we are passing this vector as argument here for the torch class.
+
+11
+00:00:50,620 --> 00:00:55,620
+The same thing with the two or three matrix
+
+12
+00:00:55,620 --> 00:01:03,480
+and higher dimensional object like tensor of a three-by-three-by three.
+
+13
+00:01:03,480 --> 00:01:04,650
+This is the same. In here,
+
+14
+00:01:04,650 --> 00:01:10,565
+we are creating bigger tensor which is dimension of four-by-three-by-three-by-three.
+
+15
+00:01:10,565 --> 00:01:13,690
+So, let us execute this cell.
+
+16
+00:01:13,690 --> 00:01:22,440
+And here, we see, it has indeed created a tensor of size three which is a float tensor.
+
+17
+00:01:22,440 --> 00:01:26,162
+You can see here, torch.FloatTensor,
+
+18
+00:01:26,162 --> 00:01:35,560
+and the second variation has created tensor of dimension of size two-by-three.
+
+19
+00:01:35,560 --> 00:01:41,035
+And here, we have created a tensor of size three-by-three-by-three.
+
+20
+00:01:41,035 --> 00:01:44,010
+And last one, of course,
+
+21
+00:01:44,010 --> 00:01:48,985
+it has dimension four-by-three-by-three matrix.
+
+22
+00:01:48,985 --> 00:01:52,815
+It's simple and straightforward.
+
+23
+00:01:52,815 --> 00:01:58,360
+Now, we're going to discuss the question of multidimensional tensors.
+
+24
+00:01:58,360 --> 00:02:04,365
+It's actually important because we are dealing a lot in PyTorch and
+
+25
+00:02:04,365 --> 00:02:12,045
+not only with PyTorch but also with another frameworks like Keras,
+
+26
+00:02:12,045 --> 00:02:15,524
+we are dealing with highly dimensional tensors.
+
+27
+00:02:15,524 --> 00:02:18,390
+So, how can we understand it?
+
+28
+00:02:18,390 --> 00:02:26,826
+For a lower dimensional objects, it's pretty straightforward.
+
+29
+00:02:26,826 --> 00:02:35,940
+Here, we're indexing into a vector which was actually tensor of size three.
+
+30
+00:02:35,940 --> 00:02:39,490
+So now, if we're indexing into this vector,
+
+31
+00:02:39,490 --> 00:02:41,600
+into the stands of size three,
+
+32
+00:02:41,600 --> 00:02:46,835
+and getting the first element with the index zero,
+
+33
+00:02:46,835 --> 00:02:50,269
+we're getting just a scalar.
+
+34
+00:02:50,269 --> 00:02:57,181
+Here, we're indexing into actually matrix but it's not the matrix,
+
+35
+00:02:57,181 --> 00:03:02,043
+it's now a tensor with dimension two-by-three.
+
+36
+00:03:02,043 --> 00:03:07,225
+So, we are getting here first element with index zero,
+
+37
+00:03:07,225 --> 00:03:09,610
+and this first element is,
+
+38
+00:03:09,610 --> 00:03:15,245
+by itself, a tensor which has size three.
+
+39
+00:03:15,245 --> 00:03:17,770
+It's actually a column vector,
+
+40
+00:03:17,770 --> 00:03:20,628
+you can see that column vector.
+
+41
+00:03:20,628 --> 00:03:24,460
+Here, we're indexing into a tensor of
+
+42
+00:03:24,460 --> 00:03:28,464
+dimension three-by-three-by-three or size three-by-three-by-three.
+
+43
+00:03:28,464 --> 00:03:32,869
+And here, we're getting a matrix out of it.
+
+44
+00:03:32,869 --> 00:03:36,220
+It's not a matrix, it's a tensor of size three-by-three.
+
+45
+00:03:36,220 --> 00:03:41,215
+And last one, we are getting an object,
+
+46
+00:03:41,215 --> 00:03:45,366
+a float tensor of size three-by-three-by-three.
+
+47
+00:03:45,366 --> 00:03:51,065
+Geometrically speaking, it's a cube actually.
+
+48
+00:03:51,065 --> 00:03:56,710
+So, let us see on this picture what it does.
+
+49
+00:03:56,710 --> 00:04:04,149
+I have tried to represent a 4D tensor.
+
+50
+00:04:04,149 --> 00:04:07,115
+If we have sliced into the dimension,
+
+51
+00:04:07,115 --> 00:04:10,281
+into this 4D tensor,
+
+52
+00:04:10,281 --> 00:04:13,840
+we've got out of it a cube actually.
+
+53
+00:04:13,840 --> 00:04:18,670
+It's a tensor of size three-by-three-by-three.
+
+54
+00:04:18,670 --> 00:04:21,332
+So, you see here three colors,
+
+55
+00:04:21,332 --> 00:04:24,445
+it's just for fun,
+
+56
+00:04:24,445 --> 00:04:27,820
+and you can see here,
+
+57
+00:04:27,820 --> 00:04:33,205
+three cubes, and this whole image
+
+58
+00:04:33,205 --> 00:04:39,235
+is actually a representation of 4D tensor.
+
+59
+00:04:39,235 --> 00:04:41,316
+So the fourth dimension,
+
+60
+00:04:41,316 --> 00:04:49,778
+you can see as a container for the tensors of dimension minus one of lower dimension,
+
+61
+00:04:49,778 --> 00:04:59,428
+like if you have a tensor which has a size of four-by-three-by-three-by-three,
+
+62
+00:04:59,428 --> 00:05:02,508
+so you have the highest dimension is four.
+
+63
+00:05:02,508 --> 00:05:06,465
+So, this fourth dimension is actually,
+
+64
+00:05:06,465 --> 00:05:13,090
+you can see it as a container for the tensors of lower dimension.
+
+65
+00:05:13,090 --> 00:05:15,250
+Like in our case,
+
+66
+00:05:15,250 --> 00:05:22,972
+we have here cubes like three cubes and we can slice into this tensor,
+
+67
+00:05:22,972 --> 00:05:26,660
+and we're getting out an object,
+
+68
+00:05:26,660 --> 00:05:30,435
+a tensor of dimension three-by-three-by-three.
+
+69
+00:05:30,435 --> 00:05:35,545
+I think it's pretty important to be able to
+
+70
+00:05:35,545 --> 00:05:37,900
+visualize at the beginning
+
+71
+00:05:37,900 --> 00:05:42,050
+some basic structures and we deal with high dimensional objects.
+
+72
+00:05:42,050 --> 00:05:47,350
+So later on, we will deal with this stuff,
+
+73
+00:05:47,350 --> 00:05:50,032
+with high dimensional objects,
+
+74
+00:05:50,032 --> 00:05:54,230
+and you will don't need to visualize it continuously,
+
+75
+00:05:54,230 --> 00:05:59,290
+but it's important to have this understanding
+
+76
+00:05:59,290 --> 00:06:03,990
+and I hope I could bring it a little bit closer to you.
+
+77
+00:06:03,990 --> 00:06:07,940
+So, enjoy our sessions. See you then. Bye-bye.

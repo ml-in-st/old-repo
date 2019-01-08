@@ -1,0 +1,263 @@
+1
+00:00:00,000 --> 00:00:03,050
+Welcome back. In the last session,
+
+2
+00:00:03,050 --> 00:00:09,890
+we have discussed how to compute the training set size based on the batch-size.
+
+3
+00:00:09,890 --> 00:00:18,585
+Now, we're going to construct our input and output data for the LSTM.
+
+4
+00:00:18,585 --> 00:00:26,705
+But first, we're going to do some pre-processing.
+
+5
+00:00:26,705 --> 00:00:36,330
+First of all, we are increasing the upper boundary of our training set size.
+
+6
+00:00:36,330 --> 00:00:42,265
+We are adding here timesteps multiplied by two.
+
+7
+00:00:42,265 --> 00:00:47,320
+Why it's required, we're going to see in the next steps.
+
+8
+00:00:47,320 --> 00:00:51,200
+So, now we just execute the cell.
+
+9
+00:00:51,200 --> 00:01:04,679
+And we see our training set data goes up to 6,996, so we have increased by 20.
+
+10
+00:01:04,679 --> 00:01:11,179
+The next step is very important for every neural network.
+
+11
+00:01:11,179 --> 00:01:15,679
+We do feature scaling.
+
+12
+00:01:15,679 --> 00:01:28,679
+So, meaning we scale down every value which should be in the range between zero and one.
+
+13
+00:01:28,679 --> 00:01:37,479
+To do this, we import a MinMaxScaler from sklearn prepocessing package.
+
+14
+00:01:37,479 --> 00:01:47,479
+We initialize this class MinMaxScaler and giving the range from zero to one.
+
+15
+00:01:47,479 --> 00:02:01,390
+And then we call fit transform method from sklearn. This method takes our training set.
+
+16
+00:02:01,390 --> 00:02:09,890
+And here we do also casting to float 64 because otherwise it will show warnings.
+
+17
+00:02:09,890 --> 00:02:12,890
+So we do this.
+
+18
+00:02:12,890 --> 00:02:15,890
+And now our data is scaled.
+
+19
+00:02:15,890 --> 00:02:22,440
+So, now this point is very important here.
+
+20
+00:02:22,440 --> 00:02:25,190
+Actually what is happening here is,
+
+21
+00:02:25,190 --> 00:02:33,690
+we're constructing the input data, which is x_train and output data which is y_train.
+
+22
+00:02:33,690 --> 00:02:37,690
+So, first of, we're initializing them as arrays.
+
+23
+00:02:37,690 --> 00:02:44,690
+And the second step, we are going to append data.
+
+24
+00:02:44,690 --> 00:02:55,690
+So, we are iterating in the range from 10, so we have 10 timesteps from 10,
+
+25
+00:02:55,690 --> 00:03:03,190
+to the maximum value is length plus number of timesteps.
+
+26
+00:03:03,190 --> 00:03:21,690
+So, the length we have already defined here, this is 6,976 plus number of timesteps y.
+
+27
+00:03:21,690 --> 00:03:28,390
+This is why we are constructing input data
+
+28
+00:03:28,390 --> 00:03:37,390
+as a data which is lying 10 timesteps in the past.
+
+29
+00:03:37,390 --> 00:03:48,390
+So, we're actually subtracting, if we say that the point i, we're iterating here over i.
+
+30
+00:03:48,390 --> 00:03:51,890
+The i is null, this is the time point of null.
+
+31
+00:03:51,890 --> 00:03:59,390
+So, now we are going 10 timesteps back.
+
+32
+00:03:59,390 --> 00:04:11,890
+So, you see here i minus timesteps, timesteps is 10 and adding these values,
+
+33
+00:04:11,890 --> 00:04:17,890
+appending these values to extreme array.
+
+34
+00:04:17,890 --> 00:04:28,243
+So, we are constructing input values by subtracting timesteps.
+
+35
+00:04:28,243 --> 00:04:39,200
+And here, we are constructing y_train which is the target value,
+
+36
+00:04:39,200 --> 00:04:42,399
+which we're going to predict.
+
+37
+00:04:42,399 --> 00:04:48,745
+And these values are the values which are lying in the future.
+
+38
+00:04:48,745 --> 00:04:53,205
+And we are constructing this by adding timesteps to it.
+
+39
+00:04:53,205 --> 00:04:57,253
+So, here we are subtracting,
+
+40
+00:04:57,253 --> 00:04:59,735
+and here in this point,
+
+41
+00:04:59,735 --> 00:05:02,320
+we are adding timesteps.
+
+42
+00:05:02,320 --> 00:05:05,752
+If we execute this cell,
+
+43
+00:05:05,752 --> 00:05:10,640
+we're getting here, I'm printing some values for convenience.
+
+44
+00:05:10,640 --> 00:05:18,449
+So, we see that the lengths plus timesteps is here 6,986,
+
+45
+00:05:18,449 --> 00:05:20,500
+so we have added 10.
+
+46
+00:05:20,500 --> 00:05:27,420
+And here if we are constructing the inputs and outputs values in such a way,
+
+47
+00:05:27,420 --> 00:05:39,850
+we are getting exact the same length as we have defined here, 6,976.
+
+48
+00:05:39,850 --> 00:05:45,070
+So, we have here 6,976.
+
+49
+00:05:45,070 --> 00:05:49,273
+So, we have constructed in such a way x_train and y_train.
+
+50
+00:05:49,273 --> 00:05:55,835
+In our programming assignment,
+
+51
+00:05:55,835 --> 00:06:02,603
+you will be able to reproduce this, so don't worry,
+
+52
+00:06:02,603 --> 00:06:10,573
+you're going to to learn how to construct the input and output data.
+
+53
+00:06:10,573 --> 00:06:13,570
+So what we do here, is simply reshaping,
+
+54
+00:06:13,570 --> 00:06:18,310
+because the Keras requirement for
+
+55
+00:06:18,310 --> 00:06:24,925
+the input and output data is that it has to be three dimensional array.
+
+56
+00:06:24,925 --> 00:06:33,735
+The first dimension is the length dimension which we have already computed.
+
+57
+00:06:33,735 --> 00:06:37,550
+The second one is number of timesteps which are 10.
+
+58
+00:06:37,550 --> 00:06:41,460
+And the last one is number of parameter which we're going to predict.
+
+59
+00:06:41,460 --> 00:06:48,087
+Now, we are just predicting one parameter which is the crude oil price,
+
+60
+00:06:48,087 --> 00:06:52,010
+so this value is one.
+
+61
+00:06:52,010 --> 00:06:55,040
+Let us execute this.
+
+62
+00:06:55,040 --> 00:07:00,510
+And we have constructed arrays,
+
+63
+00:07:00,510 --> 00:07:05,393
+the input array, extreme output array,
+
+64
+00:07:05,393 --> 00:07:11,045
+y_train and we have reshaped it to the three dimensional arrays.
+
+65
+00:07:11,045 --> 00:07:14,290
+So, stay tuned. Until the next time,
+
+66
+00:07:14,290 --> 00:07:17,190
+enjoy our sessions. Bye bye.

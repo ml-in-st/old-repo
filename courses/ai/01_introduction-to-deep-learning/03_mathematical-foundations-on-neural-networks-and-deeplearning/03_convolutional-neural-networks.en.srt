@@ -1,0 +1,331 @@
+1
+00:00:00,000 --> 00:00:03,350
+Let's start with convolutional neural networks.
+
+2
+00:00:03,350 --> 00:00:07,350
+So, the task we are looking at now is image classification.
+
+3
+00:00:07,350 --> 00:00:11,803
+So, an image can be seen as a very large spectra of pixel values.
+
+4
+00:00:11,803 --> 00:00:16,770
+Let's consider a gray scale image first for simplicity.
+
+5
+00:00:16,770 --> 00:00:18,955
+So, what we try to learn is the hidden function,
+
+6
+00:00:18,955 --> 00:00:21,610
+f which makes our vector,
+
+7
+00:00:21,610 --> 00:00:24,830
+to a scalar, c which represents the class.
+
+8
+00:00:24,830 --> 00:00:28,260
+While scalar works for binary classification,
+
+9
+00:00:28,260 --> 00:00:32,105
+it might be better to use a complete vector for multiclass specification.
+
+10
+00:00:32,105 --> 00:00:37,125
+This way we can train a neural network to learn an arbitrary number of classes.
+
+11
+00:00:37,125 --> 00:00:42,346
+So, by and resolving this task with an ordinary feedforward neural network,
+
+12
+00:00:42,346 --> 00:00:45,529
+it turns out that an image with only a hundred
+
+13
+00:00:45,529 --> 00:00:49,510
+by a hundred pixels you would need 10,000 weights in the weight matrix.
+
+14
+00:00:49,510 --> 00:00:54,900
+So obviously, those can't be applied to larger images due to computational complexity.
+
+15
+00:00:54,900 --> 00:00:57,550
+So, let's have a look at those two diagrams.
+
+16
+00:00:57,550 --> 00:00:59,977
+So, f is the original function,
+
+17
+00:00:59,977 --> 00:01:01,970
+where g is a function used for convolution.
+
+18
+00:01:01,970 --> 00:01:08,565
+So, convolution means sliding over a function using the convolution function as a filter.
+
+19
+00:01:08,565 --> 00:01:11,090
+There exists different types of such filters.
+
+20
+00:01:11,090 --> 00:01:13,440
+In this case, the area under
+
+21
+00:01:13,440 --> 00:01:17,220
+the function is used to create the output of the convolution.
+
+22
+00:01:17,220 --> 00:01:21,000
+Please note, that also it looks like it's not a continuous sliding,
+
+23
+00:01:21,000 --> 00:01:26,065
+it's more some sort of step over and the step size is called stride.
+
+24
+00:01:26,065 --> 00:01:27,430
+So, let's imagine we have
+
+25
+00:01:27,430 --> 00:01:32,830
+a five by five pixels monochrome image encoded in this five by five matrix.
+
+26
+00:01:32,830 --> 00:01:38,205
+And let's apply a three by three convolution matrix with a stride of one.
+
+27
+00:01:38,205 --> 00:01:40,500
+The convolution returns one in case
+
+28
+00:01:40,500 --> 00:01:43,880
+both elements of the matrix are one and zero otherwise.
+
+29
+00:01:43,880 --> 00:01:45,430
+We start with the first step.
+
+30
+00:01:45,430 --> 00:01:47,700
+We convert the top-left part of
+
+31
+00:01:47,700 --> 00:01:51,676
+the original matrix with the convolution matrix and we obtain the following result.
+
+32
+00:01:51,676 --> 00:01:55,050
+So, the convolution matrix acts as
+
+33
+00:01:55,050 --> 00:01:59,860
+a filter letting only values go through at positions where itself has a one.
+
+34
+00:01:59,860 --> 00:02:03,615
+So, since the resulting matrix has four elements which are one,
+
+35
+00:02:03,615 --> 00:02:05,995
+we put a four into the result matrix.
+
+36
+00:02:05,995 --> 00:02:07,655
+Then we do it for the next step.
+
+37
+00:02:07,655 --> 00:02:10,665
+Here we end up with three one's and six zero's.
+
+38
+00:02:10,665 --> 00:02:12,340
+Then we complete the first row.
+
+39
+00:02:12,340 --> 00:02:16,515
+Now, we start with the second row. Here we obtain two.
+
+40
+00:02:16,515 --> 00:02:18,945
+I think you got the pattern the right.
+
+41
+00:02:18,945 --> 00:02:23,025
+So, this convolutional matrix is also called a filter,
+
+42
+00:02:23,025 --> 00:02:26,180
+and the values in it are learned from data during training.
+
+43
+00:02:26,180 --> 00:02:28,410
+Note, that the filter normally doesn't only
+
+44
+00:02:28,410 --> 00:02:31,955
+contain zero's and one's as in this toy example.
+
+45
+00:02:31,955 --> 00:02:34,660
+So, actually, we are learning efficient filters.
+
+46
+00:02:34,660 --> 00:02:39,495
+This four-way image classification example perfectly illustrates this.
+
+47
+00:02:39,495 --> 00:02:41,540
+In this training dataset,
+
+48
+00:02:41,540 --> 00:02:43,870
+there have been images of faces,
+
+49
+00:02:43,870 --> 00:02:46,257
+cars, elephant, and chairs.
+
+50
+00:02:46,257 --> 00:02:48,970
+After training, the first layer, the second layer,
+
+51
+00:02:48,970 --> 00:02:52,250
+and the third layer have been sampled.
+
+52
+00:02:52,250 --> 00:02:58,055
+Then, 24 images per class have been selected and shown to the neural network,
+
+53
+00:02:58,055 --> 00:03:00,545
+and the activations have been visualized.
+
+54
+00:03:00,545 --> 00:03:02,060
+What's important to notice is,
+
+55
+00:03:02,060 --> 00:03:04,385
+that the first layer didn't learn anything meaningful,
+
+56
+00:03:04,385 --> 00:03:06,775
+at least not meaningful to us.
+
+57
+00:03:06,775 --> 00:03:12,340
+It just learned basic shapes like lines, circles, and rectangles.
+
+58
+00:03:12,340 --> 00:03:15,130
+And more interestingly, that
+
+59
+00:03:15,130 --> 00:03:19,980
+independently of which image class we're looking at, they all look the same.
+
+60
+00:03:19,980 --> 00:03:23,610
+So, this is actually the same thing what the computer vision guys are doing,
+
+61
+00:03:23,610 --> 00:03:26,295
+they are just creating intelligent filters.
+
+62
+00:03:26,295 --> 00:03:28,710
+So, if you make them redundant, and by the away,
+
+63
+00:03:28,710 --> 00:03:31,995
+this is exactly how the visual cortex in our brain works.
+
+64
+00:03:31,995 --> 00:03:38,130
+Another important layer type in convolutional neural networks is called pooling layer.
+
+65
+00:03:38,130 --> 00:03:43,500
+The idea is to reduce dimensionality without losing too much spatial information.
+
+66
+00:03:43,500 --> 00:03:46,755
+This process is also called subsampling or down sampling.
+
+67
+00:03:46,755 --> 00:03:48,596
+As in the convolutional layer,
+
+68
+00:03:48,596 --> 00:03:51,450
+we're looking at subsets of the original matrix.
+
+69
+00:03:51,450 --> 00:03:53,010
+And from those values,
+
+70
+00:03:53,010 --> 00:03:54,400
+we just conclude a single one.
+
+71
+00:03:54,400 --> 00:03:57,000
+So, if you just take the maximum value,
+
+72
+00:03:57,000 --> 00:03:59,435
+this is called maxpooling, we end up with six.
+
+73
+00:03:59,435 --> 00:04:01,120
+There are these other pooling methods like average,
+
+74
+00:04:01,120 --> 00:04:04,470
+or sum, and so on.
+
+75
+00:04:04,470 --> 00:04:07,295
+Again, I think you've got the pattern, right?
+
+76
+00:04:07,295 --> 00:04:12,450
+So, this brings us to the topology of a convolutional neural network.
+
+77
+00:04:12,450 --> 00:04:15,665
+In this case, this is used for image classification.
+
+78
+00:04:15,665 --> 00:04:20,770
+Note, that a fully connected layer is nothing else than the ordinary feedforward layer.
+
+79
+00:04:20,770 --> 00:04:21,920
+This is just a toy example.
+
+80
+00:04:21,920 --> 00:04:26,055
+Normally, convolutional neural networks have many, many layers.
+
+81
+00:04:26,055 --> 00:04:28,723
+We'll see a practical example later in the course,
+
+82
+00:04:28,723 --> 00:04:31,430
+so we will skip this for now.
+
+83
+00:04:31,430 --> 00:04:34,000
+Let's start with recurrent neural networks.

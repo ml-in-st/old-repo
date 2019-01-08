@@ -1,0 +1,155 @@
+1
+00:00:00,000 --> 00:00:04,450
+So, one example of new network
+
+2
+00:00:04,450 --> 00:00:08,680
+already deployed for you in the cloud is IBM Watson Visual Recognition.
+
+3
+00:00:08,680 --> 00:00:12,113
+So this is a computer vision API,
+
+4
+00:00:12,113 --> 00:00:15,705
+and the cool thing here is you cannot only use it as it is,
+
+5
+00:00:15,705 --> 00:00:17,980
+you can train it with your own data.
+
+6
+00:00:17,980 --> 00:00:20,205
+Now, let's have a look how it performs.
+
+7
+00:00:20,205 --> 00:00:25,040
+So first of all, we take this example image here. This a Chihuahua.
+
+8
+00:00:25,040 --> 00:00:30,890
+You can see here, it's also recognized by the service.
+
+9
+00:00:30,890 --> 00:00:37,280
+Let's take another one. Okay. It's quite nice.
+
+10
+00:00:37,280 --> 00:00:40,900
+So that you know that I'm not cheating,
+
+11
+00:00:40,900 --> 00:00:49,190
+I am now using a photo of mine but let's actually create a new one.
+
+12
+00:00:55,440 --> 00:01:00,970
+So let's drag and drop this.
+
+13
+00:01:02,870 --> 00:01:06,540
+And you see here,
+
+14
+00:01:06,540 --> 00:01:09,013
+he got my age right and also my gender,
+
+15
+00:01:09,013 --> 00:01:13,730
+and it's a portrait photo in front of my green screen.
+
+16
+00:01:13,730 --> 00:01:19,135
+So that's basically the way how to use the service for scoring.
+
+17
+00:01:19,135 --> 00:01:22,665
+But now, we can train it with our own data.
+
+18
+00:01:22,665 --> 00:01:29,535
+And let's take some sample images which are already here,
+
+19
+00:01:29,535 --> 00:01:32,575
+but you can also upload your own database
+
+20
+00:01:32,575 --> 00:01:36,545
+or you can also use a REST API to interact with the service.
+
+21
+00:01:36,545 --> 00:01:38,820
+So this is only just a demo application.
+
+22
+00:01:38,820 --> 00:01:42,380
+So let's select all categories.
+
+23
+00:01:42,380 --> 00:01:49,789
+So we have broken windshield and flat tire and motorcycle involved,
+
+24
+00:01:49,789 --> 00:01:53,100
+vandalism and undamaged vehicles.
+
+25
+00:01:53,100 --> 00:01:56,301
+This will take some time.
+
+26
+00:01:56,301 --> 00:02:01,995
+So now, training is finished and let's do the system test image to see how it performs.
+
+27
+00:02:01,995 --> 00:02:08,390
+So you see here that's definitely vandalism and now let's take another one.
+
+28
+00:02:08,390 --> 00:02:14,290
+So, we are searching for broken tire.
+
+29
+00:02:14,290 --> 00:02:19,530
+So, maybe this one.
+
+30
+00:02:19,530 --> 00:02:29,280
+So, we take the link to the image and paste URL, hit enter.
+
+31
+00:02:29,280 --> 00:02:36,580
+You see here, it's a flat tire with 98% score. So, this is correct.
+
+32
+00:02:36,580 --> 00:02:37,647
+So as you can see here,
+
+33
+00:02:37,647 --> 00:02:40,500
+this is now a complete service deployed in the cloud,
+
+34
+00:02:40,500 --> 00:02:44,970
+but you still can train it so you can use it as an ordinary convolution,
+
+35
+00:02:44,970 --> 00:02:47,140
+deep learning image classifier.
+
+36
+00:02:47,140 --> 00:02:50,155
+But you don't have to care about scalability,
+
+37
+00:02:50,155 --> 00:02:54,443
+operations and also to parameterization of a new network you don't care about.
+
+38
+00:02:54,443 --> 00:02:56,110
+So, that's pretty cool.
+
+39
+00:02:56,110 --> 00:02:57,690
+So, let's see what else...

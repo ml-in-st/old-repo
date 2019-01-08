@@ -1,0 +1,248 @@
+1
+00:00:00,630 --> 00:00:03,950
+So let's actually see how this
+example looks in real life.
+
+2
+00:00:03,950 --> 00:00:07,300
+Let's switch the model to healthy,
+just to be sure.
+
+3
+00:00:07,300 --> 00:00:08,490
+So it starts to create data.
+
+4
+00:00:09,890 --> 00:00:14,010
+And in the notebook, you see data
+arriving, one dot for each sample.
+
+5
+00:00:14,010 --> 00:00:17,080
+At the same time, they're using
+the dashboard functionality of
+
+6
+00:00:17,080 --> 00:00:20,210
+the IBM Watson IOT platform,
+in order to see what's going on.
+
+7
+00:00:21,740 --> 00:00:25,616
+So we see real time, time series plots and
+displaying the data.
+
+8
+00:00:25,616 --> 00:00:29,160
+Later we expect anomaly score and
+a lot to be populated.
+
+9
+00:00:29,160 --> 00:00:32,860
+Remember we've sent a no alert
+message to the UI in the notebook.
+
+10
+00:00:34,020 --> 00:00:36,700
+Once the buffer is filled
+with 3,000 elements,
+
+11
+00:00:36,700 --> 00:00:38,630
+data gets sent to the neural network for
+training.
+
+12
+00:00:39,820 --> 00:00:42,630
+This is called account-based
+tumbling window.
+
+13
+00:00:42,630 --> 00:00:45,630
+Other variants of stream processing
+windows are time based, or
+
+14
+00:00:45,630 --> 00:00:47,320
+session based windows.
+
+15
+00:00:47,320 --> 00:00:48,520
+All of them can be tumbling or
+
+16
+00:00:48,520 --> 00:00:52,340
+sliding, but we will cover stream
+computing in a separate class very soon.
+
+17
+00:00:53,450 --> 00:00:54,818
+So now the window was full and
+
+18
+00:00:54,818 --> 00:00:58,120
+was sent downstream to
+the neural network for training.
+
+19
+00:00:58,120 --> 00:01:01,077
+It takes a little while, and
+as Keras and TensorFlow are started, and
+
+20
+00:01:01,077 --> 00:01:02,900
+now are training stuff.
+
+21
+00:01:02,900 --> 00:01:06,130
+Here in training, we send the current
+loss upstream to the queue.
+
+22
+00:01:06,130 --> 00:01:08,330
+So we should be able to
+see it in the dashboard.
+
+23
+00:01:09,460 --> 00:01:14,142
+And as we can see, you started
+with an anomaly score of 0.04, and
+
+24
+00:01:14,142 --> 00:01:16,535
+are slowly getting down.
+
+25
+00:01:16,535 --> 00:01:20,035
+This works as expected, since we're
+looking at known and healthy data.
+
+26
+00:01:20,035 --> 00:01:21,225
+Our training is finished, and
+
+27
+00:01:21,225 --> 00:01:24,265
+usually the next windows of
+data would have been processed.
+
+28
+00:01:24,265 --> 00:01:27,762
+But we've limited the tests data
+generated to 3,000 events, so
+
+29
+00:01:27,762 --> 00:01:29,725
+we need to switch to program and reset.
+
+30
+00:01:31,640 --> 00:01:36,610
+By the higher amplitude we can make out
+that the pattern of data has changed.
+
+31
+00:01:36,610 --> 00:01:40,270
+But the cool thing is that with LSTM
+autoencoder based neural network,
+
+32
+00:01:40,270 --> 00:01:44,240
+we don't need to tell the neural network
+how healthy and broken data looks like.
+
+33
+00:01:44,240 --> 00:01:48,610
+It finds out by itself,
+a bit scary but totally awesome.
+
+34
+00:01:48,610 --> 00:01:51,690
+And again,
+we need to wait until the window is full.
+
+35
+00:01:51,690 --> 00:01:53,680
+So training has just started, and
+
+36
+00:01:53,680 --> 00:01:56,210
+we immediately see that
+an alert has been raised.
+
+37
+00:01:57,240 --> 00:01:58,980
+This is reflected in
+the dashboard as well.
+
+38
+00:02:00,630 --> 00:02:03,520
+And in addition,
+we see a clear spike in loss.
+
+39
+00:02:03,520 --> 00:02:06,800
+But we notice as well that
+loss rapidly goes down,
+
+40
+00:02:06,800 --> 00:02:10,390
+since the neural network now gets used
+to broken data, and sooner or later,
+
+41
+00:02:10,390 --> 00:02:13,540
+it considers broken data as healthy,
+as well.
+
+42
+00:02:13,540 --> 00:02:17,626
+Therefore, the system has automatically
+reset itself to the last known healthy
+
+43
+00:02:17,626 --> 00:02:20,280
+state by reloading
+the pre-trend model from disk.
+
+44
+00:02:21,300 --> 00:02:25,359
+Those warnings are due to the fact that
+communication with the message queue in
+
+45
+00:02:25,359 --> 00:02:29,370
+the Keras callback handler take some time,
+but we can ignore those.
+
+46
+00:02:29,370 --> 00:02:32,475
+So this was an example of
+an end-to-end scenario.
+
+47
+00:02:32,475 --> 00:02:35,595
+If you're happy with the solution,
+we could easily export the model to
+
+48
+00:02:35,595 --> 00:02:39,027
+IBM Watson machine learning, because
+running everything from a notebook for
+
+49
+00:02:39,027 --> 00:02:40,860
+a production scenario is not a good idea.
+
+50
+00:02:41,880 --> 00:02:45,510
+In a later lecture, we will also learn
+how to make use of Apache Spark for
+
+51
+00:02:45,510 --> 00:02:47,710
+parallel neural network training and
+scoring.
+
+52
+00:02:47,710 --> 00:02:48,370
+So stay tuned.

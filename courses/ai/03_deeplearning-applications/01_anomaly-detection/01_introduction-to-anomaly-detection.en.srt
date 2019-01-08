@@ -1,0 +1,295 @@
+1
+00:00:00,140 --> 00:00:05,754
+So this lecture is about creating
+an anomaly detector using neural networks.
+
+2
+00:00:05,754 --> 00:00:08,538
+You want to do this in
+an unsupervised manner.
+
+3
+00:00:08,538 --> 00:00:13,422
+So remember, in supervised learning,
+we have our data, but each item in your
+
+4
+00:00:13,422 --> 00:00:18,510
+data set needs to be assigned to a label,
+either class or continuous value.
+
+5
+00:00:18,510 --> 00:00:22,411
+We call this target which
+we want to predict.
+
+6
+00:00:22,411 --> 00:00:24,691
+In the case of anomaly detection,
+
+7
+00:00:24,691 --> 00:00:28,474
+this can be a binary target
+indicating an anomaly or not.
+
+8
+00:00:28,474 --> 00:00:33,910
+Or a continuous value, so
+an anomaly score or RUL score.
+
+9
+00:00:33,910 --> 00:00:37,560
+RUL stands for remaining useful lifetime.
+
+10
+00:00:37,560 --> 00:00:40,011
+Given that labeled data,
+a model is trained.
+
+11
+00:00:40,011 --> 00:00:44,870
+In this case, a supervised one
+because we tell the model to replicate
+
+12
+00:00:44,870 --> 00:00:48,970
+the underlying hidden function using
+the supervised label data set.
+
+13
+00:00:48,970 --> 00:00:52,600
+There are more unlabeled than
+labeled data sets available.
+
+14
+00:00:52,600 --> 00:00:54,819
+Therefore, we want to
+get rid of the bus but
+
+15
+00:00:54,819 --> 00:00:56,861
+it turns out this is not a trivial task.
+
+16
+00:00:56,861 --> 00:00:58,790
+So look at this time series for example.
+
+17
+00:00:59,800 --> 00:01:05,081
+It is an accelerometer based vibration
+data set which is attached to peering,
+
+18
+00:01:05,081 --> 00:01:09,009
+one vibration axis is shown in red and
+one is shown in blue.
+
+19
+00:01:09,009 --> 00:01:12,620
+So how can we predict if the peering
+is in a broken or healthy condition.
+
+20
+00:01:12,620 --> 00:01:15,367
+In this case, I'm telling you
+that the peering is totally fine.
+
+21
+00:01:15,367 --> 00:01:17,540
+So let's have a look at a data
+set from the faulty peering.
+
+22
+00:01:17,540 --> 00:01:21,230
+Hm, hard to tell isn't it?
+
+23
+00:01:22,490 --> 00:01:24,060
+So let's zoom in a bit and check again.
+
+24
+00:01:25,270 --> 00:01:29,420
+So in the top we see half the data, and
+at the bottom we see the faulty one.
+
+25
+00:01:30,990 --> 00:01:32,910
+At least we can tell
+that they are different.
+
+26
+00:01:34,150 --> 00:01:39,120
+So we are using our biological neural
+network in our brain in order to see this.
+
+27
+00:01:39,120 --> 00:01:42,290
+So what if an artificial neural
+network can do the same.
+
+28
+00:01:44,020 --> 00:01:48,050
+So if our brain looks at two
+different time-series plots,
+
+29
+00:01:48,050 --> 00:01:50,230
+it's able to spot the difference.
+
+30
+00:01:50,230 --> 00:01:54,438
+In theory, we can implement the artificial
+neural network to do exactly the same.
+
+31
+00:01:54,438 --> 00:01:57,947
+A convolution neural network, for
+example, can look at the two plots and
+
+32
+00:01:57,947 --> 00:01:59,880
+tell whether they are different or not.
+
+33
+00:02:01,430 --> 00:02:04,740
+To be honest, I haven't tried this,
+so maybe that's an exercise for you.
+
+34
+00:02:06,240 --> 00:02:10,170
+But what we can do is, using the LSTM,
+a long short term memory network,
+
+35
+00:02:10,170 --> 00:02:12,430
+for time series analysis.
+
+36
+00:02:14,063 --> 00:02:17,572
+Remember that the LSTM
+is still incomplete, and
+
+37
+00:02:17,572 --> 00:02:20,832
+ideally fits time series and
+sequence data.
+
+38
+00:02:20,832 --> 00:02:22,050
+But isn't there a problem?
+
+39
+00:02:24,469 --> 00:02:28,350
+Since this is unsupervised machine
+learning, we don't have labels available.
+
+40
+00:02:28,350 --> 00:02:31,488
+So the task of a neural
+network is to take X and
+
+41
+00:02:31,488 --> 00:02:37,260
+adjust the ways that it reconstructs Y,
+but we don't have Y.
+
+42
+00:02:38,950 --> 00:02:42,925
+So hopefully,
+you remember what the outer encoder does.
+
+43
+00:02:42,925 --> 00:02:47,040
+So an outer encoder is using X
+as input and output as well.
+
+44
+00:02:47,040 --> 00:02:50,991
+So an outer encoder will try to
+reconstruct what it sees on the left-hand
+
+45
+00:02:50,991 --> 00:02:52,689
+side on the right-hand side.
+
+46
+00:02:52,689 --> 00:02:56,998
+And if you now train the outer encoder,
+with an LSTM and healthy data,
+
+47
+00:02:56,998 --> 00:03:00,130
+it tries to reconstruct the healthy data.
+
+48
+00:03:00,130 --> 00:03:02,980
+And remember that it runs
+through a neural bottleneck.
+
+49
+00:03:04,190 --> 00:03:05,450
+And once it's trained,
+
+50
+00:03:05,450 --> 00:03:11,170
+it will have a hard time to reconstruct
+faulty data, that's the point.
+
+51
+00:03:11,170 --> 00:03:13,400
+That's how the anomaly detector works.
+
+52
+00:03:13,400 --> 00:03:16,908
+But how do we know if you're
+currently showing healthy or
+
+53
+00:03:16,908 --> 00:03:18,524
+faulty data to the model.
+
+54
+00:03:18,524 --> 00:03:20,150
+So this is quite simple.
+
+55
+00:03:20,150 --> 00:03:23,824
+Because in a real world scenario,
+there is much more healthy data,
+
+56
+00:03:23,824 --> 00:03:26,086
+than broken one available for training.
+
+57
+00:03:26,086 --> 00:03:30,277
+So if you randomly pick a sample, the
+chances are very high that it is healthy
+
+58
+00:03:30,277 --> 00:03:34,560
+data, and the chance is of course very
+low, that we've picked faulty data.
+
+59
+00:03:34,560 --> 00:03:37,671
+There are much more sophisticated
+strategies behind that,
+
+60
+00:03:37,671 --> 00:03:42,008
+which are often domain specific, therefore
+we won't dive more into details here.
+
+61
+00:03:42,008 --> 00:03:43,342
+In the next module,
+
+62
+00:03:43,342 --> 00:03:48,449
+we will implement an LSTM outer encoder
+based anomaly detector using keras.
+
+63
+00:03:48,449 --> 00:03:49,670
+So stay tuned.

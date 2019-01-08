@@ -1,0 +1,886 @@
+1
+00:00:00,650 --> 00:00:06,250
+All right, now that we've
+demonstrated what we intend to do,
+
+2
+00:00:06,250 --> 00:00:07,910
+let's go ahead and do it.
+
+3
+00:00:07,910 --> 00:00:12,670
+Let's go ahead and write a model
+classifier in Keras, save the model,
+
+4
+00:00:14,700 --> 00:00:19,740
+input that model into DL4J and
+execute it on Spark.
+
+5
+00:00:19,740 --> 00:00:22,550
+So first I'm going to
+create a new notebook.
+
+6
+00:00:25,430 --> 00:00:32,823
+And I'm going to call this Coursera for
+the Coursera example, and create.
+
+7
+00:00:35,930 --> 00:00:39,910
+So I've created a Python
+notebook with Spark.
+
+8
+00:00:39,910 --> 00:00:42,460
+So the first thing we're
+going to need to do,
+
+9
+00:00:42,460 --> 00:00:45,960
+is we're going to need to
+download our data file.
+
+10
+00:00:48,150 --> 00:00:50,100
+And that data file is right here.
+
+11
+00:00:56,140 --> 00:01:00,176
+So, I'm going to run wget and
+
+12
+00:01:00,176 --> 00:01:05,801
+grab that file from this GitHub repo.
+
+13
+00:01:10,120 --> 00:01:16,340
+When I've done that, ls should show it.
+
+14
+00:01:16,340 --> 00:01:19,310
+Now that we see that it's there,
+let's go ahead and take a look at it.
+
+15
+00:01:27,070 --> 00:01:31,215
+So we see the data file is
+as I described previously.
+
+16
+00:01:31,215 --> 00:01:35,460
+A measurement, another measurement,
+another measurement,
+
+17
+00:01:35,460 --> 00:01:39,849
+another measurement and
+then the class of the iris.
+
+18
+00:01:41,250 --> 00:01:45,560
+And we some irises in class 0,
+irises in class 1,
+
+19
+00:01:45,560 --> 00:01:49,910
+irises in class 2.
+
+20
+00:01:49,910 --> 00:01:54,430
+So now we have the data file.
+
+21
+00:01:54,430 --> 00:01:55,930
+Let's build a model.
+
+22
+00:01:57,940 --> 00:02:02,160
+So we're going to be using Keras so
+there's some imports we need to include.
+
+23
+00:02:04,943 --> 00:02:07,650
+And let's add those here in this cell.
+
+24
+00:02:11,775 --> 00:02:16,175
+All right, so we're going to import NumPy,
+
+25
+00:02:16,175 --> 00:02:20,830
+import Pandas and some additional imports.
+
+26
+00:02:22,280 --> 00:02:25,000
+We're going to set a random seed for
+reproducibility.
+
+27
+00:02:34,050 --> 00:02:39,380
+I'll put some new lines there so we get
+the data up in the middle of the screen.
+
+28
+00:02:42,440 --> 00:02:46,410
+Now we're going to read
+that iris.txt file and
+
+29
+00:02:46,410 --> 00:02:52,290
+create a data set of our features and
+a data set of our labels.
+
+30
+00:02:53,920 --> 00:02:58,670
+So we're going to read the file, iris.txt,
+there is no header so every line is data.
+
+31
+00:02:59,740 --> 00:03:02,550
+And then the x-data set is
+going to be our features.
+
+32
+00:03:02,550 --> 00:03:07,480
+So the first four columns are going to
+be interpreted as floats.
+
+33
+00:03:07,480 --> 00:03:11,870
+And the last one is an integer,
+in this case.
+
+34
+00:03:11,870 --> 00:03:17,420
+This code would also work
+if it was text labels,
+
+35
+00:03:17,420 --> 00:03:20,330
+because we transform
+that in the next example.
+
+36
+00:03:20,330 --> 00:03:23,190
+So the last field here
+are these integers for
+
+37
+00:03:23,190 --> 00:03:28,660
+the, Labels, for the classes.
+
+38
+00:03:31,590 --> 00:03:35,900
+So let's take that dataset,
+the y dataset, the labels.
+
+39
+00:03:35,900 --> 00:03:43,558
+And encode that using dummy encoding
+also called one-hot encoding.
+
+40
+00:03:43,558 --> 00:03:49,366
+Basically we have three classes so
+that will be an array of three values,
+
+41
+00:03:49,366 --> 00:03:52,617
+they'll all be zero's except for one.
+
+42
+00:03:52,617 --> 00:03:55,630
+So class one will be 1,0,0,
+class two will be 0,1,0.
+
+43
+00:03:55,630 --> 00:04:00,808
+And if you need to demonstrate that,
+or explore that a little bit you can
+
+44
+00:04:00,808 --> 00:04:06,265
+go ahead and short circuit this code and
+print out dummy wide to the screen.
+
+45
+00:04:07,485 --> 00:04:10,990
+Now let's build our model.
+
+46
+00:04:12,342 --> 00:04:18,374
+So we're going to use
+a simple sequential model,
+
+47
+00:04:18,374 --> 00:04:23,552
+a feed-forward neural net, right here.
+
+48
+00:04:24,731 --> 00:04:29,830
+So our input has four features,
+so that defines our input layer.
+
+49
+00:04:29,830 --> 00:04:34,070
+And our output has three classes,
+so that defines our output layer.
+
+50
+00:04:34,070 --> 00:04:39,790
+So, a single hidden layer neural network,
+feed forward neural network.
+
+51
+00:04:43,290 --> 00:04:45,350
+Now let's pass it our data
+
+52
+00:04:53,252 --> 00:04:57,573
+So we want to say given this model,
+feed it our features,
+
+53
+00:04:57,573 --> 00:05:01,995
+have it trained towards the goal
+of predicting the class.
+
+54
+00:05:01,995 --> 00:05:04,211
+Which is stored in dummy_y.
+
+55
+00:05:04,211 --> 00:05:09,400
+We're going to run it for 20 epics,
+that's 20 full passes through the data.
+
+56
+00:05:09,400 --> 00:05:13,070
+And we're going to look at five examples
+
+57
+00:05:13,070 --> 00:05:15,850
+per forward pass before
+we update our weights.
+
+58
+00:05:18,520 --> 00:05:21,890
+And the next thing we want to do is,
+we want to save the model.
+
+59
+00:05:24,020 --> 00:05:29,602
+So when the model completes, we want
+to write the model to a h5 archive,
+
+60
+00:05:29,602 --> 00:05:33,040
+which is how Keras saves its model.
+
+61
+00:05:33,040 --> 00:05:36,050
+So that's the full collection
+of our Python code.
+
+62
+00:05:36,050 --> 00:05:41,640
+Let's go ahead and execute that sum.
+
+63
+00:05:48,235 --> 00:05:50,300
+Just a warning about the changes upcoming.
+
+64
+00:05:51,660 --> 00:05:54,400
+Lets us know we are using
+the Tensorflow backend.
+
+65
+00:05:54,400 --> 00:05:56,610
+And there we see as it
+goes through each epic.
+
+66
+00:05:58,870 --> 00:06:04,230
+We see it starts off with
+the accuracy of .66, largely random.
+
+67
+00:06:05,840 --> 00:06:07,850
+And then it trains and improves.
+
+68
+00:06:12,610 --> 00:06:21,870
+And when it's done we should see,
+That data file.
+
+69
+00:06:21,870 --> 00:06:23,519
+So if we run ls.
+
+70
+00:06:26,102 --> 00:06:31,076
+We should see that it's
+written my_model.h5.
+
+71
+00:06:31,076 --> 00:06:35,560
+Excellent, so we've run our Keras model,
+
+72
+00:06:35,560 --> 00:06:39,290
+it trained to an accuracy of 84.
+
+73
+00:06:39,290 --> 00:06:44,410
+And now we're going to ship that
+saved model into that DL4J code.
+
+74
+00:06:45,580 --> 00:06:50,650
+So the first thing we need to do is we
+need to download that compiled jar,
+
+75
+00:06:50,650 --> 00:06:54,120
+that has the DL4J code to load the model.
+
+76
+00:06:55,880 --> 00:07:00,395
+And you're welcome to
+go to this git-repo and
+
+77
+00:07:00,395 --> 00:07:03,530
+take a complete look at that code
+
+78
+00:07:11,663 --> 00:07:14,230
+This is larger, so
+it might take a little bit of time.
+
+79
+00:07:18,980 --> 00:07:26,740
+While that's downloading I'm going to show
+you the code that we're going to execute.
+
+80
+00:07:30,340 --> 00:07:35,280
+So in order to execute this code, we're
+going to do what we've done, similar.
+
+81
+00:07:37,210 --> 00:07:40,280
+We need to execute a spark-submit script.
+
+82
+00:07:41,610 --> 00:07:44,720
+And so spark-submit is available here.
+
+83
+00:07:52,270 --> 00:07:55,910
+And then this is just a line
+continuation characters.
+
+84
+00:07:55,910 --> 00:07:58,430
+So I don't have really long lines.
+
+85
+00:07:58,430 --> 00:08:03,197
+So the data science experience
+environment provides a environmental
+
+86
+00:08:03,197 --> 00:08:06,518
+variable that points us
+to this spark-submit.
+
+87
+00:08:06,518 --> 00:08:12,410
+Spark-submit allows us to specify
+the class that we'd like to execute.
+
+88
+00:08:13,891 --> 00:08:15,380
+And that's right here.
+
+89
+00:08:17,020 --> 00:08:20,960
+So I want to run
+the KerasImportCSVSparkRunner.
+
+90
+00:08:24,790 --> 00:08:29,990
+In order to get the data files uploaded
+to Spark, we use this files command.
+
+91
+00:08:35,580 --> 00:08:38,622
+So that just says, take these files,
+
+92
+00:08:38,622 --> 00:08:43,294
+ship them into Spark and make them
+
+93
+00:08:43,294 --> 00:08:48,740
+available in the working directory
+of all of our workers for this job.
+
+94
+00:08:48,740 --> 00:08:53,730
+So they'll be available for any of
+the workers that are working on this job
+
+95
+00:08:59,630 --> 00:09:04,220
+Specify we want to submit it to
+the Spark Master that's defined in
+
+96
+00:09:04,220 --> 00:09:09,492
+the environmental variable in the data
+science experience as $MASTER.
+
+97
+00:09:11,217 --> 00:09:16,981
+And then we want to ship,
+This JAR file, so
+
+98
+00:09:16,981 --> 00:09:23,420
+this is the JAR file
+that contains this class.
+
+99
+00:09:23,420 --> 00:09:24,840
+All right?
+So this is the class we're
+
+100
+00:09:24,840 --> 00:09:26,570
+going to execute.
+
+101
+00:09:26,570 --> 00:09:30,170
+This is the JAR file
+that contains this class.
+
+102
+00:09:30,170 --> 00:09:35,800
+This class, when it runs, is going to load
+the model that I just saved in Keras.
+
+103
+00:09:35,800 --> 00:09:39,530
+And when it loads that model,
+
+104
+00:09:39,530 --> 00:09:45,630
+it's going to do an evaluation against
+the data found in this iris.text file.
+
+105
+00:09:46,760 --> 00:09:53,894
+So now we just need to tell
+our KerasImportCSVSparkRunner
+
+106
+00:09:53,894 --> 00:09:56,990
+class the parameters
+that it needs to execute.
+
+107
+00:10:00,123 --> 00:10:08,210
+When I run distributed training in Spark,
+I can specify the batch size per worker.
+
+108
+00:10:08,210 --> 00:10:12,380
+This is just like specifying the
+batch-size on a non-distributed process.
+
+109
+00:10:12,380 --> 00:10:17,190
+How many examples to view
+before we update our weights?
+
+110
+00:10:22,190 --> 00:10:26,411
+And note that these options take a single
+dash whereas there's a previous options to
+
+111
+00:10:26,411 --> 00:10:27,430
+take a double dash.
+
+112
+00:10:27,430 --> 00:10:31,850
+But the main differentiators,
+they come after the jar file.
+
+113
+00:10:31,850 --> 00:10:37,340
+So these are the options that will be
+passed to this class when it's executed.
+
+114
+00:10:40,942 --> 00:10:44,049
+The class KerasImportCSVSparkRunner,
+
+115
+00:10:44,049 --> 00:10:49,385
+has an option where I could specify
+that I wanted it to train, in Spark.
+
+116
+00:10:49,385 --> 00:10:51,500
+I'm setting that to false.
+
+117
+00:10:51,500 --> 00:10:55,220
+We're just going to do validation to
+verify that the network has imported
+
+118
+00:10:55,220 --> 00:10:58,230
+correctly and
+we're getting expected results.
+
+119
+00:11:00,740 --> 00:11:03,971
+As I've said previously,
+this is a generic example.
+
+120
+00:11:03,971 --> 00:11:09,104
+So you could train it on
+a classification problem with
+
+121
+00:11:09,104 --> 00:11:16,760
+10 classes in a CSV file where the index
+lable was perhaps 10 or 11 or 12.
+
+122
+00:11:16,760 --> 00:11:20,576
+All right?
+So you specify which column is the label
+
+123
+00:11:20,576 --> 00:11:23,550
+and how many labels there are.
+
+124
+00:11:26,370 --> 00:11:30,840
+So I encourage you to try
+perhaps your own example.
+
+125
+00:11:35,357 --> 00:11:39,487
+The other option that we want to pass to,
+
+126
+00:11:39,487 --> 00:11:45,080
+KerasImportCSVSparkRunner is
+the name of the model.
+
+127
+00:11:46,390 --> 00:11:49,866
+Right?
+So this is the Keras model file let's
+
+128
+00:11:49,866 --> 00:11:51,990
+specify here and here.
+
+129
+00:11:53,120 --> 00:11:57,580
+So here we're saying ship this
+model file up into Spark.
+
+130
+00:11:57,580 --> 00:12:02,790
+And here we're saying to this
+class load that model and
+
+131
+00:12:02,790 --> 00:12:08,190
+create a DL4J model from that
+saved Keras configuration.
+
+132
+00:12:11,540 --> 00:12:13,620
+Similar for the data file.
+
+133
+00:12:15,860 --> 00:12:21,000
+We need to specify that we want.
+
+134
+00:12:21,000 --> 00:12:23,930
+Once we've taken our model,
+loaded it into DL4J,
+
+135
+00:12:25,060 --> 00:12:30,345
+configured a Spark training master,
+configured how to read the data file,
+
+136
+00:12:30,345 --> 00:12:33,450
+that it goes ahead and
+reads that and does an evaluation.
+
+137
+00:12:36,180 --> 00:12:37,570
+And that's it.
+
+138
+00:12:37,570 --> 00:12:42,660
+So this command, this shell command
+started with the exclamation point will
+
+139
+00:12:42,660 --> 00:12:50,200
+submit that jar right there to Spark.
+
+140
+00:12:50,200 --> 00:12:53,319
+And when that charge is shipped to Spark,
+it'll say run this class.
+
+141
+00:12:54,650 --> 00:12:58,240
+And that class will load
+this model specified here.
+
+142
+00:12:59,790 --> 00:13:04,840
+That model will evaluate this file, and
+
+143
+00:13:04,840 --> 00:13:09,290
+these are configuration options
+that say how to read that file.
+
+144
+00:13:10,730 --> 00:13:14,581
+And this option just says, we're not
+going to train, just run an evaluation.
+
+145
+00:13:16,360 --> 00:13:19,420
+So verify that our data file
+up above has downloaded.
+
+146
+00:13:19,420 --> 00:13:22,250
+It has, let's go ahead and run this code.
+
+147
+00:13:32,470 --> 00:13:34,630
+It may take some time.
+
+148
+00:13:34,630 --> 00:13:38,010
+Understand we're shipping
+the jar to the Spark workers.
+
+149
+00:13:38,010 --> 00:13:41,760
+And the Data Science Experience does
+provide the access to the Spark
+
+150
+00:13:41,760 --> 00:13:42,610
+history server.
+
+151
+00:13:44,850 --> 00:13:45,930
+There we go.
+
+152
+00:13:45,930 --> 00:13:47,710
+So we're getting some logging output.
+
+153
+00:13:47,710 --> 00:13:51,300
+But yeah, you can go take a look at the
+history of your jobs in the Spark history
+
+154
+00:13:51,300 --> 00:13:53,960
+server, by going to
+the environment of your notebook.
+
+155
+00:13:53,960 --> 00:13:59,490
+Let's just wait for
+
+156
+00:13:59,490 --> 00:14:07,299
+that to make some progress.
+
+157
+00:14:09,540 --> 00:14:10,530
+There we go.
+
+158
+00:14:17,400 --> 00:14:20,280
+Spark is very verbose.
+
+159
+00:14:20,280 --> 00:14:21,770
+So what we're looking for
+
+160
+00:14:21,770 --> 00:14:25,610
+is the code that we're executing
+does an evaluation at the end.
+
+161
+00:14:27,010 --> 00:14:29,050
+And we're looking for that evaluation, so
+
+162
+00:14:29,050 --> 00:14:33,910
+we'll see it like a truth table, we'll
+class one was classified as class one.
+
+163
+00:14:33,910 --> 00:14:38,135
+X number of times class
+two is classified as, so
+
+164
+00:14:38,135 --> 00:14:42,950
+it'll show us the positives,
+
+165
+00:14:42,950 --> 00:14:46,100
+show us the false positives and
+negatives etc.
+
+166
+00:14:46,100 --> 00:14:48,200
+Show us how well the model did basically.
+
+167
+00:14:49,390 --> 00:14:51,870
+So there we see the output
+from one of the workers.
+
+168
+00:14:56,466 --> 00:15:01,573
+So we some information about memory
+use as the workers load the RDD or
+
+169
+00:15:01,573 --> 00:15:03,460
+their subset of the RDD.
+
+170
+00:15:05,220 --> 00:15:06,490
+So that they can process it.
+
+171
+00:15:10,140 --> 00:15:12,660
+Now we see some farther progress.
+
+172
+00:15:14,560 --> 00:15:16,496
+Excellent!
+
+173
+00:15:16,496 --> 00:15:18,800
+So it completed.
+
+174
+00:15:18,800 --> 00:15:24,340
+Similarly if we scrolled up and
+saw the accuracy of the Python example,
+
+175
+00:15:24,340 --> 00:15:27,610
+we see similar accuracy, 82%.
+
+176
+00:15:27,610 --> 00:15:29,360
+We could've trained it further.
+
+177
+00:15:29,360 --> 00:15:34,590
+I just ran it through 20 epochs, just so
+it started to make some progress.
+
+178
+00:15:34,590 --> 00:15:41,121
+So it did good with class 0,
+class 1, about 50-50.
+
+179
+00:15:41,121 --> 00:15:44,200
+On class two it got correct.
+
+180
+00:15:44,200 --> 00:15:48,350
+So it's having a little bit of trouble
+with probably the middle class right?
+
+181
+00:15:48,350 --> 00:15:52,980
+Or actually more accurate it looks like
+one is similar to two in some way and
+
+182
+00:15:52,980 --> 00:15:54,730
+it hasn't quite solved that relation yet.
+
+183
+00:15:54,730 --> 00:15:59,335
+You could have trained it further and
+I believe it will get to higher accuracy.
+
+184
+00:15:59,335 --> 00:16:05,300
+But we see here accuracy of 82, and
+if we scroll up to where we executed
+
+185
+00:16:05,300 --> 00:16:09,110
+our Python, we see very similar accuracy.
+
+186
+00:16:11,254 --> 00:16:12,900
+So there you have it.
+
+187
+00:16:12,900 --> 00:16:16,950
+A full, end to end example of
+building a model in Keras,
+
+188
+00:16:16,950 --> 00:16:18,810
+in the data science experience.
+
+189
+00:16:18,810 --> 00:16:21,990
+Saving that model into
+the data science experience.
+
+190
+00:16:21,990 --> 00:16:26,283
+And loading that model into
+DL4J to execute it on Spark in
+
+191
+00:16:26,283 --> 00:16:29,530
+the IBM's data science experience.
+
+192
+00:16:29,530 --> 00:16:30,040
+Thank you.

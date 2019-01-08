@@ -1,0 +1,95 @@
+1
+00:00:00,000 --> 00:00:02,570
+So, let's start with some Course Logistics.
+
+2
+00:00:02,570 --> 00:00:04,335
+So this is a four-weeks course.
+
+3
+00:00:04,335 --> 00:00:05,580
+In the first week,
+
+4
+00:00:05,580 --> 00:00:09,207
+we started linear algebra and neural network theory.
+
+5
+00:00:09,207 --> 00:00:10,380
+In the second week,
+
+6
+00:00:10,380 --> 00:00:14,585
+we introduced you to some neural network frameworks like TensorFlow,
+
+7
+00:00:14,585 --> 00:00:18,755
+Keras, PyTorch, Deeplearning4j, system of it.
+
+8
+00:00:18,755 --> 00:00:20,595
+And in the third week,
+
+9
+00:00:20,595 --> 00:00:22,865
+we will show you some practical examples of
+
+10
+00:00:22,865 --> 00:00:25,880
+deep learning in real-life industry use cases, for example,
+
+11
+00:00:25,880 --> 00:00:29,625
+an image classification, natural-language processing,
+
+12
+00:00:29,625 --> 00:00:31,850
+anomaly detection of sensor data,
+
+13
+00:00:31,850 --> 00:00:34,995
+or times use forecasting of stock market data.
+
+14
+00:00:34,995 --> 00:00:36,850
+In the fourth week,
+
+15
+00:00:36,850 --> 00:00:38,215
+it's all about deployment.
+
+16
+00:00:38,215 --> 00:00:41,935
+So in week four, we'll show you how you can scale and deploy
+
+17
+00:00:41,935 --> 00:00:47,500
+your neural network on clusters of CPU and GPU machines and make it ready for production.
+
+18
+00:00:47,500 --> 00:00:52,270
+Each week has one created programming assignment and a couple of quizzes.
+
+19
+00:00:52,270 --> 00:00:55,645
+After you have completed all of requirement assignments and the quizzes,
+
+20
+00:00:55,645 --> 00:00:58,865
+you will get a certification and the benchmark course.
+
+21
+00:00:58,865 --> 00:01:04,510
+That is a specialization that means if you complete this course and some others,
+
+22
+00:01:04,510 --> 00:01:09,970
+you we get the certification that you are IBM Watson IoT Certified Data Scientist.
+
+23
+00:01:09,970 --> 00:01:11,740
+So I think this is pretty cool.
+
+24
+00:01:11,740 --> 00:01:14,020
+I hope that you are enjoying the course, and let's have

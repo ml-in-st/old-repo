@@ -1,0 +1,251 @@
+1
+00:00:00,580 --> 00:00:02,140
+So let's scale up our example a bit.
+
+2
+00:00:03,950 --> 00:00:07,240
+They're using a convolutional neural
+network architecture which is
+
+3
+00:00:07,240 --> 00:00:08,555
+known as ResNet-50.
+
+4
+00:00:10,944 --> 00:00:15,580
+ResNet-50 is a 50-layer
+convolutional neural network
+
+5
+00:00:15,580 --> 00:00:18,650
+with a special property that we
+are not strictly following the rule,
+
+6
+00:00:18,650 --> 00:00:22,690
+that there are only connections
+between subsequent layers.
+
+7
+00:00:22,690 --> 00:00:27,390
+So ResNet is using so called residual
+learning, the actual layers are skipping
+
+8
+00:00:27,390 --> 00:00:32,210
+some connections and connecting to more
+downstream layers to improve performance.
+
+9
+00:00:32,210 --> 00:00:35,900
+But details on that is beyond
+the scope of this course and
+
+10
+00:00:35,900 --> 00:00:40,220
+luckily this class already provides us
+with a prepared and compiled model.
+
+11
+00:00:41,450 --> 00:00:45,440
+We import an image router and
+some pre-imposed processing helpers.
+
+12
+00:00:45,440 --> 00:00:46,500
+But it's getting even better.
+
+13
+00:00:47,720 --> 00:00:50,740
+We are not only provided
+with a prepared model but
+
+14
+00:00:50,740 --> 00:00:54,590
+we are also provided with
+a already trained model.
+
+15
+00:00:54,590 --> 00:00:57,899
+So in this case we specify that
+we want to obtain the weights
+
+16
+00:00:58,930 --> 00:01:02,580
+based on a training which has been
+done on the image net data set.
+
+17
+00:01:03,610 --> 00:01:07,893
+So the image net data set is
+a pre-classified database with over 14
+
+18
+00:01:07,893 --> 00:01:13,685
+million images, and over 27 classes,
+and nearly 22,000 subclasses.
+
+19
+00:01:13,685 --> 00:01:18,567
+Obviously, training a 50-layer neural
+network with 14 million images can
+
+20
+00:01:18,567 --> 00:01:20,320
+take quite some time.
+
+21
+00:01:20,320 --> 00:01:22,920
+So we're lucky that we
+can just download it.
+
+22
+00:01:22,920 --> 00:01:25,810
+By the way,
+this process is called transfer learning,
+
+23
+00:01:25,810 --> 00:01:29,720
+especially if you would further improve
+and train the model with our data.
+
+24
+00:01:29,720 --> 00:01:32,650
+We will test this model with an elephant
+which I found in the Internet.
+
+25
+00:01:32,650 --> 00:01:37,740
+We load this image and
+scale it down to 224 by 224 pixels.
+
+26
+00:01:37,740 --> 00:01:41,930
+We turn this into a 3D array,
+also known as a 3D tensor,
+
+27
+00:01:41,930 --> 00:01:46,450
+with 224 by 224 by 3 since we
+are working with a colored image.
+
+28
+00:01:47,630 --> 00:01:54,947
+We now expand the shape to 1 by 224 by 224
+by 3 because usually we are expecting or
+
+29
+00:01:54,947 --> 00:01:59,558
+we are throwing a bunch of
+images at a neural network but
+
+30
+00:01:59,558 --> 00:02:04,690
+in this case we have only one,
+so the first dimension is one.
+
+31
+00:02:04,690 --> 00:02:05,587
+Then we scale the image,
+
+32
+00:02:05,587 --> 00:02:07,995
+then we normalize the data to range
+between minus one and plus one.
+
+33
+00:02:07,995 --> 00:02:09,613
+Now it's time to predict the elephant.
+
+34
+00:02:09,613 --> 00:02:12,987
+The output is a vector of size 1,000,
+so we're getting
+
+35
+00:02:12,987 --> 00:02:17,899
+back a vector with class probabilities for
+1,000 classes which is not very handy.
+
+36
+00:02:17,899 --> 00:02:22,860
+Therefore, we use 3D core predict method,
+and we get back the extra class
+
+37
+00:02:22,860 --> 00:02:27,720
+labels as strings, in this case for
+the three best classes.
+
+38
+00:02:27,720 --> 00:02:31,580
+Let's execute the and while it runs, let's
+look at the image which we are using.
+
+39
+00:02:33,160 --> 00:02:35,163
+So this obviously is an elephant.
+
+40
+00:02:35,163 --> 00:02:36,561
+We download the elephant and
+
+41
+00:02:36,561 --> 00:02:40,530
+we rename it to elephant.jpeg
+because this name we are using here.
+
+42
+00:02:40,530 --> 00:02:45,450
+So as you can see, with the probability
+of 93%, this is an African elephant.
+
+43
+00:02:45,450 --> 00:02:46,900
+So this works pretty well.
+
+44
+00:02:46,900 --> 00:02:50,844
+Note that in the original example,
+the authors used a different image, so
+
+45
+00:02:50,844 --> 00:02:53,175
+most likely an image
+of an Indian elephant.
+
+46
+00:02:53,175 --> 00:02:54,440
+Let's try something else.
+
+47
+00:02:55,780 --> 00:02:56,800
+Let's try a bee.
+
+48
+00:02:58,334 --> 00:03:01,780
+Okay, this looks more like fly,
+but let's see what happens.
+
+49
+00:03:04,890 --> 00:03:07,440
+Okay, this was a quite difficult example.
+
+50
+00:03:07,440 --> 00:03:11,330
+Even I thought this was a fly, me and
+the neuron have not agreed on this.
+
+51
+00:03:11,330 --> 00:03:16,990
+So with a probability of 33% this is
+a fly, and with 26%, this is a bee.
+
+52
+00:03:16,990 --> 00:03:21,770
+Anyway, I think you got the point and
+you see how easy things are getting.
+
+53
+00:03:21,770 --> 00:03:24,964
+Especially if you are using all of your.

@@ -1,0 +1,188 @@
+1
+00:00:00,290 --> 00:00:03,901
+Let's load the diabetes
+dataset from scikit-learn.
+
+2
+00:00:03,901 --> 00:00:08,480
+To visualize the dataset,
+we use Macro List scatter plot.
+
+3
+00:00:08,480 --> 00:00:12,520
+The training data points
+are colored black, and
+
+4
+00:00:12,520 --> 00:00:14,590
+the test data points are colored red.
+
+5
+00:00:15,830 --> 00:00:20,911
+The x-axis denotes the input features,
+and the y-axis denotes the response.
+
+6
+00:00:23,605 --> 00:00:27,870
+As you can see,
+the response values are between 0 and 400.
+
+7
+00:00:35,634 --> 00:00:40,391
+Our goal here is to train a linear
+regression model which attempts to
+
+8
+00:00:40,391 --> 00:00:42,400
+find a line somewhere here.
+
+9
+00:00:43,510 --> 00:00:48,317
+Which we can then use to
+predict the response value
+
+10
+00:00:48,317 --> 00:00:52,219
+which is this given the input features.
+
+11
+00:00:52,219 --> 00:00:56,675
+In data cell, we'll denote the slope
+of this line by the V W and
+
+12
+00:00:56,675 --> 00:00:58,830
+the intercept with biased B.
+
+13
+00:01:05,807 --> 00:01:08,299
+Before we dive into
+the linear regression code,
+
+14
+00:01:08,299 --> 00:01:10,500
+let's look at a couple of preliminaries.
+
+15
+00:01:11,650 --> 00:01:15,308
+The built-in function solve computes
+the least squares solution,
+
+16
+00:01:15,308 --> 00:01:20,419
+Ax = b, such that the norm,
+Ax- b, is minimized.
+
+17
+00:01:21,440 --> 00:01:24,580
+It is important to note that
+this function can operate
+
+18
+00:01:24,580 --> 00:01:26,860
+only on small to medium
+sized input matrix.
+
+19
+00:01:29,554 --> 00:01:34,360
+Linear regression model assumes
+that the relationship between
+
+20
+00:01:34,360 --> 00:01:38,280
+input feature and
+the response variable is linear.
+
+21
+00:01:39,280 --> 00:01:42,513
+The goal, then, is to estimate
+the regression coefficient w.
+
+22
+00:01:42,513 --> 00:01:47,801
+We use the square loss,
+given here differentiating
+
+23
+00:01:47,801 --> 00:01:53,100
+the loss with respect to w,
+we get this expression.
+
+24
+00:01:54,620 --> 00:02:01,594
+We set this expression to 0 and
+we arrive at the expression given here.
+
+25
+00:02:01,594 --> 00:02:09,160
+The expression here can be computed
+using solve built in function,
+
+26
+00:02:09,160 --> 00:02:14,480
+where A is x is transpose x and
+b is x transpose y.
+
+27
+00:02:14,480 --> 00:02:20,180
+The dml script for
+linear regression done as simply
+
+28
+00:02:20,180 --> 00:02:25,050
+a solve function,
+by first setting a and b.
+
+29
+00:02:25,050 --> 00:02:28,650
+Setting a to x transpose x,
+and b to x transpose y.
+
+30
+00:02:30,090 --> 00:02:35,580
+Since we don't know whether the line
+passes through the origin, we add a bias.
+
+31
+00:02:35,580 --> 00:02:42,420
+This is done by first appending and
+solve it all ones, using cbind function.
+
+32
+00:02:49,597 --> 00:02:53,102
+For training,
+we need to pass the values for
+
+33
+00:02:53,102 --> 00:02:56,720
+the variables x and
+y using the input method.
+
+34
+00:02:57,780 --> 00:03:04,188
+In this case, x is the NumPy matrix,
+diabetes_x_train,
+
+35
+00:03:04,188 --> 00:03:09,500
+and y is the NumPy matrix,
+diabetes_y_train.
+
+36
+00:03:09,500 --> 00:03:14,644
+Since we want to find the line with
+the slope w and intercept bias,
+
+37
+00:03:14,644 --> 00:03:20,100
+we mark the WM bias as output and
+we get democratic seclusion.
+
+38
+00:03:27,031 --> 00:03:31,326
+Now that we have WM bias
+let's plot the line on
+
+39
+00:03:31,326 --> 00:03:35,070
+our scikit scatter plot which is this.

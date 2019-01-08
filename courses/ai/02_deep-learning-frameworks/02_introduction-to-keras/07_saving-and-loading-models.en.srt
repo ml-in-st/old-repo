@@ -1,0 +1,139 @@
+1
+00:00:01,310 --> 00:00:05,720
+In the last part of our little introduction to Keras,
+
+2
+00:00:05,720 --> 00:00:10,690
+we're going to talk about Serializing and Deserializing Keras Models.
+
+3
+00:00:10,690 --> 00:00:14,105
+Each Keras model, whether it's
+
+4
+00:00:14,105 --> 00:00:16,985
+a sequential model or a more general on non sequential model,
+
+5
+00:00:16,985 --> 00:00:21,365
+can be saved and loaded back again into memory.
+
+6
+00:00:21,365 --> 00:00:24,031
+There's a few ways to do that.
+
+7
+00:00:24,031 --> 00:00:29,805
+And the first option is to serialize the full model as HDF5.
+
+8
+00:00:29,805 --> 00:00:35,145
+But for model, we mean the architecture, meaning its configuration.
+
+9
+00:00:35,145 --> 00:00:37,130
+All the weights as well as
+
+10
+00:00:37,130 --> 00:00:40,250
+the training configuration and the state of the training configuration,
+
+11
+00:00:40,250 --> 00:00:41,950
+which would allow you to,
+
+12
+00:00:41,950 --> 00:00:43,250
+if you pick up the model again,
+
+13
+00:00:43,250 --> 00:00:47,040
+continue training from where you left it of.
+
+14
+00:00:47,040 --> 00:00:53,540
+You can also just persist the architecture as JSON or YAML,
+
+15
+00:00:53,540 --> 00:00:57,740
+or you can just persist the weights as a HDF5.
+
+16
+00:00:57,740 --> 00:01:04,770
+Okay, let's have look at the architecture or the weights separately.
+
+17
+00:01:04,770 --> 00:01:10,230
+To save the adjacent configuration of a model is simply called
+
+18
+00:01:10,230 --> 00:01:14,330
+model.to_json to arrive at the JSON string.
+
+19
+00:01:14,330 --> 00:01:23,975
+If you want to rather have it serialized as a YAML format, you call model.to_yaml.
+
+20
+00:01:23,975 --> 00:01:25,690
+If you want to save the weights,
+
+21
+00:01:25,690 --> 00:01:33,697
+you simply code model.save_weights on the model with a specified path to your file.
+
+22
+00:01:33,697 --> 00:01:39,930
+If you want to load back your JSON configuration into a model architecture,
+
+23
+00:01:39,930 --> 00:01:44,540
+you first import model from JSON from Keras model's sub module,
+
+24
+00:01:44,540 --> 00:01:49,340
+and call model_from_json on your previously defined JSON string.
+
+25
+00:01:49,340 --> 00:01:52,665
+If you want to load back the weights again,
+
+26
+00:01:52,665 --> 00:02:00,555
+you do that by calling model.load_weights on the previously defined file path.
+
+27
+00:02:00,555 --> 00:02:04,070
+All right, if you want to persist the full model,
+
+28
+00:02:04,070 --> 00:02:05,995
+that's actually a little easier,
+
+29
+00:02:05,995 --> 00:02:15,025
+you simply call model.save on a path to an HDF5 file that you can choose on your own.
+
+30
+00:02:15,025 --> 00:02:16,865
+And if you want to load it back again,
+
+31
+00:02:16,865 --> 00:02:20,045
+you first import load_model,
+
+32
+00:02:20,045 --> 00:02:23,815
+and then load the model with the specified file.
+
+33
+00:02:23,815 --> 00:02:25,925
+That's pretty much it.
+
+34
+00:02:25,925 --> 00:02:28,100
+This can be quite useful and we will see in
+
+35
+00:02:28,100 --> 00:02:34,240
+the later lecture how to import serialized Keras models into.

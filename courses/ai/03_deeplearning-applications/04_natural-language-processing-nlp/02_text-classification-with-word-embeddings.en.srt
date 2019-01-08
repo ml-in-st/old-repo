@@ -1,0 +1,251 @@
+1
+00:00:00,000 --> 00:00:04,330
+So, if this is a bit complicated then luckily Carris
+
+2
+00:00:04,330 --> 00:00:09,310
+supports all this functionality in one single layer which is quite Embedding.
+
+3
+00:00:09,310 --> 00:00:13,220
+So, embedding takes an input of
+
+4
+00:00:13,220 --> 00:00:19,830
+a certain dimension and actually creates a lot of measure of presentation for us.
+
+5
+00:00:19,830 --> 00:00:25,210
+So now, we have a vocabulary of a thousand possible words and we have
+
+6
+00:00:25,210 --> 00:00:30,310
+three sentences and each sentence contains exactly five words.
+
+7
+00:00:30,310 --> 00:00:33,375
+So, no need for padding in this simple example.
+
+8
+00:00:33,375 --> 00:00:37,880
+And this should give us a three by five matrix which is actually correct,
+
+9
+00:00:37,880 --> 00:00:42,340
+because we have three sentences and five words per sentence.
+
+10
+00:00:42,340 --> 00:00:45,200
+And instead of words we have integer representations
+
+11
+00:00:45,200 --> 00:00:48,715
+of the words so that is actually correct here.
+
+12
+00:00:48,715 --> 00:00:53,150
+So, the output is of shape three by five by three, so it's a 3D Tensor.
+
+13
+00:00:53,150 --> 00:00:58,195
+It can be three sentences and five words per sentence.
+
+14
+00:00:58,195 --> 00:01:01,750
+But now each word is not represented as a single dimensional integer scaler
+
+15
+00:01:01,750 --> 00:01:07,700
+but it is represented as a vector of
+
+16
+00:01:07,700 --> 00:01:12,385
+size three because it defined that if you compress
+
+17
+00:01:12,385 --> 00:01:17,875
+this high dimensional space into a lower dimensional space of size three,
+
+18
+00:01:17,875 --> 00:01:22,897
+of dimensional relative three.
+
+19
+00:01:22,897 --> 00:01:25,980
+So, let's actually inspect this Tensor.
+
+20
+00:01:25,980 --> 00:01:30,335
+So the first element here is a sentence
+
+21
+00:01:30,335 --> 00:01:35,440
+and it's a list of words and each word has three dimensions.
+
+22
+00:01:35,440 --> 00:01:39,340
+So now, we've understood how the embedding layer works and
+
+23
+00:01:39,340 --> 00:01:43,885
+let's use this layer to create a very simple document classifier.
+
+24
+00:01:43,885 --> 00:01:50,670
+We you want to classify the sentiment of a text whether it is positive or negative.
+
+25
+00:01:50,670 --> 00:01:55,330
+So this document contains a couple of sentences.
+
+26
+00:01:55,330 --> 00:01:57,600
+They are relatively simple so we have
+
+27
+00:01:57,600 --> 00:02:03,400
+five negative and five positive sentences and we assign a class label to each sentence.
+
+28
+00:02:03,400 --> 00:02:07,575
+One stands for positive and zero stands for negative sentiment.
+
+29
+00:02:07,575 --> 00:02:11,670
+And again, we use the so-called one hot and quarter from
+
+30
+00:02:11,670 --> 00:02:16,450
+Cara's text which in my opinion again is not one hot and quarter.
+
+31
+00:02:16,450 --> 00:02:24,003
+It just gives us the integer presentation for each word.
+
+32
+00:02:24,003 --> 00:02:27,210
+So for example 29,
+
+33
+00:02:27,210 --> 00:02:32,860
+this work and you see work in two sentences and
+
+34
+00:02:32,860 --> 00:02:38,770
+now we are padding because our longest sentence has four words we have padding to four.
+
+35
+00:02:38,770 --> 00:02:43,090
+That means the short sentences are just padded with creating zeroes.
+
+36
+00:02:43,090 --> 00:02:46,220
+So now, let's create an embedding in this case we
+
+37
+00:02:46,220 --> 00:02:50,215
+will reduce the dimensionality to dimensionality of eight.
+
+38
+00:02:50,215 --> 00:02:53,653
+The max length is four and then we
+
+39
+00:02:53,653 --> 00:02:57,215
+have flatten because we don't want to work with 3D Tensor.
+
+40
+00:02:57,215 --> 00:03:00,190
+And then we will feed in the result into
+
+41
+00:03:00,190 --> 00:03:04,050
+a dense layer which has only one dimension because we
+
+42
+00:03:04,050 --> 00:03:06,750
+are predicting a binary target zero or
+
+43
+00:03:06,750 --> 00:03:12,250
+one and therefore we also use the sigmoid activation function.
+
+44
+00:03:12,250 --> 00:03:18,630
+Use "Adam" as optimize the binary cross entropy as less function.
+
+45
+00:03:18,630 --> 00:03:22,575
+So note that the embedding layer has already 400 parameters.
+
+46
+00:03:22,575 --> 00:03:25,990
+So now, it's time to call "Fit" and note here we have
+
+47
+00:03:25,990 --> 00:03:28,855
+the padded one hot encoded sentences as
+
+48
+00:03:28,855 --> 00:03:34,694
+input and the class labels as target or as output to newer network.
+
+49
+00:03:34,694 --> 00:03:41,925
+We are training for 50 epochs and immediately we measure accuracy.
+
+50
+00:03:41,925 --> 00:03:48,285
+So, we are at 80 percent which is not bad but we can improve this of course.
+
+51
+00:03:48,285 --> 00:03:52,845
+And now, let's create a little overview of how good we are doing per sentence.
+
+52
+00:03:52,845 --> 00:03:55,220
+So, we call predict that gives us the output of
+
+53
+00:03:55,220 --> 00:03:59,455
+the sigmoid activation and in the second column we just use the actual labor.
+
+54
+00:03:59,455 --> 00:04:02,905
+And as you can see in most of the cases the prediction is correct.
+
+55
+00:04:02,905 --> 00:04:06,930
+So, whatever we see a one the value is bigger than zero dot five
+
+56
+00:04:06,930 --> 00:04:12,225
+and wherever the value is zero It's less than zero dot five.
+
+57
+00:04:12,225 --> 00:04:13,640
+So you see that actually it works.
+
+58
+00:04:13,640 --> 00:04:14,750
+Whenever the class labels is one,
+
+59
+00:04:14,750 --> 00:04:17,190
+you see an activation bigger then zero dot five.
+
+60
+00:04:17,190 --> 00:04:20,270
+And in most of the cases when the class labels is
+
+61
+00:04:20,270 --> 00:04:23,900
+zero you see an activation which is lower than zero dot five.
+
+62
+00:04:23,900 --> 00:04:27,235
+So, this is only little example but that's actually the way
+
+63
+00:04:27,235 --> 00:04:32,050
+how document classification is done in real worlds scenarios.

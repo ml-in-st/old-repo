@@ -1,0 +1,42 @@
+So let's actually see how this
+example looks in real life. Let's switch the model to healthy,
+just to be sure. So it starts to create data. And in the notebook, you see data
+arriving, one dot for each sample. At the same time, they're using
+the dashboard functionality of the IBM Watson IOT platform,
+in order to see what's going on. So we see real time, time series plots and
+displaying the data. Later we expect anomaly score and
+a lot to be populated. Remember we've sent a no alert
+message to the UI in the notebook. Once the buffer is filled
+with 3,000 elements, data gets sent to the neural network for
+training. This is called account-based
+tumbling window. Other variants of stream processing
+windows are time based, or session based windows. All of them can be tumbling or sliding, but we will cover stream
+computing in a separate class very soon. So now the window was full and was sent downstream to
+the neural network for training. It takes a little while, and
+as Keras and TensorFlow are started, and now are training stuff. Here in training, we send the current
+loss upstream to the queue. So we should be able to
+see it in the dashboard. And as we can see, you started
+with an anomaly score of 0.04, and are slowly getting down. This works as expected, since we're
+looking at known and healthy data. Our training is finished, and usually the next windows of
+data would have been processed. But we've limited the tests data
+generated to 3,000 events, so we need to switch to program and reset. By the higher amplitude we can make out
+that the pattern of data has changed. But the cool thing is that with LSTM
+autoencoder based neural network, we don't need to tell the neural network
+how healthy and broken data looks like. It finds out by itself,
+a bit scary but totally awesome. And again,
+we need to wait until the window is full. So training has just started, and we immediately see that
+an alert has been raised. This is reflected in
+the dashboard as well. And in addition,
+we see a clear spike in loss. But we notice as well that
+loss rapidly goes down, since the neural network now gets used
+to broken data, and sooner or later, it considers broken data as healthy,
+as well. Therefore, the system has automatically
+reset itself to the last known healthy state by reloading
+the pre-trend model from disk. Those warnings are due to the fact that
+communication with the message queue in the Keras callback handler take some time,
+but we can ignore those. So this was an example of
+an end-to-end scenario. If you're happy with the solution,
+we could easily export the model to IBM Watson machine learning, because
+running everything from a notebook for a production scenario is not a good idea. In a later lecture, we will also learn
+how to make use of Apache Spark for parallel neural network training and
+scoring. So stay tuned.

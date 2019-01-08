@@ -1,0 +1,48 @@
+Dobro došli nazad. Last time we have discussed how to load
+the data into our Jupyter workbook. And we have loaded some data from FRED,
+from Federal Reserve Bank of St. Louis. And we have done short
+inspection of this data. Today is a very important topic. And we are going to discuss which
+types of LSTM are existing. Namely, we are talking about
+two main modes of LSTM. There are two modes, one is the stateful
+mode and one is the stateless mode. Why is this so
+important at this point of time? This is why we have to decide already now, at the beginning,
+which one we are going to use. And to decide this,
+we will briefly show what is the difference between stateless and
+stateful LSTM. As you probably know, LSTM is meaning Long Short-Term Memory. So this neuronal network
+manage short-term memory. And this is the main difference
+between stateless and stateful LSTMs. In a stateless mode, LSTM updates parameter on batch one,
+let's say batch one. And then, when batch two comes,
+it will initiate hidden states and cell states with zeroes in the next batch,
+in the batch two. Šta to znači? Cell state is the cell memory. Cell is another word for actually,
+roughly, for LSTM layer. We will see later how we
+build this with Keras. But this is just inner memory,
+cell memory. And hidden state is
+the state of the neurons. So we have hidden layers
+in a LSTM network. Same way as we have in all
+other neuronal networks. So even if we have CNN,
+convolutional neural networks, or another networks,
+we have always input layer. Then we have hidden layer, and
+then we have output layer. And this state of neurons in
+the hidden layers, called hidden state. So now we know that in a stateless LSTM, everything starts from
+beginning from batch to batch. So one batch was past, then everything
+is going to be resetted and initialized with zeros and
+then it starts again and again. In a stateful neuronal network
+is it completely different? Here, the last output
+of the hidden state and of the cell states, cell state again,
+this is the cell memory, from batch one is the input for
+the batch two. So it memorizes what it has
+learned in the batch one, it takes it over to the batch two. So now, what should we use? Which mode of LSTM, Should we use? This is pretty easy to
+answer in this case. The question is only, are the time
+series independent in different batches? So let's say we have our data,
+this is around, 8,000 rows, 8,000 observations. And we split it into batches. So we have batch one. Let's say we have in batch one,
+100 observations. In batch two we have again 100
+observations, and so on and so on. This is one huge time series,
+and of course, there is dependency inside of this data,
+so between different time steps. And there is also dependency
+between batch one, batch two, batch three, and so on and so on. This is one time series,
+and because of that, of course we should use stateful mode. Another example is, For example,
+if we deal with sentences. So, one sentence, we have in one batch, another sentence,
+we have in another batch. So they are two complete
+different sentences. And they are completely unrelated to each
+other so we don't need this stateful mode. Instead of that, we need stateless mode. But here we deal with commodities, or the same with stock prices, and we are going to select stateful LSTM. So stay tuned until the next time,
+enjoy our sessions, bye, bye.

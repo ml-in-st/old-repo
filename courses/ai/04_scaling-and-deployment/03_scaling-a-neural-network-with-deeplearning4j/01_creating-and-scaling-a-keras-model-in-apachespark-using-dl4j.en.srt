@@ -1,0 +1,951 @@
+1
+00:00:00,588 --> 00:00:05,295
+Hi, in this example I'm going to
+demonstrate running Keras
+
+2
+00:00:05,295 --> 00:00:09,740
+models in DL4J in
+the IBM Data Science Experience.
+
+3
+00:00:09,740 --> 00:00:12,590
+And it's going to be
+a full end to end example.
+
+4
+00:00:13,670 --> 00:00:17,070
+So the contents of this
+section are going to include
+
+5
+00:00:17,070 --> 00:00:21,520
+Python to Java all in the IBM DSX.
+
+6
+00:00:21,520 --> 00:00:24,590
+We're going to demonstrate
+a classification example.
+
+7
+00:00:24,590 --> 00:00:28,280
+So I'm going to, use a simple
+classification example where we got
+
+8
+00:00:28,280 --> 00:00:32,255
+four features and three classes,
+and a relatively small data file.
+
+9
+00:00:32,255 --> 00:00:39,380
+But understand that the model we use
+to execute that in DL4J is generic.
+
+10
+00:00:39,380 --> 00:00:42,780
+It will work with any
+classification example
+
+11
+00:00:42,780 --> 00:00:46,310
+as long as the following
+requirements are met.
+
+12
+00:00:46,310 --> 00:00:51,060
+The data has to be stored in
+comma separated value files.
+
+13
+00:00:51,060 --> 00:00:53,090
+And it has to be a classification example.
+
+14
+00:00:53,090 --> 00:00:53,590
+That's it.
+
+15
+00:00:54,640 --> 00:00:59,076
+And then we get into DL4J we're
+going to demonstrate validation.
+
+16
+00:00:59,076 --> 00:01:03,712
+But also note that the model
+could be trained in DL4J.
+
+17
+00:01:03,712 --> 00:01:08,815
+So we'd have a choice of either
+training the model in Keras,
+
+18
+00:01:08,815 --> 00:01:14,931
+in our notebook, or training the model
+in DL4J in Java on Spark or Java.
+
+19
+00:01:17,284 --> 00:01:24,484
+So, All of the code that we're
+going to demonstrate and all the work
+
+20
+00:01:24,484 --> 00:01:29,540
+that we're going to do here can be done on
+the IBM Data Science Experience platform.
+
+21
+00:01:30,730 --> 00:01:36,060
+And the first step we're going to show
+is on the IBM Data Science Experience,
+
+22
+00:01:36,060 --> 00:01:38,420
+we're going to build a Python Notebook.
+
+23
+00:01:38,420 --> 00:01:42,820
+And in that Python Notebook, we're
+going to build and train a neural net.
+
+24
+00:01:44,660 --> 00:01:48,020
+So once we have our
+Python Notebook in Keras,
+
+25
+00:01:48,020 --> 00:01:52,680
+a typical route would be to train
+it in the data science experience.
+
+26
+00:01:52,680 --> 00:01:55,990
+And then once we've trained it
+in the data science experience,
+
+27
+00:01:55,990 --> 00:01:57,820
+we could save the model.
+
+28
+00:01:57,820 --> 00:02:01,410
+And that's what we see
+over here on the right.
+
+29
+00:02:02,640 --> 00:02:09,841
+Right, going from training
+in DSX to the saved model.
+
+30
+00:02:09,841 --> 00:02:11,821
+But note that there's an alternative path.
+
+31
+00:02:11,821 --> 00:02:15,500
+And that is where we could
+save just the configuration.
+
+32
+00:02:15,500 --> 00:02:20,240
+So perhaps we do a proof of concept
+where we train it in Python but
+
+33
+00:02:20,240 --> 00:02:22,880
+we have more resources in Spark.
+
+34
+00:02:22,880 --> 00:02:26,100
+In that case we can take
+the saved configuration and
+
+35
+00:02:26,100 --> 00:02:30,580
+as you'll see in the next
+slide train that in DSX.
+
+36
+00:02:30,580 --> 00:02:34,360
+So from the Python notebook
+we have these two paths.
+
+37
+00:02:34,360 --> 00:02:39,570
+Train in DSX, save the train model and
+import that into DL4J
+
+38
+00:02:39,570 --> 00:02:46,680
+using our KerasModelImport functionality
+or write the code in the Python Notebook.
+
+39
+00:02:46,680 --> 00:02:51,060
+Perhaps generate a proof-of-concept
+over a small sample set of data.
+
+40
+00:02:51,060 --> 00:02:58,132
+And save just the configuration and
+then import that into DL4J for training.
+
+41
+00:03:01,580 --> 00:03:07,465
+Once we have the model into DL4J, using
+DL4J's KerasModelImport functionality,
+
+42
+00:03:07,465 --> 00:03:12,621
+note that we have an option of training
+it on Spark, or training it locally,
+
+43
+00:03:12,621 --> 00:03:16,890
+just training it in Java,
+by executing Java locally.
+
+44
+00:03:16,890 --> 00:03:22,173
+The path that I'm going to demonstrate
+in this code is the Spark path,
+
+45
+00:03:22,173 --> 00:03:28,300
+executing it in Spark either for just
+inference or validation or training it.
+
+46
+00:03:32,141 --> 00:03:33,743
+So let's walk through the code.
+
+47
+00:03:33,743 --> 00:03:35,615
+We're going to be doing
+some classification.
+
+48
+00:03:35,615 --> 00:03:40,967
+And it's going to involve comma
+separated values in a text file.
+
+49
+00:03:40,967 --> 00:03:42,717
+Here's an example you
+may have seen before.
+
+50
+00:03:42,717 --> 00:03:47,070
+We're using the Iris DataSet,
+4 features and 3 classes.
+
+51
+00:03:47,070 --> 00:03:52,110
+So even though our initial example here is
+kind of like a Hello World, rather basic,
+
+52
+00:03:52,110 --> 00:03:56,420
+note that the KerasModelImport
+functionality is generic, and
+
+53
+00:03:56,420 --> 00:04:00,210
+would work with any
+classification example for
+
+54
+00:04:00,210 --> 00:04:02,740
+a large number of classes,
+a large volume of data.
+
+55
+00:04:05,560 --> 00:04:07,144
+So our data file looks like this.
+
+56
+00:04:07,144 --> 00:04:15,230
+We have features, and then the last
+column here is zero, one or two.
+
+57
+00:04:15,230 --> 00:04:16,630
+That is the class.
+
+58
+00:04:16,630 --> 00:04:19,910
+So we have three classes of flowers and
+four features,
+
+59
+00:04:19,910 --> 00:04:22,320
+four measurements of those flowers.
+
+60
+00:04:23,600 --> 00:04:25,220
+So let's take a look at the Keras code.
+
+61
+00:04:27,180 --> 00:04:30,963
+So I'm going to import numpy,
+import pandas, so some imports.
+
+62
+00:04:30,963 --> 00:04:34,318
+We're going to be using Keras so
+we're going to use a feedforward network.
+
+63
+00:04:34,318 --> 00:04:35,910
+So we'll need Sequential API.
+
+64
+00:04:35,910 --> 00:04:39,730
+And we're going to do some
+classification and some label encoding.
+
+65
+00:04:41,690 --> 00:04:44,670
+We set a random seed for
+reproducible results.
+
+66
+00:04:44,670 --> 00:04:45,376
+That's right here.
+
+67
+00:04:48,415 --> 00:04:50,826
+So we get a consistent random seed.
+
+68
+00:04:50,826 --> 00:04:56,938
+And then we build a dataframe
+from reading that iris.csv file.
+
+69
+00:05:03,084 --> 00:05:05,641
+Then we want to take the zero, ones, and
+
+70
+00:05:05,641 --> 00:05:09,070
+two, and
+convert those to one-hot encoding.
+
+71
+00:05:09,070 --> 00:05:10,890
+So we're going to encode those values.
+
+72
+00:05:10,890 --> 00:05:12,810
+They could also have been text there, and
+
+73
+00:05:12,810 --> 00:05:17,880
+this code would work as well,
+whether we have integers or text values.
+
+74
+00:05:17,880 --> 00:05:23,150
+It's taking a string, determining
+the number of classes, and encoding that.
+
+75
+00:05:24,310 --> 00:05:26,470
+So what we have at the end of this step.
+
+76
+00:05:26,470 --> 00:05:30,221
+So we have our dummy_y and we have our x.
+
+77
+00:05:30,221 --> 00:05:35,131
+So you see we split our
+dataset here into X and Y.
+
+78
+00:05:35,131 --> 00:05:39,900
+Once we split it into X and
+Y, we manipulate Y.
+
+79
+00:05:39,900 --> 00:05:43,940
+So we get dummy encoding also
+known as one hot encoding.
+
+80
+00:05:43,940 --> 00:05:48,420
+So at the end of that code,
+we'll have the features file.
+
+81
+00:05:48,420 --> 00:05:50,537
+Notice that we now just
+have the four features.
+
+82
+00:05:52,984 --> 00:05:55,990
+And this is the dataset X.
+
+83
+00:05:55,990 --> 00:05:59,190
+And the data set dummy_y
+will have the labels.
+
+84
+00:06:00,430 --> 00:06:04,050
+And note that it's just one hot in coding,
+all 0's except for one, so
+
+85
+00:06:04,050 --> 00:06:06,170
+this is class 0.
+
+86
+00:06:06,170 --> 00:06:08,860
+This would be class one, and
+this would be class two.
+
+87
+00:06:08,860 --> 00:06:14,620
+So that just shows you how the data is
+encoded for this example, here in Keras.
+
+88
+00:06:14,620 --> 00:06:18,150
+That's called one hot or
+dummy encoding, for the labels.
+
+89
+00:06:20,020 --> 00:06:21,630
+Then we build a model.
+
+90
+00:06:21,630 --> 00:06:24,180
+So we add a dense layer,
+we add our output layer, for
+
+91
+00:06:24,180 --> 00:06:28,050
+our three classes, specify the updater.
+
+92
+00:06:28,050 --> 00:06:30,899
+Straightforward neural
+network configuration for
+
+93
+00:06:30,899 --> 00:06:33,040
+a simple feedforward neural network.
+
+94
+00:06:35,300 --> 00:06:40,070
+Then we train the model, and
+then we save the model, okay?
+
+95
+00:06:40,070 --> 00:06:42,845
+So in this case we're doing what?
+
+96
+00:06:42,845 --> 00:06:45,930
+We're saving the trained model.
+
+97
+00:06:45,930 --> 00:06:49,480
+Note that the model could
+be trained further or
+
+98
+00:06:49,480 --> 00:06:53,850
+we could have just saved
+the configuration to train that in DL4J.
+
+99
+00:06:53,850 --> 00:06:57,582
+But in this case I am
+saving the trained model.
+
+100
+00:07:00,452 --> 00:07:04,978
+So, this my_model.h5 file
+will be the data file
+
+101
+00:07:04,978 --> 00:07:09,200
+that's loaded into DL4J
+in the next section.
+
+102
+00:07:11,260 --> 00:07:17,567
+The DL4J code for this example
+is available here at this URL.
+
+103
+00:07:17,567 --> 00:07:19,956
+And note that, that was just a single URL.
+
+104
+00:07:19,956 --> 00:07:23,410
+I broke it into two lines so
+that it will display.
+
+105
+00:07:26,110 --> 00:07:30,600
+So what we do in the DL4J code, and
+there's some boilerplate code and
+
+106
+00:07:30,600 --> 00:07:32,740
+some imports that I didn't include, but
+
+107
+00:07:32,740 --> 00:07:37,250
+the key features are,
+we create a MultiLayerNetwork.
+
+108
+00:07:37,250 --> 00:07:42,290
+And the way we create that
+MultiLayerNetwork is not manually in DL4J,
+
+109
+00:07:42,290 --> 00:07:48,220
+but by importing the KerasModel and
+weights that we saved previously.
+
+110
+00:07:48,220 --> 00:07:52,980
+So when we execute this code, we'll be
+generating this modelFileName based
+
+111
+00:07:52,980 --> 00:07:57,980
+upon a parameter that was passed
+to this code to load our model.
+
+112
+00:07:57,980 --> 00:07:59,708
+So we're going to pass it our model.
+
+113
+00:07:59,708 --> 00:08:05,404
+And this bit of code will
+take that model from Keras,
+
+114
+00:08:05,404 --> 00:08:09,190
+and create a MultiLayerNetwork.
+
+115
+00:08:09,190 --> 00:08:14,450
+Because we want to execute this in Spark
+using a Data Science Experience's Spark
+
+116
+00:08:14,450 --> 00:08:19,710
+as a Service, we're going to need to set
+up a ParameterAveragingTrainingMaster.
+
+117
+00:08:19,710 --> 00:08:24,450
+And so, what a training master does is,
+for the workers, when they each finish
+
+118
+00:08:24,450 --> 00:08:28,050
+their forward pass and
+they update their weights, at some point,
+
+119
+00:08:28,050 --> 00:08:33,060
+they need to share those weights so that
+they're all working towards the same goal.
+
+120
+00:08:33,060 --> 00:08:38,170
+And in DL4J the tool that does
+that is the training master.
+
+121
+00:08:38,170 --> 00:08:42,775
+And here, we're configuring
+a ParameterAveragingTrainingMaster.
+
+122
+00:08:47,564 --> 00:08:50,439
+We need to create our Spark context.
+
+123
+00:08:50,439 --> 00:08:53,750
+And these two lines of
+code here will do that.
+
+124
+00:08:55,470 --> 00:08:58,040
+So we have our
+ParameterAveragingTrainingMaster,
+
+125
+00:08:58,040 --> 00:09:01,250
+our model, and our Spark context.
+
+126
+00:09:01,250 --> 00:09:07,390
+Now we need to tie them all together by
+creating a SparkDl4jMultiLayer network.
+
+127
+00:09:07,390 --> 00:09:08,790
+And we pass this,
+
+128
+00:09:08,790 --> 00:09:13,530
+our Spark configuration, that you saw
+configured in the previous slide.
+
+129
+00:09:15,570 --> 00:09:18,938
+And then we pass it our network and
+
+130
+00:09:18,938 --> 00:09:23,762
+the network you saw us
+create here previously.
+
+131
+00:09:23,762 --> 00:09:29,955
+The network's generated by
+reading that Keras file.
+
+132
+00:09:29,955 --> 00:09:33,636
+And then in addition to
+the Spark configuration and
+
+133
+00:09:33,636 --> 00:09:37,410
+the network we need to
+specify our training master.
+
+134
+00:09:38,670 --> 00:09:44,517
+Now we have all the pieces needed
+to execute this code in Spark.
+
+135
+00:09:48,426 --> 00:09:55,320
+So when we execute this in Spark, we need
+to pass our executable our data file.
+
+136
+00:09:55,320 --> 00:09:59,300
+And this training file gets
+passed to each of the workers.
+
+137
+00:09:59,300 --> 00:10:05,445
+So what we do here is we're
+going to read that file.
+
+138
+00:10:05,445 --> 00:10:09,304
+And then we're going to
+create a list from that file.
+
+139
+00:10:09,304 --> 00:10:13,640
+And then from that list,
+we're going to create an RDD.
+
+140
+00:10:13,640 --> 00:10:19,358
+That's a Resilient Distributive Dataset
+that Spark uses for parallel processing.
+
+141
+00:10:19,358 --> 00:10:24,700
+So now we have everything needed
+to do parallel processing on Spark
+
+142
+00:10:24,700 --> 00:10:28,930
+across this data file that we
+shipped up to the Spark cluster.
+
+143
+00:10:30,930 --> 00:10:33,040
+And then we can train the network.
+
+144
+00:10:33,040 --> 00:10:36,750
+So the code will take
+an optional train parameter.
+
+145
+00:10:36,750 --> 00:10:39,690
+So if we wanted to train the network
+this code would take effect.
+
+146
+00:10:40,840 --> 00:10:45,510
+All right, so we're calling sparkNet.fit
+on our dataset that we passed.
+
+147
+00:10:48,470 --> 00:10:51,270
+Or we can just run an evaluation, right?
+
+148
+00:10:51,270 --> 00:10:55,460
+If we're just using for inference,
+if we're just taking the model and
+
+149
+00:10:55,460 --> 00:10:59,740
+only doing passing data in and
+getting the model's prediction.
+
+150
+00:10:59,740 --> 00:11:04,659
+This code evaluates the network to
+make sure we're getting consistent,
+
+151
+00:11:04,659 --> 00:11:06,019
+expected results.
+
+152
+00:11:06,019 --> 00:11:09,540
+And that's all we'll do in
+the demonstration that I'll do next.
+
+153
+00:11:09,540 --> 00:11:14,350
+I will not train the network in Spark,
+I'll train it in Keras.
+
+154
+00:11:14,350 --> 00:11:18,011
+I will import the train network,
+pass it a data file, and
+
+155
+00:11:18,011 --> 00:11:21,840
+do an evaluation of the predictions
+made by the neural net.
+
+156
+00:11:24,951 --> 00:11:26,910
+So that's the deal for Jcode.
+
+157
+00:11:26,910 --> 00:11:31,640
+That deal for Jcode has been bundled
+up and placed into this jar.
+
+158
+00:11:31,640 --> 00:11:32,940
+So its been compiled and
+
+159
+00:11:32,940 --> 00:11:38,400
+placed into this dl4j-snapshot.jar
+located at this location.
+
+160
+00:11:40,140 --> 00:11:43,070
+So in your notebook you'd
+have to execute this command.
+
+161
+00:11:43,070 --> 00:11:47,480
+Note that we're using
+!wget to escape Python and
+
+162
+00:11:47,480 --> 00:11:49,280
+execute this as a shell command.
+
+163
+00:11:49,280 --> 00:11:52,610
+This will download the file
+locally in your notebook.
+
+164
+00:11:55,190 --> 00:11:58,240
+And once again, note that you could
+do this with your own example.
+
+165
+00:11:59,740 --> 00:12:04,043
+Now, we built our model in our notebook.
+
+166
+00:12:04,043 --> 00:12:07,114
+So when we save the model,
+the model will be saved locally.
+
+167
+00:12:07,114 --> 00:12:10,510
+So, this my_model.h5 file
+will be available locally.
+
+168
+00:12:11,700 --> 00:12:17,960
+We're also going to make sure that we
+have a copy of our iris.txt data file.
+
+169
+00:12:17,960 --> 00:12:19,400
+So, that's going to be available.
+
+170
+00:12:19,400 --> 00:12:22,881
+Note, in a previous slide
+I called that iris.csv.
+
+171
+00:12:22,881 --> 00:12:26,433
+iris.txt is the correct name for
+that file.
+
+172
+00:12:28,564 --> 00:12:30,291
+We're going to run spark-submit.
+
+173
+00:12:30,291 --> 00:12:35,094
+Submit it to the training master that's
+made available to spark master, rather,
+
+174
+00:12:35,094 --> 00:12:37,913
+that's made available
+in the DSX environment.
+
+175
+00:12:39,756 --> 00:12:42,148
+Specify that we want to run this class.
+
+176
+00:12:42,148 --> 00:12:44,801
+And that's the class of the code
+walkthrough I just did,
+
+177
+00:12:44,801 --> 00:12:46,135
+the important Java pieces.
+
+178
+00:12:46,135 --> 00:12:49,862
+That's the KerasModelImport,
+the Spark context and
+
+179
+00:12:49,862 --> 00:12:54,000
+the Spark DL4J multilayer along
+with the training master.
+
+180
+00:12:58,027 --> 00:13:00,852
+That class is in this jar.
+
+181
+00:13:00,852 --> 00:13:07,030
+And then any options after the JAR
+apply to the class itself.
+
+182
+00:13:07,030 --> 00:13:12,650
+So we're specifying the batch size,
+we're specifying where the label is.
+
+183
+00:13:12,650 --> 00:13:16,600
+So in the case of our data file,
+we had feature, feature, feature,
+
+184
+00:13:16,600 --> 00:13:19,630
+feature, four features,
+and then we had a label.
+
+185
+00:13:19,630 --> 00:13:24,006
+So the label index in that case would
+be the fifth field starting at zero.
+
+186
+00:13:24,006 --> 00:13:25,238
+That would be four.
+
+187
+00:13:25,238 --> 00:13:28,260
+So you specify the labels
+are in the fourth column.
+
+188
+00:13:31,070 --> 00:13:32,560
+We say that we don't want to train it.
+
+189
+00:13:34,040 --> 00:13:37,512
+We just want to run inference,
+we want to run evaluation basically.
+
+190
+00:13:37,512 --> 00:13:40,391
+Specify there's three classes.
+
+191
+00:13:40,391 --> 00:13:46,613
+So this iris.txt file has three classes,
+three species of flowers.
+
+192
+00:13:49,529 --> 00:13:54,797
+We need to ship my_model.h5 and
+specify my_model.h5
+
+193
+00:13:54,797 --> 00:14:00,210
+is the model to be loaded
+in that KerasModelImport.
+
+194
+00:14:00,210 --> 00:14:04,231
+So right here, we need to make
+sure that that file is shipped.
+
+195
+00:14:04,231 --> 00:14:10,656
+And then here we specify that this class
+right there, should be loading that file.
+
+196
+00:14:13,672 --> 00:14:15,520
+And then specify the dataFileName.
+
+197
+00:14:15,520 --> 00:14:19,560
+And once again, that needs to be
+available in the local directory
+
+198
+00:14:19,560 --> 00:14:25,250
+of the executor's or
+the worker's, and that's it.
+
+199
+00:14:25,250 --> 00:14:27,670
+So in the next section I'm going to
+
+200
+00:14:27,670 --> 00:14:31,860
+actually demonstrate a code
+walk-through where I execute this code.
+
+201
+00:14:31,860 --> 00:14:32,360
+Thank you.

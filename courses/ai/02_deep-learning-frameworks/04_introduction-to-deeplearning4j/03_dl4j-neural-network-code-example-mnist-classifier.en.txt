@@ -1,0 +1,101 @@
+In this section, we're going to take
+a look at some DL4J example code. Simple example builds a neural net,
+processes a small data set to make predictions of the species of
+an iris based upon its measurements. The code's available here. The data file's also available there,
+and there's direct links to the code. You could also just clone the whole repo,
+and that repo also contains any other DL4J
+exercises that we've done in this course. The data looks like this, and
+the first four fields are measurements. The last field is the class. Species 0 might be iris setosas,
+species 1 would be iris virginica, species 2 would be iris versicolor. So three species of irises, and then
+the four measures are their sepal length, sepal width, petal length,
+and petal width. So the first four fields are features. They will be ingested using the DataVec
+tools such as CSV RecordReader. And they will become an INDArray,
+an indexed n-dimensional array. Last field is the label. It will also become an INDArray and
+it will get passed to the neural net. The neural net will make its
+prediction based upon the features and then will compare it to the known label. So we're performing
+supervised training here. So the steps that we're going to
+need to perform in our code, we're going to need to read the file. We're going to need to parse the lines. We're going to need to specify
+which field is the label, and which field are the features or
+the measurements. We're going to have to
+create a DataSet object, a collection of INDArrays to
+pass into our neural net. INDArrays are sometimes called tensors and
+then build a neural net and train it. We're going to be using a RecordReader. And here's the JavaDoc for
+the RecordReader and the Java Doc for the CSV RecordReader. Note that the second URL I had to split
+on the line because it was too long to feed into the slide, so
+that's all one string. And then we're going to be using
+a RecordReaderDataSetIterator to build the dataset, the INDArray of the features
+and the INDArray of the labels. Main documentation for
+DeepLearning4J is available, Here. The JavaDoc for DataVec is available here. And the JavaDoc for
+DeepLearning4J is available there. So step one, we need to write
+some code to read the data file. The data file has no header,
+it's all data. So we specify that we don't
+need to skip any lines. The data is comma delimited so we specify
+that we'll be using a delimiter of comma. And then we build our RecordReader, so
+we're going to create a new instance of the CSVRecordReader, and we're
+going to pass it those two parameters, the number of lines to skip and the
+delimiter, so that will be zero and comma. We pass the RecordReader our file path. So we just point it to
+iris.txt to read the file. So we pass it a FileSplit,
+the file, iris.txt. We set some parameters for
+the data set iterator. We specify that there's three classes. We specify that the last field,
+the fifth field starting at zero, so the label index is four,
+that's right here. So we specify that
+the label index is four. We specify that there's three classes. And we specify that we're going
+to read 150 lines per batch. There's only 150 lines in this data file,
+so we're going to be reading it all and
+processing it as a single batch. So what the RecordReader does it returns
+an iterator over a List of Writables. And what is a Writable? A Writable's an efficient
+serialization method. The neural net requires a tensor or
+an INDArray of numeric values, and the
+RecordReaderDataSetIterator gives us that. So it converts the RecordReader's list of
+Writables into that tensor, that INDArray. And then once we have it into an INDArray,
+we'll have one for the features and one for the labels. The features will get
+passed through the network. The network will make its predictions, and
+then we'll compare it to the known labels. And so there's the code for
+that operation. A neural net performs best
+if the data is shuffled. In the case of this data file, it is not. So we're going to shuffle it after
+we have loaded it into a data set. You could also shuffle the data at just
+about any point along the ingestion path. Splitting the data between test and
+train, so we're going to train on 65% of the data. That code is right here,
+and then we're going to validate the outcome of the train
+neural net with the test data. We're going to normalize the data set, so
+you'll see measurements like 4 and 1.5. But we're going to normalize and
+standardize those so that the max value is 1 and
+the min value is 0. In order to do that, we're going to
+need to call normalizer.fit. Normalizer.fit will step
+through the data once, find the observed min and
+the observed max. And then we can apply that in this
+second step here to our data set to convert the values to values
+between a range of zero and one. And of course,
+we also need to normalize the test data. Then we need to build a neural net. So here where it's specifying some
+parameters, we're setting a seed. So we set a consistent random seed so that we can run multiple times and
+have consistent results. The first step of building a neural net is
+random initialization of the weights, and we would like repeatable results. So we set a seed so we get the same
+random initialization of the weights. Specify the number of iterations. That's how many times we're going to
+back propagate, or update our weights. Specify some other parameters such
+as the activation function for the hidden layer and
+the wait initialization algorithm. And those are kind of standard, at least
+the Javier weight initialization is. We set the learning rate to 0.1, enable regularization and
+then we add some layers. So we've got a input layer,
+we've got a hidden layer and then we have our output layer. Input layer is determined
+by the number of features. Output layer is determined
+by the number of classes. And then we chose how many nodes
+to have in the hidden layer. Not too many parameters to work with here. The neural net isn't
+necessarily going to need too many parameters to solve this problem. So we then need to run the neural
+net on the training data. So we take our configuration. Note in the previous file we're building
+a configuration, as you see here. And then we take that configuration
+in the next section of code and we build a model from it, right there. We initialize the model. I set some listeners so
+we get some output of progress. The listeners are going to
+show us the score, what the value of the lost function is, how
+well the neural net's doing, basically. When the neural net is done training,
+then we evaluate it. You could also evaluate it, perhaps, every few steps to see how it's
+performing as you move along. The loss function will give you some
+idea of it, that's on the training data. It's useful to evaluate on some test data
+that the neural net has not trained on. So we build an evaluation class,
+we pass the trained model our test data, and then we see how well it did
+on data that it did not train on. And that's it. So there's a complete example of the code available at that GitHub repo
+that we saw in the first slide. And that's a very simple
+straightforward DL4J example. In the next section,
+I'll be showing you how to classify time series data using a recurrent
+neural net along short-term memory. Recurrent neural net, and then there
+will also be a section that looks at multivariate time series data as well. So the first example is univariate,
+the second example is multivariate. Thank you.

@@ -1,0 +1,315 @@
+1
+00:00:00,000 --> 00:00:06,800
+Now, let's actually see how we can scale a neural network on Apache Spark using SystemML.
+
+2
+00:00:06,800 --> 00:00:10,375
+So, we're using the import functionality of SystemML,
+
+3
+00:00:10,375 --> 00:00:16,290
+which can read a Keras Model and create the DMA for SystemML out of it.
+
+4
+00:00:16,290 --> 00:00:17,910
+This is completely transparent,
+
+5
+00:00:17,910 --> 00:00:19,605
+so you won't notice that.
+
+6
+00:00:19,605 --> 00:00:23,895
+The only thing is that you will notice that the training is far faster.
+
+7
+00:00:23,895 --> 00:00:26,455
+So, let's run some imports.
+
+8
+00:00:26,455 --> 00:00:33,381
+And please ignore this little warning and reload the data as before.
+
+9
+00:00:33,381 --> 00:00:35,055
+And we'll reshape it,
+
+10
+00:00:35,055 --> 00:00:37,890
+and scale it, again as before.
+
+11
+00:00:37,890 --> 00:00:40,765
+Then again, we set some constants,
+
+12
+00:00:40,765 --> 00:00:43,484
+like 10 steps dimension in sentence.
+
+13
+00:00:43,484 --> 00:00:49,110
+And then again, we define a neural network using a Sequential Keras Model.
+
+14
+00:00:49,110 --> 00:00:54,845
+We add one LSTM layer with 50 neurons,
+
+15
+00:00:54,845 --> 00:00:59,095
+and you define the input shape and the input dimensions.
+
+16
+00:00:59,095 --> 00:01:02,630
+And then, we add an output layer, which is a dense layer.
+
+17
+00:01:02,630 --> 00:01:04,752
+We compile the model.
+
+18
+00:01:04,752 --> 00:01:09,750
+We use mean square of errors as costs function,
+
+19
+00:01:09,750 --> 00:01:13,790
+we use momentum based stochastic gradient descent optimizer.
+
+20
+00:01:13,790 --> 00:01:16,600
+Now, it gets interesting.
+
+21
+00:01:16,600 --> 00:01:21,005
+So, we import the keras2DML class,
+
+22
+00:01:21,005 --> 00:01:24,670
+we set constant for epochs and batch size,
+
+23
+00:01:24,670 --> 00:01:27,910
+and to compute the number of iterations.
+
+24
+00:01:27,910 --> 00:01:30,280
+So now, this is the most interesting part.
+
+25
+00:01:30,280 --> 00:01:34,940
+So, we instantiate this keras2DML class.
+
+26
+00:01:34,940 --> 00:01:39,405
+The first parameter is the Spark session.
+
+27
+00:01:39,405 --> 00:01:42,080
+This is the way to talk to the Apache Spark cluster in
+
+28
+00:01:42,080 --> 00:01:45,982
+the background which is part of this system.
+
+29
+00:01:45,982 --> 00:01:50,740
+Second parameter is the Keras model.
+
+30
+00:01:50,740 --> 00:01:55,280
+Then input_shape already know what it is.
+
+31
+00:01:55,870 --> 00:01:59,630
+Then we set the batch size,
+
+32
+00:01:59,630 --> 00:02:04,220
+max iterations, and every 10 iterations,
+
+33
+00:02:04,220 --> 00:02:06,340
+we display the loss.
+
+34
+00:02:06,340 --> 00:02:09,010
+Since we are predicting a continuous value,
+
+35
+00:02:09,010 --> 00:02:12,265
+we set perform_one_hot_encoding to false.
+
+36
+00:02:12,265 --> 00:02:13,790
+So, let's create this model,
+
+37
+00:02:13,790 --> 00:02:15,810
+and then we can train it.
+
+38
+00:02:15,810 --> 00:02:19,940
+Here, we see that the loss is going down.
+
+39
+00:02:19,940 --> 00:02:25,820
+But now, this model is trained on an Apache Spark cluster using Apache Spark workers.
+
+40
+00:02:25,820 --> 00:02:31,010
+So you can parallelize this model to any number of workers you need.
+
+41
+00:02:31,010 --> 00:02:34,635
+You even can add or remove workers during runtime.
+
+42
+00:02:34,635 --> 00:02:39,185
+And you can use any Apache Spark installation whether it is in a cloud,
+
+43
+00:02:39,185 --> 00:02:42,798
+on prem, or on your local machine.
+
+44
+00:02:42,798 --> 00:02:46,330
+So this is done after 30 seconds since this is
+
+45
+00:02:46,330 --> 00:02:52,005
+only a tiny example and you see here that two Spark workers have been used.
+
+46
+00:02:52,005 --> 00:02:55,555
+The reason for this is that in the free version of data and experience,
+
+47
+00:02:55,555 --> 00:02:58,840
+you get only two Spark workers.
+
+48
+00:02:58,840 --> 00:03:04,000
+So now, let's see what keras2DML actually is doing.
+
+49
+00:03:04,000 --> 00:03:11,565
+So we set debug to true then we train again.
+
+50
+00:03:11,565 --> 00:03:15,930
+And the first output is that DML code which is generated and
+
+51
+00:03:15,930 --> 00:03:20,565
+then executed by the system in my runtime.
+
+52
+00:03:20,565 --> 00:03:25,095
+So you see that all the newer network libraries are sourced.
+
+53
+00:03:25,095 --> 00:03:29,000
+Here, the first LSTM layer is initialized with the batch size,
+
+54
+00:03:29,000 --> 00:03:31,793
+the number of input neurons and a number of output neurons.
+
+55
+00:03:31,793 --> 00:03:36,595
+Input neurons is three because our input data is three-dimensional,
+
+56
+00:03:36,595 --> 00:03:42,165
+and in Keras, we defined that the LSTM layer should have 50 internal neurons.
+
+57
+00:03:42,165 --> 00:03:43,670
+Followed by that, we have
+
+58
+00:03:43,670 --> 00:03:49,435
+a fully connected dense output layer with 50 input neurons and 30 output neurons.
+
+59
+00:03:49,435 --> 00:03:52,170
+So 30 output neurons are needed because we are
+
+60
+00:03:52,170 --> 00:03:57,010
+predicting 10 future timesteps and we have three dimensions of data.
+
+61
+00:03:57,010 --> 00:04:00,595
+So then, the stochastic gradient descent optimizer's initialized.
+
+62
+00:04:00,595 --> 00:04:03,285
+And here, we are entering the gradient descent group.
+
+63
+00:04:03,285 --> 00:04:06,590
+That LSTM layer, for example, is computed backwards.
+
+64
+00:04:06,590 --> 00:04:10,755
+This means all the computations are taking place in reverse order and,
+
+65
+00:04:10,755 --> 00:04:14,040
+of course, we are calculating on the first derivative of the function.
+
+66
+00:04:14,040 --> 00:04:17,680
+This backward function returns the gradient.
+
+67
+00:04:17,680 --> 00:04:20,540
+And then the stochastic gradient descent optimizer is
+
+68
+00:04:20,540 --> 00:04:24,455
+used for computing the updates of the weights.
+
+69
+00:04:24,455 --> 00:04:26,690
+This might look a bit low level to you,
+
+70
+00:04:26,690 --> 00:04:30,460
+and it is, but it's at the same level than Tensorflow.
+
+71
+00:04:30,460 --> 00:04:33,253
+So tensorflow and SystemML are
+
+72
+00:04:33,253 --> 00:04:36,990
+some sort of low level linear algebra execution environments.
+
+73
+00:04:36,990 --> 00:04:38,570
+But the cool thing is, here,
+
+74
+00:04:38,570 --> 00:04:41,720
+you can work with Keras and you see what low
+
+75
+00:04:41,720 --> 00:04:45,275
+level DML code the library is actually producing,
+
+76
+00:04:45,275 --> 00:04:48,525
+and if you like, you can learn from it and also tweak it.
+
+77
+00:04:48,525 --> 00:04:52,335
+So, I hope this convinced you to have a closer look and
+
+78
+00:04:52,335 --> 00:04:57,530
+very cool thing is that the DML code is running in an optimized fashion,
+
+79
+00:04:57,530 --> 00:05:02,120
+taking statistics about data set sizes into account. Thanks a lot.

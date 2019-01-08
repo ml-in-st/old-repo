@@ -1,0 +1,339 @@
+1
+00:00:00,000 --> 00:00:04,775
+In this module, will be a cover AI and Deep Learning Architectures.
+
+2
+00:00:04,775 --> 00:00:07,085
+When it comes to machine learning,
+
+3
+00:00:07,085 --> 00:00:12,130
+there's nothing you can do than getting as much good quality data as possible.
+
+4
+00:00:12,130 --> 00:00:14,380
+Note that I'm talking about good data.
+
+5
+00:00:14,380 --> 00:00:16,775
+This is especially true for deep learning.
+
+6
+00:00:16,775 --> 00:00:22,060
+So it's always good to collect as much data as possible.
+
+7
+00:00:22,060 --> 00:00:29,425
+And one important cloud based solution to store that data is ObjectStar.
+
+8
+00:00:29,425 --> 00:00:33,475
+So in ObjectStar, you have unlimited capacity, redundancy,
+
+9
+00:00:33,475 --> 00:00:36,580
+fail-over, and automated backup,
+
+10
+00:00:36,580 --> 00:00:38,630
+and the best I/O performance.
+
+11
+00:00:38,630 --> 00:00:40,570
+Therefore, during the course,
+
+12
+00:00:40,570 --> 00:00:43,180
+you make sure you understand how to directly
+
+13
+00:00:43,180 --> 00:00:46,775
+train a neural network from data residing in an ObjectStar.
+
+14
+00:00:46,775 --> 00:00:49,420
+Another aspect is Real-Time Data Processing.
+
+15
+00:00:49,420 --> 00:00:53,205
+Often, data loses value within a couple of seconds.
+
+16
+00:00:53,205 --> 00:00:55,490
+So think about stock market data,
+
+17
+00:00:55,490 --> 00:01:00,220
+cryptocurrency market data, healthcare, and IoT data.
+
+18
+00:01:00,220 --> 00:01:03,070
+Therefore, we make sure that you also learn how
+
+19
+00:01:03,070 --> 00:01:06,190
+to apply those models on a Real-Time Data Stream.
+
+20
+00:01:06,190 --> 00:01:10,210
+Finally, those models make heavy use of CPUs, and GPUs.
+
+21
+00:01:10,210 --> 00:01:17,765
+Therefore, we will explain how to scale Deep Learning Models on GPU and CPU clusters.
+
+22
+00:01:17,765 --> 00:01:21,080
+But that's only one part of the story.
+
+23
+00:01:21,080 --> 00:01:24,520
+Before we can train a Deep Learning Neural Network,
+
+24
+00:01:24,520 --> 00:01:26,375
+you actually have to create it.
+
+25
+00:01:26,375 --> 00:01:30,050
+In this course, we will use Jupyter Notebooks for
+
+26
+00:01:30,050 --> 00:01:34,310
+all the coding and we will use a cloud-based version of it.
+
+27
+00:01:34,310 --> 00:01:36,255
+This is called Data Science Experience,
+
+28
+00:01:36,255 --> 00:01:39,095
+so no need for installing anything on your machine.
+
+29
+00:01:39,095 --> 00:01:42,255
+No deep learning, without a deep learning framework.
+
+30
+00:01:42,255 --> 00:01:47,030
+And currently it's pretty hard to choose an optimal framework for given task.
+
+31
+00:01:47,030 --> 00:01:51,330
+There exists high-level frameworks that you simply define your layers,
+
+32
+00:01:51,330 --> 00:01:55,825
+or low-level frameworks but you have to implement everything on a linear algebra level.
+
+33
+00:01:55,825 --> 00:02:00,690
+Unless explicitly needed, we don't recommend using of any of the low-level frameworks.
+
+34
+00:02:00,690 --> 00:02:04,330
+Therefore, we will use Keras as a high-level framework whenever possible.
+
+35
+00:02:04,330 --> 00:02:08,295
+You can implement a deep learning neural network with Keras within minutes.
+
+36
+00:02:08,295 --> 00:02:13,700
+The good thing is that Keras uses low-level deep learning frameworks for execution.
+
+37
+00:02:13,700 --> 00:02:17,885
+So per deploy Keras uses TensorFlow as execution engine.
+
+38
+00:02:17,885 --> 00:02:20,540
+In addition, CNTK and Theano are supported.
+
+39
+00:02:20,540 --> 00:02:23,710
+But by the way, Theano has been deprecated.
+
+40
+00:02:23,710 --> 00:02:27,810
+So that's only TensorFlow and CNTK left.
+
+41
+00:02:27,810 --> 00:02:30,815
+In addition, Keras can export models.
+
+42
+00:02:30,815 --> 00:02:34,190
+Those models can be imparted by other frameworks,
+
+43
+00:02:34,190 --> 00:02:36,990
+like DeepLearning4J and Apache SystemML,
+
+44
+00:02:36,990 --> 00:02:39,145
+which we are using in this course as well.
+
+45
+00:02:39,145 --> 00:02:41,720
+Keras exports a no open standard,
+
+46
+00:02:41,720 --> 00:02:44,510
+but a lot of framework's actually support those.
+
+47
+00:02:44,510 --> 00:02:47,853
+Been talking about open neural network exchange formats,
+
+48
+00:02:47,853 --> 00:02:50,475
+we have to talk about ONNX as well.
+
+49
+00:02:50,475 --> 00:02:53,660
+ONNX tries to establish an open standard,
+
+50
+00:02:53,660 --> 00:02:55,265
+and currently Caffe too.
+
+51
+00:02:55,265 --> 00:02:58,355
+The Cognitive Toolkit, and MXnet are supported.
+
+52
+00:02:58,355 --> 00:03:02,470
+But none of those frameworks can be considered as high-level frameworks.
+
+53
+00:03:02,470 --> 00:03:04,945
+Therefore, in this cost, we stick to Keras.
+
+54
+00:03:04,945 --> 00:03:08,685
+Finally, as execution environment for parallel execution,
+
+55
+00:03:08,685 --> 00:03:10,055
+we will use Apache Spark.
+
+56
+00:03:10,055 --> 00:03:13,730
+Apache Spark is the de facto standard for large scale data processing,
+
+57
+00:03:13,730 --> 00:03:15,935
+academic and enterprise environments,
+
+58
+00:03:15,935 --> 00:03:19,080
+and it's also available as a service from different cloud providers.
+
+59
+00:03:19,080 --> 00:03:22,150
+Data preprocessing is more straightforward in
+
+60
+00:03:22,150 --> 00:03:25,610
+Apaches Spark than in TensorFlow for example.
+
+61
+00:03:25,610 --> 00:03:30,290
+Finally, we will use what's in machine learning from other deployment on GPU clusters.
+
+62
+00:03:30,290 --> 00:03:33,315
+In this case, we'll using a commercial offering from IBM,
+
+63
+00:03:33,315 --> 00:03:36,315
+since that doesn't exist any open-source alternative.
+
+64
+00:03:36,315 --> 00:03:38,585
+This nicely illustrates how automatic and
+
+65
+00:03:38,585 --> 00:03:41,690
+scalable deep learning model deployment has to look like.
+
+66
+00:03:41,690 --> 00:03:45,740
+And again, that always exists to free tier in the IBM Cloud,
+
+67
+00:03:45,740 --> 00:03:48,675
+so you can use what's a machine learning for free as well.
+
+68
+00:03:48,675 --> 00:03:51,400
+So this leads us to the final architecture.
+
+69
+00:03:51,400 --> 00:03:55,945
+We will use Jupyter Notebooks on top of Data Science Experience for coding.
+
+70
+00:03:55,945 --> 00:03:59,080
+We will use the Keras framework in conjunction with
+
+71
+00:03:59,080 --> 00:04:02,865
+TensorFlow for development and testing of the models.
+
+72
+00:04:02,865 --> 00:04:04,140
+If you are happy with the model,
+
+73
+00:04:04,140 --> 00:04:05,320
+it will export it,
+
+74
+00:04:05,320 --> 00:04:09,882
+and run it either on DeepLearning4J or Apache SystemML.
+
+75
+00:04:09,882 --> 00:04:12,230
+Both frameworks are capable of running
+
+76
+00:04:12,230 --> 00:04:14,930
+neural networks and parallel on top of Apache Spark.
+
+77
+00:04:14,930 --> 00:04:16,205
+And in both frameworks,
+
+78
+00:04:16,205 --> 00:04:19,850
+to convert on petabytes of data residing in ObjectStar.
+
+79
+00:04:19,850 --> 00:04:24,130
+All work on live streams of data in the gigbits second range.
+
+80
+00:04:24,130 --> 00:04:26,440
+We will exemplify this,
+
+81
+00:04:26,440 --> 00:04:28,325
+by subscribing to topics on
+
+82
+00:04:28,325 --> 00:04:32,440
+an MQTT message broker provided by the IBM buxon IoT platform.
+
+83
+00:04:32,440 --> 00:04:34,210
+Instead of Apache Spark,
+
+84
+00:04:34,210 --> 00:04:38,080
+we will also see how to use Watson machine learning for model deployment.
+
+85
+00:04:38,080 --> 00:04:42,060
+This gives us nearly unlimited scalability and throughput.

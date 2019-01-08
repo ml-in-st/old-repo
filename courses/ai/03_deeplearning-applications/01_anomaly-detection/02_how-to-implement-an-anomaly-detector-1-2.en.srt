@@ -1,0 +1,791 @@
+1
+00:00:00,000 --> 00:00:02,340
+So, in this module, we will implement an LSTM Auto-encoder
+
+2
+00:00:02,340 --> 00:00:05,300
+based Anomaly Detector in Keras.
+
+3
+00:00:05,300 --> 00:00:06,360
+So, for this demo,
+
+4
+00:00:06,360 --> 00:00:10,775
+we will use a dataset provided by the Case Western Reserve University.
+
+5
+00:00:10,775 --> 00:00:12,240
+We start with an ETL,
+
+6
+00:00:12,240 --> 00:00:15,157
+which stands for Extract Transform Load process,
+
+7
+00:00:15,157 --> 00:00:18,165
+which requires data remotely, transforms it,
+
+8
+00:00:18,165 --> 00:00:20,475
+and loads it to our final storage system,
+
+9
+00:00:20,475 --> 00:00:22,837
+ObjectStar in that case.
+
+10
+00:00:22,837 --> 00:00:27,220
+The researchers recorded different sessions of accelerometer data,
+
+11
+00:00:27,220 --> 00:00:32,305
+placed at different positions of a test apparatus of healthy and faulty bearings,
+
+12
+00:00:32,305 --> 00:00:36,619
+and separates between 12 and 48 kilohertz.
+
+13
+00:00:36,619 --> 00:00:38,170
+All the files are in Matlab format,
+
+14
+00:00:38,170 --> 00:00:40,570
+and different sub-pages are provided containing
+
+15
+00:00:40,570 --> 00:00:43,260
+healthy and different types of faulty data for download.
+
+16
+00:00:43,260 --> 00:00:49,426
+So there is a relatively low amount of healthy data available, only for recordings.
+
+17
+00:00:49,426 --> 00:00:53,365
+So let's download these four files first. This is straightforward.
+
+18
+00:00:53,365 --> 00:00:59,560
+After download completes, you move those files to a sub-folder called "CWR-healthy".
+
+19
+00:00:59,560 --> 00:01:03,580
+Let's have a look at the contents. Okay, great.
+
+20
+00:01:03,580 --> 00:01:05,710
+We have our four Matlab files.
+
+21
+00:01:05,710 --> 00:01:11,710
+Luckily, the scikit-learn package of Python has a function to read Matlab files.
+
+22
+00:01:11,710 --> 00:01:17,220
+Let's examine the object it returns by just loading a single file.
+
+23
+00:01:17,220 --> 00:01:22,880
+This is a Python dictionary with two important entries for the two accelerometers,
+
+24
+00:01:22,880 --> 00:01:26,860
+each one contains a vibration center data time series,
+
+25
+00:01:26,860 --> 00:01:30,835
+as a Python Numpy Array.
+
+26
+00:01:30,835 --> 00:01:34,600
+So the read folder function traverse is full of folder of Matlab files,
+
+27
+00:01:34,600 --> 00:01:37,287
+and extracts the two Numpy Arrays.
+
+28
+00:01:37,287 --> 00:01:39,780
+Data query is not 100 percent optimal.
+
+29
+00:01:39,780 --> 00:01:42,740
+Therefore, we have to filter out some crappy data that a length of
+
+30
+00:01:42,740 --> 00:01:47,015
+the time series in both entries of the Matlab files is not the same.
+
+31
+00:01:47,015 --> 00:01:48,705
+We added column to the array,
+
+32
+00:01:48,705 --> 00:01:50,350
+which indicates the file ID,
+
+33
+00:01:50,350 --> 00:01:55,105
+so that we know the source of the data in case we need it later.
+
+34
+00:01:55,105 --> 00:01:58,565
+Some Matlab files doesn't contain two sensor readings.
+
+35
+00:01:58,565 --> 00:01:59,730
+Therefore, in that case,
+
+36
+00:01:59,730 --> 00:02:01,780
+we fill the other column with zeros.
+
+37
+00:02:01,780 --> 00:02:05,807
+We do this for every file and finally append it to the final array, which we return.
+
+38
+00:02:05,807 --> 00:02:09,325
+Let's execute this function under healthy dataset.
+
+39
+00:02:09,325 --> 00:02:12,210
+So we've created a Numpy Array,
+
+40
+00:02:12,210 --> 00:02:14,305
+this is what we expect.
+
+41
+00:02:14,305 --> 00:02:18,810
+And this Array contains three dimensions, one is the file ID,
+
+42
+00:02:18,810 --> 00:02:24,805
+and the other two, are two time series for the two accelerometers.
+
+43
+00:02:24,805 --> 00:02:26,120
+For convenience, we create
+
+44
+00:02:26,120 --> 00:02:31,120
+the Pandas DataFrame out of the Numpy Array and write it to a CSV file.
+
+45
+00:02:31,120 --> 00:02:33,455
+It looks nice.
+
+46
+00:02:33,455 --> 00:02:35,685
+Note that Pandas created a fourth column for us,
+
+47
+00:02:35,685 --> 00:02:38,370
+which contains a continuous sequence number,
+
+48
+00:02:38,370 --> 00:02:40,625
+which can become handy at some point.
+
+49
+00:02:40,625 --> 00:02:44,906
+Note that time series are useless once you don't get them in correct order.
+
+50
+00:02:44,906 --> 00:02:49,108
+Therefore, you can sort all the columns and ensure their correct ordering.
+
+51
+00:02:49,108 --> 00:02:53,940
+Let's have a look at the faulty data.
+
+52
+00:02:53,940 --> 00:02:58,930
+Many more entries are present here and picking those by hand is quite tedious.
+
+53
+00:02:58,930 --> 00:03:00,400
+Therefore, we will automate this.
+
+54
+00:03:00,400 --> 00:03:03,489
+We just extract URLs from the HTML file,
+
+55
+00:03:03,489 --> 00:03:05,115
+and only download those.
+
+56
+00:03:05,115 --> 00:03:07,755
+But first, we get the HTML file.
+
+57
+00:03:07,755 --> 00:03:12,615
+Then we fill the outer lines containing MAT and HTML.
+
+58
+00:03:12,615 --> 00:03:15,095
+Then we split those lines a bit,
+
+59
+00:03:15,095 --> 00:03:16,972
+in order to extract URL to the Matlab file,
+
+60
+00:03:16,972 --> 00:03:22,456
+and then it looks like this.
+
+61
+00:03:22,456 --> 00:03:27,340
+Once we hit URL, we download the file.
+
+62
+00:03:27,340 --> 00:03:35,473
+We do this for all three web pages containing the different types of anomalies.
+
+63
+00:03:35,473 --> 00:03:43,720
+And, finally, move everything into a folder called "CWR_faulty".
+
+64
+00:03:43,720 --> 00:03:50,450
+This takes a while, so let's go for a walk and come back later.
+
+65
+00:03:50,450 --> 00:03:52,865
+So, this is done,
+
+66
+00:03:52,865 --> 00:03:55,570
+and we've downloaded all the files.
+
+67
+00:03:55,570 --> 00:04:01,219
+Again, we create a Numpy Array containing all the data we want
+
+68
+00:04:01,219 --> 00:04:06,545
+and finally store it in a CSV file.
+
+69
+00:04:06,545 --> 00:04:10,315
+This file is a bit bigger so let's have a look, okay.
+
+70
+00:04:10,315 --> 00:04:13,140
+It's 1.4 GB.
+
+71
+00:04:13,140 --> 00:04:16,430
+It makes sense to use Apache Spark for monitoring the files.
+
+72
+00:04:16,430 --> 00:04:22,650
+So we create an Apache Spark DataFrame out of them and,
+
+73
+00:04:22,650 --> 00:04:26,485
+at the same time, we adjusted the DataFrame as a temporary view,
+
+74
+00:04:26,485 --> 00:04:29,568
+so that we can run SQL statements against it.
+
+75
+00:04:29,568 --> 00:04:35,710
+So, for example, let's check how many samples we have per file.
+
+76
+00:04:35,710 --> 00:04:39,340
+So it's between a quarter and half a million. This is sufficient.
+
+77
+00:04:39,340 --> 00:04:43,590
+But note that data is several between 12 and 48 kilohertz.
+
+78
+00:04:43,590 --> 00:04:46,625
+So this is only a couple of seconds worth of data.
+
+79
+00:04:46,625 --> 00:04:49,720
+So we do the same for faulty data.
+
+80
+00:04:49,720 --> 00:04:51,350
+Since we are sorting ascending,
+
+81
+00:04:51,350 --> 00:04:56,945
+we are sure that we have at least two to three seconds worth of data per instance.
+
+82
+00:04:56,945 --> 00:04:59,620
+Now it's time to finish our ETL process,
+
+83
+00:04:59,620 --> 00:05:04,070
+by storing both DataFrame as Parquet files into ObjectStar.
+
+84
+00:05:04,070 --> 00:05:06,030
+Parquet is a very cool,
+
+85
+00:05:06,030 --> 00:05:10,230
+compressed column store format and from the 1.4 GB,
+
+86
+00:05:10,230 --> 00:05:12,850
+I think we will end up only with another 200 megabytes.
+
+87
+00:05:12,850 --> 00:05:15,645
+In order to get the credentials for the ObjectStar,
+
+88
+00:05:15,645 --> 00:05:18,915
+the most convenient and easy way is to just upload a dummy file.
+
+89
+00:05:18,915 --> 00:05:26,255
+I've done this already and then insert a SparkSession DataFrame into the notebook.
+
+90
+00:05:26,255 --> 00:05:27,980
+Once the credentials are inserted,
+
+91
+00:05:27,980 --> 00:05:31,680
+you can use the ObjectStar as an ordinary file system or like HDFS
+
+92
+00:05:31,680 --> 00:05:36,565
+within Apache Spark in a notebook.
+
+93
+00:05:36,565 --> 00:05:42,490
+Let's start both DataFrames as Parquet files in ObjectStar.
+
+94
+00:05:42,490 --> 00:05:46,980
+Note that I'm temporarily changing the file name since I've done
+
+95
+00:05:46,980 --> 00:05:50,573
+this already and I haven't deleted those.
+
+96
+00:05:50,573 --> 00:05:56,275
+So we have now written more than 33 millions of samples.
+
+97
+00:05:56,275 --> 00:06:01,350
+Let me just double check where the data has been stored to.
+
+98
+00:06:01,350 --> 00:06:07,505
+To do so, we enter the IBM Cloud Console and click on the appropriate ObjectStar service.
+
+99
+00:06:07,505 --> 00:06:12,010
+So we can see that the Parquet file has been split into multiple sub files.
+
+100
+00:06:12,010 --> 00:06:17,080
+We can prevent this by calling the repartition function on the DataFrame.
+
+101
+00:06:17,080 --> 00:06:19,285
+But let's skip this for now.
+
+102
+00:06:19,285 --> 00:06:22,195
+It's, anyway, a good practice to repartition the data
+
+103
+00:06:22,195 --> 00:06:24,944
+according to the number of workers we have in the Spark servers.
+
+104
+00:06:24,944 --> 00:06:27,365
+Now it's time for the actual implementation.
+
+105
+00:06:27,365 --> 00:06:31,480
+Note that ETL often takes between 80 and 95 percent of your time,
+
+106
+00:06:31,480 --> 00:06:33,940
+so now we deserve to have some fun.
+
+107
+00:06:33,940 --> 00:06:39,455
+Again, we use the same credentials in order to read files from the ObjectStar.
+
+108
+00:06:39,455 --> 00:06:42,380
+We could have used the local file system,
+
+109
+00:06:42,380 --> 00:06:44,950
+which Data Science Experience provides as well,
+
+110
+00:06:44,950 --> 00:06:50,390
+especially since it provides a staging area of nearly a 100 terabytes for us for free.
+
+111
+00:06:50,390 --> 00:06:52,460
+But this file system is volatile so we are
+
+112
+00:06:52,460 --> 00:06:55,445
+better off using ObjectStar, which is permanent.
+
+113
+00:06:55,445 --> 00:06:59,780
+So let's create the two DataFrames and register them as Temporary Query Tables in order
+
+114
+00:06:59,780 --> 00:07:04,475
+to be able to execute SQL statements against them using Apache Spark.
+
+115
+00:07:04,475 --> 00:07:07,900
+We need a couple of inputs,
+
+116
+00:07:07,900 --> 00:07:10,650
+then we define a class called "Loss-History".
+
+117
+00:07:10,650 --> 00:07:12,560
+This is a so-called callback handler,
+
+118
+00:07:12,560 --> 00:07:14,810
+which is called by Keras every now and then,
+
+119
+00:07:14,810 --> 00:07:18,460
+to record a trajectory of losses during training.
+
+120
+00:07:18,460 --> 00:07:21,370
+It's that every now and then actually it's
+
+121
+00:07:21,370 --> 00:07:23,500
+called "On The Beginning of Ever Training Epoch".
+
+122
+00:07:23,500 --> 00:07:28,595
+Now we defined that we are working on count-based windows of 100 samples.
+
+123
+00:07:28,595 --> 00:07:32,710
+This means, we are using "100 past samples to predict 100 future samples".
+
+124
+00:07:32,710 --> 00:07:36,725
+In a sense, this is exactly what Time Series Forecasting does.
+
+125
+00:07:36,725 --> 00:07:38,815
+The dimension is two,
+
+126
+00:07:38,815 --> 00:07:42,075
+since we have two accelerometer sensor readings per instance.
+
+127
+00:07:42,075 --> 00:07:45,075
+Now we create an instance of our Callback Handler.
+
+128
+00:07:45,075 --> 00:07:47,695
+And start with a sequential model.
+
+129
+00:07:47,695 --> 00:07:53,430
+We add an LSTM layer which has 15 neurons and expects input as 100 by two 2D Array.
+
+130
+00:07:53,430 --> 00:07:58,820
+The output layer is of dimension two again since we are going back to our input shape,
+
+131
+00:07:58,820 --> 00:08:02,979
+which are the two dimensions of the two accelerometer readings.
+
+132
+00:08:02,979 --> 00:08:04,740
+Now, we compiled a model,
+
+133
+00:08:04,740 --> 00:08:06,915
+and defined two important parameters.
+
+134
+00:08:06,915 --> 00:08:10,665
+First, we take Keras to compute loss with a mean average error function,
+
+135
+00:08:10,665 --> 00:08:13,915
+and then we use the Adam gradient descent optimizer.
+
+136
+00:08:13,915 --> 00:08:16,075
+We define a train function,
+
+137
+00:08:16,075 --> 00:08:18,820
+it calls "fit on a model" with the following important parameters.
+
+138
+00:08:18,820 --> 00:08:21,430
+We train for 20 epochs.
+
+139
+00:08:21,430 --> 00:08:24,430
+That means we're showing the data 20 times to the model.
+
+140
+00:08:24,430 --> 00:08:30,530
+Batch-size 72 means that every 72 samples the weight parameters are updated.
+
+141
+00:08:30,530 --> 00:08:34,070
+Please note also that we are passing the data twice;
+
+142
+00:08:34,070 --> 00:08:36,195
+as input and as output.
+
+143
+00:08:36,195 --> 00:08:38,455
+This is how an auto-encoder goes.
+
+144
+00:08:38,455 --> 00:08:40,040
+So in order to train the model,
+
+145
+00:08:40,040 --> 00:08:44,345
+we want to use the different data instances on other work's data,
+
+146
+00:08:44,345 --> 00:08:45,840
+which comes from the Matlab files.
+
+147
+00:08:45,840 --> 00:08:49,850
+To be 100 percent sure that we are not messing up with ordering,
+
+148
+00:08:49,850 --> 00:08:52,455
+we sort the data based on the sequence column.
+
+149
+00:08:52,455 --> 00:08:54,770
+Then we filter by file ID,
+
+150
+00:08:54,770 --> 00:08:58,390
+this ID we've directly obtained from the file name of the Matlab file.
+
+151
+00:08:58,390 --> 00:09:02,655
+Finally, we return only the two columns containing accelerometer data.
+
+152
+00:09:02,655 --> 00:09:05,525
+We unwrap the DataFrame to obtain the oddity,
+
+153
+00:09:05,525 --> 00:09:09,725
+and map on it in order to unwrap data from the row objects.
+
+154
+00:09:09,725 --> 00:09:13,425
+Collect pulls data back to the driver as a Python Array,
+
+155
+00:09:13,425 --> 00:09:16,600
+and this, we wrap as a Numpy Array.
+
+156
+00:09:16,600 --> 00:09:20,095
+Since we're working with count-based tumbling windows of size 100,
+
+157
+00:09:20,095 --> 00:09:24,010
+we need to make sure that we fit to those right.
+
+158
+00:09:24,010 --> 00:09:28,580
+Therefore, we just remove all data which doesn't fit into multiples of a 100.
+
+159
+00:09:28,580 --> 00:09:34,610
+So trim now contains the remainder which we simply cut away using Numpy slicing syntax.
+
+160
+00:09:34,610 --> 00:09:37,850
+Then return this 2D Array into a 3D one,
+
+161
+00:09:37,850 --> 00:09:40,820
+by taking the tumbling window size into account.
+
+162
+00:09:40,820 --> 00:09:45,799
+This make the array perfectly matches the shape of the input of our new network.
+
+163
+00:09:45,799 --> 00:09:48,155
+Finally, we return the Array.
+
+164
+00:09:48,155 --> 00:09:51,260
+Since we have this cool and handy function in place,
+
+165
+00:09:51,260 --> 00:09:54,890
+we now can iterate over an array of file IDs.
+
+166
+00:09:54,890 --> 00:09:57,710
+We can obtain those from the DataFrame as well,
+
+167
+00:09:57,710 --> 00:10:00,170
+by selecting the distinct of that field,
+
+168
+00:10:00,170 --> 00:10:03,680
+since we have start a file ID to each sample as well.
+
+169
+00:10:03,680 --> 00:10:08,230
+Note that again, we need to unwrap and collect the data back to this back driver.
+
+170
+00:10:08,230 --> 00:10:12,505
+Since training a neural network takes a bunch of timely measure,
+
+171
+00:10:12,505 --> 00:10:16,410
+let's start as the watch here.
+
+172
+00:10:16,680 --> 00:10:22,910
+This body of this loop will be executed for each file ID of the healthy dataset.
+
+173
+00:10:22,910 --> 00:10:24,175
+And for each file ID,
+
+174
+00:10:24,175 --> 00:10:30,554
+we get a recording which we can directly feed into the neural network for training.
+
+175
+00:10:30,554 --> 00:10:33,965
+After the top has finished, we see that it run,
+
+176
+00:10:33,965 --> 00:10:37,670
+on three recordings and took roughly 11 minutes for all them,
+
+177
+00:10:37,670 --> 00:10:39,915
+and four minutes per recording.
+
+178
+00:10:39,915 --> 00:10:44,810
+Now let's plot the trajectory of such a training in order to see how it converges.
+
+179
+00:10:44,810 --> 00:10:49,180
+It actually converges really fast, which is very nice.
+
+180
+00:10:49,180 --> 00:10:52,410
+Especially, since our neural network is fairly simple.
+
+181
+00:10:52,410 --> 00:10:59,980
+Later, we see more complex neural networks with more complex data.
+
+182
+00:10:59,980 --> 00:11:04,050
+The two spikes which we are seeing here are mostly occurring because of
+
+183
+00:11:04,050 --> 00:11:09,212
+the switch between different recordings of the training dataset.
+
+184
+00:11:09,212 --> 00:11:11,560
+Now let's examine a faulty recording,
+
+185
+00:11:11,560 --> 00:11:14,230
+and see how the neural network behaves.
+
+186
+00:11:14,230 --> 00:11:17,080
+We expect a sudden increase in loss,
+
+187
+00:11:17,080 --> 00:11:19,100
+especially, at the beginning of training.
+
+188
+00:11:19,100 --> 00:11:22,705
+We append the obtained losses from recorded class to the previous losses,
+
+189
+00:11:22,705 --> 00:11:25,820
+and training under healthy dataset, and plot it.
+
+190
+00:11:25,820 --> 00:11:28,590
+And we see a clear spike in loss,
+
+191
+00:11:28,590 --> 00:11:32,065
+once the neural network sees faulty data for the first time.
+
+192
+00:11:32,065 --> 00:11:35,640
+Note that the loss decrease over time,
+
+193
+00:11:35,640 --> 00:11:37,840
+so there are couple of additional steps to
+
+194
+00:11:37,840 --> 00:11:40,635
+turn this into out of the box anomaly detector.
+
+195
+00:11:40,635 --> 00:11:42,880
+So let's examine this in the next video.
+
+196
+00:11:42,880 --> 00:11:44,700
+So we've done our homework for now.
+
+197
+00:11:44,700 --> 00:11:48,130
+So, let's see how we can turn this into a solution
+
+198
+00:11:48,130 --> 00:11:53,000
+exemplified by a Cognitive IOT Real-Time Anomaly Detection System.

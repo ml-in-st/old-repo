@@ -1,0 +1,667 @@
+1
+00:00:00,610 --> 00:00:03,250
+Let's get started with
+Deep Feedforward Networks.
+
+2
+00:00:03,250 --> 00:00:07,655
+So this is an example of hypothetical
+sensor data of a production machine.
+
+3
+00:00:07,655 --> 00:00:11,758
+So each row contains information about
+a production of a particular part with
+
+4
+00:00:11,758 --> 00:00:13,870
+an associated part number.
+
+5
+00:00:13,870 --> 00:00:19,030
+So our goal is to predict asperity
+which is highly correlated with effect
+
+6
+00:00:19,030 --> 00:00:24,508
+if the part is healthy or faulty
+based on the observed sensor values.
+
+7
+00:00:24,508 --> 00:00:27,790
+So which column can be used to
+create a simple rule for this?
+
+8
+00:00:27,790 --> 00:00:31,470
+First we have to observe that all
+three columns are aggregations
+
+9
+00:00:31,470 --> 00:00:33,350
+of some sort of sensor value.
+
+10
+00:00:33,350 --> 00:00:35,270
+So we are losing information.
+
+11
+00:00:35,270 --> 00:00:37,055
+But this is fine for this example.
+
+12
+00:00:37,055 --> 00:00:41,832
+We notice that the vibration aggregation
+gives us the best indication for our rule,
+
+13
+00:00:41,832 --> 00:00:42,916
+so let's code it.
+
+14
+00:00:42,916 --> 00:00:45,142
+So let's start with
+creation of a data point.
+
+15
+00:00:49,395 --> 00:00:52,795
+The first field is part number,
+so let's take 100.
+
+16
+00:00:55,423 --> 00:00:58,817
+The next field is next temp,
+which will be set to 35.
+
+17
+00:01:00,862 --> 00:01:03,225
+The middle temp is 35 as well.
+
+18
+00:01:06,126 --> 00:01:09,732
+And finally set the max vibration to 12.
+
+19
+00:01:13,981 --> 00:01:21,601
+After producing the part, asperity
+is measured, so we set it to 0.32.
+
+20
+00:01:24,564 --> 00:01:31,538
+So let's copy this four times to
+reflect our four measurements.
+
+21
+00:01:36,722 --> 00:01:41,873
+As in the example of the slides, I will
+update those values now accordingly.
+
+22
+00:01:52,081 --> 00:01:57,067
+Let's implement our simple rule to
+predict asperity based on a sensor value.
+
+23
+00:02:02,709 --> 00:02:06,912
+Obviously, max vibration has
+the largest impact on the outcome.
+
+24
+00:02:11,771 --> 00:02:18,244
+Therefore, if max vibration is greater
+than 100, we return 13 or 0.33 otherwise.
+
+25
+00:02:21,937 --> 00:02:25,646
+If we now test this function,
+we get quite good results.
+
+26
+00:02:31,312 --> 00:02:35,640
+So now let's see if we can do
+better without hard coding a rule.
+
+27
+00:02:35,640 --> 00:02:38,466
+This formula here is called
+a linear regression model.
+
+28
+00:02:38,466 --> 00:02:43,367
+It's called regression because it
+predicts a continuous value based
+
+29
+00:02:43,367 --> 00:02:45,701
+on observations x and weights w.
+
+30
+00:02:45,701 --> 00:02:49,238
+Let's create our first machine
+learning algorithm called linear
+
+31
+00:02:49,238 --> 00:02:50,507
+regression in Python.
+
+32
+00:02:50,507 --> 00:02:54,880
+So remember that we have to create
+a linear combination between our input
+
+33
+00:02:54,880 --> 00:02:56,755
+fields and some parameters w.
+
+34
+00:03:06,376 --> 00:03:10,594
+And if you plot this,
+w1 is the offset of the line.
+
+35
+00:03:15,174 --> 00:03:16,622
+So if you run this now,
+
+36
+00:03:16,622 --> 00:03:20,901
+you obviously run into an error
+because we haven't defined w yet.
+
+37
+00:03:22,701 --> 00:03:24,303
+So let's do this now.
+
+38
+00:03:32,649 --> 00:03:37,389
+And now let's choose the parameters
+w in a way that it somehow resembles
+
+39
+00:03:37,389 --> 00:03:39,999
+the rule which we have created before.
+
+40
+00:03:42,920 --> 00:03:46,392
+If you set everything to 0,
+you get 0 as a result.
+
+41
+00:03:55,380 --> 00:03:57,881
+So let's try to adjust those values.
+
+42
+00:03:57,881 --> 00:04:01,515
+We cheat a bit, we just take
+the numbers of our dataset and
+
+43
+00:04:01,515 --> 00:04:04,188
+play around until we get a better result.
+
+44
+00:04:09,043 --> 00:04:12,423
+As we can see,
+we are getting relatively close here.
+
+45
+00:04:16,115 --> 00:04:21,163
+In a real world scenario, of course,
+those parameters w will be set by
+
+46
+00:04:21,163 --> 00:04:26,652
+an optimizer which is part of neural
+network or machine learning training.
+
+47
+00:04:26,652 --> 00:04:31,002
+Maybe if you noticed that there is one
+x missing in order to get equally sized
+
+48
+00:04:31,002 --> 00:04:31,633
+vectors.
+
+49
+00:04:31,633 --> 00:04:33,576
+Therefore, we define x0 as 1.
+
+50
+00:04:33,576 --> 00:04:37,967
+This is the bias term, or
+the offset of the linear regression.
+
+51
+00:04:37,967 --> 00:04:44,751
+So now we can multiply x with w,
+because both vectors have the same length.
+
+52
+00:04:44,751 --> 00:04:48,559
+If we just write down what we've learned
+before, we'll come up with the following.
+
+53
+00:04:49,912 --> 00:04:56,064
+Well, doesn't look this
+like linear regression?
+
+54
+00:04:56,064 --> 00:05:00,384
+Just put y at the end and you can see it.
+
+55
+00:05:00,384 --> 00:05:01,081
+So that's cool.
+
+56
+00:05:01,081 --> 00:05:06,401
+We can express linear regression with
+a single vector-vector multiplication.
+
+57
+00:05:06,401 --> 00:05:11,175
+It turns out that parts with an asperity
+greater than 1 are not usable, so
+
+58
+00:05:11,175 --> 00:05:13,795
+we consider them to be faulty or broken.
+
+59
+00:05:16,487 --> 00:05:19,658
+Let's change our table to reflect this.
+
+60
+00:05:19,658 --> 00:05:20,719
+Let's code it.
+
+61
+00:05:27,055 --> 00:05:31,708
+So let's change this regression data set
+into a binary classification data set.
+
+62
+00:05:36,339 --> 00:05:40,143
+Then our rule gets more simpler and
+also more precise.
+
+63
+00:05:44,080 --> 00:05:45,186
+And in addition,
+
+64
+00:05:45,186 --> 00:05:49,774
+it's changed our linear regression
+model to a logistic regression one.
+
+65
+00:05:55,096 --> 00:06:00,195
+In order to achieve this, just add
+a sigmoid computation step to our website.
+
+66
+00:06:09,659 --> 00:06:14,312
+So the neural side is between 0 and 1, and
+by selecting a threshold in the middle, so
+
+67
+00:06:14,312 --> 00:06:18,079
+we can basically turn this model
+into binary classification model.
+
+68
+00:06:18,079 --> 00:06:20,255
+So this looks brilliant already.
+
+69
+00:06:20,255 --> 00:06:24,605
+So the logistic sigmoid function
+squashes a range from minus
+
+70
+00:06:24,605 --> 00:06:28,537
+infinity to plus infinity
+to a range between 0 and 1.
+
+71
+00:06:28,537 --> 00:06:33,433
+So this means we can easily turn our
+lineal regression model into a logistic
+
+72
+00:06:33,433 --> 00:06:37,058
+regression model and
+create a binary classifier.
+
+73
+00:06:37,058 --> 00:06:40,412
+Let's wait, you have to define
+a threshold between 0 and
+
+74
+00:06:40,412 --> 00:06:42,808
+1 in order to get the binary classifier,
+
+75
+00:06:42,808 --> 00:06:47,748
+in order to get a clear separation between
+the classes instead of a continuous range.
+
+76
+00:06:49,954 --> 00:06:54,640
+So why am I telling you all about
+this in a neural networks class?
+
+77
+00:06:56,210 --> 00:07:01,916
+So let's have a look at the most simple
+neural network, the so called perceptron.
+
+78
+00:07:01,916 --> 00:07:06,904
+The idea is that your input vectors get
+multiplied with the weights vector and
+
+79
+00:07:06,904 --> 00:07:08,602
+finally the sum is taken.
+
+80
+00:07:08,602 --> 00:07:11,663
+Note that even the biased
+term is taken into the sum.
+
+81
+00:07:11,663 --> 00:07:15,167
+So what you should be aware of is
+that this is nothing else than
+
+82
+00:07:15,167 --> 00:07:19,633
+a linear combination or dot product
+between two vectors, or in other words,
+
+83
+00:07:19,633 --> 00:07:20,889
+linear regression.
+
+84
+00:07:20,889 --> 00:07:25,421
+If you replace thick mode from the
+logistic regression function with a simple
+
+85
+00:07:25,421 --> 00:07:29,265
+step function, you're done and
+you have created a Perceptron.
+
+86
+00:07:29,265 --> 00:07:32,311
+A perceptron is a binary
+linear classifier.
+
+87
+00:07:32,311 --> 00:07:35,011
+So now let's see how we can improve this.
+
+88
+00:07:35,011 --> 00:07:41,602
+By the way, the first perceptron has been
+implemented on top of an IBM 704 in 1954,
+
+89
+00:07:41,602 --> 00:07:46,916
+which was the first computer with
+floating point arithmetic hardware.
+
+90
+00:07:46,916 --> 00:07:52,170
+So this guy here is a feedforward neural
+network with a so called hidden layer.
+
+91
+00:07:52,170 --> 00:07:55,865
+In order to understand this better,
+let's code it first.
+
+92
+00:07:55,865 --> 00:07:59,943
+So Python dictionaries are of course
+not the best way to do data science.
+
+93
+00:08:02,559 --> 00:08:07,812
+Let's convert our data points to a matrix.
+
+94
+00:08:13,162 --> 00:08:16,974
+First, we have to get rid of the labels
+which are called keys in Python
+
+95
+00:08:16,974 --> 00:08:24,929
+dictionaries, And
+turn each data point into an array.
+
+96
+00:08:30,274 --> 00:08:35,167
+Neither asperity nor part number are
+required here, so let's get rid of those.
+
+97
+00:08:43,838 --> 00:08:47,989
+But we have to align this array or
+vector, the size of the weight vector.
+
+98
+00:08:47,989 --> 00:08:51,984
+So we have to add a 1 at the beginning
+in order to support the bias.
+
+99
+00:08:57,167 --> 00:08:58,674
+So this is what we want.
+
+100
+00:09:02,866 --> 00:09:06,104
+Native Python arrays are slow and
+
+101
+00:09:06,104 --> 00:09:10,963
+also not supporting linear
+algebra operations.
+
+102
+00:09:10,963 --> 00:09:14,488
+So let's work this into a NumPy array.
+
+103
+00:09:16,525 --> 00:09:19,138
+And let's do it for all the data points.
+
+104
+00:09:29,349 --> 00:09:34,132
+Let's create a function called neuron,
+which computes the logistic function for
+
+105
+00:09:34,132 --> 00:09:35,366
+just one data point.
+
+106
+00:09:44,316 --> 00:09:50,414
+We define a weight vector w,
+Which we initialize randomly.
+
+107
+00:09:53,337 --> 00:09:56,971
+And use the dot product between
+the data point and the weight vector,
+
+108
+00:09:59,282 --> 00:10:03,534
+In order to compute the linear
+regression function.
+
+109
+00:10:08,861 --> 00:10:16,115
+Then we apply sigmoid as activation
+function and we're done.
+
+110
+00:10:16,115 --> 00:10:18,697
+So let's see if this compiles and runs.
+
+111
+00:10:27,891 --> 00:10:31,225
+Note that we don't get anything
+useful here because we
+
+112
+00:10:31,225 --> 00:10:35,141
+randomly initialized the weight
+vector w and didn't train it.
+
+113
+00:10:38,725 --> 00:10:43,563
+By the way,
+training means updating the weight vector.
+
+114
+00:10:46,246 --> 00:10:49,348
+So now let's pimp this function
+a bit in order to compute all data
+
+115
+00:10:49,348 --> 00:10:50,390
+points in parallel.
+
+116
+00:10:54,770 --> 00:10:58,942
+First, we have to improve the sigmoid
+function that it also takes multiple
+
+117
+00:10:58,942 --> 00:10:59,878
+values at once.
+
+118
+00:11:03,331 --> 00:11:06,234
+Fortunately, NumPy does the job for
+us here.
+
+119
+00:11:16,805 --> 00:11:19,069
+Since this function now takes a matrix,
+
+120
+00:11:19,069 --> 00:11:22,678
+we also have to change our weights
+from vector to matrix as well.
+
+121
+00:11:26,832 --> 00:11:30,184
+And finally we have to create
+a matrix from our input data.
+
+122
+00:11:36,124 --> 00:11:40,610
+We can use NumPy again because a nested
+array is nothing else than a matrix.
+
+123
+00:11:43,069 --> 00:11:47,454
+So now we can compute one layer in one go.
+
+124
+00:11:47,454 --> 00:11:49,187
+Now let's create a second layer.
+
+125
+00:11:55,343 --> 00:11:59,137
+We only have to change the weight matrix
+because the second layer is computed
+
+126
+00:11:59,137 --> 00:12:01,043
+independently from the first layer.
+
+127
+00:12:05,663 --> 00:12:09,718
+And as a last step, we just stick those
+two computations on top of each other and
+
+128
+00:12:09,718 --> 00:12:12,682
+we're done with our first
+feedforward neural network.
+
+129
+00:12:15,876 --> 00:12:20,484
+Of course, the predicted values
+are incorrect because we're using
+
+130
+00:12:20,484 --> 00:12:23,273
+randomly initialized weight matrices.
+
+131
+00:12:23,273 --> 00:12:26,487
+This is now an untrained
+feedforward neural network.
+
+132
+00:12:26,487 --> 00:12:30,729
+Note that a single hidden layer on your
+network is capable of representing any
+
+133
+00:12:30,729 --> 00:12:32,173
+mathematical function.
+
+134
+00:12:32,173 --> 00:12:35,646
+This is known as the universal
+function approximation theory.
+
+135
+00:12:35,646 --> 00:12:39,301
+So you might ask yourself why
+are multiple hidden layer or
+
+136
+00:12:39,301 --> 00:12:41,294
+other topologies used at all.
+
+137
+00:12:41,294 --> 00:12:42,796
+This is because of training.
+
+138
+00:12:42,796 --> 00:12:45,790
+Even if you can represent
+any mathematical function,
+
+139
+00:12:45,790 --> 00:12:47,622
+you might not be able to train it.
+
+140
+00:12:47,622 --> 00:12:50,436
+Because training means
+selecting good values for
+
+141
+00:12:50,436 --> 00:12:53,323
+the weight matrices, and
+this is not an easy task.
+
+142
+00:12:53,323 --> 00:12:55,014
+But let's talk about this later.
+
+143
+00:12:55,014 --> 00:12:57,240
+Let's get started with
+Recurrent Neural Networks.

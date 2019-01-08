@@ -1,0 +1,322 @@
+1
+00:00:01,210 --> 00:00:01,800
+Welcome back.
+
+2
+00:00:03,230 --> 00:00:10,816
+Last time we have discussed how to load
+the data into our Jupyter workbook.
+
+3
+00:00:10,816 --> 00:00:17,800
+And we have loaded some data from FRED,
+from Federal Reserve Bank of St. Louis.
+
+4
+00:00:19,540 --> 00:00:23,480
+And we have done short
+inspection of this data.
+
+5
+00:00:23,480 --> 00:00:26,270
+Today is a very important topic.
+
+6
+00:00:27,360 --> 00:00:33,510
+And we are going to discuss which
+types of LSTM are existing.
+
+7
+00:00:34,970 --> 00:00:40,620
+Namely, we are talking about
+two main modes of LSTM.
+
+8
+00:00:40,620 --> 00:00:46,608
+There are two modes, one is the stateful
+mode and one is the stateless mode.
+
+9
+00:00:48,849 --> 00:00:52,610
+Why is this so
+important at this point of time?
+
+10
+00:00:54,430 --> 00:00:58,510
+This is why we have to decide already now,
+
+11
+00:00:58,510 --> 00:01:03,210
+at the beginning,
+which one we are going to use.
+
+12
+00:01:04,490 --> 00:01:09,212
+And to decide this,
+we will briefly show what is
+
+13
+00:01:09,212 --> 00:01:14,658
+the difference between stateless and
+stateful LSTM.
+
+14
+00:01:16,561 --> 00:01:19,908
+As you probably know,
+
+15
+00:01:19,908 --> 00:01:26,255
+LSTM is meaning Long Short-Term Memory.
+
+16
+00:01:26,255 --> 00:01:31,688
+So this neuronal network
+manage short-term memory.
+
+17
+00:01:34,906 --> 00:01:40,309
+And this is the main difference
+between stateless and stateful LSTMs.
+
+18
+00:01:41,820 --> 00:01:46,350
+In a stateless mode, LSTM updates
+
+19
+00:01:46,350 --> 00:01:50,800
+parameter on batch one,
+let's say batch one.
+
+20
+00:01:52,240 --> 00:01:59,195
+And then, when batch two comes,
+it will initiate hidden states and
+
+21
+00:01:59,195 --> 00:02:06,040
+cell states with zeroes in the next batch,
+in the batch two.
+
+22
+00:02:06,040 --> 00:02:06,571
+What does it mean?
+
+23
+00:02:08,880 --> 00:02:10,921
+Cell state is the cell memory.
+
+24
+00:02:10,921 --> 00:02:18,790
+Cell is another word for actually,
+roughly, for LSTM layer.
+
+25
+00:02:18,790 --> 00:02:24,611
+We will see later how we
+build this with Keras.
+
+26
+00:02:24,611 --> 00:02:30,010
+But this is just inner memory,
+cell memory.
+
+27
+00:02:31,090 --> 00:02:34,590
+And hidden state is
+the state of the neurons.
+
+28
+00:02:34,590 --> 00:02:42,632
+So we have hidden layers
+in a LSTM network.
+
+29
+00:02:43,730 --> 00:02:49,370
+Same way as we have in all
+other neuronal networks.
+
+30
+00:02:49,370 --> 00:02:56,507
+So even if we have CNN,
+convolutional neural networks,
+
+31
+00:02:56,507 --> 00:03:02,908
+or another networks,
+we have always input layer.
+
+32
+00:03:02,908 --> 00:03:06,115
+Then we have hidden layer, and
+then we have output layer.
+
+33
+00:03:06,115 --> 00:03:13,004
+And this state of neurons in
+the hidden layers, called hidden state.
+
+34
+00:03:14,958 --> 00:03:19,025
+So now we know that in a stateless LSTM,
+
+35
+00:03:19,025 --> 00:03:24,836
+everything starts from
+beginning from batch to batch.
+
+36
+00:03:24,836 --> 00:03:32,371
+So one batch was past, then everything
+is going to be resetted and
+
+37
+00:03:32,371 --> 00:03:39,230
+initialized with zeros and
+then it starts again and again.
+
+38
+00:03:40,420 --> 00:03:44,274
+In a stateful neuronal network
+is it completely different?
+
+39
+00:03:46,877 --> 00:03:51,790
+Here, the last output
+of the hidden state and
+
+40
+00:03:51,790 --> 00:03:58,770
+of the cell states, cell state again,
+this is the cell memory,
+
+41
+00:03:58,770 --> 00:04:03,830
+from batch one is the input for
+the batch two.
+
+42
+00:04:03,830 --> 00:04:09,110
+So it memorizes what it has
+learned in the batch one,
+
+43
+00:04:09,110 --> 00:04:12,473
+it takes it over to the batch two.
+
+44
+00:04:12,473 --> 00:04:17,859
+So now, what should we use?
+
+45
+00:04:18,880 --> 00:04:24,640
+Which mode of LSTM, Should we use?
+
+46
+00:04:24,640 --> 00:04:27,852
+This is pretty easy to
+answer in this case.
+
+47
+00:04:31,640 --> 00:04:39,866
+The question is only, are the time
+series independent in different batches?
+
+48
+00:04:39,866 --> 00:04:46,064
+So let's say we have our data,
+this is around,
+
+49
+00:04:48,251 --> 00:04:52,566
+8,000 rows, 8,000 observations.
+
+50
+00:04:52,566 --> 00:04:54,940
+And we split it into batches.
+
+51
+00:04:54,940 --> 00:04:57,830
+So we have batch one.
+
+52
+00:04:57,830 --> 00:05:00,836
+Let's say we have in batch one,
+100 observations.
+
+53
+00:05:00,836 --> 00:05:04,530
+In batch two we have again 100
+observations, and so on and so on.
+
+54
+00:05:05,710 --> 00:05:09,310
+This is one huge time series,
+and of course,
+
+55
+00:05:11,010 --> 00:05:18,630
+there is dependency inside of this data,
+so between different time steps.
+
+56
+00:05:18,630 --> 00:05:22,710
+And there is also dependency
+between batch one, batch two,
+
+57
+00:05:22,710 --> 00:05:24,950
+batch three, and so on and so on.
+
+58
+00:05:24,950 --> 00:05:30,939
+This is one time series,
+and because of that,
+
+59
+00:05:30,939 --> 00:05:36,017
+of course we should use stateful mode.
+
+60
+00:05:38,164 --> 00:05:45,288
+Another example is, For example,
+if we deal with sentences.
+
+61
+00:05:45,288 --> 00:05:49,680
+So, one sentence,
+
+62
+00:05:49,680 --> 00:05:54,330
+we have in one batch, another sentence,
+we have in another batch.
+
+63
+00:05:54,330 --> 00:05:57,595
+So they are two complete
+different sentences.
+
+64
+00:05:57,595 --> 00:06:05,000
+And they are completely unrelated to each
+other so we don't need this stateful mode.
+
+65
+00:06:06,620 --> 00:06:08,446
+Instead of that, we need stateless mode.
+
+66
+00:06:10,780 --> 00:06:15,758
+But here we deal with commodities, or
+
+67
+00:06:15,758 --> 00:06:19,959
+the same with stock prices, and
+
+68
+00:06:19,959 --> 00:06:24,948
+we are going to select stateful LSTM.
+
+69
+00:06:24,948 --> 00:06:31,473
+So stay tuned until the next time,
+enjoy our sessions, bye, bye.

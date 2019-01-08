@@ -1,0 +1,567 @@
+1
+00:00:00,000 --> 00:00:03,371
+So in order to get an idea how neural networks are trained,
+
+2
+00:00:03,371 --> 00:00:05,675
+we'll use a very simple neural network in Python.
+
+3
+00:00:05,675 --> 00:00:08,930
+First of all, let's recap
+
+4
+00:00:08,930 --> 00:00:13,575
+how to so-called feedforward path for feedforward network is computed.
+
+5
+00:00:13,575 --> 00:00:19,210
+Remember, that you have an input vector X and the label vector Y.
+
+6
+00:00:19,210 --> 00:00:23,246
+Especially in the case of classification, Y is a vector.
+
+7
+00:00:23,246 --> 00:00:28,705
+For regression, Y is often a scalar but for the math it doesn't matter,
+
+8
+00:00:28,705 --> 00:00:31,135
+since we are working with vectors and matrices anyway.
+
+9
+00:00:31,135 --> 00:00:34,330
+So, the task of a neural network now is to compute Y_hat
+
+10
+00:00:34,330 --> 00:00:38,020
+from an input vector X using the weight matrices
+
+11
+00:00:38,020 --> 00:00:41,380
+W1 and W2 such that Y_hat and
+
+12
+00:00:41,380 --> 00:00:46,100
+Y are as close as possible for all vectors in the training set X.
+
+13
+00:00:46,100 --> 00:00:49,023
+Let's actually have a look at the map.
+
+14
+00:00:49,023 --> 00:00:51,115
+So to compute from left to right,
+
+15
+00:00:51,115 --> 00:00:56,910
+the first thing you do is multiply X by W1 to obtain C2.
+
+16
+00:00:56,910 --> 00:01:01,720
+Since we are squashing intermediate layer calculations with activation functions,
+
+17
+00:01:01,720 --> 00:01:06,165
+we have to apply the activation function to C2 to obtain A2.
+
+18
+00:01:06,165 --> 00:01:08,470
+Then we compute the output layer.
+
+19
+00:01:08,470 --> 00:01:12,295
+So note that we are multiplying A2 by W2.
+
+20
+00:01:12,295 --> 00:01:16,365
+This is some sort of stacking of the computations on top of each other.
+
+21
+00:01:16,365 --> 00:01:21,543
+And finally, we compute Y_hat by applying the activation function to C3 and we are done.
+
+22
+00:01:21,543 --> 00:01:28,445
+So our weight matrices W1 and W2 are still randomly initialized.
+
+23
+00:01:28,445 --> 00:01:30,920
+Therefore, Y_hat and Y are different.
+
+24
+00:01:30,920 --> 00:01:33,410
+So now, we have to train this neural network to do
+
+25
+00:01:33,410 --> 00:01:37,430
+a better job and training basically means updating
+
+26
+00:01:37,430 --> 00:01:40,160
+the weights in order to obtain the best Y_hat on
+
+27
+00:01:40,160 --> 00:01:44,575
+a given X with respect to Y for all data points in X.
+
+28
+00:01:44,575 --> 00:01:47,063
+But how do we find the optimal values for the weights?
+
+29
+00:01:47,063 --> 00:01:49,160
+This is the plot,
+
+30
+00:01:49,160 --> 00:01:51,560
+our two weight values and the cost.
+
+31
+00:01:51,560 --> 00:01:55,330
+So the cost basically tells you how could or better your weights are chosen.
+
+32
+00:01:55,330 --> 00:01:58,100
+The lower the cost, the better neural network performance.
+
+33
+00:01:58,100 --> 00:02:00,489
+The cost function is called tree.
+
+34
+00:02:00,489 --> 00:02:07,505
+Note that it depends on W and T. So W is the weight matrix of the neural network.
+
+35
+00:02:07,505 --> 00:02:10,330
+This is the one you want to optimize over.
+
+36
+00:02:10,330 --> 00:02:13,030
+And T stands for a training dataset,
+
+37
+00:02:13,030 --> 00:02:15,425
+which stays always the same.
+
+38
+00:02:15,425 --> 00:02:20,925
+Therefore, tree is dependent on W. This is a two-dimensional example,
+
+39
+00:02:20,925 --> 00:02:22,190
+but in reality,
+
+40
+00:02:22,190 --> 00:02:27,965
+this so-called optimization space is very high-dimensional and impossible to plot.
+
+41
+00:02:27,965 --> 00:02:30,073
+So, how can we now find good values for W?
+
+42
+00:02:30,073 --> 00:02:36,496
+Of course, we can check every possible combination of values for W or can't we?
+
+43
+00:02:36,496 --> 00:02:42,000
+So one way of doing this is called Grid Search.
+
+44
+00:02:42,000 --> 00:02:45,230
+So, in this example, we choose a discrete set of values within W1 and W2
+
+45
+00:02:45,230 --> 00:02:48,776
+and just apply the cost function tree to
+
+46
+00:02:48,776 --> 00:02:52,710
+all of those combinations and the one combination
+
+47
+00:02:52,710 --> 00:02:56,720
+with the lowest cost is an optimal value set for W. Now,
+
+48
+00:02:56,720 --> 00:02:59,570
+imagine that each individual scalar weight can
+
+49
+00:02:59,570 --> 00:03:03,035
+be assigned to a value between minus 1 and 1.
+
+50
+00:03:03,035 --> 00:03:07,210
+Now, we create a grid over this continuous range with the step size of 0.1.
+
+51
+00:03:07,210 --> 00:03:08,883
+So this basically forms a grid, therefore,
+
+52
+00:03:08,883 --> 00:03:10,766
+the method is called Grid Search.
+
+53
+00:03:10,766 --> 00:03:16,115
+And now imagine, we have only a single scalar weight value to optimize over.
+
+54
+00:03:16,115 --> 00:03:19,555
+So, we have to test 21 individual values.
+
+55
+00:03:19,555 --> 00:03:21,200
+If we add one more weight,
+
+56
+00:03:21,200 --> 00:03:23,750
+we already have to test 411,
+
+57
+00:03:23,750 --> 00:03:28,255
+in three dimensions, we are on 9,261 combinations.
+
+58
+00:03:28,255 --> 00:03:35,475
+In four dimensions, we already have to test and compute 194,481 values.
+
+59
+00:03:35,475 --> 00:03:37,735
+And as we see,
+
+60
+00:03:37,735 --> 00:03:40,355
+this number keeps growing exponentially.
+
+61
+00:03:40,355 --> 00:03:41,710
+With only 100 dimensions,
+
+62
+00:03:41,710 --> 00:03:45,485
+you have to test more combinations than the atoms in the universe.
+
+63
+00:03:45,485 --> 00:03:48,910
+So, this obviously is not a good way for neural network training.
+
+64
+00:03:48,910 --> 00:03:51,538
+So, what if we not strictly follow a grid
+
+65
+00:03:51,538 --> 00:03:54,964
+and just randomly select value combinations for the weights.
+
+66
+00:03:54,964 --> 00:03:57,370
+So it turns out that this method,
+
+67
+00:03:57,370 --> 00:03:59,963
+which is called Monte Carlo, outperforms Grid Search.
+
+68
+00:03:59,963 --> 00:04:04,345
+But still in order to get a good approximation of the cost function,
+
+69
+00:04:04,345 --> 00:04:07,255
+we need to test a lot of values which is not feasible for neural network training.
+
+70
+00:04:07,255 --> 00:04:11,845
+So what if we had a possibility when evaluating
+
+71
+00:04:11,845 --> 00:04:13,960
+a single value to know in
+
+72
+00:04:13,960 --> 00:04:18,120
+which direction we should go in order to test for the next value.
+
+73
+00:04:18,120 --> 00:04:25,150
+We then could climb down the ladder one step by another until we reach the optimal value.
+
+74
+00:04:25,150 --> 00:04:28,825
+This method is called Gradient Descent and with all its variants,
+
+75
+00:04:28,825 --> 00:04:33,665
+it's [inaudible] for neural network training. So how does this work?
+
+76
+00:04:33,665 --> 00:04:36,435
+Let's have a look at our cost function tree.
+
+77
+00:04:36,435 --> 00:04:38,425
+In this case, the so-called quadratic cost,
+
+78
+00:04:38,425 --> 00:04:41,080
+which basically sums the squares of the differences between
+
+79
+00:04:41,080 --> 00:04:44,515
+the prediction of the neural network and the actual real value.
+
+80
+00:04:44,515 --> 00:04:46,540
+This difference is called error.
+
+81
+00:04:46,540 --> 00:04:49,159
+Therefore, this is also called a sum of squared errors.
+
+82
+00:04:49,159 --> 00:04:51,740
+The axis of a cost function as well.
+
+83
+00:04:51,740 --> 00:04:55,380
+The cross entropy, exponential cost,
+
+84
+00:04:55,380 --> 00:04:57,360
+hellinger distance, and many more.
+
+85
+00:04:57,360 --> 00:05:01,200
+Choosing an appropriate cost function depends on your data and neural network topology
+
+86
+00:05:01,200 --> 00:05:06,130
+and is part of the so-called hyperparameter space.
+
+87
+00:05:06,130 --> 00:05:09,286
+An idea selection is often considered as black magic,
+
+88
+00:05:09,286 --> 00:05:11,560
+in other words, trial and error.
+
+89
+00:05:11,560 --> 00:05:14,211
+So if we now have a look, how Y_hat is calculated,
+
+90
+00:05:14,211 --> 00:05:20,410
+we notice that this is dependent on the activation function F and on C3.
+
+91
+00:05:20,410 --> 00:05:23,270
+C3 is calculated by the activation of
+
+92
+00:05:23,270 --> 00:05:26,820
+the previous layer multiplied by the weights of the actual layer.
+
+93
+00:05:26,820 --> 00:05:28,985
+If you replace the two by its definition,
+
+94
+00:05:28,985 --> 00:05:32,130
+you obtain the following form and if you replace C2,
+
+95
+00:05:32,130 --> 00:05:37,250
+it's X multiplied by the weight of layer 1 and we obtain this form.
+
+96
+00:05:37,250 --> 00:05:40,750
+Finally, you put this form into tree and we obtain
+
+97
+00:05:40,750 --> 00:05:42,435
+the cost function tree based on
+
+98
+00:05:42,435 --> 00:05:45,134
+all individual computations of the forward pass of the neural network.
+
+99
+00:05:45,134 --> 00:05:51,015
+So, now, we will use the so-called backpropagation method.
+
+100
+00:05:51,015 --> 00:05:53,648
+This calculates the neural network computations backwards and
+
+101
+00:05:53,648 --> 00:05:59,490
+it does so by back propagating the error Y minus Y_hat.
+
+102
+00:05:59,490 --> 00:06:04,006
+Intuitively, this means that on the reverse computation of the neural network,
+
+103
+00:06:04,006 --> 00:06:07,040
+big weight values end up in back
+
+104
+00:06:07,040 --> 00:06:10,379
+propagating big amounts of the error to the upstream layers,
+
+105
+00:06:10,379 --> 00:06:16,170
+where a small weight value only let small amounts of the error being back propagated.
+
+106
+00:06:16,170 --> 00:06:18,900
+So let's assume, on a given data row,
+
+107
+00:06:18,900 --> 00:06:21,880
+we end up with a certain amount of error indicated by red circle.
+
+108
+00:06:21,880 --> 00:06:25,436
+So, if we now backpropagate this error,
+
+109
+00:06:25,436 --> 00:06:30,730
+we use the weight to determine how much of this error should be back propagated.
+
+110
+00:06:30,730 --> 00:06:32,760
+Since the weight is high,
+
+111
+00:06:32,760 --> 00:06:34,004
+we also increase the error,
+
+112
+00:06:34,004 --> 00:06:36,580
+which then gets back propagated.
+
+113
+00:06:36,580 --> 00:06:38,005
+Now, if the weight is small,
+
+114
+00:06:38,005 --> 00:06:41,250
+the error also gets reduced and the amount of error for
+
+115
+00:06:41,250 --> 00:06:45,515
+that particular back propagation to the upstream layer neuron is less.
+
+116
+00:06:45,515 --> 00:06:48,145
+This is the desired behavior since big weights
+
+117
+00:06:48,145 --> 00:06:51,063
+are contributing more to the overall error than small weights.
+
+118
+00:06:51,063 --> 00:06:56,260
+So, this is nice but what we actually want is not the error or cost on each neuron,
+
+119
+00:06:56,260 --> 00:06:58,310
+but the gradient of each error.
+
+120
+00:06:58,310 --> 00:06:59,690
+If we know the gradient,
+
+121
+00:06:59,690 --> 00:07:02,305
+we know in which direction we have to update
+
+122
+00:07:02,305 --> 00:07:05,042
+each weight in order to go down here to cross the hypersurface.
+
+123
+00:07:05,042 --> 00:07:11,945
+Therefore, we compute the partition derivative with respect to W2 first.
+
+124
+00:07:11,945 --> 00:07:14,277
+I skipped the linear algebra and the calculus here,
+
+125
+00:07:14,277 --> 00:07:19,760
+but it turns out that derivative is A2 transpose times delta 3,
+
+126
+00:07:19,760 --> 00:07:22,280
+which is based under reverse computation,
+
+127
+00:07:22,280 --> 00:07:24,430
+which is also called backpropagation.
+
+128
+00:07:24,430 --> 00:07:29,545
+So note that F_prime is the first derivative of the activation function F. Now,
+
+129
+00:07:29,545 --> 00:07:32,040
+we continue in back propagating the error and taking
+
+130
+00:07:32,040 --> 00:07:36,455
+the first derivative of that function in parallel to obtain delta 2.
+
+131
+00:07:36,455 --> 00:07:40,395
+And finally, we get the partial derivative with respect to W1.
+
+132
+00:07:40,395 --> 00:07:44,850
+And again, the mathematical reason why this is computed using the transposed of
+
+133
+00:07:44,850 --> 00:07:50,380
+X times delta 2 is beyond the scope of this class and due to the Chain rule in calculus.
+
+134
+00:07:50,380 --> 00:07:54,735
+So as you have seen, training the neural network can be quite complicated.
+
+135
+00:07:54,735 --> 00:07:57,960
+But it's okay if you didn't understand all the details,
+
+136
+00:07:57,960 --> 00:08:01,950
+just note the gradient descent does not make any guarantees that
+
+137
+00:08:01,950 --> 00:08:06,080
+it converges just to the global optimum unless the cost function is convex,
+
+138
+00:08:06,080 --> 00:08:07,823
+which is not the case in neural networks.
+
+139
+00:08:07,823 --> 00:08:14,100
+So it might get stuck in local optimas and even has not any guarantees to convert it all.
+
+140
+00:08:14,100 --> 00:08:18,310
+Therefore, a lot of hyperparameter tuning might be necessary.
+
+141
+00:08:18,310 --> 00:08:19,570
+In the next module, we will cover TensorFlow,
+
+142
+00:08:19,570 --> 00:08:23,210
+one of the hottest deep learning frameworks out now.

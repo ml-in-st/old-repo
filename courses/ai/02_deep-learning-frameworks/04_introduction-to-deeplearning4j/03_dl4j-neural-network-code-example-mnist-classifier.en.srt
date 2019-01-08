@@ -1,0 +1,635 @@
+1
+00:00:02,014 --> 00:00:06,990
+In this section, we're going to take
+a look at some DL4J example code.
+
+2
+00:00:09,070 --> 00:00:14,260
+Simple example builds a neural net,
+processes a small data set to make
+
+3
+00:00:14,260 --> 00:00:19,960
+predictions of the species of
+an iris based upon its measurements.
+
+4
+00:00:19,960 --> 00:00:21,280
+The code's available here.
+
+5
+00:00:22,740 --> 00:00:26,910
+The data file's also available there,
+and there's direct links to the code.
+
+6
+00:00:26,910 --> 00:00:30,871
+You could also just clone the whole repo,
+and
+
+7
+00:00:30,871 --> 00:00:39,010
+that repo also contains any other DL4J
+exercises that we've done in this course.
+
+8
+00:00:39,010 --> 00:00:45,086
+The data looks like this, and
+the first four fields are measurements.
+
+9
+00:00:45,086 --> 00:00:47,071
+The last field is the class.
+
+10
+00:00:47,071 --> 00:00:53,057
+Species 0 might be iris setosas,
+species 1 would be iris virginica,
+
+11
+00:00:53,057 --> 00:00:56,270
+species 2 would be iris versicolor.
+
+12
+00:00:56,270 --> 00:01:02,323
+So three species of irises, and then
+the four measures are their sepal length,
+
+13
+00:01:02,323 --> 00:01:06,500
+sepal width, petal length,
+and petal width.
+
+14
+00:01:09,110 --> 00:01:11,673
+So the first four fields are features.
+
+15
+00:01:11,673 --> 00:01:16,960
+They will be ingested using the DataVec
+tools such as CSV RecordReader.
+
+16
+00:01:16,960 --> 00:01:24,360
+And they will become an INDArray,
+an indexed n-dimensional array.
+
+17
+00:01:24,360 --> 00:01:26,280
+Last field is the label.
+
+18
+00:01:26,280 --> 00:01:31,360
+It will also become an INDArray and
+it will get passed to the neural net.
+
+19
+00:01:31,360 --> 00:01:34,100
+The neural net will make its
+prediction based upon the features and
+
+20
+00:01:34,100 --> 00:01:36,560
+then will compare it to the known label.
+
+21
+00:01:36,560 --> 00:01:39,900
+So we're performing
+supervised training here.
+
+22
+00:01:42,660 --> 00:01:47,350
+So the steps that we're going to
+need to perform in our code,
+
+23
+00:01:47,350 --> 00:01:49,420
+we're going to need to read the file.
+
+24
+00:01:49,420 --> 00:01:51,700
+We're going to need to parse the lines.
+
+25
+00:01:51,700 --> 00:01:55,040
+We're going to need to specify
+which field is the label, and
+
+26
+00:01:55,040 --> 00:01:58,310
+which field are the features or
+the measurements.
+
+27
+00:01:58,310 --> 00:02:00,930
+We're going to have to
+create a DataSet object,
+
+28
+00:02:00,930 --> 00:02:06,675
+a collection of INDArrays to
+pass into our neural net.
+
+29
+00:02:06,675 --> 00:02:11,920
+INDArrays are sometimes called tensors and
+then build a neural net and train it.
+
+30
+00:02:13,950 --> 00:02:15,930
+We're going to be using a RecordReader.
+
+31
+00:02:15,930 --> 00:02:20,920
+And here's the JavaDoc for
+the RecordReader and the Java Doc for
+
+32
+00:02:20,920 --> 00:02:22,778
+the CSV RecordReader.
+
+33
+00:02:22,778 --> 00:02:26,908
+Note that the second URL I had to split
+on the line because it was too long to
+
+34
+00:02:26,908 --> 00:02:29,700
+feed into the slide, so
+that's all one string.
+
+35
+00:02:31,690 --> 00:02:36,850
+And then we're going to be using
+a RecordReaderDataSetIterator to build
+
+36
+00:02:36,850 --> 00:02:42,270
+the dataset, the INDArray of the features
+and the INDArray of the labels.
+
+37
+00:02:44,380 --> 00:02:52,353
+Main documentation for
+DeepLearning4J is available, Here.
+
+38
+00:02:55,300 --> 00:03:00,210
+The JavaDoc for DataVec is available here.
+
+39
+00:03:00,210 --> 00:03:08,200
+And the JavaDoc for
+DeepLearning4J is available there.
+
+40
+00:03:08,200 --> 00:03:12,420
+So step one, we need to write
+some code to read the data file.
+
+41
+00:03:14,690 --> 00:03:17,460
+The data file has no header,
+it's all data.
+
+42
+00:03:17,460 --> 00:03:21,000
+So we specify that we don't
+need to skip any lines.
+
+43
+00:03:21,000 --> 00:03:26,520
+The data is comma delimited so we specify
+that we'll be using a delimiter of comma.
+
+44
+00:03:27,780 --> 00:03:31,810
+And then we build our RecordReader, so
+we're going to create a new instance of
+
+45
+00:03:31,810 --> 00:03:35,820
+the CSVRecordReader, and we're
+going to pass it those two parameters,
+
+46
+00:03:35,820 --> 00:03:41,828
+the number of lines to skip and the
+delimiter, so that will be zero and comma.
+
+47
+00:03:44,310 --> 00:03:47,390
+We pass the RecordReader our file path.
+
+48
+00:03:48,420 --> 00:03:52,020
+So we just point it to
+iris.txt to read the file.
+
+49
+00:03:52,020 --> 00:03:56,120
+So we pass it a FileSplit,
+the file, iris.txt.
+
+50
+00:03:57,690 --> 00:04:00,344
+We set some parameters for
+the data set iterator.
+
+51
+00:04:00,344 --> 00:04:04,016
+We specify that there's three classes.
+
+52
+00:04:04,016 --> 00:04:09,928
+We specify that the last field,
+the fifth field starting at zero,
+
+53
+00:04:09,928 --> 00:04:14,270
+so the label index is four,
+that's right here.
+
+54
+00:04:15,570 --> 00:04:18,380
+So we specify that
+the label index is four.
+
+55
+00:04:18,380 --> 00:04:21,050
+We specify that there's three classes.
+
+56
+00:04:21,050 --> 00:04:26,950
+And we specify that we're going
+to read 150 lines per batch.
+
+57
+00:04:26,950 --> 00:04:30,060
+There's only 150 lines in this data file,
+so
+
+58
+00:04:30,060 --> 00:04:34,350
+we're going to be reading it all and
+processing it as a single batch.
+
+59
+00:04:36,980 --> 00:04:41,750
+So what the RecordReader does it returns
+an iterator over a List of Writables.
+
+60
+00:04:43,200 --> 00:04:44,660
+And what is a Writable?
+
+61
+00:04:44,660 --> 00:04:50,765
+A Writable's an efficient
+serialization method.
+
+62
+00:04:50,765 --> 00:04:56,185
+The neural net requires a tensor or
+an INDArray
+
+63
+00:04:56,185 --> 00:05:02,645
+of numeric values, and the
+RecordReaderDataSetIterator gives us that.
+
+64
+00:05:02,645 --> 00:05:10,560
+So it converts the RecordReader's list of
+Writables into that tensor, that INDArray.
+
+65
+00:05:11,800 --> 00:05:15,880
+And then once we have it into an INDArray,
+we'll have one for the features and
+
+66
+00:05:15,880 --> 00:05:17,780
+one for the labels.
+
+67
+00:05:17,780 --> 00:05:20,760
+The features will get
+passed through the network.
+
+68
+00:05:20,760 --> 00:05:27,060
+The network will make its predictions, and
+then we'll compare it to the known labels.
+
+69
+00:05:27,060 --> 00:05:29,820
+And so there's the code for
+that operation.
+
+70
+00:05:33,900 --> 00:05:37,460
+A neural net performs best
+if the data is shuffled.
+
+71
+00:05:37,460 --> 00:05:41,072
+In the case of this data file, it is not.
+
+72
+00:05:41,072 --> 00:05:45,470
+So we're going to shuffle it after
+we have loaded it into a data set.
+
+73
+00:05:47,430 --> 00:05:53,050
+You could also shuffle the data at just
+about any point along the ingestion path.
+
+74
+00:05:55,940 --> 00:05:58,630
+Splitting the data between test and
+train, so
+
+75
+00:05:58,630 --> 00:06:02,090
+we're going to train on 65% of the data.
+
+76
+00:06:02,090 --> 00:06:06,080
+That code is right here,
+and then we're going to
+
+77
+00:06:08,160 --> 00:06:13,440
+validate the outcome of the train
+neural net with the test data.
+
+78
+00:06:16,200 --> 00:06:20,891
+We're going to normalize the data set, so
+you'll see measurements like 4 and 1.5.
+
+79
+00:06:20,891 --> 00:06:24,998
+But we're going to normalize and
+standardize those so
+
+80
+00:06:24,998 --> 00:06:28,645
+that the max value is 1 and
+the min value is 0.
+
+81
+00:06:28,645 --> 00:06:33,214
+In order to do that, we're going to
+need to call normalizer.fit.
+
+82
+00:06:33,214 --> 00:06:37,695
+Normalizer.fit will step
+through the data once,
+
+83
+00:06:37,695 --> 00:06:41,080
+find the observed min and
+the observed max.
+
+84
+00:06:41,080 --> 00:06:47,820
+And then we can apply that in this
+second step here to our data set
+
+85
+00:06:47,820 --> 00:06:53,770
+to convert the values to values
+between a range of zero and one.
+
+86
+00:06:53,770 --> 00:06:57,650
+And of course,
+we also need to normalize the test data.
+
+87
+00:07:00,788 --> 00:07:02,440
+Then we need to build a neural net.
+
+88
+00:07:04,050 --> 00:07:08,130
+So here where it's specifying some
+parameters, we're setting a seed.
+
+89
+00:07:09,750 --> 00:07:12,880
+So we set a consistent random seed so
+
+90
+00:07:12,880 --> 00:07:18,070
+that we can run multiple times and
+have consistent results.
+
+91
+00:07:18,070 --> 00:07:23,120
+The first step of building a neural net is
+random initialization of the weights, and
+
+92
+00:07:23,120 --> 00:07:25,560
+we would like repeatable results.
+
+93
+00:07:25,560 --> 00:07:32,680
+So we set a seed so we get the same
+random initialization of the weights.
+
+94
+00:07:32,680 --> 00:07:34,310
+Specify the number of iterations.
+
+95
+00:07:34,310 --> 00:07:39,490
+That's how many times we're going to
+back propagate, or update our weights.
+
+96
+00:07:39,490 --> 00:07:44,580
+Specify some other parameters such
+as the activation function for
+
+97
+00:07:44,580 --> 00:07:48,530
+the hidden layer and
+the wait initialization algorithm.
+
+98
+00:07:48,530 --> 00:07:53,905
+And those are kind of standard, at least
+the Javier weight initialization is.
+
+99
+00:07:53,905 --> 00:07:56,762
+We set the learning rate to 0.1,
+
+100
+00:07:56,762 --> 00:08:00,960
+enable regularization and
+then we add some layers.
+
+101
+00:08:00,960 --> 00:08:04,896
+So we've got a input layer,
+we've got a hidden layer and
+
+102
+00:08:04,896 --> 00:08:07,602
+then we have our output layer.
+
+103
+00:08:07,602 --> 00:08:10,702
+Input layer is determined
+by the number of features.
+
+104
+00:08:10,702 --> 00:08:13,512
+Output layer is determined
+by the number of classes.
+
+105
+00:08:13,512 --> 00:08:18,712
+And then we chose how many nodes
+to have in the hidden layer.
+
+106
+00:08:18,712 --> 00:08:20,712
+Not too many parameters to work with here.
+
+107
+00:08:20,712 --> 00:08:23,950
+The neural net isn't
+necessarily going to need
+
+108
+00:08:23,950 --> 00:08:27,260
+too many parameters to solve this problem.
+
+109
+00:08:29,170 --> 00:08:33,710
+So we then need to run the neural
+net on the training data.
+
+110
+00:08:33,710 --> 00:08:35,520
+So we take our configuration.
+
+111
+00:08:35,520 --> 00:08:40,040
+Note in the previous file we're building
+a configuration, as you see here.
+
+112
+00:08:43,040 --> 00:08:50,200
+And then we take that configuration
+in the next section of code and
+
+113
+00:08:50,200 --> 00:08:54,507
+we build a model from it, right there.
+
+114
+00:08:54,507 --> 00:08:55,960
+We initialize the model.
+
+115
+00:08:55,960 --> 00:08:58,880
+I set some listeners so
+we get some output of progress.
+
+116
+00:08:58,880 --> 00:09:01,880
+The listeners are going to
+show us the score, what
+
+117
+00:09:01,880 --> 00:09:06,180
+the value of the lost function is, how
+well the neural net's doing, basically.
+
+118
+00:09:07,713 --> 00:09:11,990
+When the neural net is done training,
+then we evaluate it.
+
+119
+00:09:11,990 --> 00:09:14,061
+You could also evaluate it, perhaps,
+
+120
+00:09:14,061 --> 00:09:17,740
+every few steps to see how it's
+performing as you move along.
+
+121
+00:09:17,740 --> 00:09:22,060
+The loss function will give you some
+idea of it, that's on the training data.
+
+122
+00:09:22,060 --> 00:09:27,130
+It's useful to evaluate on some test data
+that the neural net has not trained on.
+
+123
+00:09:27,130 --> 00:09:32,524
+So we build an evaluation class,
+we pass the trained model our test data,
+
+124
+00:09:32,524 --> 00:09:36,970
+and then we see how well it did
+on data that it did not train on.
+
+125
+00:09:36,970 --> 00:09:40,210
+And that's it.
+
+126
+00:09:40,210 --> 00:09:42,710
+So there's a complete example of the code
+
+127
+00:09:42,710 --> 00:09:47,170
+available at that GitHub repo
+that we saw in the first slide.
+
+128
+00:09:47,170 --> 00:09:52,210
+And that's a very simple
+straightforward DL4J example.
+
+129
+00:09:52,210 --> 00:09:56,960
+In the next section,
+I'll be showing you how to classify time
+
+130
+00:09:56,960 --> 00:10:02,280
+series data using a recurrent
+neural net along short-term memory.
+
+131
+00:10:02,280 --> 00:10:05,650
+Recurrent neural net, and then there
+will also be a section that looks at
+
+132
+00:10:05,650 --> 00:10:09,080
+multivariate time series data as well.
+
+133
+00:10:09,080 --> 00:10:12,778
+So the first example is univariate,
+the second example is multivariate.
+
+134
+00:10:12,778 --> 00:10:14,156
+Thank you.

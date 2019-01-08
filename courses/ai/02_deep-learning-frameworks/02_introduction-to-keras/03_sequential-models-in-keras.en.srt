@@ -1,0 +1,343 @@
+1
+00:00:00,910 --> 00:00:07,025
+In this video, we're going to introduce sequential models with Keras.
+
+2
+00:00:07,025 --> 00:00:12,680
+In Keras, you have essentially two types of models available.
+
+3
+00:00:12,680 --> 00:00:18,275
+One is called Sequential and you use it to define sequential models,
+
+4
+00:00:18,275 --> 00:00:23,495
+meaning you simply stack layers one by one, sequentially.
+
+5
+00:00:23,495 --> 00:00:27,185
+And this is the focus of this lecture.
+
+6
+00:00:27,185 --> 00:00:35,143
+There's another model available in Keras that is mainly used for non-sequential models,
+
+7
+00:00:35,143 --> 00:00:39,290
+and it goes by the name Model.
+
+8
+00:00:39,290 --> 00:00:42,525
+Those more general models use a functional API.
+
+9
+00:00:42,525 --> 00:00:46,925
+We're going to introduce this API later on.
+
+10
+00:00:46,925 --> 00:00:50,560
+Okay, let's take a step back.
+
+11
+00:00:50,560 --> 00:00:54,255
+Regardless of which model you define,
+
+12
+00:00:54,255 --> 00:01:00,690
+the core abstraction to each Keras model is the notion of a layer.
+
+13
+00:01:00,690 --> 00:01:04,630
+So, each model consists of a bunch of layers.
+
+14
+00:01:04,630 --> 00:01:06,700
+In a sequential model,
+
+15
+00:01:06,700 --> 00:01:09,055
+we stack layers sequentially.
+
+16
+00:01:09,055 --> 00:01:14,545
+So, each layer has unique input and output,
+
+17
+00:01:14,545 --> 00:01:21,210
+and those inputs and outputs then also come with a unique input shape and output shape.
+
+18
+00:01:21,210 --> 00:01:25,050
+If you want to retrieve the weights a layer has,
+
+19
+00:01:25,050 --> 00:01:28,230
+you can simply call get weights on layer and
+
+20
+00:01:28,230 --> 00:01:32,660
+retrieve all those weights as as a list of numpy arrays.
+
+21
+00:01:32,660 --> 00:01:35,550
+If you want to set weights,
+
+22
+00:01:35,550 --> 00:01:37,915
+that's also possible by simply calling set weights
+
+23
+00:01:37,915 --> 00:01:41,755
+with a given list of numpy arrays weights.
+
+24
+00:01:41,755 --> 00:01:46,000
+Also, each layer has its defining configuration
+
+25
+00:01:46,000 --> 00:01:49,545
+which you can get by calling get config on a layer.
+
+26
+00:01:49,545 --> 00:01:54,530
+To build a sequential model,
+
+27
+00:01:54,530 --> 00:01:56,885
+you have to carry out a few steps.
+
+28
+00:01:56,885 --> 00:02:02,012
+First, we instantiate a sequential model,
+
+29
+00:02:02,012 --> 00:02:05,400
+then we add layers to it one by one.
+
+30
+00:02:05,400 --> 00:02:09,395
+Afterwards, we need to compile a model with
+
+31
+00:02:09,395 --> 00:02:13,445
+a mandatory loss function and a mandatory optimizer,
+
+32
+00:02:13,445 --> 00:02:19,080
+and if we like, also with optional evaluation metrics such as accuracy.
+
+33
+00:02:19,080 --> 00:02:24,530
+Afterwards, we fit our model to training data that we provide.
+
+34
+00:02:24,530 --> 00:02:28,425
+And after that, well,
+
+35
+00:02:28,425 --> 00:02:31,075
+it really depends what you want to do.
+
+36
+00:02:31,075 --> 00:02:34,190
+Most of the time we evaluate our model but,
+
+37
+00:02:34,190 --> 00:02:37,955
+sometimes you also want to maybe serialize or persist
+
+38
+00:02:37,955 --> 00:02:43,220
+model or deploy it somewhere or start a new experiment altogether.
+
+39
+00:02:43,220 --> 00:02:45,495
+It really depends on your use case.
+
+40
+00:02:45,495 --> 00:02:51,245
+Essentially, this is the list of steps that you have to carry out each time
+
+41
+00:02:51,245 --> 00:02:56,190
+when you define a Keras model. All right.
+
+42
+00:02:56,190 --> 00:02:59,490
+Let's have a closer look at the compiling step of a model.
+
+43
+00:02:59,490 --> 00:03:03,190
+As we said before, we have to carry out essentially two steps.
+
+44
+00:03:03,190 --> 00:03:10,227
+We have to provide loss function and we have to provide an optimizer.
+
+45
+00:03:10,227 --> 00:03:14,590
+Defining a loss function can be done in two ways.
+
+46
+00:03:14,590 --> 00:03:19,885
+First, we can import a specific loss function,
+
+47
+00:03:19,885 --> 00:03:21,900
+in this case, mean squared error,
+
+48
+00:03:21,900 --> 00:03:25,020
+from the Keras losses module.
+
+49
+00:03:25,020 --> 00:03:27,265
+This is the recommended way.
+
+50
+00:03:27,265 --> 00:03:30,673
+If you compile a model with this,
+
+51
+00:03:30,673 --> 00:03:34,744
+you simply specify the loss keyword here,
+
+52
+00:03:34,744 --> 00:03:36,980
+we set it to mean squared error,
+
+53
+00:03:36,980 --> 00:03:39,805
+and we left out the optimizer for now.
+
+54
+00:03:39,805 --> 00:03:45,380
+The second option is simply call the respective loss function by name.
+
+55
+00:03:45,380 --> 00:03:51,170
+That is, you provide a string that stands for the loss function.
+
+56
+00:03:51,170 --> 00:03:53,765
+This is somewhat error prone,
+
+57
+00:03:53,765 --> 00:03:55,380
+because if you have a typo in that,
+
+58
+00:03:55,380 --> 00:03:56,913
+it simply won't work.
+
+59
+00:03:56,913 --> 00:04:01,590
+So, we really recommend the first way.
+
+60
+00:04:01,590 --> 00:04:05,025
+Okay. To defend an optimizer again,
+
+61
+00:04:05,025 --> 00:04:07,440
+there's two way of doing this.
+
+62
+00:04:07,440 --> 00:04:11,470
+The first and preferred way for us is you
+
+63
+00:04:11,470 --> 00:04:19,370
+import a specific optimizer from the Keras optimizers sub module.
+
+64
+00:04:19,370 --> 00:04:23,980
+In this case, we import stochastic gradient descent, SGD.
+
+65
+00:04:23,980 --> 00:04:33,220
+Then, we instantiate an SGD object by specifying a few parameters.
+
+66
+00:04:33,220 --> 00:04:43,595
+So, for instance here, we set the learning rate to 0.01 and also put decay factor
+
+67
+00:04:43,595 --> 00:04:50,840
+that will decrease the learning rate after each parameter update and we also set
+
+68
+00:04:50,840 --> 00:04:58,164
+momentum parameter to 0.9 for this particular optimizer.
+
+69
+00:04:58,164 --> 00:05:03,620
+Then, we can compile our model with this particular instance SGD.
+
+70
+00:05:03,620 --> 00:05:05,785
+The second option is,
+
+71
+00:05:05,785 --> 00:05:08,795
+you simply pass a string,
+
+72
+00:05:08,795 --> 00:05:14,254
+pretty much the same way as we did for losses, but in this case,
+
+73
+00:05:14,254 --> 00:05:18,605
+it's crucial to see that if you pass SGD as a string,
+
+74
+00:05:18,605 --> 00:05:22,970
+you cannot specify any specific parameters but,
+
+75
+00:05:22,970 --> 00:05:27,160
+all the default parameters would just be valid.
+
+76
+00:05:27,160 --> 00:05:31,770
+All right. Once you're done with compiling your model,
+
+77
+00:05:31,770 --> 00:05:37,225
+you simply fit it to training features and labels,
+
+78
+00:05:37,225 --> 00:05:40,720
+and you also always have to specify a batch size,
+
+79
+00:05:40,720 --> 00:05:43,600
+the number of epochs you want to train,
+
+80
+00:05:43,600 --> 00:05:47,633
+and optionally you can also specify validation data.
+
+81
+00:05:47,633 --> 00:05:51,785
+Afterwards, you can evaluate
+
+82
+00:05:51,785 --> 00:05:59,445
+your model or simply predict on new features, as you like.
+
+83
+00:05:59,445 --> 00:06:03,430
+Okay. So, this was a high level overview
+
+84
+00:06:03,430 --> 00:06:07,225
+of Keras sequential models and in the next lecture,
+
+85
+00:06:07,225 --> 00:06:09,965
+we're going to talk specifically about how to build
+
+86
+00:06:09,965 --> 00:06:14,000
+Feedforward neural networks and tackle a contentious case.

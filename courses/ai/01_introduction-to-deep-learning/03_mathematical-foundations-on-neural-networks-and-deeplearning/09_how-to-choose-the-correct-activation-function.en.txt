@@ -1,0 +1,41 @@
+So this video covers activation
+functions and from the previous lecture, you have maybe remember that we have
+the sigmoid activation function used in logistic regression. So this is the so-called logistic sigmoid
+function and this is applied twice. So activation function,
+it's non-linear due to the model and with only one single hidden layer, having
+or learning the activation function, a neural network is the universal
+function approximator, capable of learning any
+mathematical function. In contrast, if you only have
+linear layers, then you can add as many hidden layers as you like, you never
+get a universal function approximator. So there's also another activation
+function widely used, this is tanh. So tanh has the advantage, as you can see,
+that it also covers the negative range. So if you have data which in the negative
+range, tanh might be better. And it's also used in the output
+layer of binary classification. In case of multiclass specification,
+the output layer uses soft mix. So soft mix is defined as a function
+which takes the value of z, and then takes e to the power of it. And then it divides by the sum of e taken
+to the power of all the other c values. So this soft mix function has
+the property that R class probabilities are summed into 1. In the case of multiclass specification, the actual class you have predicted
+will assemble in a value close to 1. And all other classes
+are assembled in values close to 0. So this activation function ideally
+fits to one hat encoded vector in the output layer. So this is another activation
+function which is called ReLU. So ReLU doesn't really look non-linear, but actually it is,
+because a linear function is only a line. And it turns out that the combination
+of multiple ReLU activation functions, you also can approximate
+any mathematical function. ReLU is the most used
+activation function today. This is, first of all, because
+the computation of complexity is less, and your networks also tend to
+converge faster using ReLU. One problem with ReLU is that
+it can cause dead neurons, because of a range value output is 0,
+therefore, there is a valuation of ReLU. So this is called leaky ReLU, as you can
+see on the negative side there is a little value, and that increases the value range,
+and also prevents that neurons. So in case your neural network
+training doesn't work perfectly, you just can try leaky ReLU or also
+there's a variation called random ReLU. So it's best to start with ReLU for
+the input and the hidden layers. And for the output layer,
+it depends on your task. So if you are relinear regressor,
+you use a linear output unit, and if you are creating a classifier,
+you use soft mix or sigmoid. And nobody, of course,
+stops you from trying other things. So the next video, it will tell you something about
+the bias variance tradeoff. Or in other words how to prevent
+overfitting of a neural network

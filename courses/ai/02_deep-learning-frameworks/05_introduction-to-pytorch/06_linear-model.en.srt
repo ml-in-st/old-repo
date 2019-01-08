@@ -1,0 +1,935 @@
+1
+00:00:00,000 --> 00:00:02,790
+Welcome back. In the last session,
+
+2
+00:00:02,790 --> 00:00:04,805
+we have discussed the
+
+3
+00:00:04,805 --> 00:00:09,075
+autograd.Variable element of PyTorch
+
+4
+00:00:09,075 --> 00:00:12,835
+and how to create and preserve the computational graph.
+
+5
+00:00:12,835 --> 00:00:17,095
+We've also briefly mentioned the CUDA functionality of PyTorch.
+
+6
+00:00:17,095 --> 00:00:23,272
+Today, we're going to create a Linear Model with PyTorch.
+
+7
+00:00:23,272 --> 00:00:24,565
+So let us start.
+
+8
+00:00:24,565 --> 00:00:32,465
+So first, we are importing their required libraries,
+
+9
+00:00:32,465 --> 00:00:34,929
+which is torch Library.
+
+10
+00:00:34,929 --> 00:00:40,140
+As you remember, torch library is the Tensor library of PyTorch.
+
+11
+00:00:40,140 --> 00:00:43,270
+Then we are importing nn module,
+
+12
+00:00:43,270 --> 00:00:52,149
+neural network module and then we importing autograd from autograd.Variable.
+
+13
+00:00:52,149 --> 00:00:58,665
+As you remember, autograd.Variable is the main building block of PyTorch,
+
+14
+00:00:58,665 --> 00:01:03,874
+a computational graph and here we're importing just numpy.
+
+15
+00:01:03,874 --> 00:01:07,440
+So let us execute the next cell,
+
+16
+00:01:07,440 --> 00:01:08,867
+what do we do here as following.
+
+17
+00:01:08,867 --> 00:01:11,900
+We are creating some data for our model.
+
+18
+00:01:11,900 --> 00:01:14,580
+So, first of all, we're creating x,
+
+19
+00:01:14,580 --> 00:01:22,770
+x is just the numbers from zero to 20.
+
+20
+00:01:22,770 --> 00:01:26,360
+Here, we use a nice feature of Python,
+
+21
+00:01:26,360 --> 00:01:29,717
+which is a list comprehension.
+
+22
+00:01:29,717 --> 00:01:33,120
+In the next step,
+
+23
+00:01:33,120 --> 00:01:37,410
+we are converting this x list to
+
+24
+00:01:37,410 --> 00:01:45,498
+a numpy array and then we reshape it to be a column vector.
+
+25
+00:01:45,498 --> 00:01:48,200
+And if you look at the print,
+
+26
+00:01:48,200 --> 00:01:50,630
+you see what we have created.
+
+27
+00:01:50,630 --> 00:01:56,090
+So we have created from zero to 19,
+
+28
+00:01:56,090 --> 00:02:04,377
+20 elements of x and then we have reshaped it to the form 20 to 1.
+
+29
+00:02:04,377 --> 00:02:09,001
+It's a column vector.
+
+30
+00:02:09,001 --> 00:02:12,550
+Almost the same thing with y.
+
+31
+00:02:12,550 --> 00:02:17,695
+But y is now the linear combination of x.
+
+32
+00:02:17,695 --> 00:02:27,260
+So every element of y is five multiplied by x or by index i,
+
+33
+00:02:27,260 --> 00:02:31,070
+which is the same in this case plus two.
+
+34
+00:02:31,070 --> 00:02:38,020
+And then we are creating numpy array out of it of type float32.
+
+35
+00:02:38,020 --> 00:02:41,130
+And then we have reshape to be a column vector.
+
+36
+00:02:41,130 --> 00:02:46,085
+Let us have a look at the print out.
+
+37
+00:02:46,085 --> 00:02:49,215
+This is the linear combination,
+
+38
+00:02:49,215 --> 00:02:54,870
+actually linear function and the printout is again,
+
+39
+00:02:54,870 --> 00:02:56,685
+of this numpy array,
+
+40
+00:02:56,685 --> 00:02:58,800
+20 to 1 numpy array.
+
+41
+00:02:58,800 --> 00:03:02,250
+Now, the important point, now,
+
+42
+00:03:02,250 --> 00:03:06,960
+we're creating a linear model with PyTorch,
+
+43
+00:03:06,960 --> 00:03:11,400
+every model with PyTorch is created with class.
+
+44
+00:03:11,400 --> 00:03:13,845
+So you have to create a class.
+
+45
+00:03:13,845 --> 00:03:22,405
+It is pretty straightforward and simple especially for those of you who has already
+
+46
+00:03:22,405 --> 00:03:26,745
+some experience in programming especially in object-oriented programming
+
+47
+00:03:26,745 --> 00:03:32,093
+like in Java or C Sharp or in Objective C, or whatever.
+
+48
+00:03:32,093 --> 00:03:35,030
+You are creating classes.
+
+49
+00:03:35,030 --> 00:03:38,970
+A class actually is a blueprint of an object.
+
+50
+00:03:38,970 --> 00:03:42,240
+Object is a special instance of a class.
+
+51
+00:03:42,240 --> 00:03:44,408
+So if you create a class,
+
+52
+00:03:44,408 --> 00:03:48,645
+you create a template for an object.
+
+53
+00:03:48,645 --> 00:03:52,435
+Object is an acting instance.
+
+54
+00:03:52,435 --> 00:03:54,715
+So now, we're creating class,
+
+55
+00:03:54,715 --> 00:03:57,780
+which we are calling LinearRegressor.
+
+56
+00:03:57,780 --> 00:04:02,220
+So the name you can choose freely whatever you like.
+
+57
+00:04:02,220 --> 00:04:04,973
+But here's the important point,
+
+58
+00:04:04,973 --> 00:04:09,855
+we are inheriting this class from module class
+
+59
+00:04:09,855 --> 00:04:17,280
+of Neural network package of nn library.
+
+60
+00:04:17,280 --> 00:04:18,668
+This is important point,
+
+61
+00:04:18,668 --> 00:04:22,487
+it must be always inherit from module,
+
+62
+00:04:22,487 --> 00:04:28,860
+every PyTorch model class inherits from module.
+
+63
+00:04:28,860 --> 00:04:33,065
+The next, we are defining init() method.
+
+64
+00:04:33,065 --> 00:04:37,140
+Init() is equivalent to
+
+65
+00:04:37,140 --> 00:04:45,340
+a constructor in other programming languages like Java or C Sharp.
+
+66
+00:04:45,340 --> 00:04:50,215
+Here, we don't call the class name but __init__.
+
+67
+00:04:50,215 --> 00:04:58,185
+It just flavor of Python to call this.
+
+68
+00:04:58,185 --> 00:05:03,480
+Constructor will initialize the class,
+
+69
+00:05:03,480 --> 00:05:05,961
+will initiate the class with the values which we are passing here.
+
+70
+00:05:05,961 --> 00:05:12,426
+So we are passing here the instance of this class itself.
+
+71
+00:05:12,426 --> 00:05:14,910
+Then we are passing input dim,
+
+72
+00:05:14,910 --> 00:05:19,530
+input data dimension and here,
+
+73
+00:05:19,530 --> 00:05:22,090
+we are passing output data dimension.
+
+74
+00:05:22,090 --> 00:05:25,260
+And then we call this super class,
+
+75
+00:05:25,260 --> 00:05:33,265
+super is the constructor of a class from which we are inheriting.
+
+76
+00:05:33,265 --> 00:05:43,450
+So we are inheriting from module and we call super is calling to the module class.
+
+77
+00:05:43,450 --> 00:05:50,930
+Super meaning give me the class from which we are inheriting.
+
+78
+00:05:50,930 --> 00:05:54,128
+In here, we are calling the init() method of the super class.
+
+79
+00:05:54,128 --> 00:05:56,655
+Init meaning constructor.
+
+80
+00:05:56,655 --> 00:06:01,440
+And here, the next line of code,
+
+81
+00:06:01,440 --> 00:06:03,867
+we are creating linear object,
+
+82
+00:06:03,867 --> 00:06:08,815
+linear model from this super class.
+
+83
+00:06:08,815 --> 00:06:14,240
+We don't want to create every nitty-gritty.
+
+84
+00:06:14,240 --> 00:06:19,850
+We are here with just getting older stuff from
+
+85
+00:06:19,850 --> 00:06:25,805
+the super class how linear our model is designed?
+
+86
+00:06:25,805 --> 00:06:32,167
+And we are storing this in our variable,
+
+87
+00:06:32,167 --> 00:06:38,275
+which is called linear, self.linear.
+
+88
+00:06:38,275 --> 00:06:41,455
+And this class has only one method,
+
+89
+00:06:41,455 --> 00:06:45,418
+which is called forward.
+
+90
+00:06:45,418 --> 00:06:51,030
+And for this method we are passing the instance of the class
+
+91
+00:06:51,030 --> 00:06:58,170
+itself and we are passing x data.
+
+92
+00:06:58,170 --> 00:07:01,520
+So in here, we see again,
+
+93
+00:07:01,520 --> 00:07:09,525
+calling self.linear and we are printing out what linear function computes.
+
+94
+00:07:09,525 --> 00:07:18,680
+That's it actually and for every model which you are going to create with PyTorch,
+
+95
+00:07:18,680 --> 00:07:22,340
+this is very similar structure which you create.
+
+96
+00:07:22,340 --> 00:07:24,495
+So you always create a class,
+
+97
+00:07:24,495 --> 00:07:30,795
+which you are inheriting from a model and in
+
+98
+00:07:30,795 --> 00:07:32,010
+construct that you are
+
+99
+00:07:32,010 --> 00:07:37,763
+processing what you are actually going to do in this special model.
+
+100
+00:07:37,763 --> 00:07:39,075
+So in this case,
+
+101
+00:07:39,075 --> 00:07:44,028
+it's linear model but there are a lot of other things,
+
+102
+00:07:44,028 --> 00:07:47,835
+which you can take from this.
+
+103
+00:07:47,835 --> 00:07:51,260
+And then module for example,
+
+104
+00:07:51,260 --> 00:07:58,560
+you see here Conv1d, Conv2d, whatever.
+
+105
+00:07:58,560 --> 00:08:05,006
+So even GRU, Gated Recurrent Unit.
+
+106
+00:08:05,006 --> 00:08:08,340
+If you want to create RNN,
+
+107
+00:08:08,340 --> 00:08:15,285
+Recurrent Neural Network of GRU or LSTM.
+
+108
+00:08:15,285 --> 00:08:19,120
+For example, you can also create LSTM, LSTM itself.
+
+109
+00:08:19,120 --> 00:08:20,720
+It's very, very granular.
+
+110
+00:08:20,720 --> 00:08:25,910
+You can create a lot of things but the structure remains always the same.
+
+111
+00:08:25,910 --> 00:08:28,647
+So if you've init, you have backward.
+
+112
+00:08:28,647 --> 00:08:33,750
+So now, we're defining the input dimension,
+
+113
+00:08:33,750 --> 00:08:40,250
+as you see, we need here the input dimension if we want to run this class.
+
+114
+00:08:40,250 --> 00:08:41,844
+Input dimensions is one.
+
+115
+00:08:41,844 --> 00:08:46,913
+So actually, we have one column vector with 20 elements.
+
+116
+00:08:46,913 --> 00:08:54,875
+And it has a one column dimensions is one and the output dimensions is also one.
+
+117
+00:08:54,875 --> 00:08:58,918
+In here, we instantiate this class,
+
+118
+00:08:58,918 --> 00:09:04,650
+meaning we create an instance of a class running object of a class.
+
+119
+00:09:04,650 --> 00:09:10,105
+And two, we're passing input dimension and output dimension.
+
+120
+00:09:10,105 --> 00:09:12,445
+This we have defined in our constructor.
+
+121
+00:09:12,445 --> 00:09:14,590
+So we have defined that we are passing self,
+
+122
+00:09:14,590 --> 00:09:18,543
+self will be passed automatically from the class itself.
+
+123
+00:09:18,543 --> 00:09:21,385
+But for input dimension and output dimension,
+
+124
+00:09:21,385 --> 00:09:24,885
+we have to pass them.
+
+125
+00:09:24,885 --> 00:09:27,405
+So let us execute the cell.
+
+126
+00:09:27,405 --> 00:09:28,830
+You'll see what is model?
+
+127
+00:09:28,830 --> 00:09:31,165
+Model is a LinearRegressor,
+
+128
+00:09:31,165 --> 00:09:35,110
+which inherits from linear,
+
+129
+00:09:35,110 --> 00:09:39,890
+inherits from module and has linear function init,
+
+130
+00:09:39,890 --> 00:09:42,934
+and linear class which is, sorry.
+
+131
+00:09:42,934 --> 00:09:45,635
+A linear class init,
+
+132
+00:09:45,635 --> 00:09:52,445
+and we are passing input features dimension one and output features dimension one.
+
+133
+00:09:52,445 --> 00:09:57,370
+So this is the main building block of our regressor.
+
+134
+00:09:57,370 --> 00:10:01,735
+Now, we need to specify loss and optimize the functions.
+
+135
+00:10:01,735 --> 00:10:07,417
+It's actually in any other Deep Learning Framework.
+
+136
+00:10:07,417 --> 00:10:14,335
+So we specify loss function with that MSE, Mean Squared Error Loss.
+
+137
+00:10:14,335 --> 00:10:20,930
+This is also a class which is stored in module and then in
+
+138
+00:10:20,930 --> 00:10:30,070
+neural network and we specify that optimizer with SGD, Stochastic Gradient Descent.
+
+139
+00:10:30,070 --> 00:10:34,340
+This is in a torch.optim package.
+
+140
+00:10:34,340 --> 00:10:43,390
+And here, we have to pass two arguments which are the model parameters, meaning model,
+
+141
+00:10:43,390 --> 00:10:45,280
+which we have created already,
+
+142
+00:10:45,280 --> 00:10:49,765
+and we have also to pass the learning rate,
+
+143
+00:10:49,765 --> 00:10:53,400
+which is here, 0.001.
+
+144
+00:10:53,400 --> 00:10:55,881
+Let us print out this.
+
+145
+00:10:55,881 --> 00:10:57,560
+Execute and print out.
+
+146
+00:10:57,560 --> 00:11:00,660
+So we have created optimizer,
+
+147
+00:11:00,660 --> 00:11:03,075
+and we have created loss function.
+
+148
+00:11:03,075 --> 00:11:12,751
+We can also print loss function.
+
+149
+00:11:12,751 --> 00:11:21,424
+Okay not so much information, MSE loss.
+
+150
+00:11:21,424 --> 00:11:23,235
+It's okay.
+
+151
+00:11:23,235 --> 00:11:25,275
+So we have created both.
+
+152
+00:11:25,275 --> 00:11:27,935
+Now, we are coming to the training.
+
+153
+00:11:27,935 --> 00:11:33,310
+And here, we have only to specify the number of epochs,
+
+154
+00:11:33,310 --> 00:11:37,070
+which I have created pretty high, 500,
+
+155
+00:11:37,070 --> 00:11:40,025
+but our data is very small,
+
+156
+00:11:40,025 --> 00:11:43,195
+and it will be very very fast.
+
+157
+00:11:43,195 --> 00:11:51,686
+And then, we are creating a full loop in the range epochs, so 500 epochs.
+
+158
+00:11:51,686 --> 00:11:56,415
+Now, we are coming to the inner structure of this full loop,
+
+159
+00:11:56,415 --> 00:11:58,005
+and this is very important.
+
+160
+00:11:58,005 --> 00:12:04,123
+This is also pretty the same for any other PyTorch model.
+
+161
+00:12:04,123 --> 00:12:05,565
+So first of all,
+
+162
+00:12:05,565 --> 00:12:12,125
+we increment epoch and then we are creating inputs.
+
+163
+00:12:12,125 --> 00:12:19,658
+Inputs, we have to convert to torch from numpy array,
+
+164
+00:12:19,658 --> 00:12:21,970
+which is done here,
+
+165
+00:12:21,970 --> 00:12:27,267
+torch.from_numpy, and we are passing the training data.
+
+166
+00:12:27,267 --> 00:12:33,230
+This is the data which we are passing to our autograph variable.
+
+167
+00:12:33,230 --> 00:12:37,190
+As you can remember, autograph variable is required to
+
+168
+00:12:37,190 --> 00:12:43,064
+build computational graph which we need to compute gradients later.
+
+169
+00:12:43,064 --> 00:12:48,465
+So we are passing this variable,
+
+170
+00:12:48,465 --> 00:12:52,335
+and we're getting their outputs.
+
+171
+00:12:52,335 --> 00:13:00,275
+Then, we have to reset gradients with zero.
+
+172
+00:13:00,275 --> 00:13:07,600
+So every epoch, we are resetting gradients for the optimizer.
+
+173
+00:13:07,600 --> 00:13:13,935
+The next step, we are creating formats.
+
+174
+00:13:13,935 --> 00:13:16,155
+So we are actually predicting.
+
+175
+00:13:16,155 --> 00:13:18,560
+So we have already our model.
+
+176
+00:13:18,560 --> 00:13:20,900
+We have instantiate our model,
+
+177
+00:13:20,900 --> 00:13:27,720
+which is here, and using this model,
+
+178
+00:13:27,720 --> 00:13:29,744
+we can predict already.
+
+179
+00:13:29,744 --> 00:13:31,495
+So we are predicting.
+
+180
+00:13:31,495 --> 00:13:35,540
+So we are passing the inputs again.
+
+181
+00:13:35,540 --> 00:13:38,732
+We are passing the inputs,
+
+182
+00:13:38,732 --> 00:13:43,840
+and we are getting predicted outputs.
+
+183
+00:13:43,840 --> 00:13:47,334
+The next step is computing the loss.
+
+184
+00:13:47,334 --> 00:13:49,705
+So now, we can compute the loss.
+
+185
+00:13:49,705 --> 00:13:53,405
+We know what are the real outputs.
+
+186
+00:13:53,405 --> 00:13:59,685
+Here, we're passing actually because it's y_train actually.
+
+187
+00:13:59,685 --> 00:14:05,210
+So we have defined, specified y_train.
+
+188
+00:14:05,210 --> 00:14:07,533
+We know what it is, and here,
+
+189
+00:14:07,533 --> 00:14:16,465
+we just converting it to a numpy array and passing to a variable,
+
+190
+00:14:16,465 --> 00:14:19,510
+but these are the real outputs.
+
+191
+00:14:19,510 --> 00:14:22,330
+And here, we have created the predicted outputs and
+
+192
+00:14:22,330 --> 00:14:26,108
+now we are specifying the loss function.
+
+193
+00:14:26,108 --> 00:14:28,575
+And we're passing to the loss function,
+
+194
+00:14:28,575 --> 00:14:31,675
+predicted outputs and real outputs.
+
+195
+00:14:31,675 --> 00:14:33,855
+And then if you'll compute loss,
+
+196
+00:14:33,855 --> 00:14:39,670
+and then we use loss function to go backward and to compute
+
+197
+00:14:39,670 --> 00:14:45,580
+gradients and then we have to go optimizer.step.
+
+198
+00:14:45,580 --> 00:14:52,625
+This is actually the skeleton of every single model training in PyTorch.
+
+199
+00:14:52,625 --> 00:14:58,411
+You will always run the same steps even if you want to create the most,
+
+200
+00:14:58,411 --> 00:15:01,080
+most complicated neuronal network,
+
+201
+00:15:01,080 --> 00:15:02,325
+it will be the same.
+
+202
+00:15:02,325 --> 00:15:10,075
+In PyTorch users also this optimization technique to optimize
+
+203
+00:15:10,075 --> 00:15:18,355
+even the simplest model like linear model or logistic model.
+
+204
+00:15:18,355 --> 00:15:23,770
+It's the same. It will always run the same steps
+
+205
+00:15:23,770 --> 00:15:30,925
+and actually apply the same technique of optimization.
+
+206
+00:15:30,925 --> 00:15:33,370
+And then you have to print out.
+
+207
+00:15:33,370 --> 00:15:36,785
+Actually in PyTorch, you will not have
+
+208
+00:15:36,785 --> 00:15:41,353
+this convenient methods like in
+
+209
+00:15:41,353 --> 00:15:45,985
+Keras where you just specify what do you like to be printed out,
+
+210
+00:15:45,985 --> 00:15:50,480
+and Keras will print out everything for you.
+
+211
+00:15:50,480 --> 00:15:56,995
+Here, you just have to write a small line of code to see the output,
+
+212
+00:15:56,995 --> 00:16:00,635
+but this is the price for this flexibility.
+
+213
+00:16:00,635 --> 00:16:05,045
+So you have here complete flexibility.
+
+214
+00:16:05,045 --> 00:16:07,453
+How do you build your computational graph.
+
+215
+00:16:07,453 --> 00:16:12,565
+You can decide its run time what be in the graph.
+
+216
+00:16:12,565 --> 00:16:19,482
+You can specify whether to run the tensors on cuda, on GPU or on CPU.
+
+217
+00:16:19,482 --> 00:16:25,580
+Everything you can specify the sizes of the tensors.
+
+218
+00:16:25,580 --> 00:16:30,775
+Whatever you like, its run time and you can change its run time.
+
+219
+00:16:30,775 --> 00:16:32,945
+And this is great for
+
+220
+00:16:32,945 --> 00:16:38,140
+the flexibility and my opinion is that the price which you have to pay
+
+221
+00:16:38,140 --> 00:16:45,238
+for it that you have to run some boilerplate code but it's not too much in my opinion.
+
+222
+00:16:45,238 --> 00:16:48,375
+So let us execute this,
+
+223
+00:16:48,375 --> 00:16:50,746
+full loop and train our model.
+
+224
+00:16:50,746 --> 00:16:52,003
+It's very fast.
+
+225
+00:16:52,003 --> 00:16:53,560
+It's already trained.
+
+226
+00:16:53,560 --> 00:17:00,790
+So we have 500 epochs and you see that the loss decreases continuously,
+
+227
+00:17:00,790 --> 00:17:07,193
+it decreases, and then we have we stock by loss 0.2,
+
+228
+00:17:07,193 --> 00:17:11,955
+and actually, we have very good accuracy here.
+
+229
+00:17:11,955 --> 00:17:16,705
+We can actually be proud of us.
+
+230
+00:17:16,705 --> 00:17:18,415
+It's a very simple model, of course,
+
+231
+00:17:18,415 --> 00:17:24,085
+but if you like to create something more complex,
+
+232
+00:17:24,085 --> 00:17:30,295
+you will actually use the same structure as we have discussed here.
+
+233
+00:17:30,295 --> 00:17:37,750
+Okay. This is the last session in our introductory session cycle of PyTorch.
+
+234
+00:17:37,750 --> 00:17:43,030
+I hope you have enjoyed and see you next time. Bye bye.

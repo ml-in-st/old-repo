@@ -1,0 +1,631 @@
+1
+00:00:00,000 --> 00:00:09,684
+Welcome back. In the last session we have defined the architecture of our LSTM network.
+
+2
+00:00:09,684 --> 00:00:14,920
+So short reminder, we have defined the input layer
+
+3
+00:00:14,920 --> 00:00:22,660
+and we have defined two LSTM layers and output dense layer.
+
+4
+00:00:22,660 --> 00:00:25,800
+This is the at first sight,
+
+5
+00:00:25,800 --> 00:00:27,610
+a pretty simple architecture.
+
+6
+00:00:27,610 --> 00:00:34,210
+So we have four layers which are connected with each other,
+
+7
+00:00:34,210 --> 00:00:38,470
+as we know from another neuronal networks.
+
+8
+00:00:38,470 --> 00:00:44,692
+So they are connected as dense layers from the input to the output.
+
+9
+00:00:44,692 --> 00:00:50,136
+But now, let us have a look at LSTM layers.
+
+10
+00:00:50,136 --> 00:00:55,070
+So, to reduce the complexity,
+
+11
+00:00:55,070 --> 00:01:04,465
+let us assume that our layer will consist only of one node.
+
+12
+00:01:04,465 --> 00:01:07,775
+Just for exponential results.
+
+13
+00:01:07,775 --> 00:01:11,255
+Now we're looking at one layer,
+
+14
+00:01:11,255 --> 00:01:12,514
+which has one node.
+
+15
+00:01:12,514 --> 00:01:18,050
+So let's have a look.
+
+16
+00:01:18,050 --> 00:01:22,355
+This is the picture which I have copied from
+
+17
+00:01:22,355 --> 00:01:28,120
+the homepage of the Redwood Center for Theoretical Neuroscience.
+
+18
+00:01:28,120 --> 00:01:31,225
+This is the center of Berkeley University,
+
+19
+00:01:31,225 --> 00:01:35,680
+and this is the blog of Brian Cheung.
+
+20
+00:01:35,680 --> 00:01:39,625
+Now, what do we have here?
+
+21
+00:01:39,625 --> 00:01:44,315
+You see here a timeline.
+
+22
+00:01:44,315 --> 00:01:48,010
+So here, you see seven timestamps.
+
+23
+00:01:48,010 --> 00:01:53,185
+In our network, we have 10 timestamps.
+
+24
+00:01:53,185 --> 00:01:55,200
+But you can imagine,
+
+25
+00:01:55,200 --> 00:01:58,895
+so we can add here three additional timestamps.
+
+26
+00:01:58,895 --> 00:02:05,100
+Now, we have here input layer denoted as inputs.
+
+27
+00:02:05,100 --> 00:02:08,390
+We have here hidden layer,
+
+28
+00:02:08,390 --> 00:02:12,695
+and we have output layer, outputs.
+
+29
+00:02:12,695 --> 00:02:15,927
+This is the same architecture as we have here.
+
+30
+00:02:15,927 --> 00:02:17,924
+We have input layer,
+
+31
+00:02:17,924 --> 00:02:23,130
+we have LSTM layers but now we think only of one layer,
+
+32
+00:02:23,130 --> 00:02:26,895
+and we have here output layer which is the dense layer.
+
+33
+00:02:26,895 --> 00:02:28,820
+This is the same architecture.
+
+34
+00:02:28,820 --> 00:02:33,280
+But what we see here is
+
+35
+00:02:33,280 --> 00:02:40,453
+that the LSTM layer is unrolled in time.
+
+36
+00:02:40,453 --> 00:02:46,369
+What does it mean unrolled or unfold in time?
+
+37
+00:02:46,369 --> 00:02:48,795
+It means following.
+
+38
+00:02:48,795 --> 00:02:57,951
+Those are all copies of the same LSTM node.
+
+39
+00:02:57,951 --> 00:03:01,835
+Here we have seven copies.
+
+40
+00:03:01,835 --> 00:03:05,595
+In our case, we would have ten copies.
+
+41
+00:03:05,595 --> 00:03:11,305
+So the LSTM creates for every timestamp,
+
+42
+00:03:11,305 --> 00:03:14,610
+a copy of itself.
+
+43
+00:03:14,610 --> 00:03:21,385
+And this hidden layer which has only one node,
+
+44
+00:03:21,385 --> 00:03:25,843
+in our case, we have reduce it,
+
+45
+00:03:25,843 --> 00:03:28,083
+in fact to one node,
+
+46
+00:03:28,083 --> 00:03:33,712
+but it can have much more nodes,
+
+47
+00:03:33,712 --> 00:03:37,160
+let's say 10, 20, 40, whatever you like.
+
+48
+00:03:37,160 --> 00:03:41,980
+But here, to simplify the whole story,
+
+49
+00:03:41,980 --> 00:03:45,735
+we think of it as of one single node.
+
+50
+00:03:45,735 --> 00:03:48,665
+So, for every timestamp,
+
+51
+00:03:48,665 --> 00:03:52,025
+the LSTM creates as I said,
+
+52
+00:03:52,025 --> 00:03:54,445
+a copy of itself.
+
+53
+00:03:54,445 --> 00:03:58,020
+How data flows.
+
+54
+00:03:58,020 --> 00:04:04,433
+So we see here that the data on the input node at a certain timestamp here,
+
+55
+00:04:04,433 --> 00:04:05,740
+for example, one, two, three,
+
+56
+00:04:05,740 --> 00:04:08,175
+four and so on,
+
+57
+00:04:08,175 --> 00:04:10,940
+flows to the hidden layer.
+
+58
+00:04:10,940 --> 00:04:12,985
+And here, you see these signs,
+
+59
+00:04:12,985 --> 00:04:16,902
+this circle and this minus signs.
+
+60
+00:04:16,902 --> 00:04:24,434
+These signs denotes to so-called gates or valves.
+
+61
+00:04:24,434 --> 00:04:29,020
+In the next explanation,
+
+62
+00:04:29,020 --> 00:04:31,375
+we will see what the valves are.
+
+63
+00:04:31,375 --> 00:04:36,159
+But now, just think of them as valves.
+
+64
+00:04:36,159 --> 00:04:39,820
+So here you see a cycle,
+
+65
+00:04:39,820 --> 00:04:45,250
+open pipe, if you look at the first timestamp,
+
+66
+00:04:45,250 --> 00:04:55,515
+you see that the data can flow through and arrives this black node in the hidden layer.
+
+67
+00:04:55,515 --> 00:05:03,430
+Then you see a kind of minus sign and the data is blocked here,
+
+68
+00:05:03,430 --> 00:05:05,755
+it cannot flow to the output.
+
+69
+00:05:05,755 --> 00:05:08,900
+Now we're talking about the first timestamp.
+
+70
+00:05:08,900 --> 00:05:12,325
+Let's have a look at the second timestamp.
+
+71
+00:05:12,325 --> 00:05:19,715
+The information flows from the input to the hidden layer,
+
+72
+00:05:19,715 --> 00:05:24,766
+but again, it's blocked here.
+
+73
+00:05:24,766 --> 00:05:31,742
+If we look at the path from timestamp one to the timestamp two,
+
+74
+00:05:31,742 --> 00:05:34,465
+we see that information can flow.
+
+75
+00:05:34,465 --> 00:05:39,655
+So, this valve, the second timestamp is open,
+
+76
+00:05:39,655 --> 00:05:41,995
+so the information flows there.
+
+77
+00:05:41,995 --> 00:05:45,364
+Then it flows to the timestamp three,
+
+78
+00:05:45,364 --> 00:05:49,195
+then it flows to the timestamp four.
+
+79
+00:05:49,195 --> 00:05:56,577
+And only here the valve which allows to flow to the output again is open.
+
+80
+00:05:56,577 --> 00:06:04,570
+So now have a look at such a single node at one timestamp.
+
+81
+00:06:04,570 --> 00:06:09,184
+Anatomy of an LSTM node.
+
+82
+00:06:09,184 --> 00:06:15,127
+So, we have seen this is the same picture as above.
+
+83
+00:06:15,127 --> 00:06:19,377
+Now what we have here explains a lot.
+
+84
+00:06:19,377 --> 00:06:25,825
+Also what we have talked about in in the previous sessions.
+
+85
+00:06:25,825 --> 00:06:30,488
+You see here cell state and hidden state.
+
+86
+00:06:30,488 --> 00:06:36,390
+This is very often confused by people,
+
+87
+00:06:36,390 --> 00:06:40,765
+but here, I find this explanation is very clear.
+
+88
+00:06:40,765 --> 00:06:44,480
+What we have here, we have here Cell State.
+
+89
+00:06:44,480 --> 00:06:48,455
+Cell State is actually just inner memory.
+
+90
+00:06:48,455 --> 00:06:54,445
+This is the state of the LSTM node memory,
+
+91
+00:06:54,445 --> 00:06:58,315
+which is within this node.
+
+92
+00:06:58,315 --> 00:07:05,193
+This Cell State or Cell Memory is surrounded by three gates.
+
+93
+00:07:05,193 --> 00:07:06,875
+One is the Input Gate.
+
+94
+00:07:06,875 --> 00:07:16,890
+Input Gate is the valve which controls the information flow from input to the Cell State.
+
+95
+00:07:16,890 --> 00:07:21,010
+So, this is the valve or this is the gate which can let in
+
+96
+00:07:21,010 --> 00:07:25,660
+the information to the Cell State or block the information,
+
+97
+00:07:25,660 --> 00:07:28,595
+not allow to pass this valve.
+
+98
+00:07:28,595 --> 00:07:30,760
+So you can see here,
+
+99
+00:07:30,760 --> 00:07:37,770
+only the first timestamp the information can flow to the hidden layer.
+
+100
+00:07:37,770 --> 00:07:41,590
+Now have the Forget Gate.
+
+101
+00:07:41,590 --> 00:07:50,255
+This gate stands between different timestamps within Hidden Layer.
+
+102
+00:07:50,255 --> 00:07:55,670
+So all those, if you look at the Hidden Layer here,
+
+103
+00:07:55,670 --> 00:08:00,340
+you'll see the cycle to the left.
+
+104
+00:08:00,340 --> 00:08:03,170
+This is the valve.
+
+105
+00:08:03,170 --> 00:08:05,420
+This is the Forget Gate.
+
+106
+00:08:05,420 --> 00:08:12,605
+So here, it's open at the first timestamp and the second timestamp is open again.
+
+107
+00:08:12,605 --> 00:08:15,920
+And the third open, fourth, open, fifth,
+
+108
+00:08:15,920 --> 00:08:19,265
+open, sixth, open, but seventh it's closed.
+
+109
+00:08:19,265 --> 00:08:22,760
+So the information cannot flow from
+
+110
+00:08:22,760 --> 00:08:29,554
+the sixth timestamp within Hidden Layer to the seventh timestamp.
+
+111
+00:08:29,554 --> 00:08:33,442
+And now we have Output Gate or Output Valve.
+
+112
+00:08:33,442 --> 00:08:37,748
+This valve controls the information flow to
+
+113
+00:08:37,748 --> 00:08:43,784
+the outside, to the output.
+
+114
+00:08:43,784 --> 00:08:47,264
+So you'll see here, Output Layer.
+
+115
+00:08:47,264 --> 00:08:52,745
+For every timestamp, you produce one output here.
+
+116
+00:08:52,745 --> 00:08:56,190
+And you see the information,
+
+117
+00:08:56,190 --> 00:08:59,044
+the timestamp one, it blocks here,
+
+118
+00:08:59,044 --> 00:09:02,330
+timestamp two, again block,
+
+119
+00:09:02,330 --> 00:09:06,860
+timestamp three, blocked, timestamp four, open.
+
+120
+00:09:06,860 --> 00:09:11,337
+The information can flow to the output.
+
+121
+00:09:11,337 --> 00:09:16,820
+And this output is Hidden State. Why it's hidden?
+
+122
+00:09:16,820 --> 00:09:19,645
+What was hidden in it? So actually.
+
+123
+00:09:19,645 --> 00:09:25,547
+Okay. It refers to the output of the Hidden Layer,
+
+124
+00:09:25,547 --> 00:09:31,385
+hidden meaning, this is the layer which lies underneath of the input.
+
+125
+00:09:31,385 --> 00:09:38,110
+But there is more about this to be hidden.
+
+126
+00:09:38,110 --> 00:09:42,550
+This information accumulates a lot
+
+127
+00:09:42,550 --> 00:09:49,150
+of processes which are happening within time.
+
+128
+00:09:49,150 --> 00:09:54,280
+So the whole flow of information from timestamp
+
+129
+00:09:54,280 --> 00:10:00,000
+one to timestamp six is reflected in this output.
+
+130
+00:10:00,000 --> 00:10:04,365
+So we have here one open gate,
+
+131
+00:10:04,365 --> 00:10:09,645
+we see here output gate is open
+
+132
+00:10:09,645 --> 00:10:15,625
+at timestamp four and at timestamp six.
+
+133
+00:10:15,625 --> 00:10:21,660
+But what the network is outputing here,
+
+134
+00:10:21,660 --> 00:10:28,490
+is the result of processes which are happening in the timestamps before that.
+
+135
+00:10:28,490 --> 00:10:33,740
+And this is one of the reasons why it said hidden state.
+
+136
+00:10:33,740 --> 00:10:38,330
+So, this is the short explanation.
+
+137
+00:10:38,330 --> 00:10:44,225
+So just remember the main things here,
+
+138
+00:10:44,225 --> 00:10:47,226
+that the Cell State is the memory state.
+
+139
+00:10:47,226 --> 00:10:50,655
+This is the inner cell of the state.
+
+140
+00:10:50,655 --> 00:10:56,860
+It is not always passed to the next layer.
+
+141
+00:10:56,860 --> 00:11:00,425
+And we see here,
+
+142
+00:11:00,425 --> 00:11:06,225
+since we have defined a state for LSTM.
+
+143
+00:11:06,225 --> 00:11:10,884
+So we have said, stateful true, it return sequences,
+
+144
+00:11:10,884 --> 00:11:14,640
+and it's also by default,
+
+145
+00:11:14,640 --> 00:11:18,398
+returning state, Cell State.
+
+146
+00:11:18,398 --> 00:11:20,313
+Why?
+
+147
+00:11:20,313 --> 00:11:28,610
+We have said that the batches other training units.
+
+148
+00:11:28,610 --> 00:11:31,425
+And after one batch is completed,
+
+149
+00:11:31,425 --> 00:11:34,685
+the next batch is initialized.
+
+150
+00:11:34,685 --> 00:11:43,765
+Not with zeros as the case was stateless neuronal networks.
+
+151
+00:11:43,765 --> 00:11:50,933
+It's initialized with the Hidden State in the Cell State from the previous batch.
+
+152
+00:11:50,933 --> 00:11:55,798
+And this is what we have to remember.
+
+153
+00:11:55,798 --> 00:12:05,140
+Now, if you would like to know more or more in detail how it works, I mean,
+
+154
+00:12:05,140 --> 00:12:09,165
+every single gate, how it's computed, and so on and so on,
+
+155
+00:12:09,165 --> 00:12:15,915
+it's all described very well on Internet and there are several great articles out
+
+156
+00:12:15,915 --> 00:12:23,270
+there but I would recommend that you should look at article of Colah.
+
+157
+00:12:23,270 --> 00:12:29,525
+Colah's blog and it's a really great article and good reference.
+
+158
+00:12:29,525 --> 00:12:39,510
+So with this, stay tuned and enjoy our sessions. See you. Bye bye.

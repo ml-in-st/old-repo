@@ -1,0 +1,184 @@
+1
+00:00:00,270 --> 00:00:04,870
+In this module,
+we will use our LSTM anomaly detector, and
+
+2
+00:00:04,870 --> 00:00:07,650
+turn it into a real time
+anomaly detection system.
+
+3
+00:00:08,660 --> 00:00:13,244
+So if you want to get an anomaly detection
+system from a playground into production,
+
+4
+00:00:13,244 --> 00:00:15,490
+you have to hook it up to data source.
+
+5
+00:00:15,490 --> 00:00:19,250
+Either we can directly access data
+from a data source for training, or
+
+6
+00:00:19,250 --> 00:00:21,690
+we need to run from process in between.
+
+7
+00:00:21,690 --> 00:00:25,220
+One special case which is the most
+interesting one in my opinion
+
+8
+00:00:25,220 --> 00:00:27,840
+is looking on a realtime data stream.
+
+9
+00:00:27,840 --> 00:00:32,205
+Because a lot of data loses it's
+value within the first seconds.
+
+10
+00:00:32,205 --> 00:00:36,530
+So think of a stock market taker or
+cryptcurrency market ticker or
+
+11
+00:00:36,530 --> 00:00:38,280
+ask data or IoT sense data.
+
+12
+00:00:39,350 --> 00:00:43,380
+We can data into creation is most of
+them with some sort od message cue or
+
+13
+00:00:43,380 --> 00:00:44,060
+stream engine.
+
+14
+00:00:45,090 --> 00:00:49,830
+At the lowest level, even a TCP connection
+can be seen as a message queue.
+
+15
+00:00:49,830 --> 00:00:53,280
+Although, if you can't consume
+your messages fast enough,
+
+16
+00:00:53,280 --> 00:00:55,325
+you will lose data due to time outs.
+
+17
+00:00:55,325 --> 00:00:58,690
+Even the UDP connection can be seen
+as some kind of a message queue.
+
+18
+00:00:58,690 --> 00:01:01,660
+But your messages can get lost and
+order is not preserved.
+
+19
+00:01:01,660 --> 00:01:05,939
+Often also, HTTP with rest, our web
+circuits are used as message queues.
+
+20
+00:01:07,770 --> 00:01:12,820
+MQTT is often used for IoT telemetry use
+cases because it's very lightweight.
+
+21
+00:01:14,450 --> 00:01:18,050
+MQTT defines the message protocol,
+so it decouples on the end receiver.
+
+22
+00:01:19,370 --> 00:01:21,100
+We will use MQTT in our example.
+
+23
+00:01:22,380 --> 00:01:25,920
+Kafka is also an example of a message
+protocol which is widely used for
+
+24
+00:01:25,920 --> 00:01:26,710
+all sorts of data.
+
+25
+00:01:28,080 --> 00:01:31,420
+At the other end of the spectrum
+resides streaming engines,
+
+26
+00:01:31,420 --> 00:01:35,520
+like IBM Streams,
+Apache Spark, or Apache Flink,
+
+27
+00:01:35,520 --> 00:01:40,660
+which do not only allow data movement but
+also data transformation in between.
+
+28
+00:01:40,660 --> 00:01:41,380
+So in our case,
+
+29
+00:01:41,380 --> 00:01:46,070
+we use the MQTT message program, which is
+provided by the IBM Watson IoT platform.
+
+30
+00:01:47,580 --> 00:01:51,622
+Realtime SLR metadata is sometimes have
+to get for demonstration purposes,
+
+31
+00:01:51,622 --> 00:01:55,378
+that's why we use the simulator
+implemented on top of Node-RED.
+
+32
+00:01:56,380 --> 00:01:57,230
+For the queue and
+
+33
+00:01:57,230 --> 00:02:03,100
+consume it directly from the deep learning
+framework is fine for development.
+
+34
+00:02:03,100 --> 00:02:06,783
+But for production scenario,
+we have to deploy a model.
+
+35
+00:02:06,783 --> 00:02:11,851
+A convenient way for this is using the
+IBM Watson machine learning service which
+
+36
+00:02:11,851 --> 00:02:18,673
+supports various MLNT frameworks like
+Spark ML, TensorFlow, PyTorch, and so on.
+
+37
+00:02:18,673 --> 00:02:20,699
+The cool thing is that
+everything comes as a service so
+
+38
+00:02:20,699 --> 00:02:23,180
+you are not wasting your
+time with operations.
+
+39
+00:02:23,180 --> 00:02:25,740
+So let's see how this is done
+in real life, so stay tuned.

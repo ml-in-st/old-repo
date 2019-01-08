@@ -1,0 +1,29 @@
+In this video,
+we're going to talk about more general, non-sequential models in Keras
+using the functional API. So there is two types of models in Keras. We've seen the sequential already. There is another type called model, which you would use if you were
+in need of non-sequential models. Once defined, and we will see
+how to do that in just a second. The model can be trained and
+evaluated exactly like sequential models. So you don't have to learn
+anything about that part. Using the functional API,
+you would usually start with model and configuring one or several inputs. Once you have those inputs defined,
+we define transformations for those inputs, until you arrive at one or
+several outputs. So let's look at an example. This is an example we kind of have
+already seen using the sequential model. Mainly we do predictions of
+100 predictions using amnest. We've got two layers here first. First one is Dense time layers
+which we have already seen and the second one is a new
+layer type called Input. On top of that,
+we import our new model class. As before, we define the number of classes
+as 10 because we have 10 digits here. And we define an input layer of shape 784, which is of vector shape length 784. Then what we do next is new,
+we define a Dense of output dimension 512, but instead of simply defining it,
+we call it on our inputs. So we define x as a Dense
+layer applied to our inputs. So what that means is, every layer
+in Keras, actually, every model for that purpose can be called in tensors
+to output tensors, and we do that here. So this is part of the functional API. We can do this step again and apply our intermediary x to a Dense
+layer again to arrive at yet another x. Finally, we can do this a third time,
+this time with the number of classes as output dimension to
+arrive at our predictions. So this procedure of calling
+layers on different inputs, you can do that in any fashion, and
+slowly build up very complicated models. Now, to initialize and
+run a model is quite simple, you simply specify the inputs and
+the outputs, that's it. Compilation step, fitting, evaluating and
+so on, it's just the same thing as before.

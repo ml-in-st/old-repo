@@ -1,0 +1,195 @@
+1
+00:00:00,000 --> 00:00:02,990
+In this module, we will cover Automatic Differentiation,
+
+2
+00:00:02,990 --> 00:00:04,810
+one of the key features of TensorFlow.
+
+3
+00:00:04,810 --> 00:00:07,890
+May be from high school if you remember what differentiation,
+
+4
+00:00:07,890 --> 00:00:10,080
+and the chain rule of differentiation is.
+
+5
+00:00:10,080 --> 00:00:13,255
+If not just, please have a look at the next two slides for a little refresher.
+
+6
+00:00:13,255 --> 00:00:17,275
+So, if you take the first derivative of cosine of x,
+
+7
+00:00:17,275 --> 00:00:20,685
+it turns out that this is just minus sign of x.
+
+8
+00:00:20,685 --> 00:00:22,638
+Let's create a little plot to illustrate this.
+
+9
+00:00:22,638 --> 00:00:25,245
+So, the green line is cosine of
+
+10
+00:00:25,245 --> 00:00:28,870
+x and the blue line is the first derivative of cosine of x.
+
+11
+00:00:28,870 --> 00:00:30,498
+As you might remember,
+
+12
+00:00:30,498 --> 00:00:33,620
+the first derivative tells us something about a slope of the function.
+
+13
+00:00:33,620 --> 00:00:35,995
+So here at this point,
+
+14
+00:00:35,995 --> 00:00:37,243
+where the slope is zero,
+
+15
+00:00:37,243 --> 00:00:40,390
+the value of the first derivative is zero as well.
+
+16
+00:00:40,390 --> 00:00:41,875
+At the this deepest position,
+
+17
+00:00:41,875 --> 00:00:44,020
+the derivative becomes minus one.
+
+18
+00:00:44,020 --> 00:00:46,860
+Again, the cosine function reaches zero gradient.
+
+19
+00:00:46,860 --> 00:00:49,885
+And this is reflected by the first derivative as well.
+
+20
+00:00:49,885 --> 00:00:54,355
+Finally, when the cosine function reached its maximum ascending gradient,
+
+21
+00:00:54,355 --> 00:00:56,004
+the first derivative becomes one.
+
+22
+00:00:56,004 --> 00:00:58,090
+So now, let TensorFlow take care of
+
+23
+00:00:58,090 --> 00:01:01,710
+computing the first derivative of the cosine function.
+
+24
+00:01:01,710 --> 00:01:06,380
+We start with a value x and apply TensorFlow's cosine operation on it.
+
+25
+00:01:06,380 --> 00:01:10,150
+Then we tell TensorFlow to minimize overbuy.
+
+26
+00:01:10,150 --> 00:01:11,970
+In order to achieve this,
+
+27
+00:01:11,970 --> 00:01:16,500
+TensorFlow must compute the first derivative of the cosine function.
+
+28
+00:01:16,500 --> 00:01:20,878
+Note that until now, no competitions have happened.
+
+29
+00:01:20,878 --> 00:01:23,985
+Only the execution graph has been created.
+
+30
+00:01:23,985 --> 00:01:26,274
+Let's have a look at this graph in TensorBoard now.
+
+31
+00:01:26,274 --> 00:01:29,025
+So, this is the graph of our example,
+
+32
+00:01:29,025 --> 00:01:31,170
+which contains the created operation.
+
+33
+00:01:31,170 --> 00:01:35,215
+Within this section, the gradient of the cosine function is computed,
+
+34
+00:01:35,215 --> 00:01:38,500
+which is actually nothing else than the first derivative of the function.
+
+35
+00:01:38,500 --> 00:01:42,350
+As you can see, this is reflected by the appropriate operations.
+
+36
+00:01:42,350 --> 00:01:46,260
+It turns out that for every atomic mathematical operation,
+
+37
+00:01:46,260 --> 00:01:49,665
+it is guaranteed that there exists a derivative operation.
+
+38
+00:01:49,665 --> 00:01:52,085
+And with a chain rule of differentiation,
+
+39
+00:01:52,085 --> 00:01:55,595
+we are guaranteed to obtain a solution for the first derivative,
+
+40
+00:01:55,595 --> 00:01:57,990
+no matter how complex the functions are getting.
+
+41
+00:01:57,990 --> 00:02:00,935
+But this is beyond the scope of this course.
+
+42
+00:02:00,935 --> 00:02:03,720
+Just remember, every operator which is available within
+
+43
+00:02:03,720 --> 00:02:07,730
+TensorFlow has the richest and appropriate created function.
+
+44
+00:02:07,730 --> 00:02:09,580
+Here in this case, an operator called,
+
+45
+00:02:09,580 --> 00:02:13,195
+ZeroOut, is RegisterGradient function called zero_out_grad.
+
+46
+00:02:13,195 --> 00:02:17,080
+This way, TensorFlow is capable
+
+47
+00:02:17,080 --> 00:02:21,360
+of automatically compute the derivative of any function defined in a TensorFlow graph.
+
+48
+00:02:21,360 --> 00:02:25,780
+So, we only need to come up with a creative idea of a model,
+
+49
+00:02:25,780 --> 00:02:28,000
+and TensorFlow does the rest. Isn't that great?

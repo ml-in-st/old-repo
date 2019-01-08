@@ -1,0 +1,35 @@
+In this video,
+I will explain how to use SystemML. SystemML provides a R-like language
+called Declarative Machine Learning, or DML, for data scientists to
+implement machine learning algorithm. Here is a sample of DML script. In this script, we generate a random
+matrix X, with 1,000 cols and sparsity 0.5. The number of rows is provided by
+the user using the dollar parameter nr. We then multiply the matrix X with
+the transpose and compute the sum. It is important to note that DML
+simply simplifies the development and deployment of the machine
+learning algorithms. It does so,
+by separating algorithm semantics from the underlying data representation and
+runtime execution plan. DML is expressive enough to cover
+a broad class of algorithms. Such as Descriptive Statistics,
+Classification, Clustering, Regression, Matrix Factorization,
+Dimensionality Reduction, Survival Model, and Deep Learning. These algorithms are pre-packaged with
+SystemML and available on GitHub. SystemML also supports commonly used data
+transformation task such as recording, demicording, bending, scaling,
+and missing values imputation. SystemML has a cost less compiler
+that automatically generates hybrid runtime execution plans. That are composed of single node and
+distributed operations. These plans are generated depending
+on data and cluster characteristics, such as data size, data sparsity,
+cluster size and memory configuration. In our previous example,
+if the user specifies a small linear, then SystemML might compile
+a single node plan. On the other hand, if linear is large, then SystemML
+might compile Hadoop or a Spark plan. The language component passes the DML script into a hierarchy
+of statement blocks and statements. It also performs syntactic analysis,
+live variable analysis, and semantic validation. We then construct a directed cyclic
+graph of high-level operators, called as HOPs, per statement. SystemML optimizer performs various
+optimizations on this HOP DAGs. For example,
+algebraic simplifications rewrite, interprocedural analysis, and
+matrix multiplication chain optimization. Each HOP DAG is compiled into a dug up
+low level operators called a slopes, based on memory estimation,
+data and cluster characteristics. Loops are back in specific operator and have corresponding real-time
+implementation called instructions. SystemML runs in an embeddable,
+standalone, and in cluster mode. It also supports various APIs in Scala,
+Python, and Java.
